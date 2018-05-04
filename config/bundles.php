@@ -18,8 +18,5 @@ return [
 
     // dev
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
-    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true],
-
-    // prod
-    Sentry\SentryBundle\SentryBundle::class => ['prod' => true],
+    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true]
 ];
