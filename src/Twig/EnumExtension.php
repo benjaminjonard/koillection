@@ -26,15 +26,15 @@ class EnumExtension extends \Twig_Extension
 
     /**
      * @param string $code
-     * @return string
+     * @return null|string
      */
-    public function getCurrencySymbol(string $code) : string
+    public function getCurrencySymbol(string $code) : ?string
     {
         return CurrencyEnum::getSymbolFromCode($code);
     }
 
     /**
-     * @param string $code
+     * @param string $role
      * @return string
      */
     public function getRoleLabel(string $role) : string
