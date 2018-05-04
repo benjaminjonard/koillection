@@ -1,0 +1,50 @@
+{% extends 'layout-autorized.html.twig' %}
+{% form_theme form 'Form/fields.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_template_index', 'trans': 'menu.templates'}], null, 'breadcrumb.add_template') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'title.new_template'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            {{ form_start(form) }}
+                <div class="block-element">
+                    <div class="row">
+                        <h4 class="header">{{ 'title.infos'|trans }}</h4>
+                        <div class="col s5 offset-s1">
+                            {{ form_row(form.name, {'label': 'label.name'}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-element">
+                    <div class="row">
+                        <h4 class="header">{{ 'title.fields'|trans }}</h4>
+                        <div class="col s11 offset-s1">
+                            <div id="template-fields-holder" data-prototype="{% filter escape %} {{ include('App/Field/prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endfilter %}">
+                                {{ form_row(form.fields) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-btn-holder">
+                    {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                    <a href="{{ path('app_template_index') }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+                </div>
+                <div class="clearfix"></div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

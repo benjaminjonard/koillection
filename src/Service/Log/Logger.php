@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Service\Log;
+
+use App\Entity\Log;
+use Symfony\Component\Translation\TranslatorInterface;
+
+/**
+ * Class Logger
+ *
+ * @package App\Service\Log
+ */
+abstract class Logger implements LoggerInterface
+{
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
+    /**
+     * @param $class
+     * @return bool
+     */
+    public function supportedClass($class)
+    {
+        return $class === $this->getClass();
+    }
+
+    /**
+     * @param $type
+     * @param $entity
+     * @param array $payload
+     * @return Log
+     */
+    public function createLog($type, $entity, array $payload = [])
+    {
+        $labelGetter = $this->getLabelGetter();
+        $log = new Log();
+        $log
+            ->setType($type)
+            ->setObjectId($entity->getId())
+            ->setObjectLabel($entity->$labelGetter())
+            ->setObjectClass($this->getClass())
+            ->setUsername($entity->getOwner()->getUsername())
+            ->setPayload(json_encode($payload))
+        ;
+
+        return $log;
+    }
+}

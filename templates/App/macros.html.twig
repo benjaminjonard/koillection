@@ -1,0 +1,6 @@
+{% macro lazyImage(src, aria = null, classes = "") %}
+<div class="image-wrapper">
+    <img data-src="{{ preload(asset(src)) }}" {{ aria ? 'aria-label="#{aria}"'}}>
+    <div class="placeholder {{ classes }}"></div>
+</div>
+{% endmacro %}

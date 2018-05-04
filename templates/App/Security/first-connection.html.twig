@@ -1,0 +1,25 @@
+{% extends 'layout-unautorized.html.twig' %}
+
+{% form_theme form 'Form/fields.html.twig' %}
+
+{% block content %}
+    <div class="homepage">
+        <div class="row">
+            <div class="form center">
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="panel-wrapper col offset-m4 offset-s1 s10 m4">
+                        <h5 class="header">{{ 'title.first_connection.user'|trans }}</h5>
+                        {{ form_row(form.username, {'label' : 'label.username'} ) }}
+                        {{ form_row(form.email, {'label' : 'label.email'} ) }}
+                        {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
+                        {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
+                        <div class="right">
+                            {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn btn-lg btn-success btn-block'}}) }}
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

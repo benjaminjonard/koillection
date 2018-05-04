@@ -1,0 +1,19 @@
+###> symfony/framework-bundle ###
+.env
+phpunit.xml
+/public/sw.js
+/public/bundles/
+/public/uploads/*
+!/public/uploads/.gitkeep
+/public/tmp/*
+!public/tmp/.gitkeep
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+
+.php_cs.cache

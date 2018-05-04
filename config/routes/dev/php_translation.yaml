@@ -1,0 +1,2 @@
+_translation_profiler:
+    resource: '@TranslationBundle/Resources/config/routing_symfony_profiler.yml'

@@ -1,0 +1,9 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    csrf_protection: ~
+    php_errors:
+        log: true
+    session:
+        handler_id:  ~
+    assets:
+        json_manifest_path: '%kernel.root_dir%/../public/build/manifest.json'

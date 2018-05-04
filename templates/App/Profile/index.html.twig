@@ -1,0 +1,68 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% form_theme form 'Form/fields.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_profile_index', 'trans': 'menu.profile'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.profile'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            <div class="block-element">
+                <h5 class="header">{{ 'title.disk_usage'|trans }}</h5>
+                <div class="pie-wrapper">
+                    {% set percent = (app.user.diskSpaceUsed * 100 / app.user.diskSpaceAllowed)|round(0, 'floor') %}
+                    <span class="label">{{ percent }}<span class="smaller">%</span></span>
+                    <div class="pie {{ percent > 50 ? 'above50' : '' }}">
+                        <div class="left-side half-circle" style="-webkit-transform: rotate({{ percent*360/100 }}deg); transform: rotate({{ percent*360/100 }}deg);"></div>
+                        <div class="right-side half-circle"></div>
+                    </div>
+                    <div class="shadow"></div>
+                </div>
+                <div class="pie-stat">{{ app.user.diskSpaceUsed|bytes }}/{{ app.user.diskSpaceAllowed|bytes }}</div>
+            </div>
+
+            <div class="block-element row">
+                {{ form_start(form) }}
+                    <div>
+                        <h5 class="header">{{ 'title.password'|trans }}</h5>
+                        <div class="col offset-s1 s5">
+                            {{ form_row(form.plainPassword.first, {'label' : 'label.password'} ) }}
+                        </div>
+                        <div class="col s5">
+                            {{ form_row(form.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <h5 class="header">{{ 'title.avatar'|trans }}</h5>
+                        <div class="col offset-s1 s10">
+                            {% if app.user.avatar is not null %}
+                                {{ form_row(form.image, {'attr': {'src' : app.user.avatar ? app.user.avatar.path : null }}) }}
+                            {% else %}
+                                {{ form_row(form.image) }}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="content-block row">
+                        {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

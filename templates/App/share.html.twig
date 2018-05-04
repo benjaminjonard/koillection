@@ -1,0 +1,14 @@
+<i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+
+<div id="modal-share" class="modal">
+    <div class="modal-content">
+        <h4>Share link</h4>
+        {% if app.user.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
+            {{ 'message.user_is_private'|trans }}
+        {% elseif entity is defined and entity.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
+            {{ 'message.entity_is_private'|trans }}
+        {% else %}
+            <a href="{{ route }}">{{ route }}</a>
+        {% endif %}
+    </div>
+</div>

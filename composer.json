@@ -1,0 +1,83 @@
+{
+    "name": "koillection/koillection",
+    "description": "A website to manage all your collections",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.1",
+        "doctrine/dbal": "^2.7",
+        "doctrine/doctrine-bundle": "^1.9",
+        "doctrine/doctrine-cache-bundle": "^1.3",
+        "doctrine/orm": "^2.6",
+        "friendsofsymfony/jsrouting-bundle": "^2.2",
+        "guzzlehttp/psr7": "^1.4",
+        "php-http/curl-client": "^1.7",
+        "ramsey/uuid-doctrine": "^1.4",
+        "roave/security-advisories": "dev-master",
+        "sensio/framework-extra-bundle": "^5.1",
+        "symfony/asset": "^4.0",
+        "symfony/browser-kit": "^4.0",
+        "symfony/console": "^4.0",
+        "symfony/expression-language": "^4.0",
+        "symfony/flex": "^1.0",
+        "symfony/form": "^4.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/monolog-bundle": "^3.2",
+        "symfony/options-resolver": "^4.0",
+        "symfony/security-bundle": "^4.0",
+        "symfony/validator": "^4.0",
+        "symfony/web-link": "^4.0",
+        "symfony/yaml": "^4.0",
+        "twig/extensions": "^1.5",
+        "twig/twig": "^2.4",
+        "whichbrowser/parser": "^2.0",
+        "willdurand/js-translation-bundle": "^2.6",
+        "willdurand/negotiation": "^2.3"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "php-translation/symfony-bundle": "^0.7.0",
+        "symfony/debug-bundle": "^4.0",
+        "symfony/dotenv": "^4.0",
+        "symfony/profiler-pack": "^1.0"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*",
+        "symfony/twig-bundle": "<3.3",
+        "symfony/debug": "<3.3"
+    },
+    "extra": {
+        "symfony": {
+            "id": "01BXXYYB8F46BFBFV8YNWS3P57",
+            "allow-contrib": false
+        }
+    }
+}

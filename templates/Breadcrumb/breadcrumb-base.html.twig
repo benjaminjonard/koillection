@@ -1,0 +1,8 @@
+<div class="row breadcrumb">
+    {% for element in breadcrumb %}
+        {{ include('Breadcrumb/breadcrumb-'~ element.type ~'.html.twig', {'element' : element}) }}
+        {% if not loop.last %}
+            <span aria-hidden="true">/</span>
+        {% endif %}
+    {% endfor %}
+</div>

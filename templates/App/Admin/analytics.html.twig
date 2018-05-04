@@ -1,0 +1,113 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_admin_index', 'trans': 'menu.admin'},
+    {'route': 'app_admin_analytics', 'trans': 'menu.analytics'}
+]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.admin'|trans }}</h1>
+        </div>
+
+        <div class="content-block analytics">
+            {{ include('/App/Admin/partials/tabs.html.twig', {current: 'analytics'}) }}
+
+            <div class="content-block">
+                <div class="row statistics">
+                    <div class="table-filter col s8">
+                        <span class="filter-title">{{ 'filter.title.period'|trans }} :</span>
+                        {% for period in constant('App\\Enum\\PeriodEnum::PERIODS') %}
+                            <a href="{{ path('app_admin_analytics', {'period': period }) }}"
+                               class="{{ period == selectedPeriod ? 'active' }}"
+                            >
+                                {{ ('period.' ~ period)|trans }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="col s2"><div class="counter">{{ connectionsCounter }}</div> {{ 'label.connections'|trans }}</div>
+                </div>
+            </div>
+
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart browsers-chart">
+                        <h5 class="header">{{ 'title.charts.browsers'|trans }}</h5>
+                    </div>
+                    <div class="left-chart bar-chart browsers-versions-chart">
+                        <h5 class="header">{{ 'title.charts.browsers_versions'|trans }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart engines-chart">
+                        <h5 class="header">{{ 'title.charts.engines'|trans }}</h5>
+                    </div>
+                    <div class="left-chart bar-chart engines-versions-chart">
+                        <h5 class="header">{{ 'title.charts.engines_versions'|trans }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart oss-chart">
+                        <h5 class="header">{{ 'title.charts.oss'|trans }}</h5>
+                    </div>
+                    <div class="left-chart bar-chart oss-versions-chart">
+                        <h5 class="header">{{ 'title.charts.oss_versions'|trans }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart devices-types-chart">
+                        <h5 class="header">{{ 'title.charts.devices_types'|trans }}</h5>
+                    </div>
+                    <div class="left-chart bar-chart devices-subtypes-chart">
+                        <h5 class="header">{{ 'title.charts.devices_subtypes'|trans }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart devices-chart">
+                        <h5 class="header">{{ 'title.charts.devices'|trans }}</h5>
+                    </div>
+                    <div class="left-chart bar-chart devices-models-chart">
+                        <h5 class="header">{{ 'title.charts.devices_models'|trans }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/json" id="browsersJson">{{ browsersJson|safeContent }}</script>
+    <script type="application/json" id="browsersVersionsJson">{{ browsersVersionsJson|safeContent }}</script>
+    <script type="application/json" id="enginesJson">{{ enginesJson|safeContent }}</script>
+    <script type="application/json" id="engineVersionsJson">{{ engineVersionsJson|safeContent }}</script>
+    <script type="application/json" id="ossJson">{{ ossJson|safeContent }}</script>
+    <script type="application/json" id="ossVersionsJson">{{ ossVersionsJson|safeContent }}</script>
+    <script type="application/json" id="devicesTypesJson">{{ devicesTypesJson|safeContent }}</script>
+    <script type="application/json" id="devicesSubtypesJson">{{ devicesSubtypesJson|safeContent }}</script>
+    <script type="application/json" id="devicesJson">{{ devicesJson|safeContent }}</script>
+    <script type="application/json" id="devicesModelsJson">{{ devicesModelsJson|safeContent }}</script>
+{% endblock %}

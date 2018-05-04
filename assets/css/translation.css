@@ -1,0 +1,9 @@
+.total-progress {padding-top: 20px;}
+.inactive {color: #9e9e9e;}
+
+.circle-empty {color:#d9534f;}
+.circle-warning {color:#f0ad4e;}
+.circle-new {color:#5cb85c;}
+
+.message-delete {cursor: pointer;}
+.btn-create-translation {margin-top: 33px;}

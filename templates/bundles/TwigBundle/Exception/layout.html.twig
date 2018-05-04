@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header class="unauthorized">
+        <div class="header-logo">
+            <a href="{{ path('app_homepage') }}">
+                <img class='logo' src="{{ preload(asset('../build/images/logo.svg')) }}" aria-label="Logo" height="45" width="45">
+                <span>Koillection</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="content-wrapper error">
+        <div class="content-block">
+            <img src="{{ preload(asset('../build/images/error.png')) }}">
+            <h3>{% block error %}{% endblock %}</h3>
+            <a href="{{ path('app_homepage') }}">{{ 'message.return_to_homepage'|trans }}</a>
+        </div>
+    </div>
+{% endblock %}

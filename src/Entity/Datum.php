@@ -1,0 +1,318 @@
+<?php
+
+namespace App\Entity;
+
+use App\Entity\Interfaces\LoggableInterface;
+use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
+
+/**
+ * Class Datum
+ *
+ * @package App\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
+ * @ORM\Table(name="koi_datum")
+ */
+class Datum implements LoggableInterface
+{
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     */
+    private $id;
+
+    /**
+     * @var \App\Entity\Item
+     * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $item;
+
+    /**
+     * @var int
+     * @ORM\Column(type="smallint")
+     */
+    private $type;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $label;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $value;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $position;
+
+    /**
+     * @var Medium
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
+     */
+    private $image;
+
+    /**
+     * @var \App\Entity\User
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $owner;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    public function __construct()
+    {
+        $this->id = Uuid::uuid4();
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getId() : ?string
+    {
+        return $this->id->toString();
+    }
+
+    /**
+     * Set value.
+     *
+     * @param string $value
+     *
+     * @return Datum
+     */
+    public function setValue(?string $value) : Datum
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value.
+     *
+     * @return string
+     */
+    public function getValue() : ?string
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set item.
+     *
+     * @param \App\Entity\Item $item
+     *
+     * @return Datum
+     */
+    public function setItem(Item $item = null) : Datum
+    {
+        $this->item = $item;
+
+        return $this;
+    }
+
+    /**
+     * Get item.
+     *
+     * @return \App\Entity\Item
+     */
+    public function getItem() : Item
+    {
+        return $this->item;
+    }
+
+    /**
+     * Set label.
+     *
+     * @param string $label
+     *
+     * @return Datum
+     */
+    public function setLabel(string $label) : Datum
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label.
+     *
+     * @return string
+     */
+    public function getLabel() : ?string
+    {
+        return $this->label;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \App\Entity\Medium $image
+     *
+     * @return Datum
+     */
+    public function setImage(Medium $image = null) : Datum
+    {
+        if ($image === null) {
+            return $this;
+        }
+
+        if ($image->getThumbnailPath() === null) {
+            $image->setMustGenerateAThumbnail(true);
+        }
+
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \App\Entity\Medium
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set type.
+     *
+     * @param int $type
+     *
+     * @return Datum
+     */
+    public function setType(int $type) : Datum
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type.
+     *
+     * @return int
+     */
+    public function getType() : ?int
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set position.
+     *
+     * @param int $position
+     *
+     * @return Datum
+     */
+    public function setPosition(int $position) : Datum
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position.
+     *
+     * @return int
+     */
+    public function getPosition() : ?int
+    {
+        return $this->position;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Datum
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Datum
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set owner.
+     *
+     * @param \App\Entity\User $owner
+     *
+     * @return Datum
+     */
+    public function setOwner(User $owner = null) : Datum
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner.
+     *
+     * @return \App\Entity\User
+     */
+    public function getOwner() : ?User
+    {
+        return $this->owner;
+    }
+}

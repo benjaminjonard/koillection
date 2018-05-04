@@ -1,0 +1,35 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], item, 'breadcrumb.history_item') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>
+                    {{ item.name }}
+                    {% if item.quantity > 1 %}
+                        <span class="quantity">(x{{ item.quantity }})</span>
+                    {% endif %}
+                </h1>
+                <span>
+                {{ 'global.created_at'|trans({'%date%': item.createdAt|date('d/m/Y')}) }}
+                    - {{ 'global.updated_at'|trans({'%date%': item.updatedAt ? item.updatedAt|date('d/m/Y') : '-'}) }}
+            </span>
+            </div>
+            <div></div>
+        </div>
+
+        <div class="content-block">
+            {{ include('App/History/partials/table.html.twig', {'logs': logs}) }}
+        </div>
+    </div>
+{% endblock %}

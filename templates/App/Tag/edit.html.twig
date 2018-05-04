@@ -1,0 +1,47 @@
+{% extends 'layout-autorized.html.twig' %}
+{% form_theme form 'Form/fields.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}], tag, 'breadcrumb.edit_tag') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1 class="col s11">Edit tag {{tag.label}}</h1>
+        </div>
+
+        <div class="content-block">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col s5 offset-s1">
+                        {{ form_row(form.label, {'label': 'label.name'}) }}
+                    </div>
+                    <div class="col s5">
+                        {{ form_row(form.image, {'attr': {'src' : tag.image ? tag.image.path : null}}) }}
+                    </div>
+                    <div class="col s5 offset-s1">
+                        {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s10 offset-s1">
+                        {{ form_row(form.description, {'label': 'label.description', 'attr' : {'class': 'materialize-textarea'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-btn-holder">
+                    {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                    <a href="{{ path('app_tag_show', { id : tag.id }) }}" class="waves-effect waves-light btn red darken-1">Cancel</a>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

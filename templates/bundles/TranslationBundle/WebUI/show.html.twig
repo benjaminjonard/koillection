@@ -1,0 +1,171 @@
+{% extends "@Translation/WebUI/base.html.twig" %}
+{% import _self as macro %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_admin_index', 'trans': 'menu.admin'},
+    {'route': 'translation_index', 'trans': 'menu.translations'}
+]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.admin'|trans }}</h1>
+        </div>
+        <div class="content-block">
+            {{ include('/App/Admin/partials/tabs.html.twig', {current: 'trans'}) }}
+
+            <div class="block-element">
+                {{ 'label.locales'|trans }}
+                {% for locale in locales %}
+                    <a class="{% if currentLocale != locale %}inactive{% endif %}" href="{{ path('translation_show', {configName: configName, domain:currentDomain, locale:locale}) }}">
+                        {{ locale }}
+                    </a>
+                {% endfor %}
+            </div>
+
+            <div class="block-element">
+                {{ 'label.domains'|trans }}
+                {% for domain in domains|reverse %}
+                    <a class="{% if currentDomain != domain %}inactive{% endif %}" href="{{ path('translation_show', {configName: configName, domain:domain, locale:currentLocale}) }}">
+                        {{ domain }}
+                    </a>
+                {% endfor %}
+            </div>
+
+
+            {% if allow_create and app.environment == "dev" %}
+                <div class="block-element">
+                    <h5 class="header">{{ "header.create_translation"|trans }}</h5>
+                    <div class="collapse" id="create-translation">
+                        <form class="form" id="form-new-translation">
+                            <div class="row">
+                                <div class="input-field col offset-s1 s10 m4 offset-m1">
+                                    <input type="text" class="form-control" name="create-key" id="create-key">
+                                    <label for="create-key">{{ 'label.key'|trans }}</label>
+                                </div>
+                                <div class="input-field col offset-s1 s10 m4 offset-m0">
+                                    <input type="text" class="form-control" name="create-message" id="create-message">
+                                    <label for="create-message">{{ 'label.translation'|trans }}</label>
+                                </div>
+                                <div class="col offset-s1 s10 m1 offset-m0">
+                                    <button type="submit" class="btn btn-primary btn-create-translation">{{ "btn.create"|trans }}</button>
+                                    <div class="ajax-result"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="message-list block-element">
+                <h5 class="header">{{ "header.translations"|trans }}</h5>
+
+                <table class="centered striped">
+                    <thead>
+                    <tr>
+                        <th>{{ 'label.status'|trans }}</th>
+                        <th>{{ 'label.key'|trans }}</th>
+                        <th>{{ 'label.value'|trans }}</th>
+                        <th>{{ 'label.other_translations'|trans }}</th>
+                        <th>{{ 'label.from'|trans }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for idx, message in messages if message.new %}
+                            {{ macro.printMessage(idx + 1, message, allow_delete, file_base_path) }}
+                        {% endfor %}
+
+                        {% set idxStart = messages|length %}
+                        {% for idx, message in messages if not message.new %}
+                            {{ macro.printMessage(idx + idxStart, message, allow_delete, file_base_path) }}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if app.environment == "dev" %}
+                <script type="text/javascript" nonce="{{ csp_nonce() }}">
+                    var editUrl="{{ path('translation_edit', {configName: configName, locale:currentLocale,domain:currentDomain}) }}";
+
+                    var form = document.getElementById("form-new-translation");
+                    form.onsubmit = function() {
+                        return createTranslation(this, '{{ path('translation_create', {configName: configName, locale:currentLocale,domain:currentDomain}) }}')
+                    };
+
+                    var deleteBtns = document.getElementsByClassName("message-delete");
+                    for (var i = 0; i < deleteBtns.length; i++) {
+                        deleteBtns[i].onclick = function() {
+                            confirm("{{ 'message.confirmation'|trans }}") ? deleteTranslation(this) : false;
+                        }
+                    }
+
+                    var messageTextareas = document.getElementsByClassName("message-textarea");
+                    for (var i = 0; i < messageTextareas.length; i++) {
+                        messageTextareas[i].onchange = function() {
+                            editTranslation(this);
+                        }
+                    }
+                </script>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% macro printMessage(idx, message, allow_delete, base_path) %}
+    <tr class="message" id="{{ message.key }}">
+        <td>
+            {% if message.new %}
+                <span class="circle-new" title="{{ 'tooltip.new'|trans }}">&#x25CF;</span>
+            {% endif %}
+            {% if message.obsolete %}
+                <span class="circle-warning" title="{{ 'tooltip.warning'|trans }}">&#x25CF;</span>
+            {% endif %}
+            {% if message.message is empty %}
+                <span class="circle-empty" title="{{ 'tooltip.empty'|trans }}">&#x25CF;</span>
+            {% endif %}
+        </td>
+        <td>
+            <a class="message-key" href="#{{ message.key }}">{{ message.key }}</a>
+            {% if allow_delete and app.environment == "dev" %}
+                <span class="message-delete" data-key="{{ message.key }}" title="{{ 'tooltip.delete_translation'|trans }}">&#x274C;</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if app.environment == "dev" %}
+                <textarea
+                    class="message-textarea materialize-textarea"
+                    data-key="{{ message.key }}"
+                    tabindex="{{ idx }}"
+                >{{ message.message }}</textarea>
+                <div class="ajax-result"></div>
+            {% else %}
+                {{ message.message }}
+            {% endif %}
+        </td>
+
+        <td>
+            {% for locale,trans in message.otherTranslations if not trans is empty %}
+                <b>{{ locale }}</b>: {{ trans }}<br>
+            {% endfor %}
+        </td>
+
+        <td>
+            {% if message.sourceLocations|length > 0 %}
+                <ul class="location-list">
+                    {% for location in message.sourceLocations %}
+                        <li><a href="{{ (base_path ~ location['path'])|file_link(location['line']) }}">{{ location['path'] }} at line {{ location['line'] }} </a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </td>
+    </tr>
+{% endmacro %}

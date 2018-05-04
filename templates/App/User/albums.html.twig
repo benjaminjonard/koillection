@@ -1,0 +1,49 @@
+{% extends 'layout-user.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_user_albums', 'trans': 'menu.albums_user'}], null, null, user) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.albums'|trans }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.photo'|transchoice(photosCounter) }}</li>
+                <li>{{ 'counter.album'|transchoice(albums|length) }}</li>
+            </ul>
+        </div>
+
+        <div></div>
+
+        <div class="btn-holder no-margin">
+            <div class="right">
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <div class="content-block">
+            <div class="collections grid-container-collections">
+                {% for album in albums %}
+                    <div class="collection-element element" data-title="{{ album.title }}">
+                        <a class="collection-circle-thumbnail" href="{{ path('app_user_album', {username: user.username, id: album.id}) }}" aria-label="{{ 'aria.album'|trans({'%title%': album.title}) }}">
+                            <span class="color-avatar circle avatar color-{{ album.color }}">{{ album.title|first|upper }}</span>
+                        </a>
+                        <span class="collection-title">{{ album.title|truncate(27) }}</span>
+                        <p class="collection-stats">
+                            {{ 'counter.photo'|transchoice(album.photos|length) }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

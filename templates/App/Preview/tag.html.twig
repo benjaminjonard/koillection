@@ -1,0 +1,79 @@
+{% extends 'layout-preview.html.twig' %}
+{% import "App/macros.html.twig" as macros %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_preview_tags', 'trans': 'menu.tags_preview'}], tag) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ tag.label }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.item'|transchoice(tag.items|length) }}</li>
+            </ul>
+        </div>
+
+        <div></div>
+
+        <div class="btn-holder">
+            <div class="right">
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="content-block">
+            {% if null != tag.image or null != tag.description %}
+                <div class="block-element">
+                    <h5 class="header">{{ 'title.infos'|trans }}</h5>
+                    <div class="item-image-container">
+                        {% if tag.image is not null %}
+                            <a href="{{ preload(asset(tag.image.path)) }}" data-lightbox="image-{{ tag.id }}">
+                                <img class="tag-image" src="{{ preload(asset(tag.image.thumbnailPath)) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="tag-description">
+                        {{ tag.description|highlightTags|nl2br }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            {% endif %}
+
+            {% if relatedTags is not empty %}
+                <div class="block-element">
+                    <h5 class="header">{{ 'title.related_tags'|trans }}</h5>
+                    <div class="tags-block">
+                        <ul class="nav nav-tags">
+                            {% for tag in relatedTags %}
+                                <li class="tag chip"><a href="{{ path('app_tag_show', {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">{{ tag.label }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if tag.items is not empty %}
+                <div class="block-element">
+                    <h5 class="header">{{ 'title.items'|trans }}</h5>
+                    <div id="collection-items" class="grid-container-items">
+                        {% for item in tag.items|naturalSorting %}
+                            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
+                                <a href="{{ path('app_preview_item', {'id': item.id}) }}">
+                                    {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name})) }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_template_index', 'trans': 'menu.templates'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.templates'|trans }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.template'|transchoice(results|length) }}</li>
+            </ul>
+        </div>
+
+        <div></div>
+
+        <div class="btn-holder">
+            <div class="left">
+                <a href="{{ path('app_template_add') }}" class="button" title="{{ 'tooltip.add_template'|trans }}">
+                    <i class="fa fa-plus fa-fw"></i>
+                </a>
+            </div>
+            <div class="right">
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="content-block">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>{{ 'label.name'|trans }}</th>
+                    <th>{{ 'label.fields'|trans }}</th>
+                    <th>{{ 'label.items'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for result in results %}
+                    <tr class="list-element resize-element" data-title="{{ result.template.name }}">
+                        <td><a href="{{ path('app_template_show', {'id' : result.template.id}) }}"><strong>{{ result.template.name }}</strong></a></td>
+                        <td>{{ 'counter.field'|transchoice(result.fieldsCounter) }}</td>
+                        <td>{{ 'counter.item'|transchoice(result.itemsCounter) }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

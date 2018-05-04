@@ -1,0 +1,39 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_history_index', 'trans': 'menu.history'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.history'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            <div class="table-filter">
+                <span class="filter-title">{{ 'filter.title.types'|trans }} :</span>
+                {% for filter in constant('App\\Enum\\HistoryFilterEnum::FILTERS')  %}
+                    {% set types = app.request.query.get('types') %}
+                    {% if filter in types %}
+                        <a href="{{ path('app_history_index', {'types': types|remove(filter)|reorder }) }}" class="active">
+                    {% else %}
+                        <a href="{{ path('app_history_index', {'types': types|add(filter)|reorder }) }}">
+                    {% endif %}
+                            {{ ('filter.' ~ filter)|trans }}
+                        </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="content-block">
+            {{ include('App/History/partials/table.html.twig', {'logs': logs}) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'layout-preview.html.twig' %}
+{% import "App/macros.html.twig" as macros %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_preview_collections', 'trans': 'menu.collections_preview'}], collection, 'breadcrumb.items_collection') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <div class="left">
+                {% if collection.image != null %}
+                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image.path)) }}">
+                {% else %}
+                    <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
+                {% endif %}
+            </div>
+            <div class="right">
+                <h1>{{ collection.title }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.item'|transchoice(items|length) }}</li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div></div>
+
+        <div class="btn-holder">
+            <div class="right">
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="content-block">
+            <!-- Collection's items -->
+            {% if items is not empty %}
+                <div class="block-element">
+                    <h5 class="header">{{ 'title.items'|trans }}</h5>
+                    <div id="collection-items" class="grid-container-items">
+                        {% for item in items|naturalSorting %}
+                            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
+                                <a href="{{ path('app_item_show', {'id': item.id}) }}">
+                                    {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name})) }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

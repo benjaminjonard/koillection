@@ -1,0 +1,106 @@
+{% extends 'layout-autorized.html.twig' %}
+{% form_theme form 'Form/fields.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], wish.wishlist, 'breadcrumb.transfer_wish') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'title.transfer_wish'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            {{ form_start(form) }}
+            {% do form.data.setRendered %}
+            <div class="block-element">
+                <div class="row">
+                    <h4 class="header">{{ 'title.infos'|trans }}</h4>
+                    <div class="col s10 offset-s1 m5 offset-m1">
+                        {{ form_row(form.name, {'label' : 'label.name'}) }}
+                    </div>
+                    <div class="col s10 offset-s1 m5 offset-m0">
+                        {{ form_row(form.image, {'attr': {'src' : item.image ? item.image.path : null}}) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s10 offset-s1 m4 offset-m1">
+                        {{ form_row(form.collection, {'label' : 'label.collection'}) }}
+                    </div>
+                    <div class="col s10 offset-s1 m3 offset-m0">
+                        {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
+                    </div>
+                    <div class="col s10 offset-s1 m3 offset-m0">
+                        {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s10 offset-s1">
+                        {{ form_label(form.tags, 'label.tags') }}
+                        <div class="autocomplete" id="multiple">
+                            <div class="ac-input">
+                                <input type="text" id="tagsAutocomplete" data-activates="tagsDropdown" data-beloworigin="true" autocomplete="off">
+                            </div>
+                            <div class="ac-tags">
+                            </div>
+                            <ul id="tagsDropdown" class="dropdown-content ac-dropdown"></ul>
+                        </div>
+                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row block-element">
+                <h4 class="header">{{ 'title.additional_fields'|trans }}</h4>
+                <div class="col s10 offset-s1 m4 offset-m1 input-field">
+                    <select class="selectFieldType">
+                        <option value=""></option>
+                        {% for key, fieldType in fieldsType %}
+                            <option value="{{ key }}">{{ fieldType|trans }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>{{ 'label.new_data'|trans }}</label>
+                </div>
+                <div class="col s10 offset-s1 m4 offset-m0">
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+                </div>
+                <div class="col s10 m2">
+                    <button class="btn align-with-inputs btn-common-fields" data-collection-id="">{{ 'btn.apply_collection_data'|trans }}</button>
+                </div>
+                <div class="clearfix"></div>
+                <div id="additionnalFields">
+                    <div id="data" class="data-holder block-element hidden">
+                        <h6 class="header">{{ 'title.data'|trans }}</h6>
+                        {% for datum in data if datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT')]) %}
+                            {{ datum.html|safeContent }}
+                        {% endfor %}
+                    </div>
+
+                    <div id="item-images" class="data-holder block-element hidden">
+                        <h6 class="header">{{ 'title.item_images'|trans }}</h6>
+                        {% for datum in data if datum.type in ([
+                            constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE'),
+                            constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN')])
+                        %}
+                            {{ datum.html|safeContent }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-btn-holder">
+                {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                <a href="{{ path('app_wishlist_show', { id : wish.wishlist.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+            </div>
+            <div class="clearfix"></div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

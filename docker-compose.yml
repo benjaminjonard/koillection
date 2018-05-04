@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    php:
+        container_name: php
+        image: registry.gitlab.com/koillection/koillection:latest
+        ports:
+            - 9001:9000
+        volumes:
+            - ".:/var/www/koillection"
+            - "./docker/php/php.ini:/usr/local/etc/php/php.ini"
+
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        ports:
+            - "80:80"
+        volumes:
+            - ".:/var/www/koillection"
+            - "./docker/nginx/nginx.conf:/etc/nginx/nginx.conf"
+
+    postgres:
+        container_name: postgres
+        image: postgres:alpine
+        environment:
+            - POSTGRES_DB=koillection
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=root
+        ports:
+            - 5432:5432
+        volumes:
+            - "./docker/volumes/postgresql:/var/lib/postgresql/data"

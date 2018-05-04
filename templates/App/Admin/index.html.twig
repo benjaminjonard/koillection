@@ -1,0 +1,70 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_admin_index', 'trans': 'menu.admin'},
+    {'route': 'app_admin_index', 'trans': 'menu.statistics'}
+]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.admin'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            {{ include('/App/Admin/partials/tabs.html.twig', {current: 'statistics'}) }}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.statistics'|trans }}</h5>
+                <div class="row statistics">
+                    <div class="col s2">
+                        <div class="pie-wrapper">
+                            {% set percent = ((totalSpace - freeSpace) * 100 / totalSpace)|round(0, 'floor') %}
+                            <span class="label">{{ percent }}<span class="smaller">%</span></span>
+                            <div class="pie {{ percent > 50 ? 'above50' : '' }}">
+                                <div class="left-side half-circle" style="-webkit-transform: rotate({{ percent*360/100 }}deg); transform: rotate({{ percent*360/100 }}deg);"></div>
+                                <div class="right-side half-circle"></div>
+                            </div>
+                            <div class="shadow"></div>
+                        </div>
+                        <div class="pie-stat">
+                            <div>{{ 'label.space_used'|trans({'%used%' : (totalSpace - freeSpace)|bytes, '%total%': totalSpace|bytes}) }}</div>
+                            <div>{{ 'label.space_free'|trans({'%free%' : freeSpace|bytes}) }}</div>
+                        </div>
+                    </div>
+                    <div class="col s2"><div class="counter">{{ counters.users }}</div>{{ 'label.users'|trans }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.collections }}</div>{{ 'label.collections'|trans }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.items }}</div>{{ 'label.items'|trans }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.tags }}</div>{{ 'label.tags'|trans }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.wishlists }}</div>{{ 'label.wishlists'|trans }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.wishes }}</div>{{ 'label.wishes'|trans }}</div>
+                    <div class="col s2"><div class="counter">{{ totalSpaceUsed|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
+                </div>
+            </div>
+
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart themes-usage-chart">
+                        <h5 class="header">{{ 'title.charts.themes_usage'|trans }}</h5>
+                    </div>
+                    <div class="right-chart bar-chart locales-usage-chart">
+                        <h5 class="header">{{ 'title.charts.locales_usage'|trans }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/json" id="themesUsageJson">{{ themesUsageJson|safeContent }}</script>
+    <script type="application/json" id="localesUsageJson">{{ localesUsageJson|safeContent }}</script>
+{% endblock %}

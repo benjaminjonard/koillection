@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="validators.en">
+    <unit id="7OcgSlg" name="error.email.not_unique">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/User.php:0</note>
+      </notes>
+      <segment>
+        <source>error.email.not_unique</source>
+        <target>Email address already used</target>
+      </segment>
+    </unit>
+    <unit id="qoRxC7z" name="error.username.not_unique">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/User.php:0</note>
+      </notes>
+      <segment>
+        <source>error.username.not_unique</source>
+        <target>Username already used</target>
+      </segment>
+    </unit>
+    <unit id="PjAj0XF" name="error.username.incorrect">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/User.php:0</note>
+      </notes>
+      <segment>
+        <source>error.username.incorrect</source>
+        <target>Username must have between 2 and 32 characters (only letters, numbers and underscores are allowed)</target>
+      </segment>
+    </unit>
+    <unit id="_d89Gke" name="error.search.empty">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>error.search.empty</source>
+        <target>Please fill at least one of the fields</target>
+      </segment>
+    </unit>
+    <unit id="4Bdfyy1" name="error.password.incorrect">
+      <segment>
+        <source>error.password.incorrect</source>
+        <target>Your password must contain at least 8 characters (with at least 1 letter and 1 number)</target>
+      </segment>
+    </unit>
+    <unit id="4m1Sgo3" name="error.password.not_matching">
+      <segment>
+        <source>error.password.not_matching</source>
+        <target>The two passwords are not identical</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

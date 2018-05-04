@@ -1,0 +1,143 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], wishlist) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="collection-header">
+            <div class="title-block">
+                <div class="left">
+                    {% if wishlist.image != null %}
+                        <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image.path)) }}">
+                    {% else %}
+                        <span class="thumbnail color-avatar circle avatar color-{{ wishlist.color }}">{{ wishlist.name|first|upper }}</span>
+                    {% endif %}
+                </div>
+                <div class="right">
+                    <h1>{{wishlist.name}}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.wish'|transchoice(counters[wishlist.id].wishes) }}</li>
+                        <li>{{ 'counter.wishlist'|transchoice(counters[wishlist.id].children) }}</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    <a href="{{ path('app_wish_add', {wishlist: wishlist.id}) }}" class="button" title="{{ 'tooltip.add_wish'|trans }}">
+                        <i class="fa fa-plus fa-fw"></i>
+                    </a>
+                    <a href="{{ path('app_wishlist_add', {parent: wishlist.id}) }}" class="button" title="{{ 'tooltip.add_wishlist'|trans }}">
+                        <i class="fa fa-folder fa-fw"></i>
+                    </a>
+                    <a href="{{ path('app_wishlist_edit', {id: wishlist.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                        <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                    <a href="#delete-wishlist-{{ wishlist.id }}" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                        <i class="fa fa-trash fa-fw"></i>
+                    </a>
+                    {{ include('App/share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist', {id: wishlist.id, username: app.user.username})}) }}
+                </div>
+                <div class="right">
+                    <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="content-block">
+        <!-- Child collections -->
+            {% if wishlist.children is not empty %}
+                <div class="block-element">
+                    <h5 class="header">{{ 'title.wishlist_children'|trans }}</h5>
+                    <div class="collections grid-container-collections">
+                        {{ include('App/Wishlist/partials/list.html.twig', {'wishlists': wishlist.children}) }}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Wishlist's items -->
+            {% if wishlist.wishes is not empty %}
+                <div class="block-element">
+                    <h5 class="header">{{ 'title.wishes'|trans }}</h5>
+                    <ul class="reset-margin">
+                        {% for wish in wishlist.wishes %}
+                            <li class="list-element resize-element {{ loop.last ? 'last' }}" data-title="{{ wish.name }}">
+                                <div class="loan-content valign-wrapper">
+                                    <div class="loan-image center-align valign">
+                                        {% if null != wish.image %}
+                                            <a href="{{ preload(asset(wish.image.path)) }}" data-lightbox="image-{{ wish.id }}">
+                                                <img class="wishlist-item-avatar" src="{{ preload(asset(wish.image.thumbnailPath)) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="loan-infos">
+                                        <span class="collection-title">
+                                            {% if wish.url is not null %}
+                                                <a href="{{ wish.url }}" target="_blank">{{ wish.name }}</a>
+                                            {% else %}
+                                                {{wish.name}}
+                                            {% endif %}
+                                        </span>
+                                        {% if wish.price is not null %}
+                                            <span class="loan-price">
+                                                {% if wish.price is not null %}
+                                                    ({{ wish.price }}
+                                                    {% if wish.currency is not null %}
+                                                        &nbsp;{{ getCurrencySymbol(wish.currency) }})
+                                                    {% else %}
+                                                        )
+                                                    {% endif %}
+                                                {% endif %}
+                                            </span>
+                                        {% endif %}
+                                        <br/>
+                                        <span>{{ wish.comment }}</span>
+                                    </div>
+
+                                    <div class='list-actions'>
+                                        <a href="{{ path('app_wish_transfer_to_collection', {id: wish.id}) }}" title="{{ 'tooltip.transfer_to_collection'|trans }}"><i class="fa fa-plus fa-fw"></i></a>
+                                        <a href="{{ path('app_wish_edit', {id: wish.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
+                                        <a href="#delete-{{ wish.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
+                                    </div>
+                                </div>
+                                <div id="delete-{{ wish.id }}" class="modal">
+                                    <div class="modal-content">
+                                        <p>Are you sure you want to delete this item ? Every infos and images will be permanently lost...</p>
+                                    </div>
+                                    <div class="modal-footer row">
+                                        <a href="{{ path('app_wish_delete', {id: wish.id}) }}" class="modal-action modal-close waves-effect btn col s2">Agree</a>
+                                        <a href="" class="modal-action modal-close waves-effect waves-light btn red darken-1 col s2">Disagree</a>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+    <div id="delete-wishlist-{{ wishlist.id }}" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this wishlist ? Every wishes and images will be permanently lost...</p>
+        </div>
+        <div class="modal-footer row">
+            <a href="{{ path('app_wishlist_delete', {'id' : wishlist.id}) }}" class="modal-action modal-close waves-effect btn col s2">Agree</a>
+            <a href="" class="modal-action modal-close waves-effect waves-light btn red darken-1 col s2">Disagree</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_loan_index', 'trans': 'menu.loans'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.loans'|trans }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.loan'|transchoice(loans|length) }}</li>
+                <li>{{ 'counter.returned'|transchoice(returnedItems|length) }}</li>
+            </ul>
+        </div>
+
+        <div class="content-block">
+            <div class="tabs-block">
+                <ul class="nav nav-pills">
+                    <li class="tab current" for="loans">
+                        <span>{{ 'tab.loans'|trans }}</span>
+                    </li>
+                    <li class="tab" for="returnedItems">
+                        <span>{{ 'tab.returned_items'|trans }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="panel" id="loans">
+                <table class="striped">
+                    <thead>
+                    <tr>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.loaned_to'|trans }}</th>
+                        <th>{{ 'label.loaned_at'|trans }}</th>
+                        <th>{{ 'label.loaned_ago'|trans }}</th>
+                        <th>{{ 'label.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for loan in loans %}
+                        <tr class="list-element resize-element">
+                            <td><a href="{{ path('app_item_show', {'id': loan.item.id}) }}">{{ loan.item.name }}</a></td>
+                            <td>{{ loan.lentTo }}</td>
+                            <td>{{ loan.lentAt|date('d/m/Y') }}</td>
+                            <td>{{ loan.lentAt|timeAgo }}</td>
+                            <td>
+                                <a href="{{ path('app_loan_delete', {'id' : loan.id}) }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
+                                <a href="{{ path('app_loan_returned', {'id' : loan.id}) }}" title="{{ 'tooltip.returned'|trans }}"><i class="fa fa-check fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel hidden" id="returnedItems">
+                <table class="striped">
+                    <thead>
+                    <tr>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.loaned_to'|trans }}</th>
+                        <th>{{ 'label.loaned_at'|trans }}</th>
+                        <th>{{ 'label.return_date'|trans }}</th>
+                        <th>{{ 'label.loan_duration'|trans }}</th>
+                        <th>{{ 'label.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for returnedItem in returnedItems %}
+                        <tr class="list-element resize-element">
+                            <td><a href="{{ path('app_item_show', {'id': returnedItem.item.id}) }}">{{ returnedItem.item.name }}</a></td>
+                            <td>{{ returnedItem.lentTo }}</td>
+                            <td>{{ returnedItem.lentAt|date('d/m/Y') }}</td>
+                            <td>{{ returnedItem.returnedAt|date('d/m/Y') }}</td>
+                            <td>{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
+                            <td>
+                                <a href="{{ path('app_loan_delete', {'id' : returnedItem.id}) }}"><i class="fa fa-trash fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

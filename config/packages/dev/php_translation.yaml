@@ -1,0 +1,5 @@
+translation:
+    webui:
+        enabled: true
+    symfony_profiler:
+        enabled: true

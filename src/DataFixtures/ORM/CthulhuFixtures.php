@@ -1,0 +1,218 @@
+<?php
+
+namespace App\DataFixtures\ORM;
+
+use App\Entity\Album;
+use App\Entity\Collection;
+use App\Entity\Field;
+use App\Entity\Item;
+use App\Entity\Medium;
+use App\Entity\Photo;
+use App\Entity\Tag;
+use App\Entity\Template;
+use App\Entity\User;
+use App\Entity\Wish;
+use App\Entity\Wishlist;
+use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\File\File;
+
+/**
+ * Class CthulhuFixtures
+ *
+ * @package App\DataFixtures\ORM
+ */
+class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
+{
+    public function getOrder()
+    {
+        return 2;
+    }
+
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
+    {
+        $cthulhu = new User();
+        $cthulhu
+            ->setEnabled(true)
+            ->setPlainPassword('testtest')
+            ->setLocale('en')
+            ->setUsername('Cthulhu')
+            ->setEmail('cthulhu@koillection.com')
+            ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
+            ->addRole('ROLE_USER')
+        ;
+
+        $this->loadCollections($cthulhu, $manager);
+        $this->loadWishlists($cthulhu, $manager);
+        $this->loadAlbums($cthulhu, $manager);
+        $this->loadTemplates($cthulhu, $manager);
+
+        $manager->persist($cthulhu);
+
+        $manager->flush();
+    }
+
+    /**
+     * @param User $user
+     * @param ObjectManager $manager
+     */
+    private function loadCollections(User $user, ObjectManager $manager)
+    {
+        //TAGS
+        $tagBooks = new Tag();
+        $tagBooks
+            ->setOwner($user)
+            ->setLabel('Books')
+        ;
+        $manager->persist($tagBooks);
+
+        $tagLovecraft = new Tag();
+        $tagLovecraft
+            ->setOwner($user)
+            ->setLabel('H.P. Lovecraft')
+        ;
+        $manager->persist($tagLovecraft);
+
+        //COLLECTIONS
+        $colletionBooks = new Collection();
+        $colletionBooks
+            ->setOwner($user)
+            ->setTitle('Books')
+        ;
+        $manager->persist($colletionBooks);
+
+        $collectionLovecraft = new Collection();
+        $collectionLovecraft
+            ->setOwner($user)
+            ->setTitle('H.P. Lovecraft')
+            ->setParent($colletionBooks)
+            ->setImage($this->loadMedium($user, $manager, 'cthulhu/collections/lovecraft/main.png'))
+        ;
+        $manager->persist($collectionLovecraft);
+
+        //ITEMS
+        $itemCthulhu = new Item();
+        $itemCthulhu
+            ->setOwner($user)
+            ->setName('Le mythe de Cthulhu')
+            ->setCollection($collectionLovecraft)
+            ->setImage($this->loadMedium($user, $manager, 'cthulhu/collections/lovecraft/mythe.jpeg', 'cthulhu/collections/lovecraft/mythe_small.jpeg'))
+            ->addTag($tagBooks)
+            ->addTag($tagLovecraft)
+        ;
+        $manager->persist($itemCthulhu);
+    }
+
+    /**
+     * @param User $user
+     * @param ObjectManager $manager
+     */
+    private function loadWishlists(User $user, ObjectManager $manager)
+    {
+        //WISHLIST
+        $wishlistFigure = new Wishlist();
+        $wishlistFigure
+            ->setOwner($user)
+            ->setName('Figures')
+        ;
+        $manager->persist($wishlistFigure);
+
+        //WISH
+        $wishCthulhu = new Wish();
+        $wishCthulhu
+            ->setOwner($user)
+            ->setName('Cthulhu Figure')
+            ->setWishlist($wishlistFigure)
+            ->setImage($this->loadMedium($user, $manager, 'cthulhu/wishlists/figures/cthulhu.jpeg', 'cthulhu/wishlists/figures/cthulhu_small.jpeg'))
+        ;
+        $manager->persist($wishCthulhu);
+    }
+
+    /**
+     * @param User $user
+     * @param ObjectManager $manager
+     */
+    private function loadAlbums(User $user, ObjectManager $manager)
+    {
+        //ALBUM
+        $albumRlyeh = new Album();
+        $albumRlyeh
+            ->setOwner($user)
+            ->setTitle('R\'lyeh')
+        ;
+        $manager->persist($albumRlyeh);
+
+        //Photo
+        $photo1 = new Photo();
+        $photo1
+            ->setOwner($user)
+            ->setTitle('Photo 1')
+            ->setAlbum($albumRlyeh)
+            ->setImage($this->loadMedium($user, $manager, 'cthulhu/albums/rlyeh/rlyeh.jpeg', 'cthulhu/albums/rlyeh/rlyeh_small.jpeg'))
+        ;
+        $manager->persist($photo1);
+    }
+
+    /**
+     * @param User $user
+     * @param ObjectManager $manager
+     */
+    private function loadTemplates(User $user, ObjectManager $manager)
+    {
+        //TEMPLATE
+        $templateBooks = new Template();
+        $templateBooks
+            ->setOwner($user)
+            ->setName('Books')
+        ;
+        $manager->persist($templateBooks);
+
+        //Fields
+        $fieldAuthor = new Field();
+        $fieldAuthor
+            ->setName('Author')
+            ->setTemplate($templateBooks)
+            ->setType(DatumTypeEnum::TYPE_TEXT)
+            ->setPosition(0)
+        ;
+        $manager->persist($fieldAuthor);
+    }
+
+    /**
+     * @param User $user
+     * @param ObjectManager $manager
+     * @param string $path
+     * @param null|string $thumbnailPath
+     * @return Medium
+     */
+    private function loadMedium(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Medium
+    {
+        $file = new File('public/fixtures/'.$path);
+        $medium = new Medium();
+        $medium
+            ->setOwner($user)
+            ->setFilename($path)
+            ->setMimetype($file->getMimeType())
+            ->setPath('fixtures/'.$path)
+            ->setSize($file->getSize());
+        ;
+
+        if ($thumbnailPath) {
+            $thumbnailFile = new File('public/fixtures/'.$thumbnailPath);
+            $medium
+                ->setThumbnailPath('fixtures/'.$thumbnailPath)
+                ->setThumbnailSize($thumbnailFile->getSize())
+            ;
+        }
+
+        $manager->persist($medium);
+
+        return $medium;
+    }
+}

@@ -1,0 +1,101 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_settings_index', 'trans': 'menu.settings'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.settings'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            <div class="row">
+                <div class="block-element col s10 offset-s1 m10">
+                    <h5 class="header">{{ 'title.visibility'|trans }}</h5>
+                    <p>
+                        {{ 'message.visibility'|trans }}
+                        <strong><a href="{{ url('app_user_collections', {username : app.user.username}) }}">{{ url('app_user_collections', {username : app.user.username}) }}</a></strong>
+                    </p>
+                    <p>
+                        {{ 'message.visibility_preview'|trans }}
+                        <strong><a href="{{ url('app_preview_collections') }}">{{ url('app_preview_collections') }}</a></strong>
+                    </p>
+                    <p>{{ 'message.visibility_per_item'|trans }}</p>
+
+                    {% for key, visibility in visibilities %}
+                        <div class="visibility">
+                            <p class="setting-input">
+                                <input id="{{ key }}" class="input-visibility-{{ key }} with-gap" type="radio" name="visibility" value="{{ key }}" {% if app.user.visibility == key %}checked{% endif %}/>
+                                <label for="{{ key }}">{{ ("global.visibilities." ~ visibility)|trans }}</label>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <div class="row">
+                <div class="block-element col s10 offset-s1 m3">
+                    <h5 class="header">{{ 'title.theme'|trans }}</h5>
+                    {% for theme in themes %}
+                        <div class="theme">
+                            <p class="setting-input">
+                                <input id="{{ theme }}" class="input-theme-{{ theme }} with-gap" type="radio" name="theme" value="{{ theme }}" {% if app.user.theme == theme %}checked{% endif %} />
+                                <label for="{{ theme }}">
+                                    <span class="theme-previews">
+                                        <span class="theme-preview {{ theme }} lighter"></span>
+                                        <span class="theme-preview {{ theme }} light"></span>
+                                        <span class="theme-preview {{ theme }} medium"></span>
+                                        <span class="theme-preview {{ theme }} dark"></span>
+                                        <span class="theme-preview {{ theme }} complementary"></span>
+                                    </span>
+                                    <span class="preview-label">{{ ("global.themes." ~ theme)|trans }}</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    {% endfor %}
+                </div>
+
+                <div class="block-element col s10 offset-s1 m3 offset-m1">
+                    <h5 class="header">{{ 'title.language'|trans }}</h5>
+                    {% for code, locale in locales %}
+                        <div class="locale">
+                            <p class="setting-input">
+                                <input id="{{ code }}" class="input-locale-{{ code }} with-gap" type="radio" name="locale" value="{{ code }}" {% if app.user.locale == code %}checked{% endif %}/>
+                                <label for="{{ code }}">
+                                    <img src="{{ preload(asset('../build/images/flags/'~ code ~'.svg')) }}" aria-label="{{ ('aria.flag.' ~ code)|trans }}" height="19" width="25">
+                                    <span class="preview-label">{{ ("global.locale." ~ locale)|trans }}</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    {% endfor %}
+                </div>
+
+                <div class="block-element col s10 offset-s1 m3 offset-m1">
+                    <h5 class="header">{{ 'title.currency'|trans }}</h5>
+                    {% for code, currency in currencies %}
+                        <div class="currency">
+                            <p class="setting-input">
+                                <input id="{{ code }}" class="input-currency-{{ code }} with-gap" type="radio" name="currency" value="{{ code }}" {% if app.user.currency == code %}checked{% endif %}/>
+                                <label for="{{ code }}">{{ currency }}</label>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

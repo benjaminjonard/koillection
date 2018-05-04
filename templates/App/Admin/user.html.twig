@@ -1,0 +1,61 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_admin_index', 'trans': 'menu.admin'},
+    {'route': 'app_admin_users', 'trans': 'menu.users'}
+], user) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.admin'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            {{ include('/App/Admin/partials/tabs.html.twig', {current: 'users'}) }}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.user_details'|trans }}</h5>
+                <table class="centered striped row">
+                    <thead>
+                    <tr>
+                        <th>{{ 'label.id'|trans }}</th>
+                        <th>{{ 'label.username'|trans }}</th>
+                        <th>{{ 'label.role'|trans }}</th>
+                        <th>{{ 'label.email'|trans }}</th>
+                        <th>{{ 'label.disk_space_used'|trans }}</th>
+                        <th>{{ 'label.disk_space_allowed'|trans }}</th>
+                        <th>{{ 'label.last_connection'|trans }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ getRoleLabel(user.roles[0])|trans }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.diskSpaceUsed|bytes }}</td>
+                            <td>{{ user.diskSpaceAllowed|bytes }}</td>
+                            <td>{{ user.connections|length > 0 ? user.connections|last.date|timeAgo : '-' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <div class="row">
+                    <h5 class="header">{{ 'title.user_actions'|trans }}</h5>
+                    <a class="waves-effect waves-light btn col s2 offset-s1" href="{{ path('app_admin_disk_space', {id : user.id}) }}">{{ 'btn.recompute_disk_space'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

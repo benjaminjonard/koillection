@@ -1,0 +1,43 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: argon2i
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
+    providers:
+       app_provider:
+          entity:
+              class: App:User
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: app_provider
+                csrf_token_generator: security.csrf.token_manager
+                login_path: app_security_login
+                check_path: app_security_login
+                default_target_path: app_homepage
+                always_use_default_target_path: true
+            logout:
+                path: app_security_logout
+            anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\UsernameOrEmailPasswordAuthenticator
+
+    access_control:
+        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_profiler/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/first-connection, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/js/routing, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/translations, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/_trans, role: ROLE_ADMIN }
+        - { path: ^/, role: ROLE_USER }
+
+

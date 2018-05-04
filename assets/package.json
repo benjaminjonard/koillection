@@ -1,0 +1,30 @@
+{
+  "name": "koillection",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "author": "Benjamin Jonard <jonard.benjamin@gmail.com>",
+  "description": "",
+  "license": "MIT",
+  "dependencies": {
+    "cal-heatmap": "^3.6.2",
+    "croppie": "^2.5.1",
+    "d3": "^3.5.17",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "lightbox2": "^2.9.0",
+    "materialize-css": "^0.100.2",
+    "sortablejs": "^1.5.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "~2.0.3",
+    "gulp-concat": "~2.6.0",
+    "gulp-concat-css": "~2.2.0",
+    "gulp-if": "~2.0.0",
+    "gulp-replace": "~0.5.4",
+    "gulp-rev": "^8.1.1",
+    "gulp-rev-delete-original": "^0.2.3",
+    "gulp-uglify": "~1.5.3"
+  }
+}

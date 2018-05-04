@@ -1,0 +1,92 @@
+<?php
+
+namespace App\Form\Type\Entity;
+
+use App\Entity\Collection;
+use App\Enum\VisibilityEnum;
+use App\Form\DataTransformer\Base64ToMediumTransformer;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+/**
+ * Class CollectionType
+ *
+ * @package App\Form\Type\Entity
+ */
+class CollectionType extends AbstractType
+{
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    /**
+     * CollectionType constructor.
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $entity = $builder->getData();
+
+        $builder
+            ->add('title', TextType::class, [
+                'attr' => ['length' => 255],
+                'required' => true,
+            ])
+            ->add('childrenTitle', TextType::class, [
+                'attr' => ['length' => 255],
+                'required' => false
+            ])
+            ->add('itemsTitle', TextType::class, [
+                'attr' => ['length' => 255],
+                'required' => false
+            ])
+            ->add('visibility', ChoiceType::class, [
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'required' => true,
+            ])
+            ->add('parent', EntityType::class, [
+                'class' => 'App\Entity\Collection',
+                'choice_label' => 'title',
+                'choices' => $this->em->getRepository(Collection::class)->findAllExcludingItself($entity),
+                'expanded' => false,
+                'multiple' => false,
+                'choice_name' => null,
+                'empty_data' => '',
+                'required' => false,
+            ])
+            ->add(
+                $builder->create('image', TextType::class, [
+                    'required' => false,
+                    'label' => false,
+                ])->addModelTransformer(new Base64ToMediumTransformer())
+            )
+            ->add('submit', SubmitType::class)
+        ;
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => 'App\Entity\Collection',
+        ]);
+    }
+}

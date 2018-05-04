@@ -1,0 +1,24 @@
+{% set paginator = paginator(count, 10, currentPage, app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)) %}
+
+{% if paginator.numPages > 1 %}
+    <div class="pagination-wrapper">
+        <ul class="pagination">
+            {% if paginator.prevUrl %}
+                <li class="waves-effect"><a href="{{ paginator.prevUrl }}"><i class="fa fa-angle-left fa-fw"></i></a></li>
+            {% endif %}
+
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <li class="{{ page.isCurrent ? 'active' : 'waves-effect' }}"><a href="{{ page.url }}">{{ page.num }}</a></li>
+                {% else %}
+                    <li class="disabled"><span>{{ page.num }}</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginator.nextUrl %}
+                <li class="waves-effect"><a href="{{ paginator.nextUrl }}"><i class="fa fa-angle-right fa-fw"></i></a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
+
