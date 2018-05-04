@@ -3,7 +3,6 @@
 namespace App\Service;
 use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Entity\Item;
-use App\Entity\User;
 use App\Model\BreadcrumbElement;
 
 /**
