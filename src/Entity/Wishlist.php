@@ -172,13 +172,14 @@ class Wishlist implements BreabcrumbableInterface
     }
 
     /**
-     * Remove wish.
-     *
-     * @param \App\Entity\Wish $wish
+     * @param Wish $wish
+     * @return Wishlist
      */
     public function removeWish(Wish $wish) : Wishlist
     {
         $this->wishes->removeElement($wish);
+
+        return $this;
     }
 
     /**
@@ -230,13 +231,14 @@ class Wishlist implements BreabcrumbableInterface
     }
 
     /**
-     * Remove child.
-     *
-     * @param \App\Entity\Wishlist $child
+     * @param Wishlist $child
+     * @return Wishlist
      */
     public function removeChild(Wishlist $child) : Wishlist
     {
         $this->children->removeElement($child);
+
+        return $this;
     }
 
     /**
@@ -274,9 +276,8 @@ class Wishlist implements BreabcrumbableInterface
     }
 
     /**
-     * Get entity breacrumb.
-     *
-     * @return BreadcrumbElement
+     * @param $context
+     * @return array
      */
     public function getBreadcrumb($context) : array
     {

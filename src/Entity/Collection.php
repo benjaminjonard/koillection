@@ -192,13 +192,14 @@ class Collection implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * Remove child.
-     *
-     * @param \App\Entity\Collection $child
+     * @param Collection $child
+     * @return Collection
      */
     public function removeChild(Collection $child) : Collection
     {
         $this->children->removeElement($child);
+
+        return $this;
     }
 
     /**
@@ -260,13 +261,14 @@ class Collection implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * Remove items.
-     *
-     * @param \App\Entity\Item $items
+     * @param Item $items
+     * @return Collection
      */
     public function removeItem(Item $items) : Collection
     {
         $this->items->removeElement($items);
+
+        return $this;
     }
 
     /**

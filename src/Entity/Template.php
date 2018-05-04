@@ -122,13 +122,14 @@ class Template implements BreabcrumbableInterface
     }
 
     /**
-     * Remove field.
-     *
-     * @param \App\Entity\Field $field
+     * @param Field $field
+     * @return Template
      */
     public function removeField(Field $field) : Template
     {
         $this->fields->removeElement($field);
+
+        return $this;
     }
 
     /**
@@ -166,9 +167,10 @@ class Template implements BreabcrumbableInterface
     }
 
     /**
-     * Get entity breacrumb.
+     * Get entity breadcrumb
      *
-     * @return BreadcrumbElement
+     * @param $context
+     * @return array
      */
     public function getBreadcrumb($context) : array
     {
@@ -199,13 +201,14 @@ class Template implements BreabcrumbableInterface
     }
 
     /**
-     * Remove item.
-     *
-     * @param \App\Entity\Item $item
+     * @param Item $item
+     * @return Template
      */
     public function removeItem(Item $item) : Template
     {
         $this->items->removeElement($item);
+
+        return $this;
     }
 
     /**

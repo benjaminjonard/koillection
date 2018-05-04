@@ -90,7 +90,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     /**
      * Get entity breacrumb.
      *
-     * @return BreadcrumbElement
+     * @return array
      */
     public function getBreadcrumb($context) : array
     {
@@ -182,13 +182,14 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * Remove item.
-     *
-     * @param \App\Entity\Item $item
+     * @param Item $item
+     * @return Tag
      */
     public function removeItem(Item $item) : Tag
     {
         $this->items->removeElement($item);
+
+        return $this;
     }
 
     /**

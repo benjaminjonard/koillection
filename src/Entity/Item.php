@@ -374,11 +374,8 @@ class Item implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * Remove datum.
-     *
-     * @param \App\Entity\Datum $datum
-     *
-     * @return bool TRUE if this collection contained the specified element, FALSE otherwise.
+     * @param Datum $datum
+     * @return Item
      */
     public function removeDatum(Datum $datum) : Item
     {
