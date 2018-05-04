@@ -38,9 +38,9 @@ class CurrencyEnum
 
     /**
      * @param string $code
-     * @return string
+     * @return null|string
      */
-    public static function getSymbolFromCode(string $code) : string
+    public static function getSymbolFromCode(string $code) : ?string
     {
         return Intl::getCurrencyBundle()->getCurrencySymbol($code);
     }

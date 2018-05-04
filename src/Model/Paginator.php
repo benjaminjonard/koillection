@@ -132,7 +132,7 @@ class Paginator
 
     public function getNextUrl()
     {
-        if (!$this->getNextPage()) {
+        if (null === $this->getNextPage()) {
             return null;
         }
         return $this->getPageUrl($this->getNextPage());
@@ -143,7 +143,7 @@ class Paginator
      */
     public function getPrevUrl()
     {
-        if (!$this->getPrevPage()) {
+        if (null === $this->getPrevPage()) {
             return null;
         }
         return $this->getPageUrl($this->getPrevPage());
