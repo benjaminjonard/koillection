@@ -20,14 +20,6 @@ class ItemLogger extends Logger
     /**
      * @return string
      */
-    public function getLabelGetter() : string
-    {
-        return 'getName';
-    }
-
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Item::class;

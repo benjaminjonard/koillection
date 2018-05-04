@@ -89,7 +89,7 @@ class LogExtension extends \Twig_Extension
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return 'log_extension';
     }

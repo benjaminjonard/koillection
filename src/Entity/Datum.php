@@ -85,6 +85,14 @@ class Datum implements LoggableInterface
     }
 
     /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getLabel() ?? '';
+    }
+
+    /**
      * @return null|string
      */
     public function getId() : ?string
@@ -309,7 +317,7 @@ class Datum implements LoggableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {

@@ -14,7 +14,7 @@ class ArrayExtension extends \Twig_Extension
     /**
      * @return array
      */
-    public function getFilters()
+    public function getFilters() : array
     {
         return [
             new \Twig_SimpleFilter('add', [$this, 'add']),
@@ -87,7 +87,7 @@ class ArrayExtension extends \Twig_Extension
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return 'array_extension';
     }

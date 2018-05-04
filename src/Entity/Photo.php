@@ -2,12 +2,9 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Enum\VisibilityEnum;
-use App\Model\BreadcrumbElement;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class Album
@@ -16,7 +13,7 @@ use Ramsey\Uuid\UuidInterface;
  * @ORM\Entity
  * @ORM\Table(name="koi_photo")
  */
-class Photo implements BreabcrumbableInterface
+class Photo
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -91,25 +88,6 @@ class Photo implements BreabcrumbableInterface
     {
         $this->id = Uuid::uuid4();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
-    }
-
-    /**
-     * Get entity breacrumb.
-     *
-     * @return BreadcrumbElement[]
-     */
-    public function getBreadcrumb($context) : array
-    {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-            ->setLabel($this->getTitle())
-            ->setRoute('app_album_show')
-            ->setEntity($this)
-            ->setParams(['id' => $this->getAlbum()->getId()]);
-        $breadcrumb[] = $breadcrumbElement;
-
-        return $breadcrumb;
     }
 
     /**
@@ -219,7 +197,7 @@ class Photo implements BreabcrumbableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {

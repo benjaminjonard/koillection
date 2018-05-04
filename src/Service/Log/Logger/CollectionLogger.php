@@ -18,14 +18,6 @@ class CollectionLogger extends Logger
     /**
      * @return string
      */
-    public function getLabelGetter() : string
-    {
-        return 'getTitle';
-    }
-
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Collection::class;

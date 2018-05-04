@@ -2,6 +2,7 @@
 
 namespace App\Service\Log;
 
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -37,14 +38,13 @@ abstract class Logger implements LoggerInterface
      * @param array $payload
      * @return Log
      */
-    public function createLog($type, $entity, array $payload = [])
+    public function createLog($type, LoggableInterface $entity, array $payload = [])
     {
-        $labelGetter = $this->getLabelGetter();
         $log = new Log();
         $log
             ->setType($type)
             ->setObjectId($entity->getId())
-            ->setObjectLabel($entity->$labelGetter())
+            ->setObjectLabel($entity->__toString())
             ->setObjectClass($this->getClass())
             ->setUsername($entity->getOwner()->getUsername())
             ->setPayload(json_encode($payload))

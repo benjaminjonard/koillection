@@ -18,14 +18,6 @@ class TagLogger extends Logger
     /**
      * @return string
      */
-    public function getLabelGetter() : string
-    {
-        return 'getLabel';
-    }
-
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Tag::class;

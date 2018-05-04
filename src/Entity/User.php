@@ -229,22 +229,19 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * @param $context
-     * @return array
+     * @return string
      */
-    public function getBreadcrumb($context) : array
+    public function __toString(): string
     {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-            ->setLabel($this->getUsername())
-            ->setEntity($this)
-            ->setRoute('app_admin_user')
-            ->setParams(['id' => $this->getId()]);
+        return $this->getUsername() ?? '';
+    }
 
-        $breadcrumb[] = $breadcrumbElement;
-
-        return $breadcrumb;
+    /**
+     * @return User
+     */
+    public function getOwner(): ?User
+    {
+        return $this;
     }
 
     public function eraseCredentials()

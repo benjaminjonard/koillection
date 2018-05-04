@@ -5,12 +5,10 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
-use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -20,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\CollectionRepository")
  * @ORM\Table(name="koi_collection")
  */
-class Collection implements BreabcrumbableInterface, LoggableInterface
+class Collection implements LoggableInterface, BreabcrumbableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -117,32 +115,11 @@ class Collection implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * Get entity breacrumb.
-     *
-     * @return array
+     * @return string
      */
-    public function getBreadcrumb($context) : array
+    public function __toString(): string
     {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-            ->setLabel($this->getTitle())
-            ->setRoute(\in_array($context, ['user', 'preview'], false) ? 'app_'.$context.'_collection' : 'app_collection_show')
-            ->setEntity($this)
-            ->setParams(['id' => $this->getId()]);
-
-        if ($context === "user") {
-            $breadcrumbElement->setParams(array_merge($breadcrumbElement->getParams(), ['username' => $this->getOwner()->getUsername()]));
-        }
-
-        $breadcrumb[] = $breadcrumbElement;
-
-        if ($parent = $this->getParent()) {
-            $breadcrumb = array_merge($parent->getBreadcrumb($context), $breadcrumb);
-        }
-
-
-        return $breadcrumb;
+        return $this->getTitle() ?? '';
     }
 
     /**
@@ -239,7 +216,7 @@ class Collection implements BreabcrumbableInterface, LoggableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {

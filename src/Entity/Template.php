@@ -75,6 +75,14 @@ class Template implements BreabcrumbableInterface
     }
 
     /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getName() ?? '';
+    }
+
+    /**
      * @return null|string
      */
     public function getId() : ?string
@@ -159,31 +167,11 @@ class Template implements BreabcrumbableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {
         return $this->owner;
-    }
-
-    /**
-     * Get entity breadcrumb
-     *
-     * @param $context
-     * @return array
-     */
-    public function getBreadcrumb($context) : array
-    {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-                          ->setLabel($this->getName())
-                          ->setEntity($this)
-                          ->setRoute('app_template_show')
-                          ->setParams(['id' => $this->getId()]);
-        $breadcrumb[] = $breadcrumbElement;
-
-        return $breadcrumb;
     }
 
     /**
