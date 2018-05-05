@@ -159,12 +159,10 @@ class CollectionLogger extends Logger
                     '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
                     '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
                 ]);
-                break;
             case 'image':
                 return $this->translator->trans('log.collection.image_updated', [
                     '%property%' => "<strong>$label</strong>"
                 ]);
-                break;
             case 'parent':
                 $defaultValue = $this->translator->trans('log.collection.default_parent');
                 $old = $payload['old_title'] ? $payload['old_title'] : $defaultValue;
@@ -175,7 +173,6 @@ class CollectionLogger extends Logger
                     '%new%' => "<strong>$old</strong>",
                     '%old%' => "<strong>$new</strong>",
                 ]);
-                break;
             default:
                 $defaultValue = $this->translator->trans('log.default_value');
                 $old = $payload['old'] ? $payload['old'] : $defaultValue;
@@ -186,7 +183,6 @@ class CollectionLogger extends Logger
                     '%old%' => "<strong>$old</strong>",
                     '%new%' => "<strong>$new</strong>",
                 ]);
-                break;
         }
     }
 }

@@ -48,12 +48,12 @@ class BreadcrumbExtension extends \Twig_Extension
 
     /**
      * @param array $root
-     * @param null $entity
+     * @param object $entity
      * @param string|null $action
      * @param User|null $user
      * @return array
      */
-    public function buildBreadcrumb(array $root = [], $entity = null, string $action = null, User $user = null)
+    public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, User $user = null)
     {
         preg_match("/(?<=^app_)(.*)(?=_)/", $this->requestStack->getCurrentRequest()->get('_route'), $matches);
         $context = $matches[0] ?? 'homepage';

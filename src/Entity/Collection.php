@@ -326,11 +326,9 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
     }
 
     /**
-     * Get childrenTitle
-     *
-     * @return string
+     * @return null|string
      */
-    public function getChildrenTitle()
+    public function getChildrenTitle() : ?string
     {
         return $this->childrenTitle;
     }
@@ -350,11 +348,9 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
     }
 
     /**
-     * Get itemsTitle
-     *
-     * @return string
+     * @return null|string
      */
-    public function getItemsTitle()
+    public function getItemsTitle() : ?string
     {
         return $this->itemsTitle;
     }

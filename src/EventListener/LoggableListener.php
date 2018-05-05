@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Log;
 use App\Service\Log\LoggerChain;
 use App\Service\Log\LogQueue;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -75,7 +76,7 @@ class LoggableListener
 
                 $changeset = $uow->getEntityChangeSet($entity);
                 $log = $this->loggerChain->getUpdateLog($entity, $changeset, $relations);
-                if ($log) {
+                if ($log instanceof Log) {
                     $this->logQueue->addLog($log);
                 }
             }

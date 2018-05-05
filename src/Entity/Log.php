@@ -103,13 +103,10 @@ class Log
     }
 
     /**
-     * Set objectId
-     *
-     * @param integer $objectId
-     *
+     * @param $objectId
      * @return Log
      */
-    public function setObjectId($objectId)
+    public function setObjectId($objectId) : Log
     {
         $this->objectId = $objectId;
 
