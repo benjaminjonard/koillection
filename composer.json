@@ -2,7 +2,7 @@
     "name": "koillection/koillection",
     "description": "A website to manage all your collections",
     "type": "project",
-    "license": "proprietary",
+    "license": "GPL-3.0-only",
     "require": {
         "php": "^7.1",
         "doctrine/dbal": "^2.7",
