@@ -32,15 +32,15 @@ env:
 
 # Update composer
 before-install:
-  - sudo add-apt-repository ppa:ondrej/php -y
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libsodium-dev
-  - printf "\n" | pecl install libsodium
+  - git clone -b stable https://github.com/jedisct1/libsodium.git
+  - cd libsodium && sudo ./configure && sudo make check && sudo make install && cd ..
   - composer self-update
 
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
+  - pecl install libsodium
+  - echo "extension=sodium.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - SYMFONY_ENV=test composer install -o
   - php bin/console doctrine:database:create --env=test --if-not-exists
   - php bin/console doctrine:schema:create --env=test
