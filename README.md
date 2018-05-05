@@ -1,5 +1,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Koillection/Koillection/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/Koillection/Koillection/?branch=develop)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Koillection/Koillection/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Koillection/Koillection/?branch=master)
+[![Build Status](https://travis-ci.org/Koillection/Koillection.svg?branch=master)](https://travis-ci.org/Koillection/Koillection)
 
 # Koillection
 
