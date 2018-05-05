@@ -79,8 +79,6 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
         yield ["/admin/analytics"];
         yield ["/admin/_trans"];
 
-        yield ["/about"];
-
         //Preview
         yield ["/preview"];
         yield ["/preview/{{collection}}"];
