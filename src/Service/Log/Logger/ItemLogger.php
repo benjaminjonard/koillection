@@ -166,9 +166,9 @@ class ItemLogger extends Logger
         }
 
         $property = $payload['property'];
-
+        $label = null;
         if (!\in_array($property, ['tag_added', 'tag_removed'], false)) {
-            $label =  $this->translator->trans('label.'.strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $property)));
+            $label = $this->translator->trans('label.'.strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $property)));
         }
 
         switch ($property) {
@@ -178,12 +178,10 @@ class ItemLogger extends Logger
                     '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
                     '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
                 ]);
-                break;
             case 'image':
                 return $this->translator->trans('log.item.image_updated', [
                     '%property%' => "<strong>$label</strong>"
                 ]);
-                break;
             case 'collection':
                 $old = $payload['old_title'];
                 $new = $payload['new_title'];
@@ -193,7 +191,6 @@ class ItemLogger extends Logger
                     '%new%' => "<strong>$old</strong>",
                     '%old%' => "<strong>$new</strong>",
                 ]);
-                break;
             case 'tag_added':
                 return $this->translator->trans('log.item.tag_added', [
                     '%tag%' => "<strong>".$payload['tag_label']."</strong>"
@@ -210,44 +207,36 @@ class ItemLogger extends Logger
                         return $this->translator->trans('log.item.image_added', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>"
                         ]);
-                        break;
                     case DatumTypeEnum::TYPE_SIGN: {
                         return $this->translator->trans('log.item.sign_added', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>",
                             '%value%' => "<strong>".$payload['datum_value']."</strong>"
                         ]);
-                        break;
                     }
                     default:
                         return $this->translator->trans('log.item.property_added', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>",
                             '%value%' => "<strong>".$payload['datum_value']."</strong>"
                         ]);
-                        break;
                 }
-                break;
             case 'datum_removed':
                 switch ($payload['datum_type']) {
                     case DatumTypeEnum::TYPE_IMAGE:
                         return $this->translator->trans('log.item.image_removed', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>"
                         ]);
-                        break;
                     case DatumTypeEnum::TYPE_SIGN: {
                         return $this->translator->trans('log.item.sign_removed', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>",
                             '%value%' => "<strong>".$payload['datum_value']."</strong>"
                         ]);
-                        break;
                     }
                     default:
                         return $this->translator->trans('log.item.property_removed', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>",
                             '%value%' => "<strong>".$payload['datum_value']."</strong>"
                         ]);
-                        break;
                 }
-                break;
             default:
                 $defaultValue = $this->translator->trans('log.default_value');
                 $old = $payload['old'] ? $payload['old'] : $defaultValue;
@@ -258,7 +247,6 @@ class ItemLogger extends Logger
                     '%old%' => "<strong>$old</strong>",
                     '%new%' => "<strong>$new</strong>",
                 ]);
-                break;
         }
     }
 }
