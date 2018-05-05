@@ -25,7 +25,7 @@ matrix:
 # Define an environment variable
 env:
   global:
-    - APP_ENV="prod"
+    - APP_ENV="test"
     - APP_DEBUG="0"
     - APP_SECRET="WBp61O25u2ysihh4N4FEGwIOfOrfTU"
     - DATABASE_URL="pgsql://root:root@postgres:5432/koillection?charset=utf8&serverVersion=10.3"
