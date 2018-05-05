@@ -53,7 +53,7 @@ class DatumLogger extends Logger
      * @param $class
      * @return bool
      */
-    public function supportedClass($class)
+    public function supportedClass($class) : bool
     {
         return $class === Datum::class;
     }

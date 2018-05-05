@@ -27,9 +27,9 @@ class LoggerChain
     /**
      * @param $function
      * @param array $params
-     * @return mixed|null
+     * @return Log|string|null
      */
-    private function getLoggerResponse($function, array $params) : ?mixed
+    private function getLoggerResponse($function, array $params)
     {
         $response = null;
         $loggers= [];
