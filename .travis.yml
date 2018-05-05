@@ -35,12 +35,12 @@ before-install:
   - sudo add-apt-repository ppa:ondrej/php -y
   - sudo apt-get -qq update
   - sudo apt-get install -y libsodium-dev
+  - printf "\n" | pecl install libsodium
   - composer self-update
 
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
-  - printf "\n" | pecl install libsodium
   - SYMFONY_ENV=test composer install -o
   - php bin/console doctrine:database:create --env=test --if-not-exists
   - php bin/console doctrine:schema:create --env=test
