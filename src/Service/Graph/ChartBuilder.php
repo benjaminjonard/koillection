@@ -64,7 +64,7 @@ class ChartBuilder
         }
         //Fill our array with the result of the SQL query
         foreach ($result as $raw) {
-            $data[$raw['abscissa']] = ['abscissa' => (int)$raw['abscissa'], 'count' => (int)$raw['count']];
+            $data[$raw['abscissa']] = ['abscissa' => (int) $raw['abscissa'], 'count' => (int) $raw['count']];
         }
 
         return $data;
@@ -98,7 +98,7 @@ class ChartBuilder
         }
         //Fill our array with the result of the SQL query
         foreach ($result as $raw) {
-            $data[$raw['abscissa'] - 1] = ['abscissa' => (int)$raw['abscissa'], 'count' => (int)$raw['count']];
+            $data[$raw['abscissa'] - 1] = ['abscissa' => (int) $raw['abscissa'], 'count' => (int) $raw['count']];
         }
 
         return $data;
@@ -141,7 +141,7 @@ class ChartBuilder
 
         //Fill our array with the result of the SQL query
         foreach ($result as $raw) {
-            $data[$raw['abscissa'] - 1] = ['abscissa' => $days[$raw['abscissa'] - 1], 'count' => (int)$raw['count']];
+            $data[$raw['abscissa'] - 1] = ['abscissa' => $days[$raw['abscissa'] - 1], 'count' => (int) $raw['count']];
         }
 
         return $data;
@@ -189,7 +189,7 @@ class ChartBuilder
 
         //Fill our array with the result of the SQL query
         foreach ($result as $raw) {
-            $data[$raw['abscissa'] - 1] = ['abscissa' => $months[$raw['abscissa'] - 1], 'count' => (int)$raw['count']];
+            $data[$raw['abscissa'] - 1] = ['abscissa' => $months[$raw['abscissa'] - 1], 'count' => (int) $raw['count']];
         }
 
         return $data;
@@ -212,10 +212,10 @@ class ChartBuilder
 
         $data = [];
         foreach (ThemeEnum::THEMES as $theme) {
-            $datum = ['abscissa' => $this->translator->trans("global.themes.$theme"). ' (0%)', 'count' => 0];
+            $datum = ['abscissa' => $this->translator->trans("global.themes.$theme").' (0%)', 'count' => 0];
             foreach ($result as $raw) {
                 if ($raw['abscissa'] === $theme) {
-                    $percent = round(($raw['count']*100)/$count, 2);
+                    $percent = round(($raw['count'] * 100) / $count, 2);
                     $datum['abscissa'] = $this->translator->trans("global.themes.$theme");
                     $datum['count'] = $raw['count'];
                     $datum['percent'] = " ($percent%)";
@@ -243,10 +243,10 @@ class ChartBuilder
 
         $data = [];
         foreach (LocaleEnum::LOCALES_TRANS_KEYS as $key => $locale) {
-            $datum = ['abscissa' => $this->translator->trans("global.locale.$locale"). ' (0%)', 'count' => 0];
+            $datum = ['abscissa' => $this->translator->trans("global.locale.$locale").' (0%)', 'count' => 0];
             foreach ($result as $raw) {
                 if ($raw['abscissa'] === $key) {
-                    $percent = round(($raw['count']*100)/$count, 2);
+                    $percent = round(($raw['count'] * 100) / $count, 2);
                     $datum['abscissa'] = $this->translator->trans("global.locale.$locale");
                     $datum['count'] = $raw['count'];
                     $datum['percent'] = " ($percent%)";
@@ -276,7 +276,7 @@ class ChartBuilder
 
         $sql .= ' FROM koi_connection';
         if ($since instanceof \DateTime) {
-            $sql .= " WHERE date > '" . $since->format("Y-m-d") . "'";
+            $sql .= " WHERE date > '".$since->format("Y-m-d")."'";
         }
         $sql .= ' GROUP BY abscissa';
 
@@ -291,7 +291,7 @@ class ChartBuilder
         $others = ['percent' => 0, 'count' => 0];
 
         foreach ($result as $raw) {
-            $percent = round(($raw['count']*100)/$count, 2);
+            $percent = round(($raw['count'] * 100) / $count, 2);
             if ($percent < 1) {
                 $others['percent'] += $percent;
                 $others['count'] += $raw['count'];
@@ -311,7 +311,7 @@ class ChartBuilder
             $data[] = $datum;
         }
 
-        usort($data, function ($a, $b) {
+        usort($data, function($a, $b) {
             return $b['count'] <=> $a['count'];
         });
 

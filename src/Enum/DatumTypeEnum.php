@@ -19,7 +19,7 @@ class DatumTypeEnum
         self::TYPE_IMAGE => 'image',
     ];
 
-    const TYPES_TRANS_KEYS= [
+    const TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',
         self::TYPE_SIGN => 'label.sign',
         self::TYPE_IMAGE => 'label.image'

@@ -30,7 +30,7 @@ class CurrencyEnum
     {
         $currencies = [];
         foreach (self::CURRENCIES as $code) {
-            $currencies[$code] = Intl::getCurrencyBundle()->getCurrencySymbol($code) . ' (' . $code . ')';
+            $currencies[$code] = Intl::getCurrencyBundle()->getCurrencySymbol($code).' ('.$code.')';
         }
 
         return $currencies;

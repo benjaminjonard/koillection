@@ -38,7 +38,7 @@ class ThumbnailGenerator
 
         $final_width_of_image = 150;
         $nx = $final_width_of_image;
-        $ny = (int)floor($oy * ($final_width_of_image / $ox));
+        $ny = (int) floor($oy * ($final_width_of_image / $ox));
 
         $nm = imagecreatetruecolor($nx, $ny);
 
