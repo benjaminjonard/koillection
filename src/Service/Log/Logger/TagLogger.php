@@ -135,12 +135,10 @@ class TagLogger extends Logger
                     '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
                     '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
                 ]);
-                break;
             case 'image':
                 return $this->translator->trans('log.tag.image_updated', [
                     '%property%' => "<strong>$label</strong>"
                 ]);
-                break;
             default:
                 $defaultValue = $this->translator->trans('log.default_value');
                 $old = $payload['old'] ? $payload['old'] : $defaultValue;
@@ -151,7 +149,6 @@ class TagLogger extends Logger
                     '%old%' => "<strong>$old</strong>",
                     '%new%' => "<strong>$new</strong>",
                 ]);
-                break;
         }
     }
 }

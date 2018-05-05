@@ -206,7 +206,7 @@ class CollectionController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $itemsTaggedCount = $batchTagger->applyBatch($this->getDoctrine()->getManager());
+            $itemsTaggedCount = $batchTagger->applyBatch();
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->transchoice('message.items_tagged', $itemsTaggedCount, ['%count%' => $itemsTaggedCount]));
 

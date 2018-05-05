@@ -301,9 +301,7 @@ class Wish
     }
 
     /**
-     * Get image.
-     *
-     * @return Medium
+     * @return Medium|null
      */
     public function getImage() : ?Medium
     {

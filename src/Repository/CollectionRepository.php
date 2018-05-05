@@ -16,8 +16,6 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class CollectionRepository extends EntityRepository
 {
-    private $qng;
-
     public function __construct(EntityManager $em, Mapping\ClassMetadata $class)
     {
         parent::__construct($em, $class);

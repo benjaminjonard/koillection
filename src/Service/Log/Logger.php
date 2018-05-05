@@ -27,7 +27,7 @@ abstract class Logger implements LoggerInterface
      * @param $class
      * @return bool
      */
-    public function supportedClass($class)
+    public function supportedClass($class) : bool
     {
         return $class === $this->getClass();
     }
@@ -38,7 +38,7 @@ abstract class Logger implements LoggerInterface
      * @param array $payload
      * @return Log
      */
-    public function createLog($type, LoggableInterface $entity, array $payload = [])
+    public function createLog($type, LoggableInterface $entity, array $payload = []) : Log
     {
         $log = new Log();
         $log

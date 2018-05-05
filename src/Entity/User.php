@@ -212,7 +212,7 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->signsCount = 0;
         $this->diskSpaceAllowed = 536870912;
         $this->diskSpaceUsed = 0;
-        $this->enabled = 0;
+        $this->enabled = false;
         $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = CurrencyEnum::CURRENCY_EUR;
         $this->locale = LocaleEnum::LOCALE_EN;

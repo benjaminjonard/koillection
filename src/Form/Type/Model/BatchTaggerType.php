@@ -47,8 +47,7 @@ class BatchTaggerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user = $this->tokenStorage->getToken()->getUser();
-        $tagTransformer = new JsonToTagTransformer($this->em->getRepository(Tag::class), $user);
+        $tagTransformer = new JsonToTagTransformer($this->em->getRepository(Tag::class));
 
         $builder
             ->add(
