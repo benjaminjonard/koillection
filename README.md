@@ -1,9 +1,15 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![GitHub release](https://img.shields.io/github/release/koillection/koillection.svg)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Koillection/Koillection/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Koillection/Koillection/?branch=master)
-[![Build Status](https://travis-ci.org/Koillection/Koillection.svg?branch=master)](https://travis-ci.org/Koillection/Koillection)
+<p align="center">
+    <a href="https://koillection.com" target="_blank">
+        <img src="https://avatars3.githubusercontent.com/u/38983306?s=200&v=4" width="75" height="75">
+    </a>
+</p>
 
-# Koillection
+<p align="center">
+    <img src="https://img.shields.io/github/license/koillection/koillection.svg" />
+    <img src="https://img.shields.io/github/release/koillection/koillection.svg" />
+    <img src="https://img.shields.io/scrutinizer/g/Koillection/koillection.svg" />
+    <img src="https://img.shields.io/travis/Koillection/Koillection/master.svg" />    
+</p>
 
 Koillection is a self-hosted service allowing users to manage any kind of collection.
 It is a project I did for my personal use. But since it can interest some people I decided to release it publicly. 
