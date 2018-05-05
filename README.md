@@ -11,6 +11,8 @@
     <img src="https://img.shields.io/travis/Koillection/Koillection/master.svg" />    
 </p>
 
+# Koillection
+
 Koillection is a self-hosted service allowing users to manage any kind of collection.
 It is a project I did for my personal use. But since it can interest some people I decided to release it publicly. 
 
