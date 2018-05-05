@@ -47,11 +47,11 @@ class TagRepository extends EntityRepository
     /**
      * @param $itemsCount
      * @param int $page
-     * @param null $search
+     * @param string|null $search
      * @param bool $ignoreTagsWithoutItems
      * @return array
      */
-    public function countItemsByTag($itemsCount, $page = 1, $search = null, bool $ignoreTagsWithoutItems = false) : array
+    public function countItemsByTag($itemsCount, $page = 1, string $search = null, bool $ignoreTagsWithoutItems = false) : array
     {
         $qb = $this
             ->getEntityManager()
@@ -83,12 +83,12 @@ class TagRepository extends EntityRepository
     }
 
     /**
-     * @param null $search
+     * @param string|null $search
      * @param bool $ignoreTagsWithoutItems
      * @return int
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function countTags($search = null, bool $ignoreTagsWithoutItems = false) : int
+    public function countTags(string $search = null, bool $ignoreTagsWithoutItems = false) : int
     {
         $qb = $this->_em
             ->createQueryBuilder()

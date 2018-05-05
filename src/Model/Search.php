@@ -77,9 +77,7 @@ class Search
     }
 
     /**
-     * Get createdAt.
-     *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt() : ?\DateTime
     {

@@ -37,7 +37,7 @@ class TreeBuilder
         $collections = $this->em->getRepository(Collection::class)->findAllWithChildren();
         $tree = $this->createLeaf();
 
-        $children = array_filter($collections, function (Collection $element) {
+        $children = array_filter($collections, function(Collection $element) {
             return $element->getParent() === null;
         });
 

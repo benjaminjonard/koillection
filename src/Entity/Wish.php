@@ -2,12 +2,9 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Enum\VisibilityEnum;
-use App\Model\BreadcrumbElement;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class Wish
@@ -16,7 +13,7 @@ use Ramsey\Uuid\UuidInterface;
  * @ORM\Entity(repositoryClass="App\Repository\WishRepository")
  * @ORM\Table(name="koi_wish")
  */
-class Wish implements BreabcrumbableInterface
+class Wish
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -106,29 +103,6 @@ class Wish implements BreabcrumbableInterface
     }
 
     /**
-     * Get entity breacrumb.
-     *
-     * @return BreadcrumbElement[]
-     */
-    public function getBreadcrumb($context) : array
-    {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-            ->setLabel($this->getName())
-            ->setRoute('app_wishlist_show')
-            ->setEntity($this)
-            ->setParams(['id' => $this->getWishlist()->getId()]);
-        $breadcrumb[] = $breadcrumbElement;
-
-        if ($wishlist = $this->getWishlist()) {
-            $breadcrumb = array_merge($wishlist->getBreadcrumb($context), $breadcrumb);
-        }
-
-        return $breadcrumb;
-    }
-
-    /**
      * @return null|string
      */
     public function getId() : ?string
@@ -201,7 +175,7 @@ class Wish implements BreabcrumbableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {
@@ -327,9 +301,7 @@ class Wish implements BreabcrumbableInterface
     }
 
     /**
-     * Get image.
-     *
-     * @return Medium
+     * @return Medium|null
      */
     public function getImage() : ?Medium
     {

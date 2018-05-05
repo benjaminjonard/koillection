@@ -44,7 +44,6 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         yield ["/settings"];
         yield ["/profile"];
         yield ["/history"];
-        yield ["/about"];
         yield ["/preview"];
         yield ["/user/{{username}}"];
     }

@@ -17,7 +17,7 @@ class RoleEnum
         self::ROLE_ADMIN,
     ];
 
-    const ROLES_TRANS_KEYS= [
+    const ROLES_TRANS_KEYS = [
         self::ROLE_USER => 'role.user',
         self::ROLE_ADMIN => 'role.admin'
     ];

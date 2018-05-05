@@ -207,11 +207,9 @@ class Medium
     }
 
     /**
-     * Get thumbnailPath
-     *
-     * @return string
+     * @return null|string
      */
-    public function getThumbnailPath()
+    public function getThumbnailPath() : ?string
     {
         return $this->thumbnailPath;
     }
@@ -291,7 +289,7 @@ class Medium
     /**
      * Set uploadedFile
      *
-     * @param string $uploadedFile
+     * @param UploadedFile $uploadedFile
      *
      * @return Medium
      */
@@ -396,7 +394,7 @@ class Medium
     /**
      * Get owner
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {

@@ -74,7 +74,7 @@ class WishlistRepository extends EntityRepository
             return $this->findAll();
         }
 
-        $id = "'" . $id . "'";
+        $id = "'".$id."'";
 
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('id', 'id');

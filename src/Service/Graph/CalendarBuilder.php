@@ -40,8 +40,8 @@ class CalendarBuilder
 
         foreach ($result as $row) {
             $timestamp = strtotime($row['date']);
-            $details = getdate((int)$timestamp);
-            $data[$details['year']]["$timestamp"] = (int)$row['count'];
+            $details = getdate((int) $timestamp);
+            $data[$details['year']]["$timestamp"] = (int) $row['count'];
         }
 
         return $data;

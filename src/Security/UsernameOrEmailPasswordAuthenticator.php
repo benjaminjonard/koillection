@@ -112,7 +112,7 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $parsed =  new Parser($request->headers->get('User-Agent'));
+        $parsed = new Parser($request->headers->get('User-Agent'));
         $connection = new Connection();
 
         $connection

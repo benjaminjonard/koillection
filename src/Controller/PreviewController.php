@@ -105,10 +105,9 @@ class PreviewController extends AbstractController
      * @Route("/albums", name="app_preview_albums")
      * @Method({"GET"})
      *
-     * @param Request $request
      * @return Response
      */
-    public function albums(Request $request) : Response
+    public function albums() : Response
     {
         $albums = $this->getDoctrine()->getRepository(Album::class)->findAll();
         $photosCounter = 0;

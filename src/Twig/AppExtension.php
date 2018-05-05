@@ -3,11 +3,8 @@
 namespace App\Twig;
 
 use App\Entity\Tag;
-use App\Entity\User;
-use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Model\BreadcrumbElement;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -24,11 +21,6 @@ class AppExtension extends \Twig_Extension
     protected $translator;
 
     /**
-     * @var RequestStack
-     */
-    protected $requestStack;
-
-    /**
      * @var RouterInterface
      */
     protected $router;
@@ -42,14 +34,12 @@ class AppExtension extends \Twig_Extension
      * AppExtension constructor.
      *
      * @param TranslatorInterface $translator
-     * @param RequestStack $requestStack
      * @param RouterInterface $router
      * @param EntityManagerInterface $em
      */
-    public function __construct(TranslatorInterface $translator, RequestStack $requestStack, RouterInterface $router, EntityManagerInterface $em)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em)
     {
         $this->translator = $translator;
-        $this->requestStack = $requestStack;
         $this->router = $router;
         $this->em = $em;
     }
@@ -57,7 +47,7 @@ class AppExtension extends \Twig_Extension
     /**
      * @return array
      */
-    public function getFilters()
+    public function getFilters() : array
     {
         return [
             new \Twig_SimpleFilter('safeContent', [$this, 'safeContent'], ['is_safe' => ['html']]),
@@ -71,12 +61,10 @@ class AppExtension extends \Twig_Extension
     /**
      * @return array
      */
-    public function getFunctions()
+    public function getFunctions() : array
     {
         return [
-            new \Twig_SimpleFunction('buildBreadcrumb', [$this, 'buildBreadcrumb']),
-            new \Twig_SimpleFunction('renderBreadcrumb', [$this, 'renderBreadcrumb'], ['needs_environment' => true, 'is_safe' => ['html']]),
-            new \Twig_SimpleFunction('renderTitle', [$this, 'renderTitle']),
+            new \Twig_SimpleFunction('renderTitle', [$this, 'renderTitle'])
         ];
     }
 
@@ -101,7 +89,7 @@ class AppExtension extends \Twig_Extension
 
         $suffixes = array('', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi', 'Yi');
 
-        return round(pow(1024, $base - floor($base)), $precision).' '. $suffixes[floor($base)] . $this->translator->trans('global.byte_abbreviation');
+        return round(pow(1024, $base - floor($base)), $precision).' '.$suffixes[floor($base)].$this->translator->trans('global.byte_abbreviation');
     }
 
     /**
@@ -135,8 +123,7 @@ class AppExtension extends \Twig_Extension
         $string = \array_slice($string, 0, 1);
 
         return $string ?
-            $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) :
-            $this->translator->trans('global.time.just_now');
+            $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
     /**
@@ -173,72 +160,9 @@ class AppExtension extends \Twig_Extension
     }
 
     /**
-     * @param array $root
-     * @param null $entity
-     * @param string|null $action
-     * @return mixed|string
-     */
-    public function buildBreadcrumb(array $root = [], $entity = null, string $action = null, User $user = null)
-    {
-        preg_match("/(?<=^app_)(.*)(?=_)/", $this->requestStack->getCurrentRequest()->get('_route'), $matches);
-        $context = $matches[0] ?? 'homepage';
-
-        $breadcrumb = [];
-
-        if (!empty($root)) {
-            foreach ($root as $element) {
-                $rootElement = new BreadcrumbElement();
-                $rootElement
-                    ->setType(BreadcrumbElement::TYPE_ROOT)
-                    ->setRoute($element['route'])
-                    ->setLabel($element['trans'])
-                    ->setParams([])
-                ;
-
-                if ($user instanceof User) {
-                    $rootElement->setParams(['username' => $user->getUsername()]);
-                }
-
-                $breadcrumb[] = $rootElement;
-            }
-        }
-
-        if ($entity instanceof BreabcrumbableInterface) {
-            $element = $entity->getBreadcrumb($context);
-            $breadcrumb = array_merge($breadcrumb, $element);
-        }
-
-        if (null !== $action) {
-            $actionElement = new BreadcrumbElement();
-            $actionElement
-                ->setType(BreadcrumbElement::TYPE_ACTION)
-                ->setLabel($action)
-            ;
-            $breadcrumb[] = $actionElement;
-        }
-
-        $last = array_pop($breadcrumb);
-        $last->setClass('last');
-        $breadcrumb[] = $last;
-
-        return $breadcrumb;
-    }
-
-    /**
-     * @param \Twig_Environment $environment
      * @param array $breadcrumb
      * @return string
-     */
-    public function renderBreadcrumb(\Twig_Environment $environment, array $breadcrumb)
-    {
-        return $environment->render('Breadcrumb/breadcrumb-base.html.twig', [
-            'breadcrumb' => $breadcrumb,
-        ]);
-    }
-
-    /**
-     * @param array $breadcrumb
-     * @return string
+     * @throws \ReflectionException
      */
     public function renderTitle(array $breadcrumb)
     {
@@ -255,7 +179,7 @@ class AppExtension extends \Twig_Extension
                 $entityElement = array_pop($breadcrumb);
                 if ($entityElement instanceof BreadcrumbElement) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
-                    return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel() .' · '. $this->translator->trans($element->getLabel());
+                    return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel().' · '.$this->translator->trans($element->getLabel());
                 }
 
                 return $this->translator->trans($element->getLabel());
@@ -307,7 +231,7 @@ class AppExtension extends \Twig_Extension
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return 'app_extension';
     }

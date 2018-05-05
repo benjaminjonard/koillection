@@ -18,14 +18,6 @@ class TagLogger extends Logger
     /**
      * @return string
      */
-    public function getLabelGetter() : string
-    {
-        return 'getLabel';
-    }
-
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Tag::class;
@@ -135,7 +127,7 @@ class TagLogger extends Logger
         }
 
         $property = $payload['property'];
-        $label =  $this->translator->trans('label.'.strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $property)));
+        $label = $this->translator->trans('label.'.strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $property)));
         switch ($property) {
             case 'visibility':
                 return $this->translator->trans('log.tag.property_updated', [
@@ -143,12 +135,10 @@ class TagLogger extends Logger
                     '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
                     '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
                 ]);
-                break;
             case 'image':
                 return $this->translator->trans('log.tag.image_updated', [
                     '%property%' => "<strong>$label</strong>"
                 ]);
-                break;
             default:
                 $defaultValue = $this->translator->trans('log.default_value');
                 $old = $payload['old'] ? $payload['old'] : $defaultValue;
@@ -159,7 +149,6 @@ class TagLogger extends Logger
                     '%old%' => "<strong>$old</strong>",
                     '%new%' => "<strong>$new</strong>",
                 ]);
-                break;
         }
     }
 }

@@ -4,11 +4,9 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Enum\VisibilityEnum;
-use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class Album
@@ -80,27 +78,11 @@ class Album implements BreabcrumbableInterface
     }
 
     /**
-     * Get entity breacrumb.
-     *
-     * @return array
+     * @return string
      */
-    public function getBreadcrumb($context) : array
+    public function __toString(): string
     {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-            ->setLabel($this->getTitle())
-            ->setRoute(\in_array($context, ['user', 'preview'], false) ? 'app_'.$context.'_album' : 'app_album_show')
-            ->setEntity($this)
-            ->setParams(['id' => $this->getId()]);
-
-        if ($context === "user") {
-            $breadcrumbElement->setParams(array_merge($breadcrumbElement->getParams(), ['username' => $this->getOwner()->getUsername()]));
-        }
-
-        $breadcrumb[] = $breadcrumbElement;
-
-        return $breadcrumb;
+        return $this->getTitle() ?? '';
     }
 
     /**
@@ -138,7 +120,7 @@ class Album implements BreabcrumbableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {

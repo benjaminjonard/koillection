@@ -75,6 +75,14 @@ class Template implements BreabcrumbableInterface
     }
 
     /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getName() ?? '';
+    }
+
+    /**
      * @return null|string
      */
     public function getId() : ?string
@@ -122,13 +130,14 @@ class Template implements BreabcrumbableInterface
     }
 
     /**
-     * Remove field.
-     *
-     * @param \App\Entity\Field $field
+     * @param Field $field
+     * @return Template
      */
     public function removeField(Field $field) : Template
     {
         $this->fields->removeElement($field);
+
+        return $this;
     }
 
     /**
@@ -158,30 +167,11 @@ class Template implements BreabcrumbableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {
         return $this->owner;
-    }
-
-    /**
-     * Get entity breacrumb.
-     *
-     * @return BreadcrumbElement
-     */
-    public function getBreadcrumb($context) : array
-    {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-                          ->setLabel($this->getName())
-                          ->setEntity($this)
-                          ->setRoute('app_template_show')
-                          ->setParams(['id' => $this->getId()]);
-        $breadcrumb[] = $breadcrumbElement;
-
-        return $breadcrumb;
     }
 
     /**
@@ -199,13 +189,14 @@ class Template implements BreabcrumbableInterface
     }
 
     /**
-     * Remove item.
-     *
-     * @param \App\Entity\Item $item
+     * @param Item $item
+     * @return Template
      */
     public function removeItem(Item $item) : Template
     {
         $this->items->removeElement($item);
+
+        return $this;
     }
 
     /**

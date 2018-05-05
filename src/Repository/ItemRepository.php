@@ -54,7 +54,7 @@ class ItemRepository extends EntityRepository
             ->getArrayResult()
         ;
 
-        usort($results, function (array $a, array $b) {
+        usort($results, function(array $a, array $b) {
             return strnatcmp($a['name'], $b['name']);
         });
 
@@ -69,13 +69,13 @@ class ItemRepository extends EntityRepository
 
         if ($current === 0) {
             $previous = null;
-            $next = $results[($current+1) % $count];
+            $next = $results[($current + 1) % $count];
         } elseif ($current === $count - 1) {
-            $previous = $results[($count+$current-1) % $count];
+            $previous = $results[($count + $current - 1) % $count];
             $next = null;
         } else {
-            $previous = $results[($count+$current-1) % $count];
-            $next = $results[($current+1) % $count];
+            $previous = $results[($count + $current - 1) % $count];
+            $next = $results[($current + 1) % $count];
         }
 
         return [
@@ -134,7 +134,7 @@ class ItemRepository extends EntityRepository
     public function findAllByCollection(Collection $collection) : array
     {
         //First we query all items id recursvely
-        $id = "'" . $collection->getId() . "'";
+        $id = "'".$collection->getId()."'";
         $sqlRecursive = "
             SELECT i.id as id
             FROM koi_item i

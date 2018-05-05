@@ -88,27 +88,11 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * Get entity breacrumb.
-     *
-     * @return BreadcrumbElement
+     * @return string
      */
-    public function getBreadcrumb($context) : array
+    public function __toString(): string
     {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-            ->setLabel($this->getLabel())
-            ->setRoute(\in_array($context, ['user', 'preview'], false) ? 'app_'.$context.'_tag' : 'app_tag_show')
-            ->setEntity($this)
-            ->setParams(['id' => $this->getId()]);
-
-        if ($context === "user") {
-            $breadcrumbElement->setParams(array_merge($breadcrumbElement->getParams(), ['username' => $this->getOwner()->getUsername()]));
-        }
-
-        $breadcrumb[] = $breadcrumbElement;
-
-        return $breadcrumb;
+        return $this->getLabel() ?? '';
     }
 
     /**
@@ -160,7 +144,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {
@@ -182,13 +166,14 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * Remove item.
-     *
-     * @param \App\Entity\Item $item
+     * @param Item $item
+     * @return Tag
      */
     public function removeItem(Item $item) : Tag
     {
         $this->items->removeElement($item);
+
+        return $this;
     }
 
     /**
