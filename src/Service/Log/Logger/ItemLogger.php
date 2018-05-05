@@ -72,53 +72,32 @@ class ItemLogger extends Logger
         }
 
         $mainPayload = [];
+        foreach ($changeset as $property => $change) {
+            if (in_array($property, ['name', 'quantity', 'visibility'])) {
+                $mainPayload[] = [
+                    'name' => $item->getName(),
+                    'property' => $property,
+                    'old' => $changeset[$property][0],
+                    'new' => $item->get{ucfirst($property)}()
+                ];
+            } elseif ($property === 'image') {
+                $mainPayload[] = [
+                    'name' => $item->getName(),
+                    'property' => 'image'
+                ];
+            } elseif ($property === 'collection') {
+                $old = $changeset['collection'][0];
+                $new = $item->getCollection();
 
-        if (array_key_exists('name', $changeset)) {
-            $mainPayload[] = [
-                'name' => $item->getName(),
-                'property' => 'name',
-                'old' => $changeset['name'][0],
-                'new' => $item->getName()
-            ];
-        }
-
-        if (array_key_exists('image', $changeset)) {
-            $mainPayload[] = [
-                'name' => $item->getName(),
-                'property' => 'image'
-            ];
-        }
-
-        if (array_key_exists('collection', $changeset)) {
-            $old = $changeset['collection'][0];
-            $new = $item->getCollection();
-
-            $mainPayload[] = [
-                'property' => 'collection',
-                'old_id' => $old->getId(),
-                'old_title' => $old->getTitle(),
-                'new_id' => $new->getId(),
-                'new_title' => $new->getTitle(),
-                'name' => $item->getName()
-            ];
-        }
-
-        if (array_key_exists('quantity', $changeset)) {
-            $mainPayload[] = [
-                'name' => $item->getName(),
-                'property' => 'quantity',
-                'old' => $changeset['quantity'][0],
-                'new' => $item->getQuantity()
-            ];
-        }
-
-        if (array_key_exists('visibility', $changeset)) {
-            $mainPayload[] = [
-                'name' => $item->getName(),
-                'property' => 'visibility',
-                'old' => $changeset['visibility'][0],
-                'new' => $item->getVisibility()
-            ];
+                $mainPayload[] = [
+                    'property' => 'collection',
+                    'old_id' => $old->getId(),
+                    'old_title' => $old->getTitle(),
+                    'new_id' => $new->getId(),
+                    'new_title' => $new->getTitle(),
+                    'name' => $item->getName()
+                ];
+            }
         }
 
         foreach ($relations['added'] as $relation) {
