@@ -22,10 +22,11 @@ matrix:
 
 # Define an environment variable
 env:
-  - APP_ENV="prod"
-  - APP_DEBUG="0"
-  - APP_SECRET="WBp61O25u2ysihh4N4FEGwIOfOrfTU"
-  - DATABASE_URL="pgsql://root:root@postgres:5432/koillection?charset=utf8&serverVersion=10.3"
+  global:
+    - APP_ENV="prod"
+    - APP_DEBUG="0"
+    - APP_SECRET="WBp61O25u2ysihh4N4FEGwIOfOrfTU"
+    - DATABASE_URL="pgsql://root:root@postgres:5432/koillection?charset=utf8&serverVersion=10.3"
 
 # Update composer
 before-install:
@@ -34,14 +35,17 @@ before-install:
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
-  - composer install
-  - php bin/console doctrine:database:create --env=test
-  - php bin/console doctrine:schema:create --env=test
-  - php bin/console doctrine:fixtures:load -n --env=test
+   - SYMFONY_ENV=test composer install -o
+   - php bin/console doctrine:database:create --env=test --if-not-exists
+   - php bin/console doctrine:schema:create --env=test
+   - php bin/console doctrine:fixtures:load --env=test --no-interaction
+   - cd assets/ && npm install && gulp delivery && cd ../
 
 # Run script
 script:
-  - phpunit
+   - php bin/console cache:warmup --env=test
+   - DATABASE_URL=$DATABASE_URL php -d memory_limit=512M bin/phpunit.phar --stderr
+
 
 # After a build, send email notification with the build results
 notifications:
