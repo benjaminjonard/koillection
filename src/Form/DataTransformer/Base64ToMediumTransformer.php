@@ -25,16 +25,14 @@ class Base64ToMediumTransformer implements DataTransformerInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
-     * @param string $base64
-     *
-     * @return mixed|null
+     * @param mixed $base64
+     * @return Medium|mixed
+     * @throws \Exception
      */
     public function reverseTransform($base64)
     {
         if (null === $base64) {
-            return;
+            return null;
         }
 
         preg_match('#data:(image/([\w]+));base64,(.*)#', $base64, $matches);

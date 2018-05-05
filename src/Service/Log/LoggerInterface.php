@@ -17,11 +17,6 @@ interface LoggerInterface
     public function getClass() : string;
 
     /**
-     * @return string
-     */
-    public function getLabelGetter() : string;
-
-    /**
      * @return int
      */
     public function getPriority() : int;

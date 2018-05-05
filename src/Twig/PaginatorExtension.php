@@ -30,7 +30,7 @@ class PaginatorExtension extends \Twig_Extension
     /**
      * @return array
      */
-    public function getFunctions()
+    public function getFunctions() : array
     {
         return [
             new \Twig_SimpleFunction('paginator', [$this, 'buildPaginator']),
@@ -53,7 +53,7 @@ class PaginatorExtension extends \Twig_Extension
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return 'paginator_extension';
     }

@@ -60,11 +60,15 @@ class ItemHelper
     /**
      * @param $data
      * @return array
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function formatData($data) : array
     {
         $fields = [];
         foreach ($data as $iteration => $datum) {
+            $field = [];
             $field['html'] = $this->twig->render('App/Datum/'.DatumTypeEnum::getTypeSlug($datum->getType()).'.html.twig', [
                 'iteration' => $iteration,
                 'datum' => $datum,

@@ -36,15 +36,6 @@ class DatumLogger extends Logger
     /**
      * @return string
      */
-    public function getLabelGetter() : string
-    {
-        //we need the label of this item
-        return 'getName';
-    }
-
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Item::class;
@@ -62,7 +53,7 @@ class DatumLogger extends Logger
      * @param $class
      * @return bool
      */
-    public function supportedClass($class)
+    public function supportedClass($class) : bool
     {
         return $class === Datum::class;
     }

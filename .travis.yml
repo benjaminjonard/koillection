@@ -1,0 +1,57 @@
+# Project language
+language: php
+php:
+  - 7.2
+
+# Allows use container-based infrastructure
+sudo: false
+
+# Start mysql service
+services:
+  - postgresql
+
+# Cache composer packages so "composer install" is faster
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+# Matrix to test in every php version
+matrix:
+  # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
+  fast_finish: true
+  include:
+    - php: 7.2
+
+# Define an environment variable
+env:
+  global:
+    - APP_ENV="test"
+    - APP_DEBUG="0"
+    - APP_SECRET="WBp61O25u2ysihh4N4FEGwIOfOrfTU"
+    - DATABASE_URL="pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3"
+
+# Update composer
+before-install:
+  - composer self-update
+
+# Install composer dependencies,
+# Create database, schema and fixtures
+install:
+  - git clone -b stable https://github.com/jedisct1/libsodium.git
+  - cd libsodium && sudo ./configure && sudo make check && sudo make install && cd ..
+  - pecl install libsodium
+  - echo "extension=sodium.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - SYMFONY_ENV=test composer install -o
+  - php bin/console doctrine:database:create --env=test --if-not-exists
+  - php bin/console doctrine:schema:create --env=test
+  - php bin/console doctrine:fixtures:load --env=test --no-interaction
+
+# Run script
+script:
+   - php bin/console cache:warmup --env=test
+   - DATABASE_URL=$DATABASE_URL php -d memory_limit=512M bin/phpunit.phar --stderr
+
+
+# After a build, send email notification with the build results
+notifications:
+  email: koillection@gmail.com

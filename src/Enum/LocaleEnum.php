@@ -17,7 +17,7 @@ class LocaleEnum
         self::LOCALE_FR
     ];
 
-    const LOCALES_TRANS_KEYS= [
+    const LOCALES_TRANS_KEYS = [
         self::LOCALE_EN => 'english',
         self::LOCALE_FR => 'french'
     ];

@@ -36,7 +36,7 @@ class BeforeResponseListener
 
         // create a CSP rule, using the nonce generator service
         $nonce = $this->nonceGenerator->getNonce();
-        $cspHeader = "script-src 'nonce-" . $nonce . "' 'strict-dynamic'; object-src 'none';";
+        $cspHeader = "script-src 'nonce-".$nonce."' 'strict-dynamic'; object-src 'none';";
 
         // set CSP header on the response object
         $response->headers->set("Content-Security-Policy", $cspHeader);

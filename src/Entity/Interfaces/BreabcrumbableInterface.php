@@ -12,10 +12,17 @@ use App\Entity\User;
 interface BreabcrumbableInterface
 {
     /**
-     * Get an ordered array representing the breadcrumb for an entity.
-     *
-     * @param $context
-     * @return mixed
+     * @return string|null
      */
-    public function getBreadcrumb($context);
+    public function getId() : ?string;
+
+    /**
+     * @return User|null
+     */
+    public function getOwner() : ?User;
+
+    /**
+     * @return null|string
+     */
+    public function __toString() : ?string;
 }

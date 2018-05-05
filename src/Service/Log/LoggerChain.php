@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Service\Log;
+use App\Entity\Log;
 
 /**
  * Class LoggerChain
@@ -26,20 +27,20 @@ class LoggerChain
     /**
      * @param $function
      * @param array $params
-     * @return null
+     * @return Log|string|null
      */
     private function getLoggerResponse($function, array $params)
     {
         $response = null;
-
-        $loggers= [];
+        $loggers = [];
         foreach ($this->loggers as $logger) {
             $loggers[] = $logger;
         }
 
-        usort($loggers, function (LoggerInterface $a, LoggerInterface $b) {
+        usort($loggers, function(LoggerInterface $a, LoggerInterface $b) {
             return ($a->getPriority() <=> $b->getPriority());
         });
+
         foreach ($loggers as $logger) {
             $response = $logger->$function(...$params);
             if ($response !== null) {
@@ -52,18 +53,18 @@ class LoggerChain
 
     /**
      * @param $entity
-     * @return null
+     * @return Log|null
      */
-    public function getCreateLog($entity)
+    public function getCreateLog($entity) : ?Log
     {
         return $this->getLoggerResponse('getCreateLog', [$entity]);
     }
 
     /**
      * @param $entity
-     * @return null
+     * @return Log|null
      */
-    public function getDeleteLog($entity)
+    public function getDeleteLog($entity) : ?Log
     {
         return $this->getLoggerResponse('getDeleteLog', [$entity]);
     }
@@ -72,9 +73,9 @@ class LoggerChain
      * @param $entity
      * @param $changeset
      * @param array $relations
-     * @return null
+     * @return Log|null
      */
-    public function getUpdateLog($entity, $changeset, array $relations = [])
+    public function getUpdateLog($entity, $changeset, array $relations = []) : ?Log
     {
         return $this->getLoggerResponse('getUpdateLog', [$entity, $changeset, $relations]);
     }
@@ -82,9 +83,9 @@ class LoggerChain
     /**
      * @param $class
      * @param $payload
-     * @return null
+     * @return null|string
      */
-    public function getFormattedPayload($class, $payload)
+    public function getFormattedPayload($class, $payload) : ?string
     {
         return $this->getLoggerResponse('formatPayload', [$class, $payload]);
     }

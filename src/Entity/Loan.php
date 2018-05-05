@@ -180,7 +180,7 @@ class Loan
     /**
      * Get owner.
      *
-     * @return \App\Entity\User
+     * @return User|null
      */
     public function getOwner() : ?User
     {

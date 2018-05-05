@@ -212,7 +212,7 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->signsCount = 0;
         $this->diskSpaceAllowed = 536870912;
         $this->diskSpaceUsed = 0;
-        $this->enabled = 0;
+        $this->enabled = false;
         $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = CurrencyEnum::CURRENCY_EUR;
         $this->locale = LocaleEnum::LOCALE_EN;
@@ -229,22 +229,19 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * @param $context
-     * @return array
+     * @return string
      */
-    public function getBreadcrumb($context) : array
+    public function __toString(): string
     {
-        $breadcrumb = [];
-        $breadcrumbElement = new BreadcrumbElement();
-        $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
-            ->setLabel($this->getUsername())
-            ->setEntity($this)
-            ->setRoute('app_admin_user')
-            ->setParams(['id' => $this->getId()]);
+        return $this->getUsername() ?? '';
+    }
 
-        $breadcrumb[] = $breadcrumbElement;
-
-        return $breadcrumb;
+    /**
+     * @return User
+     */
+    public function getOwner(): ?User
+    {
+        return $this;
     }
 
     public function eraseCredentials()
@@ -260,30 +257,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Add collections.
-     *
-     * @param \App\Entity\Collection $collections
-     *
-     * @return User
-     */
-    public function addCollection(Collection $collections) : User
-    {
-        $this->collections[] = $collections;
-
-        return $this;
-    }
-
-    /**
-     * Remove collections.
-     *
-     * @param \App\Entity\Collection $collections
-     */
-    public function removeCollection(Collection $collections) : User
-    {
-        $this->collections->removeElement($collections);
-    }
-
-    /**
      * Get collections.
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -291,30 +264,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getCollections() : DoctrineCollection
     {
         return $this->collections;
-    }
-
-    /**
-     * Add items.
-     *
-     * @param \App\Entity\Item $items
-     *
-     * @return User
-     */
-    public function addItem(Item $items) : User
-    {
-        $this->items[] = $items;
-
-        return $this;
-    }
-
-    /**
-     * Remove items.
-     *
-     * @param \App\Entity\Item $items
-     */
-    public function removeItem(Item $items) : User
-    {
-        $this->items->removeElement($items);
     }
 
     /**
@@ -328,30 +277,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Add tag.
-     *
-     * @param \App\Entity\Tag $tag
-     *
-     * @return User
-     */
-    public function addTag(Tag $tag) : User
-    {
-        $this->tags[] = $tag;
-
-        return $this;
-    }
-
-    /**
-     * Remove tag.
-     *
-     * @param \App\Entity\Tag $tag
-     */
-    public function removeTag(Tag $tag) : User
-    {
-        $this->tags->removeElement($tag);
-    }
-
-    /**
      * Get tags.
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -359,30 +284,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getTags() : DoctrineCollection
     {
         return $this->tags;
-    }
-
-    /**
-     * Add loan.
-     *
-     * @param \App\Entity\Loan $loan
-     *
-     * @return User
-     */
-    public function addLoan(Loan $loan) : User
-    {
-        $this->loans[] = $loan;
-
-        return $this;
-    }
-
-    /**
-     * Remove loan.
-     *
-     * @param \App\Entity\Loan $loan
-     */
-    public function removeLoan(Loan $loan) : User
-    {
-        $this->loans->removeElement($loan);
     }
 
     /**
@@ -396,30 +297,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Add wishlist.
-     *
-     * @param \App\Entity\Wishlist $wishlist
-     *
-     * @return User
-     */
-    public function addWishlist(Wishlist $wishlist) : User
-    {
-        $this->wishlists[] = $wishlist;
-
-        return $this;
-    }
-
-    /**
-     * Remove wishlist.
-     *
-     * @param \App\Entity\Wishlist $wishlist
-     */
-    public function removeWishlist(Wishlist $wishlist) : User
-    {
-        $this->wishlists->removeElement($wishlist);
-    }
-
-    /**
      * Get wishlists.
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -427,30 +304,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getWishlists() : DoctrineCollection
     {
         return $this->wishlists;
-    }
-
-    /**
-     * Add wish.
-     *
-     * @param \App\Entity\Wish $wish
-     *
-     * @return User
-     */
-    public function addWish(Wish $wish) : User
-    {
-        $this->wishes[] = $wish;
-
-        return $this;
-    }
-
-    /**
-     * Remove wish.
-     *
-     * @param \App\Entity\Wish $wish
-     */
-    public function removeWish(Wish $wish) : User
-    {
-        $this->wishes->removeElement($wish);
     }
 
     /**
@@ -767,30 +620,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Add connection
-     *
-     * @param \App\Entity\Connection $connection
-     *
-     * @return User
-     */
-    public function addConnection(Connection $connection) : User
-    {
-        $this->connections[] = $connection;
-
-        return $this;
-    }
-
-    /**
-     * Remove connection
-     *
-     * @param \App\Entity\Connection $connection
-     */
-    public function removeConnection(Connection $connection) : User
-    {
-        $this->connections->removeElement($connection);
-    }
-
-    /**
      * Get connections
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -968,30 +797,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Add medium
-     *
-     * @param \App\Entity\Medium $medium
-     *
-     * @return User
-     */
-    public function addMedia(\App\Entity\Medium $medium)
-    {
-        $this->media[] = $medium;
-
-        return $this;
-    }
-
-    /**
-     * Remove medium
-     *
-     * @param \App\Entity\Medium $medium
-     */
-    public function removeMedia(\App\Entity\Medium $medium)
-    {
-        $this->media->removeElement($medium);
-    }
-
-    /**
      * Get media
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -1002,30 +807,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Add album.
-     *
-     * @param \App\Entity\Album $albums
-     *
-     * @return User
-     */
-    public function addAlbum(Album $album) : User
-    {
-        $this->albums[] = $album;
-
-        return $this;
-    }
-
-    /**
-     * Remove album.
-     *
-     * @param \App\Entity\Album $album
-     */
-    public function removeAlbum(Album $album) : User
-    {
-        $this->albums->removeElement($album);
-    }
-
-    /**
      * Get albums.
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -1033,30 +814,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getAlbums() : DoctrineCollection
     {
         return $this->albums;
-    }
-
-    /**
-     * Add photo.
-     *
-     * @param \App\Entity\Photo $photo
-     *
-     * @return User
-     */
-    public function addPhoto(Photo $photo) : User
-    {
-        $this->photos[] = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Remove photo.
-     *
-     * @param \App\Entity\Photo $photo
-     */
-    public function removePhoto(Photo $photo) : User
-    {
-        $this->photos->removeElement($photo);
     }
 
     /**
@@ -1086,30 +843,6 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->visibility = $visibility;
 
         return $this;
-    }
-
-    /**
-     * Add template.
-     *
-     * @param \App\Entity\Template $template
-     *
-     * @return User
-     */
-    public function addTemplate(Template $template) : User
-    {
-        $this->templates[] = $template;
-
-        return $this;
-    }
-
-    /**
-     * Remove template.
-     *
-     * @param \App\Entity\Template $template
-     */
-    public function removeTemplate(Template $template) : User
-    {
-        $this->templates->removeElement($template);
     }
 
     /**
