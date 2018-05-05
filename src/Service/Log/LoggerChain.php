@@ -32,12 +32,12 @@ class LoggerChain
     private function getLoggerResponse($function, array $params)
     {
         $response = null;
-        $loggers= [];
+        $loggers = [];
         foreach ($this->loggers as $logger) {
             $loggers[] = $logger;
         }
 
-        usort($loggers, function (LoggerInterface $a, LoggerInterface $b) {
+        usort($loggers, function(LoggerInterface $a, LoggerInterface $b) {
             return ($a->getPriority() <=> $b->getPriority());
         });
 

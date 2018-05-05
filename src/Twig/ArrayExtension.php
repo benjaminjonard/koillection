@@ -77,7 +77,7 @@ class ArrayExtension extends \Twig_Extension
     {
         $array = !\is_array($collection) ? $collection->toArray() : $collection;
 
-        usort($array, function (Item $a, Item $b) {
+        usort($array, function(Item $a, Item $b) {
             return strnatcmp($a->getName(), $b->getName());
         });
 

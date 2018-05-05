@@ -17,7 +17,7 @@ class VisibilityEnum
         self::VISIBILITY_PRIVATE
     ];
 
-    const VISIBILITIES_TRANS_KEYS= [
+    const VISIBILITIES_TRANS_KEYS = [
         self::VISIBILITY_PUBLIC => 'public',
         self::VISIBILITY_PRIVATE => 'private',
     ];

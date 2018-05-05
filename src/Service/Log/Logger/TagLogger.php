@@ -127,7 +127,7 @@ class TagLogger extends Logger
         }
 
         $property = $payload['property'];
-        $label =  $this->translator->trans('label.'.strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $property)));
+        $label = $this->translator->trans('label.'.strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $property)));
         switch ($property) {
             case 'visibility':
                 return $this->translator->trans('log.tag.property_updated', [

@@ -89,7 +89,7 @@ class AppExtension extends \Twig_Extension
 
         $suffixes = array('', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi', 'Yi');
 
-        return round(pow(1024, $base - floor($base)), $precision).' '. $suffixes[floor($base)] . $this->translator->trans('global.byte_abbreviation');
+        return round(pow(1024, $base - floor($base)), $precision).' '.$suffixes[floor($base)].$this->translator->trans('global.byte_abbreviation');
     }
 
     /**
@@ -123,8 +123,7 @@ class AppExtension extends \Twig_Extension
         $string = \array_slice($string, 0, 1);
 
         return $string ?
-            $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) :
-            $this->translator->trans('global.time.just_now');
+            $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
     /**
@@ -180,7 +179,7 @@ class AppExtension extends \Twig_Extension
                 $entityElement = array_pop($breadcrumb);
                 if ($entityElement instanceof BreadcrumbElement) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
-                    return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel() .' · '. $this->translator->trans($element->getLabel());
+                    return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel().' · '.$this->translator->trans($element->getLabel());
                 }
 
                 return $this->translator->trans($element->getLabel());

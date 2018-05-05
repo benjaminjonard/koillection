@@ -45,7 +45,7 @@ class CollectionRepository extends EntityRepository
             return $this->findAll();
         }
 
-        $id = "'". $id ."'";
+        $id = "'".$id."'";
 
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('id', 'id');
