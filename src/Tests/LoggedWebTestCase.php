@@ -97,8 +97,6 @@ class LoggedWebTestCase extends WebTestCase
     private function getRelationFirstElement($class)
     {
         return $this->client->getContainer()->get('doctrine')->getManager()->getRepository($class)
-            ->findBy(['owner' => $this->user->getId()], null, 1)
-            ->first()
-            ->getId();
+            ->findBy(['owner' => $this->user->getId()], null, 1)[0]->getId();
     }
 }
