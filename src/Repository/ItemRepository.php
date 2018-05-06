@@ -69,7 +69,11 @@ class ItemRepository extends EntityRepository
 
         if ($current === 0) {
             $previous = null;
-            $next = $results[($current + 1) % $count];
+            if ($count > 1) {
+                $next = $results[($current + 1) % $count];
+            } else {
+                $next = null;
+            }
         } elseif ($current === $count - 1) {
             $previous = $results[($count + $current - 1) % $count];
             $next = null;
