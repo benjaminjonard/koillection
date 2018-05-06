@@ -50,7 +50,7 @@ class Photo
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 

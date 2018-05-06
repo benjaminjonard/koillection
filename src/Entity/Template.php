@@ -49,7 +49,7 @@ class Template implements BreabcrumbableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="templates")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 

@@ -56,7 +56,7 @@ class Wish
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="wishes")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 

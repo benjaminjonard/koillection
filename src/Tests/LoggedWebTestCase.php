@@ -2,7 +2,15 @@
 
 namespace App\Tests;
 
+use App\Entity\Album;
+use App\Entity\Collection;
+use App\Entity\Item;
+use App\Entity\Photo;
+use App\Entity\Tag;
+use App\Entity\Template;
 use App\Entity\User;
+use App\Entity\Wish;
+use App\Entity\Wishlist;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -55,28 +63,28 @@ class LoggedWebTestCase extends WebTestCase
                     $url = str_replace($match[0], $this->user->getUsername(), $url);
                     break;
                 case '{{collection}}':
-                    $url = str_replace($match[0], $this->user->getCollections()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Collection::class), $url);
                     break;
                 case '{{item}}':
-                    $url = str_replace($match[0], $this->user->getItems()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Item::class), $url);
                     break;
                 case '{{album}}':
-                    $url = str_replace($match[0], $this->user->getAlbums()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Album::class), $url);
                     break;
                 case '{{photo}}':
-                    $url = str_replace($match[0], $this->user->getPhotos()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Photo::class), $url);
                     break;
                 case '{{wishlist}}':
-                    $url = str_replace($match[0], $this->user->getWishlists()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Wishlist::class), $url);
                     break;
                 case '{{wish}}':
-                    $url = str_replace($match[0], $this->user->getWishes()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Wish::class), $url);
                     break;
                 case '{{template}}':
-                    $url = str_replace($match[0], $this->user->getTemplates()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Template::class), $url);
                     break;
                 case '{{tag}}':
-                    $url = str_replace($match[0], $this->user->getTags()->first()->getId(), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Tag::class), $url);
                     break;
                 default:
                     break;
@@ -84,5 +92,11 @@ class LoggedWebTestCase extends WebTestCase
         }
 
         return $url;
+    }
+
+    private function getRelationFirstElement($class)
+    {
+        return $this->client->getContainer()->get('doctrine')->getManager()->getRepository($class)
+            ->findBy(['owner' => $this->user->getId()], null, 1)[0]->getId();
     }
 }

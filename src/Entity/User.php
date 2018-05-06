@@ -7,12 +7,10 @@ use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
-use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -122,76 +120,16 @@ class User implements UserInterface, BreabcrumbableInterface
     private $signsCount;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Collection", mappedBy="owner")
+     * @var int
+     * @ORM\Column(type="integer")
      */
-    private $collections;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="owner")
-     */
-    private $items;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Tag", mappedBy="owner")
-     */
-    private $tags;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner")
-     */
-    private $wishlists;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Wish", mappedBy="owner")
-     */
-    private $wishes;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Loan", mappedBy="owner")
-     */
-    private $loans;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Template", mappedBy="owner")
-     */
-    private $templates;
+    protected $visibility;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Connection", mappedBy="user")
      */
     private $connections;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Medium", mappedBy="owner")
-     */
-    private $media;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Album", mappedBy="owner")
-     */
-    private $albums;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="owner")
-     */
-    private $photos;
-
-    /**
-     * @var int
-     * @ORM\Column(type="integer")
-     */
-    protected $visibility;
 
     /**
      * @var \DateTime
@@ -217,15 +155,7 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->currency = CurrencyEnum::CURRENCY_EUR;
         $this->locale = LocaleEnum::LOCALE_EN;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
-        $this->collections = new ArrayCollection();
-        $this->items = new ArrayCollection();
-        $this->tags = new ArrayCollection();
-        $this->wishlists = new ArrayCollection();
-        $this->wishes = new ArrayCollection();
         $this->connections = new ArrayCollection();
-        $this->albums = new ArrayCollection();
-        $this->photos = new ArrayCollection();
-        $this->templates = new ArrayCollection();
     }
 
     /**
@@ -254,66 +184,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getId() : ?string
     {
         return $this->id->toString();
-    }
-
-    /**
-     * Get collections.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCollections() : DoctrineCollection
-    {
-        return $this->collections;
-    }
-
-    /**
-     * Get items.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getItems() : DoctrineCollection
-    {
-        return $this->items;
-    }
-
-    /**
-     * Get tags.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTags() : DoctrineCollection
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Get loans.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLoans() : DoctrineCollection
-    {
-        return $this->loans;
-    }
-
-    /**
-     * Get wishlists.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWishlists() : DoctrineCollection
-    {
-        return $this->wishlists;
-    }
-
-    /**
-     * Get wishes.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWishes() : DoctrineCollection
-    {
-        return $this->wishes;
     }
 
     /**
@@ -797,36 +667,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Get media
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
-
-    /**
-     * Get albums.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAlbums() : DoctrineCollection
-    {
-        return $this->albums;
-    }
-
-    /**
-     * Get photos.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPhotos() : DoctrineCollection
-    {
-        return $this->photos;
-    }
-
-    /**
      * @return int
      */
     public function getVisibility() : int
@@ -843,15 +683,5 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->visibility = $visibility;
 
         return $this;
-    }
-
-    /**
-     * Get templates.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTemplates() : DoctrineCollection
-    {
-        return $this->templates;
     }
 }
