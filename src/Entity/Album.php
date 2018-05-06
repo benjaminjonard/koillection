@@ -39,7 +39,7 @@ class Album implements BreabcrumbableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="albums")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 
