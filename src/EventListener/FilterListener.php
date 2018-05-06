@@ -61,7 +61,8 @@ class FilterListener
         }
 
         //Ownership filter
-        if ($user = $this->getUser($request, $context)) {
+        $user = $this->getUser($request, $context);
+        if ($user && !\in_array($context, ['admin'], false)) {
             $filter = $filters->enable('ownership');
             $filter->setParameter('id', $user->getId(), 'integer');
         } elseif ($filters->isEnabled('ownership')) {

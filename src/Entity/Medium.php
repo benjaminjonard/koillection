@@ -372,7 +372,7 @@ class Medium
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="media")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 

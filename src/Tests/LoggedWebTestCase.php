@@ -78,7 +78,7 @@ class LoggedWebTestCase extends WebTestCase
                     $url = str_replace($match[0], $this->getRelationFirstElement(Wishlist::class), $url);
                     break;
                 case '{{wish}}':
-                    $url = str_replace($match[0], $this->getRelationFirstElement(Wishs::class), $url);
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Wish::class), $url);
                     break;
                 case '{{template}}':
                     $url = str_replace($match[0], $this->getRelationFirstElement(Template::class), $url);
