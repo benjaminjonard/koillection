@@ -1,4 +1,4 @@
 doctrine_migrations:
     dir_name: '%kernel.project_dir%/src/Migrations'
     namespace: DoctrineMigrations
-    table_name: doctrine_migration_versions
+    table_name: doctrine_migration_version
