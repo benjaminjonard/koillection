@@ -38,7 +38,7 @@ Koillection is still in development. There might be some bugs, missing features 
     - `{dbname}` -> your database name
     - `{version}` -> your postgres server version (ex: 10.3)    
 3. `composer install -o`
-4. `php bin/console d:s:u -f`
+4. `php bin/console doctriine:migrations:migrate`
 
 ## Licensing
 
