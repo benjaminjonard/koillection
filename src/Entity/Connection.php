@@ -37,7 +37,7 @@ class Connection
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="connections")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $user;
 

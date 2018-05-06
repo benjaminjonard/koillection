@@ -35,7 +35,7 @@ class Wishlist implements BreabcrumbableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="wishlists")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 
