@@ -3,6 +3,7 @@ namespace App\Service;
 
 use App\Entity\Medium;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -18,12 +19,19 @@ class DiskUsageCalculator
     protected $translator;
 
     /**
+     * @var EntityManagerInterface
+     */
+    protected $em;
+
+    /**
      * DiskUsageCalculator constructor.
      * @param TranslatorInterface $translator
+     * @param EntityManagerInterface $em
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator, EntityManagerInterface $em)
     {
         $this->translator = $translator;
+        $this->em = $em;
     }
 
     /**
@@ -33,8 +41,9 @@ class DiskUsageCalculator
     public function getSpaceUsedByUser(User $user) : int
     {
         $size = 0;
+        $media = $this->em->getRepository(Medium::class)->findBy(['owner' => $user]);
 
-        foreach ($user->getMedia() as $medium) {
+        foreach ($media as $medium) {
             $size += filesize($medium->getPath());
             if ($medium->getThumbnailPath()) {
                 $size += filesize($medium->getThumbnailPath());
