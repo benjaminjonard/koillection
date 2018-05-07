@@ -5,7 +5,7 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-final class Version20180507131637 extends AbstractMigration
+final class Version20180506110828 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
@@ -85,6 +85,14 @@ final class Version20180507131637 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN koi_wish.wishlist_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN koi_wish.owner_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN koi_wish.image_id IS \'(DC2Type:uuid)\'');
+        $this->addSql('CREATE TABLE koi_field (id UUID NOT NULL, template_id UUID DEFAULT NULL, name VARCHAR(255) NOT NULL, position INT NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_4FD5B8915DA0FB8 ON koi_field (template_id)');
+        $this->addSql('COMMENT ON COLUMN koi_field.id IS \'(DC2Type:uuid)\'');
+        $this->addSql('COMMENT ON COLUMN koi_field.template_id IS \'(DC2Type:uuid)\'');
+        $this->addSql('CREATE TABLE koi_connection (id UUID NOT NULL, user_id UUID DEFAULT NULL, user_agent VARCHAR(255) NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, browser_name VARCHAR(255) DEFAULT NULL, browser_version VARCHAR(255) DEFAULT NULL, engine_name VARCHAR(255) DEFAULT NULL, engine_version VARCHAR(255) DEFAULT NULL, os_name VARCHAR(255) DEFAULT NULL, os_version VARCHAR(255) DEFAULT NULL, device_type VARCHAR(255) DEFAULT NULL, device_subtype VARCHAR(255) DEFAULT NULL, device_manufacturer VARCHAR(255) DEFAULT NULL, device_model VARCHAR(255) DEFAULT NULL, device_identifier VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_AF1DA603A76ED395 ON koi_connection (user_id)');
+        $this->addSql('COMMENT ON COLUMN koi_connection.id IS \'(DC2Type:uuid)\'');
+        $this->addSql('COMMENT ON COLUMN koi_connection.user_id IS \'(DC2Type:uuid)\'');
         $this->addSql('CREATE TABLE koi_log (id UUID NOT NULL, type SMALLINT DEFAULT NULL, logged_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, object_id UUID NOT NULL, object_label VARCHAR(255) NOT NULL, object_class VARCHAR(255) NOT NULL, payload TEXT DEFAULT NULL, username VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN koi_log.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN koi_log.object_id IS \'(DC2Type:uuid)\'');
@@ -92,10 +100,6 @@ final class Version20180507131637 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_24DF1F5E7E3C61F9 ON koi_medium (owner_id)');
         $this->addSql('COMMENT ON COLUMN koi_medium.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN koi_medium.owner_id IS \'(DC2Type:uuid)\'');
-        $this->addSql('CREATE TABLE koi_connection (id UUID NOT NULL, user_id UUID DEFAULT NULL, user_agent VARCHAR(255) NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, browser_name VARCHAR(255) DEFAULT NULL, browser_version VARCHAR(255) DEFAULT NULL, engine_name VARCHAR(255) DEFAULT NULL, engine_version VARCHAR(255) DEFAULT NULL, os_name VARCHAR(255) DEFAULT NULL, os_version VARCHAR(255) DEFAULT NULL, device_type VARCHAR(255) DEFAULT NULL, device_subtype VARCHAR(255) DEFAULT NULL, device_manufacturer VARCHAR(255) DEFAULT NULL, device_model VARCHAR(255) DEFAULT NULL, device_identifier VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_AF1DA603A76ED395 ON koi_connection (user_id)');
-        $this->addSql('COMMENT ON COLUMN koi_connection.id IS \'(DC2Type:uuid)\'');
-        $this->addSql('COMMENT ON COLUMN koi_connection.user_id IS \'(DC2Type:uuid)\'');
         $this->addSql('CREATE TABLE koi_datum (id UUID NOT NULL, item_id UUID DEFAULT NULL, image_id UUID DEFAULT NULL, owner_id UUID DEFAULT NULL, type SMALLINT NOT NULL, label VARCHAR(255) DEFAULT NULL, value TEXT DEFAULT NULL, position INT DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_F991BE5126F525E ON koi_datum (item_id)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_F991BE53DA5256D ON koi_datum (image_id)');
@@ -104,24 +108,20 @@ final class Version20180507131637 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN koi_datum.item_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN koi_datum.image_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN koi_datum.owner_id IS \'(DC2Type:uuid)\'');
-        $this->addSql('CREATE TABLE koi_field (id UUID NOT NULL, template_id UUID DEFAULT NULL, name VARCHAR(255) NOT NULL, position INT NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_4FD5B8915DA0FB8 ON koi_field (template_id)');
-        $this->addSql('COMMENT ON COLUMN koi_field.id IS \'(DC2Type:uuid)\'');
-        $this->addSql('COMMENT ON COLUMN koi_field.template_id IS \'(DC2Type:uuid)\'');
         $this->addSql('ALTER TABLE koi_user ADD CONSTRAINT FK_AC32505586383B10 FOREIGN KEY (avatar_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_album ADD CONSTRAINT FK_2DB8938A7E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_collection ADD CONSTRAINT FK_7AA7B057727ACA70 FOREIGN KEY (parent_id) REFERENCES koi_collection (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_collection ADD CONSTRAINT FK_7AA7B0577E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_collection ADD CONSTRAINT FK_7AA7B0573DA5256D FOREIGN KEY (image_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE koi_item ADD CONSTRAINT FK_3EBAA302514956FD FOREIGN KEY (collection_id) REFERENCES koi_collection (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE koi_item ADD CONSTRAINT FK_3EBAA302514956FD FOREIGN KEY (collection_id) REFERENCES koi_collection (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_item ADD CONSTRAINT FK_3EBAA3027E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_item ADD CONSTRAINT FK_3EBAA3025DA0FB8 FOREIGN KEY (template_id) REFERENCES koi_template (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_item ADD CONSTRAINT FK_3EBAA3023DA5256D FOREIGN KEY (image_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_item_tag ADD CONSTRAINT FK_E09EDE52126F525E FOREIGN KEY (item_id) REFERENCES koi_item (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_item_tag ADD CONSTRAINT FK_E09EDE52BAD26311 FOREIGN KEY (tag_id) REFERENCES koi_tag (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE koi_loan ADD CONSTRAINT FK_E4728B1F126F525E FOREIGN KEY (item_id) REFERENCES koi_item (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE koi_loan ADD CONSTRAINT FK_E4728B1F126F525E FOREIGN KEY (item_id) REFERENCES koi_item (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_loan ADD CONSTRAINT FK_E4728B1F7E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE koi_photo ADD CONSTRAINT FK_9779D11137ABCF FOREIGN KEY (album_id) REFERENCES koi_album (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE koi_photo ADD CONSTRAINT FK_9779D11137ABCF FOREIGN KEY (album_id) REFERENCES koi_album (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_photo ADD CONSTRAINT FK_9779D17E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_photo ADD CONSTRAINT FK_9779D13DA5256D FOREIGN KEY (image_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_tag ADD CONSTRAINT FK_16FB1EB73DA5256D FOREIGN KEY (image_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -130,15 +130,15 @@ final class Version20180507131637 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_wishlist ADD CONSTRAINT FK_98E338D2727ACA70 FOREIGN KEY (parent_id) REFERENCES koi_wishlist (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_wishlist ADD CONSTRAINT FK_98E338D23DA5256D FOREIGN KEY (image_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_template ADD CONSTRAINT FK_93620D607E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE koi_wish ADD CONSTRAINT FK_F670F2D5FB8E54CD FOREIGN KEY (wishlist_id) REFERENCES koi_wishlist (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE koi_wish ADD CONSTRAINT FK_F670F2D5FB8E54CD FOREIGN KEY (wishlist_id) REFERENCES koi_wishlist (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_wish ADD CONSTRAINT FK_F670F2D57E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_wish ADD CONSTRAINT FK_F670F2D53DA5256D FOREIGN KEY (image_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE koi_medium ADD CONSTRAINT FK_24DF1F5E7E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE koi_field ADD CONSTRAINT FK_4FD5B8915DA0FB8 FOREIGN KEY (template_id) REFERENCES koi_template (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_connection ADD CONSTRAINT FK_AF1DA603A76ED395 FOREIGN KEY (user_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE koi_datum ADD CONSTRAINT FK_F991BE5126F525E FOREIGN KEY (item_id) REFERENCES koi_item (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE koi_medium ADD CONSTRAINT FK_24DF1F5E7E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE koi_datum ADD CONSTRAINT FK_F991BE5126F525E FOREIGN KEY (item_id) REFERENCES koi_item (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_datum ADD CONSTRAINT FK_F991BE53DA5256D FOREIGN KEY (image_id) REFERENCES koi_medium (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_datum ADD CONSTRAINT FK_F991BE57E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE koi_field ADD CONSTRAINT FK_4FD5B8915DA0FB8 FOREIGN KEY (template_id) REFERENCES koi_template (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
 
     public function down(Schema $schema) : void
