@@ -16,6 +16,16 @@ class LogQueue
     private $logs = [];
 
     /**
+     * @var bool
+     */
+    private $processQueue;
+
+    public function __construct()
+    {
+        $this->processQueue = true;
+    }
+
+    /**
      * @param Log|null $log
      */
     public function addLog(?Log $log)
@@ -65,5 +75,20 @@ class LogQueue
     public function clearLogs()
     {
         $this->logs = [];
+    }
+
+    public function isQueueProcessable()
+    {
+        return $this->processQueue;
+    }
+
+    public function enableQueue()
+    {
+        $this->processQueue = true;
+    }
+
+    public function disableQueue()
+    {
+        $this->processQueue = false;
     }
 }

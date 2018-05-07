@@ -40,7 +40,7 @@ class HistoryController extends AbstractController
 
         return $this->render('App/History/index.html.twig', [
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
-                'username' => $this->getUser()->getUsername(),
+                'user' => $this->getUser(),
                 'type' => [LogTypeEnum::TYPE_CREATED, LogTypeEnum::TYPE_DELETED],
                 'objectClass' => $classes
             ], [

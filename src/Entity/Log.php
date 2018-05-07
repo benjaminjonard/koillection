@@ -60,10 +60,10 @@ class Log
     private $payload;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @var \App\Entity\User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="logs")
      */
-    private $username;
+    private $user;
 
     public function __construct()
     {
@@ -172,27 +172,27 @@ class Log
     }
 
     /**
-     * Set username
+     * Set user
      *
-     * @param string $username
+     * @param \App\Entity\User $user
      *
-     * @return Log
+     * @return Connection
      */
-    public function setUsername($username)
+    public function setUser(User $user = null) : Log
     {
-        $this->username = $username;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get user
      *
-     * @return string
+     * @return \App\Entity\User
      */
-    public function getUsername()
+    public function getUser() : User
     {
-        return $this->username;
+        return $this->user;
     }
 
     /**
