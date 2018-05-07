@@ -3929,5 +3929,23 @@
         <target>Première connexion - Création de l'administrateur</target>
       </segment>
     </unit>
+    <unit id="6lrCxko" name="btn.edit">
+      <segment>
+        <source>btn.edit</source>
+        <target>Éditer</target>
+      </segment>
+    </unit>
+    <unit id="1sstKF9" name="title.edit_user">
+      <segment>
+        <source>title.edit_user</source>
+        <target>Modifier l'utilisateur %user%</target>
+      </segment>
+    </unit>
+    <unit id="Fcb_tkO" name="message.user_edited">
+      <segment>
+        <source>message.user_edited</source>
+        <target>L'utilisateur %user% a été mis à jour</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

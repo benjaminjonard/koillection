@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Collection;
 use App\Entity\Connection;
@@ -40,7 +40,7 @@ class AdminController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        return $this->render('App/Admin/index.html.twig', [
+        return $this->render('App/Admin/Admin/index.html.twig', [
             'totalSpaceUsed' => $em->getRepository(User::class)->getTotalSpaceUsed(),
             'freeSpace' => disk_free_space('/'),
             'totalSpace' => disk_total_space('/'),
@@ -74,7 +74,7 @@ class AdminController extends AbstractController
         $since = PeriodEnum::getDateSince($period);
         $count = $this->getDoctrine()->getRepository(Connection::class)->countSince($since);
 
-        return $this->render('App/Admin/analytics.html.twig', [
+        return $this->render('App/Admin/Admin/analytics.html.twig', [
             'connectionsCounter' => $count,
             'selectedPeriod' => $period,
             'browsersJson' => json_encode($chartBuilder->buildAnalyticsChart($since, $count, 'browser_name')),
@@ -87,58 +87,6 @@ class AdminController extends AbstractController
             'devicesSubtypesJson' => json_encode($chartBuilder->buildAnalyticsChart($since, $count, 'device_type', 'device_subtype')),
             'devicesJson' => json_encode($chartBuilder->buildAnalyticsChart($since, $count, 'device_manufacturer')),
             'devicesModelsJson' => json_encode($chartBuilder->buildAnalyticsChart($since, $count, 'device_manufacturer', 'device_model')),
-        ]);
-    }
-
-    /**
-     * @Route("/users", name="app_admin_users")
-     * @Method({"GET"})
-     *
-     * @return Response
-     */
-    public function users() : Response
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        return $this->render('App/Admin/users.html.twig', [
-            'results' => $em->getRepository(User::class)->findAllWithConnectionsDetails()
-        ]);
-    }
-
-    /**
-     * @Route("/users/{id}", name="app_admin_user", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
-     *
-     * @param User $user
-     * @return Response
-     */
-    public function user(User $user) : Response
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        return $this->render('App/Admin/user.html.twig', [
-            'result' => $em->getRepository(User::class)->findOneWithConnectionsDetails($user)
-        ]);
-    }
-
-    /**
-     * @Route("/disk-space/{id}", name="app_admin_disk_space", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
-     *
-     * @param User $user
-     * @param DiskUsageCalculator $diskUsageCalculator
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
-    public function diskSpace(User $user, DiskUsageCalculator $diskUsageCalculator, TranslatorInterface $translator) : Response
-    {
-        $user->setDiskSpaceUsed($diskUsageCalculator->getSpaceUsedByUser($user));
-        $this->getDoctrine()->getManager()->flush();
-
-        $this->addFlash('notice', $translator->trans('message.done'));
-
-        return $this->redirectToRoute('app_admin_user', [
-            'id' => $user->getId()
         ]);
     }
 }
