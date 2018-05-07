@@ -62,7 +62,7 @@ class Datum implements LoggableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="data")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 

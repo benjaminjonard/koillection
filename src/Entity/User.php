@@ -66,7 +66,7 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var Medium
-     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"})
      */
     protected $avatar;
 
@@ -132,12 +132,6 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="owner", cascade={"remove"})
-     */
-    private $items;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="owner", cascade={"remove"})
      */
     private $tags;
@@ -147,18 +141,6 @@ class User implements UserInterface, BreabcrumbableInterface
      * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner", cascade={"remove"})
      */
     private $wishlists;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Wish", mappedBy="owner", cascade={"remove"})
-     */
-    private $wishes;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Loan", mappedBy="owner", cascade={"remove"})
-     */
-    private $loans;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -174,27 +156,9 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Medium", mappedBy="owner", cascade={"remove"})
-     */
-    private $media;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
      */
     private $albums;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="owner", cascade={"remove"})
-     */
-    private $photos;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Datum", mappedBy="owner", cascade={"remove"})
-     */
-    private $data;
 
     /**
      * @var \DateTime
