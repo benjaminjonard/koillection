@@ -53,7 +53,7 @@
 
                             <div class="form-btn-holder">
                                 {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
-                                <a href="{{ path('app_admin_user_index', {id: user.id}) }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
+                                <a href="{{ path('app_admin_user_index') }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
                             </div>
                             <div class="clearfix"></div>
                         {{ form_end(form) }}

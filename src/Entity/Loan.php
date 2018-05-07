@@ -50,7 +50,7 @@ class Loan
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="loans")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 

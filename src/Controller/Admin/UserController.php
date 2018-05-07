@@ -47,6 +47,35 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/add", name="app_admin_user_add")
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @return Response
+     */
+    public function add(Request $request, TranslatorInterface $translator) : Response
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.user_added', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+
+            return $this->redirect($this->generateUrl('app_admin_user_index', [
+                'id' => $user->getId(),
+            ]));
+        }
+
+        return $this->render('App/Admin/User/add.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/{id}/edit", name="app_admin_user_edit", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      * @param User $user
