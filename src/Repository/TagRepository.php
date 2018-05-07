@@ -25,7 +25,7 @@ class TagRepository extends EntityRepository
             ->leftJoin('t.image', 'im')
             ->leftJoin('t.items', 'i')
             ->leftJoin('i.image', 'i_i')
-            ->addSelect('im, i, i_i')
+            ->addSelect('partial im.{id, path, thumbnailPath}, partial i.{id, name}, partial i_i.{id, thumbnailPath}')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
