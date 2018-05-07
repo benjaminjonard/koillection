@@ -62,7 +62,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="collections")
      */
     private $owner;
 

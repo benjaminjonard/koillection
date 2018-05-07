@@ -3950,5 +3950,35 @@
         <target>User %user% added</target>
       </segment>
     </unit>
+    <unit id="2a_RIum" name="message.user_deleted">
+      <segment>
+        <source>message.user_deleted</source>
+        <target>User %user% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
+      <segment>
+        <source>error.cannot_delete_admin_user</source>
+        <target>You can't delete the Admin user</target>
+      </segment>
+    </unit>
+    <unit id="a7zU.My" name="title.delete_user">
+      <segment>
+        <source>title.delete_user</source>
+        <target>Delete user %user%</target>
+      </segment>
+    </unit>
+    <unit id="PNA2Sv7" name="label.confirm">
+      <segment>
+        <source>label.confirm</source>
+        <target>Confirm</target>
+      </segment>
+    </unit>
+    <unit id="1_PoPqY" name="message.user_delete_warning">
+      <segment>
+        <source>message.user_delete_warning</source>
+        <target>This action will delete the user and all of its infos including any images uploaded. This action is irreversible, so please be sure about this.</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

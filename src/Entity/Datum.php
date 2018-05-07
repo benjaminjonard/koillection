@@ -27,7 +27,6 @@ class Datum implements LoggableInterface
     /**
      * @var \App\Entity\Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
-     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $item;
 
@@ -63,7 +62,7 @@ class Datum implements LoggableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="data")
      */
     private $owner;
 

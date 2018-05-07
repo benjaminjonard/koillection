@@ -50,13 +50,12 @@ class Wish
     /**
      * @var \App\Entity\Wishlist
      * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="wishes")
-     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $wishlist;
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="wishes")
      */
     private $owner;
 

@@ -17,6 +17,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -121,6 +123,47 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_admin_user_index', [
             'id' => $user->getId()
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/delete", name="app_admin_user_delete", requirements={"id"="%uuid_regex%"})
+     * @Method({"GET", "DELETE"})
+     *
+     * @param User $user
+     * @param TranslatorInterface $translator
+     * @return Response
+     */
+    public function delete(Request $request, User $user, TranslatorInterface $translator) : Response
+    {
+        if ($user->isAdmin()) {
+            return $this->render('App/Admin/User/delete.html.twig', [
+                'user' => $user,
+                'error' =>  $translator->trans('error.cannot_delete_admin_user')
+            ]);
+        }
+
+        $form = $this->createFormBuilder()
+            ->setMethod('DELETE')
+            ->add('confirm', CheckboxType::class, ['required' => true, 'mapped' => false])
+            ->add('submit', SubmitType::class)
+            ->getForm()
+        ;
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+
+            $this->addFlash('notice', $translator->trans('message.user_deleted', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+
+            return $this->redirect($this->generateUrl('app_admin_user_index'));
+        }
+
+        return $this->render('App/Admin/User/delete.html.twig', [
+            'user' => $user,
+            'form' => $form->createView()
         ]);
     }
 }
