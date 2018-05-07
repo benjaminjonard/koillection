@@ -237,7 +237,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/items", name="app_user_collection_items", requirements={"id"="%uuid_regex%"})
+     * @Route("/{id}/items", name="app_user_items", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      * @Entity("user", expr="repository.findOneByUsername(username)")
      *
