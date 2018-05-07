@@ -68,15 +68,15 @@ class CollectionLogger extends Logger
         if (!$this->supportedClass(\get_class($collection))) {
             return null;
         }
-
         $mainPayload = [];
         foreach ($changeset as $property => $change) {
             if (in_array($property, ['title', 'childrenTitle', 'itemsTitle', 'visibility'])) {
+                $function = 'get'.ucfirst($property);
                 $mainPayload[] = [
                     'title' => $collection->getTitle(),
                     'property' => $property,
                     'old' => $changeset[$property][0],
-                    'new' => $collection->get{ucfirst($property)}()
+                    'new' => $collection->$function()
                 ];
             } elseif ($property === 'image') {
                 $mainPayload[] = [

@@ -74,11 +74,12 @@ class ItemLogger extends Logger
         $mainPayload = [];
         foreach ($changeset as $property => $change) {
             if (in_array($property, ['name', 'quantity', 'visibility'])) {
+                $function = 'get'.ucfirst($property);
                 $mainPayload[] = [
                     'name' => $item->getName(),
                     'property' => $property,
                     'old' => $changeset[$property][0],
-                    'new' => $item->get{ucfirst($property)}()
+                    'new' => $item->$function()
                 ];
             } elseif ($property === 'image') {
                 $mainPayload[] = [
