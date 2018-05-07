@@ -22,9 +22,10 @@ class TagRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('t')
+            ->leftJoin('t.image', 'im')
             ->leftJoin('t.items', 'i')
             ->leftJoin('i.image', 'i_i')
-            ->addSelect('i, i_i')
+            ->addSelect('im, i, i_i')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
