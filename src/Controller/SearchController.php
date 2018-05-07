@@ -40,10 +40,6 @@ class SearchController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
-        if (null === $request->request->get('search-submit')) {
-            $search->initCheckboxes();
-        }
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             if (true === $search->getSearchInCollections()) {
