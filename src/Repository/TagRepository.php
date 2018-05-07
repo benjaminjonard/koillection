@@ -270,7 +270,7 @@ class TagRepository extends EntityRepository
             ->orderBy('t.label', 'ASC')
             ->setParameter('tag', $tag)
             ->getQuery()
-            ->getArrayResult()
+            ->getResult()
         ;
     }
 
