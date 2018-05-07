@@ -46,7 +46,6 @@ class Item implements BreabcrumbableInterface, LoggableInterface
     /**
      * @var \App\Entity\Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="items")
-     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $collection;
 
@@ -70,10 +69,16 @@ class Item implements BreabcrumbableInterface, LoggableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist", "remove"})
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private $data;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Loan", mappedBy="item", cascade={"remove"})
+     */
+    private $loans;
 
     /**
      * @var \App\Entity\Template

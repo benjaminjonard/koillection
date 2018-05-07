@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Service;
+
 use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Entity\Item;
+use App\Entity\Wishlist;
 use App\Model\BreadcrumbElement;
 
 /**
@@ -15,23 +17,24 @@ class BreadcrumbBuilder
     /**
      * @param $entity
      * @param $context
+     * @param $class
      * @return array
      */
-    public function build($entity, $context) :array
+    public function build($entity, $context, $class) :array
     {
         if (!$entity instanceof BreabcrumbableInterface) {
             return [];
         }
 
-        $explodedNamespace = explode('\\', \get_class($entity));
-        $class = array_pop($explodedNamespace);
-        $class = strtolower($class);
+        if ($entity instanceof Wishlist) {
+            $context = 'wishlist';
+        }
 
         $breadcrumb = [];
         $breadcrumbElement = new BreadcrumbElement();
         $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
             ->setLabel($entity->__toString())
-            ->setRoute(\in_array($context, ['user', 'preview', 'admin'], false) ? 'app_'.$context.'_'.$class : 'app_'.$class.'_show')
+            ->setRoute(\in_array($context, ['user', 'preview'], false) ? 'app_'.$context.'_'.$class : 'app_'.$class.'_show')
             ->setEntity($entity)
             ->setParams(['id' => $entity->getId()]);
 
@@ -42,11 +45,11 @@ class BreadcrumbBuilder
         $breadcrumb[] = $breadcrumbElement;
 
         if (method_exists($entity, 'getParent') && $entity->getParent()) {
-            $breadcrumb = array_merge($this->build($entity->getParent(), $context), $breadcrumb);
+            $breadcrumb = array_merge($this->build($entity->getParent(), $context, $class), $breadcrumb);
         }
 
         if ($entity instanceof Item && $entity->getCollection()) {
-            $breadcrumb = array_merge($this->build($entity->getCollection(), $context), $breadcrumb);
+            $breadcrumb = array_merge($this->build($entity->getCollection(), $context, 'collection'), $breadcrumb);
         }
 
         return $breadcrumb;

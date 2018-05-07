@@ -501,12 +501,12 @@
         <target>Filter</target>
       </segment>
     </unit>
-    <unit id="3tuaU_p" name="btn.recompute_disk_space">
+    <unit id="Z1gXdci" name="tooltip.recompute_disk_space">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:53</note>
       </notes>
       <segment>
-        <source>btn.recompute_disk_space</source>
+        <source>tooltip.recompute_disk_space</source>
         <target>Recalculer l'espace disk</target>
       </segment>
     </unit>
@@ -3317,15 +3317,6 @@
         <target>Thème</target>
       </segment>
     </unit>
-    <unit id="Nw8YBfp" name="title.user_actions">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:52</note>
-      </notes>
-      <segment>
-        <source>title.user_actions</source>
-        <target>Actions</target>
-      </segment>
-    </unit>
     <unit id="mvzqhh8" name="title.user_details">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:24</note>
@@ -3927,6 +3918,66 @@
       <segment>
         <source>title.first_connection.user</source>
         <target>Première connexion - Création de l'administrateur</target>
+      </segment>
+    </unit>
+    <unit id="1sstKF9" name="title.edit_user">
+      <segment>
+        <source>title.edit_user</source>
+        <target>Modifier l'utilisateur %user%</target>
+      </segment>
+    </unit>
+    <unit id="Fcb_tkO" name="message.user_edited">
+      <segment>
+        <source>message.user_edited</source>
+        <target>L'utilisateur %user% a été mis à jour</target>
+      </segment>
+    </unit>
+    <unit id="ZouqthR" name="btn.add_user">
+      <segment>
+        <source>btn.add_user</source>
+        <target>Ajouter un utilisateur</target>
+      </segment>
+    </unit>
+    <unit id="FcXvWL8" name="title.add_user">
+      <segment>
+        <source>title.add_user</source>
+        <target>Ajouter un utilisateur</target>
+      </segment>
+    </unit>
+    <unit id="X_Pm9um" name="message.user_added">
+      <segment>
+        <source>message.user_added</source>
+        <target>Utilisateur %user% ajouté</target>
+      </segment>
+    </unit>
+    <unit id="2a_RIum" name="message.user_deleted">
+      <segment>
+        <source>message.user_deleted</source>
+        <target>L'utilisateur %user% a été supprimé</target>
+      </segment>
+    </unit>
+    <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
+      <segment>
+        <source>error.cannot_delete_admin_user</source>
+        <target>Vous ne pouvez pas effacer l'utilisateur Administrateur</target>
+      </segment>
+    </unit>
+    <unit id="a7zU.My" name="title.delete_user">
+      <segment>
+        <source>title.delete_user</source>
+        <target>Suppression de l'utilisateur %user%</target>
+      </segment>
+    </unit>
+    <unit id="PNA2Sv7" name="label.confirm">
+      <segment>
+        <source>label.confirm</source>
+        <target>Confirmer</target>
+      </segment>
+    </unit>
+    <unit id="1_PoPqY" name="message.user_delete_warning">
+      <segment>
+        <source>message.user_delete_warning</source>
+        <target>Cette action supprimera l'utilisateur avec toutes ces infos, y compris toutes les images mises en ligne. Cette action est irréversible, soyez sûr de vous.</target>
       </segment>
     </unit>
   </file>

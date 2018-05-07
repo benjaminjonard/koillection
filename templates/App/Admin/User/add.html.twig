@@ -1,0 +1,65 @@
+{% extends 'layout-autorized.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_admin_index', 'trans': 'menu.admin'},
+    {'route': 'app_admin_user_index', 'trans': 'menu.users'}
+]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="title-block">
+            <h1>{{ 'menu.admin'|trans }}</h1>
+        </div>
+
+        <div class="content-block">
+            {{ include('/App/Admin/tabs.html.twig', {current: 'users'}) }}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.add_user'|trans }}</h5>
+                <div class="row">
+                    <div class="form">
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        <div class="row">
+                            <div class="col offset-s1 s10 m5 offset-m1">
+                                {{ form_row(form.username, {'label' : 'label.username'} ) }}
+                            </div>
+                            <div class="col offset-s1 s10 offset-m0 m5">
+                                {{ form_row(form.email, {'label' : 'label.email'} ) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col offset-s1 s10 m5 offset-m1">
+                                {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
+                            </div>
+                            <div class="col offset-s1 s10 offset-m0 m5">
+                                {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col offset-s1 s10 m5 offset-m1">
+                                {{ form_row(form.diskSpaceAllowed, {'label': 'label.disk_space_allowed'}) }}
+                            </div>
+                        </div>
+
+                        <div class="form-btn-holder">
+                            {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                            <a href="{{ path('app_admin_user_index') }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

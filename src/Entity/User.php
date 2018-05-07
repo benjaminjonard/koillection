@@ -5,10 +5,9 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
+use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -67,7 +66,7 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var Medium
-     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"})
      */
     protected $avatar;
 
@@ -127,9 +126,45 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Connection", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Collection", mappedBy="owner", cascade={"remove"})
+     */
+    private $collections;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Tag", mappedBy="owner", cascade={"remove"})
+     */
+    private $tags;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner", cascade={"remove"})
+     */
+    private $wishlists;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Template", mappedBy="owner", cascade={"remove"})
+     */
+    private $templates;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Connection", mappedBy="user", cascade={"remove"})
      */
     private $connections;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Log", mappedBy="user", cascade={"remove"})
+     */
+    private $logs;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
+     */
+    private $albums;
 
     /**
      * @var \DateTime
@@ -146,7 +181,7 @@ class User implements UserInterface, BreabcrumbableInterface
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->roles = [];
+        $this->roles = ['ROLE_USER'];
         $this->signsCount = 0;
         $this->diskSpaceAllowed = 536870912;
         $this->diskSpaceUsed = 0;
@@ -155,7 +190,6 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->currency = CurrencyEnum::CURRENCY_EUR;
         $this->locale = LocaleEnum::LOCALE_EN;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
-        $this->connections = new ArrayCollection();
     }
 
     /**
@@ -166,7 +200,12 @@ class User implements UserInterface, BreabcrumbableInterface
         return $this->getUsername() ?? '';
     }
 
-    /**
+    public function isAdmin()
+    {
+        return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
+    }
+
+        /**
      * @return User
      */
     public function getOwner(): ?User
@@ -487,16 +526,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getLocale() : string
     {
         return $this->locale;
-    }
-
-    /**
-     * Get connections
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getConnections() : DoctrineCollection
-    {
-        return $this->connections;
     }
 
     /**

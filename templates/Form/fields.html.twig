@@ -22,6 +22,17 @@
     {%- endspaceless -%}
 {%- endblock file_widget -%}
 
+{%- block checkbox_row -%}
+    {%- spaceless -%}
+        <p>
+            {{- form_errors(form) -}}
+            <input type="checkbox" {{ block('widget_attributes') }} />
+            {{- form_label(form) -}}
+        </p>
+
+    {%- endspaceless -%}
+{%- endblock checkbox_row -%}
+
 {% block _collection_image_widget %}
     <div class="file-field input-field">
         <div class="btn">

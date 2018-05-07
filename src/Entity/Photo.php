@@ -44,7 +44,6 @@ class Photo
     /**
      * @var \App\Entity\Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
-     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $album;
 
