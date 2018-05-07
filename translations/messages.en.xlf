@@ -501,12 +501,12 @@
         <target>Filter</target>
       </segment>
     </unit>
-    <unit id="3tuaU_p" name="btn.recompute_disk_space">
+    <unit id="3tuaU_p" name="tooltip.recompute_disk_space">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:53</note>
       </notes>
       <segment>
-        <source>btn.recompute_disk_space</source>
+        <source>tooltip.recompute_disk_space</source>
         <target>Recompute disk space</target>
       </segment>
     </unit>
@@ -3317,15 +3317,6 @@
         <target>Theme</target>
       </segment>
     </unit>
-    <unit id="Nw8YBfp" name="title.user_actions">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:52</note>
-      </notes>
-      <segment>
-        <source>title.user_actions</source>
-        <target>Actions</target>
-      </segment>
-    </unit>
     <unit id="mvzqhh8" name="title.user_details">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:24</note>
@@ -3927,12 +3918,6 @@
       <segment>
         <source>title.first_connection.user</source>
         <target>First connection - Admin creation</target>
-      </segment>
-    </unit>
-    <unit id="6lrCxko" name="btn.edit">
-      <segment>
-        <source>btn.edit</source>
-        <target>Edit</target>
       </segment>
     </unit>
     <unit id="1sstKF9" name="title.edit_user">

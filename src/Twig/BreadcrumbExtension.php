@@ -78,7 +78,12 @@ class BreadcrumbExtension extends \Twig_Extension
             }
         }
 
-        $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $context));
+        if ($entity) {
+            $explodedNamespace = explode('\\', \get_class($entity));
+            $class = array_pop($explodedNamespace);
+            $class = strtolower($class);
+            $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $context, $class));
+        }
 
         if (null !== $action) {
             $actionElement = new BreadcrumbElement();
