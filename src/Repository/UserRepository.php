@@ -92,35 +92,6 @@ class UserRepository extends EntityRepository
         }, $results);
     }
 
-    public function findOneWithConnectionsDetails(User $user)
-    {
-        $em = $this->getEntityManager();
-        $rsm = new ResultSetMappingBuilder($em);
-        $rsm->addRootEntityFromClassMetadata(User::class, 'u');
-        $rsm->addScalarResult('last_connection_date', 'last_connection_date', 'datetime');
-
-        $sqlLastConnectionDate = "
-          SELECT MAX(l.date) 
-          FROM koi_connection l
-          WHERE l.user_id = u.id
-        ";
-
-        $sql= "
-            SELECT u.* as user, ($sqlLastConnectionDate) as last_connection_date
-            FROM koi_user u
-            WHERE u.id = ?
-        ";
-
-        $query = $em->createNativeQuery($sql, $rsm);
-        $query->setParameter(1, $user->getId());
-        $result = $query->getOneOrNullResult();
-
-        return [
-            'user' => $result['0'],
-            'lastConnectionDate' => $result['last_connection_date']
-        ];
-    }
-
     /**
      * @param User $user
      * @return array

@@ -47,25 +47,8 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_admin_user_show", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
-     *
-     * @param User $user
-     * @return Response
-     */
-    public function show(User $user) : Response
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        return $this->render('App/Admin/User/show.html.twig', [
-            'result' => $em->getRepository(User::class)->findOneWithConnectionsDetails($user)
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="app_admin_user_edit", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
-     *
      * @param User $user
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -80,7 +63,7 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.user_edited', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_admin_user_show', [
+            return $this->redirect($this->generateUrl('app_admin_user_index', [
                 'id' => $user->getId(),
             ]));
         }
@@ -107,7 +90,7 @@ class UserController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.done'));
 
-        return $this->redirectToRoute('app_admin_user', [
+        return $this->redirectToRoute('app_admin_user_index', [
             'id' => $user->getId()
         ]);
     }
