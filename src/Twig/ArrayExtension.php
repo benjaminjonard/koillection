@@ -2,8 +2,6 @@
 
 namespace App\Twig;
 
-use App\Entity\Item;
-
 /**
  * Class ArrayExtension
  *
@@ -77,8 +75,8 @@ class ArrayExtension extends \Twig_Extension
     {
         $array = !\is_array($collection) ? $collection->toArray() : $collection;
 
-        usort($array, function(Item $a, Item $b) {
-            return strnatcmp($a->getName(), $b->getName());
+        usort($array, function(object $a, object $b) {
+            return strnatcmp($a->__toString(), $b->__toString());
         });
 
         return $array;
