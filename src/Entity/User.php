@@ -7,8 +7,6 @@ use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -126,12 +124,6 @@ class User implements UserInterface, BreabcrumbableInterface
     protected $visibility;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Connection", mappedBy="user")
-     */
-    private $connections;
-
-    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -155,7 +147,6 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->currency = CurrencyEnum::CURRENCY_EUR;
         $this->locale = LocaleEnum::LOCALE_EN;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
-        $this->connections = new ArrayCollection();
     }
 
     /**
@@ -487,16 +478,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getLocale() : string
     {
         return $this->locale;
-    }
-
-    /**
-     * Get connections
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getConnections() : DoctrineCollection
-    {
-        return $this->connections;
     }
 
     /**

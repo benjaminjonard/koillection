@@ -101,7 +101,7 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Admin/users.html.twig', [
-            'users' => $em->getRepository(User::class)->findBy([], ['id' => 'asc'])
+            'results' => $em->getRepository(User::class)->findAllWithConnectionsDetails()
         ]);
     }
 
@@ -114,8 +114,10 @@ class AdminController extends AbstractController
      */
     public function user(User $user) : Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/Admin/user.html.twig', [
-            'user' => $user
+            'result' => $em->getRepository(User::class)->findOneWithConnectionsDetails($user)
         ]);
     }
 

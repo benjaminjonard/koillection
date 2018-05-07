@@ -36,15 +36,15 @@
                     </thead>
 
                     <tbody>
-                    {% for user in users %}
+                    {% for result in results %}
                         <tr>
-                            <td>{{ user.username }}</td>
-                            <td>{{ getRoleLabel(user.roles[0])|trans }}</td>
-                            <td>{{ user.diskSpaceUsed|bytes }}</td>
-                            <td>{{ user.diskSpaceAllowed|bytes }}</td>
-                            <td>{{ user.connections|length > 0 ? user.connections|last.date|timeAgo : '-' }}</td>
+                            <td>{{ result.user.username }}</td>
+                            <td>{{ getRoleLabel(result.user.roles[0])|trans }}</td>
+                            <td>{{ result.user.diskSpaceUsed|bytes }}</td>
+                            <td>{{ result.user.diskSpaceAllowed|bytes }}</td>
+                            <td>{{ result.lastConnectionDate ? result.lastConnectionDate|timeAgo : '-' }}</td>
                             <td>
-                                <a class="waves-effect waves-light btn" href="{{ path('app_admin_user', {id : user.id}) }}">
+                                <a class="waves-effect waves-light btn" href="{{ path('app_admin_user', {id : result.user.id}) }}">
                                     <i class="fa fa-search fa-fw"></i>
                                     {{ 'btn.details'|trans }}
                                 </a>
