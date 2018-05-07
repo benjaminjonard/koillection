@@ -35,7 +35,7 @@
 
             <div class="btn-holder">
                 <div class="left">
-                    {{ include('App/share.html.twig', {'entity': collection, 'route': url('app_user_collection_items', {id: collection.id, username: app.user.username})}) }}
+                    {{ include('App/share.html.twig', {'entity': collection, 'route': url('app_collection_items', {id: collection.id, username: app.user.username})}) }}
                 </div>
                 <div class="right">
                     <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />

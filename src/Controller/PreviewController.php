@@ -208,7 +208,7 @@ class PreviewController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/items", name="app_preview_collection_items", requirements={"id"="%uuid_regex%"})
+     * @Route("/{id}/items", name="app_preview_items", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      *
      * @param Collection $collection
