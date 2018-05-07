@@ -75,9 +75,9 @@ class ArrayExtension extends \Twig_Extension
     {
         $array = !\is_array($collection) ? $collection->toArray() : $collection;
 
-        usort($array, function(object $a, object $b) {
-            return strnatcmp($a->__toString(), $b->__toString());
-        });
+        $collator = collator_create('root');
+        $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
+        $collator->asort($array);
 
         return $array;
     }
