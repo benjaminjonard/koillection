@@ -72,7 +72,7 @@
                 <div class="block-element">
                     <h5 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h5>
                     <div class="collections grid-container-collections">
-                        {% for child in children %}
+                        {% for child in children|naturalSorting %}
                             {{ include('App/Collection/partials/collection.html.twig', {'collection': child}) }}
                         {% endfor %}
                     </div>
