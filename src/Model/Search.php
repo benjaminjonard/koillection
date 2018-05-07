@@ -14,6 +14,10 @@ class Search
 {
     /**
      * @var string
+     * @Assert\Length(
+     *     min=2,
+     *     minMessage="error.search.too_short"
+     * )
      */
     private $search;
 

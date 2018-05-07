@@ -49,5 +49,11 @@
         <target>The two passwords are not identical</target>
       </segment>
     </unit>
+    <unit id=".OeR.gK" name="error.search.too_short">
+      <segment>
+        <source>error.search.too_short</source>
+        <target>You must enter at least 2 characters</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
