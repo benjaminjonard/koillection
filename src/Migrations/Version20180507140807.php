@@ -14,7 +14,7 @@ final class Version20180507140807 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_log ADD user_id UUID DEFAULT NULL');
 
         //Replace the username with the user's id
-        $this->addSql('UPDATE koi_log SET user_id = (DISTINCT SELECT u.id FROM koi_user u WHERE u.username = username)');
+        $this->addSql('UPDATE koi_log SET user_id = (SELECT DISTINCT u.id FROM koi_user u WHERE u.username = username)');
 
         $this->addSql('ALTER TABLE koi_log DROP username');
         $this->addSql('COMMENT ON COLUMN koi_log.user_id IS \'(DC2Type:uuid)\'');
