@@ -37,19 +37,11 @@ class Search
      */
     private $searchInTags;
 
-    /**
-     * Search constructor.
-     */
     public function __construct()
     {
-        $this->initCheckboxes();
-    }
-
-    public function initCheckboxes()
-    {
         $this->searchInItems = true;
-        $this->searchInCollections = true;
         $this->searchInTags = true;
+        $this->searchInCollections = true;
     }
 
     /**

@@ -167,22 +167,24 @@ class AppExtension extends \Twig_Extension
     public function renderTitle(array $breadcrumb)
     {
         $element = array_shift($breadcrumb);
-        if ($element instanceof BreadcrumbElement) {
-            if (isset($element->getParams()['username'])) {
-                return $this->translator->trans($element->getLabel(), ['%username%' => $element->getParams()['username']]);
-            }
+
+        if ($element instanceof BreadcrumbElement && isset($element->getParams()['username'])) {
+            return $this->translator->trans($element->getLabel(), ['%username%' => $element->getParams()['username']]);
         }
 
         $element = \count($breadcrumb) === 0 ? $element : array_pop($breadcrumb);
         if ($element instanceof BreadcrumbElement) {
             if ($element->getType() === 'action') {
                 $entityElement = array_pop($breadcrumb);
+
                 if ($entityElement instanceof BreadcrumbElement) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
                     return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel().' · '.$this->translator->trans($element->getLabel());
+                } elseif (strpos($element->getLabel(), 'breadcrumb.') !== false) {
+                    return $this->translator->trans($element->getLabel());
                 }
 
-                return $this->translator->trans($element->getLabel());
+                return $this->translator->trans('label.search').' · '.$element->getLabel();
             }
 
             if ($element->getType() === 'entity') {

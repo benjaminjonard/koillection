@@ -1,3 +1,4 @@
-<a class="{{ element.class|default('') }}" aria-label="{{ 'aria.breadcrumb'|trans({'%label%': element.label|trans}) }}">
-    {{ element.label|trans }}
+{% set label = 'breadcrumb.' in element.label ? element.label|trans : element.label %}
+<a class="{{ element.class|default('') }}" aria-label="{{ 'aria.breadcrumb'|trans({'%label%': label}) }}">
+    {{ label }}
 </a>

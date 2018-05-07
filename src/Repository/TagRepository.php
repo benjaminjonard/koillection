@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Collection;
+use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Model\Search;
@@ -179,6 +180,8 @@ class TagRepository extends EntityRepository
      */
     public function findForSearch(User $owner, Search $search) : array
     {
+        $itemsCount = $this->_em->getRepository(Item::class)->count(['owner' => $owner]);
+
         $qb = $this
             ->getEntityManager()
             ->createQueryBuilder()
@@ -189,7 +192,7 @@ class TagRepository extends EntityRepository
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
-            ->setParameter('totalItems', $owner->getItems()->count())
+            ->setParameter('totalItems', $itemsCount)
         ;
 
         if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
