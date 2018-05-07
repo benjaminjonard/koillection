@@ -121,8 +121,6 @@ class CollectionRepository extends EntityRepository
             ->createQueryBuilder('c')
             ->where('c.id = :id')
             ->setParameter('id', $id)
-            ->leftJoin('c.items', 'i')
-            ->leftJoin('c.children', 'ch')
         ;
 
         if (true === $withData) {
@@ -133,14 +131,20 @@ class CollectionRepository extends EntityRepository
             ;
         }
 
-        $qb
-            ->leftJoin('c.image', 'c_i')
-            ->leftJoin('ch.image', 'ch_i')
-            ->leftJoin('i.image', 'i_i')
-            ->addSelect('i, ch, c_i, ch_i, i_i')
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function findChildrenByCollectionId(string $id) : iterable
+    {
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->where('c.parent = :id')
+            ->setParameter('id', $id)
+            ->leftJoin('c.image', 'i')
+            ->addSelect('partial i.{id, path}')
         ;
 
-        return $qb->getQuery()->getOneOrNullResult();
+        return $qb->getQuery()->getResult();
     }
 
     /**

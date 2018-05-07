@@ -233,8 +233,12 @@ class PreviewController extends AbstractController
      */
     public function collection(Collection $collection, CounterCalculator $counterCalculator) : Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/Preview/collection.html.twig', [
             'collection' => $collection,
+            'children' => $em->getRepository(Collection::class)->findChildrenByCollectionId($collection->getId()),
+            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId()),
             'counters' => $counterCalculator->collectionCounters($collection)
         ]);
     }

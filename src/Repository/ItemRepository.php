@@ -173,4 +173,18 @@ class ItemRepository extends EntityRepository
             ->getResult()
         ;
     }
+
+    public function findItemsByCollectionId(string $id) : iterable
+    {
+        $qb = $this
+            ->createQueryBuilder('i')
+            ->where('i.collection = :id')
+            ->setParameter('id', $id)
+            ->leftJoin('i.image', 'im')
+            ->addSelect('partial im.{id, path, thumbnailPath}')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
 }

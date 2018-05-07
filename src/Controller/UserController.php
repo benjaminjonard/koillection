@@ -267,8 +267,12 @@ class UserController extends AbstractController
      */
     public function collection(User $user, Collection $collection, CounterCalculator $counterCalculator) : Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/User/collection.html.twig', [
             'collection' => $collection,
+            'children' => $em->getRepository(Collection::class)->findChildrenByCollectionId($collection->getId()),
+            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId()),
             'counters' => $counterCalculator->collectionCounters($collection),
             'user' => $user
         ]);

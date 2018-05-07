@@ -114,8 +114,12 @@ class CollectionController extends AbstractController
      */
     public function show(Collection $collection, CounterCalculator $counterCalculator) : Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
+            'children' => $em->getRepository(Collection::class)->findChildrenByCollectionId($collection->getId()),
+            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId()),
             'counters' => $counterCalculator->collectionCounters($collection)
         ]);
     }
