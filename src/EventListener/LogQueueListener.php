@@ -41,7 +41,7 @@ class LogQueueListener
      */
     public function onKernelResponse()
     {
-        if (!empty($this->logQueue->getLogs()) && $this->em->isOpen()) {
+        if ($this->logQueue->isQueueProcessable() && !empty($this->logQueue->getLogs()) && $this->em->isOpen()) {
             foreach ($this->logQueue->getLogs() as $log) {
                 $this->em->persist($log);
             }

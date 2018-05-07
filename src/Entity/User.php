@@ -156,6 +156,12 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Log", mappedBy="user", cascade={"remove"})
+     */
+    private $logs;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
      */
     private $albums;
