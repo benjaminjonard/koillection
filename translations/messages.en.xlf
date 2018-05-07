@@ -501,7 +501,7 @@
         <target>Filter</target>
       </segment>
     </unit>
-    <unit id="3tuaU_p" name="tooltip.recompute_disk_space">
+    <unit id="Z1gXdci" name="tooltip.recompute_disk_space">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:53</note>
       </notes>
@@ -3930,6 +3930,24 @@
       <segment>
         <source>message.user_edited</source>
         <target>User %user% has been updated</target>
+      </segment>
+    </unit>
+    <unit id="ZouqthR" name="btn.add_user">
+      <segment>
+        <source>btn.add_user</source>
+        <target>Add a user</target>
+      </segment>
+    </unit>
+    <unit id="FcXvWL8" name="title.add_user">
+      <segment>
+        <source>title.add_user</source>
+        <target>Add a user</target>
+      </segment>
+    </unit>
+    <unit id="X_Pm9um" name="message.user_added">
+      <segment>
+        <source>message.user_added</source>
+        <target>User %user% added</target>
       </segment>
     </unit>
   </file>

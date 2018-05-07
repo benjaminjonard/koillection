@@ -138,7 +138,7 @@ class User implements UserInterface, BreabcrumbableInterface
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->roles = [];
+        $this->roles = ['ROLE_USER'];
         $this->signsCount = 0;
         $this->diskSpaceAllowed = 536870912;
         $this->diskSpaceUsed = 0;

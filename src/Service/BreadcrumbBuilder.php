@@ -45,7 +45,7 @@ class BreadcrumbBuilder
         $breadcrumb[] = $breadcrumbElement;
 
         if (method_exists($entity, 'getParent') && $entity->getParent()) {
-            $breadcrumb = array_merge($this->build($entity->getParent(), $context), $breadcrumb);
+            $breadcrumb = array_merge($this->build($entity->getParent(), $context, $class), $breadcrumb);
         }
 
         if ($entity instanceof Item && $entity->getCollection()) {
