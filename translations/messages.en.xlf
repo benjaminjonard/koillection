@@ -3929,5 +3929,23 @@
         <target>First connection - Admin creation</target>
       </segment>
     </unit>
+    <unit id="6lrCxko" name="btn.edit">
+      <segment>
+        <source>btn.edit</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="1sstKF9" name="title.edit_user">
+      <segment>
+        <source>title.edit_user</source>
+        <target>Edit user %user%</target>
+      </segment>
+    </unit>
+    <unit id="Fcb_tkO" name="message.user_edited">
+      <segment>
+        <source>message.user_edited</source>
+        <target>User %user% has been updated</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

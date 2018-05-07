@@ -2,7 +2,7 @@
 
 {% set breadcrumb = buildBreadcrumb([
     {'route': 'app_admin_index', 'trans': 'menu.admin'},
-    {'route': 'app_admin_users', 'trans': 'menu.users'}
+    {'route': 'app_admin_user_index', 'trans': 'menu.users'}
 ]) %}
 
 {% block title %}
@@ -20,7 +20,7 @@
         </div>
 
         <div class="content-block">
-            {{ include('/App/Admin/partials/tabs.html.twig', {current: 'users'}) }}
+            {{ include('/App/Admin/tabs.html.twig', {current: 'users'}) }}
             <div class="block-element">
                 <h5 class="header">{{ 'title.users'|trans }}</h5>
                 <table class="centered striped">
@@ -44,7 +44,7 @@
                             <td>{{ result.user.diskSpaceAllowed|bytes }}</td>
                             <td>{{ result.lastConnectionDate ? result.lastConnectionDate|timeAgo : '-' }}</td>
                             <td>
-                                <a class="waves-effect waves-light btn" href="{{ path('app_admin_user', {id : result.user.id}) }}">
+                                <a class="waves-effect waves-light btn" href="{{ path('app_admin_user_show', {id : result.user.id}) }}">
                                     <i class="fa fa-search fa-fw"></i>
                                     {{ 'btn.details'|trans }}
                                 </a>

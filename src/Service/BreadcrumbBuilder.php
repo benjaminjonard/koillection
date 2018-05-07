@@ -31,7 +31,7 @@ class BreadcrumbBuilder
         $breadcrumbElement = new BreadcrumbElement();
         $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
             ->setLabel($entity->__toString())
-            ->setRoute(\in_array($context, ['user', 'preview', 'admin'], false) ? 'app_'.$context.'_'.$class : 'app_'.$class.'_show')
+            ->setRoute(\in_array($context, ['user', 'preview'], false) ? 'app_'.$context.'_'.$class : 'app_'.$context.'_show')
             ->setEntity($entity)
             ->setParams(['id' => $entity->getId()]);
 
