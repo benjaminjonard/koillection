@@ -23,28 +23,33 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $search = $builder->getData();
+
         $builder
             ->add('search', TextType::class, [
                 'label' => false,
-                'required' => false,
+                'required' => false
             ])
             ->add('createdAt', DateType::class, [
                 'label' => false,
                 'required' => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'format' => 'yyyy-MM-dd'
             ])
             ->add('searchInItems', CheckboxType::class, [
                 'label' => false,
                 'required' => false,
+                'data' => $search->getSearchInItems()
             ])
             ->add('searchInCollections', CheckboxType::class, [
                 'label' => false,
                 'required' => false,
+                'data' => $search->getSearchInCollections()
             ])
             ->add('searchInTags', CheckboxType::class, [
                 'label' => false,
                 'required' => false,
+                'data' => $search->getSearchInTags()
             ])
             ->add('submit', SubmitType::class)
         ;

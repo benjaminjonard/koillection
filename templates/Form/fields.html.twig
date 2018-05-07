@@ -26,7 +26,7 @@
     {%- spaceless -%}
         <p>
             {{- form_errors(form) -}}
-            <input type="checkbox" {{ block('widget_attributes') }} />
+            <input type="checkbox" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
             {{- form_label(form) -}}
         </p>
 

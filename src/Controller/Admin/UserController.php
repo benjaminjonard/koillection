@@ -145,7 +145,7 @@ class UserController extends AbstractController
 
         $form = $this->createFormBuilder()
             ->setMethod('DELETE')
-            ->add('confirm', CheckboxType::class, ['required' => true, 'mapped' => false])
+            ->add('confirm', CheckboxType::class, ['required' => true, 'mapped' => false, 'data' => false])
             ->add('submit', SubmitType::class)
             ->getForm()
         ;
