@@ -57,6 +57,11 @@
                                     <a title="{{ 'tooltip.recompute_disk_space'|trans }}" href="{{ path('app_admin_user_recompute_disk_usage', {id : result.user.id}) }}">
                                         <i class="fa fa-calculator fa-fw"></i>
                                     </a>
+                                    {% if false == result.user.isAdmin() %}
+                                        <a title="{{ 'tooltip.delete'|trans }}" href="{{ path('app_admin_user_delete', {id : result.user.id}) }}">
+                                            <i class="fa fa-trash fa-fw"></i>
+                                        </a>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

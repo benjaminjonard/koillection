@@ -44,13 +44,12 @@ class Photo
     /**
      * @var \App\Entity\Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
-     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $album;
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="photos")
      */
     private $owner;
 

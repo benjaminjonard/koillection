@@ -4,6 +4,7 @@ $(document).ready(function() {
 
     //Init MaterializeCSS selects
     $('select').material_select();
+    $('checkbox').material_checkbox();
     //Init MaterializeCSS modals
     $('.modal').modal();
 

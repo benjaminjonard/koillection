@@ -25,8 +25,7 @@ class Loan
 
     /**
      * @var \App\Entity\Item
-     * @ORM\ManyToOne(targetEntity="Item")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="Item", inversedBy="loans")
      */
     private $item;
 
@@ -50,7 +49,7 @@ class Loan
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="loans")
      */
     private $owner;
 

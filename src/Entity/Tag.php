@@ -49,7 +49,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tags")
      */
     private $owner;
 

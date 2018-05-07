@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreabcrumbableInterface;
 use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
+use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
@@ -124,6 +125,78 @@ class User implements UserInterface, BreabcrumbableInterface
     protected $visibility;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Collection", mappedBy="owner", cascade={"remove"})
+     */
+    private $collections;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="owner", cascade={"remove"})
+     */
+    private $items;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Tag", mappedBy="owner", cascade={"remove"})
+     */
+    private $tags;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner", cascade={"remove"})
+     */
+    private $wishlists;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Wish", mappedBy="owner", cascade={"remove"})
+     */
+    private $wishes;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Loan", mappedBy="owner", cascade={"remove"})
+     */
+    private $loans;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Template", mappedBy="owner", cascade={"remove"})
+     */
+    private $templates;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Connection", mappedBy="user", cascade={"remove"})
+     */
+    private $connections;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Medium", mappedBy="owner", cascade={"remove"})
+     */
+    private $media;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
+     */
+    private $albums;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="owner", cascade={"remove"})
+     */
+    private $photos;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Datum", mappedBy="owner", cascade={"remove"})
+     */
+    private $data;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -157,7 +230,12 @@ class User implements UserInterface, BreabcrumbableInterface
         return $this->getUsername() ?? '';
     }
 
-    /**
+    public function isAdmin()
+    {
+        return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
+    }
+
+        /**
      * @return User
      */
     public function getOwner(): ?User
