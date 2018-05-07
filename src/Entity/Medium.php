@@ -69,6 +69,12 @@ class Medium
     private $mimetype;
 
     /**
+     * @var \App\Entity\User
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $owner;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -369,12 +375,6 @@ class Medium
     {
         return $this->mustGenerateAThumbnail;
     }
-
-    /**
-     * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="media")
-     */
-    private $owner;
 
     /**
      * Set owner

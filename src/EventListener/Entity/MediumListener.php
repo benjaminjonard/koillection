@@ -80,15 +80,16 @@ class MediumListener
         }
 
         foreach ($uow->getScheduledEntityDeletions() as $keyEntity => $entity) {
-            if ($entity instanceof Medium) {
+            if ($entity instanceof Medium && $entity->getId()) {
                 if ($entity->fileCanBeDeleted()) {
                     $sizeFreed = $this->imageHandler->remove($entity);
-                    $user->decreaseDiskSpaceUsed($sizeFreed);
+                    $mediumOwner = $entity->getOwner();
+                    $mediumOwner->decreaseDiskSpaceUsed($sizeFreed);
 
                     $em->persist($entity);
                     $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Medium::class), $entity);
-                    $em->persist($user);
-                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $user);
+                    $em->persist($mediumOwner);
+                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $mediumOwner);
                 }
             }
         }

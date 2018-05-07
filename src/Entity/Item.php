@@ -51,7 +51,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
 
     /**
      * @var \App\Entity\User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $owner;
 

@@ -93,8 +93,9 @@ class ImageHandler
         $sizeFreed = 0;
 
         $sizeFreed += $medium->getSize();
-        unlink($medium->getPath());
 
+
+        unlink($medium->getPath());
         if ($medium->getThumbnailPath()) {
             $sizeFreed += $medium->getThumbnailSize();
             unlink($medium->getThumbnailPath());
