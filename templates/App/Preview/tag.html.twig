@@ -52,7 +52,7 @@
                     <h5 class="header">{{ 'title.related_tags'|trans }}</h5>
                     <div class="tags-block">
                         <ul class="nav nav-tags">
-                            {% for tag in relatedTags %}
+                            {% for tag in relatedTags|naturalSorting %}
                                 <li class="tag chip"><a href="{{ path('app_tag_show', {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">{{ tag.label }}</a></li>
                             {% endfor %}
                         </ul>

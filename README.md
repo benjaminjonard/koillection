@@ -22,14 +22,20 @@ Koillection is still in development. There might be some bugs, missing features 
 
 ## Requirements
 
-1. `PHP 7.2`
-2. `A webserver such as Apache2 or nginx` 
-3. `A Postgresql database`
+1. `PHP 7.2` You may need to add the following extensions:
+    - `apcu`    
+    - `gd`    
+    - `pdo_pgsql`    
+    - `sodium`    
+    - `opcache`            
+2. A webserver such as `Apache2` or `nginx` 
+3. A `Postgresql` database
 
 ## Installation
 
-1. Copy the `.env.dist` file and rename it `.env`
-2. Replace the values between curly braces by your configuration ans remove all curly braces
+1. `git clone` the repository 
+2. Copy the `.env.dist` file and rename it `.env`
+3. In `.env` replace the values between curly braces by your configuration and remove all curly braces
     - `{secret}` -> a random string
     - `{user}` -> your database user
     - `{password}` -> your database password
@@ -37,8 +43,10 @@ Koillection is still in development. There might be some bugs, missing features 
     - `{port}` -> your database port (5432 by default for postgres)
     - `{dbname}` -> your database name
     - `{version}` -> your postgres server version (ex: 10.3)    
-3. `composer install -o`
-4. `php bin/console doctriine:migrations:migrate`
+4. In the project root folder execute `composer install -o`
+5. And then `php bin/console doctrine:migrations:migrate`
+6. Configure a vhost (you can find an example for nginx in `docs` folder)
+7. (optionnal) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 
 ## Licensing
 
