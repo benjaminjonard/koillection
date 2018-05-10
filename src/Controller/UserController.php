@@ -31,26 +31,6 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends AbstractController
 {
     /**
-     * @Route("", name="app_user_collections")
-     * @Method({"GET"})
-     * @Entity("user", expr="repository.findOneByUsername(username)")
-     *
-     * @param User $user
-     * @param CounterCalculator $counterCalculator
-     * @return Response
-     */
-    public function collections(User $user, CounterCalculator $counterCalculator) : Response
-    {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllParent();
-
-        return $this->render('App/User/collections.html.twig', [
-            'collections' => $collections,
-            'counters' => $counterCalculator->collectionsCounters($collections),
-            'user' => $user
-        ]);
-    }
-
-    /**
      * @Route("/albums", name="app_user_albums")
      * @Method({"GET"})
      * @Entity("user", expr="repository.findOneByUsername(username)")

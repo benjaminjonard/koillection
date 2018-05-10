@@ -1,6 +1,6 @@
-{% extends 'layout-autorized.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}]) %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index'|applyContext, 'trans': 'menu.collections'}]) %}
 
 {% block title %}
     {{ renderTitle(breadcrumb)  }}
@@ -23,15 +23,17 @@
         <div></div>
 
         <div class="btn-holder no-margin">
-            <div class="left">
-                <a href="{{ path('app_collection_add') }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
-                    <i class="fa fa-folder fa-fw"></i>
-                </a>
-                <a href="{{ path('app_collection_export') }}" target="_blank" class="button" title="{{ 'tooltip.export_collection'|trans }}">
-                    <i class="fa fa-print fa-fw"></i>
-                </a>
-                {{ include('App/share.html.twig', {'route': url('app_user_collections', {username: app.user.username})}) }}
-            </div>
+            {% if context == 'default' %}
+                <div class="left">
+                    <a href="{{ path('app_collection_add') }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
+                        <i class="fa fa-folder fa-fw"></i>
+                    </a>
+                    <a href="{{ path('app_collection_export') }}" target="_blank" class="button" title="{{ 'tooltip.export_collection'|trans }}">
+                        <i class="fa fa-print fa-fw"></i>
+                    </a>
+                    {{ include('App/share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
+                </div>
+            {% endif %}
             <div class="right">
                 <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>

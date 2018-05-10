@@ -31,23 +31,6 @@ use Symfony\Component\HttpFoundation\Response;
 class PreviewController extends AbstractController
 {
     /**
-     * @Route("", name="app_preview_collections")
-     * @Method({"GET"})
-     *
-     * @param CounterCalculator $counterCalculator
-     * @return Response
-     */
-    public function collections(CounterCalculator $counterCalculator) : Response
-    {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllParent();
-
-        return $this->render('App/Preview/collections.html.twig', [
-            'collections' => $collections,
-            'counters' => $counterCalculator->collectionsCounters($collections)
-        ]);
-    }
-
-    /**
      * @Route("/item/{id}", name="app_preview_item", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      * @Entity("item", expr="repository.findById(id)")

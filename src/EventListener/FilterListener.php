@@ -52,7 +52,7 @@ class FilterListener
     {
         $request = $event->getRequest();
         $filters = $this->em->getFilters();
-        $context = $this->contextHandler->getCurrentRequestContext();
+        $context = $this->contextHandler->getContext();
 
         //Visibility filter
         if (\in_array($context, ['preview', 'user'], false)) {

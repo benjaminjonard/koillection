@@ -42,7 +42,7 @@ class BreadcrumbBuilder
         $class = array_pop($explodedNamespace);
         $class = strtolower($class);
 
-        $context = $this->contextHandler->getCurrentRequestContext();
+        $context = $this->contextHandler->getContext();
 
         $breadcrumb = [];
         $breadcrumbElement = new BreadcrumbElement();

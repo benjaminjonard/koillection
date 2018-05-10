@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# Breadcrumb #}
+    <header class="expanded">
+        {% block breadcrumb %}{% endblock %}
+    </header>
+
+    <div class="sidebar-expanded">
+        <div class="sidebar-wrapper nicescroll">
+            <div class="header-logo">
+                <a href="{{ path('app_homepage') }}">
+                    <img class='logo' src="{{ preload(asset('../build/images/logo.svg')) }}" aria-label="Logo" height="45" width="45">
+                    <span>Koillection</span>
+                </a>
+            </div>
+            {% set route = app.request.get('_route') %}
+            <ul class="nav nav-sidebar">
+                {% include 'Nav/' ~ context ~ '.html.twig' %}
+            </ul>
+        </div>
+
+        <div class="main content-wrapper">
+            <div class="container-fluid container-limited">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <script nonce="{{ csp_nonce() }}">Materialize.toast("{{ flash_message|safeContent }}", 5000)</script>
+    {% endfor %}
+{% endblock %}

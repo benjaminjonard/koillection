@@ -1,0 +1,10 @@
+<li class="{{ 'app_preview_collection' in route or 'app_preview_item' in route ? 'current' }}"><a href="{{ path('app_preview_collection_index') }}"><i class="fa fa-archive fa-fw"></i><span>{{ 'menu.collections'|trans }}</span></a></li>
+<li class="{{ 'app_preview_wishlist' in route ? 'current' }}"><a href="{{ path('app_preview_wishlists') }}"><i class="fa fa-heart fa-fw"></i><span>{{ 'menu.wishlists'|trans }}</span></a></li>
+<li class="{{ 'app_preview_tag' in route ? 'current' }}"><a href="{{ path('app_preview_tags') }}"><i class="fa fa-tags fa-fw"></i><span>{{ 'menu.tags'|trans }}</span></a></li>
+<li class="{{ 'app_user_album' in route ? 'current' }}"><a href="{{ path('app_preview_albums') }}"><i class="fa fa-camera fa-fw"></i><span>{{ 'menu.albums'|trans }}</span></a></li>
+{% if app.user.signsCount > 0 %}
+    <li class="{{ 'app_preview_signs' in route ? 'current' }}"><a href="{{ path('app_preview_signs') }}"><i class="fa fa-leaf fa-fw"></i><span>{{ 'menu.signs'|trans }}</span></a></li>
+{% endif %}
+<li class="{{ 'app_preview_statistics' in route ? 'current' }}"><a href="{{ path('app_preview_statistics') }}"><i class="fa fa-area-chart fa-fw"></i><span>{{ 'menu.statistics'|trans }}</span></a></li>
+<li class="separate-item"><div></div></li>
+<li><a href="{{ path('app_homepage') }}"><i class="fa fa-reply fa-fw"></i><span>{{ 'menu.exit_preview'|trans }}</span></a></li>

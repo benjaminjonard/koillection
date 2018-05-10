@@ -1,4 +1,4 @@
-{% extends 'layout-autorized.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_settings_index', 'trans': 'menu.settings'}]) %}
 
@@ -22,11 +22,11 @@
                     <h5 class="header">{{ 'title.visibility'|trans }}</h5>
                     <p>
                         {{ 'message.visibility'|trans }}
-                        <strong><a href="{{ url('app_user_collections', {username : app.user.username}) }}">{{ url('app_user_collections', {username : app.user.username}) }}</a></strong>
+                        <strong><a href="{{ url('app_user_collection_index', {username : app.user.username}) }}">{{ url('app_user_collection_index', {username : app.user.username}) }}</a></strong>
                     </p>
                     <p>
                         {{ 'message.visibility_preview'|trans }}
-                        <strong><a href="{{ url('app_preview_collections') }}">{{ url('app_preview_collections') }}</a></strong>
+                        <strong><a href="{{ url('app_preview_collection_index') }}">{{ url('app_preview_collection_index') }}</a></strong>
                     </p>
                     <p>{{ 'message.visibility_per_item'|trans }}</p>
 
