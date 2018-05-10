@@ -15,20 +15,34 @@ use App\Model\BreadcrumbElement;
 class BreadcrumbBuilder
 {
     /**
+     * @var ContextHandler
+     */
+    private $contextHandler;
+
+    /**
+     * BreadcrumbBuilder constructor.
+     * @param ContextHandler $contextHandler
+     */
+    public function __construct(ContextHandler $contextHandler)
+    {
+        $this->contextHandler = $contextHandler;
+    }
+
+    /**
      * @param $entity
-     * @param $context
-     * @param $class
      * @return array
      */
-    public function build($entity, $context, $class) :array
+    public function build($entity) :array
     {
         if (!$entity instanceof BreabcrumbableInterface) {
             return [];
         }
 
-        if ($entity instanceof Wishlist) {
-            $context = 'wishlist';
-        }
+        $explodedNamespace = explode('\\', \get_class($entity));
+        $class = array_pop($explodedNamespace);
+        $class = strtolower($class);
+
+        $context = $this->contextHandler->getCurrentRequestContext();
 
         $breadcrumb = [];
         $breadcrumbElement = new BreadcrumbElement();
