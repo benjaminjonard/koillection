@@ -1,3 +1,3 @@
-<a class="{{ element.class|default('') }}" {% if element.route != '' %} href="{{ path(element.route, element.params) }} {% endif %}" aria-label="{{ 'aria.breadcrumb'|trans({'%label%': element.label}) }}">
+<a class="{{ element.class|default('') }}" {% if element.route != '' %} href="{{ path(element.route|applyContext, element.params) }} {% endif %}" aria-label="{{ 'aria.breadcrumb'|trans({'%label%': element.label}) }}">
     {{ element.label }}
 </a>
