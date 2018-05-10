@@ -1,7 +1,6 @@
 ###> symfony/framework-bundle ###
 .env
 phpunit.xml
-/public/sw.js
 /public/bundles/
 /public/uploads/*
 !/public/uploads/.gitkeep
