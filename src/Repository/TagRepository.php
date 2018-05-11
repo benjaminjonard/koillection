@@ -50,10 +50,10 @@ class TagRepository extends EntityRepository
      * @param $itemsCount
      * @param int $page
      * @param string|null $search
-     * @param bool $ignoreTagsWithoutItems
+     * @param string|null $context
      * @return array
      */
-    public function countItemsByTag($itemsCount, $page = 1, string $search = null, bool $ignoreTagsWithoutItems = false) : array
+    public function countItemsByTag($itemsCount, $page = 1, string $search = null, string $context = null) : array
     {
         $qb = $this
             ->getEntityManager()
@@ -70,7 +70,7 @@ class TagRepository extends EntityRepository
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
-        if (true === $ignoreTagsWithoutItems) {
+        if (\in_array($context, ['user', 'preview'])) {
             $qb->having('count(i.id) > 0');
         }
 
@@ -86,11 +86,11 @@ class TagRepository extends EntityRepository
 
     /**
      * @param string|null $search
-     * @param bool $ignoreTagsWithoutItems
+     * @param string|null $context
      * @return int
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function countTags(string $search = null, bool $ignoreTagsWithoutItems = false) : int
+    public function countTags(string $search = null, string $context = null) : int
     {
         $qb = $this->_em
             ->createQueryBuilder()
@@ -98,7 +98,7 @@ class TagRepository extends EntityRepository
             ->from('App\\Entity\\Tag', 't')
         ;
 
-        if (true === $ignoreTagsWithoutItems) {
+        if (\in_array($context, ['user', 'preview'])) {
             $qb
                 ->innerJoin('t.items', 'i')
                 ->having('count(i.id) > 1')
@@ -112,7 +112,9 @@ class TagRepository extends EntityRepository
             ;
         }
 
-        return $qb->getQuery()->getSingleScalarResult();
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        return $result ? $result[1] : 0;
     }
 
     public function findOneByLabelAndOwner(string $label, User $owner) : ?Tag
