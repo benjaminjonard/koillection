@@ -7,6 +7,7 @@ use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -64,7 +65,7 @@ class FilterListener
 
         //Ownership filter
         $user = $this->getUser($request, $context);
-        if ($user && !\in_array($context, ['admin'], false)) {
+        if ($user && $context !== 'admin') {
             $filter = $filters->enable('ownership');
             $filter->setParameter('id', $user->getId(), 'integer');
         } elseif ($filters->isEnabled('ownership')) {
@@ -81,7 +82,13 @@ class FilterListener
     {
         if ($context === 'user') {
             preg_match("/^\/user\/(\w+)/", $request->getRequestUri(), $matches);
-            return $this->em->getRepository(User::class)->findOneByUsername($matches[1]);
+            $user = $this->em->getRepository(User::class)->findOneByUsername($matches[1]);
+
+            if (!$user) {
+                throw new NotFoundHttpException();
+            }
+
+            return $user;
         }
 
         $token = $this->tokenStorage->getToken();

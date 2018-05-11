@@ -7,6 +7,7 @@ use App\Entity\Log;
 use App\Entity\Tag;
 use App\Form\Type\Entity\TagType;
 use App\Repository\TagRepository;
+use App\Service\ContextHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -32,15 +33,16 @@ class TagController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request) : Response
+    public function index(Request $request, ContextHandler $contextHandler) : Response
     {
+        $context = $contextHandler->getContext();
         $page = $request->query->get('page', 1);
         $search = $request->query->get('search', null);
         $itemsCount = $this->getDoctrine()->getRepository(Item::class)->count([]);
-        $tagsCount = $this->getDoctrine()->getRepository(Tag::class)->countTags($search);
+        $tagsCount = $this->getDoctrine()->getRepository(Tag::class)->countTags($search, $context);
 
         return $this->render('App/Tag/index.html.twig', [
-            'results' => $this->getDoctrine()->getRepository(Tag::class)->countItemsByTag($itemsCount, $page, $search),
+            'results' => $this->getDoctrine()->getRepository(Tag::class)->countItemsByTag($itemsCount, $page, $search, $context),
             'search' => $search,
             'tagsCount' => $tagsCount,
             'currentPage' => $page
