@@ -20,7 +20,9 @@
         <div></div>
 
         <div class="btn-holder">
-            {{ include('App/share.html.twig', {'route': url('app_user_signs', {username: app.user.username})}) }}
+            {% if context == 'default' %}
+                {{ include('App/share.html.twig', {'route': url('app_user_sign_index', {username: app.user.username})}) }}
+            {% endif %}
         </div>
 
         <div class="content-block">

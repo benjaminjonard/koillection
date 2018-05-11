@@ -20,13 +20,13 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class TagController
  *
  * @package App\Controller
- *
- * @Route("/tags")
  */
 class TagController extends AbstractController
 {
     /**
-     * @Route("", name="app_tag_index")
+     * @Route("/tags", name="app_tag_index")
+     * @Route("/user/{username}/tags", name="app_user_tag_index")
+     * @Route("/preview/tags", name="app_preview_tag_index")
      * @Method({"GET"})
      *
      * @param Request $request
@@ -48,7 +48,9 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_tag_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/tags/{id}", name="app_tag_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/user/{username}/tags/{id}", name="app_user_tag_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/preview/tags/{id}", name="app_preview_tag_show", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      * @Entity("tag", expr="repository.findById(id)")
      *
@@ -64,7 +66,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_tag_edit", requirements={"id"="%uuid_regex%"})
+     * @Route("/tags/{id}/edit", name="app_tag_edit", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -91,7 +93,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_tag_delete", requirements={"id"="%uuid_regex%"})
+     * @Route("/tags/{id}/delete", name="app_tag_delete", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Tag $tag
@@ -110,7 +112,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/autocomplete/{search}", name="app_tag_autocomplete", options={"expose"=true})
+     * @Route("/tags/autocomplete/{search}", name="app_tag_autocomplete", options={"expose"=true})
      * @Method({"GET"})
      *
      * @param string $search
@@ -128,7 +130,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/history", name="app_tag_history", requirements={"id"="%uuid_regex%"})
+     * @Route("/tags/{id}/history", name="app_tag_history", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      *
      * @param Tag $tag

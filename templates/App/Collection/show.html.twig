@@ -55,11 +55,11 @@
                         <a href="{{ path('app_collection_history', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
                             <i class="fa fa-history fa-fw"></i>
                         </a>
-                        <a href="{{ path('app_collection_items', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
-                            <i class="fa fa-ellipsis-h fa-fw"></i>
-                        </a>
-                        {{ include('App/share.html.twig', {'entity': collection, 'route': url('app_user_collection', {id: collection.id, username: app.user.username})}) }}
+                        {{ include('App/share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
                     {% endif %}
+                    <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
+                        <i class="fa fa-ellipsis-h fa-fw"></i>
+                    </a>
                 </div>
                 <div class="right">
                     <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
@@ -88,7 +88,7 @@
                     <div id="collection-items" class="grid-container-items">
                         {% for item in items|naturalSorting %}
                             <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                                <a href="{{ path('app_item_show', {'id': item.id}) }}">
+                                <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                                     {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name})) }}
                                 </a>
                             </div>
@@ -99,13 +99,15 @@
         </div>
     </div>
 
-    <div id="delete" class="modal">
-        <div class="modal-content">
-            <p>Are you sure you want to delete that collection ? Every items and images belonging to it will be permanently lost...</p>
+    {% if context == 'default' %}
+        <div id="delete" class="modal">
+            <div class="modal-content">
+                <p>Are you sure you want to delete that collection ? Every items and images belonging to it will be permanently lost...</p>
+            </div>
+            <div class="modal-footer row">
+                <a href="{{ path('app_collection_delete', {'id': collection.id}) }}" class="modal-action modal-close waves-effect btn col s2">Agree</a>
+                <a href="#" class="modal-action modal-close waves-effect waves-light btn red darken-1 col s2">Disagree</a>
+            </div>
         </div>
-        <div class="modal-footer row">
-            <a href="{{ path('app_collection_delete', {'id': collection.id}) }}" class="modal-action modal-close waves-effect btn col s2">Agree</a>
-            <a href="#" class="modal-action modal-close waves-effect waves-light btn red darken-1 col s2">Disagree</a>
-        </div>
-    </div>
+    {% endif %}
 {% endblock %}

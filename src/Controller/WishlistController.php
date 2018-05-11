@@ -17,13 +17,13 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class WishlistController
  *
  * @package App\Controller
- *
- * @Route("/wishlists")
  */
 class WishlistController extends AbstractController
 {
     /**
-     * @Route("", name="app_wishlist_index")
+     * @Route("/wishlists", name="app_wishlist_index")
+     * @Route("/user/{username}/wishlists", name="app_user_wishlist_index")
+     * @Route("/preview/wishlists", name="app_preview_wishlist_index")
      * @Method({"GET"})
      *
      * @param CounterCalculator $counterCalculator
@@ -40,7 +40,7 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="app_wishlist_add")
+     * @Route("/wishlists/add", name="app_wishlist_add")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -82,7 +82,9 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_wishlist_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/wishlists/{id}", name="app_wishlist_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/user/{username}/wishlists/{id}", name="app_user_wishlist_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/preview/wishlists/{id}", name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      * @Entity("wishlist", expr="repository.findById(id)")
      *
@@ -99,7 +101,7 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_wishlist_edit", requirements={"id"="%uuid_regex%"})
+     * @Route("/wishlists/{id}/edit", name="app_wishlist_edit", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -126,7 +128,7 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_wishlist_delete", requirements={"id"="%uuid_regex%"})
+     * @Route("/wishlists/{id}/delete", name="app_wishlist_delete", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Wishlist $wishlist

@@ -22,7 +22,9 @@
         <div></div>
 
         <div class="btn-holder">
-            {{ include('App/share.html.twig', {'route': url('app_user_tags', {username: app.user.username})}) }}
+            {% if context == 'default' %}
+                {{ include('App/share.html.twig', {'route': url('app_user_tag_index', {username: app.user.username})}) }}
+            {% endif %}
         </div>
 
         <div class="content-block">
@@ -31,7 +33,7 @@
                     <div class="input-field col s10 offset-s1 m4 offset-m0">
                         <input id="search" name="search" type="text" value="{{ search }}" class="width-75"/>
                         <label for="search">{{ 'filter.by_name'|trans }}</i></label>
-                        <a href="{{ path('app_tag_index') }}" class="btn-dark-grey"><i class="fa fa-eraser fa-fw"></i></a>
+                        <a href="{{ path('app_tag_index'|applyContext) }}" class="btn-dark-grey"><i class="fa fa-eraser fa-fw"></i></a>
                     </div>
                 </form>
             </div>
@@ -50,7 +52,7 @@
                     <tbody>
                         {% for result in results %}
                             <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
-                                <td><strong><a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|truncate(50) }}</a></strong></td>
+                                <td><strong><a href="{{ path('app_tag_show'|applyContext, {'id' : result.tag.id}) }}">{{ result.tag.label|truncate(50) }}</a></strong></td>
                                 <td>{{ result.tag.description|truncate(50) }}</td>
                                 <td>{{ result.itemCount }}</td>
                                 <td>{{ result.percent|round(2, 'common') }} %</td>

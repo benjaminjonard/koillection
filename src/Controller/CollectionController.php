@@ -21,7 +21,6 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class CollectionController
  *
  * @package App\Controller
- *
  */
 class CollectionController extends AbstractController
 {
@@ -105,7 +104,7 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}", name="app_collection_show", requirements={"id"="%uuid_regex%"}, options={"expose"=true})
+     * @Route("/collections/{id}", name="app_collection_show", requirements={"id"="%uuid_regex%"})
      * @Route("/user/{username}/{id}", name="app_user_collection_show", requirements={"id"="%uuid_regex%"})
      * @Route("/preview/{id}", name="app_preview_collection_show", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
@@ -129,6 +128,8 @@ class CollectionController extends AbstractController
 
     /**
      * @Route("/collections/{id}/items", name="app_collection_items", requirements={"id"="%uuid_regex%"})
+     * @Route("/user/{username}/{id}/items", name="app_user_collection_items", requirements={"id"="%uuid_regex%"})
+     * @Route("/preview/{id}/items", name="app_preview_collection_items", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      *
      * @param Collection $collection
