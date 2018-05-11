@@ -82,7 +82,7 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
         yield ["/preview"];
         yield ["/preview/{{collection}}"];
         yield ["/preview/{{collection}}/items"];
-        yield ["/preview/item/{{item}}"];
+        yield ["/preview/items/{{item}}"];
         yield ["/preview/albums"];
         yield ["/preview/albums/{{album}}"];
         yield ["/preview/wishlists"];
@@ -95,7 +95,7 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
         yield ["/user/{{username}}"];
         yield ["/user/{{username}}/{{collection}}"];
         yield ["/user/{{username}}/{{collection}}/items"];
-        yield ["/user/{{username}}/item/{{item}}"];
+        yield ["/user/{{username}}/items/{{item}}"];
         yield ["/user/{{username}}/albums"];
         yield ["/user/{{username}}/albums/{{album}}"];
         yield ["/user/{{username}}/wishlists"];

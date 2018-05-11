@@ -15,13 +15,13 @@ use Symfony\Component\HttpFoundation\Response;
  * Class StatisticsController
  *
  * @package App\Controller
- *
- * @Route("/statistics")
  */
 class StatisticsController extends AbstractController
 {
     /**
-     * @Route("", name="app_statistics_index")
+     * @Route("/statistics", name="app_statistics_index")
+     * @Route("/user/{username}/statistics", name="app_user_statistics_index")
+     * @Route("/preview/statistics", name="app_preview_statistics_index")
      * @Method({"GET"})
      *
      * @param TreeBuilder $treeBuilder

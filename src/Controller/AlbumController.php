@@ -15,13 +15,13 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class AlbumController
  *
  * @package App\Controller
- *
- * @Route("/albums")
  */
 class AlbumController extends AbstractController
 {
     /**
-     * @Route("", name="app_album_index")
+     * @Route("/albums", name="app_album_index")
+     * @Route("/user/{username}/albums", name="app_user_album_index")
+     * @Route("/preview/albums", name="app_preview_album_index")
      * @Method({"GET"})
      *
      * @return Response
@@ -41,7 +41,7 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="app_album_add")
+     * @Route("/albums/add", name="app_album_add")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -72,7 +72,7 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_album_edit", requirements={"id"="%uuid_regex%"})
+     * @Route("/albums/{id}/edit", name="app_album_edit", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -99,7 +99,7 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_album_delete", requirements={"id"="%uuid_regex%"})
+     * @Route("/albums/{id}/delete", name="app_album_delete", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Album $album
@@ -118,7 +118,9 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_album_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/albums/{id}", name="app_album_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/user/{username}/albums/{id}", name="app_user_album_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/preview/albums/{id}", name="app_preview_album_show", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      *
      * @param Album $album

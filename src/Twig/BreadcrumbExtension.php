@@ -5,7 +5,6 @@ namespace App\Twig;
 use App\Entity\User;
 use App\Model\BreadcrumbElement;
 use App\Service\BreadcrumbBuilder;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class BreadcrumbExtension
@@ -20,19 +19,12 @@ class BreadcrumbExtension extends \Twig_Extension
     private $breadcrumbBuilder;
 
     /**
-     * @var RequestStack
-     */
-    protected $requestStack;
-
-    /**
      * BreadcrumbExtension constructor.
      * @param BreadcrumbBuilder $breadcrumbBuilder
-     * @param RequestStack $requestStack
      */
-    public function __construct(BreadcrumbBuilder $breadcrumbBuilder, RequestStack $requestStack)
+    public function __construct(BreadcrumbBuilder $breadcrumbBuilder)
     {
         $this->breadcrumbBuilder = $breadcrumbBuilder;
-        $this->requestStack = $requestStack;
     }
 
     /**
@@ -55,9 +47,6 @@ class BreadcrumbExtension extends \Twig_Extension
      */
     public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, User $user = null)
     {
-        preg_match("/(?<=^app_)(.*)(?=_)/", $this->requestStack->getCurrentRequest()->get('_route'), $matches);
-        $context = $matches[0] ?? 'homepage';
-
         $breadcrumb = [];
 
         if (!empty($root)) {
@@ -79,10 +68,7 @@ class BreadcrumbExtension extends \Twig_Extension
         }
 
         if ($entity) {
-            $explodedNamespace = explode('\\', \get_class($entity));
-            $class = array_pop($explodedNamespace);
-            $class = strtolower($class);
-            $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $context, $class));
+            $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity));
         }
 
         if (null !== $action) {

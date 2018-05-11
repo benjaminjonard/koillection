@@ -1,4 +1,4 @@
-{% extends 'layout-autorized.html.twig' %}
+{% extends 'layout.html.twig' %}
 {% import "App/macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.items_collection') %}
@@ -35,7 +35,9 @@
 
             <div class="btn-holder">
                 <div class="left">
-                    {{ include('App/share.html.twig', {'entity': collection, 'route': url('app_collection_items', {id: collection.id, username: app.user.username})}) }}
+                    {% if context == 'default' %}
+                        {{ include('App/share.html.twig', {'entity': collection, 'route': url('app_user_collection_items', {id: collection.id, username: app.user.username})}) }}
+                    {% endif %}
                 </div>
                 <div class="right">
                     <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
@@ -52,7 +54,7 @@
                     <div id="collection-items" class="grid-container-items">
                         {% for item in items|naturalSorting %}
                             <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                                <a href="{{ path('app_item_show', {'id': item.id}) }}">
+                                <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                                     {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name})) }}
                                 </a>
                             </div>

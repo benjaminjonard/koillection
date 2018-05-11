@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2018-05-11
+### Chore
+* chore: Update CHANGELOG.md to v1.0.3
+
+### Refactoring
+* refactor: Refactor context handling
+
 ## [1.0.2] - 2018-05-09
 ### Bug fixes
 * fix: Remove sw.js from gitignore

@@ -1,4 +1,4 @@
-{% extends 'layout-autorized.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}]) %}
 
@@ -24,10 +24,12 @@
 
         <div class="btn-holder">
             <div class="left">
-                <a href="{{ path('app_wishlist_add') }}" class="button" title="{{ 'tooltip.add_wishlist'|trans }}">
-                    <i class="fa fa-folder fa-fw"></i>
-                </a>
-                {{ include('App/share.html.twig', {'route': url('app_user_wishlists', {username: app.user.username})}) }}
+                {% if context == 'default' %}
+                    <a href="{{ path('app_wishlist_add') }}" class="button" title="{{ 'tooltip.add_wishlist'|trans }}">
+                        <i class="fa fa-folder fa-fw"></i>
+                    </a>
+                    {{ include('App/share.html.twig', {'route': url('app_user_wishlist_index', {username: app.user.username})}) }}
+                {% endif %}
             </div>
             <div class="right">
                 <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />

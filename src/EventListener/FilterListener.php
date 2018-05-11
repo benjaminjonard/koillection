@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use App\Entity\User;
+use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -27,14 +28,21 @@ class FilterListener
     private $tokenStorage;
 
     /**
+     * @var ContextHandler
+     */
+    private $contextHandler;
+
+    /**
      * FilterListener constructor.
      * @param EntityManagerInterface $em
      * @param TokenStorageInterface $tokenStorage
+     * @param ContextHandler $contextHandler
      */
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, ContextHandler $contextHandler)
     {
         $this->em = $em;
         $this->tokenStorage = $tokenStorage;
+        $this->contextHandler = $contextHandler;
     }
 
     /**
@@ -43,14 +51,8 @@ class FilterListener
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-
-        preg_match("/^\/(\w+)/", $request->getRequestUri(), $matches);
-        $context = $matches ? $matches[1] : 'default';
         $filters = $this->em->getFilters();
-
-        if ($request->getRequestUri() === '/admin/generate-uuids') {
-            return;
-        }
+        $context = $this->contextHandler->getContext();
 
         //Visibility filter
         if (\in_array($context, ['preview', 'user'], false)) {
