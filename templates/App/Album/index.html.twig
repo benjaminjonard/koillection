@@ -1,4 +1,4 @@
-{% extends 'layout-autorized.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_album_index', 'trans': 'menu.albums'}]) %}
 
@@ -24,10 +24,12 @@
 
         <div class="btn-holder no-margin">
             <div class="left">
-                <a href="{{ path('app_album_add') }}" class="button" title="{{ 'tooltip.add_album'|trans }}">
-                    <i class="fa fa-folder fa-fw"></i>
-                </a>
-                {{ include('App/share.html.twig', {'route': url('app_user_albums', {username: app.user.username})}) }}
+                {% if context == 'default' %}
+                    <a href="{{ path('app_album_add') }}" class="button" title="{{ 'tooltip.add_album'|trans }}">
+                        <i class="fa fa-folder fa-fw"></i>
+                    </a>
+                    {{ include('App/share.html.twig', {'route': url('app_user_album_index', {username: app.user.username})}) }}
+                {% endif %}
             </div>
             <div class="right">
                 <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
@@ -40,7 +42,7 @@
             <div class="collections grid-container-collections">
                 {% for album in albums %}
                     <div class="collection-element element" data-title="{{ album.title }}">
-                        <a class="collection-circle-thumbnail" href="{{ path('app_album_show', {'id': album.id}) }}" aria-label="{{ 'aria.album'|trans({'%title%': album.title}) }}">
+                        <a class="collection-circle-thumbnail" href="{{ path('app_album_show'|applyContext, {'id': album.id}) }}" aria-label="{{ 'aria.album'|trans({'%title%': album.title}) }}">
                             <span class="color-avatar circle avatar color-{{ album.color }}">{{ album.title|first|upper }}</span>
                         </a>
                         <span class="collection-title">{{ album.title|truncate(27) }}</span>

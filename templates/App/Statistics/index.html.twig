@@ -1,4 +1,4 @@
-{% extends 'layout-autorized.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_statistics_index', 'trans': 'menu.statistics'}]) %}
 
@@ -25,7 +25,9 @@
         <div></div>
 
         <div class="btn-holder">
-            {{ include('App/share.html.twig', {'route': url('app_user_statistics', {username: app.user.username})}) }}
+            {% if context == 'default' %}
+                {{ include('App/share.html.twig', {'route': url('app_user_statistics_index', {username: app.user.username})}) }}
+            {% endif %}
         </div>
 
         <div class="content-block calendars">
@@ -79,4 +81,5 @@
     <script type="application/json" id="monthsChartJson">{{ monthsChartJson|safeContent }}</script>
     <script type="application/json" id="monthDaysChartJson">{{ monthDaysChartJson|safeContent }}</script>
     <script type="application/json" id="weekDaysChartJson">{{ weekDaysChartJson|safeContent }}</script>
+    <script type="application/text" id="route">{{ path('app_collection_index'|applyContext) }}</script>
 {% endblock %}

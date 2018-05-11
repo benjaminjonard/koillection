@@ -19,6 +19,9 @@ services:
         tags: ['controller.service_arguments']
 
     #Kernel listeners
+    App\EventListener\ContextListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }
     App\EventListener\LocaleListener:
         arguments:
             $defaultLocale: "%locale%"

@@ -24,19 +24,20 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class ItemController
  *
  * @package App\Controller
- *
- * @Route("/items")
  */
 class ItemController extends AbstractController
 {
     /**
-     * @Route("/add", name="app_item_add")
+     * @Route("/items/add", name="app_item_add")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
      * @param ItemHelper $itemHelper
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function add(Request $request, TranslatorInterface $translator, ItemHelper $itemHelper) : Response
     {
@@ -88,7 +89,9 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_item_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/items/{id}", name="app_item_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/user/{username}/items/{id}", name="app_user_item_show", requirements={"id"="%uuid_regex%"})
+     * @Route("/preview/items/{id}", name="app_preview_item_show", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      * @Entity("item", expr="repository.findById(id)")
      *
@@ -107,7 +110,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_item_edit", requirements={"id"="%uuid_regex%"})
+     * @Route("/items/{id}/edit", name="app_item_edit", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      * @Entity("item", expr="repository.findById(id)")
      *
@@ -139,7 +142,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_item_delete", requirements={"id"="%uuid_regex%"})
+     * @Route("/items/{id}/delete", name="app_item_delete", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Item $item
@@ -159,7 +162,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/history", name="app_item_history", requirements={"id"="%uuid_regex%"})
+     * @Route("/items/{id}/history", name="app_item_history", requirements={"id"="%uuid_regex%"})
      * @Method({"GET"})
      *
      * @param Item $item
@@ -180,7 +183,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/loan", name="app_item_loan", requirements={"id"="%uuid_regex%"})
+     * @Route("/items/{id}/loan", name="app_item_loan", requirements={"id"="%uuid_regex%"})
      * @Method({"GET", "POST"})
      *
      * @param Request $request

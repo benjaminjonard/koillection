@@ -1,4 +1,4 @@
-$.fn.radialTree = function(jsonTree) {
+$.fn.radialTree = function(jsonTree, route) {
     var diameter = 1000;
     var tree = d3.layout.tree()
         .size([360, diameter / 2 - 50])
@@ -30,7 +30,7 @@ $.fn.radialTree = function(jsonTree) {
         .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
         .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
         .append("a")
-            .attr("href", function(d) { return Routing.generate('app_collection_show', {id : d.id }) })
+            .attr("href", function(d) { return route + '/' + d.id })
             .html(function(d) { return d.name.length > 21 ? d.name.substring(0, 18).trim() + '...' : d.name; });
     d3.select(self.frameElement).style("height", diameter - 150 + "px");
 };

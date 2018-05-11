@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
  * Class SignController
  *
  * @package App\Controller
- *
- * @Route("/signs")
  */
 class SignController extends AbstractController
 {
     /**
-     * @Route("", name="app_sign_index")
+     * @Route("/signs", name="app_sign_index")
+     * @Route("/user/{username}/signs", name="app_user_sign_index")
+     * @Route("/preview/signs", name="app_preview_sign_index")
      * @Method({"GET"})
      *
      * @return Response

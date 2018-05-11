@@ -4,7 +4,6 @@ $(document).ready(function() {
 
     //Init MaterializeCSS selects
     $('select').material_select();
-    $('checkbox').material_checkbox();
     //Init MaterializeCSS modals
     $('.modal').modal();
 
@@ -73,7 +72,7 @@ $(document).ready(function() {
 
     //Init graphs
     if ($('#treeJson').length > 0 && $(".radial-tree").length > 0) {
-        $(".radial-tree").radialTree(JSON.parse(document.querySelector('#treeJson').innerHTML));
+        $(".radial-tree").radialTree(JSON.parse(document.querySelector('#treeJson').innerHTML), document.querySelector('#route').innerHTML);
     }
 
     if ($('#jsonCalendar').length > 0 && $(".calendars").length > 0) {
