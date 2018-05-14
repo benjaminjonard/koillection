@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class PaginatorFactory
 {
     /**
-     * @var RouterInterface
+     * @var RequestStack
      */
     private $requestStack;
 
