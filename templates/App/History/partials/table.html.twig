@@ -22,7 +22,7 @@
         {% endfor %}
         </tbody>
     </table>
-    {% if currentPage is defined  %}
-        {{ include('App/pagination.html.twig') }}
+    {% if paginator is defined %}
+        {{ include('App/pagination.html.twig', {paginator: paginator}) }}
     {% endif %}
 </div>

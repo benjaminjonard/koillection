@@ -12,7 +12,7 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Repository,Tests}'
+        exclude: '../src/{Entity,Migrations,Models,Repository,Tests}'
 
     App\Controller\:
         resource: '../src/Controller'

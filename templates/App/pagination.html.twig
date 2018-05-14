@@ -1,5 +1,3 @@
-{% set paginator = paginator(count, 10, currentPage, app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)) %}
-
 {% if paginator.numPages > 1 %}
     <div class="pagination-wrapper">
         <ul class="pagination">

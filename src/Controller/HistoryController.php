@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Log;
 use App\Enum\LogTypeEnum;
+use App\Service\PaginatorFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +24,10 @@ class HistoryController extends AbstractController
      * @Method({"GET"})
      *
      * @param Request $request
+     * @param PaginatorFactory $paginatorFactory
      * @return Response
      */
-    public function index(Request $request) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory) : Response
     {
         $page = $request->query->get('page', 1);
         $classes = array_map(
@@ -46,8 +48,7 @@ class HistoryController extends AbstractController
             ], [
                 'loggedAt' => 'DESC'
             ], 10, ($page - 1) * 10),
-            'currentPage' => $page,
-            'count' => $count
+            'paginator' => $paginatorFactory->generate($count, 10)
         ]);
     }
 }
