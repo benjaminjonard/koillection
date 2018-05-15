@@ -7,8 +7,8 @@
 <p align="center">
     <img src="https://img.shields.io/github/license/koillection/koillection.svg" />
     <img src="https://img.shields.io/github/release/koillection/koillection.svg" />
-    <img src="https://img.shields.io/scrutinizer/g/Koillection/koillection.svg" />
-    <img src="https://img.shields.io/travis/Koillection/Koillection/master.svg" />    
+    <img src="https://img.shields.io/scrutinizer/g/koillection/koillection.svg" />
+    <img src="https://img.shields.io/travis/koillection/koillection/master.svg" />    
 </p>
 
 # Koillection
@@ -23,11 +23,29 @@ Koillection is still in development. There might be some bugs, missing features 
 ## Requirements
 
 1. `PHP 7.2` You may need to add the following extensions:
-    - `apcu`    
-    - `gd`    
+    - `apcu`
+    - `cgi`
+    - `ctype`
+    - `curl`
+    - `dom`   
+    - `exif`
+    - `fileinfo`
+    - `fpm`
+    - `gd`
+    - `json`
+    - `mbstring`    
+    - `opcache`    
+    - `openssl`
+    - `pdo`    
     - `pdo_pgsql`    
-    - `sodium`    
-    - `opcache`            
+    - `phar`
+    - `session`
+    - `simplexml`
+    - `sodium`
+    - `tokenizer`
+    - `xml`
+    - `xmlwriter`    
+    - `zip`              
 2. A webserver such as `Apache2` or `nginx` 
 3. A `Postgresql` database
 
