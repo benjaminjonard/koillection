@@ -25,7 +25,7 @@
             {% endif %}
         {% endblock %}
     </head>
-    <body>
+    <body class="{{ is_granted('IS_AUTHENTICATED_REMEMBERED') == false ? 'unauthorized' }}">
 
     {% block body %}{% endblock %}
         <div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>

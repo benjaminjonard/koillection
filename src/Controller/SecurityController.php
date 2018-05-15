@@ -24,26 +24,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/", name="app_security_front")
-     * @Method({"GET", "POST"})
-     *
-     * @return Response
-     */
-    public function front() : Response
-    {
-        if (0 === $this->getDoctrine()->getRepository(User::class)->countAll()) {
-            return $this->redirectToRoute('app_security_first_connection');
-        }
-
-        if ($this->getUser() instanceof User) {
-            return $this->redirectToRoute('app_homepage');
-        }
-
-        return $this->render('App/Security/front.html.twig');
-    }
-
-    /**
-     * @Route("/login", name="app_security_login")
+     * @Route("", name="app_security_login")
      * @Method({"GET", "POST"})
      *
      * @param AuthenticationUtils $authenticationUtils

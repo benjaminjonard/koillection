@@ -61,10 +61,6 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
      */
     public function supports(Request $request)
     {
-        if (!$request->isMethod('POST') || !\in_array($request->getPathInfo(), ['/login', '/register'], false)) {
-            return false;
-        }
-
         if (!$request->request->get('login') || !$request->request->get('password')) {
             return false;
         }

@@ -3710,58 +3710,10 @@
         <target>Return to homepage</target>
       </segment>
     </unit>
-    <unit id="XDz1.DS" name="tab.sign_in">
-      <segment>
-        <source>tab.sign_in</source>
-        <target>Sign in</target>
-      </segment>
-    </unit>
     <unit id="lx8jvbW" name="btn.login">
       <segment>
         <source>btn.login</source>
         <target>Sign in</target>
-      </segment>
-    </unit>
-    <unit id="S2O1T0e" name="front.title">
-      <segment>
-        <source>front.title</source>
-        <target>A single place to manage all your collections</target>
-      </segment>
-    </unit>
-    <unit id="ncNyL5P" name="front.subtitle">
-      <segment>
-        <source>front.subtitle</source>
-        <target>With Koillection you can manage:</target>
-      </segment>
-    </unit>
-    <unit id="8KdvVkw" name="front.element.collections">
-      <segment>
-        <source>front.element.collections</source>
-        <target>Collections</target>
-      </segment>
-    </unit>
-    <unit id="iar0XRD" name="front.element.items">
-      <segment>
-        <source>front.element.items</source>
-        <target>Items</target>
-      </segment>
-    </unit>
-    <unit id="db_MISR" name="front.element.signs">
-      <segment>
-        <source>front.element.signs</source>
-        <target>Signs</target>
-      </segment>
-    </unit>
-    <unit id="PEEWKa2" name="front.element.tags">
-      <segment>
-        <source>front.element.tags</source>
-        <target>Tags</target>
-      </segment>
-    </unit>
-    <unit id="qPDs6Kq" name="front.element.wishlists">
-      <segment>
-        <source>front.element.wishlists</source>
-        <target>Wishlists</target>
       </segment>
     </unit>
     <unit id="yIfRfhZ" name="filter.title.types">
@@ -3917,7 +3869,7 @@
     <unit id="wwFFPXP" name="title.first_connection.user">
       <segment>
         <source>title.first_connection.user</source>
-        <target>First connection - Admin creation</target>
+        <target>First connection</target>
       </segment>
     </unit>
     <unit id="1sstKF9" name="title.edit_user">
@@ -3978,6 +3930,12 @@
       <segment>
         <source>message.user_delete_warning</source>
         <target>This action will delete the user and all of its infos including any images uploaded. This action is irreversible, so please be sure about this.</target>
+      </segment>
+    </unit>
+    <unit id="S92egy5" name="title.sign_in">
+      <segment>
+        <source>title.sign_in</source>
+        <target>Sign in</target>
       </segment>
     </unit>
   </file>
