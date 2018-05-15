@@ -32,6 +32,8 @@ Koillection is still in development. There might be some bugs, missing features 
     - `fileinfo`
     - `fpm`
     - `gd`
+    - `iconv`
+    - `intl`
     - `json`
     - `mbstring`    
     - `opcache`    
