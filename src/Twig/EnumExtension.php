@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Enum\CurrencyEnum;
+use App\Enum\LocaleEnum;
 use App\Enum\PeriodEnum;
 use App\Enum\RoleEnum;
 
@@ -21,6 +22,8 @@ class EnumExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFunction('getCurrencySymbol', [$this, 'getCurrencySymbol']),
             new \Twig_SimpleFunction('getRoleLabel', [$this, 'getRoleLabel']),
+            new \Twig_SimpleFunction('getLocales', [$this, 'getLocales']),
+            new \Twig_SimpleFunction('getLocaleLabel', [$this, 'getLocaleLabel'])
         ];
     }
 
@@ -40,6 +43,23 @@ class EnumExtension extends \Twig_Extension
     public function getRoleLabel(string $role) : string
     {
         return RoleEnum::getRoleLabel($role);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLocales() : array
+    {
+        return LocaleEnum::getLocaleLabels();
+    }
+
+    /**
+     * @param string $code
+     * @return array
+     */
+    public function getLocaleLabel(string $code) : string
+    {
+        return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::LOCALE_EN;
     }
 
     /**

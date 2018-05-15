@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2018-05-15
+### Chore
+* chore: Update CHANGELOG.md to v1.1.0 (Benjamin Jonard)
+
+### Features
+* feat: Rework connection, split some code to koillection/website repo (Benjamin Jonard)
+
+### Refactoring
+* refactor: Refactor paginator generation (Benjamin Jonard)
+
 ## [1.0.1] - 2018-05-11
 ### Chore
 * chore: Update CHANGELOG.md to v1.0.1 (Benjamin Jonard)

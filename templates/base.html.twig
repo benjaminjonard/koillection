@@ -20,10 +20,12 @@
             <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/app.css')) }}" nonce="{{ csp_nonce() }}">
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/' ~ app.user.theme ~ '.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
+            {% else %}
+                <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/teal.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
             {% endif %}
         {% endblock %}
     </head>
-    <body>
+    <body class="{{ is_granted('IS_AUTHENTICATED_REMEMBERED') == false ? 'unauthorized' }}">
 
     {% block body %}{% endblock %}
         <div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>

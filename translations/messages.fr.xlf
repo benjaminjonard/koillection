@@ -3710,58 +3710,10 @@
         <target>Retourner à la page d'acceuil</target>
       </segment>
     </unit>
-    <unit id="XDz1.DS" name="tab.sign_in">
-      <segment>
-        <source>tab.sign_in</source>
-        <target>Connexion</target>
-      </segment>
-    </unit>
     <unit id="lx8jvbW" name="btn.login">
       <segment>
         <source>btn.login</source>
         <target>Se connecter</target>
-      </segment>
-    </unit>
-    <unit id="S2O1T0e" name="front.title">
-      <segment>
-        <source>front.title</source>
-        <target>Un seul site pour gérer toutes vos collections</target>
-      </segment>
-    </unit>
-    <unit id="ncNyL5P" name="front.subtitle">
-      <segment>
-        <source>front.subtitle</source>
-        <target>Avec Koillection vous pouvez gérer :</target>
-      </segment>
-    </unit>
-    <unit id="8KdvVkw" name="front.element.collections">
-      <segment>
-        <source>front.element.collections</source>
-        <target>Vos collections</target>
-      </segment>
-    </unit>
-    <unit id="iar0XRD" name="front.element.items">
-      <segment>
-        <source>front.element.items</source>
-        <target>Vos objets</target>
-      </segment>
-    </unit>
-    <unit id="db_MISR" name="front.element.signs">
-      <segment>
-        <source>front.element.signs</source>
-        <target>Vos dédicaces</target>
-      </segment>
-    </unit>
-    <unit id="PEEWKa2" name="front.element.tags">
-      <segment>
-        <source>front.element.tags</source>
-        <target>Des tags</target>
-      </segment>
-    </unit>
-    <unit id="qPDs6Kq" name="front.element.wishlists">
-      <segment>
-        <source>front.element.wishlists</source>
-        <target>Des listes de souhaits</target>
       </segment>
     </unit>
     <unit id="yIfRfhZ" name="filter.title.types">
@@ -3917,7 +3869,7 @@
     <unit id="wwFFPXP" name="title.first_connection.user">
       <segment>
         <source>title.first_connection.user</source>
-        <target>Première connexion - Création de l'administrateur</target>
+        <target>Première connexion</target>
       </segment>
     </unit>
     <unit id="1sstKF9" name="title.edit_user">
@@ -3978,6 +3930,12 @@
       <segment>
         <source>message.user_delete_warning</source>
         <target>Cette action supprimera l'utilisateur avec toutes ces infos, y compris toutes les images mises en ligne. Cette action est irréversible, soyez sûr de vous.</target>
+      </segment>
+    </unit>
+    <unit id="S92egy5" name="title.sign_in">
+      <segment>
+        <source>title.sign_in</source>
+        <target>Connexion</target>
       </segment>
     </unit>
   </file>

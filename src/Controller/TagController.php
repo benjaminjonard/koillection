@@ -8,6 +8,7 @@ use App\Entity\Tag;
 use App\Form\Type\Entity\TagType;
 use App\Repository\TagRepository;
 use App\Service\ContextHandler;
+use App\Service\PaginatorFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -31,9 +32,11 @@ class TagController extends AbstractController
      * @Method({"GET"})
      *
      * @param Request $request
+     * @param ContextHandler $contextHandler
+     * @param PaginatorFactory $paginatorFactory
      * @return Response
      */
-    public function index(Request $request, ContextHandler $contextHandler) : Response
+    public function index(Request $request, ContextHandler $contextHandler, PaginatorFactory $paginatorFactory) : Response
     {
         $context = $contextHandler->getContext();
         $page = $request->query->get('page', 1);
@@ -45,7 +48,7 @@ class TagController extends AbstractController
             'results' => $this->getDoctrine()->getRepository(Tag::class)->countItemsByTag($itemsCount, $page, $search, $context),
             'search' => $search,
             'tagsCount' => $tagsCount,
-            'currentPage' => $page
+            'paginator' => $paginatorFactory->generate($tagsCount, 10)
         ]);
     }
 

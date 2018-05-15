@@ -2,35 +2,27 @@
 
 namespace App\Model;
 
-use Symfony\Component\Routing\RouterInterface;
-
 class Paginator
 {
     private $totalItems;
     private $numPages;
     private $itemsPerPage;
     private $currentPage;
-    private $route;
-    private $params;
+    private $url;
     private $maxPagesToShow = 5;
-    private $router;
 
     /**
-     * @param RouterInterface $router
      * @param int $totalItems The total number of items.
      * @param int $itemsPerPage The number of items per page.
      * @param int $currentPage The current page number.
-     * @param string $route The symfony route
-     * @param array $params The query params
+     * @param string $url The symfony route
      */
-    public function __construct(RouterInterface $router, $totalItems, $itemsPerPage, $currentPage, $route, $params)
+    public function __construct($totalItems, $itemsPerPage, $currentPage, $url)
     {
-        $this->router = $router;
         $this->totalItems = $totalItems;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
-        $this->route = $route;
-        $this->params = $params;
+        $this->url = $url;
         $this->updateNumPages();
     }
 
@@ -111,7 +103,7 @@ class Paginator
      */
     public function getPageUrl($pageNum)
     {
-        return $this->router->generate($this->route, array_merge($this->params, ['page' => $pageNum]));
+        return $this->url . (parse_url($this->url, PHP_URL_QUERY) ? '&' : '?') . "page=$pageNum";
     }
 
     public function getNextPage()

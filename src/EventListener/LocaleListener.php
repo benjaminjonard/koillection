@@ -3,7 +3,6 @@
 namespace App\EventListener;
 
 use App\Enum\LocaleEnum;
-use Doctrine\ORM\EntityManagerInterface;
 use Negotiation\LanguageNegotiator;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
@@ -19,16 +18,13 @@ class LocaleListener
      */
     private $defaultLocale;
 
-    private $em;
-
     /**
      * LocaleListener constructor.
      * @param string $defaultLocale
      */
-    public function __construct(string $defaultLocale, EntityManagerInterface $em)
+    public function __construct(string $defaultLocale)
     {
         $this->defaultLocale = $defaultLocale;
-        $this->em = $em;
     }
 
     /**

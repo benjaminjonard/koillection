@@ -60,7 +60,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                {{ include('App/pagination.html.twig', {count: tagsCount}) }}
+                {{ include('App/pagination.html.twig', {paginator: paginator}) }}
             </div>
         </div>
     </div>

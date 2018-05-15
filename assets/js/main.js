@@ -59,15 +59,6 @@ $(document).ready(function() {
         $(this).addClass('active');
     });
 
-    //Init front list
-    $('.front-list-container li').hover(function (e) {
-        e.preventDefault();
-        $('.front-list-container li').removeClass('active');
-        $(this).addClass('active');
-        $('.front-images-container img').addClass('hidden');
-        $(".front-images-container img[data-name='" + $(this).attr('data-for') + "']").removeClass('hidden');
-    });
-
     loadFilePreviews();
 
     //Init graphs

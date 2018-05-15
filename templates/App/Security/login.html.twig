@@ -1,63 +1,43 @@
-{% extends 'layout-unautorized.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
-    <div class="homepage loginpage">
-        <div class="row">
-            <div class="panel-wrapper col offset-l1 offset-m2 offset-s1 s10 m8 l5">
-                <div class="form center">
-                    <div class="tabs-block login">
-                        <ul class="nav nav-pills">
-                            <li class="tab current" for="tab-signin">
-                                <span>{{ 'tab.sign_in'|trans }}</span>
-                            </li>
-                        </ul>
-                    </div>
+{% block body %}
+    <div class="box">
+        <div>
+            <h1>
+                Welcome to Koillection
+                <div class='logo' aria-label="Logo"></div>
+            </h1>
 
-                    <div class="panel" id="tab-signin">
-                        {% if error %}
-                            <div class="login-error clearfix">
-                                <div class="error">
-                                    <div><div>{{ error.messageKey|trans(error.messageData, 'messages') }}</div></div>
-                                </div>
+            <div class="content">
+                {{ include('App/Security/partials/locales-dropdown.html.twig') }}
+
+                <form action="{{ path("app_security_login") }}" method="post">
+                    <h5 class="header">{{ 'title.sign_in'|trans }}</h5>
+                    {% if error %}
+                        <div class="login-error">
+                            <div class="error">
+                                <div><div>{{ error.messageKey|trans(error.messageData, 'messages') }}</div></div>
                             </div>
-                        {% endif %}
-                        <form action="{{ path("app_security_login") }}" method="post">
-                            <div>
-                                <div class="input-field">
-                                    <input type="text" id="login" name="login" value="{{ lastUsername }}" required="required" class="form-control"/>
-                                    <label class="required" for="login">{{ 'label.login'|trans }}</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field">
-                                    <input type="password" id="password" name="password" required="required" class="form-control" />
-                                    <label class="required" for="password">{{ 'label.password'|trans }}</label>
-                                </div>
-                            </div>
-                            <div class="right">
-                                <input type="submit" name="submit" value="{{ 'btn.sign_in'|trans }}" class="btn btn-lg btn-success btn-block" />
-                            </div>
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="about panel-wrapper col offset-l1 offset-m2 offset-s1 s10 m8 l5">
-                <div class="form center">
+                        </div>
+                    {% endif %}
+
                     <div>
-                        <h5 class="header">{{ 'about.welcome'|trans }}</h5>
-                        {{ 'about.desc'|trans }}
+                        <div class="input-field">
+                            <input type="text" id="login" name="login" value="{{ lastUsername }}" required="required" class="form-control"/>
+                            <label class="required" for="login">{{ 'label.login'|trans }}</label>
+                        </div>
                     </div>
                     <div>
-                        <h5 class="header">{{ 'about.why'|trans }}</h5>
-                        <ul>
-                            <li>{{ 'about.why_1'|trans }}</li>
-                            <li>{{ 'about.why_2'|trans }}</li>
-                            <li>{{ 'about.why_3'|trans }}</li>
-                            <li>{{ 'about.why_4'|trans }}</li>
-                        </ul>
+                        <div class="input-field">
+                            <input type="password" id="password" name="password" required="required" class="form-control" />
+                            <label class="required" for="password">{{ 'label.password'|trans }}</label>
+                        </div>
                     </div>
-                </div>
+                    <div class="submit">
+                        <input type="submit" name="submit" value="{{ 'btn.sign_in'|trans }}" class="btn btn-lg btn-success btn-block right" />
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </form>
             </div>
         </div>
     </div>

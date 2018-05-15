@@ -5,19 +5,11 @@ services:
         container_name: php
         image: registry.gitlab.com/koillection/koillection:latest
         ports:
-            - 9001:9000
+            - "80:8889"
         volumes:
             - ".:/var/www/koillection"
-            - "./docker/php/php.ini:/usr/local/etc/php/php.ini"
-
-    nginx:
-        container_name: nginx
-        image: nginx:latest
-        ports:
-            - "80:80"
-        volumes:
-            - ".:/var/www/koillection"
-            - "./docker/nginx/nginx.conf:/etc/nginx/nginx.conf"
+            - "./docker/php.ini:/usr/local/etc/php/php.ini"
+            - "./docker/nginx.conf:/etc/nginx/nginx.conf"
 
     postgres:
         container_name: postgres
