@@ -4,7 +4,6 @@
     src: url("../fonts/CooperHewitt-Bold.otf") format("opentype");
 }
 
-body {min-height: 100%; position: relative;}
 html {height: 100%;}
 
 /* Override lightbox, wtf man... */
@@ -28,7 +27,6 @@ h5 {font-size: 2rem;}
 .header-logo .logo{float :left; margin-left: 8px; margin-top: -6px;}
 .header-logo a {color: #f0f2f5; font-size: 25px; font-weight: bold; height: 60px; width: 230px; display: block;}
 .header-logo a span {margin-left: 73px; margin-top: 12px; display: block;}
-.unauthorized {background-color: #1AB0A2; height: 60px;}
 
 /* Sidebar */
 .sidebar-wrapper {z-index: 99; background-color: #009688; width: 230px; position: fixed; top: 0; bottom: 0; left: 0; height: 100%;}
@@ -415,7 +413,7 @@ progress[value]::-ms-fill {background-color:#009688;}
 .table-filter a.active {background-color: #009688; color: #f0f2f5; border-radius: 7px; padding: 5px; width: 100px; display: inline-block; text-align: center;}
 .table-filter .filter-title {font-weight: bold;}
 
-html.loading:before, html.loading:after {
+html.loading:before {
     z-index: 101;
     display: block;
     position: fixed;
