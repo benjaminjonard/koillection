@@ -24,6 +24,5 @@ class AnonymousSmokeFunctionalTest extends LoggedWebTestCase
     {
         //Main
         yield ["/"];
-        yield ["/login"];
     }
 }

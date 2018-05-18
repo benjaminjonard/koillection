@@ -2,8 +2,6 @@
 
 namespace App\EventListener;
 
-use App\Service\ColorPicker;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
