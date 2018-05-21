@@ -41,16 +41,9 @@ class ProfileController extends AbstractController
             $em->flush();
             $this->addFlash('notice', $translator->trans('message.profile_updated'));
 
-            if ($user->getAvatar()) {
-                $user->getAvatar()->setUploadedFile(null);
-            }
-
             return $this->redirect($this->generateUrl('app_profile_index'));
         }
 
-        if ($user->getAvatar()) {
-            $user->getAvatar()->setUploadedFile(null);
-        }
         return $this->render('App/Profile/index.html.twig', [
             'lastCollectionsAdded' => $em->getRepository(Collection::class)->findBy(['owner' => $this->getUser()], ['createdAt' => 'DESC'], 5),
             'lastItemsAdded' => $em->getRepository(Item::class)->findBy(['owner' => $this->getUser()], ['createdAt' => 'DESC'], 5),
