@@ -9,6 +9,9 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+        bind:
+            $defaultLocale: '%locale%'
+            $showAdminTools: '%env(SHOW_ADMIN_TOOLS)%'
 
     App\:
         resource: '../src/*'
@@ -23,8 +26,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }
     App\EventListener\LocaleListener:
-        arguments:
-            $defaultLocale: "%locale%"
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 15 }
     App\EventListener\FilterListener:

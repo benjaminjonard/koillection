@@ -10,15 +10,17 @@
                 <span>{{ 'tab.users'|trans }}</span>
             </a>
         </li>
-        <li class="tab {{ current == "analytics" ? 'current' }}">
-            <a href="{{ path('app_admin_analytics') }}">
-                <span>{{ 'tab.analytics'|trans }}</span>
-            </a>
-        </li>
-        <li class="tab {{ current == "trans" ? 'current' }}">
-            <a href="{{ path('translation_index') }}">
-                <span>{{ 'tab.translations'|trans }}</span>
-            </a>
-        </li>
+        {% if showAdminTools() == true %}
+            <li class="tab {{ current == "analytics" ? 'current' }}">
+                <a href="{{ path('app_admin_analytics') }}">
+                    <span>{{ 'tab.analytics'|trans }}</span>
+                </a>
+            </li>
+            <li class="tab {{ current == "trans" ? 'current' }}">
+                <a href="{{ path('translation_index') }}">
+                    <span>{{ 'tab.translations'|trans }}</span>
+                </a>
+            </li>
+        {% endif %}
     </ul>
 </div>

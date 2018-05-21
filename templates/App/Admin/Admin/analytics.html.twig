@@ -94,12 +94,25 @@
                     </div>
                 </div>
             </div>
+
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart themes-usage-chart">
+                        <h5 class="header">{{ 'title.charts.themes_usage'|trans }}</h5>
+                    </div>
+                    <div class="right-chart bar-chart locales-usage-chart">
+                        <h5 class="header">{{ 'title.charts.locales_usage'|trans }}</h5>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="application/json" id="themesUsageJson">{{ themesUsageJson|safeContent }}</script>
+    <script type="application/json" id="localesUsageJson">{{ localesUsageJson|safeContent }}</script>
     <script type="application/json" id="browsersJson">{{ browsersJson|safeContent }}</script>
     <script type="application/json" id="browsersVersionsJson">{{ browsersVersionsJson|safeContent }}</script>
     <script type="application/json" id="enginesJson">{{ enginesJson|safeContent }}</script>

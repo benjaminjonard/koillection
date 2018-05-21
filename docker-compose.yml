@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-    php:
-        container_name: php
+    koillection:
+        container_name: koillection
         image: registry.gitlab.com/koillection/koillection:latest
         ports:
             - "80:8889"
