@@ -3,7 +3,6 @@
 namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
-use App\Entity\Tag;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
@@ -28,17 +27,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ItemType extends AbstractType
 {
     /**
+     * @var JsonToTagTransformer
+     */
+    private $jsonToTagTransformer;
+
+    /**
+     * @var FileToMediumTransformer
+     */
+    private $fileToMediumTransformer;
+
+    /**
      * @var EntityManagerInterface
      */
     private $em;
 
     /**
      * ItemType constructor.
+     * @param JsonToTagTransformer $jsonToTagTransformer
+     * @param FileToMediumTransformer $fileToMediumTransformer
      * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(JsonToTagTransformer $jsonToTagTransformer, FileToMediumTransformer $fileToMediumTransformer, EntityManagerInterface $em)
     {
         $this->em = $em;
+        $this->jsonToTagTransformer = $jsonToTagTransformer;
+        $this->fileToMediumTransformer = $fileToMediumTransformer;
     }
 
     /**
@@ -47,8 +60,6 @@ class ItemType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $tagTransformer = new JsonToTagTransformer($this->em->getRepository(Tag::class));
-
         $builder
             ->add('name', TextType::class, [
                 'attr' => ['length' => 255],
@@ -61,12 +72,12 @@ class ItemType extends AbstractType
                 $builder->create('image', FileType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer(new FileToMediumTransformer())
+                ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add(
                 $builder->create('tags', TextType::class, [
                     'required' => false,
-                ])->addModelTransformer($tagTransformer)
+                ])->addModelTransformer($this->jsonToTagTransformer)
             )
             ->add('collection', EntityType::class, [
                 'class' => 'App\Entity\Collection',

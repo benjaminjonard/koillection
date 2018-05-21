@@ -35,14 +35,21 @@ class WishType extends AbstractType
     private $currencyEnum;
 
     /**
+     * @var FileToMediumTransformer
+     */
+    private $fileToMediumTransformer;
+
+    /**
      * WishType constructor.
      * @param EntityManagerInterface $em
      * @param CurrencyEnum $currencyEnum
+     * @param FileToMediumTransformer $fileToMediumTransformer
      */
-    public function __construct(EntityManagerInterface $em, CurrencyEnum $currencyEnum)
+    public function __construct(EntityManagerInterface $em, CurrencyEnum $currencyEnum, FileToMediumTransformer $fileToMediumTransformer)
     {
         $this->em = $em;
         $this->currencyEnum = $currencyEnum;
+        $this->fileToMediumTransformer = $fileToMediumTransformer;
     }
 
     /**
@@ -75,7 +82,7 @@ class WishType extends AbstractType
                 $builder->create('image', FileType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer(new FileToMediumTransformer())
+                ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add('wishlist', EntityType::class, [
                 'class' => 'App\Entity\Wishlist',

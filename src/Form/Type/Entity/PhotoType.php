@@ -30,12 +30,19 @@ class PhotoType extends AbstractType
     private $em;
 
     /**
-     * ItemType constructor.
-     * @param EntityManagerInterface $em
+     * @var FileToMediumTransformer
      */
-    public function __construct(EntityManagerInterface $em)
+    private $fileToMediumTransformer;
+
+    /**
+     * PhotoType constructor.
+     * @param EntityManagerInterface $em
+     * @param FileToMediumTransformer $fileToMediumTransformer
+     */
+    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer)
     {
         $this->em = $em;
+        $this->fileToMediumTransformer = $fileToMediumTransformer;
     }
 
     /**
@@ -65,7 +72,7 @@ class PhotoType extends AbstractType
                 $builder->create('image', FileType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer(new FileToMediumTransformer())
+                ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add('album', EntityType::class, [
                 'class' => 'App\Entity\Album',

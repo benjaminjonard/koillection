@@ -19,6 +19,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ProfileType extends AbstractType
 {
     /**
+     * @var Base64ToMediumTransformer
+     */
+    private $base64ToMediumTransformer;
+
+    /**
+     * ProfileType constructor.
+     * @param Base64ToMediumTransformer $base64ToMediumTransformer
+     */
+    public function __construct(Base64ToMediumTransformer $base64ToMediumTransformer)
+    {
+        $this->base64ToMediumTransformer = $base64ToMediumTransformer;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -30,7 +44,7 @@ class ProfileType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'property_path' => 'avatar'
-                ])->addModelTransformer(new Base64ToMediumTransformer())
+                ])->addModelTransformer($this->base64ToMediumTransformer)
             )
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
