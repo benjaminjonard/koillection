@@ -8,10 +8,10 @@ All notable changes to this project will be documented in this file.
 
 ### Features
 * feat: Add env parameter to display or hide analytics (Benjamin Jonard)
-* feat: Add version display on admin page
+* feat: Add version display on admin page (Benjamin Jonard)
 
 ### Fixes
-fix: Fix uploaded file in user (Benjamin Jonard)
+* fix: Fix uploaded file in user (Benjamin Jonard)
 
 ### Refactoring
 * refactor: Use dependency injection for transformers (Benjamin Jonard)
