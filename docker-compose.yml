@@ -4,6 +4,7 @@ services:
     koillection:
         container_name: koillection
         image: registry.gitlab.com/koillection/koillection:latest
+
         ports:
             - "80:8889"
         volumes:

@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2018-05-22
+### Chore
+* chore: Update version to v1.1.1 (Benjamin Jonard)
+* chore: Remove obsolete parameters (Benjamin Jonard)
+
+### Features
+* feat: Add env parameter to display or hide analytics (Benjamin Jonard)
+* feat: Add version display on admin page
+
+### Fixes
+fix: Fix uploaded file in user (Benjamin Jonard)
+
+### Refactoring
+* refactor: Use dependency injection for transformers (Benjamin Jonard)
+
 ## [1.1.0] - 2018-05-15
 ### Chore
 * chore: Update CHANGELOG.md to v1.1.0 (Benjamin Jonard)

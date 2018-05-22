@@ -15,12 +15,18 @@ class ParametersExtension extends \Twig_Extension
     private $showAdminTools;
 
     /**
+     * @var string
+     */
+    private $version;
+
+    /**
      * ParametersExtension constructor.
      * @param bool $showAdminTools
      */
-    public function __construct(bool $showAdminTools)
+    public function __construct(bool $showAdminTools, string $version)
     {
         $this->showAdminTools = $showAdminTools;
+        $this->version = $version;
     }
 
     /**
@@ -30,6 +36,7 @@ class ParametersExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('showAdminTools', [$this, 'showAdminTools']),
+            new \Twig_SimpleFunction('getVersion', [$this, 'getVersion']),
         ];
     }
 
@@ -39,6 +46,14 @@ class ParametersExtension extends \Twig_Extension
     public function showAdminTools() : bool
     {
         return $this->showAdminTools;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion() : string
+    {
+        return $this->version;
     }
 
     /**
