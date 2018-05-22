@@ -21,24 +21,24 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class BatchTaggerType extends AbstractType
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
 
     /**
-     * BatchTaggerType constructor.
-     * @param EntityManagerInterface $em
-     * @param TokenStorageInterface $tokenStorage
+     * @var JsonToTagTransformer
      */
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
+    private $jsonToTagTransformer;
+
+    /**
+     * BatchTaggerType constructor.
+     * @param TokenStorageInterface $tokenStorage
+     * @param JsonToTagTransformer $jsonToTagTransformer
+     */
+    public function __construct(TokenStorageInterface $tokenStorage, JsonToTagTransformer $jsonToTagTransformer)
     {
-        $this->em = $em;
         $this->tokenStorage = $tokenStorage;
+        $this->jsonToTagTransformer = $jsonToTagTransformer;
     }
 
     /**
@@ -47,13 +47,11 @@ class BatchTaggerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $tagTransformer = new JsonToTagTransformer($this->em->getRepository(Tag::class));
-
         $builder
             ->add(
                 $builder->create('tags', TextType::class, [
                     'required' => true,
-                ])->addModelTransformer($tagTransformer)
+                ])->addModelTransformer($this->jsonToTagTransformer)
             )
             ->add('recursive', CheckboxType::class, [
                 'label' => false,

@@ -27,11 +27,18 @@ class WishlistType extends AbstractType
     private $em;
 
     /**
+     * @var Base64ToMediumTransformer
+     */
+    private $base64ToMediumTransformer;
+
+    /**
      * WishlistType constructor.
+     * @param Base64ToMediumTransformer $base64ToMediumTransformer
      * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(Base64ToMediumTransformer $base64ToMediumTransformer, EntityManagerInterface $em)
     {
+        $this->base64ToMediumTransformer = $base64ToMediumTransformer;
         $this->em = $em;
     }
 
@@ -65,7 +72,7 @@ class WishlistType extends AbstractType
                 $builder->create('image', TextType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer(new Base64ToMediumTransformer())
+                ])->addModelTransformer($this->base64ToMediumTransformer)
             )
             ->add('submit', SubmitType::class)
         ;

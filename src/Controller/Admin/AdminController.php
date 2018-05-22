@@ -51,9 +51,7 @@ class AdminController extends AbstractController
                 'tags' => $em->getRepository(Tag::class)->countAll(),
                 'wishlists' => $em->getRepository(Wishlist::class)->countAll(),
                 'wishes' => $em->getRepository(Wish::class)->countAll(),
-            ],
-            'themesUsageJson' => json_encode($chartBuilder->buildThemesUsage()),
-            'localesUsageJson' => json_encode($chartBuilder->buildLocalesUsage())
+            ]
         ]);
     }
 
@@ -77,6 +75,8 @@ class AdminController extends AbstractController
         return $this->render('App/Admin/Admin/analytics.html.twig', [
             'connectionsCounter' => $count,
             'selectedPeriod' => $period,
+            'themesUsageJson' => json_encode($chartBuilder->buildThemesUsage()),
+            'localesUsageJson' => json_encode($chartBuilder->buildLocalesUsage()),
             'browsersJson' => json_encode($chartBuilder->buildAnalyticsChart($since, $count, 'browser_name')),
             'browsersVersionsJson' => json_encode($chartBuilder->buildAnalyticsChart($since, $count, 'browser_name', 'browser_version')),
             'enginesJson' => json_encode($chartBuilder->buildAnalyticsChart($since, $count, 'engine_name')),

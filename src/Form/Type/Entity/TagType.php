@@ -21,6 +21,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TagType extends AbstractType
 {
     /**
+     * @var FileToMediumTransformer
+     */
+    private $fileToMediumTransformer;
+
+    /**
+     * DatumType constructor.
+     * @param FileToMediumTransformer $fileToMediumTransformer
+     */
+    public function __construct(FileToMediumTransformer $fileToMediumTransformer)
+    {
+        $this->fileToMediumTransformer = $fileToMediumTransformer;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -43,7 +57,7 @@ class TagType extends AbstractType
                 $builder->create('image', FileType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer(new FileToMediumTransformer())
+                ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add('submit', SubmitType::class)
         ;

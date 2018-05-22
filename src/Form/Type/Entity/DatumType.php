@@ -18,6 +18,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class DatumType extends AbstractType
 {
     /**
+     * @var FileToMediumTransformer
+     */
+    private $fileToMediumTransformer;
+
+    /**
+     * DatumType constructor.
+     * @param FileToMediumTransformer $fileToMediumTransformer
+     */
+    public function __construct(FileToMediumTransformer $fileToMediumTransformer)
+    {
+        $this->fileToMediumTransformer = $fileToMediumTransformer;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -37,7 +51,7 @@ class DatumType extends AbstractType
                 $builder->create('image', FileType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer(new FileToMediumTransformer())
+                ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add('position', TextType::class, [
                 'required' => false,

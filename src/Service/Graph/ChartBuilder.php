@@ -267,6 +267,10 @@ class ChartBuilder
      */
     public function buildAnalyticsChart(?\DateTime $since, int $count, string $primary, ?string $secondary = null)
     {
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('abscissa', 'abscissa');
+        $rsm->addScalarResult('count', 'count');
+
         $unknown = $this->translator->trans('global.unknown');
         if ($secondary) {
             $sql = "SELECT CONCAT(COALESCE($primary, '$unknown'), ' - ', COALESCE($secondary, '$unknown')) AS abscissa, COUNT(user_id) AS count";
@@ -275,16 +279,19 @@ class ChartBuilder
         }
 
         $sql .= ' FROM koi_connection';
+
         if ($since instanceof \DateTime) {
-            $sql .= " WHERE date > '".$since->format("Y-m-d")."'";
+            $sql .= " WHERE date > ?";
         }
+
         $sql .= ' GROUP BY abscissa';
 
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('abscissa', 'abscissa');
-        $rsm->addScalarResult('count', 'count');
-
         $query = $this->em->createNativeQuery($sql, $rsm);
+
+        if ($since instanceof \DateTime) {
+            $query->setParameter(1, $since);
+        }
+
         $result = $query->getArrayResult();
 
         $data = [];

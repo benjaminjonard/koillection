@@ -3938,5 +3938,11 @@
         <target>Sign in</target>
       </segment>
     </unit>
+    <unit id="d75KAlJ" name="label.version">
+      <segment>
+        <source>label.version</source>
+        <target>Version</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

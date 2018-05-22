@@ -81,6 +81,8 @@ class ImageHandler
             $sizeUsed += $medium->getThumbnailSize();
         }
 
+        $medium->setUploadedFile(null);
+
         return $sizeUsed;
     }
 
