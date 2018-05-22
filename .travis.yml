@@ -29,6 +29,7 @@ env:
     - APP_DEBUG="0"
     - APP_SECRET="WBp61O25u2ysihh4N4FEGwIOfOrfTU"
     - DATABASE_URL="pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3"
+    - SHOW_ADMIN_TOOLS="1"
 
 # Update composer
 before-install:
