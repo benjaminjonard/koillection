@@ -2,17 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Collection;
-use App\Entity\Connection;
-use App\Entity\Item;
-use App\Entity\Tag;
+
 use App\Entity\User;
-use App\Entity\Wish;
-use App\Entity\Wishlist;
-use App\Enum\PeriodEnum;
 use App\Form\Type\Entity\Admin\UserType;
 use App\Service\DiskUsageCalculator;
-use App\Service\Graph\ChartBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
