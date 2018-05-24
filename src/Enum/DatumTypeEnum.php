@@ -9,9 +9,9 @@ namespace App\Enum;
  */
 class DatumTypeEnum
 {
-    const TYPE_TEXT = 1;
-    const TYPE_SIGN = 2;
-    const TYPE_IMAGE = 3;
+    const TYPE_TEXT = 'text';
+    const TYPE_SIGN = 'sign';
+    const TYPE_IMAGE = 'image';
 
     const TYPES_SLUGS = [
         self::TYPE_TEXT => 'text',

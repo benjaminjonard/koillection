@@ -69,7 +69,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private $data;

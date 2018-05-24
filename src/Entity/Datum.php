@@ -31,8 +31,8 @@ class Datum implements LoggableInterface
     private $item;
 
     /**
-     * @var int
-     * @ORM\Column(type="smallint")
+     * @var string
+     * @ORM\Column(type="string")
      */
     private $type;
 
@@ -206,11 +206,11 @@ class Datum implements LoggableInterface
     /**
      * Set type.
      *
-     * @param int $type
+     * @param string $type
      *
      * @return Datum
      */
-    public function setType(int $type) : Datum
+    public function setType(string $type) : Datum
     {
         $this->type = $type;
 
@@ -220,9 +220,9 @@ class Datum implements LoggableInterface
     /**
      * Get type.
      *
-     * @return int
+     * @return string
      */
-    public function getType() : ?int
+    public function getType() : ?string
     {
         return $this->type;
     }
