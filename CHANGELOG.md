@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2018-05-24
+### Chore
+* chore: Update version to v1.1.2 (Benjamin Jonard)
+
+### Features
+* feat: Add last day of activity on User entity (Benjamin Jonard)
+
+### Refactoring
+* refactor: Remove signs counter on user entity (Benjamin Jonard)
+* refactor: Remove analytics (Benjamin Jonard)
+
 ## [1.1.1] - 2018-05-22
 ### Chore
 * chore: Update version to v1.1.1 (Benjamin Jonard)
