@@ -144,7 +144,7 @@ class CounterCalculator
             ";
 
             if ($this->em->getFilters()->isEnabled('visibility')) {
-                $sql .= sprintf('AND %s.visibility = %s', $alias, VisibilityEnum::VISIBILITY_PUBLIC);
+                $sql .= sprintf("AND %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
             };
 
             $counters = $this->em->createNativeQuery($sql, $rsm)->getResult();
@@ -194,7 +194,7 @@ class CounterCalculator
         ";
 
         if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sql .= sprintf('AND %s.visibility = %s', $alias, VisibilityEnum::VISIBILITY_PUBLIC);
+            $sql .= sprintf("AND %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
         };
 
         $counters = $this->em->createNativeQuery($sql, $rsm)->getResult();
@@ -227,7 +227,7 @@ class CounterCalculator
         ";
 
         if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sql .= sprintf('AND %s.visibility = %s', $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
+            $sql .= sprintf("AND %s.visibility = '%s'", $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
         };
 
         return $sql;
@@ -251,8 +251,8 @@ class CounterCalculator
         $sqlVisibilityChild = '';
         $sqlVisibilityItem = '';
         if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sqlVisibilityChild = sprintf('WHERE %s.visibility = %s', $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
-            $sqlVisibilityItem = sprintf('AND %s.visibility = %s', $i1, VisibilityEnum::VISIBILITY_PUBLIC);
+            $sqlVisibilityChild = sprintf("WHERE %s.visibility = '%s'", $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
+            $sqlVisibilityItem = sprintf("AND %s.visibility = '%s'", $i1, VisibilityEnum::VISIBILITY_PUBLIC);
         };
 
         return "

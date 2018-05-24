@@ -35,6 +35,6 @@ class VisibilityFilter extends SQLFilter
             return '';
         }
 
-        return sprintf('%s.visibility = %s', $targetTableAlias, VisibilityEnum::VISIBILITY_PUBLIC);
+        return sprintf("%s.visibility = '%s'", $targetTableAlias, VisibilityEnum::VISIBILITY_PUBLIC);
     }
 }
