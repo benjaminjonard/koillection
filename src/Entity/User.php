@@ -113,10 +113,10 @@ class User implements UserInterface, BreabcrumbableInterface
     private $diskSpaceAllowed;
 
     /**
-     * @var int
-     * @ORM\Column(type="integer")
+     * @var string
+     * @ORM\Column(type="string")
      */
-    protected $visibility;
+    private $visibility;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -682,18 +682,18 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getVisibility() : int
+    public function getVisibility() : string
     {
         return $this->visibility;
     }
 
     /**
-     * @param int $visibility
+     * @param string $visibility
      * @return $this
      */
-    public function setVisibility(int $visibility)
+    public function setVisibility(string $visibility)
     {
         $this->visibility = $visibility;
 

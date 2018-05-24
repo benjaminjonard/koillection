@@ -60,10 +60,10 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     private $items;
 
     /**
-     * @var int
-     * @ORM\Column(type="smallint")
+     * @var string
+     * @ORM\Column(type="string")
      */
-    protected $visibility;
+    private $visibility;
 
     /**
      * @var \DateTime
@@ -291,18 +291,18 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getVisibility() : int
+    public function getVisibility() : string
     {
         return $this->visibility;
     }
 
     /**
-     * @param int $visibility
+     * @param string $visibility
      * @return $this
      */
-    public function setVisibility(int $visibility)
+    public function setVisibility(string $visibility)
     {
         $this->visibility = $visibility;
 
