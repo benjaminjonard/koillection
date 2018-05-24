@@ -65,16 +65,16 @@ class LogExtension extends \Twig_Extension
         $class = strtolower($class);
 
         switch ($log->getType()) {
-            case LogTypeEnum::TYPE_CREATED:
+            case LogTypeEnum::TYPE_CREATE:
                 $route = $this->router->generate('app_'.$class.'_show', ['id' => $log->getObjectId()]);
                 $label = "<strong><a href='$route'>".$log->getObjectLabel()."</a></strong>";
                 $messages[] = $this->translator->trans('log.'.$class.'.created', ['%label%' => $label]);
                 break;
-            case LogTypeEnum::TYPE_DELETED:
+            case LogTypeEnum::TYPE_DELETE:
                 $label = "<strong>".$log->getObjectLabel()."</strong>";
                 $messages[] = $this->translator->trans('log.'.$class.'.deleted', ['%label%' => $label]);
                 break;
-            case LogTypeEnum::TYPE_UPDATED:
+            case LogTypeEnum::TYPE_UPDATE:
                 foreach (json_decode($log->getPayload(), true) as $payload) {
                     $messages[] = $this->loggerChain->getFormattedPayload($log->getObjectClass(), $payload);
                 }

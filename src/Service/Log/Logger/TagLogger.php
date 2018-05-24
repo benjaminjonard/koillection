@@ -41,7 +41,7 @@ class TagLogger extends Logger
             return null;
         }
 
-        return $this->createLog(LogTypeEnum::TYPE_CREATED, $tag);
+        return $this->createLog(LogTypeEnum::TYPE_CREATE, $tag);
     }
 
     /**
@@ -54,7 +54,7 @@ class TagLogger extends Logger
             return null;
         }
 
-        return $this->createLog(LogTypeEnum::TYPE_DELETED, $tag);
+        return $this->createLog(LogTypeEnum::TYPE_DELETE, $tag);
     }
 
     /**
@@ -109,7 +109,7 @@ class TagLogger extends Logger
         }
 
         return $this->createLog(
-            LogTypeEnum::TYPE_UPDATED,
+            LogTypeEnum::TYPE_UPDATE,
             $tag,
             $mainPayload
         );

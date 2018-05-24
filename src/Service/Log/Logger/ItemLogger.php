@@ -43,7 +43,7 @@ class ItemLogger extends Logger
             return null;
         }
 
-        return $this->createLog(LogTypeEnum::TYPE_CREATED, $item);
+        return $this->createLog(LogTypeEnum::TYPE_CREATE, $item);
     }
 
     /**
@@ -56,7 +56,7 @@ class ItemLogger extends Logger
             return null;
         }
 
-        return $this->createLog(LogTypeEnum::TYPE_DELETED, $item);
+        return $this->createLog(LogTypeEnum::TYPE_DELETE, $item);
     }
 
     /**
@@ -128,7 +128,7 @@ class ItemLogger extends Logger
         }
 
         return $this->createLog(
-            LogTypeEnum::TYPE_UPDATED,
+            LogTypeEnum::TYPE_UPDATE,
             $item,
             $mainPayload
         );

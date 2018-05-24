@@ -24,8 +24,8 @@ class Log
     private $id;
 
     /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
      */
     private $type;
 
