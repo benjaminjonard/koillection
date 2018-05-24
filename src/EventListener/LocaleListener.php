@@ -5,6 +5,7 @@ namespace App\EventListener;
 use App\Enum\LocaleEnum;
 use Negotiation\LanguageNegotiator;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
  * Class LocaleListener
@@ -61,6 +62,19 @@ class LocaleListener
             }
         } else {
             $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
+        }
+    }
+
+    /**
+     * @param InteractiveLoginEvent $event
+     */
+    public function onInteractiveLogin(InteractiveLoginEvent $event)
+    {
+        $user = $event->getAuthenticationToken()->getUser();
+        $session = $event->getRequest()->getSession();
+
+        if (null !== $user->getLocale()) {
+            $session->set('_locale', $user->getLocale());
         }
     }
 }

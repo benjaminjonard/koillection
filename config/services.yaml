@@ -28,11 +28,15 @@ services:
     App\EventListener\LocaleListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 15 }
+            - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
     App\EventListener\FilterListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest}
+    App\EventListener\ActivityListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-    App\EventListener\BeforeResponseListener:
+    App\EventListener\NonceListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
     App\EventListener\LogQueueListener:
@@ -42,10 +46,6 @@ services:
     App\EventListener\AccessDeniedListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
-
-    App\EventListener\LoginListener:
-        tags:
-            - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
 
     #Global listeners
     App\EventListener\LoggableListener:
@@ -78,10 +78,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
-    App\EventListener\Entity\DatumListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preRemove }
     App\EventListener\Entity\MediumListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush }

@@ -44,7 +44,7 @@ class UserController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Admin/User/index.html.twig', [
-            'results' => $em->getRepository(User::class)->findAllWithConnectionsDetails()
+            'users' => $em->getRepository(User::class)->findAll()
         ]);
     }
 

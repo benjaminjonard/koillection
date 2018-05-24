@@ -1,9 +1,7 @@
 <li class="{{ 'app_collection' in route or 'app_item' in route ? 'current' }}"><a href="{{ path('app_collection_index') }}"><i class="fa fa-archive fa-fw"></i><span>{{ 'menu.collections'|trans }}</span></a></li>
 <li class="{{ 'app_wishlist' in route or 'app_wish' in route ? 'current' }}"><a href="{{ path('app_wishlist_index') }}"><i class="fa fa-heart fa-fw"></i><span>{{ 'menu.wishlists'|trans }}</span></a></li>
 <li class="{{ 'app_tag' in route ? 'current' }}"><a href="{{ path('app_tag_index') }}"><i class="fa fa-tags fa-fw"></i><span>{{ 'menu.tags'|trans }}</span></a></li>
-{% if app.user.signsCount > 0 %}
-    <li class="{{ 'app_sign' in route ? 'current' }}"><a href="{{ path('app_sign_index') }}"><i class="fa fa-leaf fa-fw"></i><span>{{ 'menu.signs'|trans }}</span></a></li>
-{% endif %}
+<li class="{{ 'app_sign' in route ? 'current' }}"><a href="{{ path('app_sign_index') }}"><i class="fa fa-leaf fa-fw"></i><span>{{ 'menu.signs'|trans }}</span></a></li>
 <li class="{{ 'app_album' in route ? 'current' }}"><a href="{{ path('app_album_index') }}"><i class="fa fa-camera fa-fw"></i><span>{{ 'menu.albums'|trans }}</span></a></li>
 <li class="{{ 'app_loan' in route ? 'current' }}"><a href="{{ path('app_loan_index') }}"><i class="fa fa-exchange fa-fw"></i><span>{{ 'menu.loans'|trans }}</span></a></li>
 <li class="{{ 'app_template' in route ? 'current' }}"><a href="{{ path('app_template_index') }}"><i class="fa fa-clone fa-fw"></i><span>{{ 'menu.templates'|trans }}</span></a></li>

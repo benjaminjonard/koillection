@@ -113,12 +113,6 @@ class User implements UserInterface, BreabcrumbableInterface
     private $diskSpaceAllowed;
 
     /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    private $signsCount;
-
-    /**
      * @var int
      * @ORM\Column(type="integer")
      */
@@ -150,12 +144,6 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Connection", mappedBy="user", cascade={"remove"})
-     */
-    private $connections;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Log", mappedBy="user", cascade={"remove"})
      */
     private $logs;
@@ -165,6 +153,12 @@ class User implements UserInterface, BreabcrumbableInterface
      * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
      */
     private $albums;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $lastDateOfActivity;
 
     /**
      * @var \DateTime
@@ -182,7 +176,6 @@ class User implements UserInterface, BreabcrumbableInterface
     {
         $this->id = Uuid::uuid4();
         $this->roles = ['ROLE_USER'];
-        $this->signsCount = 0;
         $this->diskSpaceAllowed = 536870912;
         $this->diskSpaceUsed = 0;
         $this->enabled = false;
@@ -529,37 +522,6 @@ class User implements UserInterface, BreabcrumbableInterface
     }
 
     /**
-     * Set signsCount
-     *
-     * @param integer $signsCount
-     *
-     * @return User
-     */
-    public function setSignsCount(int $signsCount) : User
-    {
-        $this->signsCount = $signsCount;
-
-        return $this;
-    }
-
-    /**
-     * Get signsCount
-     *
-     * @return integer
-     */
-    public function getSignsCount() : int
-    {
-        return $this->signsCount;
-    }
-
-    public function increaseSignsCounter(int $value) : User
-    {
-        $this->setSignsCount($this->getSignsCount() + $value);
-
-        return $this;
-    }
-
-    /**
      * Set currency
      *
      * @param string $currency
@@ -683,6 +645,30 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set lastDateOfActivity
+     *
+     * @param \DateTime $lastDateOfActivity
+     *
+     * @return User
+     */
+    public function setLastDateOfActivity($lastDateOfActivity)
+    {
+        $this->lastDateOfActivity = $lastDateOfActivity;
+
+        return $this;
+    }
+
+    /**
+     * Get $lastDateOfActivity
+     *
+     * @return \DateTime
+     */
+    public function getLastDateOfActivity()
+    {
+        return $this->lastDateOfActivity;
     }
 
     /**

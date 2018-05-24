@@ -35,30 +35,30 @@
                         <th>{{ 'label.email'|trans }}</th>
                         <th>{{ 'label.disk_space_used'|trans }}</th>
                         <th>{{ 'label.disk_space_allowed'|trans }}</th>
-                        <th>{{ 'label.last_connection'|trans }}</th>
+                        <th>{{ 'label.last_date_of_activity'|trans }}</th>
                         <th>{{ 'label.actions'|trans }}</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                        {% for result in results %}
+                        {% for user in users %}
                             <tr>
-                                <td>{{ result.user.id }}</td>
-                                <td>{{ result.user.username }}</td>
-                                <td>{{ getRoleLabel(result.user.roles[0])|trans }}</td>
-                                <td>{{ result.user.email }}</td>
-                                <td>{{ result.user.diskSpaceUsed|bytes }}</td>
-                                <td>{{ result.user.diskSpaceAllowed|bytes }}</td>
-                                <td>{{ result.lastConnectionDate ? result.lastConnectionDate|timeAgo : '-' }}</td>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ getRoleLabel(user.roles[0])|trans }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.diskSpaceUsed|bytes }}</td>
+                                <td>{{ user.diskSpaceAllowed|bytes }}</td>
+                                <td>{{ user.lastDateOfActivity ? user.lastDateOfActivity|dateAgo : '-' }}</td>
                                 <td>
-                                    <a title="{{ 'tooltip.edit'|trans }}" href="{{ path('app_admin_user_edit', {id : result.user.id}) }}">
+                                    <a title="{{ 'tooltip.edit'|trans }}" href="{{ path('app_admin_user_edit', {id : user.id}) }}">
                                         <i class="fa fa-pencil fa-fw"></i>
                                     </a>
-                                    <a title="{{ 'tooltip.recompute_disk_space'|trans }}" href="{{ path('app_admin_user_recompute_disk_usage', {id : result.user.id}) }}">
+                                    <a title="{{ 'tooltip.recompute_disk_space'|trans }}" href="{{ path('app_admin_user_recompute_disk_usage', {id : user.id}) }}">
                                         <i class="fa fa-calculator fa-fw"></i>
                                     </a>
-                                    {% if false == result.user.isAdmin() %}
-                                        <a title="{{ 'tooltip.delete'|trans }}" href="{{ path('app_admin_user_delete', {id : result.user.id}) }}">
+                                    {% if false == user.isAdmin() %}
+                                        <a title="{{ 'tooltip.delete'|trans }}" href="{{ path('app_admin_user_delete', {id : user.id}) }}">
                                             <i class="fa fa-trash fa-fw"></i>
                                         </a>
                                     {% endif %}

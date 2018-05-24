@@ -31,7 +31,6 @@
         "symfony/yaml": "^4.0",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.4",
-        "whichbrowser/parser": "^2.0",
         "willdurand/js-translation-bundle": "^2.6",
         "willdurand/negotiation": "^2.3"
     },
