@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 ### Refactoring
 * refactor: Remove signs counter on user entity (Benjamin Jonard)
 * refactor: Remove analytics (Benjamin Jonard)
+* refactor: Refactor constants handling (Benjamin Jonard)
 
 ## [1.1.1] - 2018-05-22
 ### Chore
