@@ -52,8 +52,6 @@ class AppExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFilter('safeContent', [$this, 'safeContent'], ['is_safe' => ['html']]),
             new \Twig_SimpleFilter('bytes', [$this, 'bytes']),
-            new \Twig_SimpleFilter('timeAgo', [$this, 'timeAgo']),
-            new \Twig_SimpleFilter('timeDiff', [$this, 'timeDiff']),
             new \Twig_SimpleFilter('highlightTags', [$this, 'highlightTags'], ['is_safe' => ['html']])
         ];
     }
@@ -90,73 +88,6 @@ class AppExtension extends \Twig_Extension
         $suffixes = array('', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi', 'Yi');
 
         return round(pow(1024, $base - floor($base)), $precision).' '.$suffixes[floor($base)].$this->translator->trans('global.byte_abbreviation');
-    }
-
-    /**
-     * @param \DateTime $ago
-     * @return string
-     */
-    public function timeAgo(\DateTime $ago) : string
-    {
-        $now = new \DateTime();
-        $diff = $now->diff($ago);
-
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
-
-        $string = array(
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-            'h' => 'hour',
-            'i' => 'minute',
-            's' => 'second',
-        );
-        foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $this->translator->transChoice("global.time.$v", $diff->$k);
-            } else {
-                unset($string[$k]);
-            }
-        }
-        $string = \array_slice($string, 0, 1);
-
-        return $string ?
-            $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
-    }
-
-    /**
-     * @param \DateTime $start
-     * @param \DateTime $end
-     * @return string
-     */
-    public function timeDiff(\DateTime $start, \DateTime $end) : string
-    {
-        $diff = $start->diff($end);
-
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
-
-        $string = array(
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-            'h' => 'hour',
-            'i' => 'minute',
-            's' => 'second',
-        );
-        foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $this->translator->transChoice("global.time.$v", $diff->$k);
-            } else {
-                unset($string[$k]);
-            }
-        }
-        $string = \array_slice($string, 0, 1);
-
-        return $string ? implode(', ', $string) : '';
     }
 
     /**

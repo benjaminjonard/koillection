@@ -492,15 +492,6 @@
         <target>Détails</target>
       </segment>
     </unit>
-    <unit id="nkLSi.t" name="btn.filter">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:30</note>
-      </notes>
-      <segment>
-        <source>btn.filter</source>
-        <target>Filter</target>
-      </segment>
-    </unit>
     <unit id="Z1gXdci" name="tooltip.recompute_disk_space">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:53</note>
@@ -1328,15 +1319,6 @@
         <target>Collections</target>
       </segment>
     </unit>
-    <unit id="m1wEZbv" name="label.connections">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:33</note>
-      </notes>
-      <segment>
-        <source>label.connections</source>
-        <target>Connexions</target>
-      </segment>
-    </unit>
     <unit id="WqTho4C" name="label.comment">
       <notes>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
@@ -1492,14 +1474,14 @@
         <target>Label</target>
       </segment>
     </unit>
-    <unit id="fLiugkG" name="label.last_connection">
+    <unit id="vMjoUw7" name="label.last_date_of_activity">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:33</note>
         <note category="file-source" priority="1">templates/App/Admin/users.html.twig:33</note>
       </notes>
       <segment>
-        <source>label.last_connection</source>
-        <target>Dernière connexion</target>
+        <source>label.last_date_of_activity</source>
+        <target>Dernière activité</target>
       </segment>
     </unit>
     <unit id="Az510BV" name="label.loan_duration">
@@ -2120,7 +2102,6 @@
         <note category="file-source" priority="1">templates/bundles/TranslationBundle/WebUI/show.html.twig:20</note>
         <note category="file-source" priority="1">templates/App/Admin/index.html.twig:19</note>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:19</note>
         <note category="file-source" priority="1">templates/App/Admin/users.html.twig:19</note>
       </notes>
       <segment>
@@ -2748,15 +2729,6 @@
         <target>La liste de souhaits %wishlist% a été mise à jour</target>
       </segment>
     </unit>
-    <unit id="kV8hsez" name="tab.analytics">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/partials/tabs.html.twig:15</note>
-      </notes>
-      <segment>
-        <source>tab.analytics</source>
-        <target>Analytics</target>
-      </segment>
-    </unit>
     <unit id="1Jpq5QX" name="tab.loans">
       <notes>
         <note category="file-source" priority="1">templates/App/Loan/index.html.twig:27</note>
@@ -2878,15 +2850,6 @@
         <target>Objets ajoutés par heure de la journée</target>
       </segment>
     </unit>
-    <unit id="42JOEvT" name="title.charts.locales_usage">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:58</note>
-      </notes>
-      <segment>
-        <source>title.charts.locales_usage</source>
-        <target>Utilisation des locales</target>
-      </segment>
-    </unit>
     <unit id="jZqCZ_K" name="title.charts.months">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:39</note>
@@ -2918,15 +2881,6 @@
       <segment>
         <source>title.charts.radial_tree</source>
         <target>Représentation en arbre circulaire de votre collection</target>
-      </segment>
-    </unit>
-    <unit id="K3gA06i" name="title.charts.themes_usage">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:55</note>
-      </notes>
-      <segment>
-        <source>title.charts.themes_usage</source>
-        <target>Utilisation des thèmes</target>
       </segment>
     </unit>
     <unit id="yfwVi.I" name="title.charts.week_days">
@@ -3189,96 +3143,6 @@
       <segment>
         <source>title.photos</source>
         <target>Photos</target>
-      </segment>
-    </unit>
-    <unit id="Jur0smZ" name="title.charts.browsers">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:40</note>
-      </notes>
-      <segment>
-        <source>title.charts.browsers</source>
-        <target>Navigateurs</target>
-      </segment>
-    </unit>
-    <unit id="hRtc1Pk" name="title.charts.browsers_versions">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:43</note>
-      </notes>
-      <segment>
-        <source>title.charts.browsers_versions</source>
-        <target>Versions des navigateurs</target>
-      </segment>
-    </unit>
-    <unit id="vtM3Hhb" name="title.charts.devices">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:84</note>
-      </notes>
-      <segment>
-        <source>title.charts.devices</source>
-        <target>Appareils</target>
-      </segment>
-    </unit>
-    <unit id="q7Oc2Rd" name="title.charts.devices_models">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:87</note>
-      </notes>
-      <segment>
-        <source>title.charts.devices_models</source>
-        <target>Modèles d'appareils</target>
-      </segment>
-    </unit>
-    <unit id="lYJvtGU" name="title.charts.devices_subtypes">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:76</note>
-      </notes>
-      <segment>
-        <source>title.charts.devices_subtypes</source>
-        <target>Sous-type d'appareils</target>
-      </segment>
-    </unit>
-    <unit id="2G5UOCQ" name="title.charts.devices_types">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:73</note>
-      </notes>
-      <segment>
-        <source>title.charts.devices_types</source>
-        <target>Type d'appareils</target>
-      </segment>
-    </unit>
-    <unit id="0jpRhb7" name="title.charts.engines">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:51</note>
-      </notes>
-      <segment>
-        <source>title.charts.engines</source>
-        <target>Moteurs</target>
-      </segment>
-    </unit>
-    <unit id="gR7xdPA" name="title.charts.engines_versions">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:54</note>
-      </notes>
-      <segment>
-        <source>title.charts.engines_versions</source>
-        <target>Versions des moteurs</target>
-      </segment>
-    </unit>
-    <unit id="oCRB3nU" name="title.charts.oss">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:62</note>
-      </notes>
-      <segment>
-        <source>title.charts.oss</source>
-        <target>SEs</target>
-      </segment>
-    </unit>
-    <unit id="ltw4mUF" name="title.charts.oss_versions">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/analytics.html.twig:65</note>
-      </notes>
-      <segment>
-        <source>title.charts.oss_versions</source>
-        <target>Versions des SEs</target>
       </segment>
     </unit>
     <unit id="hR4DWGd" name="title.statistics">
@@ -3608,12 +3472,6 @@
         <target>Utilisateurs</target>
       </segment>
     </unit>
-    <unit id="YMVQvQ_" name="menu.analytics">
-      <segment>
-        <source>menu.analytics</source>
-        <target>Analytics</target>
-      </segment>
-    </unit>
     <unit id="Ho1FG0i" name="label.locales">
       <segment>
         <source>label.locales</source>
@@ -3788,48 +3646,6 @@
         <target>Autres</target>
       </segment>
     </unit>
-    <unit id="SWO3mWx" name="period.today">
-      <segment>
-        <source>period.today</source>
-        <target>Aujourd'hui</target>
-      </segment>
-    </unit>
-    <unit id="yNnb_LG" name="period.day">
-      <segment>
-        <source>period.day</source>
-        <target>Dernier jour</target>
-      </segment>
-    </unit>
-    <unit id="PkpSA.c" name="period.week">
-      <segment>
-        <source>period.week</source>
-        <target>Dernière semaine</target>
-      </segment>
-    </unit>
-    <unit id="mCIpk7N" name="period.month">
-      <segment>
-        <source>period.month</source>
-        <target>Mois dernier</target>
-      </segment>
-    </unit>
-    <unit id="f2NYtod" name="period.year">
-      <segment>
-        <source>period.year</source>
-        <target>Année dernière</target>
-      </segment>
-    </unit>
-    <unit id="0dLAOgA" name="period.all">
-      <segment>
-        <source>period.all</source>
-        <target>Tout</target>
-      </segment>
-    </unit>
-    <unit id=".5Ls2HJ" name="filter.title.period">
-      <segment>
-        <source>filter.title.period</source>
-        <target>Période</target>
-      </segment>
-    </unit>
     <unit id="O59lP5d" name="label.role">
       <segment>
         <source>label.role</source>
@@ -3942,6 +3758,12 @@
       <segment>
         <source>label.version</source>
         <target>Version</target>
+      </segment>
+    </unit>
+    <unit id="4wvJrqA" name="global.time.today">
+      <segment>
+        <source>global.time.today</source>
+        <target>Aujourd'hui</target>
       </segment>
     </unit>
   </file>

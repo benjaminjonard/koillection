@@ -176,7 +176,7 @@ class Log
      *
      * @param \App\Entity\User $user
      *
-     * @return Connection
+     * @return Log
      */
     public function setUser(User $user = null) : Log
     {

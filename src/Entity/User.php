@@ -144,12 +144,6 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Connection", mappedBy="user", cascade={"remove"})
-     */
-    private $connections;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Log", mappedBy="user", cascade={"remove"})
      */
     private $logs;
@@ -159,6 +153,12 @@ class User implements UserInterface, BreabcrumbableInterface
      * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
      */
     private $albums;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $lastDateOfActivity;
 
     /**
      * @var \DateTime
@@ -645,6 +645,30 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set lastDateOfActivity
+     *
+     * @param \DateTime $lastDateOfActivity
+     *
+     * @return User
+     */
+    public function setLastDateOfActivity($lastDateOfActivity)
+    {
+        $this->lastDateOfActivity = $lastDateOfActivity;
+
+        return $this;
+    }
+
+    /**
+     * Get $lastDateOfActivity
+     *
+     * @return \DateTime
+     */
+    public function getLastDateOfActivity()
+    {
+        return $this->lastDateOfActivity;
     }
 
     /**

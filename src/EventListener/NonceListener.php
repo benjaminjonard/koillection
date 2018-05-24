@@ -6,11 +6,11 @@ use App\Security\NonceGenerator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
 /**
- * Class BeforeResponseListener
+ * Class NonceListener
  *
  * @package App\EventListener
  */
-class BeforeResponseListener
+class NonceListener
 {
     /**
      * @var NonceGenerator

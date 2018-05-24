@@ -320,6 +320,9 @@
             "ref": "0a66a0097def4db1cd03bcb3d4a268440ae4cb47"
         }
     },
+    "symfony/polyfill-ctype": {
+        "version": "v1.8.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.6.0"
     },
