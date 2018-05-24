@@ -78,10 +78,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
-    App\EventListener\Entity\DatumListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preRemove }
     App\EventListener\Entity\MediumListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush }

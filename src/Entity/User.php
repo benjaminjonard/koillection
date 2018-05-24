@@ -113,12 +113,6 @@ class User implements UserInterface, BreabcrumbableInterface
     private $diskSpaceAllowed;
 
     /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    private $signsCount;
-
-    /**
      * @var int
      * @ORM\Column(type="integer")
      */
@@ -182,7 +176,6 @@ class User implements UserInterface, BreabcrumbableInterface
     {
         $this->id = Uuid::uuid4();
         $this->roles = ['ROLE_USER'];
-        $this->signsCount = 0;
         $this->diskSpaceAllowed = 536870912;
         $this->diskSpaceUsed = 0;
         $this->enabled = false;
@@ -526,37 +519,6 @@ class User implements UserInterface, BreabcrumbableInterface
     public function getLocale() : string
     {
         return $this->locale;
-    }
-
-    /**
-     * Set signsCount
-     *
-     * @param integer $signsCount
-     *
-     * @return User
-     */
-    public function setSignsCount(int $signsCount) : User
-    {
-        $this->signsCount = $signsCount;
-
-        return $this;
-    }
-
-    /**
-     * Get signsCount
-     *
-     * @return integer
-     */
-    public function getSignsCount() : int
-    {
-        return $this->signsCount;
-    }
-
-    public function increaseSignsCounter(int $value) : User
-    {
-        $this->setSignsCount($this->getSignsCount() + $value);
-
-        return $this;
     }
 
     /**
