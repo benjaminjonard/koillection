@@ -4,7 +4,6 @@ namespace App\Twig;
 
 use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
-use App\Enum\PeriodEnum;
 use App\Enum\RoleEnum;
 
 /**
