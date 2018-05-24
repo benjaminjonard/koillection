@@ -75,7 +75,6 @@ class LogExtension extends \Twig_Extension
                 $messages[] = $this->translator->trans('log.'.$class.'.deleted', ['%label%' => $label]);
                 break;
             case LogTypeEnum::TYPE_UPDATE:
-                dump($log->getPayload());
                 foreach (json_decode($log->getPayload(), true) as $payload) {
                     $messages[] = $this->loggerChain->getFormattedPayload($log->getObjectClass(), $payload);
                 }

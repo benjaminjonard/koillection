@@ -49,7 +49,7 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.diskSpaceUsed|bytes }}</td>
                                 <td>{{ user.diskSpaceAllowed|bytes }}</td>
-                                <td>{{ user.lastDateOfActivity ? user.lastDateOfActivity|dateAgo : '-' }}</td>
+                                <td title="{{ user.lastDateOfActivity|date('d/m/Y') }}">{{ user.lastDateOfActivity ? user.lastDateOfActivity|dateAgo : '-' }}</td>
                                 <td>
                                     <a title="{{ 'tooltip.edit'|trans }}" href="{{ path('app_admin_user_edit', {id : user.id}) }}">
                                         <i class="fa fa-pencil fa-fw"></i>
