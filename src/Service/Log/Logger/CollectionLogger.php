@@ -41,7 +41,7 @@ class CollectionLogger extends Logger
             return null;
         }
 
-        return $this->createLog(LogTypeEnum::TYPE_CREATED, $collection);
+        return $this->createLog(LogTypeEnum::TYPE_CREATE, $collection);
     }
 
     /**
@@ -54,7 +54,7 @@ class CollectionLogger extends Logger
             return null;
         }
 
-        return $this->createLog(LogTypeEnum::TYPE_DELETED, $collection);
+        return $this->createLog(LogTypeEnum::TYPE_DELETE, $collection);
     }
 
     /**
@@ -103,7 +103,7 @@ class CollectionLogger extends Logger
         }
 
         return $this->createLog(
-            LogTypeEnum::TYPE_UPDATED,
+            LogTypeEnum::TYPE_UPDATE,
             $collection,
             $mainPayload
         );

@@ -3766,5 +3766,11 @@
         <target>Today</target>
       </segment>
     </unit>
+    <unit id="VXq4GWT" name="label.datum_added">
+      <segment>
+        <source>label.datum_added</source>
+        <target>label.datum_added</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

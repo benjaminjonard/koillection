@@ -36,14 +36,14 @@ class HistoryController extends AbstractController
         );
 
         $count = $this->getDoctrine()->getRepository(Log::class)->count([
-            'type' => [LogTypeEnum::TYPE_CREATED, LogTypeEnum::TYPE_DELETED],
+            'type' => [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE],
             'objectClass' => $classes
         ]);
 
         return $this->render('App/History/index.html.twig', [
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
                 'user' => $this->getUser(),
-                'type' => [LogTypeEnum::TYPE_CREATED, LogTypeEnum::TYPE_DELETED],
+                'type' => [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE],
                 'objectClass' => $classes
             ], [
                 'loggedAt' => 'DESC'

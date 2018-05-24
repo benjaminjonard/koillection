@@ -9,8 +9,8 @@ namespace App\Enum;
  */
 class VisibilityEnum
 {
-    const VISIBILITY_PUBLIC = 1;
-    const VISIBILITY_PRIVATE = 2;
+    const VISIBILITY_PUBLIC = 'public';
+    const VISIBILITY_PRIVATE = 'private';
 
     const VISIBILITIES = [
         self::VISIBILITY_PUBLIC,

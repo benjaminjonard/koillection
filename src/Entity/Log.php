@@ -24,8 +24,8 @@ class Log
     private $id;
 
     /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
      */
     private $type;
 
@@ -198,7 +198,7 @@ class Log
     /**
      * Set type
      *
-     * @param integer $type
+     * @param string $type
      *
      * @return Log
      */
@@ -212,7 +212,7 @@ class Log
     /**
      * Get type
      *
-     * @return integer
+     * @return string
      */
     public function getType()
     {
