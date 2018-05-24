@@ -52,7 +52,6 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
     {
         yield ["/admin"];
         yield ["/admin/users"];
-        yield ["/admin/analytics"];
         yield ["/admin/_trans"];
     }
 }
