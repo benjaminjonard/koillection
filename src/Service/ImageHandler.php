@@ -45,14 +45,13 @@ class ImageHandler
      * @param RandomStringGenerator $rsg
      * @param ThumbnailGenerator $tg
      * @param TokenStorageInterface $tokenStorage
-     * @param string $publicPath
      */
-    public function __construct(RandomStringGenerator $rsg, ThumbnailGenerator $tg, TokenStorageInterface $tokenStorage, string $publicPath)
+    public function __construct(RandomStringGenerator $rsg, ThumbnailGenerator $tg, TokenStorageInterface $tokenStorage)
     {
         $this->rsg = $rsg;
         $this->tg = $tg;
         $this->tokenStorage = $tokenStorage;
-        $this->publicPath = $publicPath;
+        $this->publicPath = __DIR__ . '/../../public';
     }
 
     /**

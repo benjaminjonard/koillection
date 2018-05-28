@@ -12,7 +12,6 @@ services:
             $defaultLocale: '%locale%'
             $showAdminTools: '%env(SHOW_ADMIN_TOOLS)%'
             $version: '%version%'
-            $publicPath: '%kernel.project_dir%/public'
 
     App\:
         resource: '../src/*'
