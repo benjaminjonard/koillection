@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2018-05-28
+### Chore
+* chore: Update version to v1.2.0 (Benjamin Jonard)
+
+### Features
+* feat: Add ppm support (Benjamin Jonard)
+
+### Fixes
+* fix: Fix collection title display for items (Benjamin Jonard)
+
 ## [1.1.2] - 2018-05-24
 ### Chore
 * chore: Update version to v1.1.2 (Benjamin Jonard)

@@ -1,5 +1,5 @@
 parameters:
-    version: 'v1.1.2'
+    version: 'v1.2.0'
     locale: 'en'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
 
@@ -12,6 +12,7 @@ services:
             $defaultLocale: '%locale%'
             $showAdminTools: '%env(SHOW_ADMIN_TOOLS)%'
             $version: '%version%'
+            $publicPath: '%kernel.project_dir%/public'
 
     App\:
         resource: '../src/*'
