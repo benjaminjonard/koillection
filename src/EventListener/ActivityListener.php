@@ -40,6 +40,7 @@ class ActivityListener
      */
     public function onKernelRequest()
     {
+        $this->em->clear();
         $token = $this->tokenStorage->getToken();
 
         if (!$token) {
