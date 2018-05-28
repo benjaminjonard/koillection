@@ -36,16 +36,23 @@ class ImageHandler
     protected $tokenStorage;
 
     /**
+     * @var string
+     */
+    protected $publicPath;
+
+    /**
      * ImageHandler constructor.
      * @param RandomStringGenerator $rsg
      * @param ThumbnailGenerator $tg
      * @param TokenStorageInterface $tokenStorage
+     * @param string $publicPath
      */
-    public function __construct(RandomStringGenerator $rsg, ThumbnailGenerator $tg, TokenStorageInterface $tokenStorage)
+    public function __construct(RandomStringGenerator $rsg, ThumbnailGenerator $tg, TokenStorageInterface $tokenStorage, string $publicPath)
     {
         $this->rsg = $rsg;
         $this->tg = $tg;
         $this->tokenStorage = $tokenStorage;
+        $this->publicPath = $publicPath;
     }
 
     /**
@@ -70,12 +77,12 @@ class ImageHandler
             ->setType(Medium::TYPE_IMAGE)
         ;
 
-        $medium->getUploadedFile()->move($path, $medium->getPath());
+        $medium->getUploadedFile()->move($this->publicPath.'/'.$path, $medium->getPath());
         $medium->setSize(filesize($medium->getPath()));
         $sizeUsed += $medium->getSize();
 
         if ($medium->getMustGenerateAThumbnail()) {
-            $medium->setThumbnailPath($path.'/'.$generatedName.'_small.'.$extension);
+            $medium->setThumbnailPath($path.$generatedName.'_small.'.$extension);
             $this->tg->generateThumbnail($medium->getPath(), $medium->getThumbnailPath());
             $medium->setThumbnailSize(filesize($medium->getThumbnailPath()));
             $sizeUsed += $medium->getThumbnailSize();
@@ -97,10 +104,10 @@ class ImageHandler
         $sizeFreed += $medium->getSize();
 
 
-        unlink($medium->getPath());
+        unlink($this->publicPath.'/'.$medium->getPath());
         if ($medium->getThumbnailPath()) {
             $sizeFreed += $medium->getThumbnailSize();
-            unlink($medium->getThumbnailPath());
+            unlink($this->publicPath.'/'.$medium->getThumbnailPath());
         }
 
         $dir = rtrim($medium->getPath(), basename($medium->getFilename()));
