@@ -77,13 +77,13 @@ class ImageHandler
         ;
 
         $medium->getUploadedFile()->move($this->publicPath.'/'.$path, $medium->getPath());
-        $medium->setSize(filesize($medium->getPath()));
+        $medium->setSize(filesize($this->publicPath.'/'.$medium->getPath()));
         $sizeUsed += $medium->getSize();
 
         if ($medium->getMustGenerateAThumbnail()) {
             $medium->setThumbnailPath($path.$generatedName.'_small.'.$extension);
-            $this->tg->generateThumbnail($medium->getPath(), $medium->getThumbnailPath());
-            $medium->setThumbnailSize(filesize($medium->getThumbnailPath()));
+            $this->tg->generateThumbnail($this->publicPath.'/'.$medium->getPath(), $this->publicPath.'/'.$medium->getThumbnailPath());
+            $medium->setThumbnailSize(filesize($this->publicPath.'/'.$medium->getThumbnailPath()));
             $sizeUsed += $medium->getThumbnailSize();
         }
 
