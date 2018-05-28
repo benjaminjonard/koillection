@@ -109,7 +109,7 @@ class ImageHandler
             unlink($this->publicPath.'/'.$medium->getThumbnailPath());
         }
 
-        $dir = rtrim($medium->getPath(), basename($medium->getFilename()));
+        $dir = rtrim($this->publicPath.'/'.$medium->getPath(), basename($medium->getFilename()));
 
         if (\count(glob("$dir/*")) === 0) {
             rmdir($dir);
