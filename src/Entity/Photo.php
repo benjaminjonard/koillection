@@ -104,7 +104,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setTitle(string $title) : Photo
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
 
@@ -128,7 +128,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setComment(string $comment) : Photo
+    public function setComment(string $comment) : self
     {
         $this->comment = $comment;
 
@@ -152,7 +152,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setPlace(string $place) : Photo
+    public function setPlace(string $place) : self
     {
         $this->place = $place;
 
@@ -176,7 +176,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setAlbum(Album $album = null) : Photo
+    public function setAlbum(Album $album = null) : self
     {
         $this->album = $album;
 
@@ -210,7 +210,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setOwner(User $owner = null) : Photo
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -224,7 +224,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setImage(Medium $image = null) : Photo
+    public function setImage(Medium $image = null) : self
     {
         if ($image === null) {
             return $this;
@@ -256,7 +256,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setTakenAt($takenAt) : Photo
+    public function setTakenAt($takenAt) : self
     {
         $this->takenAt = $takenAt;
 
@@ -280,7 +280,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setCreatedAt($createdAt) : Photo
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -304,7 +304,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setUpdatedAt($updatedAt) : Photo
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -331,9 +331,9 @@ class Photo
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return Photo
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 

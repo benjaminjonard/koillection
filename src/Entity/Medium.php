@@ -106,7 +106,10 @@ class Medium
         $this->preventFileRemoval = false;
     }
 
-    public function preventFileRemoval()
+    /**
+     * @return Medium
+     */
+    public function preventFileRemoval() : self
     {
         $this->preventFileRemoval = true;
 
@@ -133,7 +136,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setType($type)
+    public function setType($type) : self
     {
         $this->type = $type;
 
@@ -157,7 +160,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setFilename($filename)
+    public function setFilename($filename) : self
     {
         $this->filename = $filename;
 
@@ -181,7 +184,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setPath($path)
+    public function setPath($path) : self
     {
         $this->path = $path;
 
@@ -205,7 +208,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setThumbnailPath($thumbnailPath)
+    public function setThumbnailPath($thumbnailPath) : self
     {
         $this->thumbnailPath = $thumbnailPath;
 
@@ -227,7 +230,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setMimetype($mimetype)
+    public function setMimetype($mimetype) : self
     {
         $this->mimetype = $mimetype;
 
@@ -251,7 +254,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -275,7 +278,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -299,7 +302,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setUploadedFile($uploadedFile)
+    public function setUploadedFile($uploadedFile) : self
     {
         $this->uploadedFile = $uploadedFile;
 
@@ -323,7 +326,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setSize($size)
+    public function setSize($size) : self
     {
         $this->size = $size;
 
@@ -347,7 +350,7 @@ class Medium
      *
      * @return Medium
      */
-    public function setThumbnailSize($thumbnailSize)
+    public function setThumbnailSize($thumbnailSize) : self
     {
         $this->thumbnailSize = $thumbnailSize;
 
@@ -364,7 +367,7 @@ class Medium
         return $this->thumbnailSize;
     }
 
-    public function setMustGenerateAThumbnail($mustGenerateAThumbnail)
+    public function setMustGenerateAThumbnail($mustGenerateAThumbnail) : self
     {
         $this->mustGenerateAThumbnail = $mustGenerateAThumbnail;
 
@@ -379,11 +382,11 @@ class Medium
     /**
      * Set owner
      *
-     * @param \App\Entity\User $owner
+     * @param User $owner
      *
      * @return Medium
      */
-    public function setOwner(\App\Entity\User $owner = null)
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 

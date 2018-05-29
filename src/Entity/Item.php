@@ -183,7 +183,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setName(string $name) : Item
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
@@ -207,7 +207,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setCollection(Collection $collection = null) : Item
+    public function setCollection(Collection $collection = null) : self
     {
         $this->collection = $collection;
 
@@ -231,7 +231,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setOwner(User $owner = null) : Item
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -255,7 +255,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setImage(Medium $image = null) : Item
+    public function setImage(Medium $image = null) : self
     {
         if ($image === null) {
             return $this;
@@ -287,7 +287,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function addTag(Tag $tag) : Item
+    public function addTag(Tag $tag) : self
     {
         $this->tags[] = $tag;
 
@@ -301,7 +301,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function removeTag(Tag $tag) : Item
+    public function removeTag(Tag $tag) : self
     {
         $this->tags->removeElement($tag);
 
@@ -313,7 +313,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return \App\Entity\Item $item
      */
-    public function setTags(DoctrineCollection $tags) : Item
+    public function setTags(DoctrineCollection $tags) : self
     {
         $this->tags = $tags;
 
@@ -347,7 +347,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function addDatum(Datum $datum) : Item
+    public function addDatum(Datum $datum) : self
     {
         $datum->setItem($this);
         $this->data->add($datum);
@@ -359,7 +359,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      * @param Datum $datum
      * @return Item
      */
-    public function removeDatum(Datum $datum) : Item
+    public function removeDatum(Datum $datum) : self
     {
         $this->data->removeElement($datum);
 
@@ -383,7 +383,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setTemplate(Template $template = null) : Item
+    public function setTemplate(Template $template = null) : self
     {
         $this->template = $template;
 
@@ -407,7 +407,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setQuantity($quantity)
+    public function setQuantity($quantity) : self
     {
         $this->quantity = $quantity;
 
@@ -431,7 +431,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -455,7 +455,7 @@ class Item implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -482,9 +482,9 @@ class Item implements BreabcrumbableInterface, LoggableInterface
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return Item
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 

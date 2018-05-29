@@ -48,6 +48,8 @@ class LogQueueListener
 
             $this->em->flush();
         }
+
         $this->logQueue->clearLogs();
+        $this->em->clear();
     }
 }

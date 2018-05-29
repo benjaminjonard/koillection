@@ -123,7 +123,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function setName(string $name) : Wishlist
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
@@ -147,7 +147,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function setOwner(User $owner = null) : Wishlist
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -171,7 +171,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function addWish(Wish $wish) : Wishlist
+    public function addWish(Wish $wish) : self
     {
         $this->wishes[] = $wish;
 
@@ -182,7 +182,7 @@ class Wishlist implements BreabcrumbableInterface
      * @param Wish $wish
      * @return Wishlist
      */
-    public function removeWish(Wish $wish) : Wishlist
+    public function removeWish(Wish $wish) : self
     {
         $this->wishes->removeElement($wish);
 
@@ -206,7 +206,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function setColor(string $color) : Wishlist
+    public function setColor(string $color) : self
     {
         $this->color = $color;
 
@@ -230,7 +230,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function addChild(Wishlist $child) : Wishlist
+    public function addChild(Wishlist $child) : self
     {
         $this->children[] = $child;
 
@@ -241,7 +241,7 @@ class Wishlist implements BreabcrumbableInterface
      * @param Wishlist $child
      * @return Wishlist
      */
-    public function removeChild(Wishlist $child) : Wishlist
+    public function removeChild(Wishlist $child) : self
     {
         $this->children->removeElement($child);
 
@@ -265,7 +265,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function setParent(Wishlist $parent = null) : Wishlist
+    public function setParent(Wishlist $parent = null) : self
     {
         $this->parent = $parent;
 
@@ -289,7 +289,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -313,7 +313,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -337,7 +337,7 @@ class Wishlist implements BreabcrumbableInterface
      *
      * @return Wishlist
      */
-    public function setImage(Medium $image = null) : Wishlist
+    public function setImage(Medium $image = null) : self
     {
         if ($image === null) {
             return $this;
@@ -368,9 +368,9 @@ class Wishlist implements BreabcrumbableInterface
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return Wishlist
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 

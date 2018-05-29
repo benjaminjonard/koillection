@@ -97,7 +97,7 @@ class Template implements BreabcrumbableInterface
      *
      * @return Template
      */
-    public function setName(string $name) : Template
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
@@ -121,7 +121,7 @@ class Template implements BreabcrumbableInterface
      *
      * @return Template
      */
-    public function addField(Field $field) : Template
+    public function addField(Field $field) : self
     {
         $field->setTemplate($this);
         $this->fields[] = $field;
@@ -133,7 +133,7 @@ class Template implements BreabcrumbableInterface
      * @param Field $field
      * @return Template
      */
-    public function removeField(Field $field) : Template
+    public function removeField(Field $field) : self
     {
         $this->fields->removeElement($field);
 
@@ -157,7 +157,7 @@ class Template implements BreabcrumbableInterface
      *
      * @return Template
      */
-    public function setOwner(User $owner = null) : Template
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -181,7 +181,7 @@ class Template implements BreabcrumbableInterface
      *
      * @return Template
      */
-    public function addItem(Item $item) : Template
+    public function addItem(Item $item) : self
     {
         $this->items[] = $item;
 
@@ -192,7 +192,7 @@ class Template implements BreabcrumbableInterface
      * @param Item $item
      * @return Template
      */
-    public function removeItem(Item $item) : Template
+    public function removeItem(Item $item) : self
     {
         $this->items->removeElement($item);
 
@@ -216,7 +216,7 @@ class Template implements BreabcrumbableInterface
      *
      * @return Template
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -240,7 +240,7 @@ class Template implements BreabcrumbableInterface
      *
      * @return Template
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 

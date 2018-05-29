@@ -116,7 +116,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setName(string $name) : Wish
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
@@ -140,7 +140,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setWishlist(Wishlist $wishlist = null) : Wish
+    public function setWishlist(Wishlist $wishlist = null) : self
     {
         $this->wishlist = $wishlist;
 
@@ -164,7 +164,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setOwner(User $owner = null) : Wish
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -188,7 +188,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setUrl(string $url) : Wish
+    public function setUrl(string $url) : self
     {
         $this->url = $url;
 
@@ -212,7 +212,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setPrice(string $price) : Wish
+    public function setPrice(string $price) : self
     {
         $this->price = $price;
 
@@ -236,7 +236,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setColor(string $color) : Wish
+    public function setColor(string $color) : self
     {
         $this->color = $color;
 
@@ -260,7 +260,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setComment(string $comment) : Wish
+    public function setComment(string $comment) : self
     {
         $this->comment = $comment;
 
@@ -284,7 +284,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setImage(Medium $image = null) : Wish
+    public function setImage(Medium $image = null) : self
     {
         if ($image === null) {
             return $this;
@@ -314,7 +314,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setCurrency(string $currency) : Wish
+    public function setCurrency(string $currency) : self
     {
         $this->currency = $currency;
 
@@ -338,7 +338,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -362,7 +362,7 @@ class Wish
      *
      * @return Wish
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -389,9 +389,9 @@ class Wish
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return Wish
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 
