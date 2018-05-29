@@ -85,7 +85,7 @@ class Log
      *
      * @return Log
      */
-    public function setLoggedAt($loggedAt)
+    public function setLoggedAt($loggedAt) : self
     {
         $this->loggedAt = $loggedAt;
 
@@ -106,7 +106,7 @@ class Log
      * @param $objectId
      * @return Log
      */
-    public function setObjectId($objectId) : Log
+    public function setObjectId($objectId) : self
     {
         $this->objectId = $objectId;
 
@@ -130,7 +130,7 @@ class Log
      *
      * @return Log
      */
-    public function setObjectClass($objectClass)
+    public function setObjectClass($objectClass) : self
     {
         $this->objectClass = $objectClass;
 
@@ -154,7 +154,7 @@ class Log
      *
      * @return Log
      */
-    public function setPayload($payload)
+    public function setPayload($payload) : self
     {
         $this->payload = $payload;
 
@@ -178,7 +178,7 @@ class Log
      *
      * @return Log
      */
-    public function setUser(User $user = null) : Log
+    public function setUser(User $user = null) : self
     {
         $this->user = $user;
 
@@ -202,7 +202,7 @@ class Log
      *
      * @return Log
      */
-    public function setType($type)
+    public function setType($type) : self
     {
         $this->type = $type;
 
@@ -226,7 +226,7 @@ class Log
      *
      * @return Log
      */
-    public function setObjectLabel($objectLabel)
+    public function setObjectLabel($objectLabel) : self
     {
         $this->objectLabel = $objectLabel;
 

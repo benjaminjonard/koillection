@@ -73,7 +73,7 @@ class Loan
      *
      * @return Loan
      */
-    public function setLentTo(string $lentTo) : Loan
+    public function setLentTo(string $lentTo) : self
     {
         $this->lentTo = $lentTo;
 
@@ -97,7 +97,7 @@ class Loan
      *
      * @return Loan
      */
-    public function setLentAt(\DateTime $lentAt) : Loan
+    public function setLentAt(\DateTime $lentAt) : self
     {
         $this->lentAt = $lentAt;
 
@@ -121,7 +121,7 @@ class Loan
      *
      * @return Loan
      */
-    public function setReturnedAt(\DateTime $returnedAt) : Loan
+    public function setReturnedAt(\DateTime $returnedAt) : self
     {
         $this->returnedAt = $returnedAt;
 
@@ -145,7 +145,7 @@ class Loan
      *
      * @return Loan
      */
-    public function setItem(Item $item = null) : Loan
+    public function setItem(Item $item = null) : self
     {
         $this->item = $item;
 
@@ -169,7 +169,7 @@ class Loan
      *
      * @return Loan
      */
-    public function setOwner(User $owner = null) : Loan
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 

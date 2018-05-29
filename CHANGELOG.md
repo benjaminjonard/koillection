@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.1] - 2018-05-29
+### Chore
+* chore: Update version to v1.2.1 (Benjamin Jonard)
+* chore: Improve return statements (Benjamin Jonard)
+
+### Fixes
+* fix: Fix bug with PPM (Benjamin Jonard)
+
 ## [1.2.0] - 2018-05-28
 ### Chore
 * chore: Update version to v1.2.0 (Benjamin Jonard)

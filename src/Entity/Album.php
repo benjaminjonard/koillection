@@ -100,7 +100,7 @@ class Album implements BreabcrumbableInterface
      *
      * @return Album
      */
-    public function setTitle(string $title) : Album
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
 
@@ -134,7 +134,7 @@ class Album implements BreabcrumbableInterface
      *
      * @return Album
      */
-    public function setOwner(User $owner = null) : Album
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -148,7 +148,7 @@ class Album implements BreabcrumbableInterface
      *
      * @return Album
      */
-    public function setColor(string $color) : Album
+    public function setColor(string $color) : self
     {
         $this->color = $color;
 
@@ -172,7 +172,7 @@ class Album implements BreabcrumbableInterface
      *
      * @return Album
      */
-    public function setCreatedAt($createdAt) : Album
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -196,7 +196,7 @@ class Album implements BreabcrumbableInterface
      *
      * @return Album
      */
-    public function setUpdatedAt($updatedAt) : Album
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -217,7 +217,7 @@ class Album implements BreabcrumbableInterface
      * @param Photo $photo
      * @return Album
      */
-    public function addPhoto(Photo $photo) : Album
+    public function addPhoto(Photo $photo) : self
     {
         $this->photos[] = $photo;
 
@@ -228,7 +228,7 @@ class Album implements BreabcrumbableInterface
      * @param Photo $photo
      * @return Album
      */
-    public function removePhoto(Photo $photo) : Album
+    public function removePhoto(Photo $photo) : self
     {
         $this->photos->removeElement($photo);
 
@@ -253,9 +253,9 @@ class Album implements BreabcrumbableInterface
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return Album
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 

@@ -198,10 +198,10 @@ class User implements UserInterface, BreabcrumbableInterface
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
     }
 
-        /**
+    /**
      * @return User
      */
-    public function getOwner(): ?User
+    public function getOwner(): ?self
     {
         return $this;
     }
@@ -225,7 +225,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setTheme(string $theme) : User
+    public function setTheme(string $theme) : self
     {
         $this->theme = $theme;
 
@@ -259,7 +259,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setUsername(string $username) : User
+    public function setUsername(string $username) : self
     {
         $this->username = $username;
 
@@ -273,7 +273,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setEmail(string $email) : User
+    public function setEmail(string $email) : self
     {
         $this->email = $email;
 
@@ -297,7 +297,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setEnabled(bool $enabled) : User
+    public function setEnabled(bool $enabled) : self
     {
         $this->enabled = $enabled;
 
@@ -331,7 +331,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setSalt(?string$salt) : User
+    public function setSalt(?string $salt) : self
     {
         $this->salt = $salt;
 
@@ -355,7 +355,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setPassword(string $password) : User
+    public function setPassword(string $password) : self
     {
         $this->password = $password;
 
@@ -379,7 +379,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setPlainPassword(?string $plainPassword) : User
+    public function setPlainPassword(?string $plainPassword) : self
     {
         $this->plainPassword = $plainPassword;
         $this->password = $plainPassword;
@@ -404,7 +404,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setRoles(array $roles) : User
+    public function setRoles(array $roles) : self
     {
         $this->roles = $roles;
 
@@ -418,7 +418,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function addRole(string $role) : User
+    public function addRole(string $role) : self
     {
         $role = strtoupper($role);
         if (!\in_array($role, $this->roles, true)) {
@@ -435,7 +435,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function removeRole(string $role) : User
+    public function removeRole(string $role) : self
     {
         if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
             unset($this->roles[$key]);
@@ -452,7 +452,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setDiskSpaceUsed(int $diskSpaceUsed) : User
+    public function setDiskSpaceUsed(int $diskSpaceUsed) : self
     {
         $this->diskSpaceUsed = $diskSpaceUsed;
 
@@ -466,7 +466,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function increaseDiskSpaceUsed(int $value) : User
+    public function increaseDiskSpaceUsed(int $value) : self
     {
         $this->diskSpaceUsed += $value;
 
@@ -480,7 +480,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function decreaseDiskSpaceUsed(int $value) : User
+    public function decreaseDiskSpaceUsed(int $value) : self
     {
         $this->diskSpaceUsed -= $value;
 
@@ -504,7 +504,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setLocale(string $locale) : User
+    public function setLocale(string $locale) : self
     {
         $this->locale = $locale;
 
@@ -528,7 +528,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setCurrency(string $currency) : User
+    public function setCurrency(string $currency) : self
     {
         $this->currency = $currency;
 
@@ -552,7 +552,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setAvatar(Medium $avatar = null) : User
+    public function setAvatar(Medium $avatar = null) : self
     {
         if ($avatar === null) {
             return $this;
@@ -570,7 +570,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setImage(Medium $avatar = null) : User
+    public function setImage(Medium $avatar = null) : self
     {
         return $this->setAvatar($avatar);
     }
@@ -582,7 +582,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setDiskSpaceAllowed(int $diskSpaceAllowed) : User
+    public function setDiskSpaceAllowed(int $diskSpaceAllowed) : self
     {
         $this->diskSpaceAllowed = $diskSpaceAllowed;
 
@@ -606,7 +606,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -630,7 +630,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -654,7 +654,7 @@ class User implements UserInterface, BreabcrumbableInterface
      *
      * @return User
      */
-    public function setLastDateOfActivity($lastDateOfActivity)
+    public function setLastDateOfActivity($lastDateOfActivity) : self
     {
         $this->lastDateOfActivity = $lastDateOfActivity;
 
@@ -691,9 +691,9 @@ class User implements UserInterface, BreabcrumbableInterface
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return User
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 

@@ -137,7 +137,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setTitle(string $title) : Collection
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
 
@@ -161,7 +161,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function addChild(Collection $child) : Collection
+    public function addChild(Collection $child) : self
     {
         $this->children[] = $child;
 
@@ -172,7 +172,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      * @param Collection $child
      * @return Collection
      */
-    public function removeChild(Collection $child) : Collection
+    public function removeChild(Collection $child) : self
     {
         $this->children->removeElement($child);
 
@@ -196,7 +196,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setParent(Collection $parent = null) : Collection
+    public function setParent(Collection $parent = null) : self
     {
         $this->parent = $parent;
 
@@ -230,7 +230,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function addItem(Item $items) : Collection
+    public function addItem(Item $items) : self
     {
         $this->items[] = $items;
 
@@ -241,7 +241,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      * @param Item $items
      * @return Collection
      */
-    public function removeItem(Item $items) : Collection
+    public function removeItem(Item $items) : self
     {
         $this->items->removeElement($items);
 
@@ -265,7 +265,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setColor(string $color) : Collection
+    public function setColor(string $color) : self
     {
         $this->color = $color;
 
@@ -289,7 +289,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setOwner(User $owner = null) : Collection
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -318,7 +318,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setChildrenTitle($childrenTitle)
+    public function setChildrenTitle($childrenTitle) : self
     {
         $this->childrenTitle = $childrenTitle;
 
@@ -340,7 +340,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setItemsTitle($itemsTitle)
+    public function setItemsTitle($itemsTitle) : self
     {
         $this->itemsTitle = $itemsTitle;
 
@@ -362,7 +362,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -386,7 +386,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -410,7 +410,7 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
      *
      * @return Collection
      */
-    public function setImage(Medium $image = null) : Collection
+    public function setImage(Medium $image = null) : self
     {
         if ($image === null) {
             return $this;
@@ -441,9 +441,9 @@ class Collection implements LoggableInterface, BreabcrumbableInterface
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return Collection
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 

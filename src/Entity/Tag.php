@@ -110,7 +110,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Tag
      */
-    public function setLabel(string $label) : Tag
+    public function setLabel(string $label) : self
     {
         $this->label = $label;
 
@@ -134,7 +134,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Tag
      */
-    public function setOwner(User $owner = null) : Tag
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -158,7 +158,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Tag
      */
-    public function addItem(Item $item) : Tag
+    public function addItem(Item $item) : self
     {
         $this->items[] = $item;
 
@@ -169,7 +169,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      * @param Item $item
      * @return Tag
      */
-    public function removeItem(Item $item) : Tag
+    public function removeItem(Item $item) : self
     {
         $this->items->removeElement($item);
 
@@ -193,7 +193,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Tag
      */
-    public function setDescription(?string $description) : Tag
+    public function setDescription(?string $description) : self
     {
         $this->description = $description;
 
@@ -217,7 +217,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Tag
      */
-    public function setImage(Medium $image = null) : Tag
+    public function setImage(Medium $image = null) : self
     {
         if ($image === null) {
             return $this;
@@ -249,7 +249,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Tag
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -273,7 +273,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
      *
      * @return Tag
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -300,9 +300,9 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
 
     /**
      * @param string $visibility
-     * @return $this
+     * @return Tag
      */
-    public function setVisibility(string $visibility)
+    public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
 

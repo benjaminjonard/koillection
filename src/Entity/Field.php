@@ -68,7 +68,7 @@ class Field
      *
      * @return Field
      */
-    public function setName(string $name) : Field
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
@@ -92,7 +92,7 @@ class Field
      *
      * @return Field
      */
-    public function setType(string $type) : Field
+    public function setType(string $type) : self
     {
         $this->type = $type;
 
@@ -126,7 +126,7 @@ class Field
      *
      * @return Field
      */
-    public function setTemplate(Template $template = null) : Field
+    public function setTemplate(Template $template = null) : self
     {
         $this->template = $template;
 
@@ -150,7 +150,7 @@ class Field
      *
      * @return Field
      */
-    public function setPosition(int $position) : Field
+    public function setPosition(int $position) : self
     {
         $this->position = $position;
 

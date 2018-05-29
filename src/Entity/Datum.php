@@ -106,7 +106,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setValue(?string $value) : Datum
+    public function setValue(?string $value) : self
     {
         $this->value = $value;
 
@@ -130,7 +130,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setItem(Item $item = null) : Datum
+    public function setItem(Item $item = null) : self
     {
         $this->item = $item;
 
@@ -154,7 +154,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setLabel(string $label) : Datum
+    public function setLabel(string $label) : self
     {
         $this->label = $label;
 
@@ -178,7 +178,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setImage(Medium $image = null) : Datum
+    public function setImage(Medium $image = null) : self
     {
         if ($image === null) {
             return $this;
@@ -210,7 +210,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setType(string $type) : Datum
+    public function setType(string $type) : self
     {
         $this->type = $type;
 
@@ -234,7 +234,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setPosition(int $position) : Datum
+    public function setPosition(int $position) : self
     {
         $this->position = $position;
 
@@ -258,7 +258,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
@@ -282,7 +282,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
@@ -306,7 +306,7 @@ class Datum implements LoggableInterface
      *
      * @return Datum
      */
-    public function setOwner(User $owner = null) : Datum
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
