@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2018-05-30
+### Chore
+* chore: Update version to v1.2.2 (Benjamin Jonard)
+* chore: Update symfony version to 4.1 (Benjamin Jonard)
+
 ## [1.2.1] - 2018-05-29
 ### Chore
 * chore: Update version to v1.2.1 (Benjamin Jonard)
