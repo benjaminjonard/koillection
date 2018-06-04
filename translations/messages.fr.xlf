@@ -2830,15 +2830,6 @@
         <target>Champs additionels</target>
       </segment>
     </unit>
-    <unit id="2sI1M8R" name="title.avatar">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Profile/index.html.twig:51</note>
-      </notes>
-      <segment>
-        <source>title.avatar</source>
-        <target>Avatar</target>
-      </segment>
-    </unit>
     <unit id="svM3vNY" name="title.charts.hours">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:34</note>
@@ -3125,13 +3116,13 @@
         <target>Ajouter une nouvelle liste de souhait</target>
       </segment>
     </unit>
-    <unit id="o74WDVv" name="title.password">
+    <unit id="PMuodit" name="title.update_profile">
       <notes>
         <note category="file-source" priority="1">templates/App/Profile/index.html.twig:39</note>
       </notes>
       <segment>
-        <source>title.password</source>
-        <target>Mot de passe</target>
+        <source>title.update_profile</source>
+        <target>Mise à jour du profil</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -3764,6 +3755,12 @@
       <segment>
         <source>global.time.today</source>
         <target>Aujourd'hui</target>
+      </segment>
+    </unit>
+    <unit id="dmtPdwq" name="label.timezone">
+      <segment>
+        <source>label.timezone</source>
+        <target>Fuseau horaire</target>
       </segment>
     </unit>
   </file>

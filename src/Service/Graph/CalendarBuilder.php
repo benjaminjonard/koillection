@@ -36,34 +36,28 @@ class CalendarBuilder
     public function buildItemCalendar(User $user) : array
     {
         $data = [];
-        $result = $this->getNumberOfCreatedContentsByDate($user);
-
-        foreach ($result as $row) {
-            $timestamp = strtotime($row['date']);
-            $details = getdate((int) $timestamp);
-            $data[$details['year']]["$timestamp"] = (int) $row['count'];
-        }
-
-        return $data;
-    }
-
-    /**
-     * @param User $user
-     * @return array
-     */
-    private function getNumberOfCreatedContentsByDate(User $user) : array
-    {
-        $sql = "SELECT to_char(created_at, 'YYYY-mm-dd') AS date, COUNT(id) as count";
+        $sql = 'SELECT created_at AS date';
         $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ? GROUP BY date ORDER BY date';
+        $sql .= ' WHERE owner_id = ?';
 
         $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('date', 'date');
-        $rsm->addScalarResult('count', 'count');
+        $rsm->addScalarResult('date', 'date', 'datetime');
 
         $query = $this->em->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
 
-        return $query->getArrayResult();
+        $result = $query->getArrayResult();
+
+        $timezone = new \DateTimeZone($user->getTimezone());
+        foreach ($result as $row) {
+            $date = $row['date']->setTimezone($timezone);
+            $year = (string) $date->format('Y');
+            $timestamp = (string) $date->getTimestamp();
+            isset($data[$year]) ?: $data[$year] = [];
+            isset($data[$year][$timestamp]) ?: $data[$year][$timestamp] = 0;
+            $data[$year][$timestamp]++;
+        }
+
+        return $data;
     }
 }
