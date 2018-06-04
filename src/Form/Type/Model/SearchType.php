@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class SearchType
@@ -17,6 +18,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class SearchType extends AbstractType
 {
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
+     * SearchType constructor.
+     * @param TokenStorageInterface $tokenStorage
+     */
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage =$tokenStorage;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -34,7 +49,8 @@ class SearchType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd'
+                'format' => 'yyyy-MM-dd',
+                'view_timezone' => $this->tokenStorage->getToken()->getUser()->getTimezone()
             ])
             ->add('searchInItems', CheckboxType::class, [
                 'label' => false,
