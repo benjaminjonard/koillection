@@ -45,13 +45,12 @@ class ChartBuilder
      */
     public function buildActivityByHour(User $user) : array
     {
-        $sql = "SELECT to_char(created_at, 'fmHH24') AS abscissa, COUNT(id) as count";
+        $sql = 'SELECT created_at as date';
         $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ? GROUP BY abscissa';
+        $sql .= ' WHERE owner_id = ?';
 
         $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('abscissa', 'abscissa');
-        $rsm->addScalarResult('count', 'count');
+        $rsm->addScalarResult('date', 'date', 'datetime');
 
         $query = $this->em->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
@@ -62,9 +61,12 @@ class ChartBuilder
         for ($i = 0; $i < 24; ++$i) {
             $data[$i] = ['abscissa' => $i, 'count' => 0];
         }
+
         //Fill our array with the result of the SQL query
+        $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
-            $data[$raw['abscissa']] = ['abscissa' => (int) $raw['abscissa'], 'count' => (int) $raw['count']];
+            $hour = $raw['date']->setTimezone($timezone)->format('G');
+            $data[$hour]['count']++;
         }
 
         return $data;
@@ -78,13 +80,12 @@ class ChartBuilder
      */
     public function buildActivityByMonthDay(User $user) : array
     {
-        $sql = "SELECT to_char(created_at, 'fmDD') AS abscissa, COUNT(id) as count";
+        $sql = 'SELECT created_at AS date';
         $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ? GROUP BY abscissa';
+        $sql .= ' WHERE owner_id = ?';
 
         $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('abscissa', 'abscissa');
-        $rsm->addScalarResult('count', 'count');
+        $rsm->addScalarResult('date', 'date', 'datetime');
 
         $query = $this->em->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
@@ -92,13 +93,15 @@ class ChartBuilder
 
         $data = [];
         //Init an array with zeroed counts for each of the 31 possible number of days in a month
-        //Start array to 0, otherwise javascript is not happy when parsing json :(
-        for ($i = 0; $i <= 31; ++$i) {
-            $data[$i] = ['abscissa' => $i, 'count' => 0];
+        for ($i = 1; $i <= 31; ++$i) {
+            $data[] = ['abscissa' => $i, 'count' => 0];
         }
+
         //Fill our array with the result of the SQL query
+        $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
-            $data[$raw['abscissa'] - 1] = ['abscissa' => (int) $raw['abscissa'], 'count' => (int) $raw['count']];
+            $day = $raw['date']->setTimezone($timezone)->format('j');
+            $data[$day - 1]['count']++;
         }
 
         return $data;
@@ -112,13 +115,12 @@ class ChartBuilder
      */
     public function buildActivityByWeekDay(User $user) : array
     {
-        $sql = "SELECT to_char(created_at, 'D') AS abscissa, COUNT(id) as count";
+        $sql = 'SELECT created_at AS date';
         $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ? GROUP BY abscissa';
+        $sql .= ' WHERE owner_id = ?';
 
         $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('abscissa', 'abscissa');
-        $rsm->addScalarResult('count', 'count');
+        $rsm->addScalarResult('date', 'date', 'datetime');
 
         $query = $this->em->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
@@ -140,8 +142,10 @@ class ChartBuilder
         }
 
         //Fill our array with the result of the SQL query
+        $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
-            $data[$raw['abscissa'] - 1] = ['abscissa' => $days[$raw['abscissa'] - 1], 'count' => (int) $raw['count']];
+            $weekDay = $raw['date']->setTimezone($timezone)->format('w');
+            $data[$weekDay]['count']++;
         }
 
         return $data;
@@ -155,13 +159,12 @@ class ChartBuilder
      */
     public function buildActivityByMonth(User $user) : array
     {
-        $sql = "SELECT to_char(created_at, 'fmMM') AS abscissa, COUNT(id) as count";
+        $sql = 'SELECT created_at as date';
         $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ? GROUP BY abscissa';
+        $sql .= ' WHERE owner_id = ?';
 
         $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('abscissa', 'abscissa');
-        $rsm->addScalarResult('count', 'count');
+        $rsm->addScalarResult('date', 'date', 'datetime');
 
         $query = $this->em->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
@@ -188,8 +191,10 @@ class ChartBuilder
         }
 
         //Fill our array with the result of the SQL query
+        $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
-            $data[$raw['abscissa'] - 1] = ['abscissa' => $months[$raw['abscissa'] - 1], 'count' => (int) $raw['count']];
+            $month = $raw['date']->setTimezone($timezone)->format('n');
+            $data[$month - 1]['count']++;
         }
 
         return $data;

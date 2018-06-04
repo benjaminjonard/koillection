@@ -101,6 +101,11 @@ class User implements UserInterface, BreabcrumbableInterface
     private $locale;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $timezone;
+
+    /**
      * @var int
      * @ORM\Column(type="integer")
      */
@@ -698,5 +703,27 @@ class User implements UserInterface, BreabcrumbableInterface
         $this->visibility = $visibility;
 
         return $this;
+    }
+
+    /**
+     * Set timezone.
+     *
+     * @param string $timezone
+     *
+     * @return User
+     */
+    public function setTimezone(string $timezone) : self
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTimezone() : ?string
+    {
+        return $this->timezone;
     }
 }

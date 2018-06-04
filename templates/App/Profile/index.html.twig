@@ -33,34 +33,36 @@
                 <div class="pie-stat">{{ app.user.diskSpaceUsed|bytes }}/{{ app.user.diskSpaceAllowed|bytes }}</div>
             </div>
 
-            <div class="block-element row">
+            <div class="block-element">
                 {{ form_start(form) }}
-                    <div>
-                        <h5 class="header">{{ 'title.password'|trans }}</h5>
+                    <div class="row">
+                        <h5 class="header">{{ 'title.update_profile'|trans }}</h5>
                         <div class="col offset-s1 s5">
-                            {{ form_row(form.plainPassword.first, {'label' : 'label.password'} ) }}
+                            {{ form_row(form.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
                         </div>
                         <div class="col s5">
                             {{ form_row(form.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
                         </div>
                     </div>
 
-                    <div class="clearfix"></div>
-
                     <div class="row">
-                        <h5 class="header">{{ 'title.avatar'|trans }}</h5>
-                        <div class="col offset-s1 s10">
+                        <div class="col offset-s1 s5">
                             {% if app.user.avatar is not null %}
                                 {{ form_row(form.image, {'attr': {'src' : app.user.avatar ? app.user.avatar.path : null }}) }}
                             {% else %}
                                 {{ form_row(form.image) }}
                             {% endif %}
                         </div>
+                        <div class="col s5">
+                            {{ form_row(form.timezone, {'label' : 'label.timezone'} ) }}
+                        </div>
                     </div>
 
-                    <div class="content-block row">
+                    <div class="form-btn-holder">
                         {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
                     </div>
+
+                    <div class="clearfix"></div>
                 {{ form_end(form) }}
             </div>
         </div>

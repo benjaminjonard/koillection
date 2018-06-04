@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2018-06-04
+### Chore
+* chore: Update version to v1.3.0 (Benjamin Jonard)
+
+### Features
+* feat: Add timezone support (Benjamin Jonard)
+
 ## [1.2.2] - 2018-05-30
 ### Chore
 * chore: Update version to v1.2.2 (Benjamin Jonard)

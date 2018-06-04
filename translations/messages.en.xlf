@@ -2839,15 +2839,6 @@
         <target>Additional fields</target>
       </segment>
     </unit>
-    <unit id="2sI1M8R" name="title.avatar">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Profile/index.html.twig:51</note>
-      </notes>
-      <segment>
-        <source>title.avatar</source>
-        <target>Avatar</target>
-      </segment>
-    </unit>
     <unit id="svM3vNY" name="title.charts.hours">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:34</note>
@@ -3125,13 +3116,13 @@
         <target>Add a new wishlist</target>
       </segment>
     </unit>
-    <unit id="o74WDVv" name="title.password">
+    <unit id="PMuodit" name="title.update_profile">
       <notes>
         <note category="file-source" priority="1">templates/App/Profile/index.html.twig:39</note>
       </notes>
       <segment>
-        <source>title.password</source>
-        <target>Password</target>
+        <source>title.update_profile</source>
+        <target>Update profile</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -3764,6 +3755,12 @@
       <segment>
         <source>global.time.today</source>
         <target>Today</target>
+      </segment>
+    </unit>
+    <unit id="dmtPdwq" name="label.timezone">
+      <segment>
+        <source>label.timezone</source>
+        <target>Timezone</target>
       </segment>
     </unit>
   </file>

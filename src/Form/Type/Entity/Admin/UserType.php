@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -40,6 +41,9 @@ class UserType extends AbstractType
                 'invalid_message'  => 'error.password.not_matching'
             ])
             ->add('diskSpaceAllowed', NumberType::class, [
+                'required' => true
+            ])
+            ->add('timezone', TimezoneType::class, [
                 'required' => true
             ])
             ->add('submit', SubmitType::class)
