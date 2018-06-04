@@ -45,6 +45,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setUsername('Khorne')
             ->setEmail('khorne@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
+            ->setTimezone('Europe/Paris')
             ->addRole('ROLE_ADMIN')
         ;
 

@@ -45,6 +45,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setUsername('Cthulhu')
             ->setEmail('cthulhu@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
+            ->setTimezone('Europe/Paris')
             ->addRole('ROLE_USER')
         ;
 

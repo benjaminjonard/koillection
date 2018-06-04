@@ -45,6 +45,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setUsername('Anubis')
             ->setEmail('anubis@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
+            ->setTimezone('Europe/Paris')
             ->addRole('ROLE_USER')
         ;
 
