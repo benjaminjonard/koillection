@@ -31,7 +31,9 @@ class StatisticsController extends AbstractController
      */
     public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder) : Response
     {
-        $calendar = array_reverse($calendarBuilder->buildItemCalendar($this->getUser()), true);
+        $calendar = $calendarBuilder->buildItemCalendar($this->getUser());
+        ksort($calendar);
+        $calendar = array_reverse($calendar, true);
 
         return $this->render('App/Statistics/index.html.twig', [
             'counters' => $this->getDoctrine()->getRepository(User::class)->getCounters($this->getUser()),
