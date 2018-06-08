@@ -43,7 +43,7 @@
                     </ul>
                 </div>
                 {% for year, value in calendarData %}
-                    <div class="panel {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
+                    <div class="panel calendar {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
                 {% endfor %}
             </div>
         </div>
