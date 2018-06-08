@@ -24,7 +24,6 @@ var paths = {
         './node_modules/croppie/croppie.min.js',
         './node_modules/sortablejs/Sortable.min.js',
         './node_modules/materialize-css/dist/js/materialize.min.js',
-        './node_modules/echarts/dist/echarts.min.js',
         './js/filters.js',
         './js/main.js',
         './js/settings.js',
@@ -61,6 +60,7 @@ var paths = {
     ],
     manifest: [
         '../public/build/js/app.js',
+        '../public/build/js/echarts.js',
         '../public/build/css/app.css',
         '../public/build/css/export.css',
         '../public/build/css/themes/aubergine.css',
@@ -108,6 +108,11 @@ gulp.task('build', function () {
         .pipe(concat('sw.js'))
         .pipe(gulpif(env === 'prod', uglify()))
         .pipe(gulp.dest('../public'));
+
+    gulp.src('./js/echarts.min.js')
+        .pipe(concat('echarts.js'))
+        .pipe(gulpif(env === 'prod', uglify()))
+        .pipe(gulp.dest('../public/build/js'));
 
     //JS
     return gulp.src(paths.js)

@@ -38,11 +38,12 @@ class StatisticsController extends AbstractController
         return $this->render('App/Statistics/index.html.twig', [
             'counters' => $this->getDoctrine()->getRepository(User::class)->getCounters($this->getUser()),
             'calendarData' => $calendar,
-            'treeData' => $treeBuilder->buildCollectionTree(),
+            'treeJson' => json_encode($treeBuilder->buildCollectionTree()),
             'hoursChartData' => $chartBuilder->buildActivityByHour($this->getUser()),
             'monthsChartData' => $chartBuilder->buildActivityByMonth($this->getUser()),
             'monthDaysChartData' => $chartBuilder->buildActivityByMonthDay($this->getUser()),
             'weekDaysChartData' => $chartBuilder->buildActivityByWeekDay($this->getUser()),
+            'itemsEvolutionData' => $chartBuilder->buildItemEvolution($this->getUser()),
         ]);
     }
 }

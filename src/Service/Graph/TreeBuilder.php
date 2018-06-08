@@ -70,9 +70,15 @@ class TreeBuilder
      */
     private function createLeaf(?Collection $collection = null) : array
     {
+        $name = '';
+        if ($collection instanceof Collection) {
+            $title = $collection->getTitle();
+            $name = strlen($title) > 21 ? substr($title, 0, 18) . '...' : $title;
+        }
+
         return [
             'id' => $collection ? $collection->getId() : '',
-            'name' => $collection ? $collection->getTitle() : '',
+            'name' => $name,
             'children' => []];
     }
 }

@@ -58,6 +58,7 @@ nav {background-color: #009688; -webkit-box-shadow: none; -moz-box-shadow: none;
 nav .input-field label i {color: #fff;}
 
 h5.header, h4.header{font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 0 0 35px 0; line-height: 100%;}
+h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; font-size: 18px;}
 
 .divider{margin : 0 15px;}
 .main-row {margin-top: 20px;}
@@ -223,31 +224,6 @@ button.align-with-inputs {margin-top: 25px;}
     header.expanded {margin-left: 60px;}
 }
 
-/* Radial tree */
-.radial-tree .node text{font-size: 13px;}
-.radial-tree .node circle {fill: #fff; stroke: #009688; stroke-width: 1.5px;}
-.radial-tree .link {fill: none; stroke: #eaebec; stroke-width: 1.5px;}
-.radial-tree {text-align: center;}
-.radial-tree h6 {text-align: left;}
-.radial-tree svg {overflow: visible;}
-
-/* Cal-HeatMap CSS */
-.cal-heatmap-container {display: block;	margin: 0 auto 15px auto;}
-.cal-heatmap-container .graph-label {fill: #000; font-size: 13px;}
-.cal-heatmap-container .graph, .cal-heatmap-container .graph-legend rect {shape-rendering: crispedges;}
-.cal-heatmap-container .graph-rect {fill: #ededed;}
-.cal-heatmap-container .graph-subdomain-group rect:hover {stroke: #000;stroke-width: 1px;}
-.cal-heatmap-container .subdomain-text {font-size: 8px;	fill: #999;	pointer-events: none;}
-.cal-heatmap-container .hover_cursor:hover {cursor: pointer;}
-.cal-heatmap-container .qi {fill: #999;}
-.cal-heatmap-container .q1 {fill: #ededed;}
-.cal-heatmap-container .q2 {fill: #80cbc4;}
-.cal-heatmap-container .q3 {fill: #1ab0a2;}
-.cal-heatmap-container .q4 {fill: #009688;}
-.cal-heatmap-container .q5 {fill: #006355;}
-.cal-heatmap-container rect.highlight {stroke:#444;	stroke-width:1;}
-.cal-heatmap-container text.highlight {fill: #444;}
-.cal-heatmap-container .domain-background {fill: none; shape-rendering: crispedges;}
 .ch-tooltip {padding: 10px;	background: #222;	color: #bbb;	font-size: 12px; line-height: 1.4;	width: 140px;	position: absolute;	z-index: 99999;	text-align: center;	border-radius: 2px;	box-shadow: 2px 2px 2px rgba(0,0,0,0.2); display: none;	box-sizing: border-box;}
 .ch-tooltip::after {position: absolute;	width: 0;	height: 0; border-color: transparent;	border-style: solid; content: ""; padding: 0; display: block; bottom: -6px; left: 50%; margin-left: -6px; border-width: 6px 6px 0; border-top-color: #222;}
 
@@ -257,6 +233,8 @@ button.align-with-inputs {margin-top: 25px;}
 .bar-charts .left-chart{max-width: 770px; float: left;}
 .bar-charts .right-chart{margin-left: 700px;}
 .bar-chart h5 {white-space: nowrap;}
+#radial-tree {margin: auto;}
+#items-evolution-chart {margin-left: -87px;}
 
 .separation {margin: 20px 0; border-top: 1px solid #dce0e6}
 .locales a {color: #000000;}
