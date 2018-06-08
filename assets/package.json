@@ -6,9 +6,8 @@
   "description": "",
   "license": "MIT",
   "dependencies": {
-    "cal-heatmap": "^3.6.2",
     "croppie": "^2.5.1",
-    "d3": "^3.5.17",
+    "echarts": "^4.1.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "lightbox2": "^2.9.0",

@@ -52,10 +52,10 @@ class CalendarBuilder
         foreach ($result as $row) {
             $date = $row['date']->setTimezone($timezone);
             $year = (string) $date->format('Y');
-            $timestamp = (string) $date->getTimestamp();
+            $timestamp = (string) $date->format('Y-m-d');
             isset($data[$year]) ?: $data[$year] = [];
-            isset($data[$year][$timestamp]) ?: $data[$year][$timestamp] = 0;
-            $data[$year][$timestamp]++;
+            isset($data[$year][$timestamp]) ?: $data[$year][$timestamp] = [$timestamp, 0];
+            $data[$year][$timestamp][1]++;
         }
 
         return $data;

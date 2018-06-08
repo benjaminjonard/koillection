@@ -127,13 +127,13 @@ class ChartBuilder
         $result = $query->getArrayResult();
 
         $days = [
-            $this->translator->trans('global.days.sunday'),
-            $this->translator->trans('global.days.monday'),
-            $this->translator->trans('global.days.tuesday'),
-            $this->translator->trans('global.days.wednesday'),
-            $this->translator->trans('global.days.thursday'),
-            $this->translator->trans('global.days.friday'),
-            $this->translator->trans('global.days.saturday'),
+            mb_substr($this->translator->trans('global.days.sunday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.monday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.tuesday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.wednesday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.thursday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.friday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.saturday'), 0, 3, 'UTF-8')
         ];
 
         $data = [];

@@ -36,32 +36,35 @@
 
                 <div class="tabs-block">
                     <ul class="nav nav-pills">
-                        {% for year in calendarYears %}
+                        {% for year, value in calendarData %}
                             <li class="tab {{ loop.first ? 'current' }}" for="calendar_{{ year }}">
                                 <span>{{ year }}</span>
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
-
+                {% for year, value in calendarData %}
+                    <div class="panel {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
+                {% endfor %}
             </div>
         </div>
 
+        <div class="clearfix"></div>
         <div class="content-block bar-charts">
             <div class="block-element bar-chart-row">
-                <div class="left-chart bar-chart month-days-chart">
-                    <h5 class="header">{{ 'title.charts.month_days'|trans }}</h5>
+                <div class="left-chart bar-chart">
+                    <div id="month-days-chart" style="width: 650px; height:400px;"></div>
                 </div>
-                <div class="right-chart bar-chart hours-chart">
-                    <h5 class="header">{{ 'title.charts.hours'|trans }}</h5>
+                <div class="right-chart bar-chart">
+                    <div id="hours-chart" style="width: 650px; height:400px;"></div>
                 </div>
             </div>
             <div class="block-element bar-chart-row last">
-                <div class="left-chart bar-chart months-chart">
-                    <h5 class="header">{{ 'title.charts.months'|trans }}</h5>
+                <div class="left-chart bar-chart">
+                    <div id="months-chart" style="width: 650px; height:400px;"></div>
                 </div>
-                <div class="right-chart bar-chart week-days-chart">
-                    <h5 class="header">{{ 'title.charts.week_days'|trans }}</h5>
+                <div class="right-chart bar-chart">
+                    <div id="week-days-chart" style="width: 650px; height:400px;"></div>
                 </div>
             </div>
         </div>
@@ -75,11 +78,214 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="application/json" id="jsonCalendar">{{ calendarJson|safeContent }}</script>
-    <script type="application/json" id="treeJson">{{ treeJson|safeContent }}</script>
-    <script type="application/json" id="hoursChartJson">{{ hoursChartJson|safeContent }}</script>
-    <script type="application/json" id="monthsChartJson">{{ monthsChartJson|safeContent }}</script>
-    <script type="application/json" id="monthDaysChartJson">{{ monthDaysChartJson|safeContent }}</script>
-    <script type="application/json" id="weekDaysChartJson">{{ weekDaysChartJson|safeContent }}</script>
-    <script type="application/text" id="route">{{ path('app_collection_index'|applyContext) }}</script>
+
+    <script type="text/javascript"  nonce="{{ csp_nonce() }}">
+        // specify chart configuration item and data
+        echarts.init(document.getElementById('month-days-chart')).setOption({
+            tooltip: {
+                formatter: function (params) {
+                    console.debug(params);
+                    return Translator.transChoice('statistics.items_added', params.value);
+                }
+            },
+            title: {
+                text: "{{ 'title.charts.month_days'|trans }}"
+            },
+            color: ['#009688'],
+            xAxis: {
+                type : 'category',
+                data: [
+                    {% for element in monthDaysChartData %}
+                        "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            },
+            yAxis: {},
+            series: [{
+                type: 'bar',
+                data: [
+                    {% for element in monthDaysChartData %}
+                        {{ element.count }} {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ]
+            }]
+        });
+
+        echarts.init(document.getElementById('hours-chart')).setOption({
+            tooltip: {
+                formatter: function (params) {
+                    console.debug(params);
+                    return Translator.transChoice('statistics.items_added', params.value);
+                }
+            },
+            title: {
+                text: "{{ 'title.charts.hours'|trans }}"
+            },
+            color: ['#009688'],
+            xAxis: {
+                type : 'category',
+                data: [
+                    {% for element in hoursChartData %}
+                        "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            },
+            yAxis: {},
+            series: [{
+                type: 'bar',
+                data: [
+                    {% for element in hoursChartData %}
+                        {{ element.count }} {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ]
+            }]
+        });
+
+        echarts.init(document.getElementById('months-chart')).setOption({
+            tooltip: {
+                formatter: function (params) {
+                    console.debug(params);
+                    return Translator.transChoice('statistics.items_added', params.value);
+                }
+            },
+            title: {
+                text: "{{ 'title.charts.months'|trans }}"
+            },
+            color: ['#009688'],
+            xAxis: {
+                type : 'category',
+                data: [
+                    {% for element in monthsChartData %}
+                        "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            },
+            yAxis: {},
+            series: [{
+                type: 'bar',
+                data: [
+                    {% for element in monthsChartData %}
+                        {{ element.count }} {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ]
+            }]
+        });
+
+        echarts.init(document.getElementById('week-days-chart')).setOption({
+            tooltip: {
+                formatter: function (params) {
+                    console.debug(params);
+                    return Translator.transChoice('statistics.items_added', params.value);
+                }
+            },
+            title: {
+                text: "{{ 'title.charts.week_days'|trans }}"
+            },
+            color: ['#009688'],
+            xAxis: {
+                type : 'category',
+                data: [
+                    {% for element in weekDaysChartData %}
+                    "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            },
+            yAxis: {},
+            series: [{
+                type: 'bar',
+                data: [
+                    {% for element in weekDaysChartData %}
+                        {{ element.count }} {{ loop.last == false ? ',' }}
+                    {% endfor %}
+                ]
+            }]
+        });
+
+        var monthsLabel = [
+            "{{ 'global.months.january'|trans }}",
+            "{{ 'global.months.february'|trans }}",
+            "{{ 'global.months.march'|trans }}",
+            "{{ 'global.months.april'|trans }}",
+            "{{ 'global.months.may'|trans }}",
+            "{{ 'global.months.june'|trans }}",
+            "{{ 'global.months.july'|trans }}",
+            "{{ 'global.months.august'|trans }}",
+            "{{ 'global.months.september'|trans }}",
+            "{{ 'global.months.october'|trans }}",
+            "{{ 'global.months.november'|trans }}",
+            "{{ 'global.months.december'|trans }}",
+        ];
+
+        {% for year, yearData in calendarData %}
+            var data = [];
+            {%  for datum in yearData  %}
+                data.push(["{{ datum[0] }}", {{ datum[1] }}]);
+            {% endfor %}
+
+            echarts.init(document.getElementById('calendar_' + {{ year }})).setOption({
+                tooltip: {
+                    formatter: function (params) {
+                       return Translator.transChoice('statistics.items_added', params.value[1]);
+                    }
+                },
+                visualMap: {
+                    type: 'piecewise',
+                    orient: 'horizontal',
+                    left: 'right',
+                    bottom: 'bottom',
+                    pieces: [
+                        {min: 31, color: '#006355'},
+                        {min: 16, max: 30, color: '#009688'},
+                        {min: 6, max: 15, color: '#1ab0a2'},
+                        {min: 1, max: 5, color: '#80cbc4'},
+                        {min: 0, max: 0, color: '#ededed'}
+                    ],
+                },
+                calendar: {
+                    splitLine: {
+                        show: false,
+                    },
+                    top: 'middle',
+                    left: 'center',
+                    range: {{ year }},
+                    cellSize: 20,
+                    yearLabel: {show: false},
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 2,
+                            borderColor: '#ffffff',
+                            color: '#ededed'
+                        },
+                    },
+                    dayLabel: {
+                        show: false
+                    },
+                    monthLabel: {
+                        show: true,
+                        nameMap: monthsLabel,
+                    }
+                },
+                series: [
+                    {
+                        type: 'heatmap',
+                        coordinateSystem: 'calendar',
+                        calendarIndex: 0,
+                        data: data
+                    }
+                ]
+           });
+        {% endfor %}
+    </script>
 {% endblock %}

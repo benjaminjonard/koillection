@@ -257,14 +257,6 @@ button.align-with-inputs {margin-top: 25px;}
 .bar-charts .left-chart{max-width: 770px; float: left;}
 .bar-charts .right-chart{margin-left: 700px;}
 .bar-chart h5 {white-space: nowrap;}
-.bar-chart > svg {margin-left: 75px;}
-.bar-chart .bar {fill: #009688;}
-.bar-chart .bar:hover {fill: #006355;}
-.bar-chart .axis {font-size: 11px;}
-.bar-chart .axis path, .axis line {fill: none; stroke: #000; shape-rendering: crispedges;}
-.bar-chart svg {shape-rendering: crispedges; overflow: visible;}
-.chart-title {text-align: left; white-space: nowrap;}
-.analytics .bar-chart .x text {text-anchor: end!important; transform: rotate(-45deg);}
 
 .separation {margin: 20px 0; border-top: 1px solid #dce0e6}
 .locales a {color: #000000;}
