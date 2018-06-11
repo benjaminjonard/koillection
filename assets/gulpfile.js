@@ -21,11 +21,6 @@ var paths = {
         './js/translations/*/*.js',
         './node_modules/jquery/dist/jquery.min.js',
         './node_modules/lightbox2/dist/js/lightbox.min.js',
-        './node_modules/d3/d3.min.js',
-        './node_modules/cal-heatmap/src/cal-heatmap.js',
-        './js/d3/calendar.js',
-        './js/d3/radial-tree.js',
-        './js/d3/bar-chart.js',
         './node_modules/croppie/croppie.min.js',
         './node_modules/sortablejs/Sortable.min.js',
         './node_modules/materialize-css/dist/js/materialize.min.js',
@@ -65,6 +60,7 @@ var paths = {
     ],
     manifest: [
         '../public/build/js/app.js',
+        '../public/build/js/echarts.js',
         '../public/build/css/app.css',
         '../public/build/css/export.css',
         '../public/build/css/themes/aubergine.css',
@@ -112,6 +108,11 @@ gulp.task('build', function () {
         .pipe(concat('sw.js'))
         .pipe(gulpif(env === 'prod', uglify()))
         .pipe(gulp.dest('../public'));
+
+    gulp.src('./js/echarts.min.js')
+        .pipe(concat('echarts.js'))
+        .pipe(gulpif(env === 'prod', uglify()))
+        .pipe(gulp.dest('../public/build/js'));
 
     //JS
     return gulp.src(paths.js)

@@ -151,5 +151,11 @@
         <target>[0,1] %count% utilisateur| ]1,Inf[ %count% utilisateurs</target>
       </segment>
     </unit>
+    <unit id="cEDaX3_" name="statistics.items">
+      <segment>
+        <source>statistics.items</source>
+        <target>[0,1] %count% objet| ]1,Inf[ %count% objets</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -3763,5 +3763,11 @@
         <target>Timezone</target>
       </segment>
     </unit>
+    <unit id="9it4sqQ" name="title.charts.items_evolution">
+      <segment>
+        <source>title.charts.items_evolution</source>
+        <target>Items evolution</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -24,4 +24,5 @@ t.add("btn.clear", "Effacer", "javascript", "fr");
 t.add("btn.close", "Fermer", "javascript", "fr");
 t.add("statistics.items_added", "[0,1] %count% objet ajout\u00e9| ]1,Inf[ %count% objets ajout\u00e9s", "javascript", "fr");
 t.add("statistics.users", "[0,1] %count% utilisateur| ]1,Inf[ %count% utilisateurs", "javascript", "fr");
+t.add("statistics.items", "[0,1] %count% objet| ]1,Inf[ %count% objets", "javascript", "fr");
 })(Translator);

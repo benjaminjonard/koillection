@@ -2,9 +2,9 @@
 
 namespace App\Service\Graph;
 
+use App\Entity\Item;
 use App\Entity\User;
-use App\Enum\LocaleEnum;
-use App\Enum\ThemeEnum;
+use App\Enum\LogTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -127,13 +127,13 @@ class ChartBuilder
         $result = $query->getArrayResult();
 
         $days = [
-            $this->translator->trans('global.days.sunday'),
-            $this->translator->trans('global.days.monday'),
-            $this->translator->trans('global.days.tuesday'),
-            $this->translator->trans('global.days.wednesday'),
-            $this->translator->trans('global.days.thursday'),
-            $this->translator->trans('global.days.friday'),
-            $this->translator->trans('global.days.saturday'),
+            mb_substr($this->translator->trans('global.days.sunday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.monday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.tuesday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.wednesday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.thursday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.friday'), 0, 3, 'UTF-8'),
+            mb_substr($this->translator->trans('global.days.saturday'), 0, 3, 'UTF-8')
         ];
 
         $data = [];
@@ -195,6 +195,44 @@ class ChartBuilder
         foreach ($result as $raw) {
             $month = $raw['date']->setTimezone($timezone)->format('n');
             $data[$month - 1]['count']++;
+        }
+
+        return $data;
+    }
+
+    /**
+     * Build an array date->number of items at that date.
+     *
+     * @param User $user
+     * @return array
+     */
+    public function buildItemEvolution(User $user) : array
+    {
+        $data = [];
+        $sql = 'SELECT logged_at AS date, type';
+        $sql .= ' FROM koi_log';
+        $sql .= ' WHERE user_id = ?';
+        $sql .= ' AND object_class = ?';
+        $sql .= ' AND type IN (?)';
+        $sql .= ' ORDER BY date';
+
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('date', 'date', 'datetime');
+        $rsm->addScalarResult('type', 'type', 'string');
+
+        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query->setParameter(1, $user->getId());
+        $query->setParameter(2, Item::class);
+        $query->setParameter(3, [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE]);
+        $result = $query->getArrayResult();
+
+        $timezone = new \DateTimeZone($user->getTimezone());
+        $total = 0;
+        foreach ($result as $row) {
+            $date = $row['date']->setTimezone($timezone);
+            $timestamp = (string) $date->format('d/m/Y');
+            $row['type'] === LogTypeEnum::TYPE_CREATE ? $total++ : $total--;
+            $data[$timestamp] = $total;
         }
 
         return $data;
