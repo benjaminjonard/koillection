@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2018-06-11
+### Chore
+* chore: Update version to v1.3.1 (Benjamin Jonard)
+
+### Features
+* feat: Replace d3.js by echarts for statistics (Benjamin Jonard)
+
+### Fixes
+* fix: Fix years order on calendars (Benjamin Jonard)
+
 ## [1.3.0] - 2018-06-04
 ### Chore
 * chore: Update version to v1.3.0 (Benjamin Jonard)
