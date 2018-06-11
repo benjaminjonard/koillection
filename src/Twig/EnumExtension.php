@@ -5,6 +5,7 @@ namespace App\Twig;
 use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
+use App\Enum\ThemeEnum;
 
 /**
  * Class EnumExtension
@@ -22,7 +23,8 @@ class EnumExtension extends \Twig_Extension
             new \Twig_SimpleFunction('getCurrencySymbol', [$this, 'getCurrencySymbol']),
             new \Twig_SimpleFunction('getRoleLabel', [$this, 'getRoleLabel']),
             new \Twig_SimpleFunction('getLocales', [$this, 'getLocales']),
-            new \Twig_SimpleFunction('getLocaleLabel', [$this, 'getLocaleLabel'])
+            new \Twig_SimpleFunction('getLocaleLabel', [$this, 'getLocaleLabel']),
+            new \Twig_SimpleFunction('getThemeColor', [$this, 'getThemeColor']),
         ];
     }
 
@@ -60,6 +62,17 @@ class EnumExtension extends \Twig_Extension
     {
         return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::LOCALE_EN;
     }
+
+    /**
+     * @param string $theme
+     * @param string $hue
+     * @return string
+     */
+    public function getThemeColor(string $theme, string $hue) : string
+    {
+        return ThemeEnum::getThemeColor($theme, $hue);
+    }
+
 
     /**
      * @return string

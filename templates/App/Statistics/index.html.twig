@@ -98,7 +98,7 @@
                     return Translator.transChoice('statistics.items_added', params.value);
                 }
             },
-            color: ['#009688'],
+            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
             xAxis: {
                 type : 'category',
                 data: [
@@ -127,7 +127,7 @@
                     return Translator.transChoice('statistics.items_added', params.value);
                 }
             },
-            color: ['#009688'],
+            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
             xAxis: {
                 type : 'category',
                 data: [
@@ -156,7 +156,7 @@
                     return Translator.transChoice('statistics.items_added', params.value);
                 }
             },
-            color: ['#009688'],
+            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
             xAxis: {
                 type : 'category',
                 data: [
@@ -185,7 +185,7 @@
                     return Translator.transChoice('statistics.items_added', params.value);
                 }
             },
-            color: ['#009688'],
+            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
             xAxis: {
                 type : 'category',
                 data: [
@@ -218,7 +218,7 @@
                     return params[0].axisValue + ': ' + Translator.transChoice('statistics.items', params[0].data);
                 }
             },
-            color: ['#009688'],
+            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
             xAxis: {
                 type: 'category',
                 data: [
@@ -256,7 +256,7 @@
                 sampling: 'average',
                 areaStyle: {
                     normal: {
-                        color: "#009688"
+                        color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'
                     }
                 }
             }]
@@ -295,10 +295,10 @@
                     right: '215',
                     bottom: 'bottom',
                     pieces: [
-                        {min: 31, color: '#006355'},
-                        {min: 16, max: 30, color: '#009688'},
-                        {min: 6, max: 15, color: '#1ab0a2'},
-                        {min: 1, max: 5, color: '#80cbc4'},
+                        {min: 31, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}'},
+                        {min: 16, max: 30, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'},
+                        {min: 6, max: 15, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}'},
+                        {min: 1, max: 5, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}'},
                         {min: 0, max: 0, color: '#ededed'}
                     ],
                 },
@@ -352,7 +352,7 @@
                     initialTreeDepth: -1,
                     animationDurationUpdate: 750,
                     itemStyle: {
-                        borderColor: '#009688',
+                        borderColor: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}',
                     }
                 }
             ]
