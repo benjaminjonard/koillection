@@ -30,56 +30,58 @@
             {% endif %}
         </div>
 
-        <div class="content-block calendars">
-            <div class="block-element">
-                <h5 class="statistics-title">{{ 'title.activity'|trans }}</h5>
-                <div class="tabs-block">
-                    <ul class="nav nav-pills">
-                        {% for year, value in calendarData %}
-                            <li class="tab {{ loop.first ? 'current' }}" for="calendar_{{ year }}">
-                                <span>{{ year }}</span>
-                            </li>
-                        {% endfor %}
-                    </ul>
+        <div class="statistics-holder">
+            <div class="content-block calendars">
+                <div class="block-element">
+                    <h5 class="statistics-title">{{ 'title.activity'|trans }}</h5>
+                    <div class="tabs-block">
+                        <ul class="nav nav-pills">
+                            {% for year, value in calendarData %}
+                                <li class="tab {{ loop.first ? 'current' }}" for="calendar_{{ year }}">
+                                    <span>{{ year }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% for year, value in calendarData %}
+                        <div class="panel calendar {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
+                    {% endfor %}
                 </div>
-                {% for year, value in calendarData %}
-                    <div class="panel calendar {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
-                {% endfor %}
             </div>
-        </div>
 
-        <div class="clearfix"></div>
-        <div class="content-block bar-charts">
-            <div class="block-element bar-chart-row">
-                <div class="left-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h5>
-                    <div id="month-days-chart" style="width: 650px; height:400px;"></div>
+            <div class="clearfix"></div>
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <div class="left-chart bar-chart">
+                        <h5 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h5>
+                        <div id="month-days-chart" class="chart" style="width: 650px; height:400px;"></div>
+                    </div>
+                    <div class="right-chart bar-chart">
+                        <h5 class="statistics-title">{{ 'title.charts.hours'|trans }}</h5>
+                        <div id="hours-chart" class="chart" style="width: 650px; height:400px;"></div>
+                    </div>
                 </div>
-                <div class="right-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.hours'|trans }}</h5>
-                    <div id="hours-chart" style="width: 650px; height:400px;"></div>
+                <div class="block-element bar-chart-row last">
+                    <div class="left-chart bar-chart">
+                        <h5 class="statistics-title">{{ 'title.charts.months'|trans }}</h5>
+                        <div id="months-chart" class="chart" style="width: 650px; height:400px;"></div>
+                    </div>
+                    <div class="right-chart bar-chart">
+                        <h5 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h5>
+                        <div id="week-days-chart" class="chart" style="width: 650px; height:400px;"></div>
+                    </div>
+                </div>
+                <div class="block-element bar-chart-row last">
+                    <h5 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h5>
+                    <div id="items-evolution-chart" class="chart" style="width: 1530px; height:400px;"></div>
                 </div>
             </div>
-            <div class="block-element bar-chart-row last">
-                <div class="left-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.months'|trans }}</h5>
-                    <div id="months-chart" style="width: 650px; height:400px;"></div>
-                </div>
-                <div class="right-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h5>
-                    <div id="week-days-chart" style="width: 650px; height:400px;"></div>
-                </div>
-            </div>
-            <div class="block-element bar-chart-row last">
-                <h5 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h5>
-                <div id="items-evolution-chart" style="width: 1530px; height:400px;"></div>
-            </div>
-        </div>
 
-        <div class="content-block bar-charts">
-            <div class="block-element bar-chart-row">
-                <h5 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h5>
-                <div id="radial-tree" style="width: 1200px; height: 1200px;"></div>
+            <div class="content-block bar-charts">
+                <div class="block-element bar-chart-row">
+                    <h5 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h5>
+                    <div id="radial-tree" style="width: 1200px; height: 1200px;"></div>
+                </div>
             </div>
         </div>
     </div>

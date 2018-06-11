@@ -234,6 +234,8 @@ button.align-with-inputs {margin-top: 25px;}
 .bar-charts .right-chart{margin-left: 700px;}
 .bar-chart h5 {white-space: nowrap;}
 .calendar, #radial-tree, #items-evolution-chart {margin: auto;}
+.statistics-holder {width: 1600px; margin: auto;}
+.chart {margin-left: 98px;}
 
 .separation {margin: 20px 0; border-top: 1px solid #dce0e6}
 .locales a {color: #000000;}
