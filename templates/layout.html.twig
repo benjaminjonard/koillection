@@ -1,29 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {# Breadcrumb #}
-    <header class="expanded">
-        {% block breadcrumb %}{% endblock %}
-    </header>
 
-    <div class="sidebar-expanded">
+    <div class="app">
+        {% set route = app.request.get('_route') %}
         <div class="sidebar-wrapper nicescroll">
-            <div class="header-logo">
-                <a href="{{ path('app_homepage') }}">
-                    <img class='logo' src="{{ preload(asset('../build/images/logo.svg')) }}" aria-label="Logo" height="45" width="45">
-                    <span>Koillection</span>
-                </a>
+            <div class="nav-wrapper">
+                <div class="header-logo">
+                    <a href="{{ path('app_homepage') }}">
+                        <img class='logo' src="{{ preload(asset('../build/images/logo.svg')) }}" aria-label="Logo" height="45" width="45">
+                        <span>Koillection</span>
+                    </a>
+                </div>
+                <ul class="nav nav-sidebar">
+                    {% include 'Nav/' ~ context ~ '.html.twig' %}
+                </ul>
             </div>
-            {% set route = app.request.get('_route') %}
-            <ul class="nav nav-sidebar">
-                {% include 'Nav/' ~ context ~ '.html.twig' %}
-            </ul>
-            <ul class="nav nav-sidebar nav-bottom">
-                <li class="collapse-nav"><a href=""><i class="fa fa-angle-double-right fa-fw"></i><span>{{ 'menu.collapse'|trans }}</span></a></li>
-            </ul>
+
+            <div class="nav-wrapper">
+                <ul class="nav nav-sidebar nav-bottom">
+                    <li class="collapse-nav"><a href=""><i class="fa fa-angle-double-right fa-fw"></i><span>{{ 'menu.collapse'|trans }}</span></a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="main content-wrapper">
+            {# Breadcrumb #}
+            <header class="expanded">
+                {% block breadcrumb %}{% endblock %}
+            </header>
             <div class="container-fluid container-limited">
                 {% block content %}{% endblock %}
             </div>

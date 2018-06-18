@@ -12,32 +12,34 @@
 
 {% block content %}
     <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ 'menu.collections'|trans }}</h1>
-            <ul class="nav nav-pills">
-                <li>{{ 'counter.item'|transchoice(counters['totalItemsCount']) }}</li>
-                <li>{{ 'counter.collection'|transchoice(counters['totalChildrenCount']) }}</li>
-            </ul>
-        </div>
-
-        <div></div>
-
-        <div class="btn-holder no-margin">
-            {% if context == 'default' %}
-                <div class="left">
-                    <a href="{{ path('app_collection_add') }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
-                        <i class="fa fa-folder fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_collection_export') }}" target="_blank" class="button" title="{{ 'tooltip.export_collection'|trans }}">
-                        <i class="fa fa-print fa-fw"></i>
-                    </a>
-                    {{ include('App/share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
-                </div>
-            {% endif %}
-            <div class="right">
-                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>{{ 'menu.collections'|trans }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.item'|transchoice(counters['totalItemsCount']) }}</li>
+                    <li>{{ 'counter.collection'|transchoice(counters['totalChildrenCount']) }}</li>
+                </ul>
             </div>
-            <div class="clearfix"></div>
+
+            <div></div>
+
+            <div class="btn-holder no-margin">
+                {% if context == 'default' %}
+                    <div class="left">
+                        <a href="{{ path('app_collection_add') }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_collection_export') }}" target="_blank" class="button" title="{{ 'tooltip.export_collection'|trans }}">
+                            <i class="fa fa-print fa-fw"></i>
+                        </a>
+                        {{ include('App/share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
+                    </div>
+                {% endif %}
+                <div class="right">
+                    <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
         </div>
 
         <div class="content-block">
