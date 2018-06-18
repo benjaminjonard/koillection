@@ -24,6 +24,7 @@ var paths = {
         './node_modules/croppie/croppie.min.js',
         './node_modules/sortablejs/Sortable.min.js',
         './node_modules/materialize-css/dist/js/materialize.min.js',
+        './node_modules/js-cookie/src/js.cookie.js',
         './js/filters.js',
         './js/main.js',
         './js/settings.js',

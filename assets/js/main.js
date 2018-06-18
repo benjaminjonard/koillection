@@ -2,6 +2,18 @@ $(document).ready(function() {
     window.addEventListener('online', handleConnectionChange);
     window.addEventListener('offline', handleConnectionChange);
 
+    $('.collapse-nav').click(function (e) {
+        e.preventDefault();
+        var collapse = !$('body').hasClass('collapsed');
+        if (collapse) {
+            $('body').addClass('collapsed');
+            Cookies.set('sidebar_collapsed', 1);
+        } else {
+            $('body').removeClass('collapsed');
+            Cookies.remove('sidebar_collapsed');
+        }
+    });
+
     //Init MaterializeCSS selects
     $('select').material_select();
     //Init MaterializeCSS modals

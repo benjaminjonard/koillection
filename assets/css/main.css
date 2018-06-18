@@ -6,6 +6,7 @@
 
 html {height: 100%;}
 
+
 /* Override lightbox, wtf man... */
 body:after {content: none;}
 .lb-data .lb-close {background: none;}
@@ -213,17 +214,6 @@ button.align-with-inputs {margin-top: 25px;}
 .datum .label{margin-top: 30px;}
 .datum .input-field label {left:10px;}
 
-@media (max-width: 1199px)
-{
-    .sidebar-expanded {padding-left: 60px;}
-    .content-wrapper .container-fluid {margin-top: 59px;}
-    .sidebar-wrapper .header-logo a span, .sidebar-wrapper .nav-sidebar li a span {display: none;}
-    .sidebar-wrapper .header-logo .logo {margin-top: 6px;}
-    .sidebar-wrapper, .sidebar-wrapper .header-logo, .sidebar-wrapper .header-logo a {width: 60px;}
-    .sidebar-wrapper .nav-sidebar {width: 60px;}
-    header.expanded {margin-left: 60px;}
-}
-
 .ch-tooltip {padding: 10px;	background: #222;	color: #bbb;	font-size: 12px; line-height: 1.4;	width: 140px;	position: absolute;	z-index: 99999;	text-align: center;	border-radius: 2px;	box-shadow: 2px 2px 2px rgba(0,0,0,0.2); display: none;	box-sizing: border-box;}
 .ch-tooltip::after {position: absolute;	width: 0;	height: 0; border-color: transparent;	border-style: solid; content: ""; padding: 0; display: block; bottom: -6px; left: 50%; margin-left: -6px; border-width: 6px 6px 0; border-top-color: #222;}
 
@@ -274,7 +264,6 @@ button.align-with-inputs {margin-top: 25px;}
 
 @media (max-width: 991px)
 {
-    .content-wrapper, .content-wrapper .container-fluid {padding: 0; padding-top: 1px;}
     .item-details {width: 90%;}
     .front-list-container {height: auto; display: flex; justify-content: space-evenly; flex-wrap: wrap; width: 100%;}
     .front-list-container li {display: block; border: none; flex: 0 1 auto; height: auto; margin-top: 0;}
@@ -429,3 +418,35 @@ html.loading:before {
 .box h5.header {text-align: center; padding: 0 0 30px 0;}
 .box .locales-dropdown {padding: 10px 10px 0 0; float: right;}
 .box .submit {padding: 15px 0;}
+
+.nav-bottom {bottom: 0px; position: absolute; margin-bottom: 0;}
+.nav-bottom li {height: 49px;}
+.nav-bottom li a {height: inherit;}
+
+/* NAV */
+.collapsed .sidebar-expanded {padding-left: 60px;}
+.collapsed .sidebar-wrapper .header-logo a span, .collapsed .sidebar-wrapper .nav-sidebar li a span {display: none;}
+.collapsed .sidebar-wrapper .header-logo .logo {margin-top: 6px;}
+.collapsed .sidebar-wrapper, .collapsed .sidebar-wrapper .header-logo, .collapsed .sidebar-wrapper .header-logo a {width: 60px;}
+.collapsed .sidebar-wrapper .nav-sidebar {width: 60px;}
+.collapsed header.expanded {margin-left: 60px;}
+
+@media (max-width: 1199px)
+{
+    .sidebar-expanded {padding-left: 60px;}
+    .sidebar-wrapper .header-logo a span, .sidebar-wrapper .nav-sidebar li a span {display: none;}
+    .sidebar-wrapper .header-logo .logo {margin-top: 6px;}
+    .sidebar-wrapper, .sidebar-wrapper .header-logo, .sidebar-wrapper .header-logo a {width: 60px;}
+    .sidebar-wrapper .nav-sidebar {width: 60px;}
+    header.expanded {margin-left: 60px;}
+}
+
+.collapse-nav i {
+    transform: rotate( 180deg );
+    transition: transform 300ms ease;
+}
+
+.collapsed .collapse-nav i {
+    transform: rotate( 360deg );
+    transition: transform 300ms ease;
+}

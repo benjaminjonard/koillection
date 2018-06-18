@@ -3769,5 +3769,11 @@
         <target>Items evolution</target>
       </segment>
     </unit>
+    <unit id="Jjhr6GA" name="menu.collapse">
+      <segment>
+        <source>menu.collapse</source>
+        <target>Collapse</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

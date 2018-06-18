@@ -3769,5 +3769,11 @@
         <target>Évolution des objets</target>
       </segment>
     </unit>
+    <unit id="Jjhr6GA" name="menu.collapse">
+      <segment>
+        <source>menu.collapse</source>
+        <target>Réduire</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
