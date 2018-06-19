@@ -13,35 +13,37 @@
 
 {% block content %}
     <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ tag.label }}</h1>
-            <ul class="nav nav-pills">
-                <li>{{ 'counter.item'|transchoice(tag.items|length) }}</li>
-            </ul>
-        </div>
-
-        <div></div>
-
-        <div class="btn-holder">
-            <div class="left">
-                {% if context == 'default' %}
-                    <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                        <i class="fa fa-pencil fa-fw"></i>
-                    </a>
-                    <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                        <i class="fa fa-trash fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_tag_history', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                        <i class="fa fa-history fa-fw"></i>
-                    </a>
-                    {{ include('App/share.html.twig', {'entity': tag, 'route': url('app_user_tag_show', {id: tag.id, username: app.user.username})}) }}
-                {% endif %}
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>{{ tag.label }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.item'|transchoice(tag.items|length) }}</li>
+                </ul>
             </div>
-            <div class="right">
-                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_tag_history', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                            <i class="fa fa-history fa-fw"></i>
+                        </a>
+                        {{ include('App/share.html.twig', {'entity': tag, 'route': url('app_user_tag_show', {id: tag.id, username: app.user.username})}) }}
+                    {% endif %}
+                </div>
+                <div class="right">
+                    <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
-        </div>
+        </div>652276007
 
         <div class="content-block">
             {% if null != tag.image or null != tag.description %}

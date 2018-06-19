@@ -40,6 +40,14 @@ class SearchController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
+        if (!isset($request->request->get('search')['submit'])) {
+            $search
+                ->setSearchInCollections(true)
+                ->setSearchInItems(true)
+                ->setSearchInTags(true)
+            ;
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             if (true === $search->getSearchInCollections()) {
@@ -54,6 +62,7 @@ class SearchController extends AbstractController
             }
         }
 
+        $form = $this->createForm(SearchType::class, $search);
         $params['form'] = $form->createView();
 
         return $this->render('App/Search/index.html.twig', $params);

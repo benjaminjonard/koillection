@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] - 2018-06-19
+### Chore
+* chore: Update version to v1.3.2 (Benjamin Jonard)
+
+### Features
+* feat: Add reponsive sidebar (Benjamin Jonard)
+* feat: Add menu for smartphones (Benjamin Jonard)
+* feat: Transform search link to an input in the header (Benjamin Jonard)
+* feat: Add context menu with user's avatar in header (Benjamin Jonard)
+
+### Fixes
+* fix: Misc fixes regarding responsiveness (Benjamin Jonard)
+
 ## [1.3.1] - 2018-06-11
 ### Chore
 * chore: Update version to v1.3.1 (Benjamin Jonard)

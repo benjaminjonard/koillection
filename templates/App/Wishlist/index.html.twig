@@ -12,29 +12,31 @@
 
 {% block content %}
     <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ 'menu.wishlists'|trans }}</h1>
-            <ul class="nav nav-pills">
-                <li>{{ 'counter.wish'|transchoice(counters['totalWishesCount']) }}</li>
-                <li>{{ 'counter.wishlist'|transchoice(counters['totalChildrenCount']) }}</li>
-            </ul>
-        </div>
-
-        <div></div>
-
-        <div class="btn-holder">
-            <div class="left">
-                {% if context == 'default' %}
-                    <a href="{{ path('app_wishlist_add') }}" class="button" title="{{ 'tooltip.add_wishlist'|trans }}">
-                        <i class="fa fa-folder fa-fw"></i>
-                    </a>
-                    {{ include('App/share.html.twig', {'route': url('app_user_wishlist_index', {username: app.user.username})}) }}
-                {% endif %}
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>{{ 'menu.wishlists'|trans }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.wish'|transchoice(counters['totalWishesCount']) }}</li>
+                    <li>{{ 'counter.wishlist'|transchoice(counters['totalChildrenCount']) }}</li>
+                </ul>
             </div>
-            <div class="right">
-                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_wishlist_add') }}" class="button" title="{{ 'tooltip.add_wishlist'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        {{ include('App/share.html.twig', {'route': url('app_user_wishlist_index', {username: app.user.username})}) }}
+                    {% endif %}
+                </div>
+                <div class="right">
+                    <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
         </div>
 
         <div class="content-block">

@@ -2,6 +2,47 @@ $(document).ready(function() {
     window.addEventListener('online', handleConnectionChange);
     window.addEventListener('offline', handleConnectionChange);
 
+    $('.collapse-nav').click(function (e) {
+        e.preventDefault();
+        var collapse = !$('body').hasClass('collapsed');
+        if (collapse) {
+            $('body').addClass('collapsed');
+            Cookies.set('sidebar_collapsed', 1);
+        } else {
+            $('body').removeClass('collapsed');
+            Cookies.remove('sidebar_collapsed');
+        }
+    });
+
+    $('.burger-menu, .close-nav').click(function (e) {
+        e.preventDefault();
+        var open = !$('body').hasClass('mobile-opened');
+        if (open) {
+            $('body').addClass('mobile-opened');
+        } else {
+            $('body').removeClass('mobile-opened');
+        }
+    });
+
+    $('.mobile-overlay').click(function (e) {
+        e.preventDefault();
+        $('body').removeClass('mobile-opened');
+    });
+
+    $('.user-avatar').click(function (e) {
+        e.preventDefault();
+        $('.profile-menu').removeClass('hidden');
+
+        $(document).mouseup(function(e) {
+            console.log('ok');
+            var $container = $('.profile-menu');
+            if (!$container.is(e.target) && $container.has(e.target).length === 0) {
+                $container.addClass('hidden');
+                $(document).unbind('mouseup')
+            }
+        });
+    });
+
     //Init MaterializeCSS selects
     $('select').material_select();
     //Init MaterializeCSS modals

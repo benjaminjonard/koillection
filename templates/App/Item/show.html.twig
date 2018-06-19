@@ -47,46 +47,48 @@
 
         <div class="content-block">
             <div class='item-details'>
-                <div class="slider-container item-image-container">
-                    <div class="slider-frame">
-                        <a href="{{ preload(asset(item.image.path)) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
-                            <img src="{{ preload(asset(item.image.path)) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}">
-                        </a>
-                        <span class="image-label">{{ 'label.main_image'|trans }}</span>
-                    </div>
+                <div class="item-wrapper">
+                    <div class="slider-container item-image-container">
+                        <div class="slider-frame">
+                            <a href="{{ preload(asset(item.image.path)) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
+                                <img src="{{ preload(asset(item.image.path)) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}">
+                            </a>
+                            <span class="image-label">{{ 'label.main_image'|trans }}</span>
+                        </div>
 
-                    {% if item.dataImages|length > 0 %}
-                        <ul class="slider-elements">
-                            <li>
-                                <a class="slider-element active" href="{{ preload(asset(item.image.path)) }}" data-title="{{ 'label.main_image'|trans }}">
-                                    <img src="{{ preload(asset(item.image.thumbnailPath)) }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
-                                </a>
-                            </li>
-                            {% for datum in item.dataImages %}
+                        {% if item.dataImages|length > 0 %}
+                            <ul class="slider-elements">
                                 <li>
-                                    <a class="slider-element" href="{{ preload(asset(datum.image.path)) }}" data-title="{{ datum.label }}">
-                                        <img class="" src="{{ preload(asset(datum.image.thumbnailPath)) }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
+                                    <a class="slider-element active" href="{{ preload(asset(item.image.path)) }}" data-title="{{ 'label.main_image'|trans }}">
+                                        <img src="{{ preload(asset(item.image.thumbnailPath)) }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
                                     </a>
                                 </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
+                                {% for datum in item.dataImages %}
+                                    <li>
+                                        <a class="slider-element" href="{{ preload(asset(datum.image.path)) }}" data-title="{{ datum.label }}">
+                                            <img class="" src="{{ preload(asset(datum.image.thumbnailPath)) }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
 
-                <div class="data">
-                    {% for datum in item.dataTexts %}
-                        <div>
-                            <span class="label">{{ datum.label }} :</span>
-                            {% for value in datum.value|split(',') %}
-                                {% set tag = item.getTagWithValue(value) %}
-                                {% if tag %}
-                                    <a href="{{ path('app_tag_show'|applyContext, {'id': tag.id}) }}">{{ value }}</a>{{ not loop.last ? ',' }}
-                                {% else %}
-                                    {{ value }}{{ not loop.last ? ',' }}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
+                    <div class="data">
+                        {% for datum in item.dataTexts %}
+                            <div>
+                                <span class="label">{{ datum.label }} :</span>
+                                {% for value in datum.value|split(',') %}
+                                    {% set tag = item.getTagWithValue(value) %}
+                                    {% if tag %}
+                                        <a href="{{ path('app_tag_show'|applyContext, {'id': tag.id}) }}">{{ value }}</a>{{ not loop.last ? ',' }}
+                                    {% else %}
+                                        {{ value }}{{ not loop.last ? ',' }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
