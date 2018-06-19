@@ -235,7 +235,7 @@ button.align-with-inputs {margin-top: 25px;}
 .locales a.active {font-weight: bold;}
 
 /* Image slider */
-.item-image-container {width: 300px; text-align: center; margin-bottom: 20px; margin-right: 30px;}
+.item-image-container {width: 300px; text-align: center; margin-bottom: 20px;}
 .slider-container .slider-frame img {max-width: 300px; width: 100%}
 .slider-container ul li {display: inline-block;}
 .slider-container ul li img {max-width: 70px; max-height: 70px;}
