@@ -9,10 +9,7 @@
 <li class="{{ 'app_history' in route ? 'current' }}"><a href="{{ path('app_history_index', {'types': ['item']}) }}"><i class="fa fa-history fa-fw"></i><span>{{ 'menu.history'|trans }}</span></a></li>
 <li class="{{ 'app_statistics' in route ? 'current' }}"><a href="{{ path('app_statistics_index') }}"><i class="fa fa-area-chart fa-fw"></i><span>{{ 'menu.statistics'|trans }}</span></a></li>
 <li class="separate-item"><div></div></li>
-<li class="{{ 'app_settings' in route ? 'current' }}"><a href="{{ path('app_settings_index') }}"><i class="fa fa-cogs fa-fw"></i><span>{{ 'menu.settings'|trans }}</span></a></li>
-<li class="{{ 'app_profile' in route ? 'current' }}"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
-<li class="separate-item"><div></div></li>
 {% if is_granted('ROLE_ADMIN') %}
     <li class="{{ 'app_admin' in route or 'translation' in route ? 'current' }}"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
 {% endif %}
-<li><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>
+

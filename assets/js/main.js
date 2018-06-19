@@ -29,6 +29,20 @@ $(document).ready(function() {
         $('body').removeClass('mobile-opened');
     });
 
+    $('.user-avatar').click(function (e) {
+        e.preventDefault();
+        $('.profile-menu').removeClass('hidden');
+
+        $(document).mouseup(function(e) {
+            console.log('ok');
+            var $container = $('.profile-menu');
+            if (!$container.is(e.target) && $container.has(e.target).length === 0) {
+                $container.addClass('hidden');
+                $(document).unbind('mouseup')
+            }
+        });
+    });
+
     //Init MaterializeCSS selects
     $('select').material_select();
     //Init MaterializeCSS modals

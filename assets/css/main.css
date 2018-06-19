@@ -412,6 +412,9 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
 .collapsed .sidebar-wrapper {width: 60px;}
 .collapsed {margin-left: 60px;}
 
+.profile-menu {width: 125px; position: fixed; top: 35px; right: 18px; z-index: 1; }
+.profile-menu i {margin-right: 5px;}
+
 @media (max-width: 749px)
 {
     .item-image-container {float: none; width: 100%}
