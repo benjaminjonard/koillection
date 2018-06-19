@@ -5,7 +5,8 @@
 }
 
 html {height: 100%;}
-body:not(.unauthorized) {min-height: 100vh; outline: none; margin-left: 230px;}
+body {min-height: 100vh; outline: none; margin-left: 230px;}
+body.unauthorized {margin-left: 0;}
 .app {display: flex; flex-direction: column; min-height: 100vh;}
 
 /* Override lightbox, wtf man... */
