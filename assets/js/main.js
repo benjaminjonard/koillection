@@ -14,6 +14,21 @@ $(document).ready(function() {
         }
     });
 
+    $('.burger-menu, .close-nav').click(function (e) {
+        e.preventDefault();
+        var open = !$('body').hasClass('mobile-opened');
+        if (open) {
+            $('body').addClass('mobile-opened');
+        } else {
+            $('body').removeClass('mobile-opened');
+        }
+    });
+
+    $('.mobile-overlay').click(function (e) {
+        e.preventDefault();
+        $('body').removeClass('mobile-opened');
+    });
+
     //Init MaterializeCSS selects
     $('select').material_select();
     //Init MaterializeCSS modals

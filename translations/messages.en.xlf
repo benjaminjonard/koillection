@@ -3775,5 +3775,11 @@
         <target>Collapse</target>
       </segment>
     </unit>
+    <unit id="Y3yqQP6" name="menu.close">
+      <segment>
+        <source>menu.close</source>
+        <target>Close</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
