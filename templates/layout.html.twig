@@ -24,10 +24,25 @@
             </div>
         </div>
 
+
+
         <div class="main content-wrapper">
-            {# Breadcrumb #}
             <header class="expanded">
-                {% block breadcrumb %}{% endblock %}
+                <div class="row breadcrumb">
+                    <div class="burger-menu">
+                        <i class="fa fa-bars fa-fw"></i>
+                    </div>
+                    {% block breadcrumb %}{% endblock %}
+                </div>
+
+
+                <div class="header-profile">
+                    {% if app.user.avatar != null %}
+                        <img class="user-avatar" src="{{ preload(asset(app.user.avatar.path)) }}">
+                    {% else %}
+                        <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
+                    {% endif %}
+                </div>
             </header>
             <div class="container-fluid container-limited">
                 {% block content %}{% endblock %}

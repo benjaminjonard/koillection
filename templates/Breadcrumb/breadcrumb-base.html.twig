@@ -1,4 +1,4 @@
-<div class="row breadcrumb">
+<div class="">
     {% for element in breadcrumb %}
         {{ include('Breadcrumb/breadcrumb-'~ element.type ~'.html.twig', {'element' : element}) }}
         {% if not loop.last %}
