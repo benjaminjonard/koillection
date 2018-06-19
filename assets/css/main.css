@@ -36,7 +36,7 @@ h5 {font-size: 2rem;}
 .sidebar-wrapper .nav-sidebar li a:hover, .sidebar-wrapper .nav-sidebar li.current a {background-color: #006355;}
 .sidebar-wrapper .nav-sidebar li a {padding: 7px 15px; font-size: 16px; line-height: 35px; color: #555555; display: block; padding-left: 22px; outline: none;}
 .sidebar-wrapper .nav-sidebar li a i {width: 16px; color: #f0f2f5; margin-right: 13px; text-align: center;}
-.sidebar-wrapper .nav-sidebar li a span {color: #f0f2f5;}
+.sidebar-wrapper .nav-sidebar li a span {color: #f0f2f5; margin-left: 10px;}
 .sidebar-wrapper .nav-sidebar li.separate-item {padding-top: 10px; margin-top: 10px; border-top: 1px solid #1ab0a2;}
 .sidebar-wrapper .nav-sidebar li.separate-item div {border: 1px solid #1ab0a2; border-radius: 50%; width: 13px; height: 13px; margin: -17px 23px 0; background-color: #009688}
 nav {background-color: #009688; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
@@ -422,8 +422,15 @@ html.loading:before {
 .nav-bottom li {height: 49px;}
 .nav-bottom li a {height: inherit;}
 
-.collapsed {margin-left: 60px;}
 .collapsed .sidebar-wrapper {width: 60px;}
-.collapsed .sidebar-wrapper span {visibility: hidden;}
-.collapse-nav i {transform: rotate( 180deg ); transition: transform 300ms ease;}
-.collapsed .collapse-nav i {transform: rotate( 360deg ); transition: transform 300ms ease;}
+.collapsed {margin-left: 60px;}
+
+/* Nav animations */
+.collapse-nav i {transform: rotate( 180deg );}
+.collapsed .collapse-nav i {transform: rotate( 360deg );}
+
+.sidebar-wrapper {transition: width 0.3s, right 0.3s; transform: translate3d(0, 0, 0);}
+.collapsed .sidebar-wrapper {transition: width 0.3s, left 0.3s; transform: translate3d(0, 0, 0);}
+
+.content-wrapper {transition: width 0.3s, right 0.3s; transform: translate3d(0, 0, 0);}
+.collapsed .content-wrapper {transition: width 0.3s, left 0.3s; transform: translate3d(0, 0, 0);}
