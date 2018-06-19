@@ -5,7 +5,7 @@
 }
 
 html {height: 100%;}
-body {min-height: 100vh; outline: none; margin-left: 230px;}
+body:not(.unauthorized) {min-height: 100vh; outline: none; margin-left: 230px;}
 .app {display: flex; flex-direction: column; min-height: 100vh;}
 
 /* Override lightbox, wtf man... */
@@ -403,6 +403,10 @@ html.loading:before {
 
 .burger-menu {display: none;}
 .burger-menu i {color: #7f8c8d; font-size: 21px; cursor: pointer;}
+.search-icon i {margin: 22px -375px 0 0;}
+.search {margin-right: 45px;}
+.search input {margin-top: 8px!important;}
+input[type=search].search-input, input[type=search]:focus:not([readonly]).search-input {border-bottom: none; box-shadow: none;}
 
 /* NAV SIZE AREA, KEEP ORDER */
 .collapsed .sidebar-wrapper {width: 60px;}
@@ -421,6 +425,8 @@ html.loading:before {
     .burger-menu {margin-right: 12px; display: block;}
     .sidebar-wrapper {width: 0!important;}
     body {margin-left: 0!important;}
+    .search {display: none;}
+    .search-icon i {margin: 22px 15px 0 0;}
 }
 
 .close-nav {display: none;}
@@ -430,3 +436,5 @@ html.loading:before {
 .mobile-opened .sidebar-wrapper {width: 230px!important;}
 .mobile-opened .mobile-overlay {display: block;}
 /* END NAV AREA */
+
+

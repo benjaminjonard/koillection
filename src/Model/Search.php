@@ -41,13 +41,6 @@ class Search
      */
     private $searchInTags;
 
-    public function __construct()
-    {
-        $this->searchInItems = true;
-        $this->searchInTags = true;
-        $this->searchInCollections = true;
-    }
-
     /**
      * Get search.
      *
