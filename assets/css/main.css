@@ -18,7 +18,7 @@ body:after {content: none;}
 .lb-cancel {background: none;}
 /* ------------------------------ */
 
-header {margin-bottom: 0; height: 60px; border: none; position: sticky; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; z-index: 1;}
+header {margin-bottom: 0; height: 60px; border: none; position: sticky; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; z-index: 1; background-color: #ffffff;}
 li {list-style-type: none;}
 h1 {font-size: 3.5rem;}
 h5 {font-size: 2rem;}
