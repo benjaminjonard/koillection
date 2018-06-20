@@ -107,7 +107,7 @@ strong.ellipsis{display: inline-block;}
 
 /* Blocks */
 .block {background-color: #ffffff; margin-bottom: 12px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.35);}
-.content-block {text-align: left; padding: 25px;}
+.content-block {text-align: left; padding-top: 25px;}
 .tags-block {padding: 1px;}
 
 .block-split .block{display: inline-block; height: 52px;}
