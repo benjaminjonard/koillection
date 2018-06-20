@@ -66,7 +66,7 @@ h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,
 .main-row {margin-top: 20px;}
 .breadcrumb {padding: 20px 0 20px 20px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
 .breadcrumb span{color: #ccc; padding: 0 2px;}
-.breadcrumb a{color:#999999;}
+.breadcrumb a{color: #9e9e9e;}
 .breadcrumb .last{color: #009688; padding: 0 2px;}
 .collections-list {margin: 0 15px;}
 
@@ -166,7 +166,7 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .item-details .data {margin-top: -8px; overflow: auto; max-width: 300px; vertical-align: top;}
 .item-details .data span {font-weight: bold;}
 .item-details .data > div {line-height: 30px;}
-.item-details .data a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #999999}
+.item-details .data a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #9e9e9e}
 .slider-container, .data {display: inline-block;}
 
 .item-top .item-title {margin-top: 3px;}
@@ -182,7 +182,7 @@ li.list-element .list-content {width: 80%; display: inline-block;}
 
 .collections .collection-element a {display: block; text-align: center; margin: 0 auto;}
 .collections .collection-circle-thumbnail {width: 100px; height: 100px;}
-.collections .collection-element .collection-stats {text-align: center; margin : 0 0 10px 0; color: #999999;}
+.collections .collection-element .collection-stats {text-align: center; margin : 0 0 10px 0; color: #9e9e9e;}
 .collections img {width: 100px; height: 100px;}
 .collections .collection-element .collection-title {text-align: center; margin-top: 3px; word-break: normal; display:block; font-size: 15px; text-overflow: ellipsis; overflow: hidden; margin: 3px auto 0 auto;}
 
@@ -273,9 +273,9 @@ img[data-src] {opacity: 0;}
 
 .chip a {font-size: 13px; font-weight: 500; color: rgba(0,0,0,0.6);}
 .tag-description {overflow: auto;}
-.tag-description a {border-bottom: 1px dashed #999;}
+.tag-description a {border-bottom: 1px dashed #9e9e9e;}
 
-h1 .quantity{font-size: 1.5rem; color: #999;}
+h1 .quantity{font-size: 1.5rem; color: #9e9e9e;}
 
 input:not([type])+label:after, input[type=date]+label:after, input[type=datetime-local]+label:after, input[type=datetime]+label:after, input[type=email]+label:after, input[type=number]+label:after, input[type=password]+label:after, input[type=search]+label:after, input[type=tel]+label:after, input[type=text]+label:after, input[type=time]+label:after, input[type=url]+label:after, textarea.materialize-textarea+label:after {
     display: inline;
@@ -442,3 +442,6 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
 /* END NAV AREA */
 
 
+::placeholder {color: #9e9e9e; opacity: 1;}
+:-ms-input-placeholder {color: #9e9e9e;}
+::-ms-input-placeholder {color: #9e9e9e;}

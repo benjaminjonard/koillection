@@ -44,7 +44,7 @@
                 <a class="search-icon" href="{{ path('app_search_index') }}"><i class="fa fa-search fa-fw"></i></a>
                 <form class="search" name="search" method="post" action="{{ path('app_search_index') }}">
                     <div>
-                        <input id="search_search" name="search[search]" type="search" class="search-input" placeholder="{{ 'menu.search'|trans }}">
+                        <input id="search_search" name="search[search]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}">
                         <input id="search__token" name="search[_token]" value="{{ csrf_token('search') }}" type="hidden">
                     </div>
                 </form>
