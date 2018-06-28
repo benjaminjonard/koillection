@@ -21,7 +21,7 @@
 			{{ form_start(form) }}
 				<div class="block-element">
 					<div class="row">
-						<h4 class="header">{{ 'title.infos'|trans }}</h4>
+						<h5 class="header">{{ 'title.infos'|trans }}</h5>
 						<div class="col s5 offset-s1">
 							{{ form_row(form.name, {'label': 'label.name'}) }}
 						</div>
@@ -30,7 +30,7 @@
 
 				<div class="block-element">
 					<div class="row">
-						<h4 class="header">{{ 'title.fields'|trans }}</h4>
+						<h5 class="header">{{ 'title.fields'|trans }}</h5>
 						<div class="col s11 offset-s1">
 							<div id="template-fields-holder" data-prototype="{% filter escape %}{{ include('App/Field/prototype.html.twig', { 'form': form.fields.vars.prototype }) }}{% endfilter %}">
 								{{ form_row(form.fields) }}
