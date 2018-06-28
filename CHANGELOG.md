@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [1.3.2] - 2018-06-19
 ### Chore
+* chore: Update version to v1.3.3 (Benjamin Jonard)
+
+### Styles
+* Reduce title font size
+* Fix tag description
+
+## [1.3.2] - 2018-06-19
+### Chore
 * chore: Update version to v1.3.2 (Benjamin Jonard)
 
 ### Features
