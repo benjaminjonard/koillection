@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.3.2] - 2018-06-19
+## [1.3.3] - 2018-06-28
 ### Chore
 * chore: Update version to v1.3.3 (Benjamin Jonard)
 
