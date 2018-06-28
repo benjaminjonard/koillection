@@ -20,7 +20,7 @@ body:after {content: none;}
 
 header {margin-bottom: 0; height: 60px; border: none; position: sticky; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; z-index: 1; background-color: #ffffff;}
 li {list-style-type: none;}
-h1 {font-size: 3.5rem;}
+h1 {font-size: 2.5rem;}
 h5 {font-size: 2rem;}
 
 /* Logo */
@@ -130,10 +130,10 @@ label div {font-size: 0.8rem;}
 
 /* Content header */
 .content-wrapper {background-color: #fff; text-align: center;}
-.content-wrapper .title-block {display: inline-block; padding: 0 25px;}
+.content-wrapper .title-block {display: inline-block;}
 .content-wrapper .title-block h1, .content-wrapper .title-block ul {margin: 0; font-family: "Cooper Hewitt",sans-serif;}
 .content-wrapper .title-block ul li {padding: 0 5px;}
-.content-wrapper .title-block .right {margin-left: 20px; margin-top: 13px;}
+.content-wrapper .title-block .right {margin-left: 20px; margin-top: 20px;}
 .content-wrapper .title-block .thumbnail {display: inline-block; min-width: 100px; max-width: 100px; min-height: 100px; padding-left: 0!important; padding-right: 0!important;}
 .content-wrapper .btn-holder input[type=text] {text-align: center; margin-top: 4px;}
 .content-wrapper .btn-holder:not(.no-margin) {margin-top: -5px;}
@@ -236,6 +236,7 @@ button.align-with-inputs {margin-top: 25px;}
 
 /* Image slider */
 .item-image-container {width: 300px; text-align: center; margin-bottom: 20px;}
+.tag-image-container {width: 300px; text-align: center; margin-bottom: 20px; float: left;}
 .slider-container .slider-frame img {max-width: 300px; width: 100%}
 .slider-container ul li {display: inline-block;}
 .slider-container ul li img {max-width: 70px; max-height: 70px;}
@@ -418,8 +419,7 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
 
 @media (max-width: 749px)
 {
-    .item-image-container {float: none; width: 100%}
-    .item-image-container {margin-bottom: 20px;}
+    .item-image-container, .tag-image-container {float: none; width: 100%; margin-bottom: 20px;}
 
     /* Collection header */
     .collection-header .left, .collection-header .right {float: none!important;}

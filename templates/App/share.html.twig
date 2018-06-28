@@ -2,7 +2,7 @@
 
 <div id="modal-share" class="modal">
     <div class="modal-content">
-        <h4>Share link</h4>
+        <h5>Share link</h5>
         {% if app.user.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
             {{ 'message.user_is_private'|trans }}
         {% elseif entity is defined and entity.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}

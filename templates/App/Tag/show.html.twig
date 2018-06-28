@@ -49,7 +49,7 @@
             {% if null != tag.image or null != tag.description %}
                 <div class="block-element">
                     <h5 class="header">{{ 'title.infos'|trans }}</h5>
-                    <div class="item-image-container">
+                    <div class="tag-image-container">
                         {% if tag.image is not null %}
                             <a href="{{ preload(asset(tag.image.path)) }}" data-lightbox="image-{{ tag.id }}">
                                 <img class="tag-image" src="{{ preload(asset(tag.image.thumbnailPath)) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
