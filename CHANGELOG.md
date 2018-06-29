@@ -1,13 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.3.3] - 2018-06-28
+## [1.3.3] - 2018-06-29
 ### Chore
 * chore: Update version to v1.3.3 (Benjamin Jonard)
 
 ### Styles
 * styles: Reduce title font size (Benjamin Jonard)
 * styles: Fix tag description (Benjamin Jonard)
+* styles: Reduce item's thumbnail size in collection view on mobile (Benjamin Jonard)
+* styles: Fix multiline tags on mobile (Benjamin Jonard)
 
 ## [1.3.2] - 2018-06-19
 ### Chore
