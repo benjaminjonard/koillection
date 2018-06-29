@@ -432,6 +432,10 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
     body {margin-left: 0!important;}
     .search {display: none;}
     .search-icon i {margin: 22px 15px 0 0;}
+    #collection-items img {max-width: 120px; max-height: 160px;}
+    #collection-items .collection-item {min-width: 120px; min-height: 160px;}
+    .grid-container-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .placeholder {width: 120px; height: 160px;}
 }
 
 .close-nav {display: none;}
