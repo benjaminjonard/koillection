@@ -125,9 +125,10 @@ class CollectionRepository extends EntityRepository
 
         if (true === $withData) {
             $qb
+                ->leftJoin('c.items', 'i')
                 ->leftJoin('i.data', 'd')
                 ->leftJoin('d.image', 'd_i')
-                ->addSelect('d, d_i')
+                ->addSelect('i, d, d_i')
             ;
         }
 
