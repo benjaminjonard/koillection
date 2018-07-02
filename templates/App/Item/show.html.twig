@@ -21,7 +21,9 @@
             </h1>
             <span>
                 {{ 'global.created_at'|trans({'%date%': item.createdAt|date('d/m/Y', app.user.timezone)}) }}
-                - {{ 'global.updated_at'|trans({'%date%': item.updatedAt ? item.updatedAt|date('d/m/Y', app.user.timezone) : '-'}) }}
+                {% if item.updatedAt %}
+                    - {{ 'global.updated_at'|trans({'%date%': item.updatedAt|date('d/m/Y', app.user.timezone) }) }}
+                {% endif %}
             </span>
         </div>
         <div class="block-split block-split-2">
