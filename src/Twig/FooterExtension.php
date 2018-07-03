@@ -34,8 +34,12 @@ class FooterExtension extends \Twig_Extension
     public function renderFooter(\Twig_Environment $environment, $object)
     {
         if (property_exists($object, 'createdAt') && property_exists($object, 'updatedAt') && property_exists($object, 'seenCounter')) {
+            $class = \get_class($object);
+            $class = strtolower(substr($class, strrpos($class, '\\') + 1));
+
             return $environment->render('App/footer.html.twig', [
                 'object' => $object,
+                'class' => $class
             ]);
         }
 
