@@ -60,6 +60,12 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     private $items;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $seenCounter;
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      */
@@ -85,6 +91,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         $this->id = Uuid::uuid4();
         $this->items = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->seenCounter = 0;
     }
 
     /**
@@ -305,6 +312,25 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Tag
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

@@ -50,6 +50,12 @@ class Album implements BreadcrumbableInterface
     private $photos;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $seenCounter;
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      */
@@ -73,6 +79,7 @@ class Album implements BreadcrumbableInterface
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->seenCounter = 0;
         $this->photos = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
@@ -258,6 +265,25 @@ class Album implements BreadcrumbableInterface
     public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Item
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

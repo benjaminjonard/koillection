@@ -86,6 +86,12 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
     private $image;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $seenCounter;
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      */
@@ -112,6 +118,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
         $this->children = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->seenCounter = 0;
     }
 
     /**
@@ -446,6 +453,25 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
     public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Collection
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

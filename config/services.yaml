@@ -39,6 +39,9 @@ services:
     App\EventListener\NonceListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+    App\EventListener\SeenListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
     App\EventListener\LogQueueListener:
         tags:
              - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse, priority: 5 }

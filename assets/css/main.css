@@ -8,6 +8,7 @@ html {height: 100%;}
 body {min-height: 100vh; outline: none; margin-left: 230px;}
 body.unauthorized {margin-left: 0;}
 .app {display: flex; flex-direction: column; min-height: 100vh;}
+footer {position: absolute; left: 0;  right: 0; bottom: 0; padding-top: 25px; color: #7f8c8d; font-size: 12px; margin: 15px;}
 
 /* Override lightbox, wtf man... */
 body:after {content: none;}
@@ -43,7 +44,7 @@ h5 {font-size: 2rem;}
 nav {background-color: #009688; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
 
 .content-wrapper {width: 100%; padding: 0 20px 20px 20px; background: #fff; display: flex; flex-direction: column; flex: 1 1 0%;}
-.content-wrapper .container-fluid {padding-top: 20px;}
+.content-wrapper .container-fluid {padding: 20px 0;}
 
 /* Materialze.css override */
 .input-field label {left:0;}
