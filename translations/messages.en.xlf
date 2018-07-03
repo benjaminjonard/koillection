@@ -3835,5 +3835,11 @@
         <target>Are you sure you want to delete this collection ? All items it contains will be permanently lost...</target>
       </segment>
     </unit>
+    <unit id="_HekiQE" name="message.delete.loan">
+      <segment>
+        <source>message.delete.loan</source>
+        <target>Are you sure you want to delete this loan ? It will be permanently lost...</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

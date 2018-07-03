@@ -51,7 +51,7 @@
                             <td>{{ loan.lentAt|date('d/m/Y') }}</td>
                             <td>{{ loan.lentAt|timeAgo }}</td>
                             <td>
-                                <a href="{{ path('app_loan_delete', {'id' : loan.id}) }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
+                                <a class="modal-trigger" href="#delete-{{ loan.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
                                 <a href="{{ path('app_loan_returned', {'id' : loan.id}) }}" title="{{ 'tooltip.returned'|trans }}"><i class="fa fa-check fa-fw"></i></a>
                             </td>
                         </tr>
@@ -81,7 +81,7 @@
                             <td>{{ returnedItem.returnedAt|date('d/m/Y') }}</td>
                             <td>{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
                             <td>
-                                <a href="{{ path('app_loan_delete', {'id' : returnedItem.id}) }}"><i class="fa fa-trash fa-fw"></i></a>
+                                <a class="modal-trigger" href="#delete-{{ returnedItem.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -91,3 +91,14 @@
         </div>
     </div>
 {% endblock %}
+
+{% if context == 'default' %}
+    {% block modals %}
+        {% for loan in loans %}
+            {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ loan.id , 'route': url('app_loan_delete', {id: loan.id}), transKey: 'message.delete.loan'}) }}
+        {% endfor %}
+        {% for returnedItem in returnedItems %}
+            {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ returnedItem.id , 'route': url('app_loan_delete', {id: returnedItem.id}), transKey: 'message.delete.loan'}) }}
+        {% endfor %}
+    {% endblock %}
+{% endif %}
