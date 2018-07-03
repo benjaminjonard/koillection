@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="fr">
   <file id="messages.fr">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -3785,6 +3785,54 @@
       <segment>
         <source>global.seen_counter</source>
         <target>Page affichée %count% fois</target>
+      </segment>
+    </unit>
+    <unit id="rd2X72s" name="message.delete.photo">
+      <segment>
+        <source>message.delete.photo</source>
+        <target>Êtes-vous sûr de vouloir supprimer cette photo ? Elle sera définitivement perdue...</target>
+      </segment>
+    </unit>
+    <unit id="U4y7aZO" name="message.delete.tag">
+      <segment>
+        <source>message.delete.tag</source>
+        <target>Êtes-vous sûr de vouloir supprimer ce tag ? Il sera définitivement perdu...</target>
+      </segment>
+    </unit>
+    <unit id="v5OgDgx" name="message.delete.item">
+      <segment>
+        <source>message.delete.item</source>
+        <target>Êtes-vous sûr de vouloir supprimer cet objet ? Il sera définitivement perdu...</target>
+      </segment>
+    </unit>
+    <unit id="zHvuaSF" name="message.delete.album">
+      <segment>
+        <source>message.delete.album</source>
+        <target>Êtes-vous sûr de vouloir supprimer cet album ? Toutes les photos qu'il contient seront définitivement perdues...</target>
+      </segment>
+    </unit>
+    <unit id="F5mLnYt" name="message.delete.template">
+      <segment>
+        <source>message.delete.template</source>
+        <target>Êtes-vous sûr de vouloir supprimer ce modèle ? Il sera définitivement perdu...</target>
+      </segment>
+    </unit>
+    <unit id="JMVpPAR" name="message.delete.wishlist">
+      <segment>
+        <source>message.delete.wishlist</source>
+        <target>Êtes-vous sûr de vouloir supprimer cette liste de souhaits ? Tous les souhaits qu'elle contient seront définitivement perdus...</target>
+      </segment>
+    </unit>
+    <unit id="YTTkLLK" name="message.delete.wish">
+      <segment>
+        <source>message.delete.wish</source>
+        <target>Êtes-vous sûr de vouloir supprimer ce souhait ? Il sera définitivement perdu...</target>
+      </segment>
+    </unit>
+    <unit id="5Z0Lnp." name="message.delete.collection">
+      <segment>
+        <source>message.delete.collection</source>
+        <target>Êtes-vous sûr de vouloir supprimer cette collection ? Tous les objets qu'elle contient seront définitivement perdus...</target>
       </segment>
     </unit>
   </file>
