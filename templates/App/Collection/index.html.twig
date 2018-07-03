@@ -32,7 +32,7 @@
                         <a href="{{ path('app_collection_export') }}" target="_blank" class="button" title="{{ 'tooltip.export_collection'|trans }}">
                             <i class="fa fa-print fa-fw"></i>
                         </a>
-                        {{ include('App/share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                     </div>
                 {% endif %}
                 <div class="right">
@@ -51,3 +51,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% if context == 'default' %}
+    {% block modals %}
+        {{ include('Modal/share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
+    {% endblock %}
+{% endif %}

@@ -36,7 +36,7 @@
             <div class="btn-holder">
                 <div class="left">
                     {% if context == 'default' %}
-                        {{ include('App/share.html.twig', {'entity': collection, 'route': url('app_user_collection_items', {id: collection.id, username: app.user.username})}) }}
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                     {% endif %}
                 </div>
                 <div class="right">
@@ -65,3 +65,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% if context == 'default' %}
+    {% block modals %}
+        {{ include('Modal/share.html.twig', {'entity': collection, 'route': url('app_user_collection_items', {id: collection.id, username: app.user.username})}) }}
+    {% endblock %}
+{% endif %}

@@ -29,7 +29,7 @@
                         <a href="{{ path('app_album_add') }}" class="button" title="{{ 'tooltip.add_album'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
                         </a>
-                        {{ include('App/share.html.twig', {'route': url('app_user_album_index', {username: app.user.username})}) }}
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                     {% endif %}
                 </div>
                 <div class="right">
@@ -57,3 +57,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% if context == 'default' %}
+    {% block modals %}
+        {{ include('Modal/share.html.twig', {'route': url('app_user_album_index', {username: app.user.username})}) }}
+    {% endblock %}
+{% endif %}

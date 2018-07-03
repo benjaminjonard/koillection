@@ -41,7 +41,7 @@
                         <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
                             <i class="fa fa-trash fa-fw"></i>
                         </a>
-                        {{ include('App/share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                     {% endif %}
                 </div>
                 <div class="clearfix"></div>
@@ -74,38 +74,24 @@
                                     </div>
                                 {% endif %}
                             </div>
-
-                            {% if context == 'default' %}
-                                <div id="delete-{{ photo.id }}" class="modal">
-                                    <div class="modal-content">
-                                        <p>Are you sure you want to delete this photo ? Every infos and images will be permanently lost...</p>
-                                    </div>
-                                    <div class="modal-footer row">
-                                        <a href="{{ path('app_photo_delete', {id: photo.id}) }}" class="modal-action modal-close waves-effect btn col s2">Agree</a>
-                                        <a href="" class="modal-action modal-close waves-effect waves-light btn red darken-1 col s2">Disagree</a>
-                                    </div>
-                                </div>
-                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
             {% endif %}
         </div>
     </div>
-
-    {% if context == 'default' %}
-        <div id="delete" class="modal">
-            <div class="modal-content">
-                <p>Are you sure you want to delete thit album ? Every photos belonging to it will be permanently lost...</p>
-            </div>
-            <div class="modal-footer row">
-                <a href="{{ path('app_album_delete', {'id': album.id}) }}" class="modal-action modal-close waves-effect btn col s2">Agree</a>
-                <a href="#" class="modal-action modal-close waves-effect waves-light btn red darken-1 col s2">Disagree</a>
-            </div>
-        </div>
-    {% endif %}
 {% endblock %}
 
 {% block footer %}
     {{ renderFooter(album)  }}
 {% endblock %}
+
+{% if context == 'default' %}
+    {% block modals %}
+        {{ include('Modal/share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
+        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
+        {% for photo in album.photos %}
+            {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': url('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
+        {% endfor %}
+    {% endblock %}
+{% endif %}
