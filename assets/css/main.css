@@ -402,6 +402,9 @@ html.loading:before {
 .sidebar-wrapper {transition: width 0.3s, right 0.3s; transform: translate3d(0, 0, 0);}
 .collapsed .sidebar-wrapper {transition: width 0.3s, left 0.3s; transform: translate3d(0, 0, 0);}
 
+.content-wrapper {transition: width 0.3s, right 0.3s; transform: translate3d(0, 0, 0);}
+.collapsed .content-wrapper {transition: width 0.3s, left 0.3s; transform: translate3d(0, 0, 0);}
+
 .burger-menu {display: none;}
 .burger-menu i {color: #7f8c8d; font-size: 21px; cursor: pointer;}
 .search-icon i {margin: 22px -375px 0 0;}
