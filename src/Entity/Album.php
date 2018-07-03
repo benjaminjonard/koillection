@@ -279,7 +279,7 @@ class Album implements BreadcrumbableInterface
 
     /**
      * @param int $seenCounter
-     * @return Item
+     * @return Album
      */
     public function setSeenCounter(int $seenCounter) : self
     {
