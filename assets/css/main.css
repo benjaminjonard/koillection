@@ -394,6 +394,7 @@ html.loading:before {
 
 .header-profile {flex: 0 0 auto; height: 60px; cursor: pointer; }
 .header-profile .user-avatar {height: 40px; width: 40px; margin: 10px 0;}
+.user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 26px;}
 
 /* Nav animations */
 .collapse-nav i {transform: rotate( 180deg );}
