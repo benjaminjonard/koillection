@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
   <file id="messages.fr">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -3781,12 +3781,6 @@
         <target>Fermer</target>
       </segment>
     </unit>
-    <unit id="YA2Fg58" name="global.seen_counter">
-      <segment>
-        <source>global.seen_counter</source>
-        <target>Page affichée %count% fois</target>
-      </segment>
-    </unit>
     <unit id="rd2X72s" name="message.delete.photo">
       <segment>
         <source>message.delete.photo</source>
@@ -3839,6 +3833,36 @@
       <segment>
         <source>message.delete.loan</source>
         <target>Êtes-vous sûr de vouloir supprimer ce prêt ? Il sera définitivement perdu...</target>
+      </segment>
+    </unit>
+    <unit id="kAXzPyc" name="global.seen_counter.album">
+      <segment>
+        <source>global.seen_counter.album</source>
+        <target>Album consulté %count% fois</target>
+      </segment>
+    </unit>
+    <unit id="HWAnnvq" name="global.seen_counter.collection">
+      <segment>
+        <source>global.seen_counter.collection</source>
+        <target>Collection consultée %count% fois</target>
+      </segment>
+    </unit>
+    <unit id="hW.mDrh" name="global.seen_counter.item">
+      <segment>
+        <source>global.seen_counter.item</source>
+        <target>Objet consulté %count% fois</target>
+      </segment>
+    </unit>
+    <unit id="RXjwOtL" name="global.seen_counter.tag">
+      <segment>
+        <source>global.seen_counter.tag</source>
+        <target>Tag consulté %count% fois</target>
+      </segment>
+    </unit>
+    <unit id="_5ewjw9" name="global.seen_counter.wishlist">
+      <segment>
+        <source>global.seen_counter.wishlist</source>
+        <target>Liste de souhait consultée %count% fois</target>
       </segment>
     </unit>
   </file>

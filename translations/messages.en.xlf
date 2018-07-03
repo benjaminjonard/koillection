@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
   <file id="messages.en">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -3781,12 +3781,6 @@
         <target>Close</target>
       </segment>
     </unit>
-    <unit id="YA2Fg58" name="global.seen_counter">
-      <segment>
-        <source>global.seen_counter</source>
-        <target> [0,1] Page displayed %count% time| ]1,Inf[ Page displayed %count% times</target>
-      </segment>
-    </unit>
     <unit id="rd2X72s" name="message.delete.photo">
       <segment>
         <source>message.delete.photo</source>
@@ -3839,6 +3833,36 @@
       <segment>
         <source>message.delete.loan</source>
         <target>Are you sure you want to delete this loan ? It will be permanently lost...</target>
+      </segment>
+    </unit>
+    <unit id="kAXzPyc" name="global.seen_counter.album">
+      <segment>
+        <source>global.seen_counter.album</source>
+        <target>[0,1] Album consulted %count% time| ]1,Inf[ Album consulted %count% times</target>
+      </segment>
+    </unit>
+    <unit id="HWAnnvq" name="global.seen_counter.collection">
+      <segment>
+        <source>global.seen_counter.collection</source>
+        <target>[0,1] Collection consulted %count% time| ]1,Inf[ Collection consulted %count% times</target>
+      </segment>
+    </unit>
+    <unit id="hW.mDrh" name="global.seen_counter.item">
+      <segment>
+        <source>global.seen_counter.item</source>
+        <target>[0,1] Item consulted %count% time| ]1,Inf[ Item consulted %count% times</target>
+      </segment>
+    </unit>
+    <unit id="RXjwOtL" name="global.seen_counter.tag">
+      <segment>
+        <source>global.seen_counter.tag</source>
+        <target>[0,1] Tag consulted %count% time| ]1,Inf[ Tag consulted %count% times</target>
+      </segment>
+    </unit>
+    <unit id="_5ewjw9" name="global.seen_counter.wishlist">
+      <segment>
+        <source>global.seen_counter.wishlist</source>
+        <target>[0,1] Wishlist consulted %count% time| ]1,Inf[ Wishlist consulted %count% times</target>
       </segment>
     </unit>
   </file>
