@@ -35,7 +35,7 @@
                     <a href="{{ path('app_item_history', {'id': item.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
                         <i class="fa fa-history fa-fw"></i>
                     </a>
-                    {{ include('App/share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
+                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                 </div>
             {% endif %}
         </div>
@@ -112,22 +112,16 @@
                 </a>
             {% endif %}
         </div>
-
     </div>
-
-    {% if context == 'default' %}
-        <div id="delete" class="modal">
-            <div class="modal-content">
-                <p>Are you sure you want to delete this item ? Every infos and images will be permanently lost...</p>
-            </div>
-            <div class="modal-footer row">
-                <a href="{{ path('app_item_delete', {'id': item.id}) }}" class="modal-action modal-close waves-effect btn col s2">Agree</a>
-                <a class="modal-close waves-effect waves-light btn red darken-1 col s2">Disagree</a>
-            </div>
-        </div>
-    {% endif %}
 {% endblock %}
 
 {% block footer %}
     {{ renderFooter(item)  }}
 {% endblock %}
+
+{% if context == 'default' %}
+    {% block modals %}
+        {{ include('Modal/share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
+        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
+    {% endblock %}
+{% endif %}

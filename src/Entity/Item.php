@@ -83,6 +83,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface
     /**
      * @var \App\Entity\Template
      * @ORM\ManyToOne(targetEntity="Template", inversedBy="items")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $template;
 
