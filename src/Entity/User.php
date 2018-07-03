@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="error.email.not_unique")
  * @UniqueEntity(fields={"username"}, message="error.username.not_unique")
  */
-class User implements UserInterface, BreabcrumbableInterface
+class User implements UserInterface, BreadcrumbableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface

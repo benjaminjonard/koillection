@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,7 +15,7 @@ use Ramsey\Uuid\Uuid;
  * @ORM\Entity
  * @ORM\Table(name="koi_album")
  */
-class Album implements BreabcrumbableInterface
+class Album implements BreadcrumbableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -50,6 +50,12 @@ class Album implements BreabcrumbableInterface
     private $photos;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $seenCounter;
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      */
@@ -73,6 +79,7 @@ class Album implements BreabcrumbableInterface
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->seenCounter = 0;
         $this->photos = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
@@ -258,6 +265,25 @@ class Album implements BreabcrumbableInterface
     public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Item
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

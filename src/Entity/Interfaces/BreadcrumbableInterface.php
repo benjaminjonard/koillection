@@ -5,11 +5,11 @@ namespace App\Entity\Interfaces;
 use App\Entity\User;
 
 /**
- * Interface BreabcrumbableInterface
+ * Interface BreadcrumbableInterface
  *
  * @package App\Entity\Interfaces
  */
-interface BreabcrumbableInterface
+interface BreadcrumbableInterface
 {
     /**
      * @return string|null

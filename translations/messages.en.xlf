@@ -3781,5 +3781,11 @@
         <target>Close</target>
       </segment>
     </unit>
+    <unit id="YA2Fg58" name="global.seen_counter">
+      <segment>
+        <source>global.seen_counter</source>
+        <target>Page displayed %count% times</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

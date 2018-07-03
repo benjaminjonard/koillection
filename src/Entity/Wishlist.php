@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\VisibilityEnum;
 use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -17,7 +17,7 @@ use Ramsey\Uuid\Uuid;
  * @ORM\Entity(repositoryClass="App\Repository\WishlistRepository")
  * @ORM\Table(name="koi_wishlist")
  */
-class Wishlist implements BreabcrumbableInterface
+class Wishlist implements BreadcrumbableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -72,6 +72,12 @@ class Wishlist implements BreabcrumbableInterface
     private $image;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $seenCounter;
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      */
@@ -98,6 +104,7 @@ class Wishlist implements BreabcrumbableInterface
         $this->wishes = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->seenCounter = 0;
     }
 
     /**
@@ -373,6 +380,25 @@ class Wishlist implements BreabcrumbableInterface
     public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Tag
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

@@ -1,0 +1,7 @@
+<footer>
+    {{ 'global.created_at'|trans({'%date%': object.createdAt|date('d/m/Y', app.user.timezone)}) }}
+    {% if object.updatedAt %}
+        · {{ 'global.updated_at'|trans({'%date%': object.updatedAt|date('d/m/Y', app.user.timezone) }) }}
+    {% endif %}
+    · {{ 'global.seen_counter'|trans({'%count%': object.seenCounter + 1}) }}
+</footer>

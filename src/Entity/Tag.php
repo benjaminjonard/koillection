@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Model\BreadcrumbElement;
@@ -19,7 +19,7 @@ use Ramsey\Uuid\UuidInterface;
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  * @ORM\Table(name="koi_tag")
  */
-class Tag implements BreabcrumbableInterface, LoggableInterface
+class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -60,6 +60,12 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     private $items;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $seenCounter;
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      */
@@ -85,6 +91,7 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
         $this->id = Uuid::uuid4();
         $this->items = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->seenCounter = 0;
     }
 
     /**
@@ -305,6 +312,25 @@ class Tag implements BreabcrumbableInterface, LoggableInterface
     public function setVisibility(string $visibility) : self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Tag
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }
