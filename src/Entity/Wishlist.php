@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\VisibilityEnum;
 use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -17,7 +17,7 @@ use Ramsey\Uuid\Uuid;
  * @ORM\Entity(repositoryClass="App\Repository\WishlistRepository")
  * @ORM\Table(name="koi_wishlist")
  */
-class Wishlist implements BreabcrumbableInterface
+class Wishlist implements BreadcrumbableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface

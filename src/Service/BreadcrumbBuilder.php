@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Item;
 use App\Entity\Wishlist;
 use App\Model\BreadcrumbElement;
@@ -34,7 +34,7 @@ class BreadcrumbBuilder
      */
     public function build($entity) :array
     {
-        if (!$entity instanceof BreabcrumbableInterface) {
+        if (!$entity instanceof BreadcrumbableInterface) {
             return [];
         }
 

@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
  * @ORM\Table(name="koi_item")
  */
-class Item implements BreabcrumbableInterface, LoggableInterface
+class Item implements BreadcrumbableInterface, LoggableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface

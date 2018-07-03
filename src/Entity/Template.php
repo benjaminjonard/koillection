@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -17,7 +17,7 @@ use Ramsey\Uuid\UuidInterface;
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @ORM\Table(name="koi_template")
  */
-class Template implements BreabcrumbableInterface
+class Template implements BreadcrumbableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface

@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\BreabcrumbableInterface;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Model\BreadcrumbElement;
@@ -19,7 +19,7 @@ use Ramsey\Uuid\UuidInterface;
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  * @ORM\Table(name="koi_tag")
  */
-class Tag implements BreabcrumbableInterface, LoggableInterface
+class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
