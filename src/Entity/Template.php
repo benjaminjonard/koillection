@@ -42,7 +42,7 @@ class Template implements BreadcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="template", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="template")
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private $items;
