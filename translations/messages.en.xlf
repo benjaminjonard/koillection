@@ -3784,7 +3784,7 @@
     <unit id="YA2Fg58" name="global.seen_counter">
       <segment>
         <source>global.seen_counter</source>
-        <target>Page displayed %count% times</target>
+        <target> [0,1] Page displayed %count% time| ]1,Inf[ Page displayed %count% times</target>
       </segment>
     </unit>
   </file>
