@@ -394,7 +394,7 @@ class Wishlist implements BreadcrumbableInterface
 
     /**
      * @param int $seenCounter
-     * @return Tag
+     * @return Wishlist
      */
     public function setSeenCounter(int $seenCounter) : self
     {
