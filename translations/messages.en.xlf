@@ -3328,15 +3328,6 @@
         <target>Edit</target>
       </segment>
     </unit>
-    <unit id="eX9Lgio" name="tooltip.export_collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/index.html.twig:30</note>
-      </notes>
-      <segment>
-        <source>tooltip.export_collection</source>
-        <target>Export collection</target>
-      </segment>
-    </unit>
     <unit id="0Iya7gx" name="tooltip.history">
       <notes>
         <note category="file-source" priority="1">templates/App/Item/show.html.twig:38</note>
@@ -3863,6 +3854,24 @@
       <segment>
         <source>global.seen_counter.wishlist</source>
         <target>[0,1] Wishlist consulted %count% time| ]1,Inf[ Wishlist consulted %count% times</target>
+      </segment>
+    </unit>
+    <unit id="W6Rvzmb" name="menu.tools">
+      <segment>
+        <source>menu.tools</source>
+        <target>Tools</target>
+      </segment>
+    </unit>
+    <unit id="SRjkknf" name="btn.export">
+      <segment>
+        <source>btn.export</source>
+        <target>Export</target>
+      </segment>
+    </unit>
+    <unit id="OTxNY59" name="title.exports">
+      <segment>
+        <source>title.exports</source>
+        <target>Exports</target>
       </segment>
     </unit>
   </file>
