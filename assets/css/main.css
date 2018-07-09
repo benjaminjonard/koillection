@@ -23,6 +23,7 @@ header {margin-bottom: 0; height: 60px; border: none; position: sticky; top: 0; 
 li {list-style-type: none;}
 h1 {font-size: 2.5rem;}
 h5 {font-size: 2rem;}
+.btn i {font-size: 1rem; margin-right: 6px;}
 
 /* Logo */
 .header-logo {cursor: pointer; float: left; height: 60px; width: 230px; overflow: hidden; background-color: #1AB0A2;}

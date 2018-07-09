@@ -25,7 +25,9 @@
                 <h5 class="header">
                     {{ 'title.users'|trans }}
                 </h5>
-                <a href="{{ path('app_admin_user_add') }}" class="btn waves-effect waves-light"> {{ 'btn.add_user'|trans }}</a>
+                <a href="{{ path('app_admin_user_add') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_user'|trans }}
+                </a>
                 <table class="centered striped">
                     <thead>
                     <tr>

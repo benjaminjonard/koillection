@@ -44,22 +44,6 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/export", name="app_collection_export")
-     * @Method({"GET"})
-     *
-     * @return Response
-     */
-    public function export() : Response
-    {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
-
-        return $this->render('App/Collection/export.html.twig', [
-            'collections' => $collections,
-            'user' => $this->getUser()
-        ]);
-    }
-
-    /**
      * @Route("/collections/add", name="app_collection_add")
      * @Method({"GET", "POST"})
      *
