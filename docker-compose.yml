@@ -1,16 +1,25 @@
 version: '3'
 
 services:
-    koillection:
-        container_name: koillection
-        image: registry.gitlab.com/koillection/koillection:latest
-
+    php:
+        build: ./docker/php
         ports:
-            - "80:8889"
+            - 9000:9000
+        links:
+            - postgres
         volumes:
-            - ".:/var/www/koillection"
-            - "./docker/php.ini:/usr/local/etc/php/php.ini"
-            - "./docker/nginx.conf:/etc/nginx/nginx.conf"
+            - .:/var/www/koillection
+            - ./logs/symfony:/var/www/symfony/app/logs
+
+    nginx:
+        build: ./docker/nginx
+        ports:
+            - "80:80"
+        links:
+            - php
+        volumes:
+            - .:/var/www/koillection
+            - ./logs/symfony:/var/www/symfony/app/logs
 
     postgres:
         container_name: postgres
