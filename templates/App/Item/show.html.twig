@@ -12,32 +12,35 @@
 
 {% block content %}
     <div class="content-wrapper">
-        <div class="title-block">
-            <h1>
-                {{ item.name }}
-                {% if item.quantity > 1 %}
-                    <span class="quantity">(x{{ item.quantity }})</span>
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>
+                    {{ item.name }}
+                    {% if item.quantity > 1 %}
+                        <span class="quantity">(x{{ item.quantity }})</span>
+                    {% endif %}
+                </h1>
+            </div>
+
+            <div>
+                {% if context == 'default' %}
+                    <div class="btn-holder">
+                        <a href="{{ path('app_item_edit', {'id': item.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_item_loan', {'id': item.id}) }}" class="button" title="{{ 'tooltip.loan_item'|trans }}">
+                            <i class="fa fa-exchange fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_item_history', {'id': item.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                            <i class="fa fa-history fa-fw"></i>
+                        </a>
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                    </div>
                 {% endif %}
-            </h1>
-        </div>
-        <div class="block-split block-split-2">
-            {% if context == 'default' %}
-                <div class="btn-holder first">
-                    <a href="{{ path('app_item_edit', {'id': item.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                        <i class="fa fa-pencil fa-fw"></i>
-                    </a>
-                    <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                        <i class="fa fa-trash fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_item_loan', {'id': item.id}) }}" class="button" title="{{ 'tooltip.loan_item'|trans }}">
-                        <i class="fa fa-exchange fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_item_history', {'id': item.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                        <i class="fa fa-history fa-fw"></i>
-                    </a>
-                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-                </div>
-            {% endif %}
+            </div>
         </div>
         <div class="clearfix"></div>
 
