@@ -109,17 +109,8 @@ strong.ellipsis{display: inline-block;}
 
 /* Blocks */
 .block {background-color: #ffffff; margin-bottom: 12px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.35);}
-.content-block {text-align: left; padding-top: 25px;}
+.content-block {text-align: left; padding-top: 50px;}
 .tags-block {padding: 1px;}
-
-.block-split .block{display: inline-block; height: 52px;}
-/* Split 2 */
-.block-split-2 .block.first {width: 31%; float: left;}
-.block-split-2 .block.second {width: 66%; float: right;}
-/* Split 3 */
-.block-split-3 .block {width: 31%;}
-.block-split-3 .block.first {float: left;}
-.block-split-3 .block.third {float: right;}
 
 .block-element:not(:last-of-type) {padding-bottom: 35px;}
 
@@ -140,6 +131,8 @@ label div {font-size: 0.8rem;}
 .content-wrapper .btn-holder input[type=text] {text-align: center; margin-top: 4px;}
 .content-wrapper .btn-holder:not(.no-margin) {margin-top: -5px;}
 .content-wrapper .btn-holder {display: inline-block;}
+.btn-holder .right {height: 0;}
+.btn-holder .left {min-height: 37px;}
 
 ul.nav-pills {display: inline-block;}
 ul.nav-pills li { white-space: nowrap; display: inline;}
@@ -165,10 +158,11 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 
 .item-wrapper {text-align: center;}
 .item-details {max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto;}
-.item-details .data {margin-top: -8px; overflow: auto; max-width: 300px; vertical-align: top;}
+.item-details .data {margin-top: -8px; overflow: auto; max-width: 300px; vertical-align: top; text-align: left;}
 .item-details .data span {font-weight: bold;}
 .item-details .data > div {line-height: 30px;}
 .item-details .data a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #9e9e9e}
+.item-details .slider-container {margin-right: 30px;}
 .slider-container, .data {display: inline-block;}
 
 .item-top .item-title {margin-top: 3px;}
