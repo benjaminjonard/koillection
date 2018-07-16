@@ -414,6 +414,7 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
 
 .profile-menu {width: 125px; position: fixed; top: 35px; right: 18px; z-index: 1; }
 .profile-menu i {margin-right: 5px;}
+.close-nav {display : none;}
 
 @media (max-width: 749px)
 {
@@ -433,12 +434,12 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
     #collection-items .collection-item {min-width: 120px; min-height: 160px;}
     .grid-container-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
     .placeholder {width: 120px; height: 160px;}
+
+    .collapse-nav {display : none;}
+    .close-nav {display : block;}
 }
 
-.close-nav {display: none;}
 .mobile-overlay {display: none; background-color: rgba(0,0,0,0.3); position: fixed; height: 100%; width: 100%; z-index: 500;}
-.mobile-opened .collapse-nav {display : none;}
-.mobile-opened .close-nav {display : block;}
 .mobile-opened .sidebar-wrapper {width: 230px!important;}
 .mobile-opened .mobile-overlay {display: block;}
 /* END NAV AREA */
