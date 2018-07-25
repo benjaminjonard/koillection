@@ -21,7 +21,7 @@ class DatumRepository extends EntityRepository
             ->createQueryBuilder('d')
             ->leftJoin('d.item', 'i')
             ->leftJoin('d.image', 'd_i')
-            ->addSelect('d_i')
+            ->addSelect('d_i, i')
             ->andWhere('d.type = :type')
             ->orderBy('i.name', 'ASC')
             ->setParameter('type', DatumTypeEnum::TYPE_SIGN)
