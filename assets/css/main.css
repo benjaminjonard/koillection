@@ -444,7 +444,6 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
 .mobile-opened .mobile-overlay {display: block;}
 /* END NAV AREA */
 
-
 ::placeholder {color: #9e9e9e; opacity: 1;}
 :-ms-input-placeholder {color: #9e9e9e;}
 ::-ms-input-placeholder {color: #9e9e9e;}
