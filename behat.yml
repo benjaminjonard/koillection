@@ -1,0 +1,21 @@
+default:
+    suites:
+        default:
+            contexts:
+                - FeatureContext: {em: '@doctrine.orm.entity_manager', session: '@session'}
+                - App\Tests\Behat\Context\CollectionContext: {translator: '@translator'}
+                - App\Tests\Behat\Context\FirstConnectionContext: {translator: '@translator'}
+                - App\Tests\Behat\Context\LoginContext: {translator: '@translator'}
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+        Behat\MinkExtension:
+            base_url: 'http://koillection_nginx_1'
+            selenium2:
+                browser: chrome
+                wd_host: 'localhost:4444/wd/hub'
+            default_session: selenium2
+    formatters:
+        pretty: ~
