@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Collection;
 use App\Entity\User;
+use App\Http\CsvResponse;
 use App\Service\Graph\CalendarBuilder;
 use App\Service\Graph\ChartBuilder;
 use App\Service\Graph\TreeBuilder;
@@ -33,18 +34,38 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export", name="app_tools_export")
+     * @Route("/tools/export/printable-list", name="app_tools_export_printable_list")
      * @Method({"GET"})
      *
      * @return Response
      */
-    public function export() : Response
+    public function exportPrintableList() : Response
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
 
-        return $this->render('App/Tools/export.html.twig', [
+        return $this->render('App/Tools/printable-list.html.twig', [
             'collections' => $collections,
             'user' => $this->getUser()
         ]);
+    }
+
+    /**
+     * @Route("/tools/export/csv", name="app_tools_export_csv")
+     * @Method({"GET"})
+     *
+     * @return Response
+     */
+    public function exportCsv() : Response
+    {
+        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
+
+        $rows = [];
+        foreach ($collections as $collection) {
+            foreach ($collection->getItems() as $item) {
+                $rows[] = [$item->getId(), $item->getName(), $collection->getTitle()];
+            }
+        }
+
+        return new CsvResponse($rows);
     }
 }

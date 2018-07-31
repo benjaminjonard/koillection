@@ -3862,16 +3862,22 @@
         <target>Outils</target>
       </segment>
     </unit>
-    <unit id="SRjkknf" name="btn.export">
+    <unit id="e.bXzZd" name="btn.export_printable_list">
       <segment>
-        <source>btn.export</source>
-        <target>Exporter</target>
+        <source>btn.export_printable_list</source>
+        <target>Liste imprimable</target>
       </segment>
     </unit>
     <unit id="OTxNY59" name="title.exports">
       <segment>
         <source>title.exports</source>
         <target>Exports</target>
+      </segment>
+    </unit>
+    <unit id="IKVpbk5" name="btn.export_csv">
+      <segment>
+        <source>btn.export_csv</source>
+        <target>CSV</target>
       </segment>
     </unit>
   </file>

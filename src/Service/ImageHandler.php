@@ -65,8 +65,8 @@ class ImageHandler
             return $sizeUsed;
         }
 
-        $path = 'uploads/'.$this->rsg->generateString(5).'/';
-        $generatedName = $this->rsg->generateString(12);
+        $path = 'uploads/'.$this->tokenStorage->getToken()->getUser()->getId().'/';
+        $generatedName = $this->rsg->generateString(20);
         $extension = $medium->getUploadedFile()->guessExtension();
 
         $medium

@@ -24,8 +24,11 @@
         <div class="content-block">
             <div class="block-element">
                 <h5 class="header">{{ 'title.exports'|trans }}</h5>
-                <a href="{{ path('app_tools_export') }}" target="_blank" class="btn waves-effect waves-light">
-                    <i class="fa fa-print fa-fw"></i>{{ 'btn.export'|trans }}
+                <a href="{{ path('app_tools_export_printable_list') }}" target="_blank" class="btn waves-effect waves-light">
+                    <i class="fa fa-print fa-fw"></i>{{ 'btn.export_printable_list'|trans }}
+                </a>
+                <a href="{{ path('app_tools_export_csv') }}" target="_blank" class="btn waves-effect waves-light">
+                    <i class="fa fa-file-text fa-fw"></i>{{ 'btn.export_csv'|trans }}
                 </a>
             </div>
         </div>
