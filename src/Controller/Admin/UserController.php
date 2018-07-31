@@ -37,7 +37,7 @@ class UserController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Admin/User/index.html.twig', [
-            'users' => $em->getRepository(User::class)->findBy([], ['lastDateOfActivity' => 'ASC'])
+            'users' => $em->getRepository(User::class)->findBy([], ['lastDateOfActivity' => 'DESC'])
         ]);
     }
 
