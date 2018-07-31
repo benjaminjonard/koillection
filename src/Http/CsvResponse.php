@@ -4,24 +4,43 @@ namespace App\Http;
 
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class CsvResponse
+ * @package App\Http
+ */
 class CsvResponse extends Response
 {
+    /**
+     * @var array
+     */
     protected $data;
 
-    protected $filename = 'export.csv';
+    /**
+     * @var string
+     */
+    protected $filename;
 
-    public function __construct($data = array(), $status = 200, $headers = array())
+    /**
+     * CsvResponse constructor.
+     * @param array $data
+     * @param string $filename
+     * @param int $status
+     * @param array $headers
+     */
+    public function __construct(array $data = [], string $filename = 'export.csv', int $status = 200, array $headers = [])
     {
         parent::__construct('', $status, $headers);
 
-        $this->setData($data);
+        $this->data = $data;
+        $this->filename = $filename;
+        $this->render();
     }
 
-    public function setData(array $data)
+    protected function render()
     {
         $output = fopen('php://temp', 'r+');
 
-        foreach ($data as $row) {
+        foreach ($this->data as $row) {
             fputcsv($output, $row);
         }
 
@@ -33,23 +52,6 @@ class CsvResponse extends Response
 
         $this->data .= fgets($output);
 
-        return $this->update();
-    }
-
-    public function getFilename() : string
-    {
-        return $this->filename;
-    }
-
-    public function setFilename($filename)
-    {
-        $this->filename = $filename;
-
-        return $this->update();
-    }
-
-    protected function update()
-    {
         $this->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $this->filename));
 
         if (!$this->headers->has('Content-Type')) {

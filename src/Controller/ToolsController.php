@@ -66,6 +66,6 @@ class ToolsController extends AbstractController
             }
         }
 
-        return new CsvResponse($rows);
+        return new CsvResponse($rows, (new \DateTime())->format('Ymd') . '-koillection-export.csv');
     }
 }
