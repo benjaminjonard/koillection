@@ -27,7 +27,7 @@ class CsvResponse extends Response
      * @param int $status
      * @param array $headers
      */
-    public function __construct(array $data = [], string $filename = 'export.csv', int $status = 200, array $headers = [])
+    public function __construct(array $data = [], string $filename = 'koillection.csv', int $status = 200, array $headers = [])
     {
         parent::__construct('', $status, $headers);
 
