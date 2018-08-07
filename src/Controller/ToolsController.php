@@ -3,13 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Collection;
-use App\Entity\User;
 use App\Http\CsvResponse;
-use App\Service\Graph\CalendarBuilder;
-use App\Service\Graph\ChartBuilder;
-use App\Service\Graph\TreeBuilder;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use Knp\Snappy\Pdf;
+use App\Http\FileResponse;
+use App\Service\DatabaseDumper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -66,6 +62,17 @@ class ToolsController extends AbstractController
             }
         }
 
-        return new CsvResponse($rows);
+        return new CsvResponse($rows, (new \DateTime())->format('Ymd') . '-koillection-export.csv');
+    }
+
+    /**
+     * @Route("/tools/export/sql", name="app_tools_export_sql")
+     * @Method({"GET"})
+     *
+     * @return Response
+     */
+    public function exportSql(DatabaseDumper $databaseDumper) : Response
+    {
+        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('Ymd') . '-koillection-export.sql');
     }
 }

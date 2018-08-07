@@ -5,14 +5,10 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20180731115129 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE TABLE koi_collection (id UUID NOT NULL, parent_id UUID DEFAULT NULL, owner_id UUID DEFAULT NULL, image_id UUID DEFAULT NULL, title VARCHAR(255) NOT NULL, children_title VARCHAR(255) DEFAULT NULL, items_title VARCHAR(255) DEFAULT NULL, color VARCHAR(6) NOT NULL, seen_counter INT NOT NULL, visibility VARCHAR(255) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
@@ -145,55 +141,6 @@ final class Version20180731115129 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
-
-        $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE koi_collection DROP CONSTRAINT FK_7AA7B057727ACA70');
-        $this->addSql('ALTER TABLE koi_item DROP CONSTRAINT FK_3EBAA302514956FD');
-        $this->addSql('ALTER TABLE koi_photo DROP CONSTRAINT FK_9779D11137ABCF');
-        $this->addSql('ALTER TABLE koi_collection DROP CONSTRAINT FK_7AA7B0577E3C61F9');
-        $this->addSql('ALTER TABLE koi_log DROP CONSTRAINT FK_9A4DC1F1A76ED395');
-        $this->addSql('ALTER TABLE koi_album DROP CONSTRAINT FK_2DB8938A7E3C61F9');
-        $this->addSql('ALTER TABLE koi_wish DROP CONSTRAINT FK_F670F2D57E3C61F9');
-        $this->addSql('ALTER TABLE koi_medium DROP CONSTRAINT FK_24DF1F5E7E3C61F9');
-        $this->addSql('ALTER TABLE koi_tag DROP CONSTRAINT FK_16FB1EB77E3C61F9');
-        $this->addSql('ALTER TABLE koi_item DROP CONSTRAINT FK_3EBAA3027E3C61F9');
-        $this->addSql('ALTER TABLE koi_loan DROP CONSTRAINT FK_E4728B1F7E3C61F9');
-        $this->addSql('ALTER TABLE koi_wishlist DROP CONSTRAINT FK_98E338D27E3C61F9');
-        $this->addSql('ALTER TABLE koi_photo DROP CONSTRAINT FK_9779D17E3C61F9');
-        $this->addSql('ALTER TABLE koi_template DROP CONSTRAINT FK_93620D607E3C61F9');
-        $this->addSql('ALTER TABLE koi_datum DROP CONSTRAINT FK_F991BE57E3C61F9');
-        $this->addSql('ALTER TABLE koi_collection DROP CONSTRAINT FK_7AA7B0573DA5256D');
-        $this->addSql('ALTER TABLE koi_user DROP CONSTRAINT FK_AC32505586383B10');
-        $this->addSql('ALTER TABLE koi_wish DROP CONSTRAINT FK_F670F2D53DA5256D');
-        $this->addSql('ALTER TABLE koi_tag DROP CONSTRAINT FK_16FB1EB73DA5256D');
-        $this->addSql('ALTER TABLE koi_item DROP CONSTRAINT FK_3EBAA3023DA5256D');
-        $this->addSql('ALTER TABLE koi_wishlist DROP CONSTRAINT FK_98E338D23DA5256D');
-        $this->addSql('ALTER TABLE koi_photo DROP CONSTRAINT FK_9779D13DA5256D');
-        $this->addSql('ALTER TABLE koi_datum DROP CONSTRAINT FK_F991BE53DA5256D');
-        $this->addSql('ALTER TABLE koi_item_tag DROP CONSTRAINT FK_E09EDE52BAD26311');
-        $this->addSql('ALTER TABLE koi_item_tag DROP CONSTRAINT FK_E09EDE52126F525E');
-        $this->addSql('ALTER TABLE koi_loan DROP CONSTRAINT FK_E4728B1F126F525E');
-        $this->addSql('ALTER TABLE koi_datum DROP CONSTRAINT FK_F991BE5126F525E');
-        $this->addSql('ALTER TABLE koi_wish DROP CONSTRAINT FK_F670F2D5FB8E54CD');
-        $this->addSql('ALTER TABLE koi_wishlist DROP CONSTRAINT FK_98E338D2727ACA70');
-        $this->addSql('ALTER TABLE koi_item DROP CONSTRAINT FK_3EBAA3025DA0FB8');
-        $this->addSql('ALTER TABLE koi_field DROP CONSTRAINT FK_4FD5B8915DA0FB8');
-        $this->addSql('DROP TABLE koi_collection');
-        $this->addSql('DROP TABLE koi_log');
-        $this->addSql('DROP TABLE koi_album');
-        $this->addSql('DROP TABLE koi_user');
-        $this->addSql('DROP TABLE koi_wish');
-        $this->addSql('DROP TABLE koi_medium');
-        $this->addSql('DROP TABLE koi_tag');
-        $this->addSql('DROP TABLE koi_item');
-        $this->addSql('DROP TABLE koi_item_tag');
-        $this->addSql('DROP TABLE koi_loan');
-        $this->addSql('DROP TABLE koi_wishlist');
-        $this->addSql('DROP TABLE koi_photo');
-        $this->addSql('DROP TABLE koi_template');
-        $this->addSql('DROP TABLE koi_datum');
-        $this->addSql('DROP TABLE koi_field');
+        $this->abortIf(true, 'Always move forward.');
     }
 }

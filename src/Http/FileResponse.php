@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class CsvResponse
  * @package App\Http
  */
-class CsvResponse extends Response
+class FileResponse extends Response
 {
     /**
      * @var array
@@ -27,7 +27,7 @@ class CsvResponse extends Response
      * @param int $status
      * @param array $headers
      */
-    public function __construct(array $data = [], string $filename = 'koillection.csv', int $status = 200, array $headers = [])
+    public function __construct(array $data = [], string $filename = 'koillection.txt', int $status = 200, array $headers = [])
     {
         parent::__construct('', $status, $headers);
 
@@ -41,7 +41,7 @@ class CsvResponse extends Response
         $output = fopen('php://temp', 'r+');
 
         foreach ($this->data as $row) {
-            fputcsv($output, $row);
+            fwrite($output, $row);
         }
 
         rewind($output);
@@ -55,7 +55,7 @@ class CsvResponse extends Response
         $this->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $this->filename));
 
         if (!$this->headers->has('Content-Type')) {
-            $this->headers->set('Content-Type', 'text/csv');
+            $this->headers->set('Content-Type', 'text/plain');
         }
 
         return $this->setContent($this->data);
