@@ -47,6 +47,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
             ->setTimezone('Europe/Paris')
             ->addRole('ROLE_USER')
+            ->setDiskSpaceUsed(0)
         ;
 
         $this->loadCollections($anubis, $manager);
@@ -70,6 +71,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $tagVideoGames
             ->setOwner($user)
             ->setLabel('Video Games')
+            ->setSeenCounter(0)
         ;
         $manager->persist($tagVideoGames);
 
@@ -78,6 +80,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $colletionVideoGames
             ->setOwner($user)
             ->setTitle('Video Games')
+            ->setSeenCounter(0)
         ;
         $manager->persist($colletionVideoGames);
 
@@ -89,6 +92,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setCollection($colletionVideoGames)
             ->setImage($this->loadMedium($user, $manager, 'anubis/collections/videogames/journey.jpeg', 'anubis/collections/videogames/journey_small.jpeg'))
             ->addTag($tagVideoGames)
+            ->setSeenCounter(0)
         ;
         $manager->persist($itemJourney);
     }
@@ -104,6 +108,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $wishlistPlushes
             ->setOwner($user)
             ->setName('Plushes')
+            ->setSeenCounter(0)
         ;
         $manager->persist($wishlistPlushes);
 
@@ -129,6 +134,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $albumUnderworld
             ->setOwner($user)
             ->setTitle('The underworld')
+            ->setSeenCounter(0)
         ;
         $manager->persist($albumUnderworld);
 

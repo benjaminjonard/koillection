@@ -47,6 +47,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
             ->setTimezone('Europe/Paris')
             ->addRole('ROLE_ADMIN')
+            ->setDiskSpaceUsed(0)
         ;
 
         $this->loadCollections($admin, $manager);
@@ -70,6 +71,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $tagManga
             ->setOwner($user)
             ->setLabel('Manga')
+            ->setSeenCounter(0)
         ;
         $manager->persist($tagManga);
 
@@ -77,6 +79,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $tagMagdala
             ->setOwner($user)
             ->setLabel('Magdala Alchemist Path')
+            ->setSeenCounter(0)
         ;
         $manager->persist($tagMagdala);
 
@@ -85,6 +88,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $colletionManga
             ->setOwner($user)
             ->setTitle('Manga')
+            ->setSeenCounter(0)
         ;
         $manager->persist($colletionManga);
 
@@ -94,6 +98,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setTitle('Magdala, Alchemist Path')
             ->setParent($colletionManga)
             ->setImage($this->loadMedium($user, $manager, 'khorne/collections/magdala/main.png'))
+            ->setSeenCounter(0)
         ;
         $manager->persist($colletionMagdala);
 
@@ -107,6 +112,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
                 ->setImage($this->loadMedium($user, $manager, 'khorne/collections/magdala/'.$i.'.jpeg', 'khorne/collections/magdala/'.$i.'_small.jpeg'))
                 ->addTag($tagManga)
                 ->addTag($tagMagdala)
+                ->setSeenCounter(0)
             ;
             $manager->persist($itemMagdala);
         }
@@ -123,6 +129,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $wishlistProxy
             ->setOwner($user)
             ->setName('Proxy')
+            ->setSeenCounter(0)
         ;
         $manager->persist($wishlistProxy);
 
@@ -148,6 +155,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $albumSaintMaur
             ->setOwner($user)
             ->setTitle('Saint-Maur')
+            ->setSeenCounter(0)
         ;
         $manager->persist($albumSaintMaur);
 

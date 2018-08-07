@@ -47,6 +47,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
             ->setTimezone('Europe/Paris')
             ->addRole('ROLE_USER')
+            ->setDiskSpaceUsed(0)
         ;
 
         $this->loadCollections($cthulhu, $manager);
@@ -70,6 +71,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $tagBooks
             ->setOwner($user)
             ->setLabel('Books')
+            ->setSeenCounter(0)
         ;
         $manager->persist($tagBooks);
 
@@ -77,6 +79,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $tagLovecraft
             ->setOwner($user)
             ->setLabel('H.P. Lovecraft')
+            ->setSeenCounter(0)
         ;
         $manager->persist($tagLovecraft);
 
@@ -85,6 +88,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $colletionBooks
             ->setOwner($user)
             ->setTitle('Books')
+            ->setSeenCounter(0)
         ;
         $manager->persist($colletionBooks);
 
@@ -94,6 +98,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setTitle('H.P. Lovecraft')
             ->setParent($colletionBooks)
             ->setImage($this->loadMedium($user, $manager, 'cthulhu/collections/lovecraft/main.png'))
+            ->setSeenCounter(0)
         ;
         $manager->persist($collectionLovecraft);
 
@@ -106,6 +111,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setImage($this->loadMedium($user, $manager, 'cthulhu/collections/lovecraft/mythe.jpeg', 'cthulhu/collections/lovecraft/mythe_small.jpeg'))
             ->addTag($tagBooks)
             ->addTag($tagLovecraft)
+            ->setSeenCounter(0)
         ;
         $manager->persist($itemCthulhu);
     }
@@ -121,6 +127,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $wishlistFigure
             ->setOwner($user)
             ->setName('Figures')
+            ->setSeenCounter(0)
         ;
         $manager->persist($wishlistFigure);
 
@@ -146,6 +153,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $albumRlyeh
             ->setOwner($user)
             ->setTitle('R\'lyeh')
+            ->setSeenCounter(0)
         ;
         $manager->persist($albumRlyeh);
 
