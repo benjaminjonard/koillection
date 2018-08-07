@@ -3880,5 +3880,11 @@
         <target>CSV</target>
       </segment>
     </unit>
+    <unit id="LSyzK7f" name="btn.export_sql">
+      <segment>
+        <source>btn.export_sql</source>
+        <target>SQL</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
