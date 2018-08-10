@@ -52,9 +52,9 @@ class ToolsController extends AbstractController
      * @Route("/tools/export/csv", name="app_tools_export_csv")
      * @Method({"GET"})
      *
-     * @return Response
+     * @return CsvResponse
      */
-    public function exportCsv() : Response
+    public function exportCsv() : CsvResponse
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
 
@@ -73,10 +73,10 @@ class ToolsController extends AbstractController
      * @Method({"GET"})
      *
      * @param DatabaseDumper $databaseDumper
-     * @return Response
+     * @return FileResponse
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function exportSql(DatabaseDumper $databaseDumper) : Response
+    public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('Ymd') . '-koillection-export.sql');
     }
@@ -85,9 +85,9 @@ class ToolsController extends AbstractController
      * @Route("/tools/export/images", name="app_tools_export_images")
      * @Method({"GET"})
      *
-     * @return Response
+     * @return StreamedResponse
      */
-    public function exportImages() : Response
+    public function exportImages() : StreamedResponse
     {
         $response = new StreamedResponse(function() {
             $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-export.zip';
