@@ -3886,5 +3886,11 @@
         <target>SQL</target>
       </segment>
     </unit>
+    <unit id="Jd.jsk." name="btn.export_images">
+      <segment>
+        <source>btn.export_images</source>
+        <target>Images</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

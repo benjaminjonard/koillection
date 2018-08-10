@@ -98,6 +98,9 @@
             "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
         }
     },
+    "maennchen/zipstream-php": {
+        "version": "v0.5.2"
+    },
     "mailgun/mailgun-php": {
         "version": "2.3",
         "recipe": {

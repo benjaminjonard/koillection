@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.6",
         "friendsofsymfony/jsrouting-bundle": "^2.2",
         "guzzlehttp/psr7": "^1.4",
+        "maennchen/zipstream-php": "^0.5.2",
         "php-http/curl-client": "^1.7",
         "ramsey/uuid-doctrine": "^1.4",
         "roave/security-advisories": "dev-master",

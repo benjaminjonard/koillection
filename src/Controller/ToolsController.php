@@ -9,7 +9,10 @@ use App\Service\DatabaseDumper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use ZipStream\ZipStream;
 
 /**
  * Class ToolsController
@@ -49,9 +52,9 @@ class ToolsController extends AbstractController
      * @Route("/tools/export/csv", name="app_tools_export_csv")
      * @Method({"GET"})
      *
-     * @return Response
+     * @return CsvResponse
      */
-    public function exportCsv() : Response
+    public function exportCsv() : CsvResponse
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
 
@@ -69,10 +72,40 @@ class ToolsController extends AbstractController
      * @Route("/tools/export/sql", name="app_tools_export_sql")
      * @Method({"GET"})
      *
-     * @return Response
+     * @param DatabaseDumper $databaseDumper
+     * @return FileResponse
+     * @throws \Doctrine\DBAL\DBALException
      */
-    public function exportSql(DatabaseDumper $databaseDumper) : Response
+    public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('Ymd') . '-koillection-export.sql');
     }
+
+    /**
+     * @Route("/tools/export/images", name="app_tools_export_images")
+     * @Method({"GET"})
+     *
+     * @return StreamedResponse
+     */
+    public function exportImages() : StreamedResponse
+    {
+        $response = new StreamedResponse(function() {
+            $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-export.zip';
+            $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $this->getUser()->getId();
+
+            $zip = new ZipStream($zipFilename);
+
+            $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
+            foreach ($files as $name => $file) {
+                if (!$file->isDir()) {
+                    $zip->addFileFromStream($file->getFilename(), fopen($file->getRealPath(), 'r'));
+                }
+            }
+
+            $zip->finish();
+        }) ;
+
+        return $response;
+    }
+
 }
