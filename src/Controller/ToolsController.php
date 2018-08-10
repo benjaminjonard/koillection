@@ -9,7 +9,10 @@ use App\Service\DatabaseDumper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use ZipStream\ZipStream;
 
 /**
  * Class ToolsController
@@ -69,10 +72,40 @@ class ToolsController extends AbstractController
      * @Route("/tools/export/sql", name="app_tools_export_sql")
      * @Method({"GET"})
      *
+     * @param DatabaseDumper $databaseDumper
      * @return Response
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function exportSql(DatabaseDumper $databaseDumper) : Response
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('Ymd') . '-koillection-export.sql');
     }
+
+    /**
+     * @Route("/tools/export/images", name="app_tools_export_images")
+     * @Method({"GET"})
+     *
+     * @return Response
+     */
+    public function exportImages() : Response
+    {
+        $response = new StreamedResponse(function() {
+            $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-export.zip';
+            $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $this->getUser()->getId();
+
+            $zip = new ZipStream($zipFilename);
+
+            $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
+            foreach ($files as $name => $file) {
+                if (!$file->isDir()) {
+                    $zip->addFileFromStream($file->getFilename(), fopen($file->getRealPath(), 'r'));
+                }
+            }
+
+            $zip->finish();
+        }) ;
+
+        return $response;
+    }
+
 }
