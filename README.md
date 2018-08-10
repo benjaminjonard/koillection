@@ -8,7 +8,8 @@
     <img src="https://img.shields.io/github/license/koillection/koillection.svg" />
     <img src="https://img.shields.io/github/release/koillection/koillection.svg" />
     <img src="https://img.shields.io/scrutinizer/g/koillection/koillection.svg" />
-    <img src="https://img.shields.io/travis/koillection/koillection/master.svg" />    
+    <img src="https://img.shields.io/travis/koillection/koillection/master.svg" />
+    <img src="https://raw.githubusercontent.com/php-pm/ppm-badge/master/ppm-badge.png" />    
 </p>
 
 # Koillection
