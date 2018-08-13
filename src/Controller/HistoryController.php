@@ -1,14 +1,14 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Log;
 use App\Enum\LogTypeEnum;
 use App\Service\PaginatorFactory;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class HistoryController
@@ -20,8 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class HistoryController extends AbstractController
 {
     /**
-     * @Route("", name="app_history_index")
-     * @Method({"GET"})
+     * @Route("", name="app_history_index", methods={"GET"})
      *
      * @param Request $request
      * @param PaginatorFactory $paginatorFactory

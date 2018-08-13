@@ -6,12 +6,10 @@ use App\Entity\Collection;
 use App\Http\CsvResponse;
 use App\Http\FileResponse;
 use App\Service\DatabaseDumper;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Routing\Annotation\Route;
 use ZipStream\ZipStream;
 
 /**
@@ -22,8 +20,7 @@ use ZipStream\ZipStream;
 class ToolsController extends AbstractController
 {
     /**
-     * @Route("/tools", name="app_tools_index")
-     * @Method({"GET"})
+     * @Route("/tools", name="app_tools_index", methods={"GET"})
      *
      * @return Response
      */
@@ -33,8 +30,7 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/printable-list", name="app_tools_export_printable_list")
-     * @Method({"GET"})
+     * @Route("/tools/export/printable-list", name="app_tools_export_printable_list", methods={"GET"})
      *
      * @return Response
      */
@@ -49,8 +45,7 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/csv", name="app_tools_export_csv")
-     * @Method({"GET"})
+     * @Route("/tools/export/csv", name="app_tools_export_csv", methods={"GET"})
      *
      * @return CsvResponse
      */
@@ -69,8 +64,7 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/sql", name="app_tools_export_sql")
-     * @Method({"GET"})
+     * @Route("/tools/export/sql", name="app_tools_export_sql", methods={"GET"})
      *
      * @param DatabaseDumper $databaseDumper
      * @return FileResponse
@@ -82,8 +76,7 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/images", name="app_tools_export_images")
-     * @Method({"GET"})
+     * @Route("/tools/export/images", name="app_tools_export_images", methods={"GET"})
      *
      * @return StreamedResponse
      */

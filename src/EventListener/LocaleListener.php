@@ -68,7 +68,7 @@ class LocaleListener
     /**
      * @param InteractiveLoginEvent $event
      */
-    public function onInteractiveLogin(InteractiveLoginEvent $event)
+    public function onSecurityInteractivelogin(InteractiveLoginEvent $event)
     {
         $user = $event->getAuthenticationToken()->getUser();
         $session = $event->getRequest()->getSession();

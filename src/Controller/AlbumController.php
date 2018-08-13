@@ -4,11 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Album;
 use App\Form\Type\Entity\AlbumType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -19,10 +18,9 @@ use Symfony\Component\Translation\TranslatorInterface;
 class AlbumController extends AbstractController
 {
     /**
-     * @Route("/albums", name="app_album_index")
-     * @Route("/user/{username}/albums", name="app_user_album_index")
-     * @Route("/preview/albums", name="app_preview_album_index")
-     * @Method({"GET"})
+     * @Route("/albums", name="app_album_index", methods={"GET"})
+     * @Route("/user/{username}/albums", name="app_user_album_index", methods={"GET"})
+     * @Route("/preview/albums", name="app_preview_album_index", methods={"GET"})
      *
      * @return Response
      */
@@ -41,8 +39,7 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/add", name="app_album_add")
-     * @Method({"GET", "POST"})
+     * @Route("/albums/add", name="app_album_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -72,8 +69,7 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/{id}/edit", name="app_album_edit", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/albums/{id}/edit", name="app_album_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Album $album
@@ -99,8 +95,7 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/{id}/delete", name="app_album_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/albums/{id}/delete", name="app_album_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Album $album
      * @param TranslatorInterface $translator
@@ -118,10 +113,9 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/{id}", name="app_album_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/user/{username}/albums/{id}", name="app_user_album_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/preview/albums/{id}", name="app_preview_album_show", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/albums/{id}", name="app_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/user/{username}/albums/{id}", name="app_user_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/preview/albums/{id}", name="app_preview_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Album $album
      * @return Response

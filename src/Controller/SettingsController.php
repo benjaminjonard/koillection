@@ -6,13 +6,12 @@ use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class SettingsController
@@ -24,8 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SettingsController extends AbstractController
 {
     /**
-     * @Route("", name="app_settings_index")
-     * @Method({"GET"})
+     * @Route("", name="app_settings_index", methods={"GET"})
      *
      * @param ThemeEnum $themeEnum
      * @param LocaleEnum $localeEnum
@@ -43,8 +41,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-locale/{locale}", name="app_settings_set_locale", options={"expose"=true})
-     * @Method({"GET"})
+     * @Route("/set-locale/{locale}", name="app_settings_set_locale", options={"expose"=true}, methods={"GET"})
      *
      * @param Request $request
      * @param string $locale
@@ -61,8 +58,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-theme/{theme}", name="app_settings_set_theme", options={"expose"=true})
-     * @Method({"POST"})
+     * @Route("/set-theme/{theme}", name="app_settings_set_theme", options={"expose"=true}, methods={"POST"})
      *
      * @param string $theme
      * @return JsonResponse
@@ -81,8 +77,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-visibility/{visibility}", name="app_settings_set_visibility", options={"expose"=true})
-     * @Method({"POST"})
+     * @Route("/set-visibility/{visibility}", name="app_settings_set_visibility", options={"expose"=true}, methods={"POST"})
      *
      * @param string $visibility
      * @return JsonResponse
@@ -101,8 +96,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-currency/{currency}", name="app_settings_set_currency", options={"expose"=true})
-     * @Method({"POST"})
+     * @Route("/set-currency/{currency}", name="app_settings_set_currency", options={"expose"=true}, methods={"POST"})
      *
      * @param string $currency
      * @return JsonResponse

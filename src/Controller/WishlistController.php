@@ -6,11 +6,10 @@ use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
 use App\Service\CounterCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -21,10 +20,9 @@ use Symfony\Component\Translation\TranslatorInterface;
 class WishlistController extends AbstractController
 {
     /**
-     * @Route("/wishlists", name="app_wishlist_index")
-     * @Route("/user/{username}/wishlists", name="app_user_wishlist_index")
-     * @Route("/preview/wishlists", name="app_preview_wishlist_index")
-     * @Method({"GET"})
+     * @Route("/wishlists", name="app_wishlist_index", methods={"GET"})
+     * @Route("/user/{username}/wishlists", name="app_user_wishlist_index", methods={"GET"})
+     * @Route("/preview/wishlists", name="app_preview_wishlist_index", methods={"GET"})
      *
      * @param CounterCalculator $counterCalculator
      * @return Response
@@ -40,8 +38,7 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/wishlists/add", name="app_wishlist_add")
-     * @Method({"GET", "POST"})
+     * @Route("/wishlists/add", name="app_wishlist_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -82,10 +79,9 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/wishlists/{id}", name="app_wishlist_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/user/{username}/wishlists/{id}", name="app_user_wishlist_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/preview/wishlists/{id}", name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/wishlists/{id}", name="app_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/user/{username}/wishlists/{id}", name="app_user_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/preview/wishlists/{id}", name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("wishlist", expr="repository.findById(id)")
      *
      * @param Wishlist $wishlist
@@ -101,8 +97,7 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/wishlists/{id}/edit", name="app_wishlist_edit", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/wishlists/{id}/edit", name="app_wishlist_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Wishlist $wishlist
@@ -128,8 +123,7 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route("/wishlists/{id}/delete", name="app_wishlist_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/wishlists/{id}/delete", name="app_wishlist_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Wishlist $wishlist
      * @param TranslatorInterface $translator

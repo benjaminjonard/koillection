@@ -4,12 +4,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\Security\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -24,8 +23,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("", name="app_security_login")
-     * @Method({"GET", "POST"})
+     * @Route("", name="app_security_login", methods={"GET", "POST"})
      *
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
@@ -47,8 +45,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/first-connection", name="app_security_first_connection")
-     * @Method({"GET", "POST"})
+     * @Route("/first-connection", name="app_security_first_connection", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TokenStorageInterface $tokenStorage

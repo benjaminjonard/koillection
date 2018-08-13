@@ -2,18 +2,16 @@
 
 namespace App\Controller\Admin;
 
-
 use App\Entity\User;
 use App\Form\Type\Entity\Admin\UserType;
 use App\Service\DiskUsageCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -27,8 +25,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("", name="app_admin_user_index")
-     * @Method({"GET"})
+     * @Route("", name="app_admin_user_index", methods={"GET"})
      *
      * @return Response
      */
@@ -42,8 +39,8 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="app_admin_user_add")
-     * @Method({"GET", "POST"})
+     * @Route("/add", name="app_admin_user_add", methods={"GET", "POST"})
+     *
      * @param Request $request
      * @param TranslatorInterface $translator
      * @return Response
@@ -71,8 +68,8 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_admin_user_edit", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/edit", name="app_admin_user_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     *
      * @param User $user
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -99,8 +96,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/recompute-disk-usage", name="app_admin_user_recompute_disk_usage", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/{id}/recompute-disk-usage", name="app_admin_user_recompute_disk_usage", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param User $user
      * @param DiskUsageCalculator $diskUsageCalculator
@@ -120,8 +116,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_admin_user_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "DELETE"})
+     * @Route("/{id}/delete", name="app_admin_user_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "DELETE"})
      *
      * @param User $user
      * @param TranslatorInterface $translator

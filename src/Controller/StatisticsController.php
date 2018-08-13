@@ -6,10 +6,9 @@ use App\Entity\User;
 use App\Service\Graph\CalendarBuilder;
 use App\Service\Graph\ChartBuilder;
 use App\Service\Graph\TreeBuilder;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class StatisticsController
@@ -19,10 +18,9 @@ use Symfony\Component\HttpFoundation\Response;
 class StatisticsController extends AbstractController
 {
     /**
-     * @Route("/statistics", name="app_statistics_index")
-     * @Route("/user/{username}/statistics", name="app_user_statistics_index")
-     * @Route("/preview/statistics", name="app_preview_statistics_index")
-     * @Method({"GET"})
+     * @Route("/statistics", name="app_statistics_index", methods={"GET"})
+     * @Route("/user/{username}/statistics", name="app_user_statistics_index", methods={"GET"})
+     * @Route("/preview/statistics", name="app_preview_statistics_index", methods={"GET"})
      *
      * @param TreeBuilder $treeBuilder
      * @param CalendarBuilder $calendarBuilder
