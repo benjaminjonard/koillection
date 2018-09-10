@@ -1,19 +1,5 @@
-function computePositions($holder) {
-    $positions = $holder.find('.position');
-    for (i = 0; i < $positions.length; i++) {
-        $($positions[i]).val(i+1);
-    }
-}
+import * as utils from './utils'
 
-function reloadSortableList($holder, elementSelector) {
-    new Sortable(document.getElementById($holder.attr('id')), {
-        draggable: elementSelector,
-        handle: '.handle',
-        onSort: function () {
-            computePositions($holder);
-        }
-    });
-}
 
 function showAdditionalFieldsBlocks() {
     if ($('#data').find('.datum').length > 0) {
@@ -31,11 +17,11 @@ function showAdditionalFieldsBlocks() {
 
 //Init sortable
 if ($('#data').length > 0) {
-    reloadSortableList($('#data'), '.datum');
+    utils.reloadSortableList($('#data'), '.datum');
 }
 
 if ($('#item-images').length > 0) {
-    reloadSortableList($('#item-images'), '.datum');
+    utils.reloadSortableList($('#item-images'), '.datum');
 }
 
 showAdditionalFieldsBlocks();
@@ -52,7 +38,7 @@ function removeTemplateData()
 $('.selectTemplate').change( function() {
     if ( $(this).val() != '' ) {
         $('#data').html();
-        $.get( Routing.generate('app_template_fields', {'id' : $(this).val() }), function( result ) {
+        $.get('/templates/' + $(this).val() + '/fields', function( result ) {
             removeTemplateData();
             $.each( result.fields, function( label, field ) {
                 if ($('.itemLabel :input[value="'+ label +'"]').length == 0) {
@@ -67,8 +53,8 @@ $('.selectTemplate').change( function() {
                 }
             });
             showAdditionalFieldsBlocks();
-            computePositions($('#data'));
-            computePositions($('#item-images'));
+            utils.computePositions($('#data'));
+            utils.computePositions($('#item-images'));
         }, "json" );
     } else {
         removeTemplateData();
@@ -77,7 +63,7 @@ $('.selectTemplate').change( function() {
 
 $('.btn-common-fields').click( function(e) {
     e.preventDefault();
-    $.get( Routing.generate('app_datum_load_common_fields', {'id' : $(this).attr('data-collection-id') }), function( result ) {
+    $.get('/datum/load-common-fields/' + $(this).attr('data-collection-id'), function( result ) {
         $.each( result.fields, function( label, field ) {
             if ($('.itemLabel :input[value="'+ label +'"]').length == 0) {
                 if (field.isImage) {
@@ -91,14 +77,14 @@ $('.btn-common-fields').click( function(e) {
             }
         });
         showAdditionalFieldsBlocks();
-        computePositions($('#data'));
-        computePositions($('#item-images'));
+        utils.computePositions($('#data'));
+        utils.computePositions($('#item-images'));
     });
 });
 
 $('.selectFieldType').change( function() {
     if ( $(this).val() != '' ) {
-        $.get( Routing.generate('app_datum_get_html_by_type', {'type' : $(this).val() }), function( result ) {
+        $.get('/datum/' + $(this).val(), function( result ) {
             if (result.isImage) {
                 var $holder = $('#item-images');
             } else {
@@ -110,8 +96,8 @@ $('.selectFieldType').change( function() {
             $datum.find('.position').val($('#data').find('.datum').length);
             lastIndex++;
             showAdditionalFieldsBlocks()
-            reloadSortableList($holder, '.datum');
-            computePositions($holder);
+            utils.reloadSortableList($holder, '.datum');
+            utils.computePositions($holder);
             loadFilePreviews();
         });
     }
@@ -120,7 +106,7 @@ $('.selectFieldType').change( function() {
 $('#additionnalFields').on( "click", ".removeDatum", function() {
     $(this).closest('.datum').remove();
     showAdditionalFieldsBlocks();
-    computePositions($(this).closest('.data-holder'));
+    utils.computePositions($(this).closest('.data-holder'));
 });
 
 var tagAutocomplete = M.Autocomplete.init(document.querySelectorAll('.autocomplete'), {
@@ -132,7 +118,8 @@ var tagAutocomplete = M.Autocomplete.init(document.querySelectorAll('.autocomple
 $('#tagsAutocomplete').keyup(function (e) {
     tagAutocomplete.updateData({});
     if ($(this).val() != '') {
-        $.get( Routing.generate('app_tag_autocomplete', {'search' : $(this).val() }), function( result ) {
+
+        $.get('/tags/autocomplete/' + $(this).val(), function( result ) {
             var data = {};
             $.each(result, function( key, tag ) {
                 data[tag] = null;

@@ -124,7 +124,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/fields", name="app_template_fields", requirements={"id"="%uuid_regex%"}, options={"expose"=true}, methods={"GET"})
+     * @Route("/{id}/fields", name="app_template_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Template $template
      * @return JsonResponse

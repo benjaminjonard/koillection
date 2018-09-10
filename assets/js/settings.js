@@ -1,5 +1,6 @@
 $('input[type=radio][name=theme]').change(function() {
-    $.post( Routing.generate('app_settings_set_theme', {theme : $(this).val() }))
+
+    $.post('/settings/set-theme/' + $(this).val())
         .done(function( data ) {
             $('link:last').attr('href', data.theme)
         })
@@ -9,11 +10,11 @@ $('input[type=radio][name=theme]').change(function() {
 });
 
 $('input[type=radio][name=locale]').change(function() {
-    window.location.href = Routing.generate('app_settings_set_locale', {locale : $(this).val() });
+    window.location.href = '/settings/set-locale/' + $(this).val();
 });
 
 $('input[type=radio][name=currency]').change(function() {
-    $.post( Routing.generate('app_settings_set_currency', {currency : $(this).val() }))
+    $.post('/settings/set-currency/' + $(this).val())
         .done(function( data ) {
 
         })
@@ -23,7 +24,7 @@ $('input[type=radio][name=currency]').change(function() {
 });
 
 $('input[type=radio][name=visibility]').change(function() {
-    $.post( Routing.generate('app_settings_set_visibility', {visibility : $(this).val() }))
+    $.post('/settings/set-visibility/' + $(this).val())
         .done(function( data ) {
 
         })

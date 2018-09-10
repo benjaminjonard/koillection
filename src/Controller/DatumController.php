@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DatumController extends AbstractController
 {
     /**
-     * @Route("/{type}", name="app_datum_get_html_by_type", options={"expose"=true}, methods={"GET"})
+     * @Route("/{type}", name="app_datum_get_html_by_type", methods={"GET"})
      *
      * @param string $type
      * @return JsonResponse
@@ -41,7 +41,7 @@ class DatumController extends AbstractController
     }
 
     /**
-     * @Route("/load-common-fields/{id}", name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, options={"expose"=true}, methods={"GET"})
+     * @Route("/load-common-fields/{id}", name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("collection", expr="repository.findById(id, true)")
      *
      * @param Collection $collection

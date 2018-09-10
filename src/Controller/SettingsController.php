@@ -41,7 +41,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-locale/{locale}", name="app_settings_set_locale", options={"expose"=true}, methods={"GET"})
+     * @Route("/set-locale/{locale}", name="app_settings_set_locale", methods={"GET"})
      *
      * @param Request $request
      * @param string $locale
@@ -58,7 +58,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-theme/{theme}", name="app_settings_set_theme", options={"expose"=true}, methods={"POST"})
+     * @Route("/set-theme/{theme}", name="app_settings_set_theme", methods={"POST"})
      *
      * @param string $theme
      * @return JsonResponse
@@ -77,7 +77,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-visibility/{visibility}", name="app_settings_set_visibility", options={"expose"=true}, methods={"POST"})
+     * @Route("/set-visibility/{visibility}", name="app_settings_set_visibility", methods={"POST"})
      *
      * @param string $visibility
      * @return JsonResponse
@@ -96,7 +96,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-currency/{currency}", name="app_settings_set_currency", options={"expose"=true}, methods={"POST"})
+     * @Route("/set-currency/{currency}", name="app_settings_set_currency", methods={"POST"})
      *
      * @param string $currency
      * @return JsonResponse

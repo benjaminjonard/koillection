@@ -1,7 +1,7 @@
 @font-face {
     font-family: "Cooper Hewitt";
     font-weight: 700;
-    src: url("../fonts/CooperHewitt-Bold.otf") format("opentype");
+    src: url("../fonts/cooper-hewitt/CooperHewitt-Bold.otf") format("opentype");
 }
 
 html {height: 100%;}
@@ -379,7 +379,7 @@ html.loading:before {
 .unauthorized {background-color: #99a3a8;}
 .box {max-width: 360px; margin: 100px auto 0 auto;}
 .box h1 {color: #f0f2f5; background-color: #009688; font-size: 28px; word-break: normal; padding: 40px 20px; text-align: center; position: relative; margin: 0;}
-.box .logo {position: absolute; left: 0; right: 0; bottom: -37px; height: 75px; width: 75px; background-image: url('../images/logo.svg'); background-repeat: no-repeat; background-size: 39px; background-position: center center; border-radius: 50%; margin: 0 auto; background-color: #009688; z-index: 5;}
+.box .logo {position: absolute; left: 0; right: 0; bottom: -37px; height: 75px; width: 75px; background-image: url('../img/logo.svg'); background-repeat: no-repeat; background-size: 39px; background-position: center center; border-radius: 50%; margin: 0 auto; background-color: #009688; z-index: 5;}
 .box .content {background-color: #fff;}
 .box form {padding: 30px 50px 50px 50px}
 .box h5.header {text-align: center; padding: 0 0 30px 0;}
