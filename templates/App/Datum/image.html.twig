@@ -19,7 +19,7 @@
         {% endif %}
     </div>
     <div class="input-field col s12 m3 itemLabel">
-        <input class="countable" type="text" id="data_{{ iteration }}_label" name="item[data][{{ iteration }}][label]" length="255" {% if datum is defined %}value="{{ datum.label }}"{% elseif label is defined %}value="{{ label }}"{% endif %}>
+        <input type="text" id="data_{{ iteration }}_label" name="item[data][{{ iteration }}][label]" length="255" {% if datum is defined %}value="{{ datum.label }}"{% elseif label is defined %}value="{{ label }}"{% endif %}>
         <label for="data_{{ iteration }}_label" class="required {% if label is defined %}active{% endif %}">{{ 'label.label'|trans }}</label>
     </div>
     <div class="col s5 m1">

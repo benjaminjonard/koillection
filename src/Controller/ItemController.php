@@ -13,11 +13,10 @@ use App\Form\Type\Entity\LoanType;
 use App\Service\ItemHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -28,8 +27,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class ItemController extends AbstractController
 {
     /**
-     * @Route("/items/add", name="app_item_add")
-     * @Method({"GET", "POST"})
+     * @Route("/items/add", name="app_item_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -89,10 +87,9 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}", name="app_item_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/user/{username}/items/{id}", name="app_user_item_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/preview/items/{id}", name="app_preview_item_show", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/items/{id}", name="app_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/user/{username}/items/{id}", name="app_user_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/preview/items/{id}", name="app_preview_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("item", expr="repository.findById(id)")
      *
      * @param Item $item
@@ -110,8 +107,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/edit", name="app_item_edit", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/items/{id}/edit", name="app_item_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      * @Entity("item", expr="repository.findById(id)")
      *
      * @param Request $request
@@ -142,8 +138,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/delete", name="app_item_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/items/{id}/delete", name="app_item_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Item $item
      * @param TranslatorInterface $translator
@@ -162,8 +157,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/history", name="app_item_history", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/items/{id}/history", name="app_item_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Item $item
      * @return Response
@@ -183,8 +177,7 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/loan", name="app_item_loan", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/items/{id}/loan", name="app_item_loan", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Item $item

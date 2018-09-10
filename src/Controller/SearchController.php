@@ -8,11 +8,10 @@ use App\Entity\Tag;
 use App\Form\Type\Model\SearchType;
 use App\Model\Search;
 use App\Service\CounterCalculator;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class SearchController
@@ -24,8 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("", name="app_search_index")
-     * @Method({"GET", "POST"})
+     * @Route("", name="app_search_index", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param CounterCalculator $counterCalculator

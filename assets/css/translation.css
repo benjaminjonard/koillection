@@ -7,3 +7,5 @@
 
 .message-delete {cursor: pointer;}
 .btn-create-translation {margin-top: 33px;}
+
+.domain-table tr {border-bottom: none;}

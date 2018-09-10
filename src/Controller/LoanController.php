@@ -2,15 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Item;
 use App\Entity\Loan;
-use App\Form\Type\Entity\LoanType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -23,8 +19,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class LoanController extends AbstractController
 {
     /**
-     * @Route("", name="app_loan_index")
-     * @Method({"GET"})
+     * @Route("", name="app_loan_index", methods={"GET"})
      *
      * @return Response
      */
@@ -38,8 +33,7 @@ class LoanController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_loan_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/{id}/delete", name="app_loan_delete", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Loan $loan
      * @param TranslatorInterface $translator
@@ -57,8 +51,7 @@ class LoanController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/returned", name="app_loan_returned", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/{id}/returned", name="app_loan_returned", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("loan", expr="repository.findByIdWithItem(id)")
      *
      * @param Loan $loan

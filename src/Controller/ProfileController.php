@@ -5,11 +5,10 @@ namespace App\Controller;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Form\Type\Model\ProfileType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -22,8 +21,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("", name="app_profile_index")
-     * @Method({"GET", "POST"})
+     * @Route("", name="app_profile_index", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator

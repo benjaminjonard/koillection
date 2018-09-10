@@ -24,27 +24,27 @@ services:
     #Kernel listeners
     App\EventListener\ContextListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }
+            - { name: kernel.event_listener, event: kernel.request, priority: 255 }
     App\EventListener\LocaleListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 15 }
-            - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
+            - { name: kernel.event_listener, event: kernel.request, priority: 15 }
+            - { name: kernel.event_listener, event: security.interactive_login }
     App\EventListener\FilterListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest}
+            - { name: kernel.event_listener, event: kernel.request}
     App\EventListener\ActivityListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            - { name: kernel.event_listener, event: kernel.request }
 
     App\EventListener\NonceListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+            - { name: kernel.event_listener, event: kernel.response }
     App\EventListener\SeenListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+            - { name: kernel.event_listener, event: kernel.response}
     App\EventListener\LogQueueListener:
         tags:
-             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse, priority: 5 }
+             - { name: kernel.event_listener, event: kernel.response, priority: 5 }
 
     App\EventListener\AccessDeniedListener:
         tags:

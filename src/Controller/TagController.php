@@ -6,16 +6,14 @@ use App\Entity\Item;
 use App\Entity\Log;
 use App\Entity\Tag;
 use App\Form\Type\Entity\TagType;
-use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -26,10 +24,9 @@ use Symfony\Component\Translation\TranslatorInterface;
 class TagController extends AbstractController
 {
     /**
-     * @Route("/tags", name="app_tag_index")
-     * @Route("/user/{username}/tags", name="app_user_tag_index")
-     * @Route("/preview/tags", name="app_preview_tag_index")
-     * @Method({"GET"})
+     * @Route("/tags", name="app_tag_index", methods={"GET"})
+     * @Route("/user/{username}/tags", name="app_user_tag_index", methods={"GET"})
+     * @Route("/preview/tags", name="app_preview_tag_index", methods={"GET"})
      *
      * @param Request $request
      * @param ContextHandler $contextHandler
@@ -53,10 +50,9 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/tags/{id}", name="app_tag_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/user/{username}/tags/{id}", name="app_user_tag_show", requirements={"id"="%uuid_regex%"})
-     * @Route("/preview/tags/{id}", name="app_preview_tag_show", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/tags/{id}", name="app_tag_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/user/{username}/tags/{id}", name="app_user_tag_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/preview/tags/{id}", name="app_preview_tag_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("tag", expr="repository.findById(id)")
      *
      * @param Tag $tag
@@ -71,8 +67,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/tags/{id}/edit", name="app_tag_edit", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/tags/{id}/edit", name="app_tag_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Tag $tag
@@ -98,8 +93,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/tags/{id}/delete", name="app_tag_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/tags/{id}/delete", name="app_tag_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Tag $tag
      * @param TranslatorInterface $translator
@@ -117,8 +111,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/tags/autocomplete/{search}", name="app_tag_autocomplete", options={"expose"=true})
-     * @Method({"GET"})
+     * @Route("/tags/autocomplete/{search}", name="app_tag_autocomplete", options={"expose"=true}, methods={"GET"})
      *
      * @param string $search
      * @return JsonResponse
@@ -135,8 +128,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/tags/{id}/history", name="app_tag_history", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/tags/{id}/history", name="app_tag_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Tag $tag
      * @return Response

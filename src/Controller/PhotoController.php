@@ -3,16 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Album;
-use App\Entity\Medium;
 use App\Entity\Photo;
-use App\Entity\Wish;
 use App\Form\Type\Entity\PhotoType;
-use App\Form\Type\Entity\WishType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -25,8 +21,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class PhotoController extends AbstractController
 {
     /**
-     * @Route("/add", name="app_photo_add")
-     * @Method({"GET", "POST"})
+     * @Route("/add", name="app_photo_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -75,8 +70,7 @@ class PhotoController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_photo_edit", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/edit", name="app_photo_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Photo $photo
@@ -103,8 +97,7 @@ class PhotoController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_photo_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/delete", name="app_photo_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Photo $photo
      * @param TranslatorInterface $translator

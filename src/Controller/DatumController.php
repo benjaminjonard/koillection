@@ -6,10 +6,9 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DatumController
@@ -21,8 +20,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class DatumController extends AbstractController
 {
     /**
-     * @Route("/{type}", name="app_datum_get_html_by_type", options={"expose"=true})
-     * @Method({"GET"})
+     * @Route("/{type}", name="app_datum_get_html_by_type", options={"expose"=true}, methods={"GET"})
      *
      * @param string $type
      * @return JsonResponse
@@ -43,8 +41,7 @@ class DatumController extends AbstractController
     }
 
     /**
-     * @Route("/load-common-fields/{id}", name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, options={"expose"=true})
-     * @Method({"GET"})
+     * @Route("/load-common-fields/{id}", name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, options={"expose"=true}, methods={"GET"})
      * @Entity("collection", expr="repository.findById(id, true)")
      *
      * @param Collection $collection

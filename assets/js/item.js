@@ -38,7 +38,7 @@ if ($('#item-images').length > 0) {
     reloadSortableList($('#item-images'), '.datum');
 }
 
-showAdditionalFieldsBlocks()
+showAdditionalFieldsBlocks();
 var lastIndex = $('.datum').length;
 
 function removeTemplateData()
@@ -123,66 +123,69 @@ $('#additionnalFields').on( "click", ".removeDatum", function() {
     computePositions($(this).closest('.data-holder'));
 });
 
-$(document).ready(function() {
-    var tagsAutocomplete = $('#tagsAutocomplete').materialize_autocomplete({
-        multiple: {
-            enable: true,
-            maxSize: Infinity,
-            onExist: function (item) {
-                Materialize.toast('Tag: ' + item.text + ' is already added!', 2000);
-            },
-            onAppend: function (item) {
-                var tagsHolder = $('.tags-holder').first();
-                var self = this;
-                self.$el.removeClass('active');
-                self.$el.click();
-                var existingTags = JSON.parse(tagsHolder.val());
+var tagAutocomplete = M.Autocomplete.init(document.querySelectorAll('.autocomplete'), {
+    onAutocomplete: function (item) {
+        onAutocomplete(item);
+    }
+})[0];
 
-                var index = existingTags.indexOf(item.text);
-                if (index == -1) {
-                    existingTags.push(item.text);
-                }
+$('#tagsAutocomplete').keyup(function (e) {
+    tagAutocomplete.updateData({});
+    if ($(this).val() != '') {
+        $.get( Routing.generate('app_tag_autocomplete', {'search' : $(this).val() }), function( result ) {
+            var data = {};
+            $.each(result, function( key, tag ) {
+                data[tag] = null;
+            });
 
-                tagsHolder.val(JSON.stringify(existingTags));
-            },
-            onRemove: function (item) {
-                var tagsHolder = $('.tags-holder').first();
-                var self = this;
-                self.$el.removeClass('active');
-                self.$el.click();
+            tagAutocomplete.updateData(data);
+            tagAutocomplete.open();
+        }, "json" );
+    }
 
-                var existingTags = JSON.parse(tagsHolder.val());
-                var index = existingTags.indexOf(item.text);
-
-                if (index > -1) {
-                    existingTags.splice(index, 1);
-                }
-                tagsHolder.val(JSON.stringify(existingTags));
-            }
-        },
-        appender: {
-            el: '.ac-tags'
-        },
-        dropdown: {
-            el: '#tagsDropdown'
-        },
-        allowNotSelectedItems: true,
-        getData: function (value, callback) {
-            $.get( Routing.generate('app_tag_autocomplete', {'search' : value }), function( result ) {
-                var data = [];
-                $.each(result, function( key, tag ) {
-                    data[key] = {'id':tag, 'text':tag};
-                });
-                callback(value, data);
-            }, "json" );
-        }
-    });
-
-    var $tagsHolder = $('.tags-holder').first();
-    if ($tagsHolder.length > 0) {
-        $.each(JSON.parse($tagsHolder.val()), function( key, tag ) {
-            tagsAutocomplete.append({'id':tag, 'text':tag});
-        });
+    if(e.which == 13) {
+        onAutocomplete($(this).val());
     }
 });
+
+$( ".autocomplete-wrapper" ).on("click", ".close", function() {
+    var tagsHolder = $('.tags-holder').first();
+    var existingTags = JSON.parse(tagsHolder.val());
+
+    var index = existingTags.indexOf($(this).parent('.chip').attr('data-id'));
+    console.log(existingTags);
+    if (index > -1) {
+        existingTags.splice(index, 1);
+    }
+    console.log(existingTags);
+
+    tagsHolder.val(JSON.stringify(existingTags));
+});
+
+var $tagsHolder = $('.tags-holder').first();
+if ($tagsHolder.length > 0) {
+    $.each(JSON.parse($tagsHolder.val()), function( key, tag ) {
+        var chip = '<div class="chip" data-id="' + tag + '" data-text="' + tag + '">' + tag + '<i class="fa fa-times close"></i></div>';
+        $('.ac-tags').append(chip);
+    });
+}
+
+function onAutocomplete(item)
+{
+    var tagsHolder = $('.tags-holder').first();
+    var existingTags = JSON.parse(tagsHolder.val());
+
+    var index = existingTags.indexOf(item);
+    if (index == -1) {
+        existingTags.push(item);
+
+        var chip = '<div class="chip" data-id="' + item + '" data-text="' + item + '">' + item + '<i class="fa fa-times close"></i></div>';
+        $('.ac-tags').append(chip);
+    }
+
+    tagsHolder.val(JSON.stringify(existingTags));
+
+    $('#tagsAutocomplete').val('');
+}
+
 

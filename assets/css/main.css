@@ -19,6 +19,8 @@ body:after {content: none;}
 .lb-cancel {background: none;}
 /* ------------------------------ */
 
+thead {border-bottom: 1px solid #d0d0d0;}
+
 header {margin-bottom: 0; height: 60px; border: none; position: sticky; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; z-index: 1; background-color: #ffffff;}
 li {list-style-type: none;}
 h1 {font-size: 2.5rem;}
@@ -29,7 +31,7 @@ h5 {font-size: 2rem;}
 .header-logo {cursor: pointer; float: left; height: 60px; width: 230px; overflow: hidden; background-color: #1AB0A2;}
 .header-logo .logo{float :left; margin-left: 8px; margin-top: -6px;}
 .header-logo a {color: #f0f2f5; font-size: 25px; font-weight: bold; height: 60px; width: 230px; display: block;}
-.header-logo a span {margin-left: 73px; margin-top: 12px; display: block;}
+.header-logo a span {margin-left: 71px; margin-top: 12px; display: block;}
 
 /* Sidebar */
 .nav-wrapper {overflow: hidden; padding-left: 0; display: flex; flex-direction: column; flex-shrink: 0;}

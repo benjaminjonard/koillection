@@ -9,7 +9,7 @@ var rev = require('gulp-rev');
 var revdel = require('gulp-rev-delete-original');
 var clean = require('gulp-clean');
 
-var env = 'prod'; //process.env.GULP_ENV;
+var env = 'dev'; //process.env.GULP_ENV;
 
 var paths = {
     js: [
@@ -29,8 +29,7 @@ var paths = {
         './js/main.js',
         './js/settings.js',
         './js/item.js',
-        './js/collection.js',
-        './js/autocomplete.js'
+        './js/collection.js'
     ],
     css: {
         app: [
@@ -52,7 +51,6 @@ var paths = {
         ],
     },
     fonts: [
-        '../assets/node_modules/materialize-css/dist/fonts/roboto/*',
         '../assets/font/cooper-hewitt/*',
         '../assets/node_modules/font-awesome/fonts/*'
     ],
@@ -85,7 +83,6 @@ gulp.task('build', function () {
     //CSS
     gulp.src(paths.css.app)
         .pipe(concatCss('app.css', {'rebaseUrls': false }))
-        .pipe(replace("url(\"../fonts/roboto/", "url(\"../fonts/"))
         .pipe(replace("url('../fonts/fontawesome-", "url('../fonts/fontawesome-"))
         .pipe(gulpif(env === 'prod', cleanCss()))
         .pipe(gulp.dest('../public/build/css'));

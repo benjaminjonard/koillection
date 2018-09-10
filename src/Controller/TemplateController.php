@@ -6,12 +6,11 @@ use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\TemplateType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -24,8 +23,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class TemplateController extends AbstractController
 {
     /**
-     * @Route("", name="app_template_index")
-     * @Method({"GET"})
+     * @Route("", name="app_template_index", methods={"GET"})
      *
      * @return Response
      */
@@ -37,8 +35,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="app_template_add")
-     * @Method({"GET", "POST"})
+     * @Route("/add", name="app_template_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -67,8 +64,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_template_edit", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/edit", name="app_template_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      * @Entity("template", expr="repository.findById(id)")
      *
      * @param Request $request
@@ -96,8 +92,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_template_show", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET"})
+     * @Route("/{id}", name="app_template_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("template", expr="repository.findByIdWithItems(id)")
      *
      * @param Template $template
@@ -111,8 +106,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_template_delete", requirements={"id"="%uuid_regex%"})
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/delete", name="app_template_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Template $template
      * @param TranslatorInterface $translator
@@ -130,8 +124,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/fields", name="app_template_fields", requirements={"id"="%uuid_regex%"}, options={"expose"=true})
-     * @Method({"GET"})
+     * @Route("/{id}/fields", name="app_template_fields", requirements={"id"="%uuid_regex%"}, options={"expose"=true}, methods={"GET"})
      *
      * @param Template $template
      * @return JsonResponse

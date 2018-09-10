@@ -43,6 +43,7 @@ $('#cropArea').on('mouseup', function (e) {
             }
         });
 });
+
 $('#cropArea').on('mousewheel', function (e) {
     $croppie.croppie('result', {
             type: 'canvas',
