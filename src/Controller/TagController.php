@@ -111,7 +111,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/tags/autocomplete/{search}", name="app_tag_autocomplete", options={"expose"=true}, methods={"GET"})
+     * @Route("/tags/autocomplete/{search}", name="app_tag_autocomplete", methods={"GET"})
      *
      * @param string $search
      * @return JsonResponse

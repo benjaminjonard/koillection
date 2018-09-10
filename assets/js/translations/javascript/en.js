@@ -1,3 +1,5 @@
+import Translator from '../../translator.min.js'
+
 (function (t) {
 // en
 t.add("global.months.january", "January", "javascript", "en");

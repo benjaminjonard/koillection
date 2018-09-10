@@ -1,3 +1,6 @@
+import Translator from './translator.min.js'
+import * as utils from './utils'
+
 $(document).ready(function() {
     window.addEventListener('online', handleConnectionChange);
     window.addEventListener('offline', handleConnectionChange);
@@ -107,14 +110,14 @@ $(document).ready(function() {
     var $collectionHolder = $('#template-fields-holder');
     //Init sortable
     if ($('#template-fields-holder').find('.field').length > 0) {
-        reloadSortableList($collectionHolder, '.field');
+        utils.reloadSortableList($collectionHolder, '.field');
     }
 
     var indexFieldTemplate = $collectionHolder.find('.field').length;
     var $addFieldLink = $('<a href="#" class="add_field_link waves-effect waves-light btn">Add a new field</a>');
     var $newLinkDiv = $('<div></div>').append($addFieldLink);
     $collectionHolder.append($newLinkDiv);
-    computePositions($collectionHolder);
+    utils.computePositions($collectionHolder);
 
     $addFieldLink.on('click', function(e) {
         e.preventDefault();
@@ -131,13 +134,13 @@ $(document).ready(function() {
         $newLinkDiv.before($newForm);
         indexFieldTemplate++;
         M.FormSelect.init(document.querySelectorAll('select'));
-        computePositions($collectionHolder);
-        reloadSortableList($collectionHolder, '.field');
+        utils.computePositions($collectionHolder);
+        utils.reloadSortableList($collectionHolder, '.field');
     }
 
     $('#template-fields-holder').on( "click", ".removeDatum", function() {
         $(this).closest('.field').remove();
-        computePositions($collectionHolder);
+        utils.computePositions($collectionHolder);
     });
 });
 

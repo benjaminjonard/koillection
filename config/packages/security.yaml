@@ -34,7 +34,6 @@ security:
         - { path: ^/user, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/first-connection, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/js/routing, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/translations, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/_trans, role: ROLE_ADMIN }

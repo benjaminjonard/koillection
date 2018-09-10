@@ -89,7 +89,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ preload(asset('build/js/echarts.js')) }}" nonce="{{ csp_nonce() }}"></script>
+    <script src="{{ preload(asset('echarts.min.js')) }}" nonce="{{ csp_nonce() }}"></script>
     <script type="text/javascript" nonce="{{ csp_nonce() }}">
         // specify chart configuration item and data
         echarts.init(document.getElementById('month-days-chart')).setOption({
