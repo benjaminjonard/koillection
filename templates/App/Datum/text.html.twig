@@ -9,12 +9,12 @@
     </div>
 
     <div class="input-field col s12 m3 itemLabel">
-        <input class="countable" type="text" id="data_{{ iteration }}_label" name="item[data][{{ iteration }}][label]" length="255" {% if datum is defined %}value="{{ datum.label }}"{% elseif label is defined %}value="{{ label }}"{% endif %}>
+        <input type="text" id="data_{{ iteration }}_label" name="item[data][{{ iteration }}][label]" length="255" {% if datum is defined %}value="{{ datum.label }}"{% elseif label is defined %}value="{{ label }}"{% endif %}>
         <label for="data_{{ iteration }}_label" class="required {% if label is defined or datum is defined %}active{% endif %}">{{ 'label.label'|trans }}</label>
     </div>
 
     <div class="input-field col s12 m4">
-        <input class="countable" type="text" id="data_{{ iteration }}_value" name="item[data][{{ iteration }}][value]" length="255" {% if datum is defined %}value="{{ datum.value }}"{% endif %}>
+        <input type="text" id="data_{{ iteration }}_value" name="item[data][{{ iteration }}][value]" length="255" {% if datum is defined %}value="{{ datum.value }}"{% endif %}>
         <label for="data_{{ iteration }}_value" class="required {% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
     </div>
 

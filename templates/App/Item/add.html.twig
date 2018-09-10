@@ -42,15 +42,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s10 offset-s1">
-                            {{ form_label(form.tags, 'label.tags') }}
-                            <div class="autocomplete" id="multiple">
-                                <div class="ac-input">
-                                    <input type="text" id="tagsAutocomplete" data-activates="tagsDropdown" data-beloworigin="true" autocomplete="off">
-                                </div>
+                        <div class="col s10 offset-s1 autocomplete-wrapper">
+                            <div class="input-field">
+                                <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
+                                {{ form_label(form.tags, 'label.tags') }}
                                 <div class="ac-tags">
                                 </div>
-                                <ul id="tagsDropdown" class="dropdown-content ac-dropdown"></ul>
                             </div>
                             {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
                         </div>
