@@ -16,6 +16,10 @@ Encore
 
     .addPlugin(new CopyWebpackPlugin([{ from: './img', to: 'images' }]))
 
+    /*.configureUrlLoader({
+        images: { limit: 4096 }
+    })*/
+
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
