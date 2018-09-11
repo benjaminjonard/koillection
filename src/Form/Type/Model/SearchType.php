@@ -48,6 +48,7 @@ class SearchType extends AbstractType
             ->add('createdAt', DateType::class, [
                 'label' => false,
                 'required' => false,
+                'html5' => false,
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'view_timezone' => $this->tokenStorage->getToken()->getUser()->getTimezone()

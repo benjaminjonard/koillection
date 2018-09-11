@@ -30,7 +30,12 @@
             {% endif %}
         </div>
 
-        <div class="statistics-holder">
+        <div class="statistics-holder"
+             data-theme-main-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}"
+             data-theme-dark-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}"
+             data-theme-light-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}"
+             data-theme-lightest-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}"
+        >
             <div class="content-block calendars">
                 <div class="block-element">
                     <h5 class="statistics-title">{{ 'title.activity'|trans }}</h5>
@@ -43,6 +48,7 @@
                             {% endfor %}
                         </ul>
                     </div>
+                    <div id="calendars" data-json='{{ calendarData|json_encode() }}'></div>
                     {% for year, value in calendarData %}
                         <div class="panel calendar {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
                     {% endfor %}
@@ -54,33 +60,33 @@
                 <div class="block-element bar-chart-row">
                     <div class="left-chart bar-chart">
                         <h5 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h5>
-                        <div id="month-days-chart" class="chart" style="width: 650px; height:400px;"></div>
+                        <div id="month-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
                     </div>
                     <div class="right-chart bar-chart">
                         <h5 class="statistics-title">{{ 'title.charts.hours'|trans }}</h5>
-                        <div id="hours-chart" class="chart" style="width: 650px; height:400px;"></div>
+                        <div id="hours-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ hoursChartData|json_encode() }}'></div>
                     </div>
                 </div>
                 <div class="block-element bar-chart-row last">
                     <div class="left-chart bar-chart">
                         <h5 class="statistics-title">{{ 'title.charts.months'|trans }}</h5>
-                        <div id="months-chart" class="chart" style="width: 650px; height:400px;"></div>
+                        <div id="months-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
                     </div>
                     <div class="right-chart bar-chart">
                         <h5 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h5>
-                        <div id="week-days-chart" class="chart" style="width: 650px; height:400px;"></div>
+                        <div id="week-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ weekDaysChartData|json_encode() }}'></div>
                     </div>
                 </div>
                 <div class="block-element bar-chart-row last">
                     <h5 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h5>
-                    <div id="items-evolution-chart" class="chart" style="width: 1530px; height:400px;"></div>
+                    <div id="items-evolution-chart" class="chart" style="width: 1530px; height:400px;" data-json='{{ itemsEvolutionData|json_encode() }}'></div>
                 </div>
             </div>
 
             <div class="content-block bar-charts">
                 <div class="block-element bar-chart-row">
                     <h5 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h5>
-                    <div id="radial-tree" style="width: 1200px; height: 1200px;"></div>
+                    <div id="radial-tree" style="width: 1200px; height: 1200px;" data-json='{{ treeJson }}'></div>
                 </div>
             </div>
         </div>
@@ -89,275 +95,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ preload(asset('echarts.min.js')) }}" nonce="{{ csp_nonce() }}"></script>
-    <script type="text/javascript" nonce="{{ csp_nonce() }}">
-        // specify chart configuration item and data
-        echarts.init(document.getElementById('month-days-chart')).setOption({
-            tooltip: {
-                formatter: function (params) {
-                    return Translator.transChoice('statistics.items_added', params.value);
-                }
-            },
-            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
-            xAxis: {
-                type : 'category',
-                data: [
-                    {% for element in monthDaysChartData %}
-                        "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ],
-                axisTick: {
-                    alignWithLabel: true
-                }
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar',
-                data: [
-                    {% for element in monthDaysChartData %}
-                        {{ element.count }} {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ]
-            }]
-        });
-
-        echarts.init(document.getElementById('hours-chart')).setOption({
-            tooltip: {
-                formatter: function (params) {
-                    return Translator.transChoice('statistics.items_added', params.value);
-                }
-            },
-            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
-            xAxis: {
-                type : 'category',
-                data: [
-                    {% for element in hoursChartData %}
-                        "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ],
-                axisTick: {
-                    alignWithLabel: true
-                }
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar',
-                data: [
-                    {% for element in hoursChartData %}
-                        {{ element.count }} {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ]
-            }]
-        });
-
-        echarts.init(document.getElementById('months-chart')).setOption({
-            tooltip: {
-                formatter: function (params) {
-                    return Translator.transChoice('statistics.items_added', params.value);
-                }
-            },
-            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
-            xAxis: {
-                type : 'category',
-                data: [
-                    {% for element in monthsChartData %}
-                        "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ],
-                axisTick: {
-                    alignWithLabel: true
-                }
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar',
-                data: [
-                    {% for element in monthsChartData %}
-                        {{ element.count }} {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ]
-            }]
-        });
-
-        echarts.init(document.getElementById('week-days-chart')).setOption({
-            tooltip: {
-                formatter: function (params) {
-                    return Translator.transChoice('statistics.items_added', params.value);
-                }
-            },
-            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
-            xAxis: {
-                type : 'category',
-                data: [
-                    {% for element in weekDaysChartData %}
-                    "{{ element.abscissa }}" {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ],
-                axisTick: {
-                    alignWithLabel: true
-                }
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar',
-                data: [
-                    {% for element in weekDaysChartData %}
-                        {{ element.count }} {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ]
-            }]
-        });
-
-        echarts.init(document.getElementById('items-evolution-chart')).setOption({
-            tooltip: {
-                trigger: 'axis',
-                position: function (params) {
-                    return [params[0], '10%'];
-                },
-                formatter: function (params) {
-                    return params[0].axisValue + ': ' + Translator.transChoice('statistics.items', params[0].data);
-                }
-            },
-            color: ['{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'],
-            xAxis: {
-                type: 'category',
-                data: [
-                    {% for key, element in itemsEvolutionData %}
-                        "{{ key }}" {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ],
-                axisTick: {
-                    alignWithLabel: true
-                }
-            },
-            yAxis: {
-                type: 'value'
-            },
-            dataZoom: [{
-                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-                handleSize: '80%',
-                handleStyle: {
-                    color: '#fff',
-                    shadowBlur: 3,
-                    shadowColor: 'rgba(0, 0, 0, 0.6)',
-                    shadowOffsetX: 2,
-                    shadowOffsetY: 2
-                }
-            }],
-            series: [{
-                data: [
-                    {% for element in itemsEvolutionData %}
-                        {{ element }} {{ loop.last == false ? ',' }}
-                    {% endfor %}
-                ],
-                type: 'line',
-                smooth: true,
-                symbol: 'none',
-                sampling: 'average',
-                areaStyle: {
-                    normal: {
-                        color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'
-                    }
-                }
-            }]
-        });
-
-        var monthsLabel = [
-            "{{ 'global.months.january'|trans }}",
-            "{{ 'global.months.february'|trans }}",
-            "{{ 'global.months.march'|trans }}",
-            "{{ 'global.months.april'|trans }}",
-            "{{ 'global.months.may'|trans }}",
-            "{{ 'global.months.june'|trans }}",
-            "{{ 'global.months.july'|trans }}",
-            "{{ 'global.months.august'|trans }}",
-            "{{ 'global.months.september'|trans }}",
-            "{{ 'global.months.october'|trans }}",
-            "{{ 'global.months.november'|trans }}",
-            "{{ 'global.months.december'|trans }}",
-        ];
-
-        {% for year, yearData in calendarData %}
-            var data = [];
-            {%  for datum in yearData  %}
-                data.push(["{{ datum[0] }}", {{ datum[1] }}]);
-            {% endfor %}
-
-            echarts.init(document.getElementById('calendar_' + {{ year }})).setOption({
-                tooltip: {
-                    formatter: function (params) {
-                       return Translator.transChoice('statistics.items_added', params.value[1]);
-                    }
-                },
-                visualMap: {
-                    type: 'piecewise',
-                    orient: 'horizontal',
-                    right: '215',
-                    bottom: 'bottom',
-                    pieces: [
-                        {min: 31, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}'},
-                        {min: 16, max: 30, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}'},
-                        {min: 6, max: 15, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}'},
-                        {min: 1, max: 5, color: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}'},
-                        {min: 0, max: 0, color: '#ededed'}
-                    ],
-                },
-                calendar: {
-                    splitLine: {
-                        show: false,
-                    },
-                    top: 'middle',
-                    left: 'center',
-                    range: {{ year }},
-                    cellSize: 20,
-                    yearLabel: {show: false},
-                    itemStyle: {
-                        normal: {
-                            borderWidth: 2,
-                            borderColor: '#ffffff',
-                            color: '#ededed'
-                        },
-                    },
-                    dayLabel: {
-                        show: false
-                    },
-                    monthLabel: {
-                        show: true,
-                        nameMap: monthsLabel,
-                    }
-                },
-                series: [
-                    {
-                        type: 'heatmap',
-                        coordinateSystem: 'calendar',
-                        calendarIndex: 0,
-                        data: data
-                    }
-                ]
-           });
-        {% endfor %}
-
-        echarts.init(document.getElementById('radial-tree')).setOption({
-            tooltip: {
-                trigger: 'item',
-                triggerOn: 'mousemove'
-            },
-            series: [
-                {
-                    type: 'tree',
-                    data: [{{ treeJson|safeContent }}],
-                    layout: 'radial',
-                    symbol: 'emptyCircle',
-                    symbolSize: 7,
-                    initialTreeDepth: -1,
-                    animationDurationUpdate: 750,
-                    itemStyle: {
-                        borderColor: '{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}',
-                    }
-                }
-            ]
-        });
-    </script>
+    <script src="{{ preload(asset('build/js/statistics.js')) }}" nonce="{{ csp_nonce() }}"></script>
 {% endblock %}
 
 {% if context == 'default' %}

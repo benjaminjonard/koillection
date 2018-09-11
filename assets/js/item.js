@@ -1,6 +1,5 @@
 import * as utils from './utils'
 
-
 function showAdditionalFieldsBlocks() {
     if ($('#data').find('.datum').length > 0) {
         $('#data').show();

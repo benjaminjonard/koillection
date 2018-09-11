@@ -65,6 +65,7 @@ class PhotoType extends AbstractType
             ])
             ->add('takenAt', DateType::class, [
                 'required' => false,
+                'html5' => false,
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
