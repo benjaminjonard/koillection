@@ -7,7 +7,6 @@
     "license": "MIT",
     "dependencies": {
         "croppie": "^2.5.1",
-        "font-awesome": "^4.7.0",
         "jquery": "^3.1.1",
         "js-cookie": "^2.2.0",
         "lightbox2": "^2.9.0",
