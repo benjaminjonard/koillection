@@ -20,7 +20,8 @@ Encore
     ]))
 
     .configureUrlLoader({
-        images: { limit: 4096 }
+        images: { limit: 4096 },
+        fonts: { limit: 10240 }
     })
 
     .cleanupOutputBeforeBuild()

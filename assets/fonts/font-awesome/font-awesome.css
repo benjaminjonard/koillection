@@ -1,0 +1,155 @@
+@font-face {
+  font-family: 'font-awesome';
+  src:  url('./font-awesome.eot?wl438a');
+  src:  url('./font-awesome.eot?wl438a#iefix') format('embedded-opentype'),
+    url('./font-awesome.ttf?wl438a') format('truetype'),
+    url('./font-awesome.woff?wl438a') format('woff'),
+    url('./font-awesome.svg?wl438a#font-awesome') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="fa-"], [class*=" fa-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'font-awesome' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-plus:before {
+  content: "\f067";
+}
+.fa-search:before {
+  content: "\f002";
+}
+.fa-heart:before {
+  content: "\f004";
+}
+.fa-user:before {
+  content: "\f007";
+}
+.fa-check:before {
+  content: "\f00c";
+}
+.fa-close:before {
+  content: "\f00d";
+}
+.fa-remove:before {
+  content: "\f00d";
+}
+.fa-times:before {
+  content: "\f00d";
+}
+.fa-power-off:before {
+  content: "\f011";
+}
+.fa-tags:before {
+  content: "\f02c";
+}
+.fa-print:before {
+  content: "\f02f";
+}
+.fa-camera:before {
+  content: "\f030";
+}
+.fa-pencil:before {
+  content: "\f040";
+}
+.fa-mail-forward:before {
+  content: "\f064";
+}
+.fa-share:before {
+  content: "\f064";
+}
+.fa-leaf:before {
+  content: "\f06c";
+}
+.fa-eye:before {
+  content: "\f06e";
+}
+.fa-chevron-down:before {
+  content: "\f078";
+}
+.fa-folder:before {
+  content: "\f07b";
+}
+.fa-arrows-v:before {
+  content: "\f07d";
+}
+.fa-cogs:before {
+  content: "\f085";
+}
+.fa-gears:before {
+  content: "\f085";
+}
+.fa-wrench:before {
+  content: "\f0ad";
+}
+.fa-bars:before {
+  content: "\f0c9";
+}
+.fa-navicon:before {
+  content: "\f0c9";
+}
+.fa-reorder:before {
+  content: "\f0c9";
+}
+.fa-exchange:before {
+  content: "\f0ec";
+}
+.fa-angle-double-right:before {
+  content: "\f101";
+}
+.fa-angle-left:before {
+  content: "\f104";
+}
+.fa-angle-right:before {
+  content: "\f105";
+}
+.fa-mail-reply:before {
+  content: "\f112";
+}
+.fa-reply:before {
+  content: "\f112";
+}
+.fa-terminal:before {
+  content: "\f120";
+}
+.fa-eraser:before {
+  content: "\f12d";
+}
+.fa-ellipsis-h:before {
+  content: "\f141";
+}
+.fa-file-text:before {
+  content: "\f15c";
+}
+.fa-archive:before {
+  content: "\f187";
+}
+.fa-database:before {
+  content: "\f1c0";
+}
+.fa-history:before {
+  content: "\f1da";
+}
+.fa-calculator:before {
+  content: "\f1ec";
+}
+.fa-trash:before {
+  content: "\f1f8";
+}
+.fa-area-chart:before {
+  content: "\f1fe";
+}
+.fa-clone:before {
+  content: "\f24d";
+}
