@@ -33,8 +33,10 @@
                     {% for key, visibility in visibilities %}
                         <div class="visibility">
                             <p class="setting-input">
-                                <input id="{{ key }}" class="input-visibility-{{ key }} with-gap" type="radio" name="visibility" value="{{ key }}" {% if app.user.visibility == key %}checked{% endif %}/>
-                                <label for="{{ key }}">{{ ("global.visibilities." ~ visibility)|trans }}</label>
+                                <label>
+                                    <input id="{{ key }}" class="input-visibility-{{ key }} with-gap" type="radio" name="visibility" value="{{ key }}" {% if app.user.visibility == key %}checked{% endif %}/>
+                                    <span>{{ ("global.visibilities." ~ visibility)|trans }}</span>
+                                </label>
                             </p>
                         </div>
                         <div class="clearfix"></div>
@@ -50,9 +52,10 @@
                     {% for theme in themes %}
                         <div class="theme">
                             <p class="setting-input">
-                                <input id="{{ theme }}" class="input-theme-{{ theme }} with-gap" type="radio" name="theme" value="{{ theme }}" {% if app.user.theme == theme %}checked{% endif %} />
-                                <label for="{{ theme }}">
-                                    <span class="theme-previews">
+                                <label>
+                                    <input id="{{ theme }}" class="input-theme-{{ theme }} with-gap" type="radio" name="theme" value="{{ theme }}" {% if app.user.theme == theme %}checked{% endif %} />
+                                    <span>
+                                        <span class="theme-previews">
                                         <span class="theme-preview {{ theme }} lighter"></span>
                                         <span class="theme-preview {{ theme }} light"></span>
                                         <span class="theme-preview {{ theme }} medium"></span>
@@ -60,6 +63,7 @@
                                         <span class="theme-preview {{ theme }} complementary"></span>
                                     </span>
                                     <span class="preview-label">{{ ("global.themes." ~ theme)|trans }}</span>
+                                    </span>
                                 </label>
                             </p>
                         </div>
@@ -72,10 +76,12 @@
                     {% for code, locale in locales %}
                         <div class="locale">
                             <p class="setting-input">
-                                <input id="{{ code }}" class="input-locale-{{ code }} with-gap" type="radio" name="locale" value="{{ code }}" {% if app.user.locale == code %}checked{% endif %}/>
                                 <label for="{{ code }}">
-                                    <img src="{{ preload(asset('../build/images/flags/'~ code ~'.svg')) }}" aria-label="{{ ('aria.flag.' ~ code)|trans }}" height="19" width="25">
-                                    <span class="preview-label">{{ ("global.locale." ~ locale)|trans }}</span>
+                                    <input id="{{ code }}" class="input-locale-{{ code }} with-gap" type="radio" name="locale" value="{{ code }}" {% if app.user.locale == code %}checked{% endif %}/>
+                                    <span>
+                                        <img src="{{ preload(asset('../build/images/flags/'~ code ~'.svg')) }}" aria-label="{{ ('aria.flag.' ~ code)|trans }}" height="19" width="25">
+                                        <span class="preview-label">{{ ("global.locale." ~ locale)|trans }}</span>
+                                    </span>
                                 </label>
                             </p>
                         </div>
@@ -88,8 +94,10 @@
                     {% for code, currency in currencies %}
                         <div class="currency">
                             <p class="setting-input">
-                                <input id="{{ code }}" class="input-currency-{{ code }} with-gap" type="radio" name="currency" value="{{ code }}" {% if app.user.currency == code %}checked{% endif %}/>
-                                <label for="{{ code }}">{{ currency }}</label>
+                                <label>
+                                    <input id="{{ code }}" class="input-currency-{{ code }} with-gap" type="radio" name="currency" value="{{ code }}" {% if app.user.currency == code %}checked{% endif %}/>
+                                    <span>{{ currency }}</span>
+                                </label>
                             </p>
                         </div>
                         <div class="clearfix"></div>
