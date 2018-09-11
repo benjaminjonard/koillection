@@ -33,13 +33,22 @@
                 </div>
                 <div class="row">
                     <div class="col s10 offset-s1 m2 offset-m1">
-                        {{ form_row(form.searchInCollections, {'label' : 'label.collections'}) }}
+                        <label>
+                            {{ form_widget(form.searchInCollections) }}
+                            <span>{{ 'label.collections'|trans }}</span>
+                        </label>
                     </div>
                     <div class="col s10 offset-s1 m2 offset-m1">
-                        {{ form_row(form.searchInItems, {'label' : 'label.items'}) }}
+                        <label>
+                            {{ form_widget(form.searchInItems) }}
+                            <span>{{ 'label.items'|trans }}</span>
+                        </label>
                     </div>
                     <div class="col s10 offset-s1 m2 offset-m1">
-                        {{ form_row(form.searchInTags, {'label' : 'label.tags'}) }}
+                        <label>
+                            {{ form_widget(form.searchInTags) }}
+                            <span>{{ 'label.tags'|trans }}</span>
+                        </label>
                     </div>
                 </div>
                 <div class="row">

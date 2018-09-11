@@ -27,6 +27,8 @@ h1 {font-size: 2.5rem;}
 h5 {font-size: 2rem;}
 .btn i {font-size: 1rem; margin-right: 6px;}
 
+.fa-search::before {margin: 22px -375px 0 0; display: block;}
+
 /* Logo */
 .header-logo {cursor: pointer; float: left; height: 60px; width: 230px; overflow: hidden; background-color: #1AB0A2;}
 .header-logo .logo{float :left; margin-left: 8px; margin-top: -6px;}
@@ -135,6 +137,9 @@ label div {font-size: 0.8rem;}
 .content-wrapper .btn-holder {display: inline-block;}
 .btn-holder .right {height: 0;}
 .btn-holder .left {min-height: 37px;}
+.btn-holder i {margin: 0 5px;}
+
+.image-preview-wrapper {text-align: center;}
 
 ul.nav-pills {display: inline-block;}
 ul.nav-pills li { white-space: nowrap; display: inline;}
@@ -405,8 +410,7 @@ html.loading:before {
 
 .burger-menu {display: none;}
 .burger-menu i {color: #7f8c8d; font-size: 21px; cursor: pointer;}
-.search-icon i {margin: 22px -375px 0 0;}
-.search {margin-right: 45px;}
+.search {margin-right: -20px;}
 .search input {margin-top: 8px!important;}
 input[type=search].search-input, input[type=search]:focus:not([readonly]).search-input {border-bottom: none; box-shadow: none;}
 
