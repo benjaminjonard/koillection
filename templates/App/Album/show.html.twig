@@ -61,7 +61,7 @@
                                     {{ photo.takenAt ? 'label.taken_at'|trans ~ ' : ' ~ photo.takenAt|date("d/m/Y") ~ '<br>' }}
                                     {{ photo.comment ? 'label.comment'|trans ~ ' : ' ~ photo.comment }}
                                 ">
-                                    {{ macros.lazyImage(photo.image.thumbnailPath, 'aria.photo'|trans({'%title%': photo.title})) }}
+                                    {{ macros.lazyImage(photo.image.thumbnailPath, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
                                 </a>
                                 {% if context == 'default' %}
                                     <div>

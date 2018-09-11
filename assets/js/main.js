@@ -46,11 +46,12 @@ $(document).ready(function() {
         });
     });
 
-    //Init MaterializeCSS selects
     M.FormSelect.init(document.querySelectorAll('select'));
-
-    //Init MaterializeCSS modals
     M.Modal.init(document.querySelectorAll('.modal'));
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
+        enterDelay: 500,
+        outDuration: 100
+    });
 
     //Init MaterializeCSS datepickers
     M.Datepicker.init(document.querySelectorAll('.datepicker'), {
