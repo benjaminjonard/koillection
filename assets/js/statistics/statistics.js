@@ -116,7 +116,7 @@ $(document).ready(function() {
         color: [themeMainHue],
         xAxis: {
             type: 'category',
-            data: itemsEvolutionData.keys,
+            data: Object.keys(itemsEvolutionData),
             axisTick: {
                 alignWithLabel: true
             }
@@ -136,7 +136,7 @@ $(document).ready(function() {
             }
         }],
         series: [{
-            data: itemsEvolutionData,
+            data: Object.values(itemsEvolutionData),
             type: 'line',
             smooth: true,
             symbol: 'none',
