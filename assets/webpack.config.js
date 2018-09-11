@@ -6,6 +6,7 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('js/app', './js/app.js')
+    .addEntry('js/statistics', './js/statistics/statistics.js')
 
     .addStyleEntry('css/app', './css/app.css')
     .addStyleEntry('css/themes/aubergine', './css/themes/aubergine.css')
@@ -14,11 +15,13 @@ Encore
     .addStyleEntry('css/export', './css/export.css')
     .addStyleEntry('css/translation', './css/translation.css')
 
-    .addPlugin(new CopyWebpackPlugin([{ from: './img', to: 'images' }]))
+    .addPlugin(new CopyWebpackPlugin([
+        { from: './img', to: 'images' }
+    ]))
 
-    /*.configureUrlLoader({
+    .configureUrlLoader({
         images: { limit: 4096 }
-    })*/
+    })
 
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
