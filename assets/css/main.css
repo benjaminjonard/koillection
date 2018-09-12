@@ -5,7 +5,7 @@
 }
 
 html {height: 100%;}
-body {min-height: 100vh; outline: none; margin-left: 230px;}
+body {outline: none; margin-left: 230px;}
 body.unauthorized {margin-left: 0;}
 .app {display: flex; flex-direction: column; min-height: 100vh;}
 footer {position: absolute; left: 0;  right: 0; bottom: 0; padding-top: 25px; color: #7f8c8d; font-size: 12px; margin: 15px;}
@@ -27,7 +27,7 @@ h1 {font-size: 2.5rem;}
 h5 {font-size: 2rem;}
 .btn i {font-size: 1rem; margin-right: 6px;}
 
-.fa-search::before {margin: 22px -375px 0 0; display: block;}
+.fa-search::before {top: 22px; position: absolute; right: 76px;}
 
 /* Logo */
 .header-logo {cursor: pointer; float: left; height: 60px; width: 230px; overflow: hidden; background-color: #1AB0A2;}
