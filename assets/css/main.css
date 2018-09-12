@@ -10,6 +10,8 @@ body.unauthorized {margin-left: 0;}
 .app {display: flex; flex-direction: column; min-height: 100vh;}
 footer {position: absolute; left: 0;  right: 0; bottom: 0; padding-top: 25px; color: #7f8c8d; font-size: 12px; margin: 15px;}
 
+a {outline: 0;}
+
 /* Override lightbox, wtf man... */
 body:after {content: none;}
 .lb-data .lb-close {background: none;}
