@@ -30,6 +30,8 @@ h5 {font-size: 2rem;}
 .btn i {font-size: 1rem; margin-right: 6px;}
 
 .fa-search::before {top: 22px; position: absolute; right: 76px;}
+.fa-angle-left::before {position: relative; top: 1px; right: 5px;}
+.fa-angle-right::before {position: relative; top: 1px; left: 5px;}
 
 /* Logo */
 .header-logo {cursor: pointer; float: left; height: 60px; width: 230px; overflow: hidden; background-color: #1AB0A2;}
@@ -412,7 +414,7 @@ html.loading:before {
 
 .burger-menu {display: none;}
 .burger-menu i {color: #7f8c8d; font-size: 21px; cursor: pointer;}
-.search {margin-right: -20px;}
+.search {margin-right: -20px; padding-top: 2px;}
 .search input {margin-top: 8px!important;}
 input[type=search].search-input, input[type=search]:focus:not([readonly]).search-input {border-bottom: none; box-shadow: none;}
 
@@ -437,7 +439,7 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
     .sidebar-wrapper {width: 0!important;}
     body {margin-left: 0!important;}
     .search {display: none;}
-    .search-icon i {margin: 22px 15px 0 0;}
+    .search-icon i {}
     #collection-items img {max-width: 120px; max-height: 160px;}
     #collection-items .collection-item {min-width: 120px; min-height: 160px;}
     .grid-container-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
