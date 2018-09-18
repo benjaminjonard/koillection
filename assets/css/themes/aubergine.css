@@ -49,16 +49,25 @@ a
 {color: #6c5fc7;}
 
 .content-header .filter-block #filter-by-name-input:focus,
-[type="radio"].with-gap:checked+label:before,
+[type="radio"].with-gap:checked + span:before,
 .tabs-block .tab.current,
 .pie-wrapper .pie .half-circle
 {border-color: #6c5fc7;}
 
-[type="radio"].with-gap:checked+label:after
-{
-    background-color : #6c5fc7;
-    border-color: #6c5fc7;
-}
+[type="radio"].with-gap:checked + span::after, [type="radio"]:checked + span::after
+{background-color : #6c5fc7; border-color: #6c5fc7;}
+
+[type="checkbox"]:checked + span:not(.lever)::before
+{border-right: 2px solid #6c5fc7;  border-bottom: 2px solid #6c5fc7;}
+
+input[type=range]::-moz-range-thumb
+{background: #6c5fc7;}
+
+input[type=range]::-webkit-slider-thumb
+{background: #6c5fc7;}
+
+input[type=range]::-ms-track
+{background: #6c5fc7;}
 
 input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]),
 input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]),
