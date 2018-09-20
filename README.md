@@ -53,8 +53,9 @@ Koillection is still in development. There might be some bugs, missing features 
 3. A `Postgresql` database
 
 ## Installation
+### Using git or an archive file
 
-1. `git clone` the repository 
+1. `git clone` the repository or download and unzip the project archive
 2. Copy the `.env.dist` file and rename it `.env`
 3. In `.env` replace the values between curly braces by your configuration and remove all curly braces
     - `{secret}` -> a random string
@@ -68,6 +69,11 @@ Koillection is still in development. There might be some bugs, missing features 
 5. And then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)
 7. (optionnal) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
+
+### Using Docker
+There is 2 Docker images you can use :
+* https://github.com/koillection/docker -> Recommended. Comes with PHP FPM and nginx, based on the last release of Koillection.
+* https://github.com/koillection/docker-ppm -> Experimental. Comes with PHP PM and nginx, based on the master branch of Koillection, thus can be unstable.
 
 ## Licensing
 
