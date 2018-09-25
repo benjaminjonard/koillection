@@ -104,7 +104,7 @@ $(document).ready(function() {
         $(this).addClass('active');
     });
 
-    loadFilePreviews();
+    utils.loadFilePreviews();
 
 
     //TEMPLATE FIELDS
@@ -146,22 +146,7 @@ $(document).ready(function() {
 });
 
 
-function loadFilePreviews() {
-    $('.btn-image').unbind('click');
-    $('.btn-image').click(function(){
-        $(this).closest('.image-preview-wrapper').find('.has-preview').trigger('click');
-    });
 
-    $('.has-preview').unbind('change');
-    $('.has-preview').on('change', function(e) {
-        var reader = new FileReader();
-        var self = $(this);
-        reader.onload = function (e) {
-            self.closest('.image-preview-wrapper').find('img').attr('src',e.target.result);
-        };
-        reader.readAsDataURL(this.files[0]);
-    });
-}
 
 function handleConnectionChange(event){
     var element = document.getElementById("offline-message");
