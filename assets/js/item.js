@@ -82,22 +82,24 @@ $('.btn-common-fields').click( function(e) {
 });
 
 $('.selectFieldType').change( function() {
-    if ( $(this).val() != '' ) {
-        $.get('/datum/' + $(this).val(), function( result ) {
+    let $self = $(this);
+    if ( $self.val() != '' ) {
+        $.get('/datum/' + $self.val(), function( result ) {
             if (result.isImage) {
                 var $holder = $('#item-images');
             } else {
                 var $holder = $('#data');
             }
             $holder.append(result.html.replace(/__placeholder__/g, lastIndex));
-            var $datum = $holder.find('.datum:last');
+            let $datum = $holder.find('.datum:last');
             $datum.find('.countable').characterCounter();
             $datum.find('.position').val($('#data').find('.datum').length);
             lastIndex++;
             showAdditionalFieldsBlocks()
             utils.reloadSortableList($holder, '.datum');
             utils.computePositions($holder);
-            loadFilePreviews();
+            utils.loadFilePreviews();
+            $self.val('');
         });
     }
 });
