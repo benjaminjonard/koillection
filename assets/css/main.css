@@ -5,7 +5,7 @@
 }
 
 html {height: 100%;}
-body {outline: none; margin-left: 230px;}
+body:not('.error') {outline: none; margin-left: 230px;}
 body.unauthorized {margin-left: 0;}
 .app {display: flex; flex-direction: column; min-height: 100vh;}
 footer {position: absolute; left: 0;  right: 0; bottom: 0; padding-top: 25px; color: #7f8c8d; font-size: 12px; margin: 15px;}
