@@ -50,6 +50,5 @@ class LogQueueListener
         }
 
         $this->logQueue->clearLogs();
-        $this->em->clear();
     }
 }
