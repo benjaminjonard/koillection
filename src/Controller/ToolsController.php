@@ -98,6 +98,8 @@ class ToolsController extends AbstractController
             $zip->finish();
         }) ;
 
+        $response->headers->set('X-Accel-Buffering', 'no');
+
         return $response;
     }
 
