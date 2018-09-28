@@ -1,7 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [v1.1.0] / 2018-09-18
+## [v1.0.2] / 2018-09-28
+###Fixes
+- Fix error pages style (Benjamin Jonard)
+- Fix sortable fields on item edition page (Benjamin Jonard)
+- Fix custom field selection on item edition page (Benjamin Jonard)
+
+## [v1.0.1] / 2018-09-18
 ###Features
 - Add SQL export (Benjamin Jonard)
 - Add images export (Benjamin Jonard)
