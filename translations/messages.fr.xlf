@@ -3892,5 +3892,23 @@
         <target>Images</target>
       </segment>
     </unit>
+    <unit id="F5Sk8YT" name="filter.title.actions">
+      <segment>
+        <source>filter.title.actions</source>
+        <target>Actions</target>
+      </segment>
+    </unit>
+    <unit id="Lx7mAxQ" name="filter.create">
+      <segment>
+        <source>filter.create</source>
+        <target>Création</target>
+      </segment>
+    </unit>
+    <unit id="xRzOAVz" name="filter.delete">
+      <segment>
+        <source>filter.delete</source>
+        <target>Suppression</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

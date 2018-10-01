@@ -1,25 +1,20 @@
 version: '3'
 
 services:
-    php:
-        build: ./docker/php
+    koillection:
+        image: koillection/koillection:latest
+        restart: always
         ports:
-            - 9000:9000
-        links:
+            - 80:8880
+        environment:
+            - DATABASE_URL=pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4
+            - APP_ENV=dev
+            - SHOW_ADMIN_TOOLS=1
+        depends_on:
             - postgres
         volumes:
-            - .:/var/www/koillection
-            - ./logs/symfony:/var/www/symfony/app/logs
-
-    nginx:
-        build: ./docker/nginx
-        ports:
-            - "80:80"
-        links:
-            - php
-        volumes:
-            - .:/var/www/koillection
-            - ./logs/symfony:/var/www/symfony/app/logs
+            - "./docker/volumes/koillection/public/uploads:/koillection/public/uploads"
+            - .:/koillection
 
     postgres:
         container_name: postgres
@@ -27,7 +22,7 @@ services:
         environment:
             - POSTGRES_DB=koillection
             - POSTGRES_USER=root
-            - POSTGRES_PASSWORD=root
+            - POSTGRES_PASSWORD=m6iFpZTkR1U6klSvLtRF
         ports:
             - 5432:5432
         volumes:
