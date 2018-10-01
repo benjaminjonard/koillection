@@ -345,6 +345,7 @@ progress[value]::-ms-fill {background-color:#009688;}
 .progress-warning { color:#f0ad4e }
 .progress-success { color:#5cb85c }
 
+.table-filter {margin-bottom: 10px;}
 .table-filter a {margin: 0 10px;}
 .table-filter a.active {background-color: #009688; color: #f0f2f5; border-radius: 7px; padding: 5px; width: 100px; display: inline-block; text-align: center;}
 .table-filter .filter-title {font-weight: bold;}
