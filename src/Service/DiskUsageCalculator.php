@@ -24,6 +24,11 @@ class DiskUsageCalculator
     protected $em;
 
     /**
+     * @var string
+     */
+    protected $publicPath;
+
+    /**
      * DiskUsageCalculator constructor.
      * @param TranslatorInterface $translator
      * @param EntityManagerInterface $em
@@ -32,6 +37,7 @@ class DiskUsageCalculator
     {
         $this->translator = $translator;
         $this->em = $em;
+        $this->publicPath = __DIR__ . '/../../public';
     }
 
     /**
@@ -44,9 +50,9 @@ class DiskUsageCalculator
         $media = $this->em->getRepository(Medium::class)->findBy(['owner' => $user]);
 
         foreach ($media as $medium) {
-            $size += filesize($medium->getPath());
+            $size += filesize($this->publicPath.'/'.$medium->getPath());
             if ($medium->getThumbnailPath()) {
-                $size += filesize($medium->getThumbnailPath());
+                $size += filesize($this->publicPath.'/'.$medium->getThumbnailPath());
             }
         }
 
