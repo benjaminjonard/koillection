@@ -110,9 +110,7 @@ class UserController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.done'));
 
-        return $this->redirectToRoute('app_admin_user_index', [
-            'id' => $user->getId()
-        ]);
+        return $this->redirectToRoute('app_admin_user_index');
     }
 
     /**
