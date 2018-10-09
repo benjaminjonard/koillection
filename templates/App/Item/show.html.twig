@@ -47,7 +47,7 @@
         <div class="content-block">
             <div class='item-details'>
                 <div class="item-wrapper">
-                    <div class="slider-container item-image-container">
+                    <div class="slider-container item-image-container {{ item.dataTexts|length > 0 ? 'margin-right-30' }}">
                         <div class="slider-frame">
                             <a href="{{ preload(asset(item.image.path)) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
                                 <img src="{{ preload(asset(item.image.path)) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}">
