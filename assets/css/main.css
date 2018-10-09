@@ -173,8 +173,8 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .item-details .data span {font-weight: bold;}
 .item-details .data > div {line-height: 30px;}
 .item-details .data a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #9e9e9e}
-.item-details .slider-container {margin-right: 30px;}
 .slider-container, .data {display: inline-block;}
+.margin-right-30 {margin-right: 30px;}
 
 .item-top .item-title {margin-top: 3px;}
 .item-top .divider {margin-top: 3px;}
