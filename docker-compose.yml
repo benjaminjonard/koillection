@@ -18,7 +18,7 @@ services:
 
     postgres:
         container_name: postgres
-        image: postgres:alpine
+        image: postgres:10-alpine
         environment:
             - POSTGRES_DB=koillection
             - POSTGRES_USER=root
