@@ -28,6 +28,8 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
     .autoProvidejQuery()
+
+    .disableSingleRuntimeChunk()
 ;
 
 module.exports = Encore.getWebpackConfig();

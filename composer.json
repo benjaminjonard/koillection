@@ -28,6 +28,7 @@
         "symfony/security-bundle": "^4.1",
         "symfony/validator": "^4.1",
         "symfony/web-link": "^4.1",
+        "symfony/webpack-encore-bundle": "^1.0",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^4.1",
         "twig/extensions": "^1.5",

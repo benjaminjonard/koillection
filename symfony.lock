@@ -50,6 +50,9 @@
             "ref": "c1431086fec31f17fbcfe6d6d7e92059458facc1"
         }
     },
+    "doctrine/event-manager": {
+        "version": "v1.0.0"
+    },
     "doctrine/inflector": {
         "version": "v1.2.0"
     },
@@ -64,6 +67,12 @@
     },
     "doctrine/orm": {
         "version": "v2.5.12"
+    },
+    "doctrine/persistence": {
+        "version": "v1.0.1"
+    },
+    "doctrine/reflection": {
+        "version": "v1.0.0"
     },
     "fig/link-util": {
         "version": "1.0.0"
@@ -408,6 +417,15 @@
             "branch": "master",
             "version": "3.3",
             "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+        }
+    },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "4c97a884bc54a4e66bb2d0785ca855141880b6a8"
         }
     },
     "symfony/webpack-encore-pack": {
