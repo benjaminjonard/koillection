@@ -2,6 +2,7 @@
 
 namespace App\Doctrine\Filter;
 
+use App\Entity\Datum;
 use App\Entity\User;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping\ClassMetadata;

@@ -142,7 +142,7 @@ class Datum implements LoggableInterface
      *
      * @return \App\Entity\Item
      */
-    public function getItem() : Item
+    public function getItem() : ?Item
     {
         return $this->item;
     }
