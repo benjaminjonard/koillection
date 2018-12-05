@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class Datum
@@ -32,7 +32,7 @@ class Datum implements LoggableInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $type;
 
@@ -44,7 +44,7 @@ class Datum implements LoggableInterface
 
     /**
      * @var string
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=false)
      */
     private $value;
 
@@ -67,6 +67,12 @@ class Datum implements LoggableInterface
     private $owner;
 
     /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $visibility;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -81,6 +87,7 @@ class Datum implements LoggableInterface
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
     /**
@@ -142,7 +149,7 @@ class Datum implements LoggableInterface
      *
      * @return \App\Entity\Item
      */
-    public function getItem() : Item
+    public function getItem() : ?Item
     {
         return $this->item;
     }
@@ -321,5 +328,24 @@ class Datum implements LoggableInterface
     public function getOwner() : ?User
     {
         return $this->owner;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Datum
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
     }
 }

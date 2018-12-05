@@ -20,7 +20,8 @@ security:
                 login_path: app_security_login
                 check_path: app_security_login
                 default_target_path: app_homepage
-                always_use_default_target_path: true
+                always_use_default_target_path: false
+                use_referer: true
             logout:
                 path: app_security_logout
             anonymous: true

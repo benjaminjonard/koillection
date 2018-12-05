@@ -47,6 +47,9 @@ class CollectionListener
 
         foreach ($collection->getItems() as $item) {
             $item->setVisibility($visibility);
+            foreach ($item->getData() as $datum) {
+                $datum->setVisibility($visibility);
+            }
         }
 
         foreach ($collection->getChildren() as $child) {

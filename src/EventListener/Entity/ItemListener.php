@@ -30,6 +30,12 @@ class ItemListener
                         $entity->setVisibility(VisibilityEnum::VISIBILITY_PRIVATE);
                     }
                 }
+
+                if (array_key_exists('visibility', $changeset)) {
+                    foreach ($entity->getData() as $datum) {
+                        $datum->setVisibility($entity->getVisibility());
+                    }
+                }
             }
         }
     }
