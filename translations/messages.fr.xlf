@@ -3910,5 +3910,41 @@
         <target>Suppression</target>
       </segment>
     </unit>
+    <unit id="FIesMhl" name="counter.without_number.users">
+      <segment>
+        <source>counter.without_number.users</source>
+        <target>[0,1] utilisateur| ]1,Inf[ utilisateurs</target>
+      </segment>
+    </unit>
+    <unit id="uVNjha9" name="counter.without_number.collections">
+      <segment>
+        <source>counter.without_number.collections</source>
+        <target>[0,1] collection| ]1,Inf[ collections</target>
+      </segment>
+    </unit>
+    <unit id="VrJk8jp" name="counter.without_number.items">
+      <segment>
+        <source>counter.without_number.items</source>
+        <target>[0,1] objet| ]1,Inf[ objets</target>
+      </segment>
+    </unit>
+    <unit id="hjM7hgU" name="counter.without_number.tags">
+      <segment>
+        <source>counter.without_number.tags</source>
+        <target>[0,1] tag| ]1,Inf[ tags</target>
+      </segment>
+    </unit>
+    <unit id="cw0nkO5" name="counter.without_number.wishlists">
+      <segment>
+        <source>counter.without_number.wishlists</source>
+        <target>[0,1] liste de souhaits| ]1,Inf[ listes de souhaits</target>
+      </segment>
+    </unit>
+    <unit id="zzagaMI" name="counter.without_number.wishes">
+      <segment>
+        <source>counter.without_number.wishes</source>
+        <target>[0,1] souhait| ]1,Inf[ souhaits</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
