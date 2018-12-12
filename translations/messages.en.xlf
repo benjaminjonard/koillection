@@ -572,7 +572,7 @@
       </notes>
       <segment>
         <source>counter.album</source>
-        <target>[0,1] %count% album| ]1,Inf[ %count% albums</target>
+        <target>{0} %count% albums| {1} %count% album| ]1,Inf[ %count% albums</target>
       </segment>
     </unit>
     <unit id="Ttj5ZLt" name="counter.collection">
@@ -589,7 +589,7 @@
       </notes>
       <segment>
         <source>counter.collection</source>
-        <target>[0,1] %count% collection| ]1,Inf[ %count% collections</target>
+        <target>{0} %count% collections| {1} %count% collection| ]1,Inf[ %count% collections</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">
@@ -616,7 +616,7 @@
       </notes>
       <segment>
         <source>counter.item</source>
-        <target>[0,1] %count% item| ]1,Inf[ %count% items</target>
+        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
       </segment>
     </unit>
     <unit id="nlD7D9j" name="counter.loan">
@@ -625,7 +625,7 @@
       </notes>
       <segment>
         <source>counter.loan</source>
-        <target>[0,1] %count% loan| ]1,Inf[ %count% loans</target>
+        <target>{0} %count% loans| {1} %count% loan| ]1,Inf[ %count% loans</target>
       </segment>
     </unit>
     <unit id="1NZRNj4" name="counter.photo">
@@ -642,7 +642,7 @@
       </notes>
       <segment>
         <source>counter.photo</source>
-        <target>[0,1] %count% photo| ]1,Inf[ %count% photos</target>
+        <target>{0} %count% photos| {1} %count% photo| ]1,Inf[ %count% photos</target>
       </segment>
     </unit>
     <unit id="0Nr1G8_" name="counter.returned">
@@ -651,7 +651,7 @@
       </notes>
       <segment>
         <source>counter.returned</source>
-        <target>[0,1] %count% loan returned| ]1,Inf[ %count% loans returned</target>
+        <target>{0} %count% loans returned| {1} %count% loan returned| ]1,Inf[ %count% loans returned</target>
       </segment>
     </unit>
     <unit id="If3y3hC" name="counter.tag">
@@ -665,7 +665,7 @@
       </notes>
       <segment>
         <source>counter.tag</source>
-        <target>[0,1] %count% tag| ]1,Inf[ %count% tags</target>
+        <target>{0} %count% tags| {1} %count% tag| ]1,Inf[ %count% tags</target>
       </segment>
     </unit>
     <unit id="hIdqfHr" name="counter.template">
@@ -674,7 +674,7 @@
       </notes>
       <segment>
         <source>counter.template</source>
-        <target>[0,1] %count% template| ]1,Inf[ %count% templates</target>
+        <target>{0} %count% templates| {1} %count% template| ]1,Inf[ %count% templates</target>
       </segment>
     </unit>
     <unit id="1MYrutS" name="counter.field">
@@ -684,7 +684,7 @@
       </notes>
       <segment>
         <source>counter.field</source>
-        <target>[0,1] %count% field| ]1,Inf[ %count% fields</target>
+        <target>{0} %count% fields| {1} %count% field| ]1,Inf[ %count% fields</target>
       </segment>
     </unit>
     <unit id="Joxd_.h" name="counter.wishlist">
@@ -698,7 +698,7 @@
       </notes>
       <segment>
         <source>counter.wishlist</source>
-        <target>[0,1] %count% wishlist| ]1,Inf[ %count% wishlists</target>
+        <target>{0} %count% wishlists| {1} %count% wishlist| ]1,Inf[ %count% wishlists</target>
       </segment>
     </unit>
     <unit id="XjUwmT9" name="counter.wish">
@@ -715,7 +715,7 @@
       </notes>
       <segment>
         <source>counter.wish</source>
-        <target>[0,1] %count% wish| ]1,Inf[ %count% wishes</target>
+        <target>{0} %count% wishes| {1} %count% wish| ]1,Inf[ %count% wishes</target>
       </segment>
     </unit>
     <unit id="Ul2mR7j" name="counter.sign">
@@ -726,7 +726,7 @@
       </notes>
       <segment>
         <source>counter.sign</source>
-        <target>[0,1] %count% sign| ]1,Inf[ %count% signs</target>
+        <target>{0} %count% signs| {1} %count% sign| ]1,Inf[ %count% signs</target>
       </segment>
     </unit>
     <unit id="lSRJ.UY" name="error.default">
@@ -1159,7 +1159,7 @@
       </notes>
       <segment>
         <source>global.time.year</source>
-        <target>[0,1] %count% year| ]1,Inf[ %count% years</target>
+        <target>{0} %count% years| {1} %count% year| ]1,Inf[ %count% years</target>
       </segment>
     </unit>
     <unit id="I6EoiYa" name="global.time.month">
@@ -1168,7 +1168,7 @@
       </notes>
       <segment>
         <source>global.time.month</source>
-        <target>[0,1] %count% month| ]1,Inf[ %count% months</target>
+        <target>{0} %count% months| {1} %count% month| ]1,Inf[ %count% months</target>
       </segment>
     </unit>
     <unit id="BXLOUij" name="global.time.week">
@@ -1177,7 +1177,7 @@
       </notes>
       <segment>
         <source>global.time.week</source>
-        <target>[0,1] %count% week| ]1,Inf[ %count% weeks</target>
+        <target>{0} %count% weeks| {1} %count% week| ]1,Inf[ %count% weeks</target>
       </segment>
     </unit>
     <unit id="r1RqqRg" name="global.time.day">
@@ -1186,7 +1186,7 @@
       </notes>
       <segment>
         <source>global.time.day</source>
-        <target>[0,1] %count% day| ]1,Inf[ %count% days</target>
+        <target>{0} %count% days| {1} %count% day| ]1,Inf[ %count% days</target>
       </segment>
     </unit>
     <unit id="QeraM7P" name="global.time.hour">
@@ -1195,7 +1195,7 @@
       </notes>
       <segment>
         <source>global.time.hour</source>
-        <target>[0,1] %count% hour| ]1,Inf[ %count% hours</target>
+        <target>{0} %count% hours| {1} %count% hour| ]1,Inf[ %count% hours</target>
       </segment>
     </unit>
     <unit id="UN2onP4" name="global.time.minute">
@@ -1204,7 +1204,7 @@
       </notes>
       <segment>
         <source>global.time.minute</source>
-        <target>[0,1] %count% minute| ]1,Inf[ %count% minutes</target>
+        <target>{0} %count% minutes| {1} %count% minute| ]1,Inf[ %count% minutes</target>
       </segment>
     </unit>
     <unit id="JQSurmk" name="global.time.second">
@@ -1213,7 +1213,7 @@
       </notes>
       <segment>
         <source>global.time.second</source>
-        <target>[0,1] %count% second| ]1,Inf[ %count% seconds</target>
+        <target>{0} %count% seconds| {1} %count% second| ]1,Inf[ %count% seconds</target>
       </segment>
     </unit>
     <unit id="Gu6E4Ll" name="global.unknown">
@@ -2465,7 +2465,7 @@
       </notes>
       <segment>
         <source>message.items_tagged</source>
-        <target>[0,1] %count% item tagged| ]1,Inf[ %count% items tagged</target>
+        <target>{0} %count% items tagged| {1} %count% item tagged| ]1,Inf[ %count% items tagged</target>
       </segment>
     </unit>
     <unit id="TMGiC1d" name="message.item_added">
@@ -3829,31 +3829,31 @@
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment>
         <source>global.seen_counter.album</source>
-        <target>[0,1] Album consulted %count% time| ]1,Inf[ Album consulted %count% times</target>
+        <target>{0} Album consulted %count% times| {1} Album consulted %count% time| ]1,Inf[ Album consulted %count% times</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment>
         <source>global.seen_counter.collection</source>
-        <target>[0,1] Collection consulted %count% time| ]1,Inf[ Collection consulted %count% times</target>
+        <target>{0} Collection consulted %count% times| {1} Collection consulted %count% time| ]1,Inf[ Collection consulted %count% times</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment>
         <source>global.seen_counter.item</source>
-        <target>[0,1] Item consulted %count% time| ]1,Inf[ Item consulted %count% times</target>
+        <target>{0} Item consulted %count% times| {1} Item consulted %count% time| ]1,Inf[ Item consulted %count% times</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment>
         <source>global.seen_counter.tag</source>
-        <target>[0,1] Tag consulted %count% time| ]1,Inf[ Tag consulted %count% times</target>
+        <target>{0} Tag consulted %count% times| {1} Tag consulted %count% time| ]1,Inf[ Tag consulted %count% times</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment>
         <source>global.seen_counter.wishlist</source>
-        <target>[0,1] Wishlist consulted %count% time| ]1,Inf[ Wishlist consulted %count% times</target>
+        <target>{0} Wishlist consulted %count% times| {1} Wishlist consulted %count% time| ]1,Inf[ Wishlist consulted %count% times</target>
       </segment>
     </unit>
     <unit id="W6Rvzmb" name="menu.tools">
@@ -3908,6 +3908,42 @@
       <segment>
         <source>filter.delete</source>
         <target>Delete</target>
+      </segment>
+    </unit>
+    <unit id="FIesMhl" name="counter.without_number.users">
+      <segment>
+        <source>counter.without_number.users</source>
+        <target>{0} users| {1} user| ]1,Inf[ users</target>
+      </segment>
+    </unit>
+    <unit id="uVNjha9" name="counter.without_number.collections">
+      <segment>
+        <source>counter.without_number.collections</source>
+        <target>{0} collections| {1} collection| ]1,Inf[ collections</target>
+      </segment>
+    </unit>
+    <unit id="VrJk8jp" name="counter.without_number.items">
+      <segment>
+        <source>counter.without_number.items</source>
+        <target>{0} items| {1} item| ]1,Inf[ items</target>
+      </segment>
+    </unit>
+    <unit id="hjM7hgU" name="counter.without_number.tags">
+      <segment>
+        <source>counter.without_number.tags</source>
+        <target>{0} tags| {1} tag| ]1,Inf[ tags</target>
+      </segment>
+    </unit>
+    <unit id="cw0nkO5" name="counter.without_number.wishlists">
+      <segment>
+        <source>counter.without_number.wishlists</source>
+        <target>{0} whishlists| {1} wishlist| ]1,Inf[ wishlists</target>
+      </segment>
+    </unit>
+    <unit id="zzagaMI" name="counter.without_number.wishes">
+      <segment>
+        <source>counter.without_number.wishes</source>
+        <target>{0} wishes| {1} wish| ]1,Inf[ wishes</target>
       </segment>
     </unit>
   </file>

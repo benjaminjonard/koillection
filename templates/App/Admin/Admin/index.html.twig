@@ -37,15 +37,15 @@
                         <div class="pie-stat">
                             <div>{{ 'label.space_used'|trans({'%used%' : (totalSpace - freeSpace)|bytes, '%total%': totalSpace|bytes}) }}</div>
                             <div>{{ 'label.space_free'|trans({'%free%' : freeSpace|bytes}) }}</div>
-                        </div>
+                        </div>[0,1] user| ]1,Inf[ users
                     </div>
                     <div class="col s2"><div class="counter">{{ getVersion() }}</div>{{ 'label.version'|trans }}</div>
-                    <div class="col s2"><div class="counter">{{ counters.users }}</div>{{ 'label.users'|trans }}</div>
-                    <div class="col s2"><div class="counter">{{ counters.collections }}</div>{{ 'label.collections'|trans }}</div>
-                    <div class="col s2"><div class="counter">{{ counters.items }}</div>{{ 'label.items'|trans }}</div>
-                    <div class="col s2"><div class="counter">{{ counters.tags }}</div>{{ 'label.tags'|trans }}</div>
-                    <div class="col s2"><div class="counter">{{ counters.wishlists }}</div>{{ 'label.wishlists'|trans }}</div>
-                    <div class="col s2"><div class="counter">{{ counters.wishes }}</div>{{ 'label.wishes'|trans }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|transchoice(counters.users) }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|transchoice(counters.collections) }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|transchoice(counters.items) }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|transchoice(counters.tags) }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|transchoice(counters.wishlists) }}</div>
+                    <div class="col s2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|transchoice(counters.wishes) }}</div>
                     <div class="col s2"><div class="counter">{{ totalSpaceUsed|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
                 </div>
             </div>
