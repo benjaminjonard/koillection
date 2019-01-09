@@ -21,7 +21,6 @@ interface LoggableInterface
      */
     public function getOwner() : ?User;
 
-
     /**
      * @return string
      */
