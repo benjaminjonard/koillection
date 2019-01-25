@@ -62,7 +62,7 @@ class JsonToTagTransformer implements DataTransformerInterface
                 continue;
             }
 
-            $tag = $repo->findOneByLabel($label);
+            $tag = $repo->findOneBy(['label' => $label]);
 
             if (!$tag) {
                 $tag = new Tag();

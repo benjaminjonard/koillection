@@ -117,20 +117,6 @@ class TagRepository extends EntityRepository
         return $result ? $result[1] : 0;
     }
 
-    public function findOneByLabelAndOwner(string $label, User $owner) : ?Tag
-    {
-        return $this
-            ->createQueryBuilder('t')
-            ->where('t.owner = :owner')
-            ->andWhere('t.label = :label')
-            ->orderBy('t.label', 'ASC')
-            ->setParameter('owner', $owner)
-            ->setParameter('label', $label)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-
     /**
      * @param string $string
      * @return array
