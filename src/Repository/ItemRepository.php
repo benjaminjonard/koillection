@@ -102,8 +102,7 @@ class ItemRepository extends EntityRepository
         if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
             $qb
                 ->andWhere('LOWER(i.name) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.$search->getSearch().'%')
-            ;
+                ->setParameter('search', '%' . $search->getSearch() . '%');
         }
 
         if ($search->getCreatedAt() instanceof \DateTime) {

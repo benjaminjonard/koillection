@@ -60,7 +60,7 @@ class LoanController extends AbstractController
      */
     public function returned(Loan $loan, TranslatorInterface $translator) : Response
     {
-        $loan->setReturnedAt(new \Datetime());
+        $loan->setReturnedAt(new \DateTime());
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('notice', $translator->trans('message.item_returned', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
 
