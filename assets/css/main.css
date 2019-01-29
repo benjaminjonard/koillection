@@ -8,7 +8,7 @@ html {height: 100%;}
 body:not(.error) {outline: none; margin-left: 230px;}
 body.unauthorized {margin-left: 0;}
 .app {display: flex; flex-direction: column; min-height: 100vh; background-color: #fff;}
-footer {position: absolute; left: 0;  right: 0; bottom: 0; padding-top: 25px; color: #7f8c8d; font-size: 12px; margin: 15px;}
+footer {position: absolute; left: 0;  right: 0; bottom: 0; color: #7f8c8d; font-size: 12px; margin: 15px; height: 20px;}
 
 a {outline: 0;}
 
@@ -56,7 +56,7 @@ h5 {font-size: 2rem;}
 .sidebar-wrapper .nav-sidebar li.separate-item div {border: 1px solid #1ab0a2; border-radius: 50%; width: 13px; height: 13px; margin: -17px 23px 0; background-color: #009688}
 nav {background-color: #009688; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
 
-.content-wrapper {width: 100%; height: 100vh;}
+.content-wrapper {width: 100%; height: 100%; min-height: 100vh;}
 .content-wrapper .container-fluid {padding: 40px; display: flex; flex-direction: column; flex: 1 1 0%;}
 
 /* Materialze.css override */
