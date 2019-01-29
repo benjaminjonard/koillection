@@ -12,41 +12,39 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-              <h1>{{ 'title.tag_collection'|trans({'%collection%': collection.title}) }}</h1>
-        </div>
+    <div class="title-block">
+          <h1>{{ 'title.tag_collection'|trans({'%collection%': collection.title}) }}</h1>
+    </div>
 
-        <div class="content-block">
-            {{ form_start(form) }}
-                <div class ="row">
-                    <div class="col offset-s1 s6">
-                        {{ form_label(form.tags, 'label.tags') }}
-                        <div class="autocomplete" id="multiple">
-                            <div class="ac-input">
-                                <input type="text" id="tagsAutocomplete" data-target="tagsDropdown" data-beloworigin="true" autocomplete="off">
-                            </div>
-                            <div class="ac-tags">
-                            </div>
-                            <ul id="tagsDropdown" class="dropdown-content ac-dropdown"></ul>
+    <div class="content-block">
+        {{ form_start(form) }}
+            <div class ="row">
+                <div class="col offset-s1 s6">
+                    {{ form_label(form.tags, 'label.tags') }}
+                    <div class="autocomplete" id="multiple">
+                        <div class="ac-input">
+                            <input type="text" id="tagsAutocomplete" data-target="tagsDropdown" data-beloworigin="true" autocomplete="off">
                         </div>
-                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
+                        <div class="ac-tags">
+                        </div>
+                        <ul id="tagsDropdown" class="dropdown-content ac-dropdown"></ul>
                     </div>
-                    <div class="col offset-s1 s3">
-                        <label>
-                            {{ form_widget(form.recursive) }}
-                            <span>{{ 'label.recursive'|trans }}</span>
-                        </label>
-                        <div class="additional-message">{{'message.recursive'|trans}}</div>
-                    </div>
+                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
                 </div>
+                <div class="col offset-s1 s3">
+                    <label>
+                        {{ form_widget(form.recursive) }}
+                        <span>{{ 'label.recursive'|trans }}</span>
+                    </label>
+                    <div class="additional-message">{{'message.recursive'|trans}}</div>
+                </div>
+            </div>
 
-                <div class="form-btn-holder">
-                    {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
-                    <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
-                </div>
-                <div class="clearfix"></div>
-    		{{ form_end(form) }}
-        </div>
+            <div class="form-btn-holder">
+                {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+            </div>
+            <div class="clearfix"></div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

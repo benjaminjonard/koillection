@@ -12,60 +12,58 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-              <h1>{{ 'title.edit_collection'|trans({'%collection%': collection.title}) }}</h1>
-        </div>
+    <div class="title-block">
+          <h1>{{ 'title.edit_collection'|trans({'%collection%': collection.title}) }}</h1>
+    </div>
 
-        <div class="content-block">
-    		{{ form_start(form) }}
-                <div class="row">
-                    <div class="col offset-s1 s10 m8 offset-m1">
-                        {{ form_row(form.title, {'label' : 'label.title'} ) }}
-                    </div>
-                    <div class="col offset-s1 s10 offset-m0 m2">
-                        {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
-                    </div>
+    <div class="content-block">
+        {{ form_start(form) }}
+            <div class="row">
+                <div class="col offset-s1 s10 m8 offset-m1">
+                    {{ form_row(form.title, {'label' : 'label.title'} ) }}
                 </div>
+                <div class="col offset-s1 s10 offset-m0 m2">
+                    {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col offset-s1 s10 m4 offset-m1">
-                        {{ form_row(form.parent, {'label' : 'label.parent'} ) }}
-                    </div>
-                    <div class="col offset-s1 s10 m3 offset-m0">
-                        {{ form_row(form.childrenTitle, {'label' : 'label.children_title'} ) }}
-                        {% if suggestedChildrenTitles is not empty %}
-                            {{ 'label.suggestions'|trans }}
-                            {% for suggestion in suggestedChildrenTitles %}
-                                <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
-                                {{ not loop.last ? ',' }}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                    <div class="col offset-s1 s10 m3 offset-m0">
-                        {{ form_row(form.itemsTitle, {'label' : 'label.items_title'} ) }}
-                        {% if suggestedItemsTitles is not empty %}
-                            {{ 'label.suggestions'|trans }}
-                            {% for suggestion in suggestedItemsTitles %}
-                                <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
-                                {{ not loop.last ? ',' }}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+            <div class="row">
+                <div class="col offset-s1 s10 m4 offset-m1">
+                    {{ form_row(form.parent, {'label' : 'label.parent'} ) }}
                 </div>
+                <div class="col offset-s1 s10 m3 offset-m0">
+                    {{ form_row(form.childrenTitle, {'label' : 'label.children_title'} ) }}
+                    {% if suggestedChildrenTitles is not empty %}
+                        {{ 'label.suggestions'|trans }}
+                        {% for suggestion in suggestedChildrenTitles %}
+                            <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
+                            {{ not loop.last ? ',' }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col offset-s1 s10 m3 offset-m0">
+                    {{ form_row(form.itemsTitle, {'label' : 'label.items_title'} ) }}
+                    {% if suggestedItemsTitles is not empty %}
+                        {{ 'label.suggestions'|trans }}
+                        {% for suggestion in suggestedItemsTitles %}
+                            <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
+                            {{ not loop.last ? ',' }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col offset-s1 s10">
-                        {{ form_row(form.image, {'attr': {'src' : collection.image ? collection.image.path : null }}) }}
-                    </div>
+            <div class="row">
+                <div class="col offset-s1 s10">
+                    {{ form_row(form.image, {'attr': {'src' : collection.image ? collection.image.path : null }}) }}
                 </div>
+            </div>
 
-                <div class="form-btn-holder">
-                    {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
-                    <a href="{{ path('app_collection_index') }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
-                </div>
-                <div class="clearfix"></div>
-    		{{ form_end(form) }}
-    	</div>
+            <div class="form-btn-holder">
+                {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                <a href="{{ path('app_collection_index') }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
+            </div>
+            <div class="clearfix"></div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

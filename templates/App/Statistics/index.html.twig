@@ -11,83 +11,81 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ 'menu.statistics'|trans }}</h1>
-            <ul class="nav nav-pills">
-                <li>{{ 'counter.collection'|transchoice(counters.collections) }}</li>
-                <li>{{ 'counter.item'|transchoice(counters.items) }}</li>
-                <li>{{ 'counter.tag'|transchoice(counters.tags) }}</li>
-                <li>{{ 'counter.sign'|transchoice(counters.signs) }}</li>
-            </ul>
+    <div class="title-block">
+        <h1>{{ 'menu.statistics'|trans }}</h1>
+        <ul class="nav nav-pills">
+            <li>{{ 'counter.collection'|transchoice(counters.collections) }}</li>
+            <li>{{ 'counter.item'|transchoice(counters.items) }}</li>
+            <li>{{ 'counter.tag'|transchoice(counters.tags) }}</li>
+            <li>{{ 'counter.sign'|transchoice(counters.signs) }}</li>
+        </ul>
+    </div>
+
+    <div></div>
+
+    <div class="btn-holder">
+        {% if context == 'default' %}
+            <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+        {% endif %}
+    </div>
+
+    <div class="statistics-holder"
+         data-theme-main-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}"
+         data-theme-dark-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}"
+         data-theme-light-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}"
+         data-theme-lightest-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}"
+    >
+        <div class="content-block calendars">
+            <div class="block-element">
+                <h5 class="statistics-title">{{ 'title.activity'|trans }}</h5>
+                <div class="tabs-block">
+                    <ul class="nav nav-pills">
+                        {% for year, value in calendarData %}
+                            <li class="tab {{ loop.first ? 'current' }}" for="calendar_{{ year }}">
+                                <span>{{ year }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="calendars" data-json='{{ calendarData|json_encode() }}'></div>
+                {% for year, value in calendarData %}
+                    <div class="panel calendar {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
+                {% endfor %}
+            </div>
         </div>
 
-        <div></div>
-
-        <div class="btn-holder">
-            {% if context == 'default' %}
-                <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-            {% endif %}
+        <div class="clearfix"></div>
+        <div class="content-block bar-charts">
+            <div class="block-element bar-chart-row">
+                <div class="left-chart bar-chart">
+                    <h5 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h5>
+                    <div id="month-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
+                </div>
+                <div class="right-chart bar-chart">
+                    <h5 class="statistics-title">{{ 'title.charts.hours'|trans }}</h5>
+                    <div id="hours-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ hoursChartData|json_encode() }}'></div>
+                </div>
+            </div>
+            <div class="block-element bar-chart-row last">
+                <div class="left-chart bar-chart">
+                    <h5 class="statistics-title">{{ 'title.charts.months'|trans }}</h5>
+                    <div id="months-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
+                </div>
+                <div class="right-chart bar-chart">
+                    <h5 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h5>
+                    <div id="week-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ weekDaysChartData|json_encode() }}'></div>
+                </div>
+            </div>
+            <div class="block-element bar-chart-row last">
+                <h5 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h5>
+                <div id="items-evolution-chart" class="chart" style="width: 1530px; height:400px;" data-json='{{ itemsEvolutionData|json_encode() }}'></div>
+            </div>
         </div>
 
-        <div class="statistics-holder"
-             data-theme-main-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}"
-             data-theme-dark-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}"
-             data-theme-light-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}"
-             data-theme-lightest-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}"
-        >
-            <div class="content-block calendars">
-                <div class="block-element">
-                    <h5 class="statistics-title">{{ 'title.activity'|trans }}</h5>
-                    <div class="tabs-block">
-                        <ul class="nav nav-pills">
-                            {% for year, value in calendarData %}
-                                <li class="tab {{ loop.first ? 'current' }}" for="calendar_{{ year }}">
-                                    <span>{{ year }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div id="calendars" data-json='{{ calendarData|json_encode() }}'></div>
-                    {% for year, value in calendarData %}
-                        <div class="panel calendar {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="content-block bar-charts">
-                <div class="block-element bar-chart-row">
-                    <div class="left-chart bar-chart">
-                        <h5 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h5>
-                        <div id="month-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
-                    </div>
-                    <div class="right-chart bar-chart">
-                        <h5 class="statistics-title">{{ 'title.charts.hours'|trans }}</h5>
-                        <div id="hours-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ hoursChartData|json_encode() }}'></div>
-                    </div>
-                </div>
-                <div class="block-element bar-chart-row last">
-                    <div class="left-chart bar-chart">
-                        <h5 class="statistics-title">{{ 'title.charts.months'|trans }}</h5>
-                        <div id="months-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
-                    </div>
-                    <div class="right-chart bar-chart">
-                        <h5 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h5>
-                        <div id="week-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ weekDaysChartData|json_encode() }}'></div>
-                    </div>
-                </div>
-                <div class="block-element bar-chart-row last">
-                    <h5 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h5>
-                    <div id="items-evolution-chart" class="chart" style="width: 1530px; height:400px;" data-json='{{ itemsEvolutionData|json_encode() }}'></div>
-                </div>
-            </div>
-
-            <div class="content-block bar-charts">
-                <div class="block-element bar-chart-row">
-                    <h5 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h5>
-                    <div id="radial-tree" style="width: 1200px; height: 1200px;" data-json='{{ treeJson }}'></div>
-                </div>
+        <div class="content-block bar-charts">
+            <div class="block-element bar-chart-row">
+                <h5 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h5>
+                <div id="radial-tree" style="width: 1200px; height: 1200px;" data-json='{{ treeJson }}'></div>
             </div>
         </div>
     </div>
