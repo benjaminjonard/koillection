@@ -41,7 +41,8 @@
                     {% block breadcrumb %}{% endblock %}
                 </div>
 
-                <a class="search-icon" href="{{ path('app_search_index') }}"><i class="fa fa-search fa-fw"></i></a>
+                <div class="spacer"></div>
+
                 <form class="search" name="search" method="post" action="{{ path('app_search_index') }}">
                     <div>
                         <input id="search_search" name="search[search]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}">
@@ -49,13 +50,14 @@
                     </div>
                 </form>
 
-
                 <div class="header-profile">
                     {% if app.user.avatar != null %}
                         <img class="user-avatar" src="{{ preload(asset(app.user.avatar.path)) }}">
                     {% else %}
                         <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
                     {% endif %}
+                    <span class="down-background"></span>
+                    <i class="fa fa-chevron-down1 fa-fw"></i>
                 </div>
             </header>
             <div class="container-fluid container-limited">

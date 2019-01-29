@@ -11,32 +11,30 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ 'menu.tools'|trans() }}</h1>
-        </div>
+    <div class="title-block">
+        <h1>{{ 'menu.tools'|trans() }}</h1>
+    </div>
 
-        <div></div>
+    <div></div>
 
-        <div class="btn-holder">
-        </div>
+    <div class="btn-holder">
+    </div>
 
-        <div class="content-block">
-            <div class="block-element">
-                <h5 class="header">{{ 'title.exports'|trans }}</h5>
-                <a href="{{ path('app_tools_export_printable_list') }}" target="_blank" class="btn waves-effect waves-light">
-                    <i class="fa fa-print fa-fw"></i>{{ 'btn.export_printable_list'|trans }}
-                </a>
-                <a href="{{ path('app_tools_export_csv') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-file-text fa-fw"></i>{{ 'btn.export_csv'|trans }}
-                </a>
-                <a href="{{ path('app_tools_export_sql') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-database fa-fw"></i>{{ 'btn.export_sql'|trans }}
-                </a>
-                <a href="{{ path('app_tools_export_images') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-archive fa-fw"></i>{{ 'btn.export_images'|trans }}
-                </a>
-            </div>
+    <div class="content-block">
+        <div class="block-element">
+            <h5 class="header">{{ 'title.exports'|trans }}</h5>
+            <a href="{{ path('app_tools_export_printable_list') }}" target="_blank" class="btn waves-effect waves-light">
+                <i class="fa fa-print fa-fw"></i>{{ 'btn.export_printable_list'|trans }}
+            </a>
+            <a href="{{ path('app_tools_export_csv') }}" class="btn waves-effect waves-light">
+                <i class="fa fa-file-text fa-fw"></i>{{ 'btn.export_csv'|trans }}
+            </a>
+            <a href="{{ path('app_tools_export_sql') }}" class="btn waves-effect waves-light">
+                <i class="fa fa-database fa-fw"></i>{{ 'btn.export_sql'|trans }}
+            </a>
+            <a href="{{ path('app_tools_export_images') }}" class="btn waves-effect waves-light">
+                <i class="fa fa-archive fa-fw"></i>{{ 'btn.export_images'|trans }}
+            </a>
         </div>
     </div>
 {% endblock %}

@@ -12,53 +12,51 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ template.name }}</h1>
-            <ul class="nav nav-pills">
-                <li>{{ 'counter.field'|transchoice(template.fields|length) }}</li>
-                <li>{{ 'counter.item'|transchoice(template.items|length) }}</li>
+    <div class="title-block">
+        <h1>{{ template.name }}</h1>
+        <ul class="nav nav-pills">
+            <li>{{ 'counter.field'|transchoice(template.fields|length) }}</li>
+            <li>{{ 'counter.item'|transchoice(template.items|length) }}</li>
+        </ul>
+    </div>
+
+    <div></div>
+
+    <div class="btn-holder">
+        <a href="{{ path('app_template_edit', {'id': template.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+            <i class="fa fa-pencil fa-fw"></i>
+        </a>
+        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+            <i class="fa fa-trash fa-fw"></i>
+        </a>
+    </div>
+
+    <div class="content-block">
+        <div class="block-element">
+            <h5 class="header">{{ 'title.fields'|trans }}</h5>
+            <ul class="reset-margin">
+                {% for field in template.fields %}
+                    <li class="list-element">
+                        {{ field.name }} - <span class="complementary-color">{{ field.typeLabel|trans }}</span>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
 
-        <div></div>
-
-        <div class="btn-holder">
-            <a href="{{ path('app_template_edit', {'id': template.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                <i class="fa fa-pencil fa-fw"></i>
-            </a>
-            <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                <i class="fa fa-trash fa-fw"></i>
-            </a>
-        </div>
-
-        <div class="content-block">
+        {% if template.items is not empty %}
             <div class="block-element">
-                <h5 class="header">{{ 'title.fields'|trans }}</h5>
-                <ul class="reset-margin">
-                    {% for field in template.fields %}
-                        <li class="list-element">
-                            {{ field.name }} - <span class="complementary-color">{{ field.typeLabel|trans }}</span>
-                        </li>
+                <h5 class="header">{{ 'title.items'|trans }}</h5>
+                <div id="collection-items" class="grid-container-items">
+                    {% for item in template.items|naturalSorting %}
+                        <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
+                            <a href="{{ path('app_item_show', {'id': item.id}) }}">
+                                {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                            </a>
+                        </div>
                     {% endfor %}
-                </ul>
-            </div>
-
-            {% if template.items is not empty %}
-                <div class="block-element">
-                    <h5 class="header">{{ 'title.items'|trans }}</h5>
-                    <div id="collection-items" class="grid-container-items">
-                        {% for item in template.items|naturalSorting %}
-                            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                                <a href="{{ path('app_item_show', {'id': item.id}) }}">
-                                    {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div>
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 

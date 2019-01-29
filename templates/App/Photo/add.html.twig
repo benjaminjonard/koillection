@@ -12,49 +12,47 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ 'title.add_album_photo'|trans({'%album%': album.title}) }}</h1>
-        </div>
-        <div class="clearfix"></div>
+    <div class="title-block">
+        <h1>{{ 'title.add_album_photo'|trans({'%album%': album.title}) }}</h1>
+    </div>
+    <div class="clearfix"></div>
 
-        <div class="content-block">
-            {{ form_start(form) }}
-                <div class="row">
-                    <div class="col s5 offset-s1">
-                        {{ form_row(form.title, {'label' : 'label.title'}) }}
-                    </div>
-                    <div class="col s5">
-                        {{ form_row(form.image) }}
-                    </div>
+    <div class="content-block">
+        {{ form_start(form) }}
+            <div class="row">
+                <div class="col s5 offset-s1">
+                    {{ form_row(form.title, {'label' : 'label.title'}) }}
                 </div>
+                <div class="col s5">
+                    {{ form_row(form.image) }}
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col s2 offset-s1">
-                        {{ form_row(form.place, {'label' : 'label.place'}) }}
-                    </div>
-                    <div class="col s2">
-                        {{ form_row(form.takenAt, {'label' : 'label.taken_at', 'attr': {'class' : 'datepicker' }} ) }}
-                    </div>
-                    <div class="col s3">
-                        {{ form_row(form.album, {'label' : 'label.album'}) }}
-                    </div>
-                    <div class="col s3">
-                        {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
-                    </div>
+            <div class="row">
+                <div class="col s2 offset-s1">
+                    {{ form_row(form.place, {'label' : 'label.place'}) }}
                 </div>
-                <div class="row">
-                    <div class="col s10 offset-s1">
-                        {{ form_row(form.comment, {'label' : 'label.comment', 'attr': {'class': 'materialize-textarea'}} ) }}
-                    </div>
+                <div class="col s2">
+                    {{ form_row(form.takenAt, {'label' : 'label.taken_at', 'attr': {'class' : 'datepicker' }} ) }}
                 </div>
+                <div class="col s3">
+                    {{ form_row(form.album, {'label' : 'label.album'}) }}
+                </div>
+                <div class="col s3">
+                    {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    {{ form_row(form.comment, {'label' : 'label.comment', 'attr': {'class': 'materialize-textarea'}} ) }}
+                </div>
+            </div>
 
-                <div class="form-btn-holder">
-                    {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
-                    <a href="{{ path('app_album_show', { id : album.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
-                </div>
-                <div class="clearfix"></div>
-            {{ form_end(form) }}
-        </div>
+            <div class="form-btn-holder">
+                {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                <a href="{{ path('app_album_show', { id : album.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+            </div>
+            <div class="clearfix"></div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

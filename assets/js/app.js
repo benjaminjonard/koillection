@@ -8,7 +8,6 @@ import 'jquery'
 import 'lightbox2'
 import 'croppie'
 import 'materialize-css'
-import 'js-cookie'
 
 import './filters'
 import './main'

@@ -11,28 +11,26 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ 'title.add_album'|trans }}</h1>
+    <div class="title-block">
+        <h1>{{ 'title.add_album'|trans }}</h1>
+    </div>
+
+    <div class="content-block">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col offset-s1 s10 m8 offset-m1">
+                {{ form_row(form.title, {'label' : 'label.title'} ) }}
+            </div>
+            <div class="col offset-s1 s10 offset-m0 m2">
+                {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+            </div>
         </div>
 
-        <div class="content-block">
-            {{ form_start(form) }}
-            <div class="row">
-                <div class="col offset-s1 s10 m8 offset-m1">
-                    {{ form_row(form.title, {'label' : 'label.title'} ) }}
-                </div>
-                <div class="col offset-s1 s10 offset-m0 m2">
-                    {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
-                </div>
-            </div>
-
-            <div class="form-btn-holder">
-                {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
-                <a href="{{ path('app_album_index') }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
-            </div>
-            <div class="clearfix"></div>
-            {{ form_end(form) }}
+        <div class="form-btn-holder">
+            {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+            <a href="{{ path('app_album_index') }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
         </div>
+        <div class="clearfix"></div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

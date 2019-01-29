@@ -12,29 +12,27 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="title-block">
-            <h1>{{ 'menu.signs'|trans() }}</h1>
-        </div>
+    <div class="title-block">
+        <h1>{{ 'menu.signs'|trans() }}</h1>
+    </div>
 
-        <div></div>
+    <div></div>
 
-        <div class="btn-holder">
-            {% if context == 'default' %}
-                <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-            {% endif %}
-        </div>
+    <div class="btn-holder">
+        {% if context == 'default' %}
+            <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+        {% endif %}
+    </div>
 
-        <div class="content-block">
-            <div id="collection-items" class="grid-container-items">
-                {% for sign in signs %}
-                    <div class="collection-item element valign-wrapper">
-                        <a href="{{ preload(asset(sign.image.path)) }}" data-lightbox="image-{{ sign.id }}" data-title="{{ sign.item.name }} - {{ sign.label }}">
-                            {{ macros.lazyImage(sign.image.thumbnailPath, 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}), sign.label) }}
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+    <div class="content-block">
+        <div id="collection-items" class="grid-container-items">
+            {% for sign in signs %}
+                <div class="collection-item element valign-wrapper">
+                    <a href="{{ preload(asset(sign.image.path)) }}" data-lightbox="image-{{ sign.id }}" data-title="{{ sign.item.name }} - {{ sign.label }}">
+                        {{ macros.lazyImage(sign.image.thumbnailPath, 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}), sign.label) }}
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

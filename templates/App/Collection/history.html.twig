@@ -11,29 +11,27 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="collection-header">
-            <div class="title-block">
-                <div class="left">
-                    {% if collection.image != null %}
-                        <img class="thumbnail avatar" src="{{ preload(asset(collection.image.path)) }}" aria-label="{{ 'aria.collection_thumbnail'|trans({'%title%': collection.title}) }}">
-                    {% else %}
-                        <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}" aria-hidden="true">{{collection.title|first|upper}}</span>
-                    {% endif %}
-                </div>
-                <div class="right">
-                    <h1>{{ collection.title }}</h1>
-                    <ul class="nav nav-pills">
-
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
+    <div class="collection-header">
+        <div class="title-block">
+            <div class="left">
+                {% if collection.image != null %}
+                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image.path)) }}" aria-label="{{ 'aria.collection_thumbnail'|trans({'%title%': collection.title}) }}">
+                {% else %}
+                    <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}" aria-hidden="true">{{collection.title|first|upper}}</span>
+                {% endif %}
             </div>
-            <div></div>
-        </div>
+            <div class="right">
+                <h1>{{ collection.title }}</h1>
+                <ul class="nav nav-pills">
 
-        <div class="content-block">
-            {{ include('App/History/partials/table.html.twig', {'logs': logs}) }}
+                </ul>
+            </div>
+            <div class="clearfix"></div>
         </div>
+        <div></div>
+    </div>
+
+    <div class="content-block">
+        {{ include('App/History/partials/table.html.twig', {'logs': logs}) }}
     </div>
 {% endblock %}

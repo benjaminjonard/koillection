@@ -12,85 +12,83 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="collection-header">
-            <div class="title-block">
-                <h1>{{ tag.label }}</h1>
-                <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|transchoice(tag.items|length) }}</li>
-                </ul>
+    <div class="collection-header">
+        <div class="title-block">
+            <h1>{{ tag.label }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.item'|transchoice(tag.items|length) }}</li>
+            </ul>
+        </div>
+
+        <div></div>
+
+        <div class="btn-holder">
+            <div class="left">
+                {% if context == 'default' %}
+                    <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                        <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                    <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                        <i class="fa fa-trash fa-fw"></i>
+                    </a>
+                    <a href="{{ path('app_tag_history', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                        <i class="fa fa-history fa-fw"></i>
+                    </a>
+                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                {% endif %}
             </div>
+            <div class="right">
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 
-            <div></div>
-
-            <div class="btn-holder">
-                <div class="left">
-                    {% if context == 'default' %}
-                        <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                            <i class="fa fa-pencil fa-fw"></i>
+    <div class="content-block">
+        {% if null != tag.image or null != tag.description %}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.infos'|trans }}</h5>
+                <div class="tag-image-container">
+                    {% if tag.image is not null %}
+                        <a href="{{ preload(asset(tag.image.path)) }}" data-lightbox="image-{{ tag.id }}">
+                            <img class="tag-image" src="{{ preload(asset(tag.image.thumbnailPath)) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
                         </a>
-                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                            <i class="fa fa-trash fa-fw"></i>
-                        </a>
-                        <a href="{{ path('app_tag_history', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                            <i class="fa fa-history fa-fw"></i>
-                        </a>
-                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                     {% endif %}
                 </div>
-                <div class="right">
-                    <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <div class="tag-description">
+                    {{ tag.description|highlightTags|nl2br }}
                 </div>
                 <div class="clearfix"></div>
             </div>
-        </div>
+        {% endif %}
 
-        <div class="content-block">
-            {% if null != tag.image or null != tag.description %}
-                <div class="block-element">
-                    <h5 class="header">{{ 'title.infos'|trans }}</h5>
-                    <div class="tag-image-container">
-                        {% if tag.image is not null %}
-                            <a href="{{ preload(asset(tag.image.path)) }}" data-lightbox="image-{{ tag.id }}">
-                                <img class="tag-image" src="{{ preload(asset(tag.image.thumbnailPath)) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
-                            </a>
-                        {% endif %}
-                    </div>
-                    <div class="tag-description">
-                        {{ tag.description|highlightTags|nl2br }}
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            {% endif %}
-
-            {% if relatedTags is not empty %}
-                <div class="block-element">
-                    <h5 class="header">{{ 'title.related_tags'|trans }}</h5>
-                    <div class="tags-block">
-                        <ul class="nav nav-tags">
-                            {% for tag in relatedTags|naturalSorting %}
-                                <li class="tag chip"><a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">{{ tag.label }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if tag.items is not empty %}
-                <div class="block-element">
-                    <h5 class="header">{{ 'title.items'|trans }}</h5>
-                    <div id="collection-items" class="grid-container-items">
-                        {% for item in tag.items|naturalSorting %}
-                            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                                <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                                    {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
-                                </a>
-                            </div>
+        {% if relatedTags is not empty %}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.related_tags'|trans }}</h5>
+                <div class="tags-block">
+                    <ul class="nav nav-tags">
+                        {% for tag in relatedTags|naturalSorting %}
+                            <li class="tag chip"><a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">{{ tag.label }}</a></li>
                         {% endfor %}
-                    </div>
+                    </ul>
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
+
+        {% if tag.items is not empty %}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.items'|trans }}</h5>
+                <div id="collection-items" class="grid-container-items">
+                    {% for item in tag.items|naturalSorting %}
+                        <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
+                            <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
+                                {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 

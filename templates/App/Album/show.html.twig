@@ -12,73 +12,71 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="collection-header">
-            <div class="title-block">
-                <div class="left">
-                    <span class="thumbnail color-avatar circle avatar color-{{ album.color }}" aria-hidden="true">{{ album.title|first|upper }}</span>
-                </div>
-                <div class="right">
-                    <h1>{{ album.title }}</h1>
-                    <ul class="nav nav-pills">
-                        <li>{{ 'counter.photo'|transchoice(album.photos|length) }}</li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
+    <div class="collection-header">
+        <div class="title-block">
+            <div class="left">
+                <span class="thumbnail color-avatar circle avatar color-{{ album.color }}" aria-hidden="true">{{ album.title|first|upper }}</span>
             </div>
-
-            <div></div>
-
-            <div class="btn-holder">
-                <div class="left">
-                    {% if context == 'default' %}
-                        <a href="{{ path('app_photo_add', {'album': album.id}) }}" class="button" title="{{ 'tooltip.add_photo'|trans }}">
-                            <i class="fa fa-plus fa-fw"></i>
-                        </a>
-                        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                            <i class="fa fa-pencil fa-fw"></i>
-                        </a>
-                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                            <i class="fa fa-trash fa-fw"></i>
-                        </a>
-                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-                    {% endif %}
-                </div>
-                <div class="clearfix"></div>
+            <div class="right">
+                <h1>{{ album.title }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.photo'|transchoice(album.photos|length) }}</li>
+                </ul>
             </div>
+            <div class="clearfix"></div>
         </div>
 
-        <div class="content-block">
-            {% if album.photos is not empty %}
-                <div class="block-element">
-                    <h5 class="header">{{ 'title.photos'|trans }}</h5>
-                    <div id="collection-items" class="grid-container-items">
-                        {% for photo in album.photos %}
-                            <div class="collection-item element valign-wrapper">
-                                <a href="{{ preload(asset(photo.image.path)) }}" data-lightbox="image-{{ photo.id }}" data-title="
-                                    {{ photo.title ~ '<br>' }}
-                                    {{ photo.place ? 'label.place'|trans ~ ' : ' ~ photo.place ~ '<br>' }}
-                                    {{ photo.takenAt ? 'label.taken_at'|trans ~ ' : ' ~ photo.takenAt|date("d/m/Y") ~ '<br>' }}
-                                    {{ photo.comment ? 'label.comment'|trans ~ ' : ' ~ photo.comment }}
-                                ">
-                                    {{ macros.lazyImage(photo.image.thumbnailPath, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
-                                </a>
-                                {% if context == 'default' %}
-                                    <div>
-                                        <a href="{{ path('app_photo_edit', {'id': photo.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                                            <i class="fa fa-pencil fa-fw"></i>
-                                        </a>
-                                        <a href="#delete-{{ photo.id }}" class="modal-trigger button btn-grey" title="{{ 'tooltip.delete'|trans }}">
-                                            <i class="fa fa-trash fa-fw"></i>
-                                        </a>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
+        <div></div>
+
+        <div class="btn-holder">
+            <div class="left">
+                {% if context == 'default' %}
+                    <a href="{{ path('app_photo_add', {'album': album.id}) }}" class="button" title="{{ 'tooltip.add_photo'|trans }}">
+                        <i class="fa fa-plus fa-fw"></i>
+                    </a>
+                    <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                        <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                    <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                        <i class="fa fa-trash fa-fw"></i>
+                    </a>
+                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                {% endif %}
+            </div>
+            <div class="clearfix"></div>
         </div>
+    </div>
+
+    <div class="content-block">
+        {% if album.photos is not empty %}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.photos'|trans }}</h5>
+                <div id="collection-items" class="grid-container-items">
+                    {% for photo in album.photos %}
+                        <div class="collection-item element valign-wrapper">
+                            <a href="{{ preload(asset(photo.image.path)) }}" data-lightbox="image-{{ photo.id }}" data-title="
+                                {{ photo.title ~ '<br>' }}
+                                {{ photo.place ? 'label.place'|trans ~ ' : ' ~ photo.place ~ '<br>' }}
+                                {{ photo.takenAt ? 'label.taken_at'|trans ~ ' : ' ~ photo.takenAt|date("d/m/Y") ~ '<br>' }}
+                                {{ photo.comment ? 'label.comment'|trans ~ ' : ' ~ photo.comment }}
+                            ">
+                                {{ macros.lazyImage(photo.image.thumbnailPath, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
+                            </a>
+                            {% if context == 'default' %}
+                                <div>
+                                    <a href="{{ path('app_photo_edit', {'id': photo.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                                        <i class="fa fa-pencil fa-fw"></i>
+                                    </a>
+                                    <a href="#delete-{{ photo.id }}" class="modal-trigger button btn-grey" title="{{ 'tooltip.delete'|trans }}">
+                                        <i class="fa fa-trash fa-fw"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 
