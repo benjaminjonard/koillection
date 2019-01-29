@@ -7,7 +7,7 @@
 html {height: 100%;}
 body:not(.error) {outline: none; margin-left: 230px;}
 body.unauthorized {margin-left: 0;}
-.app {display: flex; flex-direction: column; min-height: 100vh; background-color: #f5f7fa;}
+.app {display: flex; flex-direction: column; min-height: 100vh; background-color: #fff;}
 footer {position: absolute; left: 0;  right: 0; bottom: 0; padding-top: 25px; color: #7f8c8d; font-size: 12px; margin: 15px;}
 
 a {outline: 0;}
@@ -25,7 +25,7 @@ thead {border-bottom: 1px solid #d0d0d0;}
 
 header {
     margin-bottom: 0; height: 5rem; position: sticky; top: 0; left: 0; right: 0; display: flex;
-    justify-content: space-between; z-index: 1; background-color: #ffffff;  padding: 0 20px;
+    justify-content: space-between; z-index: 1; background-color: #f5f7fa;  padding: 0 20px;
     border-bottom-color: #eef1f2; border-bottom-width: 1px; border-bottom-style: solid;
 }
 li {list-style-type: none;}
@@ -33,7 +33,6 @@ h1 {font-size: 2.5rem;}
 h5 {font-size: 2rem;}
 .btn i {font-size: 1rem; margin-right: 6px;}
 
-.fa-search::before {top: 27px; position: absolute; right: 300px;}
 .fa-angle-left::before {position: relative; top: 1px; right: 5px;}
 .fa-angle-right::before {position: relative; top: 1px; left: 5px;}
 .spacer {-webkit-box-flex: 1; -ms-flex: 1; flex: 1;}
@@ -57,8 +56,8 @@ h5 {font-size: 2rem;}
 .sidebar-wrapper .nav-sidebar li.separate-item div {border: 1px solid #1ab0a2; border-radius: 50%; width: 13px; height: 13px; margin: -17px 23px 0; background-color: #009688}
 nav {background-color: #009688; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
 
-.content-wrapper {width: 100%;}
-.content-wrapper .container-fluid {padding: 20px 40px 40px 40px; display: flex; flex-direction: column; flex: 1 1 0%;}
+.content-wrapper {width: 100%; height: 100vh;}
+.content-wrapper .container-fluid {padding: 40px; display: flex; flex-direction: column; flex: 1 1 0%;}
 
 /* Materialze.css override */
 .input-field label {left:0;}
@@ -404,8 +403,11 @@ html.loading:before {
 .nav-bottom li {height: 49px;}
 .nav-bottom li a {height: inherit;}
 
-.header-profile {flex: 0 0 auto; height: 60px; cursor: pointer; }
-.header-profile .user-avatar {height: 40px; width: 40px; margin: 14px 0;}
+.header-profile {flex: 0 0 auto; height: 60px; cursor: pointer; margin-right: 10px;}
+.header-profile .user-avatar {height: 50px; width: 50px; margin: 8px 0;}
+.header-profile .fa-chevron-down1::before {top: 27px; right: 25px; position: absolute; color: #fff}
+.header-profile .fa-chevron-down1 {font-size: 13px;}
+.header-profile .down-background {width: 21px; height: 21px; background-color: #009688; display: block; border-radius: 50%; position: absolute; top: 24px; right: 21px;}
 .user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 26px;}
 
 /* Nav animations */
@@ -417,6 +419,8 @@ html.loading:before {
 
 .content-wrapper {transition: width 0.3s, right 0.3s; transform: translate3d(0, 0, 0);}
 .collapsed .content-wrapper {transition: width 0.3s, left 0.3s; transform: translate3d(0, 0, 0);}
+.collapsed .collapse-nav span {display: none;}
+.collapse-nav a {padding-left: 26px!important;}
 
 .burger-menu {display: none;}
 .burger-menu i {color: #7f8c8d; font-size: 21px; cursor: pointer;}
@@ -426,7 +430,7 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
 
 /* NAV SIZE AREA, KEEP ORDER */
 .collapsed .sidebar-wrapper {width: 60px;}
-.collapsed {margin-left: 60px;}
+.collapsed {margin-left: 60px!important;}
 
 .profile-menu {width: 125px; position: fixed; top: 35px; right: 18px; z-index: 1; }
 .profile-menu i {margin-right: 5px;}
@@ -445,7 +449,6 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
     .sidebar-wrapper {width: 0!important;}
     body {margin-left: 0!important;}
     .search {display: none;}
-    .search-icon i {}
     #collection-items img {max-width: 120px; max-height: 160px;}
     #collection-items .collection-item {min-width: 120px; min-height: 160px;}
     .grid-container-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }

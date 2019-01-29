@@ -1,5 +1,6 @@
 import Translator from './translator.min.js'
 import * as utils from './utils'
+import Cookies from '../node_modules/js-cookie'
 
 $(document).ready(function() {
     window.addEventListener('online', handleConnectionChange);
@@ -32,7 +33,7 @@ $(document).ready(function() {
         $('body').removeClass('mobile-opened');
     });
 
-    $('.user-avatar').click(function (e) {
+    $('.header-profile').click(function (e) {
         e.preventDefault();
         $('.profile-menu').removeClass('hidden');
 
