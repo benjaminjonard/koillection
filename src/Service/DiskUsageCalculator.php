@@ -4,7 +4,7 @@ namespace App\Service;
 use App\Entity\Medium;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class DiskUsageCalculator

@@ -7,7 +7,7 @@ use App\Entity\User;
 use App\Enum\LogTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ChartBuilder

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Twig;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class DateExtension

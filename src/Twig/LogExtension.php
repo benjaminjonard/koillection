@@ -6,7 +6,7 @@ use App\Entity\Log;
 use App\Enum\LogTypeEnum;
 use App\Service\Log\LoggerChain;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class LogExtension
