@@ -64,8 +64,8 @@
     </div>
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'entity': collection, 'route': url('app_user_collection_items', {id: collection.id, username: app.user.username})}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}

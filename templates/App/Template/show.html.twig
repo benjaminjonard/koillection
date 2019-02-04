@@ -60,9 +60,9 @@
     </div>
 {% endblock %}
 
-
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_template_delete', {id: template.id}), transKey: 'message.delete.template'}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

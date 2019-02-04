@@ -96,8 +96,9 @@
     <script src="{{ preload(asset('build/js/statistics.js')) }}" nonce="{{ csp_nonce() }}"></script>
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'route': url('app_user_statistics_index', {username: app.user.username})}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

@@ -102,9 +102,10 @@
     {{ renderFooter(collection)  }}
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
         {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+
