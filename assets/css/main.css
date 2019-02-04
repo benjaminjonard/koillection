@@ -191,6 +191,9 @@ li.list-element .list-actions {width: 20%; text-align: right; margin-right: 20px
 li.list-element .list-actions a, .btn-dark-grey {color: #313236}
 li.list-element .list-content {width: 80%; display: inline-block;}
 
+.placeholder {background-color: #ebebeb; width: 150px; height: 220px;}
+.placeholder.placeholder--circle {border-radius: 50%; width: 100px; height: 100px;}
+
 .collections .collection-element a {display: block; text-align: center; margin: 0 auto;}
 .collections .collection-circle-thumbnail {width: 100px; height: 100px;}
 .collections .collection-element .collection-stats {text-align: center; margin : 0 0 10px 0; color: #9e9e9e;}
@@ -279,9 +282,6 @@ button.align-with-inputs {margin-top: 25px;}
 
 img {opacity: 1; transition: opacity 0.3s;}
 img[data-src] {opacity: 0;}
-
-.placeholder {background-color: #ebebeb; display: block; width: 150px; height: 220px;}
-.placeholder-circle {border-radius: 50%; width: 100px; height: 100px;}
 
 .chip {height: auto;}
 .chip a {font-size: 13px; font-weight: 500; color: rgba(0,0,0,0.6);}
@@ -452,7 +452,6 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
     #collection-items img {max-width: 120px; max-height: 160px;}
     #collection-items .collection-item {min-width: 120px; min-height: 160px;}
     .grid-container-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-    .placeholder:not(.placeholder-circle) {width: 120px; height: 160px;}
 
     .collapse-nav {display : none;}
     .close-nav {display : block;}

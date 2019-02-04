@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
         el.src = src;
     }
-      el.nextElementSibling.classList.remove("placeholder");
+      el.parentNode.classList.remove("placeholder");
       el.removeAttribute('data-src');
       fn? fn() : null;
     }
