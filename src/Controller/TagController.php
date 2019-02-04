@@ -83,7 +83,7 @@ class TagController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.tag_edited', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_tag_show', ['id' => $tag->getId()]));
+            return $this->redirectToRoute('app_tag_show', ['id' => $tag->getId()]);
         }
 
         return $this->render('App/Tag/edit.html.twig', [
@@ -107,7 +107,7 @@ class TagController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.tag_deleted', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_tag_index'));
+        return $this->redirectToRoute('app_tag_index');
     }
 
     /**

@@ -39,7 +39,7 @@ class ProfileController extends AbstractController
             $em->flush();
             $this->addFlash('notice', $translator->trans('message.profile_updated'));
 
-            return $this->redirect($this->generateUrl('app_profile_index'));
+            return $this->redirectToRoute('app_profile_index');
         }
 
         return $this->render('App/Profile/index.html.twig', [

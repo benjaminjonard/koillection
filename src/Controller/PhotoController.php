@@ -58,9 +58,7 @@ class PhotoController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.photo_added', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_album_show', [
-                'id' => $photo->getAlbum()->getId(),
-            ]));
+            return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
         }
 
         return $this->render('App/Photo/add.html.twig', [
@@ -85,9 +83,7 @@ class PhotoController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.photo_edited', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_album_show', [
-                'id' => $photo->getAlbum()->getId(),
-            ]));
+            return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
         }
 
         return $this->render('App/Photo/edit.html.twig', [
@@ -111,6 +107,6 @@ class PhotoController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.photo_deleted', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_album_show', ['id' => $photo->getAlbum()->getId()]));
+        return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
     }
 }

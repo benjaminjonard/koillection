@@ -68,9 +68,7 @@ class WishlistController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.wishlist_added', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_wishlist_show', [
-                'id' => $wishlist->getId(),
-            ]));
+            return $this->redirectToRoute('app_wishlist_show', ['id' => $wishlist->getId()]);
         }
 
         return $this->render('App/Wishlist/add.html.twig', [
@@ -113,7 +111,7 @@ class WishlistController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.wishlist_edited', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_wishlist_show', ['id' => $wishlist->getId()]));
+            return $this->redirectToRoute('app_wishlist_show', ['id' => $wishlist->getId()]);
         }
 
         return $this->render('App/Wishlist/edit.html.twig', [
@@ -137,6 +135,6 @@ class WishlistController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_wishlist_index'));
+        return $this->redirectToRoute('app_wishlist_index');
     }
 }

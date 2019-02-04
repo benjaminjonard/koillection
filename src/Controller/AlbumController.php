@@ -58,9 +58,7 @@ class AlbumController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.album_added', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_album_show', [
-                'id' => $album->getId(),
-            ]));
+            return $this->redirectToRoute('app_album_show', ['id' => $album->getId()]);
         }
 
         return $this->render('App/Album/add.html.twig', [
@@ -85,7 +83,7 @@ class AlbumController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.album_edited', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_album_show', ['id' => $album->getId()]));
+            return $this->redirectToRoute('app_album_show', ['id' => $album->getId()]);
         }
 
         return $this->render('App/Album/edit.html.twig', [
@@ -109,7 +107,7 @@ class AlbumController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.album_deleted', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_album_index'));
+        return $this->redirectToRoute('app_album_index');
     }
 
     /**

@@ -53,9 +53,7 @@ class TemplateController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.template_added', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_template_show', [
-                'id' => $template->getId(),
-            ]));
+            return $this->redirectToRoute('app_template_show', ['id' => $template->getId()]);
         }
 
         return $this->render('App/Template/add.html.twig', [
@@ -80,9 +78,7 @@ class TemplateController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.template_edited', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_template_show', [
-                'id' => $template->getId(),
-            ]));
+            return $this->redirectToRoute('app_template_show', ['id' => $template->getId()]);
         }
 
         return $this->render('App/Template/edit.html.twig', [
@@ -120,7 +116,7 @@ class TemplateController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.template_deleted', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_template_index'));
+        return $this->redirectToRoute('app_template_index');
     }
 
     /**

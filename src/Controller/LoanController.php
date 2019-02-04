@@ -47,7 +47,7 @@ class LoanController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.loan_canceled', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_loan_index'));
+        return $this->redirectToRoute('app_loan_index');
     }
 
     /**
@@ -64,6 +64,6 @@ class LoanController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('notice', $translator->trans('message.item_returned', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_loan_index'));
+        return $this->redirectToRoute('app_loan_index');
     }
 }
