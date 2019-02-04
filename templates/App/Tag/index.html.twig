@@ -14,7 +14,7 @@
     <div class="title-block">
         <h1>{{ 'menu.tags'|trans }}</h1>
         <ul class="nav nav-pills">
-            <li>{{ 'counter.tag'|transchoice(tagsCount) }}</li>
+            <li>{{ 'counter.tag'|trans({'%count%': tagsCount}) }}</li>
         </ul>
     </div>
 

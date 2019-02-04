@@ -15,8 +15,8 @@
     <div class="title-block">
         <h1>{{ template.name }}</h1>
         <ul class="nav nav-pills">
-            <li>{{ 'counter.field'|transchoice(template.fields|length) }}</li>
-            <li>{{ 'counter.item'|transchoice(template.items|length) }}</li>
+            <li>{{ 'counter.field'|trans({'%count%': template.fields|length}) }}</li>
+            <li>{{ 'counter.item'|trans({'%count%': template.items|length}) }}</li>
         </ul>
     </div>
 

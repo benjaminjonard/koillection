@@ -15,7 +15,7 @@
         <div class="title-block">
             <h1>{{ 'menu.templates'|trans }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.template'|transchoice(results|length) }}</li>
+                <li>{{ 'counter.template'|trans({'%count%': results|length}) }}</li>
             </ul>
         </div>
 
@@ -47,8 +47,8 @@
             {% for result in results %}
                 <tr class="list-element resize-element" data-title="{{ result.template.name }}">
                     <td><a href="{{ path('app_template_show', {'id' : result.template.id}) }}"><strong>{{ result.template.name }}</strong></a></td>
-                    <td>{{ 'counter.field'|transchoice(result.fieldsCounter) }}</td>
-                    <td>{{ 'counter.item'|transchoice(result.itemsCounter) }}</td>
+                    <td>{{ 'counter.field'|trans({'%count%': result.fieldsCounter}) }}</td>
+                    <td>{{ 'counter.item'|trans({'%count%': result.itemsCounter}) }}</td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -24,7 +24,7 @@
             <div class="right">
                 <h1>{{ collection.title }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|transchoice(items|length) }}</li>
+                    <li>{{ 'counter.item'|trans({'%count%': items|length}) }}</li>
                 </ul>
             </div>
             <div class="clearfix"></div>

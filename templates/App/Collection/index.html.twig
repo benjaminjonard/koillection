@@ -15,8 +15,8 @@
         <div class="title-block">
             <h1>{{ 'menu.collections'|trans }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.item'|transchoice(counters['totalItemsCount']) }}</li>
-                <li>{{ 'counter.collection'|transchoice(counters['totalChildrenCount']) }}</li>
+                <li>{{ 'counter.item'|trans({'%count%': counters['totalItemsCount']}) }}</li>
+                <li>{{ 'counter.collection'|trans({'%count%': counters['totalChildrenCount']}) }}</li>
             </ul>
         </div>
 
