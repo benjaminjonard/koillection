@@ -6,7 +6,7 @@ use App\Entity\Tag;
 use App\Model\BreadcrumbElement;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class AppExtension

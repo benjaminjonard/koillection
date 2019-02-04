@@ -4,7 +4,7 @@ namespace App\Service\Log;
 
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class Logger

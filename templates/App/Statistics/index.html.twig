@@ -14,10 +14,10 @@
     <div class="title-block">
         <h1>{{ 'menu.statistics'|trans }}</h1>
         <ul class="nav nav-pills">
-            <li>{{ 'counter.collection'|transchoice(counters.collections) }}</li>
-            <li>{{ 'counter.item'|transchoice(counters.items) }}</li>
-            <li>{{ 'counter.tag'|transchoice(counters.tags) }}</li>
-            <li>{{ 'counter.sign'|transchoice(counters.signs) }}</li>
+            <li>{{ 'counter.collection'|trans({'%count%': counters.collections}) }}</li>
+            <li>{{ 'counter.item'|trans({'%count%': counters.items}) }}</li>
+            <li>{{ 'counter.tag'|trans({'%count%': counters.tags}) }}</li>
+            <li>{{ 'counter.sign'|trans({'%count%': counters.signs}) }}</li>
         </ul>
     </div>
 
@@ -96,8 +96,9 @@
     <script src="{{ preload(asset('build/js/statistics.js')) }}" nonce="{{ csp_nonce() }}"></script>
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'route': url('app_user_statistics_index', {username: app.user.username})}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

@@ -20,7 +20,7 @@
             <div class="right">
                 <h1>{{ album.title }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.photo'|transchoice(album.photos|length) }}</li>
+                    <li>{{ 'counter.photo'|trans({'%count%': album.photos|length}) }}</li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -84,12 +84,12 @@
     {{ renderFooter(album)  }}
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
         {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
         {% for photo in album.photos %}
             {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': url('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
         {% endfor %}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}

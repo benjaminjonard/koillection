@@ -8,7 +8,7 @@ use App\Entity\Log;
 use App\Enum\LogTypeEnum;
 use App\Service\Log\Logger;
 use App\Service\Log\LogQueue;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class DatumLogger

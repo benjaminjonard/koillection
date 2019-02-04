@@ -3,7 +3,7 @@ namespace App\Service;
 
 use App\Entity\Medium;
 use App\Entity\User;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class DiskUsageChecker

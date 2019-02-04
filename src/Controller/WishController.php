@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class WishController
@@ -63,9 +63,7 @@ class WishController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.wish_added', ['%wish%' => '&nbsp;<strong>'.$wish->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_wishlist_show', [
-                'id' => $wish->getWishlist()->getId(),
-            ]));
+            return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);
         }
 
         return $this->render('App/Wish/add.html.twig', [
@@ -90,9 +88,7 @@ class WishController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.wish_edited', ['%wish%' => '&nbsp;<strong>'.$wish->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_wishlist_show', [
-                'id' => $wish->getWishlist()->getId(),
-            ]));
+            return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);
         }
 
         return $this->render('App/Wish/edit.html.twig', [
@@ -116,7 +112,7 @@ class WishController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.wish_deleted', ['%wish%' => '&nbsp;<strong>'.$wish->getName().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]));
+        return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);
     }
 
     /**
@@ -167,9 +163,7 @@ class WishController extends AbstractController
                 '%collection%' => '&nbsp;<strong>'.$item->getCollection()->getTitle().'</strong>&nbsp;'
             ]));
 
-            return $this->redirect($this->generateUrl('app_wishlist_show', [
-                'id' => $wish->getWishlist()->getId(),
-            ]));
+            return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);
         }
 
         return $this->render('App/Wish/transfer-to-collection.html.twig', [

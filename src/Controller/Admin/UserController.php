@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class UserController
@@ -57,9 +57,7 @@ class UserController extends AbstractController
             $em->flush();
             $this->addFlash('notice', $translator->trans('message.user_added', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_admin_user_index', [
-                'id' => $user->getId(),
-            ]));
+            return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
         }
 
         return $this->render('App/Admin/User/add.html.twig', [
@@ -84,9 +82,7 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.user_edited', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_admin_user_index', [
-                'id' => $user->getId(),
-            ]));
+            return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
         }
 
         return $this->render('App/Admin/User/edit.html.twig', [
@@ -144,7 +140,7 @@ class UserController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.user_deleted', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_admin_user_index'));
+            return $this->redirectToRoute('app_admin_user_index');
         }
 
         return $this->render('App/Admin/User/delete.html.twig', [

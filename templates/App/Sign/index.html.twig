@@ -37,8 +37,9 @@
     </div>
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'route': url('app_user_sign_index', {username: app.user.username})}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

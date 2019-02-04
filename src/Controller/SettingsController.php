@@ -54,7 +54,7 @@ class SettingsController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
         $request->getSession()->set('_locale', $locale);
 
-        return $this->redirect($this->generateUrl('app_settings_index', ['_locale' => $locale]));
+        return $this->redirectToRoute('app_settings_index', ['_locale' => $locale]);
     }
 
     /**

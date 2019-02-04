@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class CollectionController
@@ -72,9 +72,7 @@ class CollectionController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.collection_added', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_collection_show', [
-                'id' => $collection->getId(),
-            ]));
+            return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }
 
         return $this->render('App/Collection/add.html.twig', [
@@ -141,7 +139,7 @@ class CollectionController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.collection_edited', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_collection_show', ['id' => $collection->getId()]));
+            return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }
 
         return $this->render('App/Collection/edit.html.twig', [
@@ -168,10 +166,10 @@ class CollectionController extends AbstractController
         $this->addFlash('notice', $translator->trans('message.collection_deleted', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
 
         if (null === $collection->getParent()) {
-            return $this->redirect($this->generateUrl('app_collection_index'));
-        } else {
-            return $this->redirect($this->generateUrl('app_collection_show', ['id' => $collection->getParent()->getId()]));
+            return $this->redirectToRoute('app_collection_index');
         }
+
+        return $this->redirectToRoute('app_collection_show', ['id' => $collection->getParent()->getId()]);
     }
 
     /**
@@ -192,11 +190,9 @@ class CollectionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $itemsTaggedCount = $batchTagger->applyBatch();
             $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('notice', $translator->transchoice('message.items_tagged', $itemsTaggedCount, ['%count%' => $itemsTaggedCount]));
+            $this->addFlash('notice', $translator->trans('message.items_tagged', ['%count%' => $itemsTaggedCount]));
 
-            return $this->redirect($this->generateUrl('app_collection_show', [
-                'id' => $collection->getId(),
-            ]));
+            return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }
 
         return $this->render('App/Collection/batch-tagging.html.twig', [

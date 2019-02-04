@@ -120,9 +120,10 @@
     {{ renderFooter(item)  }}
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
         {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

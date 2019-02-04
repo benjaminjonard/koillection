@@ -24,8 +24,8 @@
             <div class="right">
                 <h1>{{ collection.title }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|transchoice(counters[collection.id].items) }}</li>
-                    <li>{{ 'counter.collection'|transchoice(counters[collection.id].children) }}</li>
+                    <li>{{ 'counter.item'|trans({'%count%': counters[collection.id].items}) }}</li>
+                    <li>{{ 'counter.collection'|trans({'%count%': counters[collection.id].children}) }}</li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -102,9 +102,10 @@
     {{ renderFooter(collection)  }}
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
         {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

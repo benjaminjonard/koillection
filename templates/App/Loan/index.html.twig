@@ -14,8 +14,8 @@
     <div class="title-block">
         <h1>{{ 'menu.loans'|trans }}</h1>
         <ul class="nav nav-pills">
-            <li>{{ 'counter.loan'|transchoice(loans|length) }}</li>
-            <li>{{ 'counter.returned'|transchoice(returnedItems|length) }}</li>
+            <li>{{ 'counter.loan'|trans({'%count%': loans|length}) }}</li>
+            <li>{{ 'counter.returned'|trans({'%count%': returnedItems|length}) }}</li>
         </ul>
     </div>
 
@@ -90,13 +90,14 @@
     </div>
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {% for loan in loans %}
             {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ loan.id , 'route': url('app_loan_delete', {id: loan.id}), transKey: 'message.delete.loan'}) }}
         {% endfor %}
         {% for returnedItem in returnedItems %}
             {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ returnedItem.id , 'route': url('app_loan_delete', {id: returnedItem.id}), transKey: 'message.delete.loan'}) }}
         {% endfor %}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

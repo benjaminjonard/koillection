@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Twig;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class DateExtension
@@ -59,7 +59,7 @@ class DateExtension extends \Twig_Extension
         );
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->transChoice("global.time.$v", $diff->$k);
+                $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }
@@ -93,7 +93,7 @@ class DateExtension extends \Twig_Extension
         );
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->transChoice("global.time.$v", $diff->$k);
+                $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }
@@ -121,9 +121,10 @@ class DateExtension extends \Twig_Extension
             'w' => 'week',
             'd' => 'day'
         );
+
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->transChoice("global.time.$v", $diff->$k);
+                $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }

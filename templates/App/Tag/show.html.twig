@@ -16,7 +16,7 @@
         <div class="title-block">
             <h1>{{ tag.label }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.item'|transchoice(tag.items|length) }}</li>
+                <li>{{ 'counter.item'|trans({'%count%': tag.items|length}) }}</li>
             </ul>
         </div>
 
@@ -96,9 +96,10 @@
     {{ renderFooter(tag)  }}
 {% endblock %}
 
-{% if context == 'default' %}
-    {% block modals %}
+{% block modals %}
+    {% if context == 'default' %}
         {{ include('Modal/share.html.twig', {'entity': tag, 'route': url('app_user_tag_show', {id: tag.id, username: app.user.username})}) }}
         {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_tag_delete', {id: tag.id}), transKey: 'message.delete.tag'}) }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+

@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ItemController
@@ -73,9 +73,7 @@ class ItemController extends AbstractController
             $this->addFlash('notice', $translator->trans('message.item_added', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
             $route = $request->request->has('save_and_add_another') ? 'app_item_add' : 'app_collection_show';
 
-            return $this->redirect($this->generateUrl($route, [
-                'id' => $item->getCollection()->getId(),
-            ]));
+            return $this->redirectToRoute($route, ['id' => $item->getCollection()->getId()]);
         }
 
         return $this->render('App/Item/add.html.twig', [
@@ -124,9 +122,7 @@ class ItemController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.item_edited', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_item_show', [
-                'id' => $item->getId(),
-            ]));
+            return $this->redirectToRoute('app_item_show', ['id' => $item->getId()]);
         }
 
         return $this->render('App/Item/edit.html.twig', [
@@ -153,7 +149,7 @@ class ItemController extends AbstractController
 
         $this->addFlash('notice', $translator->trans('message.item_deleted', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
-        return $this->redirect($this->generateUrl('app_collection_show', ['id' => $collection->getId()]));
+        return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
     }
 
     /**
@@ -197,9 +193,7 @@ class ItemController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.loan', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
-            return $this->redirect($this->generateUrl('app_item_show', [
-                'id' => $item->getId(),
-            ]));
+            return $this->redirectToRoute('app_item_show', ['id' => $item->getId()]);
         }
 
         return $this->render('App/Loan/loan.html.twig', [

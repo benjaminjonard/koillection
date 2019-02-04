@@ -3,5 +3,6 @@
     {% if object.updatedAt %}
         · {{ 'global.updated_at'|trans({'%date%': object.updatedAt|date('d/m/Y', app.user.timezone) }) }}
     {% endif %}
-    · {{ ('global.seen_counter.' ~ class)|transchoice(object.seenCounter + 1) }}
+
+    · {{ ('global.seen_counter.' ~ class)|trans({'%count%': object.seenCounter + 1}) }}
 </footer>
