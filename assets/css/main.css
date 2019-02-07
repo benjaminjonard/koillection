@@ -408,7 +408,7 @@ html.loading:before {
 .header-profile .fa-chevron-down1::before {top: 27px; right: 25px; position: absolute; color: #fff}
 .header-profile .fa-chevron-down1 {font-size: 13px;}
 .header-profile .down-background {width: 21px; height: 21px; background-color: #009688; display: block; border-radius: 50%; position: absolute; top: 24px; right: 21px;}
-.user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 26px;}
+.user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 33px;}
 
 /* Nav animations */
 .collapse-nav i {transform: rotate( 180deg );}
@@ -451,6 +451,7 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
     .search {display: none;}
     #collection-items img {max-width: 120px; max-height: 160px;}
     #collection-items .collection-item {min-width: 120px; min-height: 160px;}
+    .placeholder {background-color: #ebebeb; width: 120px; height: 160px;}
     .grid-container-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
 
     .collapse-nav {display : none;}
