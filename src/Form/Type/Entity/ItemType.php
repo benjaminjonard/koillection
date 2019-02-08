@@ -3,6 +3,7 @@
 namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
+use App\Entity\Item;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
@@ -80,7 +81,7 @@ class ItemType extends AbstractType
                 ])->addModelTransformer($this->jsonToTagTransformer)
             )
             ->add('collection', EntityType::class, [
-                'class' => 'App\Entity\Collection',
+                'class' => Collection::class,
                 'choice_label' => 'title',
                 'choices' => $this->em->getRepository(Collection::class)->findAll(),
                 'expanded' => false,
@@ -89,7 +90,7 @@ class ItemType extends AbstractType
                 'required' => true,
             ])
             ->add('template', EntityType::class, [
-                'class' => 'App\Entity\Template',
+                'class' => Template::class,
                 'choice_label' => 'name',
                 'choices' => $this->em->getRepository(Template::class)->findAll(),
                 'expanded' => false,
@@ -119,7 +120,7 @@ class ItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Item',
+            'data_class' => Item::class,
             'isCreation' => false
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Template;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -44,7 +45,7 @@ class TemplateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Template',
+            'data_class' => Template::class
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\CurrencyEnum;
 use App\Enum\VisibilityEnum;
@@ -85,7 +86,7 @@ class WishType extends AbstractType
                 ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add('wishlist', EntityType::class, [
-                'class' => 'App\Entity\Wishlist',
+                'class' => Wishlist::class,
                 'choice_label' => 'name',
                 'choices' => $this->em->getRepository(Wishlist::class)->findAll(),
                 'expanded' => false,
@@ -104,7 +105,7 @@ class WishType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Wish',
+            'data_class' => Wish::class,
         ]);
     }
 }

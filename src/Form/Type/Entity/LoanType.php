@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Loan;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -40,7 +41,7 @@ class LoanType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Loan',
+            'data_class' => Loan::class
         ]);
     }
 }

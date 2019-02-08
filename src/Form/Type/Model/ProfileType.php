@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Model;
 
+use App\Entity\User;
 use App\Form\DataTransformer\Base64ToMediumTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -65,7 +66,7 @@ class ProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\User',
+            'data_class' => User::class,
         ]);
     }
 }

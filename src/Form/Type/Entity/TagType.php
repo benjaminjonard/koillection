@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Tag;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
 use Symfony\Component\Form\AbstractType;
@@ -69,7 +70,7 @@ class TagType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Tag',
+            'data_class' => Tag::class
         ]);
     }
 }

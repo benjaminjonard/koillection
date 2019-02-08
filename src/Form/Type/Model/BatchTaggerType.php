@@ -4,6 +4,7 @@ namespace App\Form\Type\Model;
 
 use App\Entity\Tag;
 use App\Form\DataTransformer\JsonToTagTransformer;
+use App\Model\BatchTagger;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -67,7 +68,7 @@ class BatchTaggerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Model\BatchTagger',
+            'data_class' => BatchTagger::class,
         ]);
     }
 }

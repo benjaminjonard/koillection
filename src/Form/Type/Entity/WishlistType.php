@@ -59,7 +59,7 @@ class WishlistType extends AbstractType
                 'required' => false,
             ])
             ->add('parent', EntityType::class, [
-                'class' => 'App\Entity\Wishlist',
+                'class' => Wishlist::class,
                 'choice_label' => 'name',
                 'choices' => $this->em->getRepository(Wishlist::class)->findAllExcludingItself($entity),
                 'expanded' => false,
@@ -84,7 +84,7 @@ class WishlistType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Wishlist',
+            'data_class' => Wishlist::class
         ]);
     }
 }

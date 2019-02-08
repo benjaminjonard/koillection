@@ -68,7 +68,7 @@ class CollectionType extends AbstractType
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [
-                'class' => 'App\Entity\Collection',
+                'class' => Collection::class,
                 'choice_label' => 'title',
                 'choices' => $this->em->getRepository(Collection::class)->findAllExcludingItself($entity),
                 'expanded' => false,
@@ -93,7 +93,7 @@ class CollectionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Collection',
+            'data_class' => Collection::class
         ]);
     }
 }

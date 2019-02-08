@@ -3,6 +3,7 @@
 namespace App\Form\Type\Entity;
 
 use App\Entity\Album;
+use App\Entity\Photo;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -76,7 +77,7 @@ class PhotoType extends AbstractType
                 ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add('album', EntityType::class, [
-                'class' => 'App\Entity\Album',
+                'class' => Album::class,
                 'choice_label' => 'title',
                 'choices' => $this->em->getRepository(Album::class)->findAll(),
                 'expanded' => false,
@@ -95,7 +96,7 @@ class PhotoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Photo',
+            'data_class' => Photo::class
         ]);
     }
 }

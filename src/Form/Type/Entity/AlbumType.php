@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Album;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
@@ -57,7 +58,7 @@ class AlbumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Album',
+            'data_class' => Album::class
         ]);
     }
 }
