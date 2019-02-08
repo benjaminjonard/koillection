@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\CurrencyEnum;
 use App\Enum\VisibilityEnum;
@@ -11,7 +12,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -70,7 +70,7 @@ class WishType extends AbstractType
                 'required' => false,
             ])
             ->add('currency', ChoiceType::class, [
-                'choices' => array_flip($this->currencyEnum->getCurrencyLabels()),
+                'choices' => array_flip($this->currencyEnum::getCurrencyLabels()),
                 'expanded' => false,
                 'multiple' => false,
                 'required' => false,
@@ -85,7 +85,7 @@ class WishType extends AbstractType
                 ])->addModelTransformer($this->fileToMediumTransformer)
             )
             ->add('wishlist', EntityType::class, [
-                'class' => 'App\Entity\Wishlist',
+                'class' => Wishlist::class,
                 'choice_label' => 'name',
                 'choices' => $this->em->getRepository(Wishlist::class)->findAll(),
                 'expanded' => false,
@@ -97,14 +97,13 @@ class WishType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Wish',
+            'data_class' => Wish::class,
         ]);
     }
 }

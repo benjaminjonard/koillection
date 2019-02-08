@@ -2,12 +2,12 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Tag;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -59,7 +59,6 @@ class TagType extends AbstractType
                     'label' => false,
                 ])->addModelTransformer($this->fileToMediumTransformer)
             )
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -69,7 +68,7 @@ class TagType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Tag',
+            'data_class' => Tag::class
         ]);
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Album;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -47,7 +47,6 @@ class AlbumType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -57,7 +56,7 @@ class AlbumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Album',
+            'data_class' => Album::class
         ]);
     }
 }

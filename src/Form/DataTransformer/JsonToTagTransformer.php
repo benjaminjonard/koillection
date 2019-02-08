@@ -19,7 +19,7 @@ class JsonToTagTransformer implements DataTransformerInterface
     protected $em;
 
     /**
-     * JsonToMunicipalitiesTransformer constructor.
+     * JsonToTagTransformer constructor.
      * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)

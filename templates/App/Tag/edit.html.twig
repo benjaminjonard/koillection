@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-btn-holder">
-                {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn waves-effect waves-light'}}) }}
+                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 <a href="{{ path('app_tag_show', { id : tag.id }) }}" class="waves-effect waves-light btn red darken-1">Cancel</a>
             </div>
         {{ form_end(form) }}

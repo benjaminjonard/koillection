@@ -2,10 +2,10 @@
 
 namespace App\Form\Type\Model;
 
+use App\Model\Search;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -68,7 +68,6 @@ class SearchType extends AbstractType
                 'required' => false,
                 'data' => $search->getSearchInTags()
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -78,7 +77,7 @@ class SearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Model\Search',
+            'data_class' => Search::class,
         ]);
     }
 }

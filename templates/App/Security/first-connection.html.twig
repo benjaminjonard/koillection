@@ -22,7 +22,7 @@
                     {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
                     {{ form_row(form.timezone, {'label': 'label.timezone'}) }}
                     <div class="submit">
-                        {{ form_row(form.submit, {'label': 'btn.submit', 'attr': {'class': 'btn btn-lg btn-success btn-block right'}}) }}
+                        <button type="submit" class="btn btn-lg btn-success btn-block right">{{ 'btn.submit'|trans }}</button>
                     </div>
                 {{ form_end(form) }}
             </div>

@@ -2,11 +2,11 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Field;
 use App\Enum\DatumTypeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,7 +38,6 @@ class FieldType extends AbstractType
             ->add('position', HiddenType::class, [
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -48,7 +47,7 @@ class FieldType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Field',
+            'data_class' => Field::class
         ]);
     }
 }

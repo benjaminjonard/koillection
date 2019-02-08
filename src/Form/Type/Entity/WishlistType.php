@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -59,7 +58,7 @@ class WishlistType extends AbstractType
                 'required' => false,
             ])
             ->add('parent', EntityType::class, [
-                'class' => 'App\Entity\Wishlist',
+                'class' => Wishlist::class,
                 'choice_label' => 'name',
                 'choices' => $this->em->getRepository(Wishlist::class)->findAllExcludingItself($entity),
                 'expanded' => false,
@@ -74,7 +73,6 @@ class WishlistType extends AbstractType
                     'label' => false,
                 ])->addModelTransformer($this->base64ToMediumTransformer)
             )
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -84,7 +82,7 @@ class WishlistType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Wishlist',
+            'data_class' => Wishlist::class
         ]);
     }
 }

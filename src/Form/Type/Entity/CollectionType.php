@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -68,7 +67,7 @@ class CollectionType extends AbstractType
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [
-                'class' => 'App\Entity\Collection',
+                'class' => Collection::class,
                 'choice_label' => 'title',
                 'choices' => $this->em->getRepository(Collection::class)->findAllExcludingItself($entity),
                 'expanded' => false,
@@ -83,7 +82,6 @@ class CollectionType extends AbstractType
                     'label' => false,
                 ])->addModelTransformer($this->base64ToMediumTransformer)
             )
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -93,7 +91,7 @@ class CollectionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Collection',
+            'data_class' => Collection::class
         ]);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Datum;
 use App\Form\DataTransformer\FileToMediumTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -56,7 +56,6 @@ class DatumType extends AbstractType
             ->add('position', TextType::class, [
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -66,7 +65,7 @@ class DatumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Datum',
+            'data_class' => Datum::class
         ]);
     }
 }

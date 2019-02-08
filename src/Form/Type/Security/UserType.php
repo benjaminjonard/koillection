@@ -2,11 +2,11 @@
 
 namespace App\Form\Type\Security;
 
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,7 +42,6 @@ class UserType extends AbstractType
             ->add('timezone', TimezoneType::class, [
                 'required' => true
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -52,8 +51,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\User',
-            'hasSubmitButton' => true
+            'data_class' => User::class
         ]);
     }
 }

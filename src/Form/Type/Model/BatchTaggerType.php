@@ -2,16 +2,13 @@
 
 namespace App\Form\Type\Model;
 
-use App\Entity\Tag;
 use App\Form\DataTransformer\JsonToTagTransformer;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Model\BatchTagger;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class BatchTaggerType
@@ -21,23 +18,16 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class BatchTaggerType extends AbstractType
 {
     /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
      * @var JsonToTagTransformer
      */
     private $jsonToTagTransformer;
 
     /**
      * BatchTaggerType constructor.
-     * @param TokenStorageInterface $tokenStorage
      * @param JsonToTagTransformer $jsonToTagTransformer
      */
-    public function __construct(TokenStorageInterface $tokenStorage, JsonToTagTransformer $jsonToTagTransformer)
+    public function __construct(JsonToTagTransformer $jsonToTagTransformer)
     {
-        $this->tokenStorage = $tokenStorage;
         $this->jsonToTagTransformer = $jsonToTagTransformer;
     }
 
@@ -57,7 +47,6 @@ class BatchTaggerType extends AbstractType
                 'label' => false,
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
@@ -67,7 +56,7 @@ class BatchTaggerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Model\BatchTagger',
+            'data_class' => BatchTagger::class,
         ]);
     }
 }
