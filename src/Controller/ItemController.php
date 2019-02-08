@@ -64,14 +64,17 @@ class ItemController extends AbstractController
             $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
         }
 
-        $form = $this->createForm(ItemType::class, $item, ['isCreation' => true]);
+        $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($item);
             $em->flush();
 
             $this->addFlash('notice', $translator->trans('message.item_added', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
-            $route = $request->request->has('save_and_add_another') ? 'app_item_add' : 'app_collection_show';
+
+            if ($request->request->has('save_and_add_another')) {
+                return $this->redirectToRoute('app_item_add', ['collection' => $item->getCollection()->getId()]);
+            }
 
             return $this->redirectToRoute($route, ['id' => $item->getCollection()->getId()]);
         }

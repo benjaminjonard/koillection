@@ -5,7 +5,6 @@ namespace App\Form\Type\Entity;
 use App\Entity\Loan;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,7 +33,6 @@ class LoanType extends AbstractType
                 'attr' => ['length' => 255],
                 'required' => true,
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 
