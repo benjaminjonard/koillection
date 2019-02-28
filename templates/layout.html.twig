@@ -41,14 +41,14 @@
                     {% block breadcrumb %}{% endblock %}
                 </div>
 
-                <div class="spacer"></div>
-
-                <form class="search" name="search" method="post" action="{{ path('app_search_index') }}">
-                    <div>
-                        <input id="search_search" name="search[search]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}">
-                        <input id="search__token" name="search[_token]" value="{{ csrf_token('search') }}" type="hidden">
-                    </div>
-                </form>
+                <div class="spacer">
+                    <form class="search" name="search" method="post" action="{{ path('app_search_index') }}">
+                        <div>
+                            <input id="search_search" name="search[search]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}">
+                            <input id="search__token" name="search[_token]" value="{{ csrf_token('search') }}" type="hidden">
+                        </div>
+                    </form>
+                </div>
 
                 <div class="header-profile">
                     {% if app.user.avatar != null %}
