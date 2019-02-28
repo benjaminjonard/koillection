@@ -76,7 +76,7 @@ class ItemController extends AbstractController
                 return $this->redirectToRoute('app_item_add', ['collection' => $item->getCollection()->getId()]);
             }
 
-            return $this->redirectToRoute($route, ['id' => $item->getCollection()->getId()]);
+            return $this->redirectToRoute('app_collection_show', ['id' => $item->getCollection()->getId()]);
         }
 
         return $this->render('App/Item/add.html.twig', [
