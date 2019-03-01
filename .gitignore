@@ -1,5 +1,8 @@
 ###> symfony/framework-bundle ###
-.env
+.env.local
+/.env.local.php
+/.env.*.local
+
 phpunit.xml
 /public/bundles/
 /public/uploads/*
@@ -9,12 +12,6 @@ phpunit.xml
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> symfony/phpunit-bridge ###
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
-
 .php_cs.cache
 
 /docker/*
@@ -24,3 +21,8 @@ phpunit.xml
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###

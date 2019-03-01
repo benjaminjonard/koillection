@@ -8,9 +8,6 @@ services:
             - 80:8880
         environment:
             - DATABASE_URL=pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4
-            - APP_ENV=dev
-            - APP_DEBUG=1
-            - SHOW_ADMIN_TOOLS=1
         depends_on:
             - postgres
         volumes:
