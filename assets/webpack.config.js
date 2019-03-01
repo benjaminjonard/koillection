@@ -2,18 +2,18 @@ var Encore = require('@symfony/webpack-encore');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
-    .setOutputPath('../public/build/')
+    .setOutputPath('./assets/public/build/')
     .setPublicPath('/build')
 
-    .addEntry('js/app', './js/app.js')
-    .addEntry('js/statistics', './js/statistics/statistics.js')
+    .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/statistics', './assets/js/statistics/statistics.js')
 
-    .addStyleEntry('css/app', './css/app.css')
-    .addStyleEntry('css/themes/aubergine', './css/themes/aubergine.css')
-    .addStyleEntry('css/themes/sunset', './css/themes/sunset.css')
-    .addStyleEntry('css/themes/teal', './css/themes/teal.css')
-    .addStyleEntry('css/export', './css/export.css')
-    .addStyleEntry('css/translation', './css/translation.css')
+    .addStyleEntry('css/app', './assets/css/app.css')
+    .addStyleEntry('css/themes/aubergine', './assets/css/themes/aubergine.css')
+    .addStyleEntry('css/themes/sunset', './assets/css/themes/sunset.css')
+    .addStyleEntry('css/themes/teal', './assets/css/themes/teal.css')
+    .addStyleEntry('css/export', './assets/css/export.css')
+    .addStyleEntry('css/translation', './assets/css/translation.css')
 
     .addPlugin(new CopyWebpackPlugin([
         { from: './img', to: 'images' }
