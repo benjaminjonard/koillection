@@ -56,8 +56,8 @@ Koillection is still in development. There might be some bugs, missing features 
 ### Using git or an archive file
 
 1. `git clone` the repository or download and unzip the project archive
-2. Copy the `.env.dist` file and rename it `.env`
-3. In `.env` replace the values between curly braces by your configuration and remove all curly braces
+2. Create a `.env.local` file and copy the content of `.env` in it
+3. In `.env.local` replace the values between curly braces by your configuration and remove all curly braces
     - `{secret}` -> a random string
     - `{user}` -> your database user
     - `{password}` -> your database password
