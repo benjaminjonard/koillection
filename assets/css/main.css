@@ -403,7 +403,7 @@ html.loading:before {
 .nav-bottom li a {height: inherit;}
 
 .header-profile {flex: 0 0 auto; height: 60px; cursor: pointer; margin-right: 10px;}
-.header-profile .user-avatar {height: 50px; width: 50px; margin: 13px 0;}
+.header-profile .user-avatar {height: 50px; width: 50px; margin: 13px 0; border-radius: 50%; box-shadow: 0 1px 2px 0 rgba(60,64,67,.302),0 1px 3px 1px rgba(60,64,67,.149)}
 .header-profile .fa-chevron-down1::before {top: 32px; right: 25px; position: absolute; color: #fff}
 .header-profile .fa-chevron-down1 {font-size: 13px;}
 .header-profile .down-background {width: 21px; height: 21px; background-color: #009688; display: block; border-radius: 50%; position: absolute; top: 29px; right: 21px;}
@@ -474,3 +474,4 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
     background-color: #fff;
     margin-top: 15px;
 }
+
