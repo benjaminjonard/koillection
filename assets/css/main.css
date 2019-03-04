@@ -24,7 +24,7 @@ body:after {content: none;}
 thead {border-bottom: 1px solid #d0d0d0;}
 
 header {
-    margin-bottom: 0; height: 5rem; position: sticky; top: 0; left: 0; right: 0; display: flex;
+    margin-bottom: 0; height: 75px; position: sticky; top: 0; left: 0; right: 0; display: flex;
     justify-content: space-between; z-index: 1; background-color: #f5f7fa;  padding: 0 20px;
     border-bottom-color: #eef1f2; border-bottom-width: 1px; border-bottom-style: solid;
 }
