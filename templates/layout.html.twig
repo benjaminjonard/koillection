@@ -3,7 +3,7 @@
 {% block body %}
     <div class="app">
         {% set route = app.request.get('_route') %}
-        <div class="sidebar-wrapper nicescroll">
+        <div class="sidebar-wrapper">
             <div class="nav-wrapper">
                 <div class="header-logo">
                     <a href="{{ path('app_homepage') }}">
@@ -11,16 +11,21 @@
                         <span>Koillection</span>
                     </a>
                 </div>
-                <ul class="nav nav-sidebar">
-                    {% include 'Nav/' ~ context ~ '.html.twig' %}
-                </ul>
             </div>
 
-            <div class="nav-wrapper">
-                <ul class="nav nav-sidebar nav-bottom">
-                    <li class="collapse-nav"><a href=""><i class="fa fa-angle-double-right fa-fw"></i><span>{{ 'menu.collapse'|trans }}</span></a></li>
-                    <li class="close-nav"><a href=""><i class="fa fa-times fa-fw"></i><span>{{ 'menu.close'|trans }}</span></a></li>
-                </ul>
+            <div class="scrollable">
+                <div class="nav-wrapper">
+                    <ul class="nav nav-sidebar">
+                        {% include 'Nav/' ~ context ~ '.html.twig' %}
+                    </ul>
+                </div>
+
+                <div class="nav-wrapper">
+                    <ul class="nav nav-sidebar nav-bottom">
+                        <li class="collapse-nav"><a href=""><i class="fa fa-angle-double-right fa-fw"></i><span>{{ 'menu.collapse'|trans }}</span></a></li>
+                        <li class="close-nav"><a href=""><i class="fa fa-times fa-fw"></i><span>{{ 'menu.close'|trans }}</span></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -34,7 +39,7 @@
         <div class="main content-wrapper">
             <div class="mobile-overlay"></div>
             <header class="expanded">
-                <div class="row breadcrumb">
+                <div class="breadcrumb-wrapper">
                     <div class="burger-menu">
                         <i class="fa fa-bars fa-fw"></i>
                     </div>
