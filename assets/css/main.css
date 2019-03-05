@@ -9,6 +9,7 @@ body:not(.error) {outline: none; margin-left: 230px;}
 body.unauthorized {margin-left: 0;}
 .app {display: flex; flex-direction: column; min-height: 100vh; background-color: #fff;}
 footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; font-size: 12px; margin: 0 15px;}
+.show-on-mobile {display: none;}
 
 a {outline: 0;}
 
@@ -474,6 +475,7 @@ input[type=search].search-input, input[type=search]:focus:not([readonly]).search
 
     .collapse-nav {display : none;}
     .close-nav {display : block;}
+    .show-on-mobile {display: block;}
 }
 
 .mobile-overlay {display: none; background-color: rgba(0,0,0,0.3); position: fixed; height: 100%; width: 100%; z-index: 500;}
