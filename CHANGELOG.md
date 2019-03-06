@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.0.4] / 2019-03-06
+### Fixes
+ - Improve header responsiveness 
+ 
+### Features
+ - Add a scrollbar on navbar for mobile devices
+ - Add hidden menu for mobile devices
+ 
+### Miscellaneous
+- Update dependencies and config files
+- Switch to the new .env system (with .env.local)
+- Update phpUnit version
+
 ## [v1.0.3] / 2019-02-26
 ### Fixes
 - Fix recompute disk usage action

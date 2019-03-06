@@ -1,5 +1,5 @@
 parameters:
-    version: 'v1.0.3'
+    version: 'v1.0.4'
     locale: 'en'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
 
