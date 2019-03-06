@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Log\Logger;
 
 use App\Entity\Item;

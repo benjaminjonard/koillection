@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form\Type\Entity\Admin;
 
 use App\Entity\User;

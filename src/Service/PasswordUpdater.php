@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service;
 
 use App\Entity\User;
@@ -35,7 +37,7 @@ class PasswordUpdater
     {
         $plainPassword = $user->getPlainPassword();
 
-        if (0 === \strlen($plainPassword)) {
+        if ($plainPassword === null) {
             return $user;
         }
 
