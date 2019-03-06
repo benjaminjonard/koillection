@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests;
 
 use App\Entity\Album;
@@ -34,7 +36,7 @@ class LoggedWebTestCase extends WebTestCase
     /**
      * @param User $user
      */
-    public function login($email)
+    public function login(string $email)
     {
         $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);
         $this->user = $user;
@@ -50,7 +52,7 @@ class LoggedWebTestCase extends WebTestCase
         $this->client->getCookieJar()->set($cookie);
     }
 
-    public function replaceUrlParameters($url)
+    public function replaceUrlParameters(string $url)
     {
         preg_match_all('/{{[a-zA-Z]+}}/', $url, $matches, PREG_SET_ORDER, 0);
 

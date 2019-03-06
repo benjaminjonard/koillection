@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests;
 
 /**
@@ -14,7 +16,7 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
      *
      * @dataProvider isSuccessfulUrlProvider
      */
-    public function testPageIsSuccessful($url)
+    public function testPageIsSuccessful(string $url)
     {
         $this->login('khorne@koillection.com');
 

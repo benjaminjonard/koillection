@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'font-awesome';
-  src:  url('./font-awesome.eot?wl438a');
-  src:  url('./font-awesome.eot?wl438a#iefix') format('embedded-opentype'),
-    url('./font-awesome.ttf?wl438a') format('truetype'),
-    url('./font-awesome.woff?wl438a') format('woff'),
-    url('./font-awesome.svg?wl438a#font-awesome') format('svg');
+  src:  url('./font-awesome.eot?7ha2vg');
+  src:  url('./font-awesome.eot?7ha2vg#iefix') format('embedded-opentype'),
+    url('./font-awesome.ttf?7ha2vg') format('truetype'),
+    url('./font-awesome.woff?7ha2vg') format('woff'),
+    url('./font-awesome.svg?7ha2vg#font-awesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -155,4 +155,10 @@
 }
 .fa-chevron-down1:before {
   content: "\f079";
+}
+.fa-exclamation-triangle:before {
+  content: "\f071";
+}
+.fa-warning:before {
+  content: "\f071";
 }

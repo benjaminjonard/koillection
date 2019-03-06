@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests;
 
 /**
@@ -12,7 +14,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
     /**
      * @dataProvider isSuccessfulUrlProvider
      */
-    public function testPageIsSuccessful($url)
+    public function testPageIsSuccessful(string $url)
     {
         $this->login('cthulhu@koillection.com');
         $this->client->request('GET', $this->replaceUrlParameters($url));
@@ -22,7 +24,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
     /**
      * @dataProvider isNotFoundUrlProvider
      */
-    public function testPageIsNotFound($url)
+    public function testPageIsNotFound(string $url)
     {
         $this->login('cthulhu@koillection.com');
         $this->client->request('GET', $this->replaceUrlParameters($url));

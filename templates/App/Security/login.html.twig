@@ -14,10 +14,9 @@
                 <form action="{{ path("app_security_login") }}" method="post">
                     <h5 class="header">{{ 'title.sign_in'|trans }}</h5>
                     {% if error %}
-                        <div class="login-error">
-                            <div class="error">
-                                <div><div>{{ error.messageKey|trans(error.messageData, 'messages') }}</div></div>
-                            </div>
+                        <div class="error-helper">
+                            <i class="fa fa-warning fa-fw"></i>
+                            {{ error.messageKey|trans(error.messageData, 'messages') }}
                         </div>
                     {% endif %}
 

@@ -1,6 +1,6 @@
 <?php
 
-// src/App/EventListener/TimestampableListener.php
+declare(strict_types=1);
 
 namespace App\EventListener;
 

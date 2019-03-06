@@ -1,1 +1,44 @@
-{"entrypoints":{"js/app":{"js":["build/js/app.2f015c34.js"]},"js/statistics":{"js":["build/js/statistics.bcaa9490.js"]},"css/app":{"css":["build/css/app.61a9fe9a.css"]},"css/themes/aubergine":{"css":["build/css/themes/aubergine.4536109b.css"]},"css/themes/sunset":{"css":["build/css/themes/sunset.4227921f.css"]},"css/themes/teal":{"css":["build/css/themes/teal.8a0340c9.css"]},"css/export":{"css":["build/css/export.188dfca5.css"]},"css/translation":{"css":["build/css/translation.30109aa0.css"]}}}
+{
+  "entrypoints": {
+    "js/app": {
+      "js": [
+        "build/js/app.1318efd5.js"
+      ]
+    },
+    "js/statistics": {
+      "js": [
+        "build/js/statistics.bcaa9490.js"
+      ]
+    },
+    "css/app": {
+      "css": [
+        "build/css/app.af8130f8.css"
+      ]
+    },
+    "css/themes/aubergine": {
+      "css": [
+        "build/css/themes/aubergine.707692e5.css"
+      ]
+    },
+    "css/themes/sunset": {
+      "css": [
+        "build/css/themes/sunset.c8f91625.css"
+      ]
+    },
+    "css/themes/teal": {
+      "css": [
+        "build/css/themes/teal.db67c7e3.css"
+      ]
+    },
+    "css/export": {
+      "css": [
+        "build/css/export.9fbf458a.css"
+      ]
+    },
+    "css/translation": {
+      "css": [
+        "build/css/translation.3cb2835b.css"
+      ]
+    }
+  }
+}
