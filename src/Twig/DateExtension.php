@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Service\DateFormatter;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -19,12 +20,29 @@ class DateExtension extends \Twig_Extension
     private $translator;
 
     /**
+     * @var DateFormatter
+     */
+    private $dateFormatter;
+
+    /**
      * DateExtension constructor.
      * @param TranslatorInterface $translator
+     * @param DateFormatter $dateFormatter
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator, DateFormatter $dateFormatter)
     {
         $this->translator = $translator;
+        $this->dateFormatter = $dateFormatter;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFunctions() : array
+    {
+        return [
+            new \Twig_SimpleFunction('getDateFormatForJs', [$this, 'getDateFormatForJs'])
+        ];
     }
 
     /**
@@ -136,6 +154,14 @@ class DateExtension extends \Twig_Extension
 
         return $string ?
             $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.today');
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateFormatForJs() : string
+    {
+       return $this->dateFormatter->guessForJs();
     }
 
     /**

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Loan;
+use App\Service\DateFormatter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,6 +20,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class LoanType extends AbstractType
 {
     /**
+     * @var DateFormatter
+     */
+    private $dateFormatter;
+
+    /**
+     * LoanType constructor.
+     * @param DateFormatter $dateFormatter
+     */
+    public function __construct(DateFormatter $dateFormatter)
+    {
+        $this->dateFormatter = $dateFormatter;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -29,7 +44,7 @@ class LoanType extends AbstractType
                 'required' => true,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
+                'format' => $this->dateFormatter->guessForForm(),
             ])
             ->add('lentTo', TextType::class, [
                 'attr' => ['length' => 255],

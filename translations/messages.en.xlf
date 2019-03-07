@@ -3946,5 +3946,47 @@
         <target>{0} wishes| {1} wish| ]1,Inf[ wishes</target>
       </segment>
     </unit>
+    <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
+      <segment>
+        <source>global.date_formats.slash_dmy</source>
+        <target>31/12/1990</target>
+      </segment>
+    </unit>
+    <unit id="ZajD1iq" name="global.date_formats.slash_mdy">
+      <segment>
+        <source>global.date_formats.slash_mdy</source>
+        <target>12/31/1990</target>
+      </segment>
+    </unit>
+    <unit id="YlAUA0n" name="global.date_formats.slash_ymd">
+      <segment>
+        <source>global.date_formats.slash_ymd</source>
+        <target>1990/12/31</target>
+      </segment>
+    </unit>
+    <unit id="bCHcuOE" name="global.date_formats.hyphen_dmy">
+      <segment>
+        <source>global.date_formats.hyphen_dmy</source>
+        <target>31-12-1990</target>
+      </segment>
+    </unit>
+    <unit id="SlR19of" name="global.date_formats.hyphen_mdy">
+      <segment>
+        <source>global.date_formats.hyphen_mdy</source>
+        <target>12-31-1990</target>
+      </segment>
+    </unit>
+    <unit id="_NUVI5O" name="global.date_formats.hyphen_ymd">
+      <segment>
+        <source>global.date_formats.hyphen_ymd</source>
+        <target>1990-12-31</target>
+      </segment>
+    </unit>
+    <unit id="VqbMfZ0" name="label.date_format">
+      <segment>
+        <source>label.date_format</source>
+        <target>Date format</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -11,15 +11,15 @@ namespace App\Enum;
  */
 class RoleEnum
 {
-    const ROLE_USER = 'ROLE_USER';
-    const ROLE_ADMIN = 'ROLE_ADMIN';
+    public const ROLE_USER = 'ROLE_USER';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
 
-    const ROLES = [
+    public const ROLES = [
         self::ROLE_USER,
         self::ROLE_ADMIN,
     ];
 
-    const ROLES_TRANS_KEYS = [
+    public const ROLES_TRANS_KEYS = [
         self::ROLE_USER => 'role.user',
         self::ROLE_ADMIN => 'role.admin'
     ];

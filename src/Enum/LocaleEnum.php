@@ -11,15 +11,15 @@ namespace App\Enum;
  */
 class LocaleEnum
 {
-    const LOCALE_EN = 'en';
-    const LOCALE_FR = 'fr';
+    public const LOCALE_EN = 'en';
+    public const LOCALE_FR = 'fr';
 
-    const LOCALES = [
+    public const LOCALES = [
         self::LOCALE_EN,
         self::LOCALE_FR
     ];
 
-    const LOCALES_TRANS_KEYS = [
+    public const LOCALES_TRANS_KEYS = [
         self::LOCALE_EN => 'english',
         self::LOCALE_FR => 'french'
     ];

@@ -17,7 +17,7 @@
                         {% endfor %}
                     </ul>
                 </td>
-                <td title="{{ log.loggedAt|date('d/m/Y', app.user.timezone) }}">{{ log.loggedAt|timeAgo }}</td>
+                <td title="{{ log.loggedAt|date(app.user.dateFormat, app.user.timezone) }}">{{ log.loggedAt|timeAgo }}</td>
             </tr>
         {% endfor %}
         </tbody>

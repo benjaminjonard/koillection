@@ -8,6 +8,7 @@ use App\Entity\Album;
 use App\Entity\Photo;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
+use App\Service\DateFormatter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -37,14 +38,21 @@ class PhotoType extends AbstractType
     private $fileToMediumTransformer;
 
     /**
+     * @var DateFormatter
+     */
+    private $dateFormatter;
+
+    /**
      * PhotoType constructor.
      * @param EntityManagerInterface $em
      * @param FileToMediumTransformer $fileToMediumTransformer
+     * @param DateFormatter $dateFormatter
      */
-    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer)
+    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer, DateFormatter $dateFormatter)
     {
         $this->em = $em;
         $this->fileToMediumTransformer = $fileToMediumTransformer;
+        $this->dateFormatter = $dateFormatter;
     }
 
     /**
@@ -69,7 +77,7 @@ class PhotoType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'format' => $this->dateFormatter->guessForForm()
             ])
             ->add(
                 $builder->create('image', FileType::class, [

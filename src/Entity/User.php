@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\CurrencyEnum;
+use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
@@ -103,9 +104,15 @@ class User implements UserInterface, BreadcrumbableInterface
     private $locale;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string")
      */
     protected $timezone;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $dateFormat;
 
     /**
      * @var int
@@ -190,6 +197,7 @@ class User implements UserInterface, BreadcrumbableInterface
         $this->currency = CurrencyEnum::CURRENCY_EUR;
         $this->locale = LocaleEnum::LOCALE_EN;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
+        $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
     }
 
     /**
@@ -727,5 +735,24 @@ class User implements UserInterface, BreadcrumbableInterface
     public function getTimezone() : ?string
     {
         return $this->timezone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateFormat(): string
+    {
+        return $this->dateFormat;
+    }
+
+    /**
+     * @param string $dateFormat
+     * @return User
+     */
+    public function setDateFormat(string $dateFormat) : self
+    {
+        $this->dateFormat = $dateFormat;
+
+        return $this;
     }
 }

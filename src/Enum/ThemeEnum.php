@@ -11,23 +11,23 @@ namespace App\Enum;
  */
 class ThemeEnum
 {
-    const THEME_AUBERGINE = 'aubergine';
-    const THEME_SUNSET = 'sunset';
-    const THEME_TEAL = 'teal';
+    public const THEME_AUBERGINE = 'aubergine';
+    public const THEME_SUNSET = 'sunset';
+    public const THEME_TEAL = 'teal';
 
-    const HUE_MAIN = 'main';
-    const HUE_LIGHT = 'light';
-    const HUE_LIGHTEST = 'lightest';
-    const HUE_DARK = 'dark';
-    const HUE_COMPLEMENTARY = 'complementary';
+    public const HUE_MAIN = 'main';
+    public const HUE_LIGHT = 'light';
+    public const HUE_LIGHTEST = 'lightest';
+    public const HUE_DARK = 'dark';
+    public const HUE_COMPLEMENTARY = 'complementary';
 
-    const THEMES = [
+    public const THEMES = [
         self::THEME_AUBERGINE,
         self::THEME_SUNSET,
         self::THEME_TEAL
     ];
 
-    const THEME_COLORS = [
+    public const THEME_COLORS = [
         self::THEME_AUBERGINE => [
             'main' => '#6c5fc7',
             'lightest' => '#d3bdff',
