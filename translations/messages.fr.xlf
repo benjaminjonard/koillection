@@ -3988,5 +3988,17 @@
         <target>Format de date</target>
       </segment>
     </unit>
+    <unit id="V5iMey4" name="global.optgroup.date_formats.slash">
+      <segment>
+        <source>global.optgroup.date_formats.slash</source>
+        <target>Séparations par des slashs</target>
+      </segment>
+    </unit>
+    <unit id="oYuZ6vx" name="global.optgroup.date_formats.hyphen">
+      <segment>
+        <source>global.optgroup.date_formats.hyphen</source>
+        <target>Séparations par des tirets</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

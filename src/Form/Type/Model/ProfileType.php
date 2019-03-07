@@ -60,7 +60,7 @@ class ProfileType extends AbstractType
                 'required' => true
             ])
             ->add('dateFormat', ChoiceType::class, [
-                'choices' => array_flip(DateFormatEnum::getLabels()),
+                'choices' => DateFormatEnum::getChoicesList(),
                 'required' => true
             ])
         ;
