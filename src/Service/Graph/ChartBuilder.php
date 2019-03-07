@@ -232,7 +232,7 @@ class ChartBuilder
         $total = 0;
         foreach ($result as $row) {
             $date = $row['date']->setTimezone($timezone);
-            $timestamp = (string) $date->format('d/m/Y');
+            $timestamp = (string) $date->format($user->getDateFormat());
             $row['type'] === LogTypeEnum::TYPE_CREATE ? $total++ : $total--;
             $data[$timestamp] = $total;
         }
