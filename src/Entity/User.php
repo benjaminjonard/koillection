@@ -213,6 +213,16 @@ class User implements UserInterface, BreadcrumbableInterface
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
     }
 
+    public function getDateFormatForJs() : string
+    {
+        return DateFormatEnum::MAPPING[$this->dateFormat][DateFormatEnum::CONTEXT_JS];
+    }
+
+    public function getDateFormatForForm() : string
+    {
+        return DateFormatEnum::MAPPING[$this->dateFormat][DateFormatEnum::CONTEXT_FORM];
+    }
+
     /**
      * @return User
      */

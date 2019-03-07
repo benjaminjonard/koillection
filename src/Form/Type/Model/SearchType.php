@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Form\Type\Model;
 
 use App\Model\Search;
-use App\Service\DateFormatter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -27,19 +26,12 @@ class SearchType extends AbstractType
     private $tokenStorage;
 
     /**
-     * @var DateFormatter
-     */
-    private $dateFormatter;
-
-    /**
      * SearchType constructor.
      * @param TokenStorageInterface $tokenStorage
-     * @param DateFormatter $dateFormatter
      */
-    public function __construct(TokenStorageInterface $tokenStorage, DateFormatter $dateFormatter)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->tokenStorage =$tokenStorage;
-        $this->dateFormatter = $dateFormatter;
     }
 
     /**
@@ -60,7 +52,7 @@ class SearchType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->dateFormatter->guessForForm(),
+                'format' => $this->tokenStorage->getToken()->getUser()->getDateFormatForForm()
             ])
             ->add('searchInItems', CheckboxType::class, [
                 'label' => false,

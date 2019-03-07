@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Loan;
-use App\Service\DateFormatter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class LoanType
@@ -20,17 +20,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class LoanType extends AbstractType
 {
     /**
-     * @var DateFormatter
+     * @var TokenStorageInterface
      */
-    private $dateFormatter;
+    private $tokenStorage;
 
     /**
      * LoanType constructor.
-     * @param DateFormatter $dateFormatter
      */
-    public function __construct(DateFormatter $dateFormatter)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
-        $this->dateFormatter = $dateFormatter;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -44,7 +43,7 @@ class LoanType extends AbstractType
                 'required' => true,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->dateFormatter->guessForForm(),
+                'format' => $this->tokenStorage->getToken()->getUser()->getDateFormatForForm(),
             ])
             ->add('lentTo', TextType::class, [
                 'attr' => ['length' => 255],

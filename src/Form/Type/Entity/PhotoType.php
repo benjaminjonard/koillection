@@ -8,7 +8,6 @@ use App\Entity\Album;
 use App\Entity\Photo;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
-use App\Service\DateFormatter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -19,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class PhotoType
@@ -38,21 +38,21 @@ class PhotoType extends AbstractType
     private $fileToMediumTransformer;
 
     /**
-     * @var DateFormatter
+     * @var TokenStorageInterface
      */
-    private $dateFormatter;
+    private $tokenStorage;
 
     /**
      * PhotoType constructor.
      * @param EntityManagerInterface $em
      * @param FileToMediumTransformer $fileToMediumTransformer
-     * @param DateFormatter $dateFormatter
+     * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer, DateFormatter $dateFormatter)
+    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
         $this->fileToMediumTransformer = $fileToMediumTransformer;
-        $this->dateFormatter = $dateFormatter;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -77,7 +77,7 @@ class PhotoType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->dateFormatter->guessForForm()
+                'format' => $this->tokenStorage->getToken()->getUser()->getDateFormatForForm()
             ])
             ->add(
                 $builder->create('image', FileType::class, [
