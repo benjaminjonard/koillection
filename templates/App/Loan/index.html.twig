@@ -47,7 +47,7 @@
                     <tr class="list-element resize-element">
                         <td><a href="{{ path('app_item_show', {'id': loan.item.id}) }}">{{ loan.item.name }}</a></td>
                         <td>{{ loan.lentTo }}</td>
-                        <td>{{ loan.lentAt|date(app.user.dateFormat, app.user.timezone) }}</td>
+                        <td>{{ loan.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         <td>{{ loan.lentAt|timeAgo }}</td>
                         <td>
                             <a class="modal-trigger" href="#delete-{{ loan.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
@@ -76,8 +76,8 @@
                     <tr class="list-element resize-element">
                         <td><a href="{{ path('app_item_show', {'id': returnedItem.item.id}) }}">{{ returnedItem.item.name }}</a></td>
                         <td>{{ returnedItem.lentTo }}</td>
-                        <td>{{ returnedItem.lentAt|date(app.user.dateFormat, app.user.timezone) }}</td>
-                        <td>{{ returnedItem.returnedAt|date(app.user.dateFormat, app.user.timezone) }}</td>
+                        <td>{{ returnedItem.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                        <td>{{ returnedItem.returnedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         <td>{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
                         <td>
                             <a class="modal-trigger" href="#delete-{{ returnedItem.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>

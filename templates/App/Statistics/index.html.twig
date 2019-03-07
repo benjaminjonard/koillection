@@ -30,10 +30,10 @@
     </div>
 
     <div class="statistics-holder"
-         data-theme-main-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}"
-         data-theme-dark-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}"
-         data-theme-light-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}"
-         data-theme-lightest-hue="{{ getThemeColor(app.user.theme, constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}"
+         data-theme-main-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}"
+         data-theme-dark-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}"
+         data-theme-light-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}"
+         data-theme-lightest-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}"
     >
         <div class="content-block calendars">
             <div class="block-element">

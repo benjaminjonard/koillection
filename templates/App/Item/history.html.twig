@@ -20,8 +20,8 @@
                 {% endif %}
             </h1>
             <span>
-            {{ 'global.created_at'|trans({'%date%': item.createdAt|date(app.user.dateFormat, app.user.timezone)}) }}
-                - {{ 'global.updated_at'|trans({'%date%': item.updatedAt ? item.updatedAt|date(app.user.dateFormat, app.user.timezone) : '-'}) }}
+            {{ 'global.created_at'|trans({'%date%': item.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC'))}) }}
+                - {{ 'global.updated_at'|trans({'%date%': item.updatedAt ? item.updatedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) : '-'}) }}
         </span>
         </div>
         <div></div>
