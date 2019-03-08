@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Medium
 {
-    const TYPE_IMAGE = 1;
+    public const TYPE_IMAGE = 1;
 
     /**
      * @var \Ramsey\Uuid\UuidInterface

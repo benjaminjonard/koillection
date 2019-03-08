@@ -1,7 +1,7 @@
 <footer>
-    {{ 'global.created_at'|trans({'%date%': object.createdAt|date('d/m/Y', app.user.timezone)}) }}
+    {{ 'global.created_at'|trans({'%date%': object.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC'))}) }}
     {% if object.updatedAt %}
-        · {{ 'global.updated_at'|trans({'%date%': object.updatedAt|date('d/m/Y', app.user.timezone) }) }}
+        · {{ 'global.updated_at'|trans({'%date%': object.updatedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }) }}
     {% endif %}
 
     · {{ ('global.seen_counter.' ~ class)|trans({'%count%': object.seenCounter + 1}) }}

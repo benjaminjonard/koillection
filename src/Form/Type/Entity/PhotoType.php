@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class PhotoType
@@ -37,14 +38,21 @@ class PhotoType extends AbstractType
     private $fileToMediumTransformer;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
      * PhotoType constructor.
      * @param EntityManagerInterface $em
      * @param FileToMediumTransformer $fileToMediumTransformer
+     * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer)
+    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
         $this->fileToMediumTransformer = $fileToMediumTransformer;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -69,7 +77,7 @@ class PhotoType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'format' => $this->tokenStorage->getToken()->getUser()->getDateFormatForForm()
             ])
             ->add(
                 $builder->create('image', FileType::class, [

@@ -52,8 +52,7 @@ class SearchType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
-                //'view_timezone' => $this->tokenStorage->getToken()->getUser()->getTimezone()
+                'format' => $this->tokenStorage->getToken()->getUser()->getDateFormatForForm()
             ])
             ->add('searchInItems', CheckboxType::class, [
                 'label' => false,

@@ -74,8 +74,7 @@ $(document).ready(function() {
         clear: Translator.trans('btn.clear'),
         close: Translator.trans('btn.close'),
         today: Translator.trans('global.today').substring(0, 3)+'.',
-        format: 'dd/mm/yyyy',
-        formatSubmit: 'yyyy-mm-dd'
+        format: $('#js-date-format').data('jsDateFormat')
     });
 
     //Init tabs
