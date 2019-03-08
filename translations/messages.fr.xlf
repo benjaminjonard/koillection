@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="fr">
   <file id="messages.fr">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -3944,6 +3944,60 @@
       <segment>
         <source>counter.without_number.wishes</source>
         <target>[0,1] souhait| ]1,Inf[ souhaits</target>
+      </segment>
+    </unit>
+    <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
+      <segment>
+        <source>global.date_formats.slash_dmy</source>
+        <target>31/12/1990</target>
+      </segment>
+    </unit>
+    <unit id="ZajD1iq" name="global.date_formats.slash_mdy">
+      <segment>
+        <source>global.date_formats.slash_mdy</source>
+        <target>12/31/1990</target>
+      </segment>
+    </unit>
+    <unit id="YlAUA0n" name="global.date_formats.slash_ymd">
+      <segment>
+        <source>global.date_formats.slash_ymd</source>
+        <target>1990/12/31</target>
+      </segment>
+    </unit>
+    <unit id="bCHcuOE" name="global.date_formats.hyphen_dmy">
+      <segment>
+        <source>global.date_formats.hyphen_dmy</source>
+        <target>31-12-1990</target>
+      </segment>
+    </unit>
+    <unit id="SlR19of" name="global.date_formats.hyphen_mdy">
+      <segment>
+        <source>global.date_formats.hyphen_mdy</source>
+        <target>12-31-1990</target>
+      </segment>
+    </unit>
+    <unit id="_NUVI5O" name="global.date_formats.hyphen_ymd">
+      <segment>
+        <source>global.date_formats.hyphen_ymd</source>
+        <target>1990-12-31</target>
+      </segment>
+    </unit>
+    <unit id="VqbMfZ0" name="label.date_format">
+      <segment>
+        <source>label.date_format</source>
+        <target>Format de date</target>
+      </segment>
+    </unit>
+    <unit id="V5iMey4" name="global.optgroup.date_formats.slash">
+      <segment>
+        <source>global.optgroup.date_formats.slash</source>
+        <target>Séparations par des slashs</target>
+      </segment>
+    </unit>
+    <unit id="oYuZ6vx" name="global.optgroup.date_formats.hyphen">
+      <segment>
+        <source>global.optgroup.date_formats.hyphen</source>
+        <target>Séparations par des tirets</target>
       </segment>
     </unit>
   </file>

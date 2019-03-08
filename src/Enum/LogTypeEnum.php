@@ -11,7 +11,7 @@ namespace App\Enum;
  */
 class LogTypeEnum
 {
-    const TYPE_CREATE = 'create';
-    const TYPE_UPDATE = 'update';
-    const TYPE_DELETE = 'delete';
+    public const TYPE_CREATE = 'create';
+    public const TYPE_UPDATE = 'update';
+    public const TYPE_DELETE = 'delete';
 }

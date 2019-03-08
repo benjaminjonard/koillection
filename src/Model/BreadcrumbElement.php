@@ -11,9 +11,9 @@ namespace App\Model;
  */
 class BreadcrumbElement
 {
-    const TYPE_ROOT = 'root';
-    const TYPE_ENTITY = 'entity';
-    const TYPE_ACTION = 'action';
+    public const TYPE_ROOT = 'root';
+    public const TYPE_ENTITY = 'entity';
+    public const TYPE_ACTION = 'action';
 
     /**
      * @var string
