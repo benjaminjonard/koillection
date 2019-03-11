@@ -49,7 +49,7 @@ class DatumController extends AbstractController
      * @param Collection $collection
      * @return JsonResponse
      */
-    public function loadCommonFields(Collection $collection)
+    public function loadCommonFields(Collection $collection) : JsonResponse
     {
         try {
             $commonFields = [];
@@ -70,7 +70,7 @@ class DatumController extends AbstractController
                     foreach ($commonFields as $cfKey => &$commonField) {
                         $existing = null;
                         foreach ($item->getData() as $datum) {
-                            if ($datum->getLabel() == $commonField['datum']->getLabel()) {
+                            if ($datum->getLabel() === $commonField['datum']->getLabel()) {
                                 $existing = $commonField;
                                 break;
                             }

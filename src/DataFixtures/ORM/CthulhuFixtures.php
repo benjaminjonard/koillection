@@ -211,7 +211,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setFilename($path)
             ->setMimetype($file->getMimeType())
             ->setPath('fixtures/'.$path)
-            ->setSize($file->getSize());
+            ->setSize($file->getSize())
         ;
 
         if ($thumbnailPath) {
