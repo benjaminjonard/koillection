@@ -46,24 +46,26 @@
                     {% block breadcrumb %}{% endblock %}
                 </div>
 
-                <div class="spacer">
-                    <form class="search" name="search" method="post" action="{{ path('app_search_index') }}">
-                        <div>
-                            <input id="search_search" name="search[search]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}">
-                            <input id="search__token" name="search[_token]" value="{{ csrf_token('search') }}" type="hidden">
-                        </div>
-                    </form>
-                </div>
+                {% if app.user %}
+                    <div class="spacer">
+                        <form class="search" name="search" method="post" action="{{ path('app_search_index') }}">
+                            <div>
+                                <input id="search_search" name="search[search]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}">
+                                <input id="search__token" name="search[_token]" value="{{ csrf_token('search') }}" type="hidden">
+                            </div>
+                        </form>
+                    </div>
 
-                <div class="header-profile">
-                    {% if app.user.avatar != null %}
-                        <img class="user-avatar" src="{{ preload(asset(app.user.avatar.path)) }}">
-                    {% else %}
-                        <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
-                    {% endif %}
-                    <span class="down-background"></span>
-                    <i class="fa fa-chevron-down1 fa-fw"></i>
-                </div>
+                    <div class="header-profile">
+                        {% if app.user.avatar != null %}
+                            <img class="user-avatar" src="{{ preload(asset(app.user.avatar.path)) }}">
+                        {% else %}
+                            <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
+                        {% endif %}
+                        <span class="down-background"></span>
+                        <i class="fa fa-chevron-down1 fa-fw"></i>
+                    </div>
+                {% endif %}
             </header>
             <div class="container-fluid container-limited">
                 {% block content %}{% endblock %}

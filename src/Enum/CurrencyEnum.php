@@ -13,12 +13,12 @@ use Symfony\Component\Intl\Intl;
  */
 class CurrencyEnum
 {
-    const CURRENCY_EUR = 'EUR';
-    const CURRENCY_JPY = 'JPY';
-    const CURRENCY_USD = 'USD';
-    const CURRENCY_GBP = 'GBP';
+    public const CURRENCY_EUR = 'EUR';
+    public const CURRENCY_JPY = 'JPY';
+    public const CURRENCY_USD = 'USD';
+    public const CURRENCY_GBP = 'GBP';
 
-    const CURRENCIES = [
+    public const CURRENCIES = [
         self::CURRENCY_EUR,
         self::CURRENCY_JPY,
         self::CURRENCY_USD,

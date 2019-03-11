@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class TagRepository extends EntityRepository
 {
-    const RESULTS_PER_PAGE = 10;
+    private const RESULTS_PER_PAGE = 10;
 
     public function findById(string $id) : ?Tag
     {

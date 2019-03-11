@@ -46,14 +46,20 @@
 
                 <div class="row">
                     <div class="col offset-s1 s5">
+                        {{ form_row(form.timezone, {'label' : 'label.timezone'} ) }}
+                    </div>
+                    <div class="col s5">
+                        {{ form_row(form.dateFormat, {'label' : 'label.date_format'} ) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col offset-s1 s5">
                         {% if app.user.avatar is not null %}
                             {{ form_row(form.image, {'attr': {'src' : app.user.avatar ? app.user.avatar.path : null }}) }}
                         {% else %}
                             {{ form_row(form.image) }}
                         {% endif %}
-                    </div>
-                    <div class="col s5">
-                        {{ form_row(form.timezone, {'label' : 'label.timezone'} ) }}
                     </div>
                 </div>
 
