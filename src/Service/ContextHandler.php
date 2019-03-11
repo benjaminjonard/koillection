@@ -57,7 +57,7 @@ class ContextHandler
 
         $this->environment->addGlobal('context', $this->context);
 
-        if ($this->context == 'user') {
+        if ($this->context === 'user') {
             preg_match("/^\/user\/(\w+)/", $request->getRequestUri(), $matches);
             $this->router->getContext()->setParameter('username', $matches[1]);
         }

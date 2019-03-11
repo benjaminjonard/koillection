@@ -14,6 +14,7 @@ class RandomStringGenerator
     /**
      * @param int $length
      * @return string
+     * @throws \Exception
      */
     public function generateString(int $length = 10) : string
     {
@@ -21,7 +22,7 @@ class RandomStringGenerator
         $string = '';
 
         for ($i = 0; $i < $length; ++$i) {
-            $string .= $chars[mt_rand(0, 61)];
+            $string .= $chars[random_int(0, 61)];
         }
 
         return $string;
