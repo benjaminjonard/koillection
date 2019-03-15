@@ -38,10 +38,12 @@ before-install:
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
-  - git clone -b stable https://github.com/jedisct1/libsodium.git
-  - cd libsodium && sudo ./configure && sudo make check && sudo make install && cd ..
-  - pecl install libsodium
-  - echo "extension=sodium.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - touch .env.local
+  - cat APP_ENV=test >> .env.local
+  - cat APP_DEBUG=0 >> .env.local
+  - cat APP_SECRET=WBp61O25u2ysihh4N4FEGwIOfOrfTU >> .env.local
+  - cat DATABASE_URL="pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3" >> .env.local
+  - cat SHOW_ADMIN_TOOLS=1 >> .env.local
   - SYMFONY_ENV=test composer install -o
   - php bin/console doctrine:database:create --env=test --if-not-exists
   - php bin/console doctrine:schema:create --env=test
