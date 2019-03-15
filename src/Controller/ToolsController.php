@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Collection;
+use App\Entity\Inventory;
 use App\Http\CsvResponse;
 use App\Http\FileResponse;
 use App\Service\DatabaseDumper;
@@ -28,7 +29,9 @@ class ToolsController extends AbstractController
      */
     public function index() : Response
     {
-        return $this->render('App/Tools/index.html.twig', []);
+        return $this->render('App/Tools/index.html.twig', [
+            'inventories' => $this->getDoctrine()->getRepository(Inventory::class)->findAll()
+        ]);
     }
 
     /**

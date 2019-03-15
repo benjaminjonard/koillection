@@ -4000,5 +4000,71 @@
         <target>Hyphen separated</target>
       </segment>
     </unit>
+    <unit id="89rjttf" name="title.inventories">
+      <segment>
+        <source>title.inventories</source>
+        <target>Inventories</target>
+      </segment>
+    </unit>
+    <unit id="W6YfaKo" name="btn.add_inventory">
+      <segment>
+        <source>btn.add_inventory</source>
+        <target>New inventory</target>
+      </segment>
+    </unit>
+    <unit id="v5SWCuI" name="label.created_at">
+      <segment>
+        <source>label.created_at</source>
+        <target>Created at</target>
+      </segment>
+    </unit>
+    <unit id="rimibj4" name="message.inventory_added">
+      <segment>
+        <source>message.inventory_added</source>
+        <target>Inventory %inventory% has been created</target>
+      </segment>
+    </unit>
+    <unit id="_.ADUgd" name="breadcrumb.add_inventory">
+      <segment>
+        <source>breadcrumb.add_inventory</source>
+        <target>Create a new inventory</target>
+      </segment>
+    </unit>
+    <unit id="Wjv..OL" name="menu.inventories">
+      <segment>
+        <source>menu.inventories</source>
+        <target>Inventories</target>
+      </segment>
+    </unit>
+    <unit id="5Tlipav" name="global.all_collections">
+      <segment>
+        <source>global.all_collections</source>
+        <target>All collections</target>
+      </segment>
+    </unit>
+    <unit id="i9VapGy" name="title.add_inventory">
+      <segment>
+        <source>title.add_inventory</source>
+        <target>Create a new inventory</target>
+      </segment>
+    </unit>
+    <unit id="iOJaZ01" name="global.entities.inventory">
+      <segment>
+        <source>global.entities.inventory</source>
+        <target>Inventory</target>
+      </segment>
+    </unit>
+    <unit id="EYnSw0A" name="message.inventory_deleted">
+      <segment>
+        <source>message.inventory_deleted</source>
+        <target>Inventory %inventory% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="O6z2.Zr" name="message.delete.inventory">
+      <segment>
+        <source>message.delete.inventory</source>
+        <target>Are you sure you want to delete this inventory ?</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

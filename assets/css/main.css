@@ -505,3 +505,6 @@ header #search_search {
     background-color: #fff;
     border-bottom: none;
 }
+
+.inventory-collection, .inventory-collection-show {padding: 0 25px!important; margin-top: 20px;}
+.inventory-collection li, .inventory-collection-show li {padding-left: 0px!important;}

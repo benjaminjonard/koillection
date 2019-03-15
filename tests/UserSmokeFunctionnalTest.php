@@ -48,6 +48,9 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         yield ["/history"];
         yield ["/preview"];
         yield ["/user/{{username}}"];
+        yield ["/tools"];
+        yield ["/inventories/add"];
+        yield ["/inventories/{{inventory}}"];
     }
 
     public function isNotFoundUrlProvider()

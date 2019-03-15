@@ -54,6 +54,8 @@ $(document).ready(function() {
         enterDelay: 500,
         outDuration: 100
     });
+    M.Collapsible.init(document.querySelectorAll('.collapsible'));
+
 
     //Init MaterializeCSS datepickers
     M.Datepicker.init(document.querySelectorAll('.datepicker'), {

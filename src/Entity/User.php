@@ -169,6 +169,12 @@ class User implements UserInterface, BreadcrumbableInterface
     private $albums;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Inventory", mappedBy="owner", cascade={"remove"})
+     */
+    private $inventories;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="date", nullable=true)
      */

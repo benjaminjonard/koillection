@@ -1,0 +1,90 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_tools_index', 'trans': 'menu.tools'},
+    {'route': 'app_tools_index', 'trans': 'menu.inventories'}
+], inventory) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% macro recursiveCollection(collection) %}
+    {% import _self as self %}
+    <li>
+        {{ collection.title }}
+
+        {% if collection.children|length %}
+            <ul class="inventory-collection-show">
+                {% for child in collection.children %}
+                    {{ self.recursiveCollection(child) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if collection.items|length %}
+            <ul class="inventory-collection-show">
+                {% for item in collection.items %}
+                    <li>
+                        <p>
+                            <label>
+                                <input type="checkbox" data-id="{{ item.id }}" {{ item.checked ? 'checked' }}>
+                                <span>{{ item.name }}</span>
+                            </label>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% from _self import recursiveCollection %}
+
+{% block content %}
+    <div class="title-block">
+        <h1>
+            {{ inventory.name }}
+        </h1>
+
+        <div></div>
+
+        <div class="btn-holder">
+            <div class="left">
+                <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                    <i class="fa fa-trash fa-fw"></i>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-element">
+            <div class="row">
+                <h5 class="header">{{ 'title.collections'|trans }}</h5>
+                <div class="col s10 offset-s1 m5 offset-m1">
+                    <ul id="inventory-root" class="inventory-collection-show" data-inventory-id="{{ inventory.id }}">
+                        <li>
+                            {% for collection in collections %}
+                                <ul>
+                                    {{ recursiveCollection(collection) }}
+                                </ul>
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block modals %}
+    {% if context == 'default' %}
+        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
+    {% endif %}
+{% endblock %}
