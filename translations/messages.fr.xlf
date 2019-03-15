@@ -4066,5 +4066,23 @@
         <target>Êtes-vous sûr de vouloir supprimer cet inventaire ?</target>
       </segment>
     </unit>
+    <unit id="XVATSGt" name="modal.title.delete">
+      <segment>
+        <source>modal.title.delete</source>
+        <target>Confirmation de la supression</target>
+      </segment>
+    </unit>
+    <unit id="9Vg2S6n" name="modal.title.share">
+      <segment>
+        <source>modal.title.share</source>
+        <target>Lien</target>
+      </segment>
+    </unit>
+    <unit id="J0RnHHK" name="message.share_link">
+      <segment>
+        <source>message.share_link</source>
+        <target>Vous pouvez partager ce lien avec vos amis pour qu'il puisse accéder à cette page (les objets privés seront masqués) :</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

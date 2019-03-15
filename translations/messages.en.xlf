@@ -4066,5 +4066,23 @@
         <target>Are you sure you want to delete this inventory ?</target>
       </segment>
     </unit>
+    <unit id="XVATSGt" name="modal.title.delete">
+      <segment>
+        <source>modal.title.delete</source>
+        <target>Delete confirmation</target>
+      </segment>
+    </unit>
+    <unit id="9Vg2S6n" name="modal.title.share">
+      <segment>
+        <source>modal.title.share</source>
+        <target>Share link</target>
+      </segment>
+    </unit>
+    <unit id="J0RnHHK" name="message.share_link">
+      <segment>
+        <source>message.share_link</source>
+        <target>You can share this link so people can see this page (private items will be hidden) :</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
