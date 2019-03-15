@@ -52,7 +52,7 @@ install:
 # Run script
 script:
    - php bin/console cache:warmup --env=test
-   - DATABASE_URL=$DATABASE_URL php -d memory_limit=512M bin/phpunit.phar --stderr
+   - php -d memory_limit=512M ./bin/phpunit --stderr
 
 
 # After a build, send email notification with the build results
