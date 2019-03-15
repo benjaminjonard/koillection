@@ -39,11 +39,11 @@ before-install:
 # Create database, schema and fixtures
 install:
   - touch .env.local
-  - cat APP_ENV=test >> .env.local
-  - cat APP_DEBUG=0 >> .env.local
-  - cat APP_SECRET=WBp61O25u2ysihh4N4FEGwIOfOrfTU >> .env.local
-  - cat DATABASE_URL="pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3" >> .env.local
-  - cat SHOW_ADMIN_TOOLS=1 >> .env.local
+  - echo "APP_ENV=test" >> .env.local
+  - echo "APP_DEBUG=0" >> .env.local
+  - echo "APP_SECRET=WBp61O25u2ysihh4N4FEGwIOfOrfTU" >> .env.local
+  - echo "DATABASE_URL=pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3" >> .env.local
+  - echo "SHOW_ADMIN_TOOLS=1" >> .env.local
   - SYMFONY_ENV=test composer install -o
   - php bin/console doctrine:database:create --env=test --if-not-exists
   - php bin/console doctrine:schema:create --env=test
