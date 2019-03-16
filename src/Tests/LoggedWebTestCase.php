@@ -6,6 +6,7 @@ namespace App\Tests;
 
 use App\Entity\Album;
 use App\Entity\Collection;
+use App\Entity\Inventory;
 use App\Entity\Item;
 use App\Entity\Photo;
 use App\Entity\Tag;
@@ -87,6 +88,9 @@ class LoggedWebTestCase extends WebTestCase
                     break;
                 case '{{tag}}':
                     $url = str_replace($match[0], $this->getRelationFirstElement(Tag::class), $url);
+                    break;
+                case '{{inventory}}':
+                    $url = str_replace($match[0], $this->getRelationFirstElement(Inventory::class), $url);
                     break;
                 default:
                     break;

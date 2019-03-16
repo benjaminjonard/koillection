@@ -36,5 +36,34 @@
                 <i class="fa fa-archive fa-fw"></i>{{ 'btn.export_images'|trans }}
             </a>
         </div>
+
+        <div class="block-element">
+            <h5 class="header">
+                {{ 'title.inventories'|trans }}
+            </h5>
+            <a href="{{ path('app_inventory_add') }}" class="btn waves-effect waves-light">
+                <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_inventory'|trans }}
+            </a>
+
+            <div>
+                <table class="centered striped">
+                    <thead>
+                    <tr>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.created_at'|trans }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for inventory in inventories %}
+                        <tr class="list-element resize-element">
+                            <td><a href="{{ path('app_inventory_show', {id: inventory.id}) }}">{{ inventory.name }}</a></td>
+                            <td>{{ inventory.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

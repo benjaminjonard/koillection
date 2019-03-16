@@ -72,6 +72,9 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
         yield ["/templates/{{template}}/edit"];
 
         yield ["/settings"];
+        yield ["/tools"];
+        yield ["/inventories/add"];
+        yield ["/inventories/{{inventory}}"];
         yield ["/profile"];
         yield ["/history"];
 

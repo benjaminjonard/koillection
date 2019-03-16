@@ -22,15 +22,6 @@ matrix:
   include:
     - php: 7.2
 
-# Define an environment variable
-env:
-  global:
-    - APP_ENV="test"
-    - APP_DEBUG="0"
-    - APP_SECRET="WBp61O25u2ysihh4N4FEGwIOfOrfTU"
-    - DATABASE_URL="pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3"
-    - SHOW_ADMIN_TOOLS="1"
-
 # Update composer
 before-install:
   - composer self-update
@@ -38,10 +29,12 @@ before-install:
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
-  - git clone -b stable https://github.com/jedisct1/libsodium.git
-  - cd libsodium && sudo ./configure && sudo make check && sudo make install && cd ..
-  - pecl install libsodium
-  - echo "extension=sodium.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - touch .env.local
+  - echo "APP_ENV=test" >> .env.local
+  - echo "APP_DEBUG=0" >> .env.local
+  - echo "APP_SECRET=WBp61O25u2ysihh4N4FEGwIOfOrfTU" >> .env.local
+  - echo "DATABASE_URL=pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3" >> .env.local
+  - echo "SHOW_ADMIN_TOOLS=1" >> .env.local
   - SYMFONY_ENV=test composer install -o
   - php bin/console doctrine:database:create --env=test --if-not-exists
   - php bin/console doctrine:schema:create --env=test
@@ -50,7 +43,7 @@ install:
 # Run script
 script:
    - php bin/console cache:warmup --env=test
-   - DATABASE_URL=$DATABASE_URL php -d memory_limit=512M bin/phpunit.phar --stderr
+   - php -d memory_limit=512M ./bin/phpunit --stderr
 
 
 # After a build, send email notification with the build results

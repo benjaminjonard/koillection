@@ -7,6 +7,7 @@ namespace App\DataFixtures\ORM;
 use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\Field;
+use App\Entity\Inventory;
 use App\Entity\Item;
 use App\Entity\Medium;
 use App\Entity\Photo;
@@ -17,6 +18,7 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
+use App\Service\InventoryHandler;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -29,6 +31,20 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
 {
+    /**
+     * @var InventoryHandler
+     */
+    private $inventoryHandler;
+
+    /**
+     * AnubisFixtures constructor.
+     * @param InventoryHandler $inventoryHandler
+     */
+    public function __construct(InventoryHandler $inventoryHandler)
+    {
+        $this->inventoryHandler = $inventoryHandler;
+    }
+
     public function getOrder()
     {
         return 2;
@@ -102,6 +118,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setImage($this->loadMedium($user, $manager, 'cthulhu/collections/lovecraft/main.png'))
             ->setSeenCounter(0)
         ;
+        $colletionBooks->addChild($collectionLovecraft);
         $manager->persist($collectionLovecraft);
 
         //ITEMS
@@ -116,6 +133,22 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setSeenCounter(0)
         ;
         $manager->persist($itemCthulhu);
+        $collectionLovecraft->addItem($itemCthulhu);
+
+        //Inventory
+        $ids = [];
+        $ids[] = $colletionBooks->getId();
+        $ids[] = $collectionLovecraft->getId();
+
+        $content = $this->inventoryHandler->buildInventory([$colletionBooks, $collectionLovecraft], $ids);
+        $inventory = new Inventory();
+        $inventory
+            ->setName('Inventory')
+            ->setOwner($user)
+            ->setContent(json_encode($content))
+        ;
+
+        $manager->persist($inventory);
     }
 
     /**

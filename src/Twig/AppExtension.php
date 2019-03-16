@@ -106,11 +106,12 @@ class AppExtension extends \Twig_Extension
         }
 
         $element = \count($breadcrumb) === 0 ? $element : array_pop($breadcrumb);
+
         if ($element instanceof BreadcrumbElement) {
             if ($element->getType() === 'action') {
                 $entityElement = array_pop($breadcrumb);
 
-                if ($entityElement instanceof BreadcrumbElement) {
+                if ($entityElement instanceof BreadcrumbElement && $entityElement->getEntity() !== null) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
                     return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel().' · '.$this->translator->trans($element->getLabel());
                 } elseif (strpos($element->getLabel(), 'breadcrumb.') !== false) {

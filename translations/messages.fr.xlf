@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
   <file id="messages.fr">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -3998,6 +3998,90 @@
       <segment>
         <source>global.optgroup.date_formats.hyphen</source>
         <target>Séparations par des tirets</target>
+      </segment>
+    </unit>
+    <unit id="89rjttf" name="title.inventories">
+      <segment>
+        <source>title.inventories</source>
+        <target>Inventaires</target>
+      </segment>
+    </unit>
+    <unit id="W6YfaKo" name="btn.add_inventory">
+      <segment>
+        <source>btn.add_inventory</source>
+        <target>Nouvel inventaire</target>
+      </segment>
+    </unit>
+    <unit id="v5SWCuI" name="label.created_at">
+      <segment>
+        <source>label.created_at</source>
+        <target>Créé le</target>
+      </segment>
+    </unit>
+    <unit id="rimibj4" name="message.inventory_added">
+      <segment>
+        <source>message.inventory_added</source>
+        <target>Inventaire %inventory% a été crée</target>
+      </segment>
+    </unit>
+    <unit id="_.ADUgd" name="breadcrumb.add_inventory">
+      <segment>
+        <source>breadcrumb.add_inventory</source>
+        <target>Créer un nouvel inventaire</target>
+      </segment>
+    </unit>
+    <unit id="Wjv..OL" name="menu.inventories">
+      <segment>
+        <source>menu.inventories</source>
+        <target>Inventaires</target>
+      </segment>
+    </unit>
+    <unit id="5Tlipav" name="global.all_collections">
+      <segment>
+        <source>global.all_collections</source>
+        <target>Toutes les collections</target>
+      </segment>
+    </unit>
+    <unit id="i9VapGy" name="title.add_inventory">
+      <segment>
+        <source>title.add_inventory</source>
+        <target>Créer un nouvel inventaire</target>
+      </segment>
+    </unit>
+    <unit id="iOJaZ01" name="global.entities.inventory">
+      <segment>
+        <source>global.entities.inventory</source>
+        <target>Inventaire</target>
+      </segment>
+    </unit>
+    <unit id="EYnSw0A" name="message.inventory_deleted">
+      <segment>
+        <source>message.inventory_deleted</source>
+        <target>L'inventaire %inventory% a été supprimé</target>
+      </segment>
+    </unit>
+    <unit id="O6z2.Zr" name="message.delete.inventory">
+      <segment>
+        <source>message.delete.inventory</source>
+        <target>Êtes-vous sûr de vouloir supprimer cet inventaire ?</target>
+      </segment>
+    </unit>
+    <unit id="XVATSGt" name="modal.title.delete">
+      <segment>
+        <source>modal.title.delete</source>
+        <target>Confirmation de la supression</target>
+      </segment>
+    </unit>
+    <unit id="9Vg2S6n" name="modal.title.share">
+      <segment>
+        <source>modal.title.share</source>
+        <target>Lien</target>
+      </segment>
+    </unit>
+    <unit id="J0RnHHK" name="message.share_link">
+      <segment>
+        <source>message.share_link</source>
+        <target>Vous pouvez partager ce lien avec vos amis pour qu'il puisse accéder à cette page (les objets privés seront masqués) :</target>
       </segment>
     </unit>
   </file>
