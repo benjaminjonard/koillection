@@ -28,12 +28,22 @@ $('.inventory-collection input[type="checkbox"]').change(function() {
 let inventoryId = $('#inventory-root').data('inventoryId');
 $('.inventory-collection-show input[type="checkbox"]').change(function() {
     let data = {};
+    let $this = $(this);
+    let add = this.checked ? 1 : -1;
+
     data['items'] = {};
     data['items'][$(this).data('id')] = this.checked;
 
     $.post('/inventories/' + inventoryId  + '/check', data)
-        .done(function( data ) {
-
+        .done(function() {
+            let $parents = $this.parents('.inventory-collection-show');
+            console.log($parents);
+            $.each( $parents, function() {
+                let $counter = $(this).find('.js-checked-counter').first();
+                if ($counter.length) {
+                    $counter.html(parseInt($counter.html()) + add);
+                }
+            });
         })
         .fail(function() {
 
