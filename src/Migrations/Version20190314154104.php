@@ -19,7 +19,6 @@ final class Version20190314154104 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN koi_inventory.owner_id IS \'(DC2Type:uuid)\'');
         $this->addSql('ALTER TABLE koi_inventory ADD CONSTRAINT FK_882AFBE67E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE koi_user ALTER date_format DROP DEFAULT');
-        $this->addSql('ALTER TABLE koi_datum ALTER value SET NOT NULL');
     }
 
     public function down(Schema $schema) : void
