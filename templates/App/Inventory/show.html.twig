@@ -16,7 +16,7 @@
 {% macro recursiveCollection(collection) %}
     {% import _self as self %}
     <li>
-        {{ collection.title }}
+        {{ collection.title }} - {{ collection.totalCheckedItems }} / {{ collection.totalItems }}
 
         {% if collection.children|length %}
             <ul class="inventory-collection-show">

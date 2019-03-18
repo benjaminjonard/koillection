@@ -32,6 +32,8 @@ class InventoryHandler
             }
         }
 
+        $content = $this->computeCheckedValues($content);
+
         return $content;
     }
 
@@ -49,7 +51,9 @@ class InventoryHandler
                 'id' => $collection->getId(),
                 'title' => $collection->getTitle(),
                 'children' => [],
-                'items' => []
+                'items' => [],
+                'totalItems' => 0,
+                'totalCheckedItems' => 0
             ];
 
             foreach ($collection->getItems() as $item) {
@@ -58,6 +62,8 @@ class InventoryHandler
                     'name' => $item->getName(),
                     'checked' => false
                 ];
+
+                $element['totalItems']++;
             }
         }
 
@@ -68,10 +74,13 @@ class InventoryHandler
                     $element = [
                         'id' => $collection->getId(),
                         'title' => $collection->getTitle(),
-                        'items' => []
+                        'items' => [],
+                        'totalItems' => 0,
+                        'totalCheckedItems' => 0
                     ];
                 }
 
+                $element['totalItems'] = $element['totalItems'] + $childElement['totalItems'];
                 $element['children'][] = $childElement;
             }
         }
@@ -86,8 +95,36 @@ class InventoryHandler
             $content = preg_replace('/([^.]*{"id":"' . $itemId . '","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
         };
 
-        $inventory->setContent($content);
+        $content = $this->computeCheckedValues(json_decode($content, true));
+        $inventory->setContent(json_encode($content));
 
         return $inventory;
+    }
+
+    private function computeCheckedValues(array $content) : array
+    {
+        foreach ($content as &$collection) {
+            $collection['totalCheckedItems'] = $this->getCheckedItems($collection);
+        }
+
+        return $content;
+    }
+
+    private function getCheckedItems(array &$collection) {
+        $count = 0;
+
+        foreach ($collection['items'] as $item) {
+            if ($item['checked'] === true) {
+                $count++;
+            }
+        }
+
+        foreach ($collection['children'] as &$child) {
+            $count += $this->getCheckedItems($child);
+        }
+
+        $collection['totalCheckedItems'] = $count;
+
+        return $count;
     }
 }
