@@ -506,5 +506,5 @@ header #search_search {
     border-bottom: none;
 }
 
-.inventory-collection, .inventory-collection-show {padding: 0 25px!important; margin-top: 20px;}
-.inventory-collection li, .inventory-collection-show li {padding-left: 0px!important;}
+.inventory-collection, #inventory-root ul {padding: 0 25px!important; margin-top: 20px;}
+.inventory-collection li, .inventory-collection-show {padding-left: 0px!important;}

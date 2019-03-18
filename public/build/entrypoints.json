@@ -2,7 +2,7 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "build/js/app.c891fa46.js"
+        "build/js/app.6071f8b3.js"
       ]
     },
     "js/statistics": {
@@ -12,7 +12,7 @@
     },
     "css/app": {
       "css": [
-        "build/css/app.b64183f3.css"
+        "build/css/app.bf3cfcc2.css"
       ]
     },
     "css/themes/aubergine": {
