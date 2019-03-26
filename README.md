@@ -8,7 +8,9 @@
     <img src="https://img.shields.io/github/license/koillection/koillection.svg" />
     <img src="https://img.shields.io/github/release/koillection/koillection.svg" />
     <img src="https://img.shields.io/scrutinizer/g/koillection/koillection.svg" />
-    <img src="https://img.shields.io/travis/koillection/koillection/master.svg" />
+    <img src="https://img.shields.io/travis/koillection/koillection/master.svg" />    
+</p>
+<p align="center">
     <img src="https://gistcdn.githack.com/benjaminjonard/f11f75ee0b19a252d43a27d615f98ccc/raw/99a0d62eaa118a9973855eaf123d9447686a1774/ppm-badge.svg" />
 </p>
 
