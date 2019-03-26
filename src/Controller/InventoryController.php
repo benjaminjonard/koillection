@@ -79,7 +79,7 @@ class InventoryController extends AbstractController
      */
     public function check(Request $request, Inventory $inventory, InventoryHandler $inventoryHandler) : Response
     {
-        $inventory = $inventoryHandler->setCheckedValues($inventory, $request->request->get('items', []));
+        $inventoryHandler->setCheckedValues($inventory, $request->request->get('items', []));
         $this->getDoctrine()->getManager()->flush();
 
         return new JsonResponse(true);

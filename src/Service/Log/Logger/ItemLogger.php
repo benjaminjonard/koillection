@@ -177,12 +177,10 @@ class ItemLogger extends Logger
                 return $this->translator->trans('log.item.tag_added', [
                     '%tag%' => "<strong>".$payload['tag_label']."</strong>"
                 ]);
-                break;
             case 'tag_removed':
                 return $this->translator->trans('log.item.tag_removed', [
                     '%tag%' => "<strong>".$payload['tag_label']."</strong>"
                 ]);
-                break;
             case 'datum_added':
                 switch ($payload['datum_type']) {
                     case DatumTypeEnum::TYPE_IMAGE:

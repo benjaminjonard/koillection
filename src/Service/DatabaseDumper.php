@@ -44,6 +44,7 @@ class DatabaseDumper
     public function dump() : array
     {
         $connection = $this->em->getConnection();
+        $rows = [];
 
         //Disable foreign keys
         $rows[] = 'SET session_replication_role = replica;'.PHP_EOL.PHP_EOL;
