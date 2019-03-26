@@ -33,8 +33,8 @@ class ActivityListener
      */
     public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $em)
     {
-        $this->tokenStorage= $tokenStorage;
-        $this->em= $em;
+        $this->tokenStorage = $tokenStorage;
+        $this->em = $em;
     }
 
     /**

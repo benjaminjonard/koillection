@@ -53,7 +53,7 @@ class ImageHandler
         $this->rsg = $rsg;
         $this->tg = $tg;
         $this->tokenStorage = $tokenStorage;
-        $this->publicPath = __DIR__ . '/../../public';
+        $this->publicPath = __DIR__.'/../../public';
     }
 
     /**

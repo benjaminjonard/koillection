@@ -40,7 +40,7 @@ class DiskUsageCalculator
     {
         $this->translator = $translator;
         $this->em = $em;
-        $this->publicPath = __DIR__ . '/../../public';
+        $this->publicPath = __DIR__.'/../../public';
     }
 
     /**

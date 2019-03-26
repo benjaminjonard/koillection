@@ -31,7 +31,7 @@ class SearchType extends AbstractType
      */
     public function __construct(TokenStorageInterface $tokenStorage)
     {
-        $this->tokenStorage =$tokenStorage;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**

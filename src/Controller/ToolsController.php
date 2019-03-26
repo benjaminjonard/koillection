@@ -65,7 +65,7 @@ class ToolsController extends AbstractController
             }
         }
 
-        return new CsvResponse($rows, (new \DateTime())->format('Ymd') . '-koillection-export.csv');
+        return new CsvResponse($rows, (new \DateTime())->format('Ymd').'-koillection-export.csv');
     }
 
     /**
@@ -77,7 +77,7 @@ class ToolsController extends AbstractController
      */
     public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
     {
-        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('Ymd') . '-koillection-export.sql');
+        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('Ymd').'-koillection-export.sql');
     }
 
     /**
@@ -88,8 +88,8 @@ class ToolsController extends AbstractController
     public function exportImages() : StreamedResponse
     {
         $response = new StreamedResponse(function() {
-            $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-export.zip';
-            $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $this->getUser()->getId();
+            $zipFilename = (new \DateTime())->format('Ymd').'-koillection-export.zip';
+            $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$this->getUser()->getId();
 
             $zip = new ZipStream($zipFilename);
 
@@ -101,7 +101,7 @@ class ToolsController extends AbstractController
             }
 
             $zip->finish();
-        }) ;
+        });
 
         $response->headers->set('X-Accel-Buffering', 'no');
 
