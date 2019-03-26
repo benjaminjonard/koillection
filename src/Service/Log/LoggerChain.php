@@ -29,7 +29,7 @@ class LoggerChain
     /**
      * @param $function
      * @param array $params
-     * @return Log|string|null
+     * @return Log|null
      */
     private function getLoggerResponse($function, array $params)
     {

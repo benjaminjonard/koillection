@@ -10,7 +10,6 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
-use App\Service\Graph\ChartBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +30,7 @@ class AdminController extends AbstractController
      *
      * @return Response
      */
-    public function index(ChartBuilder $chartBuilder) : Response
+    public function index() : Response
     {
         $em = $this->getDoctrine()->getManager();
 
