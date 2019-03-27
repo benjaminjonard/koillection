@@ -7,6 +7,7 @@
 <p align="center">
     <img src="https://img.shields.io/github/license/koillection/koillection.svg" />
     <img src="https://img.shields.io/github/release/koillection/koillection.svg" />
+    <img src="https://img.shields.io/packagist/php-v/koillection/koillection.svg" />    
     <img src="https://img.shields.io/scrutinizer/g/koillection/koillection.svg" />
     <img src="https://img.shields.io/travis/koillection/koillection/master.svg" />    
 </p>
