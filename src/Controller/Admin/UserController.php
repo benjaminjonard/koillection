@@ -94,24 +94,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/recompute-disk-usage", name="app_admin_user_recompute_disk_usage", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param User $user
-     * @param DiskUsageCalculator $diskUsageCalculator
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
-    public function recomputeDiskUsage(User $user, DiskUsageCalculator $diskUsageCalculator, TranslatorInterface $translator) : Response
-    {
-        $user->setDiskSpaceUsed($diskUsageCalculator->getSpaceUsedByUser($user));
-        $this->getDoctrine()->getManager()->flush();
-
-        $this->addFlash('notice', $translator->trans('message.done'));
-
-        return $this->redirectToRoute('app_admin_user_index');
-    }
-
-    /**
      * @Route("/{id}/delete", name="app_admin_user_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "DELETE"})
      *
      * @param User $user

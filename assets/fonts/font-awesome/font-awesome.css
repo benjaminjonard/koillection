@@ -2,9 +2,9 @@
   font-family: 'font-awesome';
   src:  url('./font-awesome.eot?7ha2vg');
   src:  url('./font-awesome.eot?7ha2vg#iefix') format('embedded-opentype'),
-    url('./font-awesome.ttf?7ha2vg') format('truetype'),
-    url('./font-awesome.woff?7ha2vg') format('woff'),
-    url('./font-awesome.svg?7ha2vg#font-awesome') format('svg');
+  url('./font-awesome.ttf?7ha2vg') format('truetype'),
+  url('./font-awesome.woff?7ha2vg') format('woff'),
+  url('./font-awesome.svg?7ha2vg#font-awesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -140,9 +140,6 @@
 }
 .fa-history:before {
   content: "\f1da";
-}
-.fa-calculator:before {
-  content: "\f1ec";
 }
 .fa-trash:before {
   content: "\f1f8";

@@ -48,5 +48,16 @@
                 <div class="col s2"><div class="counter">{{ totalSpaceUsed|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
             </div>
         </div>
+
+        <div class="block-element">
+            <h5 class="header">{{ 'title.tools'|trans }}</h5>
+            <div class="row">
+                <div class="col s2">
+                    <a href="{{ path('app_admin_clean') }}" class="btn waves-effect waves-light">
+                        <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
