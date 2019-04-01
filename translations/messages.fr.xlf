@@ -492,15 +492,6 @@
         <target>Détails</target>
       </segment>
     </unit>
-    <unit id="Z1gXdci" name="tooltip.recompute_disk_space">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:53</note>
-      </notes>
-      <segment>
-        <source>tooltip.recompute_disk_space</source>
-        <target>Recalculer l'espace disk</target>
-      </segment>
-    </unit>
     <unit id="ZckcCop" name="btn.search">
       <notes>
         <note category="file-source" priority="1">templates/App/Search/index.html.twig:30</note>
@@ -4082,6 +4073,24 @@
       <segment>
         <source>message.share_link</source>
         <target>Vous pouvez partager ce lien avec vos amis pour qu'il puisse accéder à cette page (les objets privés seront masqués) :</target>
+      </segment>
+    </unit>
+    <unit id="qnAM2jd" name="title.tools">
+      <segment>
+        <source>title.tools</source>
+        <target>Outils</target>
+      </segment>
+    </unit>
+    <unit id="MS8NCN6" name="btn.clean_unused_files ">
+      <segment>
+        <source>btn.clean_unused_files </source>
+        <target>Nettoyer les fichiers non utilisés</target>
+      </segment>
+    </unit>
+    <unit id="xGPqLcT" name="message.files_deleted">
+      <segment>
+        <source>message.files_deleted</source>
+        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichier supprimés</target>
       </segment>
     </unit>
   </file>

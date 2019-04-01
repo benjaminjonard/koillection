@@ -69,7 +69,7 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var Medium
-     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"})
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
     protected $avatar;
 

@@ -55,9 +55,6 @@
                                 <a title="{{ 'tooltip.edit'|trans }}" href="{{ path('app_admin_user_edit', {id : user.id}) }}">
                                     <i class="fa fa-pencil fa-fw"></i>
                                 </a>
-                                <a title="{{ 'tooltip.recompute_disk_space'|trans }}" href="{{ path('app_admin_user_recompute_disk_usage', {id : user.id}) }}">
-                                    <i class="fa fa-calculator fa-fw"></i>
-                                </a>
                                 {% if false == user.isAdmin() %}
                                     <a title="{{ 'tooltip.delete'|trans }}" href="{{ path('app_admin_user_delete', {id : user.id}) }}">
                                         <i class="fa fa-trash fa-fw"></i>
