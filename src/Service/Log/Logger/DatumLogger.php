@@ -102,11 +102,6 @@ class DatumLogger extends Logger
             return null;
         }
 
-        //If the item was just deleted, we log nothing more
-        if ($this->logQueue->find($datum->getItem()->getId(), Item::class, LogTypeEnum::TYPE_DELETE)) {
-            return null;
-        }
-
         $log = $this->logQueue->find($datum->getItem()->getId(), Item::class, LogTypeEnum::TYPE_UPDATE);
         if (!$log) {
             $log = $this->createLog(LogTypeEnum::TYPE_UPDATE, $datum->getItem());

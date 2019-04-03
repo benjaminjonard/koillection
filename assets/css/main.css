@@ -508,3 +508,4 @@ header #search_search {
 
 .inventory-collection, #inventory-root ul {padding: 0 25px!important; margin-top: 20px;}
 .inventory-collection li, .inventory-collection-show {padding-left: 0px!important;}
+.deleted {color: #9e9e9e;}

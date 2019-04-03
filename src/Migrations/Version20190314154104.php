@@ -9,6 +9,11 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20190314154104 extends AbstractMigration
 {
+    public function getDescription() : string
+    {
+        return 'Create `koi_inventory` table.';
+    }
+
     public function up(Schema $schema) : void
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');

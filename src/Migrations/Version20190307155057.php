@@ -10,6 +10,11 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20190307155057 extends AbstractMigration
 {
+    public function getDescription() : string
+    {
+        return 'Add `date_format` property to `koi_user`.';
+    }
+
     public function up(Schema $schema) : void
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
