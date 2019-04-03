@@ -11,7 +11,7 @@ final class Version20181205142026 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add `visibility` property to `koi_datum` and set it to the parent item visibility.';
+        return 'Add `visibility` property to `koi_datum`.';
     }
 
     public function up(Schema $schema) : void

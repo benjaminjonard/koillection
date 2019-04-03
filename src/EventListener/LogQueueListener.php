@@ -47,12 +47,19 @@ class LogQueueListener
     {
         if ($this->logQueue->isQueueProcessable() && !empty($this->logQueue->getLogs()) && $this->em->isOpen()) {
             $deletedIds = [];
-
-            //Persist all logs
             foreach ($this->logQueue->getLogs() as $log) {
-                $this->em->persist($log);
                 if ($log->getType() === LogTypeEnum::TYPE_DELETE) {
                     $deletedIds[] = $log->getObjectId();
+                }
+            }
+
+            //Persist logs
+            foreach ($this->logQueue->getLogs() as $log) {
+                if (
+                    $log->getType() === LogTypeEnum::TYPE_DELETE ||
+                    ($log->getType() !== LogTypeEnum::TYPE_DELETE && !in_array($log->getObjectId(), $deletedIds)))
+                {
+                    $this->em->persist($log);
                 }
             }
 
