@@ -56,6 +56,12 @@ class Log
     private $objectClass;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", options={"default": 0})
+     */
+    private $objectDeleted;
+
+    /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
@@ -70,6 +76,7 @@ class Log
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->objectDeleted = false;
     }
 
     /**
@@ -243,5 +250,24 @@ class Log
     public function getObjectLabel()
     {
         return $this->objectLabel;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isObjectDeleted(): bool
+    {
+        return $this->objectDeleted;
+    }
+
+    /**
+     * @param bool $objectDeleted
+     * @return Log
+     */
+    public function setObjectDeleted(bool $objectDeleted) : self
+    {
+        $this->objectDeleted = $objectDeleted;
+
+        return $this;
     }
 }

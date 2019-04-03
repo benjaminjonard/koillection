@@ -9,6 +9,11 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20181205142026 extends AbstractMigration
 {
+    public function getDescription() : string
+    {
+        return 'Add `visibility` property to `koi_datum` and set it to the parent item visibility.';
+    }
+
     public function up(Schema $schema) : void
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
