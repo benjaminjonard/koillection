@@ -8,6 +8,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "ext-gd": "*",
+        "ext-fileinfo": "*",
         "maennchen/zipstream-php": "^0.5.2",
         "php-http/curl-client": "^1.7",
         "ramsey/uuid-doctrine": "^1.5",

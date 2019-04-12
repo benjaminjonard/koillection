@@ -12,7 +12,7 @@
         <div class="btn btn-image col s10 offset-s1 m5">
             <span>{{ 'label.browse'|trans }}</span>
         </div>
-        <input type="file" {{ block('widget_attributes') }} class="has-preview hidden"/>
+        <input type="file" {{ block('widget_attributes') }} class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"/>
         {% if attr.src is defined and attr.src is not null and attr.src != '' %}
             <img class="preview-image pull-right" src="{{ preload(asset(attr.src)) }}" />
         {% else %}

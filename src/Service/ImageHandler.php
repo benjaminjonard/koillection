@@ -59,6 +59,7 @@ class ImageHandler
     /**
      * @param Medium $medium
      * @return int
+     * @throws \Exception
      */
     public function upload(Medium $medium) : int
     {
@@ -84,7 +85,7 @@ class ImageHandler
 
         if ($medium->getMustGenerateAThumbnail()) {
             $medium->setThumbnailPath($path.$generatedName.'_small.'.$extension);
-            $this->tg->generateThumbnail($this->publicPath.'/'.$medium->getPath(), $this->publicPath.'/'.$medium->getThumbnailPath());
+            $this->tg->generateThumbnail($this->publicPath.'/'.$medium->getPath(), $this->publicPath.'/'.$medium->getThumbnailPath(), 150);
             $medium->setThumbnailSize(filesize($this->publicPath.'/'.$medium->getThumbnailPath()));
             $sizeUsed += $medium->getThumbnailSize();
         }
