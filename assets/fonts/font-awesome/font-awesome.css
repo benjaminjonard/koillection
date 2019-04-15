@@ -159,3 +159,9 @@
 .fa-warning:before {
   content: "\f071";
 }
+.fa-floppy-o:before {
+  content: "\f0c7";
+}
+.fa-save:before {
+  content: "\f0c7";
+}

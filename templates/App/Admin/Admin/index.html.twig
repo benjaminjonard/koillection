@@ -52,11 +52,12 @@
         <div class="block-element">
             <h5 class="header">{{ 'title.tools'|trans }}</h5>
             <div class="row">
-                <div class="col s2">
-                    <a href="{{ path('app_admin_clean') }}" class="btn waves-effect waves-light">
-                        <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
-                    </a>
-                </div>
+                <a href="{{ path('app_admin_clean') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
+                </a>
+                <a href="{{ path('app_admin_backup') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-save fa-fw"></i>{{ 'btn.backup'|trans }}
+                </a>
             </div>
         </div>
     </div>

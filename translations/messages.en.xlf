@@ -4093,5 +4093,11 @@
         <target>{0} %count% files deleted| {1} %count% file deleted| ]1,Inf[ %count% files deleted</target>
       </segment>
     </unit>
+    <unit id="p6vgwuI" name="btn.backup">
+      <segment>
+        <source>btn.backup</source>
+        <target>Backup (images and database)</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

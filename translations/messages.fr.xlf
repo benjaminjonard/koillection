@@ -4093,5 +4093,11 @@
         <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichier supprimés</target>
       </segment>
     </unit>
+    <unit id="p6vgwuI" name="btn.backup">
+      <segment>
+        <source>btn.backup</source>
+        <target>Sauvegarde (images et base de données)</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

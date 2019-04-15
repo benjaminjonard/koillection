@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\User;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,14 +28,21 @@ class DatabaseDumper
     protected $tokenStorage;
 
     /**
+     * @var ContextHandler
+     */
+    protected $contextHandler;
+
+    /**
      * DatabaseDumper constructor.
      * @param EntityManagerInterface $em
      * @param TokenStorageInterface $tokenStorage
+     * @param ContextHandler $contextHandler
      */
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, ContextHandler $contextHandler)
     {
         $this->em = $em;
         $this->tokenStorage = $tokenStorage;
+        $this->contextHandler = $contextHandler;
     }
 
     /**
@@ -53,24 +61,33 @@ class DatabaseDumper
         $rows += $this->dumpSchema($connection);
 
         //Data
-        $userId = $this->tokenStorage->getToken()->getUser()->getId();
+        $userIds = [];
+        if ($this->contextHandler->getContext() !== 'admin') {
+            $userIds[] = "'" . $this->tokenStorage->getToken()->getUser()->getId() . "'";
+        } else {
+            foreach ($this->em->getRepository(User::class)->findAll() as $user) {
+                $userIds[] = "'" . $user->getId() . "'";
+            };
+        }
+        $userIds = implode(',', $userIds);
+
         $selects = [
             "SELECT * FROM doctrine_migration_version",
-            "SELECT * FROM koi_user WHERE id = '$userId'",
-            "SELECT * FROM koi_medium WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_log WHERE user_id = '$userId'",
-            "SELECT * FROM koi_collection WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_item WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_datum WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_loan WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_tag WHERE owner_id = '$userId'",
-            "SELECT it.* FROM koi_item_tag it LEFT JOIN koi_item i ON it.item_id = i.id WHERE i.owner_id = '$userId'",
-            "SELECT * FROM koi_template WHERE owner_id = '$userId'",
-            "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id = '$userId'",
-            "SELECT * FROM koi_wishlist WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_wish WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_album WHERE owner_id = '$userId'",
-            "SELECT * FROM koi_photo WHERE owner_id = '$userId'",
+            "SELECT * FROM koi_user WHERE id IN ($userIds)",
+            "SELECT * FROM koi_medium WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_log WHERE user_id IN ($userIds)",
+            "SELECT * FROM koi_collection WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_item WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_datum WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_loan WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_tag WHERE owner_id IN ($userIds)",
+            "SELECT it.* FROM koi_item_tag it LEFT JOIN koi_item i ON it.item_id = i.id WHERE i.owner_id IN ($userIds)",
+            "SELECT * FROM koi_template WHERE owner_id IN ($userIds)",
+            "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id IN ($userIds)",
+            "SELECT * FROM koi_wishlist WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_wish WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_album WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_photo WHERE owner_id IN ($userIds)",
         ];
 
         foreach ($selects as $select) {

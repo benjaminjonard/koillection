@@ -6,17 +6,20 @@ namespace App\Controller\Admin;
 
 use App\Entity\Collection;
 use App\Entity\Item;
-use App\Entity\Medium;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
+use App\Http\FileResponse;
+use App\Service\DatabaseDumper;
 use App\Service\DiskUsageCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use ZipStream\ZipStream;
 
 /**
  * Class AdminController
@@ -99,5 +102,45 @@ class AdminController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('app_admin_index');
+    }
+
+    /**
+     * @Route("/backup", name="app_admin_backup", methods={"GET"})
+     *
+     * @param DatabaseDumper $databaseDumper
+     * @return StreamedResponse
+     */
+    public function backup(DatabaseDumper $databaseDumper) : StreamedResponse
+    {
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $response = new StreamedResponse(function() use ($databaseDumper, $users)  {
+            $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-backup.zip';
+            $zip = new ZipStream($zipFilename);
+
+            foreach ($users as $user) {
+                $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $user->getId();
+
+                $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
+                foreach ($files as $name => $file) {
+                    if (!$file->isDir()) {
+                        $zip->addFileFromStream('/public/uploads/'. $user->getId() . '/' . $file->getFilename(), fopen($file->getRealPath(), 'r'));
+                    }
+                }
+            }
+
+            $fh = fopen('php://memory', 'r+');
+            foreach ($databaseDumper->dump() as $row) {
+                fwrite($fh, $row);
+            }
+            rewind($fh);
+            $zip->addFileFromStream((new \DateTime())->format('Ymd') . '-koillection-export.sql', $fh);
+            fclose($fh);
+
+            $zip->finish();
+        });
+
+        $response->headers->set('X-Accel-Buffering', 'no');
+
+        return $response;
     }
 }
