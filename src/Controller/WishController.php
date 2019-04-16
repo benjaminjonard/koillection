@@ -173,7 +173,6 @@ class WishController extends AbstractController
             'form' => $form->createView(),
             'item' => $item,
             'wish' => $wish,
-            'data' => $itemHelper->formatData($item->getData()),
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
         ]);
     }

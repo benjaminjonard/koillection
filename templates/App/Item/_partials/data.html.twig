@@ -1,0 +1,18 @@
+<div id="additionnalFields">
+    {% set iteration = 0 %}
+    <div id="data" class="data-holder block-element hidden">
+        <h6 class="header">{{ 'title.data'|trans }}</h6>
+        {% for datum in data if datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT')]) %}
+            {{ include('App/Datum/' ~ datum.type ~'.html.twig', {datum: datum, iteration: iteration}) }}
+            {% set iteration = iteration + 1 %}
+        {% endfor %}
+    </div>
+
+    <div id="item-images" class="data-holder block-element hidden">
+        <h6 class="header">{{ 'title.item_images'|trans }}</h6>
+        {% for datum in data if datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE'), constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN')]) %}
+            {{ include('App/Datum/' ~ datum.type ~'.html.twig', {datum: datum, iteration: iteration}) }}
+            {% set iteration = iteration + 1 %}
+        {% endfor %}
+    </div>
+</div>

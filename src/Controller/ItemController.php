@@ -83,8 +83,8 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/add.html.twig', [
             'form' => $form->createView(),
+            'item' => $item,
             'collection' => $collection,
-            'data' => $itemHelper->formatData($item->getData()),
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
         ]);
     }
@@ -132,7 +132,6 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/edit.html.twig', [
             'form' => $form->createView(),
-            'data' => $itemHelper->formatData($item->getData()),
             'item' => $item,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
         ]);
