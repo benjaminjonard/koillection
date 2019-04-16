@@ -6,7 +6,7 @@ namespace App\Twig;
 
 use App\Entity\Tag;
 use App\Model\BreadcrumbElement;
-use App\Service\ItemHelper;
+use App\Service\ItemNameGuesser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;

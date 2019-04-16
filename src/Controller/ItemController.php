@@ -12,7 +12,7 @@ use App\Entity\Tag;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
-use App\Service\ItemHelper;
+use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,22 +33,16 @@ class ItemController extends AbstractController
      *
      * @param Request $request
      * @param TranslatorInterface $translator
-     * @param ItemHelper $itemHelper
+     * @param ItemNameGuesser $itemNameGuesser
      * @return Response
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
      */
-    public function add(Request $request, TranslatorInterface $translator, ItemHelper $itemHelper) : Response
+    public function add(Request $request, TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         $collection = null;
         if ($request->query->has('collection')) {
-            $collection = $em->getRepository(Collection::class)->findOneBy([
-                'id' => $request->query->get('collection'),
-                'owner' => $this->getUser()
-            ]);
+            $collection = $em->getRepository(Collection::class)->findWithItems($request->query->get('collection'));
         }
 
         if (!$collection) {
@@ -62,8 +56,10 @@ class ItemController extends AbstractController
         ;
 
         //Preload tags shared by all items in that collection
+        $suggestedName = null;
         if ($request->isMethod('GET')) {
             $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
+            $suggestedName = $itemNameGuesser->guess($item);
         }
 
         $form = $this->createForm(ItemType::class, $item);
@@ -86,6 +82,7 @@ class ItemController extends AbstractController
             'item' => $item,
             'collection' => $collection,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
+            'suggestedNames' => [$suggestedName]
         ]);
     }
 
@@ -116,10 +113,9 @@ class ItemController extends AbstractController
      * @param Request $request
      * @param Item $item
      * @param TranslatorInterface $translator
-     * @param ItemHelper $itemHelper
      * @return Response
      */
-    public function edit(Request $request, Item $item, TranslatorInterface $translator, ItemHelper $itemHelper) : Response
+    public function edit(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);

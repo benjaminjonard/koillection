@@ -24,6 +24,13 @@
                     <h5 class="header">{{ 'title.infos'|trans }}</h5>
                     <div class="col s10 offset-s1 m5 offset-m1">
                         {{ form_row(form.name, {'label' : 'label.name'}) }}
+                        {% if suggestedNames is not empty %}
+                            {{ 'label.suggestions'|trans }}
+                            {% for suggestion in suggestedNames %}
+                                <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
+                                {{ not loop.last ? ',' }}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="col s10 offset-s1 m5 offset-m0">
                         {{ form_row(form.image) }}

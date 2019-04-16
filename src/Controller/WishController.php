@@ -11,7 +11,7 @@ use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
-use App\Service\ItemHelper;
+use App\Service\ItemNameGuesser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -124,10 +124,10 @@ class WishController extends AbstractController
      * @param Request $request
      * @param Wish $wish
      * @param TranslatorInterface $translator
-     * @param ItemHelper $itemHelper
+     * @param ItemNameGuesser $itemHelper
      * @return Response
      */
-    public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator, ItemHelper $itemHelper) : Response
+    public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator) : Response
     {
         $item = new Item();
         $item

@@ -79,6 +79,25 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
+     * @param $id
+     * @return Collection|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findWithItems($id) : ?Collection
+    {
+        return $this
+            ->createQueryBuilder('c')
+            ->leftJoin('c.items', 'i')
+            ->addSelect('i')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+
+    /**
      * @return array
      */
     public function findAllWithItems() : array
