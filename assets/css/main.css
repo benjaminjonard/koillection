@@ -208,11 +208,6 @@ li.list-element .list-content {width: 80%; display: inline-block;}
 .setting-input {float: left;}
 .setting-input label {color :#000;}
 
-.theme-previews {margin-top: 17px; margin-left: 10px;}
-.theme-preview {display: inline-block; width: 20px; height: 20px;}
-.preview-label {margin-left: 10px;}
-.theme .preview-label {margin-top: 13px;}
-
 .theme-preview.teal.lighter {background-color: #80cbc4 !important;}
 .theme-preview.teal.light {background-color: #1ab0a2 !important;}
 .theme-preview.teal.medium {background-color: #009688 !important;}

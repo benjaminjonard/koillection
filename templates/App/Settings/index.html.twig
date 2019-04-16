@@ -90,17 +90,11 @@
 
             <div class="block-element col s10 offset-s1 m3 offset-m1">
                 <h5 class="header">{{ 'title.currency'|trans }}</h5>
-                {% for code, currency in currencies %}
-                    <div class="currency">
-                        <p class="setting-input">
-                            <label>
-                                <input id="{{ code }}" class="input-currency-{{ code }} with-gap" type="radio" name="currency" value="{{ code }}" {% if app.user.currency == code %}checked{% endif %}/>
-                                <span>{{ currency }}</span>
-                            </label>
-                        </p>
-                    </div>
-                    <div class="clearfix"></div>
-                {% endfor %}
+                <select id="currency">
+                    {% for code, currency in currencies %}
+                        <option id="{{ code }}" class="input-currency-{{ code }}" value="{{ code }}" {{ app.user.currency == code ? 'selected' }}>{{ currency }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
     </div>

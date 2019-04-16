@@ -54,6 +54,7 @@ class WishController extends AbstractController
         $wish
             ->setWishlist($wishlist)
             ->setVisibility($wishlist->getVisibility())
+            ->setCurrency($this->getUser()->getCurrency())
         ;
 
         $form = $this->createForm(WishType::class, $wish);

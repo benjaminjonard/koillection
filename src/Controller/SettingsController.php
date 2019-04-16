@@ -27,17 +27,15 @@ class SettingsController extends AbstractController
     /**
      * @Route("", name="app_settings_index", methods={"GET"})
      *
-     * @param ThemeEnum $themeEnum
-     * @param LocaleEnum $localeEnum
-     * @param CurrencyEnum $currencyEnum
      * @return Response
+     * @throws \ReflectionException
      */
-    public function index(ThemeEnum $themeEnum, LocaleEnum $localeEnum, CurrencyEnum $currencyEnum) : Response
+    public function index() : Response
     {
         return $this->render('App/Settings/index.html.twig', [
-            'themes' => $themeEnum->getThemeLabels(),
-            'locales' => $localeEnum->getLocaleLabels(),
-            'currencies' => $currencyEnum->getCurrencyLabels(),
+            'themes' => ThemeEnum::getThemeLabels(),
+            'locales' => LocaleEnum::getLocaleLabels(),
+            'currencies' => CurrencyEnum::getCurrencyLabels(),
             'visibilities' => VisibilityEnum::VISIBILITIES_TRANS_KEYS,
         ]);
     }

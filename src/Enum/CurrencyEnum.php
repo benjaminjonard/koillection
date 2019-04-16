@@ -13,26 +13,21 @@ use Symfony\Component\Intl\Intl;
  */
 class CurrencyEnum
 {
-    public const CURRENCY_EUR = 'EUR';
-    public const CURRENCY_JPY = 'JPY';
-    public const CURRENCY_USD = 'USD';
-    public const CURRENCY_GBP = 'GBP';
-
-    public const CURRENCIES = [
-        self::CURRENCY_EUR,
-        self::CURRENCY_JPY,
-        self::CURRENCY_USD,
-        self::CURRENCY_GBP
-    ];
-
     /**
      * @return array
      */
     public static function getCurrencyLabels() : array
     {
         $currencies = [];
-        foreach (self::CURRENCIES as $code) {
-            $currencies[$code] = Intl::getCurrencyBundle()->getCurrencySymbol($code).' ('.$code.')';
+        foreach ( Intl::getCurrencyBundle()->getCurrencyNames() as $code => $name) {
+            if (!strpos($name, '(')) {
+                $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($code);
+                if ($symbol === $code) {
+                    $currencies[$code] = ucwords($name) . " ($code)";
+                } else {
+                    $currencies[$code] = ucwords($name) . " $symbol ($code)";
+                }
+            }
         }
 
         return $currencies;

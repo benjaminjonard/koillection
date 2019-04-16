@@ -32,11 +32,6 @@ class WishType extends AbstractType
     private $em;
 
     /**
-     * @var CurrencyEnum
-     */
-    private $currencyEnum;
-
-    /**
      * @var FileToMediumTransformer
      */
     private $fileToMediumTransformer;
@@ -44,19 +39,18 @@ class WishType extends AbstractType
     /**
      * WishType constructor.
      * @param EntityManagerInterface $em
-     * @param CurrencyEnum $currencyEnum
      * @param FileToMediumTransformer $fileToMediumTransformer
      */
-    public function __construct(EntityManagerInterface $em, CurrencyEnum $currencyEnum, FileToMediumTransformer $fileToMediumTransformer)
+    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer)
     {
         $this->em = $em;
-        $this->currencyEnum = $currencyEnum;
         $this->fileToMediumTransformer = $fileToMediumTransformer;
     }
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
+     * @throws \ReflectionException
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -72,7 +66,7 @@ class WishType extends AbstractType
                 'required' => false,
             ])
             ->add('currency', ChoiceType::class, [
-                'choices' => array_flip($this->currencyEnum::getCurrencyLabels()),
+                'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
                 'expanded' => false,
                 'multiple' => false,
                 'required' => false,

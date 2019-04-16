@@ -13,7 +13,7 @@ $('input[type=radio][name=locale]').change(function() {
     window.location.href = '/settings/set-locale/' + $(this).val();
 });
 
-$('input[type=radio][name=currency]').change(function() {
+$('#currency').change(function() {
     $.post('/settings/set-currency/' + $(this).val())
         .done(function( data ) {
 
