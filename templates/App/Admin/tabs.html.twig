@@ -10,7 +10,7 @@
                 <span>{{ 'tab.users'|trans }}</span>
             </a>
         </li>
-        {% if showAdminTools() == true %}
+        {% if app.environment == 'dev' %}
             <li class="tab {{ current == "trans" ? 'current' }}">
                 <a href="{{ path('translation_index') }}">
                     <span>{{ 'tab.translations'|trans }}</span>

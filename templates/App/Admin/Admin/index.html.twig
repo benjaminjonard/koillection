@@ -38,7 +38,7 @@
                         <div>{{ 'label.space_free'|trans({'%free%' : freeSpace|bytes}) }}</div>
                     </div>
                 </div>
-                <div class="col s2"><div class="counter">{{ getVersion() }}</div>{{ 'label.version'|trans }}</div>
+                <div class="col s2"><div class="counter">{{ version }}</div>{{ 'label.version'|trans }}</div>
                 <div class="col s2"><div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'%count%': counters.users}) }}</div>
                 <div class="col s2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}</div>
                 <div class="col s2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}</div>
