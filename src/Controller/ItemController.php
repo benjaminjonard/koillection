@@ -56,10 +56,10 @@ class ItemController extends AbstractController
         ;
 
         //Preload tags shared by all items in that collection
-        $suggestedName = null;
+        $suggestedNames = [];
         if ($request->isMethod('GET')) {
             $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
-            $suggestedName = $itemNameGuesser->guess($item);
+            $suggestedNames[] = $itemNameGuesser->guess($item);
         }
 
         $form = $this->createForm(ItemType::class, $item);
@@ -82,7 +82,7 @@ class ItemController extends AbstractController
             'item' => $item,
             'collection' => $collection,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
-            'suggestedNames' => [$suggestedName]
+            'suggestedNames' => $suggestedNames
         ]);
     }
 
