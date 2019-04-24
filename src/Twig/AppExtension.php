@@ -10,6 +10,8 @@ use App\Service\ItemNameGuesser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Class AppExtension
@@ -53,9 +55,9 @@ class AppExtension extends \Twig_Extension
     public function getFilters() : array
     {
         return [
-            new \Twig_SimpleFilter('safeContent', [$this, 'safeContent'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('bytes', [$this, 'bytes']),
-            new \Twig_SimpleFilter('highlightTags', [$this, 'highlightTags'], ['is_safe' => ['html']])
+            new TwigFilter('safeContent', [$this, 'safeContent'], ['is_safe' => ['html']]),
+            new TwigFilter('bytes', [$this, 'bytes']),
+            new TwigFilter('highlightTags', [$this, 'highlightTags'], ['is_safe' => ['html']])
         ];
     }
 
@@ -65,7 +67,7 @@ class AppExtension extends \Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new \Twig_SimpleFunction('renderTitle', [$this, 'renderTitle'])
+            new TwigFunction('renderTitle', [$this, 'renderTitle'])
         ];
     }
 

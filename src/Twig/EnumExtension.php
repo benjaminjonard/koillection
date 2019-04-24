@@ -8,6 +8,7 @@ use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
+use Twig\TwigFunction;
 
 /**
  * Class EnumExtension
@@ -22,11 +23,11 @@ class EnumExtension extends \Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new \Twig_SimpleFunction('getCurrencySymbol', [$this, 'getCurrencySymbol']),
-            new \Twig_SimpleFunction('getRoleLabel', [$this, 'getRoleLabel']),
-            new \Twig_SimpleFunction('getLocales', [$this, 'getLocales']),
-            new \Twig_SimpleFunction('getLocaleLabel', [$this, 'getLocaleLabel']),
-            new \Twig_SimpleFunction('getThemeColor', [$this, 'getThemeColor']),
+            new TwigFunction('getCurrencySymbol', [$this, 'getCurrencySymbol']),
+            new TwigFunction('getRoleLabel', [$this, 'getRoleLabel']),
+            new TwigFunction('getLocales', [$this, 'getLocales']),
+            new TwigFunction('getLocaleLabel', [$this, 'getLocaleLabel']),
+            new TwigFunction('getThemeColor', [$this, 'getThemeColor']),
         ];
     }
 

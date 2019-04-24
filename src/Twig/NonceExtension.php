@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Security\NonceGenerator;
+use Twig\TwigFunction;
 
 /**
  * Class NonceExtension
@@ -33,7 +34,7 @@ class NonceExtension extends \Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new \Twig_SimpleFunction('csp_nonce', [$this, 'getNonce']),
+            new TwigFunction('csp_nonce', [$this, 'getNonce']),
         ];
     }
 

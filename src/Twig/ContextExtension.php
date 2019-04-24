@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Service\ContextHandler;
+use Twig\TwigFilter;
 
 /**
  * Class ContextExtension
@@ -33,8 +34,8 @@ class ContextExtension extends \Twig_Extension
     public function getFilters() : array
     {
         return [
-            new \Twig_SimpleFilter('applyContext', [$this, 'applyContext']),
-            new \Twig_SimpleFilter('applyContextTrans', [$this, 'applyContextTrans'])
+            new TwigFilter('applyContext', [$this, 'applyContext']),
+            new TwigFilter('applyContextTrans', [$this, 'applyContextTrans'])
         ];
     }
 

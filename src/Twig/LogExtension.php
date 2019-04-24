@@ -9,6 +9,7 @@ use App\Enum\LogTypeEnum;
 use App\Service\Log\LoggerChain;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\TwigFunction;
 
 /**
  * Class LogExtension
@@ -50,7 +51,7 @@ class LogExtension extends \Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new \Twig_SimpleFunction('getLogMessages', [$this, 'getLogMessages']),
+            new TwigFunction('getLogMessages', [$this, 'getLogMessages']),
         ];
     }
 

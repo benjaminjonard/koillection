@@ -7,6 +7,7 @@ namespace App\Twig;
 use App\Entity\User;
 use App\Model\BreadcrumbElement;
 use App\Service\BreadcrumbBuilder;
+use Twig\TwigFunction;
 
 /**
  * Class BreadcrumbExtension
@@ -21,7 +22,7 @@ class FooterExtension extends \Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new \Twig_SimpleFunction('renderFooter', [$this, 'renderFooter'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction('renderFooter', [$this, 'renderFooter'], ['needs_environment' => true, 'is_safe' => ['html']]),
         ];
     }
 

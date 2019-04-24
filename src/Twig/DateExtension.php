@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\TwigFilter;
 
 /**
  * Class DateExtension
@@ -33,9 +34,9 @@ class DateExtension extends \Twig_Extension
     public function getFilters() : array
     {
         return [
-            new \Twig_SimpleFilter('timeAgo', [$this, 'timeAgo']),
-            new \Twig_SimpleFilter('timeDiff', [$this, 'timeDiff']),
-            new \Twig_SimpleFilter('dateAgo', [$this, 'dateAgo'])
+            new TwigFilter('timeAgo', [$this, 'timeAgo']),
+            new TwigFilter('timeDiff', [$this, 'timeDiff']),
+            new TwigFilter('dateAgo', [$this, 'dateAgo'])
         ];
     }
 

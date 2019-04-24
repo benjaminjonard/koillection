@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use Twig\TwigFilter;
+
 /**
  * Class ArrayExtension
  *
@@ -17,10 +19,10 @@ class ArrayExtension extends \Twig_Extension
     public function getFilters() : array
     {
         return [
-            new \Twig_SimpleFilter('add', [$this, 'add']),
-            new \Twig_SimpleFilter('remove', [$this, 'remove']),
-            new \Twig_SimpleFilter('reorder', [$this, 'reorder']),
-            new \Twig_SimpleFilter('naturalSorting', [$this, 'naturalSorting']),
+            new TwigFilter('add', [$this, 'add']),
+            new TwigFilter('remove', [$this, 'remove']),
+            new TwigFilter('reorder', [$this, 'reorder']),
+            new TwigFilter('naturalSorting', [$this, 'naturalSorting']),
         ];
     }
 

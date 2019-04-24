@@ -7,6 +7,7 @@ namespace App\Twig;
 use App\Entity\User;
 use App\Model\BreadcrumbElement;
 use App\Service\BreadcrumbBuilder;
+use Twig\TwigFunction;
 
 /**
  * Class BreadcrumbExtension
@@ -35,8 +36,8 @@ class BreadcrumbExtension extends \Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new \Twig_SimpleFunction('buildBreadcrumb', [$this, 'buildBreadcrumb']),
-            new \Twig_SimpleFunction('renderBreadcrumb', [$this, 'renderBreadcrumb'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction('buildBreadcrumb', [$this, 'buildBreadcrumb']),
+            new TwigFunction('renderBreadcrumb', [$this, 'renderBreadcrumb'], ['needs_environment' => true, 'is_safe' => ['html']]),
         ];
     }
 
