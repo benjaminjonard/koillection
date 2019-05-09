@@ -37,12 +37,13 @@
         "willdurand/negotiation": "^2.3"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "php-translation/symfony-bundle": "^0.8.1",
         "roave/security-advisories": "dev-master",
-        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*"
+        "symfony/test-pack": "*",
+        "vimeo/psalm": "^3.2"
     },
     "config": {
         "preferred-install": {
