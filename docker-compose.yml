@@ -1,6 +1,8 @@
+#This docker-compose file is provided for dev purposes
 version: '3'
 
 services:
+    #FPM image
     koillection:
         image: koillection/koillection:latest
         restart: always
@@ -13,6 +15,22 @@ services:
         volumes:
             - "./docker/volumes/koillection/public/uploads:/koillection/public/uploads"
             - .:/koillection
+
+    #PPM image
+    #koillection:
+    #    image: koillection/koillection-ppm:latest
+    #    restart: always
+    #    command: --debug=1 --app-env=dev --static-directory=public/
+    #    ports:
+    #        - 80:80
+    #    environment:
+    #        - DATABASE_URL=pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4
+    #    depends_on:
+    #        - postgres
+    #    volumes:
+    #        - "./docker/volumes/koillection/public/uploads:/koillection/public/uploads"
+    #        - .:/koillection
+    #        - "./docker/php/php.ini:/etc/php7/php.ini"
 
     postgres:
         container_name: postgres

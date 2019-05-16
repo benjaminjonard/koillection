@@ -14,7 +14,7 @@ phpunit.xml
 ###< symfony/framework-bundle ###
 .php_cs.cache
 
-/docker/*
+/docker/volumes/*
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
