@@ -1,10 +1,4 @@
 {
-    "amphp/amp": {
-        "version": "v2.1.1"
-    },
-    "amphp/byte-stream": {
-        "version": "v1.5.1"
-    },
     "clue/stream-filter": {
         "version": "v1.4.0"
     },
@@ -117,12 +111,6 @@
     "facebook/webdriver": {
         "version": "1.6.0"
     },
-    "felixfbecker/advanced-json-rpc": {
-        "version": "v3.0.3"
-    },
-    "felixfbecker/language-server-protocol": {
-        "version": "v1.2.0"
-    },
     "fig/link-util": {
         "version": "1.0.0"
     },
@@ -135,12 +123,6 @@
     "monolog/monolog": {
         "version": "1.24.0"
     },
-    "muglug/package-versions-56": {
-        "version": "1.2.4"
-    },
-    "netresearch/jsonmapper": {
-        "version": "v1.4.0"
-    },
     "nikic/php-parser": {
         "version": "v4.2.1"
     },
@@ -152,9 +134,6 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
-    },
-    "openlss/lib-array2xml": {
-        "version": "0.5.1"
     },
     "php-http/curl-client": {
         "version": "v1.7.1"
@@ -206,9 +185,6 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
-    },
-    "phpmyadmin/sql-parser": {
-        "version": "v4.3.1"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -591,17 +567,8 @@
     "twig/twig": {
         "version": "v2.6.2"
     },
-    "vimeo/psalm": {
-        "version": "3.2.9"
-    },
     "webmozart/assert": {
         "version": "1.4.0"
-    },
-    "webmozart/glob": {
-        "version": "4.1.0"
-    },
-    "webmozart/path-util": {
-        "version": "2.3.0"
     },
     "willdurand/js-translation-bundle": {
         "version": "2.0",

@@ -42,8 +42,7 @@
         "roave/security-advisories": "dev-master",
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*",
-        "vimeo/psalm": "^3.2"
+        "symfony/test-pack": "*"
     },
     "config": {
         "preferred-install": {
