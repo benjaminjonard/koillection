@@ -37,7 +37,7 @@ class ItemNameGuesser
      * @param Item $item
      * @return string|null
      */
-    public function guess(Item &$item) : ?string
+    public function guess(Item &$item) : ?array
     {
         $collection = $item->getCollection();
         if ($collection === null || $collection->getItems()->count() < 1) {
@@ -61,6 +61,6 @@ class ItemNameGuesser
             }
         }
 
-        return implode($highestValue + 1, $patternParts);
+        return [implode($highestValue + 1, $patternParts)];
     }
 }
