@@ -9,8 +9,6 @@ use App\Enum\DateFormatEnum;
 use App\Form\DataTransformer\Base64ToMediumTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -51,11 +49,6 @@ class ProfileType extends AbstractType
                     'property_path' => 'avatar'
                 ])->addModelTransformer($this->base64ToMediumTransformer)
             )
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'label' => false,
-                'required' => false,
-            ])
             ->add('timezone', TimezoneType::class, [
                 'required' => true
             ])

@@ -4099,5 +4099,17 @@
         <target>Sauvegarde (images et base de données)</target>
       </segment>
     </unit>
+    <unit id="FU6pwX." name="message.password_updated">
+      <segment>
+        <source>message.password_updated</source>
+        <target>Le mot de passe a été mis à jour</target>
+      </segment>
+    </unit>
+    <unit id="0ifTRc0" name="title.update_password">
+      <segment>
+        <source>title.update_password</source>
+        <target>Changer le mot de passe</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

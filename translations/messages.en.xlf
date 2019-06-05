@@ -4099,5 +4099,17 @@
         <target>Backup (images and database)</target>
       </segment>
     </unit>
+    <unit id="0ifTRc0" name="title.update_password">
+      <segment>
+        <source>title.update_password</source>
+        <target>Change Password</target>
+      </segment>
+    </unit>
+    <unit id="FU6pwX." name="message.password_updated">
+      <segment>
+        <source>message.password_updated</source>
+        <target>Password has been updated</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
