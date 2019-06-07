@@ -3421,16 +3421,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.2.0",
+            "version": "v1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "7f04fb50c5da6d020e4df743b4c764c188bb24bf"
+                "reference": "5ed49091eb73f912dd23dab92bf07c0180cfb009"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/7f04fb50c5da6d020e4df743b4c764c188bb24bf",
-                "reference": "7f04fb50c5da6d020e4df743b4c764c188bb24bf",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/5ed49091eb73f912dd23dab92bf07c0180cfb009",
+                "reference": "5ed49091eb73f912dd23dab92bf07c0180cfb009",
                 "shasum": ""
             },
             "require": {
@@ -3466,7 +3466,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2019-02-21T11:31:25+00:00"
+            "time": "2019-06-05T14:26:30+00:00"
         },
         {
             "name": "symfony/form",
