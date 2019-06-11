@@ -82,7 +82,9 @@ class InventoryController extends AbstractController
         $inventoryHandler->setCheckedValues($inventory, $request->request->get('items', []));
         $this->getDoctrine()->getManager()->flush();
 
-        return new JsonResponse(true);
+        return new JsonResponse([
+            'htmlForNavPills' => $this->render('App/Inventory/_partials/nav-pills.html.twig', ['inventory' => $inventory])->getContent()
+        ]);
     }
 
     /**
@@ -94,8 +96,7 @@ class InventoryController extends AbstractController
     public function show(Inventory $inventory) : Response
     {
         return $this->render('App/Inventory/show.html.twig', [
-            'inventory' => $inventory,
-            'collections' => json_decode($inventory->getContent(), true)
+            'inventory' => $inventory
         ]);
     }
 }

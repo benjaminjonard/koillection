@@ -4111,5 +4111,29 @@
         <target>Changer le mot de passe</target>
       </segment>
     </unit>
+    <unit id="8iRfcsb" name="label.completion">
+      <segment>
+        <source>label.completion</source>
+        <target>Avancement</target>
+      </segment>
+    </unit>
+    <unit id="IxgpiDC" name="counter.total_items">
+      <segment>
+        <source>counter.total_items</source>
+        <target>[0,1] %count% objet| ]1,Inf[ %count% objets</target>
+      </segment>
+    </unit>
+    <unit id="EZsGAxN" name="counter.checked_items">
+      <segment>
+        <source>counter.checked_items</source>
+        <target>[0,1] %count% objet coché| ]1,Inf[ %count% objets cochés</target>
+      </segment>
+    </unit>
+    <unit id="gVjxaJZ" name="label.completion_rate">
+      <segment>
+        <source>label.completion_rate</source>
+        <target>Terminé à %rate%%</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

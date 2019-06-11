@@ -38,6 +38,11 @@ class Inventory implements BreadcrumbableInterface
     private $content;
 
     /**
+     * @var array
+     */
+    private $contentAsArray;
+
+    /**
      * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="inventories")
      */
@@ -66,6 +71,41 @@ class Inventory implements BreadcrumbableInterface
     public function __toString(): string
     {
         return $this->getName() ?? '';
+    }
+
+    public function getContentAsArray()
+    {
+        if ($this->contentAsArray) {
+            return $this->contentAsArray;
+        }
+
+        $this->contentAsArray = json_decode($this->content, true);
+
+        return $this->contentAsArray;
+    }
+
+    public function getCheckedItemsCount()
+    {
+        $content = $this->getContentAsArray();
+        $checkedItems = 0;
+
+        foreach ($content as $rootCollection) {
+            $checkedItems += $rootCollection['totalCheckedItems'];
+        }
+
+        return $checkedItems;
+    }
+
+    public function getTotalItemsCount()
+    {
+        $content = $this->getContentAsArray();
+        $totalItems = 0;
+
+        foreach ($content as $rootCollection) {
+            $totalItems += $rootCollection['totalItems'];
+        }
+
+        return $totalItems;
     }
 
     /**

@@ -50,6 +50,8 @@
                     <thead>
                     <tr>
                         <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.number_of_items'|trans }}</th>
+                        <th>{{ 'label.completion'|trans }}</th>
                         <th>{{ 'label.created_at'|trans }}</th>
                     </tr>
                     </thead>
@@ -58,6 +60,8 @@
                     {% for inventory in inventories %}
                         <tr class="list-element resize-element">
                             <td><a href="{{ path('app_inventory_show', {id: inventory.id}) }}">{{ inventory.name }}</a></td>
+                            <td>{{ inventory.totalItemsCount }}</td>
+                            <td>{{ ((inventory.checkedItemsCount*100)/inventory.totalItemsCount)|round(2) }} %</td>
                             <td>{{ inventory.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         </tr>
                     {% endfor %}
