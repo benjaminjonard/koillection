@@ -501,7 +501,7 @@ header #search_search {
     border-bottom: none;
 }
 
-.inventory-collection, #inventory-root ul {padding: 0 25px!important; margin-top: 20px;}
+.inventory-collection, #inventory-root ul {padding: 0 0 0 25px!important; margin-top: 20px;}
 .inventory-collection li, .inventory-collection-show {padding-left: 0px!important;}
 #inventory-root {margin-left: -80px; margin-right: -80px;}
 .deleted {color: #9e9e9e;}

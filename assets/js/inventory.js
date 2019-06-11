@@ -52,6 +52,15 @@ $('.inventory-collection-show input[type="checkbox"]').change(function() {
                 let totalCounter = parseInt($(this).find('.js-total-counter').first().html());
                 let newRate = (newValue*100)/totalCounter;
                 $rate.html(Math.round(newRate*100) / 100);
+
+                $title = $(this).find('.card-panel').first();
+                if (totalCounter === newValue) {
+                    $title.removeClass('red lighten-4');
+                    $title.addClass('green lighten-4');
+                } else {
+                    $title.removeClass('green lighten-4');
+                    $title.addClass('red lighten-4');
+                }
             });
         })
         .fail(function() {
