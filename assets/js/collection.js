@@ -9,6 +9,12 @@ var $croppie = $('#cropArea').croppie({
     }
 });
 
+/* Removes alt on preview image, causes a bug in Firefox */
+$croppie.find('.cr-image').attr('alt', '');
+/* Add crosshair to cropper */
+$croppie.find('.cr-vp-circle').addClass('fa fa-plus fa-fw');
+
+
 function readFile(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

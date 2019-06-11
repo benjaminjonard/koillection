@@ -505,3 +505,5 @@ header #search_search {
 .inventory-collection li, .inventory-collection-show {padding-left: 0px!important;}
 #inventory-root {margin-left: -80px; margin-right: -80px;}
 .deleted {color: #9e9e9e;}
+
+.cr-vp-circle.fa::before {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-shadow: 0 0 3px #fff;}
