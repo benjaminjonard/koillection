@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "App/macros.html.twig" as macros %}
+{% import "macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_album_index', 'trans': 'menu.albums'}], album) %}
 
@@ -86,10 +86,10 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
-        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
+        {{ include('App/_partials/modal-share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
+        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
         {% for photo in album.photos %}
-            {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': url('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
+            {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': url('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}

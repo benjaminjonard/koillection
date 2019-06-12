@@ -1,4 +1,4 @@
-{% import "App/macros.html.twig" as macros %}
+{% import "macros.html.twig" as macros %}
 
 <div class="collection-element element" data-title="{{ collection.title }}">
     <a class="collection-circle-thumbnail" href="{{ path('app_collection_show'|applyContext, {'id': collection.id}) }}" aria-label="{{ 'aria.collection'|trans({'%title%': collection.title}) }}">

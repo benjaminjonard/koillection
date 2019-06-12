@@ -40,7 +40,7 @@ class FooterExtension extends \Twig_Extension
             $class = \get_class($object);
             $class = strtolower(substr($class, strrpos($class, '\\') + 1));
 
-            return $environment->render('App/footer.html.twig', [
+            return $environment->render('App/_partials/footer.html.twig', [
                 'object' => $object,
                 'class' => $class
             ]);

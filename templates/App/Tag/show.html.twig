@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "App/macros.html.twig" as macros %}
+{% import "macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}], tag) %}
 
@@ -98,8 +98,8 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/share.html.twig', {'entity': tag, 'route': url('app_user_tag_show', {id: tag.id, username: app.user.username})}) }}
-        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_tag_delete', {id: tag.id}), transKey: 'message.delete.tag'}) }}
+        {{ include('App/_partials/modal-share.html.twig', {'entity': tag, 'route': url('app_user_tag_show', {id: tag.id, username: app.user.username})}) }}
+        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_tag_delete', {id: tag.id}), transKey: 'message.delete.tag'}) }}
     {% endif %}
 {% endblock %}
 

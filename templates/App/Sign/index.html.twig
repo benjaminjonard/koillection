@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "App/macros.html.twig" as macros %}
+{% import "macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_sign_index', 'trans': 'menu.signs'}]) %}
 
@@ -39,7 +39,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/share.html.twig', {'route': url('app_user_sign_index', {username: app.user.username})}) }}
+        {{ include('App/_partials/modal-share.html.twig', {'route': url('app_user_sign_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 

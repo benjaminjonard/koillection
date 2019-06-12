@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.fa-chevron-up:before {
+  content: "\e900";
+}
 .fa-plus:before {
   content: "\f067";
 }
@@ -149,9 +152,6 @@
 }
 .fa-clone:before {
   content: "\f24d";
-}
-.fa-chevron-down1:before {
-  content: "\f079";
 }
 .fa-exclamation-triangle:before {
   content: "\f071";

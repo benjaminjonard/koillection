@@ -100,7 +100,7 @@ class BreadcrumbExtension extends \Twig_Extension
      */
     public function renderBreadcrumb(\Twig_Environment $environment, array $breadcrumb)
     {
-        return $environment->render('Breadcrumb/breadcrumb-base.html.twig', [
+        return $environment->render('App/_partials/breadcrumb-base.html.twig', [
             'breadcrumb' => $breadcrumb,
         ]);
     }

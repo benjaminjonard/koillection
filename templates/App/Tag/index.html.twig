@@ -59,14 +59,14 @@
                     {% endfor %}
                 </tbody>
             </table>
-            {{ include('App/pagination.html.twig', {paginator: paginator}) }}
+            {{ include('App/_partials/pagination.html.twig', {paginator: paginator}) }}
         </div>
     </div>
 {% endblock %}
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/share.html.twig', {'route': url('app_user_tag_index', {username: app.user.username})}) }}
+        {{ include('App/_partials/modal-share.html.twig', {'route': url('app_user_tag_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 

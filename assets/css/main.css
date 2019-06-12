@@ -407,8 +407,8 @@ html.loading:before {
 
 .header-profile {flex: 0 0 auto; height: 50px; cursor: pointer; margin-right: 10px; margin-top: auto; margin-bottom: auto;}
 .header-profile .user-avatar {height: 50px; width: 50px; border-radius: 50%; box-shadow: 0 1px 2px 0 rgba(60,64,67,.302),0 1px 3px 1px rgba(60,64,67,.149)}
-.header-profile .fa-chevron-down1::before {bottom: 62px; left: 25px; position: relative; color: #fff}
-.header-profile .fa-chevron-down1 {font-size: 13px;}
+.header-profile .fa-chevron-down::before {bottom: 62px; left: 25px; position: relative; color: #fff}
+.header-profile .fa-chevron-down {font-size: 13px;}
 .header-profile .down-background {width: 21px; height: 21px; background-color: #009688; display: block; border-radius: 50%; position: relative; bottom: 40px; left: 40px;}
 .user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 33px;}
 

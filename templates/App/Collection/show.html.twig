@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "App/macros.html.twig" as macros %}
+{% import "macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection) %}
 
@@ -74,7 +74,7 @@
                 <h5 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h5>
                 <div class="collections grid-container-collections">
                     {% for child in children|naturalSorting %}
-                        {{ include('App/Collection/partials/collection.html.twig', {'collection': child}) }}
+                        {{ include('App/Collection/_partials/collection.html.twig', {'collection': child}) }}
                     {% endfor %}
                 </div>
             </div>
@@ -104,8 +104,8 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
-        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
+        {{ include('App/_partials/modal-share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
+        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
     {% endif %}
 {% endblock %}
 

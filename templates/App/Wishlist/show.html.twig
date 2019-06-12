@@ -63,7 +63,7 @@
             <div class="block-element">
                 <h5 class="header">{{ 'title.wishlist_children'|trans }}</h5>
                 <div class="collections grid-container-collections">
-                    {{ include('App/Wishlist/partials/list.html.twig', {'wishlists': wishlist.children}) }}
+                    {{ include('App/Wishlist/_partials/list.html.twig', {'wishlists': wishlist.children}) }}
                 </div>
             </div>
         {% endif %}
@@ -129,10 +129,10 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
-        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
+        {{ include('App/_partials/modal-share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
+        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
         {% for wish in wishlist.wishes %}
-            {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
+            {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}

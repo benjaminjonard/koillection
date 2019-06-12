@@ -58,6 +58,6 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/share.html.twig', {'route': url('app_user_album_index', {username: app.user.username})}) }}
+        {{ include('App/_partials/modal-share.html.twig', {'route': url('app_user_album_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}

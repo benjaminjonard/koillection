@@ -16,7 +16,7 @@
             <div class="scrollable">
                 <div class="nav-wrapper">
                     <ul class="nav nav-sidebar">
-                        {% include 'Nav/' ~ context ~ '.html.twig' %}
+                        {% include 'App/_partials/nav-' ~ context ~ '.html.twig' %}
                     </ul>
                 </div>
 
@@ -63,7 +63,7 @@
                             <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
                         {% endif %}
                         <span class="down-background"></span>
-                        <i class="fa fa-chevron-down1 fa-fw"></i>
+                        <i class="fa fa-chevron-down fa-fw"></i>
                     </div>
                 {% endif %}
             </header>
