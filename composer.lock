@@ -5428,7 +5428,7 @@
         },
         {
             "name": "symfony/web-link",
-            "version": "v4.2.4",
+            "version": "v4.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-link.git",
