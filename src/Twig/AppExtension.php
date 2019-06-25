@@ -10,6 +10,7 @@ use App\Service\ItemNameGuesser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
@@ -18,7 +19,7 @@ use Twig\TwigFunction;
  *
  * @package App\Twig
  */
-class AppExtension extends \Twig_Extension
+class AppExtension extends AbstractExtension
 {
     /**
      * @var TranslatorInterface

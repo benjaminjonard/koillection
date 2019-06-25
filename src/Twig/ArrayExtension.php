@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 /**
@@ -11,7 +12,7 @@ use Twig\TwigFilter;
  *
  * @package App\Twig
  */
-class ArrayExtension extends \Twig_Extension
+class ArrayExtension extends AbstractExtension
 {
     /**
      * @return array

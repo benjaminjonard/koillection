@@ -8,6 +8,7 @@ use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
@@ -15,7 +16,7 @@ use Twig\TwigFunction;
  *
  * @package App\Twig
  */
-class EnumExtension extends \Twig_Extension
+class EnumExtension extends AbstractExtension
 {
     /**
      * @return array

@@ -9,6 +9,7 @@ use App\Enum\LogTypeEnum;
 use App\Service\Log\LoggerChain;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
@@ -16,7 +17,7 @@ use Twig\TwigFunction;
  *
  * @package App\Twig
  */
-class LogExtension extends \Twig_Extension
+class LogExtension extends AbstractExtension
 {
     /**
      * @var TranslatorInterface

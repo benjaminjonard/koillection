@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\Entity\User;
-use App\Model\BreadcrumbElement;
-use App\Service\BreadcrumbBuilder;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
@@ -14,7 +12,7 @@ use Twig\TwigFunction;
  *
  * @package App\Twig
  */
-class FooterExtension extends \Twig_Extension
+class FooterExtension extends AbstractExtension
 {
     /**
      * @return array

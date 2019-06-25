@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Service\ContextHandler;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 /**
@@ -12,7 +13,7 @@ use Twig\TwigFilter;
  *
  * @package App\Twig
  */
-class ContextExtension extends \Twig_Extension
+class ContextExtension extends AbstractExtension
 {
     /**
      * @var ContextHandler

@@ -7,6 +7,7 @@ namespace App\Twig;
 use App\Entity\User;
 use App\Model\BreadcrumbElement;
 use App\Service\BreadcrumbBuilder;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
@@ -14,7 +15,7 @@ use Twig\TwigFunction;
  *
  * @package App\Twig
  */
-class BreadcrumbExtension extends \Twig_Extension
+class BreadcrumbExtension extends AbstractExtension
 {
     /**
      * @var BreadcrumbBuilder

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Security\NonceGenerator;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
@@ -12,7 +13,7 @@ use Twig\TwigFunction;
  *
  * @package App\Twig
  */
-class NonceExtension extends \Twig_Extension
+class NonceExtension extends AbstractExtension
 {
     /**
      * @var NonceGenerator

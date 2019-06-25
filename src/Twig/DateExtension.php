@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 /**
@@ -12,7 +13,7 @@ use Twig\TwigFilter;
  *
  * @package App\Twig
  */
-class DateExtension extends \Twig_Extension
+class DateExtension extends AbstractExtension
 {
     /**
      * @var TranslatorInterface
