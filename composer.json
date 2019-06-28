@@ -24,7 +24,7 @@
         "symfony/process": "4.2.*",
         "symfony/security-bundle": "4.2.*",
         "symfony/serializer-pack": "*",
-        "symfony/translation": "4.2.*",
+        "symfony/translation": "4.3.*",
         "symfony/twig-bundle": "4.2.*",
         "symfony/validator": "4.2.*",
         "symfony/web-link": "4.2.*",
