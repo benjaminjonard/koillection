@@ -244,22 +244,31 @@ class TagRepository extends EntityRepository
      */
     public function findRelatedTags(Tag $tag)
     {
-        $subrequest = $this->_em->createQueryBuilder()
+        //Get all items ids the current tag is linked to
+        $results = $this->_em->createQueryBuilder()
             ->select('DISTINCT i2.id')
             ->from('App\\Entity\\Item', 'i2')
             ->leftJoin('i2.tags', 't2')
             ->where('t2.id = :tag')
+            ->setParameter('tag', $tag)
+            ->getQuery()
+            ->getArrayResult()
         ;
+
+        $itemIds = array_map(function ($row) {
+            return $row['id'];
+        }, $results);
 
         return $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial t.{id, label}')
             ->from('App\\Entity\\Tag', 't')
             ->leftJoin('t.items', 'i')
-            ->where("i.id IN ($subrequest)")
+            ->where("i.id IN (:itemIds)")
             ->andWhere('t.id != :tag')
             ->orderBy('t.label', 'ASC')
             ->setParameter('tag', $tag)
+            ->setParameter('itemIds', $itemIds)
             ->getQuery()
             ->getResult()
         ;
