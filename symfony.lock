@@ -108,9 +108,6 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
-    "facebook/webdriver": {
-        "version": "1.6.0"
-    },
     "fig/link-util": {
         "version": "1.0.0"
     },
@@ -341,9 +338,6 @@
             "src/Kernel.php"
         ]
     },
-    "symfony/http-client": {
-        "version": "v4.3.1"
-    },
     "symfony/http-foundation": {
         "version": "v4.2.3"
     },
@@ -379,9 +373,6 @@
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
-    "symfony/panther": {
-        "version": "v0.3.0"
-    },
     "symfony/phpunit-bridge": {
         "version": "4.1",
         "recipe": {
@@ -406,9 +397,6 @@
     },
     "symfony/polyfill-php72": {
         "version": "v1.10.0"
-    },
-    "symfony/polyfill-php73": {
-        "version": "v1.11.0"
     },
     "symfony/process": {
         "version": "v4.2.3"
