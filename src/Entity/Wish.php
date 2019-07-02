@@ -13,7 +13,9 @@ use Ramsey\Uuid\Uuid;
  *
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\WishRepository")
- * @ORM\Table(name="koi_wish")
+ * @ORM\Table(name="koi_wish", indexes={
+ *     @ORM\Index(name="idx_wish_visibility", columns={"visibility"})
+ * })
  */
 class Wish
 {

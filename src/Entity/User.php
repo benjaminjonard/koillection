@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
-use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
@@ -22,7 +21,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="koi_user")
+ * @ORM\Table(name="koi_user", indexes={
+ *     @ORM\Index(name="idx_user_visibility", columns={"visibility"})
+ * })
  * @UniqueEntity(fields={"email"}, message="error.email.not_unique")
  * @UniqueEntity(fields={"username"}, message="error.username.not_unique")
  */

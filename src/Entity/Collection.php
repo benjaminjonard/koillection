@@ -19,8 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\CollectionRepository")
  * @ORM\Table(name="koi_collection", indexes={
- *     @ORM\Index(name="idx_visibility", columns={"visibility"}),
- * }))
+ *     @ORM\Index(name="idx_collection_visibility", columns={"visibility"})
+ * })
  */
 class Collection implements LoggableInterface, BreadcrumbableInterface
 {

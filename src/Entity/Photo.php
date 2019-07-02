@@ -13,7 +13,9 @@ use Ramsey\Uuid\Uuid;
  *
  * @package App\Entity
  * @ORM\Entity
- * @ORM\Table(name="koi_photo")
+ * @ORM\Table(name="koi_photo", indexes={
+ *     @ORM\Index(name="idx_photo_visibility", columns={"visibility"})
+ * })
  */
 class Photo
 {

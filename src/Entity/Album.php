@@ -15,7 +15,9 @@ use Ramsey\Uuid\Uuid;
  *
  * @package App\Entity
  * @ORM\Entity
- * @ORM\Table(name="koi_album")
+ * @ORM\Table(name="koi_album", indexes={
+ *     @ORM\Index(name="idx_album_visibility", columns={"visibility"})
+ * })
  */
 class Album implements BreadcrumbableInterface
 {

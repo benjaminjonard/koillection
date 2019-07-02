@@ -20,7 +20,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
- * @ORM\Table(name="koi_item")
+ * @ORM\Table(name="koi_item", indexes={
+ *     @ORM\Index(name="idx_item_visibility", columns={"visibility"})
+ * })
  */
 class Item implements BreadcrumbableInterface, LoggableInterface
 {

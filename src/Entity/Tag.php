@@ -19,7 +19,9 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
- * @ORM\Table(name="koi_tag")
+ * @ORM\Table(name="koi_tag", indexes={
+ *     @ORM\Index(name="idx_tag_visibility", columns={"visibility"})
+ * })
  */
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {

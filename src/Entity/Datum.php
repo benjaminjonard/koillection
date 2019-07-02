@@ -14,7 +14,9 @@ use Ramsey\Uuid\Uuid;
  *
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
- * @ORM\Table(name="koi_datum")
+ * @ORM\Table(name="koi_datum", indexes={
+ *     @ORM\Index(name="idx_datum_visibility", columns={"visibility"})
+ * })
  */
 class Datum implements LoggableInterface
 {
