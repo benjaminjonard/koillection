@@ -251,9 +251,9 @@ button.align-with-inputs {margin-top: 25px;}
 .item-image-container {width: 300px; text-align: center; margin-bottom: 20px;}
 .tag-image-container {width: 300px; text-align: center; margin-bottom: 20px; float: left;}
 .slider-container .slider-frame img {max-width: 300px; width: 100%}
-.slider-container ul li {display: inline-block;}
-.slider-container ul li img {max-width: 70px; max-height: 70px;}
-.slider-container ul li a:not(.active) {opacity: 0.4;}
+.slider-container ul li {display: inline-block; padding: 0 5px;}
+.slider-container ul li img {max-width: 100px; max-height: 100px;}
+.slider-container ul li a:not(.active) {opacity: 0.6;}
 
 .statistics {text-align: center;}
 .statistics .col {margin: 15px 0;}
