@@ -32,7 +32,7 @@
     ">
 
     {% block body %}{% endblock %}
-        <div id="js-date-format" data-js-date-format="{{ app.user.dateFormat|default('yyyy-mm-dd') }}"></div>
+        <div id="js-date-format" data-js-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"></div>
         <div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
         {% block javascripts %}
             <script src="{{ preload(asset('build/js/app.js')) }}" nonce="{{ csp_nonce() }}"></script>
