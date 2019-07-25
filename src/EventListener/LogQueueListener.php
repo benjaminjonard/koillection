@@ -57,7 +57,7 @@ class LogQueueListener
             foreach ($this->logQueue->getLogs() as $log) {
                 if (
                     $log->getType() === LogTypeEnum::TYPE_DELETE ||
-                    ($log->getType() !== LogTypeEnum::TYPE_DELETE && !in_array($log->getObjectId(), $deletedIds)))
+                    ($log->getType() !== LogTypeEnum::TYPE_DELETE && !\in_array($log->getObjectId(), $deletedIds)))
                 {
                     $this->em->persist($log);
                 }

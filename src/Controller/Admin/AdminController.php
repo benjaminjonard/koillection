@@ -79,7 +79,7 @@ class AdminController extends AbstractController
 
         //Get all paths on disk
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($publicPath.'/uploads'));
-        $diskPaths = array();
+        $diskPaths = [];
         foreach ($rii as $file) {
             if (!$file->isDir() && $file->getFileName() !== '.gitkeep') {
                 $diskPaths[] = str_replace($publicPath. '/', '', $file->getPathname());
