@@ -48,7 +48,7 @@ class ContextExtension extends AbstractExtension
     {
         $context = $this->contextHandler->getContext();
 
-        if (in_array($context, ['user', 'preview'])) {
+        if (\in_array($context, ['user', 'preview'])) {
             $route = str_replace('app_', 'app_'.$context.'_', $route);
         }
 
@@ -63,7 +63,7 @@ class ContextExtension extends AbstractExtension
     {
         $context = $this->contextHandler->getContext();
 
-        if (in_array($context, ['user', 'preview'])) {
+        if (\in_array($context, ['user', 'preview'])) {
             $trans .= '_'.$context;
         }
 

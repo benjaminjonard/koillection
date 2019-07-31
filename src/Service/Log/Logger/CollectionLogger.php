@@ -72,7 +72,7 @@ class CollectionLogger extends Logger
         }
         $mainPayload = [];
         foreach ($changeset as $property => $change) {
-            if (in_array($property, ['title', 'childrenTitle', 'itemsTitle', 'visibility'])) {
+            if (\in_array($property, ['title', 'childrenTitle', 'itemsTitle', 'visibility'])) {
                 $function = 'get'.ucfirst($property);
                 $mainPayload[] = [
                     'title' => $collection->getTitle(),

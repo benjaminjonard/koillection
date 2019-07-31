@@ -53,7 +53,7 @@ class DateExtension extends AbstractExtension
         $diff->w = floor($diff->d / 7);
         $diff->d -= $diff->w * 7;
 
-        $string = array(
+        $string = [
             'y' => 'year',
             'm' => 'month',
             'w' => 'week',
@@ -61,7 +61,7 @@ class DateExtension extends AbstractExtension
             'h' => 'hour',
             'i' => 'minute',
             's' => 'second',
-        );
+        ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
                 $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
@@ -87,7 +87,7 @@ class DateExtension extends AbstractExtension
         $diff->w = floor($diff->d / 7);
         $diff->d -= $diff->w * 7;
 
-        $string = array(
+        $string = [
             'y' => 'year',
             'm' => 'month',
             'w' => 'week',
@@ -95,7 +95,7 @@ class DateExtension extends AbstractExtension
             'h' => 'hour',
             'i' => 'minute',
             's' => 'second',
-        );
+        ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
                 $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
@@ -120,12 +120,12 @@ class DateExtension extends AbstractExtension
         $diff->w = floor($diff->d / 7);
         $diff->d -= $diff->w * 7;
 
-        $string = array(
+        $string = [
             'y' => 'year',
             'm' => 'month',
             'w' => 'week',
             'd' => 'day'
-        );
+        ];
 
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
