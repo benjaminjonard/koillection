@@ -24,6 +24,7 @@ class FileToMediumTransformer implements DataTransformerInterface
      */
     public function transform($image)
     {
+
     }
 
     /**
@@ -36,7 +37,7 @@ class FileToMediumTransformer implements DataTransformerInterface
     public function reverseTransform($file)
     {
         if (!$file) {
-            return;
+            return null;
         }
 
         $medium = new Medium();

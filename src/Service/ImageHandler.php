@@ -102,9 +102,7 @@ class ImageHandler
     public function remove(Medium $medium) : int
     {
         $sizeFreed = 0;
-
         $sizeFreed += $medium->getSize();
-
 
         unlink($this->publicPath.'/'.$medium->getPath());
         if ($medium->getThumbnailPath()) {

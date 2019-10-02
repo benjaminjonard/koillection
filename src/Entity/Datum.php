@@ -195,6 +195,7 @@ class Datum implements LoggableInterface
             return $this;
         }
 
+
         if ($image->getThumbnailPath() === null) {
             $image->setMustGenerateAThumbnail(true);
         }
