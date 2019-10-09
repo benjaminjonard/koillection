@@ -10,6 +10,7 @@ use App\Entity\Inventory;
 use App\Entity\Item;
 use App\Entity\Photo;
 use App\Entity\Tag;
+use App\Entity\TagCategory;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Entity\Wish;
@@ -88,6 +89,9 @@ class LoggedWebTestCase extends WebTestCase
                     break;
                 case '{{tag}}':
                     $url = str_replace($match[0], $this->getRelationFirstElement(Tag::class), $url);
+                    break;
+                case '{{category}}':
+                    $url = str_replace($match[0], $this->getRelationFirstElement(TagCategory::class), $url);
                     break;
                 case '{{inventory}}':
                     $url = str_replace($match[0], $this->getRelationFirstElement(Inventory::class), $url);

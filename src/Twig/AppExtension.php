@@ -127,6 +127,10 @@ class AppExtension extends AbstractExtension
 
             if ($element->getType() === 'entity') {
                 $class = (new \ReflectionClass($element->getEntity()))->getShortName();
+                $pieces = preg_split('/(?=[A-Z])/', lcfirst($class));
+                $class = implode('_', $pieces);
+                $class = strtolower($class);
+
                 return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$element->getLabel();
             }
 

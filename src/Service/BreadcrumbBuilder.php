@@ -42,6 +42,8 @@ class BreadcrumbBuilder
 
         $explodedNamespace = explode('\\', \get_class($entity));
         $class = array_pop($explodedNamespace);
+        $pieces = preg_split('/(?=[A-Z])/', lcfirst($class));
+        $class = implode('_', $pieces);
         $class = strtolower($class);
 
         $breadcrumb = [];

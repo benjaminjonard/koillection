@@ -147,6 +147,12 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="TagCategory", mappedBy="owner", cascade={"remove"})
+     */
+    private $tagCategories;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner", cascade={"remove"})
      */
     private $wishlists;

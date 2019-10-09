@@ -4135,5 +4135,101 @@
         <target>%rate%% completed</target>
       </segment>
     </unit>
+    <unit id="DSLm6V8" name="btn.manage_tag_categories">
+      <segment>
+        <source>btn.manage_tag_categories</source>
+        <target>Manage tag categories</target>
+      </segment>
+    </unit>
+    <unit id="MDaq3GB" name="menu.tag_categories">
+      <segment>
+        <source>menu.tag_categories</source>
+        <target>Tag categories</target>
+      </segment>
+    </unit>
+    <unit id="YTSS_Q1" name="label.color">
+      <segment>
+        <source>label.color</source>
+        <target>Color</target>
+      </segment>
+    </unit>
+    <unit id="NSHmU0h" name="counter.tag_categories">
+      <segment>
+        <source>counter.tag_categories</source>
+        <target>{0} %count% categories| {1} %count% category| ]1,Inf[ %count% categories</target>
+      </segment>
+    </unit>
+    <unit id="u5O2rsi" name="btn.add_category">
+      <segment>
+        <source>btn.add_category</source>
+        <target>Add category</target>
+      </segment>
+    </unit>
+    <unit id=".ZHhONJ" name="label.tag_category">
+      <segment>
+        <source>label.tag_category</source>
+        <target>Category</target>
+      </segment>
+    </unit>
+    <unit id="HFhQzXX" name="breadcrumb.add_tag_category">
+      <segment>
+        <source>breadcrumb.add_tag_category</source>
+        <target>Add tag category</target>
+      </segment>
+    </unit>
+    <unit id="JI8jvUd" name="title.add_tag_category">
+      <segment>
+        <source>title.add_tag_category</source>
+        <target>Add tag category</target>
+      </segment>
+    </unit>
+    <unit id="Ail0qPJ" name="message.tag_category_added">
+      <segment>
+        <source>message.tag_category_added</source>
+        <target>Tag category %category% has been added</target>
+      </segment>
+    </unit>
+    <unit id="XlwsvOZ" name="message.tag_category_deleted">
+      <segment>
+        <source>message.tag_category_deleted</source>
+        <target>Tag category %category% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="bjhCeK0" name="message.delete.tag_category">
+      <segment>
+        <source>message.delete.tag_category</source>
+        <target>Are you sure you want to delete this tag category ? It will be permanently lost...</target>
+      </segment>
+    </unit>
+    <unit id="G97C3_o" name="global.entities.tag_category">
+      <segment>
+        <source>global.entities.tag_category</source>
+        <target>Tag category</target>
+      </segment>
+    </unit>
+    <unit id="vg07kkR" name="message.tag_category_edited">
+      <segment>
+        <source>message.tag_category_edited</source>
+        <target>Tag category %category% has been updated</target>
+      </segment>
+    </unit>
+    <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
+      <segment>
+        <source>breadcrumb.edit_tag_category</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="4z_wk_J" name="title.edit_tag_category">
+      <segment>
+        <source>title.edit_tag_category</source>
+        <target>Edit tag category %category%</target>
+      </segment>
+    </unit>
+    <unit id="p4z8GI6" name="title.edit_tag">
+      <segment>
+        <source>title.edit_tag</source>
+        <target>Edit tag %tag%</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

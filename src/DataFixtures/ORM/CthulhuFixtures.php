@@ -12,6 +12,7 @@ use App\Entity\Item;
 use App\Entity\Medium;
 use App\Entity\Photo;
 use App\Entity\Tag;
+use App\Entity\TagCategory;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Entity\Wish;
@@ -84,6 +85,15 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
      */
     private function loadCollections(User $user, ObjectManager $manager)
     {
+        //TAGS CATEGORY
+        $categoryAuthor = new TagCategory();
+        $categoryAuthor
+            ->setOwner($user)
+            ->setLabel('Author')
+            ->setDescription('Book author')
+            ->setColor('#32a852')
+        ;
+
         //TAGS
         $tagBooks = new Tag();
         $tagBooks
@@ -98,6 +108,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setLabel('H.P. Lovecraft')
             ->setSeenCounter(0)
+            ->setCategory($categoryAuthor)
         ;
         $manager->persist($tagLovecraft);
 

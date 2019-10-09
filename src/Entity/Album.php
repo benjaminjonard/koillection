@@ -171,7 +171,7 @@ class Album implements BreadcrumbableInterface
      *
      * @return string
      */
-    public function getColor() : string
+    public function getColor() : ?string
     {
         return $this->color;
     }

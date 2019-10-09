@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Tag;
+use App\Entity\TagCategory;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\FileToMediumTransformer;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -28,12 +31,19 @@ class TagType extends AbstractType
     private $fileToMediumTransformer;
 
     /**
-     * DatumType constructor.
-     * @param FileToMediumTransformer $fileToMediumTransformer
+     * @var EntityManagerInterface
      */
-    public function __construct(FileToMediumTransformer $fileToMediumTransformer)
+    private $em;
+
+    /**
+     * TagType constructor.
+     * @param FileToMediumTransformer $fileToMediumTransformer
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(FileToMediumTransformer $fileToMediumTransformer, EntityManagerInterface $em)
     {
         $this->fileToMediumTransformer = $fileToMediumTransformer;
+        $this->em = $em;
     }
 
     /**
@@ -53,6 +63,15 @@ class TagType extends AbstractType
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'required' => false,
+            ])
+            ->add('category', EntityType::class, [
+                'class' => TagCategory::class,
+                'choice_label' => 'label',
+                'choices' => $this->em->getRepository(TagCategory::class)->findAll(),
+                'expanded' => false,
+                'multiple' => false,
+                'choice_name' => null,
                 'required' => false,
             ])
             ->add(

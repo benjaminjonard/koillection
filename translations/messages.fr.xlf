@@ -4135,5 +4135,101 @@
         <target>Terminé à %rate%%</target>
       </segment>
     </unit>
+    <unit id="DSLm6V8" name="btn.manage_tag_categories">
+      <segment>
+        <source>btn.manage_tag_categories</source>
+        <target>Gérer les catégories</target>
+      </segment>
+    </unit>
+    <unit id="MDaq3GB" name="menu.tag_categories">
+      <segment>
+        <source>menu.tag_categories</source>
+        <target>Catégories de tag</target>
+      </segment>
+    </unit>
+    <unit id="YTSS_Q1" name="label.color">
+      <segment>
+        <source>label.color</source>
+        <target>Couleur</target>
+      </segment>
+    </unit>
+    <unit id="NSHmU0h" name="counter.tag_categories">
+      <segment>
+        <source>counter.tag_categories</source>
+        <target>[0,1] %count% catégorie| ]1,Inf[ %count% catégories</target>
+      </segment>
+    </unit>
+    <unit id="u5O2rsi" name="btn.add_category">
+      <segment>
+        <source>btn.add_category</source>
+        <target>Ajouter une catégorie</target>
+      </segment>
+    </unit>
+    <unit id=".ZHhONJ" name="label.tag_category">
+      <segment>
+        <source>label.tag_category</source>
+        <target>Catégorie</target>
+      </segment>
+    </unit>
+    <unit id="HFhQzXX" name="breadcrumb.add_tag_category">
+      <segment>
+        <source>breadcrumb.add_tag_category</source>
+        <target>Ajouter une catégorie de tag</target>
+      </segment>
+    </unit>
+    <unit id="JI8jvUd" name="title.add_tag_category">
+      <segment>
+        <source>title.add_tag_category</source>
+        <target>Ajouter une catégorie de tag</target>
+      </segment>
+    </unit>
+    <unit id="Ail0qPJ" name="message.tag_category_added">
+      <segment>
+        <source>message.tag_category_added</source>
+        <target>La catégorie de tag %category% a été ajoutée</target>
+      </segment>
+    </unit>
+    <unit id="XlwsvOZ" name="message.tag_category_deleted">
+      <segment>
+        <source>message.tag_category_deleted</source>
+        <target>Catégorie de tag %category% a été supprimée</target>
+      </segment>
+    </unit>
+    <unit id="bjhCeK0" name="message.delete.tag_category">
+      <segment>
+        <source>message.delete.tag_category</source>
+        <target>Êtes-vous sûr de vouloir supprimer cette catégorie de tag ? Elle sera définitivement perdue...</target>
+      </segment>
+    </unit>
+    <unit id="G97C3_o" name="global.entities.tag_category">
+      <segment>
+        <source>global.entities.tag_category</source>
+        <target>Catégorie de tag</target>
+      </segment>
+    </unit>
+    <unit id="vg07kkR" name="message.tag_category_edited">
+      <segment>
+        <source>message.tag_category_edited</source>
+        <target>La catégorie de tag %category% a été mise à jour</target>
+      </segment>
+    </unit>
+    <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
+      <segment>
+        <source>breadcrumb.edit_tag_category</source>
+        <target>Éditer</target>
+      </segment>
+    </unit>
+    <unit id="4z_wk_J" name="title.edit_tag_category">
+      <segment>
+        <source>title.edit_tag_category</source>
+        <target>Modifier la catégorie de tag %category%</target>
+      </segment>
+    </unit>
+    <unit id="p4z8GI6" name="title.edit_tag">
+      <segment>
+        <source>title.edit_tag</source>
+        <target>Modifier le tag %tag%</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

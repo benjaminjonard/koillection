@@ -13,7 +13,7 @@
 
 {% block content %}
     <div class="title-block">
-        <h1 class="col s11">Edit tag {{tag.label}}</h1>
+        <h1 class="col s11">{{ 'title.edit_tag'|trans({'%tag%': tag.label}) }}</h1>
     </div>
 
     <div class="content-block">
@@ -27,6 +27,9 @@
                 </div>
                 <div class="col s5 offset-s1">
                     {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                </div>
+                <div class="col s5">
+                    {{ form_row(form.category, {'label' : 'label.tag_category'} ) }}
                 </div>
             </div>
 

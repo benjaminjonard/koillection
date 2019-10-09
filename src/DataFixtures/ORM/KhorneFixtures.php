@@ -12,6 +12,7 @@ use App\Entity\Item;
 use App\Entity\Medium;
 use App\Entity\Photo;
 use App\Entity\Tag;
+use App\Entity\TagCategory;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Entity\Wish;
@@ -84,6 +85,15 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
      */
     private function loadCollections(User $user, ObjectManager $manager)
     {
+        //TAGS CATEGORY
+        $categorySerie = new TagCategory();
+        $categorySerie
+            ->setOwner($user)
+            ->setLabel('Serie')
+            ->setDescription('Book serie')
+            ->setColor('#3232a8')
+        ;
+
         //TAGS
         $tagManga = new Tag();
         $tagManga
@@ -98,6 +108,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setLabel('Magdala Alchemist Path')
             ->setSeenCounter(0)
+            ->setCategory($categorySerie)
         ;
         $manager->persist($tagMagdala);
 

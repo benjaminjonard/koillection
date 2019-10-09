@@ -58,6 +58,13 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     private $owner;
 
     /**
+     * @var \App\Entity\TagCategory
+     * @ORM\ManyToOne(targetEntity="TagCategory", inversedBy="tags", fetch="EAGER", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $category;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      * @ORM\ManyToMany(targetEntity="Item", mappedBy="tags")
      */
@@ -335,6 +342,25 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     public function setSeenCounter(int $seenCounter) : self
     {
         $this->seenCounter = $seenCounter;
+
+        return $this;
+    }
+
+    /**
+     * @return TagCategory
+     */
+    public function getCategory() : ?TagCategory
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param TagCategory $category
+     * @return Tag
+     */
+    public function setCategory(TagCategory $category) : Tag
+    {
+        $this->category = $category;
 
         return $this;
     }
