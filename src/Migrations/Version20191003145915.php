@@ -26,7 +26,6 @@ final class Version20191003145915 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN koi_tag_category.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN koi_tag_category.owner_id IS \'(DC2Type:uuid)\'');
         $this->addSql('ALTER TABLE koi_tag_category ADD CONSTRAINT FK_DE4E5D497E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('DROP INDEX idx_visibility');
         $this->addSql('ALTER TABLE koi_tag ADD category_id UUID DEFAULT NULL');
         $this->addSql('COMMENT ON COLUMN koi_tag.category_id IS \'(DC2Type:uuid)\'');
         $this->addSql('ALTER TABLE koi_tag ADD CONSTRAINT FK_16FB1EB712469DE2 FOREIGN KEY (category_id) REFERENCES koi_tag_category (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
