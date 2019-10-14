@@ -30,7 +30,8 @@
 .error .logo,
 .pagination li.active,
 .table-filter a.active,
-nav
+nav,
+.header-profile .down-background
 {background-color: #6c5fc7;}
 
 progress[value]::-webkit-progress-value{background-color:#6c5fc7;}

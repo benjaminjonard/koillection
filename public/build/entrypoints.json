@@ -7,37 +7,42 @@
     },
     "js/statistics": {
       "js": [
-        "build/js/statistics.bd4f1eb7.js"
+        "build/js/statistics.2292b1de.js"
       ]
     },
     "css/app": {
       "css": [
-        "build/css/app.6c6987d2.css"
+        "build/css/app.b76a6c37.css"
       ]
     },
     "css/themes/aubergine": {
       "css": [
-        "build/css/themes/aubergine.707692e5.css"
+        "build/css/themes/aubergine.eb6e8e48.css"
       ]
     },
     "css/themes/sunset": {
       "css": [
-        "build/css/themes/sunset.c8f91625.css"
+        "build/css/themes/sunset.f1f9d992.css"
       ]
     },
     "css/themes/teal": {
       "css": [
-        "build/css/themes/teal.db67c7e3.css"
+        "build/css/themes/teal.087e2b56.css"
+      ]
+    },
+    "css/themes/dark_mode": {
+      "css": [
+        "build/css/themes/dark_mode.52d917af.css"
       ]
     },
     "css/export": {
       "css": [
-        "build/css/export.9fbf458a.css"
+        "build/css/export.6ab2dd3a.css"
       ]
     },
     "css/translation": {
       "css": [
-        "build/css/translation.3cb2835b.css"
+        "build/css/translation.f7656435.css"
       ]
     }
   }

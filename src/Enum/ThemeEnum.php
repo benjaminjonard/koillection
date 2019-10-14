@@ -14,18 +14,20 @@ class ThemeEnum
     public const THEME_AUBERGINE = 'aubergine';
     public const THEME_SUNSET = 'sunset';
     public const THEME_TEAL = 'teal';
+    public const THEME_DARK_MODE = 'dark_mode';
+
+    public const THEMES = [
+        self::THEME_AUBERGINE,
+        self::THEME_SUNSET,
+        self::THEME_TEAL,
+        self::THEME_DARK_MODE,
+    ];
 
     public const HUE_MAIN = 'main';
     public const HUE_LIGHT = 'light';
     public const HUE_LIGHTEST = 'lightest';
     public const HUE_DARK = 'dark';
     public const HUE_COMPLEMENTARY = 'complementary';
-
-    public const THEMES = [
-        self::THEME_AUBERGINE,
-        self::THEME_SUNSET,
-        self::THEME_TEAL
-    ];
 
     public const THEME_COLORS = [
         self::THEME_AUBERGINE => [
@@ -48,6 +50,13 @@ class ThemeEnum
             'light' => '#1ab0a2',
             'dark' => '#006355',
             'complementary' => '#E74646'
+        ],
+        self::THEME_DARK_MODE => [
+            'main' => '#42a7ff',
+            'lightest' => '#8FF4FF',
+            'light' => '#75DAFF',
+            'dark' => '#004199',
+            'complementary' => '#f0f0f0'
         ]
     ];
 

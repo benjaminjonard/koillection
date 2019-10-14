@@ -30,7 +30,8 @@
 .error .logo,
 .pagination li.active,
 .table-filter a.active,
-nav
+nav,
+.header-profile .down-background
 {background-color: #f44952;}
 
 .breadcrumb .last,

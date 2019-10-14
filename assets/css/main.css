@@ -165,7 +165,7 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .tabs-block li.tab {padding: 16px; font-size: 15px; line-height: 18px; cursor: pointer; color: #959494;}
 .tabs-block.admin li.tab a {padding: 0 0 16px 0;}
 .tabs-block li.tab a {padding: 16px;}
-.tabs-block li.tab.current{border-bottom: 2px solid #009688; color: #000;}
+.tabs-block li.tab.current{border-bottom: 2px solid #009688; color: #000; font-weight: bold;}
 .tabs-block {border-bottom: 1px solid #dce0e6; margin-bottom: 20px;}
 
 .collection {margin-top: 20px;}
