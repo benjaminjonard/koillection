@@ -197,7 +197,7 @@ class CollectionController extends AbstractController
             return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }
 
-        return $this->render('App/Collection/batch-tagging.html.twig', [
+        return $this->render('App/Collection/batch_tagging.html.twig', [
             'form' => $form->createView(),
             'collection' => $collection,
         ]);

@@ -43,7 +43,7 @@ class ToolsController extends AbstractController
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
 
-        return $this->render('App/Tools/printable-list.html.twig', [
+        return $this->render('printable_list.html.twig', [
             'collections' => $collections,
             'user' => $this->getUser()
         ]);

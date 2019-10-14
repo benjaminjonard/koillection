@@ -129,8 +129,8 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/modal-share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
-        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
+        {{ include('App/_partials/_modal_share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
+        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
     {% endif %}
 {% endblock %}
 

@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% form_theme form 'App/_partials/form-fields.html.twig' %}
+{% form_theme form 'App/_partials/_form_fields.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.add_item') %}
 
@@ -79,7 +79,7 @@
                 </div>
                 <div class="clearfix"></div>
 
-                {{ include('App/Item/_partials/data.html.twig', {data: item.data}) }}
+                {{ include('App/Item/_partials/_data.html.twig', {data: item.data}) }}
             </div>
 
             <div class="form-btn-holder">

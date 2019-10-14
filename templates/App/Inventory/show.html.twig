@@ -54,7 +54,7 @@
         <h1>
             {{ inventory.name }}
         </h1>
-        {{ include('App/Inventory/_partials/nav-pills.html.twig', {'inventory': inventory}) }}
+        {{ include('App/Inventory/_partials/_nav_pills.html.twig', {'inventory': inventory}) }}
 
         <div></div>
 
@@ -90,6 +90,6 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
+        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
     {% endif %}
 {% endblock %}

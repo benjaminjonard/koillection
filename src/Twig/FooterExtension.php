@@ -38,7 +38,7 @@ class FooterExtension extends AbstractExtension
             $class = \get_class($object);
             $class = strtolower(substr($class, strrpos($class, '\\') + 1));
 
-            return $environment->render('App/_partials/footer.html.twig', [
+            return $environment->render('App/_partials/_footer.html.twig', [
                 'object' => $object,
                 'class' => $class
             ]);

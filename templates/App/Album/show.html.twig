@@ -86,10 +86,10 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/modal-share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
-        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
+        {{ include('App/_partials/_modal_share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
+        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
         {% for photo in album.photos %}
-            {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': url('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
+            {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': url('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}
