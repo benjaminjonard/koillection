@@ -54,7 +54,7 @@ class ThemeEnum
         self::THEME_DARK_MODE => [
             'main' => '#42a7ff',
             'lightest' => '#8FF4FF',
-            'light' => '#75DAFF',
+            'light' => '#5CC1FF',
             'dark' => '#004199',
             'complementary' => '#f0f0f0'
         ]

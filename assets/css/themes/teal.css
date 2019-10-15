@@ -34,6 +34,10 @@ nav,
 .header-profile .down-background
 {background-color: #009688;}
 
+progress[value]::-webkit-progress-value{background-color:#009688;}
+progress[value]::-moz-progress-bar{background-color:#009688;}
+progress[value]::-ms-fill{background-color:#009688;}
+
 .breadcrumb .last,
 .secondary-content,
 input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label,

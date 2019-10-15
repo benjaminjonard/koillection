@@ -4231,5 +4231,11 @@
         <target>Modifier le tag %tag%</target>
       </segment>
     </unit>
+    <unit id="uOTNXQY" name="global.themes.dark_mode">
+      <segment>
+        <source>global.themes.dark_mode</source>
+        <target>Mode sombre</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
