@@ -82,7 +82,7 @@ input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[t
 
 .tabs-block li.tab.current
 {
-    border-bottom: 2px solid #2e3136;
+    border-bottom: 3px solid #2e3136;
 }
 
 /* Dark */
@@ -128,11 +128,11 @@ textarea.materialize-textarea:focus:not([readonly]) + label,
 .btn, .btn-large, .toast, html.loading:before
 { background-color: #42a7ff; }
 
-.pie-wrapper .pie .half-circle
+.pie-wrapper .pie .half-circle, .tabs-block li.tab.current
 { border-color: #42a7ff; }
 
 progress[value]::-webkit-progress-value{background-color:#42a7ff;}
 progress[value]::-moz-progress-bar{background-color:#42a7ff;}
 progress[value]::-ms-fill{background-color:#42a7ff;}
 
-.tabs-block li.tab.current {color: #f0f2f5}
+.tabs-block li.tab.current, .tabs-block li.tab.current a, .breadcrumb .last {color: #f0f2f5}
