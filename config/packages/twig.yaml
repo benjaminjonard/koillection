@@ -4,3 +4,4 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         version: '%version%'
+    form_themes: ['App/_partials/_form_fields.html.twig']
