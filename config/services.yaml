@@ -47,47 +47,47 @@ services:
 
     App\EventListener\AccessDeniedListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.exception }
+            - { name: kernel.event_listener, event: kernel.exception, lazy: true }
 
     #Global listeners
     App\EventListener\LoggableListener:
         tags:
-            - { name: doctrine.event_listener, event: postPersist }
-            - { name: doctrine.event_listener, event: preRemove }
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: postPersist, lazy: true }
+            - { name: doctrine.event_listener, event: preRemove, lazy: true }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\TimestampableListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
     App\EventListener\OwnershipListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
     App\EventListener\ColorListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
 
     #Entity listeners
     App\EventListener\Entity\CollectionListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\ItemListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\WishlistListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\WishListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\MediumListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\UserListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+            - { name: doctrine.event_listener, event: preRemove, lazy: true }
 
     #Log
     App\Service\Log\Logger\CollectionLogger:

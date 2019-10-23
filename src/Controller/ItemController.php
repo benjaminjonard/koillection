@@ -55,12 +55,6 @@ class ItemController extends AbstractController
             ->setVisibility($collection->getVisibility())
         ;
 
-        //Preload tags shared by all items in that collection
-        if ($request->isMethod('GET')) {
-            $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
-            $suggestedNames = $itemNameGuesser->guess($item);
-        }
-
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,6 +69,10 @@ class ItemController extends AbstractController
 
             return $this->redirectToRoute('app_collection_show', ['id' => $item->getCollection()->getId()]);
         }
+
+        //Preload tags shared by all items in that collection
+        $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
+        $suggestedNames = $itemNameGuesser->guess($item);
 
         return $this->render('App/Item/add.html.twig', [
             'form' => $form->createView(),
