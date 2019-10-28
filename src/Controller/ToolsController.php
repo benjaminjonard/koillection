@@ -90,7 +90,7 @@ class ToolsController extends AbstractController
     {
         $response = new StreamedResponse(function() {
             $options = new Archive();
-            $options->setContentType('application/zip');
+            $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
 
