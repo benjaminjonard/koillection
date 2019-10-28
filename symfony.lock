@@ -120,6 +120,9 @@
     "monolog/monolog": {
         "version": "1.24.0"
     },
+    "myclabs/php-enum": {
+        "version": "1.7.2"
+    },
     "nikic/php-parser": {
         "version": "v4.2.1"
     },

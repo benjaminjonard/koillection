@@ -10,7 +10,7 @@
         "ext-json": "*",
         "ext-gd": "*",
         "ext-fileinfo": "*",
-        "maennchen/zipstream-php": "^0.5.2",
+        "maennchen/zipstream-php": "^1.2",
         "php-http/curl-client": "^1.7",
         "ramsey/uuid-doctrine": "^1.5",
         "sensio/framework-extra-bundle": "^5.1",
