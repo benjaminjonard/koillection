@@ -56,6 +56,7 @@ class ItemController extends AbstractController
         ;
 
         //Preload tags shared by all items in that collection
+        $suggestedNames = [];
         if ($request->isMethod('GET')) {
             $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
             $suggestedNames = $itemNameGuesser->guess($item);
