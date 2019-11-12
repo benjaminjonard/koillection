@@ -127,9 +127,12 @@ class TagRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('t')
+            ->addSelect('(CASE WHEN LOWER(t.label) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(t.label) LIKE LOWER(:label)')
-            ->orderBy('t.label', 'ASC')
+            ->orderBy('startWithOrder', 'ASC') //Order tags starting with the search term first
+            ->addOrderBy('LOWER(t.label)', 'ASC') //Then order other matching tags alphabetically
             ->setParameter('label', '%'.$string.'%')
+            ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
