@@ -1,7 +1,7 @@
 security:
     encoders:
         App\Entity\User:
-            algorithm: argon2i
+            algorithm: auto
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
