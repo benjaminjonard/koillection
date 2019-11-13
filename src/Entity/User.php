@@ -124,6 +124,7 @@ class User implements UserInterface, BreadcrumbableInterface
     /**
      * @var int
      * @ORM\Column(type="bigint", options={"default"=268435456})
+     * @Assert\GreaterThanOrEqual(propertyPath="diskSpaceUsed")
      */
     private $diskSpaceAllowed;
 
