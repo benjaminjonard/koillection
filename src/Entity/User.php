@@ -117,13 +117,13 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint", options={"default"=0})
      */
     private $diskSpaceUsed;
 
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint", options={"default"=268435456})
      */
     private $diskSpaceAllowed;
 
@@ -532,7 +532,7 @@ class User implements UserInterface, BreadcrumbableInterface
      */
     public function getDiskSpaceUsed() : int
     {
-        return $this->diskSpaceUsed;
+        return (int) $this->diskSpaceUsed;
     }
 
     /**
@@ -634,7 +634,7 @@ class User implements UserInterface, BreadcrumbableInterface
      */
     public function getDiskSpaceAllowed() : int
     {
-        return $this->diskSpaceAllowed;
+        return (int) $this->diskSpaceAllowed;
     }
 
     /**

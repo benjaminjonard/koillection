@@ -1,4 +1,5 @@
 {
+    "minimum-stability": "dev",
     "name": "koillection/koillection",
     "description": "Koillection is a self-hosted service allowing users to manage any kind of collection.",
     "type": "project",
@@ -14,31 +15,31 @@
         "php-http/curl-client": "^1.7",
         "ramsey/uuid-doctrine": "^1.5",
         "sensio/framework-extra-bundle": "^5.1",
-        "symfony/asset": "4.3.*",
-        "symfony/console": "4.3.*",
-        "symfony/dotenv": "4.3.*",
-        "symfony/expression-language": "4.3.*",
+        "symfony/asset": "v5.0.0-BETA2",
+        "symfony/console": "v5.0.0-BETA2",
+        "symfony/dotenv": "v5.0.0-BETA2",
+        "symfony/expression-language": "v5.0.0-BETA2",
         "symfony/flex": "^1.1",
-        "symfony/form": "4.3.*",
-        "symfony/framework-bundle": "4.3.*",
+        "symfony/form": "v5.0.0-BETA2",
+        "symfony/framework-bundle": "v5.0.0-BETA2",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
-        "symfony/process": "4.3.*",
-        "symfony/security-bundle": "4.3.*",
+        "symfony/process": "v5.0.0-BETA2",
+        "symfony/security-bundle": "v5.0.0-BETA2",
         "symfony/serializer-pack": "*",
-        "symfony/translation": "4.3.*",
-        "symfony/twig-bundle": "4.3.*",
-        "symfony/validator": "4.3.*",
-        "symfony/web-link": "4.3.*",
+        "symfony/translation": "v5.0.0-BETA2",
+        "symfony/twig-bundle": "v5.0.0-BETA2",
+        "symfony/validator": "v5.0.0-BETA2",
+        "symfony/web-link": "v5.0.0-BETA2",
         "symfony/webpack-encore-bundle": "^1.0",
-        "symfony/yaml": "4.3.*",
+        "symfony/yaml": "v5.0.0-BETA2",
         "twig/extensions": "^1.5",
         "willdurand/js-translation-bundle": "^2.6",
         "willdurand/negotiation": "^2.3"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
-        "php-translation/symfony-bundle": "^0.8.1",
+        "php-translation/symfony-bundle": "^0.9.1",
         "roave/security-advisories": "dev-master",
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*",
@@ -86,7 +87,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.3.*"
+            "require": "v5.0.0-BETA2"
         }
     }
 }

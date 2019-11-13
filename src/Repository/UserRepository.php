@@ -58,12 +58,14 @@ class UserRepository extends EntityRepository
      */
     public function getTotalSpaceUsed() : int
     {
-        return $this
+        $totalSpaceUsed = $this
             ->createQueryBuilder('u')
             ->select('SUM(u.diskSpaceUsed)')
             ->getQuery()
             ->getSingleScalarResult()
         ;
+
+        return (int) $totalSpaceUsed;
     }
 
     /**
