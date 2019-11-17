@@ -44,6 +44,9 @@
             "src/Repository/.gitignore"
         ]
     },
+    "doctrine/doctrine-cache-bundle": {
+        "version": "1.3.5"
+    },
     "doctrine/doctrine-fixtures-bundle": {
         "version": "3.0",
         "recipe": {
@@ -104,6 +107,9 @@
         "files": [
             "config/packages/dev/easy_log_handler.yaml"
         ]
+    },
+    "fig/link-util": {
+        "version": "1.0.0"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
