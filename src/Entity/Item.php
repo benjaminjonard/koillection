@@ -359,7 +359,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface
      *
      * @return Item
      */
-    public function addDatum(Datum $datum) : self
+    public function addData(Datum $datum) : self
     {
         $datum->setItem($this);
         $this->data->add($datum);
@@ -371,7 +371,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface
      * @param Datum $datum
      * @return Item
      */
-    public function removeDatum(Datum $datum) : self
+    public function removeData(Datum $datum) : self
     {
         $this->data->removeElement($datum);
 
