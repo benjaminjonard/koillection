@@ -1,7 +1,4 @@
 {
-    "clue/stream-filter": {
-        "version": "v1.4.0"
-    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -108,9 +105,6 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
-    "fig/link-util": {
-        "version": "1.0.0"
-    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -134,24 +128,6 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
-    },
-    "php-http/curl-client": {
-        "version": "v1.7.1"
-    },
-    "php-http/discovery": {
-        "version": "1.6.1"
-    },
-    "php-http/httplug": {
-        "version": "v1.1.0"
-    },
-    "php-http/message": {
-        "version": "1.7.2"
-    },
-    "php-http/message-factory": {
-        "version": "v1.0.2"
-    },
-    "php-http/promise": {
-        "version": "v1.0.0"
     },
     "php-translation/common": {
         "version": "1.0.0"
@@ -258,6 +234,9 @@
             "bin/console",
             "config/bootstrap.php"
         ]
+    },
+    "symfony/contracts": {
+        "version": "v1.1.0"
     },
     "symfony/css-selector": {
         "version": "v4.2.3"
