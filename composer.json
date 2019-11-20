@@ -11,7 +11,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "doctrine/annotations": "^1.8",
-        "doctrine/doctrine-bundle": "^1.11",
+        "doctrine/doctrine-bundle": "^2.0",
         "doctrine/doctrine-migrations-bundle": "^2.1",
         "doctrine/orm": "^2.7",
         "maennchen/zipstream-php": "^1.2",

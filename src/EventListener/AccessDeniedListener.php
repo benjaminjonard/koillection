@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -15,10 +15,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class AccessDeniedListener
 {
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event)
     {
-        if ($event->getException() instanceof AccessDeniedHttpException) {
-            $event->setException(new NotFoundHttpException());
+        if ($event->getThrowable() instanceof AccessDeniedHttpException) {
+            $event->setThrowable(new NotFoundHttpException());
         }
     }
 }

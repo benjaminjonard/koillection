@@ -6,7 +6,7 @@ namespace App\EventListener;
 
 use App\Enum\LocaleEnum;
 use Negotiation\LanguageNegotiator;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
@@ -31,9 +31,9 @@ class LocaleListener
     }
 
     /**
-     * @param GetResponseEvent $event
+     * @param RequestEvent $event
      */
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(RequestEvent $event)
     {
         $request = $event->getRequest();
 
