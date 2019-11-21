@@ -26,16 +26,14 @@ class WishlistController extends AbstractController
      * @Route("/user/{username}/wishlists", name="app_user_wishlist_index", methods={"GET"})
      * @Route("/preview/wishlists", name="app_preview_wishlist_index", methods={"GET"})
      *
-     * @param CounterCalculator $counterCalculator
      * @return Response
      */
-    public function index(CounterCalculator $counterCalculator) : Response
+    public function index() : Response
     {
         $wishlists = $this->getDoctrine()->getRepository(Wishlist::class)->findAllParent();
 
         return $this->render('App/Wishlist/index.html.twig', [
-            'wishlists' => $wishlists,
-            'counters' => $counterCalculator->wishlistsCounters($wishlists)
+            'wishlists' => $wishlists
         ]);
     }
 
@@ -85,14 +83,12 @@ class WishlistController extends AbstractController
      * @Entity("wishlist", expr="repository.findById(id)")
      *
      * @param Wishlist $wishlist
-     * @param CounterCalculator $counterCalculator
      * @return Response
      */
-    public function show(Wishlist $wishlist, CounterCalculator $counterCalculator) : Response
+    public function show(Wishlist $wishlist) : Response
     {
         return $this->render('App/Wishlist/show.html.twig', [
-            'wishlist' => $wishlist,
-            'counters' => $counterCalculator->wishlistCounters($wishlist)
+            'wishlist' => $wishlist
         ]);
     }
 

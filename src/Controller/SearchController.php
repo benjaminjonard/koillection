@@ -52,7 +52,6 @@ class SearchController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             if (true === $search->getSearchInCollections()) {
                 $params['collections'] = $em->getRepository(Collection::class)->findForSearch($search);
-                $params['counters'] = $counterCalculator->collectionsCounters($params['collections']);
             }
             if (true === $search->getSearchInItems()) {
                 $params['items'] = $em->getRepository(Item::class)->findForSearch($search);

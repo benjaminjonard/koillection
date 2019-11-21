@@ -10,7 +10,7 @@ use App\Entity\Log;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
-use App\Service\CounterCalculator;
+use App\Service\CountersCache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,16 +30,14 @@ class CollectionController extends AbstractController
      * @Route("/user/{username}", name="app_user_collection_index", methods={"GET"})
      * @Route("/preview", name="app_preview_collection_index", methods={"GET"})
      *
-     * @param CounterCalculator $counterCalculator
      * @return Response
      */
-    public function index(CounterCalculator $counterCalculator) : Response
+    public function index() : Response
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllParent();
 
         return $this->render('App/Collection/index.html.twig', [
-            'collections' => $collections,
-            'counters' => $counterCalculator->collectionsCounters($collections)
+            'collections' => $collections
         ]);
     }
 
@@ -91,18 +89,16 @@ class CollectionController extends AbstractController
      * @Entity("collection", expr="repository.findById(id)")
      *
      * @param Collection $collection
-     * @param CounterCalculator $counterCalculator
      * @return Response
      */
-    public function show(Collection $collection, CounterCalculator $counterCalculator) : Response
+    public function show(Collection $collection) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $em->getRepository(Collection::class)->findChildrenByCollectionId($collection->getId()),
-            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId()),
-            'counters' => $counterCalculator->collectionCounters($collection)
+            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId())
         ]);
     }
 

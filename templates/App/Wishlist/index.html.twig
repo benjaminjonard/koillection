@@ -15,8 +15,8 @@
         <div class="title-block">
             <h1>{{ 'menu.wishlists'|trans }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.wish'|trans({'%count%': counters['totalWishesCount']}) }}</li>
-                <li>{{ 'counter.wishlist'|trans({'%count%': counters['totalChildrenCount']}) }}</li>
+                <li>{{ 'counter.wish'|trans({'%count%':  getTotalItemsCounter(wishlists)}) }}</li>
+                <li>{{ 'counter.wishlist'|trans({'%count%':  getTotalItemsCounter(wishlists)}) }}</li>
             </ul>
         </div>
 

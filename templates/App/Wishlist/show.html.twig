@@ -23,8 +23,8 @@
             <div class="right">
                 <h1>{{wishlist.name}}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.wish'|trans({'%count%': counters[wishlist.id].wishes}) }}</li>
-                    <li>{{ 'counter.wishlist'|trans({'%count%': counters[wishlist.id].children}) }}</li>
+                    <li>{{ 'counter.wish'|trans({'%count%': getCounters(wishlist).items}) }}</li>
+                    <li>{{ 'counter.wishlist'|trans({'%count%': getCounters(wishlist).children}) }}</li>
                 </ul>
             </div>
             <div class="clearfix"></div>

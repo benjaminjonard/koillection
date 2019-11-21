@@ -50,6 +50,11 @@ services:
             - { name: kernel.event_listener, event: kernel.exception, lazy: true }
 
     #Global listeners
+    App\EventListener\CounterCacheListener:
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, lazy: true }
+            - { name: doctrine.event_listener, event: postUpdate, lazy: true }
+            - { name: doctrine.event_listener, event: postRemove, lazy: true }
     App\EventListener\LoggableListener:
         tags:
             - { name: doctrine.event_listener, event: postPersist, lazy: true }
