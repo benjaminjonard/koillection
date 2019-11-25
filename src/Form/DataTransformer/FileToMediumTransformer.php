@@ -24,7 +24,6 @@ class FileToMediumTransformer implements DataTransformerInterface
      */
     public function transform($image)
     {
-
     }
 
     /**

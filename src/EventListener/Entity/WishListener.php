@@ -54,7 +54,7 @@ class WishListener
             if ($entity instanceof Wish) {
                 $changeset = $uow->getEntityChangeSet($entity);
 
-                if (array_key_exists('wishlist', $changeset)) {
+                if (\array_key_exists('wishlist', $changeset)) {
                     if ($entity->getWishlist()->getVisibility() === VisibilityEnum::VISIBILITY_PRIVATE) {
                         $entity->setVisibility(VisibilityEnum::VISIBILITY_PRIVATE);
                     }

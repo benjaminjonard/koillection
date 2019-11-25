@@ -27,13 +27,13 @@ class WishlistListener
             if ($entity instanceof Wishlist) {
                 $changeset = $uow->getEntityChangeSet($entity);
 
-                if (array_key_exists('parent', $changeset)) {
+                if (\array_key_exists('parent', $changeset)) {
                     if ($entity->getParent()->getVisibility() === VisibilityEnum::VISIBILITY_PRIVATE) {
                         $this->setVisibilityRecursively($entity, $entity->getParent()->getVisibility());
                     }
                 }
 
-                if (array_key_exists('visibility', $changeset)) {
+                if (\array_key_exists('visibility', $changeset)) {
                     $this->setVisibilityRecursively($entity, $entity->getVisibility());
                 }
             }

@@ -110,7 +110,8 @@ class InventoryHandler
         return $content;
     }
 
-    private function getCheckedItems(array &$collection) {
+    private function getCheckedItems(array &$collection)
+    {
         $count = 0;
 
         foreach ($collection['items'] as $item) {

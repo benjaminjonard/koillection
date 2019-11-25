@@ -476,9 +476,9 @@ class User implements UserInterface, BreadcrumbableInterface
      */
     public function removeRole(string $role) : self
     {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+        if (false !== $key = \array_search(strtoupper($role), $this->roles, true)) {
             unset($this->roles[$key]);
-            $this->roles = array_values($this->roles);
+            $this->roles = \array_values($this->roles);
         }
 
         return $this;

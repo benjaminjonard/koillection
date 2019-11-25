@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Service\Log;
+
 use App\Entity\Log;
 
 /**
@@ -39,7 +40,7 @@ class LoggerChain
             $loggers[] = $logger;
         }
 
-        usort($loggers, function(LoggerInterface $a, LoggerInterface $b) {
+        usort($loggers, function (LoggerInterface $a, LoggerInterface $b) {
             return ($a->getPriority() <=> $b->getPriority());
         });
 

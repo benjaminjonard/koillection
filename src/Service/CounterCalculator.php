@@ -68,7 +68,7 @@ class CounterCalculator
         ];
         $wishlists = $this->executeItemQuery(...$params);
 
-        return array_merge($collections, $wishlists);
+        return \array_merge($collections, $wishlists);
     }
 
     /**

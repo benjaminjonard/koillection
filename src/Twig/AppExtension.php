@@ -103,17 +103,17 @@ class AppExtension extends AbstractExtension
      */
     public function renderTitle(array $breadcrumb)
     {
-        $element = array_shift($breadcrumb);
+        $element = \array_shift($breadcrumb);
 
         if ($element instanceof BreadcrumbElement && isset($element->getParams()['username'])) {
             return $this->translator->trans($element->getLabel(), ['%username%' => $element->getParams()['username']]);
         }
 
-        $element = \count($breadcrumb) === 0 ? $element : array_pop($breadcrumb);
+        $element = \count($breadcrumb) === 0 ? $element : \array_pop($breadcrumb);
 
         if ($element instanceof BreadcrumbElement) {
             if ($element->getType() === 'action') {
-                $entityElement = array_pop($breadcrumb);
+                $entityElement = \array_pop($breadcrumb);
 
                 if ($entityElement instanceof BreadcrumbElement && $entityElement->getEntity() !== null) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
@@ -162,8 +162,8 @@ class AppExtension extends AbstractExtension
 
         return preg_replace_callback(
             "/\b(".implode('|', $words).")\b/ui",
-            function($matches) use ($words) {
-                $id = array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words));
+            function ($matches) use ($words) {
+                $id = \array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words));
                 $route = $this->router->generate('app_tag_show', ['id' => $id]);
 
                 return "<a href='$route'>$matches[1]</a>";

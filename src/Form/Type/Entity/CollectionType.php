@@ -65,7 +65,7 @@ class CollectionType extends AbstractType
                 'required' => false
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [

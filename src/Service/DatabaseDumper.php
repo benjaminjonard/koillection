@@ -110,7 +110,7 @@ class DatabaseDumper
                 $metadata = $this->em->getClassMetadata("App\Entity\\$entityName");
             }
 
-            $headers = implode(',', array_keys($results[0]));
+            $headers = implode(',', \array_keys($results[0]));
             $rows[] = "INSERT INTO $tableName ($headers) VALUES ".PHP_EOL;
 
             $count = \count($results);
@@ -144,7 +144,9 @@ class DatabaseDumper
     {
         $currentSchema = $connection->getSchemaManager()->createSchema();
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
-        $rows = array_map(function ($row) { return $row.';'.PHP_EOL; }, $schemaRows);
+        $rows = \array_map(function ($row) {
+            return $row.';'.PHP_EOL;
+        }, $schemaRows);
         $rows[] = PHP_EOL;
 
         return $rows;
@@ -159,17 +161,17 @@ class DatabaseDumper
     private function formatValue($value, string $property, $metadata)
     {
         if (\is_string($value)) {
-            $value = str_replace(['\\', "'"], ['\\\\', "''"] , $value);
+            $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
         }
 
         if ($value === null) {
             $value = 'NULL';
         } else {
-            if ($metadata && $metadata->getTypeOfField(array_search($property, $metadata->columnNames)) === 'boolean') {
+            if ($metadata && $metadata->getTypeOfField(\array_search($property, $metadata->columnNames)) === 'boolean') {
                 $value = $value === true ? 'true' : 'false';
             }
 
-            if ($metadata === null || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames)), [null, 'string', 'datetime', 'date' ,'uuid', 'array', 'text'], true)) {
+            if ($metadata === null || \in_array($metadata->getTypeOfField(\array_search($property, $metadata->columnNames)), [null, 'string', 'datetime', 'date' ,'uuid', 'array', 'text'], true)) {
                 $value = "'" . $value . "'";
             }
         }

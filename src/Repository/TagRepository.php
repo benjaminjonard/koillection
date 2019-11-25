@@ -174,7 +174,6 @@ class TagRepository extends EntityRepository
      */
     public function findForSearch(User $owner, Search $search) : array
     {
-
         $itemsCount = $this->_em->getRepository(Item::class)->count(['owner' => $owner]);
 
         $qb = $this
@@ -258,7 +257,7 @@ class TagRepository extends EntityRepository
             ->getArrayResult()
         ;
 
-        $itemIds = array_map(function ($row) {
+        $itemIds = \array_map(function ($row) {
             return $row['id'];
         }, $results);
 

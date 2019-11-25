@@ -56,7 +56,7 @@ class ItemRepository extends EntityRepository
             ->getArrayResult()
         ;
 
-        usort($results, function(array $a, array $b) {
+        usort($results, function (array $a, array $b) {
             return strnatcmp($a['name'], $b['name']);
         });
 
@@ -187,5 +187,4 @@ class ItemRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
-
 }

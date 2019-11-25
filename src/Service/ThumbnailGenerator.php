@@ -57,7 +57,7 @@ class ThumbnailGenerator
         imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $imageWidth, $imageHeight);
 
         $dir = explode('/', $thumbnailPath);
-        array_pop($dir);
+        \array_pop($dir);
         $dir = implode('/', $dir);
 
         if (!is_dir($dir) && !mkdir($dir) && !is_dir($dir)) {

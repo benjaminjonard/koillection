@@ -88,7 +88,7 @@ class ToolsController extends AbstractController
      */
     public function exportImages() : StreamedResponse
     {
-        $response = new StreamedResponse(function() {
+        $response = new StreamedResponse(function () {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
@@ -110,5 +110,4 @@ class ToolsController extends AbstractController
 
         return $response;
     }
-
 }

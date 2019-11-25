@@ -56,7 +56,7 @@ class ArrayExtension extends AbstractExtension
             $array = [];
         }
 
-        if (($key = array_search($element, $array, false)) !== false) {
+        if (($key = \array_search($element, $array, false)) !== false) {
             unset($array[$key]);
         }
 
@@ -69,7 +69,7 @@ class ArrayExtension extends AbstractExtension
      */
     public function reorder(array $array) : array
     {
-        return array_values($array);
+        return \array_values($array);
     }
 
     /**

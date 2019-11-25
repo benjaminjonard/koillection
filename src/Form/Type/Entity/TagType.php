@@ -62,7 +62,7 @@ class TagType extends AbstractType
                 'label' => false,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => false,
             ])
             ->add('category', EntityType::class, [

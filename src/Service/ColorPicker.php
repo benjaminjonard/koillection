@@ -26,6 +26,6 @@ class ColorPicker
         $colors[] = 'E8EAF6';
         shuffle($colors);
 
-        return array_shift($colors);
+        return \array_shift($colors);
     }
 }

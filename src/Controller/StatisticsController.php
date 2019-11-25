@@ -37,7 +37,7 @@ class StatisticsController extends AbstractController
 
         $calendar = $calendarBuilder->buildItemCalendar($user);
         ksort($calendar);
-        $calendar = array_reverse($calendar, true);
+        $calendar = \array_reverse($calendar, true);
 
         return $this->render('App/Statistics/index.html.twig', [
             'counters' => $this->getDoctrine()->getRepository(User::class)->getCounters($user),

@@ -72,7 +72,7 @@ class BreadcrumbExtension extends AbstractExtension
         }
 
         if ($entity) {
-            $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity));
+            $breadcrumb = \array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity));
         }
 
         if (null !== $action) {
@@ -84,7 +84,7 @@ class BreadcrumbExtension extends AbstractExtension
             $breadcrumb[] = $actionElement;
         }
 
-        $last = array_pop($breadcrumb);
+        $last = \array_pop($breadcrumb);
         $last->setClass('last');
         $breadcrumb[] = $last;
 

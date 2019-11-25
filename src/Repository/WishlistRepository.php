@@ -95,7 +95,7 @@ class WishlistRepository extends EntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = \array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
 
         return $this
             ->createQueryBuilder('w')

@@ -66,7 +66,7 @@ class CollectionRepository extends EntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = \array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
 
         return $this
             ->createQueryBuilder('c')
@@ -248,7 +248,7 @@ class CollectionRepository extends EntityRepository
             ;
         }
 
-        return array_column($qb->getQuery()->getArrayResult(), "itemsTitle");
+        return \array_column($qb->getQuery()->getArrayResult(), "itemsTitle");
     }
 
     public function suggestChildrenTitles(Collection $collection) : array
@@ -269,6 +269,6 @@ class CollectionRepository extends EntityRepository
             ;
         }
 
-        return array_column($qb->getQuery()->getArrayResult(), "childrenTitle");
+        return \array_column($qb->getQuery()->getArrayResult(), "childrenTitle");
     }
 }

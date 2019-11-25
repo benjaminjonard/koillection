@@ -50,7 +50,7 @@ class LocaleListener
                 if (null !== $best) {
                     $request->getSession()->set('_locale', $best->getType());
                     $request->setLocale($request->getSession()->get('_locale', $best->getType()));
-                }    
+                }
             }
 
             return;

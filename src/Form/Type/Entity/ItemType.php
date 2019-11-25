@@ -107,7 +107,7 @@ class ItemType extends AbstractType
                 'by_reference' => false
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
         ;

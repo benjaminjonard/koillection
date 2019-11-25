@@ -32,7 +32,9 @@ class HistoryController extends AbstractController
     {
         $page = $request->query->get('page', 1);
         $classes = array_map(
-            function($type) { return 'App\Entity\\'.ucfirst($type); },
+            function ($type) {
+                return 'App\Entity\\'.ucfirst($type);
+            },
             $request->query->get('types', [])
         );
 

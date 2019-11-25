@@ -19,7 +19,7 @@ class CurrencyEnum
     public static function getCurrencyLabels() : array
     {
         $currencies = [];
-        foreach ( Intl::getCurrencyBundle()->getCurrencyNames() as $code => $name) {
+        foreach (Intl::getCurrencyBundle()->getCurrencyNames() as $code => $name) {
             if (!strpos($name, '(')) {
                 $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($code);
                 if ($symbol === $code) {

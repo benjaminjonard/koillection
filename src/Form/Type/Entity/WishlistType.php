@@ -56,7 +56,7 @@ class WishlistType extends AbstractType
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => false,
             ])
             ->add('parent', EntityType::class, [

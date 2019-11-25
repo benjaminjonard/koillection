@@ -27,13 +27,13 @@ class ItemListener
             if ($entity instanceof Item) {
                 $changeset = $uow->getEntityChangeSet($entity);
 
-                if (array_key_exists('collection', $changeset)) {
+                if (\array_key_exists('collection', $changeset)) {
                     if ($entity->getCollection()->getVisibility() === VisibilityEnum::VISIBILITY_PRIVATE) {
                         $entity->setVisibility(VisibilityEnum::VISIBILITY_PRIVATE);
                     }
                 }
 
-                if (array_key_exists('visibility', $changeset)) {
+                if (\array_key_exists('visibility', $changeset)) {
                     foreach ($entity->getData() as $datum) {
                         $datum->setVisibility($entity->getVisibility());
                     }

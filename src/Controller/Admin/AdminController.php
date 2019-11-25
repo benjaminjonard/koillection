@@ -87,7 +87,7 @@ class AdminController extends AbstractController
         }
 
         //Compute the diff and delete the diff
-        $diff = array_diff($diskPaths, $dbPaths);
+        $diff = \array_diff($diskPaths, $dbPaths);
         foreach ($diff as $path) {
             unlink($publicPath.'/'.$path);
         }
@@ -113,7 +113,7 @@ class AdminController extends AbstractController
     public function backup(DatabaseDumper $databaseDumper) : StreamedResponse
     {
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-        $response = new StreamedResponse(function() use ($databaseDumper, $users)  {
+        $response = new StreamedResponse(function () use ($databaseDumper, $users) {
             $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-backup.zip';
             $zip = new ZipStream($zipFilename);
 
