@@ -156,7 +156,7 @@ class AppExtension extends AbstractExtension
 
         $words = [];
         foreach ($tags as $tag) {
-            $id = is_string($tag['id']) ? $tag['id'] : $tag['id']->toString();
+            $id = \is_string($tag['id']) ? $tag['id'] : $tag['id']->toString();
             $words[$id] = preg_quote($tag['label'], '/');
         }
 
