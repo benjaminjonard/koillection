@@ -39,16 +39,6 @@ class ContextHandler
     private $context;
 
     /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
      * @var User
      */
     private $user;
@@ -62,15 +52,11 @@ class ContextHandler
      * ContextHandler constructor.
      * @param \Twig_Environment $environment
      * @param RouterInterface $router
-     * @param TokenStorageInterface $tokenStorage
-     * @param EntityManagerInterface $em
      */
-    public function __construct(\Twig_Environment $environment, RouterInterface $router, TokenStorageInterface $tokenStorage, EntityManagerInterface $em)
+    public function __construct(\Twig_Environment $environment, RouterInterface $router)
     {
         $this->environment = $environment;
         $this->router = $router;
-        $this->tokenStorage = $tokenStorage;
-        $this->em = $em;
     }
 
     public function init(Request $request)
@@ -92,18 +78,10 @@ class ContextHandler
         }
     }
 
-    public function setContextUser()
-    {
-        if ($this->context === 'user') {
-            $user = $this->em->getRepository(User::class)->findOneByUsername($this->username);
-            if (!$user) {
-                throw new NotFoundHttpException();
-            }
+    public function setContextUser(?User $user) {
+        $this->user = $user;
 
-            $this->user = $user;
-        } elseif ($this->tokenStorage->getToken() && $this->tokenStorage->getToken()->getUser() instanceof User) {
-            $this->user = $this->tokenStorage->getToken()->getUser();
-        }
+        return $user;
     }
 
     public function getContextUser() : ?User
@@ -114,5 +92,10 @@ class ContextHandler
     public function getContext() : string
     {
         return $this->context;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
     }
 }
