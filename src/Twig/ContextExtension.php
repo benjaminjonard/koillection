@@ -46,11 +46,9 @@ class ContextExtension extends AbstractExtension
      */
     public function applyContext(string $route) : string
     {
-        $context = $this->contextHandler->getContext();
+        return $this->contextHandler->getRouteContext($route);
 
-        if (\in_array($context, ['user', 'preview'])) {
-            $route = str_replace('app_', 'app_'.$context.'_', $route);
-        }
+
 
         return $route;
     }

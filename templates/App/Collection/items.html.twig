@@ -11,6 +11,18 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
+{% block meta %}
+    {% if context == 'user'  %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
+            'image': collection.image ? preload(asset(collection.image.path)) : null
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="collection-header">
         <div class="title-block">

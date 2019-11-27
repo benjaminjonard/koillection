@@ -10,6 +10,18 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
+{% block meta %}
+    {% if context == 'user'  %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.wishlists_user'|trans({'%username%':  app.request.get('username')})
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+
 {% block content %}
     <div class="collection-header">
         <div class="title-block">

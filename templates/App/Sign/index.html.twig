@@ -11,6 +11,17 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
+{% block meta %}
+    {% if context == 'user'  %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.signs_user'|trans({'%username%':  app.request.get('username')})
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="title-block">
         <h1>{{ 'menu.signs'|trans() }}</h1>

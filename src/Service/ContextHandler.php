@@ -78,6 +78,14 @@ class ContextHandler
         }
     }
 
+    public function getRouteContext($route) {
+        if (\in_array($this->context, ['user', 'preview'])) {
+            $route = str_replace('app_', 'app_'.$this->context.'_', $route);
+        }
+
+        return $route;
+    }
+
     public function setContextUser(?User $user) {
         $this->user = $user;
 

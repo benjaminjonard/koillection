@@ -174,7 +174,9 @@ class AppExtension extends AbstractExtension
             "/\b(".implode('|', $words).")\b/ui",
             function ($matches) use ($words) {
                 $id = \array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words));
-                $route = $this->router->generate('app_tag_show', ['id' => $id]);
+
+                $route = $this->contextHandler->getRouteContext('app_tag_show');
+                $route = $this->router->generate($route, ['id' => $id]);
 
                 return "<a href='$route'>$matches[1]</a>";
             },
