@@ -4,15 +4,9 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use App\Entity\User;
 use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * Class FilterListener
  *
@@ -26,11 +20,6 @@ class FilterListener
     private $em;
 
     /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
      * @var ContextHandler
      */
     private $contextHandler;
@@ -38,13 +27,11 @@ class FilterListener
     /**
      * FilterListener constructor.
      * @param EntityManagerInterface $em
-     * @param TokenStorageInterface $tokenStorage
      * @param ContextHandler $contextHandler
      */
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, ContextHandler $contextHandler)
+    public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler)
     {
         $this->em = $em;
-        $this->tokenStorage = $tokenStorage;
         $this->contextHandler = $contextHandler;
     }
 
@@ -53,7 +40,6 @@ class FilterListener
      */
     public function onKernelRequest(RequestEvent $event)
     {
-        $request = $event->getRequest();
         $filters = $this->em->getFilters();
         $context = $this->contextHandler->getContext();
 
@@ -65,46 +51,16 @@ class FilterListener
             $filters->disable('visibility');
         }
 
+
         //Ownership filter
-        $user = $this->getUser($request, $context);
+        $user = $this->contextHandler->getContextUser();
         if ($user && $context !== 'admin') {
             $filter = $filters->enable('ownership');
             $filter->setParameter('id', $user->getId(), 'integer');
         } elseif ($filters->isEnabled('ownership')) {
             $filters->disable('ownership');
         }
-    }
 
-    /**
-     * @param Request $request
-     * @param $context
-     * @return null|UserInterface
-     */
-    private function getUser(Request $request, $context) : ?UserInterface
-    {
-        if ($context === 'user') {
-            preg_match("/^\/user\/(\w+)/", $request->getRequestUri(), $matches);
-            $user = $this->em->getRepository(User::class)->findOneByUsername($matches[1]);
-
-            if (!$user) {
-                throw new NotFoundHttpException();
-            }
-
-            return $user;
-        }
-
-        $token = $this->tokenStorage->getToken();
-
-        if (!$token) {
-            return null;
-        }
-
-        $user = $token->getUser();
-
-        if (!($user instanceof UserInterface)) {
-            return null;
-        }
-
-        return $user;
+        $this->contextHandler->setContextUser();
     }
 }

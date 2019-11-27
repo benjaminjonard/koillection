@@ -32,20 +32,21 @@ class CounterCalculator
     private $qng;
 
     /**
-     * @var TokenStorageInterface
+     * @var ContextHandler
      */
-    private $tokenStorage;
+    private $contextHandler;
 
     /**
      * CounterCalculator constructor.
      * @param EntityManagerInterface $em
      * @param QueryNameGenerator $qng
+     * @param ContextHandler $contextHandler
      */
-    public function __construct(EntityManagerInterface $em, QueryNameGenerator $qng, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManagerInterface $em, QueryNameGenerator $qng, ContextHandler $contextHandler)
     {
         $this->em = $em;
         $this->qng = $qng;
-        $this->tokenStorage = $tokenStorage;
+        $this->contextHandler = $contextHandler;
     }
 
     /**
@@ -83,7 +84,7 @@ class CounterCalculator
         $rsm->addIndexByScalar('id');
         $rsm->addScalarResult('counters', 'counters');
         $alias = $this->qng->generateJoinAlias('c');
-        $ownerId = $this->tokenStorage->getToken()->getUser()->getId();
+        $ownerId = $this->contextHandler->getContextUser()->getId();
 
         $sqlCounters = $this->getSQLForCounters($alias, $table, $itemTable, $parentProperty);
         $sql = "
@@ -140,7 +141,7 @@ class CounterCalculator
         ";
 
         if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sql .= sprintf("AND %s.visibility = '%s'", $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
+            $sql .= sprintf("WHERE %s.visibility = '%s'", $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
         };
 
         return $sql;
