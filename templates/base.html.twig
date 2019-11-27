@@ -5,7 +5,9 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        {% block meta %}{% endblock %}
+        {% block meta %}
+            {{ include('App/_partials/_meta.html.twig') }}
+        {% endblock %}
 
         <meta name="description" content="{% block description %}{{ 'meta.description'|trans }}{% endblock %}">
         <title>{% block title %}Koillection{% endblock %}</title>

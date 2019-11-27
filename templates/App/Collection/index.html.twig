@@ -8,10 +8,12 @@
 
 {% block meta %}
     {% if context == 'user'  %}
-        <meta property="og:title" content="{{ 'menu.collections_user'|trans({username:  app.request.get('username')}) }}">
-        <meta property="og:description" content="{{ renderTitle(breadcrumb)  }}">
-        <meta property="og:url" content="{{ renderTitle(breadcrumb)  }}">
-        <meta property="og:image" content="{{ preload(asset('build/images/meta-logo.png')) }}">
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')})
+        }) }}
+    {% else %}
+        {{ parent() }}
     {% endif %}
 {% endblock %}
 
