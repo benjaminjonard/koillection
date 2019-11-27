@@ -14,7 +14,7 @@
     {% if context == 'user'  %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.wishlists_user'|trans({'%username%':  app.request.get('username')})
+            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
         }) }}
     {% else %}
         {{ parent() }}

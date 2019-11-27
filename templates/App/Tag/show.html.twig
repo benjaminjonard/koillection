@@ -15,7 +15,7 @@
     {% if context == 'user'  %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.tags_user'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
             'image': tag.image ? preload(asset(tag.image.thumbnailPath)) : null
         }) }}
     {% else %}
