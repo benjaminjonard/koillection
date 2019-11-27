@@ -46,10 +46,9 @@ class BreadcrumbExtension extends AbstractExtension
      * @param array $root
      * @param object $entity
      * @param string|null $action
-     * @param User|null $user
      * @return array
      */
-    public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, User $user = null)
+    public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null)
     {
         $breadcrumb = [];
 
@@ -62,10 +61,6 @@ class BreadcrumbExtension extends AbstractExtension
                     ->setLabel($element['trans'])
                     ->setParams([])
                 ;
-
-                if ($user instanceof User) {
-                    $rootElement->setParams(['username' => $user->getUsername()]);
-                }
 
                 $breadcrumb[] = $rootElement;
             }

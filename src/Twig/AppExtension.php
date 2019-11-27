@@ -6,6 +6,7 @@ namespace App\Twig;
 
 use App\Entity\Tag;
 use App\Model\BreadcrumbElement;
+use App\Service\ContextHandler;
 use App\Service\ItemNameGuesser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -37,17 +38,23 @@ class AppExtension extends AbstractExtension
     protected $em;
 
     /**
+     * @var ContextHandler
+     */
+    protected $contextHandler;
+
+    /**
      * AppExtension constructor.
-     *
      * @param TranslatorInterface $translator
      * @param RouterInterface $router
      * @param EntityManagerInterface $em
+     * @param ContextHandler $contextHandler
      */
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em, ContextHandler $contextHandler)
     {
         $this->translator = $translator;
         $this->router = $router;
         $this->em = $em;
+        $this->contextHandler = $contextHandler;
     }
 
     /**
@@ -131,10 +138,13 @@ class AppExtension extends AbstractExtension
                 $class = implode('_', $pieces);
                 $class = strtolower($class);
 
-                return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$element->getLabel();
+                return $this->translator->trans('global.entities.'.strtolower($class)) .' · '. $element->getLabel();
             }
 
             if ($element->getType() === 'root') {
+                if ($this->contextHandler->getContext() === 'user') {
+                    return $this->translator->trans($element->getLabel().'_user', ['%username%' => $this->contextHandler->getUsername()]);
+                }
                 return $this->translator->trans($element->getLabel());
             }
         }

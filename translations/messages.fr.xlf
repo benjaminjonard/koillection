@@ -2161,7 +2161,7 @@
       </notes>
       <segment>
         <source>menu.collections_user</source>
-        <target>Collection de %username%'s</target>
+        <target>Collections de %username%'s</target>
       </segment>
     </unit>
     <unit id="k3EiIPt" name="menu.exit_preview">

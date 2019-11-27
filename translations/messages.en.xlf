@@ -2170,7 +2170,7 @@
       </notes>
       <segment>
         <source>menu.collections_user</source>
-        <target>%username%'s collection</target>
+        <target>%username%'s collections</target>
       </segment>
     </unit>
     <unit id="k3EiIPt" name="menu.exit_preview">
