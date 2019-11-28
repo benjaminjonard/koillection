@@ -19,6 +19,11 @@ class LocaleEnum
         self::LOCALE_FR
     ];
 
+    public const FULL_LOCALES = [
+        self::LOCALE_EN => 'en_US',
+        self::LOCALE_FR => 'fr_FR'
+    ];
+
     public const LOCALES_TRANS_KEYS = [
         self::LOCALE_EN => 'english',
         self::LOCALE_FR => 'french'
@@ -30,5 +35,13 @@ class LocaleEnum
     public static function getLocaleLabels() : array
     {
         return self::LOCALES_TRANS_KEYS;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getFullLocales() : array
+    {
+        return self::FULL_LOCALES;
     }
 }

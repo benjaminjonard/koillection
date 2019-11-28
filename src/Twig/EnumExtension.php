@@ -28,6 +28,8 @@ class EnumExtension extends AbstractExtension
             new TwigFunction('getRoleLabel', [$this, 'getRoleLabel']),
             new TwigFunction('getLocales', [$this, 'getLocales']),
             new TwigFunction('getLocaleLabel', [$this, 'getLocaleLabel']),
+            new TwigFunction('getFullLocales', [$this, 'getFullLocales']),
+            new TwigFunction('getFullLocaleLabel', [$this, 'getFullLocaleLabel']),
             new TwigFunction('getThemeColor', [$this, 'getThemeColor']),
         ];
     }
@@ -60,11 +62,28 @@ class EnumExtension extends AbstractExtension
 
     /**
      * @param string $code
-     * @return array
+     * @return string
      */
     public function getLocaleLabel(string $code) : string
     {
         return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::LOCALE_EN;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFullLocales() : array
+    {
+        return LocaleEnum::getFullLocales();
+    }
+
+    /**
+     * @param string $code
+     * @return string
+     */
+    public function getFullLocaleLabel(string $code) : string
+    {
+        return LocaleEnum::getFullLocales()[$code] ?? LocaleEnum::getFullLocales()[LocaleEnum::LOCALE_EN];
     }
 
     /**
