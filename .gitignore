@@ -1,14 +1,9 @@
 ###> symfony/framework-bundle ###
-.env.local
+/.env.local
 /.env.local.php
 /.env.*.local
-
-phpunit.xml
+/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/uploads/*
-!/public/uploads/.gitkeep
-/public/tmp/*
-!public/tmp/.gitkeep
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -18,11 +13,18 @@ phpunit.xml
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
+/public/build/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> symfony/phpunit-bridge ###
 .phpunit
+.phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+/public/uploads/*
+!/public/uploads/.gitkeep
+/public/tmp/*
+!public/tmp/.gitkeep

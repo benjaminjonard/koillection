@@ -1,5 +1,5 @@
 parameters:
-    version: 'v1.0.4'
+    version: 'v1.1.0'
     locale: 'en'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
 
@@ -43,7 +43,7 @@ services:
             - { name: kernel.event_listener, event: kernel.response}
     App\EventListener\LogQueueListener:
         tags:
-             - { name: kernel.event_listener, event: kernel.response, priority: 5 }
+            - { name: kernel.event_listener, event: kernel.response, priority: 5 }
 
     App\EventListener\AccessDeniedListener:
         tags:

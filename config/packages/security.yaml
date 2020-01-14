@@ -7,9 +7,9 @@ security:
         ROLE_ADMIN: ROLE_USER
 
     providers:
-       app_provider:
-          entity:
-              class: App:User
+        app_provider:
+            entity:
+                class: App:User
 
     firewalls:
         main:
@@ -39,5 +39,3 @@ security:
         - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/_trans, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
-
-

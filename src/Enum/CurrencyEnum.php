@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Currencies;
 
 /**
  * Class CurrencyEnum
@@ -19,9 +19,9 @@ class CurrencyEnum
     public static function getCurrencyLabels() : array
     {
         $currencies = [];
-        foreach (Intl::getCurrencyBundle()->getCurrencyNames() as $code => $name) {
+        foreach (Currencies::getNames() as $code => $name) {
             if (!strpos($name, '(')) {
-                $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($code);
+                $symbol = Currencies::getSymbol($code);
                 if ($symbol === $code) {
                     $currencies[$code] = ucwords($name) . " ($code)";
                 } else {
@@ -39,6 +39,6 @@ class CurrencyEnum
      */
     public static function getSymbolFromCode(string $code) : ?string
     {
-        return Intl::getCurrencyBundle()->getCurrencySymbol($code);
+        return Currencies::getSymbol($code);
     }
 }
