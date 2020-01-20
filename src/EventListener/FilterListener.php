@@ -60,7 +60,7 @@ class FilterListener
         } elseif ($filters->isEnabled('visibility')) {
             $filters->disable('visibility');
         }
-
+        $this->setContextUser();
 
         //Ownership filter
         $user = $this->contextHandler->getContextUser();
@@ -70,8 +70,6 @@ class FilterListener
         } elseif ($filters->isEnabled('ownership')) {
             $filters->disable('ownership');
         }
-
-        $this->setContextUser();
     }
 
     public function setContextUser()

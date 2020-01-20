@@ -89,7 +89,9 @@ class AdminController extends AbstractController
         //Compute the diff and delete the diff
         $diff = \array_diff($diskPaths, $dbPaths);
         foreach ($diff as $path) {
-            unlink($publicPath.'/'.$path);
+            if (file_exists($publicPath.'/'.$path)) {
+                unlink($publicPath.'/'.$path);
+            }
         }
 
         $this->addFlash('notice', $translator->trans('message.files_deleted', ['%count%' => \count($diff)]));

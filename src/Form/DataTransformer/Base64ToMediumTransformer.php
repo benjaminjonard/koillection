@@ -47,7 +47,7 @@ class Base64ToMediumTransformer implements DataTransformerInterface
         }
         $path = 'tmp/'.$name;
         file_put_contents($path, $data);
-        $file = new UploadedFile($path, $name, $matches[1], filesize($path), null, true);
+        $file = new UploadedFile($path, $name, $matches[1], null, true);
         $medium = new Medium();
         $medium->setUploadedFile($file);
 

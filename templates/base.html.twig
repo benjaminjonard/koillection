@@ -40,6 +40,10 @@
 {% block javascripts %}
     <script src="{{ preload(asset('build/js/app.js')) }}" nonce="{{ csp_nonce() }}"></script>
     <script nonce="{{ csp_nonce() }}">
+        window.onload = window.onpageshow = function() {
+            document.documentElement.className = '';
+        };
+
         if ('serviceWorker' in navigator) {
             const LOADING = 0;
             const LOADED = 1;

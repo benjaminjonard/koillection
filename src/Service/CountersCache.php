@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use Symfony\Component\Cache\Adapter\ApcuAdapter;
+use Symfony\Contracts\Cache\ItemInterface;
 
 /**
  * Class CountersCache
@@ -29,19 +30,16 @@ class CountersCache
         $context = $this->contextHandler->getContext();
         $key = $context . '_' . $object->getId();
 
-        if (!$this->cache->hasItem($context.'_counters')) {
+        $counters = $this->cache->get($context.'_counters', function (ItemInterface $item) use ($context) {
             $counters = [];
-
             foreach ($this->calculator->computeCounters() as $id => $counter) {
                 $counters[$context . '_' . $id] = $counter;
             }
 
-            $cachedCounters = $this->cache->getItem($context.'_counters');
-            $cachedCounters->set($counters);
-            $this->cache->save($cachedCounters);
-        }
+            return $counters;
+        });
 
-        return $this->cache->getItem($context.'_counters')->get()[$key];
+        return $counters[$key];
     }
 
     public function reset()

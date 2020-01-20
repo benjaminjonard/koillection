@@ -104,10 +104,15 @@ class ImageHandler
         $sizeFreed = 0;
         $sizeFreed += $medium->getSize();
 
-        unlink($this->publicPath.'/'.$medium->getPath());
+        if (file_exists($this->publicPath.'/'.$medium->getPath())) {
+            unlink($this->publicPath.'/'.$medium->getPath());
+        }
+
         if ($medium->getThumbnailPath()) {
             $sizeFreed += $medium->getThumbnailSize();
-            unlink($this->publicPath.'/'.$medium->getThumbnailPath());
+            if (file_exists($this->publicPath.'/'.$medium->getThumbnailPath())) {
+                unlink($this->publicPath.'/'.$medium->getThumbnailPath());
+            }
         }
 
         $dir = rtrim($this->publicPath.'/'.$medium->getPath(), basename($medium->getFilename()));
