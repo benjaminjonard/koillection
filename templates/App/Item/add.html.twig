@@ -62,7 +62,7 @@
             <div class="row block-element">
                 <h5 class="header">{{ 'title.additional_fields'|trans }}</h5>
                 <div class="col s10 offset-s1 m4 offset-m1 input-field">
-                    <select class="selectFieldType">
+                    <select class="selectFieldType" {% if fieldsType|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
                         <option value=""></option>
                         {% for key, fieldType in fieldsType %}
                             <option value="{{ key }}">{{ fieldType|trans }}</option>

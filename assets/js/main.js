@@ -47,8 +47,9 @@ $(document).ready(function() {
         });
     });
 
+    $('select').select2();
+
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
-    M.FormSelect.init(document.querySelectorAll('select'));
     M.Modal.init(document.querySelectorAll('.modal'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
         enterDelay: 500,

@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
 /**
@@ -115,9 +116,15 @@ class AdminController extends AbstractController
     public function backup(DatabaseDumper $databaseDumper) : StreamedResponse
     {
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-        $response = new StreamedResponse(function () use ($databaseDumper, $users) {
+
+        return new StreamedResponse(function () use ($databaseDumper, $users) {
+            $options = new Archive();
+            $options->setContentType('text/event-stream');
+            $options->setFlushOutput(true);
+            $options->setSendHttpHeaders(true);
+
             $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-backup.zip';
-            $zip = new ZipStream($zipFilename);
+            $zip = new ZipStream($zipFilename, $options);
 
             foreach ($users as $user) {
                 $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $user->getId();
@@ -140,9 +147,5 @@ class AdminController extends AbstractController
 
             $zip->finish();
         });
-
-        $response->headers->set('X-Accel-Buffering', 'no');
-
-        return $response;
     }
 }

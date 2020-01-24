@@ -90,7 +90,7 @@
 
             <div class="block-element col s10 offset-s1 m3 offset-m1">
                 <h5 class="header">{{ 'title.currency'|trans }}</h5>
-                <select id="currency" searchable="test">
+                <select id="currency" {% if currencies|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
                     {% for code, currency in currencies %}
                         <option id="{{ code }}" class="input-currency-{{ code }}" value="{{ code }}" {{ app.user.currency == code ? 'selected' }}>{{ currency }}</option>
                     {% endfor %}

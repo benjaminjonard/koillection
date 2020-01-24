@@ -8,6 +8,7 @@ import 'jquery'
 import 'lightbox2'
 import 'croppie'
 import 'materialize-css'
+import 'select2'
 
 import './filters'
 import './main'

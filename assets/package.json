@@ -11,6 +11,7 @@
         "js-cookie": "^2.2.1",
         "lightbox2": "^2.11.1",
         "materialize-css": "^1.0.0",
+        "select2": "^4.0.12",
         "sortablejs": "^1.10.1"
     },
     "devDependencies": {

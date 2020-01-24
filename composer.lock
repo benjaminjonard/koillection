@@ -6380,16 +6380,16 @@
         },
         {
             "name": "php-translation/extractor",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-translation/extractor.git",
-                "reference": "439717ddc43a333ce49feb99074df2db8ba93071"
+                "reference": "598bbe72bb3a6336c28ed8d75b67de310c2c9743"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-translation/extractor/zipball/439717ddc43a333ce49feb99074df2db8ba93071",
-                "reference": "439717ddc43a333ce49feb99074df2db8ba93071",
+                "url": "https://api.github.com/repos/php-translation/extractor/zipball/598bbe72bb3a6336c28ed8d75b67de310c2c9743",
+                "reference": "598bbe72bb3a6336c28ed8d75b67de310c2c9743",
                 "shasum": ""
             },
             "require": {
@@ -6428,7 +6428,7 @@
                 }
             ],
             "description": "Extract translations form the source code",
-            "time": "2019-12-26T14:02:26+00:00"
+            "time": "2020-01-23T09:12:12+00:00"
         },
         {
             "name": "php-translation/symfony-bundle",

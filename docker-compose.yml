@@ -4,7 +4,7 @@ version: '3'
 services:
     #FPM image
     koillection:
-        image: koillection/koillection:latest
+        image: docker.pkg.github.com/koillection/koillection/fpm:v1.1
         restart: always
         ports:
             - 80:8880
