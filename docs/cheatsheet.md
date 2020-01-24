@@ -2,7 +2,8 @@
 
 #### Symfony
 ###### Update javascript translations
-- `php bin/console bazinga:js-translation:dump assets/js`
+- `php bin/console bazinga:js-translation:dump assets/js --format=js`
+
 ###### Reload assets
 - `cd ./assets/ && yarn encore production`
 

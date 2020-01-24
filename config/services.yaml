@@ -11,6 +11,7 @@ services:
         bind:
             $defaultLocale: '%locale%'
             $publicPath: '%kernel.project_dir%/public'
+            $assetsPath: '%kernel.project_dir%/assets'
 
     App\:
         resource: '../src/*'
@@ -21,6 +22,10 @@ services:
         tags: ['controller.service_arguments']
 
     #Kernel listeners
+    App\EventListener\TranslationCommandListener:
+        tags:
+            - { name: kernel.event_listener, event: console.terminate }
+
     App\EventListener\ContextListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 255 }

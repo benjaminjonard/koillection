@@ -38,7 +38,6 @@ $(document).ready(function() {
         $('.profile-menu').removeClass('hidden');
 
         $(document).mouseup(function(e) {
-            console.log('ok');
             var $container = $('.profile-menu');
             if (!$container.is(e.target) && $container.has(e.target).length === 0) {
                 $container.addClass('hidden');
@@ -47,7 +46,52 @@ $(document).ready(function() {
         });
     });
 
-    $('select').select2();
+    $('select').select2({
+        language: {
+            noResults: function () {
+                return Translator.trans('select2.no_results');
+            },
+            searching: function () {
+                return Translator.trans('select2.searching');
+            }
+        },
+        sorter: function (data) {
+            if(data && data.length>1 && data[0].rank){
+                data.sort(function(a,b) {return (a.rank > b.rank) ? -1 : ((b.rank > a.rank) ? 1 : 0);} );
+            }
+
+            return data;
+        }
+        ,
+        matcher:function(params, data) {
+            // If there are no search terms, return all of the data
+            if ($.trim(params.term) === '') {
+                return data;
+            }
+
+            // Do not display the item if there is no 'text' property
+            if (typeof data.text === 'undefined') {
+                return null;
+            }
+
+            // `params.term` should be the term that is used for searching
+            // `data.text` is the text that is displayed for the data object
+            var idx = data.text.toLowerCase().indexOf(params.term.toLowerCase());
+            if (idx > -1) {
+                var modifiedData = $.extend({
+                    // `rank` is higher when match is more similar. If equal rank = 1
+                    'rank':(params.term.length / data.text.length)+ (data.text.length-params.term.length-idx)/(3*data.text.length)
+                }, data, true);
+
+                // You can return modified objects from here
+                // This includes matching the `children` how you want in nested data sets
+                return modifiedData;
+            }
+
+            // Return `null` if the term should not be displayed
+            return null;
+        }
+    });
 
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll('.modal'));

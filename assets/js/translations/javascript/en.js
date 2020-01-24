@@ -27,4 +27,6 @@ t.add("btn.close", "Close", "javascript", "en");
 t.add("statistics.items_added", "[0,1] %count% item added| ]1,Inf[ %count% items added", "javascript", "en");
 t.add("statistics.users", "[0,1] %count% user| ]1,Inf[ %count% users", "javascript", "en");
 t.add("statistics.items", "[0,1] %count% item| ]1,Inf[ %count% items", "javascript", "en");
+t.add("select2.no_results", "No results found", "javascript", "en");
+t.add("select2.searching", "Searching...", "javascript", "en");
 })(Translator);
