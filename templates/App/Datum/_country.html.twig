@@ -1,0 +1,11 @@
+<div class="input-field col s12 m4">
+    <select id="data_{{ iteration }}_value" name="item[data][{{ iteration }}][value]" class="js-select-country">
+        {% for code, name in getCountriesList() %}
+            <option value="{{ code }}" {% if datum is defined and datum.value == code %}selected{% endif %}>
+                <span class="flag-{{ code|lower }}"></span>
+                {{ name }}
+            </option>
+        {% endfor %}
+    </select>
+    <label for="data_{{ iteration }}_value" class="required {% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
+</div>

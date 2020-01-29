@@ -1,0 +1,4 @@
+<div class="input-field col s12 m4">
+    <input type="text" id="data_{{ iteration }}_value" name="item[data][{{ iteration }}][value]" length="255" {% if datum is defined %}value="{{ datum.value }}"{% endif %}>
+    <label for="data_{{ iteration }}_value" class="required {% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
+</div>

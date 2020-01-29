@@ -1228,3 +1228,5 @@ input[type=color] {display: block; margin: 1rem 0;}
     top: -26px;
     font-size: 0.8rem;
 }
+
+.locale-row {padding-top: 3px;}

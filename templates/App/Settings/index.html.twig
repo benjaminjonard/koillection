@@ -77,8 +77,8 @@
                         <p class="setting-input">
                             <label for="{{ code }}">
                                 <input id="{{ code }}" class="input-locale-{{ code }} with-gap" type="radio" name="locale" value="{{ code }}" {% if app.user.locale == code %}checked{% endif %}/>
-                                <span>
-                                    <img src="{{ preload(asset('../build/images/flags/'~ code ~'.svg')) }}" aria-label="{{ ('aria.flag.' ~ code)|trans }}" height="19" width="25">
+                                <span class="locale-row">
+                                    <span class="flag-{{ code|lower }}"></span>
                                     <span class="preview-label">{{ ("global.locale." ~ locale)|trans }}</span>
                                 </span>
                             </label>

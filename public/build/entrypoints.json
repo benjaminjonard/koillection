@@ -2,17 +2,17 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "build/js/app.dafa8512.js"
+        "build/js/app.6afa0c35.js"
       ]
     },
     "js/statistics": {
       "js": [
-        "build/js/statistics.097514ca.js"
+        "build/js/statistics.8c6a8455.js"
       ]
     },
     "css/app": {
       "css": [
-        "build/css/app.09cb6a18.css"
+        "build/css/app.9a3cbc90.css"
       ]
     },
     "css/themes/aubergine": {
@@ -43,6 +43,11 @@
     "css/translation": {
       "css": [
         "build/css/translation.f7656435.css"
+      ]
+    },
+    "css/flags": {
+      "css": [
+        "build/css/flags.c53fd71c.css"
       ]
     }
   }

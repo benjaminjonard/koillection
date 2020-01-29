@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
   <file id="messages.fr">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -4235,6 +4235,12 @@
       <segment>
         <source>global.themes.dark_mode</source>
         <target>Mode sombre</target>
+      </segment>
+    </unit>
+    <unit id="k7MJQ82" name="label.country">
+      <segment>
+        <source>label.country</source>
+        <target>Pays</target>
       </segment>
     </unit>
   </file>

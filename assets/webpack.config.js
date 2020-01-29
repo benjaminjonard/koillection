@@ -15,9 +15,10 @@ Encore
     .addStyleEntry('css/themes/dark_mode', './css/themes/dark_mode.css')
     .addStyleEntry('css/export', './css/export.css')
     .addStyleEntry('css/translation', './css/translation.css')
+    .addStyleEntry('css/flags', './css/flags.css')
 
     .addPlugin(new CopyWebpackPlugin([
-        { from: './img', to: 'images' }
+        { from: './img', to: 'images', ignore: ['flags/**/*'] }
     ]))
 
     .configureUrlLoader({

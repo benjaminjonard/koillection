@@ -29,17 +29,15 @@ class DatumController extends AbstractController
      */
     public function getHtmlByType(string $type) : JsonResponse
     {
-        try {
-            $html = $this->render('App/Datum/'.DatumTypeEnum::getTypeSlug($type).'.html.twig', ['iteration' => '__placeholder__'])->getContent();
-            $isImage = \in_array($type, [DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_IMAGE], false) ? true : false;
+        $html = $this->render('App/Datum/datum.html.twig', [
+            'iteration' => '__placeholder__',
+            'type' => $type
+        ])->getContent();
 
-            return new JsonResponse([
-                'html' => $html,
-                'isImage' => $isImage,
-            ]);
-        } catch (\Exception $e) {
-            return new JsonResponse(false, 500);
-        }
+        return new JsonResponse([
+            'html' => $html,
+            'type' => $type
+        ]);
     }
 
     /**
@@ -58,8 +56,8 @@ class DatumController extends AbstractController
             if ($first instanceof Item) {
                 foreach ($first->getData() as $datum) {
                     if (!\in_array($datum->getType(), [DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_IMAGE], false)) {
-                        $field['isImage'] = false;
                         $field['datum'] = $datum;
+                        $field['type'] = $datum->getType();
                         $commonFields[$datum->getLabel()] = $field;
                     }
                 }
@@ -85,8 +83,9 @@ class DatumController extends AbstractController
             }
 
             foreach ($commonFields as &$commonField) {
-                $commonField['html'] = $this->render('App/Datum/'.DatumTypeEnum::getTypeSlug($commonField['datum']->getType()).'.html.twig', [
+                $commonField['html'] = $this->render('App/Datum/datum.html.twig', [
                             'iteration' => '__placeholder__',
+                            'type' => $commonField['type'],
                             'datum' => $commonField['datum']
                         ])->getContent();
                 unset($commonField['datum']);

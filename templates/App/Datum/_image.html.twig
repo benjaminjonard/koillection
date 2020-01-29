@@ -1,0 +1,11 @@
+<div class="input-field image-preview-wrapper file-field col s12 m4">
+    <div class="btn btn-image">
+        <span>{{ 'label.browse'|trans }}</span>
+    </div>
+    <input type="file" id="data_{{ iteration }}_image" name="item[data][{{ iteration }}][image]" class="has-preview hidden">
+    {% if datum is defined %}
+        <img class="preview-image pull-right" src="{{ preload(asset(datum.image.thumbnailPath)) }}" aria-label="{{ 'aria.datum_image_thumbnail' }}" />
+    {% else %}
+        <img class="preview-image pull-right" src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.default_image'|trans }}"/>
+    {% endif %}
+</div>

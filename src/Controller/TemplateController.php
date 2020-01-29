@@ -132,9 +132,10 @@ class TemplateController extends AbstractController
         $fields = [];
         foreach ($template->getFields() as $field) {
             $data = [];
-            $data['isImage'] = \in_array($field->getType(), [DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_IMAGE], false) ? true : false;
-            $data['html'] = $fields[$field->getName()] = $this->render('App/Datum/'.DatumTypeEnum::getTypeSlug($field->getType()).'.html.twig', [
+            $data['type'] = $field->getType();
+            $data['html'] = $fields[$field->getName()] = $this->render('App/Datum/datum.html.twig', [
                 'iteration' => '__placeholder__',
+                'type' => $field->getType(),
                 'label' => $field->getName(),
                 'template' => $template,
             ])->getContent();
