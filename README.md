@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/license/benjaminjonard/koillection.svg" />
-    <img src="https://img.shields.io/github/release/benjaminjonard/koillection.svg" />
-    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection.svg" />    
-    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection.svg" />
-    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master.svg" />    
+    <img src="https://img.shields.io/github/license/benjaminjonard/koillection" />
+    <img src="https://img.shields.io/github/v/release/benjaminjonard/koillection" />
+    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection" />    
+    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection" />
+    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master" />    
 </p>
 
 # Koillection
