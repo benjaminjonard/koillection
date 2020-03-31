@@ -21,14 +21,12 @@ matrix:
   fast_finish: true
   include:
     - php: 7.3
-    
-before_script:
-  - echo "extension = apcu.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - composer self-update
 
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
+  - echo "extension = apcu.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - composer self-update
   - touch .env.local
   - echo "APP_ENV=test" >> .env.local
   - echo "APP_DEBUG=0" >> .env.local
