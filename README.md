@@ -5,14 +5,11 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/license/koillection/koillection.svg" />
-    <img src="https://img.shields.io/github/release/koillection/koillection.svg" />
-    <img src="https://img.shields.io/packagist/php-v/koillection/koillection.svg" />    
-    <img src="https://img.shields.io/scrutinizer/g/koillection/koillection.svg" />
-    <img src="https://img.shields.io/travis/koillection/koillection/master.svg" />    
-</p>
-<p align="center">
-    <img src="https://gistcdn.githack.com/benjaminjonard/f11f75ee0b19a252d43a27d615f98ccc/raw/99a0d62eaa118a9973855eaf123d9447686a1774/ppm-badge.svg" />
+    <img src="https://img.shields.io/github/license/benjaminjonard/koillection.svg" />
+    <img src="https://img.shields.io/github/release/benjaminjonard/koillection.svg" />
+    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection.svg" />    
+    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection.svg" />
+    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master.svg" />    
 </p>
 
 # Koillection
@@ -74,9 +71,7 @@ Koillection is still in development. There might be some bugs, missing features 
 7. (optionnal) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 
 ### Using Docker
-There is 2 Docker images you can use :
-* https://github.com/koillection/docker -> Recommended. Comes with PHP FPM and nginx, based on the last release of Koillection.
-* https://github.com/koillection/docker-ppm -> Experimental. Comes with PHP PM and nginx, based on the master branch of Koillection, thus can be unstable.
+* https://github.com/benjaminjonard/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
 
 ## Licensing
 
