@@ -2445,17 +2445,17 @@
             ],
             "authors": [
                 {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "https://benramsey.com"
+                },
+                {
                     "name": "Marijn Huizendveld",
                     "email": "marijn.huizendveld@gmail.com"
                 },
                 {
                     "name": "Thibaud Fabre",
                     "email": "thibaud@aztech.io"
-                },
-                {
-                    "name": "Ben Ramsey",
-                    "email": "ben@benramsey.com",
-                    "homepage": "https://benramsey.com"
                 }
             ],
             "description": "Formerly rhumsaa/uuid. A PHP 5.4+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).",
@@ -5368,28 +5368,28 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v4.2.4",
+            "version": "v4.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "d8bf4424c232b55f4c1816037d3077a89258557e"
+                "reference": "6e4939b084defee0ab60a21e6a02e3a198afd91f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/d8bf4424c232b55f4c1816037d3077a89258557e",
-                "reference": "d8bf4424c232b55f4c1816037d3077a89258557e",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/6e4939b084defee0ab60a21e6a02e3a198afd91f",
+                "reference": "6e4939b084defee0ab60a21e6a02e3a198afd91f",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3"
             },
             "require-dev": {
-                "symfony/var-dumper": "^4.1.1"
+                "symfony/var-dumper": "^4.1.1|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -5424,7 +5424,7 @@
                 "instantiate",
                 "serialize"
             ],
-            "time": "2019-01-16T20:35:37+00:00"
+            "time": "2020-03-27T16:54:36+00:00"
         },
         {
             "name": "symfony/web-link",
@@ -5948,6 +5948,7 @@
                 "code",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2018-08-13T20:36:59+00:00"
         },
         {
@@ -6002,6 +6003,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
         }
     ],
@@ -6184,12 +6186,12 @@
             "version": "1.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/facebook/php-webdriver.git",
+                "url": "https://github.com/php-webdriver/php-webdriver-archive.git",
                 "reference": "bd8c740097eb9f2fc3735250fc1912bc811a954e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/bd8c740097eb9f2fc3735250fc1912bc811a954e",
+                "url": "https://api.github.com/repos/php-webdriver/php-webdriver-archive/zipball/bd8c740097eb9f2fc3735250fc1912bc811a954e",
                 "reference": "bd8c740097eb9f2fc3735250fc1912bc811a954e",
                 "shasum": ""
             },
@@ -6237,6 +6239,7 @@
                 "selenium",
                 "webdriver"
             ],
+            "abandoned": "php-webdriver/webdriver",
             "time": "2018-05-16T17:37:13+00:00"
         },
         {
