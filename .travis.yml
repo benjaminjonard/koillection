@@ -21,9 +21,9 @@ matrix:
   fast_finish: true
   include:
     - php: 7.3
-
-# Update composer
-before-install:
+    
+before_script:
+  - echo 'extension=apcu.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/apcu.in
   - composer self-update
 
 # Install composer dependencies,
