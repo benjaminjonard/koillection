@@ -23,7 +23,7 @@ matrix:
     - php: 7.3
     
 before_script:
-  - echo 'extension=apcu.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/apcu.in
+  - echo "extension = apcu.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update
 
 # Install composer dependencies,
