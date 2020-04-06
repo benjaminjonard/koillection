@@ -84,8 +84,8 @@ a {
 
 @font-face {
     font-family: FontAwesome;
-    src: url(fonts/fontawesome-webfont.eot?v=4.7.0);
-    src: url(fonts/fontawesome-webfont.eot?#iefix&v=4.7.0) format('embedded-opentype'), url(fonts/fontawesome-webfont.woff2?v=4.7.0) format('woff2'), url(fonts/fontawesome-webfont.woff?v=4.7.0) format('woff'), url(fonts/fontawesome-webfont.ttf?v=4.7.0) format('truetype'), url(fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular) format('svg');
+    src: url(../fonts/font-awesome/fontawesome-webfont.eot?v=4.7.0);
+    src: url(../fonts/font-awesome/fontawesome-webfont.eot?#iefix&v=4.7.0) format('embedded-opentype'), url(../fonts/font-awesome/fontawesome-webfont.woff2?v=4.7.0) format('woff2'), url(../fonts/font-awesome/fontawesome-webfont.woff?v=4.7.0) format('woff'), url(../fonts/font-awesome/fontawesome-webfont.ttf?v=4.7.0) format('truetype'), url(../fonts/font-awesome/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular) format('svg');
     font-weight: 400;
     font-style: normal
 }
@@ -7260,19 +7260,19 @@ nav .input-field label.active i {
 
 @font-face {
     font-family: Roboto;
-    src: local(Roboto Thin), url(fonts/Roboto-Thin.woff2) format("woff2"), url(fonts/Roboto-Thin.woff) format("woff");
+    src: local(Roboto Thin), url(../fonts/Roboto/Roboto-Thin.woff2) format("woff2"), url(../fonts/Roboto/Roboto-Thin.woff) format("woff");
     font-weight: 100
 }
 
 @font-face {
     font-family: Roboto;
-    src: local(Roboto Light), url(fonts/Roboto-Light.woff2) format("woff2"), url(fonts/Roboto-Light.woff) format("woff");
+    src: local(Roboto Light), url(../fonts/Roboto/Roboto-Light.woff2) format("woff2"), url(../fonts/Roboto/Roboto-Light.woff) format("woff");
     font-weight: 300
 }
 
 @font-face {
     font-family: Roboto;
-    src: local(Roboto Regular), url(fonts/Roboto-Regular.woff2) format("woff2"), url(fonts/Roboto-Regular.woff) format("woff");
+    src: local(Roboto Regular), url(../fonts/Roboto/Roboto-Regular.woff2) format("woff2"), url(../fonts/Roboto/Roboto-Regular.woff) format("woff");
     font-weight: 400
 }
 
@@ -12009,7 +12009,7 @@ footer .logo {
     bottom: 10px;
     height: 75px;
     width: 75px;
-    background-image: url(images/logo.svg);
+    background-image: url(../images/logo.svg);
     background-repeat: no-repeat;
     background-size: 39px;
     background-position: center center;
