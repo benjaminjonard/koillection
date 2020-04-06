@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://koillection.com" target="_blank">
+    <a href="https://benjaminjonard.github.io/koillection/" target="_blank">
         <img src="https://avatars3.githubusercontent.com/u/38983306?s=200&v=4" width="75" height="75">
     </a>
 </p>
