@@ -75,4 +75,4 @@ Koillection is still in development. There might be some bugs, missing features 
 
 ## Licensing
 
-Koillection is an Open Source software, released under the GNU General Public License v3.0. 
+Koillection is an Open Source software, released under the MIT License. 
