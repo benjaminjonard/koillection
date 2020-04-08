@@ -1230,3 +1230,6 @@ input[type=color] {display: block; margin: 1rem 0;}
 }
 
 .locale-row {padding-top: 3px;}
+.lb-data .lb-details { width: 100%; }
+.lb-caption .right { margin-top: -10px; }
+.lb-caption .right .button { margin: 5px; }
