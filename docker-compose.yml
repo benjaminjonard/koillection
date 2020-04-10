@@ -9,17 +9,20 @@ services:
         ports:
             - 80:80
         environment:
+            - APP_ENV=dev
+            - APP_DEBUG=1
             - DB_NAME=koillection
             - DB_HOST=postgres
             - DB_PORT=5432
             - DB_USER=root
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - DB_VERSION=10.4
+            - PHP_TZ=Europe/Paris
         depends_on:
             - postgres
         volumes:
             - ./docker/volumes/koillection/conf:/conf
-            - ./docker/volumes/koillection/public/uploads:/uploads
+            - ./docker/volumes/koillection/uploads:/uploads
 
     postgres:
         container_name: postgres

@@ -67,6 +67,7 @@ Koillection is still in development. There might be some bugs, missing features 
     - `DB_PORT` -> your database port (5432 by default for postgres)
     - `DB_NAME` -> your database name
     - `DB_VERSION` -> your postgres server version (ex: 10.3)    
+    - `PHP_TZ` -> Your timezone (ex: Europe/Paris)
 4. In the project root folder execute `composer install -o`
 5. And then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)
