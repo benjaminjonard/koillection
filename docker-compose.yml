@@ -9,7 +9,8 @@ services:
         ports:
             - 80:80
         environment:
-            - DATABASE_URL=pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4
+            - APP_ENV=test
+            - DATABASE_URL="pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4"
         depends_on:
             - postgres
         volumes:
