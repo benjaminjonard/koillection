@@ -4,17 +4,17 @@ version: '3'
 services:
     #FPM image
     koillection:
-        image: docker.pkg.github.com/benjaminjonard/koillection/fpm:v1.1
+        image: docker.pkg.github.com/benjaminjonard/koillection/fpm:rework
         restart: always
         ports:
-            - 80:8880
+            - 80:80
         environment:
             - DATABASE_URL=pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4
         depends_on:
             - postgres
         volumes:
-            - "./docker/volumes/koillection/public/uploads:/koillection/public/uploads"
-            - .:/koillection
+            - ./docker/volumes/koillection/conf:/conf
+            - ./docker/volumes/koillection/public/uploads:/uploads
 
     postgres:
         container_name: postgres
