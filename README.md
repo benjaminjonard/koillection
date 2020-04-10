@@ -57,14 +57,16 @@ Koillection is still in development. There might be some bugs, missing features 
 
 1. `git clone` the repository or download and unzip the project archive
 2. Create a `.env.local` file and copy the content of `.env` in it
-3. In `.env.local` replace the values between curly braces by your configuration and remove all curly braces
-    - `{secret}` -> a random string
-    - `{user}` -> your database user
-    - `{password}` -> your database password
-    - `{host}` -> your database address (ex: 127.0.0.1 or localhost)
-    - `{port}` -> your database port (5432 by default for postgres)
-    - `{dbname}` -> your database name
-    - `{version}` -> your postgres server version (ex: 10.3)    
+3. In `.env.local` replace the values by your configuration and remove all curly braces
+    - `APP_ENV` -> Symfony environment, prod by default
+    - `APP_DEBUG` -> activate Symfony debug mode, 0 or 1
+    - `APP_SECRET` -> a random string
+    - `DB_USER` -> your database user
+    - `DB_PASSWORD` -> your database password
+    - `DB_HOST` -> your database address (ex: 127.0.0.1 or localhost)
+    - `DB_PORT` -> your database port (5432 by default for postgres)
+    - `DB_NAME` -> your database name
+    - `DB_VERSION` -> your postgres server version (ex: 10.3)    
 4. In the project root folder execute `composer install -o`
 5. And then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)

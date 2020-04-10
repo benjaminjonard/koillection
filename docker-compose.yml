@@ -9,8 +9,12 @@ services:
         ports:
             - 80:80
         environment:
-            - APP_ENV=test
-            - DATABASE_URL="pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4"
+            - DB_NAME=koillection
+            - DB_HOST=postgres
+            - DB_PORT=5432
+            - DB_USER=root
+            - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
+            - DB_VERSION=10.4
         depends_on:
             - postgres
         volumes:
