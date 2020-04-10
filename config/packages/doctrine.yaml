@@ -6,7 +6,7 @@ doctrine:
         user: '%env(DB_USER)%'
         password: '%env(DB_PASSWORD)%'
         server_version: '%env(DB_VERSION)%'
-        driver: pgsql
+        driver: pdo_pgsql
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
