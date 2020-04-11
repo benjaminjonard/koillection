@@ -14,11 +14,11 @@ use Symfony\Contracts\Cache\ItemInterface;
  */
 class CountersCache
 {
-    private $cache;
+    private ApcuAdapter $cache;
 
-    private $calculator;
+    private CounterCalculator $calculator;
 
-    private $contextHandler;
+    private ContextHandler $contextHandler;
 
     public function __construct(CounterCalculator $calculator, ContextHandler $contextHandler)
     {

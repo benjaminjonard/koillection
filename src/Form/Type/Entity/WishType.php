@@ -29,12 +29,12 @@ class WishType extends AbstractType
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var FileToMediumTransformer
      */
-    private $fileToMediumTransformer;
+    private FileToMediumTransformer $fileToMediumTransformer;
 
     /**
      * WishType constructor.
@@ -50,7 +50,6 @@ class WishType extends AbstractType
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
-     * @throws \ReflectionException
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

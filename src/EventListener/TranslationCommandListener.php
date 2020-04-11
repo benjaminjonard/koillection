@@ -16,7 +16,7 @@ use Symfony\Component\Console\Event\ConsoleTerminateEvent;
  */
 final class TranslationCommandListener
 {
-    private $assetsPath;
+    private string $assetsPath;
 
     public function __construct(string $assetsPath)
     {
@@ -24,7 +24,7 @@ final class TranslationCommandListener
     }
 
     /**
-     * @param ConsoleCommandEvent $event
+     * @param ConsoleTerminateEvent $event
      */
     public function onConsoleTerminate(ConsoleTerminateEvent $event)
     {

@@ -83,7 +83,7 @@ class InventoryController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
 
         return new JsonResponse([
-            'htmlForNavPills' => $this->render('_nav_pills.html.twig', ['inventory' => $inventory])->getContent()
+            'htmlForNavPills' => $this->render('App/Inventory/_partials/_nav_pills.html.twig', ['inventory' => $inventory])->getContent()
         ]);
     }
 

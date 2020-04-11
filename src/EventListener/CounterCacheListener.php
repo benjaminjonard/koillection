@@ -21,7 +21,7 @@ class CounterCacheListener
     /**
      * @var CountersCache
      */
-    private $countersCache;
+    private CountersCache $countersCache;
 
     /**
      * CounterCacheListener constructor.

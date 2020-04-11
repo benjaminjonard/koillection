@@ -17,7 +17,7 @@ class ColorListener
     /**
      * @var ColorPicker
      */
-    private $colorPicker;
+    private ColorPicker $colorPicker;
 
     /**
      * CollectionListener constructor.

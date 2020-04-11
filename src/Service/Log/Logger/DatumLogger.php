@@ -22,7 +22,7 @@ class DatumLogger extends Logger
     /**
      * @var LogQueue
      */
-    private $logQueue;
+    private LogQueue $logQueue;
 
     /**
      * DatumLogger constructor.

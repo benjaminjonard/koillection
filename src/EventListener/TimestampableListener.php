@@ -15,6 +15,7 @@ final class TimestampableListener
 {
     /**
      * @param LifecycleEventArgs $args
+     * @throws \Exception
      */
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -30,6 +31,7 @@ final class TimestampableListener
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws \Exception
      */
     public function preUpdate(LifecycleEventArgs $args)
     {

@@ -16,17 +16,17 @@ class BatchTagger
     /**
      * @var Collection
      */
-    private $collection;
+    private Collection $collection;
 
     /**
      * @var array
      */
-    private $tags;
+    private array $tags;
 
     /**
      * @var bool
      */
-    private $recursive;
+    private bool $recursive;
 
     /**
      * BatchTagger constructor.

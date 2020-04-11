@@ -19,12 +19,12 @@ class LogQueueListener
     /**
      * @var LogQueue
      */
-    private $logQueue;
+    private LogQueue $logQueue;
 
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * LogQueueListener constructor.

@@ -12,7 +12,7 @@ class NonceRuntime implements RuntimeExtensionInterface
     /**
      * @var NonceGenerator
      */
-    private $nonceGenerator;
+    private NonceGenerator $nonceGenerator;
 
     /**
      * NonceExtension constructor.
@@ -25,6 +25,7 @@ class NonceRuntime implements RuntimeExtensionInterface
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getNonce() : string
     {

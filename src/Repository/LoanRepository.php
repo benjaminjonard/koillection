@@ -51,6 +51,7 @@ class LoanRepository extends EntityRepository
      * @param $id
      *
      * @return Loan
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findByIdWithItem(string $id) : ?Loan
     {

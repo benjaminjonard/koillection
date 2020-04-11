@@ -31,17 +31,17 @@ class ItemType extends AbstractType
     /**
      * @var JsonToTagTransformer
      */
-    private $jsonToTagTransformer;
+    private JsonToTagTransformer $jsonToTagTransformer;
 
     /**
      * @var FileToMediumTransformer
      */
-    private $fileToMediumTransformer;
+    private FileToMediumTransformer $fileToMediumTransformer;
 
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * ItemType constructor.

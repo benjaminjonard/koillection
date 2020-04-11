@@ -18,7 +18,7 @@ abstract class Logger implements LoggerInterface
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    private TranslatorInterface $translator;
 
     public function __construct(TranslatorInterface $translator)
     {

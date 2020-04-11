@@ -18,7 +18,7 @@ class JsonToTagTransformer implements DataTransformerInterface
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * JsonToTagTransformer constructor.

@@ -16,7 +16,7 @@ class LoggerChain
     /**
      * @var iterable
      */
-    private $loggers;
+    private iterable $loggers;
 
     /**
      * LoggerChain constructor.

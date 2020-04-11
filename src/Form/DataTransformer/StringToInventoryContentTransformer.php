@@ -19,12 +19,12 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
     /**
      * @var InventoryHandler
      */
-    protected $inventoryHandler;
+    private InventoryHandler $inventoryHandler;
 
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * StringToInventoryContentTransformer constructor.

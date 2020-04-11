@@ -21,12 +21,12 @@ class LoggableListener
     /**
      * @var LoggerChain
      */
-    private $loggerChain;
+    private LoggerChain $loggerChain;
 
     /**
      * @var LogQueue
      */
-    private $logQueue;
+    private LogQueue $logQueue;
 
     /**
      * LoggableListener constructor.

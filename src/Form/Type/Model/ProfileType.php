@@ -24,7 +24,7 @@ class ProfileType extends AbstractType
     /**
      * @var Base64ToMediumTransformer
      */
-    private $base64ToMediumTransformer;
+    private Base64ToMediumTransformer $base64ToMediumTransformer;
 
     /**
      * ProfileType constructor.

@@ -4,19 +4,23 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class FooterRuntime implements RuntimeExtensionInterface
 {
     /**
-     * @param \Twig_Environment $environment
-     * @param array $breadcrumb
+     * @param Environment $environment
+     * @param $object
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function renderFooter(\Twig_Environment $environment, $object)
+    public function renderFooter(Environment $environment, $object)
     {
         if (property_exists($object, 'createdAt') && property_exists($object, 'updatedAt') && property_exists($object, 'seenCounter')) {
             $class = \get_class($object);

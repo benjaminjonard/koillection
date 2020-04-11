@@ -25,12 +25,12 @@ class WishlistType extends AbstractType
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var Base64ToMediumTransformer
      */
-    private $base64ToMediumTransformer;
+    private Base64ToMediumTransformer $base64ToMediumTransformer;
 
     /**
      * WishlistType constructor.

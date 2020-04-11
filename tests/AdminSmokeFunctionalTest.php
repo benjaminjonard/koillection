@@ -15,6 +15,7 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
      * Check if the admin has access to all the pages
      *
      * @dataProvider isSuccessfulUrlProvider
+     * @param string $url
      */
     public function testPageIsSuccessful(string $url)
     {

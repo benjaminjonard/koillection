@@ -30,17 +30,17 @@ class PhotoType extends AbstractType
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var FileToMediumTransformer
      */
-    private $fileToMediumTransformer;
+    private FileToMediumTransformer $fileToMediumTransformer;
 
     /**
      * @var TokenStorageInterface
      */
-    private $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * PhotoType constructor.

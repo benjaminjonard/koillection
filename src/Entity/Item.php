@@ -183,6 +183,11 @@ class Item implements BreadcrumbableInterface, LoggableInterface
         return $tag instanceof Tag ? $tag : null;
     }
 
+    public function hasTag(Tag $tag) : bool
+    {
+        return $this->tags->contains($tag);
+    }
+
     /**
      * @return null|string
      */

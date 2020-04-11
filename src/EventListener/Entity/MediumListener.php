@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Service\DiskUsageChecker;
 use App\Service\ImageHandler;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\ORMException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -21,17 +22,17 @@ class MediumListener
     /**
      * @var TokenStorageInterface
      */
-    private $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * @var ImageHandler
      */
-    private $imageHandler;
+    private ImageHandler $imageHandler;
 
     /**
      * @var DiskUsageChecker
      */
-    private $duc;
+    private DiskUsageChecker $duc;
 
     /**
      * MediumListener constructor.
@@ -48,6 +49,7 @@ class MediumListener
 
     /**
      * @param OnFlushEventArgs $args
+     * @throws ORMException
      */
     public function onFlush(OnFlushEventArgs $args)
     {

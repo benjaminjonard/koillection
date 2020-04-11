@@ -18,7 +18,7 @@ class TreeBuilder
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * TreeBuilder constructor.

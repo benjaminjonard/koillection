@@ -17,22 +17,22 @@ class AppRuntime implements RuntimeExtensionInterface
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    private TranslatorInterface $translator;
 
     /**
      * @var RouterInterface
      */
-    protected $router;
+    private RouterInterface $router;
 
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var ContextHandler
      */
-    protected $contextHandler;
+    private ContextHandler $contextHandler;
 
     /**
      * AppExtension constructor.

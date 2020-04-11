@@ -23,7 +23,7 @@ class SearchType extends AbstractType
     /**
      * @var TokenStorageInterface
      */
-    private $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * SearchType constructor.

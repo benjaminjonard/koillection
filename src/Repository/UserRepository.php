@@ -7,6 +7,8 @@ namespace App\Repository;
 use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -21,7 +23,7 @@ class UserRepository extends EntityRepository
     /**
      * @param $login
      * @return User|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findOneByUsernameOrEmail($login) : ?User
     {
@@ -42,6 +44,8 @@ class UserRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {
@@ -55,6 +59,8 @@ class UserRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function getTotalSpaceUsed() : int
     {

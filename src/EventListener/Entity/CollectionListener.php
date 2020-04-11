@@ -43,7 +43,7 @@ class CollectionListener
      * @param $collection
      * @param $visibility
      */
-    public function setVisibilityRecursively($collection, $visibility)
+    public function setVisibilityRecursively(Collection $collection, $visibility)
     {
         $collection->setVisibility($visibility);
 

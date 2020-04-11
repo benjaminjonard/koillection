@@ -6,7 +6,9 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Item;
+use App\Model\Search;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
@@ -21,7 +23,7 @@ class ItemRepository extends EntityRepository
      *
      * @param $id
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      *
      * @return Item
      */
@@ -94,7 +96,7 @@ class ItemRepository extends EntityRepository
      * @param $search
      * @return array
      */
-    public function findForSearch($search) : array
+    public function findForSearch(Search $search) : array
     {
         $qb = $this
             ->createQueryBuilder('i')

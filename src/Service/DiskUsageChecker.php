@@ -18,7 +18,7 @@ class DiskUsageChecker
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    private TranslatorInterface $translator;
 
     /**
      * DiskUsageChecker constructor.

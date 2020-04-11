@@ -44,7 +44,7 @@ class WishlistListener
      * @param $wishlist
      * @param $visibility
      */
-    public function setVisibilityRecursively($wishlist, $visibility)
+    public function setVisibilityRecursively(Wishlist $wishlist, $visibility)
     {
         $wishlist->setVisibility($visibility);
 

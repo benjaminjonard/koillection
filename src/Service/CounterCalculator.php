@@ -12,7 +12,6 @@ use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class CounterCalculator
@@ -24,17 +23,17 @@ class CounterCalculator
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var QueryNameGenerator
      */
-    private $qng;
+    private QueryNameGenerator $qng;
 
     /**
      * @var ContextHandler
      */
-    private $contextHandler;
+    private ContextHandler $contextHandler;
 
     /**
      * CounterCalculator constructor.
@@ -50,7 +49,6 @@ class CounterCalculator
     }
 
     /**
-     * @param $object
      * @return array
      */
     public function computeCounters() : array

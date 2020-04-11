@@ -6,6 +6,10 @@ namespace App\Twig;
 
 use App\Model\BreadcrumbElement;
 use App\Service\BreadcrumbBuilder;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class BreadcrumbRuntime implements RuntimeExtensionInterface
@@ -13,7 +17,7 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
     /**
      * @var BreadcrumbBuilder
      */
-    private $breadcrumbBuilder;
+    private BreadcrumbBuilder $breadcrumbBuilder;
 
     /**
      * BreadcrumbExtension constructor.
@@ -69,14 +73,14 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param \Twig_Environment $environment
+     * @param Environment $environment
      * @param array $breadcrumb
      * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function renderBreadcrumb(\Twig_Environment $environment, array $breadcrumb)
+    public function renderBreadcrumb(Environment $environment, array $breadcrumb)
     {
         return $environment->render('App/_partials/_breadcrumb_base.html.twig', [
             'breadcrumb' => $breadcrumb,

@@ -17,7 +17,7 @@ class ContextListener
     /**
      * @var ContextHandler
      */
-    private $contextHandler;
+    private ContextHandler $contextHandler;
 
     /**
      * ContextListener constructor.

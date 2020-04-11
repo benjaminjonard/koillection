@@ -1,6 +1,6 @@
 parameters:
     version: 'v1.1.0'
-    locale: 'en'
+    locale: 'gb'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
 
 services:
@@ -88,7 +88,6 @@ services:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\WishListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist, lazy: true }
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\MediumListener:
         tags:

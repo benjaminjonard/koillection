@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Twig\Environment;
 
 /**
  * Class ContextHandler
@@ -19,14 +17,14 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class ContextHandler
 {
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
-    private $environment;
+    private Environment $environment;
 
     /**
      * @var RouterInterface
      */
-    private $router;
+    private RouterInterface $router;
 
     /**
      * @var string
@@ -36,24 +34,24 @@ class ContextHandler
      * preview: Preview pages
      * default: everything else
      */
-    private $context;
+    private string $context;
 
     /**
      * @var User
      */
-    private $user;
+    private ?User $user;
 
     /**
      * @var string
      */
-    private $username;
+    private string $username;
 
     /**
      * ContextHandler constructor.
-     * @param \Twig_Environment $environment
+     * @param Environment $environment
      * @param RouterInterface $router
      */
-    public function __construct(\Twig_Environment $environment, RouterInterface $router)
+    public function __construct(Environment $environment, RouterInterface $router)
     {
         $this->environment = $environment;
         $this->router = $router;

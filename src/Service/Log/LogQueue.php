@@ -16,12 +16,12 @@ class LogQueue
     /**
      * @var array
      */
-    private $logs = [];
+    private array $logs = [];
 
     /**
      * @var bool
      */
-    private $processQueue;
+    private bool $processQueue;
 
     public function __construct()
     {

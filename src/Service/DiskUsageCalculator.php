@@ -19,17 +19,17 @@ class DiskUsageCalculator
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    private TranslatorInterface $translator;
 
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var string
      */
-    protected $publicPath;
+    private string $publicPath;
 
     /**
      * DiskUsageCalculator constructor.

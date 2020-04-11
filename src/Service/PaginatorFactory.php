@@ -17,7 +17,7 @@ class PaginatorFactory
     /**
      * @var RequestStack
      */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
      * PaginatorFactory constructor.

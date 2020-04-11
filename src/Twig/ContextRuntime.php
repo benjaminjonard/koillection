@@ -12,7 +12,7 @@ class ContextRuntime implements RuntimeExtensionInterface
     /**
      * @var ContextHandler
      */
-    private $contextHandler;
+    private ContextHandler $contextHandler;
 
     /**
      * ContextExtension constructor.

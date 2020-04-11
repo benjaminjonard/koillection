@@ -21,27 +21,27 @@ class Search
      *     minMessage="error.search.too_short"
      * )
      */
-    private $search;
+    private ?string $search = null;
 
     /**
      * @var \DateTime
      */
-    private $createdAt;
+    private ?\DateTime $createdAt = null;
 
     /**
      * @var bool
      */
-    private $searchInItems;
+    private bool $searchInItems = true;
 
     /**
      * @var bool
      */
-    private $searchInCollections;
+    private bool $searchInCollections = true;
 
     /**
      * @var bool
      */
-    private $searchInTags;
+    private bool $searchInTags = true;
 
     /**
      * Get search.

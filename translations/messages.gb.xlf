@@ -128,12 +128,12 @@
         <target>Default image</target>
       </segment>
     </unit>
-    <unit id="Qy2wfS4" name="aria.flag.en">
+    <unit id="fxC62MI" name="aria.flag.gb">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>aria.flag.en</source>
+        <source>aria.flag.gb</source>
         <target>English flag</target>
       </segment>
     </unit>
@@ -971,24 +971,6 @@
       <segment>
         <source>global.koillection</source>
         <target>Koillection</target>
-      </segment>
-    </unit>
-    <unit id="mU5FwNw" name="global.locale.english">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.locale.english</source>
-        <target>English</target>
-      </segment>
-    </unit>
-    <unit id="EAMgJqi" name="global.locale.french">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.locale.french</source>
-        <target>Français</target>
       </segment>
     </unit>
     <unit id="s2RK8Ci" name="global.months.january">
@@ -4241,6 +4223,18 @@
       <segment>
         <source>label.country</source>
         <target>Country</target>
+      </segment>
+    </unit>
+    <unit id="HnTfLuW" name="global.locale.en_GB">
+      <segment>
+        <source>global.locale.en_GB</source>
+        <target>English</target>
+      </segment>
+    </unit>
+    <unit id="RC_SygJ" name="global.locale.fr_FR">
+      <segment>
+        <source>global.locale.fr_FR</source>
+        <target>Français</target>
       </segment>
     </unit>
   </file>

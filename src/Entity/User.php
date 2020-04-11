@@ -44,37 +44,37 @@ class User implements UserInterface, BreadcrumbableInterface
      * @ORM\Column(type="string", length=32, unique=true)
      * @Assert\Regex(pattern="/^[a-z\d_]{2,32}$/i", message="error.username.incorrect")
      */
-    protected string $username;
+    private ?string $username = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email()
      */
-    protected string $email;
+    private ?string $email = null;
 
     /**
      * @var string
      */
-    protected ?string $salt = null;
+    private ?string $salt = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    protected string $password;
+    private string $password;
 
     /**
      * @var string
      * @Assert\Regex(pattern="/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message="error.password.incorrect")
      */
-    protected ?string $plainPassword = null;
+    private ?string $plainPassword = null;
 
     /**
      * @var Medium
      * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    protected Medium $avatar;
+    private ?Medium $avatar = null;
 
     /**
      * @var bool
@@ -110,7 +110,7 @@ class User implements UserInterface, BreadcrumbableInterface
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $timezone;
+    private ?string $timezone = null;
 
     /**
      * @var string
@@ -189,7 +189,7 @@ class User implements UserInterface, BreadcrumbableInterface
      * @var \DateTimeInterface
      * @ORM\Column(type="date", nullable=true)
      */
-    private \DateTimeInterface $lastDateOfActivity;
+    private ?\DateTimeInterface $lastDateOfActivity = null;
 
     /**
      * @var \DateTimeInterface
@@ -212,7 +212,7 @@ class User implements UserInterface, BreadcrumbableInterface
         $this->enabled = false;
         $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = 'EUR';
-        $this->locale = LocaleEnum::LOCALE_EN;
+        $this->locale = LocaleEnum::LOCALE_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
     }
@@ -360,7 +360,6 @@ class User implements UserInterface, BreadcrumbableInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-        $this->username = $email;
 
         return $this;
     }

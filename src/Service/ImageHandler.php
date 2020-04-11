@@ -25,22 +25,22 @@ class ImageHandler
     /**
      * @var RandomStringGenerator
      */
-    protected $rsg;
+    private RandomStringGenerator $rsg;
 
     /**
      * @var ThumbnailGenerator
      */
-    protected $tg;
+    private ThumbnailGenerator $tg;
 
     /**
      * @var TokenStorageInterface
      */
-    protected $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * @var string
      */
-    protected $publicPath;
+    private string $publicPath;
 
     /**
      * ImageHandler constructor.

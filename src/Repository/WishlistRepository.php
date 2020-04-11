@@ -6,6 +6,8 @@ namespace App\Repository;
 
 use App\Entity\Wishlist;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
@@ -47,7 +49,7 @@ class WishlistRepository extends EntityRepository
     /**
      * @param string $id
      * @return Wishlist|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findById(string $id) : ?Wishlist
     {
@@ -109,6 +111,8 @@ class WishlistRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {

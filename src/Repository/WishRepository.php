@@ -6,6 +6,8 @@ namespace App\Repository;
 
 use App\Entity\Wish;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 /**
  * Class WishRepository
@@ -17,7 +19,7 @@ class WishRepository extends EntityRepository
     /**
      * @param string $id
      * @return Wish|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findById(string $id) : ?Wish
     {
@@ -32,6 +34,8 @@ class WishRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {

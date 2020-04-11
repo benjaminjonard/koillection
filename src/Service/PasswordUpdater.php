@@ -18,7 +18,7 @@ class PasswordUpdater
     /**
      * @var EncoderFactoryInterface
      */
-    private $encoderFactory;
+    private EncoderFactoryInterface $encoderFactory;
 
     /**
      * PasswordUpdater constructor.

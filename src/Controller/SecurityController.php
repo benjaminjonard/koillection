@@ -80,7 +80,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_homepage');
         }
 
-        return $this->render('first_connection.html.twig', [
+        return $this->render('App/Security/first_connection.html.twig', [
             'form' => $form->createView()
         ]);
     }

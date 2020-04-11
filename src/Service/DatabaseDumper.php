@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -20,17 +21,17 @@ class DatabaseDumper
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var TokenStorageInterface
      */
-    protected $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * @var ContextHandler
      */
-    protected $contextHandler;
+    private ContextHandler $contextHandler;
 
     /**
      * DatabaseDumper constructor.
@@ -47,7 +48,7 @@ class DatabaseDumper
 
     /**
      * @return array
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     public function dump() : array
     {
@@ -138,7 +139,7 @@ class DatabaseDumper
     /**
      * @param Connection $connection
      * @return array
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     public function dumpSchema(Connection $connection) : array
     {

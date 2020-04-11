@@ -7,9 +7,6 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20200411112345 extends AbstractMigration
 {
     public function getDescription() : string
@@ -22,20 +19,6 @@ final class Version20200411112345 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('DROP SEQUENCE koi_album_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_collection_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_datum_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_field_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_item_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_loan_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_log_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_medium_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_photo_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_tag_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_template_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_user_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_wish_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE koi_wishlist_id_seq CASCADE');
         $this->addSql('ALTER TABLE koi_wishlist ALTER id TYPE UUID');
         $this->addSql('ALTER TABLE koi_wishlist ALTER id DROP DEFAULT');
         $this->addSql('ALTER TABLE koi_wishlist ALTER owner_id TYPE UUID');

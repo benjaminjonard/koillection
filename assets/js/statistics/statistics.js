@@ -1,5 +1,5 @@
 import '../translations/config'
-import '../translations/javascript/en'
+import '../translations/javascript/gb'
 import '../translations/javascript/fr'
 
 import Translator from '../translator.min.js'

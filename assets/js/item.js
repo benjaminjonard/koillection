@@ -120,22 +120,27 @@ var tagAutocomplete = M.Autocomplete.init(document.querySelectorAll('.autocomple
     }
 })[0];
 
+let timeout = null;
 $('#tagsAutocomplete').keyup(function (e) {
     tagAutocomplete.updateData({});
-    if ($(this).val() != '') {
+    clearTimeout(timeout);
+    let val = $(this).val();
 
-        $.get('/tags/autocomplete/' + $(this).val(), function( result ) {
-            var data = {};
-            $.each(result, function( key, tag ) {
-                data[tag] = null;
-            });
+    if (val != '') {
+        timeout = setTimeout(function() {
+            $.get('/tags/autocomplete/' + val, function( result ) {
+                let data = {};
+                $.each(result, function( key, tag ) {
+                    data[tag] = null;
+                });
 
-            tagAutocomplete.updateData(data);
-            tagAutocomplete.open();
-        }, "json" );
+                tagAutocomplete.updateData(data);
+                tagAutocomplete.open();
+            }, "json" );
+        }, 500);
     }
 
-    if(e.which == 13) {
+    if (e.which === 13) {
         onAutocomplete($(this).val());
     }
 });

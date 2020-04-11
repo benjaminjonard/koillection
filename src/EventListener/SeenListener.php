@@ -17,7 +17,7 @@ class SeenListener
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * SeenListener constructor.

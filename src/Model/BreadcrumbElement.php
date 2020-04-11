@@ -18,32 +18,32 @@ class BreadcrumbElement
     /**
      * @var string
      */
-    private $type;
+    private string $type;
 
     /**
      * @var string
      */
-    private $label;
+    private string $label;
 
     /**
      * @var string
      */
-    private $class;
+    private ?string $class = null;
 
     /**
      * @var string
      */
-    private $route;
+    private string $route;
 
     /**
      * @var object
      */
-    private $entity;
+    private ?object $entity = null;
 
     /**
      * @var array
      */
-    private $params;
+    private array $params;
 
     /**
      * Get type.

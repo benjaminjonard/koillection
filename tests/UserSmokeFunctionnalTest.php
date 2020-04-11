@@ -13,6 +13,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
 {
     /**
      * @dataProvider isSuccessfulUrlProvider
+     * @param string $url
      */
     public function testPageIsSuccessful(string $url)
     {
@@ -23,6 +24,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
 
     /**
      * @dataProvider isNotFoundUrlProvider
+     * @param string $url
      */
     public function testPageIsNotFound(string $url)
     {

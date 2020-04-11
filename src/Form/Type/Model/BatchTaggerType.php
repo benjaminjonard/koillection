@@ -22,7 +22,7 @@ class BatchTaggerType extends AbstractType
     /**
      * @var JsonToTagTransformer
      */
-    private $jsonToTagTransformer;
+    private JsonToTagTransformer $jsonToTagTransformer;
 
     /**
      * BatchTaggerType constructor.

@@ -16,17 +16,17 @@ class LogRuntime implements RuntimeExtensionInterface
     /**
      * @var TranslatorInterface
      */
-    private $translator;
+    private TranslatorInterface $translator;
 
     /**
      * @var RouterInterface
      */
-    private $router;
+    private RouterInterface $router;
 
     /**
      * @var LoggerChain
      */
-    private $loggerChain;
+    private LoggerChain $loggerChain;
 
     /**
      * LogExtension constructor.

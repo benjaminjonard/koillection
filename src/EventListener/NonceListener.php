@@ -17,7 +17,7 @@ class NonceListener
     /**
      * @var NonceGenerator
      */
-    private $nonceGenerator;
+    private NonceGenerator $nonceGenerator;
 
     /**
      * BeforeResponseListener constructor.

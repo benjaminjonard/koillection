@@ -23,12 +23,12 @@ class InventoryType extends AbstractType
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var StringToInventoryContentTransformer
      */
-    private $stringToInventoryContentTransformer;
+    private StringToInventoryContentTransformer $stringToInventoryContentTransformer;
 
     /**
      * InventoryType constructor.

@@ -10,6 +10,8 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Model\Search;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 /**
  * Class TagRepository
@@ -90,7 +92,7 @@ class TagRepository extends EntityRepository
      * @param string|null $search
      * @param string|null $context
      * @return int
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function countTags(string $search = null, string $context = null) : int
     {
@@ -278,6 +280,8 @@ class TagRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {

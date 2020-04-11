@@ -22,7 +22,7 @@ class ItemNameGuesser
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * ItemHelper constructor.
@@ -35,7 +35,7 @@ class ItemNameGuesser
 
     /**
      * @param Item $item
-     * @return string|null
+     * @return array|null
      */
     public function guess(Item &$item) : ?array
     {

@@ -28,12 +28,12 @@ class TagType extends AbstractType
     /**
      * @var FileToMediumTransformer
      */
-    private $fileToMediumTransformer;
+    private FileToMediumTransformer $fileToMediumTransformer;
 
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * TagType constructor.

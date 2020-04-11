@@ -19,7 +19,7 @@ class LocaleListener
     /**
      * @var string
      */
-    private $defaultLocale;
+    private string $defaultLocale;
 
     /**
      * LocaleListener constructor.

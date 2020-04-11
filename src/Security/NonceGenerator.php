@@ -14,12 +14,13 @@ class NonceGenerator
     /**
      * @var string
      */
-    private $nonce;
+    private ?string $nonce = null;
 
     /**
      * Generates a random nonce parameter.
      *
      * @return string
+     * @throws \Exception
      */
     public function getNonce() : string
     {

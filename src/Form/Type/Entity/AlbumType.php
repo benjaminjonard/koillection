@@ -23,7 +23,7 @@ class AlbumType extends AbstractType
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * CollectionType constructor.

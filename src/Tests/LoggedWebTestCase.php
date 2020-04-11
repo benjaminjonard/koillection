@@ -18,6 +18,7 @@ use App\Entity\Wishlist;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 /**
  * Class SmokeFunctionalTest
@@ -26,9 +27,9 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
  */
 class LoggedWebTestCase extends WebTestCase
 {
-    protected $client;
+    private KernelBrowser $client;
 
-    protected $user;
+    private User $user;
 
     public function setUp()
     {
@@ -36,7 +37,7 @@ class LoggedWebTestCase extends WebTestCase
     }
 
     /**
-     * @param User $user
+     * @param string $email
      */
     public function login(string $email)
     {

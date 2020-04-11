@@ -17,11 +17,12 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
+use App\Enum\LocaleEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\InventoryHandler;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
 /**
@@ -59,7 +60,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $anubis
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale('en')
+            ->setLocale(LocaleEnum::LOCALE_GB)
             ->setUsername('Anubis')
             ->setEmail('anubis@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)

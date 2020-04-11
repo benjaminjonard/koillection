@@ -19,7 +19,7 @@ class BreadcrumbBuilder
     /**
      * @var ContextHandler
      */
-    private $contextHandler;
+    private ContextHandler $contextHandler;
 
     /**
      * BreadcrumbBuilder constructor.

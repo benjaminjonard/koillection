@@ -19,12 +19,12 @@ class UserListener
     /**
      * @var PasswordUpdater
      */
-    private $passwordUpdater;
+    private PasswordUpdater $passwordUpdater;
 
     /**
      * @var LogQueue
      */
-    private $logQueue;
+    private LogQueue $logQueue;
 
     /**
      * UserListener constructor.

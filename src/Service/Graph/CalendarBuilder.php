@@ -18,7 +18,7 @@ class CalendarBuilder
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * CalendarBuilder constructor.

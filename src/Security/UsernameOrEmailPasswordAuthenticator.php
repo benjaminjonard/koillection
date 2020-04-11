@@ -31,17 +31,17 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
     /**
      * @var UserPasswordEncoderInterface
      */
-    private $passwordEncoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
     /**
      * @var RouterInterface
      */
-    private $router;
+    private RouterInterface $router;
 
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * UsernameOrEmailPasswordAuthenticator constructor.

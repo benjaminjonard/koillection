@@ -12,7 +12,7 @@ class DateRuntime implements RuntimeExtensionInterface
     /**
      * @var TranslatorInterface
      */
-    private $translator;
+    private TranslatorInterface $translator;
 
     /**
      * DateExtension constructor.

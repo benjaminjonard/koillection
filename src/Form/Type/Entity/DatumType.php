@@ -22,7 +22,7 @@ class DatumType extends AbstractType
     /**
      * @var FileToMediumTransformer
      */
-    private $fileToMediumTransformer;
+    private FileToMediumTransformer $fileToMediumTransformer;
 
     /**
      * DatumType constructor.

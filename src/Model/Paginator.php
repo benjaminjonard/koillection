@@ -6,12 +6,12 @@ namespace App\Model;
 
 class Paginator
 {
-    private $totalItems;
-    private $numPages;
-    private $itemsPerPage;
-    private $currentPage;
-    private $url;
-    private $maxPagesToShow = 5;
+    private int $totalItems;
+    private int $numPages;
+    private int $itemsPerPage;
+    private int $currentPage;
+    private string $url;
+    private int $maxPagesToShow = 5;
 
     /**
      * @param int $totalItems The total number of items.
@@ -28,7 +28,7 @@ class Paginator
         $this->updateNumPages();
     }
 
-    protected function updateNumPages()
+    private function updateNumPages()
     {
         $this->numPages = ($this->itemsPerPage == 0 ? 0 : (int) ceil($this->totalItems / $this->itemsPerPage));
     }
@@ -214,7 +214,7 @@ class Paginator
      * @param bool $isCurrent
      * @return array
      */
-    protected function createPage($pageNum, $isCurrent = false)
+    private function createPage($pageNum, $isCurrent = false)
     {
         return [
             'num' => $pageNum,
@@ -225,7 +225,7 @@ class Paginator
     /**
      * @return array
      */
-    protected function createPageEllipsis()
+    private function createPageEllipsis()
     {
         return [
             'num' => '...',

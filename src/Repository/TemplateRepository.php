@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Template;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * Class TemplateRepository
@@ -51,7 +52,7 @@ class TemplateRepository extends EntityRepository
     /**
      * @param string $id
      * @return Template|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findByIdWithItems(string $id) : ?Template
     {
@@ -71,7 +72,7 @@ class TemplateRepository extends EntityRepository
     /**
      * @param string $id
      * @return Template|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findById(string $id) : ?Template
     {

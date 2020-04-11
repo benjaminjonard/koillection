@@ -17,7 +17,7 @@ final class OwnershipListener
     /**
      * @var TokenStorageInterface
      */
-    private $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * OwnershipListener constructor.

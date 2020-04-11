@@ -9,6 +9,8 @@ use App\Model\Search;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
@@ -81,7 +83,7 @@ class CollectionRepository extends EntityRepository
     /**
      * @param $id
      * @return Collection|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findWithItems($id) : ?Collection
     {
@@ -135,6 +137,7 @@ class CollectionRepository extends EntityRepository
      * @param string $id
      * @param bool $withData
      * @return Collection|null
+     * @throws NonUniqueResultException
      */
     public function findById(string $id, bool $withData = false) : ?Collection
     {
@@ -219,6 +222,8 @@ class CollectionRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {

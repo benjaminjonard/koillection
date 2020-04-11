@@ -17,25 +17,25 @@
 
     <div class="content-block">
         {{ form_start(form) }}
-            <div class ="row">
-                <div class="col offset-s1 s6">
-                    {{ form_label(form.tags, 'label.tags') }}
-                    <div class="autocomplete" id="multiple">
-                        <div class="ac-input">
-                            <input type="text" id="tagsAutocomplete" data-target="tagsDropdown" data-beloworigin="true" autocomplete="off">
+            <div class="row block-element">
+                <div class="row">
+                    <div class="col offset-s1 s6 autocomplete-wrapper">
+                        <div class="input-field">
+                            <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
+                            {{ form_label(form.tags, 'label.tags') }}
+                            <div class="ac-tags">
+                            </div>
                         </div>
-                        <div class="ac-tags">
-                        </div>
-                        <ul id="tagsDropdown" class="dropdown-content ac-dropdown"></ul>
+                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
                     </div>
-                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
-                </div>
-                <div class="col offset-s1 s3">
-                    <label>
-                        {{ form_widget(form.recursive) }}
-                        <span>{{ 'label.recursive'|trans }}</span>
-                    </label>
-                    <div class="additional-message">{{'message.recursive'|trans}}</div>
+
+                    <div class="col offset-s1 s3">
+                        <label>
+                            {{ form_widget(form.recursive) }}
+                            <span>{{ 'label.recursive'|trans }}</span>
+                        </label>
+                        <div class="additional-message">{{'message.recursive'|trans}}</div>
+                    </div>
                 </div>
             </div>
 

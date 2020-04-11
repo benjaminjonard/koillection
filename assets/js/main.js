@@ -81,6 +81,13 @@ $(document).ready(function() {
         format: $('#js-date-format').data('jsDateFormat')
     });
 
+    $('form input').keydown(function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
     //Init tabs
     $('.tab').click(function () {
         $('.tab').removeClass('current');
