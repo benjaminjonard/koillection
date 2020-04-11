@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -25,93 +26,93 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Collection implements LoggableInterface, BreadcrumbableInterface
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $title;
+    private ?string $title = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $childrenTitle;
+    private ?string $childrenTitle = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $itemsTitle;
+    private ?string $itemsTitle = null;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Collection", mappedBy="parent", cascade={"all"})
      * @ORM\OrderBy({"title" = "ASC"})
      */
-    private $children;
+    private DoctrineCollection $children;
 
     /**
-     * @var \App\Entity\Collection
+     * @var Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="children")
      */
-    private $parent;
+    private ?Collection $parent = null;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="collections")
      */
-    private $owner;
+    private ?User $owner = null;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Item", mappedBy="collection", cascade={"all"})
      * @ORM\OrderBy({"name" = "ASC"})
      */
-    private $items;
+    private DoctrineCollection $items;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=6)
      */
-    private $color;
+    private ?string $color = null;
 
     /**
      * @var Medium
      * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private $image;
+    private ?Medium $image = null;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private $seenCounter;
+    private int $seenCounter;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $visibility;
+    private string $visibility;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * Constructor.
@@ -134,180 +135,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
     }
 
     /**
-     * @return null|string
-     */
-    public function getId() : ?string
-    {
-        return $this->id->toString();
-    }
-
-    /**
-     * Set title.
-     *
-     * @param string $title
-     *
-     * @return Collection
-     */
-    public function setTitle(string $title) : self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title.
-     *
-     * @return ?string
-     */
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-    /**
-     * Add child.
-     *
-     * @param \App\Entity\Collection $child
-     *
-     * @return Collection
-     */
-    public function addChild(Collection $child) : self
-    {
-        $this->children[] = $child;
-
-        return $this;
-    }
-
-    /**
-     * @param Collection $child
-     * @return Collection
-     */
-    public function removeChild(Collection $child) : self
-    {
-        $this->children->removeElement($child);
-
-        return $this;
-    }
-
-    /**
-     * Get children.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getChildren() : DoctrineCollection
-    {
-        return $this->children;
-    }
-
-    /**
-     * Set parent.
-     *
-     * @param \App\Entity\Collection $parent
-     *
-     * @return Collection
-     */
-    public function setParent(Collection $parent = null) : self
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent.
-     *
-     * @return \App\Entity\Collection
-     */
-    public function getParent() : ?Collection
-    {
-        return $this->parent;
-    }
-
-    /**
-     * Get owner.
-     *
-     * @return User|null
-     */
-    public function getOwner() : ?User
-    {
-        return $this->owner;
-    }
-
-    /**
-     * Add items.
-     *
-     * @param \App\Entity\Item $items
-     *
-     * @return Collection
-     */
-    public function addItem(Item $items) : self
-    {
-        $this->items[] = $items;
-
-        return $this;
-    }
-
-    /**
-     * @param Item $items
-     * @return Collection
-     */
-    public function removeItem(Item $items) : self
-    {
-        $this->items->removeElement($items);
-
-        return $this;
-    }
-
-    /**
-     * Get items.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getItems() : DoctrineCollection
-    {
-        return $this->items;
-    }
-
-    /**
-     * Set color.
-     *
-     * @param string $color
-     *
-     * @return Collection
-     */
-    public function setColor(string $color) : self
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color.
-     *
-     * @return string
-     */
-    public function getColor() : ?string
-    {
-        return $this->color;
-    }
-
-    /**
-     * Set owner.
-     *
-     * @param \App\Entity\User $owner
-     *
-     * @return Collection
-     */
-    public function setOwner(User $owner = null) : self
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
      * Get items sorted naturally.
      *
      * @return array
@@ -323,81 +150,103 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
     }
 
     /**
-     * Set childrenTitle
-     *
-     * @param string $childrenTitle
-     *
-     * @return Collection
+     * @return null|string
      */
-    public function setChildrenTitle($childrenTitle) : self
+    public function getId() : ?string
+    {
+        return $this->id->toString();
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getChildrenTitle(): ?string
+    {
+        return $this->childrenTitle;
+    }
+
+    public function setChildrenTitle(?string $childrenTitle): self
     {
         $this->childrenTitle = $childrenTitle;
 
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getChildrenTitle() : ?string
+    public function getItemsTitle(): ?string
     {
-        return $this->childrenTitle;
+        return $this->itemsTitle;
     }
 
-    /**
-     * Set itemsTitle
-     *
-     * @param string $itemsTitle
-     *
-     * @return Collection
-     */
-    public function setItemsTitle($itemsTitle) : self
+    public function setItemsTitle(?string $itemsTitle): self
     {
         $this->itemsTitle = $itemsTitle;
 
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getItemsTitle() : ?string
+    public function getColor(): ?string
     {
-        return $this->itemsTitle;
+        return $this->color;
     }
 
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Collection
-     */
-    public function setCreatedAt($createdAt) : self
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getSeenCounter(): ?int
+    {
+        return $this->seenCounter;
+    }
+
+    public function setSeenCounter(int $seenCounter): self
+    {
+        $this->seenCounter = $seenCounter;
+
+        return $this;
+    }
+
+    public function getVisibility(): ?string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Collection
-     */
-    public function setUpdatedAt($updatedAt) : self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -405,77 +254,103 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
     }
 
     /**
-     * Get updatedAt
-     *
-     * @return \DateTime
+     * @return DoctrineCollection|Collection[]
      */
-    public function getUpdatedAt()
+    public function getChildren(): DoctrineCollection
     {
-        return $this->updatedAt;
+        return $this->children;
     }
 
-    /**
-     * Set image
-     *
-     * @param \App\Entity\Medium $image
-     *
-     * @return Collection
-     */
-    public function setImage(Medium $image = null) : self
+    public function addChild(Collection $child): self
     {
-        if ($image === null) {
-            return $this;
+        if (!$this->children->contains($child)) {
+            $this->children[] = $child;
+            $child->setParent($this);
         }
 
-        $this->image = $image;
+        return $this;
+    }
+
+    public function removeChild(Collection $child): self
+    {
+        if ($this->children->contains($child)) {
+            $this->children->removeElement($child);
+            // set the owning side to null (unless already changed)
+            if ($child->getParent() === $this) {
+                $child->setParent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
 
     /**
-     * Get image
-     *
-     * @return \App\Entity\Medium
+     * @return DoctrineCollection|Item[]
      */
-    public function getImage()
+    public function getItems(): DoctrineCollection
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+            $item->setCollection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+            // set the owning side to null (unless already changed)
+            if ($item->getCollection() === $this) {
+                $item->setCollection(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getImage(): ?Medium
     {
         return $this->image;
     }
 
-    /**
-     * @return string
-     */
-    public function getVisibility() : string
+    public function setImage(?Medium $image): self
     {
-        return $this->visibility;
-    }
-
-    /**
-     * @param string $visibility
-     * @return Collection
-     */
-    public function setVisibility(string $visibility) : self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSeenCounter() : int
-    {
-        return $this->seenCounter;
-    }
-
-    /**
-     * @param int $seenCounter
-     * @return Collection
-     */
-    public function setSeenCounter(int $seenCounter) : self
-    {
-        $this->seenCounter = $seenCounter;
+        if ($image === null) {
+            return $this;
+        }
+        
+        $this->image = $image;
 
         return $this;
     }

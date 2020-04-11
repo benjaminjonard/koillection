@@ -7,7 +7,6 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
-use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,73 +25,73 @@ use Ramsey\Uuid\UuidInterface;
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    private string $label;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description = null;
 
     /**
      * @var Medium
      * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private $image;
+    private ?Medium $image = null;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tags")
      */
-    private $owner;
+    private ?User $owner = null;
 
     /**
-     * @var \App\Entity\TagCategory
+     * @var TagCategory
      * @ORM\ManyToOne(targetEntity="TagCategory", inversedBy="tags", fetch="EAGER", cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $category;
+    private ?TagCategory $category = null;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var DoctrineCollection
      * @ORM\ManyToMany(targetEntity="Item", mappedBy="tags")
      */
-    private $items;
+    private DoctrineCollection $items;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private $seenCounter;
+    private int $seenCounter;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $visibility;
+    private string $visibility;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * Constructor.
@@ -121,121 +120,84 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this->id->toString();
     }
 
-    /**
-     * Set label.
-     *
-     * @param string $label
-     *
-     * @return Tag
-     */
-    public function setLabel(string $label) : self
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
     {
         $this->label = $label;
 
         return $this;
     }
 
-    /**
-     * Get label.
-     *
-     * @return string
-     */
-    public function getLabel() : string
+    public function getDescription(): ?string
     {
-        return $this->label;
+        return $this->description;
     }
 
-    /**
-     * Set owner.
-     *
-     * @param \App\Entity\User $owner
-     *
-     * @return Tag
-     */
-    public function setOwner(User $owner = null) : self
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Get owner.
-     *
-     * @return User|null
-     */
-    public function getOwner() : ?User
-    {
-        return $this->owner;
-    }
-
-    /**
-     * Add item.
-     *
-     * @param \App\Entity\Item $item
-     *
-     * @return Tag
-     */
-    public function addItem(Item $item) : self
-    {
-        $this->items[] = $item;
-
-        return $this;
-    }
-
-    /**
-     * @param Item $item
-     * @return Tag
-     */
-    public function removeItem(Item $item) : self
-    {
-        $this->items->removeElement($item);
-
-        return $this;
-    }
-
-    /**
-     * Get items.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getItems() : DoctrineCollection
-    {
-        return $this->items;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Tag
-     */
-    public function setDescription(?string $description) : self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription() : ?string
+    public function getSeenCounter(): ?int
     {
-        return $this->description;
+        return $this->seenCounter;
     }
 
-    /**
-     * Set image
-     *
-     * @param Medium $image
-     *
-     * @return Tag
-     */
-    public function setImage(Medium $image = null) : self
+    public function setSeenCounter(int $seenCounter): self
+    {
+        $this->seenCounter = $seenCounter;
+
+        return $this;
+    }
+
+    public function getVisibility(): ?string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getImage(): ?Medium
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Medium $image): self
     {
         if ($image === null) {
             return $this;
@@ -250,117 +212,54 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this;
     }
 
-    /**
-     * Get image
-     *
-     * @return Medium
-     */
-    public function getImage() : ?Medium
+    public function getOwner(): ?User
     {
-        return $this->image;
+        return $this->owner;
     }
 
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Tag
-     */
-    public function setCreatedAt($createdAt) : self
+    public function setOwner(?User $owner): self
     {
-        $this->createdAt = $createdAt;
+        $this->owner = $owner;
 
         return $this;
     }
 
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Tag
-     */
-    public function setUpdatedAt($updatedAt) : self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVisibility() : string
-    {
-        return $this->visibility;
-    }
-
-    /**
-     * @param string $visibility
-     * @return Tag
-     */
-    public function setVisibility(string $visibility) : self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSeenCounter() : int
-    {
-        return $this->seenCounter;
-    }
-
-    /**
-     * @param int $seenCounter
-     * @return Tag
-     */
-    public function setSeenCounter(int $seenCounter) : self
-    {
-        $this->seenCounter = $seenCounter;
-
-        return $this;
-    }
-
-    /**
-     * @return TagCategory
-     */
-    public function getCategory() : ?TagCategory
+    public function getCategory(): ?TagCategory
     {
         return $this->category;
     }
 
-    /**
-     * @param TagCategory $category
-     * @return Tag
-     */
-    public function setCategory(TagCategory $category) : Tag
+    public function setCategory(?TagCategory $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return DoctrineCollection|Item[]
+     */
+    public function getItems(): DoctrineCollection
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+            $item->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+            $item->removeTag($this);
+        }
 
         return $this;
     }

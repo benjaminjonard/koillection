@@ -1,4 +1,7 @@
 {
+    "brick/math": {
+        "version": "0.8.14"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -105,6 +108,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.3"
+    },
     "maennchen/zipstream-php": {
         "version": "1.2.0"
     },
@@ -127,7 +133,7 @@
         "version": "2.2.3"
     },
     "php": {
-        "version": "7.3"
+        "version": "7.4"
     },
     "php-translation/common": {
         "version": "3.0.0"
@@ -179,6 +185,9 @@
     },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "ramsey/collection": {
+        "version": "1.0.1"
     },
     "ramsey/uuid": {
         "version": "3.9.2"
@@ -320,6 +329,15 @@
     },
     "symfony/intl": {
         "version": "v5.0.2"
+    },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
     },
     "symfony/mime": {
         "version": "v5.0.2"
@@ -548,6 +566,9 @@
     },
     "twig/twig": {
         "version": "v2.12.3"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.0.1"
     },
     "webmozart/assert": {
         "version": "1.6.0"

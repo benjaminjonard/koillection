@@ -35,7 +35,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
     /**
      * @var InventoryHandler
      */
-    private $inventoryHandler;
+    private InventoryHandler $inventoryHandler;
 
     /**
      * AnubisFixtures constructor.

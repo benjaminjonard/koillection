@@ -7,8 +7,10 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class Album
@@ -22,60 +24,60 @@ use Ramsey\Uuid\Uuid;
 class Album implements BreadcrumbableInterface
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private ?string $title = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=6)
      */
-    private $color;
+    private ?string $color = null;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="albums")
      */
-    private $owner;
+    private ?User $owner = null;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="album", cascade={"all"})
      */
-    private $photos;
+    private DoctrineCollection $photos;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private $seenCounter;
+    private int $seenCounter;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $visibility;
+    private string $visibility;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * Constructor.
@@ -104,48 +106,84 @@ class Album implements BreadcrumbableInterface
         return $this->id->toString();
     }
 
-    /**
-     * Set title.
-     *
-     * @param string $title
-     *
-     * @return Album
-     */
-    public function setTitle(string $title) : self
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    /**
-     * Get title.
-     *
-     * @return ?string
-     */
-    public function getTitle() : ?string
+    public function getColor(): ?string
     {
-        return $this->title;
+        return $this->color;
     }
 
-    /**
-     * Get owner.
-     *
-     * @return User|null
-     */
-    public function getOwner() : ?User
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getSeenCounter(): ?int
+    {
+        return $this->seenCounter;
+    }
+
+    public function setSeenCounter(int $seenCounter): self
+    {
+        $this->seenCounter = $seenCounter;
+
+        return $this;
+    }
+
+    public function getVisibility(): ?string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
 
-    /**
-     * Set owner.
-     *
-     * @param \App\Entity\User $owner
-     *
-     * @return Album
-     */
-    public function setOwner(User $owner = null) : self
+    public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
 
@@ -153,141 +191,32 @@ class Album implements BreadcrumbableInterface
     }
 
     /**
-     * Set color.
-     *
-     * @param string $color
-     *
-     * @return Album
+     * @return DoctrineCollection|Photo[]
      */
-    public function setColor(string $color) : self
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color.
-     *
-     * @return string
-     */
-    public function getColor() : ?string
-    {
-        return $this->color;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Album
-     */
-    public function setCreatedAt($createdAt) : self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Album
-     */
-    public function setUpdatedAt($updatedAt) : self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param Photo $photo
-     * @return Album
-     */
-    public function addPhoto(Photo $photo) : self
-    {
-        $this->photos[] = $photo;
-
-        return $this;
-    }
-
-    /**
-     * @param Photo $photo
-     * @return Album
-     */
-    public function removePhoto(Photo $photo) : self
-    {
-        $this->photos->removeElement($photo);
-
-        return $this;
-    }
-
-    /**
-     * @return ArrayCollection|\Doctrine\Common\Collections\Collection
-     */
-    public function getPhotos()
+    public function getPhotos(): DoctrineCollection
     {
         return $this->photos;
     }
 
-    /**
-     * @return string
-     */
-    public function getVisibility() : string
+    public function addPhoto(Photo $photo): self
     {
-        return $this->visibility;
-    }
-
-    /**
-     * @param string $visibility
-     * @return Album
-     */
-    public function setVisibility(string $visibility) : self
-    {
-        $this->visibility = $visibility;
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setAlbum($this);
+        }
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getSeenCounter() : int
+    public function removePhoto(Photo $photo): self
     {
-        return $this->seenCounter;
-    }
-
-    /**
-     * @param int $seenCounter
-     * @return Album
-     */
-    public function setSeenCounter(int $seenCounter) : self
-    {
-        $this->seenCounter = $seenCounter;
+        if ($this->photos->contains($photo)) {
+            $this->photos->removeElement($photo);
+            // set the owning side to null (unless already changed)
+            if ($photo->getAlbum() === $this) {
+                $photo->setAlbum(null);
+            }
+        }
 
         return $this;
     }

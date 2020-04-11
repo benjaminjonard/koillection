@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -20,91 +21,92 @@ class Medium
     public const TYPE_IMAGE = 1;
 
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var int
      * @ORM\Column(type="smallint")
      */
-    private $type;
+    private ?int $type = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $filename;
+    private ?string $filename = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $path;
+    private ?string $path = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $thumbnailPath;
+    private ?string $thumbnailPath = null;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private $size;
+    private ?int $size = null;
 
     /**
      * @var int
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $thumbnailSize;
+    private ?int $thumbnailSize = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $mimetype;
+    private ?string $mimetype = null;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private $owner;
+    private ?User $owner = null;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * @var UploadedFile
      */
-    private $uploadedFile;
+    private ?UploadedFile $uploadedFile = null;
 
     /**
      * @var bool
      */
-    private $mustGenerateAThumbnail;
+    private bool $mustGenerateAThumbnail = false;
 
-    private $preventFileRemoval;
+    /**
+     * @var bool
+     */
+    private bool $preventFileRemoval = false;
 
     public function __construct()
     {
         $this->id = Uuid::uuid4();
         $this->type = self::TYPE_IMAGE;
-        $this->mustGenerateAThumbnail = false;
-        $this->preventFileRemoval = false;
     }
 
     /**
@@ -130,179 +132,126 @@ class Medium
         return $this->id->toString();
     }
 
-    /**
-     * Set type
-     *
-     * @param integer $type
-     *
-     * @return Medium
-     */
-    public function setType($type) : self
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
+    public function getFilename(): ?string
     {
-        return $this->type;
+        return $this->filename;
     }
 
-    /**
-     * Set filename
-     *
-     * @param string $filename
-     *
-     * @return Medium
-     */
-    public function setFilename($filename) : self
+    public function setFilename(string $filename): self
     {
         $this->filename = $filename;
 
         return $this;
     }
 
-    /**
-     * Get filename
-     *
-     * @return string
-     */
-    public function getFilename()
+    public function getPath(): ?string
     {
-        return $this->filename;
+        return $this->path;
     }
 
-    /**
-     * Set path
-     *
-     * @param string $path
-     *
-     * @return Medium
-     */
-    public function setPath($path) : self
+    public function setPath(string $path): self
     {
         $this->path = $path;
 
         return $this;
     }
 
-    /**
-     * Get path
-     *
-     * @return string
-     */
-    public function getPath()
+    public function getThumbnailPath(): ?string
     {
-        return $this->path;
+        return $this->thumbnailPath;
     }
 
-    /**
-     * Set thumbnailPath
-     *
-     * @param string $thumbnailPath
-     *
-     * @return Medium
-     */
-    public function setThumbnailPath($thumbnailPath) : self
+    public function setThumbnailPath(?string $thumbnailPath): self
     {
         $this->thumbnailPath = $thumbnailPath;
 
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getThumbnailPath() : ?string
+    public function getSize(): ?int
     {
-        return $this->thumbnailPath;
+        return $this->size;
     }
 
-    /**
-     * Set mimetype
-     *
-     * @param string $mimetype
-     *
-     * @return Medium
-     */
-    public function setMimetype($mimetype) : self
+    public function setSize(int $size): self
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    public function getThumbnailSize(): ?int
+    {
+        return $this->thumbnailSize;
+    }
+
+    public function setThumbnailSize(?int $thumbnailSize): self
+    {
+        $this->thumbnailSize = $thumbnailSize;
+
+        return $this;
+    }
+
+    public function getMimetype(): ?string
+    {
+        return $this->mimetype;
+    }
+
+    public function setMimetype(string $mimetype): self
     {
         $this->mimetype = $mimetype;
 
         return $this;
     }
 
-    /**
-     * Get mimetype
-     *
-     * @return string
-     */
-    public function getMimetype()
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->mimetype;
+        return $this->createdAt;
     }
 
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Medium
-     */
-    public function setCreatedAt($createdAt) : self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Medium
-     */
-    public function setUpdatedAt($updatedAt) : self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
+    public function getOwner(): ?User
     {
-        return $this->updatedAt;
+        return $this->owner;
     }
 
-    /**
-     * Set uploadedFile
-     *
-     * @param UploadedFile $uploadedFile
-     *
-     * @return Medium
-     */
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
     public function setUploadedFile($uploadedFile) : self
     {
         $this->uploadedFile = $uploadedFile;
@@ -310,62 +259,9 @@ class Medium
         return $this;
     }
 
-    /**
-     * Get uploadedFile
-     *
-     * @return UploadedFile
-     */
     public function getUploadedFile()
     {
         return $this->uploadedFile;
-    }
-
-    /**
-     * Set size
-     *
-     * @param integer $size
-     *
-     * @return Medium
-     */
-    public function setSize($size) : self
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * Get size
-     *
-     * @return integer
-     */
-    public function getSize()
-    {
-        return $this->size;
-    }
-
-    /**
-     * Set thumbnailSize
-     *
-     * @param integer $thumbnailSize
-     *
-     * @return Medium
-     */
-    public function setThumbnailSize($thumbnailSize) : self
-    {
-        $this->thumbnailSize = $thumbnailSize;
-
-        return $this;
-    }
-
-    /**
-     * Get thumbnailSize
-     *
-     * @return integer
-     */
-    public function getThumbnailSize()
-    {
-        return $this->thumbnailSize;
     }
 
     public function setMustGenerateAThumbnail($mustGenerateAThumbnail) : self
@@ -378,29 +274,5 @@ class Medium
     public function getMustGenerateAThumbnail()
     {
         return $this->mustGenerateAThumbnail;
-    }
-
-    /**
-     * Set owner
-     *
-     * @param User $owner
-     *
-     * @return Medium
-     */
-    public function setOwner(User $owner = null) : self
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Get owner
-     *
-     * @return User|null
-     */
-    public function getOwner() : ?User
-    {
-        return $this->owner;
     }
 }

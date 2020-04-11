@@ -11,7 +11,7 @@ final class Version20191113104851 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Change `disk_space_allowed` and `disk_space_used` types from `int` to `bigint` for `user_table`.';
+        return 'Change `disk_space_allowed` and `disk_space_used` types from `int` to `bigint` for `koi_user` table.';
     }
 
     public function up(Schema $schema) : void

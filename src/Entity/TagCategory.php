@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class TagCategory
@@ -18,53 +21,54 @@ use Ramsey\Uuid\Uuid;
 class TagCategory implements BreadcrumbableInterface
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    private ?string $label = null;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=7)
      */
-    private $color;
+    private ?string $color = null;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tagCategories")
      */
-    private $owner;
+    private ?User $owner = null;
 
     /**
+     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="category")
      */
-    private $tags;
+    private DoctrineCollection $tags;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private \DateTimeInterface $updatedAt;
 
     /**
      * Constructor.
@@ -72,6 +76,7 @@ class TagCategory implements BreadcrumbableInterface
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -90,76 +95,72 @@ class TagCategory implements BreadcrumbableInterface
         return $this->id->toString();
     }
 
-    /**
-     * @return string
-     */
-    public function getLabel() : ?string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     * @return TagCategory
-     */
-    public function setLabel(string $label) : TagCategory
+    public function setLabel(string $label): self
     {
         $this->label = $label;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription() : ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return TagCategory
-     */
-    public function setDescription(string $description) : TagCategory
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getColor() : ?string
+    public function getColor(): ?string
     {
         return $this->color;
     }
 
-    /**
-     * @param string $color
-     * @return TagCategory
-     */
-    public function setColor(string $color) : TagCategory
+    public function setColor(string $color): self
     {
         $this->color = $color;
 
         return $this;
     }
 
-    /**
-     * @return User
-     */
-    public function getOwner() : ?User
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
 
-    /**
-     * @param User $owner
-     * @return TagCategory
-     */
-    public function setOwner(User $owner) : TagCategory
+    public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
 
@@ -167,47 +168,32 @@ class TagCategory implements BreadcrumbableInterface
     }
 
     /**
-     * @return mixed
+     * @return DoctrineCollection|Tag[]
      */
-    public function getTags()
+    public function getTags(): DoctrineCollection
     {
         return $this->tags;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt() : ?\DateTime
+    public function addTag(Tag $tag): self
     {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTime $createdAt
-     * @return TagCategory
-     */
-    public function setCreatedAt(\DateTime $createdAt) : TagCategory
-    {
-        $this->createdAt = $createdAt;
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->setCategory($this);
+        }
 
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt() : ?\DateTime
+    public function removeTag(Tag $tag): self
     {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param \DateTime $updatedAt
-     * @return TagCategory
-     */
-    public function setUpdatedAt(\DateTime $updatedAt) : TagCategory
-    {
-        $this->updatedAt = $updatedAt;
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            // set the owning side to null (unless already changed)
+            if ($tag->getCategory() === $this) {
+                $tag->setCategory(null);
+            }
+        }
 
         return $this;
     }
