@@ -4,7 +4,7 @@
     "type": "project",
     "license": "GPL-3.0-only",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
