@@ -7,13 +7,12 @@ namespace App\Form\Type\Entity;
 use App\Entity\Album;
 use App\Entity\Photo;
 use App\Enum\VisibilityEnum;
-use App\Form\DataTransformer\FileToMediumTransformer;
+use App\Form\Type\MediumType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,11 +32,6 @@ class PhotoType extends AbstractType
     private EntityManagerInterface $em;
 
     /**
-     * @var FileToMediumTransformer
-     */
-    private FileToMediumTransformer $fileToMediumTransformer;
-
-    /**
      * @var TokenStorageInterface
      */
     private TokenStorageInterface $tokenStorage;
@@ -45,13 +39,11 @@ class PhotoType extends AbstractType
     /**
      * PhotoType constructor.
      * @param EntityManagerInterface $em
-     * @param FileToMediumTransformer $fileToMediumTransformer
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
-        $this->fileToMediumTransformer = $fileToMediumTransformer;
         $this->tokenStorage = $tokenStorage;
     }
 
@@ -79,12 +71,9 @@ class PhotoType extends AbstractType
                 'widget' => 'single_text',
                 'format' => $this->tokenStorage->getToken()->getUser()->getDateFormatForForm()
             ])
-            ->add(
-                $builder->create('image', FileType::class, [
-                    'required' => false,
-                    'label' => false,
-                ])->addModelTransformer($this->fileToMediumTransformer)
-            )
+            ->add('image', MediumType::class, [
+                'required' => false,
+            ])
             ->add('album', EntityType::class, [
                 'class' => Album::class,
                 'choice_label' => 'title',

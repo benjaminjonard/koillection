@@ -217,10 +217,6 @@ class Photo
 
     public function setImage(?Medium $image): self
     {
-        if ($image === null) {
-            return $this;
-        }
-
         if ($image->getThumbnailPath() === null) {
             $image->setMustGenerateAThumbnail(true);
         }

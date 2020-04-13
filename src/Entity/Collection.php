@@ -346,10 +346,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
 
     public function setImage(?Medium $image): self
     {
-        if ($image === null) {
-            return $this;
-        }
-        
         $this->image = $image;
 
         return $this;

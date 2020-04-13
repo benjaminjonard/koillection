@@ -8,12 +8,11 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\CurrencyEnum;
 use App\Enum\VisibilityEnum;
-use App\Form\DataTransformer\FileToMediumTransformer;
+use App\Form\Type\MediumType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,19 +31,12 @@ class WishType extends AbstractType
     private EntityManagerInterface $em;
 
     /**
-     * @var FileToMediumTransformer
-     */
-    private FileToMediumTransformer $fileToMediumTransformer;
-
-    /**
      * WishType constructor.
      * @param EntityManagerInterface $em
-     * @param FileToMediumTransformer $fileToMediumTransformer
      */
-    public function __construct(EntityManagerInterface $em, FileToMediumTransformer $fileToMediumTransformer)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->fileToMediumTransformer = $fileToMediumTransformer;
     }
 
     /**
@@ -73,12 +65,9 @@ class WishType extends AbstractType
             ->add('comment', TextareaType::class, [
                 'required' => false,
             ])
-            ->add(
-                $builder->create('image', FileType::class, [
-                    'required' => false,
-                    'label' => false,
-                ])->addModelTransformer($this->fileToMediumTransformer)
-            )
+            ->add('image', MediumType::class, [
+                'required' => false,
+            ])
             ->add('wishlist', EntityType::class, [
                 'class' => Wishlist::class,
                 'choice_label' => 'name',

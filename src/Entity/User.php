@@ -515,10 +515,6 @@ class User implements UserInterface, BreadcrumbableInterface
 
     public function setAvatar(?Medium $avatar): self
     {
-        if ($avatar === null) {
-            return $this;
-        }
-
         $this->avatar = $avatar;
 
         return $this;

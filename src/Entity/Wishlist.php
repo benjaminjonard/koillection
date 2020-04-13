@@ -293,10 +293,6 @@ class Wishlist //implements BreadcrumbableInterface
 
     public function setImage(?Medium $image): self
     {
-        if ($image === null) {
-            return $this;
-        }
-
         $this->image = $image;
 
         return $this;

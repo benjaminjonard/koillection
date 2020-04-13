@@ -7,7 +7,7 @@ namespace App\Form\Type\Entity;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
 use App\Enum\VisibilityEnum;
-use App\Form\DataTransformer\FileToMediumTransformer;
+use App\Form\Type\MediumType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -26,23 +26,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TagType extends AbstractType
 {
     /**
-     * @var FileToMediumTransformer
-     */
-    private FileToMediumTransformer $fileToMediumTransformer;
-
-    /**
      * @var EntityManagerInterface
      */
     private EntityManagerInterface $em;
 
     /**
      * TagType constructor.
-     * @param FileToMediumTransformer $fileToMediumTransformer
      * @param EntityManagerInterface $em
      */
-    public function __construct(FileToMediumTransformer $fileToMediumTransformer, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->fileToMediumTransformer = $fileToMediumTransformer;
         $this->em = $em;
     }
 
@@ -74,12 +67,9 @@ class TagType extends AbstractType
                 'choice_name' => null,
                 'required' => false,
             ])
-            ->add(
-                $builder->create('image', FileType::class, [
-                    'required' => false,
-                    'label' => false,
-                ])->addModelTransformer($this->fileToMediumTransformer)
-            )
+            ->add('image', MediumType::class, [
+                'required' => false,
+            ])
         ;
     }
 
