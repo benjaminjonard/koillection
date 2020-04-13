@@ -67,6 +67,7 @@ class WishType extends AbstractType
             ])
             ->add('image', ImageType::class, [
                 'required' => false,
+                'label' => false
             ])
             ->add('wishlist', EntityType::class, [
                 'class' => Wishlist::class,

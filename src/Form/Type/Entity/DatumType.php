@@ -36,6 +36,7 @@ class DatumType extends AbstractType
             ])
             ->add('image', ImageType::class, [
                 'required' => false,
+                'label' => false
             ])
             ->add('position', TextType::class, [
                 'required' => false,

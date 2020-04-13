@@ -64,6 +64,7 @@ class ItemType extends AbstractType
             ])
             ->add('image', ImageType::class, [
                 'required' => false,
+                'label' => false
             ])
             ->add(
                 $builder->create('tags', TextType::class, [

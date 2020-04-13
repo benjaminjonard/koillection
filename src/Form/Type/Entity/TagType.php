@@ -68,6 +68,7 @@ class TagType extends AbstractType
             ])
             ->add('image', ImageType::class, [
                 'required' => false,
+                'label' => false
             ])
         ;
     }

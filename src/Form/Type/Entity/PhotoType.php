@@ -73,6 +73,7 @@ class PhotoType extends AbstractType
             ])
             ->add('image', ImageType::class, [
                 'required' => false,
+                'label' => false
             ])
             ->add('album', EntityType::class, [
                 'class' => Album::class,
