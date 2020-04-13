@@ -59,6 +59,9 @@ class AdminController extends AbstractController
     /**
      * @Route("/clean", name="app_admin_clean", methods={"GET"})
      *
+     * @param string $publicPath
+     * @param TranslatorInterface $translator
+     * @param DiskUsageCalculator $diskUsageCalculator
      * @return Response
      */
     public function clean(string $publicPath, TranslatorInterface $translator, DiskUsageCalculator $diskUsageCalculator) : Response
@@ -66,7 +69,7 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         //Get all paths in database (image + image thumbnail)
-        $sql = "SELECT m.path as path, m.thumbnail_path as thumbnailPath FROM koi_medium m;";
+        $sql = "SELECT m.path as path, m.thumbnail_path as thumbnailPath FROM koi_image m;";
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
 

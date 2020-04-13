@@ -60,10 +60,10 @@ class Datum implements LoggableInterface
     private ?int $position = null;
 
     /**
-     * @var Medium
-     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
+     * @var Image
+     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Medium $image = null;
+    private ?Image $image = null;
 
     /**
      * @var User
@@ -207,12 +207,12 @@ class Datum implements LoggableInterface
         return $this;
     }
 
-    public function getImage(): ?Medium
+    public function getImage(): ?Image
     {
         return $this->image;
     }
 
-    public function setImage(?Medium $image): self
+    public function setImage(?Image $image): self
     {
         if ($image->getThumbnailPath() === null) {
             $image->setMustGenerateAThumbnail(true);

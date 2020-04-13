@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventListener\Entity;
 
-use App\Entity\Medium;
+use App\Entity\Image;
 use App\Entity\User;
 use App\Service\DiskUsageChecker;
 use App\Service\ImageHandler;
@@ -13,11 +13,11 @@ use Doctrine\ORM\ORMException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
- * Class MediumListener
+ * Class ImageListener
  *
  * @package App\EventListener\Entity
  */
-class MediumListener
+class ImageListener
 {
     /**
      * @var TokenStorageInterface
@@ -35,7 +35,7 @@ class MediumListener
     private DiskUsageChecker $duc;
 
     /**
-     * MediumListener constructor.
+     * ImageListener constructor.
      * @param TokenStorageInterface $tokenStorage
      * @param ImageHandler $imageHandler
      * @param DiskUsageChecker $duc
@@ -61,39 +61,39 @@ class MediumListener
         $uow = $em->getUnitOfWork();
         $user = $this->tokenStorage->getToken()->getUser();
 
-        $media = [];
+        $images = [];
         foreach ($uow->getScheduledEntityInsertions() as $keyEntity => $entity) {
-            if ($entity instanceof Medium) {
-                $media[] = $entity;
+            if ($entity instanceof Image) {
+                $images[] = $entity;
             }
         }
         if ($user instanceof User) {
-            $this->duc->hasEnoughSpaceForUpload($user, $media);
+            $this->duc->hasEnoughSpaceForUpload($user, $images);
         }
 
         foreach ($uow->getScheduledEntityInsertions() as $keyEntity => $entity) {
-            if ($entity instanceof Medium) {
+            if ($entity instanceof Image) {
                 $sizeUsed = $this->imageHandler->upload($entity);
                 $user->increaseDiskSpaceUsed($sizeUsed);
 
                 $em->persist($entity);
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Medium::class), $entity);
+                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Image::class), $entity);
                 $em->persist($user);
                 $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $user);
             }
         }
 
         foreach ($uow->getScheduledEntityDeletions() as $keyEntity => $entity) {
-            if ($entity instanceof Medium && $entity->getId()) {
+            if ($entity instanceof Image && $entity->getId()) {
                 if ($entity->fileCanBeDeleted()) {
                     $sizeFreed = $this->imageHandler->remove($entity);
-                    $mediumOwner = $entity->getOwner();
-                    $mediumOwner->decreaseDiskSpaceUsed($sizeFreed);
+                    $iamgeOwner = $entity->getOwner();
+                    $iamgeOwner->decreaseDiskSpaceUsed($sizeFreed);
 
                     $em->persist($entity);
-                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Medium::class), $entity);
-                    $em->persist($mediumOwner);
-                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $mediumOwner);
+                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Image::class), $entity);
+                    $em->persist($iamgeOwner);
+                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $iamgeOwner);
                 }
             }
         }

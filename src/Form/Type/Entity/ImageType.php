@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form\Type;
 
-use App\Entity\Medium;
+use App\Entity\Image;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @package App\Form\Type
  */
-class MediumType extends AbstractType
+class ImageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -34,7 +36,7 @@ class MediumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Medium::class,
+            'data_class' => Image::class,
         ]);
     }
 }

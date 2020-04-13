@@ -91,7 +91,7 @@ services:
     App\EventListener\Entity\WishListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\MediumListener:
+    App\EventListener\Entity\ImageListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\UserListener:

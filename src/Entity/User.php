@@ -71,10 +71,10 @@ class User implements UserInterface, BreadcrumbableInterface
     private ?string $plainPassword = null;
 
     /**
-     * @var Medium
-     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
+     * @var Image
+     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Medium $avatar = null;
+    private ?Image $avatar = null;
 
     /**
      * @var bool
@@ -508,12 +508,12 @@ class User implements UserInterface, BreadcrumbableInterface
         return $this;
     }
 
-    public function getAvatar(): ?Medium
+    public function getAvatar(): ?Image
     {
         return $this->avatar;
     }
 
-    public function setAvatar(?Medium $avatar): self
+    public function setAvatar(?Image $avatar): self
     {
         $this->avatar = $avatar;
 

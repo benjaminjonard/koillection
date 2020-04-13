@@ -8,7 +8,7 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
-use App\Form\Type\MediumType;
+use App\Form\Type\ImageType;
 use App\Form\DataTransformer\JsonToTagTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -62,7 +62,7 @@ class ItemType extends AbstractType
             ->add('quantity', IntegerType::class, [
                 'required' => true,
             ])
-            ->add('image', MediumType::class, [
+            ->add('image', ImageType::class, [
                 'required' => false,
             ])
             ->add(

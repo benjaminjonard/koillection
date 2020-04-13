@@ -10,16 +10,14 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class Medium
+ * Class Image
  *
  * @package App\Entity
  * @ORM\Entity
- * @ORM\Table(name="koi_medium")
+ * @ORM\Table(name="koi_image")
  */
-class Medium
+class Image
 {
-    public const TYPE_IMAGE = 1;
-
     /**
      * @var UuidInterface
      *
@@ -27,12 +25,6 @@ class Medium
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
-
-    /**
-     * @var int
-     * @ORM\Column(type="smallint")
-     */
-    private ?int $type = null;
 
     /**
      * @var string
@@ -106,11 +98,10 @@ class Medium
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->type = self::TYPE_IMAGE;
     }
 
     /**
-     * @return Medium
+     * @return Image
      */
     public function preventFileRemoval() : self
     {
@@ -130,18 +121,6 @@ class Medium
     public function getId() : ?string
     {
         return $this->id->toString();
-    }
-
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    public function setType(int $type): self
-    {
-        $this->type = $type;
-
-        return $this;
     }
 
     public function getFilename(): ?string

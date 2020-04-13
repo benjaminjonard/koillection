@@ -71,10 +71,10 @@ class Wishlist //implements BreadcrumbableInterface
     private ?Wishlist $parent = null;
 
     /**
-     * @var Medium
-     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
+     * @var Image
+     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Medium $image = null;
+    private ?Image $image = null;
 
     /**
      * @var int
@@ -286,12 +286,12 @@ class Wishlist //implements BreadcrumbableInterface
         return $this;
     }
 
-    public function getImage(): ?Medium
+    public function getImage(): ?Image
     {
         return $this->image;
     }
 
-    public function setImage(?Medium $image): self
+    public function setImage(?Image $image): self
     {
         $this->image = $image;
 

@@ -6,7 +6,7 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
 use App\Enum\VisibilityEnum;
-use App\Form\DataTransformer\Base64ToMediumTransformer;
+use App\Form\DataTransformer\Base64ToImageTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -28,18 +28,18 @@ class CollectionType extends AbstractType
     private EntityManagerInterface $em;
 
     /**
-     * @var Base64ToMediumTransformer
+     * @var Base64ToImageTransformer
      */
-    private Base64ToMediumTransformer $base64ToMediumTransformer;
+    private Base64ToImageTransformer $base64ToImageTransformer;
 
     /**
      * CollectionType constructor.
-     * @param Base64ToMediumTransformer $base64ToMediumTransformer
+     * @param Base64ToImageTransformer $base64ToImageTransformer
      * @param EntityManagerInterface $em
      */
-    public function __construct(Base64ToMediumTransformer $base64ToMediumTransformer, EntityManagerInterface $em)
+    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em)
     {
-        $this->base64ToMediumTransformer = $base64ToMediumTransformer;
+        $this->base64ToImageTransformer = $base64ToImageTransformer;
         $this->em = $em;
     }
 
@@ -82,7 +82,7 @@ class CollectionType extends AbstractType
                 $builder->create('image', TextType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer($this->base64ToMediumTransformer)
+                ])->addModelTransformer($this->base64ToImageTransformer)
             )
         ;
     }

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\Medium;
+use App\Entity\Image;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class Base64ToMediumTransformer
+ * Class Base64ToImageTransformer
  *
  * @package App\Form\DataTransformer
  */
-class Base64ToMediumTransformer implements DataTransformerInterface
+class Base64ToImageTransformer implements DataTransformerInterface
 {
     /**
      * {@inheritdoc}
@@ -28,7 +28,7 @@ class Base64ToMediumTransformer implements DataTransformerInterface
 
     /**
      * @param mixed $base64
-     * @return Medium|mixed
+     * @return Image|mixed
      * @throws \Exception
      */
     public function reverseTransform($base64)
@@ -48,9 +48,9 @@ class Base64ToMediumTransformer implements DataTransformerInterface
         $path = 'tmp/'.$name;
         file_put_contents($path, $data);
         $file = new UploadedFile($path, $name, $matches[1], null, true);
-        $medium = new Medium();
-        $medium->setUploadedFile($file);
+        $image = new Image();
+        $image->setUploadedFile($file);
 
-        return $medium;
+        return $image;
     }
 }

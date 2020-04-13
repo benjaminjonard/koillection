@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Item;
-use App\Entity\Medium;
+use App\Entity\Image;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
@@ -135,16 +135,15 @@ class WishController extends AbstractController
             ->setName($wish->getName())
         ;
 
-        if ($wish->getImage() instanceof Medium) {
+        if ($wish->getImage() instanceof Image) {
             $item->setImage(
-                (new Medium())
+                (new Image())
                     ->setPath($wish->getImage()->getPath())
                     ->setThumbnailPath($wish->getImage()->getThumbnailPath())
                     ->setSize($wish->getImage()->getSize())
                     ->setThumbnailSize($wish->getImage()->getThumbnailSize())
                     ->setMimetype($wish->getImage()->getFilename())
                     ->setFilename($wish->getImage()->getFilename())
-                    ->setType($wish->getImage()->getType())
                     ->preventFileRemoval()
             );
         }

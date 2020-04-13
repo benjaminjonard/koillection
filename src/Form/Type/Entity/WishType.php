@@ -8,7 +8,7 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\CurrencyEnum;
 use App\Enum\VisibilityEnum;
-use App\Form\Type\MediumType;
+use App\Form\Type\ImageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -65,7 +65,7 @@ class WishType extends AbstractType
             ->add('comment', TextareaType::class, [
                 'required' => false,
             ])
-            ->add('image', MediumType::class, [
+            ->add('image', ImageType::class, [
                 'required' => false,
             ])
             ->add('wishlist', EntityType::class, [

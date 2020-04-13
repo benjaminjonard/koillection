@@ -9,7 +9,7 @@ use App\Entity\Collection;
 use App\Entity\Field;
 use App\Entity\Inventory;
 use App\Entity\Item;
-use App\Entity\Medium;
+use App\Entity\Image;
 use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
@@ -127,7 +127,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setTitle('H.P. Lovecraft')
             ->setParent($colletionBooks)
-            ->setImage($this->loadMedium($user, $manager, 'cthulhu/collections/lovecraft/main.png'))
+            ->setImage($this->loadImage($user, $manager, 'cthulhu/collections/lovecraft/main.png'))
             ->setSeenCounter(0)
         ;
         $colletionBooks->addChild($collectionLovecraft);
@@ -139,7 +139,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setName('Le mythe de Cthulhu')
             ->setCollection($collectionLovecraft)
-            ->setImage($this->loadMedium($user, $manager, 'cthulhu/collections/lovecraft/mythe.jpeg', 'cthulhu/collections/lovecraft/mythe_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'cthulhu/collections/lovecraft/mythe.jpeg', 'cthulhu/collections/lovecraft/mythe_small.jpeg'))
             ->addTag($tagBooks)
             ->addTag($tagLovecraft)
             ->setSeenCounter(0)
@@ -184,7 +184,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setName('Cthulhu Figure')
             ->setWishlist($wishlistFigure)
-            ->setImage($this->loadMedium($user, $manager, 'cthulhu/wishlists/figures/cthulhu.jpeg', 'cthulhu/wishlists/figures/cthulhu_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'cthulhu/wishlists/figures/cthulhu.jpeg', 'cthulhu/wishlists/figures/cthulhu_small.jpeg'))
         ;
         $manager->persist($wishCthulhu);
     }
@@ -210,7 +210,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setTitle('Photo 1')
             ->setAlbum($albumRlyeh)
-            ->setImage($this->loadMedium($user, $manager, 'cthulhu/albums/rlyeh/rlyeh.jpeg', 'cthulhu/albums/rlyeh/rlyeh_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'cthulhu/albums/rlyeh/rlyeh.jpeg', 'cthulhu/albums/rlyeh/rlyeh_small.jpeg'))
         ;
         $manager->persist($photo1);
     }
@@ -245,13 +245,13 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
      * @param ObjectManager $manager
      * @param string $path
      * @param null|string $thumbnailPath
-     * @return Medium
+     * @return Image
      */
-    private function loadMedium(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Medium
+    private function loadImage(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Image
     {
         $file = new File('public/fixtures/'.$path);
-        $medium = new Medium();
-        $medium
+        $image = new Image();
+        $image
             ->setOwner($user)
             ->setFilename($path)
             ->setMimetype($file->getMimeType())
@@ -261,14 +261,14 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
 
         if ($thumbnailPath) {
             $thumbnailFile = new File('public/fixtures/'.$thumbnailPath);
-            $medium
+            $image
                 ->setThumbnailPath('fixtures/'.$thumbnailPath)
                 ->setThumbnailSize($thumbnailFile->getSize())
             ;
         }
 
-        $manager->persist($medium);
+        $manager->persist($image);
 
-        return $medium;
+        return $image;
     }
 }

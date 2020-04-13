@@ -83,7 +83,7 @@ class DatabaseDumper
             "SELECT it.* FROM koi_item_tag it LEFT JOIN koi_item i ON it.item_id = i.id WHERE i.owner_id IN ($userIds)",
             "SELECT * FROM koi_loan WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_log WHERE user_id IN ($userIds)",
-            "SELECT * FROM koi_medium WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_image WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_photo WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_tag WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_tag_category WHERE owner_id IN ($userIds)",

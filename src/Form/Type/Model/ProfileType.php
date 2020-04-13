@@ -6,7 +6,7 @@ namespace App\Form\Type\Model;
 
 use App\Entity\User;
 use App\Enum\DateFormatEnum;
-use App\Form\DataTransformer\Base64ToMediumTransformer;
+use App\Form\DataTransformer\Base64ToImageTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,17 +22,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ProfileType extends AbstractType
 {
     /**
-     * @var Base64ToMediumTransformer
+     * @var Base64ToImageTransformer
      */
-    private Base64ToMediumTransformer $base64ToMediumTransformer;
+    private Base64ToImageTransformer $base64ToImageTransformer;
 
     /**
      * ProfileType constructor.
-     * @param Base64ToMediumTransformer $base64ToMediumTransformer
+     * @param Base64ToImageTransformer $base64ToImageTransformer
      */
-    public function __construct(Base64ToMediumTransformer $base64ToMediumTransformer)
+    public function __construct(Base64ToImageTransformer $base64ToImageTransformer)
     {
-        $this->base64ToMediumTransformer = $base64ToMediumTransformer;
+        $this->base64ToImageTransformer = $base64ToImageTransformer;
     }
 
     /**
@@ -47,7 +47,7 @@ class ProfileType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'property_path' => 'avatar'
-                ])->addModelTransformer($this->base64ToMediumTransformer)
+                ])->addModelTransformer($this->base64ToImageTransformer)
             )
             ->add('timezone', TimezoneType::class, [
                 'required' => true
