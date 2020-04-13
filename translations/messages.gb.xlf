@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
-  <file id="messages.en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="gb" trgLang="gb">
+  <file id="messages.gb">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
         <note category="file-source" priority="1">templates/App/Security/login.html.twig:41</note>
@@ -3712,7 +3712,7 @@
     <unit id="d75KAlJ" name="label.version">
       <segment>
         <source>label.version</source>
-        <target>Version</target>
+        <target>Koillection version</target>
       </segment>
     </unit>
     <unit id="4wvJrqA" name="global.time.today">
@@ -4235,6 +4235,60 @@
       <segment>
         <source>global.locale.fr_FR</source>
         <target>Français</target>
+      </segment>
+    </unit>
+    <unit id="I4vwwju" name="title.overview">
+      <segment>
+        <source>title.overview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
+    <unit id="U8IBiON" name="menu.overview">
+      <segment>
+        <source>menu.overview</source>
+        <target>Overview</target>
+      </segment>
+    </unit>
+    <unit id="_wv_IKT" name="title.config">
+      <segment>
+        <source>title.config</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="4akjOge" name="label.phpVersion">
+      <segment>
+        <source>label.phpVersion</source>
+        <target>PHP version</target>
+      </segment>
+    </unit>
+    <unit id=".up_g77" name="label.isOpcacheAvailable">
+      <segment>
+        <source>label.isOpcacheAvailable</source>
+        <target>Opcache enabled</target>
+      </segment>
+    </unit>
+    <unit id="nre3fu6" name="global.short_locale.gb">
+      <segment>
+        <source>global.short_locale.gb</source>
+        <target>English</target>
+      </segment>
+    </unit>
+    <unit id="8EJwKZj" name="global.short_locale.fr">
+      <segment>
+        <source>global.short_locale.fr</source>
+        <target>French</target>
+      </segment>
+    </unit>
+    <unit id="335X_OI" name="tab.overview">
+      <segment>
+        <source>tab.overview</source>
+        <target>Overview</target>
+      </segment>
+    </unit>
+    <unit id="wKru5ff" name="label.symfonyVersion">
+      <segment>
+        <source>label.symfonyVersion</source>
+        <target>Symfony version</target>
       </segment>
     </unit>
   </file>

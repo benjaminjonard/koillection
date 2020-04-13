@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="gb" trgLang="fr">
   <file id="messages.fr">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -3712,7 +3712,7 @@
     <unit id="d75KAlJ" name="label.version">
       <segment>
         <source>label.version</source>
-        <target>Version</target>
+        <target>Version de Koillection</target>
       </segment>
     </unit>
     <unit id="4wvJrqA" name="global.time.today">
@@ -4235,6 +4235,60 @@
       <segment>
         <source>global.locale.fr_FR</source>
         <target>Français</target>
+      </segment>
+    </unit>
+    <unit id="U8IBiON" name="menu.overview">
+      <segment>
+        <source>menu.overview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
+    <unit id="_wv_IKT" name="title.config">
+      <segment>
+        <source>title.config</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="4akjOge" name="label.phpVersion">
+      <segment>
+        <source>label.phpVersion</source>
+        <target>Version de PHP</target>
+      </segment>
+    </unit>
+    <unit id=".up_g77" name="label.isOpcacheAvailable">
+      <segment>
+        <source>label.isOpcacheAvailable</source>
+        <target>Opcache activé</target>
+      </segment>
+    </unit>
+    <unit id="NgE8xV9" name="global.locale.gb ">
+      <segment>
+        <source>global.locale.gb </source>
+        <target>Anglais</target>
+      </segment>
+    </unit>
+    <unit id="ap04umn" name="global.locale.fr">
+      <segment>
+        <source>global.locale.fr</source>
+        <target>Français</target>
+      </segment>
+    </unit>
+    <unit id="I4vwwju" name="title.overview">
+      <segment>
+        <source>title.overview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
+    <unit id="335X_OI" name="tab.overview">
+      <segment>
+        <source>tab.overview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
+    <unit id="S3uBvV6" name=" label.symfonyVersion">
+      <segment>
+        <source> label.symfonyVersion</source>
+        <target>Version de Symfony</target>
       </segment>
     </unit>
   </file>

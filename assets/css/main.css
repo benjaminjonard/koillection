@@ -1233,3 +1233,7 @@ input[type=color] {display: block; margin: 1rem 0;}
 .lb-data .lb-details { width: 100%; }
 .lb-caption .right { margin-top: -10px; }
 .lb-caption .right .button { margin: 5px; }
+
+.font-red { color: #e53935; }
+.font-green { color: #43a047; }
+.catalogue-list .flag {padding-left: 10px;}

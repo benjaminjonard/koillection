@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipStream\Option\Archive;
@@ -52,7 +53,10 @@ class AdminController extends AbstractController
                 'tags' => $em->getRepository(Tag::class)->countAll(),
                 'wishlists' => $em->getRepository(Wishlist::class)->countAll(),
                 'wishes' => $em->getRepository(Wish::class)->countAll(),
-            ]
+            ],
+            'symfonyVersion' => Kernel::VERSION,
+            'phpVersion' => phpversion(),
+            'isOpcacheAvailable' => function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled']
         ]);
     }
 

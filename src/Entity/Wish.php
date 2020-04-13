@@ -230,7 +230,7 @@ class Wish
 
     public function getImage(): ?Image
     {
-        return $this->Image;
+        return $this->image;
     }
 
     public function setImage(?Image $image): self
