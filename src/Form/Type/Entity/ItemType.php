@@ -8,7 +8,6 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
-use App\Form\Type\ImageType;
 use App\Form\DataTransformer\JsonToTagTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Type;
+namespace App\Form\Type\Entity;
 
 use App\Entity\Image;
 use Symfony\Component\Form\Extension\Core\Type\FileType;

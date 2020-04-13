@@ -8,7 +8,6 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\CurrencyEnum;
 use App\Enum\VisibilityEnum;
-use App\Form\Type\ImageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

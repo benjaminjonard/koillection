@@ -7,7 +7,6 @@ namespace App\Form\Type\Entity;
 use App\Entity\Album;
 use App\Entity\Photo;
 use App\Enum\VisibilityEnum;
-use App\Form\Type\ImageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

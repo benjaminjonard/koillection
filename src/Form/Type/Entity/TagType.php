@@ -7,7 +7,6 @@ namespace App\Form\Type\Entity;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
 use App\Enum\VisibilityEnum;
-use App\Form\Type\ImageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
