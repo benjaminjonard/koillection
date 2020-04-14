@@ -1153,9 +1153,6 @@ input[type=color] {display: block; margin: 1rem 0;}
     border-color: #5897fb
 }
 
-
-
-
 .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single, .select2-container--default.select2-container--focus .select2-selection--multiple {
     height: 46px;
     border: none;
@@ -1237,3 +1234,17 @@ input[type=color] {display: block; margin: 1rem 0;}
 .font-red { color: #e53935; }
 .font-green { color: #43a047; }
 .catalogue-list .flag {padding-left: 10px;}
+
+.modal-custom { max-width: 500px; }
+.modal-custom img { width: 100%; }
+.modal-custom  .modal-header {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background: #009688;
+    color: #fff;
+    font-size: 20px;
+}
+.modal-custom .modal-content { padding: 0; }
+.modal-custom .modal-body { padding: 25px; }
+.modal-custom .modal-title { padding: 0 25px;}
+.modal-custom .modal-close {margin-top: 4px; margin-right: 14px;}

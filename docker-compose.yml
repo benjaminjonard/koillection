@@ -21,8 +21,10 @@ services:
         depends_on:
             - postgres
         volumes:
-            - ./docker/volumes/koillection/conf:/conf
-            - ./docker/volumes/koillection/uploads:/uploads
+            #- ./docker/volumes/koillection/conf:/conf
+            #- ./docker/volumes/koillection/uploads:/uploads
+            - ./:/var/www/koillection
+            - ./docker/volumes/php/php.ini:/usr/local/etc/php/php.ini
 
     postgres:
         container_name: postgres

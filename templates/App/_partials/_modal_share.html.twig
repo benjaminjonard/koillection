@@ -1,21 +1,24 @@
-<div id="modal-share" class="modal">
-    <div class="modal-content">
-        <h4>{{ 'modal.title.share'|trans }}</h4>
-        {% if app.user.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
-            <p>{{ 'message.user_is_private'|trans }}</p>
-        {% elseif entity is defined and entity.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
-            <p>{{ 'message.entity_is_private'|trans }}</p>
-        {% else %}
-            <p>
-                {{ 'message.share_link'|trans }}
-                <br>
-                <b><a href="{{ route }}">{{ route }}</a></b>
-            </p>
-        {% endif %}
-    </div>
-    <div class="modal-footer">
-        <div class="right">
-            <a class="modal-close waves-effect waves-light btn grey col s2">Close</a>
+<div id="modal-share" class="modal modal-custom" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">{{ 'modal.title.share'|trans }}</span>
+                <i class="fa fa-close fa-fw modal-action modal-close right"></i>
+            </div>
+
+            <div class="modal-body">
+                {% if app.user.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
+                    <p>{{ 'message.user_is_private'|trans }}</p>
+                {% elseif entity is defined and entity.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
+                    <p>{{ 'message.entity_is_private'|trans }}</p>
+                {% else %}
+                    <p>
+                        {{ 'message.share_link'|trans }}
+                        <br>
+                        <b><a href="{{ route }}">{{ route }}</a></b>
+                    </p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
