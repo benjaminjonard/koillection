@@ -133,28 +133,12 @@ class WishController extends AbstractController
         $item
             ->setVisibility($wish->getVisibility())
             ->setName($wish->getName())
+            ->setImage($wish->getImage())
         ;
-
-        if ($wish->getImage() instanceof Image) {
-            $item->setImage(
-                (new Image())
-                    ->setPath($wish->getImage()->getPath())
-                    ->setThumbnailPath($wish->getImage()->getThumbnailPath())
-                    ->setSize($wish->getImage()->getSize())
-                    ->setThumbnailSize($wish->getImage()->getThumbnailSize())
-                    ->setMimetype($wish->getImage()->getFilename())
-                    ->setFilename($wish->getImage()->getFilename())
-                    ->preventFileRemoval()
-            );
-        }
 
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$item->getImage()->fileCanBeDeleted()) {
-                $wish->getImage()->preventFileRemoval();
-            }
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($item);
             $em->remove($wish);

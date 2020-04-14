@@ -100,6 +100,8 @@ $(document).ready(function() {
     if ($('[name="data-lightbox"]').length > 0) {
         lightbox.option({
             'resizeDuration': 200,
+            'imageFadeDuration': 200,
+            'fadeDuration': 200,
             'wrapAround': true
         });
     }

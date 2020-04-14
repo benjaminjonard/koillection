@@ -90,29 +90,9 @@ class Image
      */
     private bool $mustGenerateAThumbnail = false;
 
-    /**
-     * @var bool
-     */
-    private bool $preventFileRemoval = false;
-
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-    }
-
-    /**
-     * @return Image
-     */
-    public function preventFileRemoval() : self
-    {
-        $this->preventFileRemoval = true;
-
-        return $this;
-    }
-
-    public function fileCanBeDeleted()
-    {
-        return !$this->preventFileRemoval;
     }
 
     /**
@@ -234,6 +214,11 @@ class Image
     public function setUploadedFile($uploadedFile) : self
     {
         $this->uploadedFile = $uploadedFile;
+        $this->setUpdatedAt(new \DateTime()); //Hack for doctrine, uploadedFile is not mapped so Doctrine doesn't see it changed
+
+        if ($this->getThumbnailPath()) {
+            $this->mustGenerateAThumbnail = true;
+        }
 
         return $this;
     }

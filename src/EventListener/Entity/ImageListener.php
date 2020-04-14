@@ -8,8 +8,10 @@ use App\Entity\Image;
 use App\Entity\User;
 use App\Service\DiskUsageChecker;
 use App\Service\ImageHandler;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\UnitOfWork;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -67,35 +69,57 @@ class ImageListener
                 $images[] = $entity;
             }
         }
+        foreach ($uow->getScheduledEntityUpdates() as $keyEntity => $entity) {
+            if ($entity instanceof Image) {
+                $images[] = $entity;
+            }
+        }
         if ($user instanceof User) {
             $this->duc->hasEnoughSpaceForUpload($user, $images);
         }
 
         foreach ($uow->getScheduledEntityInsertions() as $keyEntity => $entity) {
             if ($entity instanceof Image) {
-                $sizeUsed = $this->imageHandler->upload($entity);
-                $user->increaseDiskSpaceUsed($sizeUsed);
+                $this->upload($entity, $user, $em);
+            }
+        }
 
-                $em->persist($entity);
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Image::class), $entity);
-                $em->persist($user);
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $user);
+        foreach ($uow->getScheduledEntityUpdates() as $keyEntity => $entity) {
+            if ($entity instanceof Image) {
+                $this->remove($entity, $em); //Will still contain all data related to the previous image
+                $this->upload($entity, $user, $em); // Will update the Image with new file data
             }
         }
 
         foreach ($uow->getScheduledEntityDeletions() as $keyEntity => $entity) {
-            if ($entity instanceof Image && $entity->getId()) {
-                if ($entity->fileCanBeDeleted()) {
-                    $sizeFreed = $this->imageHandler->remove($entity);
-                    $iamgeOwner = $entity->getOwner();
-                    $iamgeOwner->decreaseDiskSpaceUsed($sizeFreed);
-
-                    $em->persist($entity);
-                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Image::class), $entity);
-                    $em->persist($iamgeOwner);
-                    $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $iamgeOwner);
-                }
+            if ($entity instanceof Image) {
+                $this->remove($entity, $em);
             }
         }
+    }
+
+    private function upload(Image $image, User $user, EntityManagerInterface $em)
+    {
+        $uow = $em->getUnitOfWork();
+
+        $sizeUsed = $this->imageHandler->upload($image);
+        $user->increaseDiskSpaceUsed($sizeUsed);
+
+        $em->persist($image);
+        $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Image::class), $image);
+        $em->persist($user);
+        $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $user);
+    }
+
+    private function remove(Image $image, EntityManagerInterface $em)
+    {
+        $uow = $em->getUnitOfWork();
+
+        $sizeFreed = $this->imageHandler->remove($image);
+        $imageOwner = $image->getOwner();
+        $imageOwner->decreaseDiskSpaceUsed($sizeFreed);
+
+        $em->persist($imageOwner);
+        $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $imageOwner);
     }
 }
