@@ -30,7 +30,7 @@
 				<div class="row">
 					<h5 class="header">{{ 'title.fields'|trans }}</h5>
 					<div class="col s11 offset-s1">
-						<div id="template-fields-holder" data-prototype="{% filter escape %}{{ include('App/Field/_partials/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }}{% endfilter %}">
+						<div id="template-fields-holder" data-prototype="{% filter escape %}{{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }}{% endfilter %}">
 							{{ form_row(form.fields) }}
 						</div>
 					</div>

@@ -75,7 +75,7 @@
             <div class="block-element">
                 <h5 class="header">{{ 'title.wishlist_children'|trans }}</h5>
                 <div class="collections grid-container-collections">
-                    {{ include('App/Wishlist/_partials/list.html.twig', {'wishlists': wishlist.children}) }}
+                    {{ include('App/Wishlist/_list.html.twig', {'wishlists': wishlist.children}) }}
                 </div>
             </div>
         {% endif %}

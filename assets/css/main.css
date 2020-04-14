@@ -18,7 +18,7 @@ body:after {content: none;}
 .lb-data .lb-close {background: none;}
 .lb-nav a.lb-next {background: none;}
 .lb-nav a.lb-prev {background: none;}
-.lb-nav a {background-image:none!important;} /* What the fucking shit */
+.lb-nav a {background-image:none!important;}
 .lb-cancel {background: none;}
 /* ------------------------------ */
 
@@ -71,6 +71,12 @@ nav {background-color: #009688; -webkit-box-shadow: none; -moz-box-shadow: none;
 .no-transform {-webkit-transform: translateY(0%)!important; transform: translateY(0%)!important;}
 .input-field input[type=search]+label {left: 0px;}
 nav .input-field label i {color: #fff;}
+input:not([type]) + label::after, input[type="text"]:not(.browser-default) + label::after, input[type="password"]:not(.browser-default) + label::after, input[type="email"]:not(.browser-default) + label::after, input[type="url"]:not(.browser-default) + label::after, input[type="time"]:not(.browser-default) + label::after, input[type="date"]:not(.browser-default) + label::after, input[type="datetime"]:not(.browser-default) + label::after, input[type="datetime-local"]:not(.browser-default) + label::after, input[type="tel"]:not(.browser-default) + label::after, input[type="number"]:not(.browser-default) + label::after, input[type="search"]:not(.browser-default) + label::after, textarea.materialize-textarea + label::after, .select-wrapper + label::after {
+    display: inline;
+    top: auto;
+    left: auto;
+    opacity: 1;
+}
 
 h5.header, h4.header{font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 0 0 35px 0; line-height: 100%;}
 h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; font-size: 18px;}
@@ -135,8 +141,7 @@ strong.ellipsis{display: inline-block;}
 /* Form */
 .form-element-left {width: 48%; float: left;}
 .form-element-right {width: 48%; float: right;}
-.form-btn-holder {float:right;}
-.form-btn-holder div {display: inline;}
+.form-btn-holder { margin-top: 50px; }
 label div {font-size: 0.8rem;}
 
 /* Content header */
@@ -265,7 +270,6 @@ button.align-with-inputs {margin-top: 25px;}
 .handle {cursor: move; cursor: -webkit-grabbing; font-size: 20px; margin-top: 25px;}
 
 /* Cropper */
-#cropArea, #cropPreview {max-width: 400px; display: inline-block; margin-top: 50px;}
 #cropPreview img{margin: 25px auto;}
 
 .line-height-1 {line-height: 1.0;}
@@ -1248,3 +1252,9 @@ input[type=color] {display: block; margin: 1rem 0;}
 .modal-custom .modal-body { padding: 25px; }
 .modal-custom .modal-title { padding: 0 25px;}
 .modal-custom .modal-close {margin-top: 4px; margin-right: 14px;}
+
+.cr-boundary { cursor: pointer; }
+.file-field { display: flex; }
+.file-field .btn { margin: 0 auto; height: auto; line-height: 36px;}
+form .row { margin-bottom: 0; }
+form .row-croppie { margin-bottom: 25px; text-align: center; }

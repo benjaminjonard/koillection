@@ -64,7 +64,7 @@
                     <h5 class="header">{{ 'title.collections'|trans }}</h5>
                     <div class="collections grid-container-collections">
                         {% for collection in collections|naturalSorting %}
-                            {{ include('App/Collection/_partials/_collection.html.twig', {'collection': collection}) }}
+                            {{ include('App/Collection/_collection.html.twig', {'collection': collection}) }}
                         {% endfor %}
                     </div>
                 </div>

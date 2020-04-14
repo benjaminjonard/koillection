@@ -4,6 +4,7 @@ var formSelector = '#'+$('#cropArea').attr('formName')+"_image";
 var $croppie = $('#cropArea').croppie({
     viewport: { width: 150, height: 150, type: 'circle' },
     boundary: { width: 200, height: 200 },
+    showZoomer: false,
     update: function (){
         $('#cropArea').triggerHandler('mouseup');
     }

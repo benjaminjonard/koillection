@@ -33,25 +33,24 @@
     {%- endspaceless -%}
 {%- endblock checkbox_row -%}
 
-{% block _collection_image_widget %}
-    <div class="file-field input-field">
-        <div class="btn">
-            <span>{{ 'label.thumbnail'|trans }}</span>
-            <input type="file" id="cropInput" accept="image/*">
+{% block _collection_image_row %}
+    <div class="row row-croppie">
+        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+            <div class="" id="cropArea" formName="collection"></div>
+            <div class="file-field">
+                <label class="btn">
+                    <span>{{ 'label.thumbnail'|trans }}</span>
+                    <input class="js-croppie-file-input" type="file" id="cropInput" accept="image/*">
+                </label>
+                <input class="file-path validate hidden" type="text">
+            </div>
         </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-        </div>
-    </div>
-    <div class="row-cropper">
-        <div class="m4 offset-m2 s10" id="cropArea" formName="collection"></div>
-        <div class="m4 offset-m1 s10" id="cropPreview">
-            {% if attr.src is defined and attr.src is not null and attr.src != '' %}
-                <img src="{{ preload(asset(attr.src)) }}">
-            {% endif %}
+        <div class="col s10 offset-s1 l5 xl3" id="cropPreview">
+            <img src="{{ form.vars.value }}">
         </div>
     </div>
     <input type="hidden" value="{{ value|default('') }}" name="collection[image]" id="collection_image"/>
+    {{- form_errors(form) -}}
 {% endblock %}
 
 {% block _wishlist_image_widget %}
