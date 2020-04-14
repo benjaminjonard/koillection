@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -293,6 +294,7 @@ class Wishlist //implements BreadcrumbableInterface
 
     public function setImage(?Image $image): self
     {
+        $image->setType(ImageTypeEnum::TYPE_AVATAR);
         $this->image = $image;
 
         return $this;

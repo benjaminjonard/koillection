@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -217,10 +218,7 @@ class Photo
 
     public function setImage(?Image $image): self
     {
-        if ($image->getThumbnailPath() === null) {
-            $image->setMustGenerateAThumbnail(true);
-        }
-
+        $image->setType(ImageTypeEnum::TYPE_COMMON);
         $this->image = $image;
 
         return $this;

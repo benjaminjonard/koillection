@@ -25,7 +25,7 @@
                         {{ form_row(form.name, {'label' : 'label.name'}) }}
                     </div>
                     <div class="col s10 offset-s1 m5 offset-m0">
-                        {{ form_row(form.image, {'attr': {'src' : item.image ? item.image.path : null}}) }}
+                        {{ form_row(form.image.uploadedFile, {'attr': {'src' : item.image ? item.image.path : null}}) }}
                     </div>
                 </div>
                 <div class="row">

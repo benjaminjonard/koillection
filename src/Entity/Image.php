@@ -40,6 +40,12 @@ class Image
 
     /**
      * @var string
+     * @ORM\Column(type="string")
+     */
+    private ?string $type = null;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $thumbnailPath = null;
@@ -84,11 +90,6 @@ class Image
      * @var UploadedFile
      */
     private ?UploadedFile $uploadedFile = null;
-
-    /**
-     * @var bool
-     */
-    private bool $mustGenerateAThumbnail = false;
 
     public function __construct()
     {
@@ -216,10 +217,6 @@ class Image
         $this->uploadedFile = $uploadedFile;
         $this->setUpdatedAt(new \DateTime()); //Hack for doctrine, uploadedFile is not mapped so Doctrine doesn't see it changed
 
-        if ($this->getThumbnailPath()) {
-            $this->mustGenerateAThumbnail = true;
-        }
-
         return $this;
     }
 
@@ -228,15 +225,15 @@ class Image
         return $this->uploadedFile;
     }
 
-    public function setMustGenerateAThumbnail($mustGenerateAThumbnail) : self
+    public function getType(): ?string
     {
-        $this->mustGenerateAThumbnail = $mustGenerateAThumbnail;
-
-        return $this;
+        return $this->type;
     }
 
-    public function getMustGenerateAThumbnail()
+    public function setType(?string $type): self
     {
-        return $this->mustGenerateAThumbnail;
+        $this->type = $type;
+
+        return $this;
     }
 }

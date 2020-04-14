@@ -1235,7 +1235,7 @@ input[type=color] {display: block; margin: 1rem 0;}
 .font-green { color: #43a047; }
 .catalogue-list .flag {padding-left: 10px;}
 
-.modal-custom { max-width: 500px; }
+.modal-custom { max-width: 750px; }
 .modal-custom img { width: 100%; }
 .modal-custom  .modal-header {
     padding-top: 11px;

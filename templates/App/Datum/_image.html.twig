@@ -2,7 +2,7 @@
     <div class="btn btn-image">
         <span>{{ 'label.browse'|trans }}</span>
     </div>
-    <input type="file" id="data_{{ iteration }}_image" name="item[data][{{ iteration }}][image]" class="has-preview hidden">
+    <input type="file" id="data_{{ iteration }}_image" name="item[data][{{ iteration }}][image][uploadedFile]" class="has-preview hidden">
     {% if datum is defined %}
         <img class="preview-image pull-right" src="{{ preload(asset(datum.image.thumbnailPath)) }}" aria-label="{{ 'aria.datum_image_thumbnail' }}" />
     {% else %}

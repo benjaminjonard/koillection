@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -346,6 +347,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface
 
     public function setImage(?Image $image): self
     {
+        $image->setType(ImageTypeEnum::TYPE_AVATAR);
         $this->image = $image;
 
         return $this;

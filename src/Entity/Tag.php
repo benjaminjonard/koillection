@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -199,10 +200,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 
     public function setImage(?Image $image): self
     {
-        if ($image->getThumbnailPath() === null) {
-            $image->setMustGenerateAThumbnail(true);
-        }
-
+        $image->setType(ImageTypeEnum::TYPE_COMMON);
         $this->image = $image;
 
         return $this;

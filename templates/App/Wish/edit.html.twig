@@ -23,7 +23,7 @@
                     {{ form_row(form.name, {'label' : 'label.name'}) }}
                 </div>
                 <div class="col s5">
-                    {{ form_row(form.image, {'attr': {'src' : wish.image ? wish.image.path : null }}) }}
+                    {{ form_row(form.image.uploadedFile, {'attr': {'src' : wish.image ? wish.image.path : null }}) }}
                 </div>
             </div>
 

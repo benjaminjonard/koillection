@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Image;
+use App\Enum\ImageTypeEnum;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -74,7 +75,7 @@ class ImageHandler
         $image->setSize(filesize($this->publicPath.'/'.$image->getPath()));
         $sizeUsed += $image->getSize();
 
-        if ($image->getMustGenerateAThumbnail()) {
+        if ($image->getType() === ImageTypeEnum::TYPE_COMMON) {
             $image->setThumbnailPath($path.$generatedName.'_small.'.$extension);
             $this->tg->generateThumbnail($this->publicPath.'/'.$image->getPath(), $this->publicPath.'/'.$image->getThumbnailPath(), 150);
             $image->setThumbnailSize(filesize($this->publicPath.'/'.$image->getThumbnailPath()));

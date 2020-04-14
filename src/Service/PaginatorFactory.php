@@ -40,6 +40,6 @@ class PaginatorFactory
             $url .= '?' . http_build_query($params);
         }
 
-        return new Paginator($totalItems, $itemsPerPage, $page, $url);
+        return new Paginator($totalItems, $itemsPerPage, (int) $page, $url);
     }
 }

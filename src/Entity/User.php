@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
+use App\Enum\ImageTypeEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
@@ -515,6 +516,7 @@ class User implements UserInterface, BreadcrumbableInterface
 
     public function setAvatar(?Image $avatar): self
     {
+        $avatar->setType(ImageTypeEnum::TYPE_AVATAR);
         $this->avatar = $avatar;
 
         return $this;

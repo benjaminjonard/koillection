@@ -4291,5 +4291,11 @@
         <target>Version de Symfony</target>
       </segment>
     </unit>
+    <unit id="domeXiF" name="title.edit_album">
+      <segment>
+        <source>title.edit_album</source>
+        <target>Modifier l'album %title%</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
