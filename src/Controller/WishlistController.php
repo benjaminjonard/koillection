@@ -14,11 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class WishlistController
- *
- * @package App\Controller
- */
 class WishlistController extends AbstractController
 {
     /**

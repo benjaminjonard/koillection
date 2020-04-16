@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-/**
- * Class DatumTypeEnum
- *
- * @package App\Enum
- */
 class DatumTypeEnum
 {
     public const TYPE_TEXT = 'text';

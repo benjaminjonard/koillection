@@ -18,9 +18,6 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Item
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
  * @ORM\Table(name="koi_item", indexes={
  *     @ORM\Index(name="idx_item_visibility", columns={"visibility"})

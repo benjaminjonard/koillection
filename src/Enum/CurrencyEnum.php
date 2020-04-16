@@ -7,11 +7,6 @@ namespace App\Enum;
 use Symfony\Component\Intl\Countries;
 use Symfony\Component\Intl\Currencies;
 
-/**
- * Class CurrencyEnum
- *
- * @package App\Enum
- */
 class CurrencyEnum
 {
     /**

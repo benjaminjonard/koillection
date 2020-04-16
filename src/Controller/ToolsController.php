@@ -16,11 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
-/**
- * Class ToolsController
- *
- * @package App\Controller
- */
 class ToolsController extends AbstractController
 {
     /**

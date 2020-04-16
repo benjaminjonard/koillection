@@ -20,9 +20,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class User
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="koi_user", indexes={
  *     @ORM\Index(name="idx_user_visibility", columns={"visibility"})

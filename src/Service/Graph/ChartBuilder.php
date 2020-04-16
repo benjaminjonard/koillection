@@ -11,11 +11,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class ChartBuilder
- *
- * @package App\Service\Graph
- */
 class ChartBuilder
 {
     /**

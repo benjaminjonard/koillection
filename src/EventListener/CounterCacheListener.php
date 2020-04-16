@@ -11,11 +11,6 @@ use App\Entity\Wishlist;
 use App\Service\CountersCache;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-/**
- * Class ItemListener
- *
- * @package App\EventListener\Entity
- */
 class CounterCacheListener
 {
     /**

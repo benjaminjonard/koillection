@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-/**
- * Class ThemeEnum
- *
- * @package App\Enum
- */
 class ThemeEnum
 {
     public const THEME_AUBERGINE = 'aubergine';

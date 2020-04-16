@@ -8,11 +8,6 @@ use App\Entity\Image;
 use App\Entity\User;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class DiskUsageChecker
- *
- * @package App\Service
- */
 class DiskUsageChecker
 {
     /**

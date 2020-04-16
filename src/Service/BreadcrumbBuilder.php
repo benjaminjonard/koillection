@@ -9,11 +9,6 @@ use App\Entity\Item;
 use App\Entity\Wishlist;
 use App\Model\BreadcrumbElement;
 
-/**
- * Class BreadcrumbBuilder
- *
- * @package App\Service
- */
 class BreadcrumbBuilder
 {
     /**

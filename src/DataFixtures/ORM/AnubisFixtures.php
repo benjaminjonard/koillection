@@ -25,11 +25,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class AnubisFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class AnubisFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**

@@ -13,9 +13,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Album
- *
- * @package App\Entity
  * @ORM\Entity
  * @ORM\Table(name="koi_album", indexes={
  *     @ORM\Index(name="idx_album_visibility", columns={"visibility"})

@@ -14,6 +14,7 @@ use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,11 +22,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class ItemController
- *
- * @package App\Controller
- */
 class ItemController extends AbstractController
 {
     /**
@@ -35,6 +31,7 @@ class ItemController extends AbstractController
      * @param TranslatorInterface $translator
      * @param ItemNameGuesser $itemNameGuesser
      * @return Response
+     * @throws NonUniqueResultException
      */
     public function add(Request $request, TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser) : Response
     {

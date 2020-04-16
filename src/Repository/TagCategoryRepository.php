@@ -12,11 +12,6 @@ use App\Entity\User;
 use App\Model\Search;
 use Doctrine\ORM\EntityRepository;
 
-/**
- * Class TagCategoryRepository
- *
- * @package App\Repository
- */
 class TagCategoryRepository extends EntityRepository
 {
     public function findOneWithTags(string $id) : ?TagCategory

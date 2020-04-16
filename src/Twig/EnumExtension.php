@@ -7,11 +7,6 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class EnumExtension
- *
- * @package App\Twig
- */
 class EnumExtension extends AbstractExtension
 {
     /**

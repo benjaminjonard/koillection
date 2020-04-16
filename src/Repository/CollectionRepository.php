@@ -13,11 +13,6 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class CollectionRepository
- *
- * @package App\Repository
- */
 class CollectionRepository extends EntityRepository
 {
     public function __construct(EntityManager $em, Mapping\ClassMetadata $class)

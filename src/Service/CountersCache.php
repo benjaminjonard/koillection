@@ -7,11 +7,6 @@ namespace App\Service;
 use Symfony\Component\Cache\Adapter\ApcuAdapter;
 use Symfony\Contracts\Cache\ItemInterface;
 
-/**
- * Class CountersCache
- *
- * @package App\Service
- */
 class CountersCache
 {
     private ApcuAdapter $cache;

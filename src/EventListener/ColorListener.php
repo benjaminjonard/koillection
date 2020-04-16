@@ -7,11 +7,6 @@ namespace App\EventListener;
 use App\Service\ColorPicker;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-/**
- * Class ColorListener
- *
- * @package App\EventListener
- */
 class ColorListener
 {
     /**

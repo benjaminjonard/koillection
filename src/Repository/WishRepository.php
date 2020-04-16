@@ -9,11 +9,6 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
-/**
- * Class WishRepository
- *
- * @package App\Repository
- */
 class WishRepository extends EntityRepository
 {
     /**

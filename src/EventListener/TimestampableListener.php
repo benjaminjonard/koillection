@@ -6,11 +6,6 @@ namespace App\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-/**
- * Class TimestampableListener
- *
- * @package App\EventListener
- */
 final class TimestampableListener
 {
     /**

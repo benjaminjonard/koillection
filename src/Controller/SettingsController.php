@@ -15,20 +15,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class SettingsController
- *
- * @package App\Controller
- *
- * @Route("/settings")
- */
 class SettingsController extends AbstractController
 {
     /**
-     * @Route("", name="app_settings_index", methods={"GET"})
+     * @Route("/settings", name="app_settings_index", methods={"GET"})
      *
      * @return Response
-     * @throws \ReflectionException
      */
     public function index() : Response
     {
@@ -41,7 +33,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-locale/{locale}", name="app_settings_set_locale", methods={"GET"})
+     * @Route("/settings/set-locale/{locale}", name="app_settings_set_locale", methods={"GET"})
      *
      * @param Request $request
      * @param string $locale
@@ -58,7 +50,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-theme/{theme}", name="app_settings_set_theme", methods={"POST"})
+     * @Route("/settings/set-theme/{theme}", name="app_settings_set_theme", methods={"POST"})
      *
      * @param string $theme
      * @return JsonResponse
@@ -77,7 +69,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-visibility/{visibility}", name="app_settings_set_visibility", methods={"POST"})
+     * @Route("/settings/set-visibility/{visibility}", name="app_settings_set_visibility", methods={"POST"})
      *
      * @param string $visibility
      * @return JsonResponse
@@ -96,7 +88,7 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * @Route("/set-currency/{currency}", name="app_settings_set_currency", methods={"POST"})
+     * @Route("/settings/set-currency/{currency}", name="app_settings_set_currency", methods={"POST"})
      *
      * @param string $currency
      * @return JsonResponse

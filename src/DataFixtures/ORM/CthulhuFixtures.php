@@ -26,11 +26,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class CthulhuFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**

@@ -11,11 +11,6 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class ItemRepository
- *
- * @package App\Repository
- */
 class ItemRepository extends EntityRepository
 {
     /**

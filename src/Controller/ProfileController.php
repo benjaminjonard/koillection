@@ -14,17 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class ProfileController
- *
- * @package App\Controller
- *
- * @Route("/profile")
- */
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("", name="app_profile_index", methods={"GET", "POST"})
+     * @Route("/profile", name="app_profile_index", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator

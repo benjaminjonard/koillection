@@ -7,11 +7,6 @@ namespace App\Service;
 use App\Entity\Collection;
 use App\Entity\Inventory;
 
-/**
- * Class InventoryHandler
- *
- * @package App\Service
- */
 class InventoryHandler
 {
     /**

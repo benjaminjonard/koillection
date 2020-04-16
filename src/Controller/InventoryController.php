@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Collection;
 use App\Entity\Inventory;
-use App\Entity\Item;
 use App\Form\Type\Entity\InventoryType;
 use App\Service\InventoryHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class InventoryController
- *
- * @package App\Controller
- */
 class InventoryController extends AbstractController
 {
     /**
@@ -28,6 +22,7 @@ class InventoryController extends AbstractController
      *
      * @param Request $request
      *
+     * @param TranslatorInterface $translator
      * @return Response
      */
     public function add(Request $request, TranslatorInterface $translator) : Response

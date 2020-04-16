@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-/**
- * Class ColorPicker
- *
- * @package App\Service
- */
 class ColorPicker
 {
     /**

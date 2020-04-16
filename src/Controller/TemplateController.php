@@ -15,17 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class TemplateController
- *
- * @package App\Controller
- *
- * @Route("/templates")
- */
 class TemplateController extends AbstractController
 {
     /**
-     * @Route("", name="app_template_index", methods={"GET"})
+     * @Route("/templates", name="app_template_index", methods={"GET"})
      *
      * @return Response
      */
@@ -37,7 +30,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="app_template_add", methods={"GET", "POST"})
+     * @Route("/templates/add", name="app_template_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -64,7 +57,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_template_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/templates/{id}/edit", name="app_template_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      * @Entity("template", expr="repository.findById(id)")
      *
      * @param Request $request
@@ -90,7 +83,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_template_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/templates/{id}", name="app_template_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("template", expr="repository.findByIdWithItems(id)")
      *
      * @param Template $template
@@ -104,7 +97,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_template_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/templates/{id}/delete", name="app_template_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Template $template
      * @param TranslatorInterface $translator
@@ -122,7 +115,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/fields", name="app_template_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/templates/{id}/fields", name="app_template_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Template $template
      * @return JsonResponse

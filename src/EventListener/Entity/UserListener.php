@@ -9,11 +9,6 @@ use App\Service\Log\LogQueue;
 use App\Service\PasswordUpdater;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-/**
- * Class UserListener
- *
- * @package App\EventListener\Entity
- */
 class UserListener
 {
     /**

@@ -14,11 +14,6 @@ use Doctrine\ORM\ORMException;
 use Doctrine\ORM\UnitOfWork;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class ImageListener
- *
- * @package App\EventListener\Entity
- */
 class ImageListener
 {
     /**

@@ -12,9 +12,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Datum
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
  * @ORM\Table(name="koi_datum", indexes={
  *     @ORM\Index(name="idx_datum_visibility", columns={"visibility"})

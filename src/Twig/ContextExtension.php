@@ -7,11 +7,6 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-/**
- * Class ContextExtension
- *
- * @package App\Twig
- */
 class ContextExtension extends AbstractExtension
 {
     /**

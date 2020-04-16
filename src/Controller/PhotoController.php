@@ -13,17 +13,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class PhotoController
- *
- * @package App\Controller
- *
- * @Route("/photos")
- */
 class PhotoController extends AbstractController
 {
     /**
-     * @Route("/add", name="app_photo_add", methods={"GET", "POST"})
+     * @Route("/photos/add", name="app_photo_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -70,7 +63,7 @@ class PhotoController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_photo_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/photos/{id}/edit", name="app_photo_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Photo $photo
@@ -95,7 +88,7 @@ class PhotoController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_photo_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/photos/{id}/delete", name="app_photo_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Photo $photo
      * @param TranslatorInterface $translator

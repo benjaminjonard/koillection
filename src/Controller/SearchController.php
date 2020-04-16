@@ -15,17 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class SearchController
- *
- * @package App\Controller
- *
- * @Route("/search")
- */
 class SearchController extends AbstractController
 {
     /**
-     * @Route("", name="app_search_index", methods={"GET", "POST"})
+     * @Route("/search", name="app_search_index", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param CounterCalculator $counterCalculator

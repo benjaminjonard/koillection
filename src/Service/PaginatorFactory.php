@@ -7,11 +7,6 @@ namespace App\Service;
 use App\Model\Paginator;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-/**
- * Class PaginatorFactory
- *
- * @package App\Service
- */
 class PaginatorFactory
 {
     /**

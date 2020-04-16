@@ -9,11 +9,6 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class DiskUsageCalculator
- *
- * @package App\Service
- */
 class DiskUsageCalculator
 {
     /**

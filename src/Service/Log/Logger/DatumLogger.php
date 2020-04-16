@@ -12,11 +12,6 @@ use App\Service\Log\Logger;
 use App\Service\Log\LogQueue;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class DatumLogger
- *
- * @package App\Service\Log\Logger
- */
 class DatumLogger extends Logger
 {
     /**

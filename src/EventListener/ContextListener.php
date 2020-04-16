@@ -7,11 +7,6 @@ namespace App\EventListener;
 use App\Service\ContextHandler;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
-/**
- * Class ContextListener
- *
- * @package App\EventListener
- */
 class ContextListener
 {
     /**

@@ -10,9 +10,10 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
-use App\Http\FileResponse;
 use App\Service\DatabaseDumper;
 use App\Service\DiskUsageCalculator;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,19 +25,16 @@ use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
 /**
- * Class AdminController
- *
- * @package App\Controller
- *
- * @Route("/admin")
  * @IsGranted("ROLE_ADMIN")
  */
 class AdminController extends AbstractController
 {
     /**
-     * @Route("", name="app_admin_index", methods={"GET"})
+     * @Route("/admin", name="app_admin_index", methods={"GET"})
      *
      * @return Response
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function index() : Response
     {
@@ -61,7 +59,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/clean", name="app_admin_clean", methods={"GET"})
+     * @Route("/admin/clean", name="app_admin_clean", methods={"GET"})
      *
      * @param string $publicPath
      * @param TranslatorInterface $translator
@@ -115,7 +113,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/backup", name="app_admin_backup", methods={"GET"})
+     * @Route("/admin/backup", name="app_admin_backup", methods={"GET"})
      *
      * @param DatabaseDumper $databaseDumper
      * @return StreamedResponse

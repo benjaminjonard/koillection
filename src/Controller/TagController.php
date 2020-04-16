@@ -10,6 +10,7 @@ use App\Entity\Tag;
 use App\Form\Type\Entity\TagType;
 use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;
+use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,11 +19,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class TagController
- *
- * @package App\Controller
- */
 class TagController extends AbstractController
 {
     /**
@@ -34,6 +30,7 @@ class TagController extends AbstractController
      * @param ContextHandler $contextHandler
      * @param PaginatorFactory $paginatorFactory
      * @return Response
+     * @throws NonUniqueResultException
      */
     public function index(Request $request, ContextHandler $contextHandler, PaginatorFactory $paginatorFactory) : Response
     {

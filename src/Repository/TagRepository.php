@@ -13,11 +13,6 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
-/**
- * Class TagRepository
- *
- * @package App\Repository
- */
 class TagRepository extends EntityRepository
 {
     private const RESULTS_PER_PAGE = 10;

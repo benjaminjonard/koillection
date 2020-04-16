@@ -7,11 +7,6 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class CountersExtension
- *
- * @package App\Twig
- */
 class CountersExtension extends AbstractExtension
 {
     /**

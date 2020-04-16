@@ -13,11 +13,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class SearchType
- *
- * @package App\Form\Type\Model
- */
 class SearchType extends AbstractType
 {
     /**

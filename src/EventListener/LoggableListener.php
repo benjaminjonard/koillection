@@ -11,11 +11,6 @@ use App\Service\Log\LogQueue;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-/**
- * Class LoggableListener
- *
- * @package App\EventListener
- */
 class LoggableListener
 {
     /**

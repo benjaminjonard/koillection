@@ -7,11 +7,6 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class LogExtension
- *
- * @package App\Twig
- */
 class IntlExtension extends AbstractExtension
 {
     /**

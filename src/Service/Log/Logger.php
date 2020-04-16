@@ -8,17 +8,12 @@ use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class Logger
- *
- * @package App\Service\Log
- */
 abstract class Logger implements LoggerInterface
 {
     /**
      * @var TranslatorInterface
      */
-    private TranslatorInterface $translator;
+    protected TranslatorInterface $translator;
 
     public function __construct(TranslatorInterface $translator)
     {

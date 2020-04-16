@@ -9,9 +9,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Log
- *
- * @package App\Entity
  * @ORM\Entity
  * @ORM\Table(name="koi_log")
  */

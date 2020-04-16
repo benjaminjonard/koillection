@@ -15,9 +15,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Tag
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  * @ORM\Table(name="koi_tag", indexes={
  *     @ORM\Index(name="idx_tag_visibility", columns={"visibility"})

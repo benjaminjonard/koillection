@@ -5,14 +5,8 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\User;
-use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-/**
- * Class PasswordUpdater
- *
- * @package App\Service
- */
 class PasswordUpdater
 {
     /**

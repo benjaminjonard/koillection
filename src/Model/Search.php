@@ -7,11 +7,6 @@ namespace App\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-/**
- * Class Search
- *
- * @package App\Model
- */
 class Search
 {
     /**

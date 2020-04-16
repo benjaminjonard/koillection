@@ -6,6 +6,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\Security\UserType;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,13 +17,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-/**
- * Class SecurityController
- *
- * @package App\Controller
- *
- * @Route("")
- */
 class SecurityController extends AbstractController
 {
     /**
@@ -29,6 +24,8 @@ class SecurityController extends AbstractController
      *
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function login(AuthenticationUtils $authenticationUtils) : Response
     {
@@ -53,6 +50,8 @@ class SecurityController extends AbstractController
      * @param TokenStorageInterface $tokenStorage
      * @param SessionInterface $session
      * @return Response
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session) : Response
     {

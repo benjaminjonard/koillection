@@ -12,11 +12,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class LogExtension
- *
- * @package App\Twig
- */
 class LogExtension extends AbstractExtension
 {
     /**

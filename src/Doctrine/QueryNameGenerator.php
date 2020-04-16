@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Doctrine;
 
-/**
- * Class QueryNameGenerator
- *
- * @package App\Doctrine
- */
 final class QueryNameGenerator
 {
     /**

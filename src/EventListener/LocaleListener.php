@@ -9,11 +9,6 @@ use Negotiation\LanguageNegotiator;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
-/**
- * Class LocaleListener
- *
- * @package App\EventListener
- */
 class LocaleListener
 {
     /**

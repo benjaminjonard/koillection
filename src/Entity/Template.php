@@ -12,9 +12,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Template
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @ORM\Table(name="koi_template")
  */

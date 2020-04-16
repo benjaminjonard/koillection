@@ -13,11 +13,6 @@ use App\Enum\VisibilityEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class CounterCalculator
- *
- * @package App\Service
- */
 class CounterCalculator
 {
     /**

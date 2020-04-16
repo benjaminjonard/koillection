@@ -12,17 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class HistoryController
- *
- * @package App\Controller
- *
- * @Route("/history")
- */
 class HistoryController extends AbstractController
 {
     /**
-     * @Route("", name="app_history_index", methods={"GET"})
+     * @Route("/history", name="app_history_index", methods={"GET"})
      *
      * @param Request $request
      * @param PaginatorFactory $paginatorFactory

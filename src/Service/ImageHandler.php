@@ -8,11 +8,6 @@ use App\Entity\Image;
 use App\Enum\ImageTypeEnum;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class ImageHandler
- *
- * @package App\Service
- */
 class ImageHandler
 {
     /**

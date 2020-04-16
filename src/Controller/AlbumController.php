@@ -12,11 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class AlbumController
- *
- * @package App\Controller
- */
 class AlbumController extends AbstractController
 {
     /**

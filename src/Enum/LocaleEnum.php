@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-/**
- * Class LocaleEnum
- *
- * @package App\Enum
- */
 class LocaleEnum
 {
     public const LOCALE_GB = 'gb';

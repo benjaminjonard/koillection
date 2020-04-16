@@ -26,11 +26,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class KhorneFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class KhorneFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**

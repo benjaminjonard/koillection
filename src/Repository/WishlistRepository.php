@@ -10,11 +10,6 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class WishlistRepository
- *
- * @package App\Repository
- */
 class WishlistRepository extends EntityRepository
 {
     /**

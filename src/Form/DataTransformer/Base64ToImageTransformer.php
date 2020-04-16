@@ -8,11 +8,6 @@ use App\Entity\Image;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * Class Base64ToImageTransformer
- *
- * @package App\Form\DataTransformer
- */
 class Base64ToImageTransformer implements DataTransformerInterface
 {
     /**

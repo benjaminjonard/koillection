@@ -9,11 +9,6 @@ use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 
-/**
- * Class TemplateRepository
- *
- * @package App\Repository
- */
 class TemplateRepository extends EntityRepository
 {
     /**

@@ -12,11 +12,6 @@ use App\Enum\DatumTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class ItemNameGuesser
- *
- * @package App\Service
- */
 class ItemNameGuesser
 {
     /**

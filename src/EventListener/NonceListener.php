@@ -7,11 +7,6 @@ namespace App\EventListener;
 use App\Security\NonceGenerator;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-/**
- * Class NonceListener
- *
- * @package App\EventListener
- */
 class NonceListener
 {
     /**

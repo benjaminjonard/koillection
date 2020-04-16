@@ -14,11 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class ProfileType
- *
- * @package App\Form\Type\Model
- */
 class ProfileType extends AbstractType
 {
     /**

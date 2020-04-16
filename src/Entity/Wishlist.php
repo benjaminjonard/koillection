@@ -15,9 +15,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Wishlist
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\WishlistRepository")
  * @ORM\Table(name="koi_wishlist", indexes={
  *     @ORM\Index(name="idx_wishlist_visibility", columns={"visibility"})
