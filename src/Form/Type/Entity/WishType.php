@@ -74,7 +74,7 @@ class WishType extends AbstractType
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

@@ -18,17 +18,12 @@ export function reloadSortableList($holder, elementSelector) {
 }
 
 export function loadFilePreviews() {
-    $('.btn-image').unbind('click');
-    $('.btn-image').click(function(){
-        $(this).closest('.image-preview-wrapper').find('.has-preview').trigger('click');
-    });
-
     $('.has-preview').unbind('change');
     $('.has-preview').on('change', function(e) {
         var reader = new FileReader();
         var self = $(this);
         reader.onload = function (e) {
-            self.closest('.image-preview-wrapper').find('img').attr('src', e.target.result);
+            self.closest('.file-field').find('img').attr('src', e.target.result);
         };
         reader.readAsDataURL(this.files[0]);
     });

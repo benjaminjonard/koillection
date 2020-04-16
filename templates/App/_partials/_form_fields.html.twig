@@ -1,29 +1,32 @@
-{%- block form_row -%}
+{% block form_row %}
     <div class="input-field">
         {{- form_errors(form) -}}
         {{- form_widget(form) -}}
         {{- form_label(form) -}}
     </div>
-{%- endblock form_row -%}
+{% endblock form_row %}
 
 
-{%- block file_widget -%}
+{% block file_widget %}
     {% apply spaceless %}
-    <div class="input-field image-preview-wrapper file-field row">
-        <div class="btn btn-image col s10 offset-s1 m5">
-            <span>{{ 'label.browse'|trans }}</span>
+        <div class="row row-file">
+            <div class="col s10 offset-s1 l5 offset-l1 xl6 offset-xl3">
+                <div class="file-field">
+                    <label class="file-label">
+                        {% if attr.src is defined and attr.src is not null and attr.src != '' %}
+                            <img class="preview-image" src="{{ preload(asset(attr.src)) }}" />
+                        {% else %}
+                            <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" />
+                        {% endif %}
+                        <input type="file" {{ block('widget_attributes') }} class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"/>
+                    </label>
+                </div>
+            </div>
         </div>
-        <input type="file" {{ block('widget_attributes') }} class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"/>
-        {% if attr.src is defined and attr.src is not null and attr.src != '' %}
-            <img class="preview-image pull-right" src="{{ preload(asset(attr.src)) }}" />
-        {% else %}
-            <img class="preview-image pull-right" src="{{ preload(asset('../build/images/default.png')) }}" />
-        {% endif %}
-    </div>
     {% endapply %}
-{%- endblock file_widget -%}
+{% endblock file_widget %}
 
-{%- block checkbox_row -%}
+{% block checkbox_row %}
     {% apply spaceless %}
         <p>
             {{- form_errors(form) -}}
@@ -31,10 +34,10 @@
             {{- form_label(form) -}}
         </p>
     {% endapply %}
-{%- endblock checkbox_row -%}
+{% endblock checkbox_row %}
 
 {% block cropper %}
-    <div class="row row-croppie">
+    <div class="row row-file">
         <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
             <div class="" id="cropArea" formName="{{ form.parent.vars.id }}"></div>
             <div class="file-field">
@@ -106,24 +109,24 @@
     {% endapply %}
 {% endblock %}
 
-{%- block choice_widget_collapsed -%}
-    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+{% block choice_widget_collapsed %}
+    {% if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) %}
         {% set required = false %}
-    {%- endif -%}
+    {% endif %}
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
-        {%- if placeholder is not none -%}
+        {% if placeholder is not none %}
             <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
-        {%- endif -%}
-        {%- if preferred_choices|length > 0 -%}
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
             {% set options = preferred_choices %}
             {% set render_preferred_choices = true %}
             {{- block('choice_widget_options') -}}
-            {%- if choices|length > 0 and separator is not none -%}
+            {% if choices|length > 0 and separator is not none %}
                 <option disabled="disabled">{{ separator }}</option>
-            {%- endif -%}
-        {%- endif -%}
-        {%- set options = choices -%}
-        {%- set render_preferred_choices = false -%}
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {% set render_preferred_choices = false %}
         {{- block('choice_widget_options') -}}
     </select>
-{%- endblock choice_widget_collapsed -%}
+{% endblock choice_widget_collapsed %}

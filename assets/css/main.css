@@ -129,7 +129,7 @@ h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,
 .ellipsis{text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
 strong.ellipsis{display: inline-block;}
 
-.preview-image{max-height: 100px;}
+.preview-image{max-height: 200px; cursor: pointer;}
 
 /* Blocks */
 .block {background-color: #ffffff; margin-bottom: 12px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.35);}
@@ -156,8 +156,6 @@ label div {font-size: 0.8rem;}
 .btn-holder .right {margin-top: 15px;}
 .btn-holder .left {margin-top: 15px;}
 .btn-holder i {margin: 0 5px;}
-
-.image-preview-wrapper {text-align: center;}
 
 ul.nav-pills {display: inline-block;}
 ul.nav-pills li { white-space: nowrap; display: inline;}
@@ -1257,5 +1255,6 @@ input[type=color] {display: block; margin: 1rem 0;}
 .file-field { display: flex; }
 .file-field .btn { margin: 0 auto; height: auto; line-height: 36px;}
 form .row { margin-bottom: 0; }
-form .row-croppie { margin-bottom: 25px; text-align: center; }
+form .row-file{ margin-bottom: 25px; text-align: center; }
+form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .nav-tags .show-more-btn-holder {display: inline-block;}

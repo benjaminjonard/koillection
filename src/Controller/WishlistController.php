@@ -67,7 +67,7 @@ class WishlistController extends AbstractController
         }
 
         return $this->render('App/Wishlist/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
