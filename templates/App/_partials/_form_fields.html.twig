@@ -8,7 +8,7 @@
 
 
 {%- block file_widget -%}
-    {%- spaceless -%}
+    {% apply spaceless %}
     <div class="input-field image-preview-wrapper file-field row">
         <div class="btn btn-image col s10 offset-s1 m5">
             <span>{{ 'label.browse'|trans }}</span>
@@ -20,23 +20,23 @@
             <img class="preview-image pull-right" src="{{ preload(asset('../build/images/default.png')) }}" />
         {% endif %}
     </div>
-    {%- endspaceless -%}
+    {% endapply %}
 {%- endblock file_widget -%}
 
 {%- block checkbox_row -%}
-    {%- spaceless -%}
+    {% apply spaceless %}
         <p>
             {{- form_errors(form) -}}
             <input type="checkbox" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
             {{- form_label(form) -}}
         </p>
-    {%- endspaceless -%}
+    {% endapply %}
 {%- endblock checkbox_row -%}
 
-{% block _collection_image_row %}
+{% block cropper %}
     <div class="row row-croppie">
         <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
-            <div class="" id="cropArea" formName="collection"></div>
+            <div class="" id="cropArea" formName="{{ form.parent.vars.id }}"></div>
             <div class="file-field">
                 <label class="btn">
                     <span>{{ 'label.thumbnail'|trans }}</span>
@@ -49,54 +49,24 @@
             <img src="{{ form.vars.value }}">
         </div>
     </div>
-    <input type="hidden" value="{{ value|default('') }}" name="collection[image]" id="collection_image"/>
+    <input type="hidden" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>
     {{- form_errors(form) -}}
+{% endblock cropper %}
+
+{% block _collection_image_row %}
+    {{ block('cropper') }}
 {% endblock %}
 
 {% block _wishlist_image_widget %}
-    <div class="file-field input-field">
-        <div class="btn">
-            <span>{{ 'label.thumbnail'|trans }}</span>
-            <input type="file" id="cropInput" accept="image/*">
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-        </div>
-    </div>
-    <div class="row-cropper">
-        <div class="m4 offset-m2 s10" id="cropArea" formName="wishlist"></div>
-        <div class="m4 offset-m1 s10" id="cropPreview">
-            {% if attr.src is defined and attr.src is not null and attr.src != '' %}
-                <img src="{{ preload(asset(attr.src)) }}">
-            {% endif %}
-        </div>
-    </div>
-    <input type="hidden" value="{{ value|default('') }}" name="wishlist[image]" id="wishlist_image"/>
+    {{ block('cropper') }}
 {% endblock %}
 
 {% block _profile_image_widget %}
-    <div class="file-field input-field">
-        <div class="btn">
-            <span>{{ 'label.thumbnail'|trans }}</span>
-            <input type="file" id="cropInput" accept="image/*">
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-        </div>
-    </div>
-    <div class="row row-cropper">
-        <div class="col m4 offset-m2 s10 offset-s1" id="cropArea" formName="profile"></div>
-        <div class="col m4 offset-m1 s10 offset-s1" id="cropPreview">
-            {% if attr.src is defined and attr.src is not null and attr.src != '' %}
-                <img src="{{ preload(asset(attr.src)) }}">
-            {% endif %}
-        </div>
-    </div>
-    <input type="hidden" value="{{ value|default('') }}" name="profile[image]" id="profile_image"/>
+    {{ block('cropper') }}
 {% endblock %}
 
 {% block collection_widget %}
-{% spaceless %}
+{% apply spaceless %}
         {% if prototype is defined %}
             {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
         {% endif %}
@@ -104,36 +74,36 @@
             {{ form_errors(form) }}
         </div>
         {{ form_rest(form) }}
-{% endspaceless %}
+{% endapply %}
 {% endblock collection_widget %}
 
 {% block collection_item_widget %}
-{% spaceless %}
-    <div class="col s5">
-        {{ form_row(prototype.name) }}
-    </div>
-    <div class="col s5">
-        <div class="input-field">
-            {{ form_errors(prototype.type) }}
-            {{ form_widget(prototype.type) }}
-            {{ form_label(prototype.type) }}
+    {% apply spaceless %}
+        <div class="col s5">
+            {{ form_row(prototype.name) }}
         </div>
-    </div>
-{% endspaceless %}
+        <div class="col s5">
+            <div class="input-field">
+                {{ form_errors(prototype.type) }}
+                {{ form_widget(prototype.type) }}
+                {{ form_label(prototype.type) }}
+            </div>
+        </div>
+    {% endapply %}
 {% endblock %}
 
 {% block _template_fields_entry_row %}
-{% spaceless %}
-    {{ include('App/Field/_partials/_field_prototype.html.twig', { 'form': form }) }}
-{% endspaceless %}
+    {% apply spaceless %}
+        {{ include('App/Field/_partials/_field_prototype.html.twig', { 'form': form }) }}
+    {% endapply %}
 {% endblock %}
 
 {% block _template_fields_row %}
-{% spaceless %}
-    {% for child in form %}
-        {{ form_row(child) }}
-    {% endfor %}
-{% endspaceless %}
+    {% apply spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
 {% endblock %}
 
 {%- block choice_widget_collapsed -%}
