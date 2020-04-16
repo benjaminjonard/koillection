@@ -4297,5 +4297,17 @@
         <target>Modifier l'album %title%</target>
       </segment>
     </unit>
+    <unit id="YklQlf8" name="btn.show_more">
+      <segment>
+        <source>btn.show_more</source>
+        <target>Montrer plus (%count%)</target>
+      </segment>
+    </unit>
+    <unit id="zOA0UTD" name="btn.show_less">
+      <segment>
+        <source>btn.show_less</source>
+        <target>Montrer moins</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

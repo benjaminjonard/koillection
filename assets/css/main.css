@@ -1258,3 +1258,4 @@ input[type=color] {display: block; margin: 1rem 0;}
 .file-field .btn { margin: 0 auto; height: auto; line-height: 36px;}
 form .row { margin-bottom: 0; }
 form .row-croppie { margin-bottom: 25px; text-align: center; }
+.nav-tags .show-more-btn-holder {display: inline-block;}
