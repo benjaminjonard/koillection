@@ -19,7 +19,7 @@
         {{ form_start(form) }}
             <div class="row block-element">
                 <div class="row">
-                    <div class="col offset-s1 s6 autocomplete-wrapper">
+                    <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3 autocomplete-wrapper">
                         <div class="input-field">
                             <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
                             {{ form_label(form.tags, 'label.tags') }}
@@ -28,8 +28,7 @@
                         </div>
                         {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
                     </div>
-
-                    <div class="col offset-s1 s3">
+                    <div class="col s10 offset-s1 l5 xl3">
                         <label>
                             {{ form_widget(form.recursive) }}
                             <span>{{ 'label.recursive'|trans }}</span>
@@ -37,13 +36,12 @@
                         <div class="additional-message">{{'message.recursive'|trans}}</div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+                <div class="row center-align form-btn-holder">
+                    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+                    <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+                </div>
             </div>
-            <div class="clearfix"></div>
         {{ form_end(form) }}
     </div>
 {% endblock %}
