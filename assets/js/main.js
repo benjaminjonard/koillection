@@ -159,9 +159,6 @@ $(document).ready(function() {
     });
 });
 
-
-
-
 function handleConnectionChange(event){
     var element = document.getElementById("offline-message");
     if(event.type == "offline"){

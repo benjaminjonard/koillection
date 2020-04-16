@@ -1258,3 +1258,13 @@ form .row { margin-bottom: 0; }
 form .row-file{ margin-bottom: 25px; text-align: center; }
 form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .nav-tags .show-more-btn-holder {display: inline-block;}
+
+.row-file input[type="file"] {
+    position: absolute;
+    margin-left: -101px;
+    font-size: 23px;
+    cursor: pointer;
+    opacity: 0;
+    width: 117px;
+    filter: alpha(opacity=0);
+}

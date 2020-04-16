@@ -23,7 +23,7 @@ export function loadFilePreviews() {
         var reader = new FileReader();
         var self = $(this);
         reader.onload = function (e) {
-            self.closest('.file-field').find('img').attr('src', e.target.result);
+            self.closest('.row-file').find('img').attr('src', e.target.result);
         };
         reader.readAsDataURL(this.files[0]);
     });

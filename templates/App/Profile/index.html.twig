@@ -31,52 +31,42 @@
         </div>
 
         <div class="block-element">
+            <h5 class="header">{{ 'title.update_profile'|trans }}</h5>
+
             {{ form_start(form) }}
+                {{ form_row(form.avatar) }}
+
                 <div class="row">
-                    <h5 class="header">{{ 'title.update_profile'|trans }}</h5>
-                    <div class="col offset-s1 s5">
+                    <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
                         {{ form_row(form.timezone, {'label' : 'label.timezone'} ) }}
                     </div>
-                    <div class="col s5">
+                    <div class="col s10 offset-s1 l5 xl3">
                         {{ form_row(form.dateFormat, {'label' : 'label.date_format'} ) }}
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col offset-s1 s5">
-                        {% if app.user.avatar is not null %}
-                            {{ form_row(form.image, {'attr': {'src' : app.user.avatar ? app.user.avatar.path : null }}) }}
-                        {% else %}
-                            {{ form_row(form.image) }}
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="form-btn-holder">
+                <div class="row center-align form-btn-holder">
                     <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 </div>
-
-                <div class="clearfix"></div>
             {{ form_end(form) }}
         </div>
 
         <div class="block-element">
+            <h5 class="header">{{ 'title.update_password'|trans }}</h5>
+
             {{ form_start(formPassword) }}
                 <div class="row">
-                    <h5 class="header">{{ 'title.update_password'|trans }}</h5>
-                    <div class="col offset-s1 s5">
+                    <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
                         {{ form_row(formPassword.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
                     </div>
-                    <div class="col s5">
+                    <div class="col s10 offset-s1 l5 xl3">
                         {{ form_row(formPassword.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
                     </div>
                 </div>
 
-                <div class="form-btn-holder">
+                 <div class="row center-align form-btn-holder">
                     <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 </div>
-
-                <div class="clearfix"></div>
             {{ form_end(formPassword) }}
         </div>
     </div>

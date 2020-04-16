@@ -10,8 +10,8 @@
 {% block file_widget %}
     {% apply spaceless %}
         <div class="row row-file">
-            <div class="col s10 offset-s1 l5 offset-l1 xl6 offset-xl3">
-                <div class="file-field">
+            <div class="col s10 offset-s1 l10 offset-l1 xl6 offset-xl3">
+                <div>
                     <label class="file-label">
                         {% if attr.src is defined and attr.src is not null and attr.src != '' %}
                             <img class="preview-image" src="{{ preload(asset(attr.src)) }}" />
@@ -39,20 +39,17 @@
 {% block cropper %}
     <div class="row row-file">
         <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
-            <div class="" id="cropArea" formName="{{ form.parent.vars.id }}"></div>
-            <div class="file-field">
-                <label class="btn">
-                    <span>{{ 'label.thumbnail'|trans }}</span>
-                    <input class="js-croppie-file-input" type="file" id="cropInput" accept="image/*">
-                </label>
-                <input class="file-path validate hidden" type="text">
-            </div>
+            <div id="cropArea"></div>
+            <label class="btn">
+                <span>{{ 'label.thumbnail'|trans }}</span>
+                <input class="js-croppie-file-input" type="file" id="cropInput" accept="image/*">
+            </label>
         </div>
         <div class="col s10 offset-s1 l5 xl3" id="cropPreview">
             <img src="{{ form.vars.value }}">
         </div>
+        <input type="hidden" class="file-input" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>
     </div>
-    <input type="hidden" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>
     {{- form_errors(form) -}}
 {% endblock cropper %}
 
@@ -64,7 +61,7 @@
     {{ block('cropper') }}
 {% endblock %}
 
-{% block _profile_image_widget %}
+{% block _profile_avatar_widget %}
     {{ block('cropper') }}
 {% endblock %}
 

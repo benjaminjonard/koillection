@@ -38,10 +38,9 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add(
-                $builder->create('image', TextType::class, [
+                $builder->create('avatar', TextType::class, [
                     'required' => false,
                     'label' => false,
-                    'property_path' => 'avatar'
                 ])->addModelTransformer($this->base64ToImageTransformer)
             )
             ->add('timezone', TimezoneType::class, [
