@@ -46,7 +46,7 @@ class ImageListener
 
     /**
      * @param OnFlushEventArgs $args
-     * @throws ORMException
+     * @throws \Exception
      */
     public function onFlush(OnFlushEventArgs $args)
     {

@@ -71,21 +71,21 @@
 
     <div class="content-block">
     <!-- Child collections -->
-        {% if wishlist.children is not empty %}
+        {% if children is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ 'title.wishlist_children'|trans }}</h5>
                 <div class="collections grid-container-collections">
-                    {{ include('App/Wishlist/_list.html.twig', {'wishlists': wishlist.children}) }}
+                    {{ include('App/Wishlist/_list.html.twig', {'wishlists': children}) }}
                 </div>
             </div>
         {% endif %}
 
         <!-- Wishlist's items -->
-        {% if wishlist.wishes is not empty %}
+        {% if wishes is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ 'title.wishes'|trans }}</h5>
                 <ul class="reset-margin">
-                    {% for wish in wishlist.wishes %}
+                    {% for wish in wishes %}
                         <li class="list-element resize-element {{ loop.last ? 'last' }}" data-title="{{ wish.name }}">
                             <div class="loan-content valign-wrapper">
                                 <div class="loan-image center-align valign">
@@ -143,7 +143,7 @@
     {% if context == 'default' %}
         {{ include('App/_partials/_modal_share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
         {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
-        {% for wish in wishlist.wishes %}
+        {% for wish in wishes %}
             {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
         {% endfor %}
     {% endif %}

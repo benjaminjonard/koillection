@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
 use App\Service\CounterCalculator;
@@ -82,8 +83,12 @@ class WishlistController extends AbstractController
      */
     public function show(Wishlist $wishlist) : Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/Wishlist/show.html.twig', [
-            'wishlist' => $wishlist
+            'wishlist' => $wishlist,
+            'children' => $em->getRepository(Wishlist::class)->findChildrenByWishlistId($wishlist->getId()),
+            'wishes' => $em->getRepository(Wish::class)->findWishesByWishlistId($wishlist->getId())
         ]);
     }
 

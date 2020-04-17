@@ -79,6 +79,12 @@ services:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
 
     #Entity listeners
+    App\EventListener\Entity\AlbumListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
+    App\EventListener\Entity\PhotoListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\CollectionListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
-use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,7 +20,7 @@ use Ramsey\Uuid\UuidInterface;
  *     @ORM\Index(name="idx_wishlist_visibility", columns={"visibility"})
  * })
  */
-class Wishlist //implements BreadcrumbableInterface
+class Wishlist implements BreadcrumbableInterface, CacheableInterface
 {
     /**
      * @var UuidInterface

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,12 +12,12 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
  * @ORM\Table(name="koi_photo", indexes={
  *     @ORM\Index(name="idx_photo_visibility", columns={"visibility"})
  * })
  */
-class Photo
+class Photo implements CacheableInterface
 {
     /**
      * @var UuidInterface

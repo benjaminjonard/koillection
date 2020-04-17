@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,7 +17,7 @@ use Ramsey\Uuid\UuidInterface;
  *     @ORM\Index(name="idx_wish_visibility", columns={"visibility"})
  * })
  */
-class Wish
+class Wish implements CacheableInterface
 {
     /**
      * @var UuidInterface

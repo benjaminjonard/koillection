@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
@@ -21,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     @ORM\Index(name="idx_collection_visibility", columns={"visibility"})
  * })
  */
-class Collection implements LoggableInterface, BreadcrumbableInterface
+class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface
 {
     /**
      * @var UuidInterface

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
+use App\Entity\Album;
 use App\Entity\Collection;
+use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Item;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
@@ -53,7 +55,7 @@ class CounterCacheListener
 
     private function resetCache($entity)
     {
-        if ($entity instanceof Collection || $entity instanceof Wishlist || $entity instanceof Item || $entity instanceof Wish) {
+        if ($entity instanceof CacheableInterface) {
             $this->countersCache->reset();
         }
     }

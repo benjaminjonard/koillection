@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Album;
+use App\Entity\Photo;
 use App\Form\Type\Entity\AlbumType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,6 +47,17 @@ class AlbumController extends AbstractController
     {
         $album = new Album();
         $em = $this->getDoctrine()->getManager();
+
+        if ($request->query->has('parent')) {
+            $parent = $em->getRepository(Album::class)->findOneBy([
+                'id' => $request->query->get('parent'),
+                'owner' => $this->getUser()
+            ]);
+            $album
+                ->setParent($parent)
+                ->setVisibility($parent->getVisibility())
+            ;
+        }
 
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
@@ -117,8 +129,12 @@ class AlbumController extends AbstractController
      */
     public function show(Album $album) : Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
+            'children' => $em->getRepository(Album::class)->findChildrenByAlbumId($album->getId()),
+            'photos' => $em->getRepository(Photo::class)->findPhotosByAlbumId($album->getId())
         ]);
     }
 }
