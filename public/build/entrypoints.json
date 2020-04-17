@@ -2,52 +2,47 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "build/js/app.js"
+        "build/js/app.7e77cfd4.js"
       ]
     },
     "js/statistics": {
       "js": [
-        "build/js/statistics.js"
+        "build/js/statistics.c88f4b4b.js"
       ]
     },
     "css/app": {
       "css": [
-        "build/css/app.css"
-      ]
-    },
-    "css/themes/aubergine": {
-      "css": [
-        "build/css/themes/aubergine.css"
+        "build/css/app.43513ffa.css"
       ]
     },
     "css/themes/sunset": {
       "css": [
-        "build/css/themes/sunset.css"
+        "build/css/themes/sunset.6f019cef.css"
       ]
     },
     "css/themes/teal": {
       "css": [
-        "build/css/themes/teal.css"
+        "build/css/themes/teal.efb9ca4d.css"
       ]
     },
     "css/themes/dark_mode": {
       "css": [
-        "build/css/themes/dark_mode.css"
+        "build/css/themes/dark_mode.8c588117.css"
       ]
     },
     "css/export": {
       "css": [
-        "build/css/export.css"
+        "build/css/export.9fbf458a.css"
       ]
     },
     "css/translation": {
       "css": [
-        "build/css/translation.css"
+        "build/css/translation.3cb2835b.css"
       ]
     },
     "css/flags": {
       "css": [
-        "build/css/flags.css"
+        "build/css/flags.cae1b087.css"
       ]
     }
   }

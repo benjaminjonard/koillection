@@ -82,7 +82,7 @@ $(document).ready(function() {
     });
 
     $('form input').keydown(function (e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13 && !$(this).closest('form').hasClass('login')) {
             e.preventDefault();
             return false;
         }

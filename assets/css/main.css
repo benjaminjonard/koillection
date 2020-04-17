@@ -300,7 +300,7 @@ input:not([type])+label:after, input[type=date]+label:after, input[type=datetime
     transition: none;
 }
 
-.required:after {content: "*"!important;}
+form:not(.login) .required:after {content: "*"!important;}
 .width-75 {width: 75%!important;}
 
 
