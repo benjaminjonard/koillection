@@ -4290,7 +4290,7 @@
         <target>Montrer moins</target>
       </segment>
     </unit>
-    <unit id="H9WI4C7" name="label.theme">
+    <unit id="oCELtKM" name="label.theme">
       <segment>
         <source>label.theme</source>
         <target>Thème</target>
@@ -4300,6 +4300,12 @@
       <segment>
         <source>label.locale</source>
         <target>Langue</target>
+      </segment>
+    </unit>
+    <unit id="ryRhoHH" name="title.album_children">
+      <segment>
+        <source>title.album_children</source>
+        <target>Sous-album</target>
       </segment>
     </unit>
   </file>

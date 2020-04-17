@@ -63,6 +63,9 @@
                     <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                 {% endif %}
             </div>
+            <div class="right">
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>
@@ -71,7 +74,7 @@
         <!-- Child collections -->
         {% if children is not empty %}
             <div class="block-element">
-                <h5 class="header">{{ 'title.children'|trans }}</h5>
+                <h5 class="header">{{ 'title.album_children'|trans }}</h5>
                 <div class="collections grid-container-collections">
                     {{ include('App/Album/_list.html.twig', {'albums': children|naturalSorting}) }}
                 </div>
@@ -83,7 +86,7 @@
                 <h5 class="header">{{ 'title.photos'|trans }}</h5>
                 <div id="collection-items" class="grid-container-items">
                     {% for photo in photos %}
-                        <div class="collection-item element valign-wrapper">
+                        <div class="collection-item element valign-wrapper" data-title="{{ photo.title }}">
                             {% set photoText = include('App/Album/_photo_text.html.twig') %}
                             <a href="{{ preload(asset(photo.image.path)) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
                                 {{ macros.lazyImage(photo.image.thumbnailPath, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
