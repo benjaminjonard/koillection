@@ -1081,15 +1081,6 @@
         <target>December</target>
       </segment>
     </unit>
-    <unit id="ddarU1h" name="global.themes.aubergine">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.themes.aubergine</source>
-        <target>Aubergine</target>
-      </segment>
-    </unit>
     <unit id="Y6e0mmF" name="global.themes.sunset">
       <notes>
         <note category="state" priority="1">obsolete</note>
@@ -2210,16 +2201,6 @@
       <segment>
         <source>menu.search</source>
         <target>Search</target>
-      </segment>
-    </unit>
-    <unit id="4UTsL.X" name="menu.settings">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:31</note>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:16</note>
-      </notes>
-      <segment>
-        <source>menu.settings</source>
-        <target>Settings</target>
       </segment>
     </unit>
     <unit id="HLevxj." name="menu.signs">
@@ -4307,6 +4288,18 @@
       <segment>
         <source>btn.show_less</source>
         <target>Show less</target>
+      </segment>
+    </unit>
+    <unit id="H9WI4C7" name="label.theme">
+      <segment>
+        <source>label.theme</source>
+        <target>Theme</target>
+      </segment>
+    </unit>
+    <unit id="mEDsKHk" name="label.locale">
+      <segment>
+        <source>label.locale</source>
+        <target>Locale</target>
       </segment>
     </unit>
   </file>

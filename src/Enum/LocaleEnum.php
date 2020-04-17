@@ -29,7 +29,10 @@ class LocaleEnum
      */
     public static function getLocaleLabels() : array
     {
-        return self::LOCALES_TRANS_KEYS;
+        return [
+            self::LOCALE_GB => 'global.locale.en_GB',
+            self::LOCALE_FR => 'global.locale.fr_FR',
+        ];
     }
 
     /**

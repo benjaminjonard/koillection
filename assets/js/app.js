@@ -12,7 +12,6 @@ import 'select2'
 
 import './filters'
 import './main'
-import './settings'
 import './item'
 import './collection'
 import './inventory'
