@@ -57,8 +57,8 @@
                 <thead>
                     <tr>
                         <th>{{ 'label.name'|trans }}</th>
-                        <th>{{ 'label.tag_category'|trans }}</th>
-                        <th>{{ 'label.description'|trans }}</th>
+                        <th >{{ 'label.tag_category'|trans }}</th>
+                        <th class="hide-on-small-only">{{ 'label.description'|trans }}</th>
                         <th>{{ 'label.number_of_items'|trans }}</th>
                         <th>{{ 'label.percent_of_items'|trans }}</th>
                     </tr>
@@ -75,7 +75,7 @@
                                     <span class="tag-category-color" style="background-color: {{ result.tag.category.color }}" title="{{ result.tag.category.label }}"></span>
                                 {% endif %}
                             </td>
-                            <td>{{ result.tag.description|truncate(50) }}</td>
+                            <td class="hide-on-small-only">{{ result.tag.description|truncate(50) }}</td>
                             <td>{{ result.itemCount }}</td>
                             <td>{{ result.percent|round(2, 'common') }} %</td>
                         </tr>
