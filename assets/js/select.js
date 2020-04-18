@@ -1,24 +1,10 @@
 import Translator from "./translator.min";
 
-export function loadSelect2()
-{
-    $('select:not(.js-select-country)').select2(getDefaultConf());
-}
-
-export function loadSelect2Countries()
-{
-    $('select.js-select-country').select2(getCountriesConf());
-}
-
-export function loadSelect2Locales()
-{
-    $('select.js-select-locale').select2(getLocalesConf());
-}
-
-export function loadSelect2Themes()
-{
-    $('select.js-select-theme').select2(getThemesConf());
-}
+export function loadSelect2() { $('select:not(.js-select-country)').select2(getDefaultConf()); }
+export function loadSelect2Countries() { $('select.js-select-country').select2(getCountriesConf()); }
+export function loadSelect2Locales() { $('select.js-select-locale').select2(getLocalesConf()); }
+export function loadSelect2Themes() { $('select.js-select-theme').select2(getThemesConf()); }
+export function loadSelect2TagCategories() { $('select.js-select-tag-category').select2(getTagCategoriesConf()); }
 
 function getCountriesConf() {
     return {
@@ -164,8 +150,44 @@ function getThemesConf() {
     };
 }
 
-function getDefaultConf()
-{
+function getTagCategoriesConf() {
+    return {
+        templateSelection: function (category) {
+            if (!category.id) {
+                return category.text;
+            }
+            var $category = $(
+                '<span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '" title="' + category.text +  '"></span>' +
+                '<span>' + category.text + '</span>'
+            );
+
+            return $category;
+        },
+        templateResult: function (category) {
+            if (!category.id) {
+                return category.text;
+            }
+
+            var $category = $(
+                '<span class="tag-category-select-option  tag-category-color" style="background-color: ' + category.element.dataset.color + '" title="' + category.text +  '"></span>' +
+                '<span>' + category.text + '</span>'
+            );
+
+
+            return $category;
+        },
+        language: {
+            noResults: function () {
+                return Translator.trans('select2.no_results');
+            },
+            searching: function () {
+                return Translator.trans('select2.searching');
+            }
+        }
+    };
+}
+
+function getDefaultConf() {
     return {
         language: {
             noResults: function () {

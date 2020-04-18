@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.label, {'label' : 'label.label'} ) }}
+        </div>
+        <div class="col s10 offset-s1 l5 xl3">
+            {{ form_row(form.color, {'label' : 'label.color'} ) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s10 offset-s1 l10 offset-l1 xl6 offset-xl3">
+            {{ form_row(form.description, {'label' : 'label.description', 'attr' : {'class': 'materialize-textarea'}} ) }}
+        </div>
+    </div>
+
+    <div class="row center-align form-btn-holder">
+        {% if app.request.get('_route') == 'app_tag_category_add' %}
+            {% set cancelUrl = path('app_tag_category_index') %}
+        {% else %}
+            {% set cancelUrl = path('app_tag_category_show', {id: category.id}) %}
+        {% endif %}
+
+        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        <a href="{{ cancelUrl }}" class="waves-effect red darken-1 waves-light btn"> {{ 'btn.cancel'|trans }}</a>
+    </div>
+{{ form_end(form) }}

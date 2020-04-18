@@ -1235,7 +1235,7 @@ input[type=color] {display: block; margin: 1rem 0;}
 
 .font-red { color: #e53935; }
 .font-green { color: #43a047; }
-.catalogue-list .flag {padding-left: 10px;}
+.catalogue-list .flag {padding-left: 10px; position: relative; top: -3px;}
 
 .modal-custom { max-width: 750px; }
 .modal-custom img { width: 100%; }
@@ -1290,3 +1290,5 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .theme-preview.dark_mode.dark {background-color: #1e2125;}
 .theme-preview.dark_mode.complementary {background-color: #42a7ff;}
 .theme-label {top: -3px; position: relative;}
+
+.tag-category-select-option {position: relative; margin-right: 3px; top: -1px;}

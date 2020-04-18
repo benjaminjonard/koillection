@@ -110,6 +110,17 @@
     {% endapply %}
 {% endblock %}
 
+{% block _tag_category_widget %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
+        {% set options = choices %}
+        {% for choice in options %}
+            <option data-color="{{ choice.data.color }}" value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>
+                {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}
+            </option>
+        {% endfor %}
+    </select>
+{% endblock _tag_category_widget %}
+
 {% block choice_widget_collapsed %}
     {% if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) %}
         {% set required = false %}

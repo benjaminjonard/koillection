@@ -33,6 +33,10 @@
 
     <div class="btn-holder">
         {% if context == 'default' %}
+            <a href="{{ path('app_tag_category_index') }}" class="button" title="{{ 'tooltip.manage_tag_categories'|trans }}">
+                <i class="fa fa-gears fa-fw"></i>
+            </a>
+
             <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
         {% endif %}
     </div>
@@ -46,13 +50,6 @@
                     <a href="{{ path('app_tag_index'|applyContext) }}" class="btn-dark-grey"><i class="fa fa-eraser fa-fw"></i></a>
                 </div>
             </form>
-            {% if context == 'default' %}
-                <div class="col s10 offset-s1 m6 offset-m0">
-                    <a href="{{ path('app_tag_category_index') }}" class="btn waves-effect waves-light right btn-manage-tag-categories">
-                        <i class="fa fa-gears fa-fw"></i>{{ 'btn.manage_tag_categories'|trans }}
-                    </a>
-                </div>
-            {% endif %}
         </div>
 
         <div>

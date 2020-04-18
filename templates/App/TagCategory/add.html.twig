@@ -16,27 +16,6 @@
     </div>
 
     <div class="content-block">
-        {{ form_start(form) }}
-            <div class="row">
-                <div class="col offset-s1 s10 m5 offset-m1">
-                    {{ form_row(form.label, {'label' : 'label.label'} ) }}
-                </div>
-                <div class="col offset-s1 s10 m5 offset-m1">
-                    {{ form_row(form.color, {'label' : 'label.color'} ) }}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col offset-s1 s10 offset-m1 m10">
-                    {{ form_row(form.description, {'label' : 'label.description', 'attr' : {'class': 'materialize-textarea'}} ) }}
-                </div>
-            </div>
-
-            <div class="form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                <a href="{{ path('app_tag_category_index') }}" class="waves-effect waves-light btn red darken-1"> {{ 'btn.cancel'|trans }}</a>
-            </div>
-            <div class="clearfix"></div>
-        {{ form_end(form) }}
+        {{ include('App/TagCategory/_form.html.twig') }}
     </div>
 {% endblock %}
