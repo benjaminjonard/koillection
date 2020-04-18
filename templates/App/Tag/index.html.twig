@@ -22,68 +22,34 @@
 {% endblock %}
 
 {% block content %}
-    <div class="title-block">
-        <h1>{{ 'menu.tags'|trans }}</h1>
-        <ul class="nav nav-pills">
-            <li>{{ 'counter.tag'|trans({'%count%': tagsCount}) }}</li>
-        </ul>
-    </div>
+    <div class="collection-header">
+        <div class="title-block">
+            <h1>{{ 'menu.tags'|trans }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.tag'|trans({'%count%': tagsCount}) }}</li>
+            </ul>
+        </div>
 
-    <div></div>
+        <div></div>
 
-    <div class="btn-holder">
-        {% if context == 'default' %}
-            <a href="{{ path('app_tag_category_index') }}" class="button" title="{{ 'tooltip.manage_tag_categories'|trans }}">
-                <i class="fa fa-gears fa-fw"></i>
-            </a>
-
-            <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-        {% endif %}
+        <div class="btn-holder">
+            <div class="left">
+                {% if context == 'default' %}
+                    <a href="{{ path('app_tag_category_index') }}" class="button" title="{{ 'tooltip.manage_tag_categories'|trans }}">
+                        <i class="fa fa-gears fa-fw"></i>
+                    </a>
+                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                {% endif %}
+            </div>
+            <div class="right">
+                <input class="filter-input js-filter-input-ajax" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
 
     <div class="content-block">
-        <div class="row">
-            <form class="col s10 offset-s1 m6 offset-m0">
-                <div class="input-field">
-                    <input id="search" name="search" type="text" value="{{ search }}" class="width-75"/>
-                    <label for="search">{{ 'filter.by_name'|trans }}</i></label>
-                    <a href="{{ path('app_tag_index'|applyContext) }}" class="btn-dark-grey"><i class="fa fa-eraser fa-fw"></i></a>
-                </div>
-            </form>
-        </div>
-
-        <div>
-            <table class="centered striped">
-                <thead>
-                    <tr>
-                        <th>{{ 'label.name'|trans }}</th>
-                        <th >{{ 'label.tag_category'|trans }}</th>
-                        <th class="hide-on-small-only">{{ 'label.description'|trans }}</th>
-                        <th>{{ 'label.number_of_items'|trans }}</th>
-                        <th>{{ 'label.percent_of_items'|trans }}</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for result in results %}
-                        <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
-                            <td>
-                                <strong><a href="{{ path('app_tag_show'|applyContext, {'id' : result.tag.id}) }}">{{ result.tag.label|truncate(50) }}</a></strong>
-                            </td>
-                            <td>
-                                {% if result.tag.category %}
-                                    <span class="tag-category-color" style="background-color: {{ result.tag.category.color }}" title="{{ result.tag.category.label }}"></span>
-                                {% endif %}
-                            </td>
-                            <td class="hide-on-small-only">{{ result.tag.description|truncate(50) }}</td>
-                            <td>{{ result.itemCount }}</td>
-                            <td>{{ result.percent|round(2, 'common') }} %</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {{ include('App/_partials/_pagination.html.twig', {paginator: paginator}) }}
-        </div>
+        {{ include('App/Tag/_tags_table.html.twig') }}
     </div>
 {% endblock %}
 

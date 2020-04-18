@@ -136,8 +136,6 @@ function getThemesConf() {
             );
 
             return $theme;
-
-            return $locale;
         },
         language: {
             noResults: function () {

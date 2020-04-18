@@ -33,7 +33,7 @@ class TagCategoryController extends AbstractController
             'categories' => $this->getDoctrine()->getRepository(TagCategory::class)->findBy([], [], 10, ($page - 1) * 10),
             'search' => $search,
             'categoriesCount' => $categoriesCount,
-            'paginator' => $paginatorFactory->generate($categoriesCount, 10)
+            'paginator' => $paginatorFactory->generate($categoriesCount)
         ]);
     }
 

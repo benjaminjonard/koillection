@@ -37,14 +37,25 @@ class TagController extends AbstractController
         $context = $contextHandler->getContext();
         $page = $request->query->get('page', 1);
         $search = $request->query->get('search', null);
-        $itemsCount = $this->getDoctrine()->getRepository(Item::class)->count([]);
-        $tagsCount = $this->getDoctrine()->getRepository(Tag::class)->countTags($search, $context);
+        $em = $this->getDoctrine()->getManager();
+        $itemsCount = $em->getRepository(Item::class)->count([]);
+        $tagsCount = $em->getRepository(Tag::class)->countTags($search, $context);
+        $results = $em->getRepository(Tag::class)->findTagsPaginatedWithItemsCount(
+            $itemsCount, $paginatorFactory->getPaginationItemsPerPage(), $page, $search, $context
+        );
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('App/Tag/_tags_table.html.twig', [
+                'results' => $results,
+                'paginator' => $paginatorFactory->generate($tagsCount)
+            ]);
+        }
 
         return $this->render('App/Tag/index.html.twig', [
-            'results' => $this->getDoctrine()->getRepository(Tag::class)->countItemsByTag($itemsCount, $page, $search, $context),
+            'results' => $results,
             'search' => $search,
             'tagsCount' => $tagsCount,
-            'paginator' => $paginatorFactory->generate($tagsCount, 10)
+            'paginator' => $paginatorFactory->generate($tagsCount)
         ]);
     }
 

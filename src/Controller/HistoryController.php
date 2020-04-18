@@ -46,7 +46,7 @@ class HistoryController extends AbstractController
             ], [
                 'loggedAt' => 'DESC'
             ], 10, ($page - 1) * 10),
-            'paginator' => $paginatorFactory->generate($count, 10)
+            'paginator' => $paginatorFactory->generate($count)
         ]);
     }
 }

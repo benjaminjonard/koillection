@@ -331,7 +331,7 @@ form:not(.login) .required:after {content: "*"!important;}
 .log {margin: 0;}
 .btn-grey {color: #ccc}
 
-.pagination-wrapper {text-align: center; display: table; margin: 0 auto;}
+.pagination-wrapper {text-align: center; display: table; margin: 10px auto;}
 .pagination-wrapper ul {display: inline-block; margin: 0; padding: 0; /* For IE, the outcast */ zoom:1; *display: inline;}
 .pagination-wrapper li {float: left;}
 

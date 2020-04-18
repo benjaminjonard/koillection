@@ -15,8 +15,6 @@ use Doctrine\ORM\NoResultException;
 
 class TagRepository extends EntityRepository
 {
-    private const RESULTS_PER_PAGE = 10;
-
     public function findById(string $id) : ?Tag
     {
         return $this
@@ -52,7 +50,7 @@ class TagRepository extends EntityRepository
      * @param string|null $context
      * @return array
      */
-    public function countItemsByTag($itemsCount, $page = 1, string $search = null, string $context = null) : array
+    public function findTagsPaginatedWithItemsCount($itemsCount, $itemsPerPage, $page = 1, string $search = null, string $context = null) : array
     {
         $qb = $this
             ->getEntityManager()
@@ -64,8 +62,8 @@ class TagRepository extends EntityRepository
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
-            ->setFirstResult(($page - 1) * self::RESULTS_PER_PAGE)
-            ->setMaxResults(self::RESULTS_PER_PAGE)
+            ->setFirstResult(($page - 1) * $itemsPerPage)
+            ->setMaxResults($itemsPerPage)
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
