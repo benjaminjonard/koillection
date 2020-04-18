@@ -10,6 +10,16 @@ export function loadSelect2Countries()
     $('select.js-select-country').select2(getCountriesConf());
 }
 
+export function loadSelect2Locales()
+{
+    $('select.js-select-locale').select2(getLocalesConf());
+}
+
+export function loadSelect2Themes()
+{
+    $('select.js-select-theme').select2(getThemesConf());
+}
+
 function getCountriesConf() {
     return {
         templateSelection: function (country) {
@@ -72,6 +82,88 @@ function getCountriesConf() {
     };
 }
 
+function getLocalesConf() {
+    return {
+        templateSelection: function (locale) {
+            if (!locale.id) {
+                return locale.text;
+            }
+
+            var $locale = $(
+                '<span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span>'
+            );
+
+            return $locale;
+        },
+        templateResult: function (locale) {
+            if (!locale.id) {
+                return locale.text;
+            }
+
+            let $locale = $(
+                '<span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span>'
+            );
+
+            return $locale;
+        },
+        language: {
+            noResults: function () {
+                return Translator.trans('select2.no_results');
+            },
+            searching: function () {
+                return Translator.trans('select2.searching');
+            }
+        }
+    };
+}
+
+function getThemesConf() {
+    return {
+        templateSelection: function (theme) {
+            if (!theme.id) {
+                return theme.text;
+            }
+
+            var $theme = $(
+                '<span class="theme-preview ' + theme.element.value + ' dark"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' medium"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' light"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' lighter"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' complementary"></span>' +
+                '<span class="theme-label">' + theme.text + '</span>'
+            );
+
+            return $theme;
+        },
+        templateResult: function (theme) {
+            if (!theme.id) {
+                return theme.text;
+            }
+
+            var $theme = $(
+                '<span class="theme-preview ' + theme.element.value + ' dark"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' medium"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' light"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' lighter"></span>' +
+                '<span class="theme-preview ' + theme.element.value + ' complementary"></span>' +
+                '<span class="theme-label">' + theme.text + '</span>'
+            );
+
+            return $theme;
+
+            return $locale;
+        },
+        language: {
+            noResults: function () {
+                return Translator.trans('select2.no_results');
+            },
+            searching: function () {
+                return Translator.trans('select2.searching');
+            }
+        }
+    };
+}
+
 function getDefaultConf()
 {
     return {
@@ -111,8 +203,4 @@ function getDefaultConf()
             return null;
         }
     }
-}
-
-function formatCountry(country) {
-
 }

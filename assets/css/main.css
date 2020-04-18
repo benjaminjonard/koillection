@@ -1268,3 +1268,25 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
     width: 117px;
     filter: alpha(opacity=0);
 }
+
+.flag-label {margin-left: 5px;}
+
+.theme-preview {display: inline-block; width: 20px; height: 20px; margin-right: 5px;}
+.theme-preview.teal.lighter {background-color: #80cbc4 !important;}
+.theme-preview.teal.light {background-color: #1ab0a2 !important;}
+.theme-preview.teal.medium {background-color: #009688 !important;}
+.theme-preview.teal.dark {background-color: #006355 !important;}
+.theme-preview.teal.complementary {background-color: #E74646 !important;}
+
+.theme-preview.sunset.lighter {background-color: #ffb0ad;}
+.theme-preview.sunset.light {background-color: #ff7e7e;}
+.theme-preview.sunset.medium {background-color: #f44952;}
+.theme-preview.sunset.dark {background-color: #bb0029;}
+.theme-preview.sunset.complementary {background-color: #376891;}
+
+.theme-preview.dark_mode.lighter {background-color: silver;}
+.theme-preview.dark_mode.light {background-color: #5e5e5e;}
+.theme-preview.dark_mode.medium {background-color: #2e3136;}
+.theme-preview.dark_mode.dark {background-color: #1e2125;}
+.theme-preview.dark_mode.complementary {background-color: #42a7ff;}
+.theme-label {top: -3px; position: relative;}
