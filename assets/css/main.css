@@ -1292,3 +1292,4 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .theme-label {top: -3px; position: relative;}
 
 .tag-category-select-option {position: relative; margin-right: 3px; top: -1px;}
+form[name="search"] input[type="checkbox"] + span {margin-right: 25px; padding-left: 25px;}
