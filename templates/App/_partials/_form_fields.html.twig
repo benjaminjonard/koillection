@@ -14,8 +14,8 @@
             <div class="col s10 offset-s1 l10 offset-l1 xl6 offset-xl3">
                 <div>
                     <label class="file-label">
-                        {% if attr.src is defined and attr.src is not null and attr.src != '' %}
-                            <img class="preview-image" src="{{ preload(asset(attr.src)) }}" />
+                        {% if form.parent.vars.value is not null %}
+                            <img class="preview-image" src="{{ preload(asset(form.parent.vars.value.path)) }}" />
                         {% else %}
                             <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" />
                         {% endif %}

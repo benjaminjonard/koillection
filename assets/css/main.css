@@ -117,14 +117,7 @@ h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,
 
 
 /* Wishlist */
-.wishlist-item{height: 90px;}
-.wishlist-item-avatar{max-height: 80px; max-width: 80px; margin: 10px;}
-.loan-content{height: 90px;}
-.loan-image{max-height:890px; max-width: 80px; min-width: 80px;}
-.loan-infos{margin-left: 30px; width: 80%;}
-.loan-infos a{color: #000; width: inherit;}
-.loan-price{color: #9e9e9e;}
-.loan-actions{float: right;}
+.wishlist-item-avatar{max-height: 100px; max-width: 100px; margin: 10px;}
 
 .ellipsis{text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
 strong.ellipsis{display: inline-block;}
@@ -1295,3 +1288,4 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
 form[name="search"] input[type="checkbox"] + span, form[name="search_history"] input[type="checkbox"] + span {margin-right: 25px; padding-left: 25px;}
 .inline-checkbox-wrapper {display: inline-block; margin: 0 60px;}
 .inline-checkbox-wrapper .input-checkbox {top: -52px; left: 16px;}
+.table-actions a {margin: 0 5px; font-size: 20px;}

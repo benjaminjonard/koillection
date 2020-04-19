@@ -38,7 +38,7 @@
                     <th>{{ 'label.name'|trans }}</th>
                     <th>{{ 'label.loaned_to'|trans }}</th>
                     <th>{{ 'label.loaned_at'|trans }}</th>
-                    <th>{{ 'label.loaned_ago'|trans }}</th>
+                    <th class="hide-on-small-only">{{ 'label.loaned_ago'|trans }}</th>
                     <th>{{ 'label.actions'|trans }}</th>
                 </tr>
                 </thead>
@@ -48,8 +48,8 @@
                         <td><a href="{{ path('app_item_show', {'id': loan.item.id}) }}">{{ loan.item.name }}</a></td>
                         <td>{{ loan.lentTo }}</td>
                         <td>{{ loan.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
-                        <td>{{ loan.lentAt|timeAgo }}</td>
-                        <td>
+                        <td class="hide-on-small-only">{{ loan.lentAt|timeAgo }}</td>
+                        <td class="table-actions">
                             <a class="modal-trigger" href="#delete-{{ loan.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
                             <a href="{{ path('app_loan_returned', {'id' : loan.id}) }}" title="{{ 'tooltip.returned'|trans }}"><i class="fa fa-check fa-fw"></i></a>
                         </td>
@@ -65,10 +65,10 @@
                 <tr>
                     <th>{{ 'label.name'|trans }}</th>
                     <th>{{ 'label.loaned_to'|trans }}</th>
-                    <th>{{ 'label.loaned_at'|trans }}</th>
+                    <th class="hide-on-small-only">{{ 'label.loaned_at'|trans }}</th>
                     <th>{{ 'label.return_date'|trans }}</th>
-                    <th>{{ 'label.loan_duration'|trans }}</th>
-                    <th>{{ 'label.actions'|trans }}</th>
+                    <th class="hide-on-small-only">{{ 'label.loan_duration'|trans }}</th>
+                    <th >{{ 'label.actions'|trans }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,10 +76,10 @@
                     <tr class="list-element resize-element">
                         <td><a href="{{ path('app_item_show', {'id': returnedItem.item.id}) }}">{{ returnedItem.item.name }}</a></td>
                         <td>{{ returnedItem.lentTo }}</td>
-                        <td>{{ returnedItem.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                        <td class="hide-on-small-only">{{ returnedItem.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         <td>{{ returnedItem.returnedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
-                        <td>{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
-                        <td>
+                        <td class="hide-on-small-only">{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
+                        <td class="table-actions">
                             <a class="modal-trigger" href="#delete-{{ returnedItem.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
                         </td>
                     </tr>
