@@ -43,7 +43,7 @@ abstract class Logger implements LoggerInterface
             ->setObjectId($entity->getId())
             ->setObjectLabel($entity->__toString())
             ->setObjectClass($this->getClass())
-            ->setUser($entity->getOwner())
+            ->setOwner($entity->getOwner())
             ->setPayload(json_encode($payload))
         ;
 

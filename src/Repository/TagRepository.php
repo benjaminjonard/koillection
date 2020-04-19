@@ -8,7 +8,7 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
-use App\Model\Search;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -58,7 +58,7 @@ class TagRepository extends EntityRepository
             ->select('DISTINCT t as tag')
             ->addSelect('count(DISTINCT i.id) as itemCount')
             ->addSelect('(count(DISTINCT i.id)*100.0/:totalItems) as percent')
-            ->from('App\Entity\Tag', 't')
+            ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
@@ -87,12 +87,12 @@ class TagRepository extends EntityRepository
      * @return int
      * @throws NonUniqueResultException
      */
-    public function countTags(string $search = null, string $context = null) : int
+    public function countForPagination(string $search = null, string $context = null) : int
     {
         $qb = $this->_em
             ->createQueryBuilder()
             ->select('count(DISTINCT t.id)')
-            ->from('App\\Entity\\Tag', 't')
+            ->from(Tag::class, 't')
         ;
 
         if (\in_array($context, ['user', 'preview'])) {
@@ -176,17 +176,17 @@ class TagRepository extends EntityRepository
             ->select('t as tag')
             ->addSelect('count(i.id) as itemCount')
             ->addSelect('(count(i.id)*100.0/:totalItems) as percent')
-            ->from('App\Entity\Tag', 't')
+            ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
             ->setParameter('totalItems', $itemsCount)
         ;
 
-        if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
             $qb
-                ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.$search->getSearch().'%')
+                ->andWhere('LOWER(t.label) LIKE LOWER(:term)')
+                ->setParameter('term', '%'.$search->getTerm().'%')
             ;
         }
 
@@ -227,7 +227,7 @@ class TagRepository extends EntityRepository
         return $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial t.{id, label}, LENGTH(t.label) as HIDDEN length')
-            ->from('App\\Entity\\Tag', 't')
+            ->from(Tag::class, 't')
             ->orderBy('length', 'DESC')
             ->getQuery()
             ->getArrayResult()
@@ -243,7 +243,7 @@ class TagRepository extends EntityRepository
         //Get all items ids the current tag is linked to
         $results = $this->_em->createQueryBuilder()
             ->select('DISTINCT i2.id')
-            ->from('App\\Entity\\Item', 'i2')
+            ->from(Item::class, 'i2')
             ->leftJoin('i2.tags', 't2')
             ->where('t2.id = :tag')
             ->setParameter('tag', $tag)
@@ -258,7 +258,7 @@ class TagRepository extends EntityRepository
         return $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial t.{id, label}')
-            ->from('App\\Entity\\Tag', 't')
+            ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->where("i.id IN (:itemIds)")
             ->andWhere('t.id != :tag')

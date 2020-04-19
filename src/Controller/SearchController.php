@@ -8,7 +8,7 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Form\Type\Model\SearchType;
-use App\Model\Search;
+use App\Model\Search\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +27,9 @@ class SearchController extends AbstractController
         $results = [];
 
         $search = new Search();
-        $form = $this->createForm(SearchType::class, $search);
+        $form = $this->createForm(SearchType::class, $search, [
+            'method' => 'GET',
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

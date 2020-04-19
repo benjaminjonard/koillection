@@ -167,7 +167,7 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="Log", mappedBy="user", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Log", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $logs;
 

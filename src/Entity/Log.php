@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
  * @ORM\Table(name="koi_log")
  */
 class Log
@@ -68,7 +68,7 @@ class Log
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="logs")
      */
-    private User $user;
+    private User $owner;
 
     public function __construct()
     {
@@ -168,14 +168,14 @@ class Log
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getOwner(): ?User
     {
-        return $this->user;
+        return $this->owner;
     }
 
-    public function setUser(?User $user): self
+    public function setOwner(?User $owner): self
     {
-        $this->user = $user;
+        $this->owner = $owner;
 
         return $this;
     }

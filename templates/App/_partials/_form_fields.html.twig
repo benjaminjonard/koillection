@@ -3,6 +3,7 @@
         {{- form_errors(form) -}}
         {{- form_widget(form) -}}
         {{- form_label(form) -}}
+        {{- form_help(form) -}}
     </div>
 {% endblock form_row %}
 
@@ -28,11 +29,16 @@
 
 {% block checkbox_row %}
     {% apply spaceless %}
-        <p>
-            {{- form_errors(form) -}}
-            <input type="checkbox" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
-            {{- form_label(form) -}}
-        </p>
+        <div class="input-field input-checkbox">
+            <label>
+                <input type="checkbox" value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
+                <span>{{ label|trans }}</span>
+                {% if help %}
+                    <span class="helper-text" data-error="wrong" data-success="right">{{ help|trans }}</span>
+                {% endif %}
+            </label>
+        </div>
+        {{- form_errors(form) -}}
     {% endapply %}
 {% endblock checkbox_row %}
 

@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 {% import "macros.html.twig" as macros %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_search_index', 'trans': 'menu.search'}], null, form.vars.value.search is not null ? form.vars.value.search : null) %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_search_index', 'trans': 'menu.search'}], null, form.vars.value.term is not null ? form.vars.value.term : null) %}
 
 {% block title %}
     {{ renderTitle(breadcrumb)  }}
@@ -17,10 +17,10 @@
     </div>
 
     <div class="content-block">
-        {{ form_start(form) }}
+        {{ form_start(form, {'method': 'GET'}) }}
             <div class="row">
                 <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.search, {'label' : 'label.search'}) }}
+                    {{ form_row(form.term, {'label' : 'label.search'}) }}
                 </div>
                 <div class="col s10 offset-s1 l5 xl3">
                     {{ form_row(form.createdAt, {'label' : 'label.added_at', 'attr': {'class' : 'datepicker' } }) }}
@@ -29,18 +29,15 @@
 
             <div class="row">
                 <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
-                    <label>
-                        {{ form_widget(form.searchInCollections) }}
-                        <span>{{ 'label.collections'|trans }}</span>
-                    </label>
-                    <label>
-                        {{ form_widget(form.searchInItems) }}
-                        <span>{{ 'label.items'|trans }}</span>
-                    </label>
-                    <label>
-                        {{ form_widget(form.searchInTags) }}
-                        <span>{{ 'label.tags'|trans }}</span>
-                    </label>
+                    <div class="col s4">
+                        {{ form_row(form.searchInCollections, {'label': 'label.collections'}) }}
+                    </div>
+                    <div class="col s4">
+                        {{ form_row(form.searchInItems, {'label': 'label.items'}) }}
+                    </div>
+                    <div class="col s4">
+                        {{ form_row(form.searchInTags, {'label': 'label.tags'}) }}
+                    </div>
                 </div>
             </div>
 

@@ -351,7 +351,7 @@ progress[value]::-ms-fill {background-color:#009688;}
 .progress-warning { color:#f0ad4e }
 .progress-success { color:#5cb85c }
 
-.table-filter {margin-bottom: 10px;}
+.table-filter {margin-bottom: 10px; text-align: left;}
 .table-filter a {margin: 0 10px;}
 .table-filter a.active {background-color: #009688; color: #f0f2f5; border-radius: 7px; padding: 5px; width: 100px; display: inline-block; text-align: center;}
 .table-filter .filter-title {font-weight: bold;}
@@ -440,7 +440,7 @@ html.loading:before {
 .close-nav {display : none;}
 
 @media (max-width: 1199px) {
-    header #search_search {max-width: 175px;}
+    header #search_term {max-width: 175px;}
 }
 
 @media (max-width: 749px)
@@ -479,7 +479,7 @@ html.loading:before {
 .spacer {margin-top: auto; margin-bottom: auto;}
 .scrollable {overflow-x: auto; justify-content: space-between; display: flex; flex-direction: column; height: 100%;}
 
-header #search_search {
+header #search_term {
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
     align-items: center;
     padding: 0 10px 0 10px;
@@ -1292,4 +1292,6 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .theme-label {top: -3px; position: relative;}
 
 .tag-category-select-option {position: relative; margin-right: 3px; top: -1px;}
-form[name="search"] input[type="checkbox"] + span {margin-right: 25px; padding-left: 25px;}
+form[name="search"] input[type="checkbox"] + span, form[name="search_history"] input[type="checkbox"] + span {margin-right: 25px; padding-left: 25px;}
+.inline-checkbox-wrapper {display: inline-block; margin: 0 60px;}
+.inline-checkbox-wrapper .input-checkbox {top: -52px; left: 16px;}

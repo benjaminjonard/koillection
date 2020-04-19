@@ -29,11 +29,7 @@
                         {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
                     </div>
                     <div class="col s10 offset-s1 l5 xl3">
-                        <label>
-                            {{ form_widget(form.recursive) }}
-                            <span>{{ 'label.recursive'|trans }}</span>
-                        </label>
-                        <div class="additional-message">{{'message.recursive'|trans}}</div>
+                        {{ form_row(form.recursive, {'label': 'label.recursive', 'help': 'message.recursive'}) }}
                     </div>
                 </div>
 

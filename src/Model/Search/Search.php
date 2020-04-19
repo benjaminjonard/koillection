@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model;
+namespace App\Model\Search;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -16,7 +16,7 @@ class Search
      *     minMessage="error.search.too_short"
      * )
      */
-    private ?string $search = null;
+    private ?string $term = null;
 
     /**
      * @var \DateTime
@@ -39,25 +39,20 @@ class Search
     private bool $searchInTags = true;
 
     /**
-     * Get search.
-     *
      * @return string
      */
-    public function getSearch() : ?string
+    public function getTerm(): ?string
     {
-        return $this->search;
+        return $this->term;
     }
 
     /**
-     * Set search.
-     *
-     * @param string $search
-     *
+     * @param string $term
      * @return Search
      */
-    public function setSearch(?string $search) : Search
+    public function setTerm(string $term): Search
     {
-        $this->search = $search;
+        $this->term = $term;
 
         return $this;
     }
@@ -162,7 +157,7 @@ class Search
      */
     public function validate(ExecutionContextInterface $context)
     {
-        if (null === $this->getSearch() && null === $this->getCreatedAt()) {
+        if (null === $this->getTerm() && null === $this->getCreatedAt()) {
             $context->buildViolation('error.search.empty')
                 ->addViolation();
         }

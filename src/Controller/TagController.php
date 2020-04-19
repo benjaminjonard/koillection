@@ -39,7 +39,7 @@ class TagController extends AbstractController
         $search = $request->query->get('search', null);
         $em = $this->getDoctrine()->getManager();
         $itemsCount = $em->getRepository(Item::class)->count([]);
-        $tagsCount = $em->getRepository(Tag::class)->countTags($search, $context);
+        $tagsCount = $em->getRepository(Tag::class)->countForPagination($search, $context);
         $results = $em->getRepository(Tag::class)->findTagsPaginatedWithItemsCount(
             $itemsCount, $paginatorFactory->getPaginationItemsPerPage(), $page, $search, $context
         );

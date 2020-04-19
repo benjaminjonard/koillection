@@ -4308,5 +4308,35 @@
         <target>Manage tag categories</target>
       </segment>
     </unit>
+    <unit id="FA5XLbh" name="enum.history_filter_class.collection">
+      <segment>
+        <source>enum.history_filter_class.collection</source>
+        <target>Collection</target>
+      </segment>
+    </unit>
+    <unit id=".s91X7z" name="enum.history_filter_class.item">
+      <segment>
+        <source>enum.history_filter_class.item</source>
+        <target>Item</target>
+      </segment>
+    </unit>
+    <unit id="Bbv77ja" name="enum.history_filter_class.tag">
+      <segment>
+        <source>enum.history_filter_class.tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="XKMAo1i" name="enum.history_filter_type.create">
+      <segment>
+        <source>enum.history_filter_type.create</source>
+        <target>Create</target>
+      </segment>
+    </unit>
+    <unit id="4AoD3Gf" name="enum.history_filter_type.delete">
+      <segment>
+        <source>enum.history_filter_type.delete</source>
+        <target>Delete</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

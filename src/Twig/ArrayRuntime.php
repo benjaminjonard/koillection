@@ -9,51 +9,6 @@ use Twig\Extension\RuntimeExtensionInterface;
 class ArrayRuntime implements RuntimeExtensionInterface
 {
     /**
-     * @param array|null $array
-     * @param string $element
-     * @return array
-     */
-    public function add(?array $array, string $element) : array
-    {
-        if (!\is_array($array)) {
-            $array = [];
-        }
-
-        if (!\in_array($element, $array, false)) {
-            $array[] = $element;
-        }
-
-        return $array;
-    }
-
-    /**
-     * @param array|null $array
-     * @param string $element
-     * @return array
-     */
-    public function remove(?array $array, string $element) : array
-    {
-        if (!\is_array($array)) {
-            $array = [];
-        }
-
-        if (($key = \array_search($element, $array, false)) !== false) {
-            unset($array[$key]);
-        }
-
-        return $array;
-    }
-
-    /**
-     * @param array $array
-     * @return array
-     */
-    public function reorder(array $array) : array
-    {
-        return \array_values($array);
-    }
-
-    /**
      * @param $collection
      * @return array
      */

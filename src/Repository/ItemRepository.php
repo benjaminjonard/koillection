@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Item;
-use App\Model\Search;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
@@ -45,7 +45,7 @@ class ItemRepository extends EntityRepository
         $results = $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial i.{id, name}')
-            ->from('App\\Entity\\Item', 'i')
+            ->from(Item::class, 'i')
             ->leftJoin('i.collection', 'c')
             ->where('c = :collection')
             ->setParameter('collection', $item->getCollection())
@@ -98,10 +98,10 @@ class ItemRepository extends EntityRepository
             ->orderBy('i.name', 'ASC')
         ;
 
-        if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
             $qb
-                ->andWhere('LOWER(i.name) LIKE LOWER(:search)')
-                ->setParameter('search', '%' . $search->getSearch() . '%');
+                ->andWhere('LOWER(i.name) LIKE LOWER(:term)')
+                ->setParameter('term', '%' . $search->getTerm() . '%');
         }
 
         if ($search->getCreatedAt() instanceof \DateTime) {

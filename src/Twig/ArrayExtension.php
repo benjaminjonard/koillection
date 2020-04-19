@@ -15,9 +15,6 @@ class ArrayExtension extends AbstractExtension
     public function getFilters() : array
     {
         return [
-            new TwigFilter('add', [ArrayRuntime::class, 'add']),
-            new TwigFilter('remove', [ArrayRuntime::class, 'remove']),
-            new TwigFilter('reorder', [ArrayRuntime::class, 'reorder']),
             new TwigFilter('naturalSorting', [ArrayRuntime::class, 'naturalSorting']),
         ];
     }
