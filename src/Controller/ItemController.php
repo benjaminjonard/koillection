@@ -127,6 +127,7 @@ class ItemController extends AbstractController
             'form' => $form->createView(),
             'item' => $item,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
+            'collection' => $item->getCollection(),
         ]);
     }
 

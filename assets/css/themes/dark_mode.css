@@ -90,7 +90,7 @@ input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[t
 {background-color: #1e2125;}
 
 /* Complementary */
-h5.header, h4.header, .button, .right-icon, .complementary-color
+h6.header, h5.header, h4.header, .button, .right-icon, .complementary-color
 {color: #f0f0f0;}
 
 html.loading:before,

@@ -1,4 +1,4 @@
-<div class="input-field col s12 m4">
+<div class="input-field col s5">
     <select id="data_{{ iteration }}_value" name="item[data][{{ iteration }}][value]" class="js-select-country">
         {% for code, name in getCountriesList() %}
             <option value="{{ code }}" {% if datum is defined and datum.value == code %}selected{% endif %}>

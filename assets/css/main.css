@@ -79,8 +79,10 @@ input:not([type]) + label::after, input[type="text"]:not(.browser-default) + lab
     opacity: 1;
 }
 
-h5.header, h4.header{font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 0 0 35px 0; line-height: 100%;}
+h5.header, h4.header, h6.header {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 0 0 35px 0!important; line-height: 100%;}
 h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; font-size: 18px;}
+h6.header { text-align: center; font-size: 1.5rem; }
+
 
 .divider{margin : 0 15px;}
 .main-row {margin-top: 20px;}
@@ -150,6 +152,7 @@ label div {font-size: 0.8rem;}
 .btn-holder .right {margin-top: 15px;}
 .btn-holder .left {margin-top: 15px;}
 .btn-holder i {margin: 0 5px;}
+.form-btn-holder button, .form-btn-holder a {margin: 5px;}
 
 ul.nav-pills {display: inline-block;}
 ul.nav-pills li { white-space: nowrap; display: inline;}
@@ -1292,4 +1295,11 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .table-actions a {margin: 0 5px; font-size: 20px;}
 
 #template-fields-holder .icon-holder { padding-top: 45px; text-align: center; }
+#additionnalFields .icon-holder { padding-top: 30px; text-align: center; }
 .removeDatum {cursor: pointer;}
+
+.datum .preview-image {max-height: 100px; max-width: 100%;}
+.datum .file-label {top: -17px;}
+.datum .file-field {height: 100px;}
+.datum .image-preview-wrapper, .datum .image-preview-wrapper  > div {margin: auto;}
+#additionnalFields .header {margin-top: 55px;}

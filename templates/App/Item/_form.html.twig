@@ -1,0 +1,83 @@
+{{ form_start(form) }}
+    {% do form.data.setRendered %}
+    <div class="content-block">
+        <div class="row">
+            <h5 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.infos'|trans }}</h5>
+        </div>
+        {{ form_row(form.image) }}
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.name, {'label' : 'label.name'}) }}
+                {% if suggestedNames is defined and suggestedNames is not empty %}
+                    {{ 'label.suggestions'|trans }}
+                    {% for suggestion in suggestedNames %}
+                        <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
+                        {{ not loop.last ? ',' }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.collection, {'label' : 'label.collection'}) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
+            </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3 autocomplete-wrapper">
+                <div class="input-field">
+                    <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
+                    {{ form_label(form.tags, 'label.tags') }}
+                    <div class="ac-tags">
+                    </div>
+                </div>
+                {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="row">
+            <h5 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h5>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 l5 offset-l1 xl2 offset-xl3">
+                <select id="selectFieldType" class="selectFieldType" {% if fieldsType|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
+                    <option value=""></option>
+                    {% for key, fieldType in fieldsType %}
+                        <option value="{{ key }}">{{ fieldType|trans }}</option>
+                    {% endfor %}
+                </select>
+                <label for="selectFieldType">{{ 'label.new_data'|trans }}</label>
+            </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+            </div>
+            <div class="col s12 l5 xl2">
+                <button class="btn align-with-inputs btn-common-fields" data-collection-id="{{ collection.id }}">{{ 'btn.apply_collection_data'|trans }}</button>
+            </div>
+        </div>
+
+        {{ include('App/Item/_data.html.twig', {data: item.data}) }}
+    </div>
+
+    <div class="row center-align form-btn-holder">
+        {% if app.request.get('_route') == 'app_item_add' %}
+            {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('collection')}) %}
+        {% else %}
+            {% set cancelUrl = path('app_collection_show', {id: item.collection.id}) %}
+        {% endif %}
+
+        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        <button type="submit" name="save_and_add_another" class="btn waves-effect waves-light">{{ 'btn.submit_and_add_another'|trans }}</button>
+        <a href="{{ path('app_collection_show', { id : collection.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+    </div>
+{{ form_end(form) }}

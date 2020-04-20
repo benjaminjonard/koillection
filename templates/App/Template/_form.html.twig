@@ -1,16 +1,26 @@
 {{ form_start(form) }}
-    <div class="content-block row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            <h5 class="header">{{ 'title.infos'|trans }}</h5>
-            {{ form_row(form.name, {'label': 'label.name'}) }}
+    <div class="content-block">
+        <div class="row">
+            <h5 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.infos'|trans }}</h5>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.name, {'label': 'label.name'}) }}
+            </div>
         </div>
     </div>
 
-    <div class="content-block row">
-        <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-            <h5 class="header">{{ 'title.fields'|trans }}</h5>
-            <div id="template-fields-holder" data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}">
-                {{ form_row(form.fields) }}
+    <div class="content-block">
+        <div class="row">
+            <h5 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.fields'|trans }}</h5>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+                <div id="template-fields-holder" data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}">
+                    {{ form_row(form.fields) }}
+                </div>
             </div>
         </div>
     </div>

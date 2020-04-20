@@ -22,7 +22,7 @@ class DatumController extends AbstractController
      */
     public function getHtmlByType(string $type) : JsonResponse
     {
-        $html = $this->render('App/Datum/datum.html.twig', [
+        $html = $this->render('App/Datum/_datum.html.twig', [
             'iteration' => '__placeholder__',
             'type' => $type
         ])->getContent();
@@ -76,7 +76,7 @@ class DatumController extends AbstractController
             }
 
             foreach ($commonFields as &$commonField) {
-                $commonField['html'] = $this->render('App/Datum/datum.html.twig', [
+                $commonField['html'] = $this->render('App/Datum/_datum.html.twig', [
                             'iteration' => '__placeholder__',
                             'type' => $commonField['type'],
                             'datum' => $commonField['datum']

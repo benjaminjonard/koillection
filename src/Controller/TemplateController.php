@@ -126,7 +126,7 @@ class TemplateController extends AbstractController
         foreach ($template->getFields() as $field) {
             $data = [];
             $data['type'] = $field->getType();
-            $data['html'] = $fields[$field->getName()] = $this->render('App/Datum/datum.html.twig', [
+            $data['html'] = $fields[$field->getName()] = $this->render('App/Datum/_datum.html.twig', [
                 'iteration' => '__placeholder__',
                 'type' => $field->getType(),
                 'label' => $field->getName(),
