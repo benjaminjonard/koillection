@@ -1,6 +1,6 @@
 import Translator from "./translator.min";
 
-export function loadSelect2() { $('select:not(.js-select-country)').select2(getDefaultConf()); }
+export function loadSelect2() { $('select:not(.js-select-country, .js-select-locale, .js-select-theme, .js-select-tag-category)').select2(getDefaultConf()); }
 export function loadSelect2Countries() { $('select.js-select-country').select2(getCountriesConf()); }
 export function loadSelect2Locales() { $('select.js-select-locale').select2(getLocalesConf()); }
 export function loadSelect2Themes() { $('select.js-select-theme').select2(getThemesConf()); }

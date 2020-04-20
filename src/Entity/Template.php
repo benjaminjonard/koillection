@@ -33,7 +33,7 @@ class Template implements BreadcrumbableInterface
 
     /**
      * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private DoctrineCollection $fields;

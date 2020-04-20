@@ -1,16 +1,16 @@
 {{ form_start(form) }}
     {{ form_row(form.image) }}
     <div class="row">
-        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
             {{ form_row(form.title, {'label' : 'label.title'} ) }}
         </div>
-        <div class="col s10 offset-s1 l5 xl3">
+        <div class="col s12 l5 xl3">
             {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
         </div>
     </div>
 
     <div class="row">
-        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
             {{ form_row(form.childrenTitle, {'label' : 'label.children_title'} ) }}
             {% if suggestedChildrenTitles is not empty %}
                 {{ 'label.suggestions'|trans }}
@@ -20,7 +20,7 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <div class="col s10 offset-s1 l5 xl3">
+        <div class="col s12 l5 xl3">
             {{ form_row(form.itemsTitle, {'label' : 'label.items_title'} ) }}
             {% if suggestedItemsTitles is not empty %}
                 {{ 'label.suggestions'|trans }}
@@ -33,7 +33,7 @@
     </div>
 
     <div class="row">
-        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
             {{ form_row(form.parent, {'label' : 'label.parent'} ) }}
         </div>
     </div>

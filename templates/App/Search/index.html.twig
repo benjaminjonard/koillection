@@ -19,16 +19,16 @@
     <div class="content-block">
         {{ form_start(form, {'method': 'GET'}) }}
             <div class="row">
-                <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                     {{ form_row(form.term, {'label' : 'label.search'}) }}
                 </div>
-                <div class="col s10 offset-s1 l5 xl3">
+                <div class="col s12 l5 xl3">
                     {{ form_row(form.createdAt, {'label' : 'label.added_at', 'attr': {'class' : 'datepicker' } }) }}
                 </div>
             </div>
 
             <div class="row">
-                <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                     <div class="col s4">
                         {{ form_row(form.searchInCollections, {'label': 'label.collections'}) }}
                     </div>

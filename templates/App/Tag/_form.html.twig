@@ -2,22 +2,22 @@
     {{ form_row(form.image) }}
 
     <div class="row">
-        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
             {{ form_row(form.label, {'label': 'label.name'}) }}
         </div>
-        <div class="col s10 offset-s1 l5 xl3">
+        <div class="col s12 l5 xl3">
             {{ form_row(form.category, {'label' : 'label.tag_category', 'attr': {'class': 'js-select-tag-category'}} ) }}
         </div>
     </div>
 
     <div class="row">
-        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
             {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
         </div>
     </div>
 
     <div class="row">
-        <div class="col s10 offset-s1 l10 offset-l1 xl6 offset-xl3">
+        <div class="col s12 l10 offset-l1 xl6 offset-xl3">
             {{ form_row(form.description, {'label': 'label.description', 'attr' : {'class': 'materialize-textarea'}}) }}
         </div>
     </div>

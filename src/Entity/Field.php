@@ -45,7 +45,7 @@ class Field
      * @var Template
      * @ORM\ManyToOne(targetEntity="Template", inversedBy="fields")
      */
-    private Template $template;
+    private ?Template $template = null;
 
     public function __construct()
     {

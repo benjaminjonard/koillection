@@ -150,8 +150,9 @@ $(document).ready(function() {
             $newForm.remove();
         });
         $newLinkDiv.before($newForm);
+        console.log($newForm);
         indexFieldTemplate++;
-        M.FormSelect.init(document.querySelectorAll('select'));
+        select.loadSelect2();
         utils.computePositions($collectionHolder);
         utils.reloadSortableList($collectionHolder, '.field');
     }

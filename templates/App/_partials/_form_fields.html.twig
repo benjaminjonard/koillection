@@ -11,7 +11,7 @@
 {% block file_widget %}
     {% apply spaceless %}
         <div class="row row-file">
-            <div class="col s10 offset-s1 l10 offset-l1 xl6 offset-xl3">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
                 <div>
                     <label class="file-label">
                         {% if form.parent.vars.value is not null %}
@@ -44,14 +44,14 @@
 
 {% block cropper %}
     <div class="row row-file">
-        <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
             <div id="cropArea"></div>
             <label class="btn">
                 <span>{{ 'label.thumbnail'|trans }}</span>
                 <input class="js-croppie-file-input" type="file" id="cropInput" accept="image/*">
             </label>
         </div>
-        <div class="col s10 offset-s1 l5 xl3" id="cropPreview">
+        <div class="col s12 l5 xl3" id="cropPreview">
             <img src="{{ form.vars.value }}">
         </div>
         <input type="hidden" class="file-input" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>

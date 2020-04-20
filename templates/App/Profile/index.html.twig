@@ -37,34 +37,34 @@
                 {{ form_row(form.avatar) }}
 
                 <div class="row">
-                    <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                         {{ form_row(form.locale, {'label' : 'label.locale', 'attr': {'class': 'js-select-locale'}} ) }}
                     </div>
-                    <div class="col s10 offset-s1 l5 xl3">
+                    <div class="col s12 l5 xl3">
                         {{ form_row(form.theme, {'label' : 'label.theme', 'attr': {'class': 'js-select-theme'}} ) }}
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                         {{ form_row(form.timezone, {'label' : 'label.timezone'} ) }}
                     </div>
-                    <div class="col s10 offset-s1 l5 xl3">
+                    <div class="col s12 l5 xl3">
                         {{ form_row(form.dateFormat, {'label' : 'label.date_format'} ) }}
                     </div>
                 </div>
 
             <div class="row">
-                <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                     {{ form_row(form.currency, {'label' : 'label.currency'} ) }}
                 </div>
-                <div class="col s10 offset-s1 l5 xl3">
+                <div class="col s12 l5 xl3">
                     {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
                 </div>
             </div>
 
             <div class="row">
-                <div class="col s10 offset-s1 l10 offset-l1 xl6 offset-xl3">
+                <div class="col s12 l10 offset-l1 xl6 offset-xl3">
                     <p>
                         {{ 'message.visibility'|trans }}
                         <strong><a href="{{ url('app_user_collection_index', {username : app.user.username}) }}">{{ url('app_user_collection_index', {username : app.user.username}) }}</a></strong>
@@ -90,10 +90,10 @@
 
             {{ form_start(formPassword) }}
                 <div class="row">
-                    <div class="col s10 offset-s1 l5 offset-l1 xl3 offset-xl3">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                         {{ form_row(formPassword.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
                     </div>
-                    <div class="col s10 offset-s1 l5 xl3">
+                    <div class="col s12 l5 xl3">
                         {{ form_row(formPassword.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
                     </div>
                 </div>

@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+    <div class="content-block row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            <h5 class="header">{{ 'title.infos'|trans }}</h5>
+            {{ form_row(form.name, {'label': 'label.name'}) }}
+        </div>
+    </div>
+
+    <div class="content-block row">
+        <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+            <h5 class="header">{{ 'title.fields'|trans }}</h5>
+            <div id="template-fields-holder" data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}">
+                {{ form_row(form.fields) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row center-align form-btn-holder">
+        {% if app.request.get('_route') == 'app_template_add' %}
+            {% set cancelUrl = path('app_collection_index') %}
+        {% else %}
+            {% set cancelUrl = path('app_template_show', {id: template.id}) %}
+        {% endif %}
+
+        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        <a href="{{ cancelUrl }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+    </div>
+{{ form_end(form) }}
