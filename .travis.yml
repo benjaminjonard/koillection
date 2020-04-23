@@ -40,7 +40,7 @@ before_script:
   - SYMFONY_ENV=test composer install -o
   - psql -c 'create database koillection;' -U postgres
   - psql -c "CREATE USER koillection WITH PASSWORD '';" -U postgres
-  - php bin/console doctrine:schema:update --env=test
+  - php bin/console doctrine:schema:update --force --env=test
   - php bin/console doctrine:fixtures:load --env=test --no-interaction
 
 # Run script
