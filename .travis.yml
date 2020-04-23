@@ -7,8 +7,8 @@ php:
 sudo: false
 
 # Start mysql service
-services:
-  - postgresql
+addons:
+  postgresql: '10.3'
 
 # Cache composer packages so "composer install" is faster
 cache:
