@@ -210,7 +210,7 @@ class User implements UserInterface, BreadcrumbableInterface
         $this->enabled = false;
         $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = 'EUR';
-        $this->locale = LocaleEnum::LOCALE_GB;
+        $this->locale = LocaleEnum::LOCALE_EN;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
     }

@@ -12,9 +12,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class SignController extends AbstractController
 {
     /**
-     * @Route("/signs", name="app_sign_index", methods={"GET"})
-     * @Route("/user/{username}/signs", name="app_user_sign_index", methods={"GET"})
-     * @Route("/preview/signs", name="app_preview_sign_index", methods={"GET"})
+     * @Route({
+     *     "en": "/signs",
+     *     "fr": "/dedicaces"
+     * }, name="app_sign_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/signs",
+     *     "fr": "/utilisateur/{username}/dedicaces"
+     * }, name="app_user_sign_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/signs",
+     *     "fr": "/apercu/dedicaces"
+     * }, name="app_preview_sign_index", methods={"GET"})
      *
      * @return Response
      */

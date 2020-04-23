@@ -44,7 +44,7 @@ class EnumRuntime implements RuntimeExtensionInterface
      */
     public function getLocaleLabel(string $code) : string
     {
-        return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::LOCALE_GB;
+        return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::LOCALE_EN;
     }
 
     /**
@@ -61,7 +61,7 @@ class EnumRuntime implements RuntimeExtensionInterface
      */
     public function getFullLocaleLabel(string $code) : string
     {
-        return LocaleEnum::getFullLocales()[$code] ?? LocaleEnum::getFullLocales()[LocaleEnum::LOCALE_GB];
+        return LocaleEnum::getFullLocales()[$code] ?? LocaleEnum::getFullLocales()[LocaleEnum::LOCALE_EN];
     }
 
     /**

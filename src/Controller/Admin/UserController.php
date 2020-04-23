@@ -22,7 +22,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/admin/users", name="app_admin_user_index", methods={"GET"})
+     * @Route({
+     *     "en": "/admin/users",
+     *     "fr": "/admin/utilisateurs"
+     * }, name="app_admin_user_index", methods={"GET"})
      *
      * @return Response
      */
@@ -36,7 +39,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/users/add", name="app_admin_user_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/admin/users/add",
+     *     "fr": "/admin/utilisateurs/ajouter"
+     * }, name="app_admin_user_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -63,7 +69,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/users/{id}/edit", name="app_admin_user_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/admin/users/{id}/edit",
+     *     "fr": "/admin/utilisateurs/{id}/editer"
+     * }, name="app_admin_user_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param User $user
      * @param Request $request
@@ -89,7 +98,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/users/{id}/delete", name="app_admin_user_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "DELETE"})
+     * @Route({
+     *     "en": "/admin/users/{id}/delete",
+     *     "fr": "/admin/utilisateurs/{id}/supprimer"
+     * }, name="app_admin_user_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "DELETE"})
      *
      * @param User $user
      * @param TranslatorInterface $translator

@@ -20,7 +20,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("", name="app_security_login", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "",
+     *     "fr": ""
+     * }, name="app_security_login", methods={"GET", "POST"})
      *
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
@@ -44,7 +47,10 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/first-connection", name="app_security_first_connection", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/first-connection",
+     *     "fr": "/premiere-connexion"
+     * }, name="app_security_first_connection", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TokenStorageInterface $tokenStorage

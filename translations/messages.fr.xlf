@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="gb" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
   <file id="messages.fr">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -128,12 +128,12 @@
         <target>Image par défaut</target>
       </segment>
     </unit>
-    <unit id="fxC62MI" name="aria.flag.gb">
+    <unit id="fxC62MI" name="aria.flag.en">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>aria.flag.gb</source>
+        <source>aria.flag.en</source>
         <target>Drapeau anglais</target>
       </segment>
     </unit>
@@ -4230,9 +4230,9 @@
         <target>Opcache activé</target>
       </segment>
     </unit>
-    <unit id="NgE8xV9" name="global.locale.gb ">
+    <unit id="NgE8xV9" name="global.locale.en">
       <segment>
-        <source>global.locale.gb </source>
+        <source>global.locale.en</source>
         <target>Anglais</target>
       </segment>
     </unit>

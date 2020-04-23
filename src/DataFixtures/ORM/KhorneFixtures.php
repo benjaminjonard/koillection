@@ -56,7 +56,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $admin
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale(LocaleEnum::LOCALE_GB)
+            ->setLocale(LocaleEnum::LOCALE_EN)
             ->setUsername('Khorne')
             ->setEmail('khorne@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)

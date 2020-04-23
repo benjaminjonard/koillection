@@ -20,9 +20,20 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class CollectionController extends AbstractController
 {
     /**
-     * @Route("/collections", name="app_collection_index", methods={"GET"})
-     * @Route("/user/{username}", name="app_user_collection_index", methods={"GET"})
-     * @Route("/preview", name="app_preview_collection_index", methods={"GET"})
+     * @Route({
+     *     "en": "/collections",
+     *     "fr": "/collections"
+     * }, name="app_collection_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}",
+     *     "fr": "/utilisateur/{username}"
+     * }, name="app_user_collection_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview",
+     *     "fr": "/apercu"
+     * }, name="app_preview_collection_index", methods={"GET"})
      *
      * @return Response
      */
@@ -36,7 +47,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/add", name="app_collection_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/add",
+     *     "fr": "/collections/ajouter"
+     * }, name="app_collection_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -77,9 +91,21 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}", name="app_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/user/{username}/{id}", name="app_user_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/preview/{id}", name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/collections/{id}",
+     *     "fr": "/collections/{id}"
+     * }, name="app_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/{id}",
+     *     "fr": "/utilisateur/{username}/{id}"
+     * }, name="app_user_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/{id}",
+     *     "fr": "/apercu/{id}"
+     * }, name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("collection", expr="repository.findById(id)")
      *
      * @param Collection $collection
@@ -97,9 +123,20 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/items", name="app_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/user/{username}/{id}/items", name="app_user_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/preview/{id}/items", name="app_preview_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/collections/{id}/items",
+     *     "fr": "/collections/{id}/objets"
+     * }, name="app_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/{id}/items",
+     *     "fr": "/utilisateur/{username}/{id}/objets"
+     * }, name="app_user_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/{id}/items",
+     *     "fr": "/apercu/{id}/objets"
+     * }, name="app_preview_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Collection $collection
      * @return Response
@@ -113,7 +150,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/edit", name="app_collection_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/{id}/edit",
+     *     "fr": "/collections/{id}/editer"
+     * }, name="app_collection_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Collection $collection
@@ -143,7 +183,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/delete", name="app_collection_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/{id}/delete",
+     *     "fr": "/collections/{id}/supprimer"
+     * }, name="app_collection_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Collection $collection
      * @param TranslatorInterface $translator
@@ -165,7 +208,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/batch-tagging", name="app_collection_batch_tagging", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/{id}/batch-tagging",
+     *     "fr": "/collections/{id}/tagguer-par-lot"
+     * }, name="app_collection_batch_tagging", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Collection $collection
@@ -194,7 +240,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/history", name="app_collection_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/collections/{id}/history",
+     *     "fr": "/collections/{id}/historique"
+     * }, name="app_collection_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Collection $collection
      * @return Response

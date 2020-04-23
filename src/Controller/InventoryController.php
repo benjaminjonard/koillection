@@ -18,7 +18,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class InventoryController extends AbstractController
 {
     /**
-     * @Route("/inventories/add", name="app_inventory_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/inventories/add",
+     *     "fr": "/inventaires/ajouter"
+     * }, name="app_inventory_add", methods={"GET", "POST"})
      *
      * @param Request $request
      *
@@ -48,7 +51,10 @@ class InventoryController extends AbstractController
     }
 
     /**
-     * @Route("/inventories/{id}/delete", name="app_inventory_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/inventories/{id}/delete",
+     *     "fr": "/inventaires/{id}/supprimer"
+     * }, name="app_inventory_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Inventory $inventory
      * @param TranslatorInterface $translator
@@ -66,7 +72,10 @@ class InventoryController extends AbstractController
     }
 
     /**
-     * @Route("/inventories/{id}/check", name="app_inventory_check", methods={"POST"})
+     * @Route({
+     *     "en": "/inventories/{id}/check",
+     *     "fr": "/inventaires/{id}/cocher"
+     * }, name="app_inventory_check", methods={"POST"})
      *
      * @param Request $request
      * @param Inventory $inventory
@@ -83,7 +92,10 @@ class InventoryController extends AbstractController
     }
 
     /**
-     * @Route("/inventories/{id}", name="app_inventory_show", methods={"GET"})
+     * @Route({
+     *     "en": "/inventories/{id}",
+     *     "fr": "/inventaires/{id}"
+     * }, name="app_inventory_show", methods={"GET"})
      *
      * @param Inventory $inventory
      * @return Response

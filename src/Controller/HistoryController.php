@@ -17,7 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HistoryController extends AbstractController
 {
     /**
-     * @Route("/history", name="app_history_index", methods={"GET"})
+     * @Route({
+     *     "en": "/history",
+     *     "fr": "/historique"
+     * }, name="", name="app_history_index", methods={"GET"})
      *
      * @param Request $request
      * @param PaginatorFactory $paginatorFactory

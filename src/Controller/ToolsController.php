@@ -9,6 +9,7 @@ use App\Entity\Inventory;
 use App\Http\CsvResponse;
 use App\Http\FileResponse;
 use App\Service\DatabaseDumper;
+use Doctrine\DBAL\DBALException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -19,7 +20,10 @@ use ZipStream\ZipStream;
 class ToolsController extends AbstractController
 {
     /**
-     * @Route("/tools", name="app_tools_index", methods={"GET"})
+     * @Route({
+     *     "en": "/tools",
+     *     "fr": "/outils"
+     * }, name="app_tools_index", methods={"GET"})
      *
      * @return Response
      */
@@ -31,7 +35,10 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/printable-list", name="app_tools_export_printable_list", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/printable-list",
+     *     "fr": "/outils/export/liste-imprimable"
+     * }, name="app_tools_export_printable_list", methods={"GET"})
      *
      * @return Response
      */
@@ -46,9 +53,13 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/csv", name="app_tools_export_csv", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/csv",
+     *     "fr": "/outils/export/csv"
+     * }, name="app_tools_export_csv", methods={"GET"})
      *
      * @return CsvResponse
+     * @throws \Exception
      */
     public function exportCsv() : CsvResponse
     {
@@ -65,11 +76,14 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/sql", name="app_tools_export_sql", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/sql",
+     *     "fr": "/outils/export/sql"
+     * }, name="app_tools_export_sql", methods={"GET"})
      *
      * @param DatabaseDumper $databaseDumper
      * @return FileResponse
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
     {
@@ -77,7 +91,10 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/images", name="app_tools_export_images", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/images",
+     *     "fr": "/outils/export/images"
+     * }, name="app_tools_export_images", methods={"GET"})
      *
      * @return StreamedResponse
      */

@@ -1,7 +1,7 @@
 import './lazy-loading'
 
 import './translations/config'
-import './translations/javascript/gb'
+import './translations/javascript/en'
 import './translations/javascript/fr'
 
 import 'jquery'

@@ -17,7 +17,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/profile", name="app_profile_index", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/profile",
+     *     "fr": "/profil"
+     * }, name="app_profile_index", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator

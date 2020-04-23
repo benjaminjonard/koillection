@@ -31,7 +31,7 @@ final class TranslationCommandListener
             $string = "import Translator from '../translator.min.js'";
             file_put_contents ($configFilePath, $string . PHP_EOL . PHP_EOL . $fileContent);
 
-            //Locale files (gb.js, fr.js...)
+            //Locale files (en.js, fr.js...)
             $path = $this->assetsPath.'/js/translations/javascript';
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
             foreach ($files as $name => $file) {

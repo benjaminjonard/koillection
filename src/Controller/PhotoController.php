@@ -16,7 +16,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class PhotoController extends AbstractController
 {
     /**
-     * @Route("/photos/add", name="app_photo_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/photos/ajouter",
+     *     "fr": "/photos/add"
+     * }, name="app_photo_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -63,7 +66,10 @@ class PhotoController extends AbstractController
     }
 
     /**
-     * @Route("/photos/{id}/edit", name="app_photo_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/photos/{id}/edit",
+     *     "fr": "/photos/{id}/editer"
+     * }, name="app_photo_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Photo $photo
@@ -88,7 +94,10 @@ class PhotoController extends AbstractController
     }
 
     /**
-     * @Route("/photos/{id}/delete", name="app_photo_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/photos/{id}/delete",
+     *     "fr": "/photos/{id}/supprimer"
+     * }, name="app_photo_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Photo $photo
      * @param TranslatorInterface $translator

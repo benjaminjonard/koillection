@@ -254,3 +254,6 @@
 .flag-za::after { content: url("../img/flags/za.png");}
 .flag-zm::after { content: url("../img/flags/zm.png");}
 .flag-zw::after { content: url("../img/flags/zw.png");}
+
+/* Custom */
+.flag-en::after { content: url("../img/flags/gb.png");}

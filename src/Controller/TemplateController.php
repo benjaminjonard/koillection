@@ -18,7 +18,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class TemplateController extends AbstractController
 {
     /**
-     * @Route("/templates", name="app_template_index", methods={"GET"})
+     * @Route({
+     *     "en": "/templates",
+     *     "fr": "/modeles"
+     * }, name="app_template_index", methods={"GET"})
      *
      * @return Response
      */
@@ -30,7 +33,10 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/templates/add", name="app_template_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/templates/add",
+     *     "fr": "/modeles/ajouter"
+     * }, name="app_template_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -57,7 +63,11 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/templates/{id}/edit", name="app_template_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/templates/{id}/edit",
+     *     "fr": "/modeles/{id}/editer"
+     * }, name="app_template_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     *
      * @Entity("template", expr="repository.findById(id)")
      *
      * @param Request $request
@@ -83,7 +93,11 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/templates/{id}", name="app_template_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/templates/{id}",
+     *     "fr": "/modeles/{id}"
+     * }, name="app_template_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("template", expr="repository.findByIdWithItems(id)")
      *
      * @param Template $template
@@ -97,7 +111,10 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/templates/{id}/delete", name="app_template_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/templates/{id}/delete",
+     *     "fr": "/modeles/{id}/supprimer"
+     * }, name="app_template_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Template $template
      * @param TranslatorInterface $translator
@@ -115,7 +132,10 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/templates/{id}/fields", name="app_template_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/templates/{id}/fields",
+     *     "fr": "/modeles/{id}/champs"
+     * }, name="app_template_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Template $template
      * @return JsonResponse

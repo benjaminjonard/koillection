@@ -259,7 +259,7 @@ button.align-with-inputs {margin-top: 25px;}
 .statistics {text-align: center;}
 .statistics .col {margin: 15px 0;}
 .statistics .counter {font-weight: bold; font-size: 40px;}
-
+.statistics .counter .fa {font-weight: bold; font-size: 40px;}
 
 .modal .modal-footer .btn, .btn-holder .btn{margin: 10px 5px;}
 .handle {cursor: move; font-size: 20px;}

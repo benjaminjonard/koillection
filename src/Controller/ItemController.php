@@ -25,7 +25,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ItemController extends AbstractController
 {
     /**
-     * @Route("/items/add", name="app_item_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/add",
+     *     "fr": "/objets/ajouter"
+     * }, name="app_item_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -84,9 +87,21 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}", name="app_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/user/{username}/items/{id}", name="app_user_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/preview/items/{id}", name="app_preview_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/items/{id}",
+     *     "fr": "/objets/{id}"
+     * }, name="app_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/items/{id}",
+     *     "fr": "/utilisateur/{username}/objets/{id}"
+     * }, name="app_user_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/items/{id}",
+     *     "fr": "/apercu/objets/{id}"
+     * }, name="app_preview_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("item", expr="repository.findById(id)")
      *
      * @param Item $item
@@ -104,7 +119,11 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/edit", name="app_item_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/{id}/edit",
+     *     "fr": "/objets/{id}/editer"
+     * }, name="app_item_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     *
      * @Entity("item", expr="repository.findById(id)")
      *
      * @param Request $request
@@ -132,7 +151,10 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/delete", name="app_item_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/{id}/delete",
+     *     "fr": "/objets/{id}/supprimer"
+     * }, name="app_item_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Item $item
      * @param TranslatorInterface $translator
@@ -151,7 +173,10 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/history", name="app_item_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/items/{id}/history",
+     *     "fr": "/objets/{id}/historique"
+     * }, name="app_item_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Item $item
      * @return Response
@@ -171,7 +196,10 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/loan", name="app_item_loan", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/{id}/loan",
+     *     "fr": "/objets/{id}/preter"
+     * }, name="app_item_loan", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Item $item

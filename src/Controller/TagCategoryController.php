@@ -17,7 +17,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class TagCategoryController extends AbstractController
 {
     /**
-     * @Route("/tag-categories", name="app_tag_category_index", methods={"GET"})
+     * @Route({
+     *     "en": "/tag-categories",
+     *     "fr": "/categories-de-tag"
+     * }, name="app_tag_category_index", methods={"GET"})
      *
      * @param Request $request
      * @param PaginatorFactory $paginatorFactory
@@ -38,7 +41,11 @@ class TagCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/tag-categories/{id}", name="app_tag_category_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/tag-categories/{id}",
+     *     "fr": "/categories-de-tag/{id}"
+     * }, name="app_tag_category_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("tag", expr="repository.findOneWithTags(id)")
      *
      * @param TagCategory $category
@@ -52,7 +59,10 @@ class TagCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/tag-categories/add", name="app_tag_category_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/tag-categories/add",
+     *     "fr": "/categories-de-tag/ajouter"
+     * }, name="app_tag_category_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -79,7 +89,10 @@ class TagCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/tag-categories/{id}/edit", name="app_tag_category_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/tag-categories/{id}/edit",
+     *     "fr": "/categories-de-tag/{id}/editer"
+     * }, name="app_tag_category_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TagCategory $category
@@ -105,7 +118,10 @@ class TagCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/tag-categories/{id}/delete", name="app_tag_category_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/tag-categories/{id}/delete",
+     *     "fr": "/categories-de-tag/{id}/supprimer"
+     * }, name="app_tag_category_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param TagCategory $category
      * @param TranslatorInterface $translator

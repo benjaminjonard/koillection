@@ -30,7 +30,10 @@ use ZipStream\ZipStream;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="app_admin_index", methods={"GET"})
+     * @Route({
+     *     "en": "/admin",
+     *     "fr": "/admin"
+     * }, name="app_admin_index", methods={"GET"})
      *
      * @return Response
      * @throws NoResultException
@@ -59,7 +62,10 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/clean", name="app_admin_clean", methods={"GET"})
+     * @Route({
+     *     "en": "/admin/clean",
+     *     "fr": "/admin/nettoyer"
+     * }, name="app_admin_clean", methods={"GET"})
      *
      * @param string $publicPath
      * @param TranslatorInterface $translator
@@ -113,7 +119,10 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/backup", name="app_admin_backup", methods={"GET"})
+     * @Route({
+     *     "en": "/admin/backup",
+     *     "fr": "/admin/sauvegarde"
+     * }, name="app_admin_backup", methods={"GET"})
      *
      * @param DatabaseDumper $databaseDumper
      * @return StreamedResponse

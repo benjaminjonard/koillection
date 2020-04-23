@@ -55,7 +55,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $anubis
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale(LocaleEnum::LOCALE_GB)
+            ->setLocale(LocaleEnum::LOCALE_EN)
             ->setUsername('Anubis')
             ->setEmail('anubis@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)

@@ -17,7 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/search", name="app_search_index", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/search",
+     *     "fr": "/recherche"
+     * }, name="app_search_index", methods={"GET", "POST"})
      *
      * @param Request $request
      * @return Response

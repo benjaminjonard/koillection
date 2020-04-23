@@ -14,7 +14,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class LoanController extends AbstractController
 {
     /**
-     * @Route("/loans", name="app_loan_index", methods={"GET"})
+     * @Route({
+     *     "en": "/loans",
+     *     "fr": "/prets"
+     * }, name="app_loan_index", methods={"GET"})
      *
      * @return Response
      */
@@ -28,7 +31,10 @@ class LoanController extends AbstractController
     }
 
     /**
-     * @Route("/loans/{id}/delete", name="app_loan_delete", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/loans/{id}/delete",
+     *     "fr": "/prets/{id}/supprimer"
+     * }, name="app_loan_delete", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Loan $loan
      * @param TranslatorInterface $translator
@@ -46,7 +52,11 @@ class LoanController extends AbstractController
     }
 
     /**
-     * @Route("/loans/{id}/returned", name="app_loan_returned", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/loans/{id}/returned",
+     *     "fr": "/prets/{id}/rendu"
+     * }, name="app_loan_returned", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("loan", expr="repository.findByIdWithItem(id)")
      *
      * @param Loan $loan
