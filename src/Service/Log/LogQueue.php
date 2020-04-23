@@ -6,22 +6,17 @@ namespace App\Service\Log;
 
 use App\Entity\Log;
 
-/**
- * Class LogQueue
- *
- * @package App\Service\Log
- */
 class LogQueue
 {
     /**
      * @var array
      */
-    private $logs = [];
+    private array $logs = [];
 
     /**
      * @var bool
      */
-    private $processQueue;
+    private bool $processQueue;
 
     public function __construct()
     {

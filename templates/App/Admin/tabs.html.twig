@@ -1,8 +1,8 @@
-<div class="tabs-block admin">
+<div class="tabs-block">
     <ul class="nav nav-pills">
-        <li class="tab {{ current == "statistics" ? 'current' }}">
+        <li class="tab {{ current == "overview" ? 'current' }}">
             <a href="{{ path('app_admin_index') }}">
-                <span>{{ 'tab.statistics'|trans }}</span>
+                <span>{{ 'tab.overview'|trans }}</span>
             </a>
         </li>
         <li class="tab {{ current == "users" ? 'current' }}">
@@ -19,3 +19,4 @@
         {% endif %}
     </ul>
 </div>
+

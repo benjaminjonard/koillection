@@ -10,6 +10,18 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
+{% block meta %}
+    {% if context == 'user'  %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
+            'image': wishlist.image ? preload(asset(wishlist.image.path)) : null
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="collection-header">
         <div class="title-block">
@@ -23,8 +35,8 @@
             <div class="right">
                 <h1>{{wishlist.name}}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.wish'|trans({'%count%': counters[wishlist.id].wishes}) }}</li>
-                    <li>{{ 'counter.wishlist'|trans({'%count%': counters[wishlist.id].children}) }}</li>
+                    <li>{{ 'counter.wish'|trans({'%count%': getCounters(wishlist).items}) }}</li>
+                    <li>{{ 'counter.wishlist'|trans({'%count%': getCounters(wishlist).children}) }}</li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -51,7 +63,7 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -59,65 +71,76 @@
 
     <div class="content-block">
     <!-- Child collections -->
-        {% if wishlist.children is not empty %}
+        {% if children is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ 'title.wishlist_children'|trans }}</h5>
                 <div class="collections grid-container-collections">
-                    {{ include('App/Wishlist/_partials/list.html.twig', {'wishlists': wishlist.children}) }}
+                    {{ include('App/Wishlist/_list.html.twig', {'wishlists': children}) }}
                 </div>
             </div>
         {% endif %}
 
         <!-- Wishlist's items -->
-        {% if wishlist.wishes is not empty %}
+        {% if wishes is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ 'title.wishes'|trans }}</h5>
-                <ul class="reset-margin">
-                    {% for wish in wishlist.wishes %}
-                        <li class="list-element resize-element {{ loop.last ? 'last' }}" data-title="{{ wish.name }}">
-                            <div class="loan-content valign-wrapper">
-                                <div class="loan-image center-align valign">
-                                    {% if null != wish.image %}
-                                        <a href="{{ preload(asset(wish.image.path)) }}" data-lightbox="image-{{ wish.id }}">
-                                            <img class="wishlist-item-avatar" src="{{ preload(asset(wish.image.thumbnailPath)) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
-                                        </a>
-                                    {% endif %}
-                                </div>
-                                <div class="loan-infos">
-                                    <span class="collection-title">
-                                        {% if wish.url is not null %}
-                                            <a href="{{ wish.url }}" target="_blank">{{ wish.name }}</a>
-                                        {% else %}
-                                            {{wish.name}}
-                                        {% endif %}
-                                    </span>
-                                    {% if wish.price is not null %}
-                                        <span class="loan-price">
+
+                <table class="centered striped">
+                    <thead>
+                    <tr>
+                        <th>{{ 'label.image'|trans }}</th>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.price'|trans }}</th>
+                        <th class="hide-on-small-only">{{ 'label.name'|trans }}</th>
+                        {% if context == 'default' %}
+                            <th>{{ 'label.actions'|trans }}</th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for wish in wishes %}
+                        <tr class="list-element resize-element" data-title="{{ wish.name }}">
+                            <td>
+                                {% if null != wish.image %}
+                                    <a href="{{ preload(asset(wish.image.path)) }}" data-lightbox="image-{{ wish.id }}">
+                                        <img class="wishlist-item-avatar" src="{{ preload(asset(wish.image.thumbnailPath)) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
+                                    </a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if wish.url is not null %}
+                                    <a href="{{ wish.url }}" target="_blank">{{ wish.name }}</a>
+                                {% else %}
+                                    {{wish.name}}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if wish.price is not null %}
+                                    <span>
                                             {% if wish.price is not null %}
-                                                ({{ wish.price }}
+                                                {{ wish.price }}
                                                 {% if wish.currency is not null %}
-                                                    &nbsp;{{ getCurrencySymbol(wish.currency) }})
-                                                {% else %}
-                                                    )
+                                                    &nbsp;{{ getCurrencySymbol(wish.currency) }}
                                                 {% endif %}
                                             {% endif %}
                                         </span>
-                                    {% endif %}
-                                    <br/>
-                                    <span>{{ wish.comment }}</span>
-                                </div>
-
-                                {% if context == 'default' %}
-                                    <div class='list-actions'>
-                                        <a href="{{ path('app_wish_transfer_to_collection', {id: wish.id}) }}" title="{{ 'tooltip.transfer_to_collection'|trans }}"><i class="fa fa-plus fa-fw"></i></a>
-                                        <a href="{{ path('app_wish_edit', {id: wish.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
-                                        <a href="#delete-{{ wish.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
-                                    </div>
                                 {% endif %}
-                            </div>
-                        </li>
+                            </td>
+                            <td class="hide-on-small-only">
+                                {{ wish.comment }}
+                            </td>
+                            {% if context == 'default' %}
+                                <td class="table-actions">
+                                    <a href="{{ path('app_wish_transfer_to_collection', {id: wish.id}) }}" title="{{ 'tooltip.transfer_to_collection'|trans }}"><i class="fa fa-plus fa-fw"></i></a>
+                                    <a href="{{ path('app_wish_edit', {id: wish.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
+                                    <a href="#delete-{{ wish.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
+                                </td>
+                            {% endif %}
+                        </tr>
                     {% endfor %}
-                </ul>
+                    </tbody>
+                </table>
             </div>
         {% endif %}
     </div>
@@ -129,10 +152,10 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/modal-share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
-        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
-        {% for wish in wishlist.wishes %}
-            {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
+        {{ include('App/_partials/_modal_share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
+        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
+        {% for wish in wishes %}
+            {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}

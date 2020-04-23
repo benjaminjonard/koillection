@@ -10,11 +10,6 @@ use App\Enum\LogTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\Log\Logger;
 
-/**
- * Class TagLogger
- *
- * @package App\Service\Log\Logger
- */
 class TagLogger extends Logger
 {
     /**
@@ -73,7 +68,7 @@ class TagLogger extends Logger
 
         $mainPayload = [];
 
-        if (array_key_exists('label', $changeset)) {
+        if (\array_key_exists('label', $changeset)) {
             $mainPayload[] = [
                 'label' => $tag->getLabel(),
                 'property' => 'label',
@@ -82,7 +77,7 @@ class TagLogger extends Logger
             ];
         }
 
-        if (array_key_exists('description', $changeset)) {
+        if (\array_key_exists('description', $changeset)) {
             $mainPayload[] = [
                 'label' => $tag->getLabel(),
                 'property' => 'description',
@@ -91,7 +86,7 @@ class TagLogger extends Logger
             ];
         }
 
-        if (array_key_exists('visibility', $changeset)) {
+        if (\array_key_exists('visibility', $changeset)) {
             $mainPayload[] = [
                 'label' => $tag->getLabel(),
                 'property' => 'visibility',
@@ -99,7 +94,7 @@ class TagLogger extends Logger
                 'new' => $tag->getVisibility()
             ];
         }
-        if (array_key_exists('image', $changeset)) {
+        if (\array_key_exists('image', $changeset)) {
             $mainPayload[] = [
                 'label' => $tag->getLabel(),
                 'property' => 'image'

@@ -7,11 +7,6 @@ namespace App\Repository;
 use App\Enum\DatumTypeEnum;
 use Doctrine\ORM\EntityRepository;
 
-/**
- * Class DatumRepository
- *
- * @package App\Repository
- */
 class DatumRepository extends EntityRepository
 {
     /**

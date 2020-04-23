@@ -1,15 +1,17 @@
 import '../translations/config'
-import '../translations/javascript/en'
-import '../translations/javascript/fr'
+import '../translations/javascript/en-GB'
+import '../translations/javascript/fr-FR'
 
 import Translator from '../translator.min.js'
 import echarts from './echarts.min'
 
 $(document).ready(function() {
-    let themeMainHue = document.querySelector('.statistics-holder').dataset.themeMainHue;
-    let themeDarkHue = document.querySelector('.statistics-holder').dataset.themeDarkHue;
-    let themeLightHue = document.querySelector('.statistics-holder').dataset.themeLightHue;
-    let themeLightestHue = document.querySelector('.statistics-holder').dataset.themeLightestHue;
+    let $statisticHolder = document.querySelector('.statistics-holder');
+    let isDarkMode =  $statisticHolder.dataset.isDarkMode == 1 ? true : false;
+    let themeMainHue = $statisticHolder.dataset.themeMainHue;
+    let themeDarkHue = $statisticHolder.dataset.themeDarkHue;
+    let themeLightHue = $statisticHolder.dataset.themeLightHue;
+    let themeLightestHue =$statisticHolder .dataset.themeLightestHue;
     let monthDaysChartData = JSON.parse(document.querySelector('#month-days-chart').dataset.json);
     let hoursChartData = JSON.parse(document.querySelector('#hours-chart').dataset.json);
     let monthsChartData = JSON.parse(document.querySelector('#months-chart').dataset.json);
@@ -29,11 +31,45 @@ $(document).ready(function() {
         xAxis: {
             type : 'category',
             data: monthDaysChartData.map(element => element.abscissa),
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
             axisTick: {
-                alignWithLabel: true
+                alignWithLabel: true,
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
             }
         },
-        yAxis: {},
+        yAxis: {
+            splitLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#7d7f82': '#ccc'
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisTick: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            }
+        },
         series: [{
             type: 'bar',
             data: monthDaysChartData.map(element => element.count)
@@ -50,11 +86,45 @@ $(document).ready(function() {
         xAxis: {
             type : 'category',
             data: hoursChartData.map(element => element.abscissa),
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
             axisTick: {
-                alignWithLabel: true
+                alignWithLabel: true,
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
             }
         },
-        yAxis: {},
+        yAxis: {
+            splitLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#7d7f82': '#ccc'
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisTick: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            }
+        },
         series: [{
             type: 'bar',
             data: hoursChartData.map(element => element.count)
@@ -71,11 +141,45 @@ $(document).ready(function() {
         xAxis: {
             type : 'category',
             data: monthsChartData.map(element => element.abscissa),
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
             axisTick: {
-                alignWithLabel: true
+                alignWithLabel: true,
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
             }
         },
-        yAxis: {},
+        yAxis: {
+            splitLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#7d7f82': '#ccc'
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisTick: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            }
+        },
         series: [{
             type: 'bar',
             data: monthsChartData.map(element => element.count)
@@ -92,11 +196,45 @@ $(document).ready(function() {
         xAxis: {
             type : 'category',
             data: weekDaysChartData.map(element => element.abscissa),
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
             axisTick: {
-                alignWithLabel: true
+                alignWithLabel: true,
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
             }
         },
-        yAxis: {},
+        splitLine: {
+            lineStyle: {
+                color: isDarkMode ? '#7d7f82': '#ccc'
+            }
+        },
+        yAxis: {
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisTick: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            }
+        },
         series: [{
             type: 'bar',
             data: weekDaysChartData.map(element => element.count)
@@ -117,12 +255,40 @@ $(document).ready(function() {
         xAxis: {
             type: 'category',
             data: Object.keys(itemsEvolutionData),
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
             axisTick: {
-                alignWithLabel: true
+                alignWithLabel: true,
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
             }
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisTick: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            }
         },
         dataZoom: [{
             handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
@@ -202,8 +368,8 @@ $(document).ready(function() {
                 itemStyle: {
                     normal: {
                         borderWidth: 2,
-                        borderColor: '#ffffff',
-                        color: '#ededed'
+                        borderColor: isDarkMode ? '#36393e' : '#ffffff',
+                        color: isDarkMode ? '#7d7f82' : '#ededed'
                     },
                 },
                 dayLabel: {
@@ -212,6 +378,7 @@ $(document).ready(function() {
                 monthLabel: {
                     show: true,
                     nameMap: monthsLabel,
+                    color: isDarkMode ? '#f0f0f0': '#323233'
                 }
             },
             series: [
@@ -241,6 +408,12 @@ $(document).ready(function() {
                 animationDurationUpdate: 750,
                 itemStyle: {
                     borderColor: themeMainHue,
+                },
+                lineStyle: {
+                    color: isDarkMode ? '#4a4b4d' : '#ccc'
+                },
+                label: {
+                    color: isDarkMode ? '#a6a7a8' : '#555'
                 }
             }
         ]

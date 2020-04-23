@@ -12,11 +12,6 @@ use App\Enum\LogTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\Log\Logger;
 
-/**
- * Class ItemLogger
- *
- * @package App\Service\Log\Logger
- */
 class ItemLogger extends Logger
 {
     /**
@@ -199,6 +194,7 @@ class ItemLogger extends Logger
                             '%value%' => "<strong>".$payload['datum_value']."</strong>"
                         ]);
                 }
+                // no break
             case 'datum_removed':
                 switch ($payload['datum_type']) {
                     case DatumTypeEnum::TYPE_IMAGE:
@@ -217,6 +213,7 @@ class ItemLogger extends Logger
                             '%value%' => "<strong>".$payload['datum_value']."</strong>"
                         ]);
                 }
+                // no break
             default:
                 $defaultValue = $this->translator->trans('log.default_value');
                 $old = $payload['old'] ? $payload['old'] : $defaultValue;

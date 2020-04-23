@@ -11,22 +11,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class ChartBuilder
- *
- * @package App\Service\Graph
- */
 class ChartBuilder
 {
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    private TranslatorInterface $translator;
 
     /**
      * ChartBuilder constructor.
@@ -213,7 +208,7 @@ class ChartBuilder
         $data = [];
         $sql = 'SELECT logged_at AS date, type';
         $sql .= ' FROM koi_log';
-        $sql .= ' WHERE user_id = ?';
+        $sql .= ' WHERE owner_id = ?';
         $sql .= ' AND object_class = ?';
         $sql .= ' AND type IN (?)';
         $sql .= ' ORDER BY date';

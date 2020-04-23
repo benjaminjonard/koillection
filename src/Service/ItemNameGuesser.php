@@ -12,17 +12,12 @@ use App\Enum\DatumTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class ItemNameGuesser
- *
- * @package App\Service
- */
 class ItemNameGuesser
 {
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * ItemHelper constructor.
@@ -35,7 +30,7 @@ class ItemNameGuesser
 
     /**
      * @param Item $item
-     * @return string|null
+     * @return array|null
      */
     public function guess(Item &$item) : ?array
     {
@@ -45,7 +40,7 @@ class ItemNameGuesser
         }
 
         $patternParts = preg_split('/\d+/', $collection->getItems()->first()->getName());
-        if (empty($patternParts) || count($patternParts) > 2) {
+        if (empty($patternParts) || \count($patternParts) > 2) {
             return null;
         }
 

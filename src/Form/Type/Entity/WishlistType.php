@@ -6,7 +6,7 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
-use App\Form\DataTransformer\Base64ToMediumTransformer;
+use App\Form\DataTransformer\Base64ToImageTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -15,31 +15,26 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class WishlistType
- *
- * @package App\Form\Type\Entity
- */
 class WishlistType extends AbstractType
 {
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
-     * @var Base64ToMediumTransformer
+     * @var Base64ToImageTransformer
      */
-    private $base64ToMediumTransformer;
+    private Base64ToImageTransformer $base64ToImageTransformer;
 
     /**
      * WishlistType constructor.
-     * @param Base64ToMediumTransformer $base64ToMediumTransformer
+     * @param Base64ToImageTransformer $base64ToImageTransformer
      * @param EntityManagerInterface $em
      */
-    public function __construct(Base64ToMediumTransformer $base64ToMediumTransformer, EntityManagerInterface $em)
+    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em)
     {
-        $this->base64ToMediumTransformer = $base64ToMediumTransformer;
+        $this->base64ToImageTransformer = $base64ToImageTransformer;
         $this->em = $em;
     }
 
@@ -56,8 +51,8 @@ class WishlistType extends AbstractType
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
-                'required' => false,
+                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'required' => true,
             ])
             ->add('parent', EntityType::class, [
                 'class' => Wishlist::class,
@@ -73,7 +68,7 @@ class WishlistType extends AbstractType
                 $builder->create('image', TextType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer($this->base64ToMediumTransformer)
+                ])->addModelTransformer($this->base64ToImageTransformer)
             )
         ;
     }

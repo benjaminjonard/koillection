@@ -1,5 +1,4 @@
 {% extends 'layout.html.twig' %}
-{% form_theme form 'App/_partials/form-fields.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], wishlist, 'breadcrumb.add_wish') %}
 
@@ -18,46 +17,6 @@
     <div class="clearfix"></div>
 
     <div class="content-block">
-        {{ form_start(form) }}
-            <div class="row">
-                <div class="col s5 offset-s1">
-                    {{ form_row(form.name, {'label' : 'label.name'}) }}
-                </div>
-                <div class="col s5">
-                    {{ form_row(form.image) }}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s5 offset-s1">
-                    {{ form_row(form.url, {'label' : 'label.url'}) }}
-                </div>
-                <div class="col s5">
-                    {{ form_row(form.wishlist, {'label' : 'label.wishlist'}) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s4 offset-s1">
-                    {{ form_row(form.price, {'label' : 'label.price'}) }}
-                </div>
-                <div class="col s4">
-                    {{ form_row(form.currency, {'label' : 'label.currency'}) }}
-                </div>
-                <div class="col s2">
-                    {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s10 offset-s1">
-                    {{ form_row(form.comment, {'label' : 'label.comment', 'attr': {'class': 'materialize-textarea'}} ) }}
-                </div>
-            </div>
-
-            <div class="form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                <a href="{{ path('app_wishlist_show', { id : wishlist.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
-            </div>
-            <div class="clearfix"></div>
-        {{ form_end(form) }}
+        {{ include('App/Wish/_form.html.twig') }}
     </div>
 {% endblock %}

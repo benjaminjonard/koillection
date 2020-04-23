@@ -7,53 +7,44 @@ namespace App\EventListener;
 use App\Entity\User;
 use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * Class FilterListener
- *
- * @package App\EventListener
- */
 class FilterListener
 {
     /**
      * @var EntityManagerInterface
      */
-    private $em;
-
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
+    private EntityManagerInterface $em;
 
     /**
      * @var ContextHandler
      */
-    private $contextHandler;
+    private ContextHandler $contextHandler;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * FilterListener constructor.
      * @param EntityManagerInterface $em
-     * @param TokenStorageInterface $tokenStorage
      * @param ContextHandler $contextHandler
      */
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, ContextHandler $contextHandler)
+    public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
-        $this->tokenStorage = $tokenStorage;
         $this->contextHandler = $contextHandler;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
-     * @param GetResponseEvent $event
+     * @param RequestEvent $event
      */
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(RequestEvent $event)
     {
-        $request = $event->getRequest();
         $filters = $this->em->getFilters();
         $context = $this->contextHandler->getContext();
 
@@ -64,9 +55,10 @@ class FilterListener
         } elseif ($filters->isEnabled('visibility')) {
             $filters->disable('visibility');
         }
+        $this->setContextUser();
 
         //Ownership filter
-        $user = $this->getUser($request, $context);
+        $user = $this->contextHandler->getContextUser();
         if ($user && $context !== 'admin') {
             $filter = $filters->enable('ownership');
             $filter->setParameter('id', $user->getId(), 'integer');
@@ -75,36 +67,18 @@ class FilterListener
         }
     }
 
-    /**
-     * @param Request $request
-     * @param $context
-     * @return null|UserInterface
-     */
-    private function getUser(Request $request, $context) : ?UserInterface
+    public function setContextUser()
     {
-        if ($context === 'user') {
-            preg_match("/^\/user\/(\w+)/", $request->getRequestUri(), $matches);
-            $user = $this->em->getRepository(User::class)->findOneByUsername($matches[1]);
-
+        $user = null;
+        if ($this->contextHandler->getContext() === 'user') {
+            $user = $this->em->getRepository(User::class)->findOneByUsername($this->contextHandler->getUsername());
             if (!$user) {
                 throw new NotFoundHttpException();
             }
-
-            return $user;
+        } elseif ($this->tokenStorage->getToken() && $this->tokenStorage->getToken()->getUser() instanceof User) {
+            $user = $this->tokenStorage->getToken()->getUser();
         }
 
-        $token = $this->tokenStorage->getToken();
-
-        if (!$token) {
-            return null;
-        }
-
-        $user = $token->getUser();
-
-        if (!($user instanceof UserInterface)) {
-            return null;
-        }
-
-        return $user;
+        $this->contextHandler->setContextUser($user);
     }
 }

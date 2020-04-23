@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+{% import "macros.html.twig" as macros %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_category_index', 'trans': 'menu.tag_categories'}], category) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="collection-header">
+        <div class="title-block">
+            <h1>
+                {{ category.label }}
+            </h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.tag'|trans({'%count%': category.tags|length}) }}</li>
+            </ul>
+        </div>
+
+        <div></div>
+
+        <div class="btn-holder">
+            <div class="left">
+                <a href="{{ path('app_tag_category_edit', {'id': category.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                    <i class="fa fa-pencil fa-fw"></i>
+                </a>
+                <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                    <i class="fa fa-trash fa-fw"></i>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-element">
+            <h5 class="header">{{ 'title.tags'|trans }}</h5>
+            <div class="tags-block">
+                <ul class="nav nav-tags">
+                    {% for tag in category.tags|naturalSorting %}
+                        <li class="tag chip">
+                            <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
+                                {{ tag.label }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block modals %}
+    {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_tag_category_delete', {id: category.id}), transKey: 'message.delete.tag_category'}) }}
+{% endblock %}
+

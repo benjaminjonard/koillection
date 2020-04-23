@@ -10,7 +10,6 @@ use App\Entity\Log;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
-use App\Service\CounterCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,33 +17,40 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class CollectionController
- *
- * @package App\Controller
- */
 class CollectionController extends AbstractController
 {
     /**
-     * @Route("/collections", name="app_collection_index", methods={"GET"})
-     * @Route("/user/{username}", name="app_user_collection_index", methods={"GET"})
-     * @Route("/preview", name="app_preview_collection_index", methods={"GET"})
+     * @Route({
+     *     "en": "/collections",
+     *     "fr": "/collections"
+     * }, name="app_collection_index", methods={"GET"})
      *
-     * @param CounterCalculator $counterCalculator
+     * @Route({
+     *     "en": "/user/{username}",
+     *     "fr": "/utilisateur/{username}"
+     * }, name="app_user_collection_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview",
+     *     "fr": "/apercu"
+     * }, name="app_preview_collection_index", methods={"GET"})
+     *
      * @return Response
      */
-    public function index(CounterCalculator $counterCalculator) : Response
+    public function index() : Response
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllParent();
 
         return $this->render('App/Collection/index.html.twig', [
-            'collections' => $collections,
-            'counters' => $counterCalculator->collectionsCounters($collections)
+            'collections' => $collections
         ]);
     }
 
     /**
-     * @Route("/collections/add", name="app_collection_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/add",
+     *     "fr": "/collections/ajouter"
+     * }, name="app_collection_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -85,31 +91,52 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}", name="app_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/user/{username}/{id}", name="app_user_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/preview/{id}", name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/collections/{id}",
+     *     "fr": "/collections/{id}"
+     * }, name="app_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/{id}",
+     *     "fr": "/utilisateur/{username}/{id}"
+     * }, name="app_user_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/{id}",
+     *     "fr": "/apercu/{id}"
+     * }, name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("collection", expr="repository.findById(id)")
      *
      * @param Collection $collection
-     * @param CounterCalculator $counterCalculator
      * @return Response
      */
-    public function show(Collection $collection, CounterCalculator $counterCalculator) : Response
+    public function show(Collection $collection) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $em->getRepository(Collection::class)->findChildrenByCollectionId($collection->getId()),
-            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId()),
-            'counters' => $counterCalculator->collectionCounters($collection)
+            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId())
         ]);
     }
 
     /**
-     * @Route("/collections/{id}/items", name="app_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/user/{username}/{id}/items", name="app_user_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/preview/{id}/items", name="app_preview_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/collections/{id}/items",
+     *     "fr": "/collections/{id}/objets"
+     * }, name="app_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/{id}/items",
+     *     "fr": "/utilisateur/{username}/{id}/objets"
+     * }, name="app_user_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/{id}/items",
+     *     "fr": "/apercu/{id}/objets"
+     * }, name="app_preview_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Collection $collection
      * @return Response
@@ -123,7 +150,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/edit", name="app_collection_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/{id}/edit",
+     *     "fr": "/collections/{id}/editer"
+     * }, name="app_collection_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Collection $collection
@@ -153,7 +183,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/delete", name="app_collection_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/{id}/delete",
+     *     "fr": "/collections/{id}/supprimer"
+     * }, name="app_collection_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Collection $collection
      * @param TranslatorInterface $translator
@@ -175,7 +208,10 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * @Route("/collections/{id}/batch-tagging", name="app_collection_batch_tagging", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/collections/{id}/batch-tagging",
+     *     "fr": "/collections/{id}/tagguer-par-lot"
+     * }, name="app_collection_batch_tagging", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Collection $collection
@@ -197,14 +233,17 @@ class CollectionController extends AbstractController
             return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }
 
-        return $this->render('App/Collection/batch-tagging.html.twig', [
+        return $this->render('App/Collection/batch_tagging.html.twig', [
             'form' => $form->createView(),
             'collection' => $collection,
         ]);
     }
 
     /**
-     * @Route("/collections/{id}/history", name="app_collection_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/collections/{id}/history",
+     *     "fr": "/collections/{id}/historique"
+     * }, name="app_collection_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Collection $collection
      * @return Response

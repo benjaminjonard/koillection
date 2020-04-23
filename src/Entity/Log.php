@@ -9,69 +9,66 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Log
- *
- * @package App\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
  * @ORM\Table(name="koi_log")
  */
 class Log
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    private $type;
+    private string $type;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $loggedAt;
+    private ?\DateTimeInterface $loggedAt = null;
 
     /**
-     * @var integer
+     * @var string
      * @ORM\Column(type="uuid")
      */
-    private $objectId;
+    private string $objectId;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $objectLabel;
+    private string $objectLabel;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $objectClass;
+    private string $objectClass;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", options={"default": 0})
      */
-    private $objectDeleted;
+    private bool $objectDeleted;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private $payload;
+    private string $payload;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="logs")
      */
-    private $user;
+    private User $owner;
 
     public function __construct()
     {
@@ -87,186 +84,98 @@ class Log
         return $this->id->toString();
     }
 
-    /**
-     * Set loggedAt
-     *
-     * @param \DateTime $loggedAt
-     *
-     * @return Log
-     */
-    public function setLoggedAt($loggedAt) : self
+    public function getType(): ?string
     {
-        $this->loggedAt = $loggedAt;
-
-        return $this;
+        return $this->type;
     }
 
-    /**
-     * Get loggedAt
-     *
-     * @return \DateTime
-     */
-    public function getLoggedAt()
-    {
-        return $this->loggedAt;
-    }
-
-    /**
-     * @param $objectId
-     * @return Log
-     */
-    public function setObjectId($objectId) : self
-    {
-        $this->objectId = $objectId;
-
-        return $this;
-    }
-
-    /**
-     * Get objectId
-     *
-     * @return integer
-     */
-    public function getObjectId()
-    {
-        return $this->objectId;
-    }
-
-    /**
-     * Set objectClass
-     *
-     * @param string $objectClass
-     *
-     * @return Log
-     */
-    public function setObjectClass($objectClass) : self
-    {
-        $this->objectClass = $objectClass;
-
-        return $this;
-    }
-
-    /**
-     * Get objectClass
-     *
-     * @return string
-     */
-    public function getObjectClass()
-    {
-        return $this->objectClass;
-    }
-
-    /**
-     * Set payload
-     *
-     * @param string $payload
-     *
-     * @return Log
-     */
-    public function setPayload($payload) : self
-    {
-        $this->payload = $payload;
-
-        return $this;
-    }
-
-    /**
-     * Get payload
-     *
-     * @return string
-     */
-    public function getPayload()
-    {
-        return $this->payload;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \App\Entity\User $user
-     *
-     * @return Log
-     */
-    public function setUser(User $user = null) : self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \App\Entity\User
-     */
-    public function getUser() : User
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Log
-     */
-    public function setType($type) : self
+    public function setType(?string $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
+    public function getLoggedAt(): ?\DateTimeInterface
     {
-        return $this->type;
+        return $this->loggedAt;
     }
 
-    /**
-     * Set objectLabel
-     *
-     * @param string $objectLabel
-     *
-     * @return Log
-     */
-    public function setObjectLabel($objectLabel) : self
+    public function setLoggedAt(\DateTimeInterface $loggedAt): self
+    {
+        $this->loggedAt = $loggedAt;
+
+        return $this;
+    }
+
+    public function getObjectId()
+    {
+        return $this->objectId;
+    }
+
+    public function setObjectId(string $objectId): self
+    {
+        $this->objectId = $objectId;
+
+        return $this;
+    }
+
+    public function getObjectLabel(): ?string
+    {
+        return $this->objectLabel;
+    }
+
+    public function setObjectLabel(string $objectLabel): self
     {
         $this->objectLabel = $objectLabel;
 
         return $this;
     }
 
-    /**
-     * Get objectLabel
-     *
-     * @return string
-     */
-    public function getObjectLabel()
+    public function getObjectClass(): ?string
     {
-        return $this->objectLabel;
+        return $this->objectClass;
     }
 
-    /**
-     * @return bool
-     */
-    public function isObjectDeleted(): bool
+    public function setObjectClass(string $objectClass): self
+    {
+        $this->objectClass = $objectClass;
+
+        return $this;
+    }
+
+    public function isObjectDeleted(): ?bool
     {
         return $this->objectDeleted;
     }
 
-    /**
-     * @param bool $objectDeleted
-     * @return Log
-     */
-    public function setObjectDeleted(bool $objectDeleted) : self
+    public function setObjectDeleted(bool $objectDeleted): self
     {
         $this->objectDeleted = $objectDeleted;
+
+        return $this;
+    }
+
+    public function getPayload(): ?string
+    {
+        return $this->payload;
+    }
+
+    public function setPayload(?string $payload): self
+    {
+        $this->payload = $payload;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }

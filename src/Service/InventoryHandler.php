@@ -7,11 +7,6 @@ namespace App\Service;
 use App\Entity\Collection;
 use App\Entity\Inventory;
 
-/**
- * Class InventoryHandler
- *
- * @package App\Service
- */
 class InventoryHandler
 {
     /**
@@ -110,7 +105,8 @@ class InventoryHandler
         return $content;
     }
 
-    private function getCheckedItems(array &$collection) {
+    private function getCheckedItems(array &$collection)
+    {
         $count = 0;
 
         foreach ($collection['items'] as $item) {

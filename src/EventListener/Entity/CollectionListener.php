@@ -8,11 +8,6 @@ use App\Entity\Collection;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-/**
- * Class CollectionListener
- *
- * @package App\EventListener\Entity
- */
 class CollectionListener
 {
     /**
@@ -26,13 +21,13 @@ class CollectionListener
         foreach ($uow->getScheduledEntityUpdates() as $keyEntity => $entity) {
             if ($entity instanceof Collection) {
                 $changeset = $uow->getEntityChangeSet($entity);
-                if (array_key_exists('parent', $changeset)) {
+                if (\array_key_exists('parent', $changeset)) {
                     if ($entity->getParent()->getVisibility() === VisibilityEnum::VISIBILITY_PRIVATE) {
                         $this->setVisibilityRecursively($entity, $entity->getParent()->getVisibility());
                     }
                 }
 
-                if (array_key_exists('visibility', $changeset)) {
+                if (\array_key_exists('visibility', $changeset)) {
                     $this->setVisibilityRecursively($entity, $entity->getVisibility());
                 }
             }
@@ -43,7 +38,7 @@ class CollectionListener
      * @param $collection
      * @param $visibility
      */
-    public function setVisibilityRecursively($collection, $visibility)
+    public function setVisibilityRecursively(Collection $collection, $visibility)
     {
         $collection->setVisibility($visibility);
 

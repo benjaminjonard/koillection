@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Item;
-use App\Entity\Medium;
+use App\Entity\Image;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
@@ -18,17 +18,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class WishController
- *
- * @package App\Controller
- *
- * @Route("/wishes")
- */
 class WishController extends AbstractController
 {
     /**
-     * @Route("/add", name="app_wish_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/add",
+     *     "fr": "/souhaits/ajouter"
+     * }, name="app_wish_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -76,7 +72,10 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_wish_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/{id}/edit",
+     *     "fr": "/souhaits/{id}/editer"
+     * }, name="app_wish_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Wish $wish
@@ -101,7 +100,10 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_wish_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/{id}/delete",
+     *     "fr": "/souhaits/{id}/supprimer"
+     * }, name="app_wish_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Wish $wish
      * @param TranslatorInterface $translator
@@ -119,12 +121,14 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/transfer-to-collection", name="app_wish_transfer_to_collection", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/{id}/transfer",
+     *     "fr": "/souhaits/{id}/transferer"
+     * }, name="app_wish_transfer_to_collection", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Wish $wish
      * @param TranslatorInterface $translator
-     * @param ItemNameGuesser $itemHelper
      * @return Response
      */
     public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator) : Response
@@ -133,29 +137,12 @@ class WishController extends AbstractController
         $item
             ->setVisibility($wish->getVisibility())
             ->setName($wish->getName())
+            ->setImage($wish->getImage())
         ;
-
-        if ($wish->getImage() instanceof Medium) {
-            $item->setImage(
-                (new Medium())
-                    ->setPath($wish->getImage()->getPath())
-                    ->setThumbnailPath($wish->getImage()->getThumbnailPath())
-                    ->setSize($wish->getImage()->getSize())
-                    ->setThumbnailSize($wish->getImage()->getThumbnailSize())
-                    ->setMimetype($wish->getImage()->getFilename())
-                    ->setFilename($wish->getImage()->getFilename())
-                    ->setType($wish->getImage()->getType())
-                    ->preventFileRemoval()
-            );
-        }
 
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$item->getImage()->fileCanBeDeleted()) {
-                $wish->getImage()->preventFileRemoval();
-            }
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($item);
             $em->remove($wish);
@@ -169,7 +156,7 @@ class WishController extends AbstractController
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);
         }
 
-        return $this->render('App/Wish/transfer-to-collection.html.twig', [
+        return $this->render('App/Wish/transfer_to_collection.html.twig', [
             'form' => $form->createView(),
             'item' => $item,
             'wish' => $wish,

@@ -6,6 +6,17 @@
     {{ renderTitle(breadcrumb)  }}
 {% endblock %}
 
+{% block meta %}
+    {% if context == 'user'  %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')})
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block breadcrumb %}
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
@@ -15,8 +26,8 @@
         <div class="title-block">
             <h1>{{ 'menu.collections'|trans }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.item'|trans({'%count%': counters['totalItemsCount']}) }}</li>
-                <li>{{ 'counter.collection'|trans({'%count%': counters['totalChildrenCount']}) }}</li>
+                <li>{{ 'counter.item'|trans({'%count%': getTotalItemsCounter(collections)}) }}</li>
+                <li>{{ 'counter.collection'|trans({'%count%': getTotalChildrenCounter(collections)}) }}</li>
             </ul>
         </div>
 
@@ -32,7 +43,7 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -40,16 +51,14 @@
 
     <div class="content-block">
         <div class="collections grid-container-collections">
-            {% for collection in collections %}
-                {{ include('App/Collection/_partials/collection.html.twig', {'collection': collection}) }}
-            {% endfor %}
+            {{ include('App/Collection/_list.html.twig', {'collections': collections}) }}
         </div>
     </div>
 {% endblock %}
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/modal-share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
+        {{ include('App/_partials/_modal_share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 

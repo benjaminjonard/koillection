@@ -1,0 +1,17 @@
+{% import "macros.html.twig" as macros %}
+
+{% for wishlist in wishlists %}
+    <div class="collection-element resize-element" data-title="{{ wishlist.name }}">
+        <a class="collection-circle-thumbnail" href="{{ path('app_wishlist_show'|applyContext, {'id': wishlist.id}) }}"  aria-label="{{ 'aria.wishlist'|trans({'%name%': wishlist.name}) }}">
+            {% if wishlist.image != null %}
+                {{ macros.lazyImage(wishlist.image.path, null, null, 'placeholder--circle') }}
+            {% else %}
+                <span class="color-avatar circle avatar color-{{ wishlist.color }}">{{wishlist.name|first|upper}}</span>
+            {% endif %}
+        </a>
+        <span class="collection-title">{{ wishlist.name|u.truncate(27) }}</span>
+        <p class="collection-stats">
+            {{ 'counter.wish'|trans({'%count%': getCounters(wishlist).items}) }}
+        </p>
+    </div>
+{% endfor %}

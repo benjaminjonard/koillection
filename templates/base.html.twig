@@ -1,63 +1,68 @@
 <!doctype html>
 <html dir="ltr" lang="{{ app.request.locale }}">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="description" content="{{ 'meta.description'|trans }}">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="{% block description %}{{ 'meta.description'|trans }}{% endblock %}">
+    <title>{% block title %}Koillection{% endblock %}</title>
 
-        <title>{% block title %}Koillection{% endblock %}</title>
+    {% block meta %}
+        {{ include('App/_partials/_meta.html.twig') }}
+    {% endblock %}
 
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ preload(asset('apple-touch-icon.png')) }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ preload(asset('favicon-32x32.png')) }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ preload(asset('favicon-16x16.png')) }}">
-        <link rel="manifest" href="{{ preload(asset('manifest.json')) }}">
-        <link rel="mask-icon" href="{{ preload(asset('safari-pinned-tab.svg')) }}" color="#009688">
-        <meta name="msapplication-TileColor" content="#009688">
-        <meta name="theme-color" content="#009688">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ preload(asset('apple-touch-icon.png')) }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ preload(asset('favicon-32x32.png')) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ preload(asset('favicon-16x16.png')) }}">
+    <link rel="manifest" href="{{ preload(asset('manifest.json')) }}">
+    <link rel="mask-icon" href="{{ preload(asset('safari-pinned-tab.svg')) }}" color="#009688">
+    <meta name="msapplication-TileColor" content="#009688">
+    <meta name="theme-color" content="#009688">
 
-        {% block stylesheets %}
-            <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/app.css')) }}" nonce="{{ csp_nonce() }}">
-            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/' ~ app.user.theme ~ '.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
-            {% else %}
-                <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/teal.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
-            {% endif %}
-        {% endblock %}
-    </head>
-    <body class="
+    {% block stylesheets %}
+        <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/app.css')) }}" nonce="{{ csp_nonce() }}">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/' ~ app.user.theme ~ '.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
+            <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/flags.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
+        {% else %}
+            <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/teal.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
+        {% endif %}
+    {% endblock %}
+</head>
+<body class="
         {{ is_granted('IS_AUTHENTICATED_REMEMBERED') == false and context == 'default' ? 'unauthorized ' }}
         {{ app.request.cookies.get('sidebar_collapsed') ? 'collapsed ' }}
         {{ status_code is defined ? 'error ' }}
     ">
 
-    {% block body %}{% endblock %}
-        <div id="js-date-format" data-js-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"></div>
-        <div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
-        {% block javascripts %}
-            <script src="{{ preload(asset('build/js/app.js')) }}" nonce="{{ csp_nonce() }}"></script>
-            <script nonce="{{ csp_nonce() }}">
-                if ('serviceWorker' in navigator) {
-                    const LOADING = 0;
-                    const LOADED = 1;
-                    const FAILED = 2;
+{% block body %}{% endblock %}
+<div id="js-date-format" data-js-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"></div>
+<div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
+{% block javascripts %}
+    <script src="{{ preload(asset('build/js/app.js')) }}" nonce="{{ csp_nonce() }}"></script>
+    <script nonce="{{ csp_nonce() }}">
+        window.onload = window.onpageshow = function() {
+            document.documentElement.className = '';
+        };
 
-                    navigator.serviceWorker.register('{{ preload(asset('sw.js')) }}', { scope: "/" });
-                    navigator.serviceWorker.addEventListener('message', function (event) {
-                        if (event.data === LOADING) {
-                            document.documentElement.className = 'loading';
-                        }
-
-                        if (event.data === LOADED) {
-                            document.documentElement.className = '';
-                        }
-
-                        if (event.data === FAILED) {
-                            document.documentElement.classList.add('fail');
-                        }
-                    });
+        if ('serviceWorker' in navigator) {
+            const LOADING = 0;
+            const LOADED = 1;
+            const FAILED = 2;
+            navigator.serviceWorker.register('{{ preload(asset('sw.js')) }}', { scope: "/" });
+            navigator.serviceWorker.addEventListener('message', function (event) {
+                if (event.data === LOADING) {
+                    document.documentElement.className = 'loading';
                 }
-            </script>
-        {% endblock %}
-    </body>
+                if (event.data === LOADED) {
+                    document.documentElement.className = '';
+                }
+                if (event.data === FAILED) {
+                    document.documentElement.classList.add('fail');
+                }
+            });
+        }
+    </script>
+{% endblock %}
+</body>
 </html>

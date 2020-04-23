@@ -1,7 +1,0 @@
-_translation_edit_in_place:
-    resource: '@TranslationBundle/Resources/config/routing_edit_in_place.yml'
-    prefix:  /admin
-
-_translation_webui:
-    resource: "@TranslationBundle/Resources/config/routing_webui.yml"
-    prefix:  /admin

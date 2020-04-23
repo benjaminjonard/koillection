@@ -1,0 +1,17 @@
+<div class="locales-dropdown">
+    <a class='dropdown-trigger' href='#' data-target='dropdownLocale'>
+        {{ ('global.locale.' ~ getLocaleLabel(app.request.locale))|trans }}
+        <i class="fa fa-chevron-down fa-fw"></i>
+    </a>
+
+    <ul id="dropdownLocale" class='dropdown-content'>
+        {% for key, locale in getLocales() %}
+            <li>
+                <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'_locale': key})) }}">
+                    <span>{{ locale|trans }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="clearfix"></div>

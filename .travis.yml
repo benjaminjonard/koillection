@@ -22,18 +22,21 @@ matrix:
   include:
     - php: 7.3
 
-# Update composer
-before-install:
-  - composer self-update
-
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
+  - echo "extension = apcu.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - composer self-update
   - touch .env.local
   - echo "APP_ENV=test" >> .env.local
   - echo "APP_DEBUG=0" >> .env.local
   - echo "APP_SECRET=WBp61O25u2ysihh4N4FEGwIOfOrfTU" >> .env.local
-  - echo "DATABASE_URL=pgsql://postgres@127.0.0.1:5432/koillection?charset=utf8&serverVersion=10.3" >> .env.local
+  - echo "DB_NAME=koillection" >> .env.local
+  - echo "DB_HOST=127.0.0.1" >> .env.local
+  - echo "DB_PORT=5432" >> .env.local
+  - echo "DB_USER=postgres" >> .env.local
+  - echo "DB_PASSWORD=" >> .env.local
+  - echo "DB_VERSION=10.3" >> .env.local
   - SYMFONY_ENV=test composer install -o
   - php bin/console doctrine:database:create --env=test --if-not-exists
   - php bin/console doctrine:schema:create --env=test

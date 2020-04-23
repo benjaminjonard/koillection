@@ -1,5 +1,4 @@
 {% extends 'layout.html.twig' %}
-{% form_theme form 'App/_partials/form-fields.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([
     {'route': 'app_tools_index', 'trans': 'menu.tools'},
@@ -45,13 +44,13 @@
             <div class="block-element">
                 <div class="row">
                     <h5 class="header">{{ 'title.infos'|trans }}</h5>
-                    <div class="col s10 offset-s1 m5 offset-m1">
+                    <div class="col s12 m5 offset-m1">
                         {{ form_row(form.name, {'label' : 'label.name'}) }}
                     </div>
                 </div>
                 <div class="row">
                     <h5 class="header">{{ 'title.collections'|trans }}</h5>
-                    <div class="col s10 offset-s1 m5 offset-m1">
+                    <div class="col s12 m5 offset-m1">
                         <ul class="inventory-collection">
                             <li>
                                 <p>
@@ -61,7 +60,7 @@
                                     </label>
                                 </p>
 
-                                {% for collection in collections if collection.parent == null %}
+                                {% for collection in collections|filter(collection => collection.parent == null) %}
                                     <ul class="inventory-collection">
                                         {{ recursiveCollection(collection) }}
                                     </ul>

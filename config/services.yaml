@@ -1,7 +1,9 @@
 parameters:
-    version: 'v1.0.4'
-    locale: 'en'
+    version: '1.1.0'
+    locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    container.dumper.inline_factories: true
+    container.dumper.inline_class_loader: true
 
 services:
     _defaults:
@@ -11,6 +13,8 @@ services:
         bind:
             $defaultLocale: '%locale%'
             $publicPath: '%kernel.project_dir%/public'
+            $assetsPath: '%kernel.project_dir%/assets'
+            $paginationItemsPerPage: "%env(APP_PAGINATION_ITEMS_PER_PAGE)%"
 
     App\:
         resource: '../src/*'
@@ -21,6 +25,10 @@ services:
         tags: ['controller.service_arguments']
 
     #Kernel listeners
+    App\EventListener\TranslationCommandListener:
+        tags:
+            - { name: kernel.event_listener, event: console.terminate }
+
     App\EventListener\ContextListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 255 }
@@ -30,7 +38,7 @@ services:
             - { name: kernel.event_listener, event: security.interactive_login }
     App\EventListener\FilterListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request}
+            - { name: kernel.event_listener, event: kernel.request }
     App\EventListener\ActivityListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request }
@@ -43,51 +51,61 @@ services:
             - { name: kernel.event_listener, event: kernel.response}
     App\EventListener\LogQueueListener:
         tags:
-             - { name: kernel.event_listener, event: kernel.response, priority: 5 }
+            - { name: kernel.event_listener, event: kernel.response, priority: 5 }
 
     App\EventListener\AccessDeniedListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.exception }
+            - { name: kernel.event_listener, event: kernel.exception, lazy: true }
 
     #Global listeners
+    App\EventListener\CounterCacheListener:
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, lazy: true }
+            - { name: doctrine.event_listener, event: postUpdate, lazy: true }
+            - { name: doctrine.event_listener, event: postRemove, lazy: true }
     App\EventListener\LoggableListener:
         tags:
-            - { name: doctrine.event_listener, event: postPersist }
-            - { name: doctrine.event_listener, event: preRemove }
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: postPersist, lazy: true }
+            - { name: doctrine.event_listener, event: preRemove, lazy: true }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\TimestampableListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
     App\EventListener\OwnershipListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
     App\EventListener\ColorListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
 
     #Entity listeners
+    App\EventListener\Entity\AlbumListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
+    App\EventListener\Entity\PhotoListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\CollectionListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\ItemListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\WishlistListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\WishListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: onFlush }
-    App\EventListener\Entity\MediumListener:
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
+    App\EventListener\Entity\ImageListener:
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\UserListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+            - { name: doctrine.event_listener, event: preRemove, lazy: true }
 
     #Log
     App\Service\Log\Logger\CollectionLogger:

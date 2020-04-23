@@ -11,11 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class PasswordType
- *
- * @package App\Form\Type\Security
- */
 class PasswordType extends AbstractType
 {
     /**

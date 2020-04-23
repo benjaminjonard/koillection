@@ -1,7 +1,5 @@
 {% extends 'layout.html.twig' %}
 
-{% form_theme form 'App/_partials/form-fields.html.twig' %}
-
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], null, 'breadcrumb.add_wishlist') %}
 
 {% block title %}
@@ -18,30 +16,6 @@
     </div>
 
     <div class="content-block">
-        {{ form_start(form) }}
-            <div class="row">
-                <div class="col offset-s1 s10 m5 offset-m1">
-                    {{ form_row(form.name, {'label' : 'label.name'}) }}
-                </div>
-                <div class="col offset-s1 s10 m3 offset-m">
-                    {{ form_row(form.parent, {'label' : 'label.parent'}) }}
-                </div>
-                <div class="col offset-s1 s10 offset-m0 m2">
-                    {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col offset-s1 s10">
-                    {{ form_row(form.image) }}
-                </div>
-            </div>
-
-            <div class="form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                <a href="{{ path('app_wishlist_index') }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
-            </div>
-            <div class="clearfix"></div>
-        {{ form_end(form) }}
+        {{ include('App/Wishlist/_form.html.twig') }}
     </div>
 {% endblock %}

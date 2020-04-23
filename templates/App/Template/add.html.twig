@@ -1,5 +1,4 @@
 {% extends 'layout.html.twig' %}
-{% form_theme form 'App/_partials/form-fields.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_template_index', 'trans': 'menu.templates'}], null, 'breadcrumb.add_template') %}
 
@@ -17,32 +16,6 @@
     </div>
 
     <div class="content-block">
-        {{ form_start(form) }}
-            <div class="block-element">
-                <div class="row">
-                    <h5 class="header">{{ 'title.infos'|trans }}</h5>
-                    <div class="col s5 offset-s1">
-                        {{ form_row(form.name, {'label': 'label.name'}) }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="block-element">
-                <div class="row">
-                    <h5 class="header">{{ 'title.fields'|trans }}</h5>
-                    <div class="col s11 offset-s1">
-                        <div id="template-fields-holder" data-prototype="{% filter escape %} {{ include('App/Field/prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endfilter %}">
-                            {{ form_row(form.fields) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                <a href="{{ path('app_template_index') }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
-            </div>
-            <div class="clearfix"></div>
-        {{ form_end(form) }}
+        {{ include('App/Template/_form.html.twig') }}
     </div>
 {% endblock %}

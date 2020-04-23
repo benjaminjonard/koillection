@@ -1,9 +1,15 @@
 doctrine:
     dbal:
-        url: '%env(DATABASE_URL)%'
+        dbname: '%env(DB_NAME)%'
+        host: '%env(DB_HOST)%'
+        port: '%env(DB_PORT)%'
+        user: '%env(DB_USER)%'
+        password: '%env(DB_PASSWORD)%'
+        server_version: '%env(DB_VERSION)%'
+        driver: pdo_pgsql
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
             App:

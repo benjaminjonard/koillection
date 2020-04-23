@@ -5,53 +5,51 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Log;
-use App\Enum\LogTypeEnum;
+use App\Form\Type\Model\SearchHistoryType;
+use App\Model\Search\SearchHistory;
 use App\Service\PaginatorFactory;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class HistoryController
- *
- * @package App\Controller
- *
- * @Route("/history")
- */
 class HistoryController extends AbstractController
 {
     /**
-     * @Route("", name="app_history_index", methods={"GET"})
+     * @Route({
+     *     "en": "/history",
+     *     "fr": "/historique"
+     * }, name="", name="app_history_index", methods={"GET"})
      *
      * @param Request $request
      * @param PaginatorFactory $paginatorFactory
+     * @param int $paginationItemsPerPage
      * @return Response
+     * @throws NonUniqueResultException
      */
-    public function index(Request $request, PaginatorFactory $paginatorFactory) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory, int $paginationItemsPerPage) : Response
     {
-        $page = $request->query->get('page', 1);
-        $classes = array_map(
-            function($type) { return 'App\Entity\\'.ucfirst($type); },
-            $request->query->get('types', [])
-        );
-
-        $actions = $request->query->get('actions', []);
-
-        $count = $this->getDoctrine()->getRepository(Log::class)->count([
-            'type' => $actions,
-            'objectClass' => $classes
+        $search = new SearchHistory($request->query->get('page', 1), $paginationItemsPerPage);
+        $form = $this->createForm(SearchHistoryType::class, $search, [
+            'method' => 'GET',
         ]);
+        $form->handleRequest($request);
+
+        $count = $this->getDoctrine()->getRepository(Log::class)->countForSearch($search);
+        $logs = $this->getDoctrine()->getRepository(Log::class)->findForSearch($search);
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('App/History/_logs_table.html.twig', [
+                'logs' => $logs,
+                'paginator' => $paginatorFactory->generate($count)
+            ]);
+        }
 
         return $this->render('App/History/index.html.twig', [
-            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
-                'user' => $this->getUser(),
-                'type' => $actions,
-                'objectClass' => $classes
-            ], [
-                'loggedAt' => 'DESC'
-            ], 10, ($page - 1) * 10),
-            'paginator' => $paginatorFactory->generate($count, 10)
+            'form' => $form->createView(),
+            'logs' => $logs,
+            'paginator' => $paginatorFactory->generate($count)
         ]);
     }
 }

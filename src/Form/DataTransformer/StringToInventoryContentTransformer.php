@@ -9,22 +9,17 @@ use App\Service\InventoryHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
-/**
- * Class StringToInventoryContentTransformer
- *
- * @package App\Form\DataTransformer
- */
 class StringToInventoryContentTransformer implements DataTransformerInterface
 {
     /**
      * @var InventoryHandler
      */
-    protected $inventoryHandler;
+    private InventoryHandler $inventoryHandler;
 
     /**
      * @var EntityManagerInterface
      */
-    protected $em;
+    private EntityManagerInterface $em;
 
     /**
      * StringToInventoryContentTransformer constructor.

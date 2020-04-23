@@ -6,15 +6,11 @@ namespace App\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-/**
- * Class TimestampableListener
- *
- * @package App\EventListener
- */
 final class TimestampableListener
 {
     /**
      * @param LifecycleEventArgs $args
+     * @throws \Exception
      */
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -30,6 +26,7 @@ final class TimestampableListener
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws \Exception
      */
     public function preUpdate(LifecycleEventArgs $args)
     {

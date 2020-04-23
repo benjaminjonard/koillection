@@ -10,6 +10,18 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
+{% block meta %}
+    {% if context == 'user'  %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
+            'image': item.image ? preload(asset(item.image.thumbnailPath)) : null
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="collection-header">
         <div class="title-block">
@@ -76,14 +88,18 @@
                     {% for datum in item.dataTexts %}
                         <div>
                             <span class="label">{{ datum.label }} :</span>
-                            {% for value in datum.value|split(',') %}
-                                {% set tag = item.getTagWithValue(value) %}
-                                {% if tag %}
-                                    <a href="{{ path('app_tag_show'|applyContext, {'id': tag.id}) }}">{{ value }}</a>{{ not loop.last ? ',' }}
-                                {% else %}
-                                    {{ value }}{{ not loop.last ? ',' }}
-                                {% endif %}
-                            {% endfor %}
+                            {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
+                                {% for value in datum.value|split(',') %}
+                                    {% set tag = item.getTagWithValue(value) %}
+                                    {% if tag %}
+                                        <a href="{{ path('app_tag_show'|applyContext, {'id': tag.id}) }}">{{ value }}</a>{{ not loop.last ? ',' }}
+                                    {% else %}
+                                        {{ value }}{{ not loop.last ? ',' }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
+                                <span class="flag flag-{{ datum.value|lower }}"></span>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
@@ -95,7 +111,14 @@
         <div class="tags-block">
             <ul class="nav nav-tags">
                 {% for tag in item.tags|naturalSorting %}
-                    <li class="tag chip"><a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">{{ tag.label }}</a></li>
+                    <li class="tag chip">
+                        <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
+                            {{ tag.label }}
+                        </a>
+                        {% if tag.category is not empty %}
+                            <span class="tag-category-color" style="background-color: {{ tag.category.color }}" title="{{ tag.category.label }}"></span>
+                        {% endif %}
+                    </li>
                 {% endfor %}
             </ul>
         </div>
@@ -104,13 +127,13 @@
     <div class="navigation-block row">
         {% if previousItem is not null %}
             <a href="{{ path('app_item_show'|applyContext, {id: previousItem.id}) }}">
-                <span class="unbreakable"><i class="fa fa-angle-left fa-fw"></i>{{ previousItem.name|truncate(30) }}</span>
+                <span class="unbreakable"><i class="fa fa-angle-left fa-fw"></i>{{ previousItem.name|u.truncate(30) }}</span>
             </a>
         {% endif %}
         {% if previousItem is not null and previousItem is not null %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
         {% if nextItem is not null %}
             <a href="{{ path('app_item_show'|applyContext, {id: nextItem.id}) }}">
-                <span class="unbreakable">{{ nextItem.name|truncate(30) }}<i class="fa fa-angle-right fa-fw"></i></span>
+                <span class="unbreakable">{{ nextItem.name|u.truncate(30) }}<i class="fa fa-angle-right fa-fw"></i></span>
             </a>
         {% endif %}
     </div>
@@ -122,8 +145,8 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/modal-share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
-        {{ include('App/_partials/modal-delete.html.twig', {'id': 'delete', 'route': url('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
+        {{ include('App/_partials/_modal_share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
+        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
     {% endif %}
 {% endblock %}
 

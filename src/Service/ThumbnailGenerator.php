@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-/**
- * Class ThumbnailGenerator
- *
- * @package App\Service
- */
 class ThumbnailGenerator
 {
     /**
@@ -57,7 +52,7 @@ class ThumbnailGenerator
         imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $imageWidth, $imageHeight);
 
         $dir = explode('/', $thumbnailPath);
-        array_pop($dir);
+        \array_pop($dir);
         $dir = implode('/', $dir);
 
         if (!is_dir($dir) && !mkdir($dir) && !is_dir($dir)) {

@@ -6,21 +6,17 @@ namespace App\Http;
 
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class CsvResponse
- * @package App\Http
- */
 class FileResponse extends Response
 {
     /**
      * @var array
      */
-    protected $data;
+    private array $data;
 
     /**
      * @var string
      */
-    protected $filename;
+    private string $filename;
 
     /**
      * CsvResponse constructor.
@@ -38,7 +34,7 @@ class FileResponse extends Response
         $this->render();
     }
 
-    protected function render()
+    private function render()
     {
         $output = fopen('php://temp', 'r+');
 
@@ -47,12 +43,12 @@ class FileResponse extends Response
         }
 
         rewind($output);
-        $this->data = '';
+        $dataString = '';
         while ($line = fgets($output)) {
-            $this->data .= $line;
+            $dataString .= $line;
         }
 
-        $this->data .= fgets($output);
+        $dataString .= fgets($output);
 
         $this->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $this->filename));
 
@@ -60,6 +56,6 @@ class FileResponse extends Response
             $this->headers->set('Content-Type', 'text/plain');
         }
 
-        return $this->setContent($this->data);
+        return $this->setContent($dataString);
     }
 }

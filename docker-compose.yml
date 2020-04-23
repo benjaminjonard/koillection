@@ -3,34 +3,28 @@ version: '3'
 
 services:
     #FPM image
-    #koillection:
-    #    image: koillection/koillection:latest
-    #    restart: always
-    #    ports:
-    #        - 80:8880
-    #    environment:
-    #        - DATABASE_URL=pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4
-    #    depends_on:
-    #        - postgres
-    #    volumes:
-    #        - "./docker/volumes/koillection/public/uploads:/koillection/public/uploads"
-    #        - .:/koillection
-
-    #PPM image
     koillection:
-        image: koillection/koillection-ppm:latest
+        image: docker.pkg.github.com/benjaminjonard/koillection/fpm:v1.1
         restart: always
-        command: --debug=1 --app-env=dev --static-directory=public/
         ports:
             - 80:80
         environment:
-            - DATABASE_URL=pgsql://root:m6iFpZTkR1U6klSvLtRF@postgres:5432/koillection?charset=utf8&serverVersion=10.4
+            - APP_ENV=dev
+            - APP_DEBUG=1
+            - DB_NAME=koillection
+            - DB_HOST=postgres
+            - DB_PORT=5432
+            - DB_USER=root
+            - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
+            - DB_VERSION=10.4
+            - PHP_TZ=Europe/Paris
         depends_on:
             - postgres
         volumes:
-            - "./docker/volumes/koillection/public/uploads:/koillection/public/uploads"
-            - .:/koillection
-            - "./docker/php/php.ini:/etc/php7/php.ini"
+            #- ./docker/volumes/koillection/conf:/conf
+            #- ./docker/volumes/koillection/uploads:/uploads
+            - ./:/var/www/koillection
+            - ./docker/volumes/php/php.ini:/etc/php/7.4/fpm/conf.d/php.ini
 
     postgres:
         container_name: postgres

@@ -13,6 +13,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
 {
     /**
      * @dataProvider isSuccessfulUrlProvider
+     * @param string $url
      */
     public function testPageIsSuccessful(string $url)
     {
@@ -23,6 +24,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
 
     /**
      * @dataProvider isNotFoundUrlProvider
+     * @param string $url
      */
     public function testPageIsNotFound(string $url)
     {
@@ -36,6 +38,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         yield ["/collections"];
         yield ["/collections/add"];
         yield ["/tags"];
+        yield ["/tag-categories"];
         yield ["/wishlists"];
         yield ["/albums"];
         yield ["/albums/add"];

@@ -4,22 +4,18 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-/**
- * Class NonceGenerator
- *
- * @package App\Security
- */
 class NonceGenerator
 {
     /**
      * @var string
      */
-    private $nonce;
+    private ?string $nonce = null;
 
     /**
      * Generates a random nonce parameter.
      *
      * @return string
+     * @throws \Exception
      */
     public function getNonce() : string
     {

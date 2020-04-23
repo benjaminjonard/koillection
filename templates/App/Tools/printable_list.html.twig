@@ -1,0 +1,55 @@
+{% macro recursiveCollection(collection, collections) %}
+    {% import _self as self %}
+    <li class="collection">
+        <span>{{ collection.title }}</span>
+        {% if collection.children|length %}
+            <ul>
+                {% for child in collection.children %}
+                    {% for _collection in collections|filter(_collection => _collection.id == child.id)  %}
+                        {{ self.recursiveCollection(_collection, collections) }}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if collection.items|length %}
+            <ul>
+                {% for item in collection.items|naturalSorting %}
+                    <li class="item"><input type="checkbox">{{ item.name }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% from _self import recursiveCollection %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Koillection</title>
+
+        <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/export.css')) }}" nonce="{{ csp_nonce() }}">
+    </head>
+    <body>
+        <div class="print" title="{{ 'tooltip.print'|trans }}">
+            <i class="fa fa-print fa-fw"></i>
+        </div>
+        <div>
+            {% for collection in collections|filter(collection => collection.parent == null ) %}
+                <ul>
+                    {{ recursiveCollection(collection, collections) }}
+                </ul>
+            {% endfor %}
+        </div>
+    </body>
+
+    <script nonce="{{ csp_nonce() }}">
+        var prints = document.getElementsByClassName("print");
+        var i;
+        for (i = 0; i < prints.length; i++) {
+            prints[i].onclick = function(){window.print();}
+        }
+    </script>
+</html>
+

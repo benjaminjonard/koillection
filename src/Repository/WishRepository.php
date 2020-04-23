@@ -6,18 +6,15 @@ namespace App\Repository;
 
 use App\Entity\Wish;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
-/**
- * Class WishRepository
- *
- * @package App\Repository
- */
 class WishRepository extends EntityRepository
 {
     /**
      * @param string $id
      * @return Wish|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findById(string $id) : ?Wish
     {
@@ -32,6 +29,8 @@ class WishRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {
@@ -41,5 +40,18 @@ class WishRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
+    }
+
+    public function findWishesByWishlistId(string $id) : iterable
+    {
+        $qb = $this
+            ->createQueryBuilder('w')
+            ->where('w.wishlist = :id')
+            ->setParameter('id', $id)
+            ->leftJoin('w.image', 'i')
+            ->addSelect('partial i.{id, path, thumbnailPath}')
+        ;
+
+        return $qb->getQuery()->getResult();
     }
 }
