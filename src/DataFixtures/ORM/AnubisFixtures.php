@@ -146,6 +146,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $wishAnubis
             ->setOwner($user)
             ->setName('Cthulhu Figure')
+            ->setCurrency('EUR')
             ->setWishlist($wishlistPlushes)
             ->setImage($this->loadImage($user, $manager, 'anubis/wishlists/plushes/anubis.jpeg', 'anubis/wishlists/plushes/anubis_small.jpeg'))
         ;

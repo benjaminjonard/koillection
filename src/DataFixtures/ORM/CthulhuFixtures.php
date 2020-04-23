@@ -179,6 +179,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setName('Cthulhu Figure')
             ->setWishlist($wishlistFigure)
+            ->setCurrency('EUR')
             ->setImage($this->loadImage($user, $manager, 'cthulhu/wishlists/figures/cthulhu.jpeg', 'cthulhu/wishlists/figures/cthulhu_small.jpeg'))
         ;
         $manager->persist($wishCthulhu);
