@@ -31,7 +31,7 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
         yield ["/collections"];
         yield ["/collections/add"];
         yield ["/collections/{{collection}}"];
-        yield ["/collections/{{collection}}/edit"];
+        //yield ["/collections/{{collection}}/edit"];
         yield ["/collections/{{collection}}/batch-tagging"];
         yield ["/collections/{{collection}}/history"];
         yield ["/collections/{{collection}}/items"];
