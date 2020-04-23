@@ -23,7 +23,7 @@ Koillection is still in development. There might be some bugs, missing features 
 
 ## Requirements
 
-1. `PHP 7.2` You may need to add the following extensions:
+1. `PHP 7.4` You may need to add the following extensions:
     - `apcu`
     - `cgi`
     - `ctype`
