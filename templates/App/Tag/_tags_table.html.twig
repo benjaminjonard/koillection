@@ -14,14 +14,14 @@
         {% for result in results %}
             <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
                 <td>
-                    <strong><a href="{{ path('app_tag_show'|applyContext, {'id' : result.tag.id}) }}">{{ result.tag.label|truncate(50) }}</a></strong>
+                    <strong><a href="{{ path('app_tag_show'|applyContext, {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a></strong>
                 </td>
                 <td>
                     {% if result.tag.category %}
                         <span class="tag-category-color" style="background-color: {{ result.tag.category.color }}" title="{{ result.tag.category.label }}"></span>
                     {% endif %}
                 </td>
-                <td class="hide-on-small-only">{{ result.tag.description|truncate(50) }}</td>
+                <td class="hide-on-small-only">{{ result.tag.description|u.truncate(50) }}</td>
                 <td>{{ result.itemCount }}</td>
                 <td>{{ result.percent|round(2, 'common') }} %</td>
             </tr>

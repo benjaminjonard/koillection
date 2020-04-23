@@ -90,8 +90,8 @@
                             <tbody>
                             {% for result in results.tags %}
                                 <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
-                                    <td><a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|truncate(50) }}</a></td>
-                                    <td>{{ result.tag.description|truncate(50) }}</td>
+                                    <td><a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a></td>
+                                    <td>{{ result.tag.description|u.truncate(50) }}</td>
                                     <td>{{ result.itemCount }}</td>
                                     <td>{{ result.percent|round(2, 'common') }} %</td>
                                 </tr>

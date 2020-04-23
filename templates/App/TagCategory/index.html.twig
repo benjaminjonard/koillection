@@ -43,9 +43,9 @@
                 {% for category in categories %}
                     <tr class="list-element resize-element" data-title="{{ category.label }}">
                         <td>
-                            <strong><a href="{{ path('app_tag_category_show', {'id' : category.id}) }}">{{ category.label|truncate(50) }}</a></strong>
+                            <strong><a href="{{ path('app_tag_category_show', {'id' : category.id}) }}">{{ category.label|u.truncate(50) }}</a></strong>
                         </td>
-                        <td>{{ category.description|truncate(50) }}</td>
+                        <td>{{ category.description|u.truncate(50) }}</td>
                         <td><span class="list-color" style="background-color: {{ category.color }}" title="{{ category.label }}"></span></td>
                     </tr>
                 {% endfor %}

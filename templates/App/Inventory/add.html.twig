@@ -60,7 +60,7 @@
                                     </label>
                                 </p>
 
-                                {% for collection in collections if collection.parent == null %}
+                                {% for collection in collections|filter(collection => collection.parent == null) %}
                                     <ul class="inventory-collection">
                                         {{ recursiveCollection(collection) }}
                                     </ul>

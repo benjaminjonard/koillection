@@ -5,7 +5,7 @@
         {% if collection.children|length %}
             <ul>
                 {% for child in collection.children %}
-                    {% for _collection in collections if _collection.id == child.id %}
+                    {% for _collection in collections|filter(_collection => _collection.id == child.id)  %}
                         {{ self.recursiveCollection(_collection, collections) }}
                     {% endfor %}
                 {% endfor %}
@@ -36,7 +36,7 @@
             <i class="fa fa-print fa-fw"></i>
         </div>
         <div>
-            {% for collection in collections if collection.parent == null %}
+            {% for collection in collections|filter(collection => collection.parent == null ) %}
                 <ul>
                     {{ recursiveCollection(collection, collections) }}
                 </ul>

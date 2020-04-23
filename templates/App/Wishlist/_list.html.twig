@@ -9,7 +9,7 @@
                 <span class="color-avatar circle avatar color-{{ wishlist.color }}">{{wishlist.name|first|upper}}</span>
             {% endif %}
         </a>
-        <span class="collection-title">{{ wishlist.name|truncate(27) }}</span>
+        <span class="collection-title">{{ wishlist.name|u.truncate(27) }}</span>
         <p class="collection-stats">
             {{ 'counter.wish'|trans({'%count%': getCounters(wishlist).items}) }}
         </p>
