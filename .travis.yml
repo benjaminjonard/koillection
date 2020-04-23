@@ -7,8 +7,8 @@ php:
 sudo: false
 
 # Start mysql service
-addons:
-  postgresql: '10.3'
+services:
+  - postgresql
 
 # Cache composer packages so "composer install" is faster
 cache:
@@ -36,9 +36,9 @@ install:
   - echo "DB_PORT=5432" >> .env.local
   - echo "DB_USER=postgres" >> .env.local
   - echo "DB_PASSWORD=" >> .env.local
-  - echo "DB_VERSION=10.3" >> .env.local
+  - echo "DB_VERSION=11" >> .env.local
   - SYMFONY_ENV=test composer install -o
-  - php bin/console doctrine:database:create --env=test --if-not-exists
+  - psql -c 'create database koillection;' -U postgres
   - php bin/console doctrine:schema:create --env=test
   - php bin/console doctrine:fixtures:load --env=test --no-interaction
 
