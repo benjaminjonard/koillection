@@ -13,4 +13,7 @@
 - `docker tag {tag_returned_by_previous_command} docker.pkg.github.com/benjaminjonard/koillection/{image}:{tag}`
 - `docker push docker.pkg.github.com/benjaminjonard/koillection/{image}:{tag}`
 
+#### Tests
+##### PhpUnit
+- `php -d memory_limit=512M ./bin/phpunit --stderr`
 
