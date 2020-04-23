@@ -5,31 +5,35 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Tag;
-use App\Entity\TagCategory;
 use App\Enum\VisibilityEnum;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Form\DataTransformer\FileToMediumTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class TagType
+ *
+ * @package App\Form\Type\Entity
+ */
 class TagType extends AbstractType
 {
     /**
-     * @var EntityManagerInterface
+     * @var FileToMediumTransformer
      */
-    private EntityManagerInterface $em;
+    private $fileToMediumTransformer;
 
     /**
-     * TagType constructor.
-     * @param EntityManagerInterface $em
+     * DatumType constructor.
+     * @param FileToMediumTransformer $fileToMediumTransformer
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(FileToMediumTransformer $fileToMediumTransformer)
     {
-        $this->em = $em;
+        $this->fileToMediumTransformer = $fileToMediumTransformer;
     }
 
     /**
@@ -48,22 +52,15 @@ class TagType extends AbstractType
                 'label' => false,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
-                'required' => true,
-            ])
-            ->add('category', EntityType::class, [
-                'class' => TagCategory::class,
-                'choice_label' => 'label',
-                'choices' => $this->em->getRepository(TagCategory::class)->findAll(),
-                'expanded' => false,
-                'multiple' => false,
-                'choice_name' => null,
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => false,
             ])
-            ->add('image', ImageType::class, [
-                'required' => false,
-                'label' => false
-            ])
+            ->add(
+                $builder->create('image', FileType::class, [
+                    'required' => false,
+                    'label' => false,
+                ])->addModelTransformer($this->fileToMediumTransformer)
+            )
         ;
     }
 

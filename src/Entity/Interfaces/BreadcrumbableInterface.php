@@ -6,6 +6,11 @@ namespace App\Entity\Interfaces;
 
 use App\Entity\User;
 
+/**
+ * Interface BreadcrumbableInterface
+ *
+ * @package App\Entity\Interfaces
+ */
 interface BreadcrumbableInterface
 {
     /**

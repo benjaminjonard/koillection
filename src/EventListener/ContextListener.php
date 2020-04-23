@@ -5,14 +5,19 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use App\Service\ContextHandler;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
+/**
+ * Class ContextListener
+ *
+ * @package App\EventListener
+ */
 class ContextListener
 {
     /**
      * @var ContextHandler
      */
-    private ContextHandler $contextHandler;
+    private $contextHandler;
 
     /**
      * ContextListener constructor.
@@ -24,9 +29,9 @@ class ContextListener
     }
 
     /**
-     * @param RequestEvent $event
+     * @param GetResponseEvent $event
      */
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(GetResponseEvent $event)
     {
         $this->contextHandler->init($event->getRequest());
     }

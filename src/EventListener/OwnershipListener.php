@@ -7,12 +7,17 @@ namespace App\EventListener;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Class OwnershipListener
+ *
+ * @package App\EventListener
+ */
 final class OwnershipListener
 {
     /**
      * @var TokenStorageInterface
      */
-    private TokenStorageInterface $tokenStorage;
+    private $tokenStorage;
 
     /**
      * OwnershipListener constructor.

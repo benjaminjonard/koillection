@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Model;
 
-use App\Model\Search\Search;
+use App\Model\Search;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -13,12 +13,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Class SearchType
+ *
+ * @package App\Form\Type\Model
+ */
 class SearchType extends AbstractType
 {
     /**
      * @var TokenStorageInterface
      */
-    private TokenStorageInterface $tokenStorage;
+    private $tokenStorage;
 
     /**
      * SearchType constructor.
@@ -35,8 +40,10 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $search = $builder->getData();
+
         $builder
-            ->add('term', TextType::class, [
+            ->add('search', TextType::class, [
                 'label' => false,
                 'required' => false
             ])
@@ -49,15 +56,18 @@ class SearchType extends AbstractType
             ])
             ->add('searchInItems', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
+                'data' => $search->getSearchInItems()
             ])
             ->add('searchInCollections', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
+                'data' => $search->getSearchInCollections()
             ])
             ->add('searchInTags', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
+                'data' => $search->getSearchInTags()
             ])
         ;
     }
@@ -69,8 +79,6 @@ class SearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Search::class,
-            'csrf_protection' => false,
-
         ]);
     }
 }

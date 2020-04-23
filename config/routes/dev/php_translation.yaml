@@ -1,10 +1,2 @@
-_translation_webui:
-    resource: "@TranslationBundle/Resources/config/routing_webui.yaml"
-    prefix:  /admin
-
-_translation_edit_in_place:
-    resource: '@TranslationBundle/Resources/config/routing_edit_in_place.yaml'
-    prefix:  /admin
-
 _translation_profiler:
-    resource: '@TranslationBundle/Resources/config/routing_symfony_profiler.yaml'
+    resource: '@TranslationBundle/Resources/config/routing_symfony_profiler.yml'

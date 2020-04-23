@@ -12,36 +12,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class DatumController
+ *
+ * @package App\Controller
+ *
+ * @Route("/datum")
+ */
 class DatumController extends AbstractController
 {
     /**
-     * @Route({
-     *     "en": "/datum/{type}",
-     *     "fr": "/datum/{type}"
-     * }, name="app_datum_get_html_by_type", methods={"GET"})
+     * @Route("/{type}", name="app_datum_get_html_by_type", methods={"GET"})
      *
      * @param string $type
      * @return JsonResponse
      */
     public function getHtmlByType(string $type) : JsonResponse
     {
-        $html = $this->render('App/Datum/_datum.html.twig', [
-            'iteration' => '__placeholder__',
-            'type' => $type
-        ])->getContent();
+        try {
+            $html = $this->render('App/Datum/'.DatumTypeEnum::getTypeSlug($type).'.html.twig', ['iteration' => '__placeholder__'])->getContent();
+            $isImage = \in_array($type, [DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_IMAGE], false) ? true : false;
 
-        return new JsonResponse([
-            'html' => $html,
-            'type' => $type
-        ]);
+            return new JsonResponse([
+                'html' => $html,
+                'isImage' => $isImage,
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse(false, 500);
+        }
     }
 
     /**
-     * @Route({
-     *     "en": "/datum/load-common-fields/{id}",
-     *     "fr": "/datum/charger-les-champs-communs/{id}"
-     * }, name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
+     * @Route("/load-common-fields/{id}", name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("collection", expr="repository.findById(id, true)")
      *
      * @param Collection $collection
@@ -56,8 +58,8 @@ class DatumController extends AbstractController
             if ($first instanceof Item) {
                 foreach ($first->getData() as $datum) {
                     if (!\in_array($datum->getType(), [DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_IMAGE], false)) {
+                        $field['isImage'] = false;
                         $field['datum'] = $datum;
-                        $field['type'] = $datum->getType();
                         $commonFields[$datum->getLabel()] = $field;
                     }
                 }
@@ -83,9 +85,8 @@ class DatumController extends AbstractController
             }
 
             foreach ($commonFields as &$commonField) {
-                $commonField['html'] = $this->render('App/Datum/_datum.html.twig', [
+                $commonField['html'] = $this->render('App/Datum/'.DatumTypeEnum::getTypeSlug($commonField['datum']->getType()).'.html.twig', [
                             'iteration' => '__placeholder__',
-                            'type' => $commonField['type'],
                             'datum' => $commonField['datum']
                         ])->getContent();
                 unset($commonField['datum']);

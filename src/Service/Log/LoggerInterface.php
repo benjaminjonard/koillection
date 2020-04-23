@@ -6,6 +6,11 @@ namespace App\Service\Log;
 
 use App\Entity\Log;
 
+/**
+ * Interface LoggerInterface
+ *
+ * @package App\Service\Log
+ */
 interface LoggerInterface
 {
     /**

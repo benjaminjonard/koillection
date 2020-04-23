@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
+/**
+ * Class LogTypeEnum
+ *
+ * @package App\Enum
+ */
 class LogTypeEnum
 {
     public const TYPE_CREATE = 'create';

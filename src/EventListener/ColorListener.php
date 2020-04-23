@@ -7,12 +7,17 @@ namespace App\EventListener;
 use App\Service\ColorPicker;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
+/**
+ * Class ColorListener
+ *
+ * @package App\EventListener
+ */
 class ColorListener
 {
     /**
      * @var ColorPicker
      */
-    private ColorPicker $colorPicker;
+    private $colorPicker;
 
     /**
      * CollectionListener constructor.
@@ -29,7 +34,7 @@ class ColorListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if (true === property_exists($entity, 'color') && $entity->getColor() === null) {
+        if (true === property_exists($entity, 'color')) {
             $entity->setColor($this->colorPicker->pickRandomColor());
         }
     }

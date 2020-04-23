@@ -1,0 +1,137 @@
+{%- block form_row -%}
+    <div class="input-field">
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_label(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+{%- block file_widget -%}
+    {%- spaceless -%}
+    <div class="input-field image-preview-wrapper file-field row">
+        <div class="btn btn-image col s10 offset-s1 m5">
+            <span>{{ 'label.browse'|trans }}</span>
+        </div>
+        <input type="file" {{ block('widget_attributes') }} class="has-preview hidden"/>
+        {% if attr.src is defined and attr.src is not null and attr.src != '' %}
+            <img class="preview-image pull-right" src="{{ preload(asset(attr.src)) }}" />
+        {% else %}
+            <img class="preview-image pull-right" src="{{ preload(asset('../build/images/default.png')) }}" />
+        {% endif %}
+    </div>
+    {%- endspaceless -%}
+{%- endblock file_widget -%}
+
+{%- block checkbox_row -%}
+    {%- spaceless -%}
+        <p>
+            {{- form_errors(form) -}}
+            <input type="checkbox" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
+            {{- form_label(form) -}}
+        </p>
+    {%- endspaceless -%}
+{%- endblock checkbox_row -%}
+
+{% block _collection_image_widget %}
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>{{ 'label.thumbnail'|trans }}</span>
+            <input type="file" id="cropInput" accept="image/*">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    <div class="row-cropper">
+        <div class="m4 offset-m2 s10" id="cropArea" formName="collection"></div>
+        <div class="m4 offset-m1 s10" id="cropPreview">
+            {% if attr.src is defined and attr.src is not null and attr.src != '' %}
+                <img src="{{ preload(asset(attr.src)) }}">
+            {% endif %}
+        </div>
+    </div>
+    <input type="hidden" value="{{ value|default('') }}" name="collection[image]" id="collection_image"/>
+{% endblock %}
+
+{% block _wishlist_image_widget %}
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>{{ 'label.thumbnail'|trans }}</span>
+            <input type="file" id="cropInput" accept="image/*">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    <div class="row-cropper">
+        <div class="m4 offset-m2 s10" id="cropArea" formName="wishlist"></div>
+        <div class="m4 offset-m1 s10" id="cropPreview">
+            {% if attr.src is defined and attr.src is not null and attr.src != '' %}
+                <img src="{{ preload(asset(attr.src)) }}">
+            {% endif %}
+        </div>
+    </div>
+    <input type="hidden" value="{{ value|default('') }}" name="wishlist[image]" id="wishlist_image"/>
+{% endblock %}
+
+{% block _profile_image_widget %}
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>{{ 'label.thumbnail'|trans }}</span>
+            <input type="file" id="cropInput" accept="image/*">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    <div class="row row-cropper">
+        <div class="col m4 offset-m2 s10 offset-s1" id="cropArea" formName="profile"></div>
+        <div class="col m4 offset-m1 s10 offset-s1" id="cropPreview">
+            {% if attr.src is defined and attr.src is not null and attr.src != '' %}
+                <img src="{{ preload(asset(attr.src)) }}">
+            {% endif %}
+        </div>
+    </div>
+    <input type="hidden" value="{{ value|default('') }}" name="profile[image]" id="profile_image"/>
+{% endblock %}
+
+{% block collection_widget %}
+{% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+        </div>
+        {{ form_rest(form) }}
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+{% spaceless %}
+    <div class="col s5">
+        {{ form_row(prototype.name) }}
+    </div>
+    <div class="col s5">
+        <div class="input-field">
+            {{ form_errors(prototype.type) }}
+            {{ form_widget(prototype.type) }}
+            {{ form_label(prototype.type) }}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% block _template_fields_entry_row %}
+{% spaceless %}
+    {{ include('App/Field/prototype.html.twig', { 'form': form }) }}
+{% endspaceless %}
+{% endblock %}
+
+{% block _template_fields_row %}
+{% spaceless %}
+    {% for child in form %}
+        {{ form_row(child) }}
+    {% endfor %}
+{% endspaceless %}
+{% endblock %}

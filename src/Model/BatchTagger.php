@@ -6,22 +6,27 @@ namespace App\Model;
 
 use App\Entity\Collection;
 
+/**
+ * Class BatchTagger
+ *
+ * @package App\Model
+ */
 class BatchTagger
 {
     /**
      * @var Collection
      */
-    private Collection $collection;
+    private $collection;
 
     /**
      * @var array
      */
-    private array $tags;
+    private $tags;
 
     /**
      * @var bool
      */
-    private bool $recursive;
+    private $recursive;
 
     /**
      * BatchTagger constructor.

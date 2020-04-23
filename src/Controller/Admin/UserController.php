@@ -17,15 +17,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
+ * Class UserController
+ *
+ * @package App\Controller
+ *
+ * @Route("/admin/users")
  * @IsGranted("ROLE_ADMIN")
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route({
-     *     "en": "/admin/users",
-     *     "fr": "/admin/utilisateurs"
-     * }, name="app_admin_user_index", methods={"GET"})
+     * @Route("", name="app_admin_user_index", methods={"GET"})
      *
      * @return Response
      */
@@ -39,10 +41,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/admin/users/add",
-     *     "fr": "/admin/utilisateurs/ajouter"
-     * }, name="app_admin_user_add", methods={"GET", "POST"})
+     * @Route("/add", name="app_admin_user_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -69,10 +68,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/admin/users/{id}/edit",
-     *     "fr": "/admin/utilisateurs/{id}/editer"
-     * }, name="app_admin_user_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_admin_user_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param User $user
      * @param Request $request
@@ -98,10 +94,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/admin/users/{id}/delete",
-     *     "fr": "/admin/utilisateurs/{id}/supprimer"
-     * }, name="app_admin_user_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "DELETE"})
+     * @Route("/{id}/delete", name="app_admin_user_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "DELETE"})
      *
      * @param User $user
      * @param TranslatorInterface $translator

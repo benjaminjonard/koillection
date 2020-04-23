@@ -3,15 +3,19 @@
 declare(strict_types=1);
 
 namespace App\Service\Log;
-
 use App\Entity\Log;
 
+/**
+ * Class LoggerChain
+ *
+ * @package App\Service\Log
+ */
 class LoggerChain
 {
     /**
      * @var iterable
      */
-    private iterable $loggers;
+    private $loggers;
 
     /**
      * LoggerChain constructor.
@@ -35,7 +39,7 @@ class LoggerChain
             $loggers[] = $logger;
         }
 
-        usort($loggers, function (LoggerInterface $a, LoggerInterface $b) {
+        usort($loggers, function(LoggerInterface $a, LoggerInterface $b) {
             return ($a->getPriority() <=> $b->getPriority());
         });
 

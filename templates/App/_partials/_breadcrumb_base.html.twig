@@ -1,7 +1,0 @@
-<ol class="breadcrumb">
-    {% for element in breadcrumb %}
-        <li class="breadcrumb-item {{ loop.last ? 'active' }}">
-            {{ include('App/_partials/_breadcrumb_'~ element.type ~'.html.twig', {'element' : element}) }}
-        </li>
-    {% endfor %}
-</ol>

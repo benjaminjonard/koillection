@@ -1,7 +1,8 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
+{% import "App/macros.html.twig" as macros %}
+{% form_theme form 'Form/fields.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_search_index', 'trans': 'menu.search'}], null, form.vars.value.term is not null ? form.vars.value.term : null) %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_search_index', 'trans': 'menu.search'}], null, form.vars.value.search is not null ? form.vars.value.search : null) %}
 
 {% block title %}
     {{ renderTitle(breadcrumb)  }}
@@ -17,52 +18,64 @@
     </div>
 
     <div class="content-block">
-        {{ form_start(form, {'method': 'GET'}) }}
+        {{ form_start(form) }}
             <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.term, {'label' : 'label.search'}) }}
+                <div class="col offset-s1 s10 m4 offset-m1">
+                    {{ form_row(form.search, {'label' : 'label.search'}) }}
                 </div>
-                <div class="col s12 l5 xl3">
+                <div class="col offset-s1 s10 m4 offset-m0">
                     {{ form_row(form.createdAt, {'label' : 'label.added_at', 'attr': {'class' : 'datepicker' } }) }}
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    <div class="col s4">
-                        {{ form_row(form.searchInCollections, {'label': 'label.collections'}) }}
-                    </div>
-                    <div class="col s4">
-                        {{ form_row(form.searchInItems, {'label': 'label.items'}) }}
-                    </div>
-                    <div class="col s4">
-                        {{ form_row(form.searchInTags, {'label': 'label.tags'}) }}
-                    </div>
+                <div class="col offset-s1 s10 m2 offset-m0">
+                    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 </div>
             </div>
-
-            <div class="row center-align form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            <div class="row">
+                <div class="col s10 offset-s1 m2 offset-m1">
+                    <label>
+                        {{ form_widget(form.searchInCollections) }}
+                        <span>{{ 'label.collections'|trans }}</span>
+                    </label>
+                </div>
+                <div class="col s10 offset-s1 m2 offset-m1">
+                    <label>
+                        {{ form_widget(form.searchInItems) }}
+                        <span>{{ 'label.items'|trans }}</span>
+                    </label>
+                </div>
+                <div class="col s10 offset-s1 m2 offset-m1">
+                    <label>
+                        {{ form_widget(form.searchInTags) }}
+                        <span>{{ 'label.tags'|trans }}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    {{ form_errors(form) }}
+                </div>
             </div>
         {{ form_end(form) }}
     </div>
 
     <div class="content-block">
-        {% if results|length > 0 %}
-            {% if results.collections is defined and results.collections|length > 0 %}
+        {% if collections|length > 0 or items|length > 0 or tags|length > 0 %}
+            {% if collections|length > 0 %}
                 <div class="block-element">
                     <h5 class="header">{{ 'title.collections'|trans }}</h5>
                     <div class="collections grid-container-collections">
-                        {{ include('App/Collection/_list.html.twig', {'collections': results.collections|naturalSorting}) }}
+                        {% for collection in collections|naturalSorting %}
+                            {{ include('App/Collection/partials/collection.html.twig', {'collection': collection}) }}
+                        {% endfor %}
                     </div>
                 </div>
             {% endif %}
 
-            {% if results.items is defined and results.items|length > 0 %}
+            {% if items|length > 0 %}
                 <div class="block-element">
                     <h5 class="header">{{ 'title.items'|trans }}</h5>
                     <div id="collection-items" class="grid-container-items">
-                        {% for item in results.items|naturalSorting %}
+                        {% for item in items|naturalSorting %}
                             <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
                                 <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
                                     {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
@@ -73,7 +86,7 @@
                 </div>
             {% endif %}
 
-            {% if results.tags is defined and results.tags|length > 0 %}
+            {% if tags|length > 0 %}
                 <div class="block-element">
                     <h5 class="header">{{ 'title.tags'|trans }}</h5>
                     <div>
@@ -88,7 +101,7 @@
                             </thead>
 
                             <tbody>
-                            {% for result in results.tags %}
+                            {% for result in tags %}
                                 <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
                                     <td><a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|truncate(50) }}</a></td>
                                     <td>{{ result.tag.description|truncate(50) }}</td>

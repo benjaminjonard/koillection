@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
+{% import "App/macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_sign_index', 'trans': 'menu.signs'}]) %}
 
@@ -9,17 +9,6 @@
 
 {% block breadcrumb %}
     {{ renderBreadcrumb(breadcrumb)  }}
-{% endblock %}
-
-{% block meta %}
-    {% if context == 'user'  %}
-        {{ include('App/_partials/_meta.html.twig', {
-            'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')})
-        }) }}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -50,7 +39,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'route': url('app_user_sign_index', {username: app.user.username})}) }}
+        {{ include('Modal/share.html.twig', {'route': url('app_user_sign_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 

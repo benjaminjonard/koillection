@@ -5,62 +5,60 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
-use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DatumTypeEnum;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * Class Item
+ *
+ * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
- * @ORM\Table(name="koi_item", indexes={
- *     @ORM\Index(name="idx_item_visibility", columns={"visibility"})
- * })
+ * @ORM\Table(name="koi_item")
  */
-class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
+class Item implements BreadcrumbableInterface, LoggableInterface
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $name = null;
+    private $name;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      * @Assert\GreaterThan(0)
      */
-    private int $quantity;
+    private $quantity;
 
     /**
-     * @var Collection
+     * @var \App\Entity\Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="items")
      */
-    private ?Collection $collection = null;
+    private $collection;
 
     /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private ?User $owner = null;
+    private $owner;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="items", cascade={"persist"})
      * @ORM\JoinTable(
      *    name="koi_item_tag",
@@ -69,57 +67,57 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
      * )
      * @ORM\OrderBy({"label" = "ASC"})
      */
-    private DoctrineCollection $tags;
+    private $tags;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
-    private DoctrineCollection $data;
+    private $data;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Loan", mappedBy="item", cascade={"remove"})
      */
-    private DoctrineCollection $loans;
+    private $loans;
 
     /**
-     * @var Template
+     * @var \App\Entity\Template
      * @ORM\ManyToOne(targetEntity="Template", inversedBy="items")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private ?Template $template = null;
+    private $template;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var Medium
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Image $image = null;
+    private $image;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private int $seenCounter;
+    private $seenCounter;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $visibility;
+    private $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $updatedAt = null;
+    private $updatedAt;
 
     /**
      * Constructor.
@@ -132,7 +130,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         $this->tags = new ArrayCollection();
         $this->data = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
-        $this->loans = new ArrayCollection();
     }
 
     /**
@@ -146,7 +143,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     /**
      * Get Data of type images.
      *
-     * @return ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDataImages() : ArrayCollection
     {
@@ -161,13 +158,12 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     /**
      * Get Data of type text.
      *
-     * @return DoctrineCollection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDataTexts() : DoctrineCollection
     {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_TEXT))
-            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_COUNTRY))
             ->orderBy(['position' => Criteria::ASC]);
 
         return $this->data->matching($criteria);
@@ -182,11 +178,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $tag instanceof Tag ? $tag : null;
     }
 
-    public function hasTag(Tag $tag) : bool
-    {
-        return $this->tags->contains($tag);
-    }
-
     /**
      * @return null|string
      */
@@ -195,104 +186,144 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->id->toString();
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return Item
+     */
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getQuantity(): ?int
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName() : ?string
     {
-        return $this->quantity;
+        return $this->name;
     }
 
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function getSeenCounter(): ?int
-    {
-        return $this->seenCounter;
-    }
-
-    public function setSeenCounter(int $seenCounter): self
-    {
-        $this->seenCounter = $seenCounter;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getCollection(): ?Collection
-    {
-        return $this->collection;
-    }
-
-    public function setCollection(?Collection $collection): self
+    /**
+     * Set collection.
+     *
+     * @param \App\Entity\Collection $collection
+     *
+     * @return Item
+     */
+    public function setCollection(Collection $collection = null) : self
     {
         $this->collection = $collection;
 
         return $this;
     }
 
-    public function getOwner(): ?User
+    /**
+     * Get collection.
+     *
+     * @return \App\Entity\Collection
+     */
+    public function getCollection() : ?Collection
     {
-        return $this->owner;
+        return $this->collection;
     }
 
-    public function setOwner(?User $owner): self
+    /**
+     * Set owner.
+     *
+     * @param \App\Entity\User $owner
+     *
+     * @return Item
+     */
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
         return $this;
     }
 
+    /**
+     * Get owner.
+     *
+     * @return User|null
+     */
+    public function getOwner() : ?User
+    {
+        return $this->owner;
+    }
 
-    public function setTags(DoctrineCollection $tags): self
+    /**
+     * Set image
+     *
+     * @param \App\Entity\Medium $image
+     *
+     * @return Item
+     */
+    public function setImage(Medium $image = null) : self
+    {
+        if ($image === null) {
+            return $this;
+        }
+
+        if ($image->getThumbnailPath() === null) {
+            $image->setMustGenerateAThumbnail(true);
+        }
+
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \App\Entity\Medium
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Add tags.
+     *
+     * @param \App\Entity\Tag $tag
+     *
+     * @return Item
+     */
+    public function addTag(Tag $tag) : self
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags.
+     *
+     * @param \App\Entity\Tag $tag
+     *
+     * @return Item
+     */
+    public function removeTag(Tag $tag) : self
+    {
+        $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * Set tags.
+     *
+     * @return \App\Entity\Item $item
+     */
+    public function setTags(DoctrineCollection $tags) : self
     {
         $this->tags = $tags;
 
@@ -300,114 +331,191 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     }
 
     /**
-     * @return DoctrineCollection|Tag[]
+     * Get tags.
      */
-    public function getTags(): DoctrineCollection
+    public function getTags() : DoctrineCollection
     {
         return $this->tags;
     }
 
-    public function addTag(Tag $tag): self
+    /**
+     * Return true id collection has the specified tag.
+     *
+     * @param \App\Entity\Tag $tag
+     *
+     * @return bool
+     */
+    public function hasTag(Tag $tag) : bool
     {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-        }
-
-        return $this;
+        return $this->tags->contains($tag);
     }
 
-    public function removeTag(Tag $tag): self
+    /**
+     * Add datum.
+     *
+     * @param \App\Entity\Datum $datum
+     *
+     * @return Item
+     */
+    public function addDatum(Datum $datum) : self
     {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-        }
+        $datum->setItem($this);
+        $this->data->add($datum);
 
         return $this;
     }
 
     /**
-     * @return DoctrineCollection|Datum[]
+     * @param Datum $datum
+     * @return Item
      */
-    public function getData(): DoctrineCollection
+    public function removeDatum(Datum $datum) : self
+    {
+        $this->data->removeElement($datum);
+
+        return $this;
+    }
+
+    /**
+     * Get data.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getData() : DoctrineCollection
     {
         return $this->data;
     }
 
-    public function addData(Datum $data): self
-    {
-        if (!$this->data->contains($data)) {
-            $this->data[] = $data;
-            $data->setItem($this);
-        }
-
-        return $this;
-    }
-
-    public function removeData(Datum $data): self
-    {
-        if ($this->data->contains($data)) {
-            $this->data->removeElement($data);
-            // set the owning side to null (unless already changed)
-            if ($data->getItem() === $this) {
-                $data->setItem(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
-     * @return DoctrineCollection|Loan[]
+     * Set template.
+     *
+     * @param \App\Entity\Template $template
+     *
+     * @return Item
      */
-    public function getLoans(): DoctrineCollection
-    {
-        return $this->loans;
-    }
-
-    public function addLoan(Loan $loan): self
-    {
-        if (!$this->loans->contains($loan)) {
-            $this->loans[] = $loan;
-            $loan->setItem($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLoan(Loan $loan): self
-    {
-        if ($this->loans->contains($loan)) {
-            $this->loans->removeElement($loan);
-            // set the owning side to null (unless already changed)
-            if ($loan->getItem() === $this) {
-                $loan->setItem(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getTemplate(): ?Template
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(?Template $template): self
+    public function setTemplate(Template $template = null) : self
     {
         $this->template = $template;
 
         return $this;
     }
 
-    public function getImage(): ?Image
+    /**
+     * Get template.
+     *
+     * @return \App\Entity\Template
+     */
+    public function getTemplate() : ?Template
     {
-        return $this->image;
+        return $this->template;
     }
 
-    public function setImage(?Image $image): self
+    /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     *
+     * @return Item
+     */
+    public function setQuantity($quantity) : self
     {
-        $image->setType(ImageTypeEnum::TYPE_COMMON);
-        $this->image = $image;
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Item
+     */
+    public function setCreatedAt($createdAt) : self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Item
+     */
+    public function setUpdatedAt($updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Item
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Item
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

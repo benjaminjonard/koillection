@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
 use App\Service\CounterCalculator;
@@ -15,40 +14,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class WishlistController
+ *
+ * @package App\Controller
+ */
 class WishlistController extends AbstractController
 {
     /**
-     * @Route({
-     *     "en": "/wishlists",
-     *     "fr": "/listes-de-souhaits"
-     * }, name="app_wishlist_index", methods={"GET"})
+     * @Route("/wishlists", name="app_wishlist_index", methods={"GET"})
+     * @Route("/user/{username}/wishlists", name="app_user_wishlist_index", methods={"GET"})
+     * @Route("/preview/wishlists", name="app_preview_wishlist_index", methods={"GET"})
      *
-     * @Route({
-     *     "en": "/user/{username}/wishlists",
-     *     "fr": "/utilisateur/{username}/listes-de-souhaits"
-     * }, name="app_user_wishlist_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/wishlists",
-     *     "fr": "/apercu/listes-de-souhaits"
-     * }, name="app_preview_wishlist_index", methods={"GET"})
-     *
+     * @param CounterCalculator $counterCalculator
      * @return Response
      */
-    public function index() : Response
+    public function index(CounterCalculator $counterCalculator) : Response
     {
         $wishlists = $this->getDoctrine()->getRepository(Wishlist::class)->findAllParent();
 
         return $this->render('App/Wishlist/index.html.twig', [
-            'wishlists' => $wishlists
+            'wishlists' => $wishlists,
+            'counters' => $counterCalculator->wishlistsCounters($wishlists)
         ]);
     }
 
     /**
-     * @Route({
-     *     "en": "/wishlists/add",
-     *     "fr": "/listes-de-souhaits/ajouter"
-     * }, name="app_wishlist_add", methods={"GET", "POST"})
+     * @Route("/wishlists/add", name="app_wishlist_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -82,47 +74,30 @@ class WishlistController extends AbstractController
         }
 
         return $this->render('App/Wishlist/add.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route({
-     *     "en": "/wishlists/{id}",
-     *     "fr": "/listes-de-souhaits/{id}"
-     * }, name="app_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/wishlists/{id}",
-     *     "fr": "/utilisateur/{username}/listes-de-souhaits/{id}"
-     * }, name="app_user_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/wishlists/{id}",
-     *     "fr": "/apercu/listes-de-souhaits/{id}"
-     * }, name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
+     * @Route("/wishlists/{id}", name="app_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/user/{username}/wishlists/{id}", name="app_user_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/preview/wishlists/{id}", name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("wishlist", expr="repository.findById(id)")
      *
      * @param Wishlist $wishlist
+     * @param CounterCalculator $counterCalculator
      * @return Response
      */
-    public function show(Wishlist $wishlist) : Response
+    public function show(Wishlist $wishlist, CounterCalculator $counterCalculator) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist,
-            'children' => $em->getRepository(Wishlist::class)->findChildrenByWishlistId($wishlist->getId()),
-            'wishes' => $em->getRepository(Wish::class)->findWishesByWishlistId($wishlist->getId())
+            'counters' => $counterCalculator->wishlistCounters($wishlist)
         ]);
     }
 
     /**
-     * @Route({
-     *     "en": "/wishlists/{id}/edit",
-     *     "fr": "/listes-de-souhaits/{id}/editer"
-     * }, name="app_wishlist_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/wishlists/{id}/edit", name="app_wishlist_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Wishlist $wishlist
@@ -148,10 +123,7 @@ class WishlistController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/wishlists/{id}/delete",
-     *     "fr": "/listes-de-souhaits/{id}/supprimer"
-     * }, name="app_wishlist_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/wishlists/{id}/delete", name="app_wishlist_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Wishlist $wishlist
      * @param TranslatorInterface $translator

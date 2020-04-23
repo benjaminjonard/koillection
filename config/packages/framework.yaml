@@ -1,14 +1,9 @@
 framework:
     secret: '%env(APP_SECRET)%'
     csrf_protection: ~
-
-    session:
-        handler_id: null
-        cookie_secure: auto
-        cookie_samesite: lax
-
     php_errors:
         log: true
-
+    session:
+        handler_id:  ~
     assets:
-        json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'
+        json_manifest_path: '%kernel.root_dir%/../public/build/manifest.json'

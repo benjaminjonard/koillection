@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
+{% import "App/macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}], tag) %}
 
@@ -11,27 +11,10 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
-{% block meta %}
-    {% if context == 'user'  %}
-        {{ include('App/_partials/_meta.html.twig', {
-            'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': tag.image ? preload(asset(tag.image.thumbnailPath)) : null
-        }) }}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
-{% endblock %}
-
 {% block content %}
     <div class="collection-header">
         <div class="title-block">
-            <h1>
-                {{ tag.label }}
-                {% if tag.category is not empty %}
-                    <span class="tag-category-color" style="background-color: {{ tag.category.color }}" title="{{ tag.category.label }}"></span>
-                {% endif %}
-            </h1>
+            <h1>{{ tag.label }}</h1>
             <ul class="nav nav-pills">
                 <li>{{ 'counter.item'|trans({'%count%': tag.items|length}) }}</li>
             </ul>
@@ -55,7 +38,7 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -85,23 +68,9 @@
                 <div class="tags-block">
                     <ul class="nav nav-tags">
                         {% for tag in relatedTags|naturalSorting %}
-                            <li class="tag chip {{ loop.index > 10 ? 'hidden'}}">
-                                <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
-                                    {{ tag.label }}
-                                </a>
-                                {% if tag.category is not empty %}
-                                    <span class="tag-category-color" style="background-color: {{ tag.category.color }}" title="{{ tag.category.label }}"></span>
-                                {% endif %}
-                            </li>
+                            <li class="tag chip"><a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">{{ tag.label }}</a></li>
                         {% endfor %}
-                        <li class="show-more-btn-holder">
-                            {% if relatedTags|length > 10 %}
-                                <a href="#" class="js-show-more-tags">{{ 'btn.show_more'|trans({'%count%': relatedTags|length - 10}) }}</a>
-                                <a href="#" class="js-show-less-tags hidden">{{ 'btn.show_less'|trans }}</a>
-                            {% endif %}
-                        </li>
                     </ul>
-
                 </div>
             </div>
         {% endif %}
@@ -129,8 +98,8 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'entity': tag, 'route': url('app_user_tag_show', {id: tag.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_tag_delete', {id: tag.id}), transKey: 'message.delete.tag'}) }}
+        {{ include('Modal/share.html.twig', {'entity': tag, 'route': url('app_user_tag_show', {id: tag.id, username: app.user.username})}) }}
+        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_tag_delete', {id: tag.id}), transKey: 'message.delete.tag'}) }}
     {% endif %}
 {% endblock %}
 

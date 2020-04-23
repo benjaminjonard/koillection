@@ -8,12 +8,17 @@ use App\Entity\Collection;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class TreeBuilder
+ *
+ * @package App\Service\Graph
+ */
 class TreeBuilder
 {
     /**
      * @var EntityManagerInterface
      */
-    private EntityManagerInterface $em;
+    protected $em;
 
     /**
      * TreeBuilder constructor.
@@ -34,7 +39,7 @@ class TreeBuilder
         $collections = $this->em->getRepository(Collection::class)->findAllWithChildren();
         $tree = $this->createLeaf();
 
-        $children = \array_filter($collections, function (Collection $element) {
+        $children = array_filter($collections, function(Collection $element) {
             return $element->getParent() === null;
         });
 
@@ -70,7 +75,7 @@ class TreeBuilder
         $name = '';
         if ($collection instanceof Collection) {
             $title = $collection->getTitle();
-            $name = \strlen($title) > 21 ? substr($title, 0, 18) . '...' : $title;
+            $name = strlen($title) > 21 ? substr($title, 0, 18) . '...' : $title;
         }
 
         return [

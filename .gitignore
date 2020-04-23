@@ -1,9 +1,14 @@
 ###> symfony/framework-bundle ###
-/.env.local
+.env.local
 /.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
+
+phpunit.xml
 /public/bundles/
+/public/uploads/*
+!/public/uploads/.gitkeep
+/public/tmp/*
+!public/tmp/.gitkeep
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -19,11 +24,5 @@ yarn-error.log
 
 ###> symfony/phpunit-bridge ###
 .phpunit
-.phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-
-/public/uploads/*
-!/public/uploads/.gitkeep
-/public/tmp/*
-!public/tmp/.gitkeep

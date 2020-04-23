@@ -8,12 +8,17 @@ use App\Entity\Tag;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
+/**
+ * Class JsonToTagTransformer
+ *
+ * @package App\Form\DataTransformer
+ */
 class JsonToTagTransformer implements DataTransformerInterface
 {
     /**
      * @var EntityManagerInterface
      */
-    private EntityManagerInterface $em;
+    protected $em;
 
     /**
      * JsonToTagTransformer constructor.

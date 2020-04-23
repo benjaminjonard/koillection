@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
+{% import "App/macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.items_collection') %}
 
@@ -9,18 +9,6 @@
 
 {% block breadcrumb %}
     {{ renderBreadcrumb(breadcrumb)  }}
-{% endblock %}
-
-{% block meta %}
-    {% if context == 'user'  %}
-        {{ include('App/_partials/_meta.html.twig', {
-            'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': collection.image ? preload(asset(collection.image.path)) : null
-        }) }}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -51,7 +39,7 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -66,7 +54,7 @@
                     {% for item in items|naturalSorting %}
                         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
                             <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                                {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                                {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name})) }}
                             </a>
                         </div>
                     {% endfor %}
@@ -78,6 +66,6 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'entity': collection, 'route': url('app_user_collection_items', {id: collection.id, username: app.user.username})}) }}
+        {{ include('Modal/share.html.twig', {'entity': collection, 'route': url('app_user_collection_items', {id: collection.id, username: app.user.username})}) }}
     {% endif %}
 {% endblock %}

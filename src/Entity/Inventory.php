@@ -7,56 +7,53 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
+ * Class Inventory
+ *
+ * @package App\Entity
  * @ORM\Entity
  * @ORM\Table(name="koi_inventory")
  */
 class Inventory implements BreadcrumbableInterface
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private ?string $name = null;
+    private $name;
 
     /**
      * @var string
      * @ORM\Column(type="json")
      */
-    private ?string $content = null;
+    private $content;
 
     /**
-     * @var array
-     */
-    private array $contentAsArray = [];
-
-    /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="inventories")
      */
-    private ?User $owner = null;
+    private $owner;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private $updatedAt;
 
     public function __construct()
     {
@@ -71,41 +68,6 @@ class Inventory implements BreadcrumbableInterface
         return $this->getName() ?? '';
     }
 
-    public function getContentAsArray() : array
-    {
-        if ($this->contentAsArray) {
-            return $this->contentAsArray;
-        }
-
-        $this->contentAsArray = json_decode($this->content, true);
-
-        return $this->contentAsArray;
-    }
-
-    public function getCheckedItemsCount() : int
-    {
-        $content = $this->getContentAsArray();
-        $checkedItems = 0;
-
-        foreach ($content as $rootCollection) {
-            $checkedItems += $rootCollection['totalCheckedItems'];
-        }
-
-        return $checkedItems;
-    }
-
-    public function getTotalItemsCount() : int
-    {
-        $content = $this->getContentAsArray();
-        $totalItems = 0;
-
-        foreach ($content as $rootCollection) {
-            $totalItems += $rootCollection['totalItems'];
-        }
-
-        return $totalItems;
-    }
-
     /**
      * @return null|string
      */
@@ -114,62 +76,97 @@ class Inventory implements BreadcrumbableInterface
         return $this->id->toString();
     }
 
-    public function getName(): ?string
+    /**
+     * @return User
+     */
+    public function getOwner() : ?User
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param User $owner
+     * @return Inventory
+     */
+    public function setOwner(User $owner) : self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() : ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    /**
+     * @param string $name
+     * @return Inventory
+     */
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getContent(): ?string
+    /**
+     * @return string
+     */
+    public function getContent() : ?string
     {
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    /**
+     * @param string $content
+     * @return Inventory
+     */
+    public function setContent(string $content) : self
     {
         $this->content = $content;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt() : \DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /**
+     * @param \DateTime $createdAt
+     * @return Inventory
+     */
+    public function setCreatedAt(\DateTime $createdAt) : self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt() : \DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    /**
+     * @param \DateTime $updatedAt
+     * @return Inventory
+     */
+    public function setUpdatedAt(\DateTime $updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(?User $owner): self
-    {
-        $this->owner = $owner;
 
         return $this;
     }

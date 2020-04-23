@@ -6,11 +6,14 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Item;
-use App\Model\Search\Search;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
+/**
+ * Class ItemRepository
+ *
+ * @package App\Repository
+ */
 class ItemRepository extends EntityRepository
 {
     /**
@@ -18,7 +21,7 @@ class ItemRepository extends EntityRepository
      *
      * @param $id
      *
-     * @throws NonUniqueResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      *
      * @return Item
      */
@@ -45,7 +48,7 @@ class ItemRepository extends EntityRepository
         $results = $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial i.{id, name}')
-            ->from(Item::class, 'i')
+            ->from('App\\Entity\\Item', 'i')
             ->leftJoin('i.collection', 'c')
             ->where('c = :collection')
             ->setParameter('collection', $item->getCollection())
@@ -53,7 +56,7 @@ class ItemRepository extends EntityRepository
             ->getArrayResult()
         ;
 
-        usort($results, function (array $a, array $b) {
+        usort($results, function(array $a, array $b) {
             return strnatcmp($a['name'], $b['name']);
         });
 
@@ -91,17 +94,17 @@ class ItemRepository extends EntityRepository
      * @param $search
      * @return array
      */
-    public function findForSearch(Search $search) : array
+    public function findForSearch($search) : array
     {
         $qb = $this
             ->createQueryBuilder('i')
             ->orderBy('i.name', 'ASC')
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
             $qb
-                ->andWhere('LOWER(i.name) LIKE LOWER(:term)')
-                ->setParameter('term', '%' . $search->getTerm() . '%');
+                ->andWhere('LOWER(i.name) LIKE LOWER(:search)')
+                ->setParameter('search', '%' . $search->getSearch() . '%');
         }
 
         if ($search->getCreatedAt() instanceof \DateTime) {
@@ -184,4 +187,5 @@ class ItemRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
 }

@@ -10,24 +10,13 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
-{% block meta %}
-    {% if context == 'user'  %}
-        {{ include('App/_partials/_meta.html.twig', {
-            'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-        }) }}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
-{% endblock %}
-
 {% block content %}
     <div class="collection-header">
         <div class="title-block">
             <h1>{{ 'menu.albums'|trans }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.photo'|trans({'%count%': getTotalItemsCounter(albums)}) }}</li>
-                <li>{{ 'counter.album'|trans({'%count%': getTotalChildrenCounter(albums)}) }}</li>
+                <li>{{ 'counter.photo'|trans({'%count%':photosCounter}) }}</li>
+                <li>{{ 'counter.album'|trans({'%count%': albums|length}) }}</li>
             </ul>
         </div>
 
@@ -43,21 +32,32 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
 
+
     <div class="content-block">
         <div class="collections grid-container-collections">
-            {{ include('App/Album/_list.html.twig', {'albums': albums}) }}
+            {% for album in albums %}
+                <div class="collection-element element" data-title="{{ album.title }}">
+                    <a class="collection-circle-thumbnail" href="{{ path('app_album_show'|applyContext, {'id': album.id}) }}" aria-label="{{ 'aria.album'|trans({'%title%': album.title}) }}">
+                        <span class="color-avatar circle avatar color-{{ album.color }}">{{ album.title|first|upper }}</span>
+                    </a>
+                    <span class="collection-title">{{ album.title|truncate(27) }}</span>
+                    <p class="collection-stats">
+                        {{ 'counter.photo'|trans({'%count%': album.photos|length}) }}
+                    </p>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'route': url('app_user_album_index', {username: app.user.username})}) }}
+        {{ include('Modal/share.html.twig', {'route': url('app_user_album_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}

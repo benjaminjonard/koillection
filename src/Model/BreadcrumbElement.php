@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+/**
+ * Class BreadcrumbElement
+ *
+ * @package App\Model
+ */
 class BreadcrumbElement
 {
     public const TYPE_ROOT = 'root';
@@ -13,32 +18,32 @@ class BreadcrumbElement
     /**
      * @var string
      */
-    private string $type;
+    private $type;
 
     /**
      * @var string
      */
-    private string $label;
+    private $label;
 
     /**
      * @var string
      */
-    private ?string $class = null;
+    private $class;
 
     /**
      * @var string
      */
-    private string $route;
+    private $route;
 
     /**
      * @var object
      */
-    private ?object $entity = null;
+    private $entity;
 
     /**
      * @var array
      */
-    private array $params;
+    private $params;
 
     /**
      * Get type.

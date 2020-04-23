@@ -1,6 +1,5 @@
 import Translator from './translator.min.js'
 import * as utils from './utils'
-import * as select from './select'
 import Cookies from '../node_modules/js-cookie'
 
 $(document).ready(function() {
@@ -39,6 +38,7 @@ $(document).ready(function() {
         $('.profile-menu').removeClass('hidden');
 
         $(document).mouseup(function(e) {
+            console.log('ok');
             var $container = $('.profile-menu');
             if (!$container.is(e.target) && $container.has(e.target).length === 0) {
                 $container.addClass('hidden');
@@ -47,19 +47,14 @@ $(document).ready(function() {
         });
     });
 
-    select.loadSelect2();
-    select.loadSelect2Countries();
-    select.loadSelect2Locales();
-    select.loadSelect2Themes();
-    select.loadSelect2TagCategories();
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
+    M.FormSelect.init(document.querySelectorAll('select'));
     M.Modal.init(document.querySelectorAll('.modal'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
         enterDelay: 500,
         outDuration: 100
     });
     M.Collapsible.init(document.querySelectorAll('.collapsible'));
-
 
 
     //Init MaterializeCSS datepickers
@@ -84,13 +79,6 @@ $(document).ready(function() {
         format: $('#js-date-format').data('jsDateFormat')
     });
 
-    $('form input').keydown(function (e) {
-        if (e.keyCode == 13 && !$(this).closest('form').hasClass('login') && !$(this).closest('form').hasClass('search')) {
-            e.preventDefault();
-            return false;
-        }
-    });
-
     //Init tabs
     $('.tab').click(function () {
         $('.tab').removeClass('current');
@@ -103,8 +91,6 @@ $(document).ready(function() {
     if ($('[name="data-lightbox"]').length > 0) {
         lightbox.option({
             'resizeDuration': 200,
-            'imageFadeDuration': 200,
-            'fadeDuration': 200,
             'wrapAround': true
         });
     }
@@ -150,9 +136,8 @@ $(document).ready(function() {
             $newForm.remove();
         });
         $newLinkDiv.before($newForm);
-        console.log($newForm);
         indexFieldTemplate++;
-        select.loadSelect2();
+        M.FormSelect.init(document.querySelectorAll('select'));
         utils.computePositions($collectionHolder);
         utils.reloadSortableList($collectionHolder, '.field');
     }
@@ -162,6 +147,9 @@ $(document).ready(function() {
         utils.computePositions($collectionHolder);
     });
 });
+
+
+
 
 function handleConnectionChange(event){
     var element = document.getElementById("offline-message");

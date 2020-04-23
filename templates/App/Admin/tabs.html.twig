@@ -1,8 +1,8 @@
-<div class="tabs-block">
+<div class="tabs-block admin">
     <ul class="nav nav-pills">
-        <li class="tab {{ current == "overview" ? 'current' }}">
+        <li class="tab {{ current == "statistics" ? 'current' }}">
             <a href="{{ path('app_admin_index') }}">
-                <span>{{ 'tab.overview'|trans }}</span>
+                <span>{{ 'tab.statistics'|trans }}</span>
             </a>
         </li>
         <li class="tab {{ current == "users" ? 'current' }}">
@@ -10,7 +10,7 @@
                 <span>{{ 'tab.users'|trans }}</span>
             </a>
         </li>
-        {% if app.environment == 'dev' %}
+        {% if showAdminTools() == true %}
             <li class="tab {{ current == "trans" ? 'current' }}">
                 <a href="{{ path('translation_index') }}">
                     <span>{{ 'tab.translations'|trans }}</span>
@@ -19,4 +19,3 @@
         {% endif %}
     </ul>
 </div>
-

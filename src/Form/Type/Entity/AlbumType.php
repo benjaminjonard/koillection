@@ -6,35 +6,31 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Album;
 use App\Enum\VisibilityEnum;
-use App\Form\DataTransformer\Base64ToImageTransformer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class AlbumType
+ *
+ * @package App\Form\Type\Entity
+ */
 class AlbumType extends AbstractType
 {
     /**
      * @var EntityManagerInterface
      */
-    private EntityManagerInterface $em;
-
-    /**
-     * @var Base64ToImageTransformer
-     */
-    private Base64ToImageTransformer $base64ToImageTransformer;
+    private $em;
 
     /**
      * CollectionType constructor.
-     * @param Base64ToImageTransformer $base64ToImageTransformer
      * @param EntityManagerInterface $em
      */
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->base64ToImageTransformer = $base64ToImageTransformer;
         $this->em = $em;
     }
 
@@ -44,33 +40,15 @@ class AlbumType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $entity = $builder->getData();
-
         $builder
             ->add('title', TextType::class, [
                 'attr' => ['length' => 255],
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
-            ->add('parent', EntityType::class, [
-                'class' => Album::class,
-                'choice_label' => 'title',
-                'choices' => $this->em->getRepository(Album::class)->findAllExcludingItself($entity),
-                'expanded' => false,
-                'multiple' => false,
-                'choice_name' => null,
-                'empty_data' => '',
-                'required' => false,
-            ])
-            ->add(
-                $builder->create('image', TextType::class, [
-                    'required' => false,
-                    'label' => false,
-                ])->addModelTransformer($this->base64ToImageTransformer)
-            )
         ;
     }
 

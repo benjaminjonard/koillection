@@ -9,12 +9,17 @@ use App\Entity\Item;
 use App\Entity\Wishlist;
 use App\Model\BreadcrumbElement;
 
+/**
+ * Class BreadcrumbBuilder
+ *
+ * @package App\Service
+ */
 class BreadcrumbBuilder
 {
     /**
      * @var ContextHandler
      */
-    private ContextHandler $contextHandler;
+    private $contextHandler;
 
     /**
      * BreadcrumbBuilder constructor.
@@ -36,9 +41,7 @@ class BreadcrumbBuilder
         }
 
         $explodedNamespace = explode('\\', \get_class($entity));
-        $class = \array_pop($explodedNamespace);
-        $pieces = preg_split('/(?=[A-Z])/', lcfirst($class));
-        $class = implode('_', $pieces);
+        $class = array_pop($explodedNamespace);
         $class = strtolower($class);
 
         $breadcrumb = [];
@@ -52,11 +55,11 @@ class BreadcrumbBuilder
         $breadcrumb[] = $breadcrumbElement;
 
         if (method_exists($entity, 'getParent') && $entity->getParent()) {
-            $breadcrumb = \array_merge($this->build($entity->getParent()), $breadcrumb);
+            $breadcrumb = array_merge($this->build($entity->getParent()), $breadcrumb);
         }
 
         if ($entity instanceof Item && $entity->getCollection()) {
-            $breadcrumb = \array_merge($this->build($entity->getCollection()), $breadcrumb);
+            $breadcrumb = array_merge($this->build($entity->getCollection()), $breadcrumb);
         }
 
         return $breadcrumb;

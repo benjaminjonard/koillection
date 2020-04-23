@@ -4,26 +4,35 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-use Symfony\Component\Intl\Countries;
-use Symfony\Component\Intl\Currencies;
+use Symfony\Component\Intl\Intl;
 
+/**
+ * Class CurrencyEnum
+ *
+ * @package App\Enum
+ */
 class CurrencyEnum
 {
+    public const CURRENCY_EUR = 'EUR';
+    public const CURRENCY_JPY = 'JPY';
+    public const CURRENCY_USD = 'USD';
+    public const CURRENCY_GBP = 'GBP';
+
+    public const CURRENCIES = [
+        self::CURRENCY_EUR,
+        self::CURRENCY_JPY,
+        self::CURRENCY_USD,
+        self::CURRENCY_GBP
+    ];
+
     /**
      * @return array
      */
     public static function getCurrencyLabels() : array
     {
         $currencies = [];
-        foreach (Currencies::getNames() as $code => $name) {
-            if (!strpos($name, '(')) {
-                $symbol = Currencies::getSymbol($code);
-                if ($symbol === $code) {
-                    $currencies[$code] = ucwords($name) . " ($code)";
-                } else {
-                    $currencies[$code] = ucwords($name) . " $symbol ($code)";
-                }
-            }
+        foreach (self::CURRENCIES as $code) {
+            $currencies[$code] = Intl::getCurrencyBundle()->getCurrencySymbol($code).' ('.$code.')';
         }
 
         return $currencies;
@@ -35,6 +44,6 @@ class CurrencyEnum
      */
     public static function getSymbolFromCode(string $code) : ?string
     {
-        return Currencies::getSymbol($code);
+        return Intl::getCurrencyBundle()->getCurrencySymbol($code);
     }
 }

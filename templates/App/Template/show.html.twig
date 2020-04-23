@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
+{% import "App/macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_template_index', 'trans': 'menu.templates'}], template) %}
 
@@ -62,7 +62,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_template_delete', {id: template.id}), transKey: 'message.delete.template'}) }}
+        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_template_delete', {id: template.id}), transKey: 'message.delete.template'}) }}
     {% endif %}
 {% endblock %}
 

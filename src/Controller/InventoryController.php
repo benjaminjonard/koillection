@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Collection;
 use App\Entity\Inventory;
+use App\Entity\Item;
 use App\Form\Type\Entity\InventoryType;
 use App\Service\InventoryHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,17 +16,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class InventoryController
+ *
+ * @package App\Controller
+ */
 class InventoryController extends AbstractController
 {
     /**
-     * @Route({
-     *     "en": "/inventories/add",
-     *     "fr": "/inventaires/ajouter"
-     * }, name="app_inventory_add", methods={"GET", "POST"})
+     * @Route("/inventories/add", name="app_inventory_add", methods={"GET", "POST"})
      *
      * @param Request $request
      *
-     * @param TranslatorInterface $translator
      * @return Response
      */
     public function add(Request $request, TranslatorInterface $translator) : Response
@@ -51,10 +53,7 @@ class InventoryController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/inventories/{id}/delete",
-     *     "fr": "/inventaires/{id}/supprimer"
-     * }, name="app_inventory_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route("/inventories/{id}/delete", name="app_inventory_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Inventory $inventory
      * @param TranslatorInterface $translator
@@ -72,10 +71,7 @@ class InventoryController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/inventories/{id}/check",
-     *     "fr": "/inventaires/{id}/cocher"
-     * }, name="app_inventory_check", methods={"POST"})
+     * @Route("/inventories/{id}/check", name="app_inventory_check", methods={"POST"})
      *
      * @param Request $request
      * @param Inventory $inventory
@@ -86,16 +82,11 @@ class InventoryController extends AbstractController
         $inventoryHandler->setCheckedValues($inventory, $request->request->get('items', []));
         $this->getDoctrine()->getManager()->flush();
 
-        return new JsonResponse([
-            'htmlForNavPills' => $this->render('App/Inventory/_partials/_nav_pills.html.twig', ['inventory' => $inventory])->getContent()
-        ]);
+        return new JsonResponse(true);
     }
 
     /**
-     * @Route({
-     *     "en": "/inventories/{id}",
-     *     "fr": "/inventaires/{id}"
-     * }, name="app_inventory_show", methods={"GET"})
+     * @Route("/inventories/{id}", name="app_inventory_show", methods={"GET"})
      *
      * @param Inventory $inventory
      * @return Response
@@ -103,7 +94,8 @@ class InventoryController extends AbstractController
     public function show(Inventory $inventory) : Response
     {
         return $this->render('App/Inventory/show.html.twig', [
-            'inventory' => $inventory
+            'inventory' => $inventory,
+            'collections' => json_decode($inventory->getContent(), true)
         ]);
     }
 }

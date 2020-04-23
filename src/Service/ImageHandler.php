@@ -4,31 +4,43 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Image;
-use App\Enum\ImageTypeEnum;
+use App\Entity\Medium;
+use App\Entity\Tag;
+use App\Entity\User;
+use App\Entity\Wish;
+use App\Entity\Collection;
+use App\Entity\Item;
+use App\Entity\Datum;
+use App\Entity\Wishlist;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Class ImageHandler
+ *
+ * @package App\Service
+ */
 class ImageHandler
 {
     /**
      * @var RandomStringGenerator
      */
-    private RandomStringGenerator $rsg;
+    protected $rsg;
 
     /**
      * @var ThumbnailGenerator
      */
-    private ThumbnailGenerator $tg;
+    protected $tg;
 
     /**
      * @var TokenStorageInterface
      */
-    private TokenStorageInterface $tokenStorage;
+    protected $tokenStorage;
 
     /**
      * @var string
      */
-    private string $publicPath;
+    protected $publicPath;
 
     /**
      * ImageHandler constructor.
@@ -45,64 +57,61 @@ class ImageHandler
     }
 
     /**
-     * @param Image $image
+     * @param Medium $medium
      * @return int
-     * @throws \Exception
      */
-    public function upload(Image $image) : int
+    public function upload(Medium $medium) : int
     {
         $sizeUsed = 0;
-        if ($image->getUploadedFile() === null) {
+        if ($medium->getUploadedFile() === null) {
             return $sizeUsed;
         }
 
         $path = 'uploads/'.$this->tokenStorage->getToken()->getUser()->getId().'/';
         $generatedName = $this->rsg->generateString(20);
-        $extension = $image->getUploadedFile()->guessExtension();
+        $extension = $medium->getUploadedFile()->guessExtension();
 
-        $image
+        $medium
             ->setPath($path.$generatedName.'.'.$extension)
-            ->setMimetype($image->getUploadedFile()->getMimeType())
+            ->setMimetype($medium->getUploadedFile()->getMimeType())
             ->setFilename($generatedName.'.'.$extension)
+            ->setType(Medium::TYPE_IMAGE)
         ;
 
-        $image->getUploadedFile()->move($this->publicPath.'/'.$path, $image->getPath());
-        $image->setSize(filesize($this->publicPath.'/'.$image->getPath()));
-        $sizeUsed += $image->getSize();
+        $medium->getUploadedFile()->move($this->publicPath.'/'.$path, $medium->getPath());
+        $medium->setSize(filesize($this->publicPath.'/'.$medium->getPath()));
+        $sizeUsed += $medium->getSize();
 
-        if ($image->getType() === ImageTypeEnum::TYPE_COMMON) {
-            $image->setThumbnailPath($path.$generatedName.'_small.'.$extension);
-            $this->tg->generateThumbnail($this->publicPath.'/'.$image->getPath(), $this->publicPath.'/'.$image->getThumbnailPath(), 150);
-            $image->setThumbnailSize(filesize($this->publicPath.'/'.$image->getThumbnailPath()));
-            $sizeUsed += $image->getThumbnailSize();
+        if ($medium->getMustGenerateAThumbnail()) {
+            $medium->setThumbnailPath($path.$generatedName.'_small.'.$extension);
+            $this->tg->generateThumbnail($this->publicPath.'/'.$medium->getPath(), $this->publicPath.'/'.$medium->getThumbnailPath());
+            $medium->setThumbnailSize(filesize($this->publicPath.'/'.$medium->getThumbnailPath()));
+            $sizeUsed += $medium->getThumbnailSize();
         }
 
-        $image->setUploadedFile(null);
+        $medium->setUploadedFile(null);
 
         return $sizeUsed;
     }
 
     /**
-     * @param Image $image
+     * @param Medium $medium
      * @return int
      */
-    public function remove(Image $image) : int
+    public function remove(Medium $medium) : int
     {
         $sizeFreed = 0;
-        $sizeFreed += $image->getSize();
 
-        if (file_exists($this->publicPath.'/'.$image->getPath())) {
-            unlink($this->publicPath.'/'.$image->getPath());
+        $sizeFreed += $medium->getSize();
+
+
+        unlink($this->publicPath.'/'.$medium->getPath());
+        if ($medium->getThumbnailPath()) {
+            $sizeFreed += $medium->getThumbnailSize();
+            unlink($this->publicPath.'/'.$medium->getThumbnailPath());
         }
 
-        if ($image->getThumbnailPath()) {
-            $sizeFreed += $image->getThumbnailSize();
-            if (file_exists($this->publicPath.'/'.$image->getThumbnailPath())) {
-                unlink($this->publicPath.'/'.$image->getThumbnailPath());
-            }
-        }
-
-        $dir = rtrim($this->publicPath.'/'.$image->getPath(), basename($image->getFilename()));
+        $dir = rtrim($this->publicPath.'/'.$medium->getPath(), basename($medium->getFilename()));
 
         if (\count(glob("$dir/*")) === 0) {
             rmdir($dir);

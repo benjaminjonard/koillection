@@ -5,13 +5,34 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Datum;
+use App\Form\DataTransformer\FileToMediumTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class DatumType
+ *
+ * @package App\Form\Type\Entity
+ */
 class DatumType extends AbstractType
 {
+    /**
+     * @var FileToMediumTransformer
+     */
+    private $fileToMediumTransformer;
+
+    /**
+     * DatumType constructor.
+     * @param FileToMediumTransformer $fileToMediumTransformer
+     */
+    public function __construct(FileToMediumTransformer $fileToMediumTransformer)
+    {
+        $this->fileToMediumTransformer = $fileToMediumTransformer;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -28,10 +49,12 @@ class DatumType extends AbstractType
             ->add('value', TextType::class, [
                 'required' => false,
             ])
-            ->add('image', ImageType::class, [
-                'required' => false,
-                'label' => false
-            ])
+            ->add(
+                $builder->create('image', FileType::class, [
+                    'required' => false,
+                    'label' => false,
+                ])->addModelTransformer($this->fileToMediumTransformer)
+            )
             ->add('position', TextType::class, [
                 'required' => false,
             ])

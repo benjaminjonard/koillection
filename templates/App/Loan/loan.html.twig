@@ -1,4 +1,5 @@
 {% extends 'layout.html.twig' %}
+{% form_theme form 'Form/fields.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], item, 'breadcrumb.lend_item') %}
 
@@ -17,19 +18,22 @@
 
     <div class="content-block">
         {{ form_start(form) }}
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.lentAt, {'label' : 'label.loaned_at', 'attr': {'class' : 'datepicker' }} ) }}
-                </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(form.lentTo, {'label' : 'label.loaned_to'} ) }}
+            <div class="block-element">
+                <div class="row">
+                    <div class="col s5 offset-s1">
+                        {{ form_row(form.lentAt, {'label' : 'label.loaned_at', 'attr': {'class' : 'datepicker' }} ) }}
+                    </div>
+                    <div class="col s5">
+                        {{ form_row(form.lentTo, {'label' : 'label.loaned_to'} ) }}
+                    </div>
                 </div>
             </div>
 
-            <div class="row center-align form-btn-holder">
+            <div class="form-btn-holder">
                 <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 <a href="{{ path('app_item_show', { id : item.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
             </div>
+            <div class="clearfix"></div>
         {{ form_end(form) }}
     </div>
 {% endblock %}

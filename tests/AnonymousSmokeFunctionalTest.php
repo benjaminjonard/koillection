@@ -15,7 +15,6 @@ class AnonymousSmokeFunctionalTest extends LoggedWebTestCase
      * Check an anonymous user has access to this pages
      *
      * @dataProvider isSuccessfulUrlProvider
-     * @param string $url
      */
     public function testPageIsSuccessful(string $url)
     {

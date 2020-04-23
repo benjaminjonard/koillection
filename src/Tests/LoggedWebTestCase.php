@@ -10,7 +10,6 @@ use App\Entity\Inventory;
 use App\Entity\Item;
 use App\Entity\Photo;
 use App\Entity\Tag;
-use App\Entity\TagCategory;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Entity\Wish;
@@ -18,13 +17,17 @@ use App\Entity\Wishlist;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
+/**
+ * Class SmokeFunctionalTest
+ *
+ * @package App\Tests
+ */
 class LoggedWebTestCase extends WebTestCase
 {
-    private KernelBrowser $client;
+    protected $client;
 
-    private User $user;
+    protected $user;
 
     public function setUp()
     {
@@ -32,7 +35,7 @@ class LoggedWebTestCase extends WebTestCase
     }
 
     /**
-     * @param string $email
+     * @param User $user
      */
     public function login(string $email)
     {
@@ -85,9 +88,6 @@ class LoggedWebTestCase extends WebTestCase
                     break;
                 case '{{tag}}':
                     $url = str_replace($match[0], $this->getRelationFirstElement(Tag::class), $url);
-                    break;
-                case '{{category}}':
-                    $url = str_replace($match[0], $this->getRelationFirstElement(TagCategory::class), $url);
                     break;
                 case '{{inventory}}':
                     $url = str_replace($match[0], $this->getRelationFirstElement(Inventory::class), $url);

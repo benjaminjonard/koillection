@@ -10,17 +10,6 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
-{% block meta %}
-    {% if context == 'user'  %}
-        {{ include('App/_partials/_meta.html.twig', {
-            'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')})
-        }) }}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
-{% endblock %}
-
 {% block content %}
     <div class="title-block">
         <h1>{{ 'menu.statistics'|trans }}</h1>
@@ -45,7 +34,6 @@
          data-theme-dark-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}"
          data-theme-light-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}"
          data-theme-lightest-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}"
-         data-is-dark-mode="{{ app.user.theme == constant('App\\Enum\\ThemeEnum::THEME_DARK_MODE') ? 1 : 0 }}"
     >
         <div class="content-block calendars">
             <div class="block-element">
@@ -71,7 +59,7 @@
             <div class="block-element bar-chart-row">
                 <div class="left-chart bar-chart">
                     <h5 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h5>
-                    <div id="month-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthDaysChartData|json_encode() }}'></div>
+                    <div id="month-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
                 </div>
                 <div class="right-chart bar-chart">
                     <h5 class="statistics-title">{{ 'title.charts.hours'|trans }}</h5>
@@ -110,7 +98,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'route': url('app_user_statistics_index', {username: app.user.username})}) }}
+        {{ include('Modal/share.html.twig', {'route': url('app_user_statistics_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 
