@@ -4,74 +4,74 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-/**
- * Class ThumbnailGenerator
- *
- * @package App\Service
- */
 class ThumbnailGenerator
 {
     /**
      * @param string $path
      * @param string $thumbnailPath
+     * @param int $thumbnailWidth
      * @throws \Exception
      */
-    public function generateThumbnail(string $path, string $thumbnailPath) : void
+    public function generateThumbnail(string $path, string $thumbnailPath, int $thumbnailWidth) : void
     {
-        $info = pathinfo($path);
-        $extension = strtolower($info['extension']);
-        switch ($extension) {
-            case 'gif':
-                $im = imagecreatefromgif($path);
+        $mimetype = mime_content_type($path);
+
+        switch ($mimetype) {
+            case 'image/gif':
+                $image = imagecreatefromgif($path);
                 break;
-            case 'jpg':
-            case 'jpeg':
-                $im = imagecreatefromjpeg($path);
+            case 'image/jpg':
+            case 'image/jpeg':
+                $image = imagecreatefromjpeg($path);
                 break;
-            case 'png':
-                $im = imagecreatefrompng($path);
+            case 'image/png':
+                $image = imagecreatefrompng($path);
+                break;
+            case 'image/webp':
+                $image = imagecreatefromwebp($path);
                 break;
             default:
                 throw new \Exception('Your image cannot be processed, please use another one.');
         }
 
-        $ox = imagesx($im);
-        $oy = imagesy($im);
+        $imageWidth = imagesx($image);
+        $imageHeight = imagesy($image);
 
-        $final_width_of_image = 150;
-        $nx = $final_width_of_image;
-        $ny = (int) floor($oy * ($final_width_of_image / $ox));
-
-        $nm = imagecreatetruecolor($nx, $ny);
+        $thumbnailHeight = (int) floor($imageHeight * ($thumbnailWidth / $imageWidth));
+        $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
         //Transparency
-        if ($extension === 'gif' || ($extension === 'png')) {
-            imagealphablending($nm, false);
-            imagesavealpha($nm, true);
-            $transparent = imagecolorallocatealpha($nm, 255, 255, 255, 127);
-            imagefilledrectangle($nm, 0, 0, $nx, $ny, $transparent);
+        if ($mimetype === 'image/png' || $mimetype === 'image/webp') {
+            imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
+            imagealphablending($thumbnail, false);
+            imagesavealpha($thumbnail, true);
+        } elseif ($mimetype === 'image/gif') {
+            imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
         }
 
-        imagecopyresampled($nm, $im, 0, 0, 0, 0, $nx, $ny, $ox, $oy);
+        imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $imageWidth, $imageHeight);
 
         $dir = explode('/', $thumbnailPath);
-        array_pop($dir);
+        \array_pop($dir);
         $dir = implode('/', $dir);
 
         if (!is_dir($dir) && !mkdir($dir) && !is_dir($dir)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
 
-        switch ($extension) {
-            case 'gif':
-                imagegif($nm, $thumbnailPath);
+        switch ($mimetype) {
+            case 'image/gif':
+                imagegif($thumbnail, $thumbnailPath);
                 break;
-            case 'jpg':
-            case 'jpeg':
-                imagejpeg($nm, $thumbnailPath, 100);
+            case 'image/jpg':
+            case 'image/jpeg':
+                imagejpeg($thumbnail, $thumbnailPath, 100);
                 break;
-            case 'png':
-                imagepng($nm, $thumbnailPath, 9);
+            case 'image/png':
+                imagepng($thumbnail, $thumbnailPath, 9);
+                break;
+            case 'image/webp':
+                imagewebp($thumbnail, $thumbnailPath, 100);
                 break;
             default:
                 break;

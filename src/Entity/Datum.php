@@ -5,86 +5,87 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Datum
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
- * @ORM\Table(name="koi_datum")
+ * @ORM\Table(name="koi_datum", indexes={
+ *     @ORM\Index(name="idx_datum_visibility", columns={"visibility"})
+ * })
  */
 class Datum implements LoggableInterface
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
-     * @var \App\Entity\Item
+     * @var Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
      */
-    private $item;
+    private Item $item;
 
     /**
      * @var string
      * @ORM\Column(type="string", nullable=false)
      */
-    private $type;
+    private ?string $type = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $label;
+    private ?string $label = null;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private $value;
+    private ?string $value = null;
 
     /**
      * @var int
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $position;
+    private ?int $position = null;
 
     /**
-     * @var Medium
-     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
+     * @var Image
+     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
      */
-    private $image;
+    private ?Image $image = null;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private $owner;
+    private ?User $owner = null;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $visibility;
+    private string $visibility;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private \DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -108,245 +109,123 @@ class Datum implements LoggableInterface
         return $this->id->toString();
     }
 
-    /**
-     * Set value.
-     *
-     * @param string $value
-     *
-     * @return Datum
-     */
-    public function setValue(?string $value) : self
+    public function getType(): ?string
     {
-        $this->value = $value;
-
-        return $this;
+        return $this->type;
     }
 
-    /**
-     * Get value.
-     *
-     * @return string
-     */
-    public function getValue() : ?string
-    {
-        return $this->value;
-    }
-
-    /**
-     * Set item.
-     *
-     * @param \App\Entity\Item $item
-     *
-     * @return Datum
-     */
-    public function setItem(Item $item = null) : self
-    {
-        $this->item = $item;
-
-        return $this;
-    }
-
-    /**
-     * Get item.
-     *
-     * @return \App\Entity\Item
-     */
-    public function getItem() : ?Item
-    {
-        return $this->item;
-    }
-
-    /**
-     * Set label.
-     *
-     * @param string $label
-     *
-     * @return Datum
-     */
-    public function setLabel(string $label) : self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    /**
-     * Get label.
-     *
-     * @return string
-     */
-    public function getLabel() : ?string
-    {
-        return $this->label;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \App\Entity\Medium $image
-     *
-     * @return Datum
-     */
-    public function setImage(Medium $image = null) : self
-    {
-        if ($image === null) {
-            return $this;
-        }
-
-        if ($image->getThumbnailPath() === null) {
-            $image->setMustGenerateAThumbnail(true);
-        }
-
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \App\Entity\Medium
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set type.
-     *
-     * @param string $type
-     *
-     * @return Datum
-     */
-    public function setType(string $type) : self
+    public function setType(string $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * Get type.
-     *
-     * @return string
-     */
-    public function getType() : ?string
+    public function getLabel(): ?string
     {
-        return $this->type;
+        return $this->label;
     }
 
-    /**
-     * Set position.
-     *
-     * @param int $position
-     *
-     * @return Datum
-     */
-    public function setPosition(int $position) : self
+    public function setLabel(?string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    public function setValue(?string $value): self
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): self
     {
         $this->position = $position;
 
         return $this;
     }
 
-    /**
-     * Get position.
-     *
-     * @return int
-     */
-    public function getPosition() : ?int
+    public function getVisibility(): ?string
     {
-        return $this->position;
+        return $this->visibility;
     }
 
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Datum
-     */
-    public function setCreatedAt($createdAt) : self
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Datum
-     */
-    public function setUpdatedAt($updatedAt) : self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
+    public function getItem(): ?Item
     {
-        return $this->updatedAt;
+        return $this->item;
     }
 
-    /**
-     * Set owner.
-     *
-     * @param \App\Entity\User $owner
-     *
-     * @return Datum
-     */
-    public function setOwner(User $owner = null) : self
+    public function setItem(?Item $item): self
     {
-        $this->owner = $owner;
+        $this->item = $item;
 
         return $this;
     }
 
-    /**
-     * Get owner.
-     *
-     * @return User|null
-     */
-    public function getOwner() : ?User
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $image->setType(ImageTypeEnum::TYPE_COMMON);
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
 
-    /**
-     * @return string
-     */
-    public function getVisibility() : string
+    public function setOwner(?User $owner): self
     {
-        return $this->visibility;
-    }
-
-    /**
-     * @param string $visibility
-     * @return Datum
-     */
-    public function setVisibility(string $visibility) : self
-    {
-        $this->visibility = $visibility;
+        $this->owner = $owner;
 
         return $this;
     }

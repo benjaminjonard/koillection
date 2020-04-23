@@ -9,21 +9,21 @@ use App\Entity\Inventory;
 use App\Http\CsvResponse;
 use App\Http\FileResponse;
 use App\Service\DatabaseDumper;
+use Doctrine\DBAL\DBALException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
-/**
- * Class ToolsController
- *
- * @package App\Controller
- */
 class ToolsController extends AbstractController
 {
     /**
-     * @Route("/tools", name="app_tools_index", methods={"GET"})
+     * @Route({
+     *     "en": "/tools",
+     *     "fr": "/outils"
+     * }, name="app_tools_index", methods={"GET"})
      *
      * @return Response
      */
@@ -35,7 +35,10 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/printable-list", name="app_tools_export_printable_list", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/printable-list",
+     *     "fr": "/outils/export/liste-imprimable"
+     * }, name="app_tools_export_printable_list", methods={"GET"})
      *
      * @return Response
      */
@@ -43,16 +46,20 @@ class ToolsController extends AbstractController
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
 
-        return $this->render('App/Tools/printable-list.html.twig', [
+        return $this->render('App/Tools/printable_list.html.twig', [
             'collections' => $collections,
             'user' => $this->getUser()
         ]);
     }
 
     /**
-     * @Route("/tools/export/csv", name="app_tools_export_csv", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/csv",
+     *     "fr": "/outils/export/csv"
+     * }, name="app_tools_export_csv", methods={"GET"})
      *
      * @return CsvResponse
+     * @throws \Exception
      */
     public function exportCsv() : CsvResponse
     {
@@ -69,11 +76,14 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/sql", name="app_tools_export_sql", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/sql",
+     *     "fr": "/outils/export/sql"
+     * }, name="app_tools_export_sql", methods={"GET"})
      *
      * @param DatabaseDumper $databaseDumper
      * @return FileResponse
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
     {
@@ -81,18 +91,25 @@ class ToolsController extends AbstractController
     }
 
     /**
-     * @Route("/tools/export/images", name="app_tools_export_images", methods={"GET"})
+     * @Route({
+     *     "en": "/tools/export/images",
+     *     "fr": "/outils/export/images"
+     * }, name="app_tools_export_images", methods={"GET"})
      *
      * @return StreamedResponse
      */
     public function exportImages() : StreamedResponse
     {
-        $response = new StreamedResponse(function() {
+        return new StreamedResponse(function () {
+            $options = new Archive();
+            $options->setContentType('text/event-stream');
+            $options->setFlushOutput(true);
+            $options->setSendHttpHeaders(true);
+
             $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-export.zip';
+            $zip = new ZipStream($zipFilename, $options);
+
             $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $this->getUser()->getId();
-
-            $zip = new ZipStream($zipFilename);
-
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
             foreach ($files as $name => $file) {
                 if (!$file->isDir()) {
@@ -101,11 +118,6 @@ class ToolsController extends AbstractController
             }
 
             $zip->finish();
-        }) ;
-
-        $response->headers->set('X-Accel-Buffering', 'no');
-
-        return $response;
+        });
     }
-
 }

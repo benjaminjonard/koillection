@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-/**
- * Class RoleEnum
- *
- * @package App\Enum
- */
 class RoleEnum
 {
     public const ROLE_USER = 'ROLE_USER';

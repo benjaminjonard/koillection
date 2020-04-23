@@ -36,7 +36,7 @@
                 <div class="catalogue-list">
                 {% for catalogue in catalogues %}
                     <div class="block-element">
-                        <h5 class="header">{{ localeMap[catalogue.locale] }}</h5>
+                        <h5 class="header">{{ ('global.short_locale.' ~ catalogue.locale)|trans }}<span class="flag flag-{{ catalogue.locale }}"></span></h5>
                         <table class="domain-table">
                             {% set totalMessages = 0 %}
                             {% set translatedMessages = 0 %}

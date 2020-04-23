@@ -1,0 +1,17 @@
+<div class="row field">
+    <div class="col s1 handle icon-holder">
+        <i class="fa fa-arrows-v fa-fw"></i>
+    </div>
+    <div class="input-field col s5">
+        {{ form_row(form.name, {'label':'label.name'}) }}
+    </div>
+    <div class="input-field col s5">
+        {{ form_row(form.type, {'label':'label.type'}) }}
+    </div>
+    <div class="input-field">
+        {{ form_row(form.position, {'attr': {'class' : 'position'}}) }}
+    </div>
+    <div class="col s1 icon-holder">
+        <i class="fa fa-remove fa-fw removeDatum"></i>
+    </div>
+</div>

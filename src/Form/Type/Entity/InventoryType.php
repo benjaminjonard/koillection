@@ -13,22 +13,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class PhotoType
- *
- * @package App\Form\Type\Entity
- */
 class InventoryType extends AbstractType
 {
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var StringToInventoryContentTransformer
      */
-    private $stringToInventoryContentTransformer;
+    private StringToInventoryContentTransformer $stringToInventoryContentTransformer;
 
     /**
      * InventoryType constructor.

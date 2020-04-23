@@ -12,8 +12,9 @@ use App\Entity\Tag;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
-use App\Service\ItemHelper;
+use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,34 +22,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class ItemController
- *
- * @package App\Controller
- */
 class ItemController extends AbstractController
 {
     /**
-     * @Route("/items/add", name="app_item_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/add",
+     *     "fr": "/objets/ajouter"
+     * }, name="app_item_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
-     * @param ItemHelper $itemHelper
+     * @param ItemNameGuesser $itemNameGuesser
      * @return Response
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws NonUniqueResultException
      */
-    public function add(Request $request, TranslatorInterface $translator, ItemHelper $itemHelper) : Response
+    public function add(Request $request, TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         $collection = null;
         if ($request->query->has('collection')) {
-            $collection = $em->getRepository(Collection::class)->findOneBy([
-                'id' => $request->query->get('collection'),
-                'owner' => $this->getUser()
-            ]);
+            $collection = $em->getRepository(Collection::class)->findWithItems($request->query->get('collection'));
         }
 
         if (!$collection) {
@@ -62,8 +56,10 @@ class ItemController extends AbstractController
         ;
 
         //Preload tags shared by all items in that collection
+        $suggestedNames = [];
         if ($request->isMethod('GET')) {
             $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
+            $suggestedNames = $itemNameGuesser->guess($item);
         }
 
         $form = $this->createForm(ItemType::class, $item);
@@ -83,16 +79,29 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/add.html.twig', [
             'form' => $form->createView(),
+            'item' => $item,
             'collection' => $collection,
-            'data' => $itemHelper->formatData($item->getData()),
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
+            'suggestedNames' => $suggestedNames
         ]);
     }
 
     /**
-     * @Route("/items/{id}", name="app_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/user/{username}/items/{id}", name="app_user_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/preview/items/{id}", name="app_preview_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/items/{id}",
+     *     "fr": "/objets/{id}"
+     * }, name="app_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/items/{id}",
+     *     "fr": "/utilisateur/{username}/objets/{id}"
+     * }, name="app_user_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/items/{id}",
+     *     "fr": "/apercu/objets/{id}"
+     * }, name="app_preview_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("item", expr="repository.findById(id)")
      *
      * @param Item $item
@@ -110,16 +119,19 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/edit", name="app_item_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/{id}/edit",
+     *     "fr": "/objets/{id}/editer"
+     * }, name="app_item_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     *
      * @Entity("item", expr="repository.findById(id)")
      *
      * @param Request $request
      * @param Item $item
      * @param TranslatorInterface $translator
-     * @param ItemHelper $itemHelper
      * @return Response
      */
-    public function edit(Request $request, Item $item, TranslatorInterface $translator, ItemHelper $itemHelper) : Response
+    public function edit(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
@@ -132,14 +144,17 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/edit.html.twig', [
             'form' => $form->createView(),
-            'data' => $itemHelper->formatData($item->getData()),
             'item' => $item,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
+            'collection' => $item->getCollection(),
         ]);
     }
 
     /**
-     * @Route("/items/{id}/delete", name="app_item_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/{id}/delete",
+     *     "fr": "/objets/{id}/supprimer"
+     * }, name="app_item_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Item $item
      * @param TranslatorInterface $translator
@@ -158,7 +173,10 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/history", name="app_item_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/items/{id}/history",
+     *     "fr": "/objets/{id}/historique"
+     * }, name="app_item_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Item $item
      * @return Response
@@ -178,7 +196,10 @@ class ItemController extends AbstractController
     }
 
     /**
-     * @Route("/items/{id}/loan", name="app_item_loan", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/items/{id}/loan",
+     *     "fr": "/objets/{id}/preter"
+     * }, name="app_item_loan", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Item $item

@@ -9,51 +9,48 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Loan
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\LoanRepository")
  * @ORM\Table(name="koi_loan")
  */
 class Loan
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
-     * @var \App\Entity\Item
+     * @var Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="loans")
      */
-    private $item;
+    private Item $item;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $lentTo;
+    private ?string $lentTo = null;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="date")
      */
-    private $lentAt;
+    private ?\DateTimeInterface $lentAt = null;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="date", nullable=true)
      */
-    private $returnedAt;
+    private \DateTimeInterface $returnedAt;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private $owner;
+    private ?User $owner = null;
 
     public function __construct()
     {
@@ -68,123 +65,63 @@ class Loan
         return $this->id->toString();
     }
 
-    /**
-     * Set lentTo.
-     *
-     * @param string $lentTo
-     *
-     * @return Loan
-     */
-    public function setLentTo(string $lentTo) : self
+    public function getLentTo(): ?string
+    {
+        return $this->lentTo;
+    }
+
+    public function setLentTo(string $lentTo): self
     {
         $this->lentTo = $lentTo;
 
         return $this;
     }
 
-    /**
-     * Get lentTo.
-     *
-     * @return string
-     */
-    public function getLentTo() : ?string
+    public function getLentAt(): ?\DateTimeInterface
     {
-        return $this->lentTo;
+        return $this->lentAt;
     }
 
-    /**
-     * Set lentAt.
-     *
-     * @param \DateTime $lentAt
-     *
-     * @return Loan
-     */
-    public function setLentAt(\DateTime $lentAt) : self
+    public function setLentAt(\DateTimeInterface $lentAt): self
     {
         $this->lentAt = $lentAt;
 
         return $this;
     }
 
-    /**
-     * Get lentAt.
-     *
-     * @return \DateTime
-     */
-    public function getLentAt() : ?\DateTime
+    public function getReturnedAt(): ?\DateTimeInterface
     {
-        return $this->lentAt;
+        return $this->returnedAt;
     }
 
-    /**
-     * Set returnedAt.
-     *
-     * @param \DateTime $returnedAt
-     *
-     * @return Loan
-     */
-    public function setReturnedAt(\DateTime $returnedAt) : self
+    public function setReturnedAt(?\DateTimeInterface $returnedAt): self
     {
         $this->returnedAt = $returnedAt;
 
         return $this;
     }
 
-    /**
-     * Get returnedAt.
-     *
-     * @return \DateTime
-     */
-    public function getReturnedAt() : ?\DateTime
+    public function getItem(): ?Item
     {
-        return $this->returnedAt;
+        return $this->item;
     }
 
-    /**
-     * Set item.
-     *
-     * @param \App\Entity\Item $item
-     *
-     * @return Loan
-     */
-    public function setItem(Item $item = null) : self
+    public function setItem(?Item $item): self
     {
         $this->item = $item;
 
         return $this;
     }
 
-    /**
-     * Get item.
-     *
-     * @return \App\Entity\Item
-     */
-    public function getItem() : Item
+    public function getOwner(): ?User
     {
-        return $this->item;
+        return $this->owner;
     }
 
-    /**
-     * Set owner.
-     *
-     * @param \App\Entity\User $owner
-     *
-     * @return Loan
-     */
-    public function setOwner(User $owner = null) : self
+    public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
 
         return $this;
-    }
-
-    /**
-     * Get owner.
-     *
-     * @return User|null
-     */
-    public function getOwner() : ?User
-    {
-        return $this->owner;
     }
 }

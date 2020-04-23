@@ -4,25 +4,22 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
+use Twig\Environment;
 
-/**
- * Class ContextHandler
- *
- * @package App\Service
- */
 class ContextHandler
 {
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
-    private $environment;
+    private Environment $environment;
 
     /**
      * @var RouterInterface
      */
-    private $router;
+    private RouterInterface $router;
 
     /**
      * @var string
@@ -32,14 +29,24 @@ class ContextHandler
      * preview: Preview pages
      * default: everything else
      */
-    private $context;
+    private string $context;
+
+    /**
+     * @var User
+     */
+    private ?User $user;
+
+    /**
+     * @var string
+     */
+    private string $username;
 
     /**
      * ContextHandler constructor.
-     * @param \Twig_Environment $environment
+     * @param Environment $environment
      * @param RouterInterface $router
      */
-    public function __construct(\Twig_Environment $environment, RouterInterface $router)
+    public function __construct(Environment $environment, RouterInterface $router)
     {
         $this->environment = $environment;
         $this->router = $router;
@@ -49,7 +56,7 @@ class ContextHandler
     {
         preg_match("/^\/(\w+)/", $request->getRequestUri(), $matches);
 
-        if (isset($matches[1]) && in_array($matches[1], ['user', 'preview', 'admin'])) {
+        if (isset($matches[1]) && \in_array($matches[1], ['user', 'preview', 'admin'])) {
             $this->context = $matches[1];
         } else {
             $this->context = 'default';
@@ -59,12 +66,37 @@ class ContextHandler
 
         if ($this->context === 'user') {
             preg_match("/^\/user\/(\w+)/", $request->getRequestUri(), $matches);
-            $this->router->getContext()->setParameter('username', $matches[1]);
+            $this->username = $matches[1];
+            $this->router->getContext()->setParameter('username',$this->username);
         }
+    }
+
+    public function getRouteContext($route) {
+        if (\in_array($this->context, ['user', 'preview'])) {
+            $route = str_replace('app_', 'app_'.$this->context.'_', $route);
+        }
+
+        return $route;
+    }
+
+    public function setContextUser(?User $user) {
+        $this->user = $user;
+
+        return $user;
+    }
+
+    public function getContextUser() : ?User
+    {
+        return $this->user;
     }
 
     public function getContext() : string
     {
         return $this->context;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
     }
 }

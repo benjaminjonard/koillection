@@ -10,11 +10,6 @@ use App\Enum\LogTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\Log\Logger;
 
-/**
- * Class CollectionLogger
- *
- * @package App\Service\Log\Logger
- */
 class CollectionLogger extends Logger
 {
     /**
@@ -72,7 +67,7 @@ class CollectionLogger extends Logger
         }
         $mainPayload = [];
         foreach ($changeset as $property => $change) {
-            if (in_array($property, ['title', 'childrenTitle', 'itemsTitle', 'visibility'])) {
+            if (\in_array($property, ['title', 'childrenTitle', 'itemsTitle', 'visibility'])) {
                 $function = 'get'.ucfirst($property);
                 $mainPayload[] = [
                     'title' => $collection->getTitle(),

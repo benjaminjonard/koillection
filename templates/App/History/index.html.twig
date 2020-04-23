@@ -11,42 +11,17 @@
 {% endblock %}
 
 {% block content %}
-    <div class="title-block">
-        <h1>{{ 'menu.history'|trans }}</h1>
-    </div>
+    <div class="collection-header">
+        <div class="title-block">
+            <h1>{{ 'menu.history'|trans }}</h1>
 
-    <div class="content-block">
-        <div class="table-filter">
-            <span class="filter-title">{{ 'filter.title.types'|trans }} :</span>
-            {% set types = app.request.query.get('types') %}
-            {% set actions = app.request.query.get('actions') %}
-
-            {% for filter in constant('App\\Enum\\HistoryFilterEnum::FILTERS')  %}
-                {% if filter in types %}
-                    <a href="{{ path('app_history_index', {'types': types|remove(filter)|reorder, 'actions': actions}) }}" class="active">
-                {% else %}
-                    <a href="{{ path('app_history_index', {'types': types|add(filter)|reorder, 'actions': actions}) }}">
-                {% endif %}
-                        {{ ('filter.' ~ filter)|trans }}
-                    </a>
-            {% endfor %}
-        </div>
-
-        <div class="table-filter">
-            <span class="filter-title">{{ 'filter.title.actions'|trans }} :</span>
-            {% for filter in [constant('App\\Enum\\LogTypeEnum::TYPE_CREATE'), constant('App\\Enum\\LogTypeEnum::TYPE_DELETE') ] %}
-                {% if filter in actions %}
-                    <a href="{{ path('app_history_index', {'types': types, 'actions': actions|remove(filter)|reorder }) }}" class="active">
-                {% else %}
-                    <a href="{{ path('app_history_index', {'types': types, 'actions': actions|add(filter)|reorder }) }}">
-                {% endif %}
-                        {{ ('filter.' ~ filter)|trans }}
-                    </a>
-            {% endfor %}
+            <div class="btn-holder">
+                {{ include('App/History/_form.html.twig') }}
+            </div>
         </div>
     </div>
 
     <div class="content-block">
-        {{ include('App/History/partials/table.html.twig', {'logs': logs}) }}
+        {{ include('App/History/_logs_table.html.twig', {'logs': logs}) }}
     </div>
 {% endblock %}

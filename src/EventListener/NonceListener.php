@@ -5,19 +5,14 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use App\Security\NonceGenerator;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-/**
- * Class NonceListener
- *
- * @package App\EventListener
- */
 class NonceListener
 {
     /**
      * @var NonceGenerator
      */
-    private $nonceGenerator;
+    private NonceGenerator $nonceGenerator;
 
     /**
      * BeforeResponseListener constructor.
@@ -29,9 +24,9 @@ class NonceListener
     }
 
     /**
-     * @param FilterResponseEvent $event
+     * @param ResponseEvent $event
      */
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event)
     {
         // get the Response object from the event
         $response = $event->getResponse();

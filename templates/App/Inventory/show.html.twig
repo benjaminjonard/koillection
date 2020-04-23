@@ -16,7 +16,11 @@
 {% macro recursiveCollection(collection) %}
     {% import _self as self %}
     <li class="inventory-collection-show">
-        {{ collection.title }} - <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span> / {{ collection.totalItems }}
+        <h6 class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green lighten-4' : 'red lighten-4' }}">
+            {{ collection.title }} -
+            <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span> / <span class="js-total-counter">{{ collection.totalItems }}</span>
+            (<span class="js-rate">{{ ((collection.totalCheckedItems*100)/collection.totalItems)|round(2) }}</span>%)
+        </h6>
 
         {% if collection.children|length %}
             <ul>
@@ -50,6 +54,7 @@
         <h1>
             {{ inventory.name }}
         </h1>
+        {{ include('App/Inventory/_nav_pills.html.twig', {'inventory': inventory}) }}
 
         <div></div>
 
@@ -67,10 +72,10 @@
         <div class="block-element">
             <div class="row">
                 <h5 class="header">{{ 'title.collections'|trans }}</h5>
-                <div class="col s10 offset-s1 m5 offset-m1">
+                <div class="col s12 m10 offset-m1">
                     <ul id="inventory-root" data-inventory-id="{{ inventory.id }}">
                         <li>
-                            {% for collection in collections %}
+                            {% for collection in inventory.contentAsArray %}
                                 <ul>
                                     {{ recursiveCollection(collection) }}
                                 </ul>
@@ -85,6 +90,6 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
+        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
     {% endif %}
 {% endblock %}

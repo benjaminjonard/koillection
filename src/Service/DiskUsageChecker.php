@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Medium;
+use App\Entity\Image;
 use App\Entity\User;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class DiskUsageChecker
- *
- * @package App\Service
- */
 class DiskUsageChecker
 {
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    private TranslatorInterface $translator;
 
     /**
      * DiskUsageChecker constructor.
@@ -31,15 +26,15 @@ class DiskUsageChecker
 
     /**
      * @param User $user
-     * @param array $media
+     * @param array $images
      * @throws \Exception
      */
-    public function hasEnoughSpaceForUpload(User $user, array $media) : void
+    public function hasEnoughSpaceForUpload(User $user, array $images) : void
     {
         $sizeRequested = 0;
-        foreach ($media as $medium) {
-            if ($medium instanceof Medium && $medium->getUploadedFile() !== null) {
-                $sizeRequested += $medium->getUploadedFile()->getSize();
+        foreach ($images as $image) {
+            if ($image instanceof Image && $image->getUploadedFile() !== null) {
+                $sizeRequested += $image->getUploadedFile()->getSize();
             }
         }
 

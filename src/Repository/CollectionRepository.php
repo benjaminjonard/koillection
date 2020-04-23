@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Collection;
-use App\Model\Search;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class CollectionRepository
- *
- * @package App\Repository
- */
 class CollectionRepository extends EntityRepository
 {
     public function __construct(EntityManager $em, Mapping\ClassMetadata $class)
@@ -66,7 +63,7 @@ class CollectionRepository extends EntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = \array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
 
         return $this
             ->createQueryBuilder('c')
@@ -77,6 +74,25 @@ class CollectionRepository extends EntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @param $id
+     * @return Collection|null
+     * @throws NonUniqueResultException
+     */
+    public function findWithItems($id) : ?Collection
+    {
+        return $this
+            ->createQueryBuilder('c')
+            ->leftJoin('c.items', 'i')
+            ->addSelect('i')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 
     /**
      * @return array
@@ -116,6 +132,7 @@ class CollectionRepository extends EntityRepository
      * @param string $id
      * @param bool $withData
      * @return Collection|null
+     * @throws NonUniqueResultException
      */
     public function findById(string $id, bool $withData = false) : ?Collection
     {
@@ -179,10 +196,10 @@ class CollectionRepository extends EntityRepository
             ->orderBy('c.title', 'ASC')
         ;
 
-        if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
             $qb
-                ->andWhere('LOWER(c.title) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.$search->getSearch().'%')
+                ->andWhere('LOWER(c.title) LIKE LOWER(:term)')
+                ->setParameter('term', '%'.$search->getTerm().'%')
             ;
         }
 
@@ -200,6 +217,8 @@ class CollectionRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {
@@ -229,7 +248,7 @@ class CollectionRepository extends EntityRepository
             ;
         }
 
-        return array_column($qb->getQuery()->getArrayResult(), "itemsTitle");
+        return \array_column($qb->getQuery()->getArrayResult(), "itemsTitle");
     }
 
     public function suggestChildrenTitles(Collection $collection) : array
@@ -250,6 +269,6 @@ class CollectionRepository extends EntityRepository
             ;
         }
 
-        return array_column($qb->getQuery()->getArrayResult(), "childrenTitle");
+        return \array_column($qb->getQuery()->getArrayResult(), "childrenTitle");
     }
 }

@@ -4,24 +4,14 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-/**
- * Class LocaleEnum
- *
- * @package App\Enum
- */
 class LocaleEnum
 {
-    public const LOCALE_EN = 'en';
-    public const LOCALE_FR = 'fr';
+    public const LOCALE_EN_GB = 'en_GB';
+    public const LOCALE_FR_FR = 'fr_FR';
 
     public const LOCALES = [
-        self::LOCALE_EN,
-        self::LOCALE_FR
-    ];
-
-    public const LOCALES_TRANS_KEYS = [
-        self::LOCALE_EN => 'english',
-        self::LOCALE_FR => 'french'
+        self::LOCALE_EN_GB => 'en_GB',
+        self::LOCALE_FR_FR => 'fr_FR'
     ];
 
     /**
@@ -29,6 +19,9 @@ class LocaleEnum
      */
     public static function getLocaleLabels() : array
     {
-        return self::LOCALES_TRANS_KEYS;
+        return [
+            self::LOCALE_EN_GB => 'global.locale.en_GB',
+            self::LOCALE_FR_FR => 'global.locale.fr_FR',
+        ];
     }
 }

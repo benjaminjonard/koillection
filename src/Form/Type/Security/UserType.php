@@ -16,11 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class UserType
- *
- * @package App\Form\Type\Security
- */
 class UserType extends AbstractType
 {
     /**

@@ -9,7 +9,7 @@ use App\Entity\Collection;
 use App\Entity\Field;
 use App\Entity\Inventory;
 use App\Entity\Item;
-use App\Entity\Medium;
+use App\Entity\Image;
 use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\Template;
@@ -17,24 +17,20 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
+use App\Enum\LocaleEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\InventoryHandler;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class AnubisFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class AnubisFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**
      * @var InventoryHandler
      */
-    private $inventoryHandler;
+    private InventoryHandler $inventoryHandler;
 
     /**
      * AnubisFixtures constructor.
@@ -59,7 +55,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $anubis
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale('en')
+            ->setLocale(LocaleEnum::LOCALE_EN_GB)
             ->setUsername('Anubis')
             ->setEmail('anubis@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
@@ -108,7 +104,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setName('Journey')
             ->setCollection($colletionVideoGames)
-            ->setImage($this->loadMedium($user, $manager, 'anubis/collections/videogames/journey.jpeg', 'anubis/collections/videogames/journey_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'anubis/collections/videogames/journey.jpeg', 'anubis/collections/videogames/journey_small.jpeg'))
             ->addTag($tagVideoGames)
             ->setSeenCounter(0)
         ;
@@ -151,7 +147,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setName('Cthulhu Figure')
             ->setWishlist($wishlistPlushes)
-            ->setImage($this->loadMedium($user, $manager, 'anubis/wishlists/plushes/anubis.jpeg', 'anubis/wishlists/plushes/anubis_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'anubis/wishlists/plushes/anubis.jpeg', 'anubis/wishlists/plushes/anubis_small.jpeg'))
         ;
         $manager->persist($wishAnubis);
     }
@@ -177,7 +173,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setTitle('Photo 1')
             ->setAlbum($albumUnderworld)
-            ->setImage($this->loadMedium($user, $manager, 'anubis/albums/underworld/underworld.jpeg', 'anubis/albums/underworld/underworld_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'anubis/albums/underworld/underworld.jpeg', 'anubis/albums/underworld/underworld_small.jpeg'))
         ;
         $manager->persist($photo1);
     }
@@ -212,13 +208,13 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
      * @param ObjectManager $manager
      * @param string $path
      * @param null|string $thumbnailPath
-     * @return Medium
+     * @return Image
      */
-    private function loadMedium(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Medium
+    private function loadImage(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Image
     {
         $file = new File('public/fixtures/'.$path);
-        $medium = new Medium();
-        $medium
+        $image = new Image();
+        $image
             ->setOwner($user)
             ->setFilename($path)
             ->setMimetype($file->getMimeType())
@@ -228,14 +224,14 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
 
         if ($thumbnailPath) {
             $thumbnailFile = new File('public/fixtures/'.$thumbnailPath);
-            $medium
+            $image
                 ->setThumbnailPath('fixtures/'.$thumbnailPath)
                 ->setThumbnailSize($thumbnailFile->getSize())
             ;
         }
 
-        $manager->persist($medium);
+        $manager->persist($image);
 
-        return $medium;
+        return $image;
     }
 }

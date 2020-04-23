@@ -9,32 +9,29 @@ use App\Entity\Collection;
 use App\Entity\Field;
 use App\Entity\Inventory;
 use App\Entity\Item;
-use App\Entity\Medium;
+use App\Entity\Image;
 use App\Entity\Photo;
 use App\Entity\Tag;
+use App\Entity\TagCategory;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
+use App\Enum\LocaleEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\InventoryHandler;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class KhorneFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class KhorneFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**
      * @var InventoryHandler
      */
-    private $inventoryHandler;
+    private InventoryHandler $inventoryHandler;
 
     /**
      * AnubisFixtures constructor.
@@ -59,7 +56,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $admin
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale('en')
+            ->setLocale(LocaleEnum::LOCALE_EN_GB)
             ->setUsername('Khorne')
             ->setEmail('khorne@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
@@ -84,6 +81,15 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
      */
     private function loadCollections(User $user, ObjectManager $manager)
     {
+        //TAGS CATEGORY
+        $categorySerie = new TagCategory();
+        $categorySerie
+            ->setOwner($user)
+            ->setLabel('Serie')
+            ->setDescription('Book serie')
+            ->setColor('#3232a8')
+        ;
+
         //TAGS
         $tagManga = new Tag();
         $tagManga
@@ -98,6 +104,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setLabel('Magdala Alchemist Path')
             ->setSeenCounter(0)
+            ->setCategory($categorySerie)
         ;
         $manager->persist($tagMagdala);
 
@@ -115,7 +122,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setTitle('Magdala, Alchemist Path')
             ->setParent($collectionManga)
-            ->setImage($this->loadMedium($user, $manager, 'khorne/collections/magdala/main.png'))
+            ->setImage($this->loadImage($user, $manager, 'khorne/collections/magdala/main.png'))
             ->setSeenCounter(0)
         ;
         $collectionManga->addChild($collectionMagdala);
@@ -128,7 +135,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
                 ->setOwner($user)
                 ->setName('Magdala, Alchemist Path #'.$i)
                 ->setCollection($collectionMagdala)
-                ->setImage($this->loadMedium($user, $manager, 'khorne/collections/magdala/'.$i.'.jpeg', 'khorne/collections/magdala/'.$i.'_small.jpeg'))
+                ->setImage($this->loadImage($user, $manager, 'khorne/collections/magdala/'.$i.'.jpeg', 'khorne/collections/magdala/'.$i.'_small.jpeg'))
                 ->addTag($tagManga)
                 ->addTag($tagMagdala)
                 ->setSeenCounter(0)
@@ -174,7 +181,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setName('Danboard')
             ->setWishlist($wishlistProxy)
-            ->setImage($this->loadMedium($user, $manager, 'khorne/wishlists/proxy/danboard.jpeg', 'khorne/wishlists/proxy/danboard_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'khorne/wishlists/proxy/danboard.jpeg', 'khorne/wishlists/proxy/danboard_small.jpeg'))
         ;
         $manager->persist($wishDanboard);
     }
@@ -200,7 +207,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setTitle('Photo 1')
             ->setAlbum($albumSaintMaur)
-            ->setImage($this->loadMedium($user, $manager, 'khorne/albums/saint-maur/saint-maur.jpeg', 'khorne/albums/saint-maur/saint-maur_small.jpeg'))
+            ->setImage($this->loadImage($user, $manager, 'khorne/albums/saint-maur/saint-maur.jpeg', 'khorne/albums/saint-maur/saint-maur_small.jpeg'))
         ;
         $manager->persist($photo1);
     }
@@ -235,13 +242,13 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
      * @param ObjectManager $manager
      * @param string $path
      * @param null|string $thumbnailPath
-     * @return Medium
+     * @return Image
      */
-    private function loadMedium(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Medium
+    private function loadImage(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Image
     {
         $file = new File('public/fixtures/'.$path);
-        $medium = new Medium();
-        $medium
+        $image = new Image();
+        $image
             ->setOwner($user)
             ->setFilename($path)
             ->setMimetype($file->getMimeType())
@@ -251,14 +258,14 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
 
         if ($thumbnailPath) {
             $thumbnailFile = new File('public/fixtures/'.$thumbnailPath);
-            $medium
+            $image
                 ->setThumbnailPath('fixtures/'.$thumbnailPath)
                 ->setThumbnailSize($thumbnailFile->getSize())
             ;
         }
 
-        $manager->persist($medium);
+        $manager->persist($image);
 
-        return $medium;
+        return $image;
     }
 }

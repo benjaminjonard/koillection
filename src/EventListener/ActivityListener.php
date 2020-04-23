@@ -8,23 +8,17 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-
-/**
- * Class ActivityListener
- *
- * @package App\EventListener
- */
 class ActivityListener
 {
     /**
      * @var TokenStorageInterface
      */
-    private $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * ActionListener constructor.
@@ -39,6 +33,7 @@ class ActivityListener
 
     /**
      * @return null
+     * @throws \Exception
      */
     public function onKernelRequest()
     {

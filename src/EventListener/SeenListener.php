@@ -5,19 +5,14 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-/**
- * Class SeenListener
- *
- * @package App\EventListener
- */
 class SeenListener
 {
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * SeenListener constructor.
@@ -28,7 +23,7 @@ class SeenListener
         $this->em = $em;
     }
 
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event)
     {
         $route = $event->getRequest()->get('_route');
 

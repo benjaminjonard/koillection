@@ -6,11 +6,6 @@ namespace App\Entity\Interfaces;
 
 use App\Entity\User;
 
-/**
- * Interface LoggableInterface
- *
- * @package App\Entity\Interfaces
- */
 interface LoggableInterface
 {
     /**

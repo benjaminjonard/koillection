@@ -37,7 +37,7 @@
 
                         <div class="row">
                             <div class="col offset-s1 s10 m5 offset-m1">
-                                {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
+                                {{ form_row(form.plainPassword.first, {'label': 'label.password', 'attr': {'autocomplete': 'off'}}) }}
                             </div>
                             <div class="col offset-s1 s10 offset-m0 m5">
                                 {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}

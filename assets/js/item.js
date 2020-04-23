@@ -1,4 +1,5 @@
 import * as utils from './utils'
+import * as select from './select'
 
 function showAdditionalFieldsBlocks() {
     if ($('#data').find('.datum').length > 0) {
@@ -41,7 +42,7 @@ $('.selectTemplate').change( function() {
             removeTemplateData();
             $.each( result.fields, function( label, field ) {
                 if ($('.itemLabel :input[value="'+ label +'"]').length == 0) {
-                    if (field.isImage) {
+                    if (field.type == 'image' || field.type == 'sign') {
                         var $holder = $('#item-images');
                     } else {
                         var $holder = $('#data');
@@ -52,6 +53,7 @@ $('.selectTemplate').change( function() {
                 }
             });
             showAdditionalFieldsBlocks();
+            select.loadSelect2Countries();
             utils.computePositions($('#data'));
             utils.computePositions($('#item-images'));
         }, "json" );
@@ -65,7 +67,7 @@ $('.btn-common-fields').click( function(e) {
     $.get('/datum/load-common-fields/' + $(this).attr('data-collection-id'), function( result ) {
         $.each( result.fields, function( label, field ) {
             if ($('.itemLabel :input[value="'+ label +'"]').length == 0) {
-                if (field.isImage) {
+                if (field.type == 'image' || field.type == 'sign') {
                     var $holder = $('#item-images');
                 } else {
                     var $holder = $('#data');
@@ -76,6 +78,7 @@ $('.btn-common-fields').click( function(e) {
             }
         });
         showAdditionalFieldsBlocks();
+        select.loadSelect2Countries();
         utils.computePositions($('#data'));
         utils.computePositions($('#item-images'));
     });
@@ -85,7 +88,7 @@ $('.selectFieldType').change( function() {
     let $self = $(this);
     if ( $self.val() != '' ) {
         $.get('/datum/' + $self.val(), function( result ) {
-            if (result.isImage) {
+            if (result.type == 'image' || result.type == 'sign') {
                 var $holder = $('#item-images');
             } else {
                 var $holder = $('#data');
@@ -95,7 +98,8 @@ $('.selectFieldType').change( function() {
             $datum.find('.countable').characterCounter();
             $datum.find('.position').val($('#data').find('.datum').length);
             lastIndex++;
-            showAdditionalFieldsBlocks()
+            showAdditionalFieldsBlocks();
+            select.loadSelect2Countries();
             utils.reloadSortableList($holder, '.datum');
             utils.computePositions($holder);
             utils.loadFilePreviews();
@@ -116,22 +120,27 @@ var tagAutocomplete = M.Autocomplete.init(document.querySelectorAll('.autocomple
     }
 })[0];
 
+let timeout = null;
 $('#tagsAutocomplete').keyup(function (e) {
     tagAutocomplete.updateData({});
-    if ($(this).val() != '') {
+    clearTimeout(timeout);
+    let val = $(this).val();
 
-        $.get('/tags/autocomplete/' + $(this).val(), function( result ) {
-            var data = {};
-            $.each(result, function( key, tag ) {
-                data[tag] = null;
-            });
+    if (val != '') {
+        timeout = setTimeout(function() {
+            $.get('/tags/autocomplete/' + val, function( result ) {
+                let data = {};
+                $.each(result, function( key, tag ) {
+                    data[tag] = null;
+                });
 
-            tagAutocomplete.updateData(data);
-            tagAutocomplete.open();
-        }, "json" );
+                tagAutocomplete.updateData(data);
+                tagAutocomplete.open();
+            }, "json" );
+        }, 500);
     }
 
-    if(e.which == 13) {
+    if (e.which === 13) {
         onAutocomplete($(this).val());
     }
 });
@@ -141,7 +150,6 @@ $( ".autocomplete-wrapper" ).on("click", ".close", function() {
     var existingTags = JSON.parse(tagsHolder.val());
 
     var index = existingTags.indexOf($(this).parent('.chip').attr('data-id'));
-    console.log(existingTags);
     if (index > -1) {
         existingTags.splice(index, 1);
     }

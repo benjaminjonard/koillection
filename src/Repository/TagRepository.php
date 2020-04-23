@@ -8,18 +8,13 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
-use App\Model\Search;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
-/**
- * Class TagRepository
- *
- * @package App\Repository
- */
 class TagRepository extends EntityRepository
 {
-    private const RESULTS_PER_PAGE = 10;
-
     public function findById(string $id) : ?Tag
     {
         return $this
@@ -55,7 +50,7 @@ class TagRepository extends EntityRepository
      * @param string|null $context
      * @return array
      */
-    public function countItemsByTag($itemsCount, $page = 1, string $search = null, string $context = null) : array
+    public function findTagsPaginatedWithItemsCount($itemsCount, $itemsPerPage, $page = 1, string $search = null, string $context = null) : array
     {
         $qb = $this
             ->getEntityManager()
@@ -63,12 +58,12 @@ class TagRepository extends EntityRepository
             ->select('DISTINCT t as tag')
             ->addSelect('count(DISTINCT i.id) as itemCount')
             ->addSelect('(count(DISTINCT i.id)*100.0/:totalItems) as percent')
-            ->from('App\Entity\Tag', 't')
+            ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
-            ->setFirstResult(($page - 1) * self::RESULTS_PER_PAGE)
-            ->setMaxResults(self::RESULTS_PER_PAGE)
+            ->setFirstResult(($page - 1) * $itemsPerPage)
+            ->setMaxResults($itemsPerPage)
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
@@ -90,14 +85,14 @@ class TagRepository extends EntityRepository
      * @param string|null $search
      * @param string|null $context
      * @return int
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function countTags(string $search = null, string $context = null) : int
+    public function countForPagination(string $search = null, string $context = null) : int
     {
         $qb = $this->_em
             ->createQueryBuilder()
             ->select('count(DISTINCT t.id)')
-            ->from('App\\Entity\\Tag', 't')
+            ->from(Tag::class, 't')
         ;
 
         if (\in_array($context, ['user', 'preview'])) {
@@ -127,9 +122,12 @@ class TagRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('t')
+            ->addSelect('(CASE WHEN LOWER(t.label) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(t.label) LIKE LOWER(:label)')
-            ->orderBy('t.label', 'ASC')
+            ->orderBy('startWithOrder', 'ASC') //Order tags starting with the search term first
+            ->addOrderBy('LOWER(t.label)', 'ASC') //Then order other matching tags alphabetically
             ->setParameter('label', '%'.$string.'%')
+            ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
@@ -164,15 +162,13 @@ class TagRepository extends EntityRepository
     /**
      * Find for search.
      *
-     * @param User $owner
      * @param Search $search
      *
      * @return array
      */
-    public function findForSearch(User $owner, Search $search) : array
+    public function findForSearch(Search $search) : array
     {
-
-        $itemsCount = $this->_em->getRepository(Item::class)->count(['owner' => $owner]);
+        $itemsCount = $this->_em->getRepository(Item::class)->count([]);
 
         $qb = $this
             ->getEntityManager()
@@ -180,17 +176,17 @@ class TagRepository extends EntityRepository
             ->select('t as tag')
             ->addSelect('count(i.id) as itemCount')
             ->addSelect('(count(i.id)*100.0/:totalItems) as percent')
-            ->from('App\Entity\Tag', 't')
+            ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
             ->setParameter('totalItems', $itemsCount)
         ;
 
-        if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
             $qb
-                ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.$search->getSearch().'%')
+                ->andWhere('LOWER(t.label) LIKE LOWER(:term)')
+                ->setParameter('term', '%'.$search->getTerm().'%')
             ;
         }
 
@@ -231,7 +227,7 @@ class TagRepository extends EntityRepository
         return $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial t.{id, label}, LENGTH(t.label) as HIDDEN length')
-            ->from('App\\Entity\\Tag', 't')
+            ->from(Tag::class, 't')
             ->orderBy('length', 'DESC')
             ->getQuery()
             ->getArrayResult()
@@ -244,22 +240,31 @@ class TagRepository extends EntityRepository
      */
     public function findRelatedTags(Tag $tag)
     {
-        $subrequest = $this->_em->createQueryBuilder()
+        //Get all items ids the current tag is linked to
+        $results = $this->_em->createQueryBuilder()
             ->select('DISTINCT i2.id')
-            ->from('App\\Entity\\Item', 'i2')
+            ->from(Item::class, 'i2')
             ->leftJoin('i2.tags', 't2')
             ->where('t2.id = :tag')
+            ->setParameter('tag', $tag)
+            ->getQuery()
+            ->getArrayResult()
         ;
+
+        $itemIds = \array_map(function ($row) {
+            return $row['id'];
+        }, $results);
 
         return $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial t.{id, label}')
-            ->from('App\\Entity\\Tag', 't')
+            ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
-            ->where("i.id IN ($subrequest)")
+            ->where("i.id IN (:itemIds)")
             ->andWhere('t.id != :tag')
             ->orderBy('t.label', 'ASC')
             ->setParameter('tag', $tag)
+            ->setParameter('itemIds', $itemIds)
             ->getQuery()
             ->getResult()
         ;
@@ -267,6 +272,8 @@ class TagRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {

@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-/**
- * Class ColorPicker
- *
- * @package App\Service
- */
 class ColorPicker
 {
     /**
@@ -26,6 +21,6 @@ class ColorPicker
         $colors[] = 'E8EAF6';
         shuffle($colors);
 
-        return array_shift($colors);
+        return \array_shift($colors);
     }
 }

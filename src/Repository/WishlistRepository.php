@@ -6,13 +6,10 @@ namespace App\Repository;
 
 use App\Entity\Wishlist;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class WishlistRepository
- *
- * @package App\Repository
- */
 class WishlistRepository extends EntityRepository
 {
     /**
@@ -47,7 +44,7 @@ class WishlistRepository extends EntityRepository
     /**
      * @param string $id
      * @return Wishlist|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function findById(string $id) : ?Wishlist
     {
@@ -95,7 +92,7 @@ class WishlistRepository extends EntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = \array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
 
         return $this
             ->createQueryBuilder('w')
@@ -109,6 +106,8 @@ class WishlistRepository extends EntityRepository
 
     /**
      * @return int
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll() : int
     {
@@ -118,5 +117,18 @@ class WishlistRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
+    }
+
+    public function findChildrenByWishlistId(string $id) : iterable
+    {
+        $qb = $this
+            ->createQueryBuilder('w')
+            ->where('w.parent = :id')
+            ->setParameter('id', $id)
+            ->leftJoin('w.image', 'i')
+            ->addSelect('partial i.{id, path}')
+        ;
+
+        return $qb->getQuery()->getResult();
     }
 }

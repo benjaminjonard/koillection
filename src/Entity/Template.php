@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
-use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,59 +12,56 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Template
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @ORM\Table(name="koi_template")
  */
 class Template implements BreadcrumbableInterface
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"})
+     * @var DoctrineCollection
+     * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
-    private $fields;
+    private DoctrineCollection $fields;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Item", mappedBy="template")
      * @ORM\OrderBy({"name" = "ASC"})
      */
-    private $items;
+    private DoctrineCollection $items;
 
     /**
-     * @var \App\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="templates")
      */
-    private $owner;
+    private ?User $owner = null;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private \DateTimeInterface $updatedAt;
 
     /**
      * Constructor.
@@ -74,6 +70,7 @@ class Template implements BreadcrumbableInterface
     {
         $this->id = Uuid::uuid4();
         $this->fields = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     /**
@@ -92,157 +89,36 @@ class Template implements BreadcrumbableInterface
         return $this->id->toString();
     }
 
-    /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return Template
-     */
-    public function setName(string $name) : self
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName() : ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->name;
+        return $this->createdAt;
     }
 
-    /**
-     * Add field.
-     *
-     * @param \App\Entity\Field $field
-     *
-     * @return Template
-     */
-    public function addField(Field $field) : self
-    {
-        $field->setTemplate($this);
-        $this->fields[] = $field;
-
-        return $this;
-    }
-
-    /**
-     * @param Field $field
-     * @return Template
-     */
-    public function removeField(Field $field) : self
-    {
-        $this->fields->removeElement($field);
-
-        return $this;
-    }
-
-    /**
-     * Get fields.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFields() : DoctrineCollection
-    {
-        return $this->fields;
-    }
-
-    /**
-     * Set owner.
-     *
-     * @param \App\Entity\User $owner
-     *
-     * @return Template
-     */
-    public function setOwner(User $owner = null) : self
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Get owner.
-     *
-     * @return User|null
-     */
-    public function getOwner() : ?User
-    {
-        return $this->owner;
-    }
-
-    /**
-     * Add item.
-     *
-     * @param \App\Entity\Item $item
-     *
-     * @return Template
-     */
-    public function addItem(Item $item) : self
-    {
-        $this->items[] = $item;
-
-        return $this;
-    }
-
-    /**
-     * @param Item $item
-     * @return Template
-     */
-    public function removeItem(Item $item) : self
-    {
-        $this->items->removeElement($item);
-
-        return $this;
-    }
-
-    /**
-     * Get items.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getItems() : DoctrineCollection
-    {
-        return $this->items;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Template
-     */
-    public function setCreatedAt($createdAt) : self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Template
-     */
-    public function setUpdatedAt($updatedAt) : self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -250,12 +126,76 @@ class Template implements BreadcrumbableInterface
     }
 
     /**
-     * Get updatedAt
-     *
-     * @return \DateTime
+     * @return DoctrineCollection|Field[]
      */
-    public function getUpdatedAt()
+    public function getFields(): DoctrineCollection
     {
-        return $this->updatedAt;
+        return $this->fields;
+    }
+
+    public function addField(Field $field): self
+    {
+        if (!$this->fields->contains($field)) {
+            $this->fields[] = $field;
+            $field->setTemplate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeField(Field $field): self
+    {
+        if ($this->fields->contains($field)) {
+            $this->fields->removeElement($field);
+            // set the owning side to null (unless already changed)
+            if ($field->getTemplate() === $this) {
+                $field->setTemplate(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return DoctrineCollection|Item[]
+     */
+    public function getItems(): DoctrineCollection
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+            $item->setTemplate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+            // set the owning side to null (unless already changed)
+            if ($item->getTemplate() === $this) {
+                $item->setTemplate(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
     }
 }

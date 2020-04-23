@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_category_index', 'trans': 'menu.tag_categories'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <h1>{{ 'menu.tag_categories'|trans }}</h1>
+        <ul class="nav nav-pills">
+            <li>{{ 'counter.tag_categories'|trans({'%count%': categoriesCount}) }}</li>
+        </ul>
+    </div>
+
+    <div></div>
+
+    <div class="btn-holder">
+        {% if context == 'default' %}
+            <a href="{{ path('app_tag_category_add') }}" class="button" title="{{ 'tooltip.add_tag_category'|trans }}">
+                <i class="fa fa-plus fa-fw"></i>
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="content-block">
+        <div>
+            <table class="centered striped">
+                <thead>
+                <tr>
+                    <th>{{ 'label.label'|trans }}</th>
+                    <th>{{ 'label.description'|trans }}</th>
+                    <th>{{ 'label.color'|trans }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for category in categories %}
+                    <tr class="list-element resize-element" data-title="{{ category.label }}">
+                        <td>
+                            <strong><a href="{{ path('app_tag_category_show', {'id' : category.id}) }}">{{ category.label|truncate(50) }}</a></strong>
+                        </td>
+                        <td>{{ category.description|truncate(50) }}</td>
+                        <td><span class="list-color" style="background-color: {{ category.color }}" title="{{ category.label }}"></span></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {{ include('App/_partials/_pagination.html.twig', {paginator: paginator}) }}
+        </div>
+    </div>
+{% endblock %}
+
