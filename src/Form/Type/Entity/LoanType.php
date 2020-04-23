@@ -12,11 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class LoanType
- *
- * @package App\Form\Type\Entity
- */
 class LoanType extends AbstractType
 {
     /**

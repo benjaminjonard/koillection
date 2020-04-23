@@ -11,11 +11,6 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class FilterListener
- *
- * @package App\EventListener
- */
 class FilterListener
 {
     /**

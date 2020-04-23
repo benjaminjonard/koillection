@@ -8,11 +8,6 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
-/**
- * Class AppExtension
- *
- * @package App\Twig
- */
 class AppExtension extends AbstractExtension
 {
     /**

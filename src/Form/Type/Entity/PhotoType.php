@@ -18,11 +18,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class PhotoType
- *
- * @package App\Form\Type\Entity
- */
 class PhotoType extends AbstractType
 {
     /**

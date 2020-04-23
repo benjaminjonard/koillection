@@ -1,9 +1,9 @@
 //Image
-var formSelector = '#'+$('#cropArea').attr('formName')+"_image";
 
-var $croppie = $('#cropArea').croppie({
+let $croppie = $('#cropArea').croppie({
     viewport: { width: 150, height: 150, type: 'circle' },
     boundary: { width: 200, height: 200 },
+    showZoomer: false,
     update: function (){
         $('#cropArea').triggerHandler('mouseup');
     }
@@ -17,7 +17,7 @@ $croppie.find('.cr-vp-circle').addClass('fa fa-plus fa-fw');
 
 function readFile(input) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function (e) {
             $croppie.croppie('bind', {
                 url : e.target.result,
@@ -37,28 +37,24 @@ $('#cropInput').on('change', function () {
     $(this).triggerHandler('mouseup');
 });
 
-$('#cropArea').on('mouseup', function (e) {
+function refreshImage() {
+    let $form = $('#cropArea').closest('.row-file').find('.file-input');
     $croppie.croppie('result', {
-            type: "canvas",
-            size: "viewport"
-        })
-        .then(function(imgBase64) {
-            $(formSelector).val(imgBase64);
-            if ($('#cropInput').val() != '') {
-                $('#cropPreview').html('<img src="' + imgBase64 + '">');
-            }
-        });
+        type: "canvas",
+        size: "viewport"
+    })
+    .then(function(imgBase64) {
+        $form.val(imgBase64);
+        if ($('#cropInput').val() != '') {
+            $('#cropPreview').html('<img src="' + imgBase64 + '">');
+        }
+    });
+}
+
+$('#cropArea').on('mouseup', function (e) {
+    refreshImage();
 });
 
 $('#cropArea').on('mousewheel', function (e) {
-    $croppie.croppie('result', {
-            type: 'canvas',
-            size: 'viewport'
-        })
-        .then(function (imgBase64) {
-            $(formSelector).val(imgBase64);
-            if ($('#cropInput').val() != '') {
-                $('#cropPreview').html('<img src="' + imgBase64 + '">');
-            }
-        });
+    refreshImage();
 });

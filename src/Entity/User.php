@@ -20,9 +20,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class User
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="koi_user", indexes={
  *     @ORM\Index(name="idx_user_visibility", columns={"visibility"})
@@ -170,7 +167,7 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="Log", mappedBy="user", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Log", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $logs;
 
@@ -213,7 +210,7 @@ class User implements UserInterface, BreadcrumbableInterface
         $this->enabled = false;
         $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = 'EUR';
-        $this->locale = LocaleEnum::LOCALE_GB;
+        $this->locale = LocaleEnum::LOCALE_EN_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
     }

@@ -10,9 +10,6 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class Image
- *
- * @package App\Entity
  * @ORM\Entity
  * @ORM\Table(name="koi_image")
  */

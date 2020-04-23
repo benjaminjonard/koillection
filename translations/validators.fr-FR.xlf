@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+  <file id="validators.fr">
+    <unit id="7OcgSlg" name="error.email.not_unique">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/User.php:0</note>
+      </notes>
+      <segment>
+        <source>error.email.not_unique</source>
+        <target>Adresse email déjà utilisée</target>
+      </segment>
+    </unit>
+    <unit id="qoRxC7z" name="error.username.not_unique">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/User.php:0</note>
+      </notes>
+      <segment>
+        <source>error.username.not_unique</source>
+        <target>Ce nom d'utilisateur est déjà pris</target>
+      </segment>
+    </unit>
+    <unit id="PjAj0XF" name="error.username.incorrect">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/User.php:0</note>
+      </notes>
+      <segment>
+        <source>error.username.incorrect</source>
+        <target>Le nom d'utilisateur doit comprendre entre 2 et 32 caractères (seules les lettres, les nombres et les underscores sont autorisés)</target>
+      </segment>
+    </unit>
+    <unit id="_d89Gke" name="error.search.empty">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>error.search.empty</source>
+        <target>Merci de remplir au moins un des champs</target>
+      </segment>
+    </unit>
+    <unit id="4Bdfyy1" name="error.password.incorrect">
+      <segment>
+        <source>error.password.incorrect</source>
+        <target>Le mot de passe doit contenir au moins 8 caractères (dont 1 lettre et 1 chiffre)</target>
+      </segment>
+    </unit>
+    <unit id="4m1Sgo3" name="error.password.not_matching">
+      <segment>
+        <source>error.password.not_matching</source>
+        <target>Les deux mots de passe ne sont pas identiques</target>
+      </segment>
+    </unit>
+    <unit id=".OeR.gK" name="error.search.too_short">
+      <segment>
+        <source>error.search.too_short</source>
+        <target>Vous devez entrer au moins 2 caractères</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

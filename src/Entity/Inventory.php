@@ -10,9 +10,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Inventory
- *
- * @package App\Entity
  * @ORM\Entity
  * @ORM\Table(name="koi_inventory")
  */

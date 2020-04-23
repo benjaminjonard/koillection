@@ -9,11 +9,6 @@ use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 
-/**
- * Class TemplateRepository
- *
- * @package App\Repository
- */
 class TemplateRepository extends EntityRepository
 {
     /**
@@ -39,7 +34,7 @@ class TemplateRepository extends EntityRepository
             ->getEntityManager()
             ->createQueryBuilder()
             ->select('DISTINCT t as template, COUNT(DISTINCT f) as fieldsCounter, COUNT(DISTINCT i) as itemsCounter')
-            ->from('App\Entity\Template', 't')
+            ->from(Template::class, 't')
             ->leftJoin('t.items', 'i')
             ->leftJoin('t.fields', 'f')
             ->groupBy('t.id')

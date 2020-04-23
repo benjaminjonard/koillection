@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Album;
+use App\Entity\Photo;
 use App\Form\Type\Entity\AlbumType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,17 +13,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class AlbumController
- *
- * @package App\Controller
- */
 class AlbumController extends AbstractController
 {
     /**
-     * @Route("/albums", name="app_album_index", methods={"GET"})
-     * @Route("/user/{username}/albums", name="app_user_album_index", methods={"GET"})
-     * @Route("/preview/albums", name="app_preview_album_index", methods={"GET"})
+     * @Route({
+     *     "en": "/albums",
+     *     "fr": "/albums"
+     * }, name="app_album_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/albums",
+     *     "fr": "/utilisateur/{username}/albums"
+     * }, name="app_user_album_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/albums",
+     *     "fr": "/apercu/albums"
+     * }, name="app_preview_album_index", methods={"GET"})
      *
      * @return Response
      */
@@ -41,7 +48,10 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/add", name="app_album_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/albums/add",
+     *     "fr": "/albums/ajouter"
+     * }, name="app_album_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -51,6 +61,17 @@ class AlbumController extends AbstractController
     {
         $album = new Album();
         $em = $this->getDoctrine()->getManager();
+
+        if ($request->query->has('parent')) {
+            $parent = $em->getRepository(Album::class)->findOneBy([
+                'id' => $request->query->get('parent'),
+                'owner' => $this->getUser()
+            ]);
+            $album
+                ->setParent($parent)
+                ->setVisibility($parent->getVisibility())
+            ;
+        }
 
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
@@ -69,7 +90,10 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/{id}/edit", name="app_album_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/albums/{id}/edit",
+     *     "fr": "/albums/{id}/editer"
+     * }, name="app_album_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Album $album
@@ -95,7 +119,10 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/{id}/delete", name="app_album_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/albums/{id}/delete",
+     *     "fr": "/albums/{id}/supprimer"
+     * }, name="app_album_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Album $album
      * @param TranslatorInterface $translator
@@ -113,17 +140,32 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @Route("/albums/{id}", name="app_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/user/{username}/albums/{id}", name="app_user_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     * @Route("/preview/albums/{id}", name="app_preview_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/albums/{id}",
+     *     "fr": "/albums/{id}"
+     * }, name="app_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/albums/{id}",
+     *     "fr": "/utilisateur/{username}/albums/{id}"
+     * }, name="app_user_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/albums/{id}",
+     *     "fr": "/apercu/albums/{id}"
+     * }, name="app_preview_album_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Album $album
      * @return Response
      */
     public function show(Album $album) : Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
+            'children' => $em->getRepository(Album::class)->findChildrenByAlbumId($album->getId()),
+            'photos' => $em->getRepository(Photo::class)->findPhotosByAlbumId($album->getId())
         ]);
     }
 }

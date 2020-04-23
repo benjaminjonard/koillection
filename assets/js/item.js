@@ -150,7 +150,6 @@ $( ".autocomplete-wrapper" ).on("click", ".close", function() {
     var existingTags = JSON.parse(tagsHolder.val());
 
     var index = existingTags.indexOf($(this).parent('.chip').attr('data-id'));
-    console.log(existingTags);
     if (index > -1) {
         existingTags.splice(index, 1);
     }

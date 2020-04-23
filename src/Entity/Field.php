@@ -10,9 +10,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Field
- *
- * @package App\Entity
  * @ORM\Entity
  * @ORM\Table(name="koi_field")
  */
@@ -48,7 +45,7 @@ class Field
      * @var Template
      * @ORM\ManyToOne(targetEntity="Template", inversedBy="fields")
      */
-    private Template $template;
+    private ?Template $template = null;
 
     public function __construct()
     {

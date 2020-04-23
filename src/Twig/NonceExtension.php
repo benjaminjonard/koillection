@@ -7,11 +7,6 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class NonceExtension
- *
- * @package App\Twig
- */
 class NonceExtension extends AbstractExtension
 {
     /**

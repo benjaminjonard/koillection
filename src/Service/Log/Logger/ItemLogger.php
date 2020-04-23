@@ -12,11 +12,6 @@ use App\Enum\LogTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\Log\Logger;
 
-/**
- * Class ItemLogger
- *
- * @package App\Service\Log\Logger
- */
 class ItemLogger extends Logger
 {
     /**

@@ -6,11 +6,6 @@ namespace App\Model;
 
 use App\Entity\Collection;
 
-/**
- * Class BatchTagger
- *
- * @package App\Model
- */
 class BatchTagger
 {
     /**

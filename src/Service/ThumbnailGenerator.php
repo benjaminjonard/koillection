@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-/**
- * Class ThumbnailGenerator
- *
- * @package App\Service
- */
 class ThumbnailGenerator
 {
     /**

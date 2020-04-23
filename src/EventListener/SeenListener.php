@@ -7,11 +7,6 @@ namespace App\EventListener;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-/**
- * Class SeenListener
- *
- * @package App\EventListener
- */
 class SeenListener
 {
     /**

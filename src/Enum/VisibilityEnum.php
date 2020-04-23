@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-/**
- * Class VisibilityEnum
- *
- * @package App\Enum
- */
 class VisibilityEnum
 {
     public const VISIBILITY_PUBLIC = 'public';

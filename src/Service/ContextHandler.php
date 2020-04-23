@@ -9,11 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
-/**
- * Class ContextHandler
- *
- * @package App\Service
- */
 class ContextHandler
 {
     /**

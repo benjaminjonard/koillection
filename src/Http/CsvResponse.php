@@ -6,10 +6,6 @@ namespace App\Http;
 
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class CsvResponse
- * @package App\Http
- */
 class CsvResponse extends Response
 {
     /**

@@ -17,11 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class WishType
- *
- * @package App\Form\Type\Entity
- */
 class WishType extends AbstractType
 {
     /**
@@ -79,7 +74,7 @@ class WishType extends AbstractType
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

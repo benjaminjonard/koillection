@@ -7,11 +7,6 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-/**
- * Class DateExtension
- *
- * @package App\Twig
- */
 class DateExtension extends AbstractExtension
 {
     /**

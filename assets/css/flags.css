@@ -254,3 +254,7 @@
 .flag-za::after { content: url("../img/flags/za.png");}
 .flag-zm::after { content: url("../img/flags/zm.png");}
 .flag-zw::after { content: url("../img/flags/zw.png");}
+
+/* Custom for locales */
+.flag-en-GB::after { content: url("../img/flags/gb.png");}
+.flag-fr-FR::after { content: url("../img/flags/fr.png");}

@@ -9,9 +9,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Loan
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\LoanRepository")
  * @ORM\Table(name="koi_loan")
  */

@@ -8,11 +8,6 @@ use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-/**
- * Class WishlistListener
- *
- * @package App\EventListener\Entity
- */
 class WishlistListener
 {
     /**

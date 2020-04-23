@@ -21,17 +21,14 @@
     <div></div>
 
     <div class="btn-holder">
+        {% if context == 'default' %}
+            <a href="{{ path('app_tag_category_add') }}" class="button" title="{{ 'tooltip.add_tag_category'|trans }}">
+                <i class="fa fa-plus fa-fw"></i>
+            </a>
+        {% endif %}
     </div>
 
     <div class="content-block">
-        <div class="row">
-            <div class="col s10 offset-s1 m6 offset-m0">
-                <a href="{{ path('app_tag_category_add') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_category'|trans }}
-                </a>
-            </div>
-        </div>
-
         <div>
             <table class="centered striped">
                 <thead>

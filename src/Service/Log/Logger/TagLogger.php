@@ -10,11 +10,6 @@ use App\Enum\LogTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\Log\Logger;
 
-/**
- * Class TagLogger
- *
- * @package App\Service\Log\Logger
- */
 class TagLogger extends Logger
 {
     /**

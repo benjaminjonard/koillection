@@ -20,11 +20,6 @@ use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
-/**
- * Class SmokeFunctionalTest
- *
- * @package App\Tests
- */
 class LoggedWebTestCase extends WebTestCase
 {
     private KernelBrowser $client;

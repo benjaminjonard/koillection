@@ -8,11 +8,6 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-/**
- * Class AccessDeniedListener
- *
- * @package App\EventListener
- */
 class AccessDeniedListener
 {
     public function onKernelException(ExceptionEvent $event)

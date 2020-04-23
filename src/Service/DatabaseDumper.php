@@ -11,11 +11,6 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class DatabaseDumper
- *
- * @package App\Service
- */
 class DatabaseDumper
 {
     /**

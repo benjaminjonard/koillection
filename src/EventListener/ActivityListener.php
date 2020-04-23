@@ -8,11 +8,6 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class ActivityListener
- *
- * @package App\EventListener
- */
 class ActivityListener
 {
     /**

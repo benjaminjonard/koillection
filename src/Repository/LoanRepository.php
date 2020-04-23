@@ -8,11 +8,6 @@ use App\Entity\Loan;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
-/**
- * Class LoanRepository
- *
- * @package App\Repository
- */
 class LoanRepository extends EntityRepository
 {
     /**

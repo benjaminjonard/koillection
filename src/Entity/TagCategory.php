@@ -12,9 +12,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class TagCategory
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TagCategoryRepository")
  * @ORM\Table(name="koi_tag_category")
  */

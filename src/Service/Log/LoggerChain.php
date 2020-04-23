@@ -6,11 +6,6 @@ namespace App\Service\Log;
 
 use App\Entity\Log;
 
-/**
- * Class LoggerChain
- *
- * @package App\Service\Log
- */
 class LoggerChain
 {
     /**

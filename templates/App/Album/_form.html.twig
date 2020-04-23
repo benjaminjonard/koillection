@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+    {{ form_row(form.image) }}
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.title, {'label' : 'label.title'}) }}
+        </div>
+        <div class="col s12 l5 xl3">
+            {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.parent, {'label' : 'label.parent'}) }}
+        </div>
+    </div>
+
+    <div class="row center-align form-btn-holder">
+        {% if app.request.get('_route') == 'app_album_add' %}
+            {% if app.request.query.has('parent') %}
+                {% set cancelUrl = path('app_album_show', {id: app.request.query.get('parent')}) %}
+            {% else %}
+                {% set cancelUrl = path('app_album_index') %}
+            {% endif %}
+        {% else %}
+            {% set cancelUrl = path('app_album_show', {id: album.id}) %}
+        {% endif %}
+
+        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        <a href="{{ cancelUrl }}" class="waves-effect red darken-1 waves-light btn"> {{ 'btn.cancel'|trans }}</a>
+    </div>
+{{ form_end(form) }}

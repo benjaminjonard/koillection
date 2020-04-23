@@ -9,11 +9,6 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
-/**
- * Class WishRepository
- *
- * @package App\Repository
- */
 class WishRepository extends EntityRepository
 {
     /**
@@ -45,5 +40,18 @@ class WishRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
+    }
+
+    public function findWishesByWishlistId(string $id) : iterable
+    {
+        $qb = $this
+            ->createQueryBuilder('w')
+            ->where('w.wishlist = :id')
+            ->setParameter('id', $id)
+            ->leftJoin('w.image', 'i')
+            ->addSelect('partial i.{id, path, thumbnailPath}')
+        ;
+
+        return $qb->getQuery()->getResult();
     }
 }

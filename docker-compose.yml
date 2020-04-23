@@ -24,7 +24,7 @@ services:
             #- ./docker/volumes/koillection/conf:/conf
             #- ./docker/volumes/koillection/uploads:/uploads
             - ./:/var/www/koillection
-            - ./docker/volumes/php/php.ini:/usr/local/etc/php/php.ini
+            - ./docker/volumes/php/php.ini:/etc/php/7.4/fpm/conf.d/php.ini
 
     postgres:
         container_name: postgres

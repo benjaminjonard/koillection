@@ -1,16 +1,17 @@
 import '../translations/config'
-import '../translations/javascript/gb'
-import '../translations/javascript/fr'
+import '../translations/javascript/en-GB'
+import '../translations/javascript/fr-FR'
 
 import Translator from '../translator.min.js'
 import echarts from './echarts.min'
 
 $(document).ready(function() {
-    let isDarkMode =  document.querySelector('.statistics-holder').dataset.isDarkMode == 1 ? true : false;
-    let themeMainHue = document.querySelector('.statistics-holder').dataset.themeMainHue;
-    let themeDarkHue = document.querySelector('.statistics-holder').dataset.themeDarkHue;
-    let themeLightHue = document.querySelector('.statistics-holder').dataset.themeLightHue;
-    let themeLightestHue = document.querySelector('.statistics-holder').dataset.themeLightestHue;
+    let $statisticHolder = document.querySelector('.statistics-holder');
+    let isDarkMode =  $statisticHolder.dataset.isDarkMode == 1 ? true : false;
+    let themeMainHue = $statisticHolder.dataset.themeMainHue;
+    let themeDarkHue = $statisticHolder.dataset.themeDarkHue;
+    let themeLightHue = $statisticHolder.dataset.themeLightHue;
+    let themeLightestHue =$statisticHolder .dataset.themeLightestHue;
     let monthDaysChartData = JSON.parse(document.querySelector('#month-days-chart').dataset.json);
     let hoursChartData = JSON.parse(document.querySelector('#hours-chart').dataset.json);
     let monthsChartData = JSON.parse(document.querySelector('#months-chart').dataset.json);

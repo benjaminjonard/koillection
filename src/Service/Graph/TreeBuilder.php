@@ -8,11 +8,6 @@ use App\Entity\Collection;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
-/**
- * Class TreeBuilder
- *
- * @package App\Service\Graph
- */
 class TreeBuilder
 {
     /**

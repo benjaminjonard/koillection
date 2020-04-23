@@ -13,11 +13,6 @@ use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
-/**
- * Class UserRepository
- *
- * @package App\Repository
- */
 class UserRepository extends EntityRepository
 {
     /**

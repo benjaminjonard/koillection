@@ -25,11 +25,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class AnubisFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class AnubisFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**
@@ -60,7 +55,7 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
         $anubis
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale(LocaleEnum::LOCALE_GB)
+            ->setLocale(LocaleEnum::LOCALE_EN_GB)
             ->setUsername('Anubis')
             ->setEmail('anubis@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)

@@ -1,4 +1,4 @@
-{% set currentLocale = getFullLocaleLabel(app.request.locale) %}
+{% set currentLocale = getLocaleLabel(app.request.locale) %}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
@@ -8,7 +8,7 @@
 <meta property="og:image" content="{{ image ?? preload(asset('build/images/meta-logo.png')) }}">
 <meta property="og:site_name" content="Koillection">
 <meta property="og:locale" content="{{ currentLocale }}">
-{% for locale in getFullLocales() if locale != currentLocale %}
+{% for locale in getLocales() if locale != currentLocale %}
     <meta property="og:locale:alternate" content="{{ locale }}">
 {% endfor %}
 

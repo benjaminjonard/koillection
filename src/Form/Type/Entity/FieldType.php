@@ -13,11 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class FieldType
- *
- * @package App\Form\Type\Entity
- */
 class FieldType extends AbstractType
 {
     /**

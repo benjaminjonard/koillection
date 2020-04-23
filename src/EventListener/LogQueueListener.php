@@ -9,11 +9,6 @@ use App\Enum\LogTypeEnum;
 use App\Service\Log\LogQueue;
 use Doctrine\ORM\EntityManagerInterface;
 
-/**
- * Class LogQueueListener
- *
- * @package App\EventListener
- */
 class LogQueueListener
 {
     /**

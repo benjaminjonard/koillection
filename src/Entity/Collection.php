@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
@@ -16,15 +17,12 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Collection
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\CollectionRepository")
  * @ORM\Table(name="koi_collection", indexes={
  *     @ORM\Index(name="idx_collection_visibility", columns={"visibility"})
  * })
  */
-class Collection implements LoggableInterface, BreadcrumbableInterface
+class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface
 {
     /**
      * @var UuidInterface

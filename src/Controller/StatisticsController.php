@@ -12,17 +12,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class StatisticsController
- *
- * @package App\Controller
- */
 class StatisticsController extends AbstractController
 {
     /**
-     * @Route("/statistics", name="app_statistics_index", methods={"GET"})
-     * @Route("/user/{username}/statistics", name="app_user_statistics_index", methods={"GET"})
-     * @Route("/preview/statistics", name="app_preview_statistics_index", methods={"GET"})
+     * @Route({
+     *     "en": "/statistics",
+     *     "fr": "/statistiques"
+     * }, name="app_statistics_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/statistics",
+     *     "fr": "/utilisateur/{username}/statistiques"
+     * }, name="app_user_statistics_index", methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/statistics",
+     *     "fr": "/apercu/statistiques"
+     * }, name="app_preview_statistics_index", methods={"GET"})
      *
      * @param TreeBuilder $treeBuilder
      * @param CalendarBuilder $calendarBuilder

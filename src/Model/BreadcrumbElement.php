@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-/**
- * Class BreadcrumbElement
- *
- * @package App\Model
- */
 class BreadcrumbElement
 {
     public const TYPE_ROOT = 'root';

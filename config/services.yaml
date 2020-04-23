@@ -1,6 +1,6 @@
 parameters:
     version: '1.1.0'
-    locale: 'gb'
+    locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
     container.dumper.inline_factories: true
     container.dumper.inline_class_loader: true
@@ -14,6 +14,7 @@ services:
             $defaultLocale: '%locale%'
             $publicPath: '%kernel.project_dir%/public'
             $assetsPath: '%kernel.project_dir%/assets'
+            $paginationItemsPerPage: "%env(APP_PAGINATION_ITEMS_PER_PAGE)%"
 
     App\:
         resource: '../src/*'
@@ -79,6 +80,12 @@ services:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
 
     #Entity listeners
+    App\EventListener\Entity\AlbumListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
+    App\EventListener\Entity\PhotoListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\CollectionListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }

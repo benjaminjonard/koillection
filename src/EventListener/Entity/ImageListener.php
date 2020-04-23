@@ -14,11 +14,6 @@ use Doctrine\ORM\ORMException;
 use Doctrine\ORM\UnitOfWork;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * Class ImageListener
- *
- * @package App\EventListener\Entity
- */
 class ImageListener
 {
     /**
@@ -51,7 +46,7 @@ class ImageListener
 
     /**
      * @param OnFlushEventArgs $args
-     * @throws ORMException
+     * @throws \Exception
      */
     public function onFlush(OnFlushEventArgs $args)
     {
@@ -105,9 +100,7 @@ class ImageListener
         $sizeUsed = $this->imageHandler->upload($image);
         $user->increaseDiskSpaceUsed($sizeUsed);
 
-        $em->persist($image);
         $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Image::class), $image);
-        $em->persist($user);
         $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $user);
     }
 
@@ -119,7 +112,6 @@ class ImageListener
         $imageOwner = $image->getOwner();
         $imageOwner->decreaseDiskSpaceUsed($sizeFreed);
 
-        $em->persist($imageOwner);
         $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(User::class), $imageOwner);
     }
 }

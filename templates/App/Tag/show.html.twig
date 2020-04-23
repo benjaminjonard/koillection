@@ -55,7 +55,7 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -85,7 +85,7 @@
                 <div class="tags-block">
                     <ul class="nav nav-tags">
                         {% for tag in relatedTags|naturalSorting %}
-                            <li class="tag chip">
+                            <li class="tag chip {{ loop.index > 10 ? 'hidden'}}">
                                 <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
                                     {{ tag.label }}
                                 </a>
@@ -94,7 +94,14 @@
                                 {% endif %}
                             </li>
                         {% endfor %}
+                        <li class="show-more-btn-holder">
+                            {% if relatedTags|length > 10 %}
+                                <a href="#" class="js-show-more-tags">{{ 'btn.show_more'|trans({'%count%': relatedTags|length - 10}) }}</a>
+                                <a href="#" class="js-show-less-tags hidden">{{ 'btn.show_less'|trans }}</a>
+                            {% endif %}
+                        </li>
                     </ul>
+
                 </div>
             </div>
         {% endif %}

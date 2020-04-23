@@ -16,11 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class TagType
- *
- * @package App\Form\Type\Entity
- */
 class TagType extends AbstractType
 {
     /**
@@ -54,7 +49,7 @@ class TagType extends AbstractType
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
-                'required' => false,
+                'required' => true,
             ])
             ->add('category', EntityType::class, [
                 'class' => TagCategory::class,

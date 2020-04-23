@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace App\Form\Type\Model;
 
 use App\Entity\User;
+use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
+use App\Enum\LocaleEnum;
+use App\Enum\ThemeEnum;
+use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -14,11 +18,6 @@ use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class ProfileType
- *
- * @package App\Form\Type\Model
- */
 class ProfileType extends AbstractType
 {
     /**
@@ -43,10 +42,9 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add(
-                $builder->create('image', TextType::class, [
+                $builder->create('avatar', TextType::class, [
                     'required' => false,
                     'label' => false,
-                    'property_path' => 'avatar'
                 ])->addModelTransformer($this->base64ToImageTransformer)
             )
             ->add('timezone', TimezoneType::class, [
@@ -54,6 +52,22 @@ class ProfileType extends AbstractType
             ])
             ->add('dateFormat', ChoiceType::class, [
                 'choices' => DateFormatEnum::getChoicesList(),
+                'required' => true
+            ])
+            ->add('currency', ChoiceType::class, [
+                'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
+                'required' => true
+            ])
+            ->add('theme', ChoiceType::class, [
+                'choices' => array_flip(ThemeEnum::getThemeLabels()),
+                'required' => true
+            ])
+            ->add('locale', ChoiceType::class, [
+                'choices' => array_flip(LocaleEnum::getLocaleLabels()),
+                'required' => true
+            ])
+            ->add('visibility', ChoiceType::class, [
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true
             ])
         ;

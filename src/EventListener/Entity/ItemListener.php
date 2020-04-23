@@ -8,11 +8,6 @@ use App\Entity\Item;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-/**
- * Class ItemListener
- *
- * @package App\EventListener\Entity
- */
 class ItemListener
 {
     /**

@@ -26,11 +26,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class KhorneFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class KhorneFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**
@@ -61,7 +56,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $admin
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale(LocaleEnum::LOCALE_GB)
+            ->setLocale(LocaleEnum::LOCALE_EN_GB)
             ->setUsername('Khorne')
             ->setEmail('khorne@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)

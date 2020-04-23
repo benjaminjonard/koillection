@@ -18,17 +18,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class WishController
- *
- * @package App\Controller
- *
- * @Route("/wishes")
- */
 class WishController extends AbstractController
 {
     /**
-     * @Route("/add", name="app_wish_add", methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/add",
+     *     "fr": "/souhaits/ajouter"
+     * }, name="app_wish_add", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param TranslatorInterface $translator
@@ -76,7 +72,10 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_wish_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/{id}/edit",
+     *     "fr": "/souhaits/{id}/editer"
+     * }, name="app_wish_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Wish $wish
@@ -101,7 +100,10 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="app_wish_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/{id}/delete",
+     *     "fr": "/souhaits/{id}/supprimer"
+     * }, name="app_wish_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Wish $wish
      * @param TranslatorInterface $translator
@@ -119,12 +121,14 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/transfer-to-collection", name="app_wish_transfer_to_collection", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
+     * @Route({
+     *     "en": "/wishes/{id}/transfer",
+     *     "fr": "/souhaits/{id}/transferer"
+     * }, name="app_wish_transfer_to_collection", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Wish $wish
      * @param TranslatorInterface $translator
-     * @param ItemNameGuesser $itemHelper
      * @return Response
      */
     public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator) : Response

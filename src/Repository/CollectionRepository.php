@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Collection;
-use App\Model\Search;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
@@ -13,11 +13,6 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class CollectionRepository
- *
- * @package App\Repository
- */
 class CollectionRepository extends EntityRepository
 {
     public function __construct(EntityManager $em, Mapping\ClassMetadata $class)
@@ -201,10 +196,10 @@ class CollectionRepository extends EntityRepository
             ->orderBy('c.title', 'ASC')
         ;
 
-        if (\is_string($search->getSearch()) && !empty($search->getSearch())) {
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
             $qb
-                ->andWhere('LOWER(c.title) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.$search->getSearch().'%')
+                ->andWhere('LOWER(c.title) LIKE LOWER(:term)')
+                ->setParameter('term', '%'.$search->getTerm().'%')
             ;
         }
 

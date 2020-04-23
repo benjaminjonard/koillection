@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Entity\Interfaces\CacheableInterface;
+use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -13,15 +15,12 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Album
- *
- * @package App\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
  * @ORM\Table(name="koi_album", indexes={
  *     @ORM\Index(name="idx_album_visibility", columns={"visibility"})
  * })
  */
-class Album implements BreadcrumbableInterface
+class Album implements BreadcrumbableInterface, CacheableInterface
 {
     /**
      * @var UuidInterface
@@ -44,6 +43,12 @@ class Album implements BreadcrumbableInterface
     private ?string $color = null;
 
     /**
+     * @var Image
+     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     */
+    private ?Image $image = null;
+
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="albums")
      */
@@ -54,6 +59,19 @@ class Album implements BreadcrumbableInterface
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="album", cascade={"all"})
      */
     private DoctrineCollection $photos;
+
+    /**
+     * @var DoctrineCollection
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="parent", cascade={"all"})
+     * @ORM\OrderBy({"title" = "ASC"})
+     */
+    private DoctrineCollection $children;
+
+    /**
+     * @var Album
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="children")
+     */
+    private ?Album $parent = null;
 
     /**
      * @var int
@@ -71,7 +89,7 @@ class Album implements BreadcrumbableInterface
      * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private ?\DateTimeInterface $createdAt = null;
 
     /**
      * @var \DateTimeInterface
@@ -87,6 +105,7 @@ class Album implements BreadcrumbableInterface
         $this->id = Uuid::uuid4();
         $this->seenCounter = 0;
         $this->photos = new ArrayCollection();
+        $this->children = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
@@ -217,6 +236,62 @@ class Album implements BreadcrumbableInterface
                 $photo->setAlbum(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $image->setType(ImageTypeEnum::TYPE_AVATAR);
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return DoctrineCollection|Album[]
+     */
+    public function getChildren(): DoctrineCollection
+    {
+        return $this->children;
+    }
+
+    public function addChild(Album $child): self
+    {
+        if (!$this->children->contains($child)) {
+            $this->children[] = $child;
+            $child->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChild(Album $child): self
+    {
+        if ($this->children->contains($child)) {
+            $this->children->removeElement($child);
+            // set the owning side to null (unless already changed)
+            if ($child->getParent() === $this) {
+                $child->setParent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
 
         return $this;
     }

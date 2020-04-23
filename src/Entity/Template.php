@@ -12,9 +12,6 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Template
- *
- * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
  * @ORM\Table(name="koi_template")
  */
@@ -36,7 +33,7 @@ class Template implements BreadcrumbableInterface
 
     /**
      * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private DoctrineCollection $fields;

@@ -10,11 +10,6 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class WishlistRepository
- *
- * @package App\Repository
- */
 class WishlistRepository extends EntityRepository
 {
     /**
@@ -122,5 +117,18 @@ class WishlistRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
+    }
+
+    public function findChildrenByWishlistId(string $id) : iterable
+    {
+        $qb = $this
+            ->createQueryBuilder('w')
+            ->where('w.parent = :id')
+            ->setParameter('id', $id)
+            ->leftJoin('w.image', 'i')
+            ->addSelect('partial i.{id, path}')
+        ;
+
+        return $qb->getQuery()->getResult();
     }
 }

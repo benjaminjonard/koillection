@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Doctrine\QueryNameGenerator;
+use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\Item;
+use App\Entity\Photo;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-/**
- * Class CounterCalculator
- *
- * @package App\Service
- */
 class CounterCalculator
 {
     /**
@@ -67,7 +64,14 @@ class CounterCalculator
         ];
         $wishlists = $this->executeItemQuery(...$params);
 
-        return \array_merge($collections, $wishlists);
+        $params = [
+            $this->em->getClassMetadata(Album::class)->getTableName(),
+            $this->em->getClassMetadata(Photo::class)->getTableName(),
+            'album_id'
+        ];
+        $albums = $this->executeItemQuery(...$params);
+
+        return \array_merge($collections, $wishlists, $albums);
     }
 
     /**

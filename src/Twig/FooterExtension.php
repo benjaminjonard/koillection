@@ -7,11 +7,6 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class BreadcrumbExtension
- *
- * @package App\Twig
- */
 class FooterExtension extends AbstractExtension
 {
     /**

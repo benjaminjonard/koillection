@@ -8,11 +8,7 @@ use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
 
 /**
- * Class TranslationCommandListener
- *
  * Add JS imports in translations files after dump command is executed
- *
- * @package App\EventListener
  */
 final class TranslationCommandListener
 {

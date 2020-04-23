@@ -12,24 +12,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class DatumController
- *
- * @package App\Controller
- *
- * @Route("/datum")
- */
 class DatumController extends AbstractController
 {
     /**
-     * @Route("/{type}", name="app_datum_get_html_by_type", methods={"GET"})
+     * @Route({
+     *     "en": "/datum/{type}",
+     *     "fr": "/datum/{type}"
+     * }, name="app_datum_get_html_by_type", methods={"GET"})
      *
      * @param string $type
      * @return JsonResponse
      */
     public function getHtmlByType(string $type) : JsonResponse
     {
-        $html = $this->render('App/Datum/datum.html.twig', [
+        $html = $this->render('App/Datum/_datum.html.twig', [
             'iteration' => '__placeholder__',
             'type' => $type
         ])->getContent();
@@ -41,7 +37,11 @@ class DatumController extends AbstractController
     }
 
     /**
-     * @Route("/load-common-fields/{id}", name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route({
+     *     "en": "/datum/load-common-fields/{id}",
+     *     "fr": "/datum/charger-les-champs-communs/{id}"
+     * }, name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
      * @Entity("collection", expr="repository.findById(id, true)")
      *
      * @param Collection $collection
@@ -83,7 +83,7 @@ class DatumController extends AbstractController
             }
 
             foreach ($commonFields as &$commonField) {
-                $commonField['html'] = $this->render('App/Datum/datum.html.twig', [
+                $commonField['html'] = $this->render('App/Datum/_datum.html.twig', [
                             'iteration' => '__placeholder__',
                             'type' => $commonField['type'],
                             'datum' => $commonField['datum']

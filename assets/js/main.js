@@ -49,6 +49,9 @@ $(document).ready(function() {
 
     select.loadSelect2();
     select.loadSelect2Countries();
+    select.loadSelect2Locales();
+    select.loadSelect2Themes();
+    select.loadSelect2TagCategories();
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll('.modal'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
@@ -82,7 +85,7 @@ $(document).ready(function() {
     });
 
     $('form input').keydown(function (e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13 && !$(this).closest('form').hasClass('login') && !$(this).closest('form').hasClass('search')) {
             e.preventDefault();
             return false;
         }
@@ -147,8 +150,9 @@ $(document).ready(function() {
             $newForm.remove();
         });
         $newLinkDiv.before($newForm);
+        console.log($newForm);
         indexFieldTemplate++;
-        M.FormSelect.init(document.querySelectorAll('select'));
+        select.loadSelect2();
         utils.computePositions($collectionHolder);
         utils.reloadSortableList($collectionHolder, '.field');
     }
@@ -158,9 +162,6 @@ $(document).ready(function() {
         utils.computePositions($collectionHolder);
     });
 });
-
-
-
 
 function handleConnectionChange(event){
     var element = document.getElementById("offline-message");

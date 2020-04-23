@@ -26,11 +26,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\File;
 
-/**
- * Class CthulhuFixtures
- *
- * @package App\DataFixtures\ORM
- */
 class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
 {
     /**
@@ -61,7 +56,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $cthulhu
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale(LocaleEnum::LOCALE_GB)
+            ->setLocale(LocaleEnum::LOCALE_EN_GB)
             ->setUsername('Cthulhu')
             ->setEmail('cthulhu@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
