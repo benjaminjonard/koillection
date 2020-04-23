@@ -39,7 +39,7 @@ install:
   - echo "DB_VERSION=11" >> .env.local
   - SYMFONY_ENV=test composer install -o
   - psql -c 'create database koillection;' -U postgres
-  - php bin/console doctrine:schema:create --env=test
+  - php bin/console doctrine:schema:update --env=test
   - php bin/console doctrine:fixtures:load --env=test --no-interaction
 
 # Run script
