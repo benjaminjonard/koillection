@@ -1,7 +1,7 @@
 # Project language
 language: php
 php:
-  - 7.3
+  - 7.4
 
 # Allows use container-based infrastructure
 sudo: false
@@ -20,7 +20,7 @@ matrix:
   # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
   fast_finish: true
   include:
-    - php: 7.3
+    - php: 7.4
 
 # Install composer dependencies,
 # Create database, schema and fixtures
