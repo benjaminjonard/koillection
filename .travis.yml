@@ -24,7 +24,7 @@ matrix:
 
 # Install composer dependencies,
 # Create database, schema and fixtures
-install:
+before_script:
   - echo "extension = apcu.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update
   - touch .env.local
@@ -39,6 +39,7 @@ install:
   - echo "DB_VERSION=11" >> .env.local
   - SYMFONY_ENV=test composer install -o
   - psql -c 'create database koillection;' -U postgres
+  - psql -c "CREATE USER koillection WITH PASSWORD '';" -U postgres
   - php bin/console doctrine:schema:update --env=test
   - php bin/console doctrine:fixtures:load --env=test --no-interaction
 
