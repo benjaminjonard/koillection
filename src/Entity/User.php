@@ -5,201 +5,192 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
-use App\Enum\ImageTypeEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
-use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * Class User
+ *
+ * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="koi_user", indexes={
- *     @ORM\Index(name="idx_user_visibility", columns={"visibility"})
- * })
+ * @ORM\Table(name="koi_user")
  * @UniqueEntity(fields={"email"}, message="error.email.not_unique")
  * @UniqueEntity(fields={"username"}, message="error.username.not_unique")
  */
 class User implements UserInterface, BreadcrumbableInterface
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=32, unique=true)
      * @Assert\Regex(pattern="/^[a-z\d_]{2,32}$/i", message="error.username.incorrect")
      */
-    private ?string $username = null;
+    protected $username;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email()
      */
-    private ?string $email = null;
+    protected $email;
 
     /**
      * @var string
      */
-    private ?string $salt = null;
+    protected $salt;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private string $password;
+    protected $password;
 
     /**
      * @var string
      * @Assert\Regex(pattern="/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message="error.password.incorrect")
      */
-    private ?string $plainPassword = null;
+    protected $plainPassword;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var Medium
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Image $avatar = null;
+    protected $avatar;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean")
      */
-    private bool $enabled;
+    private $enabled;
 
     /**
      * @var array
      * @ORM\Column(type="array")
      */
-    private array $roles;
+    private $roles;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private string $theme;
+    private $theme;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=3)
      */
-    private string $currency;
+    private $currency;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=2)
      */
-    private string $locale;
+    private $locale;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $timezone;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private ?string $timezone = null;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private string $dateFormat;
+    private $dateFormat;
 
     /**
      * @var int
-     * @ORM\Column(type="bigint", options={"default"=0})
+     * @ORM\Column(type="integer")
      */
-    private int $diskSpaceUsed;
+    private $diskSpaceUsed;
 
     /**
      * @var int
-     * @ORM\Column(type="bigint", options={"default"=268435456})
-     * @Assert\GreaterThanOrEqual(propertyPath="diskSpaceUsed")
+     * @ORM\Column(type="integer")
      */
-    private int $diskSpaceAllowed;
+    private $diskSpaceAllowed;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $visibility;
+    private $visibility;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Collection", mappedBy="owner", cascade={"remove"})
      */
-    private DoctrineCollection $collections;
+    private $collections;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="owner", cascade={"remove"})
      */
-    private DoctrineCollection $tags;
+    private $tags;
 
     /**
-     * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="TagCategory", mappedBy="owner", cascade={"remove"})
-     */
-    private DoctrineCollection $tagCategories;
-
-    /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner", cascade={"remove"})
      */
-    private DoctrineCollection $wishlists;
+    private $wishlists;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Template", mappedBy="owner", cascade={"remove"})
      */
-    private DoctrineCollection $templates;
+    private $templates;
 
     /**
-     * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="Log", mappedBy="owner", cascade={"remove"})
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Log", mappedBy="user", cascade={"remove"})
      */
-    private DoctrineCollection $logs;
+    private $logs;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
      */
-    private DoctrineCollection $albums;
+    private $albums;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Inventory", mappedBy="owner", cascade={"remove"})
      */
-    private DoctrineCollection $inventories;
+    private $inventories;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="date", nullable=true)
      */
-    private ?\DateTimeInterface $lastDateOfActivity = null;
+    private $lastDateOfActivity;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private $updatedAt;
 
     public function __construct()
     {
@@ -209,8 +200,8 @@ class User implements UserInterface, BreadcrumbableInterface
         $this->diskSpaceUsed = 0;
         $this->enabled = false;
         $this->theme = ThemeEnum::THEME_TEAL;
-        $this->currency = 'EUR';
-        $this->locale = LocaleEnum::LOCALE_EN_GB;
+        $this->currency = CurrencyEnum::CURRENCY_EUR;
+        $this->locale = LocaleEnum::LOCALE_EN;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
     }
@@ -238,6 +229,9 @@ class User implements UserInterface, BreadcrumbableInterface
         return DateFormatEnum::MAPPING[$this->dateFormat][DateFormatEnum::CONTEXT_FORM];
     }
 
+    /**
+     * @return User
+     */
     public function getOwner(): ?self
     {
         return $this;
@@ -245,94 +239,6 @@ class User implements UserInterface, BreadcrumbableInterface
 
     public function eraseCredentials()
     {
-    }
-
-    public function getUsername() : ?string
-    {
-        return $this->username;
-    }
-
-    public function getSalt() : ?string
-    {
-        return $this->salt;
-    }
-
-    public function setSalt(?string $salt) : self
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-
-    public function getPassword() : ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password) : self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getPlainPassword() : ?string
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword(?string $plainPassword) : self
-    {
-        $this->plainPassword = $plainPassword;
-        $this->password = $plainPassword;
-
-        return $this;
-    }
-
-    public function getRoles() : array
-    {
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles) : self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function addRole(string $role) : self
-    {
-        $role = strtoupper($role);
-        if (!\in_array($role, $this->roles, true)) {
-            $this->roles[] = $role;
-        }
-
-        return $this;
-    }
-
-    public function removeRole(string $role) : self
-    {
-        if (false !== $key = \array_search(strtoupper($role), $this->roles, true)) {
-            unset($this->roles[$key]);
-            $this->roles = \array_values($this->roles);
-        }
-
-        return $this;
-    }
-
-    public function increaseDiskSpaceUsed(int $value) : self
-    {
-        $this->diskSpaceUsed += $value;
-
-        return $this;
-    }
-
-    public function decreaseDiskSpaceUsed(int $value) : self
-    {
-        $this->diskSpaceUsed -= $value;
-
-        return $this;
     }
 
     /**
@@ -343,178 +249,525 @@ class User implements UserInterface, BreadcrumbableInterface
         return $this->id->toString();
     }
 
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function isEnabled(): ?bool
-    {
-        return $this->enabled;
-    }
-
-    public function setEnabled(bool $enabled): self
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    public function getTheme(): ?string
-    {
-        return $this->theme;
-    }
-
-    public function setTheme(string $theme): self
+    /**
+     * Set theme.
+     *
+     * @param string $theme
+     *
+     * @return User
+     */
+    public function setTheme(string $theme) : self
     {
         $this->theme = $theme;
 
         return $this;
     }
 
-    public function getCurrency(): ?string
+    /**
+     * Get theme.
+     *
+     * @return string
+     */
+    public function getTheme() : string
     {
-        return $this->currency;
+        return $this->theme;
     }
 
-    public function setCurrency(string $currency): self
+    /**
+     * Get username.
+     *
+     * @return string
+     */
+    public function getUsername() : ?string
     {
-        $this->currency = $currency;
+        return $this->username;
+    }
+
+    /**
+     * Set username.
+     *
+     * @param string $username
+     *
+     * @return User
+     */
+    public function setUsername(string $username) : self
+    {
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getLocale(): ?string
+    /**
+     * Set email.
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail(string $email) : self
     {
-        return $this->locale;
-    }
-
-    public function setLocale(string $locale): self
-    {
-        $this->locale = $locale;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getTimezone(): ?string
+    /**
+     * Get email.
+     *
+     * @return string
+     */
+    public function getEmail() : ?string
     {
-        return $this->timezone;
+        return $this->email;
     }
 
-    public function setTimezone(string $timezone): self
+    /**
+     * Set enabled.
+     *
+     * @param bool $enabled
+     *
+     * @return User
+     */
+    public function setEnabled(bool $enabled) : self
     {
-        $this->timezone = $timezone;
+        $this->enabled = $enabled;
 
         return $this;
     }
 
-    public function getDateFormat(): ?string
+    /**
+     * Get enabled.
+     *
+     * @return bool
+     */
+    public function isEnabled() : bool
     {
-        return $this->dateFormat;
+        return $this->enabled;
     }
 
-    public function setDateFormat(string $dateFormat): self
+    /**
+     * Get salt.
+     *
+     * @return string
+     */
+    public function getSalt() : ?string
     {
-        $this->dateFormat = $dateFormat;
+        return $this->salt;
+    }
+
+    /**
+     * Set salt.
+     *
+     * @param string $salt
+     *
+     * @return User
+     */
+    public function setSalt(?string $salt) : self
+    {
+        $this->salt = $salt;
 
         return $this;
     }
 
-    public function getDiskSpaceUsed(): ?int
+    /**
+     * Get encrypted password.
+     *
+     * @return string
+     */
+    public function getPassword() : ?string
     {
-        return $this->diskSpaceUsed;
+        return $this->password;
     }
 
-    public function setDiskSpaceUsed(int $diskSpaceUsed): self
+    /**
+     * Set password.
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword(string $password) : self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get encrypted password.
+     *
+     * @return string
+     */
+    public function getPlainPassword() : ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set plainPassword.
+     *
+     * @param string $plainPassword
+     *
+     * @return User
+     */
+    public function setPlainPassword(?string $plainPassword) : self
+    {
+        $this->plainPassword = $plainPassword;
+        $this->password = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get roles.
+     *
+     * @return array
+     */
+    public function getRoles() : array
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Set roles.
+     *
+     * @param array $roles
+     *
+     * @return User
+     */
+    public function setRoles(array $roles) : self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Add a role.
+     *
+     * @param string $role
+     *
+     * @return User
+     */
+    public function addRole(string $role) : self
+    {
+        $role = strtoupper($role);
+        if (!\in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove a role.
+     *
+     * @param string $role
+     *
+     * @return User
+     */
+    public function removeRole(string $role) : self
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set diskSpaceUsed.
+     *
+     * @param int $diskSpaceUsed
+     *
+     * @return User
+     */
+    public function setDiskSpaceUsed(int $diskSpaceUsed) : self
     {
         $this->diskSpaceUsed = $diskSpaceUsed;
 
         return $this;
     }
 
-    public function getDiskSpaceAllowed(): ?int
+    /**
+     * increase diskSpaceUsed.
+     *
+     * @param int $value
+     *
+     * @return User
+     */
+    public function increaseDiskSpaceUsed(int $value) : self
     {
-        return $this->diskSpaceAllowed;
+        $this->diskSpaceUsed += $value;
+
+        return $this;
     }
 
-    public function setDiskSpaceAllowed(int $diskSpaceAllowed): self
+    /**
+     * decrease diskSpaceUsed.
+     *
+     * @param int $value
+     *
+     * @return User
+     */
+    public function decreaseDiskSpaceUsed(int $value) : self
+    {
+        $this->diskSpaceUsed -= $value;
+
+        return $this;
+    }
+
+    /**
+     * Get diskSpaceUsed.
+     *
+     * @return int
+     */
+    public function getDiskSpaceUsed() : int
+    {
+        return $this->diskSpaceUsed;
+    }
+
+    /**
+     * Set locale.
+     *
+     * @param string $locale
+     *
+     * @return User
+     */
+    public function setLocale(string $locale) : self
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale.
+     *
+     * @return string
+     */
+    public function getLocale() : string
+    {
+        return $this->locale;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     *
+     * @return User
+     */
+    public function setCurrency(string $currency) : self
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string
+     */
+    public function getCurrency() : ?string
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Set avatar.
+     *
+     * @param Medium $avatar
+     *
+     * @return User
+     */
+    public function setAvatar(Medium $avatar = null) : self
+    {
+        if ($avatar === null) {
+            return $this;
+        }
+
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Alias for setAvatar.
+     *
+     * @param Medium $avatar
+     *
+     * @return User
+     */
+    public function setImage(Medium $avatar = null) : self
+    {
+        return $this->setAvatar($avatar);
+    }
+
+    /**
+     * Set diskSpaceAllowed.
+     *
+     * @param int $diskSpaceAllowed
+     *
+     * @return User
+     */
+    public function setDiskSpaceAllowed(int $diskSpaceAllowed) : self
     {
         $this->diskSpaceAllowed = $diskSpaceAllowed;
 
         return $this;
     }
 
-    public function getVisibility(): ?string
+    /**
+     * Get diskSpaceAllowed.
+     *
+     * @return int
+     */
+    public function getDiskSpaceAllowed() : int
     {
-        return $this->visibility;
+        return $this->diskSpaceAllowed;
     }
 
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getLastDateOfActivity(): ?\DateTimeInterface
-    {
-        return $this->lastDateOfActivity;
-    }
-
-    public function setLastDateOfActivity(?\DateTimeInterface $lastDateOfActivity): self
-    {
-        $this->lastDateOfActivity = $lastDateOfActivity;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt) : self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
     {
-        return $this->updatedAt;
+        return $this->createdAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt) : self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getAvatar(): ?Image
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set lastDateOfActivity
+     *
+     * @param \DateTime $lastDateOfActivity
+     *
+     * @return User
+     */
+    public function setLastDateOfActivity($lastDateOfActivity) : self
+    {
+        $this->lastDateOfActivity = $lastDateOfActivity;
+
+        return $this;
+    }
+
+    /**
+     * Get $lastDateOfActivity
+     *
+     * @return \DateTime
+     */
+    public function getLastDateOfActivity()
+    {
+        return $this->lastDateOfActivity;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return \App\Entity\Medium
+     */
+    public function getAvatar()
     {
         return $this->avatar;
     }
 
-    public function setAvatar(?Image $avatar): self
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
     {
-        $avatar->setType(ImageTypeEnum::TYPE_AVATAR);
-        $this->avatar = $avatar;
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return User
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * Set timezone.
+     *
+     * @param string $timezone
+     *
+     * @return User
+     */
+    public function setTimezone(string $timezone) : self
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTimezone() : ?string
+    {
+        return $this->timezone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateFormat(): string
+    {
+        return $this->dateFormat;
+    }
+
+    /**
+     * @param string $dateFormat
+     * @return User
+     */
+    public function setDateFormat(string $dateFormat) : self
+    {
+        $this->dateFormat = $dateFormat;
 
         return $this;
     }

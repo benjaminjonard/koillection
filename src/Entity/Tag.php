@@ -6,8 +6,8 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
+use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,81 +15,75 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
+ * Class Tag
+ *
+ * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
- * @ORM\Table(name="koi_tag", indexes={
- *     @ORM\Index(name="idx_tag_visibility", columns={"visibility"})
- * })
+ * @ORM\Table(name="koi_tag")
  */
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private string $label;
+    private $label;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $description = null;
+    private $description;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var Medium
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Image $image = null;
+    private $image;
 
     /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tags")
      */
-    private ?User $owner = null;
+    private $owner;
 
     /**
-     * @var TagCategory
-     * @ORM\ManyToOne(targetEntity="TagCategory", inversedBy="tags", fetch="EAGER", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private ?TagCategory $category = null;
-
-    /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\ManyToMany(targetEntity="Item", mappedBy="tags")
      */
-    private DoctrineCollection $items;
+    private $items;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private int $seenCounter;
+    private $seenCounter;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $visibility;
+    private $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $updatedAt = null;
+    private $updatedAt;
 
     /**
      * Constructor.
@@ -118,139 +112,227 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this->id->toString();
     }
 
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): self
+    /**
+     * Set label.
+     *
+     * @param string $label
+     *
+     * @return Tag
+     */
+    public function setLabel(string $label) : self
     {
         $this->label = $label;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    /**
+     * Get label.
+     *
+     * @return string
+     */
+    public function getLabel() : string
     {
-        return $this->description;
+        return $this->label;
     }
 
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getSeenCounter(): ?int
-    {
-        return $this->seenCounter;
-    }
-
-    public function setSeenCounter(int $seenCounter): self
-    {
-        $this->seenCounter = $seenCounter;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getImage(): ?Image
-    {
-        return $this->image;
-    }
-
-    public function setImage(?Image $image): self
-    {
-        $image->setType(ImageTypeEnum::TYPE_COMMON);
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(?User $owner): self
+    /**
+     * Set owner.
+     *
+     * @param \App\Entity\User $owner
+     *
+     * @return Tag
+     */
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
         return $this;
     }
 
-    public function getCategory(): ?TagCategory
+    /**
+     * Get owner.
+     *
+     * @return User|null
+     */
+    public function getOwner() : ?User
     {
-        return $this->category;
+        return $this->owner;
     }
 
-    public function setCategory(?TagCategory $category): self
+    /**
+     * Add item.
+     *
+     * @param \App\Entity\Item $item
+     *
+     * @return Tag
+     */
+    public function addItem(Item $item) : self
     {
-        $this->category = $category;
+        $this->items[] = $item;
 
         return $this;
     }
 
     /**
-     * @return DoctrineCollection|Item[]
+     * @param Item $item
+     * @return Tag
      */
-    public function getItems(): DoctrineCollection
+    public function removeItem(Item $item) : self
     {
-        return $this->items;
-    }
-
-    public function addItem(Item $item): self
-    {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->addTag($this);
-        }
+        $this->items->removeElement($item);
 
         return $this;
     }
 
-    public function removeItem(Item $item): self
+    /**
+     * Get items.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getItems() : DoctrineCollection
     {
-        if ($this->items->contains($item)) {
-            $this->items->removeElement($item);
-            $item->removeTag($this);
+        return $this->items;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Tag
+     */
+    public function setDescription(?string $description) : self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription() : ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set image
+     *
+     * @param Medium $image
+     *
+     * @return Tag
+     */
+    public function setImage(Medium $image = null) : self
+    {
+        if ($image === null) {
+            return $this;
         }
+
+        if ($image->getThumbnailPath() === null) {
+            $image->setMustGenerateAThumbnail(true);
+        }
+
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Medium
+     */
+    public function getImage() : ?Medium
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Tag
+     */
+    public function setCreatedAt($createdAt) : self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Tag
+     */
+    public function setUpdatedAt($updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Tag
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Tag
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

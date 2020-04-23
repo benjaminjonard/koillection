@@ -2,7 +2,7 @@
 
 {% set breadcrumb = buildBreadcrumb([
     {'route': 'app_admin_index', 'trans': 'menu.admin'},
-    {'route': 'app_admin_index', 'trans': 'menu.overview'}
+    {'route': 'app_admin_index', 'trans': 'menu.statistics'}
 ]) %}
 
 {% block title %}
@@ -19,9 +19,9 @@
     </div>
 
     <div class="content-block">
-        {{ include('/App/Admin/tabs.html.twig', {current: 'overview'}) }}
+        {{ include('/App/Admin/tabs.html.twig', {current: 'statistics'}) }}
         <div class="block-element">
-            <h5 class="header">{{ 'title.overview'|trans }}</h5>
+            <h5 class="header">{{ 'title.statistics'|trans }}</h5>
             <div class="row statistics">
                 <div class="col s2">
                     <div class="pie-wrapper">
@@ -38,6 +38,7 @@
                         <div>{{ 'label.space_free'|trans({'%free%' : freeSpace|bytes}) }}</div>
                     </div>
                 </div>
+                <div class="col s2"><div class="counter">{{ getVersion() }}</div>{{ 'label.version'|trans }}</div>
                 <div class="col s2"><div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'%count%': counters.users}) }}</div>
                 <div class="col s2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}</div>
                 <div class="col s2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}</div>
@@ -49,24 +50,13 @@
         </div>
 
         <div class="block-element">
-            <h5 class="header">{{ 'title.config'|trans }}</h5>
-            <div class="row statistics">
-                <div class="col s2"><div class="counter">{{ version }}</div>{{ 'label.version'|trans }}</div>
-                <div class="col s2"><div class="counter">{{ phpVersion }}</div>{{ 'label.phpVersion'|trans }}</div>
-                <div class="col s2"><div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfonyVersion'|trans }}</div>
-                <div class="col s2"><div class="counter"><i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i></div>{{ 'label.isOpcacheAvailable'|trans }}</div>
-            </div>
-        </div>
-
-        <div class="block-element">
             <h5 class="header">{{ 'title.tools'|trans }}</h5>
             <div class="row">
-                <a href="{{ path('app_admin_clean') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
-                </a>
-                <a href="{{ path('app_admin_backup') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-save fa-fw"></i>{{ 'btn.backup'|trans }}
-                </a>
+                <div class="col s2">
+                    <a href="{{ path('app_admin_clean') }}" class="btn waves-effect waves-light">
+                        <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

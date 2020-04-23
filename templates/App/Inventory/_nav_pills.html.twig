@@ -1,5 +1,0 @@
-<ul class="nav nav-pills">
-    <li>{{ 'counter.total_items'|trans({'%count%': inventory.totalItemsCount}) }}</li>
-    <li>{{ 'counter.checked_items'|trans({'%count%': inventory.checkedItemsCount}) }}</li>
-    <li>{{ 'label.completion_rate'|trans({'%rate%': ((inventory.checkedItemsCount*100)/inventory.totalItemsCount)|round(2)}) }}</li>
-</ul>

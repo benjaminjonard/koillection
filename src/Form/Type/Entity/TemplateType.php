@@ -11,6 +11,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class TemplateType
+ *
+ * @package App\Form\Type\Entity
+ */
 class TemplateType extends AbstractType
 {
     /**

@@ -7,30 +7,28 @@ namespace App\Service;
 use App\Model\Paginator;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Class PaginatorFactory
+ *
+ * @package App\Service
+ */
 class PaginatorFactory
 {
     /**
      * @var RequestStack
      */
-    private RequestStack $requestStack;
-
-    /**
-     * @var int
-     */
-    private int $paginationItemsPerPage;
+    private $requestStack;
 
     /**
      * PaginatorFactory constructor.
      * @param RequestStack $requestStack
-     * @param int $paginationItemsPerPage
      */
-    public function __construct(RequestStack $requestStack, int $paginationItemsPerPage)
+    public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
-        $this->paginationItemsPerPage = $paginationItemsPerPage;
     }
 
-    public function generate(int $totalItems, string $url = null, array $params = null, $queryParam = 'page') : Paginator
+    public function generate(int $totalItems, int $itemsPerPage = 10, string $url = null, array $params = null, $queryParam = 'page') : Paginator
     {
         $url = $url ?? $this->requestStack->getMasterRequest()->getPathInfo();
         $params = $params ?? $this->requestStack->getMasterRequest()->query->all();
@@ -42,14 +40,6 @@ class PaginatorFactory
             $url .= '?' . http_build_query($params);
         }
 
-        return new Paginator($totalItems, $this->paginationItemsPerPage, (int) $page, $url);
-    }
-
-    /**
-     * @return int
-     */
-    public function getPaginationItemsPerPage(): int
-    {
-        return $this->paginationItemsPerPage;
+        return new Paginator($totalItems, $itemsPerPage, $page, $url);
     }
 }

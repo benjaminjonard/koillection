@@ -10,6 +10,11 @@ use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 
+/**
+ * Class VisibilityFilter
+ *
+ * @package App\Doctrine\Filter
+ */
 class VisibilityFilter extends SQLFilter
 {
     /**

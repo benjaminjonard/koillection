@@ -8,6 +8,11 @@ use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
+/**
+ * Class WishlistListener
+ *
+ * @package App\EventListener\Entity
+ */
 class WishlistListener
 {
     /**
@@ -22,13 +27,13 @@ class WishlistListener
             if ($entity instanceof Wishlist) {
                 $changeset = $uow->getEntityChangeSet($entity);
 
-                if (\array_key_exists('parent', $changeset)) {
+                if (array_key_exists('parent', $changeset)) {
                     if ($entity->getParent()->getVisibility() === VisibilityEnum::VISIBILITY_PRIVATE) {
                         $this->setVisibilityRecursively($entity, $entity->getParent()->getVisibility());
                     }
                 }
 
-                if (\array_key_exists('visibility', $changeset)) {
+                if (array_key_exists('visibility', $changeset)) {
                     $this->setVisibilityRecursively($entity, $entity->getVisibility());
                 }
             }
@@ -39,7 +44,7 @@ class WishlistListener
      * @param $wishlist
      * @param $visibility
      */
-    public function setVisibilityRecursively(Wishlist $wishlist, $visibility)
+    public function setVisibilityRecursively($wishlist, $visibility)
     {
         $wishlist->setVisibility($visibility);
 

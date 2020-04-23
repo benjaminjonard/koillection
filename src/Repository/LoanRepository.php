@@ -8,6 +8,11 @@ use App\Entity\Loan;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class LoanRepository
+ *
+ * @package App\Repository
+ */
 class LoanRepository extends EntityRepository
 {
     /**
@@ -46,7 +51,6 @@ class LoanRepository extends EntityRepository
      * @param $id
      *
      * @return Loan
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findByIdWithItem(string $id) : ?Loan
     {

@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+use App\Enum\CurrencyEnum;
+use App\Enum\LocaleEnum;
+use App\Enum\RoleEnum;
+use App\Enum\ThemeEnum;
 
-class EnumExtension extends AbstractExtension
+/**
+ * Class EnumExtension
+ *
+ * @package App\Twig
+ */
+class EnumExtension extends \Twig_Extension
 {
     /**
      * @return array
@@ -15,11 +22,65 @@ class EnumExtension extends AbstractExtension
     public function getFunctions() : array
     {
         return [
-            new TwigFunction('getCurrencySymbol', [EnumRuntime::class, 'getCurrencySymbol']),
-            new TwigFunction('getRoleLabel', [EnumRuntime::class, 'getRoleLabel']),
-            new TwigFunction('getLocales', [EnumRuntime::class, 'getLocales']),
-            new TwigFunction('getLocaleLabel', [EnumRuntime::class, 'getLocaleLabel']),
-            new TwigFunction('getThemeColor', [EnumRuntime::class, 'getThemeColor']),
+            new \Twig_SimpleFunction('getCurrencySymbol', [$this, 'getCurrencySymbol']),
+            new \Twig_SimpleFunction('getRoleLabel', [$this, 'getRoleLabel']),
+            new \Twig_SimpleFunction('getLocales', [$this, 'getLocales']),
+            new \Twig_SimpleFunction('getLocaleLabel', [$this, 'getLocaleLabel']),
+            new \Twig_SimpleFunction('getThemeColor', [$this, 'getThemeColor']),
         ];
+    }
+
+    /**
+     * @param string $code
+     * @return null|string
+     */
+    public function getCurrencySymbol(string $code) : ?string
+    {
+        return CurrencyEnum::getSymbolFromCode($code);
+    }
+
+    /**
+     * @param string $role
+     * @return string
+     */
+    public function getRoleLabel(string $role) : string
+    {
+        return RoleEnum::getRoleLabel($role);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLocales() : array
+    {
+        return LocaleEnum::getLocaleLabels();
+    }
+
+    /**
+     * @param string $code
+     * @return array
+     */
+    public function getLocaleLabel(string $code) : string
+    {
+        return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::LOCALE_EN;
+    }
+
+    /**
+     * @param string $theme
+     * @param string $hue
+     * @return string
+     */
+    public function getThemeColor(string $theme, string $hue) : string
+    {
+        return ThemeEnum::getThemeColor($theme, $hue);
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getName() : string
+    {
+        return 'enum_extension';
     }
 }

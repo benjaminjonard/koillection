@@ -8,12 +8,17 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 
+/**
+ * Class CalendarBuilder
+ *
+ * @package App\Service\Graph
+ */
 class CalendarBuilder
 {
     /**
      * @var EntityManagerInterface
      */
-    private EntityManagerInterface $em;
+    protected $em;
 
     /**
      * CalendarBuilder constructor.

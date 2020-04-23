@@ -1,5 +1,4 @@
 twig:
-    default_path: '%kernel.project_dir%/templates'
-    globals:
-        version: '%version%'
-    form_themes: ['App/_partials/_form_fields.html.twig']
+    paths: ['%kernel.project_dir%/templates']
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'

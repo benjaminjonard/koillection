@@ -15,7 +15,6 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
      * Check if the admin has access to all the pages
      *
      * @dataProvider isSuccessfulUrlProvider
-     * @param string $url
      */
     public function testPageIsSuccessful(string $url)
     {
@@ -46,11 +45,6 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
         yield ["/tags/{{tag}}"];
         yield ["/tags/{{tag}}/edit"];
         yield ["/tags/{{tag}}/history"];
-
-        yield ["/tag-categories"];
-        yield ["/tag-categories/add"];
-        yield ["/tag-categories/{{category}}"];
-        yield ["/tag-categories/{{category}}/edit"];
 
         yield ["/wishlists"];
         yield ["/wishlists/add"];

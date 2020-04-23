@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+/**
+ * Class RandomStringGenerator
+ *
+ * @package App\Service
+ */
 class RandomStringGenerator
 {
     /**

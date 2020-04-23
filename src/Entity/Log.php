@@ -9,66 +9,69 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
+ * Class Log
+ *
+ * @package App\Entity
+ * @ORM\Entity
  * @ORM\Table(name="koi_log")
  */
 class Log
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    private string $type;
+    private $type;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $loggedAt = null;
+    private $loggedAt;
 
     /**
-     * @var string
+     * @var integer
      * @ORM\Column(type="uuid")
      */
-    private string $objectId;
+    private $objectId;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private string $objectLabel;
+    private $objectLabel;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private string $objectClass;
+    private $objectClass;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", options={"default": 0})
      */
-    private bool $objectDeleted;
+    private $objectDeleted;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private string $payload;
+    private $payload;
 
     /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="logs")
      */
-    private User $owner;
+    private $user;
 
     public function __construct()
     {
@@ -84,98 +87,186 @@ class Log
         return $this->id->toString();
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getLoggedAt(): ?\DateTimeInterface
-    {
-        return $this->loggedAt;
-    }
-
-    public function setLoggedAt(\DateTimeInterface $loggedAt): self
+    /**
+     * Set loggedAt
+     *
+     * @param \DateTime $loggedAt
+     *
+     * @return Log
+     */
+    public function setLoggedAt($loggedAt) : self
     {
         $this->loggedAt = $loggedAt;
 
         return $this;
     }
 
-    public function getObjectId()
+    /**
+     * Get loggedAt
+     *
+     * @return \DateTime
+     */
+    public function getLoggedAt()
     {
-        return $this->objectId;
+        return $this->loggedAt;
     }
 
-    public function setObjectId(string $objectId): self
+    /**
+     * @param $objectId
+     * @return Log
+     */
+    public function setObjectId($objectId) : self
     {
         $this->objectId = $objectId;
 
         return $this;
     }
 
-    public function getObjectLabel(): ?string
+    /**
+     * Get objectId
+     *
+     * @return integer
+     */
+    public function getObjectId()
     {
-        return $this->objectLabel;
+        return $this->objectId;
     }
 
-    public function setObjectLabel(string $objectLabel): self
-    {
-        $this->objectLabel = $objectLabel;
-
-        return $this;
-    }
-
-    public function getObjectClass(): ?string
-    {
-        return $this->objectClass;
-    }
-
-    public function setObjectClass(string $objectClass): self
+    /**
+     * Set objectClass
+     *
+     * @param string $objectClass
+     *
+     * @return Log
+     */
+    public function setObjectClass($objectClass) : self
     {
         $this->objectClass = $objectClass;
 
         return $this;
     }
 
-    public function isObjectDeleted(): ?bool
+    /**
+     * Get objectClass
+     *
+     * @return string
+     */
+    public function getObjectClass()
     {
-        return $this->objectDeleted;
+        return $this->objectClass;
     }
 
-    public function setObjectDeleted(bool $objectDeleted): self
-    {
-        $this->objectDeleted = $objectDeleted;
-
-        return $this;
-    }
-
-    public function getPayload(): ?string
-    {
-        return $this->payload;
-    }
-
-    public function setPayload(?string $payload): self
+    /**
+     * Set payload
+     *
+     * @param string $payload
+     *
+     * @return Log
+     */
+    public function setPayload($payload) : self
     {
         $this->payload = $payload;
 
         return $this;
     }
 
-    public function getOwner(): ?User
+    /**
+     * Get payload
+     *
+     * @return string
+     */
+    public function getPayload()
     {
-        return $this->owner;
+        return $this->payload;
     }
 
-    public function setOwner(?User $owner): self
+    /**
+     * Set user
+     *
+     * @param \App\Entity\User $user
+     *
+     * @return Log
+     */
+    public function setUser(User $user = null) : self
     {
-        $this->owner = $owner;
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \App\Entity\User
+     */
+    public function getUser() : User
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Log
+     */
+    public function setType($type) : self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set objectLabel
+     *
+     * @param string $objectLabel
+     *
+     * @return Log
+     */
+    public function setObjectLabel($objectLabel) : self
+    {
+        $this->objectLabel = $objectLabel;
+
+        return $this;
+    }
+
+    /**
+     * Get objectLabel
+     *
+     * @return string
+     */
+    public function getObjectLabel()
+    {
+        return $this->objectLabel;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isObjectDeleted(): bool
+    {
+        return $this->objectDeleted;
+    }
+
+    /**
+     * @param bool $objectDeleted
+     * @return Log
+     */
+    public function setObjectDeleted(bool $objectDeleted) : self
+    {
+        $this->objectDeleted = $objectDeleted;
 
         return $this;
     }

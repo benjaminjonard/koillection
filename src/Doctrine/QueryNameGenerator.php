@@ -4,17 +4,22 @@ declare(strict_types=1);
 
 namespace App\Doctrine;
 
+/**
+ * Class QueryNameGenerator
+ *
+ * @package App\Doctrine
+ */
 final class QueryNameGenerator
 {
     /**
      * @var int
      */
-    private int $incrementedAssociation = 1;
+    private $incrementedAssociation = 1;
 
     /**
      * @var int
      */
-    private int $incrementedName = 1;
+    private $incrementedName = 1;
 
     /**
      * @param string $association

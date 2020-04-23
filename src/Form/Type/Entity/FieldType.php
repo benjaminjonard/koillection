@@ -13,6 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class FieldType
+ *
+ * @package App\Form\Type\Entity
+ */
 class FieldType extends AbstractType
 {
     /**
@@ -27,7 +32,7 @@ class FieldType extends AbstractType
                 'label' => false,
             ])
             ->add('type', ChoiceType::class, [
-                'choices' => \array_flip(DatumTypeEnum::getTypesLabels()),
+                'choices' => array_flip(DatumTypeEnum::getTypesLabels()),
                 'expanded' => false,
                 'multiple' => false,
                 'label' => false,

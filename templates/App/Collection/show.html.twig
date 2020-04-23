@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
+{% import "App/macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection) %}
 
@@ -9,18 +9,6 @@
 
 {% block breadcrumb %}
     {{ renderBreadcrumb(breadcrumb)  }}
-{% endblock %}
-
-{% block meta %}
-    {% if context == 'user'  %}
-        {{ include('App/_partials/_meta.html.twig', {
-            'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': collection.image ? preload(asset(collection.image.path)) : null
-        }) }}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -36,8 +24,8 @@
             <div class="right">
                 <h1>{{ collection.title }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|trans({'%count%': getCounters(collection).items}) }}</li>
-                    <li>{{ 'counter.collection'|trans({'%count%': getCounters(collection).children}) }}</li>
+                    <li>{{ 'counter.item'|trans({'%count%': counters[collection.id].items}) }}</li>
+                    <li>{{ 'counter.collection'|trans({'%count%': counters[collection.id].children}) }}</li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -73,7 +61,7 @@
                 </a>
             </div>
             <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -85,7 +73,9 @@
             <div class="block-element">
                 <h5 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h5>
                 <div class="collections grid-container-collections">
-                    {{ include('App/Collection/_list.html.twig', {'collections': children|naturalSorting}) }}
+                    {% for child in children|naturalSorting %}
+                        {{ include('App/Collection/partials/collection.html.twig', {'collection': child}) }}
+                    {% endfor %}
                 </div>
             </div>
         {% endif %}
@@ -114,8 +104,8 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
+        {{ include('Modal/share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
+        {{ include('Modal/delete.html.twig', {'id': 'delete', 'route': url('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
     {% endif %}
 {% endblock %}
 

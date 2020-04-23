@@ -1,4 +1,5 @@
 {% extends 'layout.html.twig' %}
+{% form_theme form 'Form/fields.html.twig' %}
 
 {% set breadcrumb = buildBreadcrumb([
     {'route': 'app_admin_index', 'trans': 'menu.admin'},

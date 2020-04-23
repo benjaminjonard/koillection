@@ -12,12 +12,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class BatchTaggerType
+ *
+ * @package App\Form\Type\Model
+ */
 class BatchTaggerType extends AbstractType
 {
     /**
      * @var JsonToTagTransformer
      */
-    private JsonToTagTransformer $jsonToTagTransformer;
+    private $jsonToTagTransformer;
 
     /**
      * BatchTaggerType constructor.

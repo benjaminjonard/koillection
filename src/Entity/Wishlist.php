@@ -5,98 +5,97 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
-use App\Entity\Interfaces\CacheableInterface;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
+use App\Model\BreadcrumbElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
+ * Class Wishlist
+ *
+ * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\WishlistRepository")
- * @ORM\Table(name="koi_wishlist", indexes={
- *     @ORM\Index(name="idx_wishlist_visibility", columns={"visibility"})
- * })
+ * @ORM\Table(name="koi_wishlist")
  */
-class Wishlist implements BreadcrumbableInterface, CacheableInterface
+class Wishlist implements BreadcrumbableInterface
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $name = null;
+    private $name;
 
     /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="wishlists")
      */
-    private ?User $owner = null;
+    private $owner;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Wish", mappedBy="wishlist", cascade={"all"})
      * @ORM\OrderBy({"name" = "ASC"})
      */
-    private DoctrineCollection $wishes;
+    private $wishes;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=6)
      */
-    private ?string $color = null;
+    private $color;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="parent", cascade={"all"})
      * @ORM\OrderBy({"name" = "ASC"})
      */
-    private DoctrineCollection $children;
+    private $children;
 
     /**
-     * @var Wishlist
+     * @var \App\Entity\Wishlist
      * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="children")
      */
-    private ?Wishlist $parent = null;
+    private $parent;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var Medium
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Image $image = null;
+    private $image;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private int $seenCounter;
+    private $seenCounter;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $visibility;
+    private $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $createdAt = null;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $updatedAt = null;
+    private $updatedAt;
 
     /**
      * Constructor.
@@ -126,84 +125,38 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface
         return $this->id->toString();
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return Wishlist
+     */
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getColor(): ?string
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName() : ?string
     {
-        return $this->color;
+        return $this->name;
     }
 
-    public function setColor(string $color): self
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    public function getSeenCounter(): ?int
-    {
-        return $this->seenCounter;
-    }
-
-    public function setSeenCounter(int $seenCounter): self
-    {
-        $this->seenCounter = $seenCounter;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(?User $owner): self
+    /**
+     * Set owner.
+     *
+     * @param \App\Entity\User $owner
+     *
+     * @return Wishlist
+     */
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -211,88 +164,243 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface
     }
 
     /**
-     * @return DoctrineCollection|Wish[]
+     * Get owner.
+     *
+     * @return User|null
      */
-    public function getWishes(): DoctrineCollection
+    public function getOwner() : ?User
     {
-        return $this->wishes;
+        return $this->owner;
     }
 
-    public function addWish(Wish $wish): self
+    /**
+     * Add wish.
+     *
+     * @param \App\Entity\Wish $wish
+     *
+     * @return Wishlist
+     */
+    public function addWish(Wish $wish) : self
     {
-        if (!$this->wishes->contains($wish)) {
-            $this->wishes[] = $wish;
-            $wish->setWishlist($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWish(Wish $wish): self
-    {
-        if ($this->wishes->contains($wish)) {
-            $this->wishes->removeElement($wish);
-            // set the owning side to null (unless already changed)
-            if ($wish->getWishlist() === $this) {
-                $wish->setWishlist(null);
-            }
-        }
+        $this->wishes[] = $wish;
 
         return $this;
     }
 
     /**
-     * @return DoctrineCollection|Wishlist[]
+     * @param Wish $wish
+     * @return Wishlist
      */
-    public function getChildren(): DoctrineCollection
+    public function removeWish(Wish $wish) : self
+    {
+        $this->wishes->removeElement($wish);
+
+        return $this;
+    }
+
+    /**
+     * Get wishes.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWishes() : DoctrineCollection
+    {
+        return $this->wishes;
+    }
+
+    /**
+     * Set color.
+     *
+     * @param string $color
+     *
+     * @return Wishlist
+     */
+    public function setColor(string $color) : self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color.
+     *
+     * @return string
+     */
+    public function getColor() : ?string
+    {
+        return $this->color;
+    }
+
+    /**
+     * Add child.
+     *
+     * @param \App\Entity\Wishlist $child
+     *
+     * @return Wishlist
+     */
+    public function addChild(Wishlist $child) : self
+    {
+        $this->children[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * @param Wishlist $child
+     * @return Wishlist
+     */
+    public function removeChild(Wishlist $child) : self
+    {
+        $this->children->removeElement($child);
+
+        return $this;
+    }
+
+    /**
+     * Get children.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren() : DoctrineCollection
     {
         return $this->children;
     }
 
-    public function addChild(Wishlist $child): self
-    {
-        if (!$this->children->contains($child)) {
-            $this->children[] = $child;
-            $child->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChild(Wishlist $child): self
-    {
-        if ($this->children->contains($child)) {
-            $this->children->removeElement($child);
-            // set the owning side to null (unless already changed)
-            if ($child->getParent() === $this) {
-                $child->setParent(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): self
+    /**
+     * Set parent.
+     *
+     * @param \App\Entity\Wishlist $parent
+     *
+     * @return Wishlist
+     */
+    public function setParent(Wishlist $parent = null) : self
     {
         $this->parent = $parent;
 
         return $this;
     }
 
-    public function getImage(): ?Image
+    /**
+     * Get parent.
+     *
+     * @return \App\Entity\Wishlist
+     */
+    public function getParent() : ?Wishlist
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Wishlist
+     */
+    public function setCreatedAt($createdAt) : self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Wishlist
+     */
+    public function setUpdatedAt($updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \App\Entity\Medium $image
+     *
+     * @return Wishlist
+     */
+    public function setImage(Medium $image = null) : self
+    {
+        if ($image === null) {
+            return $this;
+        }
+
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \App\Entity\Medium
+     */
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): self
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
     {
-        $image->setType(ImageTypeEnum::TYPE_AVATAR);
-        $this->image = $image;
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Wishlist
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Wishlist
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

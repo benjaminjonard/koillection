@@ -11,13 +11,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class LoanController
+ *
+ * @package App\Controller
+ *
+ * @Route("/loans")
+ */
 class LoanController extends AbstractController
 {
     /**
-     * @Route({
-     *     "en": "/loans",
-     *     "fr": "/prets"
-     * }, name="app_loan_index", methods={"GET"})
+     * @Route("", name="app_loan_index", methods={"GET"})
      *
      * @return Response
      */
@@ -31,10 +35,7 @@ class LoanController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/loans/{id}/delete",
-     *     "fr": "/prets/{id}/supprimer"
-     * }, name="app_loan_delete", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     * @Route("/{id}/delete", name="app_loan_delete", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
      * @param Loan $loan
      * @param TranslatorInterface $translator
@@ -52,17 +53,12 @@ class LoanController extends AbstractController
     }
 
     /**
-     * @Route({
-     *     "en": "/loans/{id}/returned",
-     *     "fr": "/prets/{id}/rendu"
-     * }, name="app_loan_returned", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
+     * @Route("/{id}/returned", name="app_loan_returned", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      * @Entity("loan", expr="repository.findByIdWithItem(id)")
      *
      * @param Loan $loan
      * @param TranslatorInterface $translator
      * @return Response
-     * @throws \Exception
      */
     public function returned(Loan $loan, TranslatorInterface $translator) : Response
     {

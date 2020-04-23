@@ -4,27 +4,32 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Image;
+use App\Entity\Medium;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class DiskUsageCalculator
+ *
+ * @package App\Service
+ */
 class DiskUsageCalculator
 {
     /**
      * @var TranslatorInterface
      */
-    private TranslatorInterface $translator;
+    protected $translator;
 
     /**
      * @var EntityManagerInterface
      */
-    private EntityManagerInterface $em;
+    protected $em;
 
     /**
      * @var string
      */
-    private string $publicPath;
+    protected $publicPath;
 
     /**
      * DiskUsageCalculator constructor.
@@ -45,12 +50,12 @@ class DiskUsageCalculator
     public function getSpaceUsedByUser(User $user) : int
     {
         $size = 0;
-        $images = $this->em->getRepository(Image::class)->findBy(['owner' => $user]);
+        $media = $this->em->getRepository(Medium::class)->findBy(['owner' => $user]);
 
-        foreach ($images as $image) {
-            $size += filesize($this->publicPath.'/'.$image->getPath());
-            if ($image->getThumbnailPath()) {
-                $size += filesize($this->publicPath.'/'.$image->getThumbnailPath());
+        foreach ($media as $medium) {
+            $size += filesize($this->publicPath.'/'.$medium->getPath());
+            if ($medium->getThumbnailPath()) {
+                $size += filesize($this->publicPath.'/'.$medium->getThumbnailPath());
             }
         }
 

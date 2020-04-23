@@ -7,6 +7,11 @@ namespace App\Doctrine\Filter;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 
+/**
+ * Class OwnershipFilter
+ *
+ * @package App\Doctrine\Filter
+ */
 class OwnershipFilter extends SQLFilter
 {
     /**

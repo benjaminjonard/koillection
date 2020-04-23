@@ -5,97 +5,75 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
-use App\Entity\Interfaces\CacheableInterface;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
- * @ORM\Table(name="koi_album", indexes={
- *     @ORM\Index(name="idx_album_visibility", columns={"visibility"})
- * })
+ * Class Album
+ *
+ * @package App\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="koi_album")
  */
-class Album implements BreadcrumbableInterface, CacheableInterface
+class Album implements BreadcrumbableInterface
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $title = null;
+    private $title;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=6)
      */
-    private ?string $color = null;
+    private $color;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
-     */
-    private ?Image $image = null;
-
-    /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="albums")
      */
-    private ?User $owner = null;
+    private $owner;
 
     /**
-     * @var DoctrineCollection
+     * @var \Doctrine\Common\Collections\Collection
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="album", cascade={"all"})
      */
-    private DoctrineCollection $photos;
-
-    /**
-     * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="Album", mappedBy="parent", cascade={"all"})
-     * @ORM\OrderBy({"title" = "ASC"})
-     */
-    private DoctrineCollection $children;
-
-    /**
-     * @var Album
-     * @ORM\ManyToOne(targetEntity="Album", inversedBy="children")
-     */
-    private ?Album $parent = null;
+    private $photos;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
      */
-    private int $seenCounter;
+    private $seenCounter;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $visibility;
+    private $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $createdAt = null;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $updatedAt = null;
+    private $updatedAt;
 
     /**
      * Constructor.
@@ -105,7 +83,6 @@ class Album implements BreadcrumbableInterface, CacheableInterface
         $this->id = Uuid::uuid4();
         $this->seenCounter = 0;
         $this->photos = new ArrayCollection();
-        $this->children = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
@@ -125,84 +102,48 @@ class Album implements BreadcrumbableInterface, CacheableInterface
         return $this->id->toString();
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return Album
+     */
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function getColor(): ?string
+    /**
+     * Get title.
+     *
+     * @return ?string
+     */
+    public function getTitle() : ?string
     {
-        return $this->color;
+        return $this->title;
     }
 
-    public function setColor(string $color): self
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    public function getSeenCounter(): ?int
-    {
-        return $this->seenCounter;
-    }
-
-    public function setSeenCounter(int $seenCounter): self
-    {
-        $this->seenCounter = $seenCounter;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getOwner(): ?User
+    /**
+     * Get owner.
+     *
+     * @return User|null
+     */
+    public function getOwner() : ?User
     {
         return $this->owner;
     }
 
-    public function setOwner(?User $owner): self
+    /**
+     * Set owner.
+     *
+     * @param \App\Entity\User $owner
+     *
+     * @return Album
+     */
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
@@ -210,88 +151,141 @@ class Album implements BreadcrumbableInterface, CacheableInterface
     }
 
     /**
-     * @return DoctrineCollection|Photo[]
+     * Set color.
+     *
+     * @param string $color
+     *
+     * @return Album
      */
-    public function getPhotos(): DoctrineCollection
+    public function setColor(string $color) : self
     {
-        return $this->photos;
-    }
-
-    public function addPhoto(Photo $photo): self
-    {
-        if (!$this->photos->contains($photo)) {
-            $this->photos[] = $photo;
-            $photo->setAlbum($this);
-        }
-
-        return $this;
-    }
-
-    public function removePhoto(Photo $photo): self
-    {
-        if ($this->photos->contains($photo)) {
-            $this->photos->removeElement($photo);
-            // set the owning side to null (unless already changed)
-            if ($photo->getAlbum() === $this) {
-                $photo->setAlbum(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getImage(): ?Image
-    {
-        return $this->image;
-    }
-
-    public function setImage(?Image $image): self
-    {
-        $image->setType(ImageTypeEnum::TYPE_AVATAR);
-        $this->image = $image;
+        $this->color = $color;
 
         return $this;
     }
 
     /**
-     * @return DoctrineCollection|Album[]
+     * Get color.
+     *
+     * @return string
      */
-    public function getChildren(): DoctrineCollection
+    public function getColor() : string
     {
-        return $this->children;
+        return $this->color;
     }
 
-    public function addChild(Album $child): self
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Album
+     */
+    public function setCreatedAt($createdAt) : self
     {
-        if (!$this->children->contains($child)) {
-            $this->children[] = $child;
-            $child->setParent($this);
-        }
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function removeChild(Album $child): self
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
     {
-        if ($this->children->contains($child)) {
-            $this->children->removeElement($child);
-            // set the owning side to null (unless already changed)
-            if ($child->getParent() === $this) {
-                $child->setParent(null);
-            }
-        }
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Album
+     */
+    public function setUpdatedAt($updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getParent(): ?self
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
     {
-        return $this->parent;
+        return $this->updatedAt;
     }
 
-    public function setParent(?self $parent): self
+    /**
+     * @param Photo $photo
+     * @return Album
+     */
+    public function addPhoto(Photo $photo) : self
     {
-        $this->parent = $parent;
+        $this->photos[] = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @param Photo $photo
+     * @return Album
+     */
+    public function removePhoto(Photo $photo) : self
+    {
+        $this->photos->removeElement($photo);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|\Doctrine\Common\Collections\Collection
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Album
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeenCounter() : int
+    {
+        return $this->seenCounter;
+    }
+
+    /**
+     * @param int $seenCounter
+     * @return Album
+     */
+    public function setSeenCounter(int $seenCounter) : self
+    {
+        $this->seenCounter = $seenCounter;
 
         return $this;
     }

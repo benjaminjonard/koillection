@@ -4,94 +4,98 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\CacheableInterface;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
+ * Class Wish
+ *
+ * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\WishRepository")
- * @ORM\Table(name="koi_wish", indexes={
- *     @ORM\Index(name="idx_wish_visibility", columns={"visibility"})
- * })
+ * @ORM\Table(name="koi_wish")
  */
-class Wish implements CacheableInterface
+class Wish
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $name = null;
+    private $name;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $url = null;
+    private $url;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $price = null;
+    private $price;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=6, nullable=true)
      */
-    private string $currency;
+    private $currency;
 
     /**
-     * @var Wishlist
+     * @var \App\Entity\Wishlist
      * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="wishes")
      */
-    private Wishlist $wishlist;
+    private $wishlist;
 
     /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private ?User $owner = null;
+    private $owner;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=6)
+     */
+    private $color;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $comment = null;
+    private $comment;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var Medium
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Image $image = null;
+    private $image;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $visibility;
+    private $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private $updatedAt;
 
     public function __construct()
     {
@@ -107,135 +111,291 @@ class Wish implements CacheableInterface
         return $this->id->toString();
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return Wish
+     */
+    public function setName(string $name) : self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getUrl(): ?string
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName() : ?string
     {
-        return $this->url;
+        return $this->name;
     }
 
-    public function setUrl(?string $url): self
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    public function getPrice(): ?string
-    {
-        return $this->price;
-    }
-
-    public function setPrice(?string $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getCurrency(): ?string
-    {
-        return $this->currency;
-    }
-
-    public function setCurrency(?string $currency): self
-    {
-        $this->currency = $currency;
-
-        return $this;
-    }
-
-    public function getComment(): ?string
-    {
-        return $this->comment;
-    }
-
-    public function setComment(?string $comment): self
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getWishlist(): ?Wishlist
-    {
-        return $this->wishlist;
-    }
-
-    public function setWishlist(?Wishlist $wishlist): self
+    /**
+     * Set wishlist.
+     *
+     * @param \App\Entity\Wishlist $wishlist
+     *
+     * @return Wish
+     */
+    public function setWishlist(Wishlist $wishlist = null) : self
     {
         $this->wishlist = $wishlist;
 
         return $this;
     }
 
-    public function getOwner(): ?User
+    /**
+     * Get wishlist.
+     *
+     * @return \App\Entity\Wishlist
+     */
+    public function getWishlist() : Wishlist
     {
-        return $this->owner;
+        return $this->wishlist;
     }
 
-    public function setOwner(?User $owner): self
+    /**
+     * Set owner.
+     *
+     * @param \App\Entity\User $owner
+     *
+     * @return Wish
+     */
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
         return $this;
     }
 
-    public function getImage(): ?Image
+    /**
+     * Get owner.
+     *
+     * @return User|null
+     */
+    public function getOwner() : ?User
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Set url.
+     *
+     * @param string $url
+     *
+     * @return Wish
+     */
+    public function setUrl(string $url) : self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url.
+     *
+     * @return string
+     */
+    public function getUrl() : ?string
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set price.
+     *
+     * @param string $price
+     *
+     * @return Wish
+     */
+    public function setPrice(string $price) : self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price.
+     *
+     * @return string
+     */
+    public function getPrice() : ?string
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set color.
+     *
+     * @param string $color
+     *
+     * @return Wish
+     */
+    public function setColor(string $color) : self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color.
+     *
+     * @return string
+     */
+    public function getColor() : string
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set comment.
+     *
+     * @param string $comment
+     *
+     * @return Wish
+     */
+    public function setComment(string $comment) : self
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment.
+     *
+     * @return string
+     */
+    public function getComment() : ?string
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set image.
+     *
+     * @param Medium $image
+     *
+     * @return Wish
+     */
+    public function setImage(Medium $image = null) : self
+    {
+        if ($image === null) {
+            return $this;
+        }
+
+        if ($image->getThumbnailPath() === null) {
+            $image->setMustGenerateAThumbnail(true);
+        }
+
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Medium|null
+     */
+    public function getImage() : ?Medium
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): self
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     *
+     * @return Wish
+     */
+    public function setCurrency(string $currency) : self
     {
-        $image->setType(ImageTypeEnum::TYPE_COMMON);
-        $this->image = $image;
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string
+     */
+    public function getCurrency() : ?string
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Wish
+     */
+    public function setCreatedAt($createdAt) : self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Wish
+     */
+    public function setUpdatedAt($updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Wish
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
 
         return $this;
     }

@@ -6,15 +6,20 @@ namespace App\EventListener;
 
 use App\Enum\LocaleEnum;
 use Negotiation\LanguageNegotiator;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
+/**
+ * Class LocaleListener
+ *
+ * @package App\EventListener
+ */
 class LocaleListener
 {
     /**
      * @var string
      */
-    private string $defaultLocale;
+    private $defaultLocale;
 
     /**
      * LocaleListener constructor.
@@ -26,9 +31,9 @@ class LocaleListener
     }
 
     /**
-     * @param RequestEvent $event
+     * @param GetResponseEvent $event
      */
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
 
@@ -45,7 +50,7 @@ class LocaleListener
                 if (null !== $best) {
                     $request->getSession()->set('_locale', $best->getType());
                     $request->setLocale($request->getSession()->get('_locale', $best->getType()));
-                }
+                }    
             }
 
             return;

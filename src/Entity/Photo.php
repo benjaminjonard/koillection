@@ -4,88 +4,86 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\CacheableInterface;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
- * @ORM\Table(name="koi_photo", indexes={
- *     @ORM\Index(name="idx_photo_visibility", columns={"visibility"})
- * })
+ * Class Album
+ *
+ * @package App\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="koi_photo")
  */
-class Photo implements CacheableInterface
+class Photo
 {
     /**
-     * @var UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $title = null;
+    private $title;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $comment = null;
+    private $comment;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $place = null;
+    private $place;
 
     /**
-     * @var Album
+     * @var \App\Entity\Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
      */
-    private Album $album;
+    private $album;
 
     /**
-     * @var User
+     * @var \App\Entity\User
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private ?User $owner = null;
+    private $owner;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var Medium
+     * @ORM\OneToOne(targetEntity="Medium", cascade={"all"}, orphanRemoval=true)
      */
-    private ?Image $image = null;
+    private $image;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $takenAt = null;
+    private $takenAt;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private string $visibility;
+    private $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private $updatedAt;
 
     public function __construct()
     {
@@ -101,123 +99,245 @@ class Photo implements CacheableInterface
         return $this->id->toString();
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return Photo
+     */
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function getComment(): ?string
+    /**
+     * Get title.
+     *
+     * @return ?string
+     */
+    public function getTitle() : ?string
     {
-        return $this->comment;
+        return $this->title;
     }
 
-    public function setComment(?string $comment): self
+    /**
+     * Set comment.
+     *
+     * @param string $comment
+     *
+     * @return Photo
+     */
+    public function setComment(string $comment) : self
     {
         $this->comment = $comment;
 
         return $this;
     }
 
-    public function getPlace(): ?string
+    /**
+     * Get comment.
+     *
+     * @return ?string
+     */
+    public function getComment() : ?string
     {
-        return $this->place;
+        return $this->comment;
     }
 
-    public function setPlace(?string $place): self
+    /**
+     * Set palce.
+     *
+     * @param string $place
+     *
+     * @return Photo
+     */
+    public function setPlace(string $place) : self
     {
         $this->place = $place;
 
         return $this;
     }
 
-    public function getTakenAt(): ?\DateTimeInterface
+    /**
+     * Get place.
+     *
+     * @return ?string
+     */
+    public function getPlace() : ?string
     {
-        return $this->takenAt;
+        return $this->place;
     }
 
-    public function setTakenAt(?\DateTimeInterface $takenAt): self
-    {
-        $this->takenAt = $takenAt;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getAlbum(): ?Album
-    {
-        return $this->album;
-    }
-
-    public function setAlbum(?Album $album): self
+    /**
+     * Set album.
+     *
+     * @param \App\Entity\Album $album
+     *
+     * @return Photo
+     */
+    public function setAlbum(Album $album = null) : self
     {
         $this->album = $album;
 
         return $this;
     }
 
-    public function getOwner(): ?User
+    /**
+     * Get album.
+     *
+     * @return \App\Entity\Album
+     */
+    public function getAlbum() : Album
+    {
+        return $this->album;
+    }
+
+    /**
+     * Get owner.
+     *
+     * @return User|null
+     */
+    public function getOwner() : ?User
     {
         return $this->owner;
     }
 
-    public function setOwner(?User $owner): self
+    /**
+     * Set owner.
+     *
+     * @param \App\Entity\User $owner
+     *
+     * @return Photo
+     */
+    public function setOwner(User $owner = null) : self
     {
         $this->owner = $owner;
 
         return $this;
     }
 
-    public function getImage(): ?Image
+    /**
+     * Set image.
+     *
+     * @param Medium $image
+     *
+     * @return Photo
+     */
+    public function setImage(Medium $image = null) : self
+    {
+        if ($image === null) {
+            return $this;
+        }
+
+        if ($image->getThumbnailPath() === null) {
+            $image->setMustGenerateAThumbnail(true);
+        }
+
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image.
+     *
+     * @return Medium
+     */
+    public function getImage() : ?Medium
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): self
+    /**
+     * Set takenAt
+     *
+     * @param \DateTime $takenAt
+     *
+     * @return Photo
+     */
+    public function setTakenAt($takenAt) : self
     {
-        $image->setType(ImageTypeEnum::TYPE_COMMON);
-        $this->image = $image;
+        $this->takenAt = $takenAt;
+
+        return $this;
+    }
+
+    /**
+     * Get takenAt
+     *
+     * @return \DateTime
+     */
+    public function getTakenAt()
+    {
+        return $this->takenAt;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Photo
+     */
+    public function setCreatedAt($createdAt) : self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Photo
+     */
+    public function setUpdatedAt($updatedAt) : self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVisibility() : string
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param string $visibility
+     * @return Photo
+     */
+    public function setVisibility(string $visibility) : self
+    {
+        $this->visibility = $visibility;
 
         return $this;
     }

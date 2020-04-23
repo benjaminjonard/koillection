@@ -20,17 +20,15 @@
     </div>
 
     <div class="content-block">
-        <div class="row">
-            <div class="tabs-block col s12 l10 offset-l1 xl6 offset-xl3">
-                <ul class="nav nav-pills">
-                    <li class="tab current" for="loans">
-                        <span>{{ 'tab.loans'|trans }}</span>
-                    </li>
-                    <li class="tab" for="returnedItems">
-                        <span>{{ 'tab.returned_items'|trans }}</span>
-                    </li>
-                </ul>
-            </div>
+        <div class="tabs-block">
+            <ul class="nav nav-pills">
+                <li class="tab current" for="loans">
+                    <span>{{ 'tab.loans'|trans }}</span>
+                </li>
+                <li class="tab" for="returnedItems">
+                    <span>{{ 'tab.returned_items'|trans }}</span>
+                </li>
+            </ul>
         </div>
 
         <div class="panel" id="loans">
@@ -40,7 +38,7 @@
                     <th>{{ 'label.name'|trans }}</th>
                     <th>{{ 'label.loaned_to'|trans }}</th>
                     <th>{{ 'label.loaned_at'|trans }}</th>
-                    <th class="hide-on-small-only">{{ 'label.loaned_ago'|trans }}</th>
+                    <th>{{ 'label.loaned_ago'|trans }}</th>
                     <th>{{ 'label.actions'|trans }}</th>
                 </tr>
                 </thead>
@@ -50,8 +48,8 @@
                         <td><a href="{{ path('app_item_show', {'id': loan.item.id}) }}">{{ loan.item.name }}</a></td>
                         <td>{{ loan.lentTo }}</td>
                         <td>{{ loan.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
-                        <td class="hide-on-small-only">{{ loan.lentAt|timeAgo }}</td>
-                        <td class="table-actions">
+                        <td>{{ loan.lentAt|timeAgo }}</td>
+                        <td>
                             <a class="modal-trigger" href="#delete-{{ loan.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
                             <a href="{{ path('app_loan_returned', {'id' : loan.id}) }}" title="{{ 'tooltip.returned'|trans }}"><i class="fa fa-check fa-fw"></i></a>
                         </td>
@@ -67,10 +65,10 @@
                 <tr>
                     <th>{{ 'label.name'|trans }}</th>
                     <th>{{ 'label.loaned_to'|trans }}</th>
-                    <th class="hide-on-small-only">{{ 'label.loaned_at'|trans }}</th>
+                    <th>{{ 'label.loaned_at'|trans }}</th>
                     <th>{{ 'label.return_date'|trans }}</th>
-                    <th class="hide-on-small-only">{{ 'label.loan_duration'|trans }}</th>
-                    <th >{{ 'label.actions'|trans }}</th>
+                    <th>{{ 'label.loan_duration'|trans }}</th>
+                    <th>{{ 'label.actions'|trans }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -78,10 +76,10 @@
                     <tr class="list-element resize-element">
                         <td><a href="{{ path('app_item_show', {'id': returnedItem.item.id}) }}">{{ returnedItem.item.name }}</a></td>
                         <td>{{ returnedItem.lentTo }}</td>
-                        <td class="hide-on-small-only">{{ returnedItem.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                        <td>{{ returnedItem.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         <td>{{ returnedItem.returnedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
-                        <td class="hide-on-small-only">{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
-                        <td class="table-actions">
+                        <td>{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
+                        <td>
                             <a class="modal-trigger" href="#delete-{{ returnedItem.id }}" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
                         </td>
                     </tr>
@@ -95,10 +93,10 @@
 {% block modals %}
     {% if context == 'default' %}
         {% for loan in loans %}
-            {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete-' ~ loan.id , 'route': url('app_loan_delete', {id: loan.id}), transKey: 'message.delete.loan'}) }}
+            {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ loan.id , 'route': url('app_loan_delete', {id: loan.id}), transKey: 'message.delete.loan'}) }}
         {% endfor %}
         {% for returnedItem in returnedItems %}
-            {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete-' ~ returnedItem.id , 'route': url('app_loan_delete', {id: returnedItem.id}), transKey: 'message.delete.loan'}) }}
+            {{ include('Modal/delete.html.twig', {'id': 'delete-' ~ returnedItem.id , 'route': url('app_loan_delete', {id: returnedItem.id}), transKey: 'message.delete.loan'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}

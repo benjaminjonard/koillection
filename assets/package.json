@@ -6,19 +6,18 @@
     "description": "",
     "license": "MIT",
     "dependencies": {
-        "croppie": "^2.6.4",
-        "jquery": "^3.4.0",
-        "js-cookie": "^2.2.1",
-        "lightbox2": "^2.11.1",
+        "croppie": "^2.5.1",
+        "jquery": "^3.1.1",
+        "js-cookie": "^2.2.0",
+        "lightbox2": "^2.9.0",
         "materialize-css": "^1.0.0",
-        "select2": "^4.0.12",
-        "sortablejs": "^1.10.1"
+        "sortablejs": "^1.5.1"
     },
     "devDependencies": {
         "@symfony/webpack-encore": "^0.21.0",
         "copy-webpack-plugin": "^4.5.1",
         "url-loader": "^1.1.1",
-        "webpack-notifier": "^1.8.0"
+        "webpack-notifier": "^1.6.0"
     },
     "scripts": {
         "dev-server": "encore dev-server",

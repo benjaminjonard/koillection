@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
+/**
+ * Class DateFormatEnum
+ *
+ * @package App\Enum
+ */
 class DateFormatEnum
 {
     public const FORMAT_SLASH_DMY = 'd/m/Y';

@@ -9,17 +9,22 @@ use App\Enum\LogTypeEnum;
 use App\Service\Log\LogQueue;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class LogQueueListener
+ *
+ * @package App\EventListener
+ */
 class LogQueueListener
 {
     /**
      * @var LogQueue
      */
-    private LogQueue $logQueue;
+    private $logQueue;
 
     /**
      * @var EntityManagerInterface
      */
-    private EntityManagerInterface $em;
+    private $em;
 
     /**
      * LogQueueListener constructor.
@@ -52,7 +57,8 @@ class LogQueueListener
             foreach ($this->logQueue->getLogs() as $log) {
                 if (
                     $log->getType() === LogTypeEnum::TYPE_DELETE ||
-                    ($log->getType() !== LogTypeEnum::TYPE_DELETE && !\in_array($log->getObjectId(), $deletedIds))) {
+                    ($log->getType() !== LogTypeEnum::TYPE_DELETE && !in_array($log->getObjectId(), $deletedIds)))
+                {
                     $this->em->persist($log);
                 }
             }

@@ -10,25 +10,13 @@
     {{ renderBreadcrumb(breadcrumb)  }}
 {% endblock %}
 
-{% block meta %}
-    {% if context == 'user'  %}
-        {{ include('App/_partials/_meta.html.twig', {
-            'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-        }) }}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
-{% endblock %}
-
-
 {% block content %}
     <div class="collection-header">
         <div class="title-block">
             <h1>{{ 'menu.wishlists'|trans }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.wish'|trans({'%count%':  getTotalItemsCounter(wishlists)}) }}</li>
-                <li>{{ 'counter.wishlist'|trans({'%count%':  getTotalItemsCounter(wishlists)}) }}</li>
+                <li>{{ 'counter.wish'|trans({'%count%': counters['totalWishesCount']}) }}</li>
+                <li>{{ 'counter.wishlist'|trans({'%count%': counters['totalChildrenCount']}) }}</li>
             </ul>
         </div>
 
@@ -44,7 +32,7 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                <input id="filter-by-name-input" class="filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -52,14 +40,14 @@
 
     <div class="content-block">
         <div class="collections grid-container-collections">
-            {{ include('App/Wishlist/_list.html.twig', {'wishlists': wishlists}) }}
+            {{ include('App/Wishlist/partials/list.html.twig', {'wishlists': wishlists}) }}
         </div>
     </div>
 {% endblock %}
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'route': url('app_user_wishlist_index', {username: app.user.username})}) }}
+        {{ include('Modal/share.html.twig', {'route': url('app_user_wishlist_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 
