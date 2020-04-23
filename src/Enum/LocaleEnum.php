@@ -6,22 +6,12 @@ namespace App\Enum;
 
 class LocaleEnum
 {
-    public const LOCALE_EN = 'en';
-    public const LOCALE_FR = 'fr';
+    public const LOCALE_EN_GB = 'en_GB';
+    public const LOCALE_FR_FR = 'fr_FR';
 
     public const LOCALES = [
-        self::LOCALE_EN,
-        self::LOCALE_FR
-    ];
-
-    public const FULL_LOCALES = [
-        self::LOCALE_EN => 'en_GB',
-        self::LOCALE_FR => 'fr_FR'
-    ];
-
-    public const LOCALES_TRANS_KEYS = [
-        self::LOCALE_EN => 'en_GB',
-        self::LOCALE_FR => 'fr_FR'
+        self::LOCALE_EN_GB => 'en_GB',
+        self::LOCALE_FR_FR => 'fr_FR'
     ];
 
     /**
@@ -30,16 +20,8 @@ class LocaleEnum
     public static function getLocaleLabels() : array
     {
         return [
-            self::LOCALE_EN => 'global.locale.en_GB',
-            self::LOCALE_FR => 'global.locale.fr_FR',
+            self::LOCALE_EN_GB => 'global.locale.en_GB',
+            self::LOCALE_FR_FR => 'global.locale.fr_FR',
         ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getFullLocales() : array
-    {
-        return self::FULL_LOCALES;
     }
 }

@@ -56,7 +56,7 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $cthulhu
             ->setEnabled(true)
             ->setPlainPassword('testtest')
-            ->setLocale(LocaleEnum::LOCALE_EN)
+            ->setLocale(LocaleEnum::LOCALE_EN_GB)
             ->setUsername('Cthulhu')
             ->setEmail('cthulhu@koillection.com')
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)

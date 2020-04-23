@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
-  <file id="messages.fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="messages.en">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
         <note category="file-source" priority="1">templates/App/Security/login.html.twig:41</note>
       </notes>
       <segment>
         <source>about.welcome</source>
-        <target>Bienvenue sur Koillection !</target>
+        <target>Welcome to Koillection !</target>
       </segment>
     </unit>
     <unit id="8g43J_h" name="about.desc">
@@ -16,7 +16,7 @@
       </notes>
       <segment>
         <source>about.desc</source>
-        <target>Koillection est un outil permettant d'organiser n'importe quel type de collection. Il suffit de créer une collection et d'ajouter des objets dedans.</target>
+        <target>Koillection is a simple tool that helps you to organize any kind of collections you want. Just create a new collection and add your items.</target>
       </segment>
     </unit>
     <unit id="Ht9zIf1" name="about.why">
@@ -25,7 +25,7 @@
       </notes>
       <segment>
         <source>about.why</source>
-        <target>Pourquoi Koillection ?</target>
+        <target>Why Koillection ?</target>
       </segment>
     </unit>
     <unit id="_YEIYeX" name="about.why_1">
@@ -34,7 +34,7 @@
       </notes>
       <segment>
         <source>about.why_1</source>
-        <target>Vous pouez organiser n'importe quel type de collection</target>
+        <target>You can organize any type of collections you want</target>
       </segment>
     </unit>
     <unit id="1k3cEa1" name="about.why_2">
@@ -43,7 +43,7 @@
       </notes>
       <segment>
         <source>about.why_2</source>
-        <target>Votre collection est privée</target>
+        <target>Your collection is private</target>
       </segment>
     </unit>
     <unit id="3qAAKnj" name="about.why_3">
@@ -52,7 +52,7 @@
       </notes>
       <segment>
         <source>about.why_3</source>
-        <target>Vous êtes libres d'ajouter des informations concernant vos objets.</target>
+        <target>You are free to add informations on your items</target>
       </segment>
     </unit>
     <unit id="4pZSUFq" name="about.why_4">
@@ -61,7 +61,7 @@
       </notes>
       <segment>
         <source>about.why_4</source>
-        <target>Un système de tags permet de retrouver rapidement les objets liés</target>
+        <target>A tag system is available to quickly find related items</target>
       </segment>
     </unit>
     <unit id="SZRa31V" name="aria.album">
@@ -83,7 +83,7 @@
       </notes>
       <segment>
         <source>aria.breadcrumb</source>
-        <target>Fil d'ariane %label%</target>
+        <target>Breadcrumb %label%</target>
       </segment>
     </unit>
     <unit id="aN._RWq" name="aria.collection">
@@ -103,7 +103,7 @@
       </notes>
       <segment>
         <source>aria.datum_image_thumbnail</source>
-        <target>Miniature du champ</target>
+        <target>Datum thumbnail</target>
       </segment>
     </unit>
     <unit id="eJUcXot" name="aria.datum_sign_thumbnail">
@@ -115,7 +115,7 @@
       </notes>
       <segment>
         <source>aria.datum_sign_thumbnail</source>
-        <target>Miniature de la dédicace %label%</target>
+        <target>Sign %label% thumbnail</target>
       </segment>
     </unit>
     <unit id="kwGqXUG" name="aria.default_image">
@@ -125,7 +125,7 @@
       </notes>
       <segment>
         <source>aria.default_image</source>
-        <target>Image par défaut</target>
+        <target>Default image</target>
       </segment>
     </unit>
     <unit id="fxC62MI" name="aria.flag.en">
@@ -134,7 +134,7 @@
       </notes>
       <segment>
         <source>aria.flag.en</source>
-        <target>Drapeau anglais</target>
+        <target>English flag</target>
       </segment>
     </unit>
     <unit id="ZCafVrG" name="aria.flag.fr">
@@ -143,7 +143,7 @@
       </notes>
       <segment>
         <source>aria.flag.fr</source>
-        <target>Drapeau français</target>
+        <target>French flag</target>
       </segment>
     </unit>
     <unit id="gCqy_VQ" name="aria.item_image_thumbnail">
@@ -154,18 +154,7 @@
       </notes>
       <segment>
         <source>aria.item_image_thumbnail</source>
-        <target>Miniature de l'image %label% de l'objet %name%</target>
-      </segment>
-    </unit>
-    <unit id="FyeUYLH" name="aria.item_main_image_thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:61</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:34</note>
-      </notes>
-      <segment>
-        <source>aria.item_main_image_thumbnail</source>
-        <target>Miniature de l'image principale de l'objet %name%</target>
+        <target>Item %name% %label% thumbnail</target>
       </segment>
     </unit>
     <unit id="BedkqjF" name="aria.item_main_image">
@@ -176,7 +165,18 @@
       </notes>
       <segment>
         <source>aria.item_main_image</source>
-        <target>Image principale de l'objet %name%</target>
+        <target>Item %name% main image</target>
+      </segment>
+    </unit>
+    <unit id="FyeUYLH" name="aria.item_main_image_thumbnail">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Item/show.html.twig:61</note>
+        <note category="file-source" priority="1">templates/App/User/item.html.twig:34</note>
+        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:34</note>
+      </notes>
+      <segment>
+        <source>aria.item_main_image_thumbnail</source>
+        <target>Item %name% main image thumbnail</target>
       </segment>
     </unit>
     <unit id="v1JlplL" name="aria.item">
@@ -193,7 +193,7 @@
       </notes>
       <segment>
         <source>aria.item</source>
-        <target>Objet %name%</target>
+        <target>Item %name%</target>
       </segment>
     </unit>
     <unit id="IMD9Qu2" name="aria.photo">
@@ -204,7 +204,7 @@
       </notes>
       <segment>
         <source>aria.photo</source>
-        <target>Photo %name%</target>
+        <target>Photo %title%</target>
       </segment>
     </unit>
     <unit id="MMzqfRq" name="aria.tag">
@@ -226,7 +226,7 @@
       </notes>
       <segment>
         <source>aria.tag_thumbnail</source>
-        <target>Miniature du tag %label%</target>
+        <target>Tag %label% thumbnail</target>
       </segment>
     </unit>
     <unit id="dhdFWBS" name="aria.wishlist">
@@ -237,7 +237,7 @@
       </notes>
       <segment>
         <source>aria.wishlist</source>
-        <target>Liste de souhait %name%</target>
+        <target>Wishlist %name%</target>
       </segment>
     </unit>
     <unit id="3nGLdcL" name="aria.wish_thumbnail">
@@ -248,7 +248,7 @@
       </notes>
       <segment>
         <source>aria.wish_thumbnail</source>
-        <target>Miniature du souhait %name%</target>
+        <target>Wish %name% thumbnail</target>
       </segment>
     </unit>
     <unit id="ZS8DP_P" name="breadcrumb.add_album">
@@ -257,7 +257,7 @@
       </notes>
       <segment>
         <source>breadcrumb.add_album</source>
-        <target>Ajouter un nouvel album</target>
+        <target>Add a new album</target>
       </segment>
     </unit>
     <unit id="BgP_6X7" name="breadcrumb.add_collection">
@@ -266,7 +266,7 @@
       </notes>
       <segment>
         <source>breadcrumb.add_collection</source>
-        <target>Ajouter une nouvelle collection</target>
+        <target>Add a new collection</target>
       </segment>
     </unit>
     <unit id="QP9HnQT" name="breadcrumb.add_item">
@@ -275,7 +275,7 @@
       </notes>
       <segment>
         <source>breadcrumb.add_item</source>
-        <target>Ajouter un nouvel objet</target>
+        <target>Add a new item</target>
       </segment>
     </unit>
     <unit id="HN3MXIl" name="breadcrumb.add_photo">
@@ -293,7 +293,7 @@
       </notes>
       <segment>
         <source>breadcrumb.add_template</source>
-        <target>Créer un nouveau modèle</target>
+        <target>Create a new template</target>
       </segment>
     </unit>
     <unit id="1tk3BkL" name="breadcrumb.add_wish">
@@ -302,7 +302,7 @@
       </notes>
       <segment>
         <source>breadcrumb.add_wish</source>
-        <target>Ajouter un nouvel objet souhaité</target>
+        <target>Add a new wish</target>
       </segment>
     </unit>
     <unit id="MeiAPvl" name="breadcrumb.add_wishlist">
@@ -311,7 +311,7 @@
       </notes>
       <segment>
         <source>breadcrumb.add_wishlist</source>
-        <target>Ajouter une nouvelle liste de souhaits</target>
+        <target>Add a new wishlist</target>
       </segment>
     </unit>
     <unit id="wsZg2PB" name="breadcrumb.batch_tagging">
@@ -320,7 +320,7 @@
       </notes>
       <segment>
         <source>breadcrumb.batch_tagging</source>
-        <target>Tagguer en masse</target>
+        <target>Batch tagging</target>
       </segment>
     </unit>
     <unit id="FBXvLM8" name="breadcrumb.edit_album">
@@ -329,7 +329,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_album</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="4FXosb_" name="breadcrumb.edit_collection">
@@ -338,7 +338,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_collection</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="dQjPnaL" name="breadcrumb.edit_template">
@@ -347,7 +347,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_template</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="wJbJaxc" name="breadcrumb.edit_item">
@@ -356,7 +356,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_item</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="sARt1zq" name="breadcrumb.edit_photo">
@@ -365,7 +365,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_photo</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="YAIWLja" name="breadcrumb.edit_tag">
@@ -374,7 +374,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_tag</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="MK15Ex5" name="breadcrumb.edit_wish">
@@ -383,7 +383,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_wish</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="bzp39NU" name="breadcrumb.edit_wishlist">
@@ -392,7 +392,7 @@
       </notes>
       <segment>
         <source>breadcrumb.edit_wishlist</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="hNB8Xw0" name="breadcrumb.history_collection">
@@ -401,7 +401,7 @@
       </notes>
       <segment>
         <source>breadcrumb.history_collection</source>
-        <target>Historique</target>
+        <target>History</target>
       </segment>
     </unit>
     <unit id="1ruRfsb" name="breadcrumb.history_item">
@@ -410,7 +410,7 @@
       </notes>
       <segment>
         <source>breadcrumb.history_item</source>
-        <target>Historique</target>
+        <target>History</target>
       </segment>
     </unit>
     <unit id="Pnd0n71" name="breadcrumb.history_tag">
@@ -419,7 +419,7 @@
       </notes>
       <segment>
         <source>breadcrumb.history_tag</source>
-        <target>Historique</target>
+        <target>History</target>
       </segment>
     </unit>
     <unit id="eG2_sfn" name="breadcrumb.items_collection">
@@ -428,7 +428,7 @@
       </notes>
       <segment>
         <source>breadcrumb.items_collection</source>
-        <target>Objets</target>
+        <target>Items</target>
       </segment>
     </unit>
     <unit id="ERFTL0f" name="breadcrumb.lend_item">
@@ -437,7 +437,7 @@
       </notes>
       <segment>
         <source>breadcrumb.lend_item</source>
-        <target>Prêter</target>
+        <target>Lend</target>
       </segment>
     </unit>
     <unit id="No7skRj" name="btn.apply_collection_data">
@@ -447,7 +447,7 @@
       </notes>
       <segment>
         <source>btn.apply_collection_data</source>
-        <target>Charger les champs en commun</target>
+        <target>Load common fields</target>
       </segment>
     </unit>
     <unit id="u5LRF8p" name="btn.cancel">
@@ -471,7 +471,7 @@
       </notes>
       <segment>
         <source>btn.cancel</source>
-        <target>Annuler</target>
+        <target>Cancel</target>
       </segment>
     </unit>
     <unit id="9iTV1LM" name="btn.delete_tags_without_items">
@@ -480,7 +480,7 @@
       </notes>
       <segment>
         <source>btn.delete_tags_without_items</source>
-        <target>Suprimmer les tags sans objets</target>
+        <target>Delete tags w/o items</target>
       </segment>
     </unit>
     <unit id="JQuOMkX" name="btn.details">
@@ -489,7 +489,7 @@
       </notes>
       <segment>
         <source>btn.details</source>
-        <target>Détails</target>
+        <target>Details</target>
       </segment>
     </unit>
     <unit id="ZckcCop" name="btn.search">
@@ -498,7 +498,7 @@
       </notes>
       <segment>
         <source>btn.search</source>
-        <target>Chercher</target>
+        <target>Search</target>
       </segment>
     </unit>
     <unit id="EnarzNU" name="btn.send_new_confirmation">
@@ -507,7 +507,7 @@
       </notes>
       <segment>
         <source>btn.send_new_confirmation</source>
-        <target>Envoyer un nouvel email de confirmation</target>
+        <target>Send a new confirmation email</target>
       </segment>
     </unit>
     <unit id="IPh2SKn" name="btn.sign_in">
@@ -518,7 +518,7 @@
       </notes>
       <segment>
         <source>btn.sign_in</source>
-        <target>Se connecter</target>
+        <target>Sign in</target>
       </segment>
     </unit>
     <unit id="fRQmA2t" name="btn.submit">
@@ -543,7 +543,7 @@
       </notes>
       <segment>
         <source>btn.submit</source>
-        <target>Valider</target>
+        <target>Submit</target>
       </segment>
     </unit>
     <unit id="Hxk36Kv" name="btn.submit_and_add_another">
@@ -552,7 +552,7 @@
       </notes>
       <segment>
         <source>btn.submit_and_add_another</source>
-        <target>Valider et ajouter un autre objet</target>
+        <target>Submit and add another item</target>
       </segment>
     </unit>
     <unit id="9N4x.TV" name="counter.album">
@@ -563,7 +563,7 @@
       </notes>
       <segment>
         <source>counter.album</source>
-        <target>[0,1] %count% album| ]1,Inf[ %count% albums</target>
+        <target>{0} %count% albums| {1} %count% album| ]1,Inf[ %count% albums</target>
       </segment>
     </unit>
     <unit id="Ttj5ZLt" name="counter.collection">
@@ -580,7 +580,7 @@
       </notes>
       <segment>
         <source>counter.collection</source>
-        <target>[0,1] %count% collection| ]1,Inf[ %count% collections</target>
+        <target>{0} %count% collections| {1} %count% collection| ]1,Inf[ %count% collections</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">
@@ -607,7 +607,7 @@
       </notes>
       <segment>
         <source>counter.item</source>
-        <target>[0,1] %count% objet| ]1,Inf[ %count% objets</target>
+        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
       </segment>
     </unit>
     <unit id="nlD7D9j" name="counter.loan">
@@ -616,7 +616,7 @@
       </notes>
       <segment>
         <source>counter.loan</source>
-        <target>[0,1] %count% objet prêté| ]1,Inf[ %count% objets prêtés</target>
+        <target>{0} %count% loans| {1} %count% loan| ]1,Inf[ %count% loans</target>
       </segment>
     </unit>
     <unit id="1NZRNj4" name="counter.photo">
@@ -633,7 +633,7 @@
       </notes>
       <segment>
         <source>counter.photo</source>
-        <target>[0,1] %count% photo| ]1,Inf[ %count% photos</target>
+        <target>{0} %count% photos| {1} %count% photo| ]1,Inf[ %count% photos</target>
       </segment>
     </unit>
     <unit id="0Nr1G8_" name="counter.returned">
@@ -642,7 +642,7 @@
       </notes>
       <segment>
         <source>counter.returned</source>
-        <target>[0,1] %count% objet retourné| ]1,Inf[ %count% objets retournés</target>
+        <target>{0} %count% loans returned| {1} %count% loan returned| ]1,Inf[ %count% loans returned</target>
       </segment>
     </unit>
     <unit id="If3y3hC" name="counter.tag">
@@ -656,7 +656,7 @@
       </notes>
       <segment>
         <source>counter.tag</source>
-        <target>[0,1] %count% tag| ]1,Inf[ %count% tags</target>
+        <target>{0} %count% tags| {1} %count% tag| ]1,Inf[ %count% tags</target>
       </segment>
     </unit>
     <unit id="hIdqfHr" name="counter.template">
@@ -665,7 +665,7 @@
       </notes>
       <segment>
         <source>counter.template</source>
-        <target>[0,1] %count% modèle| ]1,Inf[ %count% modèles</target>
+        <target>{0} %count% templates| {1} %count% template| ]1,Inf[ %count% templates</target>
       </segment>
     </unit>
     <unit id="1MYrutS" name="counter.field">
@@ -675,7 +675,7 @@
       </notes>
       <segment>
         <source>counter.field</source>
-        <target>[0,1] %count% champ| ]1,Inf[ %count% champs</target>
+        <target>{0} %count% fields| {1} %count% field| ]1,Inf[ %count% fields</target>
       </segment>
     </unit>
     <unit id="Joxd_.h" name="counter.wishlist">
@@ -689,7 +689,7 @@
       </notes>
       <segment>
         <source>counter.wishlist</source>
-        <target>[0,1] %count% liste de souhaits| ]1,Inf[ %count% listes de souhaits</target>
+        <target>{0} %count% wishlists| {1} %count% wishlist| ]1,Inf[ %count% wishlists</target>
       </segment>
     </unit>
     <unit id="XjUwmT9" name="counter.wish">
@@ -706,7 +706,7 @@
       </notes>
       <segment>
         <source>counter.wish</source>
-        <target>[0,1] %count% objet souhaité| ]1,Inf[ %count% objets souhaités</target>
+        <target>{0} %count% wishes| {1} %count% wish| ]1,Inf[ %count% wishes</target>
       </segment>
     </unit>
     <unit id="Ul2mR7j" name="counter.sign">
@@ -717,7 +717,7 @@
       </notes>
       <segment>
         <source>counter.sign</source>
-        <target>[0,1] %count% dédicace| ]1,Inf[ %count% dédicaces</target>
+        <target>{0} %count% signs| {1} %count% sign| ]1,Inf[ %count% signs</target>
       </segment>
     </unit>
     <unit id="lSRJ.UY" name="error.default">
@@ -726,7 +726,7 @@
       </notes>
       <segment>
         <source>error.default</source>
-        <target>Oups, quelquechose s'est mal passé :(</target>
+        <target>Oops, something went wrong :(</target>
       </segment>
     </unit>
     <unit id="l9GnTBr" name="error.404">
@@ -735,7 +735,7 @@
       </notes>
       <segment>
         <source>error.404</source>
-        <target>Oups, la page demandée n'a pas été trouvée :(</target>
+        <target>Oops, page not found :(</target>
       </segment>
     </unit>
     <unit id="nIFzees" name="error.500">
@@ -744,7 +744,7 @@
       </notes>
       <segment>
         <source>error.500</source>
-        <target>Oups, une erreur critique s'est produite :(</target>
+        <target>Oops, a critical error occured :(</target>
       </segment>
     </unit>
     <unit id="buUu8ng" name="error.invalid_credentials">
@@ -753,7 +753,7 @@
       </notes>
       <segment>
         <source>error.invalid_credentials</source>
-        <target>Authentification incorrecte</target>
+        <target>Invalid credentials</target>
       </segment>
     </unit>
     <unit id="tg4uV16" name="error.not_enough_space">
@@ -762,7 +762,7 @@
       </notes>
       <segment>
         <source>error.not_enough_space</source>
-        <target>Il n'y a plus assez d'espace sur votre compte pour effectuer cette action :(</target>
+        <target>There is not enough space left on your account to execute this action :(</target>
       </segment>
     </unit>
     <unit id="A5gFwZv" name="filter.by_name">
@@ -793,7 +793,7 @@
       </notes>
       <segment>
         <source>filter.by_name</source>
-        <target>Filtrer par nom</target>
+        <target>Filter by name</target>
       </segment>
     </unit>
     <unit id="jsUGqKL" name="global.byte_abbreviation">
@@ -802,7 +802,7 @@
       </notes>
       <segment>
         <source>global.byte_abbreviation</source>
-        <target>O</target>
+        <target>B</target>
       </segment>
     </unit>
     <unit id="U4lp2Ma" name="global.created_at">
@@ -814,7 +814,7 @@
       </notes>
       <segment>
         <source>global.created_at</source>
-        <target>Création : %date%</target>
+        <target>Creation : %date%</target>
       </segment>
     </unit>
     <unit id="ylc8ODN" name="global.updated_at">
@@ -826,7 +826,7 @@
       </notes>
       <segment>
         <source>global.updated_at</source>
-        <target>Dernière mise à jour : %date%</target>
+        <target>Last update : %date%</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
@@ -835,7 +835,7 @@
       </notes>
       <segment>
         <source>global.days.monday</source>
-        <target>Lundi</target>
+        <target>Monday</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
@@ -844,7 +844,7 @@
       </notes>
       <segment>
         <source>global.days.tuesday</source>
-        <target>Mardi</target>
+        <target>Thuesday</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
@@ -853,7 +853,7 @@
       </notes>
       <segment>
         <source>global.days.wednesday</source>
-        <target>Mercredi</target>
+        <target>Wednesday</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
@@ -862,7 +862,7 @@
       </notes>
       <segment>
         <source>global.days.thursday</source>
-        <target>Jeudi</target>
+        <target>Thursday</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
@@ -871,7 +871,7 @@
       </notes>
       <segment>
         <source>global.days.friday</source>
-        <target>Vendredi</target>
+        <target>Friday</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
@@ -880,7 +880,7 @@
       </notes>
       <segment>
         <source>global.days.saturday</source>
-        <target>Samedi</target>
+        <target>Saturday</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
@@ -889,7 +889,7 @@
       </notes>
       <segment>
         <source>global.days.sunday</source>
-        <target>Dimanche</target>
+        <target>Sunday</target>
       </segment>
     </unit>
     <unit id="T3BhL7X" name="global.entities.album">
@@ -916,7 +916,7 @@
       </notes>
       <segment>
         <source>global.entities.item</source>
-        <target>Objet</target>
+        <target>Item</target>
       </segment>
     </unit>
     <unit id="yt20IWO" name="global.entities.tag">
@@ -934,7 +934,7 @@
       </notes>
       <segment>
         <source>global.entities.template</source>
-        <target>Modèle</target>
+        <target>Template</target>
       </segment>
     </unit>
     <unit id="JKLodag" name="global.entities.user">
@@ -943,7 +943,7 @@
       </notes>
       <segment>
         <source>global.entities.user</source>
-        <target>Utilisateur</target>
+        <target>User</target>
       </segment>
     </unit>
     <unit id="1MevJac" name="global.entities.wish">
@@ -952,7 +952,7 @@
       </notes>
       <segment>
         <source>global.entities.wish</source>
-        <target>Souhait</target>
+        <target>Wish</target>
       </segment>
     </unit>
     <unit id="nFTPCfN" name="global.entities.wishlist">
@@ -961,7 +961,7 @@
       </notes>
       <segment>
         <source>global.entities.wishlist</source>
-        <target>Liste de souhait</target>
+        <target>Wishlist</target>
       </segment>
     </unit>
     <unit id="GV09tqG" name="global.koillection">
@@ -979,7 +979,7 @@
       </notes>
       <segment>
         <source>global.months.january</source>
-        <target>Janvier</target>
+        <target>January</target>
       </segment>
     </unit>
     <unit id="u5P6LMj" name="global.months.february">
@@ -988,7 +988,7 @@
       </notes>
       <segment>
         <source>global.months.february</source>
-        <target>Février</target>
+        <target>February</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
@@ -997,7 +997,7 @@
       </notes>
       <segment>
         <source>global.months.march</source>
-        <target>Mars</target>
+        <target>March</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
@@ -1006,7 +1006,7 @@
       </notes>
       <segment>
         <source>global.months.april</source>
-        <target>Avril</target>
+        <target>April</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
@@ -1015,7 +1015,7 @@
       </notes>
       <segment>
         <source>global.months.may</source>
-        <target>Mai</target>
+        <target>May</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
@@ -1024,7 +1024,7 @@
       </notes>
       <segment>
         <source>global.months.june</source>
-        <target>Juin</target>
+        <target>June</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
@@ -1033,7 +1033,7 @@
       </notes>
       <segment>
         <source>global.months.july</source>
-        <target>Juillet</target>
+        <target>July</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
@@ -1042,7 +1042,7 @@
       </notes>
       <segment>
         <source>global.months.august</source>
-        <target>Août</target>
+        <target>August</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
@@ -1051,7 +1051,7 @@
       </notes>
       <segment>
         <source>global.months.september</source>
-        <target>Septembre</target>
+        <target>September</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
@@ -1060,7 +1060,7 @@
       </notes>
       <segment>
         <source>global.months.october</source>
-        <target>Octobre</target>
+        <target>October</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
@@ -1069,7 +1069,7 @@
       </notes>
       <segment>
         <source>global.months.november</source>
-        <target>Novembre</target>
+        <target>November</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
@@ -1078,7 +1078,7 @@
       </notes>
       <segment>
         <source>global.months.december</source>
-        <target>Décembre</target>
+        <target>December</target>
       </segment>
     </unit>
     <unit id="Y6e0mmF" name="global.themes.sunset">
@@ -1087,7 +1087,7 @@
       </notes>
       <segment>
         <source>global.themes.sunset</source>
-        <target>Coucher de soleil</target>
+        <target>Sunset</target>
       </segment>
     </unit>
     <unit id="mtnAEj0" name="global.themes.teal">
@@ -1096,7 +1096,7 @@
       </notes>
       <segment>
         <source>global.themes.teal</source>
-        <target>Turquoise</target>
+        <target>Teal</target>
       </segment>
     </unit>
     <unit id="bKzhzsy" name="global.time.ago">
@@ -1105,7 +1105,7 @@
       </notes>
       <segment>
         <source>global.time.ago</source>
-        <target>Il y a %time%</target>
+        <target>%time% ago</target>
       </segment>
     </unit>
     <unit id="kBJEdcf" name="global.time.just_now">
@@ -1114,7 +1114,7 @@
       </notes>
       <segment>
         <source>global.time.just_now</source>
-        <target>À l'instant</target>
+        <target>Just now</target>
       </segment>
     </unit>
     <unit id="S3BSG8X" name="global.time.year">
@@ -1123,7 +1123,7 @@
       </notes>
       <segment>
         <source>global.time.year</source>
-        <target>[0,1] %count% année| ]1,Inf[ %count% années</target>
+        <target>{0} %count% years| {1} %count% year| ]1,Inf[ %count% years</target>
       </segment>
     </unit>
     <unit id="I6EoiYa" name="global.time.month">
@@ -1132,7 +1132,7 @@
       </notes>
       <segment>
         <source>global.time.month</source>
-        <target>[0,1] %count% mois| ]1,Inf[ %count% mois</target>
+        <target>{0} %count% months| {1} %count% month| ]1,Inf[ %count% months</target>
       </segment>
     </unit>
     <unit id="BXLOUij" name="global.time.week">
@@ -1141,7 +1141,7 @@
       </notes>
       <segment>
         <source>global.time.week</source>
-        <target>[0,1] %count% semaine| ]1,Inf[ %count% semaines</target>
+        <target>{0} %count% weeks| {1} %count% week| ]1,Inf[ %count% weeks</target>
       </segment>
     </unit>
     <unit id="r1RqqRg" name="global.time.day">
@@ -1150,7 +1150,7 @@
       </notes>
       <segment>
         <source>global.time.day</source>
-        <target>[0,1] %count% jour| ]1,Inf[ %count% jours</target>
+        <target>{0} %count% days| {1} %count% day| ]1,Inf[ %count% days</target>
       </segment>
     </unit>
     <unit id="QeraM7P" name="global.time.hour">
@@ -1159,7 +1159,7 @@
       </notes>
       <segment>
         <source>global.time.hour</source>
-        <target>[0,1] %count% heure| ]1,Inf[ %count% heures</target>
+        <target>{0} %count% hours| {1} %count% hour| ]1,Inf[ %count% hours</target>
       </segment>
     </unit>
     <unit id="UN2onP4" name="global.time.minute">
@@ -1168,7 +1168,7 @@
       </notes>
       <segment>
         <source>global.time.minute</source>
-        <target>[0,1] %count% minute| ]1,Inf[ %count% minutes</target>
+        <target>{0} %count% minutes| {1} %count% minute| ]1,Inf[ %count% minutes</target>
       </segment>
     </unit>
     <unit id="JQSurmk" name="global.time.second">
@@ -1177,7 +1177,7 @@
       </notes>
       <segment>
         <source>global.time.second</source>
-        <target>[0,1] %count% seconde| ]1,Inf[ %count% secondes</target>
+        <target>{0} %count% seconds| {1} %count% second| ]1,Inf[ %count% seconds</target>
       </segment>
     </unit>
     <unit id="Gu6E4Ll" name="global.unknown">
@@ -1186,7 +1186,7 @@
       </notes>
       <segment>
         <source>global.unknown</source>
-        <target>Inconnu</target>
+        <target>Unknown</target>
       </segment>
     </unit>
     <unit id="fSiEIlQ" name="global.visibilities.public">
@@ -1195,7 +1195,7 @@
       </notes>
       <segment>
         <source>global.visibilities.public</source>
-        <target>Publique</target>
+        <target>Public</target>
       </segment>
     </unit>
     <unit id="ky9YEBY" name="global.visibilities.private">
@@ -1204,7 +1204,7 @@
       </notes>
       <segment>
         <source>global.visibilities.private</source>
-        <target>Privée</target>
+        <target>Private</target>
       </segment>
     </unit>
     <unit id="zldXQq6" name="label.actions">
@@ -1224,7 +1224,7 @@
       </notes>
       <segment>
         <source>label.added_at</source>
-        <target>Ajouté le</target>
+        <target>Added at</target>
       </segment>
     </unit>
     <unit id="kfURNUL" name="label.album">
@@ -1242,7 +1242,7 @@
       </notes>
       <segment>
         <source>label.apply_template</source>
-        <target>Appliquer un modèle</target>
+        <target>Apply a template</target>
       </segment>
     </unit>
     <unit id="BVAvHSW" name="label.browse">
@@ -1253,7 +1253,7 @@
       </notes>
       <segment>
         <source>label.browse</source>
-        <target>Parcourir</target>
+        <target>Browse</target>
       </segment>
     </unit>
     <unit id="YQjIBl7" name="label.children_title">
@@ -1262,7 +1262,7 @@
       </notes>
       <segment>
         <source>label.children_title</source>
-        <target>Label des sous collections</target>
+        <target>Sub collections label</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
@@ -1283,6 +1283,15 @@
         <target>Collections</target>
       </segment>
     </unit>
+    <unit id="otd2FZd" name="label.currency">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>label.currency</source>
+        <target>Currency</target>
+      </segment>
+    </unit>
     <unit id="WqTho4C" name="label.comment">
       <notes>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
@@ -1291,16 +1300,7 @@
       </notes>
       <segment>
         <source>label.comment</source>
-        <target>Commentaire</target>
-      </segment>
-    </unit>
-    <unit id="otd2FZd" name="label.currency">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.currency</source>
-        <target>Devise</target>
+        <target>Comment</target>
       </segment>
     </unit>
     <unit id="SdQCTjI" name="label.database_name">
@@ -1309,7 +1309,7 @@
       </notes>
       <segment>
         <source>label.database_name</source>
-        <target>Nom de la base de données</target>
+        <target>Database name</target>
       </segment>
     </unit>
     <unit id="BMJXSQo" name="label.days">
@@ -1318,7 +1318,7 @@
       </notes>
       <segment>
         <source>label.days</source>
-        <target>Jours</target>
+        <target>Days</target>
       </segment>
     </unit>
     <unit id="4cEApe1" name="label.description">
@@ -1339,7 +1339,7 @@
       </notes>
       <segment>
         <source>label.disk_space_allowed</source>
-        <target>Espace disque autorisé</target>
+        <target>Disk space allowed</target>
       </segment>
     </unit>
     <unit id="Tv.rI94" name="label.disk_space_used">
@@ -1349,7 +1349,7 @@
       </notes>
       <segment>
         <source>label.disk_space_used</source>
-        <target>Espace disque utilisé</target>
+        <target>Disk space used</target>
       </segment>
     </unit>
     <unit id="D2N6_cP" name="label.email">
@@ -1368,7 +1368,7 @@
       </notes>
       <segment>
         <source>label.event</source>
-        <target>Évènement</target>
+        <target>Event</target>
       </segment>
     </unit>
     <unit id="bYyoqn6" name="label.fields">
@@ -1377,7 +1377,7 @@
       </notes>
       <segment>
         <source>label.fields</source>
-        <target>Champs</target>
+        <target>Fields</target>
       </segment>
     </unit>
     <unit id="zq.Isv9" name="label.host">
@@ -1386,7 +1386,7 @@
       </notes>
       <segment>
         <source>label.host</source>
-        <target>Hôte</target>
+        <target>Host</target>
       </segment>
     </unit>
     <unit id="txRonia" name="label.id">
@@ -1415,7 +1415,7 @@
       </notes>
       <segment>
         <source>label.items</source>
-        <target>Objets</target>
+        <target>Items</target>
       </segment>
     </unit>
     <unit id="frik1CZ" name="label.items_title">
@@ -1424,7 +1424,7 @@
       </notes>
       <segment>
         <source>label.items_title</source>
-        <target>Label des objets</target>
+        <target>Items label</target>
       </segment>
     </unit>
     <unit id="Kp3d.qQ" name="label.label">
@@ -1445,7 +1445,7 @@
       </notes>
       <segment>
         <source>label.last_date_of_activity</source>
-        <target>Dernière activité</target>
+        <target>Last activity</target>
       </segment>
     </unit>
     <unit id="Az510BV" name="label.loan_duration">
@@ -1454,7 +1454,7 @@
       </notes>
       <segment>
         <source>label.loan_duration</source>
-        <target>Durée du prêt</target>
+        <target>Loan duration</target>
       </segment>
     </unit>
     <unit id="EWnP8ZQ" name="label.loaned_ago">
@@ -1463,7 +1463,7 @@
       </notes>
       <segment>
         <source>label.loaned_ago</source>
-        <target>Prêté il y a</target>
+        <target>Ago</target>
       </segment>
     </unit>
     <unit id="2ZgbVvL" name="label.loaned_at">
@@ -1473,7 +1473,7 @@
       </notes>
       <segment>
         <source>label.loaned_at</source>
-        <target>Prêté le</target>
+        <target>Date</target>
       </segment>
     </unit>
     <unit id="lYyKRwZ" name="label.loaned_to">
@@ -1483,7 +1483,7 @@
       </notes>
       <segment>
         <source>label.loaned_to</source>
-        <target>Prêté à</target>
+        <target>To</target>
       </segment>
     </unit>
     <unit id="WwKLHxh" name="label.logged_at">
@@ -1501,7 +1501,7 @@
       </notes>
       <segment>
         <source>label.login</source>
-        <target>Nom d'utilisateur ou email</target>
+        <target>Username or email</target>
       </segment>
     </unit>
     <unit id="ysOvPSq" name="label.name">
@@ -1516,7 +1516,7 @@
       </notes>
       <segment>
         <source>label.name</source>
-        <target>Nom</target>
+        <target>Name</target>
       </segment>
     </unit>
     <unit id="M1E9Lfi" name="label.new_data">
@@ -1526,7 +1526,7 @@
       </notes>
       <segment>
         <source>label.new_data</source>
-        <target>Ajouter un nouveau champ</target>
+        <target>Add a new field</target>
       </segment>
     </unit>
     <unit id="HmUuNCa" name="label.main_image">
@@ -1543,7 +1543,7 @@
       </notes>
       <segment>
         <source>label.main_image</source>
-        <target>Image principale</target>
+        <target>Main image</target>
       </segment>
     </unit>
     <unit id="ak1St8x" name="label.number_of_items">
@@ -1555,7 +1555,7 @@
       </notes>
       <segment>
         <source>label.number_of_items</source>
-        <target># d'objets</target>
+        <target># of items</target>
       </segment>
     </unit>
     <unit id="NGzz2k3" name="label.parent">
@@ -1573,7 +1573,7 @@
       </notes>
       <segment>
         <source>label.password</source>
-        <target>Mot de passe</target>
+        <target>Password</target>
       </segment>
     </unit>
     <unit id="dFDOuk." name="label.percent_of_items">
@@ -1585,7 +1585,7 @@
       </notes>
       <segment>
         <source>label.percent_of_items</source>
-        <target>Pourcent d'objets</target>
+        <target>Percent of items</target>
       </segment>
     </unit>
     <unit id="2.APxMI" name="label.place">
@@ -1596,7 +1596,7 @@
       </notes>
       <segment>
         <source>label.place</source>
-        <target>Lieu</target>
+        <target>Place</target>
       </segment>
     </unit>
     <unit id="N5IFef_" name="label.port">
@@ -1614,7 +1614,7 @@
       </notes>
       <segment>
         <source>label.price</source>
-        <target>Prix</target>
+        <target>Price</target>
       </segment>
     </unit>
     <unit id="ymgENEq" name="label.quantity">
@@ -1623,7 +1623,7 @@
       </notes>
       <segment>
         <source>label.quantity</source>
-        <target>Quantité</target>
+        <target>Quantity</target>
       </segment>
     </unit>
     <unit id="HVZAEc7" name="label.recursive">
@@ -1632,7 +1632,7 @@
       </notes>
       <segment>
         <source>label.recursive</source>
-        <target>Recursif</target>
+        <target>Recursive</target>
       </segment>
     </unit>
     <unit id="rU9cSfq" name="label.repeat_password">
@@ -1641,7 +1641,7 @@
       </notes>
       <segment>
         <source>label.repeat_password</source>
-        <target>Confirmation mot de passe</target>
+        <target>Repeat password</target>
       </segment>
     </unit>
     <unit id="R25XMb2" name="label.return_date">
@@ -1650,7 +1650,7 @@
       </notes>
       <segment>
         <source>label.return_date</source>
-        <target>Date de retour</target>
+        <target>Return date</target>
       </segment>
     </unit>
     <unit id="BNjUIYA" name="label.search">
@@ -1668,7 +1668,7 @@
       </notes>
       <segment>
         <source>label.sign</source>
-        <target>Dédicace</target>
+        <target>Sign</target>
       </segment>
     </unit>
     <unit id="vpeY2jo" name="label.taken_at">
@@ -1679,7 +1679,7 @@
       </notes>
       <segment>
         <source>label.taken_at</source>
-        <target>Prise le</target>
+        <target>Taken the</target>
       </segment>
     </unit>
     <unit id="ijQyGRo" name="label.tags">
@@ -1697,7 +1697,7 @@
       </notes>
       <segment>
         <source>label.text</source>
-        <target>Texte</target>
+        <target>Text</target>
       </segment>
     </unit>
     <unit id="YEoCETJ" name="label.thumbnail">
@@ -1708,34 +1708,7 @@
       </notes>
       <segment>
         <source>label.thumbnail</source>
-        <target>Miniature</target>
-      </segment>
-    </unit>
-    <unit id="ZzykrnK" name="label.space_free">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:39</note>
-      </notes>
-      <segment>
-        <source>label.space_free</source>
-        <target>%free% libres</target>
-      </segment>
-    </unit>
-    <unit id="4fDIeO4" name="label.space_used">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:38</note>
-      </notes>
-      <segment>
-        <source>label.space_used</source>
-        <target>%used% / %total% utilisés</target>
-      </segment>
-    </unit>
-    <unit id="jNAS_YE" name="label.space_used_by_koillection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:48</note>
-      </notes>
-      <segment>
-        <source>label.space_used_by_koillection</source>
-        <target>Espace total utilisé par Koillection</target>
+        <target>Thumbnail</target>
       </segment>
     </unit>
     <unit id="UrRn8xj" name="label.title">
@@ -1744,7 +1717,34 @@
       </notes>
       <segment>
         <source>label.title</source>
-        <target>Titre</target>
+        <target>Title</target>
+      </segment>
+    </unit>
+    <unit id="ZzykrnK" name="label.space_free">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:39</note>
+      </notes>
+      <segment>
+        <source>label.space_free</source>
+        <target>%free% free</target>
+      </segment>
+    </unit>
+    <unit id="4fDIeO4" name="label.space_used">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:38</note>
+      </notes>
+      <segment>
+        <source>label.space_used</source>
+        <target>%used% / %total% used</target>
+      </segment>
+    </unit>
+    <unit id="jNAS_YE" name="label.space_used_by_koillection">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:48</note>
+      </notes>
+      <segment>
+        <source>label.space_used_by_koillection</source>
+        <target>Total space used by Koillection</target>
       </segment>
     </unit>
     <unit id="pnGDFmf" name="label.type">
@@ -1771,7 +1771,7 @@
       </notes>
       <segment>
         <source>label.user</source>
-        <target>Utilisateur</target>
+        <target>User</target>
       </segment>
     </unit>
     <unit id="LDhDPrF" name="label.username">
@@ -1781,7 +1781,7 @@
       </notes>
       <segment>
         <source>label.username</source>
-        <target>Pseudo</target>
+        <target>Username</target>
       </segment>
     </unit>
     <unit id="jI3fm2M" name="label.users">
@@ -1790,7 +1790,7 @@
       </notes>
       <segment>
         <source>label.users</source>
-        <target>Utilisateurs</target>
+        <target>Users</target>
       </segment>
     </unit>
     <unit id="szWUC0C" name="label.value">
@@ -1799,7 +1799,7 @@
       </notes>
       <segment>
         <source>label.value</source>
-        <target>Valeur</target>
+        <target>Value</target>
       </segment>
     </unit>
     <unit id="H3WsEKh" name="label.visibility">
@@ -1808,7 +1808,7 @@
       </notes>
       <segment>
         <source>label.visibility</source>
-        <target>Visibilité</target>
+        <target>Visibility</target>
       </segment>
     </unit>
     <unit id="KbVLd5O" name="label.wishes">
@@ -1817,7 +1817,7 @@
       </notes>
       <segment>
         <source>label.wishes</source>
-        <target>Objets souhaités</target>
+        <target>Wishes</target>
       </segment>
     </unit>
     <unit id="hmlddlA" name="label.wishlist">
@@ -1826,7 +1826,7 @@
       </notes>
       <segment>
         <source>label.wishlist</source>
-        <target>Liste de souhaits</target>
+        <target>Wishlist</target>
       </segment>
     </unit>
     <unit id="vVTVy9_" name="label.wishlists">
@@ -1835,7 +1835,7 @@
       </notes>
       <segment>
         <source>label.wishlists</source>
-        <target>Listes de souhaits</target>
+        <target>Wishlists</target>
       </segment>
     </unit>
     <unit id="9UHmLu7" name="log.default_value">
@@ -1846,7 +1846,7 @@
       </notes>
       <segment>
         <source>log.default_value</source>
-        <target>la valeur par défaut</target>
+        <target>the default value</target>
       </segment>
     </unit>
     <unit id="oq5I4KJ" name="log.collection.created">
@@ -1855,7 +1855,7 @@
       </notes>
       <segment>
         <source>log.collection.created</source>
-        <target>La collection %label% a été créée</target>
+        <target>Collection %label% was created</target>
       </segment>
     </unit>
     <unit id="kJVARQs" name="log.collection.deleted">
@@ -1864,7 +1864,7 @@
       </notes>
       <segment>
         <source>log.collection.deleted</source>
-        <target>La collection %label% a été supprimée</target>
+        <target>Collection %label% was deleted</target>
       </segment>
     </unit>
     <unit id="FolQnGa" name="log.collection.default_parent">
@@ -1873,7 +1873,7 @@
       </notes>
       <segment>
         <source>log.collection.default_parent</source>
-        <target>la collection par défaut</target>
+        <target>the default collection</target>
       </segment>
     </unit>
     <unit id="65B6Z.P" name="log.collection.property_updated">
@@ -1883,7 +1883,7 @@
       </notes>
       <segment>
         <source>log.collection.property_updated</source>
-        <target>La propriété %property% a été mise à jour de %old% à %new%</target>
+        <target>Property %property% was updated from %old% to %new%</target>
       </segment>
     </unit>
     <unit id="X8TmsCm" name="log.collection.image_updated">
@@ -1892,7 +1892,7 @@
       </notes>
       <segment>
         <source>log.collection.image_updated</source>
-        <target>La propriété %property% a été mise à jour</target>
+        <target>Property %property% was updated</target>
       </segment>
     </unit>
     <unit id="ZgubPA8" name="log.collection.parent_updated">
@@ -1901,7 +1901,7 @@
       </notes>
       <segment>
         <source>log.collection.parent_updated</source>
-        <target>La propriété %property% a été mise à jour de %old% à %new%</target>
+        <target>Property %property% was updated from %old% to %new%</target>
       </segment>
     </unit>
     <unit id="CQhzBXW" name="log.item.created">
@@ -1910,7 +1910,7 @@
       </notes>
       <segment>
         <source>log.item.created</source>
-        <target>L'objet %label% a été créé</target>
+        <target>Item %label% was created</target>
       </segment>
     </unit>
     <unit id="rV1McBT" name="log.item.deleted">
@@ -1919,7 +1919,7 @@
       </notes>
       <segment>
         <source>log.item.deleted</source>
-        <target>L'objet %label% a été supprimé</target>
+        <target>Item %label% was deleted</target>
       </segment>
     </unit>
     <unit id="hBaCwDn" name="log.item.property_updated">
@@ -1929,7 +1929,7 @@
       </notes>
       <segment>
         <source>log.item.property_updated</source>
-        <target>La propriété %property% a été mise à jour de %old% à %new%</target>
+        <target>Property %property% was updated from %old% to %new%</target>
       </segment>
     </unit>
     <unit id="vHNFecs" name="log.item.image_updated">
@@ -1938,7 +1938,7 @@
       </notes>
       <segment>
         <source>log.item.image_updated</source>
-        <target>La propriété %property% a été mise à jour</target>
+        <target>Property %property% was updated</target>
       </segment>
     </unit>
     <unit id="eC8RV3w" name="log.item.collection_updated">
@@ -1947,7 +1947,7 @@
       </notes>
       <segment>
         <source>log.item.collection_updated</source>
-        <target>La propriété %property% a été mise à jour de %old% à %new%</target>
+        <target>Property %property% was updated from %old% to %new%</target>
       </segment>
     </unit>
     <unit id="T.ABiea" name="log.item.tag_added">
@@ -1956,7 +1956,7 @@
       </notes>
       <segment>
         <source>log.item.tag_added</source>
-        <target>Le tag %tag% a été créé</target>
+        <target>Tag %tag% was added</target>
       </segment>
     </unit>
     <unit id="XyCsJHB" name="log.item.tag_removed">
@@ -1965,7 +1965,7 @@
       </notes>
       <segment>
         <source>log.item.tag_removed</source>
-        <target>Le tag %tag% a été supprimé</target>
+        <target>Tag %tag% was removed</target>
       </segment>
     </unit>
     <unit id="GMz7R9E" name="log.item.sign_added">
@@ -1974,7 +1974,7 @@
       </notes>
       <segment>
         <source>log.item.sign_added</source>
-        <target>La dédicace %label% a été créée</target>
+        <target>Sign %label% was added</target>
       </segment>
     </unit>
     <unit id="aDc4Khw" name="log.item.image_added">
@@ -1983,7 +1983,7 @@
       </notes>
       <segment>
         <source>log.item.image_added</source>
-        <target>L'image %label% a été ajouté</target>
+        <target>Image %label% was added</target>
       </segment>
     </unit>
     <unit id="HtlfUjV" name="log.item.property_added">
@@ -1992,7 +1992,7 @@
       </notes>
       <segment>
         <source>log.item.property_added</source>
-        <target>La propriété %label% avec la valeur %value% a été ajoutée</target>
+        <target>Property %label% with the value of %value% was added</target>
       </segment>
     </unit>
     <unit id="YXeF5Ti" name="log.item.sign_removed">
@@ -2001,7 +2001,7 @@
       </notes>
       <segment>
         <source>log.item.sign_removed</source>
-        <target>La dédicace %label% a été supprimée</target>
+        <target>Sign %label% was removed</target>
       </segment>
     </unit>
     <unit id="nnFeqXM" name="log.item.image_removed">
@@ -2010,7 +2010,7 @@
       </notes>
       <segment>
         <source>log.item.image_removed</source>
-        <target>L'image %label% a été supprimée</target>
+        <target>Image %label% was removed</target>
       </segment>
     </unit>
     <unit id="8NjBClV" name="log.item.property_removed">
@@ -2019,7 +2019,7 @@
       </notes>
       <segment>
         <source>log.item.property_removed</source>
-        <target>La propriété %label% avec la valeur %value% a été supprimée</target>
+        <target>Property %label% with the value of %value% was removed</target>
       </segment>
     </unit>
     <unit id="rZbNjjk" name="log.tag.created">
@@ -2028,7 +2028,7 @@
       </notes>
       <segment>
         <source>log.tag.created</source>
-        <target>Le tag %label% a été créé</target>
+        <target>Tag %label% was created</target>
       </segment>
     </unit>
     <unit id="C6hJE7c" name="log.tag.deleted">
@@ -2037,7 +2037,7 @@
       </notes>
       <segment>
         <source>log.tag.deleted</source>
-        <target>Le tag %tag% a été supprimé</target>
+        <target>Tag %label% was deleted</target>
       </segment>
     </unit>
     <unit id="KiUXj51" name="log.tag.property_updated">
@@ -2047,7 +2047,7 @@
       </notes>
       <segment>
         <source>log.tag.property_updated</source>
-        <target>La propriété %property% a été mise à jour de %old% à %new%</target>
+        <target>Property %property% was updated from %old% to %new%</target>
       </segment>
     </unit>
     <unit id="tHo0TuF" name="log.tag.image_updated">
@@ -2056,7 +2056,16 @@
       </notes>
       <segment>
         <source>log.tag.image_updated</source>
-        <target>La propriété %property% a été mise à jour de %old% à %new%</target>
+        <target>Property %property% was updated</target>
+      </segment>
+    </unit>
+    <unit id="PBKgpKb" name="menu.about">
+      <notes>
+        <note category="file-source" priority="1">templates/layout-autorized.html.twig:38</note>
+      </notes>
+      <segment>
+        <source>menu.about</source>
+        <target>About</target>
       </segment>
     </unit>
     <unit id="wvvYSw_" name="menu.admin">
@@ -2093,7 +2102,7 @@
       </notes>
       <segment>
         <source>menu.albums_preview</source>
-        <target>Aperçu (albums)</target>
+        <target>Preview (albums)</target>
       </segment>
     </unit>
     <unit id="Nl_I6SL" name="menu.albums_user">
@@ -2102,7 +2111,7 @@
       </notes>
       <segment>
         <source>menu.albums_user</source>
-        <target>Album de %username%</target>
+        <target>%username%'s albums</target>
       </segment>
     </unit>
     <unit id="MW4FPxn" name="menu.collections">
@@ -2125,7 +2134,7 @@
       </notes>
       <segment>
         <source>menu.collections_preview</source>
-        <target>Aperçu (collection)</target>
+        <target>Preview (collection)</target>
       </segment>
     </unit>
     <unit id="GpXPEkO" name="menu.collections_user">
@@ -2134,7 +2143,7 @@
       </notes>
       <segment>
         <source>menu.collections_user</source>
-        <target>Collections de %username%'s</target>
+        <target>%username%'s collections</target>
       </segment>
     </unit>
     <unit id="k3EiIPt" name="menu.exit_preview">
@@ -2143,7 +2152,7 @@
       </notes>
       <segment>
         <source>menu.exit_preview</source>
-        <target>Quitter l'aperçu</target>
+        <target>Exit preview</target>
       </segment>
     </unit>
     <unit id="Q.3FoSC" name="menu.history">
@@ -2153,7 +2162,7 @@
       </notes>
       <segment>
         <source>menu.history</source>
-        <target>Historique</target>
+        <target>History</target>
       </segment>
     </unit>
     <unit id="VFvXW.m" name="menu.loans">
@@ -2163,7 +2172,7 @@
       </notes>
       <segment>
         <source>menu.loans</source>
-        <target>Prêts</target>
+        <target>Loans</target>
       </segment>
     </unit>
     <unit id="wBTFKFR" name="menu.logout">
@@ -2172,7 +2181,7 @@
       </notes>
       <segment>
         <source>menu.logout</source>
-        <target>Se déconnecter</target>
+        <target>Logout</target>
       </segment>
     </unit>
     <unit id="XSS5BT8" name="menu.profile">
@@ -2182,7 +2191,7 @@
       </notes>
       <segment>
         <source>menu.profile</source>
-        <target>Profil</target>
+        <target>Profile</target>
       </segment>
     </unit>
     <unit id="k6VxCsO" name="menu.search">
@@ -2191,7 +2200,7 @@
       </notes>
       <segment>
         <source>menu.search</source>
-        <target>Recherche</target>
+        <target>Search</target>
       </segment>
     </unit>
     <unit id="HLevxj." name="menu.signs">
@@ -2205,7 +2214,7 @@
       </notes>
       <segment>
         <source>menu.signs</source>
-        <target>Dédicaces</target>
+        <target>Signs</target>
       </segment>
     </unit>
     <unit id="._KwjST" name="menu.signs_preview">
@@ -2214,7 +2223,7 @@
       </notes>
       <segment>
         <source>menu.signs_preview</source>
-        <target>Aperçu (dédicaces)</target>
+        <target>Preview (signs)</target>
       </segment>
     </unit>
     <unit id="ltgwfbq" name="menu.signs_user">
@@ -2223,7 +2232,7 @@
       </notes>
       <segment>
         <source>menu.signs_user</source>
-        <target>Dédicaces de %username%'s</target>
+        <target>%username%'s signs</target>
       </segment>
     </unit>
     <unit id="Bhx8Fvg" name="menu.statistics">
@@ -2237,7 +2246,7 @@
       </notes>
       <segment>
         <source>menu.statistics</source>
-        <target>Statistiques</target>
+        <target>Statistics</target>
       </segment>
     </unit>
     <unit id="_CyP3Pc" name="menu.statistics_preview">
@@ -2246,7 +2255,7 @@
       </notes>
       <segment>
         <source>menu.statistics_preview</source>
-        <target>Aperçu (statistiques)</target>
+        <target>Preview (statistics)</target>
       </segment>
     </unit>
     <unit id="tk6udpx" name="menu.statistics_user">
@@ -2255,7 +2264,7 @@
       </notes>
       <segment>
         <source>menu.statistics_user</source>
-        <target>Statistiques de %username%'s</target>
+        <target>%username%'s statistics</target>
       </segment>
     </unit>
     <unit id="yo4f8Kh" name="menu.tags">
@@ -2278,7 +2287,7 @@
       </notes>
       <segment>
         <source>menu.tags_preview</source>
-        <target>Aperçu (tags)</target>
+        <target>Preview (tags)</target>
       </segment>
     </unit>
     <unit id="xLcWFGm" name="menu.tags_user">
@@ -2287,7 +2296,7 @@
       </notes>
       <segment>
         <source>menu.tags_user</source>
-        <target>Tags de %username%'s</target>
+        <target>%username%'s tags</target>
       </segment>
     </unit>
     <unit id="kXYXu7R" name="menu.templates">
@@ -2297,7 +2306,7 @@
       </notes>
       <segment>
         <source>menu.templates</source>
-        <target>Modèles</target>
+        <target>Templates</target>
       </segment>
     </unit>
     <unit id="iaYlgE1" name="menu.wishlists">
@@ -2311,7 +2320,7 @@
       </notes>
       <segment>
         <source>menu.wishlists</source>
-        <target>Listes de souhaits</target>
+        <target>Wishlists</target>
       </segment>
     </unit>
     <unit id="GLomX5y" name="menu.wishlists_preview">
@@ -2320,7 +2329,7 @@
       </notes>
       <segment>
         <source>menu.wishlists_preview</source>
-        <target>Aperçu (listes de souhaits)</target>
+        <target>Preview (wishlists)</target>
       </segment>
     </unit>
     <unit id="vd.6dAz" name="menu.wishlists_user">
@@ -2329,7 +2338,7 @@
       </notes>
       <segment>
         <source>menu.wishlists_user</source>
-        <target>Listes de souhaits de %username%'s</target>
+        <target>%username%'s wishlists</target>
       </segment>
     </unit>
     <unit id="ls5sYo8" name="message.album_added">
@@ -2338,7 +2347,7 @@
       </notes>
       <segment>
         <source>message.album_added</source>
-        <target>L'album %album% a été ajouté</target>
+        <target>Album %album% has been added</target>
       </segment>
     </unit>
     <unit id="oawVfJJ" name="message.album_deleted">
@@ -2347,7 +2356,7 @@
       </notes>
       <segment>
         <source>message.album_deleted</source>
-        <target>L'album %album% a été supprimé</target>
+        <target>Album %album% has been deleted</target>
       </segment>
     </unit>
     <unit id="0lwPpH7" name="message.album_edited">
@@ -2356,7 +2365,7 @@
       </notes>
       <segment>
         <source>message.album_edited</source>
-        <target>L'album %album% a été mis à jour</target>
+        <target>Album %album% has been updated</target>
       </segment>
     </unit>
     <unit id="_sN4yvV" name="message.collection_added">
@@ -2365,7 +2374,7 @@
       </notes>
       <segment>
         <source>message.collection_added</source>
-        <target>La collection %collection% a été ajoutée</target>
+        <target>Collection %collection% has been added</target>
       </segment>
     </unit>
     <unit id="m3B26dq" name="message.collection_deleted">
@@ -2374,7 +2383,7 @@
       </notes>
       <segment>
         <source>message.collection_deleted</source>
-        <target>La collection %collection% a été supprimée</target>
+        <target>Collection %collection% has been deleted</target>
       </segment>
     </unit>
     <unit id="p.bp_UN" name="message.collection_edited">
@@ -2383,7 +2392,7 @@
       </notes>
       <segment>
         <source>message.collection_edited</source>
-        <target>La collection %collection% a été mise à jour</target>
+        <target>Collection %collection% has been updated</target>
       </segment>
     </unit>
     <unit id="LYZR0u." name="message.done">
@@ -2392,7 +2401,7 @@
       </notes>
       <segment>
         <source>message.done</source>
-        <target>Tâche effectuée</target>
+        <target>Done</target>
       </segment>
     </unit>
     <unit id="1y_BRyd" name="message.entity_is_private">
@@ -2401,7 +2410,7 @@
       </notes>
       <segment>
         <source>message.entity_is_private</source>
-        <target>Cette page est en mode privée, vous ne pouvez pas la partager.</target>
+        <target>This page is set to private, you can't share it.</target>
       </segment>
     </unit>
     <unit id="ehI_Ih2" name="message.items_tagged">
@@ -2410,7 +2419,7 @@
       </notes>
       <segment>
         <source>message.items_tagged</source>
-        <target>[0,1] %count% objet taggué| ]1,Inf[ %count% objets taggués</target>
+        <target>{0} %count% items tagged| {1} %count% item tagged| ]1,Inf[ %count% items tagged</target>
       </segment>
     </unit>
     <unit id="TMGiC1d" name="message.item_added">
@@ -2419,7 +2428,7 @@
       </notes>
       <segment>
         <source>message.item_added</source>
-        <target>L'objet %item% a été ajouté</target>
+        <target>Item %item% has been added</target>
       </segment>
     </unit>
     <unit id="HgYxNo9" name="message.item_deleted">
@@ -2428,7 +2437,7 @@
       </notes>
       <segment>
         <source>message.item_deleted</source>
-        <target>L'objet %item% a été supprimé</target>
+        <target>Item %item% has been deleted</target>
       </segment>
     </unit>
     <unit id="UGVMo0W" name="message.item_edited">
@@ -2437,7 +2446,7 @@
       </notes>
       <segment>
         <source>message.item_edited</source>
-        <target>L'objet %item% a été mis à jour</target>
+        <target>Item %item% has been updated</target>
       </segment>
     </unit>
     <unit id="FlBhKyx" name="message.loan_canceled">
@@ -2446,7 +2455,7 @@
       </notes>
       <segment>
         <source>message.loan_canceled</source>
-        <target>Le prêt de l'objet %item% a été annulé</target>
+        <target>Item %item% loan has been canceled</target>
       </segment>
     </unit>
     <unit id="AT9p7pU" name="message.loan">
@@ -2455,7 +2464,7 @@
       </notes>
       <segment>
         <source>message.loan</source>
-        <target>L'objet %item% a été marqué comme prêté</target>
+        <target>Item %item% is now marked as loaned</target>
       </segment>
     </unit>
     <unit id="zkp2rxS" name="message.item_returned">
@@ -2464,7 +2473,7 @@
       </notes>
       <segment>
         <source>message.item_returned</source>
-        <target>L'objet %item% a été marqué comme rendu</target>
+        <target>Item %item% is now mark as returned</target>
       </segment>
     </unit>
     <unit id="lohoxDU" name="message.parameters_updated">
@@ -2473,7 +2482,7 @@
       </notes>
       <segment>
         <source>message.parameters_updated</source>
-        <target>Les paramètres ont bien été mis à joue</target>
+        <target>Your parameters has been sucessfully updated</target>
       </segment>
     </unit>
     <unit id="n5rS9vY" name="message.photo_added">
@@ -2482,7 +2491,7 @@
       </notes>
       <segment>
         <source>message.photo_added</source>
-        <target>La photo %photo% a été ajoutée</target>
+        <target>Photo %photo% has been added</target>
       </segment>
     </unit>
     <unit id="p5Rmjm9" name="message.photo_deleted">
@@ -2491,7 +2500,7 @@
       </notes>
       <segment>
         <source>message.photo_deleted</source>
-        <target>La photo %photo% a été mise à jour</target>
+        <target>Photo %photo% has been deleted</target>
       </segment>
     </unit>
     <unit id="hIxqW3m" name="message.photo_edited">
@@ -2500,7 +2509,7 @@
       </notes>
       <segment>
         <source>message.photo_edited</source>
-        <target>La photo %photo% a été supprimée</target>
+        <target>Photo %photo% has been updated</target>
       </segment>
     </unit>
     <unit id="rVN8d.E" name="message.profile_updated">
@@ -2509,7 +2518,7 @@
       </notes>
       <segment>
         <source>message.profile_updated</source>
-        <target>Votre profil a été mis à jour</target>
+        <target>Your profile has been sucessfully updated</target>
       </segment>
     </unit>
     <unit id="NLlL04M" name="message.recursive">
@@ -2518,7 +2527,7 @@
       </notes>
       <segment>
         <source>message.recursive</source>
-        <target>Si cochée, les tags seront également appliqués aux sous-collections</target>
+        <target>If checked, tags will be applied to all sub-collections aswell</target>
       </segment>
     </unit>
     <unit id="xw23vtl" name="message.search_empty">
@@ -2527,7 +2536,7 @@
       </notes>
       <segment>
         <source>message.search_empty</source>
-        <target>Pas de résultats</target>
+        <target>No results</target>
       </segment>
     </unit>
     <unit id="3EE._Y4" name="message.tag_edited">
@@ -2536,7 +2545,7 @@
       </notes>
       <segment>
         <source>message.tag_edited</source>
-        <target>Le tag %tag% a été mis à jour</target>
+        <target>Tag %tag% has been updated</target>
       </segment>
     </unit>
     <unit id="_PrKtDW" name="message.tag_deleted">
@@ -2545,7 +2554,7 @@
       </notes>
       <segment>
         <source>message.tag_deleted</source>
-        <target>Le tag %tag% a été supprimé</target>
+        <target>Tag %tag% has been deleted</target>
       </segment>
     </unit>
     <unit id="MP5YHNd" name="message.tags_without_items_deleted">
@@ -2554,7 +2563,7 @@
       </notes>
       <segment>
         <source>message.tags_without_items_deleted</source>
-        <target>%count% tags ont été supprimés</target>
+        <target>%count% tags have been deleted</target>
       </segment>
     </unit>
     <unit id="xM.mW1R" name="message.template_added">
@@ -2563,7 +2572,7 @@
       </notes>
       <segment>
         <source>message.template_added</source>
-        <target>Le modèle %template% a été ajouté</target>
+        <target>Template %template% has been added</target>
       </segment>
     </unit>
     <unit id="ZMxcm6L" name="message.template_deleted">
@@ -2572,7 +2581,7 @@
       </notes>
       <segment>
         <source>message.template_deleted</source>
-        <target>Le modèle item %template% a été supprimé</target>
+        <target>Template %template% has been deleted</target>
       </segment>
     </unit>
     <unit id="5d2N5Ar" name="message.template_edited">
@@ -2581,7 +2590,7 @@
       </notes>
       <segment>
         <source>message.template_edited</source>
-        <target>Le modèle item %template% a été mis à jour</target>
+        <target>Template %template% has been updated</target>
       </segment>
     </unit>
     <unit id="pWVM8oW" name="message.test_email_sent">
@@ -2590,7 +2599,7 @@
       </notes>
       <segment>
         <source>message.test_email_sent</source>
-        <target>Email de test envoyé</target>
+        <target>Test email sent</target>
       </segment>
     </unit>
     <unit id="eMPgFR5" name="message.user_is_private">
@@ -2599,7 +2608,7 @@
       </notes>
       <segment>
         <source>message.user_is_private</source>
-        <target>Votre profil est en mode privé, vous ne pouvez pas partager cette page.</target>
+        <target>Your profil is set to private, you can't share this page.</target>
       </segment>
     </unit>
     <unit id="eG38lKI" name="message.visibility">
@@ -2608,7 +2617,7 @@
       </notes>
       <segment>
         <source>message.visibility</source>
-        <target>Si vous choisissez l'option publique, votre collection sera accessible par n'importe qui à cette adresse :</target>
+        <target>If you set visibility to public, your collection will be accessible by anyone using the following link :</target>
       </segment>
     </unit>
     <unit id="RjUO3kd" name="message.visibility_per_item">
@@ -2617,7 +2626,7 @@
       </notes>
       <segment>
         <source>message.visibility_per_item</source>
-        <target>Vous pouvez aussi choisir la visibilité de chaque objet ou collection. Pour cela, rendez vous dans la page d'édition de l'élément concerné.</target>
+        <target>You can then set visibility per item or collection. To do so, please go on the element edition page.</target>
       </segment>
     </unit>
     <unit id="Oh1.W9H" name="message.visibility_preview">
@@ -2626,7 +2635,7 @@
       </notes>
       <segment>
         <source>message.visibility_preview</source>
-        <target>Vous pouvez vérifier ce que les utilisateurs verront de votre collection en cliquant sur le lien suivant :</target>
+        <target>You can check what users will see when looking at your collection by clicking on the following link :</target>
       </segment>
     </unit>
     <unit id="9RoxCzk" name="message.wish_added">
@@ -2635,7 +2644,7 @@
       </notes>
       <segment>
         <source>message.wish_added</source>
-        <target>L'objet souhaité %wish% a été ajouté</target>
+        <target>Wish %wish% has been added</target>
       </segment>
     </unit>
     <unit id="akgCJp9" name="message.wish_deleted">
@@ -2644,7 +2653,7 @@
       </notes>
       <segment>
         <source>message.wish_deleted</source>
-        <target>L'objet souhaité %wish% a été supprimé</target>
+        <target>Wish %wish% has been deleted</target>
       </segment>
     </unit>
     <unit id="XoB_zRK" name="message.wish_edited">
@@ -2653,7 +2662,7 @@
       </notes>
       <segment>
         <source>message.wish_edited</source>
-        <target>L'objet souhaité %wish% a été mis à jour</target>
+        <target>Wish %wish% has been updated</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
@@ -2662,7 +2671,7 @@
       </notes>
       <segment>
         <source>message.wishlist_added</source>
-        <target>La liste de souhaits %wishlist% a été ajoutée</target>
+        <target>Wishlist %wishlist% has been added</target>
       </segment>
     </unit>
     <unit id="8ujnJmR" name="message.wishlist_deleted">
@@ -2671,7 +2680,7 @@
       </notes>
       <segment>
         <source>message.wishlist_deleted</source>
-        <target>La liste de souhaits %wishlist% a été supprimée</target>
+        <target>Wishlist %wishlist% has been deleted</target>
       </segment>
     </unit>
     <unit id="NfYGrwC" name="message.wishlist_edited">
@@ -2680,7 +2689,7 @@
       </notes>
       <segment>
         <source>message.wishlist_edited</source>
-        <target>La liste de souhaits %wishlist% a été mise à jour</target>
+        <target>Wishlist %wishlist% has been updated</target>
       </segment>
     </unit>
     <unit id="1Jpq5QX" name="tab.loans">
@@ -2689,7 +2698,7 @@
       </notes>
       <segment>
         <source>tab.loans</source>
-        <target>Prêtés</target>
+        <target>Loans</target>
       </segment>
     </unit>
     <unit id="F60bUq_" name="tab.returned_items">
@@ -2698,7 +2707,7 @@
       </notes>
       <segment>
         <source>tab.returned_items</source>
-        <target>Rendus</target>
+        <target>Returned</target>
       </segment>
     </unit>
     <unit id="z8doNW0" name="tab.statistics">
@@ -2707,7 +2716,7 @@
       </notes>
       <segment>
         <source>tab.statistics</source>
-        <target>Statistiques</target>
+        <target>Statistics</target>
       </segment>
     </unit>
     <unit id="MJ22R1T" name="tab.users">
@@ -2716,7 +2725,7 @@
       </notes>
       <segment>
         <source>tab.users</source>
-        <target>Utilisateurs</target>
+        <target>Users</target>
       </segment>
     </unit>
     <unit id="ssT2wiw" name="title.activity">
@@ -2725,7 +2734,7 @@
       </notes>
       <segment>
         <source>title.activity</source>
-        <target>Activité</target>
+        <target>Activity</target>
       </segment>
     </unit>
     <unit id="pRl.hWU" name="title.add_album">
@@ -2735,16 +2744,7 @@
       </notes>
       <segment>
         <source>title.add_album</source>
-        <target>Ajouter un nouvel album</target>
-      </segment>
-    </unit>
-    <unit id="AiXAfVP" name="title.add_collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/add.html.twig:18</note>
-      </notes>
-      <segment>
-        <source>title.add_collection</source>
-        <target>Ajouter une nouvelle collection</target>
+        <target>Add a new album</target>
       </segment>
     </unit>
     <unit id="tpcX1HE" name="title.add_album_photo">
@@ -2753,7 +2753,16 @@
       </notes>
       <segment>
         <source>title.add_album_photo</source>
-        <target>Ajouter une nouvelle photo dans l'album %album%</target>
+        <target>Add a new photo to the album %album%</target>
+      </segment>
+    </unit>
+    <unit id="AiXAfVP" name="title.add_collection">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Collection/add.html.twig:18</note>
+      </notes>
+      <segment>
+        <source>title.add_collection</source>
+        <target>Add a new collection</target>
       </segment>
     </unit>
     <unit id="nXRtrJb" name="title.add_item">
@@ -2762,7 +2771,7 @@
       </notes>
       <segment>
         <source>title.add_item</source>
-        <target>Ajouter un nouvel objet</target>
+        <target>Add a new item</target>
       </segment>
     </unit>
     <unit id="H0D7KGB" name="title.add_wishlist_item">
@@ -2771,7 +2780,7 @@
       </notes>
       <segment>
         <source>title.add_wishlist_item</source>
-        <target>Ajouter un objet à la liste %wishlist%</target>
+        <target>Add a new item to the wishlist %wishlist%</target>
       </segment>
     </unit>
     <unit id="DCLoAZA" name="title.additional_fields">
@@ -2781,7 +2790,7 @@
       </notes>
       <segment>
         <source>title.additional_fields</source>
-        <target>Champs additionels</target>
+        <target>Additional fields</target>
       </segment>
     </unit>
     <unit id="svM3vNY" name="title.charts.hours">
@@ -2792,7 +2801,7 @@
       </notes>
       <segment>
         <source>title.charts.hours</source>
-        <target>Objets ajoutés par heure de la journée</target>
+        <target>Items added per day hour</target>
       </segment>
     </unit>
     <unit id="jZqCZ_K" name="title.charts.months">
@@ -2803,7 +2812,7 @@
       </notes>
       <segment>
         <source>title.charts.months</source>
-        <target>Objets ajoutés par mois</target>
+        <target>Items added per month</target>
       </segment>
     </unit>
     <unit id="_tdjWIj" name="title.charts.month_days">
@@ -2814,7 +2823,7 @@
       </notes>
       <segment>
         <source>title.charts.month_days</source>
-        <target>Objets ajoutés par jour du mois</target>
+        <target>Items added per day of month</target>
       </segment>
     </unit>
     <unit id="Rb73VaV" name="title.charts.radial_tree">
@@ -2825,7 +2834,7 @@
       </notes>
       <segment>
         <source>title.charts.radial_tree</source>
-        <target>Représentation en arbre circulaire de votre collection</target>
+        <target>Radial representation of your collection</target>
       </segment>
     </unit>
     <unit id="yfwVi.I" name="title.charts.week_days">
@@ -2836,7 +2845,7 @@
       </notes>
       <segment>
         <source>title.charts.week_days</source>
-        <target>Objets ajoutés par jour de la semaine</target>
+        <target>Items added per weekday</target>
       </segment>
     </unit>
     <unit id="5_Yv1gK" name="title.children">
@@ -2849,7 +2858,7 @@
       </notes>
       <segment>
         <source>title.children</source>
-        <target>Sous-collections</target>
+        <target>Sub-collections</target>
       </segment>
     </unit>
     <unit id="78xJTtJ" name="title.collections">
@@ -2867,16 +2876,7 @@
       </notes>
       <segment>
         <source>title.currency</source>
-        <target>Devise</target>
-      </segment>
-    </unit>
-    <unit id="afFmRNm" name="title.parameters">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.parameters</source>
-        <target>Paramètres de la base de données</target>
+        <target>Currency</target>
       </segment>
     </unit>
     <unit id="qh23U11" name="title.disk_usage">
@@ -2885,7 +2885,7 @@
       </notes>
       <segment>
         <source>title.disk_usage</source>
-        <target>Utilisation disque</target>
+        <target>Disk usage</target>
       </segment>
     </unit>
     <unit id="yXxCCBI" name="title.edit_album_photo">
@@ -2894,7 +2894,7 @@
       </notes>
       <segment>
         <source>title.edit_album_photo</source>
-        <target>Modifier la photo %photo%</target>
+        <target>Edit photo %photo%</target>
       </segment>
     </unit>
     <unit id="KlxVsBD" name="title.edit_collection">
@@ -2903,7 +2903,7 @@
       </notes>
       <segment>
         <source>title.edit_collection</source>
-        <target>Modifier la collection %collection%</target>
+        <target>Edit collection %collection%</target>
       </segment>
     </unit>
     <unit id="0w7FrTh" name="title.edit_item">
@@ -2912,7 +2912,7 @@
       </notes>
       <segment>
         <source>title.edit_item</source>
-        <target>Modifier l'objet %item%</target>
+        <target>Edit item %item%</target>
       </segment>
     </unit>
     <unit id="w4I3.hu" name="title.edit_template">
@@ -2921,7 +2921,7 @@
       </notes>
       <segment>
         <source>title.edit_template</source>
-        <target>Modifier le modèle %template%</target>
+        <target>Edit template %template%</target>
       </segment>
     </unit>
     <unit id="9dYc4WP" name="title.edit_wishlist_item">
@@ -2930,7 +2930,7 @@
       </notes>
       <segment>
         <source>title.edit_wishlist_item</source>
-        <target>Modifier l'objet souhaité %name%</target>
+        <target>Edit wish %name%</target>
       </segment>
     </unit>
     <unit id="1Uc4qIA" name="title.edit_wishlist">
@@ -2939,7 +2939,7 @@
       </notes>
       <segment>
         <source>title.edit_wishlist</source>
-        <target>Modifier la liste de souhait %wishlist%</target>
+        <target>Edit wishlist %wishlist%</target>
       </segment>
     </unit>
     <unit id="8QFZX9d" name="title.fields">
@@ -2950,7 +2950,7 @@
       </notes>
       <segment>
         <source>title.fields</source>
-        <target>Champs</target>
+        <target>Fields</target>
       </segment>
     </unit>
     <unit id="StAuTu9" name="title.infos">
@@ -2984,7 +2984,7 @@
       </notes>
       <segment>
         <source>title.items</source>
-        <target>Objets</target>
+        <target>Items</target>
       </segment>
     </unit>
     <unit id="uJUJ6Ir" name="title.data">
@@ -2994,7 +2994,7 @@
       </notes>
       <segment>
         <source>title.data</source>
-        <target>Données</target>
+        <target>Data</target>
       </segment>
     </unit>
     <unit id="bWfooH2" name="title.item_images">
@@ -3013,7 +3013,7 @@
       </notes>
       <segment>
         <source>title.join_form</source>
-        <target>Création de votre compte</target>
+        <target>Account creation</target>
       </segment>
     </unit>
     <unit id="spXPl9V" name="title.language">
@@ -3022,7 +3022,7 @@
       </notes>
       <segment>
         <source>title.language</source>
-        <target>Langue</target>
+        <target>Language</target>
       </segment>
     </unit>
     <unit id="a3BdRfd" name="title.last_collections_added">
@@ -3031,7 +3031,7 @@
       </notes>
       <segment>
         <source>title.last_collections_added</source>
-        <target>Dernières collections ajoutées</target>
+        <target>Last collections added</target>
       </segment>
     </unit>
     <unit id="oAboyvt" name="title.last_items_added">
@@ -3040,7 +3040,7 @@
       </notes>
       <segment>
         <source>title.last_items_added</source>
-        <target>Derniers objets ajoutés</target>
+        <target>Last items added</target>
       </segment>
     </unit>
     <unit id="bmt.5SD" name="title.loan_item">
@@ -3049,7 +3049,7 @@
       </notes>
       <segment>
         <source>title.loan_item</source>
-        <target>Prêter l'objet %item%</target>
+        <target>Loan item %item%</target>
       </segment>
     </unit>
     <unit id="zXS9TNU" name="title.new_template">
@@ -3058,7 +3058,7 @@
       </notes>
       <segment>
         <source>title.new_template</source>
-        <target>Ajouter un nouveau modèle</target>
+        <target>Add a new template</target>
       </segment>
     </unit>
     <unit id="aCKOxah" name="title.new_wishlist">
@@ -3067,7 +3067,7 @@
       </notes>
       <segment>
         <source>title.new_wishlist</source>
-        <target>Ajouter une nouvelle liste de souhait</target>
+        <target>Add a new wishlist</target>
       </segment>
     </unit>
     <unit id="PMuodit" name="title.update_profile">
@@ -3076,7 +3076,7 @@
       </notes>
       <segment>
         <source>title.update_profile</source>
-        <target>Mise à jour du profil</target>
+        <target>Update profile</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -3096,7 +3096,7 @@
       </notes>
       <segment>
         <source>title.statistics</source>
-        <target>Statistiques</target>
+        <target>Statistics</target>
       </segment>
     </unit>
     <unit id="uzSzjYY" name="title.tags">
@@ -3114,7 +3114,7 @@
       </notes>
       <segment>
         <source>title.tag_collection</source>
-        <target>Tagguer en masse %collection%</target>
+        <target>Batch tagging %collection%</target>
       </segment>
     </unit>
     <unit id="1_c2AoA" name="title.theme">
@@ -3123,7 +3123,7 @@
       </notes>
       <segment>
         <source>title.theme</source>
-        <target>Thème</target>
+        <target>Theme</target>
       </segment>
     </unit>
     <unit id="mvzqhh8" name="title.user_details">
@@ -3132,7 +3132,7 @@
       </notes>
       <segment>
         <source>title.user_details</source>
-        <target>Détail de l'utilisateur</target>
+        <target>User detail</target>
       </segment>
     </unit>
     <unit id="fKgc.kW" name="title.users">
@@ -3141,7 +3141,7 @@
       </notes>
       <segment>
         <source>title.users</source>
-        <target>Utilisateurs</target>
+        <target>Users</target>
       </segment>
     </unit>
     <unit id="N7jz_F1" name="title.visibility">
@@ -3150,7 +3150,7 @@
       </notes>
       <segment>
         <source>title.visibility</source>
-        <target>Visibilité</target>
+        <target>Visibility</target>
       </segment>
     </unit>
     <unit id="KhJnPFW" name="title.wishes">
@@ -3161,7 +3161,7 @@
       </notes>
       <segment>
         <source>title.wishes</source>
-        <target>Objets souhaités</target>
+        <target>Wishes</target>
       </segment>
     </unit>
     <unit id="Wf8jJNQ" name="title.wishlist">
@@ -3170,7 +3170,7 @@
       </notes>
       <segment>
         <source>title.wishlist</source>
-        <target>Liste de souhait %wishlist%</target>
+        <target>Wishlist %wishlist%</target>
       </segment>
     </unit>
     <unit id="c9cNWH4" name="title.wishlist_children">
@@ -3181,7 +3181,7 @@
       </notes>
       <segment>
         <source>title.wishlist_children</source>
-        <target>Sous-listes de souhaits</target>
+        <target>Sub-wishlists</target>
       </segment>
     </unit>
     <unit id="NOenNu3" name="tooltip.add_album">
@@ -3190,7 +3190,7 @@
       </notes>
       <segment>
         <source>tooltip.add_album</source>
-        <target>Ajouter un nouvel album</target>
+        <target>Add a new album</target>
       </segment>
     </unit>
     <unit id="0Vhz2n." name="tooltip.add_collection">
@@ -3200,7 +3200,7 @@
       </notes>
       <segment>
         <source>tooltip.add_collection</source>
-        <target>Ajouter une nouvelle collection</target>
+        <target>Add a new collection</target>
       </segment>
     </unit>
     <unit id="FTnVc5X" name="tooltip.add_item">
@@ -3209,7 +3209,7 @@
       </notes>
       <segment>
         <source>tooltip.add_item</source>
-        <target>Ajouter un nouvel objet</target>
+        <target>Add a new item</target>
       </segment>
     </unit>
     <unit id="AHajX3P" name="tooltip.add_photo">
@@ -3218,7 +3218,7 @@
       </notes>
       <segment>
         <source>tooltip.add_photo</source>
-        <target>Ajouter une nouvelle photo</target>
+        <target>Add a new photo</target>
       </segment>
     </unit>
     <unit id=".pBdt4A" name="tooltip.add_template">
@@ -3227,7 +3227,7 @@
       </notes>
       <segment>
         <source>tooltip.add_template</source>
-        <target>Créer un nouveau modèle</target>
+        <target>Create a new template</target>
       </segment>
     </unit>
     <unit id="VRKRvlp" name="tooltip.add_wish">
@@ -3236,7 +3236,7 @@
       </notes>
       <segment>
         <source>tooltip.add_wish</source>
-        <target>Ajouter un nouvel objet</target>
+        <target>Add a new wish</target>
       </segment>
     </unit>
     <unit id="U27QnHb" name="tooltip.add_wishlist">
@@ -3246,7 +3246,7 @@
       </notes>
       <segment>
         <source>tooltip.add_wishlist</source>
-        <target>Ajouter une nouvelle liste de souhaits</target>
+        <target>Add a new wishlist</target>
       </segment>
     </unit>
     <unit id="qWc975i" name="tooltip.delete">
@@ -3263,7 +3263,7 @@
       </notes>
       <segment>
         <source>tooltip.delete</source>
-        <target>Supprimer</target>
+        <target>Delete</target>
       </segment>
     </unit>
     <unit id="nbcWSI3" name="tooltip.edit">
@@ -3279,7 +3279,7 @@
       </notes>
       <segment>
         <source>tooltip.edit</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="0Iya7gx" name="tooltip.history">
@@ -3290,7 +3290,7 @@
       </notes>
       <segment>
         <source>tooltip.history</source>
-        <target>Historique</target>
+        <target>History</target>
       </segment>
     </unit>
     <unit id="bQoqYij" name="tooltip.items">
@@ -3299,7 +3299,7 @@
       </notes>
       <segment>
         <source>tooltip.items</source>
-        <target>Voir tous les objets de la collection</target>
+        <target>See all items</target>
       </segment>
     </unit>
     <unit id="DYfAFeM" name="tooltip.print">
@@ -3308,7 +3308,7 @@
       </notes>
       <segment>
         <source>tooltip.print</source>
-        <target>Imprimer</target>
+        <target>Print</target>
       </segment>
     </unit>
     <unit id="3AT7pPP" name="tooltip.share">
@@ -3317,7 +3317,7 @@
       </notes>
       <segment>
         <source>tooltip.share</source>
-        <target>Partager</target>
+        <target>Share</target>
       </segment>
     </unit>
     <unit id="6H1fBLk" name="tooltip.tag">
@@ -3335,7 +3335,7 @@
       </notes>
       <segment>
         <source>tooltip.loan_item</source>
-        <target>Prêter cet objet</target>
+        <target>Loan this item</target>
       </segment>
     </unit>
     <unit id="uFEIsab" name="tooltip.returned">
@@ -3344,7 +3344,7 @@
       </notes>
       <segment>
         <source>tooltip.returned</source>
-        <target>Rendu</target>
+        <target>Returned</target>
       </segment>
     </unit>
     <unit id=".TUUZqf" name="tutorial.no_collection">
@@ -3353,7 +3353,7 @@
       </notes>
       <segment>
         <source>tutorial.no_collection</source>
-        <target>Oups, vous n'avez aucune collection. Cliquez ici pour commencer.</target>
+        <target>Oops, you don't have any collection yet. Click here to begin.</target>
       </segment>
     </unit>
     <unit id="mhRNReS" name="aria.collection_thumbnail">
@@ -3362,7 +3362,7 @@
       </notes>
       <segment>
         <source>aria.collection_thumbnail</source>
-        <target>Miniature de la collection %title%</target>
+        <target>Collection %title% thumbnail</target>
       </segment>
     </unit>
     <unit id="92pQmfM" name="label.suggestions">
@@ -3383,7 +3383,7 @@
       </notes>
       <segment>
         <source>tab.translations</source>
-        <target>Traductions</target>
+        <target>Translations</target>
       </segment>
     </unit>
     <unit id="SIWS8O4" name="label.configs">
@@ -3393,19 +3393,19 @@
       </notes>
       <segment>
         <source>label.configs</source>
-        <target>Configurations : </target>
+        <target>Configs : </target>
       </segment>
     </unit>
     <unit id="qm7xyXZ" name="menu.translations">
       <segment>
         <source>menu.translations</source>
-        <target>Traductions</target>
+        <target>Translations</target>
       </segment>
     </unit>
     <unit id="fw94.4n" name="menu.users">
       <segment>
         <source>menu.users</source>
-        <target>Utilisateurs</target>
+        <target>Users</target>
       </segment>
     </unit>
     <unit id="Ho1FG0i" name="label.locales">
@@ -3417,79 +3417,73 @@
     <unit id="27zqEjU" name="label.domains">
       <segment>
         <source>label.domains</source>
-        <target>Domaines : </target>
+        <target>Domains : </target>
       </segment>
     </unit>
     <unit id="7kMAyC4" name="header.create_translation">
       <segment>
         <source>header.create_translation</source>
-        <target>Ajouter une traduction</target>
+        <target>Create a new translation</target>
       </segment>
     </unit>
     <unit id="oSwCv_s" name="header.translations">
       <segment>
         <source>header.translations</source>
-        <target>Traductions</target>
+        <target>Translations</target>
       </segment>
     </unit>
     <unit id="XFMXVix" name="message.confirmation">
       <segment>
         <source>message.confirmation</source>
-        <target>Êtes vous sûr ? </target>
-      </segment>
-    </unit>
-    <unit id="6_gBi2x" name="label.key">
-      <segment>
-        <source>label.key</source>
-        <target>Clé</target>
+        <target>Are you sure ?</target>
       </segment>
     </unit>
     <unit id="Zqs7GvW" name="label.other_translations">
       <segment>
         <source>label.other_translations</source>
-        <target>Autres traductions</target>
+        <target>Other translations</target>
+      </segment>
+    </unit>
+    <unit id="6_gBi2x" name="label.key">
+      <segment>
+        <source>label.key</source>
+        <target>Key</target>
       </segment>
     </unit>
     <unit id="ldlccG3" name="label.from">
       <segment>
         <source>label.from</source>
-        <target>Utilisée dans</target>
+        <target>From</target>
       </segment>
     </unit>
     <unit id="DQah9vr" name="tooltip.new">
       <segment>
         <source>tooltip.new</source>
-        <target>Nouvelle</target>
+        <target>New</target>
       </segment>
     </unit>
     <unit id="2ulK36u" name="tooltip.warning">
       <segment>
         <source>tooltip.warning</source>
-        <target>Attention</target>
+        <target>Warning</target>
       </segment>
     </unit>
     <unit id="M23tqyv" name="tooltip.delete_translation">
       <segment>
         <source>tooltip.delete_translation</source>
-        <target>Supprimer la traduction</target>
+        <target>Delete the translation</target>
       </segment>
     </unit>
     <unit id="iPvRWrq" name="btn.create">
       <segment>
         <source>btn.create</source>
-        <target>Créer</target>
+        <target>Create</target>
       </segment>
     </unit>
     <unit id="6mIqcx6" name="tooltip.empty">
       <segment>
         <source>tooltip.empty</source>
-        <target>Vide</target>
-      </segment>
-    </unit>
-    <unit id="zB7DGiM" name="label.translation">
-      <segment>
-        <source>label.translation</source>
-        <target>Traduction</target>
+        <target>Empty</target>
       </segment>
     </unit>
     <unit id="hzhzbqw" name="label.status">
@@ -3498,16 +3492,22 @@
         <target>Status</target>
       </segment>
     </unit>
+    <unit id="zB7DGiM" name="label.translation">
+      <segment>
+        <source>label.translation</source>
+        <target>Translation</target>
+      </segment>
+    </unit>
     <unit id="o7VW0kO" name="message.return_to_homepage">
       <segment>
         <source>message.return_to_homepage</source>
-        <target>Retourner à la page d'acceuil</target>
+        <target>Return to homepage</target>
       </segment>
     </unit>
     <unit id="lx8jvbW" name="btn.login">
       <segment>
         <source>btn.login</source>
-        <target>Se connecter</target>
+        <target>Sign in</target>
       </segment>
     </unit>
     <unit id="yIfRfhZ" name="filter.title.types">
@@ -3525,7 +3525,7 @@
     <unit id="1.3zJOb" name="filter.item">
       <segment>
         <source>filter.item</source>
-        <target>Objet</target>
+        <target>Item</target>
       </segment>
     </unit>
     <unit id="lxmo2xQ" name="filter.collection">
@@ -3537,289 +3537,289 @@
     <unit id="e8GAd_z" name="title.related_tags">
       <segment>
         <source>title.related_tags</source>
-        <target>Tags en rapport</target>
+        <target>Related tags</target>
       </segment>
     </unit>
     <unit id="zNdHjVZ" name="meta.description">
       <segment>
         <source>meta.description</source>
-        <target>Un seul site pour gérer toutes vos collections.</target>
+        <target>A single place to manage all your collections.</target>
       </segment>
     </unit>
     <unit id="K4CLmzU" name="tooltip.transfer_to_collection">
       <segment>
         <source>tooltip.transfer_to_collection</source>
-        <target>Transférer à une collection</target>
+        <target>Transfer to collection</target>
       </segment>
     </unit>
     <unit id="50TT5tp" name="title.transfer_wish">
       <segment>
         <source>title.transfer_wish</source>
-        <target>Tranférer un souhait dans une collection</target>
+        <target>Transfer wish to a collection</target>
       </segment>
     </unit>
     <unit id="cQsMebl" name="breadcrumb.transfer_wish">
       <segment>
         <source>breadcrumb.transfer_wish</source>
-        <target>Tranférer un souhait dans une collection</target>
+        <target>Transfer wish to a collection</target>
       </segment>
     </unit>
     <unit id="mAYxq3X" name="message.wish_transfered">
       <segment>
         <source>message.wish_transfered</source>
-        <target>Le souhait %wish% a été tranféré dans la collection %collection%</target>
+        <target>Wish %wish% was transfered to the collection %collection%</target>
       </segment>
     </unit>
     <unit id="jEeQjDx" name="message.offline">
       <segment>
         <source>message.offline</source>
-        <target>Vous êtes hors ligne, merci de vérifier votre connexion.</target>
+        <target>You are offline, please check your connection.</target>
       </segment>
     </unit>
     <unit id="ftu6zLh" name="global.others">
       <segment>
         <source>global.others</source>
-        <target>Autres</target>
+        <target>Others</target>
       </segment>
     </unit>
     <unit id="O59lP5d" name="label.role">
       <segment>
         <source>label.role</source>
-        <target>Rôle</target>
+        <target>Role</target>
       </segment>
     </unit>
     <unit id="Dpg9wp." name="role.user">
       <segment>
         <source>role.user</source>
-        <target>Utilisateur</target>
+        <target>User</target>
       </segment>
     </unit>
     <unit id="tlZBAKL" name="role.admin">
       <segment>
         <source>role.admin</source>
-        <target>Administrateur</target>
+        <target>Admin</target>
       </segment>
     </unit>
     <unit id="XulMPsF" name="first_connection.header">
       <segment>
         <source>first_connection.header</source>
-        <target>Première connection</target>
+        <target>First connection</target>
       </segment>
     </unit>
     <unit id="ivST7Bo" name="first_connection.parameters">
       <segment>
         <source>first_connection.parameters</source>
-        <target>Paramètres de la base de données</target>
+        <target>Database parameters</target>
       </segment>
     </unit>
     <unit id="7o9hj19" name="first_connection.user">
       <segment>
         <source>first_connection.user</source>
-        <target>Informations utilisateur</target>
+        <target>User informations</target>
       </segment>
     </unit>
     <unit id="wwFFPXP" name="title.first_connection.user">
       <segment>
         <source>title.first_connection.user</source>
-        <target>Première connexion</target>
+        <target>First connection</target>
       </segment>
     </unit>
     <unit id="1sstKF9" name="title.edit_user">
       <segment>
         <source>title.edit_user</source>
-        <target>Modifier l'utilisateur %user%</target>
+        <target>Edit user %user%</target>
       </segment>
     </unit>
     <unit id="Fcb_tkO" name="message.user_edited">
       <segment>
         <source>message.user_edited</source>
-        <target>L'utilisateur %user% a été mis à jour</target>
+        <target>User %user% has been updated</target>
       </segment>
     </unit>
     <unit id="ZouqthR" name="btn.add_user">
       <segment>
         <source>btn.add_user</source>
-        <target>Ajouter un utilisateur</target>
+        <target>Add a user</target>
       </segment>
     </unit>
     <unit id="FcXvWL8" name="title.add_user">
       <segment>
         <source>title.add_user</source>
-        <target>Ajouter un utilisateur</target>
+        <target>Add a user</target>
       </segment>
     </unit>
     <unit id="X_Pm9um" name="message.user_added">
       <segment>
         <source>message.user_added</source>
-        <target>Utilisateur %user% ajouté</target>
+        <target>User %user% added</target>
       </segment>
     </unit>
     <unit id="2a_RIum" name="message.user_deleted">
       <segment>
         <source>message.user_deleted</source>
-        <target>L'utilisateur %user% a été supprimé</target>
+        <target>User %user% was deleted</target>
       </segment>
     </unit>
     <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
       <segment>
         <source>error.cannot_delete_admin_user</source>
-        <target>Vous ne pouvez pas effacer l'utilisateur Administrateur</target>
+        <target>You can't delete the Admin user</target>
       </segment>
     </unit>
     <unit id="a7zU.My" name="title.delete_user">
       <segment>
         <source>title.delete_user</source>
-        <target>Suppression de l'utilisateur %user%</target>
+        <target>Delete user %user%</target>
       </segment>
     </unit>
     <unit id="PNA2Sv7" name="label.confirm">
       <segment>
         <source>label.confirm</source>
-        <target>Confirmer</target>
+        <target>Confirm</target>
       </segment>
     </unit>
     <unit id="1_PoPqY" name="message.user_delete_warning">
       <segment>
         <source>message.user_delete_warning</source>
-        <target>Cette action supprimera l'utilisateur avec toutes ces infos, y compris toutes les images mises en ligne. Cette action est irréversible, soyez sûr de vous.</target>
+        <target>This action will delete the user and all of its infos including any images uploaded. This action is irreversible, so please be sure about this.</target>
       </segment>
     </unit>
     <unit id="S92egy5" name="title.sign_in">
       <segment>
         <source>title.sign_in</source>
-        <target>Connexion</target>
+        <target>Sign in</target>
       </segment>
     </unit>
     <unit id="d75KAlJ" name="label.version">
       <segment>
         <source>label.version</source>
-        <target>Version de Koillection</target>
+        <target>Koillection version</target>
       </segment>
     </unit>
     <unit id="4wvJrqA" name="global.time.today">
       <segment>
         <source>global.time.today</source>
-        <target>Aujourd'hui</target>
+        <target>Today</target>
       </segment>
     </unit>
     <unit id="dmtPdwq" name="label.timezone">
       <segment>
         <source>label.timezone</source>
-        <target>Fuseau horaire</target>
+        <target>Timezone</target>
       </segment>
     </unit>
     <unit id="9it4sqQ" name="title.charts.items_evolution">
       <segment>
         <source>title.charts.items_evolution</source>
-        <target>Évolution des objets</target>
+        <target>Items evolution</target>
       </segment>
     </unit>
     <unit id="Jjhr6GA" name="menu.collapse">
       <segment>
         <source>menu.collapse</source>
-        <target>Réduire</target>
+        <target>Collapse</target>
       </segment>
     </unit>
     <unit id="Y3yqQP6" name="menu.close">
       <segment>
         <source>menu.close</source>
-        <target>Fermer</target>
+        <target>Close</target>
       </segment>
     </unit>
     <unit id="rd2X72s" name="message.delete.photo">
       <segment>
         <source>message.delete.photo</source>
-        <target>Êtes-vous sûr de vouloir supprimer cette photo ? Elle sera définitivement perdue...</target>
+        <target>Are you sure you want to delete this photo ? It will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="U4y7aZO" name="message.delete.tag">
       <segment>
         <source>message.delete.tag</source>
-        <target>Êtes-vous sûr de vouloir supprimer ce tag ? Il sera définitivement perdu...</target>
+        <target>Are you sure you want to delete this tag ? It will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="v5OgDgx" name="message.delete.item">
       <segment>
         <source>message.delete.item</source>
-        <target>Êtes-vous sûr de vouloir supprimer cet objet ? Il sera définitivement perdu...</target>
+        <target>Are you sure you want to delete this item ? It will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="zHvuaSF" name="message.delete.album">
       <segment>
         <source>message.delete.album</source>
-        <target>Êtes-vous sûr de vouloir supprimer cet album ? Toutes les photos qu'il contient seront définitivement perdues...</target>
+        <target>Are you sure you want to delete this album ? All photos it contains will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="F5mLnYt" name="message.delete.template">
       <segment>
         <source>message.delete.template</source>
-        <target>Êtes-vous sûr de vouloir supprimer ce modèle ? Il sera définitivement perdu...</target>
+        <target>Are you sure you want to delete this template ? It will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="JMVpPAR" name="message.delete.wishlist">
       <segment>
         <source>message.delete.wishlist</source>
-        <target>Êtes-vous sûr de vouloir supprimer cette liste de souhaits ? Tous les souhaits qu'elle contient seront définitivement perdus...</target>
+        <target>Are you sure you want to delete this wishlist ? All wishes it contains will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="YTTkLLK" name="message.delete.wish">
       <segment>
         <source>message.delete.wish</source>
-        <target>Êtes-vous sûr de vouloir supprimer ce souhait ? Il sera définitivement perdu...</target>
+        <target>Are you sure you want to delete this wish ? It will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="5Z0Lnp." name="message.delete.collection">
       <segment>
         <source>message.delete.collection</source>
-        <target>Êtes-vous sûr de vouloir supprimer cette collection ? Tous les objets qu'elle contient seront définitivement perdus...</target>
+        <target>Are you sure you want to delete this collection ? All items it contains will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="_HekiQE" name="message.delete.loan">
       <segment>
         <source>message.delete.loan</source>
-        <target>Êtes-vous sûr de vouloir supprimer ce prêt ? Il sera définitivement perdu...</target>
+        <target>Are you sure you want to delete this loan ? It will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment>
         <source>global.seen_counter.album</source>
-        <target>Album consulté %count% fois</target>
+        <target>{0} Album consulted %count% times| {1} Album consulted %count% time| ]1,Inf[ Album consulted %count% times</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment>
         <source>global.seen_counter.collection</source>
-        <target>Collection consultée %count% fois</target>
+        <target>{0} Collection consulted %count% times| {1} Collection consulted %count% time| ]1,Inf[ Collection consulted %count% times</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment>
         <source>global.seen_counter.item</source>
-        <target>Objet consulté %count% fois</target>
+        <target>{0} Item consulted %count% times| {1} Item consulted %count% time| ]1,Inf[ Item consulted %count% times</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment>
         <source>global.seen_counter.tag</source>
-        <target>Tag consulté %count% fois</target>
+        <target>{0} Tag consulted %count% times| {1} Tag consulted %count% time| ]1,Inf[ Tag consulted %count% times</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment>
         <source>global.seen_counter.wishlist</source>
-        <target>Liste de souhait consultée %count% fois</target>
+        <target>{0} Wishlist consulted %count% times| {1} Wishlist consulted %count% time| ]1,Inf[ Wishlist consulted %count% times</target>
       </segment>
     </unit>
     <unit id="W6Rvzmb" name="menu.tools">
       <segment>
         <source>menu.tools</source>
-        <target>Outils</target>
+        <target>Tools</target>
       </segment>
     </unit>
     <unit id="e.bXzZd" name="btn.export_printable_list">
       <segment>
         <source>btn.export_printable_list</source>
-        <target>Liste imprimable</target>
+        <target>Printable list</target>
       </segment>
     </unit>
     <unit id="OTxNY59" name="title.exports">
@@ -3855,49 +3855,49 @@
     <unit id="Lx7mAxQ" name="filter.create">
       <segment>
         <source>filter.create</source>
-        <target>Création</target>
+        <target>Create</target>
       </segment>
     </unit>
     <unit id="xRzOAVz" name="filter.delete">
       <segment>
         <source>filter.delete</source>
-        <target>Suppression</target>
+        <target>Delete</target>
       </segment>
     </unit>
     <unit id="FIesMhl" name="counter.without_number.users">
       <segment>
         <source>counter.without_number.users</source>
-        <target>[0,1] utilisateur| ]1,Inf[ utilisateurs</target>
+        <target>{0} users| {1} user| ]1,Inf[ users</target>
       </segment>
     </unit>
     <unit id="uVNjha9" name="counter.without_number.collections">
       <segment>
         <source>counter.without_number.collections</source>
-        <target>[0,1] collection| ]1,Inf[ collections</target>
+        <target>{0} collections| {1} collection| ]1,Inf[ collections</target>
       </segment>
     </unit>
     <unit id="VrJk8jp" name="counter.without_number.items">
       <segment>
         <source>counter.without_number.items</source>
-        <target>[0,1] objet| ]1,Inf[ objets</target>
+        <target>{0} items| {1} item| ]1,Inf[ items</target>
       </segment>
     </unit>
     <unit id="hjM7hgU" name="counter.without_number.tags">
       <segment>
         <source>counter.without_number.tags</source>
-        <target>[0,1] tag| ]1,Inf[ tags</target>
+        <target>{0} tags| {1} tag| ]1,Inf[ tags</target>
       </segment>
     </unit>
     <unit id="cw0nkO5" name="counter.without_number.wishlists">
       <segment>
         <source>counter.without_number.wishlists</source>
-        <target>[0,1] liste de souhaits| ]1,Inf[ listes de souhaits</target>
+        <target>{0} whishlists| {1} wishlist| ]1,Inf[ wishlists</target>
       </segment>
     </unit>
     <unit id="zzagaMI" name="counter.without_number.wishes">
       <segment>
         <source>counter.without_number.wishes</source>
-        <target>[0,1] souhait| ]1,Inf[ souhaits</target>
+        <target>{0} wishes| {1} wish| ]1,Inf[ wishes</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
@@ -3939,259 +3939,259 @@
     <unit id="VqbMfZ0" name="label.date_format">
       <segment>
         <source>label.date_format</source>
-        <target>Format de date</target>
+        <target>Date format</target>
       </segment>
     </unit>
     <unit id="V5iMey4" name="global.optgroup.date_formats.slash">
       <segment>
         <source>global.optgroup.date_formats.slash</source>
-        <target>Séparations par des slashs</target>
+        <target>Slash separated</target>
       </segment>
     </unit>
     <unit id="oYuZ6vx" name="global.optgroup.date_formats.hyphen">
       <segment>
         <source>global.optgroup.date_formats.hyphen</source>
-        <target>Séparations par des tirets</target>
+        <target>Hyphen separated</target>
       </segment>
     </unit>
     <unit id="89rjttf" name="title.inventories">
       <segment>
         <source>title.inventories</source>
-        <target>Inventaires</target>
+        <target>Inventories</target>
       </segment>
     </unit>
     <unit id="W6YfaKo" name="btn.add_inventory">
       <segment>
         <source>btn.add_inventory</source>
-        <target>Nouvel inventaire</target>
+        <target>New inventory</target>
       </segment>
     </unit>
     <unit id="v5SWCuI" name="label.created_at">
       <segment>
         <source>label.created_at</source>
-        <target>Créé le</target>
+        <target>Created at</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
       <segment>
         <source>message.inventory_added</source>
-        <target>Inventaire %inventory% a été crée</target>
+        <target>Inventory %inventory% has been created</target>
       </segment>
     </unit>
     <unit id="_.ADUgd" name="breadcrumb.add_inventory">
       <segment>
         <source>breadcrumb.add_inventory</source>
-        <target>Créer un nouvel inventaire</target>
+        <target>Create a new inventory</target>
       </segment>
     </unit>
     <unit id="Wjv..OL" name="menu.inventories">
       <segment>
         <source>menu.inventories</source>
-        <target>Inventaires</target>
+        <target>Inventories</target>
       </segment>
     </unit>
     <unit id="5Tlipav" name="global.all_collections">
       <segment>
         <source>global.all_collections</source>
-        <target>Toutes les collections</target>
+        <target>All collections</target>
       </segment>
     </unit>
     <unit id="i9VapGy" name="title.add_inventory">
       <segment>
         <source>title.add_inventory</source>
-        <target>Créer un nouvel inventaire</target>
+        <target>Create a new inventory</target>
       </segment>
     </unit>
     <unit id="iOJaZ01" name="global.entities.inventory">
       <segment>
         <source>global.entities.inventory</source>
-        <target>Inventaire</target>
+        <target>Inventory</target>
       </segment>
     </unit>
     <unit id="EYnSw0A" name="message.inventory_deleted">
       <segment>
         <source>message.inventory_deleted</source>
-        <target>L'inventaire %inventory% a été supprimé</target>
+        <target>Inventory %inventory% was deleted</target>
       </segment>
     </unit>
     <unit id="O6z2.Zr" name="message.delete.inventory">
       <segment>
         <source>message.delete.inventory</source>
-        <target>Êtes-vous sûr de vouloir supprimer cet inventaire ?</target>
+        <target>Are you sure you want to delete this inventory ?</target>
       </segment>
     </unit>
     <unit id="XVATSGt" name="modal.title.delete">
       <segment>
         <source>modal.title.delete</source>
-        <target>Confirmation de la supression</target>
+        <target>Delete confirmation</target>
       </segment>
     </unit>
     <unit id="9Vg2S6n" name="modal.title.share">
       <segment>
         <source>modal.title.share</source>
-        <target>Lien</target>
+        <target>Share link</target>
       </segment>
     </unit>
     <unit id="J0RnHHK" name="message.share_link">
       <segment>
         <source>message.share_link</source>
-        <target>Vous pouvez partager ce lien avec vos amis pour qu'il puisse accéder à cette page (les objets privés seront masqués) :</target>
+        <target>You can share this link so people can see this page (private items will be hidden) :</target>
       </segment>
     </unit>
     <unit id="qnAM2jd" name="title.tools">
       <segment>
         <source>title.tools</source>
-        <target>Outils</target>
+        <target>Tools</target>
       </segment>
     </unit>
-    <unit id="MS8NCN6" name="btn.clean_unused_files ">
+    <unit id="fXireSj" name="btn.clean_unused_files">
       <segment>
-        <source>btn.clean_unused_files </source>
-        <target>Nettoyer les fichiers non utilisés</target>
+        <source>btn.clean_unused_files</source>
+        <target>Clean unused files</target>
       </segment>
     </unit>
     <unit id="xGPqLcT" name="message.files_deleted">
       <segment>
         <source>message.files_deleted</source>
-        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichier supprimés</target>
+        <target>{0} %count% files deleted| {1} %count% file deleted| ]1,Inf[ %count% files deleted</target>
       </segment>
     </unit>
     <unit id="p6vgwuI" name="btn.backup">
       <segment>
         <source>btn.backup</source>
-        <target>Sauvegarde (images et base de données)</target>
-      </segment>
-    </unit>
-    <unit id="FU6pwX." name="message.password_updated">
-      <segment>
-        <source>message.password_updated</source>
-        <target>Le mot de passe a été mis à jour</target>
+        <target>Backup (images and database)</target>
       </segment>
     </unit>
     <unit id="0ifTRc0" name="title.update_password">
       <segment>
         <source>title.update_password</source>
-        <target>Changer le mot de passe</target>
+        <target>Change Password</target>
+      </segment>
+    </unit>
+    <unit id="FU6pwX." name="message.password_updated">
+      <segment>
+        <source>message.password_updated</source>
+        <target>Password has been updated</target>
       </segment>
     </unit>
     <unit id="8iRfcsb" name="label.completion">
       <segment>
         <source>label.completion</source>
-        <target>Avancement</target>
+        <target>Completion</target>
       </segment>
     </unit>
     <unit id="IxgpiDC" name="counter.total_items">
       <segment>
         <source>counter.total_items</source>
-        <target>[0,1] %count% objet| ]1,Inf[ %count% objets</target>
+        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
       </segment>
     </unit>
     <unit id="EZsGAxN" name="counter.checked_items">
       <segment>
         <source>counter.checked_items</source>
-        <target>[0,1] %count% objet coché| ]1,Inf[ %count% objets cochés</target>
+        <target>{0} %count% checked items| {1} %count% checked item| ]1,Inf[ %count% checked items</target>
       </segment>
     </unit>
     <unit id="gVjxaJZ" name="label.completion_rate">
       <segment>
         <source>label.completion_rate</source>
-        <target>Terminé à %rate%%</target>
+        <target>%rate%% completed</target>
       </segment>
     </unit>
     <unit id="MDaq3GB" name="menu.tag_categories">
       <segment>
         <source>menu.tag_categories</source>
-        <target>Catégories de tag</target>
+        <target>Tag categories</target>
       </segment>
     </unit>
     <unit id="YTSS_Q1" name="label.color">
       <segment>
         <source>label.color</source>
-        <target>Couleur</target>
+        <target>Color</target>
       </segment>
     </unit>
     <unit id="NSHmU0h" name="counter.tag_categories">
       <segment>
         <source>counter.tag_categories</source>
-        <target>[0,1] %count% catégorie| ]1,Inf[ %count% catégories</target>
+        <target>{0} %count% categories| {1} %count% category| ]1,Inf[ %count% categories</target>
       </segment>
     </unit>
     <unit id=".ZHhONJ" name="label.tag_category">
       <segment>
         <source>label.tag_category</source>
-        <target>Catégorie</target>
+        <target>Category</target>
       </segment>
     </unit>
     <unit id="HFhQzXX" name="breadcrumb.add_tag_category">
       <segment>
         <source>breadcrumb.add_tag_category</source>
-        <target>Ajouter une catégorie de tag</target>
+        <target>Add tag category</target>
       </segment>
     </unit>
     <unit id="JI8jvUd" name="title.add_tag_category">
       <segment>
         <source>title.add_tag_category</source>
-        <target>Ajouter une catégorie de tag</target>
+        <target>Add tag category</target>
       </segment>
     </unit>
     <unit id="Ail0qPJ" name="message.tag_category_added">
       <segment>
         <source>message.tag_category_added</source>
-        <target>La catégorie de tag %category% a été ajoutée</target>
+        <target>Tag category %category% has been added</target>
       </segment>
     </unit>
     <unit id="XlwsvOZ" name="message.tag_category_deleted">
       <segment>
         <source>message.tag_category_deleted</source>
-        <target>Catégorie de tag %category% a été supprimée</target>
+        <target>Tag category %category% was deleted</target>
       </segment>
     </unit>
     <unit id="bjhCeK0" name="message.delete.tag_category">
       <segment>
         <source>message.delete.tag_category</source>
-        <target>Êtes-vous sûr de vouloir supprimer cette catégorie de tag ? Elle sera définitivement perdue...</target>
+        <target>Are you sure you want to delete this tag category ? It will be permanently lost...</target>
       </segment>
     </unit>
     <unit id="G97C3_o" name="global.entities.tag_category">
       <segment>
         <source>global.entities.tag_category</source>
-        <target>Catégorie de tag</target>
+        <target>Tag category</target>
       </segment>
     </unit>
     <unit id="vg07kkR" name="message.tag_category_edited">
       <segment>
         <source>message.tag_category_edited</source>
-        <target>La catégorie de tag %category% a été mise à jour</target>
+        <target>Tag category %category% has been updated</target>
       </segment>
     </unit>
     <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
       <segment>
         <source>breadcrumb.edit_tag_category</source>
-        <target>Éditer</target>
+        <target>Edit</target>
       </segment>
     </unit>
     <unit id="4z_wk_J" name="title.edit_tag_category">
       <segment>
         <source>title.edit_tag_category</source>
-        <target>Modifier la catégorie de tag %category%</target>
+        <target>Edit tag category %category%</target>
       </segment>
     </unit>
     <unit id="p4z8GI6" name="title.edit_tag">
       <segment>
         <source>title.edit_tag</source>
-        <target>Modifier le tag %tag%</target>
+        <target>Edit tag %tag%</target>
       </segment>
     </unit>
     <unit id="uOTNXQY" name="global.themes.dark_mode">
       <segment>
         <source>global.themes.dark_mode</source>
-        <target>Mode sombre</target>
+        <target>Dark mode</target>
       </segment>
     </unit>
     <unit id="k7MJQ82" name="label.country">
       <segment>
         <source>label.country</source>
-        <target>Pays</target>
+        <target>Country</target>
       </segment>
     </unit>
     <unit id="HnTfLuW" name="global.locale.en_GB">
@@ -4206,10 +4206,16 @@
         <target>Français</target>
       </segment>
     </unit>
+    <unit id="I4vwwju" name="title.overview">
+      <segment>
+        <source>title.overview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
     <unit id="U8IBiON" name="menu.overview">
       <segment>
         <source>menu.overview</source>
-        <target>Aperçu</target>
+        <target>Overview</target>
       </segment>
     </unit>
     <unit id="_wv_IKT" name="title.config">
@@ -4221,91 +4227,73 @@
     <unit id="4akjOge" name="label.phpVersion">
       <segment>
         <source>label.phpVersion</source>
-        <target>Version de PHP</target>
+        <target>PHP version</target>
       </segment>
     </unit>
     <unit id=".up_g77" name="label.isOpcacheAvailable">
       <segment>
         <source>label.isOpcacheAvailable</source>
-        <target>Opcache activé</target>
-      </segment>
-    </unit>
-    <unit id="NgE8xV9" name="global.locale.en">
-      <segment>
-        <source>global.locale.en</source>
-        <target>Anglais</target>
-      </segment>
-    </unit>
-    <unit id="ap04umn" name="global.locale.fr">
-      <segment>
-        <source>global.locale.fr</source>
-        <target>Français</target>
-      </segment>
-    </unit>
-    <unit id="I4vwwju" name="title.overview">
-      <segment>
-        <source>title.overview</source>
-        <target>Aperçu</target>
+        <target>Opcache enabled</target>
       </segment>
     </unit>
     <unit id="335X_OI" name="tab.overview">
       <segment>
         <source>tab.overview</source>
-        <target>Aperçu</target>
+        <target>Overview</target>
       </segment>
     </unit>
-    <unit id="S3uBvV6" name=" label.symfonyVersion">
+    <unit id="wKru5ff" name="label.symfonyVersion">
       <segment>
-        <source> label.symfonyVersion</source>
-        <target>Version de Symfony</target>
+        <source>label.symfonyVersion</source>
+        <target>Symfony version</target>
       </segment>
     </unit>
     <unit id="domeXiF" name="title.edit_album">
       <segment>
         <source>title.edit_album</source>
-        <target>Modifier l'album %title%</target>
+        <target>Edit album %title%</target>
       </segment>
     </unit>
     <unit id="YklQlf8" name="btn.show_more">
       <segment>
         <source>btn.show_more</source>
-        <target>Montrer plus (%count%)</target>
+        <target>Show more (%count%)</target>
       </segment>
     </unit>
     <unit id="zOA0UTD" name="btn.show_less">
       <segment>
         <source>btn.show_less</source>
-        <target>Montrer moins</target>
+        <target>Show less</target>
       </segment>
     </unit>
     <unit id="oCELtKM" name="label.theme">
       <segment>
         <source>label.theme</source>
-        <target>Thème</target>
+        <target>Theme</target>
       </segment>
     </unit>
     <unit id="mEDsKHk" name="label.locale">
       <segment>
         <source>label.locale</source>
-        <target>Langue</target>
+        <target>Locale</target>
       </segment>
     </unit>
     <unit id="ryRhoHH" name="title.album_children">
       <segment>
         <source>title.album_children</source>
-        <target>Sous-album</target>
+        <target>Sub-album</target>
       </segment>
     </unit>
     <unit id="d3LXAOu" name="tooltip.add_tag_category">
       <segment>
         <source>tooltip.add_tag_category</source>
-        <target>Ajouter une nouvelle catégorie de tag</target>
+        <target>Add a new tag category</target>
       </segment>
     </unit>
     <unit id="7SH9MME" name="tooltip.manage_tag_categories">
       <segment>
         <source>tooltip.manage_tag_categories</source>
-        <target>Gérer les catégories</target>
+        <target>Manage tag categories</target>
       </segment>
     </unit>
     <unit id="FA5XLbh" name="enum.history_filter_class.collection">
@@ -4317,7 +4305,7 @@
     <unit id=".s91X7z" name="enum.history_filter_class.item">
       <segment>
         <source>enum.history_filter_class.item</source>
-        <target>Objet</target>
+        <target>Item</target>
       </segment>
     </unit>
     <unit id="Bbv77ja" name="enum.history_filter_class.tag">
@@ -4329,13 +4317,13 @@
     <unit id="XKMAo1i" name="enum.history_filter_type.create">
       <segment>
         <source>enum.history_filter_type.create</source>
-        <target>Création</target>
+        <target>Create</target>
       </segment>
     </unit>
     <unit id="4AoD3Gf" name="enum.history_filter_type.delete">
       <segment>
         <source>enum.history_filter_type.delete</source>
-        <target>Suppression</target>
+        <target>Delete</target>
       </segment>
     </unit>
   </file>

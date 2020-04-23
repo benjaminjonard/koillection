@@ -1,6 +1,6 @@
 import '../translations/config'
-import '../translations/javascript/en'
-import '../translations/javascript/fr'
+import '../translations/javascript/en-GB'
+import '../translations/javascript/fr-FR'
 
 import Translator from '../translator.min.js'
 import echarts from './echarts.min'

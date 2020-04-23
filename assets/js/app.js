@@ -1,8 +1,8 @@
 import './lazy-loading'
 
 import './translations/config'
-import './translations/javascript/en'
-import './translations/javascript/fr'
+import './translations/javascript/en-GB'
+import './translations/javascript/fr-FR'
 
 import 'jquery'
 import 'lightbox2'

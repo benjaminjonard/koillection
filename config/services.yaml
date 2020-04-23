@@ -1,6 +1,6 @@
 parameters:
     version: '1.1.0'
-    locale: 'en'
+    locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
     container.dumper.inline_factories: true
     container.dumper.inline_class_loader: true
