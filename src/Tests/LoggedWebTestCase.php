@@ -22,7 +22,7 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class LoggedWebTestCase extends WebTestCase
 {
-    private KernelBrowser $client;
+    protected KernelBrowser $client;
 
     private User $user;
 

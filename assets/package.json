@@ -25,11 +25,5 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production"
-    },
-    "resolutions": {
-        "acorn": ">=6.4.1",
-        "minimist": ">=1.2.3",
-        "kind-of": ">=6.0.3",
-        "serialize-javascript": ">=2.1.1"
     }
 }

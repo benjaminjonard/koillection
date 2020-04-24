@@ -46,7 +46,6 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         yield ["/loans"];
         yield ["/templates"];
         yield ["/templates/add"];
-        yield ["/settings"];
         yield ["/profile"];
         yield ["/history"];
         yield ["/preview"];

@@ -28,8 +28,8 @@ function readFile(input) {
 }
 
 $('.suggestion').on('click', function () {
-    $(this).parent().find('input').first().val($(this).data('suggestion'));
-    $(this).parent().find('label').first().addClass('active');
+    $(this).closest('.input-field').find('input').first().val($(this).data('suggestion'));
+    $(this).closest('.input-field').find('label').first().addClass('active');
 });
 
 $('#cropInput').on('change', function () {

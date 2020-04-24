@@ -99,7 +99,7 @@
                     </thead>
 
                     <tbody>
-                    {% for wish in wishes %}
+                    {% for wish in wishes|naturalSorting %}
                         <tr class="list-element resize-element" data-title="{{ wish.name }}">
                             <td>
                                 {% if null != wish.image %}

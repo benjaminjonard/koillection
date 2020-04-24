@@ -180,6 +180,7 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $wishDanboard
             ->setOwner($user)
             ->setName('Danboard')
+            ->setCurrency('EUR')
             ->setWishlist($wishlistProxy)
             ->setImage($this->loadImage($user, $manager, 'khorne/wishlists/proxy/danboard.jpeg', 'khorne/wishlists/proxy/danboard_small.jpeg'))
         ;

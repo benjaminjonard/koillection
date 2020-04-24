@@ -3,10 +3,20 @@
         {{- form_errors(form) -}}
         {{- form_widget(form) -}}
         {{- form_label(form) -}}
+
+        {% if suggestions is defined and suggestions is not empty %}
+            <div class="suggestions">
+                {{ 'label.suggestions'|trans }}
+                {% for suggestion in suggestions %}
+                    <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
+                    {{ not loop.last ? ',' }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {{- form_help(form) -}}
     </div>
 {% endblock form_row %}
-
 
 {% block file_widget %}
     {% apply spaceless %}
@@ -76,7 +86,7 @@
 {% endblock %}
 
 {% block collection_widget %}
-{% apply spaceless %}
+    {% apply spaceless %}
         {% if prototype is defined %}
             {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
         {% endif %}
@@ -84,7 +94,7 @@
             {{ form_errors(form) }}
         </div>
         {{ form_rest(form) }}
-{% endapply %}
+    {% endapply %}
 {% endblock collection_widget %}
 
 {% block collection_item_widget %}

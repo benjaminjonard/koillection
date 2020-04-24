@@ -100,7 +100,7 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=5)
      */
     private string $locale;
 

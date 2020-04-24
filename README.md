@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://benjaminjonard.github.io/koillection/" target="_blank">
-        <img src="https://avatars3.githubusercontent.com/u/38983306?s=200&v=4" width="75" height="75">
+        <img src="https://user-images.githubusercontent.com/20560781/80213166-0e560e00-8639-11ea-944e-4f79fdbcef55.png" width="75" height="75">
     </a>
 </p>
 
