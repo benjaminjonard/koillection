@@ -7,14 +7,7 @@
         {{ form_row(form.image) }}
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.name, {'label' : 'label.name'}) }}
-                {% if suggestedNames is defined and suggestedNames is not empty %}
-                    {{ 'label.suggestions'|trans }}
-                    {% for suggestion in suggestedNames %}
-                        <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
-                        {{ not loop.last ? ',' }}
-                    {% endfor %}
-                {% endif %}
+                {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default }) }}
             </div>
             <div class="col s12 l5 xl3">
                 {{ form_row(form.collection, {'label' : 'label.collection'}) }}
@@ -77,7 +70,9 @@
         {% endif %}
 
         <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-        <button type="submit" name="save_and_add_another" class="btn waves-effect waves-light">{{ 'btn.submit_and_add_another'|trans }}</button>
+        {% if app.request.get('_route') == 'app_item_add' %}
+            <button type="submit" name="save_and_add_another" class="btn waves-effect waves-light">{{ 'btn.submit_and_add_another'|trans }}</button>
+        {% endif %}
         <a href="{{ path('app_collection_show', { id : collection.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
     </div>
 {{ form_end(form) }}

@@ -11,24 +11,10 @@
 
     <div class="row">
         <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.childrenTitle, {'label' : 'label.children_title'} ) }}
-            {% if suggestedChildrenTitles is not empty %}
-                {{ 'label.suggestions'|trans }}
-                {% for suggestion in suggestedChildrenTitles %}
-                    <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
-                    {{ not loop.last ? ',' }}
-                {% endfor %}
-            {% endif %}
+            {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
         </div>
         <div class="col s12 l5 xl3">
-            {{ form_row(form.itemsTitle, {'label' : 'label.items_title'} ) }}
-            {% if suggestedItemsTitles is not empty %}
-                {{ 'label.suggestions'|trans }}
-                {% for suggestion in suggestedItemsTitles %}
-                    <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
-                    {{ not loop.last ? ',' }}
-                {% endfor %}
-            {% endif %}
+            {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedChildrenTitles|default} ) }}
         </div>
     </div>
 
