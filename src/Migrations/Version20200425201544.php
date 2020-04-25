@@ -59,6 +59,7 @@ final class Version20200425201544 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_user DROP CONSTRAINT fk_ac32505586383b10');
 
         // Drop koi_image relationships
+        $this->addSql('DROP INDEX uniq_98e338d23da5256d');
         $this->addSql('ALTER TABLE koi_wishlist DROP image_id');
         $this->addSql('DROP INDEX uniq_ac32505586383b10');
         $this->addSql('ALTER TABLE koi_user DROP avatar_id');
@@ -77,7 +78,6 @@ final class Version20200425201544 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_tag DROP image_id');
         $this->addSql('DROP INDEX uniq_f991be53da5256d');
         $this->addSql('ALTER TABLE koi_datum DROP image_id');
-        $this->addSql('DROP INDEX uniq_98e338d23da5256d');
 
         //Finally, drop the table
         $this->addSql('DROP TABLE koi_image');
