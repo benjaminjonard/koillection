@@ -27,20 +27,30 @@ final class TranslationCommandListener
         if ($event->getCommand()->getName() === 'bazinga:js-translation:dump') {
             //Config file
             $configFilePath = $this->assetsPath.'/js/translations/config.js';
-            $fileContent = file_get_contents($configFilePath);
-            $string = "import Translator from '../translator.min.js'";
-            file_put_contents ($configFilePath, $string . PHP_EOL . PHP_EOL . $fileContent);
+            $this->updateContent($configFilePath, '../translator.min.js');
 
             //Locale files (en.js, fr.js...)
             $path = $this->assetsPath.'/js/translations/javascript';
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
             foreach ($files as $name => $file) {
                 if (!$file->isDir() && $file->getExtension() == 'js') {
-                    $fileContent = file_get_contents($file->getPathname());
-                    $string = "import Translator from '../../translator.min.js'";
-                    file_put_contents ($file->getPathname(), $string . PHP_EOL . PHP_EOL . $fileContent);
+                    $this->updateContent($file->getPathname(), '../../translator.min.js');
                 }
             }
         }
+    }
+
+    private function updateContent(string $path, string $translatorPath)
+    {
+        $fileContent = file_get_contents($path);
+
+        //Replace encode dashes, makes the js crash
+        $contentChunks = explode('\u002D', $fileContent);
+        $fileContent = implode('-', $contentChunks);
+
+        //Import translator in the file
+        $fileContent = "import Translator from '$translatorPath'" . PHP_EOL . PHP_EOL . $fileContent;
+
+        file_put_contents ($path, $fileContent);
     }
 }
