@@ -16,7 +16,7 @@
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': album.image ? preload(asset(album.image.path)) : null
+            'image': album.image ? preload(asset(album.image)) : null
         }) }}
     {% else %}
         {{ parent() }}
@@ -28,7 +28,7 @@
         <div class="title-block">
             <div class="left">
                 {% if album.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(album.image.path)) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(album.image)) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ album.color }}">{{album.title|first|upper}}</span>
                 {% endif %}
@@ -88,8 +88,8 @@
                     {% for photo in photos %}
                         <div class="collection-item element valign-wrapper" data-title="{{ photo.title }}">
                             {% set photoText = include('App/Album/_photo_text.html.twig') %}
-                            <a href="{{ preload(asset(photo.image.path)) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
-                                {{ macros.lazyImage(photo.image.thumbnailPath, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
+                            <a href="{{ preload(asset(photo.image)) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
+                                {{ macros.lazyImage(photo.imageSmallThumbnail, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
                             </a>
                         </div>
                     {% endfor %}

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Image;
-use App\Enum\ImageTypeEnum;
+use App\Annotation\Upload;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ImageHandler
@@ -13,12 +16,12 @@ class ImageHandler
     /**
      * @var RandomStringGenerator
      */
-    private RandomStringGenerator $rsg;
+    private RandomStringGenerator $randomStringGenerator;
 
     /**
      * @var ThumbnailGenerator
      */
-    private ThumbnailGenerator $tg;
+    private ThumbnailGenerator $thumbnailGenerator;
 
     /**
      * @var TokenStorageInterface
@@ -31,83 +34,106 @@ class ImageHandler
     private string $publicPath;
 
     /**
-     * ImageHandler constructor.
-     * @param RandomStringGenerator $rsg
-     * @param ThumbnailGenerator $tg
-     * @param TokenStorageInterface $tokenStorage
+     * @var PropertyAccessor
      */
-    public function __construct(RandomStringGenerator $rsg, ThumbnailGenerator $tg, TokenStorageInterface $tokenStorage)
-    {
-        $this->rsg = $rsg;
-        $this->tg = $tg;
+    private PropertyAccessor $accessor;
+    /**
+     * @var DiskUsageCalculator
+     */
+    private DiskUsageCalculator $diskUsageCalculator;
+
+    /**
+     * ImageHandler constructor.
+     * @param RandomStringGenerator $randomStringGenerator
+     * @param ThumbnailGenerator $thumbnailGenerator
+     * @param TokenStorageInterface $tokenStorage
+     * @param DiskUsageCalculator $diskUsageCalculator
+     * @param string $publicPath
+     */
+    public function __construct(
+        RandomStringGenerator $randomStringGenerator,
+        ThumbnailGenerator $thumbnailGenerator,
+        TokenStorageInterface $tokenStorage,
+        DiskUsageCalculator $diskUsageCalculator,
+        string $publicPath
+    ) {
+        $this->randomStringGenerator = $randomStringGenerator;
+        $this->thumbnailGenerator = $thumbnailGenerator;
         $this->tokenStorage = $tokenStorage;
-        $this->publicPath = __DIR__ . '/../../public';
+        $this->diskUsageCalculator = $diskUsageCalculator;
+        $this->publicPath = $publicPath;
+        $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
     /**
-     * @param Image $image
-     * @return int
+     * @param object $entity
+     * @param string $property
+     * @param Upload $annotation
      * @throws \Exception
      */
-    public function upload(Image $image) : int
+    public function upload(object $entity, string $property, Upload $annotation)
     {
-        $sizeUsed = 0;
-        if ($image->getUploadedFile() === null) {
-            return $sizeUsed;
-        }
+        $file = $this->accessor->getValue($entity, $property);
 
-        $path = 'uploads/'.$this->tokenStorage->getToken()->getUser()->getId().'/';
-        $generatedName = $this->rsg->generateString(20);
-        $extension = $image->getUploadedFile()->guessExtension();
+        if ($file instanceof UploadedFile) {
+            $user = $this->tokenStorage->getToken()->getUser();
+            $relativePath = '/uploads/'.$user->getId().'/';
+            $absolutePath = $this->publicPath.$relativePath;
 
-        $image
-            ->setPath($path.$generatedName.'.'.$extension)
-            ->setMimetype($image->getUploadedFile()->getMimeType())
-            ->setFilename($generatedName.'.'.$extension)
-        ;
+            $generatedName = $this->randomStringGenerator->generate(20);
+            $extension = $file->guessExtension();
+            $fileName = $generatedName . '.' . $extension;
 
-        $image->getUploadedFile()->move($this->publicPath.'/'.$path, $image->getPath());
-        $image->setSize(filesize($this->publicPath.'/'.$image->getPath()));
-        $sizeUsed += $image->getSize();
+            $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
 
-        if ($image->getType() === ImageTypeEnum::TYPE_COMMON) {
-            $image->setThumbnailPath($path.$generatedName.'_small.'.$extension);
-            $this->tg->generateThumbnail($this->publicPath.'/'.$image->getPath(), $this->publicPath.'/'.$image->getThumbnailPath(), 150);
-            $image->setThumbnailSize(filesize($this->publicPath.'/'.$image->getThumbnailPath()));
-            $sizeUsed += $image->getThumbnailSize();
-        }
+            $this->removeOldFile($entity, $annotation);
+            $file->move($absolutePath, $fileName);
+            $this->accessor->setValue($entity, $annotation->getPath(), $relativePath.$fileName);
 
-        $image->setUploadedFile(null);
+            if ($annotation->getSmallThumbnailPath() !== null) {
+                $smallThumbnailFileName = $generatedName . '_small.' . $extension;
+                $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 150);
+                $this->accessor->setValue($entity, $annotation->getSmallThumbnailPath(), $relativePath.$smallThumbnailFileName);
+            }
 
-        return $sizeUsed;
-    }
-
-    /**
-     * @param Image $image
-     * @return int
-     */
-    public function remove(Image $image) : int
-    {
-        $sizeFreed = 0;
-        $sizeFreed += $image->getSize();
-
-        if (file_exists($this->publicPath.'/'.$image->getPath())) {
-            unlink($this->publicPath.'/'.$image->getPath());
-        }
-
-        if ($image->getThumbnailPath()) {
-            $sizeFreed += $image->getThumbnailSize();
-            if (file_exists($this->publicPath.'/'.$image->getThumbnailPath())) {
-                unlink($this->publicPath.'/'.$image->getThumbnailPath());
+            if ($annotation->getMediumThumbnailPath() !== null) {
+                $mediumThumbnailFileName = $generatedName . '_medium.' . $extension;
+                $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$mediumThumbnailFileName, 300);
+                $this->accessor->setValue($entity, $annotation->getMediumThumbnailPath(), $relativePath.$mediumThumbnailFileName);
             }
         }
+    }
 
-        $dir = rtrim($this->publicPath.'/'.$image->getPath(), basename($image->getFilename()));
+    public function setFileFromFilename(object $entity, string $property, Upload $annotation)
+    {
+        $file = $this->getFileFromPath($entity, $annotation);
+        $this->accessor->setValue($entity, $property, $file);
+    }
 
-        if (\count(glob("$dir/*")) === 0) {
-            rmdir($dir);
+    public function removeOldFile(object $entity, Upload $annotation)
+    {
+        $file = $this->getFileFromPath($entity, $annotation);
+
+        if ($file !== null) {
+            @unlink($file->getRealPath());
         }
+    }
 
-        return $sizeFreed;
+    public function removeFile(object $entity, string $property)
+    {
+        $file = $this->accessor->getValue($entity, $property);
+        if ($file instanceof File) {
+            @unlink($file->getRealPath());
+        }
+    }
+
+    private function getFileFromPath($entity, $annotation) {
+        $path = $this->publicPath.$this->accessor->getValue($entity, $annotation->getPath());
+
+        if (empty($path)) {
+            return null;
+        } else {
+            return new File($path, false);
+        }
     }
 }

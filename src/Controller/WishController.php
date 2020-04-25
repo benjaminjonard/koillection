@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Item;
-use App\Entity\Image;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
-use App\Service\ItemNameGuesser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

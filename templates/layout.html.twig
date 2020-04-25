@@ -59,7 +59,7 @@
 
                     <div class="header-profile">
                         {% if app.user.avatar != null %}
-                            <img class="user-avatar" src="{{ preload(asset(app.user.avatar.path)) }}">
+                            <img class="user-avatar" src="{{ preload(asset(app.user.avatar)) }}">
                         {% else %}
                             <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
                         {% endif %}

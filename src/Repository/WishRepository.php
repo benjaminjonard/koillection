@@ -41,17 +41,4 @@ class WishRepository extends EntityRepository
             ->getSingleScalarResult()
         ;
     }
-
-    public function findWishesByWishlistId(string $id) : iterable
-    {
-        $qb = $this
-            ->createQueryBuilder('w')
-            ->where('w.wishlist = :id')
-            ->setParameter('id', $id)
-            ->leftJoin('w.image', 'i')
-            ->addSelect('partial i.{id, path, thumbnailPath}')
-        ;
-
-        return $qb->getQuery()->getResult();
-    }
 }

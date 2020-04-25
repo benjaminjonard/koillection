@@ -65,7 +65,7 @@
                         {% for item in results.items|naturalSorting %}
                             <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
                                 <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
-                                    {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                                    {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
                                 </a>
                             </div>
                         {% endfor %}

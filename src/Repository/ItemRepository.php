@@ -163,8 +163,6 @@ class ItemRepository extends EntityRepository
 
         return $this
             ->createQueryBuilder('i')
-            ->leftJoin('i.image', 'im')
-            ->addSelect('partial im.{id, thumbnailPath}')
             ->where('i.id IN (:ids)')
             ->setParameter('ids', $ids)
             ->getQuery()
@@ -178,8 +176,6 @@ class ItemRepository extends EntityRepository
             ->createQueryBuilder('i')
             ->where('i.collection = :id')
             ->setParameter('id', $id)
-            ->leftJoin('i.image', 'im')
-            ->addSelect('partial im.{id, thumbnailPath}')
         ;
 
         return $qb->getQuery()->getResult();

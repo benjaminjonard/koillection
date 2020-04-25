@@ -16,7 +16,7 @@
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': tag.image ? preload(asset(tag.image.thumbnailPath)) : null
+            'image': tag.image ? preload(asset(tag.imageSmallThumbnail)) : null
         }) }}
     {% else %}
         {{ parent() }}
@@ -67,8 +67,8 @@
                 <h5 class="header">{{ 'title.infos'|trans }}</h5>
                 <div class="tag-image-container">
                     {% if tag.image is not null %}
-                        <a href="{{ preload(asset(tag.image.path)) }}" data-lightbox="image-{{ tag.id }}">
-                            <img class="tag-image" src="{{ preload(asset(tag.image.thumbnailPath)) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
+                        <a href="{{ preload(asset(tag.image)) }}" data-lightbox="image-{{ tag.id }}">
+                            <img class="tag-image" src="{{ preload(asset(tag.imageSmallThumbnail)) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
                         </a>
                     {% endif %}
                 </div>
@@ -113,7 +113,7 @@
                     {% for item in tag.items|naturalSorting %}
                         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
                             <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                                {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                                {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
                             </a>
                         </div>
                     {% endfor %}

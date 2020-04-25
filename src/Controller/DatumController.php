@@ -42,7 +42,7 @@ class DatumController extends AbstractController
      *     "fr": "/datum/charger-les-champs-communs/{id}"
      * }, name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("collection", expr="repository.findById(id, true)")
+     * @Entity("collection", expr="repository.findWithItemsAndData(id)")
      *
      * @param Collection $collection
      * @return JsonResponse

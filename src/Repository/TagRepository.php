@@ -15,14 +15,12 @@ use Doctrine\ORM\NoResultException;
 
 class TagRepository extends EntityRepository
 {
-    public function findById(string $id) : ?Tag
+    public function findWithItems(string $id) : ?Tag
     {
         return $this
             ->createQueryBuilder('t')
-            ->leftJoin('t.image', 'im')
             ->leftJoin('t.items', 'i')
-            ->leftJoin('i.image', 'i_i')
-            ->addSelect('partial im.{id, path, thumbnailPath}, partial i.{id, name}, partial i_i.{id, thumbnailPath}')
+            ->addSelect('partial i.{id, name, imageSmallThumbnail}')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
@@ -200,23 +198,6 @@ class TagRepository extends EntityRepository
         }
 
         return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * @param User $owner
-     * @return array
-     */
-    public function findByUserAndWithoutItems(User $owner)
-    {
-        return $this
-            ->createQueryBuilder('t')
-            ->leftJoin('t.items', 'i')
-            ->where('i.id IS NULL')
-            ->andWhere('t.owner = :owner')
-            ->setParameter('owner', $owner)
-            ->getQuery()
-            ->getResult()
-        ;
     }
 
     /**

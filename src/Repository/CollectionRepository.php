@@ -80,19 +80,19 @@ class CollectionRepository extends EntityRepository
      * @return Collection|null
      * @throws NonUniqueResultException
      */
-    public function findWithItems($id) : ?Collection
+    public function findWithItemsAndChildren($id) : ?Collection
     {
         return $this
             ->createQueryBuilder('c')
             ->leftJoin('c.items', 'i')
-            ->addSelect('i')
+            ->leftJoin('c.children', 'ch')
+            ->addSelect('i, ch')
             ->where('c.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-
 
     /**
      * @return array
@@ -127,60 +127,22 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
-     * Find a collection, with children if specified.
-     *
      * @param string $id
-     * @param bool $withData
      * @return Collection|null
      * @throws NonUniqueResultException
      */
-    public function findById(string $id, bool $withData = false) : ?Collection
+    public function findWithItemsAndData(string $id) : ?Collection
     {
-        $qb = $this
+        return $this
             ->createQueryBuilder('c')
             ->where('c.id = :id')
             ->setParameter('id', $id)
+            ->leftJoin('c.items', 'i')
+            ->leftJoin('i.data', 'd')
+            ->addSelect('i, d')
+            ->getQuery()
+            ->getOneOrNullResult()
         ;
-
-        if (true === $withData) {
-            $qb
-                ->leftJoin('c.items', 'i')
-                ->leftJoin('i.data', 'd')
-                ->leftJoin('d.image', 'd_i')
-                ->addSelect('i, d, d_i')
-            ;
-        }
-
-        return $qb->getQuery()->getOneOrNullResult();
-    }
-
-    public function findChildrenByCollectionId(string $id) : iterable
-    {
-        $qb = $this
-            ->createQueryBuilder('c')
-            ->where('c.parent = :id')
-            ->setParameter('id', $id)
-            ->leftJoin('c.image', 'i')
-            ->addSelect('partial i.{id, path}')
-        ;
-
-        return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * @return array
-     */
-    public function findAllParent() : array
-    {
-        $qb = $this
-            ->createQueryBuilder('c')
-            ->leftJoin('c.image', 'c_i')
-            ->addSelect('c_i')
-            ->andWhere('c.parent IS NULL')
-            ->orderBy('c.title', 'ASC')
-        ;
-
-        return $qb->getQuery()->getResult();
     }
 
     /**
@@ -191,8 +153,6 @@ class CollectionRepository extends EntityRepository
     {
         $qb = $this
             ->createQueryBuilder('c')
-            ->leftJoin('c.image', 'c_i')
-            ->addSelect('c_i')
             ->orderBy('c.title', 'ASC')
         ;
 

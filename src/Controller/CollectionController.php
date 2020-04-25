@@ -39,7 +39,7 @@ class CollectionController extends AbstractController
      */
     public function index() : Response
     {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllParent();
+        $collections = $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => null], ['title' => 'ASC']);
 
         return $this->render('App/Collection/index.html.twig', [
             'collections' => $collections
@@ -106,7 +106,7 @@ class CollectionController extends AbstractController
      *     "fr": "/apercu/{id}"
      * }, name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("collection", expr="repository.findById(id)")
+     * @Entity("collection", expr="repository.findWithItemsAndChildren(id)")
      *
      * @param Collection $collection
      * @return Response
@@ -116,9 +116,7 @@ class CollectionController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Collection/show.html.twig', [
-            'collection' => $collection,
-            'children' => $em->getRepository(Collection::class)->findChildrenByCollectionId($collection->getId()),
-            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId())
+            'collection' => $collection
         ]);
     }
 

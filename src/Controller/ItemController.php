@@ -34,7 +34,6 @@ class ItemController extends AbstractController
      * @param TranslatorInterface $translator
      * @param ItemNameGuesser $itemNameGuesser
      * @return Response
-     * @throws NonUniqueResultException
      */
     public function add(Request $request, TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser) : Response
     {

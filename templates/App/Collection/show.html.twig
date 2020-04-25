@@ -16,7 +16,7 @@
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': collection.image ? preload(asset(collection.image.path)) : null
+            'image': collection.image ? preload(asset(collection.image)) : null
         }) }}
     {% else %}
         {{ parent() }}
@@ -28,7 +28,7 @@
         <div class="title-block">
             <div class="left">
                 {% if collection.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image.path)) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image)) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
                 {% endif %}
@@ -81,25 +81,25 @@
 
     <div class="content-block">
         <!-- Child collections -->
-        {% if children is not empty %}
+        {% if collection.children is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h5>
                 <div class="collections grid-container-collections">
-                    {{ include('App/Collection/_list.html.twig', {'collections': children|naturalSorting}) }}
+                    {{ include('App/Collection/_list.html.twig', {'collections': collection.children|naturalSorting}) }}
                 </div>
             </div>
         {% endif %}
 
         <!-- Collection's items -->
-        {% if items is not empty %}
+        {% if collection.items is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ collection.itemsTitle|default('title.items'|trans) }}</h5>
                 <div id="collection-items" class="grid-container-items">
-                    {% for item in items|naturalSorting %}
+                    {% for item in collection.items|naturalSorting %}
                         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
                             <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                                 {% if item.image %}
-                                    {{ macros.lazyImage(item.image.thumbnailPath, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                                    {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
                                 {% else %}
                                     <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}" />
                                 {% endif %}

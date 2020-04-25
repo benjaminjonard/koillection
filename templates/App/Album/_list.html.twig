@@ -4,7 +4,7 @@
     <div class="collection-element element" data-title="{{ album.title }}">
         <a class="collection-circle-thumbnail" href="{{ path('app_album_show'|applyContext, {'id': album.id}) }}" aria-label="{{ 'aria.album'|trans({'%title%': album.title}) }}">
             {% if album.image != null %}
-                {{ macros.lazyImage(album.image.path, null, null, 'placeholder--circle') }}
+                {{ macros.lazyImage(album.image, null, null, 'placeholder--circle') }}
             {% else %}
                 <span class="color-avatar circle avatar color-{{ album.color }}">{{ album.title|first|upper }}</span>
             {% endif %}

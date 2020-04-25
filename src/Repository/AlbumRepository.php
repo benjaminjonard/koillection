@@ -62,17 +62,4 @@ class AlbumRepository extends EntityRepository
             ->getResult()
         ;
     }
-
-    public function findChildrenByAlbumId(string $id) : iterable
-    {
-        $qb = $this
-            ->createQueryBuilder('a')
-            ->where('a.parent = :id')
-            ->setParameter('id', $id)
-            ->leftJoin('a.image', 'i')
-            ->addSelect('partial i.{id, path}')
-        ;
-
-        return $qb->getQuery()->getResult();
-    }
 }

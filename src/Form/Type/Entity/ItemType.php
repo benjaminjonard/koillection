@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -56,7 +57,7 @@ class ItemType extends AbstractType
             ->add('quantity', IntegerType::class, [
                 'required' => true,
             ])
-            ->add('image', ImageType::class, [
+            ->add('file', FileType::class, [
                 'required' => false,
                 'label' => false
             ])

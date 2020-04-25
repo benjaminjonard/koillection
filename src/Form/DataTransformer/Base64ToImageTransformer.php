@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\Image;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -19,16 +18,16 @@ class Base64ToImageTransformer implements DataTransformerInterface
      */
     public function transform($image)
     {
-        if ($image instanceof Image) {
-            $type = pathinfo($image->getPath(), PATHINFO_EXTENSION);
-            $data = file_get_contents($image->getPath());
+        if ($image !== null) {
+            $type = pathinfo($image, PATHINFO_EXTENSION);
+            $data = file_get_contents($image);
             return 'data:image/' . $type . ';base64,' . base64_encode($data);
         }
     }
 
     /**
      * @param mixed $base64
-     * @return Image|mixed
+     * @return UploadedFile|mixed
      * @throws \Exception
      */
     public function reverseTransform($base64)
@@ -48,9 +47,7 @@ class Base64ToImageTransformer implements DataTransformerInterface
         $path = 'tmp/'.$name;
         file_put_contents($path, $data);
         $file = new UploadedFile($path, $name, $matches[1], null, true);
-        $image = new Image();
-        $image->setUploadedFile($file);
 
-        return $image;
+        return $file;
     }
 }

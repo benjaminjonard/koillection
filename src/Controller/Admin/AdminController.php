@@ -76,6 +76,7 @@ class AdminController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
+        //@TODO REWORK
         //Get all paths in database (image + image thumbnail)
         $sql = "SELECT m.path as path, m.thumbnail_path as thumbnailPath FROM koi_image m;";
         $stmt = $em->getConnection()->prepare($sql);

@@ -49,14 +49,13 @@ class TemplateRepository extends EntityRepository
      * @return Template|null
      * @throws NonUniqueResultException
      */
-    public function findByIdWithItems(string $id) : ?Template
+    public function findWithItems(string $id) : ?Template
     {
         return $this
             ->createQueryBuilder('t')
             ->leftJoin('t.items', 'i')
-            ->leftJoin('i.image', 'i_i')
             ->leftJoin('t.fields', 'f')
-            ->addSelect('i, f, i_i')
+            ->addSelect('i, f')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()

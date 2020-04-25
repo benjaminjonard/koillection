@@ -26,35 +26,17 @@ class WishlistRepository extends EntityRepository
     }
 
     /**
-     * @return array
-     */
-    public function findAllParent() : array
-    {
-        return $this
-            ->createQueryBuilder('w')
-            ->leftJoin('w.image', 'w_i')
-            ->addSelect('w_i')
-            ->andWhere('w.parent IS NULL')
-            ->orderBy('w.name', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
      * @param string $id
      * @return Wishlist|null
      * @throws NonUniqueResultException
      */
-    public function findById(string $id) : ?Wishlist
+    public function findWithWishesAndChildren(string $id) : ?Wishlist
     {
         return $this
             ->createQueryBuilder('w')
             ->leftJoin('w.wishes', 'wi')
             ->leftJoin('w.children', 'ch')
-            ->leftJoin('wi.image', 'wi_i')
-            ->leftJoin('ch.image', 'ch_i')
-            ->addSelect('wi, ch, wi_i, ch_i')
+            ->addSelect('wi, ch')
             ->where('w.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
@@ -125,8 +107,6 @@ class WishlistRepository extends EntityRepository
             ->createQueryBuilder('w')
             ->where('w.parent = :id')
             ->setParameter('id', $id)
-            ->leftJoin('w.image', 'i')
-            ->addSelect('partial i.{id, path}')
         ;
 
         return $qb->getQuery()->getResult();

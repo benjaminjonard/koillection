@@ -78,6 +78,12 @@ services:
     App\EventListener\ColorListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
+    App\EventListener\UploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+            - { name: doctrine.event_listener, event: postRemove, lazy: true }
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
 
     #Entity listeners
     App\EventListener\Entity\AlbumListener:
@@ -96,9 +102,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\WishListener:
-        tags:
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\ImageListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\UserListener:

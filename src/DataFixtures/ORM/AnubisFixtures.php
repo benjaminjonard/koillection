@@ -9,7 +9,6 @@ use App\Entity\Collection;
 use App\Entity\Field;
 use App\Entity\Inventory;
 use App\Entity\Item;
-use App\Entity\Image;
 use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\Template;
@@ -104,7 +103,9 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setName('Journey')
             ->setCollection($colletionVideoGames)
-            ->setImage($this->loadImage($user, $manager, 'anubis/collections/videogames/journey.jpeg', 'anubis/collections/videogames/journey_small.jpeg'))
+            ->setImage('anubis/collections/videogames/journey.jpeg')
+            ->setImageSmallThumbnail( 'anubis/collections/videogames/journey_small.jpeg')
+            ->setImageMediumThumbnail( 'anubis/collections/videogames/journey_small.jpeg')
             ->addTag($tagVideoGames)
             ->setSeenCounter(0)
         ;
@@ -148,7 +149,8 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setName('Cthulhu Figure')
             ->setCurrency('EUR')
             ->setWishlist($wishlistPlushes)
-            ->setImage($this->loadImage($user, $manager, 'anubis/wishlists/plushes/anubis.jpeg', 'anubis/wishlists/plushes/anubis_small.jpeg'))
+            ->setImage('anubis/wishlists/plushes/anubis.jpeg')
+            ->setImageSmallThumbnail( 'anubis/wishlists/plushes/anubis_small.jpeg')
         ;
         $manager->persist($wishAnubis);
     }
@@ -174,7 +176,8 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setOwner($user)
             ->setTitle('Photo 1')
             ->setAlbum($albumUnderworld)
-            ->setImage($this->loadImage($user, $manager, 'anubis/albums/underworld/underworld.jpeg', 'anubis/albums/underworld/underworld_small.jpeg'))
+            ->setImage('anubis/albums/underworld/underworld.jpeg')
+            ->setImageSmallThumbnail( 'anubis/albums/underworld/underworld_small.jpeg')
         ;
         $manager->persist($photo1);
     }
@@ -202,37 +205,5 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setPosition(0)
         ;
         $manager->persist($fieldStudio);
-    }
-
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     * @param string $path
-     * @param null|string $thumbnailPath
-     * @return Image
-     */
-    private function loadImage(User $user, ObjectManager $manager, string $path, ?string $thumbnailPath = null) : Image
-    {
-        $file = new File('public/fixtures/'.$path);
-        $image = new Image();
-        $image
-            ->setOwner($user)
-            ->setFilename($path)
-            ->setMimetype($file->getMimeType())
-            ->setPath('fixtures/'.$path)
-            ->setSize($file->getSize())
-        ;
-
-        if ($thumbnailPath) {
-            $thumbnailFile = new File('public/fixtures/'.$thumbnailPath);
-            $image
-                ->setThumbnailPath('fixtures/'.$thumbnailPath)
-                ->setThumbnailSize($thumbnailFile->getSize())
-            ;
-        }
-
-        $manager->persist($image);
-
-        return $image;
     }
 }

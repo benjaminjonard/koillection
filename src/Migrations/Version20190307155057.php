@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
-use App\Enum\DateFormatEnum;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -19,7 +18,7 @@ final class Version20190307155057 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql("ALTER TABLE koi_user ADD date_format VARCHAR(255) NOT NULL DEFAULT '" . DateFormatEnum::FORMAT_HYPHEN_YMD . "'");
+        $this->addSql("ALTER TABLE koi_user ADD date_format VARCHAR(255) NOT NULL DEFAULT 'Y-m-d'");
         $this->addSql('ALTER TABLE koi_user ALTER timezone SET NOT NULL');
     }
 

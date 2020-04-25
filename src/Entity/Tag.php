@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
@@ -43,10 +44,22 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     private ?string $description = null;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var File
+     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
-    private ?Image $image = null;
+    private ?File $file = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private ?string $image = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private ?string $imageSmallThumbnail = null;
 
     /**
      * @var User
@@ -190,15 +203,40 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this;
     }
 
-    public function getImage(): ?Image
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file): self
+    {
+        $this->file = $file;
+        //Force Doctrine to trigger an update
+        $this->setUpdatedAt(new \DateTime());
+
+        return $this;
+    }
+
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): self
+    public function setImage(string $image): self
     {
-        $image->setType(ImageTypeEnum::TYPE_COMMON);
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageSmallThumbnail(): ?string
+    {
+        return $this->imageSmallThumbnail;
+    }
+
+    public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
+    {
+        $this->imageSmallThumbnail = $imageSmallThumbnail;
 
         return $this;
     }

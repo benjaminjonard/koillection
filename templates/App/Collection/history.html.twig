@@ -15,7 +15,7 @@
         <div class="title-block">
             <div class="left">
                 {% if collection.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image.path)) }}" aria-label="{{ 'aria.collection_thumbnail'|trans({'%title%': collection.title}) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image)) }}" aria-label="{{ 'aria.collection_thumbnail'|trans({'%title%': collection.title}) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}" aria-hidden="true">{{collection.title|first|upper}}</span>
                 {% endif %}

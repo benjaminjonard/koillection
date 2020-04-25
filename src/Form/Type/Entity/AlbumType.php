@@ -66,7 +66,7 @@ class AlbumType extends AbstractType
                 'required' => false,
             ])
             ->add(
-                $builder->create('image', TextType::class, [
+                $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
                 ])->addModelTransformer($this->base64ToImageTransformer)

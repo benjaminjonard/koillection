@@ -42,7 +42,7 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add(
-                $builder->create('avatar', TextType::class, [
+                $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
                 ])->addModelTransformer($this->base64ToImageTransformer)

@@ -164,8 +164,8 @@ class AlbumController extends AbstractController
 
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
-            'children' => $em->getRepository(Album::class)->findChildrenByAlbumId($album->getId()),
-            'photos' => $em->getRepository(Photo::class)->findPhotosByAlbumId($album->getId())
+            'children' => $em->getRepository(Album::class)->findBy(['parent' => $album]),
+            'photos' => $em->getRepository(Photo::class)->findBy(['album' => $album])
         ]);
     }
 }
