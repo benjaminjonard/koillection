@@ -28,7 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="error.email.not_unique")
  * @UniqueEntity(fields={"username"}, message="error.username.not_unique")
  */
-class User implements UserInterface, BreadcrumbableInterface
+class User implements UserInterface, BreadcrumbableInterface, \Serializable
 {
     /**
      * @var UuidInterface
@@ -71,7 +71,7 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var File
-     * @Upload(path="image")
+     * @Upload(path="avatar")
      */
     private ?File $file = null;
 
@@ -213,6 +213,25 @@ class User implements UserInterface, BreadcrumbableInterface
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
     }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            ) = unserialize($serialized);
+    }
+
 
     /**
      * @return string

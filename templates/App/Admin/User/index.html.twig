@@ -48,7 +48,7 @@
                             <td>{{ user.username }}</td>
                             <td>{{ getRoleLabel(user.roles[0])|trans }}</td>
                             <td>{{ user.email }}</td>
-                            <td>{{ user.diskSpaceUsed|bytes }}</td>
+                            <td>{{ getSpaceUsedByUser(user)|bytes }}</td>
                             <td>{{ user.diskSpaceAllowed|bytes }}</td>
                             <td title="{{ user.lastDateOfActivity|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}">{{ user.lastDateOfActivity ? user.lastDateOfActivity|dateAgo : '-' }}</td>
                             <td class="table-actions">

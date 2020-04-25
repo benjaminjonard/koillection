@@ -36,15 +36,12 @@ class AdminController extends AbstractController
      * }, name="app_admin_index", methods={"GET"})
      *
      * @return Response
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
-    public function index() : Response
+    public function index(DiskUsageCalculator $diskUsageCalculator) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Admin/Admin/index.html.twig', [
-            'totalSpaceUsed' => $em->getRepository(User::class)->getTotalSpaceUsed(),
             'freeSpace' => disk_free_space('/'),
             'totalSpace' => disk_total_space('/'),
             'counters' => [

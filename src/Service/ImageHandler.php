@@ -106,34 +106,35 @@ class ImageHandler
 
     public function setFileFromFilename(object $entity, string $property, Upload $annotation)
     {
-        $file = $this->getFileFromPath($entity, $annotation);
-        $this->accessor->setValue($entity, $property, $file);
+        $path = $this->publicPath.$this->accessor->getValue($entity, $annotation->getPath());
+
+        if (!empty($path)) {
+            $file = new File($path,false);
+            $this->accessor->setValue($entity, $property, $file);
+        }
     }
 
     public function removeOldFile(object $entity, Upload $annotation)
     {
-        $file = $this->getFileFromPath($entity, $annotation);
-
-        if ($file !== null) {
-            @unlink($file->getRealPath());
+        if ($annotation->getPath() !== null) {
+            $path = $this->accessor->getValue($entity, $annotation->getPath());
+            if ($path !== null) {
+                @unlink($this->publicPath.$path);
+            }
         }
-    }
 
-    public function removeFile(object $entity, string $property)
-    {
-        $file = $this->accessor->getValue($entity, $property);
-        if ($file instanceof File) {
-            @unlink($file->getRealPath());
+        if ($annotation->getSmallThumbnailPath() !== null) {
+            $path = $this->accessor->getValue($entity, $annotation->getSmallThumbnailPath());
+            if ($path !== null) {
+                @unlink($this->publicPath.$path);
+            }
         }
-    }
 
-    private function getFileFromPath($entity, $annotation) {
-        $path = $this->publicPath.$this->accessor->getValue($entity, $annotation->getPath());
-
-        if (empty($path)) {
-            return null;
-        } else {
-            return new File($path, false);
+        if ($annotation->getMediumThumbnailPath() !== null) {
+            $path = $this->accessor->getValue($entity, $annotation->getMediumThumbnailPath());
+            if ($path !== null) {
+                @unlink($this->publicPath.$path);
+            }
         }
     }
 }

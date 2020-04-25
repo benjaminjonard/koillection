@@ -39,13 +39,30 @@ class DiskUsageCalculator
         $this->publicPath = $publicPath;
     }
 
+    public function getSpaceUsedByUsers() : float
+    {
+        $uploadFolderPath = $this->publicPath . '/uploads';
+
+        if (is_dir($uploadFolderPath)) {
+            return $this->getFolderSize($uploadFolderPath);
+        }
+
+        return 0;
+    }
+
     /**
      * @param User $user
      * @return float
      */
     public function getSpaceUsedByUser(User $user) : float
     {
-        return disk_total_space($this->publicPath . '/' . $user->getId());
+        $userFolderPath = $this->publicPath . '/uploads/' . $user->getId();
+
+        if (is_dir($userFolderPath)) {
+            return $this->getFolderSize($userFolderPath);
+        }
+
+        return 0;
     }
 
     /**
@@ -53,10 +70,20 @@ class DiskUsageCalculator
      * @param File $file
      * @throws \Exception
      */
-    public function hasEnoughSpaceForUpload(User $user, File $file) : void
+    public function hasEnoughSpaceForUpload(User $user, File $file)
     {
         if ($user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize()) {
             throw new \Exception($this->translator->trans('error.not_enough_space'));
         }
+    }
+
+    private function getFolderSize($path) : float
+    {
+        $size = 0;
+        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $file) {
+            $size += $file->getSize();
+        }
+
+        return $size;
     }
 }

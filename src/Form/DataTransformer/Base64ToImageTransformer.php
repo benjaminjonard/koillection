@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Base64ToImageTransformer implements DataTransformerInterface
@@ -12,15 +13,15 @@ class Base64ToImageTransformer implements DataTransformerInterface
     /**
      * {@inheritdoc}
      *
-     * @param mixed $image
+     * @param mixed $file
      *
-     * @return array|string
+     * @return $file
      */
-    public function transform($image)
+    public function transform($file)
     {
-        if ($image !== null) {
-            $type = pathinfo($image, PATHINFO_EXTENSION);
-            $data = file_get_contents($image);
+        if ($file instanceof File) {
+            $type = pathinfo($file->getRealPath(), PATHINFO_EXTENSION);
+            $data = file_get_contents($file->getRealPath());
             return 'data:image/' . $type . ';base64,' . base64_encode($data);
         }
     }

@@ -23,6 +23,7 @@ final class Version20200425201544 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_user ADD avatar VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_wish ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_wish ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE koi_wish ADD image_medium_thumbnail VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_photo ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_photo ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_item ADD image VARCHAR(255) DEFAULT NULL');

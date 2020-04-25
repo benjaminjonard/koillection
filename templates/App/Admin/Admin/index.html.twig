@@ -44,7 +44,7 @@
                 <div class="col s2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}</div>
                 <div class="col s2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}</div>
                 <div class="col s2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}</div>
-                <div class="col s2"><div class="counter">{{ totalSpaceUsed|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
+                <div class="col s2"><div class="counter">{{ getSpaceUsedByUsers()|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
             </div>
         </div>
 

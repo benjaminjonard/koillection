@@ -75,8 +75,8 @@ final class UploadListener
     public function postRemove(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        foreach ($this->reader->getUploadFields($entity) as $property => $annotation) {
-            $this->handler->removeFile($entity, $property);
+        foreach ($this->reader->getUploadFields($entity) as $annotation) {
+            $this->handler->removeOldFile($entity, $annotation);
         }
     }
 }
