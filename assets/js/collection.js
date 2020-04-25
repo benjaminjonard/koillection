@@ -38,6 +38,10 @@ $('#cropInput').on('change', function () {
 });
 
 function refreshImage() {
+    if ($('#cropInput').val() == '') {
+        return;
+    }
+
     let $form = $('#cropArea').closest('.row-file').find('.file-input');
     $croppie.croppie('result', {
         type: "canvas",
@@ -45,9 +49,7 @@ function refreshImage() {
     })
     .then(function(imgBase64) {
         $form.val(imgBase64);
-        if ($('#cropInput').val() != '') {
-            $('#cropPreview').html('<img src="' + imgBase64 + '">');
-        }
+        $('#cropPreview').html('<img src="' + imgBase64 + '">');
     });
 }
 
