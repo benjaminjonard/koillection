@@ -2,7 +2,7 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "build/js/app.b4b137ba.js"
+        "build/js/app.16fe8b02.js"
       ]
     },
     "js/statistics": {
@@ -12,7 +12,7 @@
     },
     "css/app": {
       "css": [
-        "build/css/app.1f58db40.css"
+        "build/css/app.32989d72.css"
       ]
     },
     "css/themes/sunset": {
@@ -25,9 +25,9 @@
         "build/css/themes/teal.406d77f0.css"
       ]
     },
-    "css/themes/dark_mode": {
+    "css/themes/dark": {
       "css": [
-        "build/css/themes/dark_mode.4a9222d3.css"
+        "build/css/themes/dark.f32e9360.css"
       ]
     },
     "css/export": {

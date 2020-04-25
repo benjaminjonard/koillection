@@ -4184,8 +4184,8 @@
     </unit>
     <unit id="uOTNXQY" name="global.themes.dark_mode">
       <segment>
-        <source>global.themes.dark_mode</source>
-        <target>Mode sombre</target>
+        <source>global.themes.dark</source>
+        <target>Sombre</target>
       </segment>
     </unit>
     <unit id="k7MJQ82" name="label.country">

@@ -28,7 +28,6 @@ thead {border-bottom: 1px solid #d0d0d0;}
 header {
     margin-bottom: 0; min-height: 75px; position: sticky; top: 0; left: 0; right: 0; display: flex;
     justify-content: space-between; z-index: 1; background-color: #f5f7fa;  padding: 0 20px;
-    border-bottom-color: #eef1f2; border-bottom-width: 1px; border-bottom-style: solid;
 }
 li {list-style-type: none;}
 h1 {font-size: 2.5rem;}
@@ -409,7 +408,7 @@ html.loading:before {
 .header-profile .fa-chevron-down::before {bottom: 62px; left: 25px; position: relative; color: #fff}
 .header-profile .fa-chevron-down {font-size: 13px;}
 .header-profile .down-background {width: 21px; height: 21px; background-color: #009688; display: block; border-radius: 50%; position: relative; bottom: 40px; left: 40px;}
-.user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 33px;}
+.user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 33px; color: #555;}
 
 /* Nav animations */
 .collapse-nav i {transform: rotate( 180deg );}
@@ -505,7 +504,7 @@ header #search_term {
 #inventory-root {margin-left: -80px; margin-right: -80px;}
 .deleted {color: #9e9e9e;}
 
-.cr-vp-circle.fa::before {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-shadow: 0 0 3px #fff;}
+.cr-vp-circle.fa::before {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 .btn-manage-tag-categories {margin-top: 1rem; margin-bottom: 1rem;}
 input[type=color] {display: block; margin: 1rem 0;}
 .list-color {height: 20px; width: 20px; display: block; border-radius: 50%; margin: 0 auto; box-shadow: 0 1px 2px 0 rgba(60,64,67,.302),0 1px 3px 1px rgba(60,64,67,.149)}
@@ -1265,27 +1264,24 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
     filter: alpha(opacity=0);
 }
 
-.flag-label {margin-left: 5px;}
+.theme-preview {display: inline-block; width: 20px; height: 20px; margin-right: 5px; top: 4px; position: relative;}
+.theme-preview.teal-theme.lighter {background-color: #80cbc4 !important;}
+.theme-preview.teal-theme.light {background-color: #1ab0a2 !important;}
+.theme-preview.teal-theme.medium {background-color: #009688 !important;}
+.theme-preview.teal-theme.dark {background-color: #006355 !important;}
+.theme-preview.teal-theme.complementary {background-color: #E74646 !important;}
 
-.theme-preview {display: inline-block; width: 20px; height: 20px; margin-right: 5px;}
-.theme-preview.teal.lighter {background-color: #80cbc4 !important;}
-.theme-preview.teal.light {background-color: #1ab0a2 !important;}
-.theme-preview.teal.medium {background-color: #009688 !important;}
-.theme-preview.teal.dark {background-color: #006355 !important;}
-.theme-preview.teal.complementary {background-color: #E74646 !important;}
+.theme-preview.sunset-theme.lighter {background-color: #ffb0ad;}
+.theme-preview.sunset-theme.light {background-color: #ff7e7e;}
+.theme-preview.sunset-theme.medium {background-color: #f44952;}
+.theme-preview.sunset-theme.dark {background-color: #bb0029;}
+.theme-preview.sunset-theme.complementary {background-color: #376891;}
 
-.theme-preview.sunset.lighter {background-color: #ffb0ad;}
-.theme-preview.sunset.light {background-color: #ff7e7e;}
-.theme-preview.sunset.medium {background-color: #f44952;}
-.theme-preview.sunset.dark {background-color: #bb0029;}
-.theme-preview.sunset.complementary {background-color: #376891;}
-
-.theme-preview.dark_mode.lighter {background-color: silver;}
-.theme-preview.dark_mode.light {background-color: #5e5e5e;}
-.theme-preview.dark_mode.medium {background-color: #2e3136;}
-.theme-preview.dark_mode.dark {background-color: #1e2125;}
-.theme-preview.dark_mode.complementary {background-color: #42a7ff;}
-.theme-label {top: -3px; position: relative;}
+.theme-preview.dark-theme.lighter {background-color: silver;}
+.theme-preview.dark-theme.light {background-color: #5e5e5e;}
+.theme-preview.dark-theme.medium {background-color: #2e3136;}
+.theme-preview.dark-theme.dark {background-color: #1e2125;}
+.theme-preview.dark-theme.complementary {background-color: #42a7ff;}
 
 .tag-category-select-option {position: relative; margin-right: 3px; top: -1px;}
 form[name="search"] input[type="checkbox"] + span, form[name="search_history"] input[type="checkbox"] + span {margin-right: 25px; padding-left: 25px;}
@@ -1302,3 +1298,4 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .datum .file-field {height: 100px;}
 .datum .image-preview-wrapper, .datum .image-preview-wrapper  > div {margin: auto;}
 #additionnalFields .header {margin-top: 55px;}
+.select2-container--default .select2-selection--single .select2-selection__rendered {padding-left: 8px;}
