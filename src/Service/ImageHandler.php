@@ -77,8 +77,8 @@ class ImageHandler
 
         if ($file instanceof UploadedFile) {
             $user = $this->tokenStorage->getToken()->getUser();
-            $relativePath = '/uploads/'.$user->getId().'/';
-            $absolutePath = $this->publicPath.$relativePath;
+            $relativePath = 'uploads/'.$user->getId().'/';
+            $absolutePath = $this->publicPath . '/' . $relativePath;
 
             $generatedName = $this->randomStringGenerator->generate(20);
             $extension = $file->guessExtension();

@@ -11,9 +11,9 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Service\DatabaseDumper;
-use App\Service\DiskUsageCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Kernel;
@@ -43,12 +43,12 @@ class AdminController extends AbstractController
             'freeSpace' => disk_free_space('/'),
             'totalSpace' => disk_total_space('/'),
             'counters' => [
-                'users' => $em->getRepository(User::class)->countAll(),
-                'collections' => $em->getRepository(Collection::class)->countAll(),
-                'items' => $em->getRepository(Item::class)->countAll(),
-                'tags' => $em->getRepository(Tag::class)->countAll(),
-                'wishlists' => $em->getRepository(Wishlist::class)->countAll(),
-                'wishes' => $em->getRepository(Wish::class)->countAll(),
+                'users' => $em->getRepository(User::class)->count([]),
+                'collections' => $em->getRepository(Collection::class)->count([]),
+                'items' => $em->getRepository(Item::class)->count([]),
+                'tags' => $em->getRepository(Tag::class)->count([]),
+                'wishlists' => $em->getRepository(Wishlist::class)->count([]),
+                'wishes' => $em->getRepository(Wish::class)->count([]),
             ],
             'symfonyVersion' => Kernel::VERSION,
             'phpVersion' => phpversion(),
@@ -64,10 +64,9 @@ class AdminController extends AbstractController
      *
      * @param string $publicPath
      * @param TranslatorInterface $translator
-     * @param DiskUsageCalculator $diskUsageCalculator
      * @return Response
      */
-    public function clean(string $publicPath, TranslatorInterface $translator, DiskUsageCalculator $diskUsageCalculator) : Response
+    public function clean(string $publicPath, TranslatorInterface $translator) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -109,7 +108,7 @@ class AdminController extends AbstractController
         $diskPaths = [];
         foreach ($rii as $file) {
             if (!$file->isDir() && $file->getFileName() !== '.gitkeep') {
-                $diskPaths[] = str_replace($publicPath, '', $file->getPathname());
+                $diskPaths[] = str_replace($publicPath. '/', '', $file->getPathname());
             }
         }
 
@@ -169,5 +168,31 @@ class AdminController extends AbstractController
 
             $zip->finish();
         });
+    }
+
+    /**
+     * @Route({
+     *     "en": "/admin/generate-missing-thumbnails",
+     *     "fr": "/admin/generer-les-miniatures-manquantes"
+     * }, name="app_admin_generate_missing_thumbnails", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function regenerateThumbnails(string $publicPath) : Response
+    {
+        $items = $this->getDoctrine()->getRepository(Item::class)->createQueryBuilder('i')
+            ->where('i.image IS NOT NULL')
+            ->andWhere('i.imageMediumThumbnail IS NULL')
+            ->getQuery()
+            ->getResult();
+        ;
+
+        foreach ($items as $item) {
+            $file = new File($publicPath.$items->getImage());
+            $item->setFile($file);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->redirectToRoute('app_admin_index');
     }
 }

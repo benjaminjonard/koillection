@@ -76,25 +76,6 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
-     * @param $id
-     * @return Collection|null
-     * @throws NonUniqueResultException
-     */
-    public function findWithItemsAndChildren($id) : ?Collection
-    {
-        return $this
-            ->createQueryBuilder('c')
-            ->leftJoin('c.items', 'i')
-            ->leftJoin('c.children', 'ch')
-            ->addSelect('i, ch')
-            ->where('c.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-
-    /**
      * @return array
      */
     public function findAllWithItems() : array
@@ -173,21 +154,6 @@ class CollectionRepository extends EntityRepository
         }
 
         return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('c')
-            ->select('count(c.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
     }
 
     public function suggestItemsTitles(Collection $collection) : array

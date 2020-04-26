@@ -32,7 +32,7 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils) : Response
     {
-        if (0 === $this->getDoctrine()->getRepository(User::class)->countAll()) {
+        if (0 === $this->getDoctrine()->getRepository(User::class)->count([])) {
             return $this->redirectToRoute('app_security_first_connection');
         }
 
@@ -61,7 +61,7 @@ class SecurityController extends AbstractController
      */
     public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session) : Response
     {
-        if (0 < $this->getDoctrine()->getRepository(User::class)->countAll()) {
+        if (0 < $this->getDoctrine()->getRepository(User::class)->count([])) {
             return $this->redirectToRoute('app_homepage');
         }
 

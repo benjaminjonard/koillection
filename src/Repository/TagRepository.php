@@ -250,19 +250,4 @@ class TagRepository extends EntityRepository
             ->getResult()
         ;
     }
-
-    /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('t')
-            ->select('count(t.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
-    }
 }

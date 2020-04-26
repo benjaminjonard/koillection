@@ -102,7 +102,6 @@ class WishlistController extends AbstractController
      *     "fr": "/apercu/listes-de-souhaits/{id}"
      * }, name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("wishlist", expr="repository.findWithWishesAndChildren(id)")
      *
      * @param Wishlist $wishlist
      * @return Response
@@ -110,7 +109,9 @@ class WishlistController extends AbstractController
     public function show(Wishlist $wishlist) : Response
     {
         return $this->render('App/Wishlist/show.html.twig', [
-            'wishlist' => $wishlist
+            'wishlist' => $wishlist,
+            'children' => $this->getDoctrine()->getRepository(Wishlist::class)->findBy(['parent' => $wishlist]),
+            'wishes' => $this->getDoctrine()->getRepository(Wish::class)->findBy(['wishlist' => $wishlist])
         ]);
     }
 

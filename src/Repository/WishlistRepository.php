@@ -26,25 +26,6 @@ class WishlistRepository extends EntityRepository
     }
 
     /**
-     * @param string $id
-     * @return Wishlist|null
-     * @throws NonUniqueResultException
-     */
-    public function findWithWishesAndChildren(string $id) : ?Wishlist
-    {
-        return $this
-            ->createQueryBuilder('w')
-            ->leftJoin('w.wishes', 'wi')
-            ->leftJoin('w.children', 'ch')
-            ->addSelect('wi, ch')
-            ->where('w.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-
-    /**
      * @param Wishlist $wishlist
      * @return array
      */
@@ -84,21 +65,6 @@ class WishlistRepository extends EntityRepository
             ->getQuery()
             ->getResult()
             ;
-    }
-
-    /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('w')
-            ->select('count(w.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
     }
 
     public function findChildrenByWishlistId(string $id) : iterable

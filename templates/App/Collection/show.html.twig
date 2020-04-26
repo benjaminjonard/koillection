@@ -81,21 +81,21 @@
 
     <div class="content-block">
         <!-- Child collections -->
-        {% if collection.children is not empty %}
+        {% if children is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h5>
                 <div class="collections grid-container-collections">
-                    {{ include('App/Collection/_list.html.twig', {'collections': collection.children|naturalSorting}) }}
+                    {{ include('App/Collection/_list.html.twig', {'collections': children|naturalSorting}) }}
                 </div>
             </div>
         {% endif %}
 
         <!-- Collection's items -->
-        {% if collection.items is not empty %}
+        {% if items is not empty %}
             <div class="block-element">
                 <h5 class="header">{{ collection.itemsTitle|default('title.items'|trans) }}</h5>
                 <div id="collection-items" class="grid-container-items">
-                    {% for item in collection.items|naturalSorting %}
+                    {% for item in items|naturalSorting %}
                         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
                             <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                                 {% if item.image %}

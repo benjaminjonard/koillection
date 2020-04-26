@@ -38,21 +38,6 @@ class UserRepository extends EntityRepository
     }
 
     /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('u')
-            ->select('count(u.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
-    }
-
-    /**
      * @param User $user
      * @return array
      */

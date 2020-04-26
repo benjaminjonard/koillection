@@ -119,16 +119,6 @@ class ItemRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('i')
-            ->select('count(i.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
-    }
-
     /**
      * @param Collection $collection
      * @return array
@@ -163,6 +153,7 @@ class ItemRepository extends EntityRepository
 
         return $this
             ->createQueryBuilder('i')
+            ->select('partial i.{id, name, imageSmallThumbnail}')
             ->where('i.id IN (:ids)')
             ->setParameter('ids', $ids)
             ->getQuery()

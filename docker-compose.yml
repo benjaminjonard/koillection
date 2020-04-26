@@ -21,6 +21,7 @@ services:
         depends_on:
             - postgres
         volumes:
+            - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
             - ./:/var/www/koillection
 
     postgres:

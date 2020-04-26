@@ -107,15 +107,15 @@ class CollectionController extends AbstractController
      *     "fr": "/apercu/{id}"
      * }, name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("collection", expr="repository.findWithItemsAndChildren(id)")
-     *
      * @param Collection $collection
      * @return Response
      */
     public function show(Collection $collection) : Response
     {
         return $this->render('App/Collection/show.html.twig', [
-            'collection' => $collection
+            'collection' => $collection,
+            'children' => $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => $collection]),
+            'items' => $this->getDoctrine()->getRepository(Item::class)->findBy(['collection' => $collection])
         ]);
     }
 
