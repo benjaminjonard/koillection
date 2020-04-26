@@ -115,7 +115,7 @@ $(document).ready(function() {
         var $imageFrame = $(this).closest('.slider-container').find('.slider-frame:first');
         $imageFrame.find('a:first').attr('href', $(this).attr('href'));
         $imageFrame.find('a:first').attr('data-title', $(this).attr('data-title'));
-        $imageFrame.find('img:first').attr('src', $(this).attr('href'));
+        $imageFrame.find('img:first').attr('src', $(this).find('img').attr('src'));
         $imageFrame.find('.image-label:first').html($(this).attr('data-title'));
         $(this).closest('.slider-elements').find('.slider-element').removeClass('active');
         $(this).addClass('active');

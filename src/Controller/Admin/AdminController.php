@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Service\DatabaseDumper;
+use App\Service\ThumbnailGenerator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
@@ -178,7 +180,7 @@ class AdminController extends AbstractController
      *
      * @return Response
      */
-    public function regenerateThumbnails(string $publicPath) : Response
+    public function regenerateThumbnails(string $publicPath, ThumbnailGenerator $thumbnailGenerator) : Response
     {
         $items = $this->getDoctrine()->getRepository(Item::class)->createQueryBuilder('i')
             ->where('i.image IS NOT NULL')
@@ -188,10 +190,54 @@ class AdminController extends AbstractController
         ;
 
         foreach ($items as $item) {
-            $file = new File($publicPath.$items->getImage());
-            $item->setFile($file);
-            $this->getDoctrine()->getManager()->flush();
+            $imagePath = $publicPath.'/'.$item->getImage();
+            $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
+            $file = basename($imagePath,"." . $ext);
+            $dir = pathinfo($imagePath, PATHINFO_DIRNAME);
+            $mediumThumbnailFileName = $file . '_medium.' . $ext;
+            $thumbnailGenerator->generate($imagePath, $dir.'/'.$mediumThumbnailFileName, 300);
+
+            $item->setImageMediumThumbnail('uploads/'.$item->getOwner()->getId().'/'.$mediumThumbnailFileName);
         }
+        $this->getDoctrine()->getManager()->flush();
+
+        $data = $this->getDoctrine()->getRepository(Datum::class)->createQueryBuilder('d')
+            ->where('d.image IS NOT NULL')
+            ->andWhere('d.imageMediumThumbnail IS NULL')
+            ->getQuery()
+            ->getResult();
+        ;
+
+        foreach ($data as $datum) {
+            $imagePath = $publicPath.'/'.$datum->getImage();
+            $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
+            $file = basename($imagePath,"." . $ext);
+            $dir = pathinfo($imagePath, PATHINFO_DIRNAME);
+            $mediumThumbnailFileName = $file . '_medium.' . $ext;
+            $thumbnailGenerator->generate($imagePath, $dir.'/'.$mediumThumbnailFileName, 300);
+
+            $datum->setImageMediumThumbnail('uploads/'.$datum->getOwner()->getId().'/'.$mediumThumbnailFileName);
+        }
+        $this->getDoctrine()->getManager()->flush();
+
+        $wishes = $this->getDoctrine()->getRepository(Wish::class)->createQueryBuilder('w')
+            ->where('w.image IS NOT NULL')
+            ->andWhere('w.imageMediumThumbnail IS NULL')
+            ->getQuery()
+            ->getResult();
+        ;
+
+        foreach ($wishes as $wish) {
+            $imagePath = $publicPath.'/'.$item->getImage();
+            $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
+            $file = basename($imagePath,"." . $ext);
+            $dir = pathinfo($imagePath, PATHINFO_DIRNAME);
+            $mediumThumbnailFileName = $file . '_medium.' . $ext;
+            $thumbnailGenerator->generate($imagePath, $dir.'/'.$mediumThumbnailFileName, 300);
+
+            $item->setImageMediumThumbnail('uploads/'.$item->getOwner()->getId().'/'.$mediumThumbnailFileName);
+        }
+        $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('app_admin_index');
     }

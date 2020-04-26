@@ -85,7 +85,6 @@ class ImageHandler
             $fileName = $generatedName . '.' . $extension;
 
             $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
-
             $this->removeOldFile($entity, $annotation);
             $file->move($absolutePath, $fileName);
             $this->accessor->setValue($entity, $annotation->getPath(), $relativePath.$fileName);
@@ -106,7 +105,7 @@ class ImageHandler
 
     public function setFileFromFilename(object $entity, string $property, Upload $annotation)
     {
-        $path = $this->publicPath.$this->accessor->getValue($entity, $annotation->getPath());
+        $path = $this->publicPath.'/'.$this->accessor->getValue($entity, $annotation->getPath());
 
         if (!empty($path)) {
             $file = new File($path,false);
@@ -119,21 +118,21 @@ class ImageHandler
         if ($annotation->getPath() !== null) {
             $path = $this->accessor->getValue($entity, $annotation->getPath());
             if ($path !== null) {
-                @unlink($this->publicPath.$path);
+                @unlink($this->publicPath.'/'.$path);
             }
         }
 
         if ($annotation->getSmallThumbnailPath() !== null) {
             $path = $this->accessor->getValue($entity, $annotation->getSmallThumbnailPath());
             if ($path !== null) {
-                @unlink($this->publicPath.$path);
+                @unlink($this->publicPath.'/'.$path);
             }
         }
 
         if ($annotation->getMediumThumbnailPath() !== null) {
             $path = $this->accessor->getValue($entity, $annotation->getMediumThumbnailPath());
             if ($path !== null) {
-                @unlink($this->publicPath.$path);
+                @unlink($this->publicPath.'/'.$path);
             }
         }
     }

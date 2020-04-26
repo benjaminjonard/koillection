@@ -2,7 +2,7 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "build/js/app.e6918d99.js"
+        "build/js/app.9d540ecb.js"
       ]
     },
     "js/statistics": {
