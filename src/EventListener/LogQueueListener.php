@@ -59,7 +59,7 @@ class LogQueueListener
 
             //If we have some 'delete' logs, set property objectDeleted to true on all logs concerning this object
             if (!empty($deletedIds)) {
-                $qb = $this->em->createQueryBuilder()
+                $this->em->createQueryBuilder()
                     ->update(Log::class, 'l')
                     ->set('l.objectDeleted', '?1')
                     ->where('l.objectId IN (?2)')

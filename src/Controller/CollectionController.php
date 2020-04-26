@@ -113,8 +113,6 @@ class CollectionController extends AbstractController
      */
     public function show(Collection $collection) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection
         ]);

@@ -27,7 +27,7 @@ class CountersCache
         $context = $this->contextHandler->getContext();
         $key = $context . '_' . $object->getId();
 
-        $counters = $this->cache->get($context.'_counters', function (ItemInterface $item) use ($context) {
+        $counters = $this->cache->get($context.'_counters', function () use ($context) {
             $counters = [];
             foreach ($this->calculator->computeCounters() as $id => $counter) {
                 $counters[$context . '_' . $id] = $counter;

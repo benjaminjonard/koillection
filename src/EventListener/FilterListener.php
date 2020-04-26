@@ -7,7 +7,6 @@ namespace App\EventListener;
 use App\Entity\User;
 use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -32,6 +31,7 @@ class FilterListener
      * FilterListener constructor.
      * @param EntityManagerInterface $em
      * @param ContextHandler $contextHandler
+     * @param TokenStorageInterface $tokenStorage
      */
     public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, TokenStorageInterface $tokenStorage)
     {
@@ -40,10 +40,7 @@ class FilterListener
         $this->tokenStorage = $tokenStorage;
     }
 
-    /**
-     * @param RequestEvent $event
-     */
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest()
     {
         $filters = $this->em->getFilters();
         $context = $this->contextHandler->getContext();
@@ -71,7 +68,7 @@ class FilterListener
     {
         $user = null;
         if ($this->contextHandler->getContext() === 'user') {
-            $user = $this->em->getRepository(User::class)->findOneByUsername($this->contextHandler->getUsername());
+            $user = $this->em->getRepository(User::class)->findOneBy(['username' => $this->contextHandler->getUsername()]);
             if (!$user) {
                 throw new NotFoundHttpException();
             }

@@ -41,7 +41,7 @@ class ItemController extends AbstractController
 
         $collection = null;
         if ($request->query->has('collection')) {
-            $collection = $em->getRepository(Collection::class)->findWithItems($request->query->get('collection'));
+            $collection = $em->getRepository(Collection::class)->find($request->query->get('collection'));
         }
 
         if (!$collection) {

@@ -73,7 +73,7 @@ class Inventory implements BreadcrumbableInterface
 
     public function getContentAsArray() : array
     {
-        if ($this->contentAsArray) {
+        if (!empty($this->contentAsArray)) {
             return $this->contentAsArray;
         }
 

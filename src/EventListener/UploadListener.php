@@ -7,6 +7,7 @@ namespace App\EventListener;
 use App\Annotation\UploadAnnotationReader;
 use App\Service\ImageHandler;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 final class UploadListener
@@ -45,14 +46,19 @@ final class UploadListener
     }
 
     /**
-     * @param PreUpdateEventArgs $args
+     * @param OnFlushEventArgs $args
      * @throws \Exception
      */
-    public function preUpdate(PreUpdateEventArgs $args)
+    public function onFlush(OnFlushEventArgs $args)
     {
-        $entity = $args->getEntity();
-        foreach ($this->reader->getUploadFields($entity) as $property => $annotation) {
-            $this->handler->upload($entity, $property, $annotation);
+        $em = $args->getEntityManager();
+        $uow = $em->getUnitOfWork();
+
+        foreach ($uow->getScheduledEntityUpdates() as $entity) {
+            foreach ($this->reader->getUploadFields($entity) as $property => $annotation) {
+                $this->handler->upload($entity, $property, $annotation);
+                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($entity)), $entity);
+            }
         }
     }
 

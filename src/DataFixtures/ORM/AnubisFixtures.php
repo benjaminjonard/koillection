@@ -22,7 +22,6 @@ use App\Service\InventoryHandler;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\HttpFoundation\File\File;
 
 class AnubisFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -60,7 +59,6 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
             ->setTimezone('Europe/Paris')
             ->addRole('ROLE_USER')
-            ->setDiskSpaceUsed(0)
         ;
 
         $this->loadCollections($anubis, $manager);

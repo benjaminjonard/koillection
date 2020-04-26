@@ -11,19 +11,19 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Base64ToImageTransformer implements DataTransformerInterface
 {
     /**
-     * {@inheritdoc}
-     *
      * @param mixed $file
-     *
-     * @return $file
+     * @return string
      */
     public function transform($file)
     {
         if ($file instanceof File) {
             $type = pathinfo($file->getRealPath(), PATHINFO_EXTENSION);
             $data = file_get_contents($file->getRealPath());
+
             return 'data:image/' . $type . ';base64,' . base64_encode($data);
         }
+
+        return null;
     }
 
     /**

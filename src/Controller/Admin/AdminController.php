@@ -12,8 +12,6 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Service\DatabaseDumper;
 use App\Service\DiskUsageCalculator;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +35,7 @@ class AdminController extends AbstractController
      *
      * @return Response
      */
-    public function index(DiskUsageCalculator $diskUsageCalculator) : Response
+    public function index() : Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -75,7 +73,7 @@ class AdminController extends AbstractController
 
         //@TODO REWORK
         //Get all paths in database (image + image thumbnail)
-        $sql = "SELECT m.path as path, m.thumbnail_path as thumbnailPath FROM koi_image m;";
+        /*$sql = "SELECT m.path as path, m.thumbnail_path as thumbnailPath FROM koi_image m;";
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
 
@@ -111,7 +109,7 @@ class AdminController extends AbstractController
         foreach ($users as $user) {
             $user->setDiskSpaceUsed($diskUsageCalculator->getSpaceUsedByUser($user));
         }
-        $this->getDoctrine()->getManager()->flush();
+        $this->getDoctrine()->getManager()->flush();*/
 
         return $this->redirectToRoute('app_admin_index');
     }

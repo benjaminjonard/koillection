@@ -139,7 +139,7 @@ class WishController extends AbstractController
             ->setName($wish->getName())
             ->setImage($wish->getImage())
             ->setImageSmallThumbnail($wish->getImageSmallThumbnail())
-            ->getImageMediumThumbnail($wish->getImageMediumThumbnail())
+            ->setImageMediumThumbnail($wish->getImageMediumThumbnail())
         ;
 
         $form = $this->createForm(ItemType::class, $item);

@@ -23,7 +23,6 @@ use App\Service\InventoryHandler;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\HttpFoundation\File\File;
 
 class KhorneFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -61,7 +60,6 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
             ->setVisibility(VisibilityEnum::VISIBILITY_PUBLIC)
             ->setTimezone('Europe/Paris')
             ->addRole('ROLE_ADMIN')
-            ->setDiskSpaceUsed(0)
         ;
 
         $this->loadCollections($admin, $manager);

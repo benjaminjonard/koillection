@@ -109,8 +109,6 @@ class WishlistController extends AbstractController
      */
     public function show(Wishlist $wishlist) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist
         ]);
