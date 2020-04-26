@@ -105,10 +105,10 @@ class ImageHandler
 
     public function setFileFromFilename(object $entity, string $property, Upload $annotation)
     {
-        $path = $this->publicPath.'/'.$this->accessor->getValue($entity, $annotation->getPath());
+        $path = $this->accessor->getValue($entity, $annotation->getPath());
 
-        if (!empty($path)) {
-            $file = new File($path,false);
+        if ($path !== null) {
+            $file = new File($this->publicPath.'/'.$path,false);
             $this->accessor->setValue($entity, $property, $file);
         }
     }
