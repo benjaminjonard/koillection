@@ -35,7 +35,7 @@ class AlbumController extends AbstractController
      */
     public function index() : Response
     {
-        $albums = $this->getDoctrine()->getRepository(Album::class)->findAll();
+        $albums = $this->getDoctrine()->getRepository(Album::class)->findBy(['parent' => null], ['title' => 'ASC']);
         $photosCounter = 0;
         foreach ($albums as $album) {
             $photosCounter += \count($album->getPhotos());
