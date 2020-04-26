@@ -92,7 +92,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 

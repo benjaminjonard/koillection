@@ -77,7 +77,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 

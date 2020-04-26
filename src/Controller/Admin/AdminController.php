@@ -71,26 +71,45 @@ class AdminController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        //@TODO REWORK
-        //Get all paths in database (image + image thumbnail)
-        /*$sql = "SELECT m.path as path, m.thumbnail_path as thumbnailPath FROM koi_image m;";
+        //Get all paths in database (image + image thumbnails)
+        $sql = "
+            SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
+
+            SELECT image AS image FROM koi_album WHERE image IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_wishlist WHERE image IS NOT NULL UNION
+            
+            SELECT avatar AS image FROM koi_user WHERE avatar IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_tag WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_tag WHERE image_small_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_photo WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_photo WHERE image_small_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_item WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_item WHERE image_small_thumbnail IS NOT NULL UNION
+            SELECT image_medium_thumbnail AS image FROM koi_item WHERE image_medium_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_datum WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_datum WHERE image_small_thumbnail IS NOT NULL UNION
+            SELECT image_medium_thumbnail AS image FROM koi_datum WHERE image_medium_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_wish WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL UNION
+            SELECT image_medium_thumbnail AS image FROM koi_wish WHERE image_medium_thumbnail IS NOT NULL;
+        ";
+
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
-
-        $dbPaths = [];
-        while ($row = $stmt->fetch()) {
-            $dbPaths[] = $row['path'];
-            if ($row['thumbnailpath'] !== null) {
-                $dbPaths[] = $row['thumbnailpath'];
-            }
-        }
+        $dbPaths = array_map(function ($row) { return $row['image']; }, $stmt->fetchAll());
 
         //Get all paths on disk
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($publicPath.'/uploads'));
         $diskPaths = [];
         foreach ($rii as $file) {
             if (!$file->isDir() && $file->getFileName() !== '.gitkeep') {
-                $diskPaths[] = str_replace($publicPath. '/', '', $file->getPathname());
+                $diskPaths[] = str_replace($publicPath, '', $file->getPathname());
             }
         }
 
@@ -103,13 +122,6 @@ class AdminController extends AbstractController
         }
 
         $this->addFlash('notice', $translator->trans('message.files_deleted', ['%count%' => \count($diff)]));
-
-        //Update users disk usage
-        $users = $em->getRepository(User::class)->findAll();
-        foreach ($users as $user) {
-            $user->setDiskSpaceUsed($diskUsageCalculator->getSpaceUsedByUser($user));
-        }
-        $this->getDoctrine()->getManager()->flush();*/
 
         return $this->redirectToRoute('app_admin_index');
     }
