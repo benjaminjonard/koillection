@@ -120,5 +120,9 @@ services:
         tags: [app.logger]
     App\Service\Log\Logger\DatumLogger:
         tags: [app.logger]
+    App\Service\Log\Logger\AlbumLogger:
+        tags: [app.logger]
+    App\Service\Log\Logger\WishlistLogger:
+        tags: [app.logger]
     App\Service\Log\LoggerChain:
         arguments: [!tagged app.logger]

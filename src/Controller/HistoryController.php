@@ -26,7 +26,6 @@ class HistoryController extends AbstractController
      * @param PaginatorFactory $paginatorFactory
      * @param int $paginationItemsPerPage
      * @return Response
-     * @throws NonUniqueResultException
      */
     public function index(Request $request, PaginatorFactory $paginatorFactory, int $paginationItemsPerPage) : Response
     {

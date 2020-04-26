@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -21,7 +22,7 @@ use Symfony\Component\HttpFoundation\File\File;
  *     @ORM\Index(name="idx_album_visibility", columns={"visibility"})
  * })
  */
-class Album implements BreadcrumbableInterface, CacheableInterface
+class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     /**
      * @var UuidInterface

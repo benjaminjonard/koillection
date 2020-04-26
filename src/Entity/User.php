@@ -503,7 +503,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this->avatar;
     }
 
-    public function setImage(?string $avatar): self
+    public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
 

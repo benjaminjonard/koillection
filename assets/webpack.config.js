@@ -13,7 +13,6 @@ Encore
     .addStyleEntry('css/themes/teal', './css/themes/teal.css')
     .addStyleEntry('css/themes/dark', './css/themes/dark.css')
     .addStyleEntry('css/export', './css/export.css')
-    .addStyleEntry('css/translation', './css/translation.css')
     .addStyleEntry('css/flags', './css/flags.css')
 
     .addPlugin(new CopyWebpackPlugin([

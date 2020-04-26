@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
   <file id="messages.en">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
@@ -4194,15 +4194,15 @@
         <target>Country</target>
       </segment>
     </unit>
-    <unit id="HnTfLuW" name="global.locale.en_GB">
+    <unit id="HnTfLuW" name="global.locale.en-GB">
       <segment>
-        <source>global.locale.en_GB</source>
+        <source>global.locale.en-GB</source>
         <target>English</target>
       </segment>
     </unit>
-    <unit id="RC_SygJ" name="global.locale.fr_FR">
+    <unit id="RC_SygJ" name="global.locale.fr-FR">
       <segment>
-        <source>global.locale.fr_FR</source>
+        <source>global.locale.fr-FR</source>
         <target>Français</target>
       </segment>
     </unit>
@@ -4324,6 +4324,126 @@
       <segment>
         <source>enum.history_filter_type.delete</source>
         <target>Delete</target>
+      </segment>
+    </unit>
+    <unit id="2j7vQYy" name="breadcrumb.history_album">
+      <segment>
+        <source>breadcrumb.history_album</source>
+        <target>History</target>
+      </segment>
+    </unit>
+    <unit id="v31H5lC" name="log.album.created">
+      <segment>
+        <source>log.album.created</source>
+        <target>Album %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="K8cW39N" name="log.album.property_updated">
+      <segment>
+        <source>log.album.property_updated</source>
+        <target>Property %property% was updated from %old% to %new%</target>
+      </segment>
+    </unit>
+    <unit id="9prbmiu" name="log.album.default_parent">
+      <segment>
+        <source>log.album.default_parent</source>
+        <target>the default album</target>
+      </segment>
+    </unit>
+    <unit id="winaT9n" name="log.album.parent_updated">
+      <segment>
+        <source>log.album.parent_updated</source>
+        <target>Property %property% was updated from %old% to %new%</target>
+      </segment>
+    </unit>
+    <unit id="K_pMaB6" name="log.album.image_updated">
+      <segment>
+        <source>log.album.image_updated</source>
+        <target>Property %property% was updated</target>
+      </segment>
+    </unit>
+    <unit id="1" name="enum.history_filter_class.album">
+      <segment>
+        <source>enum.history_filter_class.album</source>
+        <target>Album</target>
+      </segment>
+    </unit>
+    <unit id="2" name="enum.history_filter_class.wishlist">
+      <segment>
+        <source>enum.history_filter_class.wishlist</source>
+        <target>Wishlist</target>
+      </segment>
+    </unit>
+    <unit id="3" name="log.album.deleted">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>log.album.deleted</source>
+        <target>Album %label% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="3" name="log.wishlist.deleted">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>log.wishlist.deleted</source>
+        <target>Wishlist %label% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="4" name="breadcrumb.history_wishlist">
+      <segment>
+        <source>breadcrumb.history_wishlist</source>
+        <target>History</target>
+      </segment>
+    </unit>
+    <unit id="5" name="log.wishlist.created">
+      <segment>
+        <source>log.wishlist.created</source>
+        <target>Wishlist %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="6" name="log.wishlist.property_updated">
+      <segment>
+        <source>log.wishlist.property_updated</source>
+        <target>Wishlist %property% was updated from %old% to %new%</target>
+      </segment>
+    </unit>
+    <unit id="7" name="log.wishlist.default_parent">
+      <segment>
+        <source>log.wishlist.default_parent</source>
+        <target>the default wishlist</target>
+      </segment>
+    </unit>
+    <unit id="8" name="log.wishlist.parent_updated">
+      <segment>
+        <source>log.wishlist.parent_updated</source>
+        <target>Wishlist %property% was updated from %old% to %new%</target>
+      </segment>
+    </unit>
+    <unit id="9" name="log.wishlist.image_updated">
+      <segment>
+        <source>log.wishlist.image_updated</source>
+        <target>Property %property% was updated</target>
+      </segment>
+    </unit>
+    <unit id="10" name="label.albums">
+      <segment>
+        <source>label.albums</source>
+        <target>Albums</target>
+      </segment>
+    </unit>
+    <unit id="11" name="title.albums">
+      <segment>
+        <source>title.albums</source>
+        <target>Albums</target>
+      </segment>
+    </unit>
+    <unit id="12" name="title.wishlists">
+      <segment>
+        <source>title.wishlists</source>
+        <target>Wishlists</target>
       </segment>
     </unit>
   </file>

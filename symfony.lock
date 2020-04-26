@@ -111,9 +111,6 @@
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
-    "nyholm/nsa": {
-        "version": "1.1.0"
-    },
     "ocramius/package-versions": {
         "version": "1.5.1"
     },
@@ -122,30 +119,6 @@
     },
     "php": {
         "version": "7.4"
-    },
-    "php-translation/common": {
-        "version": "3.0.0"
-    },
-    "php-translation/extractor": {
-        "version": "2.0.0"
-    },
-    "php-translation/symfony-bundle": {
-        "version": "0.10",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "0.10",
-            "ref": "7626dc2639039d9db29789b560171f2f2a9d8468"
-        },
-        "files": [
-            "config/packages/dev/php_translation.yaml",
-            "config/packages/php_translation.yaml",
-            "config/routes/dev/php_translation.yaml",
-            "config/routes/php_translation.yaml"
-        ]
-    },
-    "php-translation/symfony-storage": {
-        "version": "2.1.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"

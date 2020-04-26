@@ -105,14 +105,11 @@ class ItemRepository extends EntityRepository
         }
 
         if ($search->getCreatedAt() instanceof \DateTime) {
-            $start = $search->getCreatedAt()->setTime(0, 0, 0);
-            $end = clone $start;
-            $end->setTime(23, 59, 59);
-
+            $createdAt = $search->getCreatedAt();
             $qb
                 ->andWhere('i.createdAt BETWEEN :start AND :end')
-                ->setParameter('start', $start)
-                ->setParameter('end', $end)
+                ->setParameter('start', $createdAt->setTime(0, 0, 0))
+                ->setParameter('end', $createdAt->setTime(23, 59, 59))
             ;
         }
 

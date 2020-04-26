@@ -16,7 +16,7 @@ class Base64ToImageTransformer implements DataTransformerInterface
      */
     public function transform($file)
     {
-        if ($file instanceof File) {
+        if ($file instanceof File && $file->getRealPath()) {
             $type = pathinfo($file->getRealPath(), PATHINFO_EXTENSION);
             $data = file_get_contents($file->getRealPath());
 

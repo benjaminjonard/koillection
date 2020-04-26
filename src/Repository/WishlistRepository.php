@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Wishlist;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -74,6 +75,36 @@ class WishlistRepository extends EntityRepository
             ->where('w.parent = :id')
             ->setParameter('id', $id)
         ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param Search $search
+     * @return array
+     */
+    public function findForSearch(Search $search) : array
+    {
+        $qb = $this
+            ->createQueryBuilder('w')
+            ->orderBy('w.name', 'ASC')
+        ;
+
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+            $qb
+                ->andWhere('LOWER(w.name) LIKE LOWER(:term)')
+                ->setParameter('term', '%'.$search->getTerm().'%')
+            ;
+        }
+
+        if ($search->getCreatedAt() instanceof \DateTime) {
+            $createdAt = $search->getCreatedAt();
+            $qb
+                ->andWhere('w.createdAt BETWEEN :start AND :end')
+                ->setParameter('start', $createdAt->setTime(0, 0, 0))
+                ->setParameter('end', $createdAt->setTime(23, 59, 59))
+            ;
+        }
 
         return $qb->getQuery()->getResult();
     }

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Entity\Wishlist;
 use App\Form\Type\Model\SearchType;
 use App\Model\Search\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,6 +55,18 @@ class SearchController extends AbstractController
                 $tags = $em->getRepository(Tag::class)->findForSearch($search);
                 if (!empty($tags)) {
                     $results['tags'] = $tags;
+                }
+            }
+            if (true === $search->getSearchInAlbums()) {
+                $albums = $em->getRepository(Album::class)->findForSearch($search);
+                if (!empty($albums)) {
+                    $results['albums'] = $albums;
+                }
+            }
+            if (true === $search->getSearchInTags()) {
+                $wishlists = $em->getRepository(Wishlist::class)->findForSearch($search);
+                if (!empty($wishlists)) {
+                    $results['wishlists'] = $wishlists;
                 }
             }
         }

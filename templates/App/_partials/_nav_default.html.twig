@@ -6,7 +6,7 @@
 <li class="{{ 'app_loan' in route ? 'current' }}"><a href="{{ path('app_loan_index') }}"><i class="fa fa-exchange fa-fw"></i><span>{{ 'menu.loans'|trans }}</span></a></li>
 <li class="{{ 'app_template' in route ? 'current' }}"><a href="{{ path('app_template_index') }}"><i class="fa fa-clone fa-fw"></i><span>{{ 'menu.templates'|trans }}</span></a></li>
 <li class="separate-item"><div></div></li>
-<li class="{{ 'app_history' in route ? 'current' }}"><a href="{{ path('app_history_index', {'search_history[classes]': ['collection', 'item', 'tag'], 'search_history[types]': ['create']}) }}"><i class="fa fa-history fa-fw"></i><span>{{ 'menu.history'|trans }}</span></a></li>
+<li class="{{ 'app_history' in route ? 'current' }}"><a href="{{ path('app_history_index', {'search_history[classes]': ['collection', 'item', 'tag', 'album', 'wishlist'], 'search_history[types]': ['create']}) }}"><i class="fa fa-history fa-fw"></i><span>{{ 'menu.history'|trans }}</span></a></li>
 <li class="{{ 'app_statistics' in route ? 'current' }}"><a href="{{ path('app_statistics_index') }}"><i class="fa fa-area-chart fa-fw"></i><span>{{ 'menu.statistics'|trans }}</span></a></li>
 <li class="{{ 'app_profile' in route ? 'current' }} show-on-mobile"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
 <li class="{{ 'app_tools' in route ? 'current' }} show-on-mobile"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>

@@ -27,8 +27,6 @@ class SecurityController extends AbstractController
      *
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
     public function login(AuthenticationUtils $authenticationUtils) : Response
     {

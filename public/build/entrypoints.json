@@ -12,7 +12,7 @@
     },
     "css/app": {
       "css": [
-        "build/css/app.32989d72.css"
+        "build/css/app.efe0d2c3.css"
       ]
     },
     "css/themes/sunset": {
@@ -35,14 +35,9 @@
         "build/css/export.9fbf458a.css"
       ]
     },
-    "css/translation": {
-      "css": [
-        "build/css/translation.3cb2835b.css"
-      ]
-    },
     "css/flags": {
       "css": [
-        "build/css/flags.036bbc0b.css"
+        "build/css/flags.774121d2.css"
       ]
     }
   }

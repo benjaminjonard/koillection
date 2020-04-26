@@ -1299,3 +1299,6 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .datum .image-preview-wrapper, .datum .image-preview-wrapper  > div {margin: auto;}
 #additionnalFields .header {margin-top: 55px;}
 .select2-container--default .select2-selection--single .select2-selection__rendered {padding-left: 8px;}
+
+.profile-menu .collection-item span {position: relative; top: -4px;}
+.row.search-checkbox-row { margin-bottom: 25px; }

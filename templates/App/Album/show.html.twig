@@ -60,6 +60,9 @@
                     <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
                         <i class="fa fa-trash fa-fw"></i>
                     </a>
+                    <a href="{{ path('app_album_history', {'id': album.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                        <i class="fa fa-history fa-fw"></i>
+                    </a>
                     <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                 {% endif %}
             </div>

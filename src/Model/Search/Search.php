@@ -39,6 +39,16 @@ class Search
     private bool $searchInTags = true;
 
     /**
+     * @var bool
+     */
+    private bool $searchInAlbums = true;
+
+    /**
+     * @var bool
+     */
+    private bool $searchInWishlists = true;
+
+    /**
      * @return string
      */
     public function getTerm(): ?string
@@ -84,7 +94,7 @@ class Search
      *
      * @return bool
      */
-    public function getSearchInItems() : ?bool
+    public function getSearchInItems() : bool
     {
         return $this->searchInItems;
     }
@@ -96,7 +106,7 @@ class Search
      *
      * @return Search
      */
-    public function setSearchInItems(?bool $searchInItems) : Search
+    public function setSearchInItems(bool $searchInItems) : Search
     {
         $this->searchInItems = $searchInItems;
 
@@ -108,7 +118,7 @@ class Search
      *
      * @return bool
      */
-    public function getSearchInCollections() : ?bool
+    public function getSearchInCollections() : bool
     {
         return $this->searchInCollections;
     }
@@ -120,7 +130,7 @@ class Search
      *
      * @return Search
      */
-    public function setSearchInCollections(?bool $searchInCollections) : Search
+    public function setSearchInCollections(bool $searchInCollections) : Search
     {
         $this->searchInCollections = $searchInCollections;
 
@@ -132,7 +142,7 @@ class Search
      *
      * @return bool
      */
-    public function getSearchInTags() : ?bool
+    public function getSearchInTags() : bool
     {
         return $this->searchInTags;
     }
@@ -144,7 +154,7 @@ class Search
      *
      * @return Search
      */
-    public function setSearchInTags(?bool $searchInTags) : Search
+    public function setSearchInTags(bool $searchInTags) : Search
     {
         $this->searchInTags = $searchInTags;
 
@@ -161,5 +171,43 @@ class Search
             $context->buildViolation('error.search.empty')
                 ->addViolation();
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public function getSearchInAlbums(): bool
+    {
+        return $this->searchInAlbums;
+    }
+
+    /**
+     * @param bool $searchInAlbums
+     * @return Search
+     */
+    public function setSearchInAlbums(bool $searchInAlbums): Search
+    {
+        $this->searchInAlbums = $searchInAlbums;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getSearchInWishlists(): bool
+    {
+        return $this->searchInWishlists;
+    }
+
+    /**
+     * @param bool $searchInWishlists
+     * @return Search
+     */
+    public function setSearchInWishlists(bool $searchInWishlists): Search
+    {
+        $this->searchInWishlists = $searchInWishlists;
+
+        return $this;
     }
 }
