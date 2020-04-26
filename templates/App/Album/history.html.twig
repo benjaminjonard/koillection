@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_album_index', 'trans': 'menu.albums'}], album, 'breadcrumb.history_album') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div class="collection-header">
+        <div class="title-block">
+            <div class="left">
+                {% if album.image != null %}
+                    <img class="thumbnail avatar" src="{{ preload(asset(album.image)) }}">
+                {% else %}
+                    <span class="thumbnail color-avatar circle avatar color-{{ album.color }}" aria-hidden="true">{{album.title|first|upper}}</span>
+                {% endif %}
+            </div>
+            <div class="right">
+                <h1>{{ album.title }}</h1>
+                <ul class="nav nav-pills">
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div></div>
+    </div>
+
+    <div class="content-block">
+        {{ include('App/History/_logs_table.html.twig', {'logs': logs}) }}
+    </div>
+{% endblock %}
