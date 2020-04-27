@@ -7,9 +7,6 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20200426100023 extends AbstractMigration
 {
     public function getDescription() : string
@@ -43,26 +40,6 @@ final class Version20200426100023 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
-
-        $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP INDEX UNIQ_7AA7B057C53D045F');
-        $this->addSql('DROP INDEX UNIQ_F670F2D5C53D045F');
-        $this->addSql('DROP INDEX UNIQ_F670F2D59F979BF1');
-        $this->addSql('DROP INDEX UNIQ_F670F2D57C533EFD');
-        $this->addSql('DROP INDEX UNIQ_98E338D2C53D045F');
-        $this->addSql('DROP INDEX UNIQ_9779D1C53D045F');
-        $this->addSql('DROP INDEX UNIQ_9779D19F979BF1');
-        $this->addSql('DROP INDEX UNIQ_2DB8938AC53D045F');
-        $this->addSql('DROP INDEX UNIQ_AC3250551677722F');
-        $this->addSql('DROP INDEX UNIQ_3EBAA302C53D045F');
-        $this->addSql('DROP INDEX UNIQ_3EBAA3029F979BF1');
-        $this->addSql('DROP INDEX UNIQ_3EBAA3027C533EFD');
-        $this->addSql('DROP INDEX UNIQ_16FB1EB7C53D045F');
-        $this->addSql('DROP INDEX UNIQ_16FB1EB79F979BF1');
-        $this->addSql('DROP INDEX UNIQ_F991BE5C53D045F');
-        $this->addSql('DROP INDEX UNIQ_F991BE59F979BF1');
-        $this->addSql('DROP INDEX UNIQ_F991BE57C533EFD');
+        $this->abortIf(true, 'Always move forward.');
     }
 }
