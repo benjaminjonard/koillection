@@ -174,49 +174,4 @@ class AdminController extends AbstractController
             $zip->finish();
         });
     }
-
-    /**
-     * @Route({
-     *     "en": "/admin/tmp",
-     *     "fr": "/admin/tmp"
-     * }, name="app_admin_tmp", methods={"GET"})
-     *
-     * @return Response
-     */
-    public function tmp() : Response
-    {
-        $wishlists = $this->getDoctrine()->getRepository(Wishlist::class)->findAll();
-        foreach ($wishlists as $wishlist) {
-            $log = new Log();
-            $log
-                ->setType(LogTypeEnum::TYPE_CREATE)
-                ->setObjectId($wishlist->getId())
-                ->setObjectLabel($wishlist->__toString())
-                ->setObjectClass(Wishlist::class)
-                ->setOwner($wishlist->getOwner())
-                ->setPayload(json_encode([]))
-                ->setLoggedAt($wishlist->getCreatedAt())
-            ;
-            $this->getDoctrine()->getManager()->persist($log);
-            $this->getDoctrine()->getManager()->flush();
-        }
-
-        $albums = $this->getDoctrine()->getRepository(Album::class)->findAll();
-        foreach ($albums as $album) {
-            $log = new Log();
-            $log
-                ->setType(LogTypeEnum::TYPE_CREATE)
-                ->setObjectId($album->getId())
-                ->setObjectLabel($album->__toString())
-                ->setObjectClass(Album::class)
-                ->setOwner($album->getOwner())
-                ->setPayload(json_encode([]))
-                ->setLoggedAt($album->getCreatedAt())
-            ;
-            $this->getDoctrine()->getManager()->persist($log);
-            $this->getDoctrine()->getManager()->flush();
-        }
-
-        return $this->redirectToRoute('app_admin_index');
-    }
 }
