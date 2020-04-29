@@ -5,12 +5,16 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/license/benjaminjonard/koillection" />
+<img src="https://img.shields.io/github/license/benjaminjonard/koillection" />    
     <img src="https://img.shields.io/github/v/release/benjaminjonard/koillection" />
-    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection" />    
-    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection" />
-    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master" />    
+    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master" />
+    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection" />    
 </p>
+<p align="center">
+    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection" />    
+    <img src="https://img.shields.io/badge/mysql-^8.0-blue" />
+    <img src="https://img.shields.io/badge/postgresql-^10.0-blue" />    
+<p>
 
 # Koillection
 
@@ -71,7 +75,7 @@ Koillection is still in development. There might be some bugs, missing features 
     - `DB_VERSION` -> your postgres server version (ex: 10.3)    
     - `PHP_TZ` -> Your timezone (ex: Europe/Paris)
 4. In the project root folder execute `composer install -o`
-5. And then `php bin/console doctrine:migrations:migrate`
+5. Then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)
 7. (optionnal) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 
