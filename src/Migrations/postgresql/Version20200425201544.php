@@ -16,7 +16,7 @@ final class Version20200425201544 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         //Add new image properties to other tables
         $this->addSql('ALTER TABLE koi_wishlist ADD image VARCHAR(255) DEFAULT NULL');
@@ -86,6 +86,6 @@ final class Version20200425201544 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        $this->abortIf(true, 'Always move forward.');
+        $this->skipIf(true, 'Always move forward.');
     }
 }

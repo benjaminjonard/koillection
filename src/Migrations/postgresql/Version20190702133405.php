@@ -16,7 +16,7 @@ final class Version20190702133405 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE INDEX idx_user_visibility ON koi_user (visibility)');
         $this->addSql('CREATE INDEX idx_album_visibility ON koi_album (visibility)');
@@ -31,6 +31,6 @@ final class Version20190702133405 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        $this->abortIf(true, 'Always move forward.');
+        $this->skipIf(true, 'Always move forward.');
     }
 }

@@ -16,7 +16,7 @@ final class Version20200413120102 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_wishlist DROP CONSTRAINT fk_98e338d23da5256d');
         $this->addSql('ALTER TABLE koi_wish DROP CONSTRAINT fk_f670f2d53da5256d');
@@ -43,6 +43,6 @@ final class Version20200413120102 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        $this->abortIf(true, 'Always move forward.');
+        $this->skipIf(true, 'Always move forward.');
     }
 }

@@ -40,7 +40,8 @@ Koillection is still in development. There might be some bugs, missing features 
     - `opcache`    
     - `openssl`
     - `pdo`    
-    - `pdo_pgsql`    
+    - `pdo_pgsql`
+    - `pdo_mysql`    
     - `phar`
     - `session`
     - `simplexml`
@@ -50,7 +51,7 @@ Koillection is still in development. There might be some bugs, missing features 
     - `xmlwriter`    
     - `zip`              
 2. A webserver such as `Apache2` or `nginx` 
-3. A `Postgresql` database
+3. A `Postgresql` or `Mysql` (version 8 or superior) database
 
 ## Installation
 ### Using git or an archive file
@@ -61,10 +62,11 @@ Koillection is still in development. There might be some bugs, missing features 
     - `APP_ENV` -> Symfony environment, prod by default
     - `APP_DEBUG` -> activate Symfony debug mode, 0 or 1
     - `APP_SECRET` -> a random string
+    - `DB_DRIVER` -> pdo_mysql or pdo_pgsql
     - `DB_USER` -> your database user
     - `DB_PASSWORD` -> your database password
     - `DB_HOST` -> your database address (ex: 127.0.0.1 or localhost)
-    - `DB_PORT` -> your database port (5432 by default for postgres)
+    - `DB_PORT` -> your database port (5432 by default for postgres, 3306 for mysql)
     - `DB_NAME` -> your database name
     - `DB_VERSION` -> your postgres server version (ex: 10.3)    
     - `PHP_TZ` -> Your timezone (ex: Europe/Paris)

@@ -16,7 +16,7 @@ final class Version20200414145453 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_image ADD type VARCHAR(255)');
         $this->addSql("UPDATE koi_image SET type = CASE WHEN thumbnail_path ISNULL THEN 'avatar' ELSE 'common' END;");
@@ -25,6 +25,6 @@ final class Version20200414145453 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        $this->abortIf(true, 'Always move forward.');
+        $this->skipIf(true, 'Always move forward.');
     }
 }

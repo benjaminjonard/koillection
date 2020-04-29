@@ -84,6 +84,7 @@ class TagRepository extends EntityRepository
      * @param string|null $context
      * @return int
      * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countForPagination(string $search = null, string $context = null) : int
     {
@@ -107,9 +108,7 @@ class TagRepository extends EntityRepository
             ;
         }
 
-        $result = $qb->getQuery()->getOneOrNullResult();
-
-        return $result ? $result[1] : 0;
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
 
     /**

@@ -16,7 +16,7 @@ final class Version20180731115129 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE TABLE koi_collection (id UUID NOT NULL, parent_id UUID DEFAULT NULL, owner_id UUID DEFAULT NULL, image_id UUID DEFAULT NULL, title VARCHAR(255) NOT NULL, children_title VARCHAR(255) DEFAULT NULL, items_title VARCHAR(255) DEFAULT NULL, color VARCHAR(6) NOT NULL, seen_counter INT NOT NULL, visibility VARCHAR(255) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_7AA7B057727ACA70 ON koi_collection (parent_id)');
@@ -148,6 +148,6 @@ final class Version20180731115129 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        $this->abortIf(true, 'Always move forward.');
+        $this->skipIf(true, 'Always move forward.');
     }
 }
