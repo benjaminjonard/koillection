@@ -5,12 +5,16 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/license/benjaminjonard/koillection" />
+<img src="https://img.shields.io/github/license/benjaminjonard/koillection" />    
     <img src="https://img.shields.io/github/v/release/benjaminjonard/koillection" />
-    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection" />    
-    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection" />
-    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master" />    
+    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master" />
+    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection" />    
 </p>
+<p align="center">
+    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection" />    
+    <img src="https://img.shields.io/badge/mysql-^8.0-blue" />
+    <img src="https://img.shields.io/badge/postgresql-^10.0-blue" />    
+<p>
 
 # Koillection
 
@@ -40,7 +44,8 @@ Koillection is still in development. There might be some bugs, missing features 
     - `opcache`    
     - `openssl`
     - `pdo`    
-    - `pdo_pgsql`    
+    - `pdo_pgsql`
+    - `pdo_mysql`    
     - `phar`
     - `session`
     - `simplexml`
@@ -50,7 +55,7 @@ Koillection is still in development. There might be some bugs, missing features 
     - `xmlwriter`    
     - `zip`              
 2. A webserver such as `Apache2` or `nginx` 
-3. A `Postgresql` database
+3. A `Postgresql` or `Mysql` (version 8 or superior) database
 
 ## Installation
 ### Using git or an archive file
@@ -61,15 +66,16 @@ Koillection is still in development. There might be some bugs, missing features 
     - `APP_ENV` -> Symfony environment, prod by default
     - `APP_DEBUG` -> activate Symfony debug mode, 0 or 1
     - `APP_SECRET` -> a random string
+    - `DB_DRIVER` -> pdo_mysql or pdo_pgsql
     - `DB_USER` -> your database user
     - `DB_PASSWORD` -> your database password
     - `DB_HOST` -> your database address (ex: 127.0.0.1 or localhost)
-    - `DB_PORT` -> your database port (5432 by default for postgres)
+    - `DB_PORT` -> your database port (5432 by default for postgres, 3306 for mysql)
     - `DB_NAME` -> your database name
     - `DB_VERSION` -> your postgres server version (ex: 10.3)    
     - `PHP_TZ` -> Your timezone (ex: Europe/Paris)
 4. In the project root folder execute `composer install -o`
-5. And then `php bin/console doctrine:migrations:migrate`
+5. Then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)
 7. (optionnal) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 

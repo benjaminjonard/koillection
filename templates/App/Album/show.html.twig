@@ -16,7 +16,7 @@
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': album.image ? preload(asset(album.image.path)) : null
+            'image': album.image ? preload(asset(album.image)) : null
         }) }}
     {% else %}
         {{ parent() }}
@@ -28,7 +28,7 @@
         <div class="title-block">
             <div class="left">
                 {% if album.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(album.image.path)) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(album.image)) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ album.color }}">{{album.title|first|upper}}</span>
                 {% endif %}
@@ -60,6 +60,9 @@
                     <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
                         <i class="fa fa-trash fa-fw"></i>
                     </a>
+                    <a href="{{ path('app_album_history', {'id': album.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                        <i class="fa fa-history fa-fw"></i>
+                    </a>
                     <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                 {% endif %}
             </div>
@@ -88,9 +91,15 @@
                     {% for photo in photos %}
                         <div class="collection-item element valign-wrapper" data-title="{{ photo.title }}">
                             {% set photoText = include('App/Album/_photo_text.html.twig') %}
-                            <a href="{{ preload(asset(photo.image.path)) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
-                                {{ macros.lazyImage(photo.image.thumbnailPath, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
-                            </a>
+                            {% if photo.image %}
+                                <a href="{{ preload(asset(photo.image)) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
+                                    {{ macros.lazyImage(photo.imageSmallThumbnail, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
+                                </a>
+                            {% else %}
+                                <a href="{{ preload(asset('../build/images/default.png')) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
+                                    <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}" />
+                                </a>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>

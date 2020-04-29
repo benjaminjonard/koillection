@@ -19,7 +19,7 @@
         <div class="block-element">
             <h5 class="header">{{ 'title.disk_usage'|trans }}</h5>
             <div class="pie-wrapper">
-                {% set percent = (app.user.diskSpaceUsed * 100 / app.user.diskSpaceAllowed)|round(0, 'floor') %}
+                {% set percent = (getSpaceUsedByUser(app.user) * 100 / app.user.diskSpaceAllowed)|round(0, 'floor') %}
                 <span class="label">{{ percent }}<span class="smaller">%</span></span>
                 <div class="pie {{ percent > 50 ? 'above50' : '' }}">
                     <div class="left-side half-circle" style="-webkit-transform: rotate({{ percent*360/100 }}deg); transform: rotate({{ percent*360/100 }}deg);"></div>
@@ -27,14 +27,14 @@
                 </div>
                 <div class="shadow"></div>
             </div>
-            <div class="pie-stat">{{ app.user.diskSpaceUsed|bytes }}/{{ app.user.diskSpaceAllowed|bytes }}</div>
+            <div class="pie-stat">{{ getSpaceUsedByUser(app.user)|bytes }}/{{ app.user.diskSpaceAllowed|bytes }}</div>
         </div>
 
         <div class="block-element">
             <h5 class="header">{{ 'title.update_profile'|trans }}</h5>
 
             {{ form_start(form) }}
-                {{ form_row(form.avatar) }}
+                {{ form_row(form.file) }}
 
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">

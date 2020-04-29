@@ -26,8 +26,8 @@
         <div class="title-block">
             <h1>{{ 'menu.collections'|trans }}</h1>
             <ul class="nav nav-pills">
-                <li>{{ 'counter.item'|trans({'%count%': getTotalItemsCounter(collections)}) }}</li>
-                <li>{{ 'counter.collection'|trans({'%count%': getTotalChildrenCounter(collections)}) }}</li>
+                <li>{{ 'counter.item'|trans({'%count%': getCounters('collections').items}) }}</li>
+                <li>{{ 'counter.collection'|trans({'%count%': getCounters('collections').children}) }}</li>
             </ul>
         </div>
 

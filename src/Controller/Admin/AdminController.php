@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Entity\Album;
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
+use App\Entity\Log;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
+use App\Enum\LogTypeEnum;
 use App\Service\DatabaseDumper;
-use App\Service\DiskUsageCalculator;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
+use App\Service\ThumbnailGenerator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Kernel;
@@ -36,24 +39,21 @@ class AdminController extends AbstractController
      * }, name="app_admin_index", methods={"GET"})
      *
      * @return Response
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
     public function index() : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Admin/Admin/index.html.twig', [
-            'totalSpaceUsed' => $em->getRepository(User::class)->getTotalSpaceUsed(),
             'freeSpace' => disk_free_space('/'),
             'totalSpace' => disk_total_space('/'),
             'counters' => [
-                'users' => $em->getRepository(User::class)->countAll(),
-                'collections' => $em->getRepository(Collection::class)->countAll(),
-                'items' => $em->getRepository(Item::class)->countAll(),
-                'tags' => $em->getRepository(Tag::class)->countAll(),
-                'wishlists' => $em->getRepository(Wishlist::class)->countAll(),
-                'wishes' => $em->getRepository(Wish::class)->countAll(),
+                'users' => $em->getRepository(User::class)->count([]),
+                'collections' => $em->getRepository(Collection::class)->count([]),
+                'items' => $em->getRepository(Item::class)->count([]),
+                'tags' => $em->getRepository(Tag::class)->count([]),
+                'wishlists' => $em->getRepository(Wishlist::class)->count([]),
+                'wishes' => $em->getRepository(Wish::class)->count([]),
             ],
             'symfonyVersion' => Kernel::VERSION,
             'phpVersion' => phpversion(),
@@ -69,25 +69,44 @@ class AdminController extends AbstractController
      *
      * @param string $publicPath
      * @param TranslatorInterface $translator
-     * @param DiskUsageCalculator $diskUsageCalculator
      * @return Response
      */
-    public function clean(string $publicPath, TranslatorInterface $translator, DiskUsageCalculator $diskUsageCalculator) : Response
+    public function clean(string $publicPath, TranslatorInterface $translator) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
-        //Get all paths in database (image + image thumbnail)
-        $sql = "SELECT m.path as path, m.thumbnail_path as thumbnailPath FROM koi_image m;";
+        //Get all paths in database (image + image thumbnails)
+        $sql = "
+            SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
+
+            SELECT image AS image FROM koi_album WHERE image IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_wishlist WHERE image IS NOT NULL UNION
+            
+            SELECT avatar AS image FROM koi_user WHERE avatar IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_tag WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_tag WHERE image_small_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_photo WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_photo WHERE image_small_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_item WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_item WHERE image_small_thumbnail IS NOT NULL UNION
+            SELECT image_medium_thumbnail AS image FROM koi_item WHERE image_medium_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_datum WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_datum WHERE image_small_thumbnail IS NOT NULL UNION
+            SELECT image_medium_thumbnail AS image FROM koi_datum WHERE image_medium_thumbnail IS NOT NULL UNION
+            
+            SELECT image AS image FROM koi_wish WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL UNION
+            SELECT image_medium_thumbnail AS image FROM koi_wish WHERE image_medium_thumbnail IS NOT NULL;
+        ";
+
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
-
-        $dbPaths = [];
-        while ($row = $stmt->fetch()) {
-            $dbPaths[] = $row['path'];
-            if ($row['thumbnailpath'] !== null) {
-                $dbPaths[] = $row['thumbnailpath'];
-            }
-        }
+        $dbPaths = array_map(function ($row) { return $row['image']; }, $stmt->fetchAll());
 
         //Get all paths on disk
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($publicPath.'/uploads'));
@@ -107,13 +126,6 @@ class AdminController extends AbstractController
         }
 
         $this->addFlash('notice', $translator->trans('message.files_deleted', ['%count%' => \count($diff)]));
-
-        //Update users disk usage
-        $users = $em->getRepository(User::class)->findAll();
-        foreach ($users as $user) {
-            $user->setDiskSpaceUsed($diskUsageCalculator->getSpaceUsedByUser($user));
-        }
-        $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('app_admin_index');
     }

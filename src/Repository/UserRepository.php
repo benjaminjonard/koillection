@@ -38,38 +38,6 @@ class UserRepository extends EntityRepository
     }
 
     /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('u')
-            ->select('count(u.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
-    }
-
-    /**
-     * @return int
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
-    public function getTotalSpaceUsed() : int
-    {
-        $totalSpaceUsed = $this
-            ->createQueryBuilder('u')
-            ->select('SUM(u.diskSpaceUsed)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
-
-        return (int) $totalSpaceUsed;
-    }
-
-    /**
      * @param User $user
      * @return array
      */

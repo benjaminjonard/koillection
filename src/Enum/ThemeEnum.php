@@ -8,12 +8,12 @@ class ThemeEnum
 {
     public const THEME_SUNSET = 'sunset';
     public const THEME_TEAL = 'teal';
-    public const THEME_DARK_MODE = 'dark_mode';
+    public const THEME_DARK = 'dark';
 
     public const THEMES = [
         self::THEME_SUNSET,
         self::THEME_TEAL,
-        self::THEME_DARK_MODE,
+        self::THEME_DARK,
     ];
 
     public const HUE_MAIN = 'main';
@@ -37,7 +37,7 @@ class ThemeEnum
             'dark' => '#006355',
             'complementary' => '#E74646'
         ],
-        self::THEME_DARK_MODE => [
+        self::THEME_DARK => [
             'main' => '#42a7ff',
             'lightest' => '#8FF4FF',
             'light' => '#5CC1FF',
@@ -54,7 +54,7 @@ class ThemeEnum
         return [
             self::THEME_TEAL => 'global.themes.teal',
             self::THEME_SUNSET => 'global.themes.sunset',
-            self::THEME_DARK_MODE => 'global.themes.dark_mode',
+            self::THEME_DARK => 'global.themes.dark',
         ];
     }
 

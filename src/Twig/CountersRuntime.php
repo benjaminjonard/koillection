@@ -20,27 +20,4 @@ class CountersRuntime implements RuntimeExtensionInterface
     {
         return $this->countersCache->getCounters($object);
     }
-
-    public function getTotalItemsCounter($objects)
-    {
-        $counter = 0;
-
-        foreach ($objects as $object) {
-            $counter += $this->countersCache->getCounters($object)['items'];
-        }
-
-        return $counter;
-    }
-
-
-    public function getTotalChildrenCounter($objects)
-    {
-        $counter = 0;
-
-        foreach ($objects as $object) {
-            $counter += $this->countersCache->getCounters($object)['children'];
-        }
-
-        return $counter;
-    }
 }

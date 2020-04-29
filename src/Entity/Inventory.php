@@ -56,7 +56,7 @@ class Inventory implements BreadcrumbableInterface
      * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -73,7 +73,7 @@ class Inventory implements BreadcrumbableInterface
 
     public function getContentAsArray() : array
     {
-        if ($this->contentAsArray) {
+        if (!empty($this->contentAsArray)) {
             return $this->contentAsArray;
         }
 

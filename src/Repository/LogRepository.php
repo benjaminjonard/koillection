@@ -70,8 +70,6 @@ class LogRepository extends EntityRepository
             ;
         }
 
-        $result = $qb->getQuery()->getOneOrNullResult();
-
-        return $result ? $result[1] : 0;
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
 }

@@ -50,28 +50,72 @@ class CounterCalculator
      */
     public function computeCounters() : array
     {
-        $params = [
-            $this->em->getClassMetadata(Collection::class)->getTableName(),
-            $this->em->getClassMetadata(Item::class)->getTableName(),
-            'collection_id'
-        ];
-        $collections = $this->executeItemQuery(...$params);
+        //Collections and items
+        $tableName = $this->em->getClassMetadata(Collection::class)->getTableName();
+        $itemTableName = $this->em->getClassMetadata(Item::class)->getTableName();
+        $parentProperty = 'collection_id';
+        $globalCacheIndexKey = 'collections';
+        $collections = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
+        $collections = array_merge($collections, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        $params = [
-            $this->em->getClassMetadata(Wishlist::class)->getTableName(),
-            $this->em->getClassMetadata(Wish::class)->getTableName(),
-            'wishlist_id'
-        ];
-        $wishlists = $this->executeItemQuery(...$params);
+        //Wishlists and wishes
+        $tableName = $this->em->getClassMetadata(Wishlist::class)->getTableName();
+        $itemTableName = $this->em->getClassMetadata(Wish::class)->getTableName();
+        $parentProperty = 'wishlist_id';
+        $globalCacheIndexKey = 'wishlists';
+        $wishlists = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
+        $wishlists = array_merge($wishlists, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        $params = [
-            $this->em->getClassMetadata(Album::class)->getTableName(),
-            $this->em->getClassMetadata(Photo::class)->getTableName(),
-            'album_id'
-        ];
-        $albums = $this->executeItemQuery(...$params);
+        //Albums and photos
+        $tableName = $this->em->getClassMetadata(Album::class)->getTableName();
+        $itemTableName = $this->em->getClassMetadata(Photo::class)->getTableName();
+        $parentProperty = 'album_id';
+        $globalCacheIndexKey = 'albums';
+        $albums = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
+        $albums = array_merge($albums, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
         return \array_merge($collections, $wishlists, $albums);
+    }
+
+    public function getGlobalCounters($table, $itemTable, $cacheIndexName) : array
+    {
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('children', 'children');
+        $alias = $this->qng->generateJoinAlias('c');
+        $ownerId = $this->contextHandler->getContextUser()->getId();
+
+        $sql = "
+            SELECT COUNT(DISTINCT id) as children
+            FROM $table $alias
+            WHERE $alias.owner_id = '$ownerId'
+        ";
+
+        if ($this->em->getFilters()->isEnabled('visibility')) {
+            $sql .= sprintf("AND %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
+        }
+        $children = $this->em->createNativeQuery($sql, $rsm)->getResult()[0]['children'];
+
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('items', 'items');
+        $alias = $this->qng->generateJoinAlias('i');
+
+        $sql = "
+            SELECT COUNT(DISTINCT id) as items
+            FROM $itemTable $alias
+            WHERE $alias.owner_id = '$ownerId'
+        ";
+
+        if ($this->em->getFilters()->isEnabled('visibility')) {
+            $sql .= sprintf("AND %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
+        }
+        $items = $this->em->createNativeQuery($sql, $rsm)->getResult()[0]['items'];
+
+        $results[$cacheIndexName] = [
+            'children' => $children,
+            'items' => $items,
+        ];
+
+        return $results;
     }
 
     /**
@@ -88,9 +132,10 @@ class CounterCalculator
         $alias = $this->qng->generateJoinAlias('c');
         $ownerId = $this->contextHandler->getContextUser()->getId();
 
+        //Counters per objects
         $sqlCounters = $this->getSQLForCounters($alias, $table, $itemTable, $parentProperty);
         $sql = "
-            SELECT $alias.id as id, ($sqlCounters) as counters 
+            SELECT $alias.id as id, ($sqlCounters) as counters
             FROM $table $alias
             WHERE $alias.owner_id = '$ownerId'
         ";

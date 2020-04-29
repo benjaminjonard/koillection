@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Log;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
@@ -37,7 +38,7 @@ class WishlistController extends AbstractController
      */
     public function index() : Response
     {
-        $wishlists = $this->getDoctrine()->getRepository(Wishlist::class)->findAllParent();
+        $wishlists = $this->getDoctrine()->getRepository(Wishlist::class)->findBy(['parent' => null], ['name' => 'ASC']);
 
         return $this->render('App/Wishlist/index.html.twig', [
             'wishlists' => $wishlists
@@ -102,19 +103,16 @@ class WishlistController extends AbstractController
      *     "fr": "/apercu/listes-de-souhaits/{id}"
      * }, name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("wishlist", expr="repository.findById(id)")
      *
      * @param Wishlist $wishlist
      * @return Response
      */
     public function show(Wishlist $wishlist) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist,
-            'children' => $em->getRepository(Wishlist::class)->findChildrenByWishlistId($wishlist->getId()),
-            'wishes' => $em->getRepository(Wish::class)->findWishesByWishlistId($wishlist->getId())
+            'children' => $this->getDoctrine()->getRepository(Wishlist::class)->findBy(['parent' => $wishlist]),
+            'wishes' => $this->getDoctrine()->getRepository(Wish::class)->findBy(['wishlist' => $wishlist])
         ]);
     }
 
@@ -166,5 +164,28 @@ class WishlistController extends AbstractController
         $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
         return $this->redirectToRoute('app_wishlist_index');
+    }
+
+    /**
+     * @Route({
+     *     "en": "/wishlists/{id}/history",
+     *     "fr": "/listes-de-souhaits/{id}/historique"
+     * }, name="app_wishlist_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @param Wishlist $wishlist
+     * @return Response
+     */
+    public function history(Wishlist $wishlist) : Response
+    {
+        return $this->render('App/Wishlist/history.html.twig', [
+            'wishlist' => $wishlist,
+            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
+                'objectId' => $wishlist->getId(),
+                'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($wishlist))->getName(),
+            ], [
+                'loggedAt' => 'DESC',
+                'type' => 'DESC'
+            ])
+        ]);
     }
 }

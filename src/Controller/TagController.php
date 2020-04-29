@@ -86,7 +86,7 @@ class TagController extends AbstractController
      *     "fr": "/apercu/tags/{id}"
      * }, name="app_preview_tag_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("tag", expr="repository.findById(id)")
+     * @Entity("tag", expr="repository.findWithItems(id)")
      *
      * @param Tag $tag
      * @return Response

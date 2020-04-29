@@ -1,3 +1,4 @@
 bazinga_js_translation:
+    locale_fallback: en-GB
     active_domains:
         - javascript

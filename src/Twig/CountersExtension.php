@@ -15,9 +15,7 @@ class CountersExtension extends AbstractExtension
     public function getFunctions() : array
     {
         return [
-            new TwigFunction('getCounters', [CountersRuntime::class, 'getCounters']),
-            new TwigFunction('getTotalItemsCounter', [CountersRuntime::class, 'getTotalItemsCounter']),
-            new TwigFunction('getTotalChildrenCounter', [CountersRuntime::class, 'getTotalChildrenCounter']),
+            new TwigFunction('getCounters', [CountersRuntime::class, 'getCounters'])
         ];
     }
 }

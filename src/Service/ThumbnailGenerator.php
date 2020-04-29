@@ -12,44 +12,41 @@ class ThumbnailGenerator
      * @param int $thumbnailWidth
      * @throws \Exception
      */
-    public function generateThumbnail(string $path, string $thumbnailPath, int $thumbnailWidth) : void
+    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : void
     {
-        $mimetype = mime_content_type($path);
+        list($width, $height, $mime) = getimagesize($path);
 
-        switch ($mimetype) {
-            case 'image/gif':
+        switch ($mime) {
+            case IMAGETYPE_GIF:
                 $image = imagecreatefromgif($path);
                 break;
-            case 'image/jpg':
-            case 'image/jpeg':
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
                 $image = imagecreatefromjpeg($path);
                 break;
-            case 'image/png':
+            case IMAGETYPE_PNG:
                 $image = imagecreatefrompng($path);
                 break;
-            case 'image/webp':
+            case IMAGETYPE_WEBP:
                 $image = imagecreatefromwebp($path);
                 break;
             default:
                 throw new \Exception('Your image cannot be processed, please use another one.');
         }
 
-        $imageWidth = imagesx($image);
-        $imageHeight = imagesy($image);
-
-        $thumbnailHeight = (int) floor($imageHeight * ($thumbnailWidth / $imageWidth));
+        $thumbnailHeight = (int) floor($height * ($thumbnailWidth / $width));
         $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
         //Transparency
-        if ($mimetype === 'image/png' || $mimetype === 'image/webp') {
+        if ($mime === IMAGETYPE_PNG || $mime === IMAGETYPE_WEBP) {
             imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
             imagealphablending($thumbnail, false);
             imagesavealpha($thumbnail, true);
-        } elseif ($mimetype === 'image/gif') {
+        } elseif ($mime === IMAGETYPE_GIF) {
             imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
         }
 
-        imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $imageWidth, $imageHeight);
+        imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $width, $height);
 
         $dir = explode('/', $thumbnailPath);
         \array_pop($dir);
@@ -59,18 +56,18 @@ class ThumbnailGenerator
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
 
-        switch ($mimetype) {
-            case 'image/gif':
+        switch ($mime) {
+            case IMAGETYPE_GIF:
                 imagegif($thumbnail, $thumbnailPath);
                 break;
-            case 'image/jpg':
-            case 'image/jpeg':
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
                 imagejpeg($thumbnail, $thumbnailPath, 100);
                 break;
-            case 'image/png':
-                imagepng($thumbnail, $thumbnailPath, 9);
+            case IMAGETYPE_PNG:
+                imagepng($thumbnail, $thumbnailPath);
                 break;
-            case 'image/webp':
+            case IMAGETYPE_WEBP:
                 imagewebp($thumbnail, $thumbnailPath, 100);
                 break;
             default:

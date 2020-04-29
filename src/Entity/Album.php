@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
-use App\Enum\ImageTypeEnum;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
@@ -20,7 +22,7 @@ use Ramsey\Uuid\UuidInterface;
  *     @ORM\Index(name="idx_album_visibility", columns={"visibility"})
  * })
  */
-class Album implements BreadcrumbableInterface, CacheableInterface
+class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     /**
      * @var UuidInterface
@@ -43,10 +45,16 @@ class Album implements BreadcrumbableInterface, CacheableInterface
     private ?string $color = null;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var File
+     * @Upload(path="image")
      */
-    private ?Image $image = null;
+    private ?File $file = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    private ?string $image = null;
 
     /**
      * @var User
@@ -240,19 +248,6 @@ class Album implements BreadcrumbableInterface, CacheableInterface
         return $this;
     }
 
-    public function getImage(): ?Image
-    {
-        return $this->image;
-    }
-
-    public function setImage(?Image $image): self
-    {
-        $image->setType(ImageTypeEnum::TYPE_AVATAR);
-        $this->image = $image;
-
-        return $this;
-    }
-
     /**
      * @return DoctrineCollection|Album[]
      */
@@ -292,6 +287,35 @@ class Album implements BreadcrumbableInterface, CacheableInterface
     public function setParent(?self $parent): self
     {
         $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file): self
+    {
+        $this->file = $file;
+        //Force Doctrine to trigger an update
+        $this->setUpdatedAt(new \DateTime());
 
         return $this;
     }

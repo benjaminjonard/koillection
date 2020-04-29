@@ -39,8 +39,8 @@
         <div id="collection-items" class="grid-container-items">
             {% for sign in signs %}
                 <div class="collection-item element valign-wrapper">
-                    <a href="{{ preload(asset(sign.image.path)) }}" data-lightbox="image-{{ sign.id }}" data-title="{{ sign.item.name }} - {{ sign.label }}">
-                        {{ macros.lazyImage(sign.image.thumbnailPath, 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}), sign.label) }}
+                    <a href="{{ preload(asset(sign.image)) }}" data-lightbox="image-{{ sign.id }}" data-title="{{ sign.item.name }} - {{ sign.label }}">
+                        {{ macros.lazyImage(sign.imageSmallThumbnail, 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}), sign.label) }}
                     </a>
                 </div>
             {% endfor %}

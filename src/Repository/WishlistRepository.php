@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Wishlist;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -22,43 +23,6 @@ class WishlistRepository extends EntityRepository
             ->orderBy('w.name', 'ASC')
             ->getQuery()
             ->getResult()
-        ;
-    }
-
-    /**
-     * @return array
-     */
-    public function findAllParent() : array
-    {
-        return $this
-            ->createQueryBuilder('w')
-            ->leftJoin('w.image', 'w_i')
-            ->addSelect('w_i')
-            ->andWhere('w.parent IS NULL')
-            ->orderBy('w.name', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
-     * @param string $id
-     * @return Wishlist|null
-     * @throws NonUniqueResultException
-     */
-    public function findById(string $id) : ?Wishlist
-    {
-        return $this
-            ->createQueryBuilder('w')
-            ->leftJoin('w.wishes', 'wi')
-            ->leftJoin('w.children', 'ch')
-            ->leftJoin('wi.image', 'wi_i')
-            ->leftJoin('ch.image', 'ch_i')
-            ->addSelect('wi, ch, wi_i, ch_i')
-            ->where('w.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getOneOrNullResult()
         ;
     }
 
@@ -104,30 +68,43 @@ class WishlistRepository extends EntityRepository
             ;
     }
 
-    /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('w')
-            ->select('count(w.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
-    }
-
     public function findChildrenByWishlistId(string $id) : iterable
     {
         $qb = $this
             ->createQueryBuilder('w')
             ->where('w.parent = :id')
             ->setParameter('id', $id)
-            ->leftJoin('w.image', 'i')
-            ->addSelect('partial i.{id, path}')
         ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param Search $search
+     * @return array
+     */
+    public function findForSearch(Search $search) : array
+    {
+        $qb = $this
+            ->createQueryBuilder('w')
+            ->orderBy('w.name', 'ASC')
+        ;
+
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+            $qb
+                ->andWhere('LOWER(w.name) LIKE LOWER(:term)')
+                ->setParameter('term', '%'.$search->getTerm().'%')
+            ;
+        }
+
+        if ($search->getCreatedAt() instanceof \DateTime) {
+            $createdAt = $search->getCreatedAt();
+            $qb
+                ->andWhere('w.createdAt BETWEEN :start AND :end')
+                ->setParameter('start', $createdAt->setTime(0, 0, 0))
+                ->setParameter('end', $createdAt->setTime(23, 59, 59))
+            ;
+        }
 
         return $qb->getQuery()->getResult();
     }

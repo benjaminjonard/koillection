@@ -63,11 +63,7 @@ services:
             - { name: doctrine.event_listener, event: postPersist, lazy: true }
             - { name: doctrine.event_listener, event: postUpdate, lazy: true }
             - { name: doctrine.event_listener, event: postRemove, lazy: true }
-    App\EventListener\LoggableListener:
-        tags:
-            - { name: doctrine.event_listener, event: postPersist, lazy: true }
-            - { name: doctrine.event_listener, event: preRemove, lazy: true }
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
+
     App\EventListener\TimestampableListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
@@ -78,6 +74,17 @@ services:
     App\EventListener\ColorListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
+    App\EventListener\UploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
+            - { name: doctrine.event_listener, event: postRemove, lazy: true }
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
+    App\EventListener\LoggableListener:
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, lazy: true, priority: -5 }
+            - { name: doctrine.event_listener, event: preRemove, lazy: true, priority: -5 }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true, priority: -5 }
 
     #Entity listeners
     App\EventListener\Entity\AlbumListener:
@@ -98,9 +105,6 @@ services:
     App\EventListener\Entity\WishListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\ImageListener:
-        tags:
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
     App\EventListener\Entity\UserListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
@@ -115,6 +119,10 @@ services:
     App\Service\Log\Logger\TagLogger:
         tags: [app.logger]
     App\Service\Log\Logger\DatumLogger:
+        tags: [app.logger]
+    App\Service\Log\Logger\AlbumLogger:
+        tags: [app.logger]
+    App\Service\Log\Logger\WishlistLogger:
         tags: [app.logger]
     App\Service\Log\LoggerChain:
         arguments: [!tagged app.logger]

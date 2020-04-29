@@ -4,7 +4,8 @@ version: '3'
 services:
     #FPM image
     koillection:
-        image: docker.pkg.github.com/benjaminjonard/koillection/fpm:v1.1
+        container_name: koillection
+        image: docker.pkg.github.com/benjaminjonard/koillection/fpm:dev
         restart: always
         ports:
             - 80:80
@@ -12,23 +13,21 @@ services:
             - APP_ENV=dev
             - APP_DEBUG=1
             - DB_NAME=koillection
-            - DB_HOST=postgres
-            - DB_PORT=5432
+            - DB_HOST=mysql
+            - DB_PORT=3306
             - DB_USER=root
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
-            - DB_VERSION=10.4
+            - DB_VERSION=8
             - PHP_TZ=Europe/Paris
         depends_on:
             - postgres
         volumes:
-            #- ./docker/volumes/koillection/conf:/conf
-            #- ./docker/volumes/koillection/uploads:/uploads
+            - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
             - ./:/var/www/koillection
-            - ./docker/volumes/php/php.ini:/etc/php/7.4/fpm/conf.d/php.ini
 
     postgres:
         container_name: postgres
-        image: postgres:10-alpine
+        image: postgres:latest
         environment:
             - POSTGRES_DB=koillection
             - POSTGRES_USER=root
@@ -37,3 +36,13 @@ services:
             - 5432:5432
         volumes:
             - "./docker/volumes/postgresql:/var/lib/postgresql/data"
+
+    mysql:
+        container_name: mysql
+        image: mysql:latest
+        environment:
+            - MYSQL_ROOT_PASSWORD=m6iFpZTkR1U6klSvLtRF
+            - MYSQL_DATABASE=koillection
+            - MYSQL_USER=root
+        volumes:
+            - "./docker/volumes/mysql:/var/lib/mysql"

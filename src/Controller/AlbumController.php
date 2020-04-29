@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Album;
+use App\Entity\Log;
 use App\Entity\Photo;
 use App\Form\Type\Entity\AlbumType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +36,7 @@ class AlbumController extends AbstractController
      */
     public function index() : Response
     {
-        $albums = $this->getDoctrine()->getRepository(Album::class)->findAll();
+        $albums = $this->getDoctrine()->getRepository(Album::class)->findBy(['parent' => null], ['title' => 'ASC']);
         $photosCounter = 0;
         foreach ($albums as $album) {
             $photosCounter += \count($album->getPhotos());
@@ -164,8 +165,31 @@ class AlbumController extends AbstractController
 
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
-            'children' => $em->getRepository(Album::class)->findChildrenByAlbumId($album->getId()),
-            'photos' => $em->getRepository(Photo::class)->findPhotosByAlbumId($album->getId())
+            'children' => $em->getRepository(Album::class)->findBy(['parent' => $album]),
+            'photos' => $em->getRepository(Photo::class)->findBy(['album' => $album])
+        ]);
+    }
+
+    /**
+     * @Route({
+     *     "en": "/albums/{id}/history",
+     *     "fr": "/albums/{id}/historique"
+     * }, name="app_album_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @param Album $album
+     * @return Response
+     */
+    public function history(Album $album) : Response
+    {
+        return $this->render('App/Album/history.html.twig', [
+            'album' => $album,
+            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
+                'objectId' => $album->getId(),
+                'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($album))->getName(),
+            ], [
+                'loggedAt' => 'DESC',
+                'type' => 'DESC'
+            ])
         ]);
     }
 }

@@ -59,6 +59,14 @@ class SearchType extends AbstractType
                 'label' => false,
                 'required' => false
             ])
+            ->add('searchInAlbums', CheckboxType::class, [
+                'label' => false,
+                'required' => false
+            ])
+            ->add('searchInWishlists', CheckboxType::class, [
+                'label' => false,
+                'required' => false
+            ])
         ;
     }
 

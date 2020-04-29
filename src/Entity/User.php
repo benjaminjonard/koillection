@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
-use App\Enum\ImageTypeEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -27,7 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="error.email.not_unique")
  * @UniqueEntity(fields={"username"}, message="error.username.not_unique")
  */
-class User implements UserInterface, BreadcrumbableInterface
+class User implements UserInterface, BreadcrumbableInterface, \Serializable
 {
     /**
      * @var UuidInterface
@@ -60,7 +61,7 @@ class User implements UserInterface, BreadcrumbableInterface
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private string $password;
+    private ?string $password;
 
     /**
      * @var string
@@ -69,10 +70,16 @@ class User implements UserInterface, BreadcrumbableInterface
     private ?string $plainPassword = null;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var File
+     * @Upload(path="avatar")
      */
-    private ?Image $avatar = null;
+    private ?File $file = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    private ?string $avatar = null;
 
     /**
      * @var bool
@@ -118,14 +125,7 @@ class User implements UserInterface, BreadcrumbableInterface
 
     /**
      * @var int
-     * @ORM\Column(type="bigint", options={"default"=0})
-     */
-    private int $diskSpaceUsed;
-
-    /**
-     * @var int
      * @ORM\Column(type="bigint", options={"default"=268435456})
-     * @Assert\GreaterThanOrEqual(propertyPath="diskSpaceUsed")
      */
     private int $diskSpaceAllowed;
 
@@ -199,14 +199,13 @@ class User implements UserInterface, BreadcrumbableInterface
      * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
         $this->id = Uuid::uuid4();
         $this->roles = ['ROLE_USER'];
         $this->diskSpaceAllowed = 536870912;
-        $this->diskSpaceUsed = 0;
         $this->enabled = false;
         $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = 'EUR';
@@ -214,6 +213,25 @@ class User implements UserInterface, BreadcrumbableInterface
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
     }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            ) = unserialize($serialized);
+    }
+
 
     /**
      * @return string
@@ -321,20 +339,6 @@ class User implements UserInterface, BreadcrumbableInterface
         return $this;
     }
 
-    public function increaseDiskSpaceUsed(int $value) : self
-    {
-        $this->diskSpaceUsed += $value;
-
-        return $this;
-    }
-
-    public function decreaseDiskSpaceUsed(int $value) : self
-    {
-        $this->diskSpaceUsed -= $value;
-
-        return $this;
-    }
-
     /**
      * @return null|string
      */
@@ -434,18 +438,6 @@ class User implements UserInterface, BreadcrumbableInterface
         return $this;
     }
 
-    public function getDiskSpaceUsed(): ?int
-    {
-        return $this->diskSpaceUsed;
-    }
-
-    public function setDiskSpaceUsed(int $diskSpaceUsed): self
-    {
-        $this->diskSpaceUsed = $diskSpaceUsed;
-
-        return $this;
-    }
-
     public function getDiskSpaceAllowed(): ?int
     {
         return $this->diskSpaceAllowed;
@@ -506,15 +498,28 @@ class User implements UserInterface, BreadcrumbableInterface
         return $this;
     }
 
-    public function getAvatar(): ?Image
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    public function setAvatar(?Image $avatar): self
+    public function setAvatar(?string $avatar): self
     {
-        $avatar->setType(ImageTypeEnum::TYPE_AVATAR);
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file): self
+    {
+        $this->file = $file;
+        //Force Doctrine to trigger an update
+        $this->setUpdatedAt(new \DateTime());
 
         return $this;
     }

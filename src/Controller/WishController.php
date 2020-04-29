@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Item;
-use App\Entity\Image;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
-use App\Service\ItemNameGuesser;
+use App\Service\ThumbnailGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -134,10 +133,13 @@ class WishController extends AbstractController
     public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator) : Response
     {
         $item = new Item();
+
         $item
             ->setVisibility($wish->getVisibility())
             ->setName($wish->getName())
             ->setImage($wish->getImage())
+            ->setImageSmallThumbnail($wish->getImageSmallThumbnail())
+            ->setImageMediumThumbnail($wish->getImageMediumThumbnail())
         ;
 
         $form = $this->createForm(ItemType::class, $item);

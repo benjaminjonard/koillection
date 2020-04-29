@@ -24,6 +24,7 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
     /**
      * StringToInventoryContentTransformer constructor.
      * @param InventoryHandler $inventoryHandler
+     * @param EntityManagerInterface $em
      */
     public function __construct(InventoryHandler $inventoryHandler, EntityManagerInterface $em)
     {

@@ -34,7 +34,6 @@ class ItemController extends AbstractController
      * @param TranslatorInterface $translator
      * @param ItemNameGuesser $itemNameGuesser
      * @return Response
-     * @throws NonUniqueResultException
      */
     public function add(Request $request, TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser) : Response
     {
@@ -42,7 +41,7 @@ class ItemController extends AbstractController
 
         $collection = null;
         if ($request->query->has('collection')) {
-            $collection = $em->getRepository(Collection::class)->findWithItems($request->query->get('collection'));
+            $collection = $em->getRepository(Collection::class)->find($request->query->get('collection'));
         }
 
         if (!$collection) {

@@ -105,28 +105,15 @@ class ItemRepository extends EntityRepository
         }
 
         if ($search->getCreatedAt() instanceof \DateTime) {
-            $start = $search->getCreatedAt()->setTime(0, 0, 0);
-            $end = clone $start;
-            $end->setTime(23, 59, 59);
-
+            $createdAt = $search->getCreatedAt();
             $qb
                 ->andWhere('i.createdAt BETWEEN :start AND :end')
-                ->setParameter('start', $start)
-                ->setParameter('end', $end)
+                ->setParameter('start', $createdAt->setTime(0, 0, 0))
+                ->setParameter('end', $createdAt->setTime(23, 59, 59))
             ;
         }
 
         return $qb->getQuery()->getResult();
-    }
-
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('i')
-            ->select('count(i.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
     }
 
     /**
@@ -163,8 +150,7 @@ class ItemRepository extends EntityRepository
 
         return $this
             ->createQueryBuilder('i')
-            ->leftJoin('i.image', 'im')
-            ->addSelect('partial im.{id, thumbnailPath}')
+            ->select('partial i.{id, name, imageSmallThumbnail}')
             ->where('i.id IN (:ids)')
             ->setParameter('ids', $ids)
             ->getQuery()
@@ -178,8 +164,6 @@ class ItemRepository extends EntityRepository
             ->createQueryBuilder('i')
             ->where('i.collection = :id')
             ->setParameter('id', $id)
-            ->leftJoin('i.image', 'im')
-            ->addSelect('partial im.{id, thumbnailPath}')
         ;
 
         return $qb->getQuery()->getResult();

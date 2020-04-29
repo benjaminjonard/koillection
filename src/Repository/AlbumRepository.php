@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Album;
-use App\Entity\Collection;
-use App\Model\Search;
+use App\Model\Search\Search;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 class AlbumRepository extends EntityRepository
@@ -63,15 +60,32 @@ class AlbumRepository extends EntityRepository
         ;
     }
 
-    public function findChildrenByAlbumId(string $id) : iterable
+    /**
+     * @param Search $search
+     * @return array
+     */
+    public function findForSearch(Search $search) : array
     {
         $qb = $this
             ->createQueryBuilder('a')
-            ->where('a.parent = :id')
-            ->setParameter('id', $id)
-            ->leftJoin('a.image', 'i')
-            ->addSelect('partial i.{id, path}')
+            ->orderBy('a.title', 'ASC')
         ;
+
+        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+            $qb
+                ->andWhere('LOWER(a.title) LIKE LOWER(:term)')
+                ->setParameter('term', '%'.$search->getTerm().'%')
+            ;
+        }
+
+        if ($search->getCreatedAt() instanceof \DateTime) {
+            $createdAt = $search->getCreatedAt();
+            $qb
+                ->andWhere('a.createdAt BETWEEN :start AND :end')
+                ->setParameter('start', $createdAt->setTime(0, 0, 0))
+                ->setParameter('end', $createdAt->setTime(23, 59, 59))
+            ;
+        }
 
         return $qb->getQuery()->getResult();
     }

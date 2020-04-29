@@ -10,6 +10,7 @@ use App\Entity\Log;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
+use App\Service\CounterCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +40,7 @@ class CollectionController extends AbstractController
      */
     public function index() : Response
     {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllParent();
+        $collections = $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => null], ['title' => 'ASC']);
 
         return $this->render('App/Collection/index.html.twig', [
             'collections' => $collections
@@ -106,19 +107,15 @@ class CollectionController extends AbstractController
      *     "fr": "/apercu/{id}"
      * }, name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("collection", expr="repository.findById(id)")
-     *
      * @param Collection $collection
      * @return Response
      */
     public function show(Collection $collection) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
-            'children' => $em->getRepository(Collection::class)->findChildrenByCollectionId($collection->getId()),
-            'items' => $em->getRepository(Item::class)->findItemsByCollectionId($collection->getId())
+            'children' => $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => $collection]),
+            'items' => $this->getDoctrine()->getRepository(Item::class)->findBy(['collection' => $collection])
         ]);
     }
 

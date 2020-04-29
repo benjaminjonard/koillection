@@ -9,12 +9,12 @@ use Twig\Extension\RuntimeExtensionInterface;
 class ArrayRuntime implements RuntimeExtensionInterface
 {
     /**
-     * @param $collection
+     * @param $array
      * @return array
      */
-    public function naturalSorting($collection) : array
+    public function naturalSorting(iterable $array) : array
     {
-        $array = !\is_array($collection) ? $collection->toArray() : $collection;
+        $array = !\is_array($array) ? $array->toArray() : $array;
 
         $collator = collator_create('root');
         $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);

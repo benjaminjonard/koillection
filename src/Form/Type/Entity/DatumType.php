@@ -6,6 +6,7 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Datum;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,7 +29,7 @@ class DatumType extends AbstractType
             ->add('value', TextType::class, [
                 'required' => false,
             ])
-            ->add('image', ImageType::class, [
+            ->add('file', FileType::class, [
                 'required' => false,
                 'label' => false
             ])

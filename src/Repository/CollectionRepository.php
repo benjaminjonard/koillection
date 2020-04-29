@@ -10,7 +10,6 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 class CollectionRepository extends EntityRepository
@@ -76,25 +75,6 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
-     * @param $id
-     * @return Collection|null
-     * @throws NonUniqueResultException
-     */
-    public function findWithItems($id) : ?Collection
-    {
-        return $this
-            ->createQueryBuilder('c')
-            ->leftJoin('c.items', 'i')
-            ->addSelect('i')
-            ->where('c.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-
-
-    /**
      * @return array
      */
     public function findAllWithItems() : array
@@ -127,60 +107,22 @@ class CollectionRepository extends EntityRepository
     }
 
     /**
-     * Find a collection, with children if specified.
-     *
      * @param string $id
-     * @param bool $withData
      * @return Collection|null
      * @throws NonUniqueResultException
      */
-    public function findById(string $id, bool $withData = false) : ?Collection
+    public function findWithItemsAndData(string $id) : ?Collection
     {
-        $qb = $this
+        return $this
             ->createQueryBuilder('c')
             ->where('c.id = :id')
             ->setParameter('id', $id)
+            ->leftJoin('c.items', 'i')
+            ->leftJoin('i.data', 'd')
+            ->addSelect('i, d')
+            ->getQuery()
+            ->getOneOrNullResult()
         ;
-
-        if (true === $withData) {
-            $qb
-                ->leftJoin('c.items', 'i')
-                ->leftJoin('i.data', 'd')
-                ->leftJoin('d.image', 'd_i')
-                ->addSelect('i, d, d_i')
-            ;
-        }
-
-        return $qb->getQuery()->getOneOrNullResult();
-    }
-
-    public function findChildrenByCollectionId(string $id) : iterable
-    {
-        $qb = $this
-            ->createQueryBuilder('c')
-            ->where('c.parent = :id')
-            ->setParameter('id', $id)
-            ->leftJoin('c.image', 'i')
-            ->addSelect('partial i.{id, path}')
-        ;
-
-        return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * @return array
-     */
-    public function findAllParent() : array
-    {
-        $qb = $this
-            ->createQueryBuilder('c')
-            ->leftJoin('c.image', 'c_i')
-            ->addSelect('c_i')
-            ->andWhere('c.parent IS NULL')
-            ->orderBy('c.title', 'ASC')
-        ;
-
-        return $qb->getQuery()->getResult();
     }
 
     /**
@@ -191,8 +133,6 @@ class CollectionRepository extends EntityRepository
     {
         $qb = $this
             ->createQueryBuilder('c')
-            ->leftJoin('c.image', 'c_i')
-            ->addSelect('c_i')
             ->orderBy('c.title', 'ASC')
         ;
 
@@ -213,21 +153,6 @@ class CollectionRepository extends EntityRepository
         }
 
         return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('c')
-            ->select('count(c.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
     }
 
     public function suggestItemsTitles(Collection $collection) : array

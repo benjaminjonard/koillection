@@ -15,7 +15,7 @@
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': item.image ? preload(asset(item.image.thumbnailPath)) : null
+            'image': item.image ? preload(asset(item.imageSmallThumbnail)) : null
         }) }}
     {% else %}
         {{ parent() }}
@@ -61,8 +61,8 @@
                 <div class="slider-container item-image-container {{ item.dataTexts|length > 0 ? 'margin-right-30' }}">
                     <div class="slider-frame">
                         {% if item.image %}
-                            <a href="{{ preload(asset(item.image.path)) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
-                                <img src="{{ preload(asset(item.image.path)) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}">
+                            <a href="{{ preload(asset(item.image)) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
+                                <img src="{{ preload(asset(item.imageMediumThumbnail)) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}">
                             </a>
                         {% else %}
                             <a href="{{ preload(asset('../build/images/default.png')) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
@@ -77,8 +77,8 @@
                         <ul class="slider-elements">
                             <li>
                                 {% if item.image %}
-                                    <a class="slider-element active" href="{{ preload(asset(item.image.path)) }}" data-title="{{ 'label.main_image'|trans }}">
-                                        <img src="{{ preload(asset(item.image.thumbnailPath)) }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
+                                    <a class="slider-element active" href="{{ preload(asset(item.image)) }}" data-title="{{ 'label.main_image'|trans }}">
+                                        <img src="{{ preload(asset(item.imageMediumThumbnail)) }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
                                     </a>
                                 {% else %}
                                     <a class="slider-element active" href="{{ preload(asset('../build/images/default.png')) }}" data-title="{{ 'label.main_image'|trans }}">
@@ -90,8 +90,8 @@
                             {% for datum in item.dataImages %}
                                 <li>
                                     {% if datum.image %}
-                                        <a class="slider-element" href="{{ preload(asset(datum.image.path)) }}" data-title="{{ datum.label }}">
-                                            <img src="{{ preload(asset(datum.image.thumbnailPath)) }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
+                                        <a class="slider-element" href="{{ preload(asset(datum.image)) }}" data-title="{{ datum.label }}">
+                                            <img src="{{ preload(asset(datum.imageMediumThumbnail)) }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
                                         </a>
                                     {% else %}
                                         <a class="slider-element" href="{{ preload(asset('../build/images/default.png')) }}" data-title="{{ datum.label }}">

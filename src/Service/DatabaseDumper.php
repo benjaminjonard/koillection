@@ -51,7 +51,20 @@ class DatabaseDumper
         $rows = [];
 
         //Disable foreign keys
-        $rows[] = 'SET session_replication_role = replica;'.PHP_EOL.PHP_EOL;
+        $platformName = $this->em->getConnection()->getDatabasePlatform()->getName();
+        $disableForeignKeysCheck = null;
+        $enableForeignKeysCheck = null;
+        if ($platformName === 'postgresql') {
+            $disableForeignKeysCheck = 'SET session_replication_role = replica;'.PHP_EOL.PHP_EOL;
+            $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;'.PHP_EOL;;
+        } else if ($platformName === 'mysql') {
+            $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL.PHP_EOL;
+            $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;;
+        }
+
+        if ($disableForeignKeysCheck !== null) {
+            $rows[] = $disableForeignKeysCheck;
+        }
 
         //Schema
         $rows += $this->dumpSchema($connection);
@@ -77,8 +90,7 @@ class DatabaseDumper
             "SELECT * FROM koi_item WHERE owner_id IN ($userIds)",
             "SELECT it.* FROM koi_item_tag it LEFT JOIN koi_item i ON it.item_id = i.id WHERE i.owner_id IN ($userIds)",
             "SELECT * FROM koi_loan WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_log WHERE user_id IN ($userIds)",
-            "SELECT * FROM koi_image WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_log WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_photo WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_tag WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_tag_category WHERE owner_id IN ($userIds)",
@@ -126,7 +138,9 @@ class DatabaseDumper
         }
 
         //Enable foreign keys
-        $rows[] = 'SET session_replication_role = DEFAULT;'.PHP_EOL;
+        if ($enableForeignKeysCheck !== null) {
+            $rows[] = $enableForeignKeysCheck;
+        }
 
         return $rows;
     }

@@ -15,7 +15,7 @@
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': wishlist.image ? preload(asset(wishlist.image.path)) : null
+            'image': wishlist.image ? preload(asset(wishlist.image)) : null
         }) }}
     {% else %}
         {{ parent() }}
@@ -27,7 +27,7 @@
         <div class="title-block">
             <div class="left">
                 {% if wishlist.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image.path)) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image)) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ wishlist.color }}">{{ wishlist.name|first|upper }}</span>
                 {% endif %}
@@ -58,6 +58,9 @@
                     </a>
                     <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
                         <i class="fa fa-trash fa-fw"></i>
+                    </a>
+                    <a href="{{ path('app_wishlist_history', {'id': wishlist.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                        <i class="fa fa-history fa-fw"></i>
                     </a>
                     <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                 {% endif %}
@@ -102,10 +105,12 @@
                     {% for wish in wishes|naturalSorting %}
                         <tr class="list-element resize-element" data-title="{{ wish.name }}">
                             <td>
-                                {% if null != wish.image %}
-                                    <a href="{{ preload(asset(wish.image.path)) }}" data-lightbox="image-{{ wish.id }}">
-                                        <img class="wishlist-item-avatar" src="{{ preload(asset(wish.image.thumbnailPath)) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
+                                {% if wish.image %}
+                                    <a href="{{ preload(asset(wish.image)) }}" data-lightbox="image-{{ wish.id }}">
+                                        <img class="wishlist-item-avatar" src="{{ preload(asset(wish.imageSmallThumbnail)) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
                                     </a>
+                                {% else %}
+                                    <img class="wishlist-item-avatar" src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
                                 {% endif %}
                             </td>
                             <td>

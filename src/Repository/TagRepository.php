@@ -15,14 +15,12 @@ use Doctrine\ORM\NoResultException;
 
 class TagRepository extends EntityRepository
 {
-    public function findById(string $id) : ?Tag
+    public function findWithItems(string $id) : ?Tag
     {
         return $this
             ->createQueryBuilder('t')
-            ->leftJoin('t.image', 'im')
             ->leftJoin('t.items', 'i')
-            ->leftJoin('i.image', 'i_i')
-            ->addSelect('partial im.{id, path, thumbnailPath}, partial i.{id, name}, partial i_i.{id, thumbnailPath}')
+            ->addSelect('partial i.{id, name, imageSmallThumbnail}')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
@@ -86,6 +84,7 @@ class TagRepository extends EntityRepository
      * @param string|null $context
      * @return int
      * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countForPagination(string $search = null, string $context = null) : int
     {
@@ -109,9 +108,7 @@ class TagRepository extends EntityRepository
             ;
         }
 
-        $result = $qb->getQuery()->getOneOrNullResult();
-
-        return $result ? $result[1] : 0;
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
 
     /**
@@ -203,23 +200,6 @@ class TagRepository extends EntityRepository
     }
 
     /**
-     * @param User $owner
-     * @return array
-     */
-    public function findByUserAndWithoutItems(User $owner)
-    {
-        return $this
-            ->createQueryBuilder('t')
-            ->leftJoin('t.items', 'i')
-            ->where('i.id IS NULL')
-            ->andWhere('t.owner = :owner')
-            ->setParameter('owner', $owner)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
      * @return array
      */
     public function findAllForHighlight()
@@ -267,21 +247,6 @@ class TagRepository extends EntityRepository
             ->setParameter('itemIds', $itemIds)
             ->getQuery()
             ->getResult()
-        ;
-    }
-
-    /**
-     * @return int
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
-    public function countAll() : int
-    {
-        return $this
-            ->createQueryBuilder('t')
-            ->select('count(t.id)')
-            ->getQuery()
-            ->getSingleScalarResult()
         ;
     }
 }

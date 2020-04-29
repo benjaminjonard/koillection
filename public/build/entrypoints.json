@@ -2,17 +2,17 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "build/js/app.bd645a55.js"
+        "build/js/app.9d540ecb.js"
       ]
     },
     "js/statistics": {
       "js": [
-        "build/js/statistics.1690c252.js"
+        "build/js/statistics.a69577ef.js"
       ]
     },
     "css/app": {
       "css": [
-        "build/css/app.5900be89.css"
+        "build/css/app.632039b7.css"
       ]
     },
     "css/themes/sunset": {
@@ -25,9 +25,9 @@
         "build/css/themes/teal.406d77f0.css"
       ]
     },
-    "css/themes/dark_mode": {
+    "css/themes/dark": {
       "css": [
-        "build/css/themes/dark_mode.4a9222d3.css"
+        "build/css/themes/dark.f32e9360.css"
       ]
     },
     "css/export": {
@@ -35,14 +35,9 @@
         "build/css/export.9fbf458a.css"
       ]
     },
-    "css/translation": {
-      "css": [
-        "build/css/translation.3cb2835b.css"
-      ]
-    },
     "css/flags": {
       "css": [
-        "build/css/flags.036bbc0b.css"
+        "build/css/flags.774121d2.css"
       ]
     }
   }

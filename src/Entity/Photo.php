@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Annotation\Upload;
 use App\Entity\Interfaces\CacheableInterface;
-use App\Enum\ImageTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
+ * @ORM\Entity
  * @ORM\Table(name="koi_photo", indexes={
  *     @ORM\Index(name="idx_photo_visibility", columns={"visibility"})
  * })
@@ -49,7 +50,7 @@ class Photo implements CacheableInterface
      * @var Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
      */
-    private Album $album;
+    private ?Album $album;
 
     /**
      * @var User
@@ -58,10 +59,22 @@ class Photo implements CacheableInterface
     private ?User $owner = null;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var File
+     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
-    private ?Image $image = null;
+    private ?File $file = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    private ?string $image = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    private ?string $imageSmallThumbnail = null;
 
     /**
      * @var \DateTimeInterface
@@ -85,7 +98,7 @@ class Photo implements CacheableInterface
      * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -209,15 +222,40 @@ class Photo implements CacheableInterface
         return $this;
     }
 
-    public function getImage(): ?Image
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file): self
+    {
+        $this->file = $file;
+        //Force Doctrine to trigger an update
+        $this->setUpdatedAt(new \DateTime());
+
+        return $this;
+    }
+
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): self
+    public function setImage(string $image): self
     {
-        $image->setType(ImageTypeEnum::TYPE_COMMON);
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageSmallThumbnail(): ?string
+    {
+        return $this->imageSmallThumbnail;
+    }
+
+    public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
+    {
+        $this->imageSmallThumbnail = $imageSmallThumbnail;
 
         return $this;
     }

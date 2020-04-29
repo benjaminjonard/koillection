@@ -98,7 +98,7 @@ class TemplateController extends AbstractController
      *     "fr": "/modeles/{id}"
      * }, name="app_template_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
      *
-     * @Entity("template", expr="repository.findByIdWithItems(id)")
+     * @Entity("template", expr="repository.findWithItems(id)")
      *
      * @param Template $template
      * @return Response

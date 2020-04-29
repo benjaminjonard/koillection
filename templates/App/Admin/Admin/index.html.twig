@@ -23,7 +23,7 @@
         <div class="block-element">
             <h5 class="header">{{ 'title.overview'|trans }}</h5>
             <div class="row statistics">
-                <div class="col s2">
+                <div class="col s12 m4 xl2">
                     <div class="pie-wrapper">
                         {% set percent = ((totalSpace - freeSpace) * 100 / totalSpace)|round(0, 'floor') %}
                         <span class="label">{{ percent }}<span class="smaller">%</span></span>
@@ -38,29 +38,29 @@
                         <div>{{ 'label.space_free'|trans({'%free%' : freeSpace|bytes}) }}</div>
                     </div>
                 </div>
-                <div class="col s2"><div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'%count%': counters.users}) }}</div>
-                <div class="col s2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}</div>
-                <div class="col s2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}</div>
-                <div class="col s2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}</div>
-                <div class="col s2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}</div>
-                <div class="col s2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}</div>
-                <div class="col s2"><div class="counter">{{ totalSpaceUsed|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'%count%': counters.users}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ getSpaceUsedByUsers()|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
             </div>
         </div>
 
         <div class="block-element">
             <h5 class="header">{{ 'title.config'|trans }}</h5>
             <div class="row statistics">
-                <div class="col s2"><div class="counter">{{ version }}</div>{{ 'label.version'|trans }}</div>
-                <div class="col s2"><div class="counter">{{ phpVersion }}</div>{{ 'label.phpVersion'|trans }}</div>
-                <div class="col s2"><div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfonyVersion'|trans }}</div>
-                <div class="col s2"><div class="counter"><i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i></div>{{ 'label.isOpcacheAvailable'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ version }}</div>{{ 'label.version'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ phpVersion }}</div>{{ 'label.phpVersion'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfonyVersion'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter"><i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i></div>{{ 'label.isOpcacheAvailable'|trans }}</div>
             </div>
         </div>
 
         <div class="block-element">
             <h5 class="header">{{ 'title.tools'|trans }}</h5>
-            <div class="row">
+            <div class="row btn-holder">
                 <a href="{{ path('app_admin_clean') }}" class="btn waves-effect waves-light">
                     <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
                 </a>

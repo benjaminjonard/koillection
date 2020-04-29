@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
-use App\Enum\ImageTypeEnum;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WishlistRepository")
@@ -20,7 +22,7 @@ use Ramsey\Uuid\UuidInterface;
  *     @ORM\Index(name="idx_wishlist_visibility", columns={"visibility"})
  * })
  */
-class Wishlist implements BreadcrumbableInterface, CacheableInterface
+class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
     /**
      * @var UuidInterface
@@ -69,10 +71,16 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface
     private ?Wishlist $parent = null;
 
     /**
-     * @var Image
-     * @ORM\OneToOne(targetEntity="Image", cascade={"all"}, orphanRemoval=true)
+     * @var File
+     * @Upload(path="image")
      */
-    private ?Image $image = null;
+    private ?File $file = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    private ?string $image = null;
 
     /**
      * @var int
@@ -284,15 +292,28 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface
         return $this;
     }
 
-    public function getImage(): ?Image
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): self
+    public function setImage(?string $image): self
     {
-        $image->setType(ImageTypeEnum::TYPE_AVATAR);
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file): self
+    {
+        $this->file = $file;
+        //Force Doctrine to trigger an update
+        $this->setUpdatedAt(new \DateTime());
 
         return $this;
     }

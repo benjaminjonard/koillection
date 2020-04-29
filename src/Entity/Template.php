@@ -61,7 +61,7 @@ class Template implements BreadcrumbableInterface
      * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $updatedAt;
 
     /**
      * Constructor.

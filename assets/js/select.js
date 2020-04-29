@@ -111,11 +111,11 @@ function getThemesConf() {
             }
 
             var $theme = $(
-                '<span class="theme-preview ' + theme.element.value + ' dark"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' medium"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' light"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' lighter"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' complementary"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme dark"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme medium"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme light"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme lighter"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme complementary"></span>' +
                 '<span class="theme-label">' + theme.text + '</span>'
             );
 
@@ -127,11 +127,11 @@ function getThemesConf() {
             }
 
             var $theme = $(
-                '<span class="theme-preview ' + theme.element.value + ' dark"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' medium"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' light"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' lighter"></span>' +
-                '<span class="theme-preview ' + theme.element.value + ' complementary"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme dark"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme medium"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme light"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme lighter"></span>' +
+                '<span class="theme-preview ' + theme.element.value + '-theme complementary"></span>' +
                 '<span class="theme-label">' + theme.text + '</span>'
             );
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Image;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DiskUsageCalculator
@@ -30,28 +30,58 @@ class DiskUsageCalculator
      * DiskUsageCalculator constructor.
      * @param TranslatorInterface $translator
      * @param EntityManagerInterface $em
+     * @param string $publicPath
      */
-    public function __construct(TranslatorInterface $translator, EntityManagerInterface $em)
+    public function __construct(TranslatorInterface $translator, EntityManagerInterface $em, string $publicPath)
     {
         $this->translator = $translator;
         $this->em = $em;
-        $this->publicPath = __DIR__ . '/../../public';
+        $this->publicPath = $publicPath;
+    }
+
+    public function getSpaceUsedByUsers() : float
+    {
+        $uploadFolderPath = $this->publicPath . '/uploads';
+
+        if (is_dir($uploadFolderPath)) {
+            return $this->getFolderSize($uploadFolderPath);
+        }
+
+        return 0;
     }
 
     /**
      * @param User $user
-     * @return int
+     * @return float
      */
-    public function getSpaceUsedByUser(User $user) : int
+    public function getSpaceUsedByUser(User $user) : float
+    {
+        $userFolderPath = $this->publicPath . '/uploads/' . $user->getId();
+
+        if (is_dir($userFolderPath)) {
+            return $this->getFolderSize($userFolderPath);
+        }
+
+        return 0;
+    }
+
+    /**
+     * @param User $user
+     * @param File $file
+     * @throws \Exception
+     */
+    public function hasEnoughSpaceForUpload(User $user, File $file)
+    {
+        if ($user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize()) {
+            throw new \Exception($this->translator->trans('error.not_enough_space'));
+        }
+    }
+
+    private function getFolderSize($path) : float
     {
         $size = 0;
-        $images = $this->em->getRepository(Image::class)->findBy(['owner' => $user]);
-
-        foreach ($images as $image) {
-            $size += filesize($this->publicPath.'/'.$image->getPath());
-            if ($image->getThumbnailPath()) {
-                $size += filesize($this->publicPath.'/'.$image->getThumbnailPath());
-            }
+        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $file) {
+            $size += $file->getSize();
         }
 
         return $size;
