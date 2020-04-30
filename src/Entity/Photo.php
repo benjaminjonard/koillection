@@ -250,6 +250,10 @@ class Photo implements CacheableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
+        if ($this->imageSmallThumbnail === null) {
+            return $this->image;
+        }
+
         return $this->imageSmallThumbnail;
     }
 

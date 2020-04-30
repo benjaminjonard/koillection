@@ -23,19 +23,16 @@ final class Version20200425201544 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_user ADD avatar VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_wish ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_wish ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE koi_wish ADD image_medium_thumbnail VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_photo ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_photo ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_item ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_item ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE koi_item ADD image_medium_thumbnail VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_collection ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_album ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_tag ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_tag ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_datum ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_datum ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE koi_datum ADD image_medium_thumbnail VARCHAR(255) DEFAULT NULL');
 
         //Migrate existing images
         $this->addSql('UPDATE koi_wish SET image = i.path, image_small_thumbnail = i.thumbnail_path FROM koi_image AS i where image_id = i.id');

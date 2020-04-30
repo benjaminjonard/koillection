@@ -10,11 +10,16 @@ class ThumbnailGenerator
      * @param string $path
      * @param string $thumbnailPath
      * @param int $thumbnailWidth
+     * @return bool
      * @throws \Exception
      */
-    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : void
+    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : bool
     {
         list($width, $height, $mime) = getimagesize($path);
+
+        if ($width <= $thumbnailWidth) {
+            return false;
+        }
 
         switch ($mime) {
             case IMAGETYPE_GIF:
@@ -73,5 +78,7 @@ class ThumbnailGenerator
             default:
                 break;
         }
+
+        return true;
     }
 }

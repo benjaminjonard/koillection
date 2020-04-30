@@ -133,7 +133,6 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
             ->setCollection($collectionLovecraft)
             ->setImage('cthulhu/collections/lovecraft/mythe.jpeg')
             ->setImageSmallThumbnail( 'cthulhu/collections/lovecraft/mythe_small.jpeg')
-            ->setImageMediumThumbnail( 'cthulhu/collections/lovecraft/mythe_small.jpeg')
             ->addTag($tagBooks)
             ->addTag($tagLovecraft)
             ->setSeenCounter(0)

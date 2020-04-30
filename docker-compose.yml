@@ -12,6 +12,7 @@ services:
         environment:
             - APP_ENV=dev
             - APP_DEBUG=1
+            - DB_DRIVER=pdo_mysql
             - DB_NAME=koillection
             - DB_HOST=mysql
             - DB_PORT=3306
@@ -21,6 +22,7 @@ services:
             - PHP_TZ=Europe/Paris
         depends_on:
             - postgres
+            - mysql
         volumes:
             - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
             - ./:/var/www/koillection

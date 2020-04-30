@@ -91,14 +91,8 @@ class ImageHandler
 
             if ($annotation->getSmallThumbnailPath() !== null) {
                 $smallThumbnailFileName = $generatedName . '_small.' . $extension;
-                $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 150);
-                $this->accessor->setValue($entity, $annotation->getSmallThumbnailPath(), $relativePath.$smallThumbnailFileName);
-            }
-
-            if ($annotation->getMediumThumbnailPath() !== null) {
-                $mediumThumbnailFileName = $generatedName . '_medium.' . $extension;
-                $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$mediumThumbnailFileName, 300);
-                $this->accessor->setValue($entity, $annotation->getMediumThumbnailPath(), $relativePath.$mediumThumbnailFileName);
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 300);
+                $this->accessor->setValue($entity, $annotation->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
             }
         }
     }
@@ -124,13 +118,6 @@ class ImageHandler
 
         if ($annotation->getSmallThumbnailPath() !== null) {
             $path = $this->accessor->getValue($entity, $annotation->getSmallThumbnailPath());
-            if ($path !== null) {
-                @unlink($this->publicPath.'/'.$path);
-            }
-        }
-
-        if ($annotation->getMediumThumbnailPath() !== null) {
-            $path = $this->accessor->getValue($entity, $annotation->getMediumThumbnailPath());
             if ($path !== null) {
                 @unlink($this->publicPath.'/'.$path);
             }

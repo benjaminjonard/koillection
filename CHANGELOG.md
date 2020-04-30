@@ -12,7 +12,6 @@ All notable changes to this project will be documented in this file.
 - Dark mode  (Benjamin Jonard)
 - Suggest new item name based on other items in the collection  (Benjamin Jonard)
 - Webp format support for images  (Benjamin Jonard)
-- Add a medium thumbnail on images to reduce mobile data consumption  (Benjamin Jonard)
 - Support for all currencies  (Benjamin Jonard)
 - Add a field `Country` for items  (Benjamin Jonard)
 - Users can choose how dates should be displayed  (Benjamin Jonard)

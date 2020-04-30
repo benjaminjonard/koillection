@@ -150,7 +150,7 @@ class ItemRepository extends EntityRepository
 
         return $this
             ->createQueryBuilder('i')
-            ->select('partial i.{id, name, imageSmallThumbnail}')
+            ->select('partial i.{id, name, image, imageSmallThumbnail}')
             ->where('i.id IN (:ids)')
             ->setParameter('ids', $ids)
             ->getQuery()
