@@ -72,7 +72,7 @@ class Wish implements CacheableInterface
 
     /**
      * @var File
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail", mediumThumbnailPath="imageMediumThumbnail")
+     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
     private ?File $file = null;
 
@@ -87,12 +87,6 @@ class Wish implements CacheableInterface
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
-    private ?string $imageMediumThumbnail = null;
 
     /**
      * @var string
@@ -284,22 +278,6 @@ class Wish implements CacheableInterface
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
-
-        return $this;
-    }
-
-    public function getImageMediumThumbnail(): ?string
-    {
-        if ($this->imageMediumThumbnail === null) {
-            return $this->image;
-        }
-
-        return $this->imageMediumThumbnail;
-    }
-
-    public function setImageMediumThumbnail(?string $imageMediumThumbnail): self
-    {
-        $this->imageMediumThumbnail = $imageMediumThumbnail;
 
         return $this;
     }

@@ -103,7 +103,6 @@ class AnubisFixtures extends Fixture implements OrderedFixtureInterface
             ->setCollection($colletionVideoGames)
             ->setImage('anubis/collections/videogames/journey.jpeg')
             ->setImageSmallThumbnail( 'anubis/collections/videogames/journey_small.jpeg')
-            ->setImageMediumThumbnail( 'anubis/collections/videogames/journey_small.jpeg')
             ->addTag($tagVideoGames)
             ->setSeenCounter(0)
         ;

@@ -87,15 +87,12 @@ class AdminController extends AbstractController
             
             SELECT image AS image FROM koi_item WHERE image IS NOT NULL UNION
             SELECT image_small_thumbnail AS image FROM koi_item WHERE image_small_thumbnail IS NOT NULL UNION
-            SELECT image_medium_thumbnail AS image FROM koi_item WHERE image_medium_thumbnail IS NOT NULL UNION
             
             SELECT image AS image FROM koi_datum WHERE image IS NOT NULL UNION
             SELECT image_small_thumbnail AS image FROM koi_datum WHERE image_small_thumbnail IS NOT NULL UNION
-            SELECT image_medium_thumbnail AS image FROM koi_datum WHERE image_medium_thumbnail IS NOT NULL UNION
             
             SELECT image AS image FROM koi_wish WHERE image IS NOT NULL UNION
-            SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL UNION
-            SELECT image_medium_thumbnail AS image FROM koi_wish WHERE image_medium_thumbnail IS NOT NULL;
+            SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL;
         ";
 
         $stmt = $em->getConnection()->prepare($sql);

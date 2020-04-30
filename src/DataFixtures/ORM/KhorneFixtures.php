@@ -134,7 +134,6 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
                 ->setCollection($collectionMagdala)
                 ->setImage('khorne/collections/magdala/'.$i.'.jpeg')
                 ->setImageSmallThumbnail( 'khorne/collections/magdala/'.$i.'_small.jpeg')
-                ->setImageMediumThumbnail( 'khorne/collections/magdala/'.$i.'_small.jpeg')
                 ->addTag($tagManga)
                 ->addTag($tagMagdala)
                 ->setSeenCounter(0)
