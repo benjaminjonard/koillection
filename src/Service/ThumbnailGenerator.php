@@ -12,7 +12,7 @@ class ThumbnailGenerator
      * @param int $thumbnailWidth
      * @throws \Exception
      */
-    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : void
+    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : ?string
     {
         list($width, $height, $mime) = getimagesize($path);
 
@@ -62,16 +62,18 @@ class ThumbnailGenerator
                 break;
             case IMAGETYPE_JPEG:
             case IMAGETYPE_JPEG2000:
-                imagejpeg($thumbnail, $thumbnailPath, 100);
+                imagejpeg($thumbnail, $thumbnailPath, 90);
                 break;
             case IMAGETYPE_PNG:
                 imagepng($thumbnail, $thumbnailPath);
                 break;
             case IMAGETYPE_WEBP:
-                imagewebp($thumbnail, $thumbnailPath, 100);
+                imagewebp($thumbnail, $thumbnailPath, 90);
                 break;
             default:
                 break;
         }
+
+        return $thumbnailPath;
     }
 }

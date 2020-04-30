@@ -231,6 +231,10 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
+        if ($this->imageSmallThumbnail === null) {
+            return $this->image;
+        }
+
         return $this->imageSmallThumbnail;
     }
 

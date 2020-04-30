@@ -4,21 +4,15 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Entity\Album;
 use App\Entity\Collection;
-use App\Entity\Datum;
 use App\Entity\Item;
-use App\Entity\Log;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
-use App\Enum\LogTypeEnum;
 use App\Service\DatabaseDumper;
-use App\Service\ThumbnailGenerator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Kernel;

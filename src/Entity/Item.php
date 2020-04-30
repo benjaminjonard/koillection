@@ -446,6 +446,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageSmallThumbnail(): ?string
     {
+        if ($this->imageSmallThumbnail === null) {
+            return $this->image;
+        }
+
         return $this->imageSmallThumbnail;
     }
 
@@ -458,6 +462,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageMediumThumbnail(): ?string
     {
+        if ($this->imageMediumThumbnail === null) {
+            return $this->image;
+        }
+
         return $this->imageMediumThumbnail;
     }
 

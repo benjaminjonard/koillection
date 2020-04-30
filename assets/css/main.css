@@ -452,10 +452,6 @@ html.loading:before {
     body {margin-left: 0!important;}
     .search {display: none!important;}
     .header-profile {display: none!important;}
-    #collection-items img {max-width: 120px; max-height: 160px;}
-    #collection-items .collection-item {min-width: 120px; min-height: 160px;}
-    .placeholder {background-color: #ebebeb; width: 120px; height: 160px;}
-    .grid-container-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
 
     .collapse-nav {display : none;}
     .close-nav {display : block;}

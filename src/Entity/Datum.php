@@ -264,6 +264,10 @@ class Datum implements LoggableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
+        if ($this->imageSmallThumbnail === null) {
+            return $this->image;
+        }
+
         return $this->imageSmallThumbnail;
     }
 
@@ -276,6 +280,10 @@ class Datum implements LoggableInterface
 
     public function getImageMediumThumbnail(): ?string
     {
+        if ($this->imageMediumThumbnail === null) {
+            return $this->image;
+        }
+
         return $this->imageMediumThumbnail;
     }
 
