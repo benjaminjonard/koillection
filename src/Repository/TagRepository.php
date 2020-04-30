@@ -20,7 +20,7 @@ class TagRepository extends EntityRepository
         return $this
             ->createQueryBuilder('t')
             ->leftJoin('t.items', 'i')
-            ->addSelect('partial i.{id, name, imageSmallThumbnail}')
+            ->addSelect('partial i.{id, name, image, imageSmallThumbnail}')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
