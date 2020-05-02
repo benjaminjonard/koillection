@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
+use App\Entity\User;
 use App\Enum\LocaleEnum;
-use Negotiation\LanguageNegotiator;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
@@ -17,12 +19,19 @@ class LocaleListener
     private string $defaultLocale;
 
     /**
+     * @var SessionInterface
+     */
+    private SessionInterface $session;
+
+    /**
      * LocaleListener constructor.
+     * @param SessionInterface $session
      * @param string $defaultLocale
      */
-    public function __construct(string $defaultLocale)
+    public function __construct(SessionInterface $session, string $defaultLocale)
     {
         $this->defaultLocale = $defaultLocale;
+        $this->session = $session;
     }
 
     /**
@@ -33,30 +42,14 @@ class LocaleListener
         $request = $event->getRequest();
 
         if (!$request->hasPreviousSession()) {
-            $negotiator = new LanguageNegotiator();
-            $header = $event->getRequest()->headers->get('Accept-Language');
-            
-            if (null !== $header) {
-                $best = $negotiator->getBest(
-                    $event->getRequest()->headers->get('Accept-Language'),
-                    LocaleEnum::LOCALES
-                );
-    
-                if (null !== $best) {
-                    $request->getSession()->set('_locale', $best->getType());
-                    $request->setLocale($request->getSession()->get('_locale', $best->getType()));
-                }
-            }
-
             return;
         }
 
-        if ($request->query->has('_locale')) {
-            $locale = $request->query->get('_locale');
-            if (\in_array($locale, LocaleEnum::LOCALES, false)) {
-                $request->getSession()->set('_locale', $locale);
-                $request->setLocale($request->getSession()->get('_locale', $locale));
-            }
+        $locale = $request->query->get('_locale');
+
+        if ($locale && \in_array($locale, LocaleEnum::LOCALES, false)) {
+            $request->getSession()->set('_locale', $locale);
+            $request->setLocale($request->getSession()->get('_locale', $locale));
         } else {
             $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
         }
@@ -68,10 +61,21 @@ class LocaleListener
     public function onSecurityInteractivelogin(InteractiveLoginEvent $event)
     {
         $user = $event->getAuthenticationToken()->getUser();
-        $session = $event->getRequest()->getSession();
 
         if (null !== $user->getLocale()) {
-            $session->set('_locale', $user->getLocale());
+            $this->session->set('_locale', $user->getLocale());
+        }
+    }
+
+    /**
+     * @param LifecycleEventArgs $args
+     */
+    public function postUpdate(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        if ($entity instanceof User) {
+            $this->session->set('_locale', $entity->getLocale());
         }
     }
 }

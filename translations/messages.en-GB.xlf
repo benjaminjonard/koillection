@@ -4224,15 +4224,15 @@
         <target>Configuration</target>
       </segment>
     </unit>
-    <unit id="4akjOge" name="label.phpVersion">
+    <unit id="4akjOge" name="label.php_version">
       <segment>
-        <source>label.phpVersion</source>
+        <source>label.php_version</source>
         <target>PHP version</target>
       </segment>
     </unit>
-    <unit id=".up_g77" name="label.isOpcacheAvailable">
+    <unit id=".up_g77" name="label.is_opcache_available">
       <segment>
-        <source>label.isOpcacheAvailable</source>
+        <source>label.is_opcache_available</source>
         <target>Opcache enabled</target>
       </segment>
     </unit>
@@ -4242,9 +4242,9 @@
         <target>Overview</target>
       </segment>
     </unit>
-    <unit id="wKru5ff" name="label.symfonyVersion">
+    <unit id="wKru5ff" name="label.symfony_version">
       <segment>
-        <source>label.symfonyVersion</source>
+        <source>label.symfony_version</source>
         <target>Symfony version</target>
       </segment>
     </unit>
@@ -4444,6 +4444,18 @@
       <segment>
         <source>title.wishlists</source>
         <target>Wishlists</target>
+      </segment>
+    </unit>
+    <unit id="13" name="btn.regenerate_thumbnails">
+      <segment>
+        <source>btn.regenerate_thumbnails</source>
+        <target>Regenerate thumbnails</target>
+      </segment>
+    </unit>
+    <unit id="14" name="message.thumbnails_regenerated">
+      <segment>
+        <source>message.thumbnails_regenerated</source>
+        <target>{0} %count% thumbnails regenerated| {1} %count% thumbnail regenerated| ]1,Inf[ %count% thumbnails regenerated</target>
       </segment>
     </unit>
   </file>

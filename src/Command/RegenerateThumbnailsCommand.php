@@ -12,31 +12,46 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegenerateThumbnailsCommand extends Command
 {
-    private $em;
-    private string $publicPath;
+    /**
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $em;
+
     /**
      * @var ThumbnailGenerator
      */
     private ThumbnailGenerator $thumbnailGenerator;
 
-    public function __construct(string $name = null, EntityManagerInterface $em, ThumbnailGenerator $thumbnailGenerator, string $publicPath)
+    /**
+     * @var TranslatorInterface
+     */
+    private TranslatorInterface $translator;
+
+    /**
+     * @var string
+     */
+    private string $publicPath;
+
+    public function __construct(
+        string $name = null, EntityManagerInterface $em, ThumbnailGenerator $thumbnailGenerator,
+        TranslatorInterface $translator, string $publicPath)
     {
         $this->em = $em;
         $this->publicPath = $publicPath;
         $this->thumbnailGenerator = $thumbnailGenerator;
+        $this->translator = $translator;
         
         parent::__construct($name);
     }
 
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:regenerate-thumbnails';
-
     protected function configure()
     {
         $this
+            ->setName('app:regenerate-thumbnails')
             ->setDescription('Regenerate thumbnails')
         ;
     }
@@ -56,8 +71,8 @@ class RegenerateThumbnailsCommand extends Command
             $objects = array_merge($objects, $result);
         }
 
+        $counter = 0;
         foreach ($objects as $object) {
-            $output->writeln($object->getId());
             $imagePath = $publicPath.'/'.$object->getImage();
             $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
             $file = basename($imagePath,"." . $ext);
@@ -66,9 +81,17 @@ class RegenerateThumbnailsCommand extends Command
             @unlink($dir.'/'.$smallThumbnailFileName);
             $resultSmall = $this->thumbnailGenerator->generate($imagePath, $dir.'/'.$smallThumbnailFileName, 300);
 
-            $object->setImageSmallThumbnail($resultSmall ? 'uploads/'.$object->getOwner()->getId().'/'.$smallThumbnailFileName : null);
+            if ($resultSmall) {
+                $object->setImageSmallThumbnail('uploads/'.$object->getOwner()->getId().'/'.$smallThumbnailFileName);
+                $counter++;
+            } else {
+                $object->setImageSmallThumbnail(null);
+            }
+
             $this->em->flush();
         }
+
+        $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['%count%' => $counter]));
 
         return 0;
     }

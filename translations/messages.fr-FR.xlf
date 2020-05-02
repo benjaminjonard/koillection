@@ -4044,9 +4044,9 @@
         <target>Outils</target>
       </segment>
     </unit>
-    <unit id="MS8NCN6" name="btn.clean_unused_files ">
+    <unit id="MS8NCN6" name="btn.clean_unused_files">
       <segment>
-        <source>btn.clean_unused_files </source>
+        <source>btn.clean_unused_files</source>
         <target>Nettoyer les fichiers non utilisés</target>
       </segment>
     </unit>
@@ -4218,15 +4218,15 @@
         <target>Configuration</target>
       </segment>
     </unit>
-    <unit id="4akjOge" name="label.phpVersion">
+    <unit id="4akjOge" name="label.php_version">
       <segment>
-        <source>label.phpVersion</source>
+        <source>label.php_version</source>
         <target>Version de PHP</target>
       </segment>
     </unit>
-    <unit id=".up_g77" name="label.isOpcacheAvailable">
+    <unit id=".up_g77" name="label.is_opcache_available">
       <segment>
-        <source>label.isOpcacheAvailable</source>
+        <source>label.is_opcache_available</source>
         <target>Opcache activé</target>
       </segment>
     </unit>
@@ -4242,9 +4242,9 @@
         <target>Aperçu</target>
       </segment>
     </unit>
-    <unit id="S3uBvV6" name=" label.symfonyVersion">
+    <unit id="S3uBvV6" name="label.symfony_version">
       <segment>
-        <source> label.symfonyVersion</source>
+        <source>label.symfonyVersion</source>
         <target>Version de Symfony</target>
       </segment>
     </unit>
@@ -4444,6 +4444,18 @@
       <segment>
         <source>title.wishlists</source>
         <target>Listes de souhaits</target>
+      </segment>
+    </unit>
+    <unit id="13" name="btn.regenerate_thumbnails">
+      <segment>
+        <source>btn.regenerate_thumbnails</source>
+        <target>Régénérer les miniatures</target>
+      </segment>
+    </unit>
+    <unit id="14" name="message.thumbnails_regenerated">
+      <segment>
+        <source>message.thumbnails_regenerated</source>
+        <target>[0,1] %count% miniature régénérée| ]1,Inf[ %count% miniatures régénérées</target>
       </segment>
     </unit>
   </file>

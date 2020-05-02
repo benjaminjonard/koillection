@@ -1,25 +1,32 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [v1.1.0] / 2020-04-29
+## [v1.1.1] / WIP
+### Features
+- Add a button in admin panel to regenerate thumbnails
+
+### Fixes
+- Fix locale updates
+
+## [v1.1.0] / 2020-04-30
 ### Important
-- Update PHP minimum version to 7.4  (Benjamin Jonard)
-- Update to Symfony 5  (Benjamin Jonard)
-- Update to Twig 3  (Benjamin Jonard)
-- Add support of Mysql for version 8 and superior  (Benjamin Jonard)
+- Update PHP minimum version to 7.4 (Benjamin Jonard)
+- Update to Symfony 5 (Benjamin Jonard)
+- Update to Twig 3 (Benjamin Jonard)
+- Add support of Mysql for version 8 and superior (Benjamin Jonard)
 
 ### Features
-- Dark mode  (Benjamin Jonard)
-- Suggest new item name based on other items in the collection  (Benjamin Jonard)
-- Webp format support for images  (Benjamin Jonard)
-- Support for all currencies  (Benjamin Jonard)
-- Add a field `Country` for items  (Benjamin Jonard)
-- Users can choose how dates should be displayed  (Benjamin Jonard)
-- Add Inventory  (Benjamin Jonard)
-- Tags can now be assigned to a category  (Benjamin Jonard)
-- Admins can do a full backup : database + images  (Benjamin Jonard)
+- Dark mode (Benjamin Jonard)
+- Suggest new item name based on other items in the collection (Benjamin Jonard)
+- Webp format support for images (Benjamin Jonard)
+- Support for all currencies (Benjamin Jonard)
+- Add a field `Country` for items (Benjamin Jonard)
+- Users can choose how dates should be displayed (Benjamin Jonard)
+- Add Inventory (Benjamin Jonard)
+- Tags can now be assigned to a category (Benjamin Jonard)
+- Admins can do a full backup : database + images (Benjamin Jonard)
 - Admins can clean obsoletes images (Benjamin Jonard)
-- Tag autocompletion will now priotarize words starting the same way as the word searched  (Benjamin Jonard)
+- Tag autocompletion will now priotarize words starting the same way as the word searched (Benjamin Jonard)
 - Add metadata for content sharing on social networks (Benjamin Jonard)
 - Use select2 for all dropdown lists (Benjamin Jonard)
 - Add 'See more' button on related tags (Benjamin Jonard)
@@ -39,7 +46,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixes
 - Avatars are now correctly deleted (Benjamin Jonard)
-- Fix floating label on cropper when using Firefox (Benjamin Jonard)
+- Fix floating label on croppers when using Firefox (Benjamin Jonard)
 - Fix streamed responses when downloading backups (Benjamin Jonard)
 - Fix infinite loading bar (Benjamin Jonard)
 
@@ -68,13 +75,13 @@ All notable changes to this project will be documented in this file.
 
 ### Features
 - Add action filter on history page (Benjamin Jonard)
-- Use referer for redirection after login (Benjamin Jonard)
+- Use referer for redirection after user login (Benjamin Jonard)
 
 ### Miscellaneous
 - Upgrade Encore version (Benjamin Jonard)
 - Upgrade to Symfony 4.2 (Benjamin Jonard)
 - Update some english translations for proper plurals handling (Benjamin Jonard)
-- Update general style for header (Benjamin Jonard)
+- Update general style for the header (Benjamin Jonard)
 - Rework search input style (Benjamin Jonard)
 - Replace all generateUrl with redirectToRoute (Benjamin Jonard)
 - Replace deprecated TranslatorInterface (Benjamin Jonard)

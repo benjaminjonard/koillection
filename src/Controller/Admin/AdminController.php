@@ -10,12 +10,17 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
+use App\Service\CommandExecutor;
 use App\Service\DatabaseDumper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipStream\Option\Archive;
@@ -57,66 +62,32 @@ class AdminController extends AbstractController
 
     /**
      * @Route({
-     *     "en": "/admin/clean",
+     *     "en": "/admin/clean-up",
      *     "fr": "/admin/nettoyer"
-     * }, name="app_admin_clean", methods={"GET"})
+     * }, name="app_admin_clean_up", methods={"GET"})
      *
-     * @param string $publicPath
-     * @param TranslatorInterface $translator
+     * @param CommandExecutor $commandExecutor
      * @return Response
      */
-    public function clean(string $publicPath, TranslatorInterface $translator) : Response
+    public function cleanUp(CommandExecutor $commandExecutor) : Response
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->addFlash('notice', $commandExecutor->execute('app:clean-up'));
 
-        //Get all paths in database (image + image thumbnails)
-        $sql = "
-            SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
+        return $this->redirectToRoute('app_admin_index');
+    }
 
-            SELECT image AS image FROM koi_album WHERE image IS NOT NULL UNION
-            
-            SELECT image AS image FROM koi_wishlist WHERE image IS NOT NULL UNION
-            
-            SELECT avatar AS image FROM koi_user WHERE avatar IS NOT NULL UNION
-            
-            SELECT image AS image FROM koi_tag WHERE image IS NOT NULL UNION
-            SELECT image_small_thumbnail AS image FROM koi_tag WHERE image_small_thumbnail IS NOT NULL UNION
-            
-            SELECT image AS image FROM koi_photo WHERE image IS NOT NULL UNION
-            SELECT image_small_thumbnail AS image FROM koi_photo WHERE image_small_thumbnail IS NOT NULL UNION
-            
-            SELECT image AS image FROM koi_item WHERE image IS NOT NULL UNION
-            SELECT image_small_thumbnail AS image FROM koi_item WHERE image_small_thumbnail IS NOT NULL UNION
-            
-            SELECT image AS image FROM koi_datum WHERE image IS NOT NULL UNION
-            SELECT image_small_thumbnail AS image FROM koi_datum WHERE image_small_thumbnail IS NOT NULL UNION
-            
-            SELECT image AS image FROM koi_wish WHERE image IS NOT NULL UNION
-            SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL;
-        ";
-
-        $stmt = $em->getConnection()->prepare($sql);
-        $stmt->execute();
-        $dbPaths = array_map(function ($row) { return $row['image']; }, $stmt->fetchAll());
-
-        //Get all paths on disk
-        $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($publicPath.'/uploads'));
-        $diskPaths = [];
-        foreach ($rii as $file) {
-            if (!$file->isDir() && $file->getFileName() !== '.gitkeep') {
-                $diskPaths[] = str_replace($publicPath. '/', '', $file->getPathname());
-            }
-        }
-
-        //Compute the diff and delete the diff
-        $diff = \array_diff($diskPaths, $dbPaths);
-        foreach ($diff as $path) {
-            if (file_exists($publicPath.'/'.$path)) {
-                unlink($publicPath.'/'.$path);
-            }
-        }
-
-        $this->addFlash('notice', $translator->trans('message.files_deleted', ['%count%' => \count($diff)]));
+    /**
+     * @Route({
+     *     "en": "/admin/regenerate-thumbnails",
+     *     "fr": "/admin/regenerer-les-miniatures"
+     * }, name="app_admin_regenerate_thumbnails", methods={"GET"})
+     *
+     * @param CommandExecutor $commandExecutor
+     * @return Response
+     */
+    public function regenerateThumbnails(CommandExecutor $commandExecutor) : Response
+    {
+        $this->addFlash('notice', $commandExecutor->execute('app:regenerate-thumbnails'));
 
         return $this->redirectToRoute('app_admin_index');
     }
