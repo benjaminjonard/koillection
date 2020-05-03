@@ -103,3 +103,6 @@ h6.header, h5.header, h4.header, .button, .right-icon, .complementary-color
 html.loading:before,
 #offline-message
 {background-color: #376891;}
+
+/* Cancel */
+.btn-cancel {background-color: #376891!important;}

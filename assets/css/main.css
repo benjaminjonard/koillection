@@ -1273,7 +1273,7 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .theme-preview.sunset-theme.dark {background-color: #bb0029;}
 .theme-preview.sunset-theme.complementary {background-color: #376891;}
 
-.theme-preview.dark-theme.lighter {background-color: #ffffff;}
+.theme-preview.dark-theme.lighter {background-color: #ffac00;}
 .theme-preview.dark-theme.light {background-color: #7d7f82;}
 .theme-preview.dark-theme.medium {background-color: #525957;}
 .theme-preview.dark-theme.dark {background-color: #525957;}
@@ -1298,3 +1298,5 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 
 .profile-menu .collection-item span {position: relative; top: -4px;}
 .row.search-checkbox-row { margin-bottom: 25px; }
+
+.btn-cancel {background-color: #e53935;}
