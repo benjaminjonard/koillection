@@ -1,6 +1,7 @@
 /* Lightest */
 .progress,
-.picker__today:focus, .picker__clear:focus, .picker__close:focus
+.picker__today:focus, .picker__clear:focus, .picker__close:focus,
+.datepicker-day-button:focus
 {background-color: #80cbc4;}
 
 .breadcrumb a {color: #80cbc4;}
@@ -31,7 +32,9 @@
 .pagination li.active,
 .table-filter a.active,
 nav,
-.header-profile .down-background
+.header-profile .down-background,
+.datepicker-date-display,
+.datepicker-table td.is-selected
 {background-color: #009688;}
 
 progress[value]::-webkit-progress-value{background-color:#009688;}
@@ -46,7 +49,7 @@ textarea.materialize-textarea:focus:not([readonly])+label,
 .dropdown-content li>a,
 .dropdown-content li>span,
 .picker__day.picker__day--today, .picker__close, .picker__today,
-a
+a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today:not(.is-selected)
 {color: #009688;}
 
 .content-header .filter-block #filter-by-name-input:focus,

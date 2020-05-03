@@ -38,10 +38,10 @@ class ThemeEnum
             'complementary' => '#E74646'
         ],
         self::THEME_DARK => [
-            'main' => '#42a7ff',
-            'lightest' => '#8FF4FF',
-            'light' => '#5CC1FF',
-            'dark' => '#004199',
+            'main' => '#00ce99',
+            'lightest' => '#b3f0e0',
+            'light' => '#4DDDB8',
+            'dark' => '#007C5C',
             'complementary' => '#f0f0f0'
         ]
     ];
