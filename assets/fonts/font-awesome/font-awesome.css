@@ -24,6 +24,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.fa-file-image-o:before {
+  content: "\f1c5";
+}
+.fa-file-photo-o:before {
+  content: "\f1c5";
+}
+.fa-file-picture-o:before {
+  content: "\f1c5";
+}
 .fa-chevron-up:before {
   content: "\e900";
 }

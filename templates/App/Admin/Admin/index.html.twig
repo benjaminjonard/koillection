@@ -52,17 +52,20 @@
             <h5 class="header">{{ 'title.config'|trans }}</h5>
             <div class="row statistics">
                 <div class="col s12 m4 xl2"><div class="counter">{{ version }}</div>{{ 'label.version'|trans }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ phpVersion }}</div>{{ 'label.phpVersion'|trans }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfonyVersion'|trans }}</div>
-                <div class="col s12 m4 xl2"><div class="counter"><i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i></div>{{ 'label.isOpcacheAvailable'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}</div>
+                <div class="col s12 m4 xl2"><div class="counter"><i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i></div>{{ 'label.is_opcache_available'|trans }}</div>
             </div>
         </div>
 
         <div class="block-element">
             <h5 class="header">{{ 'title.tools'|trans }}</h5>
             <div class="row btn-holder">
-                <a href="{{ path('app_admin_clean') }}" class="btn waves-effect waves-light">
+                <a href="{{ path('app_admin_clean_up') }}" class="btn waves-effect waves-light">
                     <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
+                </a>
+                <a href="{{ path('app_admin_regenerate_thumbnails') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.regenerate_thumbnails'|trans }}
                 </a>
                 <a href="{{ path('app_admin_backup') }}" class="btn waves-effect waves-light">
                     <i class="fa fa-save fa-fw"></i>{{ 'btn.backup'|trans }}

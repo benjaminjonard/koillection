@@ -5,7 +5,7 @@ services:
     #FPM image
     koillection:
         container_name: koillection
-        image: docker.pkg.github.com/benjaminjonard/koillection/fpm:dev
+        image: docker.pkg.github.com/koillection/koillection/fpm:dev
         restart: always
         ports:
             - 80:80

@@ -15,6 +15,10 @@ class ThumbnailGenerator
      */
     public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : bool
     {
+        if (!is_file($path)) {
+            return false;
+        }
+
         list($width, $height, $mime) = getimagesize($path);
 
         if ($width <= $thumbnailWidth) {

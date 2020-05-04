@@ -10,8 +10,8 @@
 #### Docker
 ###### Push a new image to github repo
 - `docker build . --no-cache`
-- `docker tag {tag_returned_by_previous_command} docker.pkg.github.com/benjaminjonard/koillection/{image}:{tag}`
-- `docker push docker.pkg.github.com/benjaminjonard/koillection/{image}:{tag}`
+- `docker tag {tag_returned_by_previous_command} docker.pkg.github.com/koillection/koillection/{image}:{tag}`
+- `docker push docker.pkg.github.com/koillection/koillection/{image}:{tag}`
 
 #### Tests
 ##### PhpUnit

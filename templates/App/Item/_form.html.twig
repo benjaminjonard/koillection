@@ -55,7 +55,7 @@
                 {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
             </div>
             <div class="col s12 l5 xl2">
-                <button class="btn align-with-inputs btn-common-fields" data-collection-id="{{ collection.id }}">{{ 'btn.apply_collection_data'|trans }}</button>
+                <button class="btn align-with-inputs btn-common-fields" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_collection_data'|trans }}</button>
             </div>
         </div>
 
@@ -65,6 +65,8 @@
     <div class="row center-align form-btn-holder">
         {% if app.request.get('_route') == 'app_item_add' %}
             {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('collection')}) %}
+        {% elseif app.request.get('_route') == 'app_wish_transfer_to_collection' %}
+            {% set cancelUrl = path('app_wishlist_show', {id: wish.wishlist.id}) %}
         {% else %}
             {% set cancelUrl = path('app_collection_show', {id: item.collection.id}) %}
         {% endif %}
@@ -73,6 +75,6 @@
         {% if app.request.get('_route') == 'app_item_add' %}
             <button type="submit" name="save_and_add_another" class="btn waves-effect waves-light">{{ 'btn.submit_and_add_another'|trans }}</button>
         {% endif %}
-        <a href="{{ path('app_collection_show', { id : collection.id }) }}" class="waves-effect waves-light btn red darken-1">{{ 'btn.cancel'|trans }}</a>
+        <a href="{{ cancelUrl }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
     </div>
 {{ form_end(form) }}

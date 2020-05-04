@@ -211,7 +211,7 @@ li.list-element .list-content {width: 80%; display: inline-block;}
 .theme-preview.teal.light {background-color: #1ab0a2 !important;}
 .theme-preview.teal.medium {background-color: #009688 !important;}
 .theme-preview.teal.dark {background-color: #006355 !important;}
-.theme-preview.teal.complementary {background-color: #E74646 !important;}
+.theme-preview.teal.complementary {background-color: #e74646 !important;}
 
 .theme-preview.sunset.lighter {background-color: #ffb0ad;}
 .theme-preview.sunset.light {background-color: #ff7e7e;}
@@ -1273,11 +1273,11 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .theme-preview.sunset-theme.dark {background-color: #bb0029;}
 .theme-preview.sunset-theme.complementary {background-color: #376891;}
 
-.theme-preview.dark-theme.lighter {background-color: silver;}
-.theme-preview.dark-theme.light {background-color: #5e5e5e;}
-.theme-preview.dark-theme.medium {background-color: #2e3136;}
-.theme-preview.dark-theme.dark {background-color: #1e2125;}
-.theme-preview.dark-theme.complementary {background-color: #42a7ff;}
+.theme-preview.dark-theme.lighter {background-color: #ffac00;}
+.theme-preview.dark-theme.light {background-color: #7d7f82;}
+.theme-preview.dark-theme.medium {background-color: #525957;}
+.theme-preview.dark-theme.dark {background-color: #525957;}
+.theme-preview.dark-theme.complementary {background-color: #00ce99;}
 
 .tag-category-select-option {position: relative; margin-right: 3px; top: -1px;}
 form[name="search"] input[type="checkbox"] + span, form[name="search_history"] input[type="checkbox"] + span {margin-right: 25px; padding-left: 25px;}
@@ -1298,3 +1298,5 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 
 .profile-menu .collection-item span {position: relative; top: -4px;}
 .row.search-checkbox-row { margin-bottom: 25px; }
+
+.btn-cancel {background-color: #e53935;}

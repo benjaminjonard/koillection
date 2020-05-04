@@ -1,5 +1,5 @@
 {
-    "name": "benjaminjonard/koillection",
+    "name": "koillection/koillection",
     "description": "Koillection is a self-hosted service allowing users to manage any kind of collection.",
     "type": "project",
     "license": "GPL-3.0-only",
@@ -17,7 +17,6 @@
         "doctrine/orm": "^2.7",
         "doctrine/persistence": "^1.3",
         "maennchen/zipstream-php": "^1.2",
-        "phpdocumentor/reflection-docblock": "^4.3",
         "ramsey/uuid-doctrine": "^1.5",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "^5.0",
@@ -54,8 +53,7 @@
         "twig/extra-bundle": "^3.0",
         "twig/string-extra": "^3.0",
         "twig/twig": "^3.0",
-        "willdurand/js-translation-bundle": "^3.0",
-        "willdurand/negotiation": "^2.3"
+        "willdurand/js-translation-bundle": "^3.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",

@@ -5,13 +5,13 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/license/benjaminjonard/koillection" />    
-    <img src="https://img.shields.io/github/v/release/benjaminjonard/koillection" />
-    <img src="https://img.shields.io/travis/benjaminjonard/koillection/master" />
-    <img src="https://img.shields.io/scrutinizer/g/benjaminjonard/koillection" />    
+<img src="https://img.shields.io/github/license/koillection/koillection" />    
+    <img src="https://img.shields.io/github/v/release/koillection/koillection" />
+    <img src="https://img.shields.io/travis/koillection/koillection/master" />
+    <img src="https://img.shields.io/scrutinizer/g/koillection/koillection" />    
 </p>
 <p align="center">
-    <img src="https://img.shields.io/packagist/php-v/benjaminjonard/koillection" />    
+    <img src="https://img.shields.io/packagist/php-v/koillection/koillection" />    
     <img src="https://img.shields.io/badge/mysql-^8.0-blue" />
     <img src="https://img.shields.io/badge/postgresql-^10.0-blue" />    
 <p>
@@ -80,7 +80,7 @@ Koillection is still in development. There might be some bugs, missing features 
 7. (optionnal) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 
 ### Using Docker
-* https://github.com/benjaminjonard/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
+* https://github.com/koillection/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
 
 ## Licensing
 
