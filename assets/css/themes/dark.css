@@ -64,7 +64,7 @@ a
 {background-color : #222222; border-color: #222222;}
 
 [type="checkbox"]:checked + span:not(.lever)::before
-{border-right: 2px solid #525957;  border-bottom: 2px solid #525957;}
+{border-right: 2px solid #222222;  border-bottom: 2px solid #222222;}
 
 input[type=range]::-moz-range-thumb
 {background: #222222;}
@@ -121,6 +121,19 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h5.statisti
 .app, .modal, .modal .modal-footer, .select2-container--default .select2-selection--single, .select2-dropdown, .autocomplete-content,
 header #search_term,  .sidebar-wrapper .header-logo
 { background-color: #2a2a2a; }
+
+.croppie-container .cr-resizer, .croppie-container .cr-viewport
+{box-shadow: 0 0 2000px 2000px #7d7f82;}
+
+.sidebar-wrapper .nav-sidebar li.separate-item
+{ border-top: 1px solid #7d7f82; }
+
+.breadcrumb-item + .breadcrumb-item::before
+{color: #7d7f82}
+
+.pie-wrapper .shadow {
+    border: .1em solid #7d7f82;
+}
 
 .button, a, .suggestion, h6.header, h5.header, h4.header
 { color: #00ce99; }
