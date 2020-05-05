@@ -1300,3 +1300,4 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .row.search-checkbox-row { margin-bottom: 25px; }
 
 .btn-cancel {background-color: #e53935;}
+.croppie-container .cr-boundary {z-index: 0;}
