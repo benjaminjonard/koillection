@@ -208,11 +208,13 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this->file;
     }
 
-    public function setFile(File $file): self
+    public function setFile(?File $file): self
     {
         $this->file = $file;
         //Force Doctrine to trigger an update
-        $this->setUpdatedAt(new \DateTime());
+        if ($file) {
+            $this->setUpdatedAt(new \DateTime());
+        }
 
         return $this;
     }
