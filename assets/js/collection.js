@@ -45,7 +45,7 @@ function refreshImage() {
     let $form = $('#cropArea').closest('.row-file').find('.file-input');
     $croppie.croppie('result', {
         type: "canvas",
-        size: "viewport"
+        size: { width: 200, height: 200 }
     })
     .then(function(imgBase64) {
         $form.val(imgBase64);

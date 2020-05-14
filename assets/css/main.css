@@ -263,7 +263,7 @@ button.align-with-inputs {margin-top: 25px;}
 .handle {cursor: move; font-size: 20px;}
 
 /* Cropper */
-#cropPreview img{margin: 25px auto;}
+#cropPreview img{margin: 25px auto; width: 150px; height: 150px;}
 
 .line-height-1 {line-height: 1.0;}
 .additional-message {margin-top: 15px;}
