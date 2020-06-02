@@ -21,7 +21,6 @@ services:
             - DB_VERSION=8
             - PHP_TZ=Europe/Paris
         depends_on:
-            - postgres
             - mysql
         volumes:
             - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
