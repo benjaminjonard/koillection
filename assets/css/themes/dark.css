@@ -35,12 +35,13 @@
 .table-filter a.active,
 nav,
 table.striped > tbody > tr:nth-child(2n+1),
-.sidebar-wrapper .header-logo
-{background-color: #525957;}
+.content-wrapper .btn-holder input[type="text"],
+header
+{background-color: #222222;}
 
-progress[value]::-webkit-progress-value{background-color:#525957;}
-progress[value]::-moz-progress-bar{background-color:#525957;}
-progress[value]::-ms-fill{background-color:#525957;}
+progress[value]::-webkit-progress-value{background-color:#222222;}
+progress[value]::-moz-progress-bar{background-color:#222222;}
+progress[value]::-ms-fill{background-color:#222222;}
 
 .breadcrumb .last,
 .secondary-content,
@@ -51,28 +52,28 @@ textarea.materialize-textarea:focus:not([readonly])+label,
 .dropdown-content li>span,
 .picker__day.picker__day--today, .picker__close, .picker__today,
 a
-{color: #525957;}
+{color: #222222;}
 
 .content-header .filter-block #filter-by-name-input:focus,
 [type="radio"].with-gap:checked + span:before,
 .tabs-block .tab.current,
 .pie-wrapper .pie .half-circle
-{border-color: #525957;}
+{border-color: #222222;}
 
 [type="radio"].with-gap:checked + span::after, [type="radio"]:checked + span::after
-{background-color : #525957; border-color: #525957;}
+{background-color : #222222; border-color: #222222;}
 
 [type="checkbox"]:checked + span:not(.lever)::before
-{border-right: 2px solid #525957;  border-bottom: 2px solid #525957;}
+{border-right: 2px solid #222222;  border-bottom: 2px solid #222222;}
 
 input[type=range]::-moz-range-thumb
-{background: #525957;}
+{background: #222222;}
 
 input[type=range]::-webkit-slider-thumb
-{background: #525957;}
+{background: #222222;}
 
 input[type=range]::-ms-track
-{background: #525957;}
+{background: #222222;}
 
 input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]),
 input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]),
@@ -80,13 +81,13 @@ input.valid:not([type]), input.valid:focus:not([type]), input.valid[type="text"]
 input.valid[type="email"]:focus, input.valid[type="url"], input.valid[type="url"]:focus, input.valid[type="time"], input.valid[type="time"]:focus, input.valid[type="date"], input.valid[type="date"]:focus, input.valid[type="datetime-local"],
 input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[type="tel"]:focus, input.valid[type="number"], input.valid[type="number"]:focus, input.valid[type="search"], input.valid[type="search"]:focus, textarea.materialize-textarea.valid, textarea.materialize-textarea.valid:focus
 {
-    border-bottom: 1px solid #525957;
-    box-shadow: 0 1px 0 0 #525957;
+    border-bottom: 1px solid #222222;
+    box-shadow: 0 1px 0 0 #222222;
 }
 
 .tabs-block li.tab.current
 {
-    border-bottom: 3px solid #525957;
+    border-bottom: 3px solid #222222;
 }
 
 /* Complementary */
@@ -117,10 +118,22 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h5.statisti
 .autocomplete-content li .highlight {color: #ffac00;}
 
 /* Specific overrides */
-.app, .modal, .modal .modal-footer, .select2-container--default .select2-selection--single, .select2-dropdown, .autocomplete-content
-{ background-color: #3f4544; }
-header
-{ background-color: #7d7f82; }
+.app, .modal, .modal .modal-footer, .select2-container--default .select2-selection--single, .select2-dropdown, .autocomplete-content,
+header #search_term,  .sidebar-wrapper .header-logo
+{ background-color: #2a2a2a; }
+
+.croppie-container .cr-resizer, .croppie-container .cr-viewport
+{box-shadow: 0 0 2000px 2000px #7d7f82;}
+
+.sidebar-wrapper .nav-sidebar li.separate-item
+{ border-top: 1px solid #7d7f82; }
+
+.breadcrumb-item + .breadcrumb-item::before
+{color: #7d7f82}
+
+.pie-wrapper .shadow {
+    border: .1em solid #7d7f82;
+}
 
 .button, a, .suggestion, h6.header, h5.header, h4.header
 { color: #00ce99; }
