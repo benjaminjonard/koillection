@@ -1,16 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [v1.1.1] / WIP
+## [v1.1.1] / 2020-06-25
 ### Features
 - Add a button in admin panel to regenerate thumbnails (Benjamin Jonard)
-
-### Miscellaneous
-- Improve dark mode (Benjamin Jonard)
 
 ### Fixes
 - Fix locale updates (Benjamin Jonard)
 - Fix wish transfer to collection form (Benjamin Jonard)
+
+### Miscellaneous
+- Upgrade to Symfony 5.1  (Benjamin Jonard)
+- Improve dark mode (Benjamin Jonard)
+- Fix vulnerabilities in JS dependencies (Benjamin Jonard)
 
 ## [v1.1.0] / 2020-04-30
 ### Important
