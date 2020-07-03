@@ -45,5 +45,7 @@ services:
             - MYSQL_ROOT_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - MYSQL_DATABASE=koillection
             - MYSQL_USER=root
+        ports:
+            - 3306:3306
         volumes:
             - "./docker/volumes/mysql:/var/lib/mysql"

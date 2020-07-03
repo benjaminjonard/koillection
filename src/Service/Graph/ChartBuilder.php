@@ -222,6 +222,7 @@ class ChartBuilder
         $query->setParameter(2, Item::class);
         $query->setParameter(3, [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE]);
         $result = $query->getArrayResult();
+        dump($result);die;
 
         $timezone = new \DateTimeZone($user->getTimezone());
         $total = 0;
