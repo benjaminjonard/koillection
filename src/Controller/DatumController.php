@@ -54,17 +54,15 @@ class DatumController extends AbstractController
 
             $first = $collection->getItems()->first();
             if ($first instanceof Item) {
-                foreach ($first->getData() as $datum) {
-                    if (!\in_array($datum->getType(), [DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_IMAGE], false)) {
-                        $field['datum'] = $datum;
-                        $field['type'] = $datum->getType();
-                        $commonFields[$datum->getLabel()] = $field;
-                    }
+                foreach ($first->getDataTexts() as $datum) {
+                    $field['datum'] = $datum;
+                    $field['type'] = $datum->getType();
+                    $commonFields[$datum->getLabel()] = $field;
                 }
             }
 
             foreach ($collection->getItems() as $key => $item) {
-                if ($key > 0 && $item->getData()->count() > 0) {
+                if ($key > 0 && $item->getDataTexts()->count() > 0) {
                     foreach ($commonFields as $cfKey => &$commonField) {
                         $existing = null;
                         foreach ($item->getData() as $datum) {
