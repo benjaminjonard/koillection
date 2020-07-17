@@ -29,4 +29,5 @@ t.add("statistics.users", "[0,1] %count% user| ]1,Inf[ %count% users", "javascri
 t.add("statistics.items", "[0,1] %count% item| ]1,Inf[ %count% items", "javascript", "en-GB");
 t.add("select2.no_results", "No results found", "javascript", "en-GB");
 t.add("select2.searching", "Searching...", "javascript", "en-GB");
+t.add("select2.none", "None", "javascript", "en-GB");
 })(Translator);

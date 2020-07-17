@@ -169,5 +169,11 @@
         <target>Recherche en cours...</target>
       </segment>
     </unit>
+    <unit id="gz65OAJ" name="select2.none">
+      <segment>
+        <source>select2.none</source>
+        <target>Aucun(e)</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

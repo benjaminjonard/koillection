@@ -10,7 +10,7 @@ function getCountriesConf() {
     return {
         templateSelection: function (country) {
             if (!country.id) {
-                return country.text;
+                return '';
             }
 
             var $country = $(
@@ -21,7 +21,7 @@ function getCountriesConf() {
         },
         templateResult: function (country) {
             if (!country.id) {
-                return country.text;
+                return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
             }
 
             let $country = $(
@@ -72,7 +72,7 @@ function getLocalesConf() {
     return {
         templateSelection: function (locale) {
             if (!locale.id) {
-                return locale.text;
+                return '';
             }
 
             var $locale = $(
@@ -83,7 +83,7 @@ function getLocalesConf() {
         },
         templateResult: function (locale) {
             if (!locale.id) {
-                return locale.text;
+                return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
             }
 
             let $locale = $(
@@ -107,7 +107,7 @@ function getThemesConf() {
     return {
         templateSelection: function (theme) {
             if (!theme.id) {
-                return theme.text;
+                return '';
             }
 
             var $theme = $(
@@ -123,7 +123,7 @@ function getThemesConf() {
         },
         templateResult: function (theme) {
             if (!theme.id) {
-                return theme.text;
+                return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
             }
 
             var $theme = $(
@@ -152,7 +152,7 @@ function getTagCategoriesConf() {
     return {
         templateSelection: function (category) {
             if (!category.id) {
-                return category.text;
+                return '';
             }
             var $category = $(
                 '<span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '" title="' + category.text +  '"></span>' +
@@ -163,11 +163,11 @@ function getTagCategoriesConf() {
         },
         templateResult: function (category) {
             if (!category.id) {
-                return category.text;
+                return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
             }
 
             var $category = $(
-                '<span class="tag-category-select-option  tag-category-color" style="background-color: ' + category.element.dataset.color + '" title="' + category.text +  '"></span>' +
+                '<span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '" title="' + category.text +  '"></span>' +
                 '<span>' + category.text + '</span>'
             );
 
@@ -187,6 +187,20 @@ function getTagCategoriesConf() {
 
 function getDefaultConf() {
     return {
+        templateSelection: function (element) {
+            if (!element.id) {
+                return '';
+            }
+
+            return element.text;
+        },
+        templateResult: function (element) {
+            if (!element.id) {
+                return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
+            }
+
+            return element.text;
+        },
         language: {
             noResults: function () {
                 return Translator.trans('select2.no_results');

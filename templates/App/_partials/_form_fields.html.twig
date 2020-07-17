@@ -133,6 +133,8 @@
 {% block _tag_category_widget %}
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
         {% set options = choices %}
+        <option value="" {% if not render_preferred_choices|default(false) and value == '' %} selected="selected"{% endif %}>
+        </option>
         {% for choice in options %}
             <option data-color="{{ choice.data.color }}" value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>
                 {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}

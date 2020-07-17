@@ -1308,3 +1308,6 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 }
 
 #search_tag .input-field {margin-top: unset; margin-bottom: unset;}
+.select2-results__options li {min-height: 52.5px;}
+.select-placeholder  {font-style: italic; color: #9e9e9e;}
+.select2-results__option--highlighted .select-placeholder {color: #fff;}
