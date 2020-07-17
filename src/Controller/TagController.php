@@ -8,6 +8,8 @@ use App\Entity\Item;
 use App\Entity\Log;
 use App\Entity\Tag;
 use App\Form\Type\Entity\TagType;
+use App\Form\Type\Model\SearchTagType;
+use App\Model\Search\SearchTag;
 use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;
 use Doctrine\ORM\NonUniqueResultException;
@@ -38,22 +40,24 @@ class TagController extends AbstractController
      * }, name="app_preview_tag_index", methods={"GET"})
      *
      * @param Request $request
-     * @param ContextHandler $contextHandler
      * @param PaginatorFactory $paginatorFactory
+     * @param ContextHandler $contextHandler
+     * @param int $paginationItemsPerPage
      * @return Response
-     * @throws NonUniqueResultException
      */
-    public function index(Request $request, ContextHandler $contextHandler, PaginatorFactory $paginatorFactory) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler, int $paginationItemsPerPage) : Response
     {
         $context = $contextHandler->getContext();
-        $page = $request->query->get('page', 1);
-        $search = $request->query->get('search', null);
+        $search = new SearchTag($request->query->getInt('page', 1), $paginationItemsPerPage);
+        $form = $this->createForm(SearchTagType::class, $search, [
+            'method' => 'GET',
+        ]);
+        $form->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
         $itemsCount = $em->getRepository(Item::class)->count([]);
-        $tagsCount = $em->getRepository(Tag::class)->countForPagination($search, $context);
-        $results = $em->getRepository(Tag::class)->findTagsPaginatedWithItemsCount(
-            $itemsCount, $paginatorFactory->getPaginationItemsPerPage(), $page, $search, $context
-        );
+        $tagsCount = $em->getRepository(Tag::class)->countForTagSearch($search, $context);
+        $results = $em->getRepository(Tag::class)->findForTagSearch($search, $context, $itemsCount);
 
         if ($request->isXmlHttpRequest()) {
             return $this->render('App/Tag/_tags_table.html.twig', [
@@ -66,7 +70,8 @@ class TagController extends AbstractController
             'results' => $results,
             'search' => $search,
             'tagsCount' => $tagsCount,
-            'paginator' => $paginatorFactory->generate($tagsCount)
+            'paginator' => $paginatorFactory->generate($tagsCount),
+            'form' => $form->createView()
         ]);
     }
 

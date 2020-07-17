@@ -1306,3 +1306,5 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 
     border: .1em solid rgba(0,0,0,.5);
 }
+
+#search_tag .input-field {margin-top: unset; margin-bottom: unset;}
