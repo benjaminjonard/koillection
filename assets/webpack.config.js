@@ -6,7 +6,7 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('js/app', './js/app.js')
-    .addEntry('js/statistics', './js/statistics/statistics.js')
+    .addEntry('js/statistics', './js/statistics.js')
 
     .addStyleEntry('css/app', './css/app.css')
     .addStyleEntry('css/themes/sunset', './css/themes/sunset.css')

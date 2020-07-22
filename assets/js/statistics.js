@@ -1,9 +1,18 @@
-import '../translations/config'
-import '../translations/javascript/en-GB'
-import '../translations/javascript/fr-FR'
+import './translations/config'
+import './translations/javascript/en-GB'
+import './translations/javascript/fr-FR'
 
-import Translator from '../translator.min.js'
-import echarts from './echarts.min'
+import Translator from './translator.min.js'
+import echarts from 'echarts/lib/echarts'
+
+//Echarts components
+require("echarts/lib/chart/line");
+require('echarts/lib/chart/bar');
+require('echarts/lib/chart/heatmap');
+require('echarts/lib/chart/tree');
+require('echarts/lib/component/calendar');
+require('echarts/lib/component/tooltip');
+require('echarts/lib/component/visualMap');
 
 $(document).ready(function() {
     let $statisticHolder = document.querySelector('.statistics-holder');
