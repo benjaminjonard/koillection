@@ -40,7 +40,6 @@
             <tr>
                 <th>{{ 'label.name'|trans }}</th>
                 <th>{{ 'label.fields'|trans }}</th>
-                <th>{{ 'label.items'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -48,7 +47,6 @@
                 <tr class="list-element resize-element" data-title="{{ result.template.name }}">
                     <td><a href="{{ path('app_template_show', {'id' : result.template.id}) }}"><strong>{{ result.template.name }}</strong></a></td>
                     <td>{{ 'counter.field'|trans({'%count%': result.fieldsCounter}) }}</td>
-                    <td>{{ 'counter.item'|trans({'%count%': result.itemsCounter}) }}</td>
                 </tr>
             {% endfor %}
             </tbody>

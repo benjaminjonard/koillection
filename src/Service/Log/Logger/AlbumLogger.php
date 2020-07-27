@@ -34,7 +34,7 @@ class AlbumLogger extends Logger
      */
     public function getCreateLog($album) : ?Log
     {
-        if (!$this->supportedClass(\get_class($album))) {
+        if (!$this->supports($album)) {
             return null;
         }
 
@@ -47,7 +47,7 @@ class AlbumLogger extends Logger
      */
     public function getDeleteLog($album) : ?Log
     {
-        if (!$this->supportedClass(\get_class($album))) {
+        if (!$this->supports($album)) {
             return null;
         }
 
@@ -62,7 +62,7 @@ class AlbumLogger extends Logger
      */
     public function getUpdateLog($album, array $changeset, array $relations = []) : ?Log
     {
-        if (!$this->supportedClass(\get_class($album))) {
+        if (!$this->supports($album)) {
             return null;
         }
         $mainPayload = [];
@@ -113,7 +113,7 @@ class AlbumLogger extends Logger
      */
     public function formatPayload($class, array $payload) : ?string
     {
-        if (!$this->supportedClass($class)) {
+        if (!$this->supportsClass($class)) {
             return null;
         }
 

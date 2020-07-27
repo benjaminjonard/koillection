@@ -440,14 +440,24 @@
         <target>Prêter</target>
       </segment>
     </unit>
-    <unit id="No7skRj" name="btn.apply_collection_data">
+    <unit id="No7skRj" name="btn.apply_common_fields">
       <notes>
         <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
         <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
       </notes>
       <segment>
-        <source>btn.apply_collection_data</source>
+        <source>btn.apply_common_fields</source>
         <target>Charger les champs en commun</target>
+      </segment>
+    </unit>
+    <unit id="dsa97Ds" name="btn.apply_collection_fields">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
+        <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
+      </notes>
+      <segment>
+        <source>btn.apply_collection_fields</source>
+        <target>Charger les champs de la collection</target>
       </segment>
     </unit>
     <unit id="u5LRF8p" name="btn.cancel">
@@ -1983,7 +1993,7 @@
       </notes>
       <segment>
         <source>log.item.image_added</source>
-        <target>L'image %label% a été ajouté</target>
+        <target>L'image %label% a été ajoutée</target>
       </segment>
     </unit>
     <unit id="HtlfUjV" name="log.item.property_added">

@@ -28,6 +28,17 @@ class DatumTypeEnum
     /**
      * @return array
      */
+    public static function getTextTypesLabels() : array
+    {
+        return [
+            self::TYPE_TEXT => 'label.text',
+            self::TYPE_COUNTRY => 'label.country',
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public static function getTypesLabels() : array
     {
         return self::TYPES_TRANS_KEYS;

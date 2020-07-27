@@ -86,13 +86,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private DoctrineCollection $loans;
 
     /**
-     * @var Template
-     * @ORM\ManyToOne(targetEntity="Template", inversedBy="items")
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private ?Template $template = null;
-
-    /**
      * @var File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
@@ -396,18 +389,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
                 $loan->setItem(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getTemplate(): ?Template
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(?Template $template): self
-    {
-        $this->template = $template;
 
         return $this;
     }

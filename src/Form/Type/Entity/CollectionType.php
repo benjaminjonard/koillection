@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
+use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -72,6 +74,23 @@ class CollectionType extends AbstractType
                 'choice_name' => null,
                 'empty_data' => '',
                 'required' => false,
+            ])
+            ->add('data', SymfonyCollectionType::class, [
+                'entry_type' => DatumType::class,
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ])
+            ->add('template', EntityType::class, [
+                'class' => Template::class,
+                'choice_label' => 'name',
+                'choices' => $this->em->getRepository(Template::class)->findAll(),
+                'expanded' => false,
+                'multiple' => false,
+                'choice_name' => null,
+                'required' => false,
+                'mapped' => false
             ])
             ->add(
                 $builder->create('file', TextType::class, [

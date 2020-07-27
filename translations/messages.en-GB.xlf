@@ -440,14 +440,24 @@
         <target>Lend</target>
       </segment>
     </unit>
-    <unit id="No7skRj" name="btn.apply_collection_data">
+    <unit id="No7skRj" name="btn.apply_common_fields">
       <notes>
         <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
         <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
       </notes>
       <segment>
-        <source>btn.apply_collection_data</source>
+        <source>btn.apply_common_fields</source>
         <target>Load common fields</target>
+      </segment>
+    </unit>
+    <unit id="dsa97Ds" name="btn.apply_collection_fields">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
+        <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
+      </notes>
+      <segment>
+        <source>btn.apply_collection_fields</source>
+        <target>Load collection fields</target>
       </segment>
     </unit>
     <unit id="u5LRF8p" name="btn.cancel">

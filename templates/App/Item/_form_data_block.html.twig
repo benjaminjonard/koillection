@@ -5,7 +5,7 @@
         </div>
 
         {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY')])) %}
-            {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type}) }}
+            {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
         {% endfor %}
     </div>
 
@@ -15,7 +15,7 @@
         </div>
 
         {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE'), constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN')])) %}
-            {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type}) }}
+            {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
         {% endfor %}
     </div>
 </div>

@@ -80,6 +80,28 @@
     </div>
 
     <div class="content-block">
+        <!-- Additional data -->
+        {% if collection.data is not empty %}
+            <div class="block-element">
+                <h5 class="header">{{ 'title.infos'|trans }}</h5>
+                <div class="row">
+                    {% set underlinedTags = getUnderlinedTags(collection.data) %}
+                    {% for datum in collection.data %}
+                        <div class="datum-row col s12 l5 xl3">
+                            <span class="label">{{ datum.label }} :</span>
+                            {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
+                                {% for value in datum.value|split(',') %}
+                                    {{ underlinedTags[value|trim]|raw }}{{ not loop.last ? ',' }}
+                                {% endfor %}
+                            {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
+                                <span class="flag flag-{{ datum.value|lower }}"></span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
         <!-- Child collections -->
         {% if children is not empty %}
             <div class="block-element">

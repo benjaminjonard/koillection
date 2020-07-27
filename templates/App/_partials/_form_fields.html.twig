@@ -104,7 +104,8 @@
 {% block collection_item_widget %}
     {% apply spaceless %}
         <div class="col s5">
-            {{ form_row(prototype.name) }}
+            {# Items have a name, collections have a label #}
+            {{ prototype.name is defined ? form_row(prototype.name) : form_row(prototype.label) }}
         </div>
         <div class="col s5">
             <div class="input-field">

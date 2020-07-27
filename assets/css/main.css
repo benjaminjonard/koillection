@@ -176,10 +176,11 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 
 .item-wrapper {text-align: center;}
 .item-details {max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto;}
-.item-details .data {margin-top: -8px; overflow: auto; max-width: 300px; vertical-align: top; text-align: left;}
-.item-details .data span {font-weight: bold;}
-.item-details .data > div {line-height: 30px;}
-.item-details .data a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #9e9e9e}
+.item-details .data {margin-top: -8px; overflow: auto; max-width: 300px; vertical-align: top;}
+.item-details .data .datum-row {text-align: left}
+.datum-row {line-height: 30px; text-align: center;}
+.datum-row a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #9e9e9e}
+.datum-row span {font-weight: bold;}
 .slider-container, .data {display: inline-block;}
 .margin-right-30 {margin-right: 30px;}
 

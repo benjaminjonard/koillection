@@ -1,27 +1,52 @@
 {{ form_start(form) }}
-    {{ form_row(form.file) }}
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.title, {'label' : 'label.title'} ) }}
+    {% do form.data.setRendered %}
+    <div class="content-block">
+        {{ form_row(form.file) }}
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.title, {'label' : 'label.title'} ) }}
+            </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+            </div>
         </div>
-        <div class="col s12 l5 xl3">
-            {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
+            </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedChildrenTitles|default} ) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.parent, {'label' : 'label.parent'} ) }}
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
+    <div class="content-block">
+        <div class="row">
+            <h5 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h5>
         </div>
-        <div class="col s12 l5 xl3">
-            {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedChildrenTitles|default} ) }}
+        <div class="row js-data-actions" data-entity="collection">
+            <div class="input-field col s12 l5 offset-l1 xl3 offset-xl3">
+                <select id="selectFieldType" class="selectFieldType" {% if fieldsType|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
+                    <option value=""></option>
+                    {% for key, fieldType in fieldsType %}
+                        <option value="{{ key }}">{{ fieldType|trans }}</option>
+                    {% endfor %}
+                </select>
+                <label for="selectFieldType">{{ 'label.new_data'|trans }}</label>
+            </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.parent, {'label' : 'label.parent'} ) }}
-        </div>
+        {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}
     </div>
 
     <div class="row center-align form-btn-holder">

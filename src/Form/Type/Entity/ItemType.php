@@ -83,6 +83,7 @@ class ItemType extends AbstractType
                 'multiple' => false,
                 'choice_name' => null,
                 'required' => false,
+                'mapped' => false
             ])
             ->add('data', SymfonyCollectionType::class, [
                 'entry_type' => DatumType::class,

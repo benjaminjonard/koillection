@@ -34,7 +34,7 @@ class TagLogger extends Logger
      */
     public function getCreateLog($tag) : ?Log
     {
-        if (!$this->supportedClass(\get_class($tag))) {
+        if (!$this->supports($tag)) {
             return null;
         }
 
@@ -47,7 +47,7 @@ class TagLogger extends Logger
      */
     public function getDeleteLog($tag) : ?Log
     {
-        if (!$this->supportedClass(\get_class($tag))) {
+        if (!$this->supports($tag)) {
             return null;
         }
 
@@ -62,7 +62,7 @@ class TagLogger extends Logger
      */
     public function getUpdateLog($tag, array $changeset, array $relations = []) : ?Log
     {
-        if (!$this->supportedClass(\get_class($tag))) {
+        if (!$this->supports($tag)) {
             return null;
         }
 
@@ -119,7 +119,7 @@ class TagLogger extends Logger
      */
     public function formatPayload($class, array $payload) : ?string
     {
-        if (!$this->supportedClass($class)) {
+        if (!$this->supportsClass($class)) {
             return null;
         }
 

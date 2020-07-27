@@ -6,6 +6,7 @@ namespace App\Service\Log\Logger;
 
 use App\Entity\Collection;
 use App\Entity\Log;
+use App\Enum\DatumTypeEnum;
 use App\Enum\LogTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Service\Log\Logger;
@@ -34,7 +35,7 @@ class CollectionLogger extends Logger
      */
     public function getCreateLog($collection) : ?Log
     {
-        if (!$this->supportedClass(\get_class($collection))) {
+        if (!$this->supports($collection)) {
             return null;
         }
 
@@ -47,7 +48,7 @@ class CollectionLogger extends Logger
      */
     public function getDeleteLog($collection) : ?Log
     {
-        if (!$this->supportedClass(\get_class($collection))) {
+        if (!$this->supports($collection)) {
             return null;
         }
 
@@ -62,7 +63,7 @@ class CollectionLogger extends Logger
      */
     public function getUpdateLog($collection, array $changeset, array $relations = []) : ?Log
     {
-        if (!$this->supportedClass(\get_class($collection))) {
+        if (!$this->supports($collection)) {
             return null;
         }
         $mainPayload = [];
@@ -113,7 +114,7 @@ class CollectionLogger extends Logger
      */
     public function formatPayload($class, array $payload) : ?string
     {
-        if (!$this->supportedClass($class)) {
+        if (!$this->supportsClass($class)) {
             return null;
         }
 
@@ -140,6 +141,44 @@ class CollectionLogger extends Logger
                     '%new%' => "<strong>$old</strong>",
                     '%old%' => "<strong>$new</strong>",
                 ]);
+            case 'datum_added':
+                switch ($payload['datum_type']) {
+                    case DatumTypeEnum::TYPE_IMAGE:
+                        return $this->translator->trans('log.item.image_added', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                        ]);
+                    case DatumTypeEnum::TYPE_SIGN: {
+                        return $this->translator->trans('log.item.sign_added', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
+                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                        ]);
+                    }
+                    default:
+                        return $this->translator->trans('log.item.property_added', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
+                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                        ]);
+                }
+            // no break
+            case 'datum_removed':
+                switch ($payload['datum_type']) {
+                    case DatumTypeEnum::TYPE_IMAGE:
+                        return $this->translator->trans('log.item.image_removed', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                        ]);
+                    case DatumTypeEnum::TYPE_SIGN: {
+                        return $this->translator->trans('log.item.sign_removed', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
+                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                        ]);
+                    }
+                    default:
+                        return $this->translator->trans('log.item.property_removed', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
+                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                        ]);
+                }
+            // no break
             default:
                 $defaultValue = $this->translator->trans('log.default_value');
                 $old = $payload['old'] ? $payload['old'] : $defaultValue;

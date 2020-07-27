@@ -12,7 +12,7 @@ use App\Service\Log\Logger;
 use App\Service\Log\LogQueue;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class DatumLogger extends Logger
+class DatumItemLogger extends Logger
 {
     /**
      * @var LogQueue
@@ -47,12 +47,12 @@ class DatumLogger extends Logger
     }
 
     /**
-     * @param $class
+     * @param $object
      * @return bool
      */
-    public function supportedClass($class) : bool
+    public function supports($object) : bool
     {
-        return $class === Datum::class;
+        return get_class($object) === Datum::class && $object->getItem() instanceof Item;
     }
 
     /**
@@ -61,7 +61,7 @@ class DatumLogger extends Logger
      */
     public function getCreateLog($datum) : ?Log
     {
-        if (!$this->supportedClass(\get_class($datum))) {
+        if (!$this->supports($datum)) {
             return null;
         }
 
@@ -93,7 +93,7 @@ class DatumLogger extends Logger
      */
     public function getDeleteLog($datum) : ?Log
     {
-        if (!$this->supportedClass(\get_class($datum))) {
+        if (!$this->supports($datum)) {
             return null;
         }
 

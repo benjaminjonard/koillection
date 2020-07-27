@@ -119,7 +119,9 @@ services:
         tags: [app.logger]
     App\Service\Log\Logger\TagLogger:
         tags: [app.logger]
-    App\Service\Log\Logger\DatumLogger:
+    App\Service\Log\Logger\DatumItemLogger:
+        tags: [app.logger]
+    App\Service\Log\Logger\DatumCollectionLogger:
         tags: [app.logger]
     App\Service\Log\Logger\AlbumLogger:
         tags: [app.logger]

@@ -147,6 +147,7 @@ class TemplateController extends AbstractController
             $data = [];
             $data['type'] = $field->getType();
             $data['html'] = $fields[$field->getName()] = $this->render('App/Datum/_datum.html.twig', [
+                'entity' => '__entity_placeholder__',
                 'iteration' => '__placeholder__',
                 'type' => $field->getType(),
                 'label' => $field->getName(),

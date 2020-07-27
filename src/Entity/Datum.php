@@ -32,7 +32,13 @@ class Datum implements LoggableInterface
      * @var Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
      */
-    private ?Item $item;
+    private ?Item $item = null;
+
+    /**
+     * @var Collection
+     * @ORM\ManyToOne(targetEntity="Collection", inversedBy="data")
+     */
+    private ?Collection $collection = null;
 
     /**
      * @var string
@@ -270,6 +276,18 @@ class Datum implements LoggableInterface
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
+
+        return $this;
+    }
+
+    public function getCollection(): ?Collection
+    {
+        return $this->collection;
+    }
+
+    public function setCollection(?Collection $collection): self
+    {
+        $this->collection = $collection;
 
         return $this;
     }

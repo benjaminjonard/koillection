@@ -47,7 +47,7 @@ $('.selectTemplate').change( function() {
                     } else {
                         var $holder = $('#data');
                     }
-                    $holder.append(field.html.replace(/__placeholder__/g, lastIndex));
+                    $holder.append(field.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
                     $holder.find('.datum:last').find('.countable').characterCounter();
                     lastIndex++;
                 }
@@ -62,7 +62,7 @@ $('.selectTemplate').change( function() {
     }
 });
 
-$('.btn-common-fields').click( function(e) {
+$('.js-btn-common-fields').click( function(e) {
     e.preventDefault();
     $.get('/datum/load-common-fields/' + $(this).attr('data-collection-id'), function( result ) {
         $.each( result.fields, function( label, field ) {
@@ -72,7 +72,30 @@ $('.btn-common-fields').click( function(e) {
                 } else {
                     var $holder = $('#data');
                 }
-                $holder.append(field.html.replace(/__placeholder__/g, lastIndex));
+                $holder.append(field.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
+                $holder.find('.datum:last').find('.countable').characterCounter();
+                lastIndex++;
+            }
+        });
+        showAdditionalFieldsBlocks();
+        select.loadSelect2Countries();
+        utils.computePositions($('#data'));
+        utils.computePositions($('#item-images'));
+    });
+});
+
+$('.js-btn-collection-fields').click( function(e) {
+    e.preventDefault();
+    $.get('/datum/load-collection-fields/' + $(this).attr('data-collection-id'), function( result ) {
+        $.each( result.fields, function( label, field ) {
+            if ($('.itemLabel :input[value="'+ label +'"]').length == 0) {
+                if (field.type == 'image' || field.type == 'sign') {
+                    var $holder = $('#item-images');
+                } else {
+                    var $holder = $('#data');
+                }
+
+                $holder.append(field.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
                 $holder.find('.datum:last').find('.countable').characterCounter();
                 lastIndex++;
             }
@@ -93,7 +116,7 @@ $('.selectFieldType').change( function() {
             } else {
                 var $holder = $('#data');
             }
-            $holder.append(result.html.replace(/__placeholder__/g, lastIndex));
+            $holder.append(result.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
             let $datum = $holder.find('.datum:last');
             $datum.find('.countable').characterCounter();
             $datum.find('.position').val($('#data').find('.datum').length);

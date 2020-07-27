@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Entity\Tag;
+use App\Enum\DatumTypeEnum;
 use App\Model\BreadcrumbElement;
 use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
@@ -152,5 +153,42 @@ class AppRuntime implements RuntimeExtensionInterface
             },
             $text
         );
+    }
+
+    /**
+     * @param array|null $data
+     * @return null|string|string[]
+     */
+    public function getUnderlinedTags($data)
+    {
+        if (empty($data)) {
+            return [];
+        }
+
+        $texts = [];
+        foreach ($data as $datum) {
+            $texts = array_merge($texts, explode(',', $datum->getValue()));
+        }
+        $texts = array_map(function ($text) { return trim($text); }, $texts);
+        $tags = $this->em->getRepository(Tag::class)->findBy(['label' => $texts]);
+
+        $results = [];
+        foreach ($texts as $text) {
+            $matchingTag = null;
+            foreach ($tags as $tag) {
+                if ($text === $tag->getLabel()) {
+                    $matchingTag = $tag;
+                    break;
+                }
+            }
+
+            if ($matchingTag instanceof Tag) {
+                $results[$text] = '<a href="{{ path(\'app_tag_show\'|applyContext, {id: tag.id}) }}">' . $text . '</a>';
+            } else {
+                $results[$text] = $text;
+            }
+        }
+
+        return $results;
     }
 }
