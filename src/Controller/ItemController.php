@@ -80,7 +80,6 @@ class ItemController extends AbstractController
             'form' => $form->createView(),
             'item' => $item,
             'collection' => $collection,
-            'fieldsType' => DatumTypeEnum::getTypesLabels(),
             'suggestedNames' => $suggestedNames
         ]);
     }
@@ -144,7 +143,6 @@ class ItemController extends AbstractController
         return $this->render('App/Item/edit.html.twig', [
             'form' => $form->createView(),
             'item' => $item,
-            'fieldsType' => DatumTypeEnum::getTypesLabels(),
             'collection' => $item->getCollection(),
         ]);
     }

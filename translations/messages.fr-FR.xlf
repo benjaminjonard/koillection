@@ -4468,5 +4468,35 @@
         <target>[0,1] %count% miniature régénérée| ]1,Inf[ %count% miniatures régénérées</target>
       </segment>
     </unit>
+    <unit id="15" name="btn.add_text">
+      <segment>
+        <source>message.add_text</source>
+        <target>Texte</target>
+      </segment>
+    </unit>
+    <unit id="16" name="btn.add_country">
+      <segment>
+        <source>message.add_country</source>
+        <target>Pays</target>
+      </segment>
+    </unit>
+    <unit id="17" name="label.add_field">
+      <segment>
+        <source>label.add_field</source>
+        <target>Ajouter un champs :</target>
+      </segment>
+    </unit>
+    <unit id="18" name="btn.add_image">
+      <segment>
+        <source>message.add_image</source>
+        <target>Image</target>
+      </segment>
+    </unit>
+    <unit id="19" name="btn.add_sign">
+      <segment>
+        <source>message.add_sign</source>
+        <target>Dédicace</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

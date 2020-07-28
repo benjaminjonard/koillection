@@ -4468,5 +4468,35 @@
         <target>{0} %count% thumbnails regenerated| {1} %count% thumbnail regenerated| ]1,Inf[ %count% thumbnails regenerated</target>
       </segment>
     </unit>
+    <unit id="15" name="btn.add_text">
+      <segment>
+        <source>message.add_text</source>
+        <target>Text</target>
+      </segment>
+    </unit>
+    <unit id="16" name="btn.add_country">
+      <segment>
+        <source>message.add_country</source>
+        <target>Country</target>
+      </segment>
+    </unit>
+    <unit id="17" name="label.add_field">
+      <segment>
+        <source>label.add_field</source>
+        <target>Add field :</target>
+      </segment>
+    </unit>
+    <unit id="18" name="btn.add_image">
+      <segment>
+        <source>message.add_image</source>
+        <target>Image</target>
+      </segment>
+    </unit>
+    <unit id="19" name="btn.add_sign">
+      <segment>
+        <source>message.add_sign</source>
+        <target>Sign</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -42,26 +42,14 @@
         </div>
 
         <div class="row js-data-actions" data-entity="item">
-            <div class="input-field col s12 l5 offset-l1 xl3 offset-xl3">
-                <select id="selectFieldType" class="selectFieldType" {% if fieldsType|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
-                    <option value=""></option>
-                    {% for key, fieldType in fieldsType %}
-                        <option value="{{ key }}">{{ fieldType|trans }}</option>
-                    {% endfor %}
-                </select>
-                <label for="selectFieldType">{{ 'label.new_data'|trans }}</label>
-            </div>
-            <div class="col s12 l5 xl3">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                 {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl2 offset-xl3">
-                <button class="btn align-with-inputs js-btn-common-fields" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_common_fields'|trans }}</button>
+            <div class="col s12 l3 xl2">
+                <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_common_fields'|trans }}</button>
             </div>
-            <div class="col s12 l5 xl2">
-                <button class="btn align-with-inputs js-btn-collection-fields" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_collection_fields'|trans }}</button>
+            <div class="col s12 l3 xl2">
+                <button class="btn waves-effect waves-light align-with-inputs js-btn-collection-fields grey" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_collection_fields'|trans }}</button>
             </div>
         </div>
 

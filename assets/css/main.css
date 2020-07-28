@@ -1292,7 +1292,7 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 
 .datum .preview-image {max-height: 100px; max-width: 100%;}
 .datum .file-label {top: -17px;}
-.datum .file-field {height: 100px;}
+.datum .file-field {height: 115px;}
 .datum .image-preview-wrapper, .datum .image-preview-wrapper  > div {margin: auto;}
 #additionnalFields .header {margin-top: 55px;}
 .select2-container--default .select2-selection--single .select2-selection__rendered {padding-left: 8px;}
@@ -1312,3 +1312,5 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .select2-results__options li {min-height: 52.5px;}
 .select-placeholder  {font-style: italic; color: #9e9e9e;}
 .select2-results__option--highlighted .select-placeholder {color: #fff;}
+
+#additionnalFields .wrapper {margin-top: 45px;}

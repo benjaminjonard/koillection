@@ -89,8 +89,7 @@ class CollectionController extends AbstractController
             'collection' => $collection,
             'form' => $form->createView(),
             'suggestedItemsTitles' => $em->getRepository(Collection::class)->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $em->getRepository(Collection::class)->suggestChildrenTitles($collection),
-            'fieldsType' => DatumTypeEnum::getTextTypesLabels()
+            'suggestedChildrenTitles' => $em->getRepository(Collection::class)->suggestChildrenTitles($collection)
         ]);
     }
 
@@ -179,7 +178,6 @@ class CollectionController extends AbstractController
             'collection' => $collection,
             'suggestedItemsTitles' => $em->getRepository(Collection::class)->suggestItemsTitles($collection),
             'suggestedChildrenTitles' => $em->getRepository(Collection::class)->suggestChildrenTitles($collection),
-            'fieldsType' => DatumTypeEnum::getTextTypesLabels()
         ]);
     }
 
