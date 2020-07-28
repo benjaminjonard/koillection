@@ -1313,4 +1313,5 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .select-placeholder  {font-style: italic; color: #9e9e9e;}
 .select2-results__option--highlighted .select-placeholder {color: #fff;}
 
-#additionnalFields .wrapper {margin-top: 45px;}
+#additionnalFields .wrapper {margin-top: 45px; }
+i.btn input {color: #fff; cursor: pointer;}
