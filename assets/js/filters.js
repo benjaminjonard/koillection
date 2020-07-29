@@ -49,7 +49,7 @@ let $ajaxFilters = $('.js-filter-input-ajax');
 let $ajaxCheckboxes = $('.js-filter-checkbox-ajax');
 
 $ajaxFilters.keyup(function() {
-    $this = $(this);
+    let $this = $(this);
 
     delay(function() {
         doAjaxCall(Object.entries($this.closest('form').serializeArray()));

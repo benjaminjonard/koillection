@@ -1315,3 +1315,18 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 
 #additionnalFields .wrapper {margin-top: 45px; }
 i.btn input {color: #fff; cursor: pointer;}
+
+.autocomplete-results {
+    display: none;
+    position: absolute;
+    top: 53px;
+    margin-left: 11px;
+    width: 270px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.302),0 1px 3px 1px rgba(60,64,67,.149) !important;
+    border-radius: 25px;
+}
+.autocomplete-results li {background-color: #fff; padding: 10px 5px; border-bottom: 1px #ccc solid;}
+.autocomplete-results li:last-child {border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;}
+.autocomplete-results li:first-child {border-top-right-radius: 25px; border-top-left-radius: 25px;}
+.autocomplete-results li a {cursor: pointer;}
+.autocomplete-results li span {color: #ccc;}
