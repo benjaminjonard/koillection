@@ -2,17 +2,17 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/js/app.e3b74f1b.js"
+        "/build/js/app.d4db9dc8.js"
       ]
     },
     "js/statistics": {
       "js": [
-        "/build/js/statistics.4734e2e3.js"
+        "/build/js/statistics.8fcfdd02.js"
       ]
     },
     "css/app": {
       "css": [
-        "/build/css/app.02bc47d7.css"
+        "/build/css/app.fa44ad75.css"
       ]
     },
     "css/themes/sunset": {

@@ -36,7 +36,7 @@ class ItemLogger extends Logger
      */
     public function getCreateLog($item) : ?Log
     {
-        if (!$this->supportedClass(\get_class($item))) {
+        if (!$this->supports($item)) {
             return null;
         }
 
@@ -49,7 +49,7 @@ class ItemLogger extends Logger
      */
     public function getDeleteLog($item) : ?Log
     {
-        if (!$this->supportedClass(\get_class($item))) {
+        if (!$this->supports($item)) {
             return null;
         }
 
@@ -64,7 +64,7 @@ class ItemLogger extends Logger
      */
     public function getUpdateLog($item, array $changeset, array $relations = []) : ?Log
     {
-        if (!$this->supportedClass(\get_class($item))) {
+        if (!$this->supports($item)) {
             return null;
         }
 
@@ -138,7 +138,7 @@ class ItemLogger extends Logger
      */
     public function formatPayload($class, array $payload) : ?string
     {
-        if (!$this->supportedClass($class)) {
+        if (!$this->supportsClass($class)) {
             return null;
         }
 

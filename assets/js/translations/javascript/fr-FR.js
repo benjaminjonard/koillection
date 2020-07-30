@@ -29,4 +29,7 @@ t.add("statistics.users", "[0,1] %count% utilisateur| ]1,Inf[ %count% utilisateu
 t.add("statistics.items", "[0,1] %count% objet| ]1,Inf[ %count% objets", "javascript", "fr-FR");
 t.add("select2.no_results", "Aucun r\u00e9sultat trouv\u00e9", "javascript", "fr-FR");
 t.add("select2.searching", "Recherche en cours...", "javascript", "fr-FR");
+t.add("select2.none", "Aucun(e)", "javascript", "fr-FR");
+t.add("global.search.more_results", "{1} + %count% r\u00e9sultat| ]1,Inf[ + %count% r\u00e9sultats", "javascript", "fr-FR");
+t.add("global.search.no_results", "Pas de r\u00e9sultats", "javascript", "fr-FR");
 })(Translator);

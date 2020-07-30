@@ -18,7 +18,7 @@ services:
             - DB_PORT=3306
             - DB_USER=root
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
-            - DB_VERSION=8
+            - DB_VERSION=12
             - PHP_TZ=Europe/Paris
         depends_on:
             - mysql
@@ -45,5 +45,7 @@ services:
             - MYSQL_ROOT_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - MYSQL_DATABASE=koillection
             - MYSQL_USER=root
+        ports:
+            - 3306:3306
         volumes:
             - "./docker/volumes/mysql:/var/lib/mysql"

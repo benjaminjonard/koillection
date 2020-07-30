@@ -28,3 +28,13 @@ export function loadFilePreviews() {
         reader.readAsDataURL(this.files[0]);
     });
 }
+
+export function delay() {
+    return (function(){
+        let timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
+}

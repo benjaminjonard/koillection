@@ -24,9 +24,18 @@ abstract class Logger implements LoggerInterface
      * @param $class
      * @return bool
      */
-    public function supportedClass($class) : bool
+    public function supportsClass($class) : bool
     {
         return $class === $this->getClass();
+    }
+
+    /**
+     * @param $object
+     * @return bool
+     */
+    public function supports($object) : bool
+    {
+        return get_class($object) === $this->getClass();
     }
 
     /**

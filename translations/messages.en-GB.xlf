@@ -440,14 +440,24 @@
         <target>Lend</target>
       </segment>
     </unit>
-    <unit id="No7skRj" name="btn.apply_collection_data">
+    <unit id="No7skRj" name="btn.apply_common_fields">
       <notes>
         <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
         <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
       </notes>
       <segment>
-        <source>btn.apply_collection_data</source>
+        <source>btn.apply_common_fields</source>
         <target>Load common fields</target>
+      </segment>
+    </unit>
+    <unit id="dsa97Ds" name="btn.apply_collection_fields">
+      <notes>
+        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
+        <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
+      </notes>
+      <segment>
+        <source>btn.apply_collection_fields</source>
+        <target>Load collection fields</target>
       </segment>
     </unit>
     <unit id="u5LRF8p" name="btn.cancel">
@@ -4456,6 +4466,36 @@
       <segment>
         <source>message.thumbnails_regenerated</source>
         <target>{0} %count% thumbnails regenerated| {1} %count% thumbnail regenerated| ]1,Inf[ %count% thumbnails regenerated</target>
+      </segment>
+    </unit>
+    <unit id="15" name="btn.add_text">
+      <segment>
+        <source>message.add_text</source>
+        <target>Text</target>
+      </segment>
+    </unit>
+    <unit id="16" name="btn.add_country">
+      <segment>
+        <source>message.add_country</source>
+        <target>Country</target>
+      </segment>
+    </unit>
+    <unit id="17" name="label.add_field">
+      <segment>
+        <source>label.add_field</source>
+        <target>Add field :</target>
+      </segment>
+    </unit>
+    <unit id="18" name="btn.add_image">
+      <segment>
+        <source>message.add_image</source>
+        <target>Image</target>
+      </segment>
+    </unit>
+    <unit id="19" name="btn.add_sign">
+      <segment>
+        <source>message.add_sign</source>
+        <target>Sign</target>
       </segment>
     </unit>
   </file>

@@ -26,6 +26,7 @@ class DatumController extends AbstractController
     public function getHtmlByType(string $type) : JsonResponse
     {
         $html = $this->render('App/Datum/_datum.html.twig', [
+            'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
             'type' => $type
         ])->getContent();
@@ -54,17 +55,15 @@ class DatumController extends AbstractController
 
             $first = $collection->getItems()->first();
             if ($first instanceof Item) {
-                foreach ($first->getData() as $datum) {
-                    if (!\in_array($datum->getType(), [DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_IMAGE], false)) {
-                        $field['datum'] = $datum;
-                        $field['type'] = $datum->getType();
-                        $commonFields[$datum->getLabel()] = $field;
-                    }
+                foreach ($first->getDataTexts() as $datum) {
+                    $field['datum'] = $datum;
+                    $field['type'] = $datum->getType();
+                    $commonFields[$datum->getLabel()] = $field;
                 }
             }
 
             foreach ($collection->getItems() as $key => $item) {
-                if ($key > 0 && $item->getData()->count() > 0) {
+                if ($key > 0 && $item->getDataTexts()->count() > 0) {
                     foreach ($commonFields as $cfKey => &$commonField) {
                         $existing = null;
                         foreach ($item->getData() as $datum) {
@@ -84,6 +83,7 @@ class DatumController extends AbstractController
 
             foreach ($commonFields as &$commonField) {
                 $commonField['html'] = $this->render('App/Datum/_datum.html.twig', [
+                            'entity' => 'item',
                             'iteration' => '__placeholder__',
                             'type' => $commonField['type'],
                             'datum' => $commonField['datum']
@@ -93,6 +93,39 @@ class DatumController extends AbstractController
 
             return new JsonResponse([
                 'fields' => $commonFields
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse(false, 500);
+        }
+    }
+
+    /**
+     * @Route({
+     *     "en": "/datum/load-collection-fields/{id}",
+     *     "fr": "/datum/charger-les-champs-de-la-collection/{id}"
+     * }, name="app_datum_load_collection_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Entity("collection", expr="repository.findWithItemsAndData(id)")
+     *
+     * @param Collection $collection
+     * @return JsonResponse
+     */
+    public function loadCollectionFields(Collection $collection) : JsonResponse
+    {
+        try {
+            $fields = [];
+            foreach ($collection->getData() as $datum) {
+                $fields[$datum->getLabel()]['type'] = $datum->getType();
+                $fields[$datum->getLabel()]['html'] = $this->render('App/Datum/_datum.html.twig', [
+                    'entity' => 'item',
+                    'iteration' => '__placeholder__',
+                    'type' => $datum->getType(),
+                    'datum' => $datum
+                ])->getContent();
+            }
+
+            return new JsonResponse([
+                'fields' => $fields
             ]);
         } catch (\Exception $e) {
             return new JsonResponse(false, 500);

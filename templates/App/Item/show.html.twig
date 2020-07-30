@@ -105,17 +105,13 @@
                 </div>
 
                 <div class="data">
+                    {% set underlinedTags = getUnderlinedTags(item.dataTexts) %}
                     {% for datum in item.dataTexts %}
-                        <div>
+                        <div class="datum-row">
                             <span class="label">{{ datum.label }} :</span>
                             {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
                                 {% for value in datum.value|split(',') %}
-                                    {% set tag = item.getTagWithValue(value) %}
-                                    {% if tag %}
-                                        <a href="{{ path('app_tag_show'|applyContext, {'id': tag.id}) }}">{{ value }}</a>{{ not loop.last ? ',' }}
-                                    {% else %}
-                                        {{ value }}{{ not loop.last ? ',' }}
-                                    {% endif %}
+                                    {{ underlinedTags[value]|raw }}{{ not loop.last ? ',' }}
                                 {% endfor %}
                             {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
                                 <span class="flag flag-{{ datum.value|lower }}"></span>

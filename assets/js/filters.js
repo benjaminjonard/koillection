@@ -2,11 +2,17 @@ let $filters = $('.js-filter-input');
 
 $filters.val('');
 
-var $elements = $('.element');
+let $elements = $('.element');
+
+function normalize(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+}
+
 $filters.keyup( function() {
-    var regex = new RegExp($(this).val(),'i');
+    let regex = new RegExp(normalize($(this).val()),'i');
+
     $elements.each(function() {
-        if ($(this).attr('data-title').match(regex)) {
+        if (normalize($(this).attr('data-title')).match(regex)) {
             $(this).removeClass('hidden');
         } else {
             $(this).addClass('hidden');
@@ -16,18 +22,18 @@ $filters.keyup( function() {
     window.dispatchEvent(event);
 });
 
-var $listElements = $('.list-element');
+let $listElements = $('.list-element');
 $filters.keyup( function() {
-    var regex = new RegExp($(this).val(),'i');
+    let regex = new RegExp(normalize($(this).val()),'i');
+
     $listElements.each(function() {
-        if ($(this).attr('data-title').match(regex)) {
+        if (normalize($(this).attr('data-title')).match(regex)) {
             $(this).removeClass('hidden');
         } else {
             $(this).addClass('hidden');
         }
     });
 });
-
 
 
 let delay = (function(){
@@ -43,7 +49,7 @@ let $ajaxFilters = $('.js-filter-input-ajax');
 let $ajaxCheckboxes = $('.js-filter-checkbox-ajax');
 
 $ajaxFilters.keyup(function() {
-    $this = $(this);
+    let $this = $(this);
 
     delay(function() {
         doAjaxCall(Object.entries($this.closest('form').serializeArray()));
@@ -53,6 +59,7 @@ $ajaxFilters.keyup(function() {
 $ajaxCheckboxes.change(function () {
     doAjaxCall(Object.entries($(this).closest('form').serializeArray()));
 });
+
 
 function doAjaxCall(params) {
     let url = window.location.href.split('?')[0];

@@ -39,13 +39,6 @@ class Template implements BreadcrumbableInterface
     private DoctrineCollection $fields;
 
     /**
-     * @var DoctrineCollection
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="template")
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
-    private DoctrineCollection $items;
-
-    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="templates")
      */
@@ -70,7 +63,6 @@ class Template implements BreadcrumbableInterface
     {
         $this->id = Uuid::uuid4();
         $this->fields = new ArrayCollection();
-        $this->items = new ArrayCollection();
     }
 
     /**
@@ -150,37 +142,6 @@ class Template implements BreadcrumbableInterface
             // set the owning side to null (unless already changed)
             if ($field->getTemplate() === $this) {
                 $field->setTemplate(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return DoctrineCollection|Item[]
-     */
-    public function getItems(): DoctrineCollection
-    {
-        return $this->items;
-    }
-
-    public function addItem(Item $item): self
-    {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->setTemplate($this);
-        }
-
-        return $this;
-    }
-
-    public function removeItem(Item $item): self
-    {
-        if ($this->items->contains($item)) {
-            $this->items->removeElement($item);
-            // set the owning side to null (unless already changed)
-            if ($item->getTemplate() === $this) {
-                $item->setTemplate(null);
             }
         }
 

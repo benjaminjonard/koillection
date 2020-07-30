@@ -156,9 +156,6 @@
             "config/packages/ramsey_uuid_doctrine.yaml"
         ]
     },
-    "roave/security-advisories": {
-        "version": "dev-master"
-    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -277,9 +274,6 @@
         "version": "v5.0.2"
     },
     "symfony/http-kernel": {
-        "version": "v5.0.2"
-    },
-    "symfony/inflector": {
         "version": "v5.0.2"
     },
     "symfony/intl": {

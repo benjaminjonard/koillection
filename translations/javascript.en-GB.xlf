@@ -139,7 +139,7 @@
       </notes>
       <segment>
         <source>statistics.items_added</source>
-        <target>[0,1] %count% item added| ]1,Inf[ %count% items added</target>
+        <target>{0} %count% items added| {1} %count% item added| ]1,Inf[ %count% items added</target>
       </segment>
     </unit>
     <unit id="0DU28lZ" name="statistics.users">
@@ -148,13 +148,13 @@
       </notes>
       <segment>
         <source>statistics.users</source>
-        <target>[0,1] %count% user| ]1,Inf[ %count% users</target>
+        <target>{0} %count% users| {1} %count% user| ]1,Inf[ %count% users</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
       <segment>
         <source>statistics.items</source>
-        <target>[0,1] %count% item| ]1,Inf[ %count% items</target>
+        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">
@@ -167,6 +167,24 @@
       <segment>
         <source>select2.searching</source>
         <target>Searching...</target>
+      </segment>
+    </unit>
+    <unit id="gz65OAJ" name="select2.none">
+      <segment>
+        <source>select2.none</source>
+        <target>None</target>
+      </segment>
+    </unit>
+    <unit id="KsjAos4" name="global.search.more_results">
+      <segment>
+        <source>global.search.more_results</source>
+        <target>{1} + %count% more result| ]1,Inf[ + %count% more results</target>
+      </segment>
+    </unit>
+    <unit id="A9dD15z" name="global.search.no_results">
+      <segment>
+        <source>global.search.no_results</source>
+        <target>No results</target>
       </segment>
     </unit>
   </file>

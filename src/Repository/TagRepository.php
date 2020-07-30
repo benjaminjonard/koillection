@@ -7,8 +7,8 @@ namespace App\Repository;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
-use App\Entity\User;
 use App\Model\Search\Search;
+use App\Model\Search\SearchTag;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -42,13 +42,12 @@ class TagRepository extends EntityRepository
     }
 
     /**
-     * @param $itemsCount
-     * @param int $page
-     * @param string|null $search
-     * @param string|null $context
+     * @param SearchTag $search
+     * @param string $context
+     * @param int $itemsCount
      * @return array
      */
-    public function findTagsPaginatedWithItemsCount($itemsCount, $itemsPerPage, $page = 1, string $search = null, string $context = null) : array
+    public function findForTagSearch(SearchTag $search, string $context, int $itemsCount) : array
     {
         $qb = $this
             ->getEntityManager()
@@ -60,8 +59,8 @@ class TagRepository extends EntityRepository
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
-            ->setFirstResult(($page - 1) * $itemsPerPage)
-            ->setMaxResults($itemsPerPage)
+            ->setFirstResult(($search->getPage() - 1) * $search->getItemsPerPage())
+            ->setMaxResults($search->getItemsPerPage())
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
@@ -69,10 +68,10 @@ class TagRepository extends EntityRepository
             $qb->having('count(i.id) > 0');
         }
 
-        if (\is_string($search) && !empty($search)) {
+        if (!empty($search->getTerm())) {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.trim($search).'%')
+                ->setParameter('search', '%'.trim($search->getTerm()).'%')
             ;
         }
 
@@ -80,13 +79,13 @@ class TagRepository extends EntityRepository
     }
 
     /**
-     * @param string|null $search
-     * @param string|null $context
+     * @param SearchTag $search
+     * @param string $context
      * @return int
-     * @throws NonUniqueResultException
      * @throws NoResultException
+     * @throws NonUniqueResultException
      */
-    public function countForPagination(string $search = null, string $context = null) : int
+    public function countForTagSearch(SearchTag $search, string $context) : int
     {
         $qb = $this->_em
             ->createQueryBuilder()
@@ -101,10 +100,10 @@ class TagRepository extends EntityRepository
             ;
         }
 
-        if (\is_string($search) && !empty($search)) {
+        if (!empty($search->getTerm())) {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.trim($search).'%')
+                ->setParameter('search', '%'.trim($search->getTerm()).'%')
             ;
         }
 

@@ -11,7 +11,9 @@ use App\Entity\Tag;
 use App\Entity\Wishlist;
 use App\Form\Type\Model\SearchType;
 use App\Model\Search\Search;
+use App\Service\Autocompleter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -77,5 +79,23 @@ class SearchController extends AbstractController
             'form' => $form->createView(),
             'results' => $results
         ]);
+    }
+
+    /**
+     * @Route({
+     *     "en": "/search/autocomplete/{term}",
+     *     "fr": "/recherche/autocompletion/{term}"
+     * }, name="app_search_autocomplete", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Autocompleter $autocompleter
+     * @param string $term
+     * @return Response
+     */
+    public function autocomplete(Request $request, Autocompleter $autocompleter, string $term) : Response
+    {
+        $results = $autocompleter->findForAutocomplete($term);
+
+        return new JsonResponse($results);
     }
 }

@@ -33,9 +33,8 @@ class TemplateRepository extends EntityRepository
         return $this
             ->getEntityManager()
             ->createQueryBuilder()
-            ->select('DISTINCT t as template, COUNT(DISTINCT f) as fieldsCounter, COUNT(DISTINCT i) as itemsCounter')
+            ->select('DISTINCT t as template, COUNT(DISTINCT f) as fieldsCounter')
             ->from(Template::class, 't')
-            ->leftJoin('t.items', 'i')
             ->leftJoin('t.fields', 'f')
             ->groupBy('t.id')
             ->orderBy('t.name', 'ASC')
@@ -53,9 +52,8 @@ class TemplateRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('t')
-            ->leftJoin('t.items', 'i')
             ->leftJoin('t.fields', 'f')
-            ->addSelect('i, f')
+            ->addSelect('f')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()

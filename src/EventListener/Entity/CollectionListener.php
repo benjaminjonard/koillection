@@ -29,6 +29,9 @@ class CollectionListener
 
                 if (\array_key_exists('visibility', $changeset)) {
                     $this->setVisibilityRecursively($entity, $entity->getVisibility());
+                    foreach ($entity->getData() as $datum) {
+                        $datum->setVisibility($entity->getVisibility());
+                    }
                 }
             }
         }

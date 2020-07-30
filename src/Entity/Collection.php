@@ -79,6 +79,13 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private DoctrineCollection $items;
 
     /**
+     * @var DoctrineCollection
+     * @ORM\OneToMany(targetEntity="Datum", mappedBy="collection", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    private DoctrineCollection $data;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=6)
      */
@@ -128,6 +135,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->id = Uuid::uuid4();
         $this->children = new ArrayCollection();
         $this->items = new ArrayCollection();
+        $this->data = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->seenCounter = 0;
     }
@@ -368,6 +376,37 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         //Force Doctrine to trigger an update
         if ($file) {
             $this->setUpdatedAt(new \DateTime());
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return DoctrineCollection|Datum[]
+     */
+    public function getData(): DoctrineCollection
+    {
+        return $this->data;
+    }
+
+    public function addData(Datum $data): self
+    {
+        if (!$this->data->contains($data)) {
+            $this->data[] = $data;
+            $data->setCollection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeData(Datum $data): self
+    {
+        if ($this->data->contains($data)) {
+            $this->data->removeElement($data);
+            // set the owning side to null (unless already changed)
+            if ($data->getCollection() === $this) {
+                $data->setCollection(null);
+            }
         }
 
         return $this;

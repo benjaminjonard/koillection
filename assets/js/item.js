@@ -1,20 +1,6 @@
 import * as utils from './utils'
 import * as select from './select'
 
-function showAdditionalFieldsBlocks() {
-    if ($('#data').find('.datum').length > 0) {
-        $('#data').show();
-    } else {
-        $('#data').hide();
-    }
-
-    if ($('#item-images').find('.datum').length > 0) {
-        $('#item-images').show();
-    } else {
-        $('#item-images').hide();
-    }
-}
-
 //Init sortable
 if ($('#data').length > 0) {
     utils.reloadSortableList($('#data'), '.datum');
@@ -24,14 +10,12 @@ if ($('#item-images').length > 0) {
     utils.reloadSortableList($('#item-images'), '.datum');
 }
 
-showAdditionalFieldsBlocks();
 var lastIndex = $('.datum').length;
 
 function removeTemplateData()
 {
     if ($('.datum[data-template]').length) {
         $('.datum[data-template]').remove();
-        showAdditionalFieldsBlocks()
     }
 }
 
@@ -47,12 +31,11 @@ $('.selectTemplate').change( function() {
                     } else {
                         var $holder = $('#data');
                     }
-                    $holder.append(field.html.replace(/__placeholder__/g, lastIndex));
+                    $holder.append(field.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
                     $holder.find('.datum:last').find('.countable').characterCounter();
                     lastIndex++;
                 }
             });
-            showAdditionalFieldsBlocks();
             select.loadSelect2Countries();
             utils.computePositions($('#data'));
             utils.computePositions($('#item-images'));
@@ -62,7 +45,7 @@ $('.selectTemplate').change( function() {
     }
 });
 
-$('.btn-common-fields').click( function(e) {
+$('.js-btn-common-fields').click( function(e) {
     e.preventDefault();
     $.get('/datum/load-common-fields/' + $(this).attr('data-collection-id'), function( result ) {
         $.each( result.fields, function( label, field ) {
@@ -72,45 +55,60 @@ $('.btn-common-fields').click( function(e) {
                 } else {
                     var $holder = $('#data');
                 }
-                $holder.append(field.html.replace(/__placeholder__/g, lastIndex));
+                $holder.append(field.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
                 $holder.find('.datum:last').find('.countable').characterCounter();
                 lastIndex++;
             }
         });
-        showAdditionalFieldsBlocks();
         select.loadSelect2Countries();
         utils.computePositions($('#data'));
         utils.computePositions($('#item-images'));
     });
 });
 
-$('.selectFieldType').change( function() {
-    let $self = $(this);
-    if ( $self.val() != '' ) {
-        $.get('/datum/' + $self.val(), function( result ) {
-            if (result.type == 'image' || result.type == 'sign') {
-                var $holder = $('#item-images');
-            } else {
-                var $holder = $('#data');
+$('.js-btn-collection-fields').click( function(e) {
+    e.preventDefault();
+    $.get('/datum/load-collection-fields/' + $(this).attr('data-collection-id'), function( result ) {
+        $.each( result.fields, function( label, field ) {
+            if ($('.itemLabel :input[value="'+ label +'"]').length == 0) {
+                if (field.type == 'image' || field.type == 'sign') {
+                    var $holder = $('#item-images');
+                } else {
+                    var $holder = $('#data');
+                }
+
+                $holder.append(field.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
+                $holder.find('.datum:last').find('.countable').characterCounter();
+                lastIndex++;
             }
-            $holder.append(result.html.replace(/__placeholder__/g, lastIndex));
-            let $datum = $holder.find('.datum:last');
-            $datum.find('.countable').characterCounter();
-            $datum.find('.position').val($('#data').find('.datum').length);
-            lastIndex++;
-            showAdditionalFieldsBlocks();
-            select.loadSelect2Countries();
-            utils.reloadSortableList($holder, '.datum');
-            utils.computePositions($holder);
-            utils.loadFilePreviews();
-            $self.val('');
         });
-    }
+        select.loadSelect2Countries();
+        utils.computePositions($('#data'));
+        utils.computePositions($('#item-images'));
+    });
+});
+
+$('.js-add-field-btn').click( function() {
+    $.get('/datum/' + $(this).data('type'), function( result ) {
+        if (result.type == 'image' || result.type == 'sign') {
+            var $holder = $('#item-images');
+        } else {
+            var $holder = $('#data');
+        }
+        $holder.append(result.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
+        let $datum = $holder.find('.datum:last');
+        $datum.find('.countable').characterCounter();
+        $datum.find('.position').val($('#data').find('.datum').length);
+        lastIndex++;
+        select.loadSelect2Countries();
+        utils.reloadSortableList($holder, '.datum');
+        utils.computePositions($holder);
+        utils.loadFilePreviews();
+    });
 });
 
 $('#additionnalFields').on( "click", ".removeDatum", function() {
     $(this).closest('.datum').remove();
-    showAdditionalFieldsBlocks();
     utils.computePositions($(this).closest('.data-holder'));
 });
 

@@ -1,0 +1,29 @@
+<div id="additionnalFields">
+    <div class="wrapper">
+        <div id="data" class="data-holder block-element">
+            {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY')])) %}
+                {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
+            {% endfor %}
+        </div>
+
+        <div class="row center-align">
+            <label>{{ 'label.add_field'|trans }}</label>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="text">{{ 'btn.add_text'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="country">{{ 'btn.add_country'|trans }}</a>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="item-images" class="data-holder block-element">
+            {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE'), constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN')])) %}
+                {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
+            {% endfor %}
+        </div>
+
+        <div class="row center-align">
+            <label>{{ 'label.add_field'|trans }}</label>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="image">{{ 'btn.add_image'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="sign">{{ 'btn.add_sign'|trans }}</a>
+        </div>
+    </div>
+</div>

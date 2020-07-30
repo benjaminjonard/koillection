@@ -34,7 +34,7 @@ class WishlistLogger extends Logger
      */
     public function getCreateLog($wishlist) : ?Log
     {
-        if (!$this->supportedClass(\get_class($wishlist))) {
+        if (!$this->supports($wishlist)) {
             return null;
         }
 
@@ -47,7 +47,7 @@ class WishlistLogger extends Logger
      */
     public function getDeleteLog($wishlist) : ?Log
     {
-        if (!$this->supportedClass(\get_class($wishlist))) {
+        if (!$this->supports($wishlist)) {
             return null;
         }
 
@@ -62,7 +62,7 @@ class WishlistLogger extends Logger
      */
     public function getUpdateLog($wishlist, array $changeset, array $relations = []) : ?Log
     {
-        if (!$this->supportedClass(\get_class($wishlist))) {
+        if (!$this->supports($wishlist)) {
             return null;
         }
         $mainPayload = [];
@@ -113,7 +113,7 @@ class WishlistLogger extends Logger
      */
     public function formatPayload($class, array $payload) : ?string
     {
-        if (!$this->supportedClass($class)) {
+        if (!$this->supportsClass($class)) {
             return null;
         }
 

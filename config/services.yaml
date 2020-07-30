@@ -1,5 +1,5 @@
 parameters:
-    version: '1.1.1'
+    version: '1.1.2'
     locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
     container.dumper.inline_factories: true
@@ -119,7 +119,9 @@ services:
         tags: [app.logger]
     App\Service\Log\Logger\TagLogger:
         tags: [app.logger]
-    App\Service\Log\Logger\DatumLogger:
+    App\Service\Log\Logger\DatumItemLogger:
+        tags: [app.logger]
+    App\Service\Log\Logger\DatumCollectionLogger:
         tags: [app.logger]
     App\Service\Log\Logger\AlbumLogger:
         tags: [app.logger]

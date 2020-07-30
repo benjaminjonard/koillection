@@ -169,5 +169,23 @@
         <target>Recherche en cours...</target>
       </segment>
     </unit>
+    <unit id="gz65OAJ" name="select2.none">
+      <segment>
+        <source>select2.none</source>
+        <target>Aucun(e)</target>
+      </segment>
+    </unit>
+    <unit id="KsjAos4" name="global.search.more_results">
+      <segment>
+        <source>global.search.more_results</source>
+        <target>{1} + %count% résultat| ]1,Inf[ + %count% résultats</target>
+      </segment>
+    </unit>
+    <unit id="A9dD15z" name="global.search.no_results">
+      <segment>
+        <source>global.search.no_results</source>
+        <target>Pas de résultats</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

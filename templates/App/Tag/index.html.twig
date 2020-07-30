@@ -42,7 +42,9 @@
                 {% endif %}
             </div>
             <div class="right">
-                <input class="filter-input js-filter-input-ajax" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                {{ form_start(form) }}
+                    {{ form_row(form.term, {'attr': {'class': 'filter-input js-filter-input-ajax', 'placeholder': 'filter.by_name'|trans }}) }}
+                {{ form_end(form) }}
             </div>
             <div class="clearfix"></div>
         </div>

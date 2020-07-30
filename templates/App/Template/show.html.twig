@@ -16,7 +16,6 @@
         <h1>{{ template.name }}</h1>
         <ul class="nav nav-pills">
             <li>{{ 'counter.field'|trans({'%count%': template.fields|length}) }}</li>
-            <li>{{ 'counter.item'|trans({'%count%': template.items|length}) }}</li>
         </ul>
     </div>
 
@@ -42,21 +41,6 @@
                 {% endfor %}
             </ul>
         </div>
-
-        {% if template.items is not empty %}
-            <div class="block-element">
-                <h5 class="header">{{ 'title.items'|trans }}</h5>
-                <div id="collection-items" class="grid-container-items">
-                    {% for item in template.items|naturalSorting %}
-                        <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                            <a href="{{ path('app_item_show', {'id': item.id}) }}">
-                                {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
     </div>
 {% endblock %}
 

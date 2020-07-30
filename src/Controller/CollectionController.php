@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Log;
+use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
@@ -85,9 +86,10 @@ class CollectionController extends AbstractController
         }
 
         return $this->render('App/Collection/add.html.twig', [
+            'collection' => $collection,
             'form' => $form->createView(),
             'suggestedItemsTitles' => $em->getRepository(Collection::class)->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $em->getRepository(Collection::class)->suggestChildrenTitles($collection),
+            'suggestedChildrenTitles' => $em->getRepository(Collection::class)->suggestChildrenTitles($collection)
         ]);
     }
 
