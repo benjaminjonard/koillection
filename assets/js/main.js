@@ -189,7 +189,7 @@ $(document).ready(function() {
                 });
 
                 if (data.totalResultsCounter > 5) {
-                    let url = "/search?search[term]=' + value + '&search[searchInCollections]=&search[searchInItems]=&search[searchInTags]=";
+                    let url = "/search?search[term]=" + value + "&search[searchInCollections]=&search[searchInItems]=&search[searchInTags]=";
                     let label = Translator.transChoice('global.search.more_results', data.totalResultsCounter - 5);
                     $autcompleteResultsWrapper.append(autocompleteResultFactory(label, url));
                 }
@@ -219,7 +219,7 @@ $(document).ready(function() {
         let $li = $('<li class="autocomplete-result"></li>');
 
         if (url) {
-            let $a = $('<a></a>').attr('src', url);
+            let $a = $('<a></a>').attr('href', url);
             $a.append(label)
             $li.append($a);
 
