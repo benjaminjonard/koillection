@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.1.2] / 2020-07-30
+### Features
+- Collections can have additionnal fields like items (Benjamin Jonard)
+- Add an autocomplete on search in the header (Benjamin Jonard)
+- Rework additional fields creation (Benjamin Jonard)
+
+### Fixes
+- Fix upload on item data (Benjamin Jonard)
+- Fix detection of common fields on item data (Benjamin Jonard)
+- Fix tag search (Benjamin Jonard)
+- Fix locale dropdown on login page (Benjamin Jonard)
+- Prevent default selection on country fields (Benjamin Jonard) 
+
+### Miscellaneous
+- Handle echarts properly through yarn (Benjamin Jonard)
+- Update JS dependencies (Benjamin Jonard)
+- Update PHP dependencies (Benjamin Jonard)
+
 ## [v1.1.1] / 2020-06-25
 ### Features
 - Add a button in admin panel to regenerate thumbnails (Benjamin Jonard)
