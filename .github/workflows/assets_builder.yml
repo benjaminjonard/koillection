@@ -1,4 +1,4 @@
-name: Build assets
+name: Assets builder
 on:
   push:
     branches:
@@ -23,8 +23,10 @@ jobs:
             ${{ runner.os }}-yarn-cache-node-modules-
       - name: Yarn install
         if: steps.yarn-cache-node-modules.outputs.cache-hit != 'true'
+        working-directory: ./assets
         run: yarn install
       - name: Yarn build
+        working-directory: ./assets
         run: yarn encore production
       - name: Archive production artifacts
         uses: actions/upload-artifact@v1
