@@ -1,4 +1,4 @@
-name: Symfony actions
+name: Security checker
 on:
   push:
     branches:
