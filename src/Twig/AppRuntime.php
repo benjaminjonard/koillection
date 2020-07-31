@@ -183,7 +183,9 @@ class AppRuntime implements RuntimeExtensionInterface
             }
 
             if ($matchingTag instanceof Tag) {
-                $results[$text] = '<a href="{{ path(\'app_tag_show\'|applyContext, {id: tag.id}) }}">' . $text . '</a>';
+                $route = $this->router->generate('app_tag_show', ['id' => $matchingTag->getId()]);
+                $route = $this->contextHandler->getRouteContext($route);
+                $results[$text] = '<a href="' . $route . '">' . $text . '</a>';
             } else {
                 $results[$text] = $text;
             }
