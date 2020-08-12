@@ -181,6 +181,7 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .datum-row {line-height: 30px; text-align: center;}
 .datum-row a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #9e9e9e}
 .datum-row span {font-weight: bold;}
+.datum-row .file {word-break: break-all;}
 .slider-container, .data {display: inline-block;}
 .margin-right-30 {margin-right: 30px;}
 

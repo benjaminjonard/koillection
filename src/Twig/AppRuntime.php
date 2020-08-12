@@ -167,7 +167,9 @@ class AppRuntime implements RuntimeExtensionInterface
 
         $texts = [];
         foreach ($data as $datum) {
-            $texts = array_merge($texts, explode(',', $datum->getValue()));
+            if ($datum->getValue() !== null) {
+                $texts = array_merge($texts, explode(',', $datum->getValue()));
+            }
         }
         $texts = array_map(function ($text) { return trim($text); }, $texts);
         $tags = $this->em->getRepository(Tag::class)->findBy(['label' => $texts]);

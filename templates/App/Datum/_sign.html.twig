@@ -5,6 +5,6 @@
         {% else %}
             <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.default_image'|trans }}"/>
         {% endif %}
-        <input type="file" id="data_{{ iteration }}_file" name="{{ entity }}[data][{{ iteration }}][file]" class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp">
+        <input type="file" id="data_{{ iteration }}_fileImage" name="{{ entity }}[data][{{ iteration }}][fileImage]" class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp">
     </label>
 </div>
