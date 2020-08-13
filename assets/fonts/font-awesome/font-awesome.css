@@ -174,3 +174,6 @@
 .fa-save:before {
   content: "\f0c7";
 }
+.fa-upload:before {
+  content: "\f093";
+}

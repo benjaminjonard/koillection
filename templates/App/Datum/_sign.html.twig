@@ -1,4 +1,4 @@
-<div class="input-field image-preview-wrapper file-field col s5 row-file">
+<div class="input-field image-preview-wrapper image-field col s5 row-file">
     <label class="file-label">
         {% if datum is defined and datum.image is not null %}
             <img class="preview-image" src="{{ preload(asset(datum.imageSmallThumbnail)) }}" aria-label="{{ 'aria.datum_sign_thumbnail'|trans({'%label%': datum.label}) }}"/>

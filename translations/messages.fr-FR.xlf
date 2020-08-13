@@ -4510,5 +4510,11 @@
         <target>Le fichier %label% a été ajouté</target>
       </segment>
     </unit>
+    <unit id="s6qAds8" name="btn.add_file">
+      <segment>
+        <source>btn.add_file</source>
+        <target>Fichier</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

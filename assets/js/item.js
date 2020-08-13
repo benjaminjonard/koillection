@@ -88,6 +88,11 @@ $('.js-btn-collection-fields').click( function(e) {
     });
 });
 
+$( "#data" ).on("change", ".file-path", function(e) {
+    let filename = e.target.files[0].name;
+    $(this).closest('.file-field').find('.datum-original-filename').html(filename);
+})
+
 $('.js-add-field-btn').click( function() {
     $.get('/datum/' + $(this).data('type'), function( result ) {
         if (result.type == 'image' || result.type == 'sign') {

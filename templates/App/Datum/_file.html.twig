@@ -1,9 +1,10 @@
 <div class="input-field file-field col s5">
     <div class="btn">
-        <span>File</span>
-        <input type="file" class="file-path validate" id="data_{{ iteration }}_fileFile" name="{{ entity }}[data][{{ iteration }}][fileFile]">
+        <i class="fa fa-upload fa-fw"></i>
     </div>
-    <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+    <input type="file" class="file-path validate" id="data_{{ iteration }}_fileFile" name="{{ entity }}[data][{{ iteration }}][fileFile]">
+    <div class="datum-original-filename">
+        {% if datum is defined %}{{ datum.originalFilename }}{% endif %}
     </div>
 </div>
+

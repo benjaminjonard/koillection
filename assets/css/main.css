@@ -32,7 +32,7 @@ header {
 li {list-style-type: none;}
 h1 {font-size: 2.5rem;}
 h5 {font-size: 2rem;}
-.btn i {font-size: 1rem; margin-right: 6px;}
+.btn i {font-size: 1rem;}
 
 .fa-angle-left::before {position: relative; top: 1px; right: 5px;}
 .fa-angle-right::before {position: relative; top: 1px; left: 5px;}
@@ -1245,8 +1245,8 @@ input[type=color] {display: block; margin: 1rem 0;}
 .modal-custom .modal-close {margin-top: 4px; margin-right: 14px;}
 
 .cr-boundary { cursor: pointer; }
-.file-field { display: flex; }
-.file-field .btn { margin: 0 auto; height: auto; line-height: 36px;}
+.image-field { display: flex; }
+.image-field .btn { margin: 0 auto; height: auto; line-height: 36px;}
 form .row { margin-bottom: 0; }
 form .row-file{ margin-bottom: 25px; text-align: center; }
 form .row-file .file-label { margin-left: auto; margin-right: auto; }
@@ -1292,8 +1292,8 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .removeDatum {cursor: pointer;}
 
 .datum .preview-image {max-height: 100px; max-width: 100%;}
-.datum .file-label {top: -17px;}
-.datum .file-field {height: 115px;}
+.datum .image-label {top: -17px;}
+.datum .image-field {height: 115px;}
 .datum .image-preview-wrapper, .datum .image-preview-wrapper  > div {margin: auto;}
 #additionnalFields .header {margin-top: 55px;}
 .select2-container--default .select2-selection--single .select2-selection__rendered {padding-left: 8px;}
@@ -1331,3 +1331,6 @@ i.btn input {color: #fff; cursor: pointer;}
 .autocomplete-results li:first-child {border-top-right-radius: 25px; border-top-left-radius: 25px;}
 .autocomplete-results li a {cursor: pointer;}
 .autocomplete-results li span {color: #ccc;}
+
+.datum-original-filename { white-space: nowrap; margin-top: 12px; padding-left: 10px; text-overflow: ellipsis; overflow: hidden;}
+.file-field input[type="file"] {height: 3rem; margin-left: 10px; width: 48px;}
