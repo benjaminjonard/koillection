@@ -4498,5 +4498,23 @@
         <target>Dédicace</target>
       </segment>
     </unit>
+    <unit id="siOSuAa" name="log.item.file_removed">
+      <segment>
+        <source>log.item.file_removed</source>
+        <target>Le fichier %label% a été supprimé</target>
+      </segment>
+    </unit>
+    <unit id="si8aA27" name="log.item.file_added">
+      <segment>
+        <source>log.item.file_added</source>
+        <target>Le fichier %label% a été ajouté</target>
+      </segment>
+    </unit>
+    <unit id="s6qAds8" name="btn.add_file">
+      <segment>
+        <source>btn.add_file</source>
+        <target>Fichier</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

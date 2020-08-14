@@ -22,6 +22,11 @@ class Upload
      */
     private ?string $smallThumbnailPath = null;
 
+    /**
+     * @var string|null
+     */
+    private ?string $originalFilenamePath = null;
+
 
     public function __construct(array $options)
     {
@@ -31,6 +36,7 @@ class Upload
 
         $this->path = $options['path'];
         $this->smallThumbnailPath = $options['smallThumbnailPath'] ?? null;
+        $this->originalFilenamePath = $options['originalFilenamePath'] ?? null;
     }
 
     /**
@@ -47,5 +53,13 @@ class Upload
     public function getSmallThumbnailPath(): ?string
     {
         return $this->smallThumbnailPath;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOriginalFilenamePath(): ?string
+    {
+        return $this->originalFilenamePath;
     }
 }

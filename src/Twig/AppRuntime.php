@@ -167,7 +167,9 @@ class AppRuntime implements RuntimeExtensionInterface
 
         $texts = [];
         foreach ($data as $datum) {
-            $texts = array_merge($texts, explode(',', $datum->getValue()));
+            if ($datum->getValue() !== null) {
+                $texts = array_merge($texts, explode(',', $datum->getValue()));
+            }
         }
         $texts = array_map(function ($text) { return trim($text); }, $texts);
         $tags = $this->em->getRepository(Tag::class)->findBy(['label' => $texts]);
@@ -183,7 +185,9 @@ class AppRuntime implements RuntimeExtensionInterface
             }
 
             if ($matchingTag instanceof Tag) {
-                $results[$text] = '<a href="{{ path(\'app_tag_show\'|applyContext, {id: tag.id}) }}">' . $text . '</a>';
+                $route = $this->contextHandler->getRouteContext('app_tag_show');
+                $url = $this->router->generate($route, ['id' => $matchingTag->getId()]);
+                $results[$text] = '<a href="' . $url . '">' . $text . '</a>';
             } else {
                 $results[$text] = $text;
             }

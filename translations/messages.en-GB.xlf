@@ -4498,5 +4498,23 @@
         <target>Sign</target>
       </segment>
     </unit>
+    <unit id="siOSuAa" name="log.item.file_removed">
+      <segment>
+        <source>log.item.file_removed</source>
+        <target>File %label% was removed</target>
+      </segment>
+    </unit>
+    <unit id="si8aA27" name="log.item.file_added">
+      <segment>
+        <source>log.item.file_added</source>
+        <target>File %label% was added</target>
+      </segment>
+    </unit>
+    <unit id="s6qAds8" name="btn.add_file">
+      <segment>
+        <source>btn.add_file</source>
+        <target>File</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

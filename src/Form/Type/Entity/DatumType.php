@@ -29,7 +29,11 @@ class DatumType extends AbstractType
             ->add('value', TextType::class, [
                 'required' => false,
             ])
-            ->add('file', FileType::class, [
+            ->add('fileImage', FileType::class, [
+                'required' => false,
+                'label' => false
+            ])
+            ->add('fileFile', FileType::class, [
                 'required' => false,
                 'label' => false
             ])

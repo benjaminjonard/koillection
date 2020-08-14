@@ -178,6 +178,10 @@ class ItemLogger extends Logger
                 ]);
             case 'datum_added':
                 switch ($payload['datum_type']) {
+                    case DatumTypeEnum::TYPE_FILE:
+                        return $this->translator->trans('log.item.file_added', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                        ]);
                     case DatumTypeEnum::TYPE_IMAGE:
                         return $this->translator->trans('log.item.image_added', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>"
@@ -197,6 +201,10 @@ class ItemLogger extends Logger
                 // no break
             case 'datum_removed':
                 switch ($payload['datum_type']) {
+                    case DatumTypeEnum::TYPE_FILE:
+                        return $this->translator->trans('log.item.file_removed', [
+                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                        ]);
                     case DatumTypeEnum::TYPE_IMAGE:
                         return $this->translator->trans('log.item.image_removed', [
                             '%label%' => "<strong>".$payload['datum_label']."</strong>"

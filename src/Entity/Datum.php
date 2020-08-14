@@ -68,7 +68,7 @@ class Datum implements LoggableInterface
      * @var File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
-    private ?File $file = null;
+    private ?File $fileImage = null;
 
     /**
      * @var string
@@ -81,6 +81,24 @@ class Datum implements LoggableInterface
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
+
+    /**
+     * @var File
+     * @Upload(path="file", originalFilenamePath="originalFilename")
+     */
+    private ?File $fileFile = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    private ?string $file = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private ?string $originalFilename = null;
 
     /**
      * @var User
@@ -236,16 +254,16 @@ class Datum implements LoggableInterface
         return $this;
     }
 
-    public function getFile(): ?File
+    public function getFileImage(): ?File
     {
-        return $this->file;
+        return $this->fileImage;
     }
 
-    public function setFile(?File $file): self
+    public function setFileImage(?File $fileImage): self
     {
-        $this->file = $file;
+        $this->fileImage = $fileImage;
         //Force Doctrine to trigger an update
-        if ($file) {
+        if ($fileImage) {
             $this->setUpdatedAt(new \DateTime());
         }
 
@@ -289,6 +307,65 @@ class Datum implements LoggableInterface
     {
         $this->collection = $collection;
 
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getFileFile(): ?File
+    {
+        return $this->fileFile;
+    }
+
+    /**
+     * @param ?File $fileFile
+     * @return Datum
+     */
+    public function setFileFile(?File $fileFile): Datum
+    {
+        $this->fileFile = $fileFile;
+        //Force Doctrine to trigger an update
+        if ($fileFile) {
+            $this->setUpdatedAt(new \DateTime());
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFile(): ?string
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param ?string $file
+     * @return Datum
+     */
+    public function setFile(?string $file): Datum
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalFilename(): ?string
+    {
+        return $this->originalFilename;
+    }
+
+    /**
+     * @param string $originalFilename
+     * @return Datum
+     */
+    public function setOriginalFilename(string $originalFilename): Datum
+    {
+        $this->originalFilename = $originalFilename;
         return $this;
     }
 }

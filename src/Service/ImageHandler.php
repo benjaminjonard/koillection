@@ -82,7 +82,9 @@ class ImageHandler
 
             $generatedName = $this->randomStringGenerator->generate(20);
             $extension = $file->guessExtension();
-            $fileName = $generatedName . '.' . $extension;
+
+            $fileName = $generatedName;
+            $fileName .=  $extension ? '.' . $extension : '';
 
             $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
             $this->removeOldFile($entity, $annotation);
@@ -93,6 +95,10 @@ class ImageHandler
                 $smallThumbnailFileName = $generatedName . '_small.' . $extension;
                 $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 300);
                 $this->accessor->setValue($entity, $annotation->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
+            }
+
+            if ($annotation->getOriginalFilenamePath() !== null) {
+                $this->accessor->setValue($entity, $annotation->getOriginalFilenamePath(), $file->getClientOriginalName());
             }
         }
     }

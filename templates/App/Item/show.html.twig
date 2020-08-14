@@ -111,10 +111,12 @@
                             <span class="label">{{ datum.label }} :</span>
                             {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
                                 {% for value in datum.value|split(',') %}
-                                    {{ underlinedTags[value]|raw }}{{ not loop.last ? ',' }}
+                                    {{ underlinedTags[value|trim]|raw }}{{ not loop.last ? ',' }}
                                 {% endfor %}
                             {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
                                 <span class="flag flag-{{ datum.value|lower }}"></span>
+                            {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
+                                <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
                             {% endif %}
                         </div>
                     {% endfor %}

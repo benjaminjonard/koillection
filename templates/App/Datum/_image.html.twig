@@ -1,10 +1,10 @@
-<div class="input-field image-preview-wrapper file-field col s5 row-file">
+<div class="input-field image-preview-wrapper image-field col s5 row-file">
     <label class="file-label">
         {% if datum is defined and datum.image is not null %}
             <img class="preview-image" src="{{ preload(asset(datum.imageSmallThumbnail)) }}" aria-label="{{ 'aria.datum_image_thumbnail' }}" />
         {% else %}
             <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.default_image'|trans }}"/>
         {% endif %}
-        <input type="file" id="data_{{ iteration }}_file" name="{{ entity }}[data][{{ iteration }}][file]" class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp">
+        <input type="file" id="data_{{ iteration }}_fileImage" name="{{ entity }}[data][{{ iteration }}][fileImage]" class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp">
     </label>
 </div>

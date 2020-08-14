@@ -4,7 +4,7 @@
             <h6 class="header col s12">{{ 'title.data'|trans }}</h6>
         </div>
 
-        {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY')])) %}
+        {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY'), constant('App\\Enum\\DatumTypeEnum::TYPE_FILE')])) %}
             {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'collection'}) }}
         {% endfor %}
     </div>
@@ -13,5 +13,6 @@
         <label>{{ 'label.add_field'|trans }}</label>
         <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="text">{{ 'btn.add_text'|trans }}</a>
         <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="country">{{ 'btn.add_country'|trans }}</a>
+        <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="file">{{ 'btn.add_file'|trans }}</a>
     </div>
 </div>
