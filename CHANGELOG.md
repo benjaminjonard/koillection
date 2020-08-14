@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.1.3] / 2020-08-14
+### Features
+- New file field for items and collections (Benjamin Jonard)
+
+### Fixes
+- Fix multiple data display on item page (Benjamin Jonard)
+- Fix links in underlined tags (Benjamin Jonard)
+- Propertly handle context in tag links (Benjamin Jonard)
+
+### Miscellaneous
+- Bump PHP and JS dependencies (Benjamin Jonard)
+
 ## [v1.1.2] / 2020-07-30
 ### Features
 - Collections can have additionnal fields like items (Benjamin Jonard)
