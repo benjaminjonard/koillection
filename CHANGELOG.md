@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.1.4] / 2020-09-11
+### Fixes
+- Fix clean up function (Benjamin Jonard)
+- Fix all deprecations (Benjamin Jonard)
+
+### Miscellaneous
+- Bump PHP dependencies to fix high severity alert on symfony/http-kernel (Benjamin Jonard)
+- Bump JS dependencies (Benjamin Jonard)
+
 ## [v1.1.3] / 2020-08-14
 ### Features
 - New file field for items and collections (Benjamin Jonard)
