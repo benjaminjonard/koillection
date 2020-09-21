@@ -1,6 +1,7 @@
 doctrine_migrations:
     migrations_paths:
-        'DoctrineMigrations': '%kernel.project_dir%/src/Migrations'
+        'App\Migrations\Mysql': '%kernel.project_dir%/src/Migrations/Mysql'
+        'App\Migrations\Postgresql': '%kernel.project_dir%/src/Migrations/Postgresql'
     storage:
         table_storage:
             table_name: doctrine_migration_version
