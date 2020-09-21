@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace DoctrineMigrations;
+namespace App\Migrations\Postgresql;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-final class Version20200414145453 extends AbstractMigration
+final class Version20181205142026 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add property `type` to table `koi_image`';
+        return 'Add `visibility` property to `koi_datum`.';
     }
 
     public function up(Schema $schema) : void
     {
         $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('ALTER TABLE koi_image ADD type VARCHAR(255)');
-        $this->addSql("UPDATE koi_image SET type = CASE WHEN thumbnail_path ISNULL THEN 'avatar' ELSE 'common' END;");
-        $this->addSql('ALTER TABLE koi_image ALTER COLUMN type SET NOT NULL');
+        $this->addSql('ALTER TABLE koi_datum ADD visibility VARCHAR(255)');
+        $this->addSql('UPDATE koi_datum SET visibility = i.visibility FROM koi_item i WHERE item_id = i.id;');
+        $this->addSql('ALTER TABLE koi_datum ALTER visibility SET NOT NULL');
     }
 
     public function down(Schema $schema) : void

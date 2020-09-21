@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.1.5] / 2020-09-21
+### Fixes
+- Update migration configuration to comply with the new synthax introduced in doctrine/doctrine-migrations-bundle v3.0 (Benjamin Jonard)
+
+### Miscellaneous
+- Bump JS and PHP dependencies (Benjamin Jonard)
+
 ## [v1.1.4] / 2020-09-11
 ### Fixes
 - Fix clean up function (Benjamin Jonard)
