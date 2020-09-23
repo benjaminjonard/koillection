@@ -2522,13 +2522,10 @@
         <target>Photo %photo% has been updated</target>
       </segment>
     </unit>
-    <unit id="rVN8d.E" name="message.profile_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/ProfileController.php:42</note>
-      </notes>
+    <unit id="rVN8d.E" name="message.settings_updated">
       <segment>
-        <source>message.profile_updated</source>
-        <target>Your profile has been sucessfully updated</target>
+        <source>message.settings_updated</source>
+        <target>Your settings have been successfully updated</target>
       </segment>
     </unit>
     <unit id="NLlL04M" name="message.recursive">
@@ -3081,12 +3078,15 @@
       </segment>
     </unit>
     <unit id="PMuodit" name="title.update_profile">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Profile/index.html.twig:39</note>
-      </notes>
       <segment>
         <source>title.update_profile</source>
-        <target>Update profile</target>
+        <target>Edit profile</target>
+      </segment>
+    </unit>
+    <unit id="OSP8q2d" name="title.update_settings">
+      <segment>
+        <source>title.update_settings</source>
+        <target>Edit settings</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -4072,16 +4072,10 @@
         <target>Backup (images and database)</target>
       </segment>
     </unit>
-    <unit id="0ifTRc0" name="title.update_password">
+    <unit id="FU6pwX." name="message.profile_updated">
       <segment>
-        <source>title.update_password</source>
-        <target>Change Password</target>
-      </segment>
-    </unit>
-    <unit id="FU6pwX." name="message.password_updated">
-      <segment>
-        <source>message.password_updated</source>
-        <target>Password has been updated</target>
+        <source>message.profile_updated</source>
+        <target>Profile has been updated</target>
       </segment>
     </unit>
     <unit id="8iRfcsb" name="label.completion">

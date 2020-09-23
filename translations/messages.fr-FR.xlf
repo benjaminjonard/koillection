@@ -2513,13 +2513,10 @@
         <target>La photo %photo% a été supprimée</target>
       </segment>
     </unit>
-    <unit id="rVN8d.E" name="message.profile_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/ProfileController.php:42</note>
-      </notes>
+    <unit id="rVN8d.E" name="message.settings_updated">
       <segment>
         <source>message.profile_updated</source>
-        <target>Votre profil a été mis à jour</target>
+        <target>Les paramètres ont été mis à jour</target>
       </segment>
     </unit>
     <unit id="NLlL04M" name="message.recursive">
@@ -3086,7 +3083,7 @@
       </notes>
       <segment>
         <source>title.update_profile</source>
-        <target>Mise à jour du profil</target>
+        <target>Édition du profil</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -4072,16 +4069,16 @@
         <target>Sauvegarde (images et base de données)</target>
       </segment>
     </unit>
-    <unit id="FU6pwX." name="message.password_updated">
+    <unit id="FU6pwX." name="message.profile_updated">
       <segment>
-        <source>message.password_updated</source>
-        <target>Le mot de passe a été mis à jour</target>
+        <source>message.profile_updated</source>
+        <target>Le profil a été mis à jour</target>
       </segment>
     </unit>
-    <unit id="0ifTRc0" name="title.update_password">
+    <unit id="OSP8q2d" name="title.update_settings">
       <segment>
-        <source>title.update_password</source>
-        <target>Changer le mot de passe</target>
+        <source>title.update_settings</source>
+        <target>Édition des paramètres</target>
       </segment>
     </unit>
     <unit id="8iRfcsb" name="label.completion">

@@ -33,33 +33,52 @@
         <div class="block-element">
             <h5 class="header">{{ 'title.update_profile'|trans }}</h5>
 
-            {{ form_start(form) }}
-                {{ form_row(form.file) }}
+            {{ form_start(formProfile) }}
+            {{ form_row(formProfile.file) }}
 
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                    {{ form_row(formProfile.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
+                </div>
+                <div class="col s12 l5 xl3">
+                    {{ form_row(formProfile.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
+                </div>
+            </div>
+
+            <div class="row center-align form-btn-holder">
+                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            </div>
+            {{ form_end(formProfile) }}
+        </div>
+
+        <div class="block-element">
+            <h5 class="header">{{ 'title.update_settings'|trans }}</h5>
+
+            {{ form_start(formSettings) }}
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(form.locale, {'label' : 'label.locale', 'attr': {'class': 'js-select-locale'}} ) }}
+                        {{ form_row(formSettings.locale, {'label' : 'label.locale', 'attr': {'class': 'js-select-locale'}} ) }}
                     </div>
                     <div class="col s12 l5 xl3">
-                        {{ form_row(form.theme, {'label' : 'label.theme', 'attr': {'class': 'js-select-theme'}} ) }}
+                        {{ form_row(formSettings.theme, {'label' : 'label.theme', 'attr': {'class': 'js-select-theme'}} ) }}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(form.timezone, {'label' : 'label.timezone'} ) }}
+                        {{ form_row(formSettings.timezone, {'label' : 'label.timezone'} ) }}
                     </div>
                     <div class="col s12 l5 xl3">
-                        {{ form_row(form.dateFormat, {'label' : 'label.date_format'} ) }}
+                        {{ form_row(formSettings.dateFormat, {'label' : 'label.date_format'} ) }}
                     </div>
                 </div>
 
             <div class="row">
                 <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.currency, {'label' : 'label.currency'} ) }}
+                    {{ form_row(formSettings.currency, {'label' : 'label.currency'} ) }}
                 </div>
                 <div class="col s12 l5 xl3">
-                    {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                    {{ form_row(formSettings.visibility, {'label' : 'label.visibility'} ) }}
                 </div>
             </div>
 
@@ -82,26 +101,7 @@
                 <div class="row center-align form-btn-holder">
                     <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 </div>
-            {{ form_end(form) }}
-        </div>
-
-        <div class="block-element">
-            <h5 class="header">{{ 'title.update_password'|trans }}</h5>
-
-            {{ form_start(formPassword) }}
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formPassword.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formPassword.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
-                    </div>
-                </div>
-
-                 <div class="row center-align form-btn-holder">
-                    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                </div>
-            {{ form_end(formPassword) }}
+            {{ form_end(formSettings) }}
         </div>
     </div>
 {% endblock %}
