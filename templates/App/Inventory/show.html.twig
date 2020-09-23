@@ -90,6 +90,6 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
+        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': url('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
     {% endif %}
 {% endblock %}

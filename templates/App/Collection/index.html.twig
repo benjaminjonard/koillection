@@ -58,7 +58,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
+        {{ include('App/_partials/_modal/_share.html.twig', {'route': url('app_user_collection_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 

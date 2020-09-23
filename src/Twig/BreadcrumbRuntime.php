@@ -82,7 +82,7 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
      */
     public function renderBreadcrumb(Environment $environment, array $breadcrumb)
     {
-        return $environment->render('App/_partials/_breadcrumb_base.html.twig', [
+        return $environment->render('App/_partials/_breadcrumb/_base.html.twig', [
             'breadcrumb' => $breadcrumb,
         ]);
     }
