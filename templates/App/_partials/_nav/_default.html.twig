@@ -1,21 +1,66 @@
 <li class="{{ 'app_collection' in route or 'app_item' in route ? 'current' }}"><a href="{{ path('app_collection_index') }}"><i class="fa fa-archive fa-fw"></i><span>{{ 'menu.collections'|trans }}</span></a></li>
-<li class="{{ 'app_wishlist' in route or 'app_wish' in route ? 'current' }}"><a href="{{ path('app_wishlist_index') }}"><i class="fa fa-heart fa-fw"></i><span>{{ 'menu.wishlists'|trans }}</span></a></li>
-<li class="{{ 'app_tag' in route ? 'current' }}"><a href="{{ path('app_tag_index') }}"><i class="fa fa-tags fa-fw"></i><span>{{ 'menu.tags'|trans }}</span></a></li>
-<li class="{{ 'app_sign' in route ? 'current' }}"><a href="{{ path('app_sign_index') }}"><i class="fa fa-leaf fa-fw"></i><span>{{ 'menu.signs'|trans }}</span></a></li>
-<li class="{{ 'app_album' in route or 'app_photo' in route  ? 'current' }}"><a href="{{ path('app_album_index') }}"><i class="fa fa-camera fa-fw"></i><span>{{ 'menu.albums'|trans }}</span></a></li>
-<li class="{{ 'app_loan' in route ? 'current' }}"><a href="{{ path('app_loan_index') }}"><i class="fa fa-exchange fa-fw"></i><span>{{ 'menu.loans'|trans }}</span></a></li>
-<li class="{{ 'app_template' in route ? 'current' }}"><a href="{{ path('app_template_index') }}"><i class="fa fa-clone fa-fw"></i><span>{{ 'menu.templates'|trans }}</span></a></li>
+
+{% if isFeatureEnabled('wishlists') %}
+    <li class="{{ 'app_wishlist' in route or 'app_wish' in route ? 'current' }}">
+        <a href="{{ path('app_wishlist_index') }}"><i class="fa fa-heart fa-fw"></i><span>{{ 'menu.wishlists'|trans }}</span></a>
+    </li>
+{% endif %}
+
+{% if isFeatureEnabled('tags') %}
+    <li class="{{ 'app_tag' in route ? 'current' }}">
+        <a href="{{ path('app_tag_index') }}"><i class="fa fa-tags fa-fw"></i><span>{{ 'menu.tags'|trans }}</span></a>
+    </li>
+{% endif %}
+
+{% if isFeatureEnabled('signs') %}
+    <li class="{{ 'app_sign' in route ? 'current' }}">
+        <a href="{{ path('app_sign_index') }}"><i class="fa fa-leaf fa-fw"></i><span>{{ 'menu.signs'|trans }}</span></a>
+    </li>
+{% endif %}
+
+{% if isFeatureEnabled('albums') %}
+    <li class="{{ 'app_album' in route or 'app_photo' in route  ? 'current' }}">
+        <a href="{{ path('app_album_index') }}"><i class="fa fa-camera fa-fw"></i><span>{{ 'menu.albums'|trans }}</span></a>
+    </li>
+{% endif %}
+
+{% if isFeatureEnabled('loans') %}
+    <li class="{{ 'app_loan' in route ? 'current' }}">
+        <a href="{{ path('app_loan_index') }}"><i class="fa fa-exchange fa-fw"></i><span>{{ 'menu.loans'|trans }}</span></a>
+    </li>
+{% endif %}
+
+{% if isFeatureEnabled('templates') %}
+    <li class="{{ 'app_template' in route ? 'current' }}">
+        <a href="{{ path('app_template_index') }}"><i class="fa fa-clone fa-fw"></i><span>{{ 'menu.templates'|trans }}</span></a>
+    </li>
+{% endif %}
+
+{% if isFeatureEnabled('history') or isFeatureEnabled('statistics') %}
+    <li class="separate-item"><div></div></li>
+{% endif %}
+
+{% if isFeatureEnabled('history') %}
+    <li class="{{ 'app_history' in route ? 'current' }}">
+        <a href="{{ path('app_history_index', {'search_history[classes]': ['collection', 'item', 'tag', 'album', 'wishlist'], 'search_history[types]': ['create']}) }}">
+            <i class="fa fa-history fa-fw"></i><span>{{ 'menu.history'|trans }}</span>
+        </a>
+    </li>
+{% endif %}
+
+{% if isFeatureEnabled('statistics') %}
+    <li class="{{ 'app_statistics' in route ? 'current' }}">
+        <a href="{{ path('app_statistics_index') }}"><i class="fa fa-area-chart fa-fw"></i><span>{{ 'menu.statistics'|trans }}</span></a>
+    </li>
+{% endif %}
+
+{# MOBILE #}
 <li class="separate-item"><div></div></li>
-<li class="{{ 'app_history' in route ? 'current' }}"><a href="{{ path('app_history_index', {'search_history[classes]': ['collection', 'item', 'tag', 'album', 'wishlist'], 'search_history[types]': ['create']}) }}"><i class="fa fa-history fa-fw"></i><span>{{ 'menu.history'|trans }}</span></a></li>
-<li class="{{ 'app_statistics' in route ? 'current' }}"><a href="{{ path('app_statistics_index') }}"><i class="fa fa-area-chart fa-fw"></i><span>{{ 'menu.statistics'|trans }}</span></a></li>
 <li class="{{ 'app_profile' in route ? 'current' }} show-on-mobile"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
 <li class="{{ 'app_tools' in route ? 'current' }} show-on-mobile"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
-
-<li class="separate-item"><div></div></li>
 {% if is_granted('ROLE_ADMIN') %}
     <li class="{{ 'app_admin' in route or 'translation' in route ? 'current' }}"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
 {% endif %}
-
 <li class="{{ 'app_search' in route ? 'current' }} show-on-mobile"><a href="{{ path('app_search_index') }}"><i class="fa fa-search fa-fw"></i><span>{{ 'menu.search'|trans }}</span></a></li>
 <li class="show-on-mobile"><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>
 

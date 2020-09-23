@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Entity\Tag;
-use App\Enum\DatumTypeEnum;
 use App\Model\BreadcrumbElement;
 use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
@@ -194,5 +193,12 @@ class AppRuntime implements RuntimeExtensionInterface
         }
 
         return $results;
+    }
+
+    public function isFeatureEnabled($feature)
+    {
+        $getter = 'is' . ucfirst($feature) . 'FeatureActive';
+
+        return $this->contextHandler->getContextUser()->$getter();
     }
 }
