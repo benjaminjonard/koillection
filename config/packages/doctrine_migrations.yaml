@@ -5,3 +5,4 @@ doctrine_migrations:
     storage:
         table_storage:
             table_name: doctrine_migration_version
+    check_database_platform: true

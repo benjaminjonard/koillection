@@ -11,6 +11,7 @@ use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
+use DateTimeInterface;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -39,44 +40,44 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=32, unique=true)
      * @Assert\Regex(pattern="/^[a-z\d_]{2,32}$/i", message="error.username.incorrect")
      */
     private ?string $username = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email()
      */
     private ?string $email = null;
 
     /**
-     * @var string
+     * @var ?string
      */
     private ?string $salt = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $password;
 
     /**
-     * @var string
+     * @var ?string
      * @Assert\Regex(pattern="/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message="error.password.incorrect")
      */
     private ?string $plainPassword = null;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="avatar")
      */
     private ?File $file = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $avatar = null;
@@ -112,7 +113,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     private string $locale;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string")
      */
     private ?string $timezone = null;
@@ -184,22 +185,70 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     private DoctrineCollection $inventories;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?DateTimeInterface
      * @ORM\Column(type="date", nullable=true)
      */
-    private ?\DateTimeInterface $lastDateOfActivity = null;
+    private ?DateTimeInterface $lastDateOfActivity = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $wishlistsFeatureActive;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $tagsFeatureActive;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $signsFeatureActive;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $albumsFeatureActive;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $loansFeatureActive;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $templatesFeatureActive;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $historyFeatureActive;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": 1})
+     */
+    private bool $statisticsFeatureActive;
+
+    /**
+     * @var DateTimeInterface
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $createdAt;
+    private DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $updatedAt;
+    private ?DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -212,6 +261,13 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         $this->locale = LocaleEnum::LOCALE_EN_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
+        $this->wishlistsFeatureActive = true;
+        $this->signsFeatureActive = true;
+        $this->albumsFeatureActive = true;
+        $this->loansFeatureActive = true;
+        $this->templatesFeatureActive = true;
+        $this->historyFeatureActive = true;
+        $this->statisticsFeatureActive = true;
     }
 
     public function serialize()
@@ -462,36 +518,36 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    public function getLastDateOfActivity(): ?\DateTimeInterface
+    public function getLastDateOfActivity(): ?DateTimeInterface
     {
         return $this->lastDateOfActivity;
     }
 
-    public function setLastDateOfActivity(?\DateTimeInterface $lastDateOfActivity): self
+    public function setLastDateOfActivity(?DateTimeInterface $lastDateOfActivity): self
     {
         $this->lastDateOfActivity = $lastDateOfActivity;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -523,6 +579,150 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
             $this->setUpdatedAt(new \DateTime());
         }
 
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isWishlistsFeatureActive(): bool
+    {
+        return $this->wishlistsFeatureActive;
+    }
+
+    /**
+     * @param bool $wishlistsFeatureActive
+     * @return User
+     */
+    public function setWishlistsFeatureActive(bool $wishlistsFeatureActive): User
+    {
+        $this->wishlistsFeatureActive = $wishlistsFeatureActive;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTagsFeatureActive(): bool
+    {
+        return $this->tagsFeatureActive;
+    }
+
+    /**
+     * @param bool $tagsFeatureActive
+     * @return User
+     */
+    public function setTagsFeatureActive(bool $tagsFeatureActive): User
+    {
+        $this->tagsFeatureActive = $tagsFeatureActive;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSignsFeatureActive(): bool
+    {
+        return $this->signsFeatureActive;
+    }
+
+    /**
+     * @param bool $signsFeatureActive
+     * @return User
+     */
+    public function setSignsFeatureActive(bool $signsFeatureActive): User
+    {
+        $this->signsFeatureActive = $signsFeatureActive;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAlbumsFeatureActive(): bool
+    {
+        return $this->albumsFeatureActive;
+    }
+
+    /**
+     * @param bool $albumsFeatureActive
+     * @return User
+     */
+    public function setAlbumsFeatureActive(bool $albumsFeatureActive): User
+    {
+        $this->albumsFeatureActive = $albumsFeatureActive;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLoansFeatureActive(): bool
+    {
+        return $this->loansFeatureActive;
+    }
+
+    /**
+     * @param bool $loansFeatureActive
+     * @return User
+     */
+    public function setLoansFeatureActive(bool $loansFeatureActive): User
+    {
+        $this->loansFeatureActive = $loansFeatureActive;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTemplatesFeatureActive(): bool
+    {
+        return $this->templatesFeatureActive;
+    }
+
+    /**
+     * @param bool $templatesFeatureActive
+     * @return User
+     */
+    public function setTemplatesFeatureActive(bool $templatesFeatureActive): User
+    {
+        $this->templatesFeatureActive = $templatesFeatureActive;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHistoryFeatureActive(): bool
+    {
+        return $this->historyFeatureActive;
+    }
+
+    /**
+     * @param bool $historyFeatureActive
+     * @return User
+     */
+    public function setHistoryFeatureActive(bool $historyFeatureActive): User
+    {
+        $this->historyFeatureActive = $historyFeatureActive;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStatisticsFeatureActive(): bool
+    {
+        return $this->statisticsFeatureActive;
+    }
+
+    /**
+     * @param bool $statisticsFeatureActive
+     * @return User
+     */
+    public function setStatisticsFeatureActive(bool $statisticsFeatureActive): User
+    {
+        $this->statisticsFeatureActive = $statisticsFeatureActive;
         return $this;
     }
 }

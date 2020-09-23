@@ -2,4 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         version: '%version%'
-    form_themes: ['App/_partials/_form_fields.html.twig']
+    form_themes:
+        - 'App/_partials/_form/_default.html.twig'
+        - 'App/_partials/_form/_cropper.html.twig'
+        - 'App/_partials/_form/_switch.html.twig'

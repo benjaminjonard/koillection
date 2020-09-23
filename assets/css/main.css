@@ -1333,3 +1333,5 @@ i.btn input {color: #fff; cursor: pointer;}
 
 .datum-original-filename { white-space: nowrap; margin-top: 12px; padding-left: 10px; text-overflow: ellipsis; overflow: hidden;}
 .file-field input[type="file"] {height: 3rem; margin-left: 10px; width: 48px;}
+
+.switch-wrapper { margin-bottom: 4rem; }

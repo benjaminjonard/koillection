@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
-  <file id="javascript.en">
+  <file id="javascript.en-GB">
     <unit id="s2RK8Ci" name="global.months.january">
       <segment>
         <source>global.months.january</source>
@@ -169,19 +169,19 @@
         <target>Searching...</target>
       </segment>
     </unit>
-    <unit id="gz65OAJ" name="select2.none">
+    <unit id="VWNWjeJ" name="select2.none">
       <segment>
         <source>select2.none</source>
         <target>None</target>
       </segment>
     </unit>
-    <unit id="KsjAos4" name="global.search.more_results">
+    <unit id="Em6KHMM" name="global.search.more_results">
       <segment>
         <source>global.search.more_results</source>
         <target>{1} + %count% more result| ]1,Inf[ + %count% more results</target>
       </segment>
     </unit>
-    <unit id="A9dD15z" name="global.search.no_results">
+    <unit id="nfDV3tB" name="global.search.no_results">
       <segment>
         <source>global.search.no_results</source>
         <target>No results</target>

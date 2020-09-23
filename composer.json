@@ -57,6 +57,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "php-translation/symfony-bundle": "^0.12.1",
         "symfony/browser-kit": "^5.1",
         "symfony/css-selector": "^5.1",
         "symfony/maker-bundle": "^1.15",

@@ -4189,7 +4189,7 @@
         <target>Modifier le tag %tag%</target>
       </segment>
     </unit>
-    <unit id="uOTNXQY" name="global.themes.dark_mode">
+    <unit id="uOTNXQY" name="global.themes.dark">
       <segment>
         <source>global.themes.dark</source>
         <target>Sombre</target>
