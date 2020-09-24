@@ -262,6 +262,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
         $this->wishlistsFeatureActive = true;
+        $this->tagsFeatureActive = true;
         $this->signsFeatureActive = true;
         $this->albumsFeatureActive = true;
         $this->loansFeatureActive = true;
