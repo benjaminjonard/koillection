@@ -9,7 +9,6 @@ use App\Entity\Item;
 use App\Form\Type\Model\FeaturesType;
 use App\Form\Type\Model\ProfileType;
 use App\Form\Type\Model\SettingsType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

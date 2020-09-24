@@ -8,7 +8,6 @@ use App\Entity\Collection;
 use App\Entity\Inventory;
 use App\Form\Type\Entity\InventoryType;
 use App\Service\InventoryHandler;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
