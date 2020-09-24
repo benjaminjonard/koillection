@@ -7,6 +7,7 @@ namespace App\Twig;
 use App\Entity\Tag;
 use App\Model\BreadcrumbElement;
 use App\Service\ContextHandler;
+use App\Service\FeatureChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -35,18 +36,25 @@ class AppRuntime implements RuntimeExtensionInterface
     private ContextHandler $contextHandler;
 
     /**
+     * @var FeatureChecker
+     */
+    private FeatureChecker $featureChecker;
+
+    /**
      * AppExtension constructor.
      * @param TranslatorInterface $translator
      * @param RouterInterface $router
      * @param EntityManagerInterface $em
      * @param ContextHandler $contextHandler
+     * @param FeatureChecker $featureChecker
      */
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em, ContextHandler $contextHandler)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em, ContextHandler $contextHandler, FeatureChecker $featureChecker)
     {
         $this->translator = $translator;
         $this->router = $router;
         $this->em = $em;
         $this->contextHandler = $contextHandler;
+        $this->featureChecker = $featureChecker;
     }
 
     /**
@@ -197,8 +205,6 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function isFeatureEnabled($feature)
     {
-        $getter = 'is' . ucfirst($feature) . 'FeatureActive';
-
-        return $this->contextHandler->getContextUser()->$getter();
+        return $this->featureChecker->isFeatureEnabled($feature);
     }
 }
