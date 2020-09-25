@@ -6,9 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Collection;
 use App\Entity\Item;
-use App\Enum\DatumTypeEnum;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 

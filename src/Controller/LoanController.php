@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Loan;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -23,6 +22,8 @@ class LoanController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['loans']);
+
         $loanRepository = $this->getDoctrine()->getRepository(Loan::class);
         return $this->render('App/Loan/index.html.twig', [
             'loans' => $loanRepository->findLent(),
@@ -42,6 +43,8 @@ class LoanController extends AbstractController
      */
     public function delete(Loan $loan, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['loans']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($loan);
         $em->flush();
@@ -66,6 +69,8 @@ class LoanController extends AbstractController
      */
     public function returned(Loan $loan, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['loans']);
+
         $loan->setReturnedAt(new \DateTime());
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('notice', $translator->trans('message.item_returned', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));

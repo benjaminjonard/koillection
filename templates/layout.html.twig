@@ -16,7 +16,7 @@
             <div class="scrollable">
                 <div class="nav-wrapper">
                     <ul class="nav nav-sidebar">
-                        {% include 'App/_partials/_nav_' ~ context ~ '.html.twig' %}
+                        {% include 'App/_partials/_nav/_' ~ context ~ '.html.twig' %}
                     </ul>
                 </div>
 
@@ -32,6 +32,9 @@
         <ul class="profile-menu collection hidden">
             <li class="collection-item"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
             <li class="collection-item"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="collection-item"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
+            {% endif %}
             <li class="collection-item"><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>
         </ul>
 
@@ -46,18 +49,6 @@
                 </div>
 
                 {% if app.user %}
-                    <div class="spacer">
-                        <form class="search" name="search" method="get" action="{{ path('app_search_index') }}">
-                            <div>
-                                <input id="search_term" name="search[term]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}" autocomplete="off">
-                                <input id="search_searchInCollections" name="search[searchInCollections]" type="hidden">
-                                <input id="search_searchInItems" name="search[searchInItems]" type="hidden">
-                                <input id="search_searchInTags" name="search[searchInTags]" type="hidden">
-                            </div>
-                            <ul class="autocomplete-results"></ul>
-                        </form>
-                    </div>
-
                     <div class="header-profile">
                         {% if app.user.avatar != null %}
                             <img class="user-avatar" src="{{ preload(asset(app.user.avatar)) }}">

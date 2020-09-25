@@ -1,0 +1,45 @@
+{% block switch %}
+    {% apply spaceless %}
+        <div class="switch-wrapper">
+            <div class="switch input-field">
+                <label>
+                    <input type="checkbox" value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
+                    <span class="lever"></span>
+                    {{ label|trans }}
+                </label>
+            </div>
+        </div>
+    {% endapply %}
+{% endblock switch %}
+
+{% block _features_wishlistsFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_wishlistsFeatureEnabled_row %}
+
+{% block _features_tagsFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_tagsFeatureEnabled_row %}
+
+{% block _features_signsFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_signsFeatureEnabled_row %}
+
+{% block _features_albumsFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_albumsFeatureEnabled_row %}
+
+{% block _features_loansFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_loansFeatureEnabled_row %}
+
+{% block _features_templatesFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_templatesFeatureEnabled_row %}
+
+{% block _features_historyFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_historyFeatureEnabled_row %}
+
+{% block _features_statisticsFeatureEnabled_row %}
+    {{ block('switch') }}
+{% endblock _features_statisticsFeatureEnabled_row %}

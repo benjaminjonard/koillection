@@ -31,10 +31,13 @@
         <div class="row">
             <h5 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h5>
         </div>
+
         <div class="row js-data-actions" data-entity="collection">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
-            </div>
+            {% if isFeatureEnabled('templates') %}
+                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+                </div>
+            {% endif %}
         </div>
 
         {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}

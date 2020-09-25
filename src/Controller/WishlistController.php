@@ -8,9 +8,6 @@ use App\Entity\Log;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
-use App\Service\CounterCalculator;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,6 +35,8 @@ class WishlistController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $wishlists = $this->getDoctrine()->getRepository(Wishlist::class)->findBy(['parent' => null], ['name' => 'ASC']);
 
         return $this->render('App/Wishlist/index.html.twig', [
@@ -57,6 +56,8 @@ class WishlistController extends AbstractController
      */
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $wishlist = new Wishlist();
         $em = $this->getDoctrine()->getManager();
 
@@ -109,6 +110,8 @@ class WishlistController extends AbstractController
      */
     public function show(Wishlist $wishlist) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist,
             'children' => $this->getDoctrine()->getRepository(Wishlist::class)->findBy(['parent' => $wishlist]),
@@ -129,6 +132,8 @@ class WishlistController extends AbstractController
      */
     public function edit(Request $request, Wishlist $wishlist, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $form = $this->createForm(WishlistType::class, $wishlist);
         $form->handleRequest($request);
 
@@ -157,6 +162,8 @@ class WishlistController extends AbstractController
      */
     public function delete(Wishlist $wishlist, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($wishlist);
         $em->flush();
@@ -177,6 +184,8 @@ class WishlistController extends AbstractController
      */
     public function history(Wishlist $wishlist) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists', 'history']);
+
         return $this->render('App/Wishlist/history.html.twig', [
             'wishlist' => $wishlist,
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([

@@ -8,8 +8,6 @@ use App\Entity\Log;
 use App\Form\Type\Model\SearchHistoryType;
 use App\Model\Search\SearchHistory;
 use App\Service\PaginatorFactory;
-use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +27,8 @@ class HistoryController extends AbstractController
      */
     public function index(Request $request, PaginatorFactory $paginatorFactory, int $paginationItemsPerPage) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['history']);
+
         $search = new SearchHistory($request->query->getInt('page', 1), $paginationItemsPerPage);
         $form = $this->createForm(SearchHistoryType::class, $search, [
             'method' => 'GET',

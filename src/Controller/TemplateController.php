@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Template;
-use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\TemplateType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +25,8 @@ class TemplateController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         return $this->render('App/Template/index.html.twig', [
             'results' => $this->getDoctrine()->getRepository(Template::class)->findAllWithCounters(),
         ]);
@@ -44,6 +44,8 @@ class TemplateController extends AbstractController
      */
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         $template = new Template();
         $form = $this->createForm(TemplateType::class, $template);
         $form->handleRequest($request);
@@ -77,6 +79,8 @@ class TemplateController extends AbstractController
      */
     public function edit(Request $request, Template $template, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         $form = $this->createForm(TemplateType::class, $template);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -105,6 +109,8 @@ class TemplateController extends AbstractController
      */
     public function show(Template $template) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         return $this->render('App/Template/show.html.twig', [
             'template' => $template,
         ]);
@@ -122,6 +128,8 @@ class TemplateController extends AbstractController
      */
     public function delete(Template $template, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($template);
         $em->flush();
@@ -142,6 +150,8 @@ class TemplateController extends AbstractController
      */
     public function getFields(Template $template) : JsonResponse
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         $fields = [];
         foreach ($template->getFields() as $field) {
             $data = [];

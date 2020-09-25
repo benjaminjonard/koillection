@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
-  <file id="messages.en">
+  <file id="messages.en-GB">
     <unit id="1d_kHPL" name="about.welcome">
       <notes>
         <note category="file-source" priority="1">templates/App/Security/login.html.twig:41</note>
@@ -128,7 +128,7 @@
         <target>Default image</target>
       </segment>
     </unit>
-    <unit id="fxC62MI" name="aria.flag.en">
+    <unit id="Qy2wfS4" name="aria.flag.en">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
@@ -440,7 +440,7 @@
         <target>Lend</target>
       </segment>
     </unit>
-    <unit id="No7skRj" name="btn.apply_common_fields">
+    <unit id="uAfIh0u" name="btn.apply_common_fields">
       <notes>
         <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
         <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
@@ -450,7 +450,7 @@
         <target>Load common fields</target>
       </segment>
     </unit>
-    <unit id="dsa97Ds" name="btn.apply_collection_fields">
+    <unit id="ImSHWcX" name="btn.apply_collection_fields">
       <notes>
         <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
         <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
@@ -2522,13 +2522,10 @@
         <target>Photo %photo% has been updated</target>
       </segment>
     </unit>
-    <unit id="rVN8d.E" name="message.profile_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/ProfileController.php:42</note>
-      </notes>
+    <unit id="nNziKQf" name="message.settings_updated">
       <segment>
-        <source>message.profile_updated</source>
-        <target>Your profile has been sucessfully updated</target>
+        <source>message.settings_updated</source>
+        <target>Your settings have been successfully updated</target>
       </segment>
     </unit>
     <unit id="NLlL04M" name="message.recursive">
@@ -3081,12 +3078,15 @@
       </segment>
     </unit>
     <unit id="PMuodit" name="title.update_profile">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Profile/index.html.twig:39</note>
-      </notes>
       <segment>
         <source>title.update_profile</source>
-        <target>Update profile</target>
+        <target>Edit profile</target>
+      </segment>
+    </unit>
+    <unit id="RDD2bMy" name="title.update_settings">
+      <segment>
+        <source>title.update_settings</source>
+        <target>Edit settings</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -4072,16 +4072,10 @@
         <target>Backup (images and database)</target>
       </segment>
     </unit>
-    <unit id="0ifTRc0" name="title.update_password">
+    <unit id="rVN8d.E" name="message.profile_updated">
       <segment>
-        <source>title.update_password</source>
-        <target>Change Password</target>
-      </segment>
-    </unit>
-    <unit id="FU6pwX." name="message.password_updated">
-      <segment>
-        <source>message.password_updated</source>
-        <target>Password has been updated</target>
+        <source>message.profile_updated</source>
+        <target>Profile has been updated</target>
       </segment>
     </unit>
     <unit id="8iRfcsb" name="label.completion">
@@ -4192,7 +4186,7 @@
         <target>Edit tag %tag%</target>
       </segment>
     </unit>
-    <unit id="uOTNXQY" name="global.themes.dark_mode">
+    <unit id="_H7jFIZ" name="global.themes.dark">
       <segment>
         <source>global.themes.dark</source>
         <target>Dark</target>
@@ -4204,13 +4198,13 @@
         <target>Country</target>
       </segment>
     </unit>
-    <unit id="HnTfLuW" name="global.locale.en-GB">
+    <unit id="TjepIwh" name="global.locale.en-GB">
       <segment>
         <source>global.locale.en-GB</source>
         <target>English</target>
       </segment>
     </unit>
-    <unit id="RC_SygJ" name="global.locale.fr-FR">
+    <unit id="Acw13X3" name="global.locale.fr-FR">
       <segment>
         <source>global.locale.fr-FR</source>
         <target>Français</target>
@@ -4234,13 +4228,13 @@
         <target>Configuration</target>
       </segment>
     </unit>
-    <unit id="4akjOge" name="label.php_version">
+    <unit id="fGUHPE5" name="label.php_version">
       <segment>
         <source>label.php_version</source>
         <target>PHP version</target>
       </segment>
     </unit>
-    <unit id=".up_g77" name="label.is_opcache_available">
+    <unit id="9qQ81pM" name="label.is_opcache_available">
       <segment>
         <source>label.is_opcache_available</source>
         <target>Opcache enabled</target>
@@ -4252,7 +4246,7 @@
         <target>Overview</target>
       </segment>
     </unit>
-    <unit id="wKru5ff" name="label.symfony_version">
+    <unit id="nWdqGKI" name="label.symfony_version">
       <segment>
         <source>label.symfony_version</source>
         <target>Symfony version</target>
@@ -4372,19 +4366,19 @@
         <target>Property %property% was updated</target>
       </segment>
     </unit>
-    <unit id="1" name="enum.history_filter_class.album">
+    <unit id="tCaXH8D" name="enum.history_filter_class.album">
       <segment>
         <source>enum.history_filter_class.album</source>
         <target>Album</target>
       </segment>
     </unit>
-    <unit id="2" name="enum.history_filter_class.wishlist">
+    <unit id="CHK7Dzf" name="enum.history_filter_class.wishlist">
       <segment>
         <source>enum.history_filter_class.wishlist</source>
         <target>Wishlist</target>
       </segment>
     </unit>
-    <unit id="3" name="log.album.deleted">
+    <unit id="SBtfHBi" name="log.album.deleted">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
@@ -4393,7 +4387,7 @@
         <target>Album %label% was deleted</target>
       </segment>
     </unit>
-    <unit id="3" name="log.wishlist.deleted">
+    <unit id="su92SFL" name="log.wishlist.deleted">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
@@ -4402,118 +4396,172 @@
         <target>Wishlist %label% was deleted</target>
       </segment>
     </unit>
-    <unit id="4" name="breadcrumb.history_wishlist">
+    <unit id="HJFRPmK" name="breadcrumb.history_wishlist">
       <segment>
         <source>breadcrumb.history_wishlist</source>
         <target>History</target>
       </segment>
     </unit>
-    <unit id="5" name="log.wishlist.created">
+    <unit id="GBK.flU" name="log.wishlist.created">
       <segment>
         <source>log.wishlist.created</source>
         <target>Wishlist %label% was created</target>
       </segment>
     </unit>
-    <unit id="6" name="log.wishlist.property_updated">
+    <unit id="hInIZ_x" name="log.wishlist.property_updated">
       <segment>
         <source>log.wishlist.property_updated</source>
         <target>Wishlist %property% was updated from %old% to %new%</target>
       </segment>
     </unit>
-    <unit id="7" name="log.wishlist.default_parent">
+    <unit id="ocKd5wr" name="log.wishlist.default_parent">
       <segment>
         <source>log.wishlist.default_parent</source>
         <target>the default wishlist</target>
       </segment>
     </unit>
-    <unit id="8" name="log.wishlist.parent_updated">
+    <unit id="Oa9ZyXy" name="log.wishlist.parent_updated">
       <segment>
         <source>log.wishlist.parent_updated</source>
         <target>Wishlist %property% was updated from %old% to %new%</target>
       </segment>
     </unit>
-    <unit id="9" name="log.wishlist.image_updated">
+    <unit id="bv2t1yX" name="log.wishlist.image_updated">
       <segment>
         <source>log.wishlist.image_updated</source>
         <target>Property %property% was updated</target>
       </segment>
     </unit>
-    <unit id="10" name="label.albums">
+    <unit id="GXrTvzK" name="label.albums">
       <segment>
         <source>label.albums</source>
         <target>Albums</target>
       </segment>
     </unit>
-    <unit id="11" name="title.albums">
+    <unit id="Gki98oO" name="title.albums">
       <segment>
         <source>title.albums</source>
         <target>Albums</target>
       </segment>
     </unit>
-    <unit id="12" name="title.wishlists">
+    <unit id="ZtbL6rD" name="title.wishlists">
       <segment>
         <source>title.wishlists</source>
         <target>Wishlists</target>
       </segment>
     </unit>
-    <unit id="13" name="btn.regenerate_thumbnails">
+    <unit id="uKZb2q3" name="btn.regenerate_thumbnails">
       <segment>
         <source>btn.regenerate_thumbnails</source>
         <target>Regenerate thumbnails</target>
       </segment>
     </unit>
-    <unit id="14" name="message.thumbnails_regenerated">
+    <unit id="OswwPau" name="message.thumbnails_regenerated">
       <segment>
         <source>message.thumbnails_regenerated</source>
         <target>{0} %count% thumbnails regenerated| {1} %count% thumbnail regenerated| ]1,Inf[ %count% thumbnails regenerated</target>
       </segment>
     </unit>
-    <unit id="15" name="btn.add_text">
+    <unit id="5l_KSLb" name="btn.add_text">
       <segment>
-        <source>message.add_text</source>
+        <source>btn.add_text</source>
         <target>Text</target>
       </segment>
     </unit>
-    <unit id="16" name="btn.add_country">
+    <unit id="FD827k7" name="btn.add_country">
       <segment>
-        <source>message.add_country</source>
+        <source>btn.add_country</source>
         <target>Country</target>
       </segment>
     </unit>
-    <unit id="17" name="label.add_field">
+    <unit id="ixrxzme" name="label.add_field">
       <segment>
         <source>label.add_field</source>
         <target>Add field :</target>
       </segment>
     </unit>
-    <unit id="18" name="btn.add_image">
+    <unit id="7s.6nrQ" name="btn.add_image">
       <segment>
-        <source>message.add_image</source>
+        <source>btn.add_image</source>
         <target>Image</target>
       </segment>
     </unit>
-    <unit id="19" name="btn.add_sign">
+    <unit id="zCTHmk." name="btn.add_sign">
       <segment>
-        <source>message.add_sign</source>
+        <source>btn.add_sign</source>
         <target>Sign</target>
       </segment>
     </unit>
-    <unit id="siOSuAa" name="log.item.file_removed">
+    <unit id=".hornAL" name="log.item.file_removed">
       <segment>
         <source>log.item.file_removed</source>
         <target>File %label% was removed</target>
       </segment>
     </unit>
-    <unit id="si8aA27" name="log.item.file_added">
+    <unit id="zpORTk0" name="log.item.file_added">
       <segment>
         <source>log.item.file_added</source>
         <target>File %label% was added</target>
       </segment>
     </unit>
-    <unit id="s6qAds8" name="btn.add_file">
+    <unit id="1bwI2L." name="btn.add_file">
       <segment>
         <source>btn.add_file</source>
         <target>File</target>
+      </segment>
+    </unit>
+    <unit id="fQNztng" name="title.update_features">
+      <segment>
+        <source>title.update_features</source>
+        <target>Edit active features</target>
+      </segment>
+    </unit>
+    <unit id="UXJKVYr" name="label.wishlists_feature_enabled">
+      <segment>
+        <source>label.wishlists_feature_enabled</source>
+        <target>Wishlists</target>
+      </segment>
+    </unit>
+    <unit id="rs.oNEv" name="label.tags_feature_enabled">
+      <segment>
+        <source>label.tags_feature_enabled</source>
+        <target>Tags</target>
+      </segment>
+    </unit>
+    <unit id="TouI7tc" name="label.signs_feature_enabled">
+      <segment>
+        <source>label.signs_feature_enabled</source>
+        <target>Signs</target>
+      </segment>
+    </unit>
+    <unit id="RuIKIR2" name="label.albums_feature_enabled">
+      <segment>
+        <source>label.albums_feature_enabled</source>
+        <target>Albums</target>
+      </segment>
+    </unit>
+    <unit id="WQ8Q4eq" name="label.loans_feature_enabled">
+      <segment>
+        <source>label.loans_feature_enabled</source>
+        <target>Loans</target>
+      </segment>
+    </unit>
+    <unit id="R7np98X" name="label.templates_feature_enabled">
+      <segment>
+        <source>label.templates_feature_enabled</source>
+        <target>Templates</target>
+      </segment>
+    </unit>
+    <unit id="0UbGg7C" name="label.history_feature_enabled">
+      <segment>
+        <source>label.history_feature_enabled</source>
+        <target>History</target>
+      </segment>
+    </unit>
+    <unit id="nFjLDCO" name="label.statistics_feature_enabled">
+      <segment>
+        <source>label.statistics_feature_enabled</source>
+        <target>Statistics</target>
       </segment>
     </unit>
   </file>

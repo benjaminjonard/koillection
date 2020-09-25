@@ -8,7 +8,6 @@ use App\Entity\Collection;
 use App\Entity\Inventory;
 use App\Form\Type\Entity\InventoryType;
 use App\Service\InventoryHandler;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -87,7 +86,7 @@ class InventoryController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
 
         return new JsonResponse([
-            'htmlForNavPills' => $this->render('App/Inventory/_partials/_nav_pills.html.twig', ['inventory' => $inventory])->getContent()
+            'htmlForNavPills' => $this->render('App/Inventory/_nav_pills.html.twig', ['inventory' => $inventory])->getContent()
         ]);
     }
 

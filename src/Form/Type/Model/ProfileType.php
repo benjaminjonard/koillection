@@ -5,16 +5,11 @@ declare(strict_types=1);
 namespace App\Form\Type\Model;
 
 use App\Entity\User;
-use App\Enum\CurrencyEnum;
-use App\Enum\DateFormatEnum;
-use App\Enum\LocaleEnum;
-use App\Enum\ThemeEnum;
-use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType as SymfonyPasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -47,28 +42,10 @@ class ProfileType extends AbstractType
                     'label' => false,
                 ])->addModelTransformer($this->base64ToImageTransformer)
             )
-            ->add('timezone', TimezoneType::class, [
-                'required' => true
-            ])
-            ->add('dateFormat', ChoiceType::class, [
-                'choices' => DateFormatEnum::getChoicesList(),
-                'required' => true
-            ])
-            ->add('currency', ChoiceType::class, [
-                'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
-                'required' => true
-            ])
-            ->add('theme', ChoiceType::class, [
-                'choices' => array_flip(ThemeEnum::getThemeLabels()),
-                'required' => true
-            ])
-            ->add('locale', ChoiceType::class, [
-                'choices' => array_flip(LocaleEnum::getLocaleLabels()),
-                'required' => true
-            ])
-            ->add('visibility', ChoiceType::class, [
-                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
-                'required' => true
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => SymfonyPasswordType::class,
+                'required' => false,
+                'invalid_message'  => 'error.password.not_matching'
             ])
         ;
     }
@@ -79,7 +56,7 @@ class ProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => User::class
         ]);
     }
 }

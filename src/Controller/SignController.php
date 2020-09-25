@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Datum;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,6 +30,8 @@ class SignController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['signs']);
+
         return $this->render('App/Sign/index.html.twig', [
             'signs' => $this->getDoctrine()->getRepository(Datum::class)->findSigns(),
         ]);

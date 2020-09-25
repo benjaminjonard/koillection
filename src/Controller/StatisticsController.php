@@ -8,7 +8,6 @@ use App\Entity\User;
 use App\Service\Graph\CalendarBuilder;
 use App\Service\Graph\ChartBuilder;
 use App\Service\Graph\TreeBuilder;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -37,6 +36,8 @@ class StatisticsController extends AbstractController
      */
     public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder, User $user = null) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['statistics']);
+
         if (!$user instanceof User) {
             $user = $this->getUser();
         }

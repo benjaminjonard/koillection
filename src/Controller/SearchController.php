@@ -12,7 +12,6 @@ use App\Entity\Wishlist;
 use App\Form\Type\Model\SearchType;
 use App\Model\Search\Search;
 use App\Service\Autocompleter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,19 +52,19 @@ class SearchController extends AbstractController
                     $results['items'] = $items;
                 }
             }
-            if (true === $search->getSearchInTags()) {
+            if ($this->featureChecker->isFeatureEnabled('tags') && true === $search->getSearchInTags()) {
                 $tags = $em->getRepository(Tag::class)->findForSearch($search);
                 if (!empty($tags)) {
                     $results['tags'] = $tags;
                 }
             }
-            if (true === $search->getSearchInAlbums()) {
+            if ($this->featureChecker->isFeatureEnabled('albums') && true === $search->getSearchInAlbums()) {
                 $albums = $em->getRepository(Album::class)->findForSearch($search);
                 if (!empty($albums)) {
                     $results['albums'] = $albums;
                 }
             }
-            if (true === $search->getSearchInTags()) {
+            if ($this->featureChecker->isFeatureEnabled('wishlists') && true === $search->getSearchInWishlists()) {
                 $wishlists = $em->getRepository(Wishlist::class)->findForSearch($search);
                 if (!empty($wishlists)) {
                     $results['wishlists'] = $wishlists;

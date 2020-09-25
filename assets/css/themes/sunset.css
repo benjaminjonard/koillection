@@ -13,10 +13,10 @@
 .picker__date-display
 {background-color: #ff7e7e;}
 
-.sidebar-wrapper .nav-sidebar li.separate-item
+.sidebar-element.separate-item
 {border-top: 1px solid #ff7e7e;}
 
-.sidebar-wrapper .nav-sidebar li.separate-item div
+.sidebar-element.separate-item div
 {border: 1px solid #ff7e7e;}
 
 /* Medium */
@@ -26,7 +26,7 @@
 .btn-large,
 .progress .determinate,
 .picker__weekday-display,
-.sidebar-wrapper .nav-sidebar li.separate-item div,
+.sidebar-element.separate-item div,
 .toast,
 .error .logo,
 .pagination li.active,
@@ -93,7 +93,7 @@ input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[t
 }
 
 /* Dark */
-.sidebar-wrapper .nav-sidebar li a:hover, .sidebar-wrapper .nav-sidebar li.current a, .nav-bottom input:hover, .nav-bottom a:hover
+.sidebar-element a:hover, .sidebar-element.current a, .nav-bottom input:hover, .nav-bottom a:hover
 {background-color: #bb0029;}
 
 /* Complementary */

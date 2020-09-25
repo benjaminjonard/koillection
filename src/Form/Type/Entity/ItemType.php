@@ -9,6 +9,7 @@ use App\Entity\Item;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\JsonToTagTransformer;
+use App\Service\FeatureChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -33,14 +34,21 @@ class ItemType extends AbstractType
     private EntityManagerInterface $em;
 
     /**
+     * @var FeatureChecker
+     */
+    private FeatureChecker $featureChecker;
+
+    /**
      * ItemType constructor.
      * @param JsonToTagTransformer $jsonToTagTransformer
      * @param EntityManagerInterface $em
+     * @param FeatureChecker $featureChecker
      */
-    public function __construct(JsonToTagTransformer $jsonToTagTransformer, EntityManagerInterface $em)
+    public function __construct(JsonToTagTransformer $jsonToTagTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
     {
         $this->em = $em;
         $this->jsonToTagTransformer = $jsonToTagTransformer;
+        $this->featureChecker = $featureChecker;
     }
 
     /**
@@ -61,11 +69,6 @@ class ItemType extends AbstractType
                 'required' => false,
                 'label' => false
             ])
-            ->add(
-                $builder->create('tags', TextType::class, [
-                    'required' => false,
-                ])->addModelTransformer($this->jsonToTagTransformer)
-            )
             ->add('collection', EntityType::class, [
                 'class' => Collection::class,
                 'choice_label' => 'title',
@@ -74,16 +77,6 @@ class ItemType extends AbstractType
                 'multiple' => false,
                 'choice_name' => null,
                 'required' => true,
-            ])
-            ->add('template', EntityType::class, [
-                'class' => Template::class,
-                'choice_label' => 'name',
-                'choices' => $this->em->getRepository(Template::class)->findAll(),
-                'expanded' => false,
-                'multiple' => false,
-                'choice_name' => null,
-                'required' => false,
-                'mapped' => false
             ])
             ->add('data', SymfonyCollectionType::class, [
                 'entry_type' => DatumType::class,
@@ -97,6 +90,27 @@ class ItemType extends AbstractType
                 'required' => true,
             ])
         ;
+
+        if ($this->featureChecker->isFeatureEnabled('tags')) {
+            $builder->add(
+                $builder->create('tags', TextType::class, [
+                    'required' => false,
+                ])->addModelTransformer($this->jsonToTagTransformer)
+            );
+        }
+
+        if ($this->featureChecker->isFeatureEnabled('templates')) {
+            $builder->add('template', EntityType::class, [
+                'class' => Template::class,
+                'choice_label' => 'name',
+                'choices' => $this->em->getRepository(Template::class)->findAll(),
+                'expanded' => false,
+                'multiple' => false,
+                'choice_name' => null,
+                'required' => false,
+                'mapped' => false
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

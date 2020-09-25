@@ -8,7 +8,6 @@ use App\Entity\Album;
 use App\Entity\Log;
 use App\Entity\Photo;
 use App\Form\Type\Entity\AlbumType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,6 +35,8 @@ class AlbumController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
+
         $albums = $this->getDoctrine()->getRepository(Album::class)->findBy(['parent' => null], ['title' => 'ASC']);
         $photosCounter = 0;
         foreach ($albums as $album) {
@@ -60,6 +61,8 @@ class AlbumController extends AbstractController
      */
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
+
         $album = new Album();
         $em = $this->getDoctrine()->getManager();
 
@@ -103,6 +106,8 @@ class AlbumController extends AbstractController
      */
     public function edit(Request $request, Album $album, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
+
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
 
@@ -131,6 +136,8 @@ class AlbumController extends AbstractController
      */
     public function delete(Album $album, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($album);
         $em->flush();
@@ -161,8 +168,9 @@ class AlbumController extends AbstractController
      */
     public function show(Album $album) : Response
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
+        $em = $this->getDoctrine()->getManager();
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
             'children' => $em->getRepository(Album::class)->findBy(['parent' => $album]),
@@ -181,6 +189,8 @@ class AlbumController extends AbstractController
      */
     public function history(Album $album) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['albums', 'history']);
+        
         return $this->render('App/Album/history.html.twig', [
             'album' => $album,
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([

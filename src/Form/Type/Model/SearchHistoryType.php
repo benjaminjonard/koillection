@@ -6,6 +6,7 @@ namespace App\Form\Type\Model;
 
 use App\Enum\HistoryFilterEnum;
 use App\Model\Search\SearchHistory;
+use App\Service\FeatureChecker;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,18 +16,45 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SearchHistoryType extends AbstractType
 {
     /**
+     * @var FeatureChecker
+     */
+    private FeatureChecker $featureChecker;
+
+    /**
+     * SearchHistoryType constructor.
+     * @param FeatureChecker $featureChecker
+     */
+    public function __construct(FeatureChecker $featureChecker)
+    {
+        $this->featureChecker = $featureChecker;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $types = [];
+        $types[HistoryFilterEnum::FILTER_CLASS_COLLECTION] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_COLLECTION);
+        $types[HistoryFilterEnum::FILTER_CLASS_ITEM] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_ITEM);
+        if ($this->featureChecker->isFeatureEnabled('tags')) {
+            $types[HistoryFilterEnum::FILTER_CLASS_TAG] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_TAG);
+        }
+        if ($this->featureChecker->isFeatureEnabled('albums')) {
+            $types[HistoryFilterEnum::FILTER_CLASS_ALBUM] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_ALBUM);
+        }
+        if ($this->featureChecker->isFeatureEnabled('wishlists')) {
+            $types[HistoryFilterEnum::FILTER_CLASS_WISHLIST] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_WISHLIST);
+        }
+
         $builder
             ->add('term', TextType::class, [
                 'label' => false,
                 'required' => false
             ])
             ->add('classes', ChoiceType::class, [
-                'choices' => array_flip(HistoryFilterEnum::CLASS_TRANS_KEYS),
+                'choices' => array_flip($types),
                 'label' => false,
                 'required' => false,
                 'multiple' => true,

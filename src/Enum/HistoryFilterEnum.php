@@ -40,4 +40,9 @@ class HistoryFilterEnum
         self::FILTER_TYPE_CREATE => 'enum.history_filter_type.create',
         self::FILTER_TYPE_DELETE => 'enum.history_filter_type.delete',
     ];
+
+    public static function getLabel($type)
+    {
+        return self::CLASS_TRANS_KEYS[$type];
+    }
 }

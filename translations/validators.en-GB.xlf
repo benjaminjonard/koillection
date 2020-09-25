@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
-  <file id="validators.en">
+  <file id="validators.en-GB">
     <unit id="7OcgSlg" name="error.email.not_unique">
       <notes>
         <note category="file-source" priority="1">src/Entity/User.php:0</note>

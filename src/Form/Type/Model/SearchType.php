@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type\Model;
 
 use App\Model\Search\Search;
+use App\Service\FeatureChecker;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -21,12 +22,19 @@ class SearchType extends AbstractType
     private TokenStorageInterface $tokenStorage;
 
     /**
+     * @var FeatureChecker
+     */
+    private FeatureChecker $featureChecker;
+
+    /**
      * SearchType constructor.
      * @param TokenStorageInterface $tokenStorage
+     * @param FeatureChecker $featureChecker
      */
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage, FeatureChecker $featureChecker)
     {
-        $this->tokenStorage =$tokenStorage;
+        $this->tokenStorage = $tokenStorage;
+        $this->featureChecker = $featureChecker;
     }
 
     /**
@@ -55,19 +63,28 @@ class SearchType extends AbstractType
                 'label' => false,
                 'required' => false
             ])
-            ->add('searchInTags', CheckboxType::class, [
-                'label' => false,
-                'required' => false
-            ])
-            ->add('searchInAlbums', CheckboxType::class, [
-                'label' => false,
-                'required' => false
-            ])
-            ->add('searchInWishlists', CheckboxType::class, [
-                'label' => false,
-                'required' => false
-            ])
         ;
+
+        if ($this->featureChecker->isFeatureEnabled('tags')) {
+            $builder->add('searchInTags', CheckboxType::class, [
+                'label' => false,
+                'required' => false
+            ]);
+        }
+
+        if ($this->featureChecker->isFeatureEnabled('albums')) {
+            $builder->add('searchInAlbums', CheckboxType::class, [
+                'label' => false,
+                'required' => false
+            ]);
+        }
+
+        if ($this->featureChecker->isFeatureEnabled('wishlists')) {
+            $builder->add('searchInWishlists', CheckboxType::class, [
+                'label' => false,
+                'required' => false
+            ]);
+        }
     }
 
     /**

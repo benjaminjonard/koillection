@@ -8,7 +8,6 @@ use App\Entity\TagCategory;
 use App\Form\Type\Entity\TagCategoryType;
 use App\Service\PaginatorFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,6 +27,8 @@ class TagCategoryController extends AbstractController
      */
     public function index(Request $request, PaginatorFactory $paginatorFactory) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $page = $request->query->get('page', 1);
         $search = $request->query->get('search', null);
         $categoriesCount = $this->getDoctrine()->getRepository(TagCategory::class)->count([]);
@@ -53,6 +54,8 @@ class TagCategoryController extends AbstractController
      */
     public function show(TagCategory $category) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         return $this->render('App/TagCategory/show.html.twig', [
             'category' => $category
         ]);
@@ -70,6 +73,8 @@ class TagCategoryController extends AbstractController
      */
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $category = new TagCategory();
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(TagCategoryType::class, $category);
@@ -101,6 +106,8 @@ class TagCategoryController extends AbstractController
      */
     public function edit(Request $request, TagCategory $category, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $form = $this->createForm(TagCategoryType::class, $category);
         $form->handleRequest($request);
 
@@ -129,6 +136,8 @@ class TagCategoryController extends AbstractController
      */
     public function delete(TagCategory $category, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);
         $em->flush();

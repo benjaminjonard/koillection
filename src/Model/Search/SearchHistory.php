@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Search;
 
+use App\Enum\HistoryFilterEnum;
+
 class SearchHistory
 {
     /**

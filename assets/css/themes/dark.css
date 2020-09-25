@@ -16,10 +16,10 @@
 .croppie-container .cr-viewport, .croppie-container .cr-resizer
 {box-shadow: 0 0 2000px 2000px #5e5e5e;}
 
-.sidebar-wrapper .nav-sidebar li.separate-item
+.sidebar-element.separate-item
 {border-top: 1px solid #5e5e5e;}
 
-.sidebar-wrapper .nav-sidebar li.separate-item div
+.sidebar-element.separate-item div
 {border: 1px solid #5e5e5e;}
 
 /* Medium */
@@ -28,7 +28,7 @@
 .btn-large,
 .progress .determinate,
 .picker__weekday-display,
-.sidebar-wrapper .nav-sidebar li.separate-item div,
+.sidebar-element.separate-item div,
 .toast,
 .error .logo,
 .pagination li.active,
@@ -92,13 +92,13 @@ input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[t
 
 /* Complementary */
 .button, .right-icon, .complementary-color,
-.sidebar-wrapper .nav-sidebar li a span,
+.sidebar-element a span,
 .header-logo a span,
 .tabs-block li.tab.current, .tabs-block li.tab.current a,
 body, .btn-dark-grey, input, select, textarea, .setting-input label, h5.statistics-title, .burger-menu i,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
 .autocomplete-content.dropdown-content li>span,
-.sidebar-wrapper .nav-sidebar li a i
+.sidebar-element a i
 {color: #ffffff;}
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b
@@ -125,7 +125,7 @@ header #search_term,  .sidebar-wrapper .header-logo
 .croppie-container .cr-resizer, .croppie-container .cr-viewport
 {box-shadow: 0 0 2000px 2000px #7d7f82;}
 
-.sidebar-wrapper .nav-sidebar li.separate-item
+.sidebar-element.separate-item
 { border-top: 1px solid #7d7f82; }
 
 .breadcrumb-item + .breadcrumb-item::before
@@ -163,7 +163,7 @@ a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .
 { color: #00ce99; }
 
 .btn, .btn-large, .toast, html.loading:before,
-.sidebar-wrapper .nav-sidebar li a:hover, .sidebar-wrapper .nav-sidebar li.current a, .nav-bottom input:hover, .nav-bottom a:hover,
+.sidebar-element a:hover, .sidebar-element.current a, .nav-bottom input:hover, .nav-bottom a:hover,
 .header-profile .down-background,
 .select2-container--default .select2-results__option--highlighted[aria-selected],
 .datepicker-date-display,

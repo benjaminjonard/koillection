@@ -10,7 +10,6 @@ use App\Http\CsvResponse;
 use App\Http\FileResponse;
 use App\Service\DatabaseDumper;
 use Doctrine\DBAL\DBALException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;

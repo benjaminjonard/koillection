@@ -59,9 +59,12 @@
                     <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
                         <i class="fa fa-trash fa-fw"></i>
                     </a>
+
+                    {% if isFeatureEnabled('history') %}
                     <a href="{{ path('app_wishlist_history', {'id': wishlist.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
                         <i class="fa fa-history fa-fw"></i>
                     </a>
+                    {% endif %}
                     <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
                 {% endif %}
             </div>
@@ -157,10 +160,10 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal_share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
+        {{ include('App/_partials/_modal/_share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
+        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
         {% for wish in wishes %}
-            {{ include('App/_partials/_modal_delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
+            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}

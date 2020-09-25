@@ -52,43 +52,6 @@
     {% endapply %}
 {% endblock checkbox_row %}
 
-{% block cropper %}
-    <div class="row row-file">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            <div id="cropArea"></div>
-            <label class="btn waves-effect waves-light">
-                <span>{{ 'label.thumbnail'|trans }}</span>
-                <input class="js-croppie-file-input" type="file" id="cropInput" accept="image/*">
-            </label>
-        </div>
-        <div class="col s12 l5 xl3" id="cropPreview">
-            {% if form.vars.value is not empty %}
-                <img src="{{ form.vars.value }}">
-            {% else %}
-                <img src="{{ preload(asset('../build/images/default-round.png')) }}" />
-            {% endif %}
-        </div>
-        <input type="hidden" class="file-input" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>
-    </div>
-    {{- form_errors(form) -}}
-{% endblock cropper %}
-
-{% block _collection_file_row %}
-    {{ block('cropper') }}
-{% endblock %}
-
-{% block _wishlist_file_widget %}
-    {{ block('cropper') }}
-{% endblock %}
-
-{% block _album_file_widget %}
-    {{ block('cropper') }}
-{% endblock %}
-
-{% block _profile_file_widget %}
-    {{ block('cropper') }}
-{% endblock %}
-
 {% block collection_widget %}
     {% apply spaceless %}
         {% if prototype is defined %}
@@ -165,3 +128,4 @@
         {{- block('choice_widget_options') -}}
     </select>
 {% endblock choice_widget_collapsed %}
+

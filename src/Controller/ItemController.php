@@ -14,9 +14,7 @@ use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -180,6 +178,8 @@ class ItemController extends AbstractController
      */
     public function history(Item $item) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['history']);
+
         return $this->render('App/Item/history.html.twig', [
             'item' => $item,
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
@@ -205,6 +205,8 @@ class ItemController extends AbstractController
      */
     public function loan(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['loans']);
+
         $loan = new Loan();
         $loan->setItem($item);
         $form = $this->createForm(LoanType::class, $loan);

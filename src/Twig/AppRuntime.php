@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Entity\Tag;
-use App\Enum\DatumTypeEnum;
 use App\Model\BreadcrumbElement;
 use App\Service\ContextHandler;
+use App\Service\FeatureChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -36,18 +36,25 @@ class AppRuntime implements RuntimeExtensionInterface
     private ContextHandler $contextHandler;
 
     /**
+     * @var FeatureChecker
+     */
+    private FeatureChecker $featureChecker;
+
+    /**
      * AppExtension constructor.
      * @param TranslatorInterface $translator
      * @param RouterInterface $router
      * @param EntityManagerInterface $em
      * @param ContextHandler $contextHandler
+     * @param FeatureChecker $featureChecker
      */
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em, ContextHandler $contextHandler)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em, ContextHandler $contextHandler, FeatureChecker $featureChecker)
     {
         $this->translator = $translator;
         $this->router = $router;
         $this->em = $em;
         $this->contextHandler = $contextHandler;
+        $this->featureChecker = $featureChecker;
     }
 
     /**
@@ -161,7 +168,7 @@ class AppRuntime implements RuntimeExtensionInterface
      */
     public function getUnderlinedTags($data)
     {
-        if (empty($data)) {
+        if ($this->isFeatureEnabled('tags') === false || empty($data)) {
             return [];
         }
 
@@ -194,5 +201,10 @@ class AppRuntime implements RuntimeExtensionInterface
         }
 
         return $results;
+    }
+
+    public function isFeatureEnabled($feature)
+    {
+        return $this->featureChecker->isFeatureEnabled($feature);
     }
 }
