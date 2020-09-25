@@ -35,23 +35,21 @@
                     <div class="col s4">
                         {{ form_row(form.searchInItems, {'label': 'label.items'}) }}
                     </div>
-                    <div class="col s4">
-                        {{ form_row(form.searchInTags, {'label': 'label.tags'}) }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="row search-checkbox-row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                    <div class="col s4">
-                        {{ form_row(form.searchInAlbums, {'label': 'label.albums'}) }}
-                    </div>
-                    <div class="col s4">
-                        {{ form_row(form.searchInWishlists, {'label': 'label.wishlists'}) }}
-                    </div>
-                    <div class="col s4">
-
-                    </div>
+                    {% if isFeatureEnabled('tags') %}
+                        <div class="col s4">
+                            {{ form_row(form.searchInTags, {'label': 'label.tags'}) }}
+                        </div>
+                    {% endif %}
+                    {% if isFeatureEnabled('albums') %}
+                        <div class="col s4">
+                            {{ form_row(form.searchInAlbums, {'label': 'label.albums'}) }}
+                        </div>
+                    {% endif %}
+                    {% if isFeatureEnabled('wishlists') %}
+                        <div class="col s4">
+                            {{ form_row(form.searchInWishlists, {'label': 'label.wishlists'}) }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 

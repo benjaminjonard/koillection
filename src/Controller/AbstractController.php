@@ -12,7 +12,7 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
     /**
      * @var FeatureChecker
      */
-    private FeatureChecker $featureChecker;
+    protected FeatureChecker $featureChecker;
 
     public function __construct(FeatureChecker $featureChecker)
     {

@@ -1335,3 +1335,4 @@ i.btn input {color: #fff; cursor: pointer;}
 .file-field input[type="file"] {height: 3rem; margin-left: 10px; width: 48px;}
 
 .switch-wrapper { margin-bottom: 4rem; }
+.input-field.input-checkbox { margin-bottom: 40px;}

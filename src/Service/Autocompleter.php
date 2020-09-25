@@ -34,16 +34,23 @@ class Autocompleter
     private RouterInterface $router;
 
     /**
+     * @var FeatureChecker
+     */
+    private FeatureChecker $featureChecker;
+
+    /**
      * BreadcrumbBuilder constructor.
      * @param ContextHandler $contextHandler
      * @param EntityManagerInterface $em
      * @param RouterInterface $router
+     * @param FeatureChecker $featureChecker
      */
-    public function __construct(ContextHandler $contextHandler, EntityManagerInterface $em, RouterInterface $router)
+    public function __construct(ContextHandler $contextHandler, EntityManagerInterface $em, RouterInterface $router, FeatureChecker $featureChecker)
     {
         $this->contextHandler = $contextHandler;
         $this->em = $em;
         $this->router = $router;
+        $this->featureChecker = $featureChecker;
     }
 
     public function findForAutocomplete(string $term)
@@ -52,9 +59,15 @@ class Autocompleter
         $queryParts = [];
         $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection');
         $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Item::class)->getTableName(), 'name', $term, 'item');
-        $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag');
-        $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album');
-        $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist');
+        if ($this->featureChecker->isFeatureEnabled('tags')) {
+            $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag');
+        }
+        if ($this->featureChecker->isFeatureEnabled('tags')) {
+            $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album');
+        }
+        if ($this->featureChecker->isFeatureEnabled('tags')) {
+            $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist');
+        }
         $sql = implode(' UNION ', $queryParts);
 
         $rsm = new ResultSetMapping();
@@ -103,13 +116,13 @@ class Autocompleter
         $sql = "
             SELECT id AS id, {$labelProperty} AS label, '{$type}' AS type, seen_counter AS seenCounter,
                 (CASE 
-                     WHEN {$labelProperty} = ? THEN 2 -- exact match
-                     WHEN {$labelProperty} LIKE ? THEN 1 -- end with                     
+                     WHEN LOWER({$labelProperty}) = LOWER(?) THEN 2 -- exact match
+                     WHEN LOWER({$labelProperty}) LIKE LOWER(?) THEN 1 -- end with                     
                      ELSE 0
                 END) AS relevance
             FROM {$collectionTable} 
             WHERE owner_id = ?
-            AND {$labelProperty} LIKE ?
+            AND LOWER({$labelProperty}) LIKE LOWER(?)
         ";
 
         $this->params[] = $term;

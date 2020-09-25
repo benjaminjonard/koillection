@@ -8,6 +8,7 @@ use App\Entity\Collection;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
+use App\Service\FeatureChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -28,16 +29,22 @@ class CollectionType extends AbstractType
      * @var Base64ToImageTransformer
      */
     private Base64ToImageTransformer $base64ToImageTransformer;
+    /**
+     * @var FeatureChecker
+     */
+    private FeatureChecker $featureChecker;
 
     /**
      * CollectionType constructor.
      * @param Base64ToImageTransformer $base64ToImageTransformer
      * @param EntityManagerInterface $em
+     * @param FeatureChecker $featureChecker
      */
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em)
+    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
     {
         $this->base64ToImageTransformer = $base64ToImageTransformer;
         $this->em = $em;
+        $this->featureChecker = $featureChecker;
     }
 
     /**
@@ -82,7 +89,16 @@ class CollectionType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-            ->add('template', EntityType::class, [
+            ->add(
+                $builder->create('file', TextType::class, [
+                    'required' => false,
+                    'label' => false,
+                ])->addModelTransformer($this->base64ToImageTransformer)
+            )
+        ;
+
+        if ($this->featureChecker->isFeatureEnabled('templates')) {
+            $builder->add('template', EntityType::class, [
                 'class' => Template::class,
                 'choice_label' => 'name',
                 'choices' => $this->em->getRepository(Template::class)->findAll(),
@@ -91,14 +107,8 @@ class CollectionType extends AbstractType
                 'choice_name' => null,
                 'required' => false,
                 'mapped' => false
-            ])
-            ->add(
-                $builder->create('file', TextType::class, [
-                    'required' => false,
-                    'label' => false,
-                ])->addModelTransformer($this->base64ToImageTransformer)
-            )
-        ;
+            ]);
+        }
     }
 
     /**

@@ -23,17 +23,19 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3 autocomplete-wrapper">
-                <div class="input-field">
-                    <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
-                    {{ form_label(form.tags, 'label.tags') }}
-                    <div class="ac-tags">
+        {% if isFeatureEnabled('tags') %}
+            <div class="row">
+                <div class="col s12 l10 offset-l1 xl6 offset-xl3 autocomplete-wrapper">
+                    <div class="input-field">
+                        <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
+                        {{ form_label(form.tags, 'label.tags') }}
+                        <div class="ac-tags">
+                        </div>
                     </div>
+                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
                 </div>
-                {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
             </div>
-        </div>
+        {% endif %}
     </div>
 
     <div class="content-block">
@@ -43,7 +45,9 @@
 
         <div class="row js-data-actions" data-entity="item">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+                {% if isFeatureEnabled('templates') %}
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+                {% endif %}
             </div>
             <div class="col s12 l3 xl2">
                 <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_common_fields'|trans }}</button>

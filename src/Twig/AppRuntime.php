@@ -168,7 +168,7 @@ class AppRuntime implements RuntimeExtensionInterface
      */
     public function getUnderlinedTags($data)
     {
-        if (empty($data)) {
+        if ($this->isFeatureEnabled('tags') === false || empty($data)) {
             return [];
         }
 
