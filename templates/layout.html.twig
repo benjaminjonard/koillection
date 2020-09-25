@@ -32,6 +32,9 @@
         <ul class="profile-menu collection hidden">
             <li class="collection-item"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
             <li class="collection-item"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="collection-item"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
+            {% endif %}
             <li class="collection-item"><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>
         </ul>
 

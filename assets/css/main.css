@@ -50,7 +50,7 @@ h5 {font-size: 2rem;}
 .sidebar-wrapper .nav-sidebar {width: 230px; list-style: none; margin: 0;}
 .sidebar-wrapper .nav-sidebar li a:hover, .sidebar-wrapper .nav-sidebar li.current a {background-color: #006355;}
 .sidebar-wrapper .nav-sidebar li a {padding: 7px 15px; font-size: 16px; line-height: 35px; color: #555555; display: block; padding-left: 22px; outline: none;}
-.sidebar-wrapper .nav-sidebar li a i {width: 16px; color: #f0f2f5; margin-right: 13px; text-align: center;}
+.sidebar-wrapper .nav-sidebar li a i {width: 16px; color: #f0f2f5; margin-right: 13px; text-align: center; display: inline-block;}
 .sidebar-wrapper .nav-sidebar li a span {color: #f0f2f5; margin-left: 10px;}
 .sidebar-wrapper .nav-sidebar li.separate-item {padding-top: 10px; margin-top: 10px; border-top: 1px solid #1ab0a2;}
 .sidebar-wrapper .nav-sidebar li.separate-item div {border: 1px solid #1ab0a2; border-radius: 50%; width: 13px; height: 13px; margin: -17px 23px 0; background-color: #009688}
@@ -406,9 +406,9 @@ html.loading:before {
 
 .header-profile {flex: 0 0 auto; height: 50px; cursor: pointer; margin-right: 10px; margin-top: auto; margin-bottom: auto;}
 .header-profile .user-avatar {height: 50px; width: 50px; border-radius: 50%; box-shadow: 0 1px 2px 0 rgba(60,64,67,.302),0 1px 3px 1px rgba(60,64,67,.149)}
-.header-profile .fa-chevron-down::before {bottom: 62px; left: 25px; position: relative; color: #fff}
+.header-profile .fa-chevron-down::before {bottom: 56px; left: 25px; position: relative; color: #fff}
 .header-profile .fa-chevron-down {font-size: 13px;}
-.header-profile .down-background {width: 21px; height: 21px; background-color: #009688; display: block; border-radius: 50%; position: relative; bottom: 40px; left: 40px;}
+.header-profile .down-background {width: 21px; height: 21px; background-color: #009688; display: block; border-radius: 50%; position: relative; bottom: 35px; left: 40px;}
 .user-avatar.circle {background-color: #E8EAF6; display: block; font-size: 33px; color: #555;}
 
 /* Nav animations */
@@ -431,8 +431,8 @@ html.loading:before {
 .collapsed .sidebar-wrapper {width: 60px;}
 .collapsed {margin-left: 60px!important;}
 
-.profile-menu {width: 125px; position: fixed; top: 35px; right: 18px; z-index: 1; }
-.profile-menu i {margin-right: 5px;}
+.profile-menu {position: fixed; top: 35px; right: 18px; z-index: 1; }
+.profile-menu i {margin-right: 10px; width: 16px; display: inline-block;}
 .close-nav {display : none;}
 
 @media (max-width: 1199px) {
@@ -1297,7 +1297,7 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 #additionnalFields .header {margin-top: 55px;}
 .select2-container--default .select2-selection--single .select2-selection__rendered {padding-left: 8px;}
 
-.profile-menu .collection-item span {position: relative; top: -4px;}
+.profile-menu .collection-item span {position: relative; top: -3px; left: 5px;}
 .row.search-checkbox-row { margin-bottom: 25px; }
 
 .btn-cancel {background-color: #e53935;}
