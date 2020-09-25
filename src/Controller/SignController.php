@@ -30,6 +30,8 @@ class SignController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['signs']);
+
         return $this->render('App/Sign/index.html.twig', [
             'signs' => $this->getDoctrine()->getRepository(Datum::class)->findSigns(),
         ]);

@@ -36,6 +36,8 @@ class StatisticsController extends AbstractController
      */
     public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder, User $user = null) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['statistics']);
+
         if (!$user instanceof User) {
             $user = $this->getUser();
         }

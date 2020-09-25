@@ -194,49 +194,49 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $wishlistsFeatureActive;
+    private bool $wishlistsFeatureEnabled;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $tagsFeatureActive;
+    private bool $tagsFeatureEnabled;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $signsFeatureActive;
+    private bool $signsFeatureEnabled;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $albumsFeatureActive;
+    private bool $albumsFeatureEnabled;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $loansFeatureActive;
+    private bool $loansFeatureEnabled;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $templatesFeatureActive;
+    private bool $templatesFeatureEnabled;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $historyFeatureActive;
+    private bool $historyFeatureEnabled;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
-    private bool $statisticsFeatureActive;
+    private bool $statisticsFeatureEnabled;
 
     /**
      * @var DateTimeInterface
@@ -261,14 +261,14 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         $this->locale = LocaleEnum::LOCALE_EN_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
-        $this->wishlistsFeatureActive = true;
-        $this->tagsFeatureActive = true;
-        $this->signsFeatureActive = true;
-        $this->albumsFeatureActive = true;
-        $this->loansFeatureActive = true;
-        $this->templatesFeatureActive = true;
-        $this->historyFeatureActive = true;
-        $this->statisticsFeatureActive = true;
+        $this->wishlistsFeatureEnabled = true;
+        $this->tagsFeatureEnabled = true;
+        $this->signsFeatureEnabled = true;
+        $this->albumsFeatureEnabled = true;
+        $this->loansFeatureEnabled = true;
+        $this->templatesFeatureEnabled = true;
+        $this->historyFeatureEnabled = true;
+        $this->statisticsFeatureEnabled = true;
     }
 
     public function serialize()
@@ -586,144 +586,144 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     /**
      * @return bool
      */
-    public function isWishlistsFeatureActive(): bool
+    public function isWishlistsFeatureEnabled(): bool
     {
-        return $this->wishlistsFeatureActive;
+        return $this->wishlistsFeatureEnabled;
     }
 
     /**
-     * @param bool $wishlistsFeatureActive
+     * @param bool $wishlistsFeatureEnabled
      * @return User
      */
-    public function setWishlistsFeatureActive(bool $wishlistsFeatureActive): User
+    public function setWishlistsFeatureEnabled(bool $wishlistsFeatureEnabled): User
     {
-        $this->wishlistsFeatureActive = $wishlistsFeatureActive;
+        $this->wishlistsFeatureEnabled = $wishlistsFeatureEnabled;
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isTagsFeatureActive(): bool
+    public function isTagsFeatureEnabled(): bool
     {
-        return $this->tagsFeatureActive;
+        return $this->tagsFeatureEnabled;
     }
 
     /**
-     * @param bool $tagsFeatureActive
+     * @param bool $tagsFeatureEnabled
      * @return User
      */
-    public function setTagsFeatureActive(bool $tagsFeatureActive): User
+    public function setTagsFeatureEnabled(bool $tagsFeatureEnabled): User
     {
-        $this->tagsFeatureActive = $tagsFeatureActive;
+        $this->tagsFeatureEnabled = $tagsFeatureEnabled;
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isSignsFeatureActive(): bool
+    public function isSignsFeatureEnabled(): bool
     {
-        return $this->signsFeatureActive;
+        return $this->signsFeatureEnabled;
     }
 
     /**
-     * @param bool $signsFeatureActive
+     * @param bool $signsFeatureEnabled
      * @return User
      */
-    public function setSignsFeatureActive(bool $signsFeatureActive): User
+    public function setSignsFeatureEnabled(bool $signsFeatureEnabled): User
     {
-        $this->signsFeatureActive = $signsFeatureActive;
+        $this->signsFeatureEnabled = $signsFeatureEnabled;
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isAlbumsFeatureActive(): bool
+    public function isAlbumsFeatureEnabled(): bool
     {
-        return $this->albumsFeatureActive;
+        return $this->albumsFeatureEnabled;
     }
 
     /**
-     * @param bool $albumsFeatureActive
+     * @param bool $albumsFeatureEnabled
      * @return User
      */
-    public function setAlbumsFeatureActive(bool $albumsFeatureActive): User
+    public function setAlbumsFeatureEnabled(bool $albumsFeatureEnabled): User
     {
-        $this->albumsFeatureActive = $albumsFeatureActive;
+        $this->albumsFeatureEnabled = $albumsFeatureEnabled;
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isLoansFeatureActive(): bool
+    public function isLoansFeatureEnabled(): bool
     {
-        return $this->loansFeatureActive;
+        return $this->loansFeatureEnabled;
     }
 
     /**
-     * @param bool $loansFeatureActive
+     * @param bool $loansFeatureEnabled
      * @return User
      */
-    public function setLoansFeatureActive(bool $loansFeatureActive): User
+    public function setLoansFeatureEnabled(bool $loansFeatureEnabled): User
     {
-        $this->loansFeatureActive = $loansFeatureActive;
+        $this->loansFeatureEnabled = $loansFeatureEnabled;
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isTemplatesFeatureActive(): bool
+    public function isTemplatesFeatureEnabled(): bool
     {
-        return $this->templatesFeatureActive;
+        return $this->templatesFeatureEnabled;
     }
 
     /**
-     * @param bool $templatesFeatureActive
+     * @param bool $templatesFeatureEnabled
      * @return User
      */
-    public function setTemplatesFeatureActive(bool $templatesFeatureActive): User
+    public function setTemplatesFeatureEnabled(bool $templatesFeatureEnabled): User
     {
-        $this->templatesFeatureActive = $templatesFeatureActive;
+        $this->templatesFeatureEnabled = $templatesFeatureEnabled;
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isHistoryFeatureActive(): bool
+    public function isHistoryFeatureEnabled(): bool
     {
-        return $this->historyFeatureActive;
+        return $this->historyFeatureEnabled;
     }
 
     /**
-     * @param bool $historyFeatureActive
+     * @param bool $historyFeatureEnabled
      * @return User
      */
-    public function setHistoryFeatureActive(bool $historyFeatureActive): User
+    public function setHistoryFeatureEnabled(bool $historyFeatureEnabled): User
     {
-        $this->historyFeatureActive = $historyFeatureActive;
+        $this->historyFeatureEnabled = $historyFeatureEnabled;
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isStatisticsFeatureActive(): bool
+    public function isStatisticsFeatureEnabled(): bool
     {
-        return $this->statisticsFeatureActive;
+        return $this->statisticsFeatureEnabled;
     }
 
     /**
-     * @param bool $statisticsFeatureActive
+     * @param bool $statisticsFeatureEnabled
      * @return User
      */
-    public function setStatisticsFeatureActive(bool $statisticsFeatureActive): User
+    public function setStatisticsFeatureEnabled(bool $statisticsFeatureEnabled): User
     {
-        $this->statisticsFeatureActive = $statisticsFeatureActive;
+        $this->statisticsFeatureEnabled = $statisticsFeatureEnabled;
         return $this;
     }
 }

@@ -53,8 +53,6 @@ class SecurityController extends AbstractController
      * @param TokenStorageInterface $tokenStorage
      * @param SessionInterface $session
      * @return Response
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
     public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session) : Response
     {

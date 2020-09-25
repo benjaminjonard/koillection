@@ -26,8 +26,9 @@ class PhotoController extends AbstractController
      */
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
+        $em = $this->getDoctrine()->getManager();
         $album = null;
         if ($request->query->has('album')) {
             $album = $em->getRepository(Album::class)->findOneBy([
@@ -77,6 +78,8 @@ class PhotoController extends AbstractController
      */
     public function edit(Request $request, Photo $photo, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
+
         $form = $this->createForm(PhotoType::class, $photo);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -104,6 +107,8 @@ class PhotoController extends AbstractController
      */
     public function delete(Photo $photo, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['albums']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($photo);
         $em->flush();

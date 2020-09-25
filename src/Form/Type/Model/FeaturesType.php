@@ -19,28 +19,28 @@ class FeaturesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('wishlistsFeatureActive', CheckboxType::class, [
+            ->add('wishlistsFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('tagsFeatureActive', CheckboxType::class, [
+            ->add('tagsFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('signsFeatureActive', CheckboxType::class, [
+            ->add('signsFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('albumsFeatureActive', CheckboxType::class, [
+            ->add('albumsFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('loansFeatureActive', CheckboxType::class, [
+            ->add('loansFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('templatesFeatureActive', CheckboxType::class, [
+            ->add('templatesFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('historyFeatureActive', CheckboxType::class, [
+            ->add('historyFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('statisticsFeatureActive', CheckboxType::class, [
+            ->add('statisticsFeatureEnabled', CheckboxType::class, [
                 'required' => false
             ])
         ;

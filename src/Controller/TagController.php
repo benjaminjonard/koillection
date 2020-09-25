@@ -45,6 +45,8 @@ class TagController extends AbstractController
      */
     public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler, int $paginationItemsPerPage) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $context = $contextHandler->getContext();
         $search = new SearchTag($request->query->getInt('page', 1), $paginationItemsPerPage);
         $form = $this->createForm(SearchTagType::class, $search, [
@@ -96,6 +98,8 @@ class TagController extends AbstractController
      */
     public function show(Tag $tag) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         return $this->render('App/Tag/show.html.twig', [
             'tag' => $tag,
             'relatedTags' => $this->getDoctrine()->getRepository(Tag::class)->findRelatedTags($tag)
@@ -115,6 +119,8 @@ class TagController extends AbstractController
      */
     public function edit(Request $request, Tag $tag, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
@@ -144,6 +150,8 @@ class TagController extends AbstractController
      */
     public function delete(Tag $tag, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($tag);
         $em->flush();
@@ -164,6 +172,8 @@ class TagController extends AbstractController
      */
     public function autocomplete(string $search) : JsonResponse
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $tags = $this->getDoctrine()->getRepository(Tag::class)->findLike($search);
         $data = [];
         foreach ($tags as $tag) {
@@ -184,6 +194,8 @@ class TagController extends AbstractController
      */
     public function history(Tag $tag) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags', 'history']);
+
         return $this->render('App/Tag/history.html.twig', [
             'tag' => $tag,
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([

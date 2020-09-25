@@ -4516,51 +4516,51 @@
         <target>Edit active features</target>
       </segment>
     </unit>
-    <unit id="UXJKVYr" name="label.wishlists_feature_active">
+    <unit id="UXJKVYr" name="label.wishlists_feature_enabled">
       <segment>
-        <source>label.wishlists_feature_active</source>
+        <source>label.wishlists_feature_enabled</source>
         <target>Wishlists</target>
       </segment>
     </unit>
-    <unit id="rs.oNEv" name="label.tags_feature_active">
+    <unit id="rs.oNEv" name="label.tags_feature_enabled">
       <segment>
-        <source>label.tags_feature_active</source>
+        <source>label.tags_feature_enabled</source>
         <target>Tags</target>
       </segment>
     </unit>
-    <unit id="TouI7tc" name="label.signs_feature_active">
+    <unit id="TouI7tc" name="label.signs_feature_enabled">
       <segment>
-        <source>label.signs_feature_active</source>
+        <source>label.signs_feature_enabled</source>
         <target>Signs</target>
       </segment>
     </unit>
-    <unit id="RuIKIR2" name="label.albums_feature_active">
+    <unit id="RuIKIR2" name="label.albums_feature_enabled">
       <segment>
-        <source>label.albums_feature_active</source>
+        <source>label.albums_feature_enabled</source>
         <target>Albums</target>
       </segment>
     </unit>
-    <unit id="WQ8Q4eq" name="label.loans_feature_active">
+    <unit id="WQ8Q4eq" name="label.loans_feature_enabled">
       <segment>
-        <source>label.loans_feature_active</source>
+        <source>label.loans_feature_enabled</source>
         <target>Loans</target>
       </segment>
     </unit>
-    <unit id="R7np98X" name="label.templates_feature_active">
+    <unit id="R7np98X" name="label.templates_feature_enabled">
       <segment>
-        <source>label.templates_feature_active</source>
+        <source>label.templates_feature_enabled</source>
         <target>Templates</target>
       </segment>
     </unit>
-    <unit id="0UbGg7C" name="label.history_feature_active">
+    <unit id="0UbGg7C" name="label.history_feature_enabled">
       <segment>
-        <source>label.history_feature_active</source>
+        <source>label.history_feature_enabled</source>
         <target>History</target>
       </segment>
     </unit>
-    <unit id="nFjLDCO" name="label.statistics_feature_active">
+    <unit id="nFjLDCO" name="label.statistics_feature_enabled">
       <segment>
-        <source>label.statistics_feature_active</source>
+        <source>label.statistics_feature_enabled</source>
         <target>Statistics</target>
       </segment>
     </unit>

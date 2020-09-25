@@ -21,7 +21,7 @@ class FeatureChecker
 
     public function isFeatureEnabled($feature)
     {
-        $getter = 'is' . ucfirst($feature) . 'FeatureActive';
+        $getter = 'is' . ucfirst($feature) . 'FeatureEnabled';
 
         return $this->contextHandler->getContextUser()->$getter();
     }

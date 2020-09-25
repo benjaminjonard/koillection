@@ -215,6 +215,8 @@ class CollectionController extends AbstractController
      */
     public function batchTagging(Request $request, Collection $collection, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
         $batchTagger = new BatchTagger();
         $batchTagger->setCollection($collection);
         $form = $this->createForm(BatchTaggerType::class, $batchTagger);
@@ -245,6 +247,8 @@ class CollectionController extends AbstractController
      */
     public function history(Collection $collection) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['history']);
+
         return $this->render('App/Collection/history.html.twig', [
             'collection' => $collection,
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([

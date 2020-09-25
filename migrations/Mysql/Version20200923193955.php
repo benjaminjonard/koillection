@@ -18,7 +18,7 @@ final class Version20200923193955 extends AbstractMigration
     {
         $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE koi_user ADD wishlists_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL, ADD tags_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL, ADD signs_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL, ADD albums_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL, ADD loans_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL, ADD templates_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL, ADD history_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL, ADD statistics_feature_active TINYINT(1) DEFAULT \'1\' NOT NULL');
+        $this->addSql('ALTER TABLE koi_user ADD wishlists_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL, ADD tags_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL, ADD signs_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL, ADD albums_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL, ADD loans_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL, ADD templates_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL, ADD history_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL, ADD statistics_feature_enabled TINYINT(1) DEFAULT \'1\' NOT NULL');
     }
 
     public function down(Schema $schema) : void

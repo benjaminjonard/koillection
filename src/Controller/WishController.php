@@ -29,6 +29,8 @@ class WishController extends AbstractController
      */
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $em = $this->getDoctrine()->getManager();
 
         $wishlist = null;
@@ -81,6 +83,8 @@ class WishController extends AbstractController
      */
     public function edit(Request $request, Wish $wish, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $form = $this->createForm(WishType::class, $wish);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -108,6 +112,8 @@ class WishController extends AbstractController
      */
     public function delete(Wish $wish, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($wish);
         $em->flush();
@@ -130,6 +136,8 @@ class WishController extends AbstractController
      */
     public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
         $item = new Item();
 
         $item

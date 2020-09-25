@@ -178,6 +178,8 @@ class ItemController extends AbstractController
      */
     public function history(Item $item) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['history']);
+
         return $this->render('App/Item/history.html.twig', [
             'item' => $item,
             'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
@@ -203,6 +205,8 @@ class ItemController extends AbstractController
      */
     public function loan(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['loans']);
+
         $loan = new Loan();
         $loan->setItem($item);
         $form = $this->createForm(LoanType::class, $loan);
