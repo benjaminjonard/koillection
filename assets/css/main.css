@@ -41,19 +41,19 @@ h5 {font-size: 2rem;}
 .header-logo {font-family: 'Cooper Hewitt', sans-serif; cursor: pointer; float: left; height: 75px; width: 230px; overflow: hidden; background-color: #1AB0A2;}
 .header-logo .logo{float :left; margin-left: 8px; margin-top: -6px;}
 .header-logo a {color: #f0f2f5; font-size: 25px; font-weight: bold; height: 75px; width: 230px; display: block;}
-.header-logo a span {margin-left: 71px; margin-top: 18px; display: block;}
+.header-logo a span {margin-left: 71px; margin-top: 19px; display: block;}
 
 /* Sidebar */
 .nav-wrapper {overflow: hidden; padding-left: 0; display: flex; flex-direction: column; flex-shrink: 0;}
 .sidebar-wrapper {z-index: 99; background-color: #009688; width: 230px; position: fixed; top: 0; bottom: 0; left: 0; height: 100%; display: flex; flex-direction: column;}
 .sidebar-wrapper .header-logo:hover {background-color: #009688;}
 .sidebar-wrapper .nav-sidebar {width: 230px; list-style: none; margin: 0;}
-.sidebar-wrapper .nav-sidebar li a:hover, .sidebar-wrapper .nav-sidebar li.current a {background-color: #006355;}
-.sidebar-wrapper .nav-sidebar li a {padding: 7px 15px; font-size: 16px; line-height: 35px; color: #555555; display: block; padding-left: 22px; outline: none;}
-.sidebar-wrapper .nav-sidebar li a i {width: 16px; color: #f0f2f5; margin-right: 13px; text-align: center; display: inline-block;}
-.sidebar-wrapper .nav-sidebar li a span {color: #f0f2f5; margin-left: 10px;}
-.sidebar-wrapper .nav-sidebar li.separate-item {padding-top: 10px; margin-top: 10px; border-top: 1px solid #1ab0a2;}
-.sidebar-wrapper .nav-sidebar li.separate-item div {border: 1px solid #1ab0a2; border-radius: 50%; width: 13px; height: 13px; margin: -17px 23px 0; background-color: #009688}
+.sidebar-element a:hover, .sidebar-element.current a {background-color: #006355;}
+.sidebar-element a {padding: 7px 15px; font-size: 16px; line-height: 35px; color: #555555; display: block; padding-left: 22px; outline: none;}
+.sidebar-element a i {width: 16px; color: #f0f2f5; margin-right: 13px; text-align: center; display: inline-block;}
+.sidebar-element a span {color: #f0f2f5; margin-left: 10px;}
+.sidebar-element.separate-item {padding-top: 10px; margin-top: 10px; border-top: 1px solid #1ab0a2;}
+.sidebar-element.separate-item div {border: 1px solid #1ab0a2; border-radius: 50%; width: 13px; height: 13px; margin: -17px 23px 0; background-color: #009688}
 nav {background-color: #009688; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
 
 .content-wrapper {width: 100%; height: 100%; min-height: 100vh;}
@@ -435,10 +435,6 @@ html.loading:before {
 .profile-menu i {margin-right: 10px; width: 16px; display: inline-block;}
 .close-nav {display : none;}
 
-@media (max-width: 1199px) {
-    header #search_term {max-width: 175px;}
-}
-
 @media (max-width: 749px)
 {
     .item-image-container, .tag-image-container {float: none; width: 100%; margin-bottom: 20px;}
@@ -451,7 +447,6 @@ html.loading:before {
     .burger-menu {display: block; margin: auto 15px; padding-top: 3px;}
     .sidebar-wrapper {width: 0!important;}
     body {margin-left: 0!important;}
-    .search {display: none!important;}
     .header-profile {display: none!important;}
 
     .collapse-nav {display : none;}
@@ -471,13 +466,13 @@ html.loading:before {
 .spacer {margin-top: auto; margin-bottom: auto;}
 .scrollable {overflow-x: auto; justify-content: space-between; display: flex; flex-direction: column; height: 100%;}
 
-header #search_term {
+.nav-wrapper #search_term {
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
     align-items: center;
-    padding: 0 10px 0 10px;
+    padding: 0 15px 0 15px;
     margin: 10px;
     border-radius: 25px;
-    max-width: 250px;
+    max-width: 180px;
     width: auto;
     background-color: #fff;
     border-bottom: none;
@@ -1317,9 +1312,10 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 i.btn input {color: #fff; cursor: pointer;}
 
 .autocomplete-results {
+    text-align: center;
     display: none;
     position: absolute;
-    top: 53px;
+    top: 136px;
     margin-left: 11px;
     width: 270px;
     box-shadow: 0 1px 2px 0 rgba(60,64,67,.302),0 1px 3px 1px rgba(60,64,67,.149) !important;

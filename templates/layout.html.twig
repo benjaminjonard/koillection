@@ -49,18 +49,6 @@
                 </div>
 
                 {% if app.user %}
-                    <div class="spacer">
-                        <form class="search" name="search" method="get" action="{{ path('app_search_index') }}">
-                            <div>
-                                <input id="search_term" name="search[term]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}" autocomplete="off">
-                                <input id="search_searchInCollections" name="search[searchInCollections]" type="hidden">
-                                <input id="search_searchInItems" name="search[searchInItems]" type="hidden">
-                                <input id="search_searchInTags" name="search[searchInTags]" type="hidden">
-                            </div>
-                            <ul class="autocomplete-results"></ul>
-                        </form>
-                    </div>
-
                     <div class="header-profile">
                         {% if app.user.avatar != null %}
                             <img class="user-avatar" src="{{ preload(asset(app.user.avatar)) }}">
