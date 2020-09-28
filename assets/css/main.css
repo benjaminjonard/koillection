@@ -2,6 +2,7 @@
     font-family: "Cooper Hewitt";
     font-weight: 700;
     src: url("../fonts/CooperHewitt-Bold.otf") format("opentype");
+    font-display: swap;
 }
 
 html {height: 100%;}
