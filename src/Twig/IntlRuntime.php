@@ -16,4 +16,9 @@ class IntlRuntime implements RuntimeExtensionInterface
     {
         return Countries::getNames();
     }
+
+    public function getCountryName($code)
+    {
+        return Countries::getName($code);
+    }
 }

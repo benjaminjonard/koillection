@@ -15,7 +15,8 @@ class IntlExtension extends AbstractExtension
     public function getFunctions() : array
     {
         return [
-            new TwigFunction('getCountriesList', [IntlRuntime::class, 'getCountriesList'])
+            new TwigFunction('getCountriesList', [IntlRuntime::class, 'getCountriesList']),
+            new TwigFunction('getCountryName', [IntlRuntime::class, 'getCountryName'])
         ];
     }
 }

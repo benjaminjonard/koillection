@@ -1327,8 +1327,10 @@ i.btn input {color: #fff; cursor: pointer;}
 .autocomplete-results li a {cursor: pointer;}
 .autocomplete-results li span {color: #ccc;}
 
-.datum-original-filename { white-space: nowrap; margin-top: 12px; padding-left: 10px; text-overflow: ellipsis; overflow: hidden;}
+.datum-original-filename {white-space: nowrap; margin-top: 12px; padding-left: 10px; text-overflow: ellipsis; overflow: hidden;}
 .file-field input[type="file"] {height: 3rem; margin-left: 10px; width: 48px;}
 
-.switch-wrapper { margin-bottom: 4rem; }
-.input-field.input-checkbox { margin-bottom: 40px;}
+.switch-wrapper {margin-bottom: 4rem; }
+.input-field.input-checkbox {margin-bottom: 40px;}
+.datum-row span.country-name {color: #7f8c8d; font-size: 12px; font-weight: unset;}
+.datum-row .flag {margin: 0 5px; top: 2px; position: relative;}
