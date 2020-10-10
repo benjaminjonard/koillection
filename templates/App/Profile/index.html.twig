@@ -33,122 +33,22 @@
         <div class="block-element">
             <h5 class="header">{{ 'title.update_profile'|trans }}</h5>
 
-            {{ form_start(formProfile) }}
-            {{ form_row(formProfile.file) }}
+            {{ form_start(form) }}
+                {{ form_row(form.file) }}
 
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(formProfile.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
-                </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(formProfile.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
-                </div>
-            </div>
-
-            <div class="row center-align form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-            </div>
-            {{ form_end(formProfile) }}
-        </div>
-
-        <div class="block-element">
-            <h5 class="header">{{ 'title.update_settings'|trans }}</h5>
-
-            {{ form_start(formSettings) }}
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formSettings.locale, {'label' : 'label.locale', 'attr': {'class': 'js-select-locale'}} ) }}
+                        {{ form_row(form.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
                     </div>
                     <div class="col s12 l5 xl3">
-                        {{ form_row(formSettings.currency, {'label' : 'label.currency'} ) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formSettings.timezone, {'label' : 'label.timezone'} ) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formSettings.dateFormat, {'label' : 'label.date_format'} ) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formSettings.visibility, {'label' : 'label.visibility'} ) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                        <p>
-                            {{ 'message.visibility'|trans }}
-                            <strong><a href="{{ url('app_user_collection_index', {username : app.user.username}) }}">{{ url('app_user_collection_index', {username : app.user.username}) }}</a></strong>
-                        </p>
-                        <p>
-                            {{ 'message.visibility_preview'|trans }}
-                            <strong><a href="{{ url('app_preview_collection_index') }}">{{ url('app_preview_collection_index') }}</a></strong>
-                        </p>
-                        <p>{{ 'message.visibility_per_item'|trans }}</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formSettings.darkModeEnabled, {'label' : 'label.dark_mode_enabled'}) }}
+                        {{ form_row(form.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
                     </div>
                 </div>
 
                 <div class="row center-align form-btn-holder">
                     <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 </div>
-            {{ form_end(formSettings) }}
-        </div>
-
-        <div class="block-element">
-            <h5 class="header">{{ 'title.update_features'|trans }}</h5>
-
-            {{ form_start(formFeatures) }}
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.wishlistsFeatureEnabled, {'label' : 'label.wishlists_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.tagsFeatureEnabled, {'label' : 'label.tags_feature_enabled'}) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.signsFeatureEnabled, {'label' : 'label.signs_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.albumsFeatureEnabled, {'label' : 'label.albums_feature_enabled'}) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.loansFeatureEnabled, {'label' : 'label.loans_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.templatesFeatureEnabled, {'label' : 'label.templates_feature_enabled'}) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.historyFeatureEnabled, {'label' : 'label.history_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.statisticsFeatureEnabled, {'label' : 'label.statistics_feature_enabled'}) }}
-                    </div>
-                </div>
-
-                <div class="row center-align form-btn-holder">
-                    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                </div>
-            {{ form_end(formFeatures) }}
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

@@ -190,6 +190,18 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     private bool $darkModeEnabled;
 
     /**
+     * @var ?\DateTime
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private ?\DateTime $automaticDarkModeStartAt;
+
+    /**
+     * @var ?\DateTime
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private ?\DateTime $automaticDarkModeEndAt;
+
+    /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
@@ -288,7 +300,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
             ) = unserialize($serialized);
     }
 
-
     /**
      * @return string
      */
@@ -300,6 +311,28 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function isAdmin()
     {
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
+    }
+
+    public function isInDarkMode() : bool
+    {
+        if ($this->isDarkModeEnabled()) {
+            return true;
+        }
+
+        if ($this->getAutomaticDarkModeStartAt() && $this->getAutomaticDarkModeEndAt()) {
+            // Apply timezone to get current time for the user
+            $timezone = new \DateTimeZone('Europe/Paris');
+            $now = (new \DateTime())->setTimezone($timezone)->format('Hi');
+
+            $startAt = $this->getAutomaticDarkModeStartAt()->format('Hi');
+            $endAt = $this->getAutomaticDarkModeEndAt()->format('Hi');
+
+            if ($now >= $startAt && $now <= $endAt) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function getDateFormatForJs() : string
@@ -585,6 +618,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setWishlistsFeatureEnabled(bool $wishlistsFeatureEnabled): User
     {
         $this->wishlistsFeatureEnabled = $wishlistsFeatureEnabled;
+
         return $this;
     }
 
@@ -603,6 +637,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setTagsFeatureEnabled(bool $tagsFeatureEnabled): User
     {
         $this->tagsFeatureEnabled = $tagsFeatureEnabled;
+
         return $this;
     }
 
@@ -621,6 +656,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setSignsFeatureEnabled(bool $signsFeatureEnabled): User
     {
         $this->signsFeatureEnabled = $signsFeatureEnabled;
+
         return $this;
     }
 
@@ -639,6 +675,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setAlbumsFeatureEnabled(bool $albumsFeatureEnabled): User
     {
         $this->albumsFeatureEnabled = $albumsFeatureEnabled;
+
         return $this;
     }
 
@@ -657,6 +694,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setLoansFeatureEnabled(bool $loansFeatureEnabled): User
     {
         $this->loansFeatureEnabled = $loansFeatureEnabled;
+
         return $this;
     }
 
@@ -675,6 +713,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setTemplatesFeatureEnabled(bool $templatesFeatureEnabled): User
     {
         $this->templatesFeatureEnabled = $templatesFeatureEnabled;
+
         return $this;
     }
 
@@ -693,6 +732,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setHistoryFeatureEnabled(bool $historyFeatureEnabled): User
     {
         $this->historyFeatureEnabled = $historyFeatureEnabled;
+
         return $this;
     }
 
@@ -711,6 +751,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setStatisticsFeatureEnabled(bool $statisticsFeatureEnabled): User
     {
         $this->statisticsFeatureEnabled = $statisticsFeatureEnabled;
+
         return $this;
     }
 
@@ -729,6 +770,45 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setDarkModeEnabled(bool $darkModeEnabled): User
     {
         $this->darkModeEnabled = $darkModeEnabled;
+
+        return $this;
+    }
+
+    /**
+     * @return ?\DateTime
+     */
+    public function getAutomaticDarkModeStartAt(): ?\DateTime
+    {
+        return $this->automaticDarkModeStartAt;
+    }
+
+    /**
+     * @param ?\DateTime $automaticDarkModeStartAt
+     * @return User
+     */
+    public function setAutomaticDarkModeStartAt(?\DateTime $automaticDarkModeStartAt): User
+    {
+        $this->automaticDarkModeStartAt = $automaticDarkModeStartAt;
+
+        return $this;
+    }
+
+    /**
+     * @return ?\DateTime
+     */
+    public function getAutomaticDarkModeEndAt(): ?\DateTime
+    {
+        return $this->automaticDarkModeEndAt;
+    }
+
+    /**
+     * @param ?\DateTime $automaticDarkModeEndAt
+     * @return User
+     */
+    public function setAutomaticDarkModeEndAt(?\DateTime $automaticDarkModeEndAt): User
+    {
+        $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;
+
         return $this;
     }
 }

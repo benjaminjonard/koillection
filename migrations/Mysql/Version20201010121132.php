@@ -18,7 +18,7 @@ final class Version20201010121132 extends AbstractMigration
     {
         $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE koi_user ADD dark_mode_enabled TINYINT(1) DEFAULT \'0\' NOT NULL, DROP theme');
+        $this->addSql('ALTER TABLE koi_user ADD dark_mode_enabled TINYINT(1) DEFAULT \'0\' NOT NULL, ADD automatic_dark_mode_start_at TIME DEFAULT NULL, ADD automatic_dark_mode_end_at TIME DEFAULT NULL, DROP theme');
     }
 
     public function down(Schema $schema) : void

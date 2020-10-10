@@ -69,6 +69,7 @@
 {# MOBILE #}
 <li class="separate-item show-on-mobile sidebar-element"><div></div></li>
 <li class="{{ 'app_profile' in route ? 'current' }} show-on-mobile sidebar-element"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
+<li class="{{ 'app_settings' in route ? 'current' }} show-on-mobile sidebar-element"><a href="{{ path('app_profile_index') }}"><i class="fa fa-gears fa-fw"></i><span>{{ 'menu.settings'|trans }}</span></a></li>
 <li class="{{ 'app_tools' in route ? 'current' }} show-on-mobile sidebar-element"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
 <li class="{{ 'app_admin' in route or 'translation' in route ? 'current' }}  show-on-mobile sidebar-element"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
 <li class="show-on-mobile sidebar-element"><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>

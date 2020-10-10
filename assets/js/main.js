@@ -39,6 +39,11 @@ $(document).ready(function() {
     select.loadSelect2Countries();
     select.loadSelect2Locales();
     select.loadSelect2TagCategories();
+
+    M.Timepicker.init(document.querySelectorAll('.timepicker'), {
+        showClearBtn: true,
+        twelveHour: false
+    });
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll('.modal'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'), {

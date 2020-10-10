@@ -19,6 +19,8 @@ final class Version20201010130126 extends AbstractMigration
         $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_user ADD dark_mode_enabled BOOLEAN DEFAULT \'false\' NOT NULL');
+        $this->addSql('ALTER TABLE koi_user ADD automatic_dark_mode_start_at TIME(0) WITHOUT TIME ZONE');
+        $this->addSql('ALTER TABLE koi_user ADD automatic_dark_mode_end_at TIME(0) WITHOUT TIME ZONE');
         $this->addSql('ALTER TABLE koi_user DROP theme');
     }
 

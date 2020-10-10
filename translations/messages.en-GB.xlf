@@ -4516,7 +4516,43 @@
     <unit id="I0M_1B7" name="label.dark_mode_enabled">
       <segment>
         <source>label.dark_mode_enabled</source>
-        <target>Dark mode</target>
+        <target>Permanent dark mode</target>
+      </segment>
+    </unit>
+    <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
+      <segment>
+        <source>label.automatic_dark_mode_start_at</source>
+        <target>Automatic dark mode start time</target>
+      </segment>
+    </unit>
+    <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
+      <segment>
+        <source>label.automatic_dark_mode_end_at</source>
+        <target>Automatic dark mode end time</target>
+      </segment>
+    </unit>
+    <unit id="4UTsL.X" name="menu.settings">
+      <segment>
+        <source>menu.settings</source>
+        <target>Settings</target>
+      </segment>
+    </unit>
+    <unit id="9dYyUYD" name="title.update_visibility">
+      <segment>
+        <source>title.update_visibility</source>
+        <target>Edit visibility</target>
+      </segment>
+    </unit>
+    <unit id="JA.9t2S" name="title.update_dark_mode">
+      <segment>
+        <source>title.update_dark_mode</source>
+        <target>Edit dark mode</target>
+      </segment>
+    </unit>
+    <unit id="DFPQyp5" name="message.dark_mode">
+      <segment>
+        <source>message.dark_mode</source>
+        <target>message.dark_mode</target>
       </segment>
     </unit>
   </file>

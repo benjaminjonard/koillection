@@ -16,11 +16,11 @@
 {% macro recursiveCollection(collection) %}
     {% import _self as self %}
     <li class="inventory-collection-show">
-        <h6 class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green lighten-4' : 'red lighten-4' }}">
+        <div class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green lighten-4' : 'red lighten-4' }}">
             {{ collection.title }} -
             <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span> / <span class="js-total-counter">{{ collection.totalItems }}</span>
             (<span class="js-rate">{{ ((collection.totalCheckedItems*100)/collection.totalItems)|round(2) }}</span>%)
-        </h6>
+        </div>
 
         {% if collection.children|length %}
             <ul>

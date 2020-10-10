@@ -7,7 +7,6 @@ namespace App\Twig;
 use App\Enum\CurrencyEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
-use App\Enum\ThemeEnum;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class EnumRuntime implements RuntimeExtensionInterface
@@ -45,15 +44,5 @@ class EnumRuntime implements RuntimeExtensionInterface
     public function getLocaleLabel(string $code) : string
     {
         return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::getLocaleLabels()[LocaleEnum::LOCALE_EN_GB];
-    }
-
-    /**
-     * @param string $theme
-     * @param string $hue
-     * @return string
-     */
-    public function getThemeColor(string $theme, string $hue) : string
-    {
-        return ThemeEnum::getThemeColor($theme, $hue);
     }
 }

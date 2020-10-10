@@ -79,7 +79,7 @@ input:not([type]) + label::after, input[type="text"]:not(.browser-default) + lab
     opacity: 1;
 }
 
-h5.header, h4.header, h6.header {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 0 0 35px 0!important; line-height: 100%;}
+h5.header, h4.header, h6.header {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 35px 0!important; line-height: 100%;}
 h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; font-size: 18px;}
 h6.header { text-align: center; font-size: 1.5rem; }
 
@@ -255,9 +255,6 @@ button.align-with-inputs {margin-top: 25px;}
 .arrow {text-align: center; margin-top: -59px; margin-right: 278px;}
 .arrow img {max-width: 80px;}
 .arrow p {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87);}
-
-.about-section {margin-bottom: 30px;}
-.about-section h6 {font-size: 20px; font-weight: bold;}
 
 .locale span {position: relative; top: -4px;}
 
@@ -1241,7 +1238,6 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .datum .image-label {top: -17px;}
 .datum .image-field {height: 115px;}
 .datum .image-preview-wrapper, .datum .image-preview-wrapper  > div {margin: auto;}
-#additionnalFields .header {margin-top: 55px;}
 .select2-container--default .select2-selection--single .select2-selection__rendered {padding-left: 8px;}
 
 .profile-menu .collection-item span {position: relative; top: -3px; left: 5px;}

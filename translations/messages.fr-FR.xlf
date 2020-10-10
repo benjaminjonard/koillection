@@ -4519,7 +4519,25 @@
     <unit id="I0M_1B7" name="label.dark_mode_enabled">
       <segment>
         <source>label.dark_mode_enabled</source>
-        <target>Mode nuit</target>
+        <target>Mode nuit permanent</target>
+      </segment>
+    </unit>
+    <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
+      <segment>
+        <source>label.automatic_dark_mode_start_at</source>
+        <target>Mode nuit automatique à partir de</target>
+      </segment>
+    </unit>
+    <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
+      <segment>
+        <source>label.automatic_dark_mode_end_at</source>
+        <target>Mode nuit automatique jusqu'à</target>
+      </segment>
+    </unit>
+    <unit id="4UTsL.X" name="menu.settings">
+      <segment>
+        <source>menu.settings</source>
+        <target>Paramètres</target>
       </segment>
     </unit>
   </file>

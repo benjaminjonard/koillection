@@ -18,8 +18,7 @@ class EnumExtension extends AbstractExtension
             new TwigFunction('getCurrencySymbol', [EnumRuntime::class, 'getCurrencySymbol']),
             new TwigFunction('getRoleLabel', [EnumRuntime::class, 'getRoleLabel']),
             new TwigFunction('getLocales', [EnumRuntime::class, 'getLocales']),
-            new TwigFunction('getLocaleLabel', [EnumRuntime::class, 'getLocaleLabel']),
-            new TwigFunction('getThemeColor', [EnumRuntime::class, 'getThemeColor']),
+            new TwigFunction('getLocaleLabel', [EnumRuntime::class, 'getLocaleLabel'])
         ];
     }
 }

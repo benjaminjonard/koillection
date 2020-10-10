@@ -41,13 +41,16 @@ services:
     App\EventListener\ActivityListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request }
-
+    App\EventListener\TimezoneListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
     App\EventListener\NonceListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response }
     App\EventListener\SeenListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response}
+
     App\EventListener\LogQueueListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response, priority: 5 }

@@ -41,11 +41,11 @@
     </div>
 
     <div class="statistics-holder"
-         data-theme-main-hue="{{ app.user.darkModeEnabled ? '#00ce99' : '#009688' }}"
-         data-theme-dark-hue="{{ app.user.darkModeEnabled ? '#007C5C' : '#006355' }}"
-         data-theme-light-hue="{{ app.user.darkModeEnabled ? '#4DDDB8' : '#1ab0a2' }}"
-         data-theme-lightest-hue="{{ app.user.darkModeEnabled ? '#b3f0e0' : '#80cbc4' }}"
-         data-is-dark-mode="{{ app.user.darkModeEnabled }}"
+         data-theme-main-hue="{{ app.user.isInDarkMode ? '#00ce99' : '#009688' }}"
+         data-theme-dark-hue="{{ app.user.isInDarkMode ? '#007C5C' : '#006355' }}"
+         data-theme-light-hue="{{ app.user.isInDarkMode ? '#4DDDB8' : '#1ab0a2' }}"
+         data-theme-lightest-hue="{{ app.user.isInDarkMode ? '#b3f0e0' : '#80cbc4' }}"
+         data-is-dark-mode="{{ app.user.isInDarkMode }}"
     >
         <div class="content-block calendars">
             <div class="block-element">
