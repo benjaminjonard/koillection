@@ -9,7 +9,6 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
-use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use DateTimeInterface;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -93,12 +92,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
      * @ORM\Column(type="array")
      */
     private array $roles;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $theme;
 
     /**
      * @var string
@@ -192,6 +185,12 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
 
     /**
      * @var bool
+     * @ORM\Column(type="boolean", options={"default": 0})
+     */
+    private bool $darkModeEnabled;
+
+    /**
+     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $wishlistsFeatureEnabled;
@@ -256,11 +255,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         $this->roles = ['ROLE_USER'];
         $this->diskSpaceAllowed = 536870912;
         $this->enabled = false;
-        $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = 'EUR';
         $this->locale = LocaleEnum::LOCALE_EN_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
+        $this->darkModeEnabled = false;
         $this->wishlistsFeatureEnabled = true;
         $this->tagsFeatureEnabled = true;
         $this->signsFeatureEnabled = true;
@@ -431,18 +430,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    public function getTheme(): ?string
-    {
-        return $this->theme;
-    }
-
-    public function setTheme(string $theme): self
-    {
-        $this->theme = $theme;
 
         return $this;
     }
@@ -724,6 +711,24 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setStatisticsFeatureEnabled(bool $statisticsFeatureEnabled): User
     {
         $this->statisticsFeatureEnabled = $statisticsFeatureEnabled;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDarkModeEnabled(): bool
+    {
+        return $this->darkModeEnabled;
+    }
+
+    /**
+     * @param bool $darkModeEnabled
+     * @return User
+     */
+    public function setDarkModeEnabled(bool $darkModeEnabled): User
+    {
+        $this->darkModeEnabled = $darkModeEnabled;
         return $this;
     }
 }

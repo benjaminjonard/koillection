@@ -60,7 +60,7 @@
                         {{ form_row(formSettings.locale, {'label' : 'label.locale', 'attr': {'class': 'js-select-locale'}} ) }}
                     </div>
                     <div class="col s12 l5 xl3">
-                        {{ form_row(formSettings.theme, {'label' : 'label.theme', 'attr': {'class': 'js-select-theme'}} ) }}
+                        {{ form_row(formSettings.currency, {'label' : 'label.currency'} ) }}
                     </div>
                 </div>
 
@@ -73,30 +73,31 @@
                     </div>
                 </div>
 
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(formSettings.currency, {'label' : 'label.currency'} ) }}
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                        {{ form_row(formSettings.visibility, {'label' : 'label.visibility'} ) }}
+                    </div>
                 </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(formSettings.visibility, {'label' : 'label.visibility'} ) }}
+
+                <div class="row">
+                    <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+                        <p>
+                            {{ 'message.visibility'|trans }}
+                            <strong><a href="{{ url('app_user_collection_index', {username : app.user.username}) }}">{{ url('app_user_collection_index', {username : app.user.username}) }}</a></strong>
+                        </p>
+                        <p>
+                            {{ 'message.visibility_preview'|trans }}
+                            <strong><a href="{{ url('app_preview_collection_index') }}">{{ url('app_preview_collection_index') }}</a></strong>
+                        </p>
+                        <p>{{ 'message.visibility_per_item'|trans }}</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                    <p>
-                        {{ 'message.visibility'|trans }}
-                        <strong><a href="{{ url('app_user_collection_index', {username : app.user.username}) }}">{{ url('app_user_collection_index', {username : app.user.username}) }}</a></strong>
-                    </p>
-                    <p>
-                        {{ 'message.visibility_preview'|trans }}
-                        <strong><a href="{{ url('app_preview_collection_index') }}">{{ url('app_preview_collection_index') }}</a></strong>
-                    </p>
-                    <p>{{ 'message.visibility_per_item'|trans }}</p>
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                        {{ form_row(formSettings.darkModeEnabled, {'label' : 'label.dark_mode_enabled'}) }}
+                    </div>
                 </div>
-            </div>
-
-
 
                 <div class="row center-align form-btn-holder">
                     <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>

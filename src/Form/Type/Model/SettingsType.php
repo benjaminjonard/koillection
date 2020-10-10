@@ -11,6 +11,7 @@ use App\Enum\LocaleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,10 +37,6 @@ class SettingsType extends AbstractType
                 'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
                 'required' => true
             ])
-            ->add('theme', ChoiceType::class, [
-                'choices' => array_flip(ThemeEnum::getThemeLabels()),
-                'required' => true
-            ])
             ->add('locale', ChoiceType::class, [
                 'choices' => array_flip(LocaleEnum::getLocaleLabels()),
                 'required' => true
@@ -47,6 +44,9 @@ class SettingsType extends AbstractType
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true
+            ])
+            ->add('darkModeEnabled', CheckboxType::class, [
+                'required' => false
             ])
         ;
     }
