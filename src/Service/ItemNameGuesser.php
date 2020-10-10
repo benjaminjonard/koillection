@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Collection;
 use App\Entity\Item;
-use App\Entity\Tag;
-use App\Entity\Template;
-use App\Enum\DatumTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ItemNameGuesser
 {

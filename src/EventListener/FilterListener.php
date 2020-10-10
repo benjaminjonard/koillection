@@ -8,7 +8,7 @@ use App\Entity\User;
 use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Security;
 
 class FilterListener
 {
@@ -23,21 +23,21 @@ class FilterListener
     private ContextHandler $contextHandler;
 
     /**
-     * @var TokenStorageInterface
+     * @var Security
      */
-    private TokenStorageInterface $tokenStorage;
+    private Security $security;
 
     /**
      * FilterListener constructor.
      * @param EntityManagerInterface $em
      * @param ContextHandler $contextHandler
-     * @param TokenStorageInterface $tokenStorage
+     * @param Security $security
      */
-    public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, Security $security)
     {
         $this->em = $em;
         $this->contextHandler = $contextHandler;
-        $this->tokenStorage = $tokenStorage;
+        $this->security = $security;
     }
 
     public function onKernelRequest()
@@ -72,8 +72,8 @@ class FilterListener
             if (!$user) {
                 throw new NotFoundHttpException();
             }
-        } elseif ($this->tokenStorage->getToken() && $this->tokenStorage->getToken()->getUser() instanceof User) {
-            $user = $this->tokenStorage->getToken()->getUser();
+        } elseif ($this->security->getUser() instanceof User) {
+            $user = $this->security->getUser();
         }
 
         $this->contextHandler->setContextUser($user);

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Security;
 
 class ImageHandler
 {
@@ -24,11 +24,6 @@ class ImageHandler
     private ThumbnailGenerator $thumbnailGenerator;
 
     /**
-     * @var TokenStorageInterface
-     */
-    private TokenStorageInterface $tokenStorage;
-
-    /**
      * @var string
      */
     private string $publicPath;
@@ -37,29 +32,35 @@ class ImageHandler
      * @var PropertyAccessor
      */
     private PropertyAccessor $accessor;
+
     /**
      * @var DiskUsageCalculator
      */
     private DiskUsageCalculator $diskUsageCalculator;
 
     /**
+     * @var Security
+     */
+    private Security $security;
+
+    /**
      * ImageHandler constructor.
      * @param RandomStringGenerator $randomStringGenerator
      * @param ThumbnailGenerator $thumbnailGenerator
-     * @param TokenStorageInterface $tokenStorage
+     * @param Security $security
      * @param DiskUsageCalculator $diskUsageCalculator
      * @param string $publicPath
      */
     public function __construct(
         RandomStringGenerator $randomStringGenerator,
         ThumbnailGenerator $thumbnailGenerator,
-        TokenStorageInterface $tokenStorage,
+        Security $security,
         DiskUsageCalculator $diskUsageCalculator,
         string $publicPath
     ) {
         $this->randomStringGenerator = $randomStringGenerator;
         $this->thumbnailGenerator = $thumbnailGenerator;
-        $this->tokenStorage = $tokenStorage;
+        $this->security = $security;
         $this->diskUsageCalculator = $diskUsageCalculator;
         $this->publicPath = $publicPath;
         $this->accessor = PropertyAccess::createPropertyAccessor();
@@ -76,7 +77,7 @@ class ImageHandler
         $file = $this->accessor->getValue($entity, $property);
 
         if ($file instanceof UploadedFile) {
-            $user = $this->tokenStorage->getToken()->getUser();
+            $user = $this->security->getUser();
             $relativePath = 'uploads/'.$user->getId().'/';
             $absolutePath = $this->publicPath . '/' . $relativePath;
 
