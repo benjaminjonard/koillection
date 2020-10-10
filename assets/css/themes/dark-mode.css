@@ -98,7 +98,7 @@ input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[t
 .sidebar-element a span,
 .header-logo a span,
 .tabs-block li.tab.current, .tabs-block li.tab.current a,
-body, .btn-dark-grey, input, select, textarea, .setting-input label, h5.statistics-title, .burger-menu i,
+body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statistics-title, .burger-menu i,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
 .autocomplete-content.dropdown-content li>span,
 .sidebar-element a i
@@ -139,7 +139,7 @@ header #search_term,  .sidebar-wrapper .header-logo,
     border: .1em solid #7d7f82;
 }
 
-.button, a, .suggestion, h6.header, h5.header, h4.header
+.button, a, .suggestion, h3.header, h2.header
 { color: #009688; }
 
 input:not([type]):focus:not([readonly]), input[type="date"]:not(.browser-default):focus:not([readonly]), input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), input[type="datetime"]:not(.browser-default):focus:not([readonly]), input[type="email"]:not(.browser-default):focus:not([readonly]), input[type="number"]:not(.browser-default):focus:not([readonly]), input[type="password"]:not(.browser-default):focus:not([readonly]), input[type="search"]:not(.browser-default):focus:not([readonly]), input[type="tel"]:not(.browser-default):focus:not([readonly]), input[type="text"]:not(.browser-default):focus:not([readonly]), input[type="time"]:not(.browser-default):focus:not([readonly]), input[type="url"]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])

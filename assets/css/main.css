@@ -32,7 +32,7 @@ header {
 }
 li {list-style-type: none;}
 h1 {font-size: 2.5rem;}
-h5 {font-size: 2rem;}
+h2 {font-size: 2rem;}
 .btn i {font-size: 1rem;}
 
 .fa-angle-left::before {position: relative; top: 1px; right: 5px;}
@@ -79,9 +79,9 @@ input:not([type]) + label::after, input[type="text"]:not(.browser-default) + lab
     opacity: 1;
 }
 
-h5.header, h4.header, h6.header {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 35px 0!important; line-height: 100%;}
-h5.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; font-size: 18px;}
-h6.header { text-align: center; font-size: 1.5rem; }
+h2.header, h3.header {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; margin: 0; padding: 35px 0!important; line-height: 100%;}
+h2.statistics-title {font-family: "Cooper Hewitt",sans-serif; color: rgba(0,0,0,0.87); font-weight: bold; font-size: 18px;}
+h3.header { text-align: center; font-size: 1.5rem; }
 
 
 .divider{margin : 0 15px;}
@@ -221,7 +221,7 @@ button.align-with-inputs {margin-top: 25px;}
 .bar-charts .bar-chart-row:not(.last) {padding-bottom: 75px;}
 .bar-charts .left-chart{max-width: 770px; float: left;}
 .bar-charts .right-chart{margin-left: 700px;}
-.bar-chart h5 {white-space: nowrap;}
+.bar-chart h2 {white-space: nowrap;}
 .calendar, #radial-tree, #items-evolution-chart {margin: auto;}
 .statistics-holder {width: 1600px; margin: auto;}
 .chart {margin-left: 98px;}
@@ -377,7 +377,7 @@ html.loading:before {
 .box .logo {position: absolute; left: 0; right: 0; bottom: -37px; height: 75px; width: 75px; background-image: url('../img/logo.svg'); background-repeat: no-repeat; background-size: 39px; background-position: center center; border-radius: 50%; margin: 0 auto; background-color: #009688; z-index: 5;}
 .box .content {background-color: #fff;}
 .box form {padding: 30px 50px 50px 50px}
-.box h5.header {text-align: center; padding: 0 0 30px 0;}
+.box h2.header {text-align: center; padding: 0 0 30px 0;}
 .box .locales-dropdown {padding: 10px 10px 0 0; float: right;}
 .box .submit {padding: 15px 0;}
 

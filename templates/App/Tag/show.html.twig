@@ -67,7 +67,7 @@
     <div class="content-block">
         {% if null != tag.image or null != tag.description %}
             <div class="block-element">
-                <h5 class="header">{{ 'title.infos'|trans }}</h5>
+                <h2 class="header">{{ 'title.infos'|trans }}</h2>
                 <div class="tag-image-container">
                     {% if tag.image is not null %}
                         <a href="{{ preload(asset(tag.image)) }}" data-lightbox="image-{{ tag.id }}">
@@ -84,7 +84,7 @@
 
         {% if relatedTags is not empty %}
             <div class="block-element">
-                <h5 class="header">{{ 'title.related_tags'|trans }}</h5>
+                <h2 class="header">{{ 'title.related_tags'|trans }}</h2>
                 <div class="tags-block">
                     <ul class="nav nav-tags">
                         {% for tag in relatedTags|naturalSorting %}
@@ -111,7 +111,7 @@
 
         {% if tag.items is not empty %}
             <div class="block-element">
-                <h5 class="header">{{ 'title.items'|trans }}</h5>
+                <h2 class="header">{{ 'title.items'|trans }}</h2>
                 <div id="collection-items" class="grid-container-items">
                     {% for item in tag.items|naturalSorting %}
                         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">

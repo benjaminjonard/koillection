@@ -12,7 +12,7 @@
                 {{ include('App/Security/_locales_dropdown.html.twig') }}
 
                 {{ form_start(form) }}
-                    <h5 class="header">{{ 'title.first_connection.user'|trans }}</h5>
+                    <h2 class="header">{{ 'title.first_connection.user'|trans }}</h2>
                     {{ form_errors(form) }}
                     {{ form_row(form.username, {'label' : 'label.username'} ) }}
                     {{ form_row(form.email, {'label' : 'label.email'} ) }}

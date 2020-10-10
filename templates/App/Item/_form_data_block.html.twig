@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div id="data" class="data-holder block-element">
             <div class="row">
-                <h6 class="header col s12">{{ 'title.data'|trans }}</h6>
+                <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
             </div>
 
             {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY'), constant('App\\Enum\\DatumTypeEnum::TYPE_FILE')])) %}
@@ -21,7 +21,7 @@
     <div class="wrapper">
         <div id="item-images" class="data-holder block-element">
             <div class="row">
-                <h6 class="header col s12">{{ 'title.item_images'|trans }}</h6>
+                <h3 class="header col s12">{{ 'title.item_images'|trans }}</h3>
             </div>
 
             {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE'), constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN')])) %}

@@ -63,7 +63,7 @@
         {% if results|length > 0 %}
             {% if results.items is defined and results.items|length > 0 %}
                 <div class="block-element">
-                    <h5 class="header">{{ 'title.items'|trans }}</h5>
+                    <h2 class="header">{{ 'title.items'|trans }}</h2>
                     <div id="collection-items" class="grid-container-items">
                         {% for item in results.items|naturalSorting %}
                             <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
@@ -78,7 +78,7 @@
 
             {% if results.collections is defined and results.collections|length > 0 %}
                 <div class="block-element">
-                    <h5 class="header">{{ 'title.collections'|trans }}</h5>
+                    <h2 class="header">{{ 'title.collections'|trans }}</h2>
                     <div class="collections grid-container-collections">
                         {{ include('App/Collection/_list.html.twig', {'collections': results.collections|naturalSorting}) }}
                     </div>
@@ -87,7 +87,7 @@
 
             {% if results.wishlists is defined and results.wishlists|length > 0 %}
                 <div class="block-element">
-                    <h5 class="header">{{ 'title.wishlists'|trans }}</h5>
+                    <h2 class="header">{{ 'title.wishlists'|trans }}</h2>
                     <div class="collections grid-container-collections">
                         {{ include('App/Wishlist/_list.html.twig', {'wishlists': results.wishlists|naturalSorting}) }}
                     </div>
@@ -96,7 +96,7 @@
 
             {% if results.albums is defined and results.albums|length > 0 %}
                 <div class="block-element">
-                    <h5 class="header">{{ 'title.albums'|trans }}</h5>
+                    <h2 class="header">{{ 'title.albums'|trans }}</h2>
                     <div class="collections grid-container-collections">
                         {{ include('App/Album/_list.html.twig', {'albums': results.albums|naturalSorting}) }}
                     </div>
@@ -106,7 +106,7 @@
 
             {% if results.tags is defined and results.tags|length > 0 %}
                 <div class="block-element">
-                    <h5 class="header">{{ 'title.tags'|trans }}</h5>
+                    <h2 class="header">{{ 'title.tags'|trans }}</h2>
                     <div>
                         <table class="centered striped">
                             <thead>

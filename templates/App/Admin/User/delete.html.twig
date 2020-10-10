@@ -21,7 +21,7 @@
     <div class="content-block">
         {{ include('/App/Admin/tabs.html.twig', {current: 'users'}) }}
         <div class="block-element">
-            <h5 class="header">{{ 'title.delete_user'|trans({'%user%': user.username}) }}</h5>
+            <h2 class="header">{{ 'title.delete_user'|trans({'%user%': user.username}) }}</h2>
             <div class="row">
                 {% if error is defined %}
                     <p class="error">{{ error }}</p>

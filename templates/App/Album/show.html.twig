@@ -80,7 +80,7 @@
         <!-- Child collections -->
         {% if children is not empty %}
             <div class="block-element">
-                <h5 class="header">{{ 'title.album_children'|trans }}</h5>
+                <h2 class="header">{{ 'title.album_children'|trans }}</h2>
                 <div class="collections grid-container-collections">
                     {{ include('App/Album/_list.html.twig', {'albums': children|naturalSorting}) }}
                 </div>
@@ -89,7 +89,7 @@
 
         {% if photos is not empty %}
             <div class="block-element">
-                <h5 class="header">{{ 'title.photos'|trans }}</h5>
+                <h2 class="header">{{ 'title.photos'|trans }}</h2>
                 <div id="collection-items" class="grid-container-items">
                     {% for photo in photos %}
                         <div class="collection-item element valign-wrapper" data-title="{{ photo.title }}">

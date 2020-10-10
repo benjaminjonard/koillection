@@ -18,7 +18,7 @@
     <div class="content-block">
         <div class="block-element">
             {{ form_start(form) }}
-                <h6 class="header">{{ 'title.update_settings'|trans }}</h6>
+                <h3 class="header">{{ 'title.update_settings'|trans }}</h3>
 
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
@@ -28,7 +28,7 @@
                         {{ form_row(form.currency, {'label' : 'label.currency'} ) }}
                     </div>
                 </div>
-    
+
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                         {{ form_row(form.timezone, {'label' : 'label.timezone'} ) }}
@@ -38,8 +38,8 @@
                     </div>
                 </div>
 
-                <h6 class="header">{{ 'title.update_visibility'|trans }}</h6>
-    
+                <h3 class="header">{{ 'title.update_visibility'|trans }}</h3>
+
                 <div class="row">
                     <div class="col s12 l10 offset-l1 xl6 offset-xl3">
                         <p>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-                <h6 class="header">{{ 'title.update_dark_mode'|trans }}</h6>
+                <h3 class="header">{{ 'title.update_dark_mode'|trans }}</h3>
 
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
@@ -70,14 +70,14 @@
                         {{ form_row(form.automaticDarkModeEndAt, {'label' : 'label.automatic_dark_mode_end_at', 'attr': {'class': 'timepicker'}} ) }}
                     </div>
                 </div>
-    
+
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                         {{ form_row(form.darkModeEnabled, {'label' : 'label.dark_mode_enabled'}) }}
                     </div>
                 </div>
 
-                <h6 class="header">{{ 'title.update_features'|trans }}</h6>
+                <h3 class="header">{{ 'title.update_features'|trans }}</h3>
 
                 <div class="row">
                     <div class="col s12 l3 offset-l1 xl3 offset-xl3">
