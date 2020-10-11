@@ -163,7 +163,8 @@ input[type="url"]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label,
 .item-details .data a, .breadcrumb .last,
 .picker__day.picker__day--today, .picker__close, .picker__today,
-a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today:not(.is-selected)
+a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today:not(.is-selected),
+.datum-row a 
 { color: #009688; }
 
 .btn, .btn-large, .toast, html.loading:before,
