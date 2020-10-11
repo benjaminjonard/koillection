@@ -322,12 +322,23 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         if ($this->getAutomaticDarkModeStartAt() && $this->getAutomaticDarkModeEndAt()) {
             // Apply timezone to get current time for the user
             $timezone = new \DateTimeZone('Europe/Paris');
-            $now = (new \DateTime())->setTimezone($timezone)->format('Hi');
+            $currentTime = strtotime((new \DateTime())->setTimezone($timezone)->format('H:i'));
+            $startTime = strtotime($this->getAutomaticDarkModeStartAt()->format('H:i'));
+            $endTime = strtotime($this->getAutomaticDarkModeEndAt()->format('H:i'));
 
-            $startAt = $this->getAutomaticDarkModeStartAt()->format('Hi');
-            $endAt = $this->getAutomaticDarkModeEndAt()->format('Hi');
-
-            if ($now >= $startAt && $now <= $endAt) {
+            if (
+                (
+                    $startTime < $endTime &&
+                    $currentTime >= $startTime &&
+                    $currentTime <= $endTime
+                ) ||
+                (
+                    $startTime > $endTime && (
+                        $currentTime >= $startTime ||
+                        $currentTime <= $endTime
+                    )
+                )
+            ) {
                 return true;
             }
         }
