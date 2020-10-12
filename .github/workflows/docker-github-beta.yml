@@ -1,11 +1,11 @@
-name: uild and push beta Docker image
+name: Build beta image for GitHub Packages
 on:
   push:
     branches:
       - master
 jobs:
   push_to_registry:
-    name: Push beta Docker image to GitHub Packages
+    name: Build beta image for GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
