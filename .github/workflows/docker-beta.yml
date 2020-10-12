@@ -22,10 +22,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: koillection/koillection
           tags: |
-            latest
-            ${{ github.event.release.tag_name }}
+            beta
           build_args: |
-            GITHUB_RELEASE=${{ github.event.release.tag_name }}
+            GITHUB_RELEASE=master
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1.1.1
         with:
