@@ -26,3 +26,13 @@ jobs:
             beta
           build_args: |
             GITHUB_RELEASE=master
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1.1.1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: koillection/koillection
+          tags: |
+            beta
+          build_args: |
+            GITHUB_RELEASE=master
