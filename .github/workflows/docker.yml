@@ -2,7 +2,7 @@ name: Build and push Docker images
 on:
   push:
     branches:
-      - v1.1
+      - master
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
@@ -23,3 +23,5 @@ jobs:
           registry: docker.pkg.github.com
           repository: koillection/koillection/fpm
           tags: latest
+          build-args: |
+            GITHUB_RELEASE=master
