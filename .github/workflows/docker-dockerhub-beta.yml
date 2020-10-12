@@ -1,11 +1,11 @@
-name: Build and push beta Docker image
+name: Build beta image for Docker Hub
 on:
   push:
     branches:
       - master
 jobs:
-  push_to_registry:
-    name: Push beta Docker image to Docker Hub
+  push_to_docker_hub:
+    name: Build beta image for Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
