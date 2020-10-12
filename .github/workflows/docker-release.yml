@@ -4,7 +4,7 @@ on:
     types: [published]
 jobs:
   push_to_registries:
-    name: Push to GitHub Packages and Docker Hub
+    name: Build and push release images
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo

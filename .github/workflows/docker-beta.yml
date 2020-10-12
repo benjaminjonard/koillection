@@ -1,11 +1,11 @@
-name: Build and push beta Docker image
+name: Build and push beta Docker images
 on:
   push:
     branches:
       - master
 jobs:
   push_to_registry:
-    name: Push beta Docker image to GitHub Packages
+    name: Build and push beta images
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -15,18 +15,7 @@ jobs:
           ref: master
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1.1.1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: koillection/koillection/fpm
-          tags: |
-            beta
-          build_args: |
-            GITHUB_RELEASE=master
-      - name: Push to GitHub Packages
+      - name: Push to Docker Hub
         uses: docker/build-push-action@v1.1.1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
