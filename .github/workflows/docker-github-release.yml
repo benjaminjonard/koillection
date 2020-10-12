@@ -3,7 +3,7 @@ on:
   release:
     types: [published]
 jobs:
-  push_to_registry:
+  push_to_git_hub_packages:
     name: Build release image for GitHub Packages
     runs-on: ubuntu-latest
     steps:

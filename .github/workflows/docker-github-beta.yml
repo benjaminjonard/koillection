@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  push_to_registry:
+  push_to_git_hub_packages:
     name: Build beta image for GitHub Packages
     runs-on: ubuntu-latest
     steps:
