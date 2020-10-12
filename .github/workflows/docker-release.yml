@@ -1,10 +1,10 @@
-name: Publish Docker image
+name: Build and push release Docker images
 on:
   release:
     types: [published]
 jobs:
   push_to_registry:
-    name: Push Docker image to Docker Hub
+    name: Push release Docker images to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
