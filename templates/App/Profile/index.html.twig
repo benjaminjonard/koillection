@@ -17,7 +17,9 @@
 
     <div class="content-block">
         <div class="block-element">
-            <h5 class="header">{{ 'title.disk_usage'|trans }}</h5>
+            <div class="row">
+                <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.disk_usage'|trans }}</h2>
+            </div>
             <div class="pie-wrapper">
                 {% set percent = (getSpaceUsedByUser(app.user) * 100 / app.user.diskSpaceAllowed)|round(0, 'floor') %}
                 <span class="label">{{ percent }}<span class="smaller">%</span></span>
@@ -31,123 +33,26 @@
         </div>
 
         <div class="block-element">
-            <h5 class="header">{{ 'title.update_profile'|trans }}</h5>
-
-            {{ form_start(formProfile) }}
-            {{ form_row(formProfile.file) }}
-
             <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(formProfile.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
-                </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(formProfile.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
-                </div>
+                <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.update_profile'|trans }}</h2>
             </div>
 
-            <div class="row center-align form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-            </div>
-            {{ form_end(formProfile) }}
-        </div>
-
-        <div class="block-element">
-            <h5 class="header">{{ 'title.update_settings'|trans }}</h5>
-
-            {{ form_start(formSettings) }}
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formSettings.locale, {'label' : 'label.locale', 'attr': {'class': 'js-select-locale'}} ) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formSettings.theme, {'label' : 'label.theme', 'attr': {'class': 'js-select-theme'}} ) }}
-                    </div>
-                </div>
+            {{ form_start(form) }}
+                {{ form_row(form.file) }}
 
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formSettings.timezone, {'label' : 'label.timezone'} ) }}
+                        {{ form_row(form.plainPassword.first, {'label' : 'label.password', 'attr': {'autocomplete' : 'new-password'}} ) }}
                     </div>
                     <div class="col s12 l5 xl3">
-                        {{ form_row(formSettings.dateFormat, {'label' : 'label.date_format'} ) }}
-                    </div>
-                </div>
-
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(formSettings.currency, {'label' : 'label.currency'} ) }}
-                </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(formSettings.visibility, {'label' : 'label.visibility'} ) }}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                    <p>
-                        {{ 'message.visibility'|trans }}
-                        <strong><a href="{{ url('app_user_collection_index', {username : app.user.username}) }}">{{ url('app_user_collection_index', {username : app.user.username}) }}</a></strong>
-                    </p>
-                    <p>
-                        {{ 'message.visibility_preview'|trans }}
-                        <strong><a href="{{ url('app_preview_collection_index') }}">{{ url('app_preview_collection_index') }}</a></strong>
-                    </p>
-                    <p>{{ 'message.visibility_per_item'|trans }}</p>
-                </div>
-            </div>
-
-
-
-                <div class="row center-align form-btn-holder">
-                    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                </div>
-            {{ form_end(formSettings) }}
-        </div>
-
-        <div class="block-element">
-            <h5 class="header">{{ 'title.update_features'|trans }}</h5>
-
-            {{ form_start(formFeatures) }}
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.wishlistsFeatureEnabled, {'label' : 'label.wishlists_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.tagsFeatureEnabled, {'label' : 'label.tags_feature_enabled'}) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.signsFeatureEnabled, {'label' : 'label.signs_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.albumsFeatureEnabled, {'label' : 'label.albums_feature_enabled'}) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.loansFeatureEnabled, {'label' : 'label.loans_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.templatesFeatureEnabled, {'label' : 'label.templates_feature_enabled'}) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                        {{ form_row(formFeatures.historyFeatureEnabled, {'label' : 'label.history_feature_enabled'}) }}
-                    </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(formFeatures.statisticsFeatureEnabled, {'label' : 'label.statistics_feature_enabled'}) }}
+                        {{ form_row(form.plainPassword.second, {'label' : 'label.repeat_password'} ) }}
                     </div>
                 </div>
 
                 <div class="row center-align form-btn-holder">
                     <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 </div>
-            {{ form_end(formFeatures) }}
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

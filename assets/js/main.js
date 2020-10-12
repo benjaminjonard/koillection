@@ -7,19 +7,7 @@ $(document).ready(function() {
     window.addEventListener('online', handleConnectionChange);
     window.addEventListener('offline', handleConnectionChange);
 
-    $('.collapse-nav').click(function (e) {
-        e.preventDefault();
-        var collapse = !$('body').hasClass('collapsed');
-        if (collapse) {
-            $('body').addClass('collapsed');
-            Cookies.set('sidebar_collapsed', 1);
-        } else {
-            $('body').removeClass('collapsed');
-            Cookies.remove('sidebar_collapsed');
-        }
-    });
-
-    $('.burger-menu, .close-nav').click(function (e) {
+    $('.burger-menu').click(function (e) {
         e.preventDefault();
         var open = !$('body').hasClass('mobile-opened');
         if (open) {
@@ -50,8 +38,12 @@ $(document).ready(function() {
     select.loadSelect2();
     select.loadSelect2Countries();
     select.loadSelect2Locales();
-    select.loadSelect2Themes();
     select.loadSelect2TagCategories();
+
+    M.Timepicker.init(document.querySelectorAll('.timepicker'), {
+        showClearBtn: true,
+        twelveHour: false
+    });
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll('.modal'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'), {

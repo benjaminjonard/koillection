@@ -1091,24 +1091,6 @@
         <target>Décembre</target>
       </segment>
     </unit>
-    <unit id="Y6e0mmF" name="global.themes.sunset">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.themes.sunset</source>
-        <target>Coucher de soleil</target>
-      </segment>
-    </unit>
-    <unit id="mtnAEj0" name="global.themes.teal">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.themes.teal</source>
-        <target>Turquoise</target>
-      </segment>
-    </unit>
     <unit id="bKzhzsy" name="global.time.ago">
       <notes>
         <note category="file-source" priority="1">src/Twig/AppExtension.php:122</note>
@@ -3124,15 +3106,6 @@
         <target>Tagguer en masse %collection%</target>
       </segment>
     </unit>
-    <unit id="1_c2AoA" name="title.theme">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:49</note>
-      </notes>
-      <segment>
-        <source>title.theme</source>
-        <target>Thème</target>
-      </segment>
-    </unit>
     <unit id="mvzqhh8" name="title.user_details">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:24</note>
@@ -3721,18 +3694,6 @@
         <target>Évolution des objets</target>
       </segment>
     </unit>
-    <unit id="Jjhr6GA" name="menu.collapse">
-      <segment>
-        <source>menu.collapse</source>
-        <target>Réduire</target>
-      </segment>
-    </unit>
-    <unit id="Y3yqQP6" name="menu.close">
-      <segment>
-        <source>menu.close</source>
-        <target>Fermer</target>
-      </segment>
-    </unit>
     <unit id="rd2X72s" name="message.delete.photo">
       <segment>
         <source>message.delete.photo</source>
@@ -4189,12 +4150,6 @@
         <target>Modifier le tag %tag%</target>
       </segment>
     </unit>
-    <unit id="uOTNXQY" name="global.themes.dark">
-      <segment>
-        <source>global.themes.dark</source>
-        <target>Sombre</target>
-      </segment>
-    </unit>
     <unit id="k7MJQ82" name="label.country">
       <segment>
         <source>label.country</source>
@@ -4271,12 +4226,6 @@
       <segment>
         <source>btn.show_less</source>
         <target>Montrer moins</target>
-      </segment>
-    </unit>
-    <unit id="oCELtKM" name="label.theme">
-      <segment>
-        <source>label.theme</source>
-        <target>Thème</target>
       </segment>
     </unit>
     <unit id="mEDsKHk" name="label.locale">
@@ -4565,6 +4514,30 @@
       <segment>
         <source>label.statistics_feature_enabled</source>
         <target>Statistiques</target>
+      </segment>
+    </unit>
+    <unit id="I0M_1B7" name="label.dark_mode_enabled">
+      <segment>
+        <source>label.dark_mode_enabled</source>
+        <target>Mode nuit permanent</target>
+      </segment>
+    </unit>
+    <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
+      <segment>
+        <source>label.automatic_dark_mode_start_at</source>
+        <target>Mode nuit automatique à partir de</target>
+      </segment>
+    </unit>
+    <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
+      <segment>
+        <source>label.automatic_dark_mode_end_at</source>
+        <target>Mode nuit automatique jusqu'à</target>
+      </segment>
+    </unit>
+    <unit id="4UTsL.X" name="menu.settings">
+      <segment>
+        <source>menu.settings</source>
+        <target>Paramètres</target>
       </segment>
     </unit>
   </file>

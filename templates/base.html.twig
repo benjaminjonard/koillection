@@ -21,11 +21,11 @@
 
     {% block stylesheets %}
         <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/app.css')) }}" nonce="{{ csp_nonce() }}">
+
+        <link type="text/css" rel="stylesheet" href="{{ preload(asset(app.user and app.user.isInDarkMode ? 'build/css/themes/dark-mode.css' : 'build/css/themes/light-mode.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
+
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/' ~ app.user.theme ~ '.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
             <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/flags.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
-        {% else %}
-            <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/themes/teal.css')) }}"  media="screen" nonce="{{ csp_nonce() }}"/>
         {% endif %}
     {% endblock %}
 </head>

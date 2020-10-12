@@ -1,9 +1,8 @@
 import Translator from "./translator.min";
 
-export function loadSelect2() { $('select:not(.js-select-country, .js-select-locale, .js-select-theme, .js-select-tag-category)').select2(getDefaultConf()); }
+export function loadSelect2() { $('select:not(.js-select-country, .js-select-locale, .js-select-tag-category)').select2(getDefaultConf()); }
 export function loadSelect2Countries() { $('select.js-select-country').select2(getCountriesConf()); }
 export function loadSelect2Locales() { $('select.js-select-locale').select2(getLocalesConf()); }
-export function loadSelect2Themes() { $('select.js-select-theme').select2(getThemesConf()); }
 export function loadSelect2TagCategories() { $('select.js-select-tag-category').select2(getTagCategoriesConf()); }
 
 function getCountriesConf() {
@@ -91,51 +90,6 @@ function getLocalesConf() {
             );
 
             return $locale;
-        },
-        language: {
-            noResults: function () {
-                return Translator.trans('select2.no_results');
-            },
-            searching: function () {
-                return Translator.trans('select2.searching');
-            }
-        }
-    };
-}
-
-function getThemesConf() {
-    return {
-        templateSelection: function (theme) {
-            if (!theme.id) {
-                return '';
-            }
-
-            var $theme = $(
-                '<span class="theme-preview ' + theme.element.value + '-theme dark"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme medium"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme light"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme lighter"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme complementary"></span>' +
-                '<span class="theme-label">' + theme.text + '</span>'
-            );
-
-            return $theme;
-        },
-        templateResult: function (theme) {
-            if (!theme.id) {
-                return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
-            }
-
-            var $theme = $(
-                '<span class="theme-preview ' + theme.element.value + '-theme dark"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme medium"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme light"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme lighter"></span>' +
-                '<span class="theme-preview ' + theme.element.value + '-theme complementary"></span>' +
-                '<span class="theme-label">' + theme.text + '</span>'
-            );
-
-            return $theme;
         },
         language: {
             noResults: function () {

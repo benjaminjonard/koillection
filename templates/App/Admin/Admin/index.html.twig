@@ -21,7 +21,7 @@
     <div class="content-block">
         {{ include('/App/Admin/tabs.html.twig', {current: 'overview'}) }}
         <div class="block-element">
-            <h5 class="header">{{ 'title.overview'|trans }}</h5>
+            <h2 class="header">{{ 'title.overview'|trans }}</h2>
             <div class="row statistics">
                 <div class="col s12 m4 xl2">
                     <div class="pie-wrapper">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="block-element">
-            <h5 class="header">{{ 'title.config'|trans }}</h5>
+            <h2 class="header">{{ 'title.config'|trans }}</h2>
             <div class="row statistics">
                 <div class="col s12 m4 xl2"><div class="counter">{{ version }}</div>{{ 'label.version'|trans }}</div>
                 <div class="col s12 m4 xl2"><div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="block-element">
-            <h5 class="header">{{ 'title.tools'|trans }}</h5>
+            <h2 class="header">{{ 'title.tools'|trans }}</h2>
             <div class="row btn-holder">
                 <a href="{{ path('app_admin_clean_up') }}" class="btn waves-effect waves-light">
                     <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}

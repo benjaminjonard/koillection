@@ -41,15 +41,15 @@
     </div>
 
     <div class="statistics-holder"
-         data-theme-main-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_MAIN')) }}"
-         data-theme-dark-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_DARK')) }}"
-         data-theme-light-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_LIGHT')) }}"
-         data-theme-lightest-hue="{{ getThemeColor(app.user.theme|default(constant('App\\Enum\\ThemeEnum::THEME_TEAL')), constant('App\\Enum\\ThemeEnum::HUE_LIGHTEST')) }}"
-         data-is-dark-mode="{{ app.user.theme == constant('App\\Enum\\ThemeEnum::THEME_DARK') ? 1 : 0 }}"
+         data-theme-main-hue="{{ app.user.isInDarkMode ? '#00ce99' : '#009688' }}"
+         data-theme-dark-hue="{{ app.user.isInDarkMode ? '#007C5C' : '#006355' }}"
+         data-theme-light-hue="{{ app.user.isInDarkMode ? '#4DDDB8' : '#1ab0a2' }}"
+         data-theme-lightest-hue="{{ app.user.isInDarkMode ? '#b3f0e0' : '#80cbc4' }}"
+         data-is-dark-mode="{{ app.user.isInDarkMode }}"
     >
         <div class="content-block calendars">
             <div class="block-element">
-                <h5 class="statistics-title">{{ 'title.activity'|trans }}</h5>
+                <h2 class="statistics-title">{{ 'title.activity'|trans }}</h2>
                 <div class="tabs-block">
                     <ul class="nav nav-pills">
                         {% for year, value in calendarData %}
@@ -70,33 +70,33 @@
         <div class="content-block bar-charts">
             <div class="block-element bar-chart-row">
                 <div class="left-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h5>
+                    <h2 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h2>
                     <div id="month-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthDaysChartData|json_encode() }}'></div>
                 </div>
                 <div class="right-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.hours'|trans }}</h5>
+                    <h2 class="statistics-title">{{ 'title.charts.hours'|trans }}</h2>
                     <div id="hours-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ hoursChartData|json_encode() }}'></div>
                 </div>
             </div>
             <div class="block-element bar-chart-row last">
                 <div class="left-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.months'|trans }}</h5>
+                    <h2 class="statistics-title">{{ 'title.charts.months'|trans }}</h2>
                     <div id="months-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
                 </div>
                 <div class="right-chart bar-chart">
-                    <h5 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h5>
+                    <h2 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h2>
                     <div id="week-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ weekDaysChartData|json_encode() }}'></div>
                 </div>
             </div>
             <div class="block-element bar-chart-row last">
-                <h5 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h5>
+                <h2 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h2>
                 <div id="items-evolution-chart" class="chart" style="width: 1530px; height:400px;" data-json='{{ itemsEvolutionData|json_encode() }}'></div>
             </div>
         </div>
 
         <div class="content-block bar-charts">
             <div class="block-element bar-chart-row">
-                <h5 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h5>
+                <h2 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h2>
                 <div id="radial-tree" style="width: 1200px; height: 1200px;" data-json='{{ treeJson }}'></div>
             </div>
         </div>

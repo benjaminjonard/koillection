@@ -6,10 +6,10 @@ namespace App\Service;
 
 use App\Entity\User;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Security;
 
 class DatabaseDumper
 {
@@ -19,31 +19,32 @@ class DatabaseDumper
     private EntityManagerInterface $em;
 
     /**
-     * @var TokenStorageInterface
-     */
-    private TokenStorageInterface $tokenStorage;
-
-    /**
      * @var ContextHandler
      */
     private ContextHandler $contextHandler;
 
     /**
+     * @var Security
+     */
+    private Security $security;
+
+    /**
      * DatabaseDumper constructor.
      * @param EntityManagerInterface $em
-     * @param TokenStorageInterface $tokenStorage
+     * @param Security $security
      * @param ContextHandler $contextHandler
      */
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, ContextHandler $contextHandler)
+    public function __construct(EntityManagerInterface $em, Security $security, ContextHandler $contextHandler)
     {
         $this->em = $em;
-        $this->tokenStorage = $tokenStorage;
+        $this->security = $security;
         $this->contextHandler = $contextHandler;
     }
 
     /**
      * @return array
-     * @throws DBALException
+     * @throws \Doctrine\DBAL\Driver\Exception
+     * @throws Exception
      */
     public function dump() : array
     {
@@ -72,7 +73,7 @@ class DatabaseDumper
         //Data
         $userIds = [];
         if ($this->contextHandler->getContext() !== 'admin') {
-            $userIds[] = "'" . $this->tokenStorage->getToken()->getUser()->getId() . "'";
+            $userIds[] = "'" . $this->security->getUser()->getId() . "'";
         } else {
             foreach ($this->em->getRepository(User::class)->findAll() as $user) {
                 $userIds[] = "'" . $user->getId() . "'";

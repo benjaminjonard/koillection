@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Security;
 
 final class OwnershipListener
 {
     /**
-     * @var TokenStorageInterface
+     * @var Security
      */
-    private TokenStorageInterface $tokenStorage;
+    private Security $security;
 
     /**
      * OwnershipListener constructor.
-     * @param TokenStorageInterface $tokenStorage
+     * @param Security $security
      */
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(Security $security)
     {
-        $this->tokenStorage = $tokenStorage;
+        $this->security = $security;
     }
 
     /**
@@ -30,7 +30,7 @@ final class OwnershipListener
     {
         $entity = $args->getEntity();
         if (true === property_exists($entity, 'owner') && $entity->getOwner() === null) {
-            $entity->setOwner($this->tokenStorage->getToken()->getUser());
+            $entity->setOwner($this->security->getUser());
         }
     }
 }

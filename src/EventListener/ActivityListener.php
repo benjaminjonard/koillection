@@ -6,28 +6,28 @@ namespace App\EventListener;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Security;
 
 class ActivityListener
 {
-    /**
-     * @var TokenStorageInterface
-     */
-    private TokenStorageInterface $tokenStorage;
-
     /**
      * @var EntityManagerInterface
      */
     private EntityManagerInterface $em;
 
     /**
+     * @var Security
+     */
+    private Security $security;
+
+    /**
      * ActionListener constructor.
-     * @param TokenStorageInterface $tokenStorage
+     * @param Security $security
      * @param EntityManagerInterface $em
      */
-    public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $em)
+    public function __construct(Security $security, EntityManagerInterface $em)
     {
-        $this->tokenStorage= $tokenStorage;
+        $this->security= $security;
         $this->em= $em;
     }
 
@@ -37,15 +37,9 @@ class ActivityListener
      */
     public function onKernelRequest()
     {
-        $token = $this->tokenStorage->getToken();
-
-        if (!$token) {
-            return null;
-        }
-
-        $user = $token->getUser();
-
+        $user = $this->security->getUser();
         $now = (new \DateTime())->setTime(0, 0, 0, 0);
+
         if (!$user instanceof User || $user->getLastDateOfActivity() == $now) {
             return null;
         }

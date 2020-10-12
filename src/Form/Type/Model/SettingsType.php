@@ -8,16 +8,28 @@ use App\Entity\User;
 use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
-use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 
 class SettingsType extends AbstractType
 {
+    /**
+     * @var Security
+     */
+    private Security $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -36,10 +48,6 @@ class SettingsType extends AbstractType
                 'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
                 'required' => true
             ])
-            ->add('theme', ChoiceType::class, [
-                'choices' => array_flip(ThemeEnum::getThemeLabels()),
-                'required' => true
-            ])
             ->add('locale', ChoiceType::class, [
                 'choices' => array_flip(LocaleEnum::getLocaleLabels()),
                 'required' => true
@@ -47,6 +55,43 @@ class SettingsType extends AbstractType
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true
+            ])
+            ->add('darkModeEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('automaticDarkModeStartAt', TimeType::class, [
+                'required' => false,
+                'widget' => 'single_text',
+                'html5' => false
+            ])
+            ->add('automaticDarkModeEndAt', TimeType::class, [
+                'required' => false,
+                'widget' => 'single_text',
+                'html5' => false
+            ])
+            ->add('wishlistsFeatureEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('tagsFeatureEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('signsFeatureEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('albumsFeatureEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('loansFeatureEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('templatesFeatureEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('historyFeatureEnabled', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('statisticsFeatureEnabled', CheckboxType::class, [
+                'required' => false
             ])
         ;
     }

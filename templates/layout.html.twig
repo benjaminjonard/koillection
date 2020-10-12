@@ -19,18 +19,12 @@
                         {% include 'App/_partials/_nav/_' ~ context ~ '.html.twig' %}
                     </ul>
                 </div>
-
-                <div class="nav-wrapper">
-                    <ul class="nav nav-sidebar nav-bottom">
-                        <li class="collapse-nav"><a href=""><i class="fa fa-angle-double-right fa-fw"></i><span>{{ 'menu.collapse'|trans }}</span></a></li>
-                        <li class="close-nav"><a href=""><i class="fa fa-times fa-fw"></i><span>{{ 'menu.close'|trans }}</span></a></li>
-                    </ul>
-                </div>
             </div>
         </div>
 
         <ul class="profile-menu collection hidden">
             <li class="collection-item"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
+            <li class="collection-item"><a href="{{ path('app_settings_index') }}"><i class="fa fa-gears fa-fw"></i><span>{{ 'menu.settings'|trans }}</span></a></li>
             <li class="collection-item"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="collection-item"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>

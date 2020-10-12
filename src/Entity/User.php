@@ -9,7 +9,6 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
-use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use DateTimeInterface;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -93,12 +92,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
      * @ORM\Column(type="array")
      */
     private array $roles;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $theme;
 
     /**
      * @var string
@@ -192,6 +185,24 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
 
     /**
      * @var bool
+     * @ORM\Column(type="boolean", options={"default": 0})
+     */
+    private bool $darkModeEnabled;
+
+    /**
+     * @var ?\DateTime
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private ?\DateTime $automaticDarkModeStartAt;
+
+    /**
+     * @var ?\DateTime
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private ?\DateTime $automaticDarkModeEndAt;
+
+    /**
+     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $wishlistsFeatureEnabled;
@@ -256,11 +267,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         $this->roles = ['ROLE_USER'];
         $this->diskSpaceAllowed = 536870912;
         $this->enabled = false;
-        $this->theme = ThemeEnum::THEME_TEAL;
         $this->currency = 'EUR';
         $this->locale = LocaleEnum::LOCALE_EN_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
+        $this->darkModeEnabled = false;
         $this->wishlistsFeatureEnabled = true;
         $this->tagsFeatureEnabled = true;
         $this->signsFeatureEnabled = true;
@@ -289,7 +300,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
             ) = unserialize($serialized);
     }
 
-
     /**
      * @return string
      */
@@ -301,6 +311,39 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function isAdmin()
     {
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
+    }
+
+    public function isInDarkMode() : bool
+    {
+        if ($this->isDarkModeEnabled()) {
+            return true;
+        }
+
+        if ($this->getAutomaticDarkModeStartAt() && $this->getAutomaticDarkModeEndAt()) {
+            // Apply timezone to get current time for the user
+            $timezone = new \DateTimeZone('Europe/Paris');
+            $currentTime = strtotime((new \DateTime())->setTimezone($timezone)->format('H:i'));
+            $startTime = strtotime($this->getAutomaticDarkModeStartAt()->format('H:i'));
+            $endTime = strtotime($this->getAutomaticDarkModeEndAt()->format('H:i'));
+
+            if (
+                (
+                    $startTime < $endTime &&
+                    $currentTime >= $startTime &&
+                    $currentTime <= $endTime
+                ) ||
+                (
+                    $startTime > $endTime && (
+                        $currentTime >= $startTime ||
+                        $currentTime <= $endTime
+                    )
+                )
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function getDateFormatForJs() : string
@@ -431,18 +474,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    public function getTheme(): ?string
-    {
-        return $this->theme;
-    }
-
-    public function setTheme(string $theme): self
-    {
-        $this->theme = $theme;
 
         return $this;
     }
@@ -598,6 +629,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setWishlistsFeatureEnabled(bool $wishlistsFeatureEnabled): User
     {
         $this->wishlistsFeatureEnabled = $wishlistsFeatureEnabled;
+
         return $this;
     }
 
@@ -616,6 +648,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setTagsFeatureEnabled(bool $tagsFeatureEnabled): User
     {
         $this->tagsFeatureEnabled = $tagsFeatureEnabled;
+
         return $this;
     }
 
@@ -634,6 +667,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setSignsFeatureEnabled(bool $signsFeatureEnabled): User
     {
         $this->signsFeatureEnabled = $signsFeatureEnabled;
+
         return $this;
     }
 
@@ -652,6 +686,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setAlbumsFeatureEnabled(bool $albumsFeatureEnabled): User
     {
         $this->albumsFeatureEnabled = $albumsFeatureEnabled;
+
         return $this;
     }
 
@@ -670,6 +705,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setLoansFeatureEnabled(bool $loansFeatureEnabled): User
     {
         $this->loansFeatureEnabled = $loansFeatureEnabled;
+
         return $this;
     }
 
@@ -688,6 +724,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setTemplatesFeatureEnabled(bool $templatesFeatureEnabled): User
     {
         $this->templatesFeatureEnabled = $templatesFeatureEnabled;
+
         return $this;
     }
 
@@ -706,6 +743,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setHistoryFeatureEnabled(bool $historyFeatureEnabled): User
     {
         $this->historyFeatureEnabled = $historyFeatureEnabled;
+
         return $this;
     }
 
@@ -724,6 +762,64 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     public function setStatisticsFeatureEnabled(bool $statisticsFeatureEnabled): User
     {
         $this->statisticsFeatureEnabled = $statisticsFeatureEnabled;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDarkModeEnabled(): bool
+    {
+        return $this->darkModeEnabled;
+    }
+
+    /**
+     * @param bool $darkModeEnabled
+     * @return User
+     */
+    public function setDarkModeEnabled(bool $darkModeEnabled): User
+    {
+        $this->darkModeEnabled = $darkModeEnabled;
+
+        return $this;
+    }
+
+    /**
+     * @return ?\DateTime
+     */
+    public function getAutomaticDarkModeStartAt(): ?\DateTime
+    {
+        return $this->automaticDarkModeStartAt;
+    }
+
+    /**
+     * @param ?\DateTime $automaticDarkModeStartAt
+     * @return User
+     */
+    public function setAutomaticDarkModeStartAt(?\DateTime $automaticDarkModeStartAt): User
+    {
+        $this->automaticDarkModeStartAt = $automaticDarkModeStartAt;
+
+        return $this;
+    }
+
+    /**
+     * @return ?\DateTime
+     */
+    public function getAutomaticDarkModeEndAt(): ?\DateTime
+    {
+        return $this->automaticDarkModeEndAt;
+    }
+
+    /**
+     * @param ?\DateTime $automaticDarkModeEndAt
+     * @return User
+     */
+    public function setAutomaticDarkModeEndAt(?\DateTime $automaticDarkModeEndAt): User
+    {
+        $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;
+
         return $this;
     }
 }

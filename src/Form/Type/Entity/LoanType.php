@@ -10,22 +10,22 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Security;
 
 class LoanType extends AbstractType
 {
     /**
-     * @var TokenStorageInterface
+     * @var Security
      */
-    private TokenStorageInterface $tokenStorage;
+    private Security $security;
 
     /**
      * LoanType constructor.
-     * @param TokenStorageInterface $tokenStorage
+     * @param Security $security
      */
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(Security $security)
     {
-        $this->tokenStorage = $tokenStorage;
+        $this->security = $security;
     }
 
     /**
@@ -39,7 +39,7 @@ class LoanType extends AbstractType
                 'required' => true,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->tokenStorage->getToken()->getUser()->getDateFormatForForm(),
+                'format' => $this->security->getUser()->getDateFormatForForm(),
             ])
             ->add('lentTo', TextType::class, [
                 'attr' => ['length' => 255],

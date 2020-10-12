@@ -12,7 +12,7 @@
                 {{ include('App/Security/_locales_dropdown.html.twig') }}
 
                 <form action="{{ path("app_security_login") }}" method="post" class="login">
-                    <h5 class="header">{{ 'title.sign_in'|trans }}</h5>
+                    <h2 class="header">{{ 'title.sign_in'|trans }}</h2>
                     {% if error %}
                         <div class="error-helper">
                             <i class="fa fa-warning fa-fw"></i>

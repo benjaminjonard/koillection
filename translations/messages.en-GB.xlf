@@ -1091,24 +1091,6 @@
         <target>December</target>
       </segment>
     </unit>
-    <unit id="Y6e0mmF" name="global.themes.sunset">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.themes.sunset</source>
-        <target>Sunset</target>
-      </segment>
-    </unit>
-    <unit id="mtnAEj0" name="global.themes.teal">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.themes.teal</source>
-        <target>Teal</target>
-      </segment>
-    </unit>
     <unit id="bKzhzsy" name="global.time.ago">
       <notes>
         <note category="file-source" priority="1">src/Twig/AppExtension.php:122</note>
@@ -3127,15 +3109,6 @@
         <target>Batch tagging %collection%</target>
       </segment>
     </unit>
-    <unit id="1_c2AoA" name="title.theme">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:49</note>
-      </notes>
-      <segment>
-        <source>title.theme</source>
-        <target>Theme</target>
-      </segment>
-    </unit>
     <unit id="mvzqhh8" name="title.user_details">
       <notes>
         <note category="file-source" priority="1">templates/App/Admin/user.html.twig:24</note>
@@ -3724,18 +3697,6 @@
         <target>Items evolution</target>
       </segment>
     </unit>
-    <unit id="Jjhr6GA" name="menu.collapse">
-      <segment>
-        <source>menu.collapse</source>
-        <target>Collapse</target>
-      </segment>
-    </unit>
-    <unit id="Y3yqQP6" name="menu.close">
-      <segment>
-        <source>menu.close</source>
-        <target>Close</target>
-      </segment>
-    </unit>
     <unit id="rd2X72s" name="message.delete.photo">
       <segment>
         <source>message.delete.photo</source>
@@ -4186,12 +4147,6 @@
         <target>Edit tag %tag%</target>
       </segment>
     </unit>
-    <unit id="_H7jFIZ" name="global.themes.dark">
-      <segment>
-        <source>global.themes.dark</source>
-        <target>Dark</target>
-      </segment>
-    </unit>
     <unit id="k7MJQ82" name="label.country">
       <segment>
         <source>label.country</source>
@@ -4268,12 +4223,6 @@
       <segment>
         <source>btn.show_less</source>
         <target>Show less</target>
-      </segment>
-    </unit>
-    <unit id="oCELtKM" name="label.theme">
-      <segment>
-        <source>label.theme</source>
-        <target>Theme</target>
       </segment>
     </unit>
     <unit id="mEDsKHk" name="label.locale">
@@ -4516,52 +4465,94 @@
         <target>Edit active features</target>
       </segment>
     </unit>
-    <unit id="UXJKVYr" name="label.wishlists_feature_enabled">
+    <unit id="Qo7wr5F" name="label.wishlists_feature_enabled">
       <segment>
         <source>label.wishlists_feature_enabled</source>
         <target>Wishlists</target>
       </segment>
     </unit>
-    <unit id="rs.oNEv" name="label.tags_feature_enabled">
+    <unit id="d7dTHZ." name="label.tags_feature_enabled">
       <segment>
         <source>label.tags_feature_enabled</source>
         <target>Tags</target>
       </segment>
     </unit>
-    <unit id="TouI7tc" name="label.signs_feature_enabled">
+    <unit id="5g5Fm08" name="label.signs_feature_enabled">
       <segment>
         <source>label.signs_feature_enabled</source>
         <target>Signs</target>
       </segment>
     </unit>
-    <unit id="RuIKIR2" name="label.albums_feature_enabled">
+    <unit id="VDd2HS6" name="label.albums_feature_enabled">
       <segment>
         <source>label.albums_feature_enabled</source>
         <target>Albums</target>
       </segment>
     </unit>
-    <unit id="WQ8Q4eq" name="label.loans_feature_enabled">
+    <unit id="hE9F5PK" name="label.loans_feature_enabled">
       <segment>
         <source>label.loans_feature_enabled</source>
         <target>Loans</target>
       </segment>
     </unit>
-    <unit id="R7np98X" name="label.templates_feature_enabled">
+    <unit id="_HAg.fc" name="label.templates_feature_enabled">
       <segment>
         <source>label.templates_feature_enabled</source>
         <target>Templates</target>
       </segment>
     </unit>
-    <unit id="0UbGg7C" name="label.history_feature_enabled">
+    <unit id="FfhJCxR" name="label.history_feature_enabled">
       <segment>
         <source>label.history_feature_enabled</source>
         <target>History</target>
       </segment>
     </unit>
-    <unit id="nFjLDCO" name="label.statistics_feature_enabled">
+    <unit id="_G1H7r2" name="label.statistics_feature_enabled">
       <segment>
         <source>label.statistics_feature_enabled</source>
         <target>Statistics</target>
+      </segment>
+    </unit>
+    <unit id="I0M_1B7" name="label.dark_mode_enabled">
+      <segment>
+        <source>label.dark_mode_enabled</source>
+        <target>Permanent dark mode</target>
+      </segment>
+    </unit>
+    <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
+      <segment>
+        <source>label.automatic_dark_mode_start_at</source>
+        <target>Automatic dark mode start time</target>
+      </segment>
+    </unit>
+    <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
+      <segment>
+        <source>label.automatic_dark_mode_end_at</source>
+        <target>Automatic dark mode end time</target>
+      </segment>
+    </unit>
+    <unit id="4UTsL.X" name="menu.settings">
+      <segment>
+        <source>menu.settings</source>
+        <target>Settings</target>
+      </segment>
+    </unit>
+    <unit id="9dYyUYD" name="title.update_visibility">
+      <segment>
+        <source>title.update_visibility</source>
+        <target>Edit visibility</target>
+      </segment>
+    </unit>
+    <unit id="JA.9t2S" name="title.update_dark_mode">
+      <segment>
+        <source>title.update_dark_mode</source>
+        <target>Edit dark mode</target>
+      </segment>
+    </unit>
+    <unit id="DFPQyp5" name="message.dark_mode">
+      <segment>
+        <source>message.dark_mode</source>
+        <target>message.dark_mode</target>
       </segment>
     </unit>
   </file>
