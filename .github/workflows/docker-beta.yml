@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   push_to_registry:
-    name: Push to GitHub Packages and Docker Hub
+    name: Push beta Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -15,16 +15,6 @@ jobs:
           ref: master
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: koillection/koillection
-          tags: |
-            beta
-          build_args: |
-            GITHUB_RELEASE=master
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1.1.1
         with:
