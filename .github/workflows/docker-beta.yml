@@ -22,6 +22,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: koillection/koillection/fpm
-          tags: latest
+          tags: |
+            beta
           build_args: |
             GITHUB_RELEASE=master
