@@ -1,11 +1,11 @@
-name: Build and push beta Docker images
+name: Build and push beta Docker image
 on:
   push:
     branches:
       - master
 jobs:
   push_to_registry:
-    name: Build and push beta images
+    name: Push beta Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -15,7 +15,7 @@ jobs:
           ref: master
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Docker Hub
+      - name: Push to GitHub Packages
         uses: docker/build-push-action@v1.1.1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
