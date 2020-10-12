@@ -11,10 +11,10 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v1.1.1
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: koillecion/koillection/fpm
-          tags: koillecion/koillection/fpm:latest
+          tags: latest
