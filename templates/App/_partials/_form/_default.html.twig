@@ -25,9 +25,9 @@
                 <div>
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
-                            <img class="preview-image" src="{{ preload(asset(form.parent.vars.value.image)) }}" />
+                            <img class="preview-image" src="{{ preload(asset(form.parent.vars.value.image), { as: 'image' }) }}" />
                         {% else %}
-                            <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" />
+                            <img class="preview-image" src="{{ preload(asset('build/images/default.png'), { as: 'image' }) }}" />
                         {% endif %}
                         <input type="file" {{ block('widget_attributes') }} class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"/>
                     </label>

@@ -29,7 +29,7 @@
         <meta charset="UTF-8" />
         <title>Koillection</title>
 
-        <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/export.css')) }}" nonce="{{ csp_nonce() }}">
+        <link type="text/css" rel="stylesheet" href="{{ preload(asset('build/css/export.css'), { as: 'style' }) }}" nonce="{{ csp_nonce() }}">
     </head>
     <body>
         <div class="print" title="{{ 'tooltip.print'|trans }}">

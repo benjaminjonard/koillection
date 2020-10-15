@@ -3,7 +3,7 @@
 {% block body %}
     <div class="content-wrapper">
         <div class="content-block">
-            <img src="{{ preload(asset('../build/images/error.png')) }}">
+            <img src="{{ preload(asset('build/images/error.png'), { as: 'image' }) }}">
             <h3>{% block error %}{% endblock %}</h3>
             <a href="{{ path('app_homepage') }}">{{ 'message.return_to_homepage'|trans }}</a>
         </div>

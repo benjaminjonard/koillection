@@ -16,7 +16,7 @@
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
-            'image': tag.image ? preload(asset(tag.imageSmallThumbnail)) : null
+            'image': tag.image ? preload(asset(tag.imageSmallThumbnail), { as: 'image' }) : null
         }) }}
     {% else %}
         {{ parent() }}
@@ -70,8 +70,8 @@
                 <h2 class="header">{{ 'title.infos'|trans }}</h2>
                 <div class="tag-image-container">
                     {% if tag.image is not null %}
-                        <a href="{{ preload(asset(tag.image)) }}" data-lightbox="image-{{ tag.id }}">
-                            <img class="tag-image" src="{{ preload(asset(tag.imageSmallThumbnail)) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
+                        <a href="{{ preload(asset(tag.image), { as: 'image' }) }}" data-lightbox="image-{{ tag.id }}">
+                            <img class="tag-image" src="{{ preload(asset(tag.imageSmallThumbnail), { as: 'image' }) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
                         </a>
                     {% endif %}
                 </div>
