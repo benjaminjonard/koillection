@@ -2,12 +2,12 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/js/app.e1af149c.js"
+        "/build/js/app.77cb3314.js"
       ]
     },
     "js/statistics": {
       "js": [
-        "/build/js/statistics.8fcfdd02.js"
+        "/build/js/statistics.19938615.js"
       ]
     },
     "css/app": {
