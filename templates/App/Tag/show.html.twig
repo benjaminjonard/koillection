@@ -115,7 +115,7 @@
                 <div id="collection-items" class="grid-container-items">
                     {% for item in tag.items|naturalSorting %}
                         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                            <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
+                            <a href="{{ path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) }}">
                                 {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
                             </a>
                         </div>
