@@ -32,9 +32,10 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
      * @param array $root
      * @param object $entity
      * @param string|null $action
+     * @param null $parent
      * @return array
      */
-    public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null)
+    public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, $parent = null)
     {
         $breadcrumb = [];
 
@@ -53,7 +54,7 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
         }
 
         if ($entity) {
-            $breadcrumb = \array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity));
+            $breadcrumb = \array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $parent));
         }
 
         if (null !== $action) {

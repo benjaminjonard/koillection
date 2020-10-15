@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Item;
+use App\Entity\Tag;
 use App\Entity\Wishlist;
 use App\Model\BreadcrumbElement;
 
@@ -27,9 +28,10 @@ class BreadcrumbBuilder
 
     /**
      * @param $entity
+     * @param null $parent
      * @return array
      */
-    public function build($entity) :array
+    public function build($entity, $parent = null) :array
     {
         if (!$entity instanceof BreadcrumbableInterface) {
             return [];
@@ -55,8 +57,12 @@ class BreadcrumbBuilder
             $breadcrumb = \array_merge($this->build($entity->getParent()), $breadcrumb);
         }
 
-        if ($entity instanceof Item && $entity->getCollection()) {
-            $breadcrumb = \array_merge($this->build($entity->getCollection()), $breadcrumb);
+        if ($entity instanceof Item) {
+            if ($parent instanceof Tag) {
+                $breadcrumb = \array_merge($this->build($parent), $breadcrumb);
+            } elseif ($entity->getCollection()) {
+                $breadcrumb = \array_merge($this->build($entity->getCollection()), $breadcrumb);
+            }
         }
 
         return $breadcrumb;

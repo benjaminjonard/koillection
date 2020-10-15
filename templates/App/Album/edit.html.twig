@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_album_index', 'trans': 'menu.albums'}], null, 'breadcrumb.edit_album') %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_album_index', 'trans': 'menu.albums'}], album, 'breadcrumb.edit_album') %}
 
 {% block title %}
     {{ renderTitle(breadcrumb)  }}

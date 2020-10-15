@@ -1,0 +1,122 @@
+<div class="collection-header">
+    <div class="title-block">
+        <h1>
+            {{ item.name }}
+            {% if item.quantity > 1 %}
+                <span class="quantity">(x{{ item.quantity }})</span>
+            {% endif %}
+        </h1>
+    </div>
+
+    <div>
+        {% if context == 'default' %}
+            <div class="btn-holder">
+                <a href="{{ path('app_item_edit', {'id': item.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                    <i class="fa fa-pencil fa-fw"></i>
+                </a>
+                <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                    <i class="fa fa-trash fa-fw"></i>
+                </a>
+                {% if isFeatureEnabled('loans') %}
+                    <a href="{{ path('app_item_loan', {'id': item.id}) }}" class="button" title="{{ 'tooltip.loan_item'|trans }}">
+                        <i class="fa fa-exchange fa-fw"></i>
+                    </a>
+                {% endif %}
+                {% if isFeatureEnabled('history') %}
+                    <a href="{{ path('app_item_history', {'id': item.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                        <i class="fa fa-history fa-fw"></i>
+                    </a>
+                {% endif %}
+                <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="content-block">
+    <div class="item-wrapper">
+        <div class="slider-container item-image-container {{ item.dataTexts|length > 0 ? 'margin-right-30' }}">
+            <div class="slider-frame">
+                {% if item.image %}
+                    <a href="{{ preload(asset(item.image)) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
+                        <img src="{{ preload(asset(item.image)) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}">
+                    </a>
+                {% else %}
+                    <a href="{{ preload(asset('../build/images/default.png')) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
+                        <img class="preview-image" src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}" />
+                    </a>
+                {% endif %}
+
+                <span class="image-label">{{ 'label.main_image'|trans }}</span>
+            </div>
+
+            {% if item.dataImages|length > 0 %}
+                <ul class="slider-elements">
+                    <li>
+                        {% if item.image %}
+                            <a class="slider-element active" href="{{ preload(asset(item.image)) }}" data-title="{{ 'label.main_image'|trans }}">
+                                <img src="{{ preload(asset(item.imageSmallThumbnail)) }}" data-image="{{ preload(asset(item.image)) }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
+                            </a>
+                        {% else %}
+                            <a class="slider-element active" href="{{ preload(asset('../build/images/default.png')) }}" data-title="{{ 'label.main_image'|trans }}">
+                                <img src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
+                            </a>
+                        {% endif %}
+                    </li>
+
+                    {% for datum in item.dataImages %}
+                        <li>
+                            {% if datum.image %}
+                                <a class="slider-element" href="{{ preload(asset(datum.image)) }}" data-title="{{ datum.label }}">
+                                    <img src="{{ preload(asset(datum.imageSmallThumbnail)) }}" data-image="{{ preload(asset(datum.image)) }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
+                                </a>
+                            {% else %}
+                                <a class="slider-element" href="{{ preload(asset('../build/images/default.png')) }}" data-title="{{ datum.label }}">
+                                    <img src="{{ preload(asset('../build/images/default.png')) }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="data">
+            {% set underlinedTags = getUnderlinedTags(item.dataTexts) %}
+            {% for datum in item.dataTexts %}
+                <div class="datum-row">
+                    <span class="label">{{ datum.label }} :</span>
+                    {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
+                        {% for value in datum.value|split(',') %}
+                            {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
+                        {% endfor %}
+                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
+                        <span class="flag flag-{{ datum.value|lower }}"></span>
+                        <span class="country-name">({{ getCountryName(datum.value) }})</span>
+                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
+                        <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% if isFeatureEnabled('tags') and item.tags is not empty %}
+    <div class="tags-block">
+        <ul class="nav nav-tags">
+            {% for tag in item.tags|naturalSorting %}
+                <li class="tag chip">
+                    <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
+                        {{ tag.label }}
+                    </a>
+                    {% if tag.category is not empty %}
+                        <span class="tag-category-color" style="background-color: {{ tag.category.color }}" title="{{ tag.category.label }}"></span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

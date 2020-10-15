@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Item;
+use App\Entity\Tag;
 use App\Model\Search\Search;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -40,18 +41,29 @@ class ItemRepository extends EntityRepository
      * @param Item $item
      * @return array
      */
-    public function findNextAndPrevious(Item $item) : array
+    public function findNextAndPrevious(Item $item, $parent) : array
     {
-        $results = $this->_em
+        $qb = $this->_em
             ->createQueryBuilder()
             ->select('DISTINCT partial i.{id, name}')
             ->from(Item::class, 'i')
-            ->leftJoin('i.collection', 'c')
-            ->where('c = :collection')
-            ->setParameter('collection', $item->getCollection())
-            ->getQuery()
-            ->getArrayResult()
         ;
+
+        if ($parent instanceof Collection) {
+            $qb
+                ->leftJoin('i.collection', 'c')
+                ->where('c = :collection')
+                ->setParameter('collection', $parent)
+            ;
+        } elseif ($parent instanceof Tag) {
+            $qb
+                ->leftJoin('i.tags', 't')
+                ->where('t = :tag')
+                ->setParameter('tag', $parent)
+            ;
+        }
+
+        $results = $qb->getQuery()->getArrayResult();
 
         usort($results, function (array $a, array $b) {
             return strnatcmp($a['name'], $b['name']);

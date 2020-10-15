@@ -1,6 +1,19 @@
 import * as utils from './utils'
 import * as select from './select'
 
+//Init swiping
+let next = $('#next');
+let previous = $('#previous');
+if (next.length > 0 || previous.length > 0) {
+    utils.swipeDetection($('.content-wrapper'), function(swipedir) {
+        if (swipedir === 'left' && next.length > 0) {
+            window.location = next.attr('href');
+        } else if (swipedir === 'right' && previous.length > 0) {
+            window.location = previous.attr('href');
+        }
+    })
+}
+
 //Init sortable
 if ($('#data').length > 0) {
     utils.reloadSortableList($('#data'), '.datum');

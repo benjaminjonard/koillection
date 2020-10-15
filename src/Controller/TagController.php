@@ -207,4 +207,39 @@ class TagController extends AbstractController
             ])
         ]);
     }
+
+    /**
+     * @Route({
+     *     "en": "tags/{tagId}/items/{itemId}",
+     *     "fr": "tags/{tagId}/objets/{itemId}"
+     * }, name="app_tag_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/user/{username}/tags/{tagId}/items/{itemId}",
+     *     "fr": "/utilisateur/{username}tags/{tagId}/objets/{itemId}"
+     * }, name="app_user_tag_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Route({
+     *     "en": "/preview/tags/{tagId}/items/{itemId}",
+     *     "fr": "/apercu/tags/{tagId}/objets/{itemId}"
+     * }, name="app_preview_tag_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
+     *
+     * @Entity("item", expr="repository.findById(itemId)")
+     * @Entity("tag", expr="repository.find(tagId)")
+     *
+     * @param Item $item
+     * @param Tag $tag
+     * @return Response
+     */
+    public function item(Item $item, Tag $tag) : Response
+    {
+        $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $tag);
+
+        return $this->render('App/Tag/item.html.twig', [
+            'item' => $item,
+            'tag' => $tag,
+            'previousItem' => $nextAndPrevious['previous'],
+            'nextItem' => $nextAndPrevious['next']
+        ]);
+    }
 }

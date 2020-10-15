@@ -105,7 +105,7 @@ class ItemController extends AbstractController
      */
     public function show(Item $item) : Response
     {
-        $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item);
+        $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $item->getCollection());
 
         return $this->render('App/Item/show.html.twig', [
             'item' => $item,

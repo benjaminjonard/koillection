@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], item) %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}], item, null, tag) %}
 
 {% block title %}
     {{ renderTitle(breadcrumb)  }}
@@ -27,13 +27,13 @@
 
     <div class="navigation-block row">
         {% if previousItem is not null %}
-            <a id="previous" href="{{ path('app_item_show'|applyContext, {id: previousItem.id}) }}">
+            <a id="previous" href="{{ path('app_tag_item_show'|applyContext, {itemId: previousItem.id, tagId: tag.id}) }}">
                 <span class="unbreakable"><i class="fa fa-angle-left fa-fw"></i>{{ previousItem.name|u.truncate(30) }}</span>
             </a>
         {% endif %}
         {% if previousItem is not null and previousItem is not null %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
         {% if nextItem is not null %}
-            <a id="next" href="{{ path('app_item_show'|applyContext, {id: nextItem.id}) }}">
+            <a id="next" href="{{ path('app_tag_item_show'|applyContext, {itemId: nextItem.id, tagId: tag.id}) }}">
                 <span class="unbreakable">{{ nextItem.name|u.truncate(30) }}<i class="fa fa-angle-right fa-fw"></i></span>
             </a>
         {% endif %}
@@ -46,7 +46,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'entity': item, 'route': url('app_user_item_show', {id: item.id, username: app.user.username})}) }}
+        {{ include('App/_partials/_modal/_share.html.twig', {'entity': item, 'route': url('app_user_tag_item_show', {itemId: item.id, tagId: tag.id, username: app.user.username})}) }}
         {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': url('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
     {% endif %}
 {% endblock %}
