@@ -105,7 +105,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ preload(asset('build/js/statistics.js')) }}" nonce="{{ csp_nonce() }}"></script>
+    <script src="{{ preload(asset('build/js/statistics.js'), { as: 'script' }) }}" nonce="{{ csp_nonce() }}"></script>
 {% endblock %}
 
 {% block modals %}

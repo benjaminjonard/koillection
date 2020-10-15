@@ -7,7 +7,7 @@
             <div class="nav-wrapper">
                 <div class="header-logo">
                     <a href="{{ path('app_homepage') }}">
-                        <img class='logo' src="{{ preload(asset('../build/images/logo.svg')) }}" aria-label="Logo" height="45" width="45">
+                        <img class='logo' src="{{ preload(asset('build/images/logo.svg'), { as: 'image' }) }}" aria-label="Logo" height="45" width="45">
                         <span>Koillection</span>
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                 {% if app.user %}
                     <div class="header-profile">
                         {% if app.user.avatar != null %}
-                            <img class="user-avatar" src="{{ preload(asset(app.user.avatar)) }}">
+                            <img class="user-avatar" src="{{ preload(asset(app.user.avatar), { as: 'image' }) }}">
                         {% else %}
                             <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
                         {% endif %}
