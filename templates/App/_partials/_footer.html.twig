@@ -1,3 +1,5 @@
+<div class="spacer"></div>
+
 <footer>
     {{ 'global.created_at'|trans({'%date%': object.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC'))}) }}
     {% if object.updatedAt %}

@@ -431,7 +431,7 @@ html.loading:before {
 :-ms-input-placeholder {color: #9e9e9e;}
 ::-ms-input-placeholder {color: #9e9e9e;}
 
-.spacer {margin-top: auto; margin-bottom: auto;}
+.spacer {padding-top: 40px;}
 .scrollable {overflow-x: auto; justify-content: space-between; display: flex; flex-direction: column; height: 100%;}
 
 .nav-wrapper #search_term {
