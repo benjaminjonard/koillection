@@ -22,6 +22,10 @@ security:
                 default_target_path: app_homepage
                 always_use_default_target_path: false
                 use_referer: true
+            remember_me:
+                secret: '%env(APP_SECRET)%'
+                lifetime: 31536000 # 1 year
+                secure: true
             logout:
                 path: app_security_logout
             anonymous: true

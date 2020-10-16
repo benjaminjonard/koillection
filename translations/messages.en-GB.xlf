@@ -4549,10 +4549,10 @@
         <target>Edit dark mode</target>
       </segment>
     </unit>
-    <unit id="DFPQyp5" name="message.dark_mode">
+    <unit id="DFPQyp5" name="label.remember_me">
       <segment>
-        <source>message.dark_mode</source>
-        <target>message.dark_mode</target>
+        <source>label.remember_me</source>
+        <target>Keep me logged in</target>
       </segment>
     </unit>
   </file>

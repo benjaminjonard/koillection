@@ -55,7 +55,7 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
      */
     public function supports(Request $request)
     {
-        if (!$request->request->get('login') || !$request->request->get('password')) {
+        if (!$request->request->get('_login') || !$request->request->get('_password')) {
             return false;
         }
 
@@ -68,8 +68,8 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
     public function getCredentials(Request $request)
     {
         return [
-            'login' => $request->request->get('login'),
-            'password' => $request->request->get('password'),
+            'login' => $request->request->get('_login'),
+            'password' => $request->request->get('_password'),
         ];
     }
 
@@ -128,7 +128,7 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
      */
     public function supportsRememberMe()
     {
-        return false;
+        return true;
     }
 
     /**

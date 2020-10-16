@@ -68,11 +68,11 @@ class AppRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param int $bytes
+     * @param float $bytes
      * @param int $precision
      * @return string
      */
-    public function bytes(int $bytes, int $precision = 2) : string
+    public function bytes(float $bytes, int $precision = 2) : string
     {
         $base = $bytes > 0 ? log($bytes, 1024) : $bytes;
 

@@ -431,7 +431,7 @@ html.loading:before {
 :-ms-input-placeholder {color: #9e9e9e;}
 ::-ms-input-placeholder {color: #9e9e9e;}
 
-.spacer {margin-top: auto; margin-bottom: auto;}
+.spacer {padding-top: 40px;}
 .scrollable {overflow-x: auto; justify-content: space-between; display: flex; flex-direction: column; height: 100%;}
 
 .nav-wrapper #search_term {
@@ -1282,3 +1282,6 @@ i.btn input {color: #fff; cursor: pointer;}
 .input-field.input-checkbox {margin-bottom: 40px;}
 .datum-row span.country-name {color: #7f8c8d; font-size: 12px; font-weight: unset;}
 .datum-row .flag {margin: 0 5px; top: 2px; position: relative;}
+
+.box .input-field.input-checkbox {margin-bottom: 75px;}
+.box h2 {padding: 10px 0 !important;}
