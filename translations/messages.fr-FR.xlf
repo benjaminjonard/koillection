@@ -4540,5 +4540,11 @@
         <target>Paramètres</target>
       </segment>
     </unit>
+    <unit id="DFPQyp5" name="label.remember_me">
+      <segment>
+        <source>label.remember_me</source>
+        <target>Rester connecté</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
