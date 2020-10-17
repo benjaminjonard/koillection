@@ -1,12 +1,31 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.1.6] / 2020-10-17
+### Features
+- Functionalities can now be activated/deactivated in settings page (Benjamin Jonard)
+- Dark mode can be automatically activated between two hours (Benjamin Jonard)
+- On mobile devices, user can swipe left or right to navigate between items (Benjamin Jonard)
+- Add a "remember me" option on login page (Benjamin Jonard)
+- Keep tag context when navigating tag's items instead of switching to the item's collection (Benjamin Jonard)
+
+### Miscellaneous
+- Rework profile and settings pages (Benjamin Jonard)
+- Move search bar at the top of the left menu (Benjamin Jonard)
+- Remove themes for now (Benjamin Jonard)
+- Improve dark mode (Benjamin Jonard)
+- Update JS and PHP dependencies (Benjamin Jonard)
+
+### Fixes
+- Fix album breadcrumb (Benjamin Jonard)
+- Fix preload for assets (Benjamin Jonard)
+
 ## [v1.1.5] / 2020-09-21
 ### Fixes
 - Update migration configuration to comply with the new syntax introduced in doctrine/doctrine-migrations-bundle v3.0 (Benjamin Jonard)
 
 ### Miscellaneous
-- Bump JS and PHP dependencies (Benjamin Jonard)
+- Update JS and PHP dependencies (Benjamin Jonard)
 
 ## [v1.1.4] / 2020-09-11
 ### Fixes
@@ -14,8 +33,8 @@ All notable changes to this project will be documented in this file.
 - Fix all deprecations (Benjamin Jonard)
 
 ### Miscellaneous
-- Bump PHP dependencies to fix high severity alert on symfony/http-kernel (Benjamin Jonard)
-- Bump JS dependencies (Benjamin Jonard)
+- Update PHP dependencies to fix high severity alert on symfony/http-kernel (Benjamin Jonard)
+- Update JS dependencies (Benjamin Jonard)
 
 ## [v1.1.3] / 2020-08-14
 ### Features
@@ -24,14 +43,14 @@ All notable changes to this project will be documented in this file.
 ### Fixes
 - Fix multiple data display on item page (Benjamin Jonard)
 - Fix links in underlined tags (Benjamin Jonard)
-- Propertly handle context in tag links (Benjamin Jonard)
+- Properly handle context in tag links (Benjamin Jonard)
 
 ### Miscellaneous
-- Bump PHP and JS dependencies (Benjamin Jonard)
+- Update PHP and JS dependencies (Benjamin Jonard)
 
 ## [v1.1.2] / 2020-07-30
 ### Features
-- Collections can have additionnal fields like items (Benjamin Jonard)
+- Collections can have additional fields like items (Benjamin Jonard)
 - Add an autocomplete on search in the header (Benjamin Jonard)
 - Rework additional fields creation (Benjamin Jonard)
 
