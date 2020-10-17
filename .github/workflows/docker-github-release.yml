@@ -23,6 +23,5 @@ jobs:
           repository: koillection/koillection/fpm
           tags: |
             latest
-            ${{ github.event.release.tag_name }}
           build_args: |
             GITHUB_RELEASE=${{ github.event.release.tag_name }}
