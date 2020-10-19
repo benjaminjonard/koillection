@@ -110,9 +110,6 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 [type="checkbox"] + span:not(.lever)::before, [type="checkbox"]:not(.filled-in) + span:not(.lever)::after
 {border: 2px solid #cccccc}
 
-[type="checkbox"]:checked + span:not(.lever)::before
-{border-right: 2px solid #cccccc; border-bottom: 2px solid #cccccc;}
-
 .croppie-container .cr-viewport, .croppie-container .cr-resizer
 {border: 2px solid #cccccc;}
 
@@ -137,6 +134,9 @@ header #search_term,  .sidebar-wrapper .header-logo,
 .pie-wrapper .shadow {
     border: .1em solid #7d7f82;
 }
+
+[type="checkbox"]:checked + span:not(.lever)::before
+{border-right: 2px solid #009688; border-bottom: 2px solid #009688;}
 
 .button, a, .suggestion, h3.header, h2.header,
 .autocomplete-content li .highlight,
