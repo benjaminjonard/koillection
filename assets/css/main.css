@@ -1247,7 +1247,6 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .croppie-container .cr-boundary {z-index: 0;}
 
 .pie-wrapper .shadow {
-
     border: .1em solid rgba(0,0,0,.5);
 }
 
@@ -1285,3 +1284,6 @@ i.btn input {color: #fff; cursor: pointer;}
 
 .box .input-field.input-checkbox {margin-bottom: 75px;}
 .box h2 {padding: 10px 0 !important;}
+
+.autocomplete-result a, .dropdown-content li>span {color: rgba(0,0,0,.87);}
+.autocomplete-content .highlight {font-weight: bold;}

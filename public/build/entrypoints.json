@@ -12,17 +12,17 @@
     },
     "css/app": {
       "css": [
-        "/build/css/app.e378ca9e.css"
+        "/build/css/app.940220cb.css"
       ]
     },
     "css/themes/light-mode": {
       "css": [
-        "/build/css/themes/light-mode.1f24319e.css"
+        "/build/css/themes/light-mode.e10f648d.css"
       ]
     },
     "css/themes/dark-mode": {
       "css": [
-        "/build/css/themes/dark-mode.fc8777b7.css"
+        "/build/css/themes/dark-mode.f182c894.css"
       ]
     },
     "css/export": {

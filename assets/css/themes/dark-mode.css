@@ -52,7 +52,6 @@ input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([re
 input[type=date]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label,
 textarea.materialize-textarea:focus:not([readonly])+label,
 .dropdown-content li>a,
-.dropdown-content li>span,
 .picker__day.picker__day--today, .picker__close, .picker__today,
 a
 {color: #222222;}
@@ -101,7 +100,8 @@ input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[t
 body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statistics-title, .burger-menu i,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
 .autocomplete-content.dropdown-content li>span,
-.sidebar-element a i
+.sidebar-element a i,
+.autocomplete-result a
 {color: #cccccc;}
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b
@@ -118,7 +118,6 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 
 /* Cancel */
 .btn-cancel {background-color: #E74646!important;}
-.autocomplete-content li .highlight {color: #E74646;}
 
 /* Specific overrides */
 .app, .modal, .modal .modal-footer, .select2-container--default .select2-selection--single, .select2-dropdown, .autocomplete-content,
@@ -139,7 +138,9 @@ header #search_term,  .sidebar-wrapper .header-logo,
     border: .1em solid #7d7f82;
 }
 
-.button, a, .suggestion, h3.header, h2.header
+.button, a, .suggestion, h3.header, h2.header,
+.autocomplete-content li .highlight,
+.autocomplete-result a b
 { color: #009688; }
 
 input:not([type]):focus:not([readonly]), input[type="date"]:not(.browser-default):focus:not([readonly]), input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), input[type="datetime"]:not(.browser-default):focus:not([readonly]), input[type="email"]:not(.browser-default):focus:not([readonly]), input[type="number"]:not(.browser-default):focus:not([readonly]), input[type="password"]:not(.browser-default):focus:not([readonly]), input[type="search"]:not(.browser-default):focus:not([readonly]), input[type="tel"]:not(.browser-default):focus:not([readonly]), input[type="text"]:not(.browser-default):focus:not([readonly]), input[type="time"]:not(.browser-default):focus:not([readonly]), input[type="url"]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
