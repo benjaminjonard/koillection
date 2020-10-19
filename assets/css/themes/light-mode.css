@@ -47,9 +47,10 @@ input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([re
 input[type=date]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label,
 textarea.materialize-textarea:focus:not([readonly])+label,
 .dropdown-content li>a,
-.dropdown-content li>span,
 .picker__day.picker__day--today, .picker__close, .picker__today,
-a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today:not(.is-selected)
+a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today:not(.is-selected),
+.autocomplete-content li .highlight,
+.autocomplete-result a b
 {color: #009688;}
 
 .content-header .filter-block #filter-by-name-input:focus,
