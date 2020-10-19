@@ -116,6 +116,8 @@ class TagRepository extends EntityRepository
      */
     public function findLike(string $string) : array
     {
+        $string = trim($string);
+
         return $this
             ->createQueryBuilder('t')
             ->addSelect('(CASE WHEN LOWER(t.label) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
