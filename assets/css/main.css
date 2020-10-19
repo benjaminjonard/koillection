@@ -1271,7 +1271,7 @@ i.btn input {color: #fff; cursor: pointer;}
 .autocomplete-results li {background-color: #fff; padding: 10px 5px; border-bottom: 1px #ccc solid;}
 .autocomplete-results li:last-child {border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;}
 .autocomplete-results li:first-child {border-top-right-radius: 25px; border-top-left-radius: 25px;}
-.autocomplete-results li a {cursor: pointer;}
+.autocomplete-results li a {cursor: pointer; display: inline-block; width: 100%;}
 .autocomplete-results li span {color: #ccc;}
 
 .datum-original-filename {white-space: nowrap; margin-top: 12px; padding-left: 10px; text-overflow: ellipsis; overflow: hidden;}

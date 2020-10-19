@@ -217,7 +217,7 @@ $(document).ready(function() {
 
             if (type) {
                 let $type = $('<span></span>').append(' (' + type + ')')
-                $li.append($type);
+                $a.append($type);
             }
         } else {
             $li.append(label);
