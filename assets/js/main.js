@@ -230,6 +230,7 @@ $(document).ready(function() {
         terms = terms.split(' ');
         $.each(terms, function( key, term ) {
             let search = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+            search += '(?![^<]*>)'; //Prevent matchig 'b' character inside the <b> tag
             let regex = new RegExp(search,'i');
             content = content.replace(regex, `<b>$&</b>`);
         });
