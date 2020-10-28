@@ -27,14 +27,14 @@ Koillection is still in development. There might be some bugs, missing features 
 
 ## Requirements
 
-## Versions
+1. PHP
 
 | Koillection | PHP version |
 | ------------| ----------- |
 | 1.1.x       | 7.4         |
 | 1.0.x       | 7.2         |
 
-1. You may need to add the following extensions:
+2. You may need to add the following extensions:
     - `apcu`
     - `cgi`
     - `ctype`
@@ -61,8 +61,8 @@ Koillection is still in development. There might be some bugs, missing features 
     - `xml`
     - `xmlwriter`    
     - `zip`              
-2. A webserver such as `Apache2` or `nginx` 
-3. A `Postgresql` or `Mysql` (version 8 or superior) database
+3. A webserver such as `Apache2` or `nginx` 
+4. A `Postgresql` or `Mysql` (version 8 or superior) database
 
 ## Installation
 ### Using git or an archive file
