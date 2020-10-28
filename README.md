@@ -29,10 +29,10 @@ Koillection is still in development. There might be some bugs, missing features 
 
 1. PHP
 
-| Koillection | PHP version |
-| ------------| ----------- |
-| 1.1.x       | 7.4         |
-| 1.0.x       | 7.2         |
+    | Koillection | PHP version |
+    | ------------| ----------- |
+    | 1.1.x       | 7.4         |
+    | 1.0.x       | 7.2         |
 
 2. You may need to add the following extensions:
     - `apcu`
