@@ -27,7 +27,14 @@ Koillection is still in development. There might be some bugs, missing features 
 
 ## Requirements
 
-1. `PHP 7.4` You may need to add the following extensions:
+## Versions
+
+| Koillection | PHP version |
+| ------------| ----------- |
+| 1.1.x       | 7.4         |
+| 1.0.x       | 7.2         |
+
+1. You may need to add the following extensions:
     - `apcu`
     - `cgi`
     - `ctype`
