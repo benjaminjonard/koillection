@@ -81,10 +81,10 @@ Koillection is still in development. There might be some bugs, missing features 
     - `DB_NAME` -> your database name
     - `DB_VERSION` -> your postgres server version (ex: 10.3)    
     - `PHP_TZ` -> Your timezone (ex: Europe/Paris)
-4. In the project root folder execute `composer install -o`
+4. In the project root folder execute `bin/composer install -o`
 5. Then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)
-7. (optionnal) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
+7. (Optional) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 
 ### Using Docker
 * https://github.com/koillection/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
