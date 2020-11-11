@@ -3670,9 +3670,9 @@
         <target>Connexion</target>
       </segment>
     </unit>
-    <unit id="d75KAlJ" name="label.version">
+    <unit id="d75KAlJ" name="label.release">
       <segment>
-        <source>label.version</source>
+        <source>label.release</source>
         <target>Version de Koillection</target>
       </segment>
     </unit>
@@ -4540,10 +4540,40 @@
         <target>Paramètres</target>
       </segment>
     </unit>
+    <unit id="9dYyUYD" name="title.update_visibility">
+      <segment>
+        <source>title.update_visibility</source>
+        <target>Éditer la visibilité</target>
+      </segment>
+    </unit>
+    <unit id="JA.9t2S" name="title.update_dark_mode">
+      <segment>
+        <source>title.update_dark_mode</source>
+        <target>Éditer le mode sombre</target>
+      </segment>
+    </unit>
     <unit id="DFPQyp5" name="label.remember_me">
       <segment>
         <source>label.remember_me</source>
         <target>Rester connecté</target>
+      </segment>
+    </unit>
+    <unit id="eqnKfFG" name="label.outdated_release">
+      <segment>
+        <source>label.outdated_release</source>
+        <target>Nouvelle version %release% est disponible</target>
+      </segment>
+    </unit>
+    <unit id="EvNVLVb" name="label.required_php_version">
+      <segment>
+        <source>label.required_php_version</source>
+        <target>PHP %version% est nécessaire</target>
+      </segment>
+    </unit>
+    <unit id="J1HjVfO" name="label.up_to_date_release">
+      <segment>
+        <source>label.up_to_date_release</source>
+        <target>La dernière version est installée</target>
       </segment>
     </unit>
   </file>

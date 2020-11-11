@@ -3673,9 +3673,9 @@
         <target>Sign in</target>
       </segment>
     </unit>
-    <unit id="d75KAlJ" name="label.version">
+    <unit id="Z39v_44" name="label.release">
       <segment>
-        <source>label.version</source>
+        <source>label.release</source>
         <target>Koillection version</target>
       </segment>
     </unit>
@@ -4549,10 +4549,28 @@
         <target>Edit dark mode</target>
       </segment>
     </unit>
-    <unit id="DFPQyp5" name="label.remember_me">
+    <unit id="B0loISu" name="label.remember_me">
       <segment>
         <source>label.remember_me</source>
         <target>Keep me logged in</target>
+      </segment>
+    </unit>
+    <unit id="eqnKfFG" name="label.outdated_release">
+      <segment>
+        <source>label.outdated_release</source>
+        <target>Version %release% is available</target>
+      </segment>
+    </unit>
+    <unit id="EvNVLVb" name="label.required_php_version">
+      <segment>
+        <source>label.required_php_version</source>
+        <target>PHP %version% is required</target>
+      </segment>
+    </unit>
+    <unit id="J1HjVfO" name="label.up_to_date_release">
+      <segment>
+        <source>label.up_to_date_release</source>
+        <target>The latest version is installed</target>
       </segment>
     </unit>
   </file>

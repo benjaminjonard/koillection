@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [v1.1.6] / 2020-10-17
+## [1.1.6] / 2020-10-17
 ### Features
 - Functionalities can now be activated/deactivated in settings page (Benjamin Jonard)
 - Dark mode can be automatically activated between two hours (Benjamin Jonard)
@@ -20,14 +20,14 @@ All notable changes to this project will be documented in this file.
 - Fix album breadcrumb (Benjamin Jonard)
 - Fix preload for assets (Benjamin Jonard)
 
-## [v1.1.5] / 2020-09-21
+## [1.1.5] / 2020-09-21
 ### Fixes
 - Update migration configuration to comply with the new syntax introduced in doctrine/doctrine-migrations-bundle v3.0 (Benjamin Jonard)
 
 ### Miscellaneous
 - Update JS and PHP dependencies (Benjamin Jonard)
 
-## [v1.1.4] / 2020-09-11
+## [1.1.4] / 2020-09-11
 ### Fixes
 - Fix clean up function (Benjamin Jonard)
 - Fix all deprecations (Benjamin Jonard)
@@ -36,7 +36,7 @@ All notable changes to this project will be documented in this file.
 - Update PHP dependencies to fix high severity alert on symfony/http-kernel (Benjamin Jonard)
 - Update JS dependencies (Benjamin Jonard)
 
-## [v1.1.3] / 2020-08-14
+## [1.1.3] / 2020-08-14
 ### Features
 - New file field for items and collections (Benjamin Jonard)
 
@@ -48,7 +48,7 @@ All notable changes to this project will be documented in this file.
 ### Miscellaneous
 - Update PHP and JS dependencies (Benjamin Jonard)
 
-## [v1.1.2] / 2020-07-30
+## [1.1.2] / 2020-07-30
 ### Features
 - Collections can have additional fields like items (Benjamin Jonard)
 - Add an autocomplete on search in the header (Benjamin Jonard)
@@ -66,7 +66,7 @@ All notable changes to this project will be documented in this file.
 - Update JS dependencies (Benjamin Jonard)
 - Update PHP dependencies (Benjamin Jonard)
 
-## [v1.1.1] / 2020-06-25
+## [1.1.1] / 2020-06-25
 ### Features
 - Add a button in admin panel to regenerate thumbnails (Benjamin Jonard)
 
@@ -79,7 +79,7 @@ All notable changes to this project will be documented in this file.
 - Improve dark mode (Benjamin Jonard)
 - Fix vulnerabilities in JS dependencies (Benjamin Jonard)
 
-## [v1.1.0] / 2020-04-30
+## [1.1.0] / 2020-04-30
 ### Important
 - Update PHP minimum version to 7.4 (Benjamin Jonard)
 - Update to Symfony 5 (Benjamin Jonard)
@@ -121,7 +121,7 @@ All notable changes to this project will be documented in this file.
 - Fix streamed responses when downloading backups (Benjamin Jonard)
 - Fix infinite loading bar (Benjamin Jonard)
 
-## [v1.0.4] / 2019-03-06
+## [1.0.4] / 2019-03-06
 ### Fixes
  - Improve header responsiveness (Benjamin Jonard)
  
@@ -134,7 +134,7 @@ All notable changes to this project will be documented in this file.
 - Switch to the new .env system (with .env.local) (Benjamin Jonard)
 - Update phpUnit version (Benjamin Jonard)
 
-## [v1.0.3] / 2019-02-26
+## [1.0.3] / 2019-02-26
 ### Fixes
 - Fix recompute disk usage action (Benjamin Jonard)
 - Fix collection placeholder style (Benjamin Jonard)
@@ -159,13 +159,13 @@ All notable changes to this project will be documented in this file.
 - Add debug env for local docker (Benjamin Jonard)
 
  
-## [v1.0.2] / 2018-09-28
+## [1.0.2] / 2018-09-28
 ### Fixes
 - Fix error pages style (Benjamin Jonard)
 - Fix sortable fields on item edition page (Benjamin Jonard)
 - Fix custom field selection on item edition page (Benjamin Jonard)
 
-## [v1.0.1] / 2018-09-18
+## [1.0.1] / 2018-09-18
 ### Features
 - Add SQL export (Benjamin Jonard)
 - Add images export (Benjamin Jonard)
@@ -182,5 +182,5 @@ All notable changes to this project will be documented in this file.
 ### Refactoring
 - Move javascript from Twig template to a JS file on statistics page (Benjamin Jonard)
 
-## [v1.0.0] / 2018-07-31
+## [1.0.0] / 2018-07-31
 - Initial release (Benjamin Jonard)

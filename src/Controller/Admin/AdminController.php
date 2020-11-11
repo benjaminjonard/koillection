@@ -13,6 +13,7 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Service\CommandExecutor;
 use App\Service\DatabaseDumper;
+use App\Service\LatestReleaseChecker;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -32,9 +33,10 @@ class AdminController extends AbstractController
      *     "fr": "/admin"
      * }, name="app_admin_index", methods={"GET"})
      *
+     * @param LatestReleaseChecker $latestVersionChecker
      * @return Response
      */
-    public function index() : Response
+    public function index(LatestReleaseChecker $latestVersionChecker) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -49,6 +51,10 @@ class AdminController extends AbstractController
                 'wishlists' => $em->getRepository(Wishlist::class)->count([]),
                 'wishes' => $em->getRepository(Wish::class)->count([]),
             ],
+            'currentRelease' => $latestVersionChecker->getCurrentRelease(),
+            'latestRelease' => $latestVersionChecker->getLatestRelease(),
+            'requiredPhpVersionForLatestRelease' => $latestVersionChecker->getRequiredPhpVersionForLatestRelease(),
+            'isRequiredPhpVersionForLatestReleaseOk' => $latestVersionChecker->isRequiredPhpVersionForLatestReleaseOk(),
             'symfonyVersion' => Kernel::VERSION,
             'phpVersion' => phpversion(),
             'isOpcacheAvailable' => function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled']
