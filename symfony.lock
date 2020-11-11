@@ -2,6 +2,9 @@
     "brick/math": {
         "version": "0.8.14"
     },
+    "composer/semver": {
+        "version": "3.2.2"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -300,6 +303,9 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client": {
+        "version": "v5.1.8"
     },
     "symfony/http-client-contracts": {
         "version": "v2.3.1"

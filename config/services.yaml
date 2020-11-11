@@ -1,5 +1,5 @@
 parameters:
-    version: '1.1.6'
+    release: '1.1.6'
     locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
 
@@ -13,6 +13,7 @@ services:
             $publicPath: '%kernel.project_dir%/public'
             $assetsPath: '%kernel.project_dir%/assets'
             $paginationItemsPerPage: "%env(APP_PAGINATION_ITEMS_PER_PAGE)%"
+            $koillectionRelease: '%release%'
 
     App\:
         resource: '../src/*'

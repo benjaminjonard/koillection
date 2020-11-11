@@ -51,7 +51,21 @@
         <div class="block-element">
             <h2 class="header">{{ 'title.config'|trans }}</h2>
             <div class="row statistics">
-                <div class="col s12 m4 xl2"><div class="counter">{{ version }}</div>{{ 'label.version'|trans }}</div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ currentRelease }}</div>
+                    {{ 'label.release'|trans }}
+
+                    {% if latestRelease is not null and currentRelease != latestRelease %}
+                        <br>
+                        <a href="https://github.com/koillection/koillection/releases/tag/{{ latestRelease }}">{{ 'label.outdated_release'|trans({'%release%': latestRelease}) }}</a>
+                        <br>
+                        {{ 'label.required_php_version'|trans({'%version%': requiredPhpVersionForLatestRelease}) }}
+                        <i class="fa fa-{{ isRequiredPhpVersionForLatestReleaseOk ? 'check font-green' : 'close font-red' }} fa-fw"></i>
+                    {% else %}
+                        <br>
+                        {{ 'label.up_to_date_release'|trans }}
+                    {% endif %}
+                </div>
                 <div class="col s12 m4 xl2"><div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
                 <div class="col s12 m4 xl2"><div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}</div>
                 <div class="col s12 m4 xl2"><div class="counter"><i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i></div>{{ 'label.is_opcache_available'|trans }}</div>
