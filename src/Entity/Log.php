@@ -29,7 +29,7 @@ class Log
     private string $type;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $loggedAt = null;

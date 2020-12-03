@@ -26,25 +26,25 @@ class TagCategory implements BreadcrumbableInterface
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $label = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $description = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=7)
      */
     private ?string $color = null;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tagCategories")
      */
     private ?User $owner = null;
@@ -62,7 +62,7 @@ class TagCategory implements BreadcrumbableInterface
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

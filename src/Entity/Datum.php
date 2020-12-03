@@ -29,79 +29,79 @@ class Datum implements LoggableInterface
     private UuidInterface $id;
 
     /**
-     * @var Item
+     * @var ?Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
      */
     private ?Item $item = null;
 
     /**
-     * @var Collection
+     * @var ?Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="data")
      */
     private ?Collection $collection = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=false)
      */
     private ?string $type = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $label = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $value = null;
 
     /**
-     * @var int
+     * @var ?int
      * @ORM\Column(type="integer", nullable=true)
      */
     private ?int $position = null;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
     private ?File $fileImage = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="file", originalFilenamePath="originalFilename")
      */
     private ?File $fileFile = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $file = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true)
      */
     private ?string $originalFilename = null;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
@@ -119,7 +119,7 @@ class Datum implements LoggableInterface
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

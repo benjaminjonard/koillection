@@ -33,31 +33,31 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $title = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=6)
      */
     private ?string $color = null;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="image")
      */
     private ?File $file = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="albums")
      */
     private ?User $owner = null;
@@ -76,7 +76,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private DoctrineCollection $children;
 
     /**
-     * @var Album
+     * @var ?Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="children")
      */
     private ?Album $parent = null;
@@ -94,13 +94,13 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt = null;

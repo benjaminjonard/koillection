@@ -34,20 +34,20 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private ?string $title = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $childrenTitle = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $itemsTitle = null;
@@ -60,13 +60,13 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private DoctrineCollection $children;
 
     /**
-     * @var Collection
+     * @var ?Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="children")
      */
     private ?Collection $parent = null;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="collections")
      */
     private ?User $owner = null;
@@ -86,19 +86,19 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private DoctrineCollection $data;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=6)
      */
     private ?string $color = null;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="image")
      */
     private ?File $file = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
@@ -116,13 +116,13 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt = null;

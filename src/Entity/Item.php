@@ -36,7 +36,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
@@ -49,13 +49,13 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private int $quantity;
 
     /**
-     * @var Collection
+     * @var ?Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="items")
      */
     private ?Collection $collection = null;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
@@ -86,19 +86,19 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private DoctrineCollection $loans;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
     private ?File $file = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
@@ -122,7 +122,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;
