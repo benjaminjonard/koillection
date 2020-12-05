@@ -68,7 +68,8 @@ class WishlistType extends AbstractType
                 $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
-                ])->addModelTransformer($this->base64ToImageTransformer)
+                    'model_transformer' => $this->base64ToImageTransformer
+                ])
             )
         ;
     }

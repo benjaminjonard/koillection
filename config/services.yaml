@@ -137,3 +137,8 @@ services:
         tags: [app.logger]
     App\Service\Log\LoggerChain:
         arguments: [!tagged app.logger]
+
+    # Form extension
+    App\Form\Extension\ModelTransformerExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }

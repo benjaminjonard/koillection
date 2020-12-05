@@ -4573,5 +4573,23 @@
         <target>The latest version is installed</target>
       </segment>
     </unit>
+    <unit id="otAT7D6" name="btn.add_date">
+      <segment>
+        <source>btn.add_date</source>
+        <target>Date</target>
+      </segment>
+    </unit>
+    <unit id="H1qEi4d" name="label.date">
+      <segment>
+        <source>label.date</source>
+        <target>Date</target>
+      </segment>
+    </unit>
+    <unit id="YkTUtk1" name="label.file">
+      <segment>
+        <source>label.file</source>
+        <target>File</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

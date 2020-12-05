@@ -122,6 +122,7 @@ $('.js-add-field-btn').click( function() {
         utils.reloadSortableList($holder, '.datum');
         utils.computePositions($holder);
         utils.loadFilePreviews();
+        utils.initDatepickers();
     });
 });
 

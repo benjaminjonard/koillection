@@ -49,7 +49,8 @@ class InventoryType extends AbstractType
             ->add(
                 $builder->create('content', HiddenType::class, [
                     'required' => false,
-                ])->addModelTransformer($this->stringToInventoryContentTransformer)
+                    'model_transformer' => $this->stringToInventoryContentTransformer
+                ])
             )
         ;
     }

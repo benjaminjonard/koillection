@@ -9,6 +9,8 @@ class DatumTypeEnum
     public const TYPE_TEXT = 'text';
     public const TYPE_COUNTRY = 'country';
     public const TYPE_SIGN = 'sign';
+    public const TYPE_DATE = 'date';
+
     public const TYPE_IMAGE = 'image';
     public const TYPE_FILE = 'file';
 
@@ -26,6 +28,7 @@ class DatumTypeEnum
         self::TYPE_IMAGE => 'label.image',
         self::TYPE_COUNTRY => 'label.country',
         self::TYPE_FILE => 'label.file',
+        self::TYPE_DATE => 'label.date',
     ];
 
     /**

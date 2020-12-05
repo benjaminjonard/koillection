@@ -101,7 +101,8 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 .select2-container--default .select2-selection--single .select2-selection__rendered,
 .autocomplete-content.dropdown-content li>span,
 .sidebar-element a i,
-.autocomplete-result a
+.autocomplete-result a,
+.datepicker-day-button
 {color: #cccccc;}
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b

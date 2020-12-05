@@ -95,7 +95,8 @@ class ItemType extends AbstractType
             $builder->add(
                 $builder->create('tags', TextType::class, [
                     'required' => false,
-                ])->addModelTransformer($this->jsonToTagTransformer)
+                    'model_transformer' => $this->jsonToTagTransformer
+                ])
             );
         }
 

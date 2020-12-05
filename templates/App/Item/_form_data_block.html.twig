@@ -5,16 +5,17 @@
                 <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
             </div>
 
-            {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY'), constant('App\\Enum\\DatumTypeEnum::TYPE_FILE')])) %}
+            {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY'), constant('App\\Enum\\DatumTypeEnum::TYPE_FILE'), constant('App\\Enum\\DatumTypeEnum::TYPE_DATE')])) %}
                 {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
             {% endfor %}
         </div>
 
         <div class="row center-align">
             <label>{{ 'label.add_field'|trans }}</label>
-            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="text">{{ 'btn.add_text'|trans }}</a>
-            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="country">{{ 'btn.add_country'|trans }}</a>
-            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="file">{{ 'btn.add_file'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') }}">{{ 'btn.add_text'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') }}">{{ 'btn.add_country'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') }}">{{ 'btn.add_date'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') }}">{{ 'btn.add_file'|trans }}</a>
         </div>
     </div>
 
@@ -31,8 +32,8 @@
 
         <div class="row center-align">
             <label>{{ 'label.add_field'|trans }}</label>
-            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="image">{{ 'btn.add_image'|trans }}</a>
-            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="sign">{{ 'btn.add_sign'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE') }}">{{ 'btn.add_image'|trans }}</a>
+            <a class="waves-effect waves-light btn-small js-add-field-btn grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN') }}">{{ 'btn.add_sign'|trans }}</a>
         </div>
     </div>
 </div>

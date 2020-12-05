@@ -2,7 +2,7 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/js/app.bb66029f.js"
+        "/build/js/app.727f1c72.js"
       ]
     },
     "js/statistics": {
@@ -22,7 +22,7 @@
     },
     "css/themes/dark-mode": {
       "css": [
-        "/build/css/themes/dark-mode.acdd0551.css"
+        "/build/css/themes/dark-mode.5f707bb0.css"
       ]
     },
     "css/export": {
