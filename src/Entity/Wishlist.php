@@ -33,13 +33,13 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="wishlists")
      */
     private ?User $owner = null;
@@ -52,7 +52,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private DoctrineCollection $wishes;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=6)
      */
     private ?string $color = null;
@@ -65,19 +65,19 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private DoctrineCollection $children;
 
     /**
-     * @var Wishlist
+     * @var ?Wishlist
      * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="children")
      */
     private ?Wishlist $parent = null;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="image")
      */
     private ?File $file = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
@@ -95,13 +95,13 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt = null;

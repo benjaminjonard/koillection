@@ -51,3 +51,12 @@ services:
             - 3306:3306
         volumes:
             - "./docker/volumes/mysql:/var/lib/mysql"
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "8080:80"
+        links:
+            - mysql
+        environment:
+            - PMA_HOST=mysql

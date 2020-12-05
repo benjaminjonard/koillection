@@ -39,7 +39,7 @@ class Template implements BreadcrumbableInterface
     private DoctrineCollection $fields;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="templates")
      */
     private ?User $owner = null;
@@ -51,7 +51,7 @@ class Template implements BreadcrumbableInterface
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

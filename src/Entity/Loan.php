@@ -29,13 +29,13 @@ class Loan
     private Item $item;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $lentTo = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="date")
      */
     private ?\DateTimeInterface $lentAt = null;
@@ -47,7 +47,7 @@ class Loan
     private \DateTimeInterface $returnedAt;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;

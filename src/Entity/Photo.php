@@ -29,55 +29,55 @@ class Photo implements CacheableInterface
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $title = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $comment = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $place = null;
 
     /**
-     * @var Album
+     * @var ?Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
      */
     private ?Album $album;
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
 
     /**
-     * @var File
+     * @var ?File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
     private ?File $file = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $takenAt = null;
@@ -95,7 +95,7 @@ class Photo implements CacheableInterface
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

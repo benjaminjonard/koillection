@@ -96,6 +96,8 @@
                         <span class="country-name">({{ getCountryName(datum.value) }})</span>
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
                         <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
+                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
+                        {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
                     {% endif %}
                 </div>
             {% endfor %}

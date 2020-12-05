@@ -24,13 +24,13 @@ class Inventory implements BreadcrumbableInterface
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string")
      */
     private ?string $name = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="json")
      */
     private ?string $content = null;
@@ -41,7 +41,7 @@ class Inventory implements BreadcrumbableInterface
     private array $contentAsArray = [];
 
     /**
-     * @var User
+     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="inventories")
      */
     private ?User $owner = null;
@@ -53,7 +53,7 @@ class Inventory implements BreadcrumbableInterface
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

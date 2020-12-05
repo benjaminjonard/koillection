@@ -24,25 +24,25 @@ class Field
     private UuidInterface $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
 
     /**
-     * @var integer
+     * @var ?integer
      * @ORM\Column(type="integer")
      */
     private ?int $position = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $type = null;
 
     /**
-     * @var Template
+     * @var ?Template
      * @ORM\ManyToOne(targetEntity="Template", inversedBy="fields")
      */
     private ?Template $template = null;
