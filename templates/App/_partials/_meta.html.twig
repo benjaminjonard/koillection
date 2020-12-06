@@ -1,11 +1,12 @@
 {% set currentLocale = getLocaleLabel(app.request.locale) %}
+{% set image = image is defined and image is not null ? image : 'build/images/meta-logo.png' %}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="{{ app.request.uri  }}">
+<meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri  }}">
 <meta property="og:title" content="{{ title ?? 'Koillection' }}">
 <meta property="og:description" content="{{ description ?? 'meta.description'|trans }}">
-<meta property="og:image" content="{{ image ?? asset('build/images/meta-logo.png') }}">
+<meta property="og:image" content="{{ preload(absolute_url(asset(image)), { as: 'image' }) }}">
 <meta property="og:site_name" content="Koillection">
 <meta property="og:locale" content="{{ currentLocale }}">
 {% for locale in getLocales()|filter(locale => locale != currentLocale)  %}
@@ -14,7 +15,7 @@
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary">
-<meta property="twitter:url" content="{{ app.request.uri }}">
+<meta property="twitter:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}">
 <meta property="twitter:title" content="{{ title ?? 'Koillection' }}">
 <meta property="twitter:description" content="{{ description ?? 'meta.description'|trans }}">
-<meta property="twitter:image" content="{{ image ?? asset('build/images/meta-logo.png') }}">
+<meta property="twitter:image" content="{{ preload(absolute_url(asset(image)), { as: 'image' }) }}">
