@@ -173,11 +173,16 @@ class CounterCalculator
         $i1 = $this->qng->generateJoinAlias('i');
         $i2 = $this->qng->generateJoinAlias('i');
 
+        $visibilityCondition = '';
+        if ($this->em->getFilters()->isEnabled('visibility')) {
+            $visibilityCondition = sprintf(" AND %s.visibility = '%s'", $i1, VisibilityEnum::VISIBILITY_PUBLIC);
+        };
+
         $sql = "
             WITH RECURSIVE counters AS (
                 SELECT $c1.id, $c1.parent_id, $c1.visibility, $i1.id AS item_id
                 FROM $table $c1
-                LEFT JOIN $itemTable $i1 ON $i1.$parentProperty = $c1.id
+                LEFT JOIN $itemTable $i1 ON $i1.$parentProperty = $c1.id $visibilityCondition
                 WHERE $c1.id = $alias.id
                 UNION
                 SELECT $c2.id, $c2.parent_id, $c2.visibility, $i2.id AS item_id 
@@ -190,6 +195,7 @@ class CounterCalculator
         if ($this->em->getFilters()->isEnabled('visibility')) {
             $sql .= sprintf("WHERE %s.visibility = '%s'", $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
         };
+
 
         return $sql;
     }
