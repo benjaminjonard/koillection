@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
+use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\Item;
+use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
@@ -50,6 +52,8 @@ class AdminController extends AbstractController
                 'tags' => $em->getRepository(Tag::class)->count([]),
                 'wishlists' => $em->getRepository(Wishlist::class)->count([]),
                 'wishes' => $em->getRepository(Wish::class)->count([]),
+                'albums' => $em->getRepository(Album::class)->count([]),
+                'photos' => $em->getRepository(Photo::class)->count([]),
             ],
             'currentRelease' => $latestVersionChecker->getCurrentRelease(),
             'latestRelease' => $latestVersionChecker->getLatestRelease(),

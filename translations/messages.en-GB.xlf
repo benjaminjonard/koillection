@@ -4591,5 +4591,17 @@
         <target>File</target>
       </segment>
     </unit>
+    <unit id="QJMsz.z" name="counter.without_number.albums">
+      <segment>
+        <source>counter.without_number.albums</source>
+        <target>{0} albums| {1} album| ]1,Inf[ albums</target>
+      </segment>
+    </unit>
+    <unit id="YKRNql5" name="counter.without_number.photos">
+      <segment>
+        <source>counter.without_number.photos</source>
+        <target>{0} photos| {1} photo| ]1,Inf[ photos</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
