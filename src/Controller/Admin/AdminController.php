@@ -7,12 +7,14 @@ namespace App\Controller\Admin;
 use App\Controller\AbstractController;
 use App\Entity\Album;
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
+use App\Enum\DatumTypeEnum;
 use App\Service\CommandExecutor;
 use App\Service\DatabaseDumper;
 use App\Service\LatestReleaseChecker;
@@ -54,6 +56,7 @@ class AdminController extends AbstractController
                 'wishes' => $em->getRepository(Wish::class)->count([]),
                 'albums' => $em->getRepository(Album::class)->count([]),
                 'photos' => $em->getRepository(Photo::class)->count([]),
+                'signs' => $em->getRepository(Datum::class)->count(['type' => DatumTypeEnum::TYPE_SIGN]),
             ],
             'currentRelease' => $latestVersionChecker->getCurrentRelease(),
             'latestRelease' => $latestVersionChecker->getLatestRelease(),

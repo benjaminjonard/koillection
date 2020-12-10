@@ -4612,5 +4612,11 @@
         <target>[0,1] %count% dédicace| ]1,Inf[ %count% dédicaces</target>
       </segment>
     </unit>
+    <unit id="aCCqbt1" name="counter.without_number.signs">
+      <segment>
+        <source>counter.without_number.signs</source>
+        <target>[0,1] dédicace| ]1,Inf[ dédicaces</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

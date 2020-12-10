@@ -4609,5 +4609,11 @@
         <target>{0} %count% signs| {1} %count% sign| ]1,Inf[ %count% signs</target>
       </segment>
     </unit>
+    <unit id="aCCqbt1" name="counter.without_number.signs">
+      <segment>
+        <source>counter.without_number.signs</source>
+        <target>{0} signs| {1} sign| ]1,Inf[ signs</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
