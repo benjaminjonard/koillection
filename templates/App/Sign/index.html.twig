@@ -25,6 +25,9 @@
 {% block content %}
     <div class="title-block">
         <h1>{{ 'menu.signs'|trans() }}</h1>
+        <ul class="nav nav-pills">
+            <li>{{ 'counter.signs'|trans({'%count%': signs|length}) }}</li>
+        </ul>
     </div>
 
     <div></div>

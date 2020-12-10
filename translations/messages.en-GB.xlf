@@ -4603,5 +4603,11 @@
         <target>{0} photos| {1} photo| ]1,Inf[ photos</target>
       </segment>
     </unit>
+    <unit id="e9psgbF" name="counter.signs">
+      <segment>
+        <source>counter.signs</source>
+        <target>{0} %count% signs| {1} %count% sign| ]1,Inf[ %count% signs</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

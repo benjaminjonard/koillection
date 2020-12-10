@@ -4606,5 +4606,11 @@
         <target>[0,1] photo| ]1,Inf[ photos</target>
       </segment>
     </unit>
+    <unit id="e9psgbF" name="counter.signs">
+      <segment>
+        <source>counter.signs</source>
+        <target>[0,1] %count% dédicace| ]1,Inf[ %count% dédicaces</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
