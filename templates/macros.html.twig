@@ -1,6 +1,6 @@
 {% macro lazyImage(src, aria = null, tooltip = null, classes = "") %}
 <div class="image-wrapper placeholder {{ classes }}">
-    <img data-src="{{ preload(asset(src), { as: 'image' }) }}"
+    <img data-src="{{ asset(src) }}"
          {% if tooltip is not null %} class="tooltipped" data-position="bottom" data-tooltip="{{ tooltip }}" {% endif %}
          {% if aria is not null %} aria-label="{{ aria }}" {% endif %}
     >

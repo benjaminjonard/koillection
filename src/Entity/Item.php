@@ -87,7 +87,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     /**
      * @var ?File
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
+     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail", largeThumbnailPath="imageLargeThumbnail")
      */
     private ?File $file = null;
 
@@ -102,6 +102,12 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
+
+    /**
+     * @var ?string
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    private ?string $imageLargeThumbnail = null;
 
     /**
      * @var int
@@ -436,6 +442,29 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageLargeThumbnail(): ?string
+    {
+        if ($this->imageLargeThumbnail === null) {
+            return $this->image;
+        }
+
+        return $this->imageLargeThumbnail;
+    }
+
+    /**
+     * @param string|null $imageLargeThumbnail
+     * @return Item
+     */
+    public function setImageLargeThumbnail(?string $imageLargeThumbnail): Item
+    {
+        $this->imageLargeThumbnail = $imageLargeThumbnail;
 
         return $this;
     }

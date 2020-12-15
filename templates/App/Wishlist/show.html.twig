@@ -27,7 +27,7 @@
         <div class="title-block">
             <div class="left">
                 {% if wishlist.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image), { as: 'image' }) }}">
+                    <img class="thumbnail avatar" src="{{ asset(wishlist.image) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ wishlist.color }}">{{ wishlist.name|first|upper }}</span>
                 {% endif %}
@@ -109,11 +109,11 @@
                         <tr class="list-element resize-element" data-title="{{ wish.name }}">
                             <td>
                                 {% if wish.image %}
-                                    <a href="{{ preload(asset(wish.image), { as: 'image' }) }}" data-lightbox="image-{{ wish.id }}">
-                                        <img class="wishlist-item-avatar" src="{{ preload(asset(wish.imageSmallThumbnail), { as: 'image' }) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
+                                    <a href="{{ asset(wish.image) }}" data-lightbox="image-{{ wish.id }}">
+                                        <img class="wishlist-item-avatar" src="{{ asset(wish.imageSmallThumbnail) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
                                     </a>
                                 {% else %}
-                                    <img class="wishlist-item-avatar" src="{{ preload(asset('../build/images/default.png'), { as: 'image' }) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
+                                    <img class="wishlist-item-avatar" src="{{ asset('../build/images/default.png') }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
                                 {% endif %}
                             </td>
                             <td>

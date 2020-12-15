@@ -104,7 +104,7 @@ class DatabaseDumper
         foreach ($selects as $select) {
             $stmt = $connection->prepare($select);
             $stmt->execute();
-            $results = $stmt->fetchAll();
+            $results = $stmt->fetchAllAssociative();
 
             if (empty($results)) {
                 continue;

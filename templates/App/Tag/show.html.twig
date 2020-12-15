@@ -70,8 +70,8 @@
                 <h2 class="header">{{ 'title.infos'|trans }}</h2>
                 <div class="tag-image-container">
                     {% if tag.image is not null %}
-                        <a href="{{ preload(asset(tag.image), { as: 'image' }) }}" data-lightbox="image-{{ tag.id }}">
-                            <img class="tag-image" src="{{ preload(asset(tag.imageSmallThumbnail), { as: 'image' }) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
+                        <a href="{{ asset(tag.image) }}" data-lightbox="image-{{ tag.id }}">
+                            <img class="tag-image" src="{{ asset(tag.imageSmallThumbnail) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
                         </a>
                     {% endif %}
                 </div>
