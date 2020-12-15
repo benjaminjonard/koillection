@@ -70,38 +70,6 @@ class AdminController extends AbstractController
 
     /**
      * @Route({
-     *     "en": "/admin/clean-up",
-     *     "fr": "/admin/nettoyer"
-     * }, name="app_admin_clean_up", methods={"GET"})
-     *
-     * @param CommandExecutor $commandExecutor
-     * @return Response
-     */
-    public function cleanUp(CommandExecutor $commandExecutor) : Response
-    {
-        $this->addFlash('notice', $commandExecutor->execute('app:clean-up'));
-
-        return $this->redirectToRoute('app_admin_index');
-    }
-
-    /**
-     * @Route({
-     *     "en": "/admin/regenerate-thumbnails",
-     *     "fr": "/admin/regenerer-les-miniatures"
-     * }, name="app_admin_regenerate_thumbnails", methods={"GET"})
-     *
-     * @param CommandExecutor $commandExecutor
-     * @return Response
-     */
-    public function regenerateThumbnails(CommandExecutor $commandExecutor) : Response
-    {
-        $this->addFlash('notice', $commandExecutor->execute('app:regenerate-thumbnails'));
-
-        return $this->redirectToRoute('app_admin_index');
-    }
-
-    /**
-     * @Route({
      *     "en": "/admin/backup",
      *     "fr": "/admin/sauvegarde"
      * }, name="app_admin_backup", methods={"GET"})
