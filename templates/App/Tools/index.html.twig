@@ -21,7 +21,7 @@
     </div>
 
     <div class="content-block">
-        <div class="block-element">
+        <div class="block-element btn-holder">
             <h2 class="header">{{ 'title.exports'|trans }}</h2>
             <a href="{{ path('app_tools_export_printable_list') }}" target="_blank" class="btn waves-effect waves-light">
                 <i class="fa fa-print fa-fw"></i>{{ 'btn.export_printable_list'|trans }}
@@ -41,9 +41,12 @@
             <h2 class="header">
                 {{ 'title.inventories'|trans }}
             </h2>
-            <a href="{{ path('app_inventory_add') }}" class="btn waves-effect waves-light">
-                <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_inventory'|trans }}
-            </a>
+
+            <div class="btn-holder">
+                <a href="{{ path('app_inventory_add') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_inventory'|trans }}
+                </a>
+            </div>
 
             <div>
                 <table class="centered striped">
