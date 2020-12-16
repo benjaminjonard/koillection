@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
+use App\Entity\Album;
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
+use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
+use App\Enum\DatumTypeEnum;
 use App\Service\CommandExecutor;
 use App\Service\DatabaseDumper;
 use App\Service\LatestReleaseChecker;
@@ -50,6 +54,9 @@ class AdminController extends AbstractController
                 'tags' => $em->getRepository(Tag::class)->count([]),
                 'wishlists' => $em->getRepository(Wishlist::class)->count([]),
                 'wishes' => $em->getRepository(Wish::class)->count([]),
+                'albums' => $em->getRepository(Album::class)->count([]),
+                'photos' => $em->getRepository(Photo::class)->count([]),
+                'signs' => $em->getRepository(Datum::class)->count(['type' => DatumTypeEnum::TYPE_SIGN]),
             ],
             'currentRelease' => $latestVersionChecker->getCurrentRelease(),
             'latestRelease' => $latestVersionChecker->getLatestRelease(),
@@ -59,38 +66,6 @@ class AdminController extends AbstractController
             'phpVersion' => phpversion(),
             'isOpcacheAvailable' => function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled']
         ]);
-    }
-
-    /**
-     * @Route({
-     *     "en": "/admin/clean-up",
-     *     "fr": "/admin/nettoyer"
-     * }, name="app_admin_clean_up", methods={"GET"})
-     *
-     * @param CommandExecutor $commandExecutor
-     * @return Response
-     */
-    public function cleanUp(CommandExecutor $commandExecutor) : Response
-    {
-        $this->addFlash('notice', $commandExecutor->execute('app:clean-up'));
-
-        return $this->redirectToRoute('app_admin_index');
-    }
-
-    /**
-     * @Route({
-     *     "en": "/admin/regenerate-thumbnails",
-     *     "fr": "/admin/regenerer-les-miniatures"
-     * }, name="app_admin_regenerate_thumbnails", methods={"GET"})
-     *
-     * @param CommandExecutor $commandExecutor
-     * @return Response
-     */
-    public function regenerateThumbnails(CommandExecutor $commandExecutor) : Response
-    {
-        $this->addFlash('notice', $commandExecutor->execute('app:regenerate-thumbnails'));
-
-        return $this->redirectToRoute('app_admin_index');
     }
 
     /**

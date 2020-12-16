@@ -28,7 +28,7 @@
         <div class="title-block">
             <div class="left">
                 {% if album.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(album.image), { as: 'image' }) }}">
+                    <img class="thumbnail avatar" src="{{ asset(album.image) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ album.color }}">{{album.title|first|upper}}</span>
                 {% endif %}
@@ -95,12 +95,12 @@
                         <div class="collection-item element valign-wrapper" data-title="{{ photo.title }}">
                             {% set photoText = include('App/Album/_photo_text.html.twig') %}
                             {% if photo.image %}
-                                <a href="{{ preload(asset(photo.image), { as: 'image' }) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
+                                <a href="{{ asset(photo.image) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
                                     {{ macros.lazyImage(photo.imageSmallThumbnail, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
                                 </a>
                             {% else %}
-                                <a href="{{ preload(asset('build/images/default.png'), { as: 'image' }) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
-                                    <img class="preview-image" src="{{ preload(asset('../build/images/default.png'), { as: 'image' }) }}" aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}" />
+                                <a href="{{ asset('build/images/default.png') }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
+                                    <img class="preview-image" src="{{ asset('../build/images/default.png') }}" aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}" />
                                 </a>
                             {% endif %}
                         </div>

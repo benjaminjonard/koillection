@@ -20,6 +20,7 @@ class ThumbnailGenerator
         }
 
         list($width, $height, $mime) = getimagesize($path);
+        $originalSize = filesize($path);
 
         if ($width <= $thumbnailWidth) {
             return false;
@@ -81,6 +82,12 @@ class ThumbnailGenerator
                 break;
             default:
                 break;
+        }
+
+        $thumbnailSize = filesize($thumbnailPath);
+        if ($thumbnailSize >= $originalSize) {
+            unlink($thumbnailPath);
+            return false;
         }
 
         return true;

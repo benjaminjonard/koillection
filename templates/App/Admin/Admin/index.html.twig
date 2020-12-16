@@ -44,6 +44,9 @@
                 <div class="col s12 m4 xl2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}</div>
                 <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}</div>
                 <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'%count%': counters.albums}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'%count%': counters.photos}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'%count%': counters.signs}) }}</div>
                 <div class="col s12 m4 xl2"><div class="counter">{{ getSpaceUsedByUsers()|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
             </div>
         </div>
@@ -75,12 +78,6 @@
         <div class="block-element">
             <h2 class="header">{{ 'title.tools'|trans }}</h2>
             <div class="row btn-holder">
-                <a href="{{ path('app_admin_clean_up') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-trash fa-fw"></i>{{ 'btn.clean_unused_files'|trans }}
-                </a>
-                <a href="{{ path('app_admin_regenerate_thumbnails') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.regenerate_thumbnails'|trans }}
-                </a>
                 <a href="{{ path('app_admin_backup') }}" class="btn waves-effect waves-light">
                     <i class="fa fa-save fa-fw"></i>{{ 'btn.backup'|trans }}
                 </a>
