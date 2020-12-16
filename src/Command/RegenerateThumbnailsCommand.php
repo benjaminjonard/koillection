@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -68,6 +69,13 @@ class RegenerateThumbnailsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $helper = $this->getHelper('question');
+        $question = new ConfirmationQuestion('This action can be dangerous, please do a backup of both your database and /uploads folder. Are you sure you want to continue ? (y/N)', false);
+
+        if (!$helper->ask($input, $output, $question)) {
+            return Command::SUCCESS;
+        }
+
         $counter = 0;
         $classes = [Item::class, Datum::class, Wish::class, Photo::class, Tag::class];
         $objects = [];
@@ -112,6 +120,6 @@ class RegenerateThumbnailsCommand extends Command
 
         $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['%count%' => $counter]));
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
