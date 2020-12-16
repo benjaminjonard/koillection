@@ -106,7 +106,11 @@ class RegenerateThumbnailsCommand extends Command
                     $mime = mime_content_type($imagePath);
                     $file = new UploadedFile($imagePath, $filename, $mime, null, true);
 
-                    $object->setFile($file);
+                    if ($object instanceof Datum) {
+                        $object->setFileImage($file);
+                    } else {
+                        $object->setFile($file);
+                    }
                     $counter++;
                 }
 
