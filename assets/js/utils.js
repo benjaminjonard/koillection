@@ -22,7 +22,7 @@ export function initDatepickers()
         close: Translator.trans('btn.close'),
         today: Translator.trans('global.today').substring(0, 3)+'.',
         format: $('#js-date-format').data('jsDateFormat'),
-        container: 'html',
+        container: '.main',
     });
 }
 

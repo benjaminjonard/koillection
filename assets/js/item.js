@@ -50,6 +50,7 @@ $('.selectTemplate').change( function() {
                 }
             });
             select.loadSelect2Countries();
+            utils.initDatepickers();
             utils.computePositions($('#data'));
             utils.computePositions($('#item-images'));
         }, "json" );

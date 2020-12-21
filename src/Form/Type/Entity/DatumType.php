@@ -77,7 +77,7 @@ class DatumType extends AbstractType
                                         return $string !== null ? new \DateTime($string) : null;
                                     },
                                     function ($date) {
-                                        return $date->format('Y-m-d');
+                                        return $date instanceof \DateTime ? $date->format('Y-m-d') : null;
                                     }
                                 )]
                             )
