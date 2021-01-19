@@ -25,14 +25,14 @@
 
         {% if isFeatureEnabled('tags') %}
             <div class="row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3 autocomplete-wrapper">
+                <div class="col s12 l10 offset-l1 xl6 offset-xl3 js-tag-autocomplete">
                     <div class="input-field">
-                        <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
+                        <input type="text" id="tagsAutocomplete" class="js-autocomplete-input" autocomplete="off">
                         {{ form_label(form.tags, 'label.tags') }}
-                        <div class="ac-tags">
+                        <div class="js-autocomplete-result ac-tags">
                         </div>
                     </div>
-                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
+                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden js-autocomplete-form-input'}}) }}
                 </div>
             </div>
         {% endif %}
@@ -58,6 +58,25 @@
         </div>
 
         {{ include('App/Item/_form_data_block.html.twig', {data: item.data}) }}
+    </div>
+
+    <div class="content-block">
+        <div class="row">
+            <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.related_items'|trans }}</h2>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3 js-item-autocomplete">
+                <div class="input-field">
+                    <input type="text" id="itemsAutocomplete" class="js-autocomplete-input" autocomplete="off">
+                    {{ form_label(form.relatedItems, 'label.related_items') }}
+                    <div class="js-autocomplete-result ac-tags">
+                    </div>
+                </div>
+                {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden js-autocomplete-form-input'}}) }}
+            </div>
+        </div>
+
     </div>
 
     <div class="row center-align form-btn-holder">

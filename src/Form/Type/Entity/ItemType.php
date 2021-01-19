@@ -8,6 +8,7 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
+use App\Form\DataTransformer\JsonToItemTransformer;
 use App\Form\DataTransformer\JsonToTagTransformer;
 use App\Service\FeatureChecker;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,6 +29,11 @@ class ItemType extends AbstractType
      * @var JsonToTagTransformer
      */
     private JsonToTagTransformer $jsonToTagTransformer;
+
+    /**
+     * @var JsonToItemTransformer
+     */
+    private JsonToItemTransformer $jsonToItemTransformer;
 
     /**
      * @var EntityManagerInterface
@@ -41,13 +48,15 @@ class ItemType extends AbstractType
     /**
      * ItemType constructor.
      * @param JsonToTagTransformer $jsonToTagTransformer
+     * @param JsonToItemTransformer $jsonToItemTransformer
      * @param EntityManagerInterface $em
      * @param FeatureChecker $featureChecker
      */
-    public function __construct(JsonToTagTransformer $jsonToTagTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
+    public function __construct(JsonToTagTransformer $jsonToTagTransformer, JsonToItemTransformer $jsonToItemTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
     {
         $this->em = $em;
         $this->jsonToTagTransformer = $jsonToTagTransformer;
+        $this->jsonToItemTransformer = $jsonToItemTransformer;
         $this->featureChecker = $featureChecker;
     }
 
@@ -89,6 +98,12 @@ class ItemType extends AbstractType
                 'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
+            ->add(
+                $builder->create('relatedItems', HiddenType::class, [
+                    'required' => false,
+                    'model_transformer' => $this->jsonToItemTransformer
+                ])
+            );
         ;
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {

@@ -1287,3 +1287,5 @@ i.btn input {color: #fff; cursor: pointer;}
 
 .autocomplete-result a, .dropdown-content li>span {color: rgba(0,0,0,.87);}
 .autocomplete-content .highlight {font-weight: bold;}
+
+.ac-tags img {max-height: 100px; max-width: 100px;}
