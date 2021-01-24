@@ -4615,5 +4615,23 @@
         <target>{0} signs| {1} sign| ]1,Inf[ signs</target>
       </segment>
     </unit>
+    <unit id="ME6A6U0" name="title.related_items">
+      <segment>
+        <source>title.related_items</source>
+        <target>Related items</target>
+      </segment>
+    </unit>
+    <unit id="BgCxgOK" name="label.related_items">
+      <segment>
+        <source>label.related_items</source>
+        <target>Add a related item</target>
+      </segment>
+    </unit>
+    <unit id="Q14jRAj" name="label.list_related_items">
+      <segment>
+        <source>label.list_related_items</source>
+        <target>Related items</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
