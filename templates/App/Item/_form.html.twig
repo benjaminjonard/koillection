@@ -67,11 +67,16 @@
 
         <div class="row">
             <div class="col s12 l10 offset-l1 xl6 offset-xl3 js-item-autocomplete">
+                <div class="js-autocomplete-result ac-tags">
+                    <table class="centered striped">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="input-field">
-                    <input type="text" id="itemsAutocomplete" class="js-autocomplete-input" autocomplete="off">
                     {{ form_label(form.relatedItems, 'label.related_items') }}
-                    <div class="js-autocomplete-result ac-tags">
-                    </div>
+                    <input type="text" id="itemsAutocomplete" class="js-autocomplete-input" autocomplete="off">
                 </div>
                 {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden js-autocomplete-form-input'}}) }}
             </div>

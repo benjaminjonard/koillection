@@ -4618,5 +4618,23 @@
         <target>[0,1] dédicace| ]1,Inf[ dédicaces</target>
       </segment>
     </unit>
+    <unit id="ME6A6U0" name="title.related_items">
+      <segment>
+        <source>title.related_items</source>
+        <target>Objets en relation</target>
+      </segment>
+    </unit>
+    <unit id="BgCxgOK" name="label.related_items">
+      <segment>
+        <source>label.related_items</source>
+        <target>Ajouter un objet en relation</target>
+      </segment>
+    </unit>
+    <unit id="Q14jRAj" name="label.list_related_items">
+      <segment>
+        <source>label.list_related_items</source>
+        <target>Objets en relation</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

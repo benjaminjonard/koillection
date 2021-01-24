@@ -106,6 +106,15 @@
 
 </div>
 
+{% if item.relatedItems is not empty %}
+    <div class="related-items">
+        <span>{{ 'label.list_related_items'|trans }} :</span>
+        {% for relatedItem in item.relatedItems|naturalSorting %}
+            <a href="{{ path('app_item_show'|applyContext, {id: relatedItem.id}) }}">{{ relatedItem.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% if isFeatureEnabled('tags') and item.tags is not empty %}
     <div class="tags-block">
         <ul class="nav nav-tags">

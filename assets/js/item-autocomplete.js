@@ -3,7 +3,7 @@ export function init() {
     let $itemAutocompleteDiv = $('.js-item-autocomplete');
     let $itemAutocompleteInput = $itemAutocompleteDiv.find('.js-autocomplete-input');
     let $itemAutocompleteFormInput = $itemAutocompleteDiv.find('.js-autocomplete-form-input');
-    let $itemAutocompleteResult = $itemAutocompleteDiv.find('.js-autocomplete-result');
+    let $itemAutocompleteResult = $itemAutocompleteDiv.find('.js-autocomplete-result').find('tbody');
 
     let items = [];
 
@@ -39,13 +39,14 @@ export function init() {
         }
     });
 
-    $itemAutocompleteDiv.on("click", ".close", function () {
-        var existingItems = JSON.parse($itemAutocompleteFormInput.val());
+    $itemAutocompleteResult.on("click", ".close", function () {
+        let existingItems = JSON.parse($itemAutocompleteFormInput.val());
+        let index = existingItems.indexOf($(this).closest('.related-item').attr('data-id'));
 
-        var index = existingItems.indexOf($(this).parent('.related-item').attr('data-id'));
         if (index > -1) {
             existingItems.splice(index, 1);
-            $(this).parent('.related-item').remove();
+            $(this).closest('.related-item').remove();
+
         }
 
         $itemAutocompleteFormInput.val(JSON.stringify(existingItems));
@@ -56,7 +57,7 @@ export function init() {
         let currentItems = [];
 
         $.each(values, function (key, item) {
-            var chip = '<div class="related-item" data-id="' + item.id + '" data-text="' + item.name + '"><img src="' + item.thumbnail + '">' + item.name + '<i class="fa fa-times close"></i></div>';
+            var chip = '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.name + '"><td><img src="' + item.thumbnail + '"></td><td>' + item.name + '</td><td><i class="fa fa-times close"></i></td></tr>';
             $itemAutocompleteResult.append(chip);
             currentItems.push(item.id);
         });
@@ -78,7 +79,7 @@ export function init() {
         if (index == -1) {
             existingItems.push(item.id);
 
-            var chip = '<div class="related-item" data-id="' + item.id + '" data-text="' + item.name + '"><img src="' + item.thumbnail + '">' + item.name + '<i class="fa fa-times close"></i></div>';
+            var chip = '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.name + '"><td><img src="' + item.thumbnail + '"></td><td>' + item.name + '</td><td><i class="fa fa-times close"></i></td></tr>';
             $itemAutocompleteResult.append(chip);
         }
 
