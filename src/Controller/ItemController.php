@@ -15,6 +15,8 @@ use App\Form\Type\Entity\LoanType;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Component\Asset\Packages;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -225,5 +227,29 @@ class ItemController extends AbstractController
             'item' => $item,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route({
+     *     "en": "/items/autocomplete/{search}",
+     *     "fr": "/objets/autocompletion/{search}"
+     * }, name="app_item_autocomplete", methods={"GET"})
+     *
+     * @param string $search
+     * @return JsonResponse
+     */
+    public function autocomplete(string $search, Packages $assetManager) : JsonResponse
+    {
+        $items = $this->getDoctrine()->getRepository(Item::class)->findLike($search);
+        $data = [];
+        foreach ($items as $item) {
+            $data[] = [
+                'id' => $item->getId(),
+                'name' => $item->getName(),
+                'thumbnail' => $assetManager->getUrl($item->getImageSmallThumbnail()),
+            ];
+        }
+
+        return new JsonResponse($data);
     }
 }

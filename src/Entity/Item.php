@@ -74,6 +74,18 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     /**
      * @var DoctrineCollection
+     * @ORM\ManyToMany(targetEntity="Item", cascade={"persist"})
+     * @ORM\JoinTable(
+     *    name="koi_item_related_item",
+     *    joinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")},
+     *    inverseJoinColumns={@ORM\JoinColumn(name="related_item_id", referencedColumnName="id")}
+     * )
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private DoctrineCollection $relatedItems;
+
+    /**
+     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
@@ -143,6 +155,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         $this->quantity = 1;
         $this->tags = new ArrayCollection();
         $this->data = new ArrayCollection();
+        $this->relatedItems = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->loans = new ArrayCollection();
     }
@@ -334,6 +347,39 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     {
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
+        }
+
+        return $this;
+    }
+
+    public function setRelatedItems(DoctrineCollection $relatedItems): self
+    {
+        $this->relatedItems = $relatedItems;
+
+        return $this;
+    }
+
+    /**
+     * @return DoctrineCollection|Item[]
+     */
+    public function getRelatedItems(): DoctrineCollection
+    {
+        return $this->relatedItems;
+    }
+
+    public function addRelatedItem(Item $relatedItem): self
+    {
+        if (!$this->relatedItems->contains($relatedItem)) {
+            $this->relatedItems[] = $relatedItem;
+        }
+
+        return $this;
+    }
+
+    public function removeRelatedItem(Item $relatedItem): self
+    {
+        if ($this->relatedItems->contains($relatedItem)) {
+            $this->relatedItems->removeElement($relatedItem);
         }
 
         return $this;
