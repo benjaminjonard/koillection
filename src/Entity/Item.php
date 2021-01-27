@@ -74,7 +74,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     /**
      * @var DoctrineCollection
-     * @ORM\ManyToMany(targetEntity="Item", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Item", cascade={"persist"}, inversedBy="relatedTo")
      * @ORM\JoinTable(
      *    name="koi_item_related_item",
      *    joinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")},
@@ -83,6 +83,13 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private DoctrineCollection $relatedItems;
+
+    /**
+     * @var DoctrineCollection
+     * @ORM\ManyToMany(targetEntity="Item", cascade={"persist"}, inversedBy="relatedItems")
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private DoctrineCollection $relatedTo;
 
     /**
      * @var DoctrineCollection
@@ -365,6 +372,14 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function getRelatedItems(): DoctrineCollection
     {
         return $this->relatedItems;
+    }
+
+    /**
+     * @return DoctrineCollection|Item[]
+     */
+    public function getAllRelatedItems(): DoctrineCollection
+    {
+        return new ArrayCollection(array_merge($this->relatedItems->toArray(), $this->relatedTo->toArray()));
     }
 
     public function addRelatedItem(Item $relatedItem): self
