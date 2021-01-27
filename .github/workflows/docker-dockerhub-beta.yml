@@ -15,7 +15,7 @@ jobs:
           ref: master
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to GitHub Packages
+      - name: Push to Docker Hub
         uses: docker/build-push-action@v1.1.1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
