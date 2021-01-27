@@ -86,7 +86,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     /**
      * @var DoctrineCollection
-     * @ORM\ManyToMany(targetEntity="Item", cascade={"persist"}, inversedBy="relatedItems")
+     * @ORM\ManyToMany(targetEntity="Item", mappedBy="relatedItems")
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private DoctrineCollection $relatedTo;
