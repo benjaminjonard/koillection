@@ -45,7 +45,7 @@ class LatestReleaseChecker
         try {
             $response = $this->client->request('GET',
                 'https://api.github.com/repos/koillection/koillection/tags',
-                ['timeout' => 2.5]
+                ['timeout' => 2.5, 'verify_peer' => false, 'verify_host' => false]
             );
             if ($response->getStatusCode() !== 200) {
                 throw new \Exception();
