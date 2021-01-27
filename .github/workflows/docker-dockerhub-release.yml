@@ -21,5 +21,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: koillection/koillection
           tags: latest,1.1.7
-          build_args: |
-            GITHUB_RELEASE=1.1.7
+          build_args: GITHUB_RELEASE="1.1.7"
