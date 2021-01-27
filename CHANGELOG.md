@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.7] / 2021-01-27
+### Features
+- Add a message in admin interface if a new release of Koillection is available  (Benjamin Jonard)
+- Add a new field type for dates on item page (Benjamin Jonard)
+- Add .gif support for uploads (Benjamin Jonard)
+- Add the possibility to add related items to an item (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS and PHP dependencies (Benjamin Jonard)
+- Trim white spaces on tag autocomplete (Benjamin Jonard)
+- Change text color and font weight on autocompletes (Benjamin Jonard)
+- Multiple small dark mode improvements (Benjamin Jonard)
+- Add a CONTRIBUTING.md file (Benjamin Jonard)
+- Add some new counters in admin dashboard (Benjamin Jonard)
+- Remove preload support as it was dropped by Chrome (Benjamin Jonard)
+
+### Fixes
+- Fix social media metas (Benjamin Jonard)
+
 ## [1.1.6] / 2020-10-17
 ### Features
 - Functionalities can now be activated/deactivated in settings page (Benjamin Jonard)
