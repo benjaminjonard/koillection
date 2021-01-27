@@ -106,10 +106,10 @@
 
 </div>
 
-{% if item.relatedItems is not empty %}
+{% if item.allRelatedItems is not empty %}
     <div class="related-items">
         <span>{{ 'label.list_related_items'|trans }} :</span>
-        {% for relatedItem in item.relatedItems|naturalSorting %}
+        {% for relatedItem in item.allRelatedItems|naturalSorting %}
             <a href="{{ path('app_item_show'|applyContext, {id: relatedItem.id}) }}">{{ relatedItem.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
     </div>
