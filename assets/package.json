@@ -16,9 +16,8 @@
         "sortablejs": "^1.10.1"
     },
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.29.0",
+        "@symfony/webpack-encore": "^1.0.0",
         "copy-webpack-plugin": "^4.5.1",
-        "url-loader": "^4.1.0",
         "webpack-notifier": "^1.8.0"
     },
     "scripts": {
