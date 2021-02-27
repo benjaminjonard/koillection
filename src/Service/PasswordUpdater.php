@@ -9,24 +9,13 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class PasswordUpdater
 {
-    /**
-     * @var EncoderFactoryInterface
-     */
     private EncoderFactoryInterface $encoderFactory;
 
-    /**
-     * PasswordUpdater constructor.
-     * @param EncoderFactoryInterface $encoderFactory
-     */
     public function __construct(EncoderFactoryInterface $encoderFactory)
     {
         $this->encoderFactory = $encoderFactory;
     }
 
-    /**
-     * @param User $user
-     * @return User
-     */
     public function hashPassword(User $user) : User
     {
         $plainPassword = $user->getPlainPassword();

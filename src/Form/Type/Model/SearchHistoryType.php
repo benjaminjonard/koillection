@@ -15,24 +15,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchHistoryType extends AbstractType
 {
-    /**
-     * @var FeatureChecker
-     */
     private FeatureChecker $featureChecker;
 
-    /**
-     * SearchHistoryType constructor.
-     * @param FeatureChecker $featureChecker
-     */
     public function __construct(FeatureChecker $featureChecker)
     {
         $this->featureChecker = $featureChecker;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $types = [];
@@ -70,9 +59,6 @@ class SearchHistoryType extends AbstractType
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

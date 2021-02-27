@@ -77,7 +77,7 @@ class TagController extends AbstractController
         path: ['en' => '/preview/tags/{id}', 'fr' => '/apercu/tags/{id}'],
         name: 'app_preview_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findWithItems(id)', class: 'tag')]
+    #[Entity('tag', expr: 'repository.findWithItems(id)', class: Tag::class)]
     public function show(Tag $tag) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -179,8 +179,8 @@ class TagController extends AbstractController
         path: ['en' => 'tags/{tagId}/items/{itemId}', 'fr' => 'tags/{tagId}/objets/{itemId}'],
         name: 'app_preview_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findById(itemId)', class: 'item')]
-    #[Entity(expr: 'repository.find(tagId)', class: 'tag')]
+    #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
+    #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]
     public function item(Item $item, Tag $tag) : Response
     {
         $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $tag);

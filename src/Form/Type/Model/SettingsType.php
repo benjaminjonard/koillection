@@ -20,9 +20,6 @@ use Symfony\Component\Security\Core\Security;
 
 class SettingsType extends AbstractType
 {
-    /**
-     * @var Security
-     */
     private Security $security;
 
     public function __construct(Security $security)
@@ -30,10 +27,6 @@ class SettingsType extends AbstractType
         $this->security = $security;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -96,9 +89,6 @@ class SettingsType extends AbstractType
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -10,9 +10,6 @@ use Doctrine\ORM\EntityRepository;
 
 class LoanRepository extends EntityRepository
 {
-    /**
-     * @return array
-     */
     public function findLent() : array
     {
         return $this
@@ -25,9 +22,6 @@ class LoanRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @return array
-     */
     public function findReturned() : array
     {
         return $this
@@ -40,14 +34,6 @@ class LoanRepository extends EntityRepository
         ;
     }
 
-    /**
-     * Find lent item by id with its item.
-     *
-     * @param $id
-     *
-     * @return Loan
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
     public function findByIdWithItem(string $id) : ?Loan
     {
         return $this

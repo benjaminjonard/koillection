@@ -15,30 +15,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class InventoryType extends AbstractType
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var StringToInventoryContentTransformer
-     */
     private StringToInventoryContentTransformer $stringToInventoryContentTransformer;
 
-    /**
-     * InventoryType constructor.
-     * @param EntityManagerInterface $em
-     */
     public function __construct(EntityManagerInterface $em, StringToInventoryContentTransformer $stringToInventoryContentTransformer)
     {
         $this->em = $em;
         $this->stringToInventoryContentTransformer = $stringToInventoryContentTransformer;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

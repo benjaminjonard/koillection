@@ -4,29 +4,17 @@ declare(strict_types=1);
 
 namespace App\Service\Log;
 
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 
 class LoggerChain
 {
-    /**
-     * @var iterable
-     */
     private iterable $loggers;
 
-    /**
-     * LoggerChain constructor.
-     * @param iterable $loggers
-     */
     public function __construct(iterable $loggers)
     {
         $this->loggers = $loggers;
     }
-
-    /**
-     * @param $function
-     * @param array $params
-     * @return Log|null
-     */
     private function getLoggerResponse($function, array $params)
     {
         $response = null;
@@ -49,41 +37,22 @@ class LoggerChain
         return $response;
     }
 
-    /**
-     * @param $entity
-     * @return Log|null
-     */
-    public function getCreateLog($entity) : ?Log
+    public function getCreateLog(LoggableInterface $entity) : ?Log
     {
         return $this->getLoggerResponse('getCreateLog', [$entity]);
     }
 
-    /**
-     * @param $entity
-     * @return Log|null
-     */
-    public function getDeleteLog($entity) : ?Log
+    public function getDeleteLog(LoggableInterface $entity) : ?Log
     {
         return $this->getLoggerResponse('getDeleteLog', [$entity]);
     }
 
-    /**
-     * @param $entity
-     * @param $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($entity, $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []) : ?Log
     {
         return $this->getLoggerResponse('getUpdateLog', [$entity, $changeset, $relations]);
     }
 
-    /**
-     * @param $class
-     * @param $payload
-     * @return null|string
-     */
-    public function getFormattedPayload($class, $payload) : ?string
+    public function getFormattedPayload(string $class, array $payload) : ?string
     {
         return $this->getLoggerResponse('formatPayload', [$class, $payload]);
     }

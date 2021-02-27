@@ -11,9 +11,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class CommandExecutor
 {
-    /**
-     * @var KernelInterface
-     */
     private KernelInterface $kernel;
 
     public function __construct(KernelInterface $kernel)
@@ -21,7 +18,7 @@ class CommandExecutor
         $this->kernel = $kernel;
     }
 
-    public function execute(string $command, array $params = [])
+    public function execute(string $command, array $params = []): string
     {
         $application = new Application($this->kernel);
         $application->setAutoExit(false);

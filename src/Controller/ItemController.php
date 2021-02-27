@@ -88,7 +88,7 @@ class ItemController extends AbstractController
         path: ['en' => '/preview/items/{id}', 'fr' => '/apercu/objets/{id}'],
         name: 'app_preview_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findById(id)', class: 'item')]
+    #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function show(Item $item) : Response
     {
         $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $item->getCollection());
@@ -104,7 +104,7 @@ class ItemController extends AbstractController
         path: ['en' => '/items/{id}/edit', 'fr' => '/objets/{id}/editer'],
         name: 'app_item_edit', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findById(id)', class: 'item')]
+    #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function edit(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
         $form = $this->createForm(ItemType::class, $item);

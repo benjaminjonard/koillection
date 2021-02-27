@@ -19,9 +19,6 @@ class CollectionRepository extends EntityRepository
         parent::__construct($em, $class);
     }
 
-    /**
-     * @return array
-     */
     public function findAll() : array
     {
         return $this
@@ -32,10 +29,6 @@ class CollectionRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param Collection $collection
-     * @return array
-     */
     public function findAllExcludingItself(Collection $collection) : array
     {
         $id = $collection->getId();
@@ -74,9 +67,6 @@ class CollectionRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @return array
-     */
     public function findAllWithItems() : array
     {
         return $this
@@ -91,9 +81,6 @@ class CollectionRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @return array
-     */
     public function findAllWithChildren() : array
     {
         return $this
@@ -106,11 +93,6 @@ class CollectionRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param string $id
-     * @return Collection|null
-     * @throws NonUniqueResultException
-     */
     public function findWithItemsAndData(string $id) : ?Collection
     {
         return $this
@@ -125,10 +107,6 @@ class CollectionRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param Search $search
-     * @return array
-     */
     public function findForSearch(Search $search) : array
     {
         $qb = $this

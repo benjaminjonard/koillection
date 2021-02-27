@@ -67,26 +67,17 @@ class TagCategory implements BreadcrumbableInterface
      */
     private ?\DateTimeInterface $updatedAt;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->id = Uuid::uuid4();
         $this->tags = new ArrayCollection();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getLabel() ?? '';
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -164,9 +155,6 @@ class TagCategory implements BreadcrumbableInterface
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Tag[]
-     */
     public function getTags(): DoctrineCollection
     {
         return $this->tags;

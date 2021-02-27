@@ -48,7 +48,7 @@ class LoanController extends AbstractController
         path: ['en' => '/loans/{id}/returned', 'fr' => '/prets/{id}/rendu'],
         name: 'app_loan_returned', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findByIdWithItem(id)', class: 'loan')]
+    #[Entity( 'loan', expr: 'repository.findByIdWithItem(id)', class:Loan::class)]
     public function returned(Loan $loan, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);

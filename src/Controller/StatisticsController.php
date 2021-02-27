@@ -23,7 +23,7 @@ class StatisticsController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/preview/statistics', 'fr' => '/apercu/statistiques'],
-        name: 'app_statistics_index', methods: ['GET']
+        name: 'app_preview_statistics_index', methods: ['GET']
     )]
     public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder, User $user = null) : Response
     {

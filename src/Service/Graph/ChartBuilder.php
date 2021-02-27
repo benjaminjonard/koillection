@@ -13,33 +13,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ChartBuilder
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
 
-    /**
-     * ChartBuilder constructor.
-     * @param EntityManagerInterface $em
-     * @param TranslatorInterface $translator
-     */
     public function __construct(EntityManagerInterface $em, TranslatorInterface $translator)
     {
         $this->em = $em;
         $this->translator = $translator;
     }
 
-    /**
-     * Build an array hour->number of item created.
-     *
-     * @param User $user
-     * @return array
-     */
     public function buildActivityByHour(User $user) : array
     {
         $sql = 'SELECT created_at as date';
@@ -69,12 +52,6 @@ class ChartBuilder
         return $data;
     }
 
-    /**
-     * Build an array day of the month->number of item created.
-     *
-     * @param User $user
-     * @return array
-     */
     public function buildActivityByMonthDay(User $user) : array
     {
         $sql = 'SELECT created_at AS date';
@@ -104,12 +81,6 @@ class ChartBuilder
         return $data;
     }
 
-    /**
-     * Build an array day of the week->number of item created.
-     *
-     * @param User $user
-     * @return array
-     */
     public function buildActivityByWeekDay(User $user) : array
     {
         $sql = 'SELECT created_at AS date';
@@ -148,12 +119,6 @@ class ChartBuilder
         return $data;
     }
 
-    /**
-     * Build an array day of the week->number of item created.
-     *
-     * @param User $user
-     * @return array
-     */
     public function buildActivityByMonth(User $user) : array
     {
         $sql = 'SELECT created_at as date';
@@ -197,12 +162,6 @@ class ChartBuilder
         return $data;
     }
 
-    /**
-     * Build an array date->number of items at that date.
-     *
-     * @param User $user
-     * @return array
-     */
     public function buildItemEvolution(User $user) : array
     {
         $data = [];

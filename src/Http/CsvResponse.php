@@ -8,23 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CsvResponse extends Response
 {
-    /**
-     * @var array
-     */
     private array $data;
 
-    /**
-     * @var string
-     */
     private string $filename;
 
-    /**
-     * CsvResponse constructor.
-     * @param array $data
-     * @param string $filename
-     * @param int $status
-     * @param array $headers
-     */
     public function __construct(array $data = [], string $filename = 'koillection.csv', int $status = 200, array $headers = [])
     {
         parent::__construct('', $status, $headers);
@@ -34,7 +21,7 @@ class CsvResponse extends Response
         $this->render();
     }
 
-    private function render()
+    private function render(): CsvResponse
     {
         $output = fopen('php://temp', 'r+');
 

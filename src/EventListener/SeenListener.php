@@ -9,15 +9,8 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class SeenListener
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * SeenListener constructor.
-     * @param EntityManagerInterface $em
-     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;

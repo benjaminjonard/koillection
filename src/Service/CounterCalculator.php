@@ -17,27 +17,12 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class CounterCalculator
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var QueryNameGenerator
-     */
     private QueryNameGenerator $qng;
 
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
-    /**
-     * CounterCalculator constructor.
-     * @param EntityManagerInterface $em
-     * @param QueryNameGenerator $qng
-     * @param ContextHandler $contextHandler
-     */
     public function __construct(EntityManagerInterface $em, QueryNameGenerator $qng, ContextHandler $contextHandler)
     {
         $this->em = $em;
@@ -45,9 +30,6 @@ class CounterCalculator
         $this->contextHandler = $contextHandler;
     }
 
-    /**
-     * @return array
-     */
     public function computeCounters() : array
     {
         //Collections and items
@@ -77,7 +59,7 @@ class CounterCalculator
         return \array_merge($collections, $wishlists, $albums);
     }
 
-    public function getGlobalCounters($table, $itemTable, $cacheIndexName) : array
+    public function getGlobalCounters(string $table, string $itemTable, string $cacheIndexName) : array
     {
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('children', 'children');
@@ -118,13 +100,7 @@ class CounterCalculator
         return $results;
     }
 
-    /**
-     * @param $table
-     * @param $itemTable
-     * @param $parentProperty
-     * @return array
-     */
-    public function executeItemQuery($table, $itemTable, $parentProperty) : array
+    public function executeItemQuery(string $table, string $itemTable, string $parentProperty) : array
     {
         $rsm = new ResultSetMapping();
         $rsm->addIndexByScalar('id');
@@ -156,13 +132,7 @@ class CounterCalculator
         return $results;
     }
 
-    /**
-     * @param string $alias
-     * @param $table
-     * @param $itemTable
-     * @return string
-     */
-    private function getSQLForCounters(string $alias, $table, $itemTable, $parentProperty) : string
+    private function getSQLForCounters(string $alias, string $table, string $itemTable, string $parentProperty) : string
     {
         $c1 = $this->qng->generateJoinAlias('c');
         $c2 = $this->qng->generateJoinAlias('c');

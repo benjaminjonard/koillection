@@ -31,18 +31,11 @@ class DatumTypeEnum
         self::TYPE_DATE => 'label.date',
     ];
 
-    /**
-     * @return array
-     */
     public static function getTypesLabels() : array
     {
         return self::TYPES_TRANS_KEYS;
     }
 
-    /**
-     * @param string $type
-     * @return string
-     */
     public static function getTypeLabel(string $type) : string
     {
         return self::TYPES_TRANS_KEYS[$type];

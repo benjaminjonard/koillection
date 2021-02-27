@@ -9,33 +9,18 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class ContextRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
-    /**
-     * ContextExtension constructor.
-     * @param ContextHandler $contextHandler
-     */
     public function __construct(ContextHandler $contextHandler)
     {
         $this->contextHandler = $contextHandler;
     }
 
-    /**
-     * @param string $route
-     * @return string
-     */
     public function applyContext(string $route) : string
     {
         return $this->contextHandler->getRouteContext($route);
     }
 
-    /**
-     * @param string $trans
-     * @return string
-     */
     public function applyContextTrans(string $trans) : string
     {
         $context = $this->contextHandler->getContext();

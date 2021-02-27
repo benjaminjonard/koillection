@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Log\Logger;
 
 use App\Entity\Collection;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Enum\DatumTypeEnum;
 use App\Enum\LogTypeEnum;
@@ -13,27 +14,17 @@ use App\Service\Log\Logger;
 
 class CollectionLogger extends Logger
 {
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Collection::class;
     }
 
-    /**
-     * @return int
-     */
     public function getPriority() : int
     {
         return 1;
     }
 
-    /**
-     * @param $collection
-     * @return Log|null
-     */
-    public function getCreateLog($collection) : ?Log
+    public function getCreateLog(LoggableInterface $collection) : ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -42,11 +33,7 @@ class CollectionLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $collection);
     }
 
-    /**
-     * @param $collection
-     * @return Log|null
-     */
-    public function getDeleteLog($collection) : ?Log
+    public function getDeleteLog(LoggableInterface $collection) : ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -55,13 +42,7 @@ class CollectionLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $collection);
     }
 
-    /**
-     * @param $collection
-     * @param array $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($collection, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $collection, array $changeset, array $relations = []) : ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -107,12 +88,7 @@ class CollectionLogger extends Logger
         );
     }
 
-    /**
-     * @param $class
-     * @param array $payload
-     * @return null|string
-     */
-    public function formatPayload($class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload) : ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

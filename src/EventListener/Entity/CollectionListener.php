@@ -10,9 +10,6 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class CollectionListener
 {
-    /**
-     * @param OnFlushEventArgs $args
-     */
     public function onFlush(OnFlushEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -37,10 +34,6 @@ class CollectionListener
         }
     }
 
-    /**
-     * @param $collection
-     * @param $visibility
-     */
     public function setVisibilityRecursively(Collection $collection, $visibility)
     {
         $collection->setVisibility($visibility);

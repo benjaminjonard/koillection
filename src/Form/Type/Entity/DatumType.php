@@ -19,24 +19,13 @@ use Symfony\Component\Security\Core\Security;
 
 class DatumType extends AbstractType
 {
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * LoanType constructor.
-     * @param Security $security
-     */
     public function __construct(Security $security)
     {
         $this->security = $security;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -95,9 +84,6 @@ class DatumType extends AbstractType
         );
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

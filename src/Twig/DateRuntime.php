@@ -9,25 +9,13 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class DateRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
 
-    /**
-     * DateExtension constructor.
-     * @param TranslatorInterface $translator
-     */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
 
-    /**
-     * @param \DateTime $ago
-     * @return string
-     * @throws \Exception
-     */
     public function timeAgo(\DateTime $ago) : string
     {
         $now = new \DateTime();
@@ -58,11 +46,6 @@ class DateRuntime implements RuntimeExtensionInterface
             $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
-    /**
-     * @param \DateTime $start
-     * @param \DateTime $end
-     * @return string
-     */
     public function timeDiff(\DateTime $start, \DateTime $end) : string
     {
         $diff = $start->diff($end);
@@ -91,10 +74,6 @@ class DateRuntime implements RuntimeExtensionInterface
         return $string ? implode(', ', $string) : '';
     }
 
-    /**
-     * @param \DateTime $ago
-     * @return string
-     */
     public function dateAgo(\DateTime $ago) : string
     {
         $now = new \DateTime();

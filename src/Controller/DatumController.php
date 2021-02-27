@@ -34,7 +34,7 @@ class DatumController extends AbstractController
         path: ['en' => '/datum/load-common-fields/{id}', 'fr' => '/datum/charger-les-champs-communs/{id}'],
         name: 'app_datum_load_common_fields', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findWithItemsAndData(id)', class: 'collection')]
+    #[Entity('collection', expr: 'repository.findWithItemsAndData(id)', class: Collection::class)]
     public function loadCommonFields(Collection $collection) : JsonResponse
     {
         try {
@@ -90,7 +90,7 @@ class DatumController extends AbstractController
         path: ['en' => '/datum/load-collection-fields/{id}', 'fr' => '/datum/charger-les-champs-de-la-collection/{id}'],
         name: 'app_datum_load_collection_fields', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findWithItemsAndData(id)', class: 'collection')]
+    #[Entity('collection', expr: 'repository.findWithItemsAndData(id)', class: Collection::class)]
     public function loadCollectionFields(Collection $collection) : JsonResponse
     {
         try {

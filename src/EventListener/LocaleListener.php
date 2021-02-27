@@ -13,30 +13,16 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class LocaleListener
 {
-    /**
-     * @var string
-     */
     private string $defaultLocale;
 
-    /**
-     * @var SessionInterface
-     */
     private SessionInterface $session;
 
-    /**
-     * LocaleListener constructor.
-     * @param SessionInterface $session
-     * @param string $defaultLocale
-     */
     public function __construct(SessionInterface $session, string $defaultLocale)
     {
         $this->defaultLocale = $defaultLocale;
         $this->session = $session;
     }
 
-    /**
-     * @param RequestEvent $event
-     */
     public function onKernelRequest(RequestEvent $event)
     {
         $request = $event->getRequest();
@@ -55,10 +41,7 @@ class LocaleListener
         }
     }
 
-    /**
-     * @param InteractiveLoginEvent $event
-     */
-    public function onSecurityInteractivelogin(InteractiveLoginEvent $event)
+    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
         $user = $event->getAuthenticationToken()->getUser();
 
@@ -67,9 +50,6 @@ class LocaleListener
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function postUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();

@@ -58,7 +58,7 @@ class TemplateController extends AbstractController
         path: ['en' => '/templates/{id}/edit', 'fr' => '/modeles/{id}/editer'],
         name: 'app_template_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    #[Entity(expr: 'repository.findById(id)', class: 'template')]
+    #[Entity('template', expr: 'repository.findById(id)', class: Template::class)]
     public function edit(Request $request, Template $template, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
@@ -82,7 +82,7 @@ class TemplateController extends AbstractController
         path: ['en' => '/templates/{id}', 'fr' => '/modeles/{id}'],
         name: 'app_template_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findWithItems(id)', class: 'template')]
+    #[Entity('template', expr: 'repository.findWithItems(id)', class: Template::class)]
     public function show(Template $template) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);

@@ -6,17 +6,8 @@ namespace App\Security;
 
 class NonceGenerator
 {
-    /**
-     * @var string
-     */
     private ?string $nonce = null;
 
-    /**
-     * Generates a random nonce parameter.
-     *
-     * @return string
-     * @throws \Exception
-     */
     public function getNonce() : string
     {
         if (!$this->nonce) {

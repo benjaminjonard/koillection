@@ -52,17 +52,11 @@ class Field
         $this->id = Uuid::uuid4();
     }
 
-    /**
-     * @return string
-     */
     public function getTypeLabel() : string
     {
         return DatumTypeEnum::getTypeLabel($this->type);
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();

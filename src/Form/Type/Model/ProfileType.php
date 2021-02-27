@@ -15,24 +15,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProfileType extends AbstractType
 {
-    /**
-     * @var Base64ToImageTransformer
-     */
     private Base64ToImageTransformer $base64ToImageTransformer;
 
-    /**
-     * ProfileType constructor.
-     * @param Base64ToImageTransformer $base64ToImageTransformer
-     */
     public function __construct(Base64ToImageTransformer $base64ToImageTransformer)
     {
         $this->base64ToImageTransformer = $base64ToImageTransformer;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -51,9 +40,6 @@ class ProfileType extends AbstractType
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

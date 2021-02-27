@@ -9,9 +9,6 @@ use Doctrine\ORM\EntityRepository;
 
 class DatumRepository extends EntityRepository
 {
-    /**
-     * @return array
-     */
     public function findSigns() : array
     {
         return $this

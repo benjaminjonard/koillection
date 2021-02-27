@@ -11,10 +11,6 @@ use Doctrine\ORM\NonUniqueResultException;
 
 class LogRepository extends EntityRepository
 {
-    /**
-     * @param SearchHistory $search
-     * @return array
-     */
     public function findForSearch(SearchHistory $search) : array
     {
         $classes = array_map(function ($value) {
@@ -42,11 +38,6 @@ class LogRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @param SearchHistory $search
-     * @return int
-     * @throws NonUniqueResultException
-     */
     public function countForSearch(SearchHistory $search) : int
     {
         $classes = array_map(function ($value) {

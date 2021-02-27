@@ -14,9 +14,6 @@ class LocaleEnum
         self::LOCALE_FR_FR => 'fr-FR'
     ];
 
-    /**
-     * @return array
-     */
     public static function getLocaleLabels() : array
     {
         return [

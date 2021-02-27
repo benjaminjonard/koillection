@@ -6,6 +6,7 @@ namespace App\Service\Log\Logger;
 
 use App\Entity\Collection;
 use App\Entity\Datum;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Enum\LogTypeEnum;
 use App\Service\Log\Logger;
@@ -14,52 +15,30 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DatumCollectionLogger extends Logger
 {
-    /**
-     * @var LogQueue
-     */
     private LogQueue $logQueue;
 
-    /**
-     * DatumLogger constructor.
-     * @param TranslatorInterface $translator
-     * @param LogQueue $logQueue
-     */
     public function __construct(TranslatorInterface $translator, LogQueue $logQueue)
     {
         parent::__construct($translator);
         $this->logQueue = $logQueue;
     }
 
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Collection::class;
     }
 
-    /**
-     * @return int
-     */
     public function getPriority() : int
     {
         return 2;
     }
 
-    /**
-     * @param $object
-     * @return bool
-     */
     public function supports($object) : bool
     {
         return get_class($object) === Datum::class && $object->getCollection() instanceof Collection;
     }
 
-    /**
-     * @param $datum
-     * @return Log|null
-     */
-    public function getCreateLog($datum) : ?Log
+    public function getCreateLog(LoggableInterface $datum) : ?Log
     {
         if (!$this->supports($datum)) {
             return null;
@@ -87,11 +66,7 @@ class DatumCollectionLogger extends Logger
         return $log;
     }
 
-    /**
-     * @param $datum
-     * @return Log|null
-     */
-    public function getDeleteLog($datum) : ?Log
+    public function getDeleteLog(LoggableInterface $datum) : ?Log
     {
         if (!$this->supports($datum)) {
             return null;
@@ -114,23 +89,12 @@ class DatumCollectionLogger extends Logger
         return $log;
     }
 
-    /**
-     * @param $datum
-     * @param array $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($datum, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $datum, array $changeset, array $relations = []) : ?Log
     {
         return null;
     }
 
-    /**
-     * @param $class
-     * @param array $payload
-     * @return null|string
-     */
-    public function formatPayload($class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload) : ?string
     {
         return null;
     }

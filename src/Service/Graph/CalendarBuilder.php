@@ -10,26 +10,13 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class CalendarBuilder
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * CalendarBuilder constructor.
-     * @param EntityManagerInterface $em
-     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
-    /**
-     * Build an array date->number of item created.
-     *
-     * @param User $user
-     * @return array
-     */
     public function buildItemCalendar(User $user) : array
     {
         $data = [];

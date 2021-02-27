@@ -104,9 +104,6 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
      */
     private ?\DateTimeInterface $updatedAt = null;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->id = Uuid::uuid4();
@@ -115,17 +112,11 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         $this->seenCounter = 0;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getLabel() ?? '';
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -271,9 +262,6 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Item[]
-     */
     public function getItems(): DoctrineCollection
     {
         return $this->items;

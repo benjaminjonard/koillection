@@ -12,26 +12,14 @@ use App\Model\BreadcrumbElement;
 
 class BreadcrumbBuilder
 {
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
-    /**
-     * BreadcrumbBuilder constructor.
-     * @param ContextHandler $contextHandler
-     */
     public function __construct(ContextHandler $contextHandler)
     {
         $this->contextHandler = $contextHandler;
     }
 
-    /**
-     * @param $entity
-     * @param null $parent
-     * @return array
-     */
-    public function build($entity, $parent = null) :array
+    public function build(BreadcrumbableInterface $entity, $parent = null): array
     {
         if (!$entity instanceof BreadcrumbableInterface) {
             return [];

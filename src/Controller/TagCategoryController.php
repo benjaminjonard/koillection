@@ -39,7 +39,7 @@ class TagCategoryController extends AbstractController
         path: ['en' => '/tag-categories/{id}', 'fr' => '/categories-de-tag/{id}'],
         name: 'app_tag_category_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    #[Entity(expr: 'repository.findOneWithTags(id)', class: 'tag')]
+    #[Entity('category', expr: 'repository.findOneWithTags(id)', class: TagCategory::class)]
     public function show(TagCategory $category) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);

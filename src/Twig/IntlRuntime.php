@@ -9,15 +9,12 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class IntlRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @return array
-     */
     public function getCountriesList() : array
     {
         return Countries::getNames();
     }
 
-    public function getCountryName($code)
+    public function getCountryName(string $code): string
     {
         return Countries::getName($code);
     }

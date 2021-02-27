@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Log\Logger;
 
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Entity\Tag;
 use App\Enum\LogTypeEnum;
@@ -12,27 +13,17 @@ use App\Service\Log\Logger;
 
 class TagLogger extends Logger
 {
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Tag::class;
     }
 
-    /**
-     * @return int
-     */
     public function getPriority() : int
     {
         return 1;
     }
 
-    /**
-     * @param $tag
-     * @return Log|null
-     */
-    public function getCreateLog($tag) : ?Log
+    public function getCreateLog(LoggableInterface $tag) : ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -41,11 +32,7 @@ class TagLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $tag);
     }
 
-    /**
-     * @param $tag
-     * @return Log|null
-     */
-    public function getDeleteLog($tag) : ?Log
+    public function getDeleteLog(LoggableInterface $tag) : ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -54,13 +41,7 @@ class TagLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $tag);
     }
 
-    /**
-     * @param $tag
-     * @param array $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($tag, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $tag, array $changeset, array $relations = []) : ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -112,12 +93,7 @@ class TagLogger extends Logger
         );
     }
 
-    /**
-     * @param $class
-     * @param array $payload
-     * @return null|string
-     */
-    public function formatPayload($class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload) : ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

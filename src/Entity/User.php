@@ -282,7 +282,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         $this->statisticsFeatureEnabled = true;
     }
 
-    public function serialize()
+    public function serialize(): ?string
     {
         return serialize([
             $this->id,
@@ -308,7 +308,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this->getUsername() ?? '';
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
     }
@@ -439,9 +439,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -614,18 +611,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isWishlistsFeatureEnabled(): bool
     {
         return $this->wishlistsFeatureEnabled;
     }
 
-    /**
-     * @param bool $wishlistsFeatureEnabled
-     * @return User
-     */
     public function setWishlistsFeatureEnabled(bool $wishlistsFeatureEnabled): User
     {
         $this->wishlistsFeatureEnabled = $wishlistsFeatureEnabled;
@@ -633,18 +623,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isTagsFeatureEnabled(): bool
     {
         return $this->tagsFeatureEnabled;
     }
 
-    /**
-     * @param bool $tagsFeatureEnabled
-     * @return User
-     */
     public function setTagsFeatureEnabled(bool $tagsFeatureEnabled): User
     {
         $this->tagsFeatureEnabled = $tagsFeatureEnabled;
@@ -652,18 +635,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isSignsFeatureEnabled(): bool
     {
         return $this->signsFeatureEnabled;
     }
 
-    /**
-     * @param bool $signsFeatureEnabled
-     * @return User
-     */
     public function setSignsFeatureEnabled(bool $signsFeatureEnabled): User
     {
         $this->signsFeatureEnabled = $signsFeatureEnabled;
@@ -671,18 +647,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isAlbumsFeatureEnabled(): bool
     {
         return $this->albumsFeatureEnabled;
     }
 
-    /**
-     * @param bool $albumsFeatureEnabled
-     * @return User
-     */
     public function setAlbumsFeatureEnabled(bool $albumsFeatureEnabled): User
     {
         $this->albumsFeatureEnabled = $albumsFeatureEnabled;
@@ -690,18 +659,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isLoansFeatureEnabled(): bool
     {
         return $this->loansFeatureEnabled;
     }
 
-    /**
-     * @param bool $loansFeatureEnabled
-     * @return User
-     */
     public function setLoansFeatureEnabled(bool $loansFeatureEnabled): User
     {
         $this->loansFeatureEnabled = $loansFeatureEnabled;
@@ -709,18 +671,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isTemplatesFeatureEnabled(): bool
     {
         return $this->templatesFeatureEnabled;
     }
 
-    /**
-     * @param bool $templatesFeatureEnabled
-     * @return User
-     */
     public function setTemplatesFeatureEnabled(bool $templatesFeatureEnabled): User
     {
         $this->templatesFeatureEnabled = $templatesFeatureEnabled;
@@ -728,18 +683,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isHistoryFeatureEnabled(): bool
     {
         return $this->historyFeatureEnabled;
     }
 
-    /**
-     * @param bool $historyFeatureEnabled
-     * @return User
-     */
     public function setHistoryFeatureEnabled(bool $historyFeatureEnabled): User
     {
         $this->historyFeatureEnabled = $historyFeatureEnabled;
@@ -747,18 +695,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isStatisticsFeatureEnabled(): bool
     {
         return $this->statisticsFeatureEnabled;
     }
 
-    /**
-     * @param bool $statisticsFeatureEnabled
-     * @return User
-     */
     public function setStatisticsFeatureEnabled(bool $statisticsFeatureEnabled): User
     {
         $this->statisticsFeatureEnabled = $statisticsFeatureEnabled;
@@ -766,18 +707,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDarkModeEnabled(): bool
     {
         return $this->darkModeEnabled;
     }
 
-    /**
-     * @param bool $darkModeEnabled
-     * @return User
-     */
     public function setDarkModeEnabled(bool $darkModeEnabled): User
     {
         $this->darkModeEnabled = $darkModeEnabled;
@@ -785,18 +719,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return ?\DateTime
-     */
     public function getAutomaticDarkModeStartAt(): ?\DateTime
     {
         return $this->automaticDarkModeStartAt;
     }
 
-    /**
-     * @param ?\DateTime $automaticDarkModeStartAt
-     * @return User
-     */
     public function setAutomaticDarkModeStartAt(?\DateTime $automaticDarkModeStartAt): User
     {
         $this->automaticDarkModeStartAt = $automaticDarkModeStartAt;
@@ -804,18 +731,11 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return ?\DateTime
-     */
     public function getAutomaticDarkModeEndAt(): ?\DateTime
     {
         return $this->automaticDarkModeEndAt;
     }
 
-    /**
-     * @param ?\DateTime $automaticDarkModeEndAt
-     * @return User
-     */
     public function setAutomaticDarkModeEndAt(?\DateTime $automaticDarkModeEndAt): User
     {
         $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;

@@ -10,9 +10,6 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class PhotoListener
 {
-    /**
-     * @param OnFlushEventArgs $args
-     */
     public function onFlush(OnFlushEventArgs $args)
     {
         $em = $args->getEntityManager();

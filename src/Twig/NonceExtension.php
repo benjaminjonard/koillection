@@ -9,9 +9,6 @@ use Twig\TwigFunction;
 
 class NonceExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions() : array
     {
         return [

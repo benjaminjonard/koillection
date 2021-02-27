@@ -9,11 +9,6 @@ use App\Entity\Inventory;
 
 class InventoryHandler
 {
-    /**
-     * @param array $collections
-     * @param array $collectionIdsToAddInInventory
-     * @return array
-     */
     public function buildInventory(array $collections, array $collectionIdsToAddInInventory)
     {
         $content = [];
@@ -32,11 +27,6 @@ class InventoryHandler
         return $content;
     }
 
-    /**
-     * @param Collection $collection
-     * @param array $collectionIdsToAddInInventory
-     * @return array|null
-     */
     public function buildCollection(Collection $collection, array $collectionIdsToAddInInventory)
     {
         $element = null;

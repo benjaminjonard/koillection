@@ -11,34 +11,16 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class JsonToItemTransformer implements DataTransformerInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var Packages
-     */
     private Packages $assetManager;
 
-    /**
-     * JsonToTagTransformer constructor.
-     * @param EntityManagerInterface $em
-     * @param Packages $assetManager
-     */
     public function __construct(EntityManagerInterface $em, Packages $assetManager)
     {
         $this->em = $em;
         $this->assetManager = $assetManager;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @param mixed $items
-     *
-     * @return array|string
-     */
     public function transform($items)
     {
         $array = [];
@@ -53,13 +35,6 @@ class JsonToItemTransformer implements DataTransformerInterface
         return json_encode($array);
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @param string $string
-     *
-     * @return mixed|null
-     */
     public function reverseTransform($json)
     {
         $repo = $this->em->getRepository(Item::class);

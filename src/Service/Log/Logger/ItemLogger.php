@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Log\Logger;
 
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Item;
 use App\Entity\Log;
 use App\Entity\Tag;
@@ -14,27 +15,17 @@ use App\Service\Log\Logger;
 
 class ItemLogger extends Logger
 {
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Item::class;
     }
 
-    /**
-     * @return int
-     */
     public function getPriority() : int
     {
         return 1;
     }
 
-    /**
-     * @param $item
-     * @return Log|null
-     */
-    public function getCreateLog($item) : ?Log
+    public function getCreateLog(LoggableInterface $item) : ?Log
     {
         if (!$this->supports($item)) {
             return null;
@@ -43,11 +34,7 @@ class ItemLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $item);
     }
 
-    /**
-     * @param $item
-     * @return Log|null
-     */
-    public function getDeleteLog($item) : ?Log
+    public function getDeleteLog(LoggableInterface $item) : ?Log
     {
         if (!$this->supports($item)) {
             return null;
@@ -56,13 +43,7 @@ class ItemLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $item);
     }
 
-    /**
-     * @param $item
-     * @param array $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($item, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $item, array $changeset, array $relations = []) : ?Log
     {
         if (!$this->supports($item)) {
             return null;
@@ -131,12 +112,7 @@ class ItemLogger extends Logger
         );
     }
 
-    /**
-     * @param $class
-     * @param array $payload
-     * @return null|string
-     */
-    public function formatPayload($class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload) : ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

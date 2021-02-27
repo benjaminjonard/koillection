@@ -12,27 +12,12 @@ use Symfony\Component\Security\Core\Security;
 
 class FilterListener
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * FilterListener constructor.
-     * @param EntityManagerInterface $em
-     * @param ContextHandler $contextHandler
-     * @param Security $security
-     */
     public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, Security $security)
     {
         $this->em = $em;

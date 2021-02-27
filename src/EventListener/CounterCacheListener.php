@@ -15,39 +15,23 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 class CounterCacheListener
 {
-    /**
-     * @var CountersCache
-     */
     private CountersCache $countersCache;
 
-    /**
-     * CounterCacheListener constructor.
-     * @param CountersCache $countersCache
-     */
     public function __construct(CountersCache $countersCache)
     {
         $this->countersCache = $countersCache;
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function postPersist(LifecycleEventArgs $args)
     {
         $this->resetCache($args->getEntity());
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function postUpdate(LifecycleEventArgs $args)
     {
         $this->resetCache($args->getEntity());
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function postRemove(LifecycleEventArgs $args)
     {
         $this->resetCache($args->getEntity());

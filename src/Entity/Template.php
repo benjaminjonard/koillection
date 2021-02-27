@@ -56,26 +56,17 @@ class Template implements BreadcrumbableInterface
      */
     private ?\DateTimeInterface $updatedAt;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->id = Uuid::uuid4();
         $this->fields = new ArrayCollection();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName() ?? '';
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -117,9 +108,6 @@ class Template implements BreadcrumbableInterface
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Field[]
-     */
     public function getFields(): DoctrineCollection
     {
         return $this->fields;

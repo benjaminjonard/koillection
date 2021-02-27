@@ -16,7 +16,7 @@ class CountersRuntime implements RuntimeExtensionInterface
         $this->countersCache = $countersCache;
     }
 
-    public function getCounters($object)
+    public function getCounters($object): array
     {
         return $this->countersCache->getCounters($object);
     }

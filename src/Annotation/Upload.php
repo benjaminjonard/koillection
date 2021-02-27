@@ -12,24 +12,12 @@ use Doctrine\Common\Annotations\Annotation\Target;
  */
 class Upload
 {
-    /**
-     * @var string|null
-     */
     private ?string $path = null;
 
-    /**
-     * @var string|null
-     */
     private ?string $smallThumbnailPath = null;
 
-    /**
-     * @var string|null
-     */
     private ?string $largeThumbnailPath = null;
 
-    /**
-     * @var string|null
-     */
     private ?string $originalFilenamePath = null;
 
 
@@ -45,33 +33,21 @@ class Upload
         $this->originalFilenamePath = $options['originalFilenamePath'] ?? null;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPath(): ?string
     {
         return $this->path;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSmallThumbnailPath(): ?string
     {
         return $this->smallThumbnailPath;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLargeThumbnailPath(): ?string
     {
         return $this->largeThumbnailPath;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOriginalFilenamePath(): ?string
     {
         return $this->originalFilenamePath;
