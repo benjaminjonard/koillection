@@ -12,14 +12,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class LoanController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/loans",
-     *     "fr": "/prets"
-     * }, name="app_loan_index", methods={"GET"})
-     *
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/loans', 'fr' => '/prets'],
+        name: 'app_loan_index', methods: ['GET']
+    )]
     public function index() : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
@@ -31,16 +27,10 @@ class LoanController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/loans/{id}/delete",
-     *     "fr": "/prets/{id}/supprimer"
-     * }, name="app_loan_delete", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param Loan $loan
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/loans/{id}/delete', 'fr' => '/prets/{id}/supprimer'],
+        name: 'app_loan_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
     public function delete(Loan $loan, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
@@ -54,19 +44,11 @@ class LoanController extends AbstractController
         return $this->redirectToRoute('app_loan_index');
     }
 
-    /**
-     * @Route({
-     *     "en": "/loans/{id}/returned",
-     *     "fr": "/prets/{id}/rendu"
-     * }, name="app_loan_returned", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Entity("loan", expr="repository.findByIdWithItem(id)")
-     *
-     * @param Loan $loan
-     * @param TranslatorInterface $translator
-     * @return Response
-     * @throws \Exception
-     */
+    #[Route(
+        path: ['en' => '/loans/{id}/returned', 'fr' => '/prets/{id}/rendu'],
+        name: 'app_loan_returned', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Entity(expr: 'repository.findByIdWithItem(id)', class: 'loan')]
     public function returned(Loan $loan, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);

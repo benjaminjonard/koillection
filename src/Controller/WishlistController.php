@@ -15,24 +15,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class WishlistController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/wishlists",
-     *     "fr": "/listes-de-souhaits"
-     * }, name="app_wishlist_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/wishlists",
-     *     "fr": "/utilisateur/{username}/listes-de-souhaits"
-     * }, name="app_user_wishlist_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/wishlists",
-     *     "fr": "/apercu/listes-de-souhaits"
-     * }, name="app_preview_wishlist_index", methods={"GET"})
-     *
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/wishlists', 'fr' => '/listes-de-souhaits'],
+        name: 'app_wishlist_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/wishlists', 'fr' => '/utilisateur/{username}/listes-de-souhaits'],
+        name: 'app_user_wishlist_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/wishlists', 'fr' => '/apercu/listes-de-souhaits'],
+        name: 'app_preview_wishlist_index', methods: ['GET']
+    )]
     public function index() : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -44,16 +38,10 @@ class WishlistController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/wishlists/add",
-     *     "fr": "/listes-de-souhaits/ajouter"
-     * }, name="app_wishlist_add", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/wishlists/add', 'fr' => '/listes-de-souhaits/ajouter'],
+        name: 'app_wishlist_add', methods: ['GET', 'POST']
+    )]
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -88,26 +76,18 @@ class WishlistController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/wishlists/{id}",
-     *     "fr": "/listes-de-souhaits/{id}"
-     * }, name="app_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/wishlists/{id}",
-     *     "fr": "/utilisateur/{username}/listes-de-souhaits/{id}"
-     * }, name="app_user_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/wishlists/{id}",
-     *     "fr": "/apercu/listes-de-souhaits/{id}"
-     * }, name="app_preview_wishlist_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     *
-     * @param Wishlist $wishlist
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/wishlists/{id}', 'fr' => '/listes-de-souhaits/{id}'],
+        name: 'app_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/wishlists/{id}', 'fr' => '/utilisateur/{username}/listes-de-souhaits/{id}'],
+        name: 'app_user_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/wishlists/{id}', 'fr' => '/apercu/listes-de-souhaits/{id}'],
+        name: 'app_preview_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
     public function show(Wishlist $wishlist) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -119,17 +99,10 @@ class WishlistController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/wishlists/{id}/edit",
-     *     "fr": "/listes-de-souhaits/{id}/editer"
-     * }, name="app_wishlist_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Wishlist $wishlist
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/wishlists/{id}/edit', 'fr' => '/listes-de-souhaits/{id}/editer'],
+        name: 'app_wishlist_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function edit(Request $request, Wishlist $wishlist, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -150,16 +123,10 @@ class WishlistController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/wishlists/{id}/delete",
-     *     "fr": "/listes-de-souhaits/{id}/supprimer"
-     * }, name="app_wishlist_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Wishlist $wishlist
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/wishlists/{id}/delete', 'fr' => '/listes-de-souhaits/{id}/supprimer'],
+        name: 'app_wishlist_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function delete(Wishlist $wishlist, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -173,15 +140,10 @@ class WishlistController extends AbstractController
         return $this->redirectToRoute('app_wishlist_index');
     }
 
-    /**
-     * @Route({
-     *     "en": "/wishlists/{id}/history",
-     *     "fr": "/listes-de-souhaits/{id}/historique"
-     * }, name="app_wishlist_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param Wishlist $wishlist
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/wishlists/{id}/history', 'fr' => '/listes-de-souhaits/{id}/historique'],
+        name: 'app_wishlist_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function history(Wishlist $wishlist) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists', 'history']);

@@ -90,6 +90,10 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
+        if ($user->isEnabled() === false) {
+            throw new CustomUserMessageAuthenticationException('error.user_not_enabled');
+        }
+
         if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
             throw new CustomUserMessageAuthenticationException('error.invalid_credentials');
         }

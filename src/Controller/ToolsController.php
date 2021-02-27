@@ -18,14 +18,10 @@ use ZipStream\ZipStream;
 
 class ToolsController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/tools",
-     *     "fr": "/outils"
-     * }, name="app_tools_index", methods={"GET"})
-     *
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tools', 'fr' => '/outils'],
+        name: 'app_tools_index', methods: ['GET']
+    )]
     public function index() : Response
     {
         return $this->render('App/Tools/index.html.twig', [
@@ -33,14 +29,10 @@ class ToolsController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/tools/export/printable-list",
-     *     "fr": "/outils/export/liste-imprimable"
-     * }, name="app_tools_export_printable_list", methods={"GET"})
-     *
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tools/export/printable-list', 'fr' => '/outils/export/liste-imprimable'],
+        name: 'app_tools_export_printable_list', methods: ['GET']
+    )]
     public function exportPrintableList() : Response
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
@@ -51,15 +43,10 @@ class ToolsController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/tools/export/csv",
-     *     "fr": "/outils/export/csv"
-     * }, name="app_tools_export_csv", methods={"GET"})
-     *
-     * @return CsvResponse
-     * @throws \Exception
-     */
+    #[Route(
+        path: ['en' => '/tools/export/csv', 'fr' => '/outils/export/csv'],
+        name: 'app_tools_export_csv', methods: ['GET']
+    )]
     public function exportCsv() : CsvResponse
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
@@ -74,29 +61,19 @@ class ToolsController extends AbstractController
         return new CsvResponse($rows, (new \DateTime())->format('Ymd') . '-koillection-export.csv');
     }
 
-    /**
-     * @Route({
-     *     "en": "/tools/export/sql",
-     *     "fr": "/outils/export/sql"
-     * }, name="app_tools_export_sql", methods={"GET"})
-     *
-     * @param DatabaseDumper $databaseDumper
-     * @return FileResponse
-     * @throws DBALException
-     */
+    #[Route(
+        path: ['en' => '/tools/export/sql', 'fr' => '/outils/export/sql'],
+        name: 'app_tools_export_sql', methods: ['GET']
+    )]
     public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('Ymd') . '-koillection-export.sql');
     }
 
-    /**
-     * @Route({
-     *     "en": "/tools/export/images",
-     *     "fr": "/outils/export/images"
-     * }, name="app_tools_export_images", methods={"GET"})
-     *
-     * @return StreamedResponse
-     */
+    #[Route(
+        path: ['en' => '/tools/export/images', 'fr' => '/outils/export/images'],
+        name: 'app_tools_export_images', methods: ['GET']
+    )]
     public function exportImages() : StreamedResponse
     {
         return new StreamedResponse(function () {

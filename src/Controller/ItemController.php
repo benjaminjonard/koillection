@@ -9,7 +9,6 @@ use App\Entity\Item;
 use App\Entity\Loan;
 use App\Entity\Log;
 use App\Entity\Tag;
-use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
 use App\Service\ItemNameGuesser;
@@ -24,17 +23,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ItemController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/items/add",
-     *     "fr": "/objets/ajouter"
-     * }, name="app_item_add", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @param ItemNameGuesser $itemNameGuesser
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/items/add', 'fr' => '/objets/ajouter'],
+        name: 'app_item_add', methods: ['GET', 'POST']
+    )]
     public function add(Request $request, TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser) : Response
     {
         $em = $this->getDoctrine()->getManager();
@@ -84,27 +76,19 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/items/{id}",
-     *     "fr": "/objets/{id}"
-     * }, name="app_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/items/{id}",
-     *     "fr": "/utilisateur/{username}/objets/{id}"
-     * }, name="app_user_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/items/{id}",
-     *     "fr": "/apercu/objets/{id}"
-     * }, name="app_preview_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Entity("item", expr="repository.findById(id)")
-     *
-     * @param Item $item
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/items/{id}', 'fr' => '/objets/{id}'],
+        name: 'app_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/items/{id}', 'fr' => '/utilisateur/{username}/objets/{id}'],
+        name: 'app_user_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/items/{id}', 'fr' => '/apercu/objets/{id}'],
+        name: 'app_preview_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
+    )]
+    #[Entity(expr: 'repository.findById(id)', class: 'item')]
     public function show(Item $item) : Response
     {
         $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $item->getCollection());
@@ -116,19 +100,11 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/items/{id}/edit",
-     *     "fr": "/objets/{id}/editer"
-     * }, name="app_item_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @Entity("item", expr="repository.findById(id)")
-     *
-     * @param Request $request
-     * @param Item $item
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/items/{id}/edit', 'fr' => '/objets/{id}/editer'],
+        name: 'app_item_edit', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
+    )]
+    #[Entity(expr: 'repository.findById(id)', class: 'item')]
     public function edit(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
         $form = $this->createForm(ItemType::class, $item);
@@ -147,16 +123,10 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/items/{id}/delete",
-     *     "fr": "/objets/{id}/supprimer"
-     * }, name="app_item_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Item $item
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/items/{id}/delete', 'fr' => '/objets/{id}/supprimer'],
+        name: 'app_item_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function delete(Item $item, TranslatorInterface $translator) : Response
     {
         $collection = $item->getCollection();
@@ -169,15 +139,10 @@ class ItemController extends AbstractController
         return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/items/{id}/history",
-     *     "fr": "/objets/{id}/historique"
-     * }, name="app_item_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param Item $item
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/items/{id}/history', 'fr' => '/objets/{id}/historique'],
+        name: 'app_item_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
     public function history(Item $item) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
@@ -194,17 +159,10 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/items/{id}/loan",
-     *     "fr": "/objets/{id}/preter"
-     * }, name="app_item_loan", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Item $item
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/items/{id}/loan', 'fr' => '/objets/{id}/preter'],
+        name: 'app_item_loan', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function loan(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
@@ -229,15 +187,10 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/items/autocomplete/{search}",
-     *     "fr": "/objets/autocompletion/{search}"
-     * }, name="app_item_autocomplete", methods={"GET"})
-     *
-     * @param string $search
-     * @return JsonResponse
-     */
+    #[Route(
+        path: ['en' => '/items/autocomplete/{search}', 'fr' => '/objets/autocompletion/{search}'],
+        name: 'app_item_autocomplete', methods: ['GET']
+    )]
     public function autocomplete(string $search, Packages $assetManager) : JsonResponse
     {
         $items = $this->getDoctrine()->getRepository(Item::class)->findLike($search);

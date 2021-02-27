@@ -17,24 +17,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CollectionController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/collections",
-     *     "fr": "/collections"
-     * }, name="app_collection_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}",
-     *     "fr": "/utilisateur/{username}"
-     * }, name="app_user_collection_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview",
-     *     "fr": "/apercu"
-     * }, name="app_preview_collection_index", methods={"GET"})
-     *
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections', 'fr' => '/collections'],
+        name: 'app_collection_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}', 'fr' => '/utilisateur/{username}'],
+        name: 'app_user_collection_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview', 'fr' => '/apercu'],
+        name: 'app_preview_collection_index', methods: ['GET']
+    )]
     public function index() : Response
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => null], ['title' => 'ASC']);
@@ -44,16 +38,10 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/collections/add",
-     *     "fr": "/collections/ajouter"
-     * }, name="app_collection_add", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections/add', 'fr' => '/collections/ajouter'],
+        name: 'app_collection_add', methods: ['GET', 'POST']
+    )]
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
         $collection = new Collection();
@@ -89,25 +77,18 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/collections/{id}",
-     *     "fr": "/collections/{id}"
-     * }, name="app_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/{id}",
-     *     "fr": "/utilisateur/{username}/{id}"
-     * }, name="app_user_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/{id}",
-     *     "fr": "/apercu/{id}"
-     * }, name="app_preview_collection_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param Collection $collection
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections/{id}', 'fr' => '/collections/{id}'],
+        name: 'app_collection_show', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/{id}', 'fr' => '/utilisateur/{username}/{id}'],
+        name: 'app_user_collection_show', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/{id}', 'fr' => '/apercu/{id}'],
+        name: 'app_preview_collection_show', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
+    )]
     public function show(Collection $collection) : Response
     {
         return $this->render('App/Collection/show.html.twig', [
@@ -117,25 +98,18 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/collections/{id}/items",
-     *     "fr": "/collections/{id}/objets"
-     * }, name="app_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/{id}/items",
-     *     "fr": "/utilisateur/{username}/{id}/objets"
-     * }, name="app_user_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/{id}/items",
-     *     "fr": "/apercu/{id}/objets"
-     * }, name="app_preview_collection_items", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param Collection $collection
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections/{id}/items', 'fr' => '/collections/{id}/objets'],
+        name: 'app_collection_items', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/{id}/items', 'fr' => '/utilisateur/{username}/{id}/objets'],
+        name: 'app_user_collection_items', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/{id}/items', 'fr' => '/apercu/{id}/objets'],
+        name: 'app_preview_collection_items', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
+    )]
     public function items(Collection $collection) : Response
     {
         return $this->render('App/Collection/items.html.twig', [
@@ -144,17 +118,10 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/collections/{id}/edit",
-     *     "fr": "/collections/{id}/editer"
-     * }, name="app_collection_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Collection $collection
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections/{id}/edit', 'fr' => '/collections/{id}/editer'],
+        name: 'app_collection_edit', requirements: ['id' => '%uuid_regex%'],  methods: ['GET', 'POST']
+    )]
     public function edit(Request $request, Collection $collection, TranslatorInterface $translator) : Response
     {
         $em = $this->getDoctrine()->getManager();
@@ -177,16 +144,10 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/collections/{id}/delete",
-     *     "fr": "/collections/{id}/supprimer"
-     * }, name="app_collection_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Collection $collection
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections/{id}/delete', 'fr' => '/collections/{id}/supprimer'],
+        name: 'app_collection_delete', requirements: ['id' => '%uuid_regex%'],  methods: ['GET', 'POST']
+    )]
     public function delete(Collection $collection, TranslatorInterface $translator) : Response
     {
         $em = $this->getDoctrine()->getManager();
@@ -202,17 +163,10 @@ class CollectionController extends AbstractController
         return $this->redirectToRoute('app_collection_show', ['id' => $collection->getParent()->getId()]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/collections/{id}/batch-tagging",
-     *     "fr": "/collections/{id}/tagguer-par-lot"
-     * }, name="app_collection_batch_tagging", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Collection $collection
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections/{id}/batch-tagging', 'fr' => '/collections/{id}/tagguer-par-lot'],
+        name: 'app_collection_batch_tagging', requirements: ['id' => '%uuid_regex%'],  methods: ['GET', 'POST']
+    )]
     public function batchTagging(Request $request, Collection $collection, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -236,15 +190,10 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/collections/{id}/history",
-     *     "fr": "/collections/{id}/historique"
-     * }, name="app_collection_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param Collection $collection
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/collections/{id}/history', 'fr' => '/collections/{id}/historique'],
+        name: 'app_collection_history', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
+    )]
     public function history(Collection $collection) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);

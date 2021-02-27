@@ -31,15 +31,7 @@ use ZipStream\ZipStream;
  */
 class AdminController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/admin",
-     *     "fr": "/admin"
-     * }, name="app_admin_index", methods={"GET"})
-     *
-     * @param LatestReleaseChecker $latestVersionChecker
-     * @return Response
-     */
+    #[Route(path: ['en' => '/admin', 'fr' => '/admin'], name: 'app_admin_index', methods: ['GET'])]
     public function index(LatestReleaseChecker $latestVersionChecker) : Response
     {
         $em = $this->getDoctrine()->getManager();
@@ -68,15 +60,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/admin/backup",
-     *     "fr": "/admin/sauvegarde"
-     * }, name="app_admin_backup", methods={"GET"})
-     *
-     * @param DatabaseDumper $databaseDumper
-     * @return StreamedResponse
-     */
+    #[Route(path: ['en' => '/admin/backup', 'fr' => '/admin/sauvegarde'], name: 'app_admin_backup', methods: ['GET'])]
     public function backup(DatabaseDumper $databaseDumper) : StreamedResponse
     {
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();

@@ -12,16 +12,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SettingsController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/settings",
-     *     "fr": "/paramètres"
-     * }, name="app_settings_index", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/settings', 'fr' => '/paramètres'],
+        name: 'app_settings_index', methods: ['GET', 'POST']
+    )]
     public function index(Request $request, TranslatorInterface $translator) : Response
     {
         $user = $this->getUser();

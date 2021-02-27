@@ -21,28 +21,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TagController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/tags",
-     *     "fr": "/tags"
-     * }, name="app_tag_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/tags",
-     *     "fr": "/utilisateur/{username}/tags"
-     * }, name="app_user_tag_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/tags",
-     *     "fr": "/apercu/tags"
-     * }, name="app_preview_tag_index", methods={"GET"})
-     *
-     * @param Request $request
-     * @param PaginatorFactory $paginatorFactory
-     * @param ContextHandler $contextHandler
-     * @param int $paginationItemsPerPage
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tags', 'fr' => '/tags'],
+        name: 'app_tag_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/tags', 'fr' => '/utilisateur/{username}/tags'],
+        name: 'app_user_tag_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/tags', 'fr' => '/apercu/tags'],
+        name: 'app_preview_tag_index', methods: ['GET']
+    )]
     public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler, int $paginationItemsPerPage) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -75,27 +65,19 @@ class TagController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/tags/{id}",
-     *     "fr": "/tags/{id}"
-     * }, name="app_tag_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/tags/{id}",
-     *     "fr": "/utilisateur/{username}/tags/{id}"
-     * }, name="app_user_tag_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/tags/{id}",
-     *     "fr": "/apercu/tags/{id}"
-     * }, name="app_preview_tag_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Entity("tag", expr="repository.findWithItems(id)")
-     *
-     * @param Tag $tag
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tags/{id}', 'fr' => '/tags/{id}'],
+        name: 'app_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/tags/{id}', 'fr' => '/utilisateur/{username}/tags/{id}'],
+        name: 'app_user_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/tags/{id}', 'fr' => '/apercu/tags/{id}'],
+        name: 'app_preview_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Entity(expr: 'repository.findWithItems(id)', class: 'tag')]
     public function show(Tag $tag) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -106,17 +88,10 @@ class TagController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/tags/{id}/edit",
-     *     "fr": "/tags/{id}/editer"
-     * }, name="app_tag_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Tag $tag
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tags/{id}/edit', 'fr' => '/tags/{id}/editer'],
+        name: 'app_tag_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function edit(Request $request, Tag $tag, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -138,16 +113,10 @@ class TagController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/tags/{id}/delete",
-     *     "fr": "/tags/{id}/supprimer"
-     * }, name="app_tag_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Tag $tag
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tags/{id}/delete', 'fr' => '/tags/{id}/supprimer'],
+        name: 'app_tag_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function delete(Tag $tag, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -161,15 +130,10 @@ class TagController extends AbstractController
         return $this->redirectToRoute('app_tag_index');
     }
 
-    /**
-     * @Route({
-     *     "en": "/tags/autocomplete/{search}",
-     *     "fr": "/tags/autocompletion/{search}"
-     * }, name="app_tag_autocomplete", methods={"GET"})
-     *
-     * @param string $search
-     * @return JsonResponse
-     */
+    #[Route(
+        path: ['en' => '/tags/autocomplete/{search}', 'fr' => '/tags/autocompletion/{search}'],
+        name: 'app_tag_autocomplete', methods: ['GET']
+    )]
     public function autocomplete(string $search) : JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -183,15 +147,10 @@ class TagController extends AbstractController
         return new JsonResponse($data);
     }
 
-    /**
-     * @Route({
-     *     "en": "/tags/{id}/history",
-     *     "fr": "/tags/{id}/historique"
-     * }, name="app_tag_history", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @param Tag $tag
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tags/{id}/history', 'fr' => '/tags/{id}/historique'],
+        name: 'app_tag_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
     public function history(Tag $tag) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags', 'history']);
@@ -208,29 +167,20 @@ class TagController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "tags/{tagId}/items/{itemId}",
-     *     "fr": "tags/{tagId}/objets/{itemId}"
-     * }, name="app_tag_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/tags/{tagId}/items/{itemId}",
-     *     "fr": "/utilisateur/{username}tags/{tagId}/objets/{itemId}"
-     * }, name="app_user_tag_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/tags/{tagId}/items/{itemId}",
-     *     "fr": "/apercu/tags/{tagId}/objets/{itemId}"
-     * }, name="app_preview_tag_item_show", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Entity("item", expr="repository.findById(itemId)")
-     * @Entity("tag", expr="repository.find(tagId)")
-     *
-     * @param Item $item
-     * @param Tag $tag
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/tags/{tagId}/items/{itemId}', 'fr' => '/tags/{tagId}/objets/{itemId}'],
+        name: 'app_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/tags/{tagId}/items/{itemId', 'fr' => '/utilisateur/{username}tags/{tagId}/objets/{itemId}'],
+        name: 'app_user_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => 'tags/{tagId}/items/{itemId}', 'fr' => 'tags/{tagId}/objets/{itemId}'],
+        name: 'app_preview_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Entity(expr: 'repository.findById(itemId)', class: 'item')]
+    #[Entity(expr: 'repository.find(tagId)', class: 'tag')]
     public function item(Item $item, Tag $tag) : Response
     {
         $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $tag);

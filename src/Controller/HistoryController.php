@@ -14,17 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HistoryController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/history",
-     *     "fr": "/historique"
-     * }, name="", name="app_history_index", methods={"GET"})
-     *
-     * @param Request $request
-     * @param PaginatorFactory $paginatorFactory
-     * @param int $paginationItemsPerPage
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/history', 'fr' => '/historique'],
+        name: 'app_history_index', methods: ['GET']
+    )]
     public function index(Request $request, PaginatorFactory $paginatorFactory, int $paginationItemsPerPage) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);

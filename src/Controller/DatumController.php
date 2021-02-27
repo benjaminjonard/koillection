@@ -12,15 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DatumController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/datum/{type}",
-     *     "fr": "/datum/{type}"
-     * }, name="app_datum_get_html_by_type", methods={"GET"})
-     *
-     * @param string $type
-     * @return JsonResponse
-     */
+    #[Route(
+        path: ['en' => '/datum/{type}', 'fr' => '/datum/{type}'],
+        name: 'app_datum_get_html_by_type', methods: ['GET']
+    )]
     public function getHtmlByType(string $type) : JsonResponse
     {
         $html = $this->render('App/Datum/_datum.html.twig', [
@@ -35,17 +30,11 @@ class DatumController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/datum/load-common-fields/{id}",
-     *     "fr": "/datum/charger-les-champs-communs/{id}"
-     * }, name="app_datum_load_common_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Entity("collection", expr="repository.findWithItemsAndData(id)")
-     *
-     * @param Collection $collection
-     * @return JsonResponse
-     */
+    #[Route(
+        path: ['en' => '/datum/load-common-fields/{id}', 'fr' => '/datum/charger-les-champs-communs/{id}'],
+        name: 'app_datum_load_common_fields', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Entity(expr: 'repository.findWithItemsAndData(id)', class: 'collection')]
     public function loadCommonFields(Collection $collection) : JsonResponse
     {
         try {
@@ -97,17 +86,11 @@ class DatumController extends AbstractController
         }
     }
 
-    /**
-     * @Route({
-     *     "en": "/datum/load-collection-fields/{id}",
-     *     "fr": "/datum/charger-les-champs-de-la-collection/{id}"
-     * }, name="app_datum_load_collection_fields", requirements={"id"="%uuid_regex%"}, methods={"GET"})
-     *
-     * @Entity("collection", expr="repository.findWithItemsAndData(id)")
-     *
-     * @param Collection $collection
-     * @return JsonResponse
-     */
+    #[Route(
+        path: ['en' => '/datum/load-collection-fields/{id}', 'fr' => '/datum/charger-les-champs-de-la-collection/{id}'],
+        name: 'app_datum_load_collection_fields', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+    )]
+    #[Entity(expr: 'repository.findWithItemsAndData(id)', class: 'collection')]
     public function loadCollectionFields(Collection $collection) : JsonResponse
     {
         try {

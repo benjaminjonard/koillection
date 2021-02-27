@@ -13,27 +13,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StatisticsController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/statistics",
-     *     "fr": "/statistiques"
-     * }, name="app_statistics_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/user/{username}/statistics",
-     *     "fr": "/utilisateur/{username}/statistiques"
-     * }, name="app_user_statistics_index", methods={"GET"})
-     *
-     * @Route({
-     *     "en": "/preview/statistics",
-     *     "fr": "/apercu/statistiques"
-     * }, name="app_preview_statistics_index", methods={"GET"})
-     *
-     * @param TreeBuilder $treeBuilder
-     * @param CalendarBuilder $calendarBuilder
-     * @param ChartBuilder $chartBuilder
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/statistics', 'fr' => '/statistiques'],
+        name: 'app_statistics_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/user/{username}/statistics', 'fr' => '/utilisateur/{username}/statistiques'],
+        name: 'app_user_statistics_index', methods: ['GET']
+    )]
+    #[Route(
+        path: ['en' => '/preview/statistics', 'fr' => '/apercu/statistiques'],
+        name: 'app_statistics_index', methods: ['GET']
+    )]
     public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder, User $user = null) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['statistics']);
