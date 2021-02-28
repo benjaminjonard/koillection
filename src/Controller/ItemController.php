@@ -102,7 +102,7 @@ class ItemController extends AbstractController
 
     #[Route(
         path: ['en' => '/items/{id}/edit', 'fr' => '/objets/{id}/editer'],
-        name: 'app_item_edit', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
+        name: 'app_item_edit', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET', 'POST']
     )]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function edit(Request $request, Item $item, TranslatorInterface $translator) : Response

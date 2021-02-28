@@ -1293,3 +1293,25 @@ i.btn input {color: #fff; cursor: pointer;}
 .js-item-autocomplete .js-autocomplete-result {margin-bottom: 45px;}
 .related-items span {font-weight: bold;}
 .related-items {margin-bottom: 15px;}
+
+
+/* STAR RATING */
+.rating-form {display: inline-block; border: 0; margin-top: 10px;}
+.rating-form > input {display: none;}  /* Hide radio */
+.rating-form > label {float: right; position: unset;} /* Order correctly by floating highest to the right */
+/* Full star */
+.rating-form > label:before {display: inline-block; font-size: 2rem; padding: .3rem .2rem; margin: 0; cursor: pointer; }
+.rating-display > label:before {display: inline-block; margin: 0; cursor: pointer;}
+/* Half star */
+.rating-form .fa-star-half:before {position: absolute; padding-right: 0;}
+.rating-display .fa-star-half:before {position: absolute; padding-right: 0; padding-top: 9px;}
+/* Click + hover color */
+.rating-form input:checked ~ label, /* color current and previous stars on checked */
+.rating-form label:hover, .rating-form label:hover ~ label, /* color previous stars on hover */
+.rating-display .colored
+{color: #ffd740;}
+/* Hover highlights */
+.rating-form input:checked + label:hover, .rating-form input:checked ~ label:hover, /* highlight current and previous stars */
+.rating-form input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
+.rating-form label:hover ~ input:checked ~ label /* highlight previous selected stars */
+{color: #ffe57f;}

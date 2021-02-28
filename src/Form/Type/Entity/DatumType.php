@@ -8,6 +8,7 @@ use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -54,6 +55,16 @@ class DatumType extends AbstractType
                 $data = $event->getData();
 
                 switch ($data['type']) {
+                    case DatumTypeEnum::TYPE_RATING:
+                        $form
+                            ->add('value', ChoiceType::class, [
+                                'choices' => array_combine(range(1, 10), range(1, 10)),
+                                'expanded' => true,
+                                'multiple' => false,
+                                'required' => false
+                            ])
+                        ;
+                        break;
                     case DatumTypeEnum::TYPE_DATE:
                         $form
                             ->add('value', DateType::class, [

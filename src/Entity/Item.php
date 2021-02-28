@@ -186,6 +186,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
             ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_COUNTRY))
             ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_FILE))
             ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_DATE))
+            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_RATING))
             ->orderBy(['position' => Criteria::ASC]);
 
         return $this->data->matching($criteria);
