@@ -9,9 +9,6 @@ use Symfony\Contracts\Cache\ItemInterface;
 
 class FeatureChecker
 {
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
     public function __construct(ContextHandler $contextHandler)
@@ -19,7 +16,7 @@ class FeatureChecker
         $this->contextHandler = $contextHandler;
     }
 
-    public function isFeatureEnabled($feature)
+    public function isFeatureEnabled(string $feature): bool
     {
         $getter = 'is' . ucfirst($feature) . 'FeatureEnabled';
 

@@ -28,9 +28,6 @@ class DateFormatEnum
         self::FORMAT_HYPHEN_YMD => [self::CONTEXT_FORM => 'yyyy-MM-dd', self::CONTEXT_TWIG => 'Y-m-d', self::CONTEXT_JS => 'yyyy-mm-dd'],
     ];
 
-    /**
-     * @return array
-     */
     public static function getChoicesList() : array
     {
         return [

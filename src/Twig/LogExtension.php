@@ -14,9 +14,6 @@ use Twig\TwigFunction;
 
 class LogExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions() : array
     {
         return [

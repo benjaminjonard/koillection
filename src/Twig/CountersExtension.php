@@ -9,9 +9,6 @@ use Twig\TwigFunction;
 
 class CountersExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions() : array
     {
         return [

@@ -19,9 +19,6 @@ class VisibilityEnum
         self::VISIBILITY_PRIVATE => 'private',
     ];
 
-    /**
-     * @return array
-     */
     public static function getVisibilityLabels() : array
     {
         return [

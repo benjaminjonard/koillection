@@ -6,11 +6,6 @@ namespace App\Service;
 
 class ColorPicker
 {
-    /**
-     * Pick a random color from an array.
-     *
-     * @return string
-     */
     public function pickRandomColor() : string
     {
         $colors = [];

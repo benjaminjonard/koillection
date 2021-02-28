@@ -16,17 +16,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class InventoryController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/inventories/add",
-     *     "fr": "/inventaires/ajouter"
-     * }, name="app_inventory_add", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     *
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/inventories/add', 'fr' => '/inventaires/ajouter'],
+        name: 'app_inventory_add', methods: ['GET', 'POST']
+    )]
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
         $inventory = new Inventory();
@@ -49,16 +42,10 @@ class InventoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/inventories/{id}/delete",
-     *     "fr": "/inventaires/{id}/supprimer"
-     * }, name="app_inventory_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Inventory $inventory
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/inventories/{id}/delete', 'fr' => '/inventaires/{id}/supprimer'],
+        name: 'app_inventory_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function delete(Inventory $inventory, TranslatorInterface $translator) : Response
     {
         $em = $this->getDoctrine()->getManager();
@@ -70,16 +57,10 @@ class InventoryController extends AbstractController
         return $this->redirectToRoute('app_tools_index');
     }
 
-    /**
-     * @Route({
-     *     "en": "/inventories/{id}/check",
-     *     "fr": "/inventaires/{id}/cocher"
-     * }, name="app_inventory_check", methods={"POST"})
-     *
-     * @param Request $request
-     * @param Inventory $inventory
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/inventories/{id}/check', 'fr' => '/inventaires/{id}/cocher'],
+        name: 'app_inventory_check', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+    )]
     public function check(Request $request, Inventory $inventory, InventoryHandler $inventoryHandler) : Response
     {
         $inventoryHandler->setCheckedValues($inventory, $request->request->get('items', []));
@@ -90,15 +71,10 @@ class InventoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/inventories/{id}",
-     *     "fr": "/inventaires/{id}"
-     * }, name="app_inventory_show", methods={"GET"})
-     *
-     * @param Inventory $inventory
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/inventories/{id}', 'fr' => '/inventaires/{id}'],
+        name: 'app_inventory_show', methods: ['GET']
+    )]
     public function show(Inventory $inventory) : Response
     {
         return $this->render('App/Inventory/show.html.twig', [

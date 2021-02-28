@@ -14,24 +14,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BatchTaggerType extends AbstractType
 {
-    /**
-     * @var JsonToTagTransformer
-     */
     private JsonToTagTransformer $jsonToTagTransformer;
 
-    /**
-     * BatchTaggerType constructor.
-     * @param JsonToTagTransformer $jsonToTagTransformer
-     */
     public function __construct(JsonToTagTransformer $jsonToTagTransformer)
     {
         $this->jsonToTagTransformer = $jsonToTagTransformer;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -48,9 +37,6 @@ class BatchTaggerType extends AbstractType
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

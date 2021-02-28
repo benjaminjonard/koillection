@@ -20,14 +20,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class UserController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/admin/users",
-     *     "fr": "/admin/utilisateurs"
-     * }, name="app_admin_user_index", methods={"GET"})
-     *
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/admin/users', 'fr' => '/admin/utilisateurs'],
+        name: 'app_admin_user_index', methods: ['GET']
+    )]
     public function index() : Response
     {
         $em = $this->getDoctrine()->getManager();
@@ -37,16 +33,10 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/admin/users/add",
-     *     "fr": "/admin/utilisateurs/ajouter"
-     * }, name="app_admin_user_add", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/admin/users/add', 'fr' => '/admin/utilisateurs/ajouter'],
+        name: 'app_admin_user_add', methods: ['GET', 'POST']
+    )]
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
         $user = new User();
@@ -67,17 +57,10 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/admin/users/{id}/edit",
-     *     "fr": "/admin/utilisateurs/{id}/editer"
-     * }, name="app_admin_user_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param User $user
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/admin/users/{id}/edit', 'fr' => '/admin/utilisateurs/{id}/editer'],
+        name: 'app_admin_user_edit', methods: ['GET', 'POST']
+    )]
     public function edit(Request $request, User $user, TranslatorInterface $translator) : Response
     {
         $form = $this->createForm(UserType::class, $user);
@@ -95,17 +78,11 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
-    /**
-     * @Route({
-     *     "en": "/admin/users/{id}/delete",
-     *     "fr": "/admin/utilisateurs/{id}/supprimer"
-     * }, name="app_admin_user_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "DELETE"})
-     *
-     * @param User $user
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    
+    #[Route(
+        path: ['en' => '/admin/users/{id}/delete', 'fr' => '/admin/utilisateurs/{id}/supprimer'],
+        name: 'app_admin_user_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'DELETE']
+    )]
     public function delete(Request $request, User $user, TranslatorInterface $translator) : Response
     {
         if ($user->isAdmin()) {

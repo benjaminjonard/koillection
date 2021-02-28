@@ -10,26 +10,14 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class TreeBuilder
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * TreeBuilder constructor.
-     * @param EntityManagerInterface $em
-     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
-    /**
-     * Build an array representing the whole user collection.
-     *
-     * @return array
-     */
-    public function buildCollectionTree() : array
+    public function buildCollectionTree(): array
     {
         $collections = $this->em->getRepository(Collection::class)->findAllWithChildren();
         $tree = $this->createLeaf();
@@ -50,7 +38,7 @@ class TreeBuilder
      * @param Collection $collection
      * @return array
      */
-    private function buildRecursively(array $collections, Collection $collection) : array
+    private function buildRecursively(array $collections, Collection $collection): array
     {
         $leaf = $this->createLeaf($collection);
 
@@ -65,7 +53,7 @@ class TreeBuilder
      * @param Collection|null $collection
      * @return array
      */
-    private function createLeaf(?Collection $collection = null) : array
+    private function createLeaf(?Collection $collection = null): array
     {
         $name = '';
         if ($collection instanceof Collection) {

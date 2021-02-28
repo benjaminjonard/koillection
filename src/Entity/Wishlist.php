@@ -106,9 +106,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
      */
     private ?\DateTimeInterface $updatedAt = null;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->id = Uuid::uuid4();
@@ -118,17 +115,11 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         $this->seenCounter = 0;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName() ?? '';
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -218,9 +209,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Wish[]
-     */
     public function getWishes(): DoctrineCollection
     {
         return $this->wishes;
@@ -249,9 +237,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Wishlist[]
-     */
     public function getChildren(): DoctrineCollection
     {
         return $this->children;

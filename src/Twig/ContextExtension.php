@@ -9,9 +9,6 @@ use Twig\TwigFilter;
 
 class ContextExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFilters() : array
     {
         return [

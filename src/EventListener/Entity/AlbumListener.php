@@ -10,9 +10,6 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class AlbumListener
 {
-    /**
-     * @param OnFlushEventArgs $args
-     */
     public function onFlush(OnFlushEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -34,10 +31,6 @@ class AlbumListener
         }
     }
 
-    /**
-     * @param $album
-     * @param $visibility
-     */
     public function setVisibilityRecursively(Album $album, $visibility)
     {
         $album->setVisibility($visibility);

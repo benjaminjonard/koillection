@@ -4636,5 +4636,17 @@
         <target>Objets en relation</target>
       </segment>
     </unit>
+    <unit id="dk8szaV" name="error.user_not_enabled">
+      <segment>
+        <source>error.user_not_enabled</source>
+        <target>Utilisateur non activé</target>
+      </segment>
+    </unit>
+    <unit id="mq9AusA" name="btn.add_rating">
+      <segment>
+        <source>btn.add_rating</source>
+        <target>Note</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

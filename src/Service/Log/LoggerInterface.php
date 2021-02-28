@@ -4,44 +4,20 @@ declare(strict_types=1);
 
 namespace App\Service\Log;
 
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 
 interface LoggerInterface
 {
-    /**
-     * @return string
-     */
     public function getClass() : string;
 
-    /**
-     * @return int
-     */
     public function getPriority() : int;
 
-    /**
-     * @param $entity
-     * @return Log|null
-     */
-    public function getCreateLog($entity) : ?Log;
+    public function getCreateLog(LoggableInterface $entity) : ?Log;
 
-    /**
-     * @param $entity
-     * @return Log|null
-     */
-    public function getDeleteLog($entity) : ?Log;
+    public function getDeleteLog(LoggableInterface $entity) : ?Log;
 
-    /**
-     * @param $entity
-     * @param array $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($entity, array $changeset, array $relations = []) : ?Log;
+    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []) : ?Log;
 
-    /**
-     * @param $entity
-     * @param array $payload
-     * @return null|string
-     */
-    public function formatPayload($entity, array $payload) : ?string;
+    public function formatPayload(string $class, array $payload) : ?string;
 }

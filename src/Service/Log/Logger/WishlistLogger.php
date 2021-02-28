@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Log\Logger;
 
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Entity\Wishlist;
 use App\Enum\LogTypeEnum;
@@ -12,27 +13,17 @@ use App\Service\Log\Logger;
 
 class WishlistLogger extends Logger
 {
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Wishlist::class;
     }
 
-    /**
-     * @return int
-     */
     public function getPriority() : int
     {
         return 1;
     }
 
-    /**
-     * @param $wishlist
-     * @return Log|null
-     */
-    public function getCreateLog($wishlist) : ?Log
+    public function getCreateLog(LoggableInterface $wishlist) : ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -41,11 +32,7 @@ class WishlistLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $wishlist);
     }
 
-    /**
-     * @param $wishlist
-     * @return Log|null
-     */
-    public function getDeleteLog($wishlist) : ?Log
+    public function getDeleteLog(LoggableInterface $wishlist) : ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -54,13 +41,7 @@ class WishlistLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $wishlist);
     }
 
-    /**
-     * @param $wishlist
-     * @param array $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($wishlist, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $wishlist, array $changeset, array $relations = []) : ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -106,12 +87,7 @@ class WishlistLogger extends Logger
         );
     }
 
-    /**
-     * @param $class
-     * @param array $payload
-     * @return null|string
-     */
-    public function formatPayload($class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload) : ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

@@ -25,33 +25,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ItemType extends AbstractType
 {
-    /**
-     * @var JsonToTagTransformer
-     */
     private JsonToTagTransformer $jsonToTagTransformer;
 
-    /**
-     * @var JsonToItemTransformer
-     */
     private JsonToItemTransformer $jsonToItemTransformer;
 
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var FeatureChecker
-     */
     private FeatureChecker $featureChecker;
 
-    /**
-     * ItemType constructor.
-     * @param JsonToTagTransformer $jsonToTagTransformer
-     * @param JsonToItemTransformer $jsonToItemTransformer
-     * @param EntityManagerInterface $em
-     * @param FeatureChecker $featureChecker
-     */
     public function __construct(JsonToTagTransformer $jsonToTagTransformer, JsonToItemTransformer $jsonToItemTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
     {
         $this->em = $em;
@@ -60,10 +41,6 @@ class ItemType extends AbstractType
         $this->featureChecker = $featureChecker;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

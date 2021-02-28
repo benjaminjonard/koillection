@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], wish, 'breadcrumb.edit_wish') %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], wish.wishlist, 'breadcrumb.edit_wish') %}
 
 {% block title %}
     {{ renderTitle(breadcrumb)  }}

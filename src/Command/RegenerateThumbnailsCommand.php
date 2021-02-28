@@ -21,29 +21,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegenerateThumbnailsCommand extends Command
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var ThumbnailGenerator
-     */
     private ThumbnailGenerator $thumbnailGenerator;
 
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
 
-    /**
-     * @var string
-     */
     private string $publicPath;
 
-    /**
-     * @var TokenStorageInterface
-     */
     private TokenStorageInterface $tokenStorage;
 
     public function __construct(
@@ -67,7 +52,7 @@ class RegenerateThumbnailsCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion('This action can be dangerous, please do a backup of both your database and /uploads folder. Are you sure you want to continue ? (y/N)', false);

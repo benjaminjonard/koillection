@@ -26,7 +26,7 @@ class Log
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    private string $type;
+    private ?string $type;
 
     /**
      * @var ?\DateTimeInterface
@@ -62,13 +62,13 @@ class Log
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private string $payload;
+    private ?string $payload;
 
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="logs")
      */
-    private User $owner;
+    private ?User $owner;
 
     public function __construct()
     {
@@ -76,9 +76,6 @@ class Log
         $this->objectDeleted = false;
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -108,7 +105,7 @@ class Log
         return $this;
     }
 
-    public function getObjectId()
+    public function getObjectId(): string
     {
         return $this->objectId;
     }

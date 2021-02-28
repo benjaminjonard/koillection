@@ -117,17 +117,11 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getTitle() ?? '';
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -217,9 +211,6 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Photo[]
-     */
     public function getPhotos(): DoctrineCollection
     {
         return $this->photos;
@@ -248,9 +239,6 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Album[]
-     */
     public function getChildren(): DoctrineCollection
     {
         return $this->children;
@@ -303,9 +291,6 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this;
     }
 
-    /**
-     * @return File
-     */
     public function getFile(): ?File
     {
         return $this->file;

@@ -31,9 +31,6 @@ class LoggedWebTestCase extends WebTestCase
         $this->client = self::createClient();
     }
 
-    /**
-     * @param string $email
-     */
     public function login(string $email)
     {
         $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);

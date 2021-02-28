@@ -14,15 +14,6 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class ItemRepository extends EntityRepository
 {
-    /**
-     * Find Item by its id.
-     *
-     * @param $id
-     *
-     * @throws NonUniqueResultException
-     *
-     * @return Item
-     */
     public function findById(string $id) : ?Item
     {
         $qb = $this
@@ -37,10 +28,6 @@ class ItemRepository extends EntityRepository
         return $qb->addSelect('t, d, c')->getQuery()->getOneOrNullResult();
     }
 
-    /**
-     * @param Item $item
-     * @return array
-     */
     public function findNextAndPrevious(Item $item, $parent) : array
     {
         $qb = $this->_em
@@ -99,10 +86,6 @@ class ItemRepository extends EntityRepository
         ];
     }
 
-    /**
-     * @param $search
-     * @return array
-     */
     public function findForSearch(Search $search) : array
     {
         $qb = $this
@@ -128,10 +111,6 @@ class ItemRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @param Collection $collection
-     * @return array
-     */
     public function findAllByCollection(Collection $collection) : array
     {
         //First we query all items id recursvely
@@ -181,10 +160,6 @@ class ItemRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @param string $string
-     * @return array
-     */
     public function findLike(string $string) : array
     {
         $string = trim($string);

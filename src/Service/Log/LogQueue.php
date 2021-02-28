@@ -8,14 +8,8 @@ use App\Entity\Log;
 
 class LogQueue
 {
-    /**
-     * @var array
-     */
     private array $logs = [];
 
-    /**
-     * @var bool
-     */
     private bool $processQueue;
 
     public function __construct()
@@ -23,9 +17,6 @@ class LogQueue
         $this->processQueue = true;
     }
 
-    /**
-     * @param Log|null $log
-     */
     public function addLog(?Log $log)
     {
         if (null === $log) {
@@ -45,21 +36,12 @@ class LogQueue
         $this->logs[] = $log;
     }
 
-    /**
-     * @return array
-     */
-    public function getLogs()
+    public function getLogs(): array
     {
         return $this->logs;
     }
 
-    /**
-     * @param $id
-     * @param $class
-     * @param $type
-     * @return mixed|null
-     */
-    public function find($id, $class, $type)
+    public function find($id, $class, $type): ?Log
     {
         foreach ($this->logs as $log) {
             if ($log->getObjectId() === $id && $log->getObjectClass() === $class && $log->getType() === $type) {
@@ -75,7 +57,7 @@ class LogQueue
         $this->logs = [];
     }
 
-    public function isQueueProcessable()
+    public function isQueueProcessable(): bool
     {
         return $this->processQueue;
     }

@@ -13,27 +13,12 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class LogRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
 
-    /**
-     * @var RouterInterface
-     */
     private RouterInterface $router;
 
-    /**
-     * @var LoggerChain
-     */
     private LoggerChain $loggerChain;
 
-    /**
-     * LogExtension constructor.
-     * @param TranslatorInterface $translator
-     * @param RouterInterface $router
-     * @param LoggerChain $loggerChain
-     */
     public function __construct(TranslatorInterface $translator, RouterInterface $router, LoggerChain $loggerChain)
     {
         $this->translator = $translator;
@@ -41,10 +26,6 @@ class LogRuntime implements RuntimeExtensionInterface
         $this->loggerChain = $loggerChain;
     }
 
-    /**
-     * @param Log $log
-     * @return array
-     */
     public function getLogMessages(Log $log) : array
     {
         $messages = [];

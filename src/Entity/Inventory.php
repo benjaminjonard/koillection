@@ -63,9 +63,6 @@ class Inventory implements BreadcrumbableInterface
         $this->id = Uuid::uuid4();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName() ?? '';
@@ -106,9 +103,6 @@ class Inventory implements BreadcrumbableInterface
         return $totalItems;
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();

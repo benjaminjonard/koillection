@@ -152,9 +152,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
      */
     private ?\DateTimeInterface $updatedAt;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->id = Uuid::uuid4();
@@ -167,19 +164,11 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         $this->loans = new ArrayCollection();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName() ?? '';
     }
 
-    /**
-     * Get Data of type images.
-     *
-     * @return ArrayCollection
-     */
     public function getDataImages() : ArrayCollection
     {
         $criteria = Criteria::create();
@@ -190,11 +179,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->data->matching($criteria);
     }
 
-    /**
-     * Get Data of type text.
-     *
-     * @return DoctrineCollection
-     */
     public function getDataTexts() : DoctrineCollection
     {
         $criteria = Criteria::create();
@@ -202,6 +186,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
             ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_COUNTRY))
             ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_FILE))
             ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_DATE))
+            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_RATING))
             ->orderBy(['position' => Criteria::ASC]);
 
         return $this->data->matching($criteria);
@@ -221,9 +206,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->tags->contains($tag);
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -333,9 +315,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Tag[]
-     */
     public function getTags(): DoctrineCollection
     {
         return $this->tags;
@@ -366,17 +345,11 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Item[]
-     */
     public function getRelatedItems(): DoctrineCollection
     {
         return $this->relatedItems;
     }
 
-    /**
-     * @return DoctrineCollection|Item[]
-     */
     public function getAllRelatedItems(): DoctrineCollection
     {
         return new ArrayCollection(array_merge($this->relatedItems->toArray(), $this->relatedTo->toArray()));
@@ -400,9 +373,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Datum[]
-     */
     public function getData(): DoctrineCollection
     {
         return $this->data;
@@ -431,9 +401,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Loan[]
-     */
     public function getLoans(): DoctrineCollection
     {
         return $this->loans;
@@ -507,9 +474,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getImageLargeThumbnail(): ?string
     {
         if ($this->imageLargeThumbnail === null) {
@@ -519,10 +483,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->imageLargeThumbnail;
     }
 
-    /**
-     * @param string|null $imageLargeThumbnail
-     * @return Item
-     */
     public function setImageLargeThumbnail(?string $imageLargeThumbnail): Item
     {
         $this->imageLargeThumbnail = $imageLargeThumbnail;

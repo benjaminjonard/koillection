@@ -13,30 +13,16 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class LoggableListener
 {
-    /**
-     * @var LoggerChain
-     */
     private LoggerChain $loggerChain;
 
-    /**
-     * @var LogQueue
-     */
     private LogQueue $logQueue;
 
-    /**
-     * LoggableListener constructor.
-     * @param LoggerChain $loggerChain
-     * @param LogQueue $logQueue
-     */
     public function __construct(LoggerChain $loggerChain, LogQueue $logQueue)
     {
         $this->loggerChain = $loggerChain;
         $this->logQueue = $logQueue;
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function postPersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -46,9 +32,6 @@ class LoggableListener
         }
     }
 
-    /**
-     * @param OnFlushEventArgs $args
-     */
     public function onFlush(OnFlushEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -80,9 +63,6 @@ class LoggableListener
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function preRemove(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();

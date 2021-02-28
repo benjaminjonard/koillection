@@ -17,31 +17,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AlbumType extends AbstractType
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var Base64ToImageTransformer
-     */
     private Base64ToImageTransformer $base64ToImageTransformer;
 
-    /**
-     * CollectionType constructor.
-     * @param Base64ToImageTransformer $base64ToImageTransformer
-     * @param EntityManagerInterface $em
-     */
     public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em)
     {
         $this->base64ToImageTransformer = $base64ToImageTransformer;
         $this->em = $em;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $entity = $builder->getData();
@@ -75,9 +60,6 @@ class AlbumType extends AbstractType
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

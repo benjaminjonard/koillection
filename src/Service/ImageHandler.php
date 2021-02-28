@@ -13,44 +13,18 @@ use Symfony\Component\Security\Core\Security;
 
 class ImageHandler
 {
-    /**
-     * @var RandomStringGenerator
-     */
     private RandomStringGenerator $randomStringGenerator;
 
-    /**
-     * @var ThumbnailGenerator
-     */
     private ThumbnailGenerator $thumbnailGenerator;
 
-    /**
-     * @var string
-     */
     private string $publicPath;
 
-    /**
-     * @var PropertyAccessor
-     */
     private PropertyAccessor $accessor;
 
-    /**
-     * @var DiskUsageCalculator
-     */
     private DiskUsageCalculator $diskUsageCalculator;
 
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * ImageHandler constructor.
-     * @param RandomStringGenerator $randomStringGenerator
-     * @param ThumbnailGenerator $thumbnailGenerator
-     * @param Security $security
-     * @param DiskUsageCalculator $diskUsageCalculator
-     * @param string $publicPath
-     */
     public function __construct(
         RandomStringGenerator $randomStringGenerator,
         ThumbnailGenerator $thumbnailGenerator,
@@ -66,12 +40,6 @@ class ImageHandler
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
-    /**
-     * @param object $entity
-     * @param string $property
-     * @param Upload $annotation
-     * @throws \Exception
-     */
     public function upload(object $entity, string $property, Upload $annotation)
     {
         $file = $this->accessor->getValue($entity, $property);

@@ -12,16 +12,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProfileController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/profile",
-     *     "fr": "/profil"
-     * }, name="app_profile_index", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/profile', 'fr' => '/profil'],
+        name: 'app_profile_index', methods: ['GET', 'POST']
+    )]
     public function index(Request $request, TranslatorInterface $translator) : Response
     {
         $user = $this->getUser();

@@ -15,39 +15,16 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class AppRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
 
-    /**
-     * @var RouterInterface
-     */
     private RouterInterface $router;
 
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
-    /**
-     * @var FeatureChecker
-     */
     private FeatureChecker $featureChecker;
 
-    /**
-     * AppExtension constructor.
-     * @param TranslatorInterface $translator
-     * @param RouterInterface $router
-     * @param EntityManagerInterface $em
-     * @param ContextHandler $contextHandler
-     * @param FeatureChecker $featureChecker
-     */
     public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em, ContextHandler $contextHandler, FeatureChecker $featureChecker)
     {
         $this->translator = $translator;
@@ -57,21 +34,11 @@ class AppRuntime implements RuntimeExtensionInterface
         $this->featureChecker = $featureChecker;
     }
 
-    /**
-     * @param string $string
-     *
-     * @return string
-     */
     public function safeContent(string $string) : string
     {
         return $string;
     }
 
-    /**
-     * @param float $bytes
-     * @param int $precision
-     * @return string
-     */
     public function bytes(float $bytes, int $precision = 2) : string
     {
         $base = $bytes > 0 ? log($bytes, 1024) : $bytes;
@@ -81,12 +48,7 @@ class AppRuntime implements RuntimeExtensionInterface
         return round(pow(1024, $base - floor($base)), $precision).' '.$suffixes[floor($base)].$this->translator->trans('global.byte_abbreviation');
     }
 
-    /**
-     * @param array $breadcrumb
-     * @return string
-     * @throws \ReflectionException
-     */
-    public function renderTitle(array $breadcrumb)
+    public function renderTitle(array $breadcrumb): string
     {
         $element = \array_shift($breadcrumb);
 
@@ -130,11 +92,7 @@ class AppRuntime implements RuntimeExtensionInterface
         return $this->translator->trans('global.koillection');
     }
 
-    /**
-     * @param null|string $text
-     * @return null|string|string[]
-     */
-    public function highlightTags(?string $text)
+    public function highlightTags(?string $text): array|string|null
     {
         if (null === $text) {
             return $text;
@@ -162,11 +120,7 @@ class AppRuntime implements RuntimeExtensionInterface
         );
     }
 
-    /**
-     * @param array|null $data
-     * @return null|string|string[]
-     */
-    public function getUnderlinedTags($data)
+    public function getUnderlinedTags(?iterable $data): array
     {
         if ($this->isFeatureEnabled('tags') === false || empty($data)) {
             return [];
@@ -203,7 +157,7 @@ class AppRuntime implements RuntimeExtensionInterface
         return $results;
     }
 
-    public function isFeatureEnabled($feature)
+    public function isFeatureEnabled(string $feature): bool
     {
         return $this->featureChecker->isFeatureEnabled($feature);
     }

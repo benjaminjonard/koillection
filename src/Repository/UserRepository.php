@@ -15,11 +15,6 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 class UserRepository extends EntityRepository
 {
-    /**
-     * @param $login
-     * @return User|null
-     * @throws NonUniqueResultException
-     */
     public function findOneByUsernameOrEmail($login) : ?User
     {
         $user = $this
@@ -37,10 +32,6 @@ class UserRepository extends EntityRepository
         return $user;
     }
 
-    /**
-     * @param User $user
-     * @return array
-     */
     public function getCounters(User $user) : array
     {
         $collectionsSubQuery = 'SELECT COUNT(*) FROM koi_collection WHERE owner_id = ?';

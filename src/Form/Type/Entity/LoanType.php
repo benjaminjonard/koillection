@@ -14,24 +14,13 @@ use Symfony\Component\Security\Core\Security;
 
 class LoanType extends AbstractType
 {
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * LoanType constructor.
-     * @param Security $security
-     */
     public function __construct(Security $security)
     {
         $this->security = $security;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

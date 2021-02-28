@@ -11,21 +11,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class LogQueueListener
 {
-    /**
-     * @var LogQueue
-     */
     private LogQueue $logQueue;
 
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * LogQueueListener constructor.
-     * @param LogQueue $logQueue
-     * @param EntityManagerInterface $em
-     */
     public function __construct(LogQueue $logQueue, EntityManagerInterface $em)
     {
         $this->logQueue = $logQueue;

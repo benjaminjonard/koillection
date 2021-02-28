@@ -16,15 +16,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "",
-     *     "fr": ""
-     * }, name="app_security_login", methods={"GET", "POST"})
-     *
-     * @param AuthenticationUtils $authenticationUtils
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '', 'fr' => ''],
+        name: 'app_security_login', methods: ['GET', 'POST']
+    )]
     public function login(AuthenticationUtils $authenticationUtils) : Response
     {
         if (0 === $this->getDoctrine()->getRepository(User::class)->count([])) {
@@ -41,17 +36,10 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/first-connection",
-     *     "fr": "/premiere-connexion"
-     * }, name="app_security_first_connection", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TokenStorageInterface $tokenStorage
-     * @param SessionInterface $session
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/first-connection', 'fr' => '/premiere-connexion'],
+        name: 'app_security_first_connection', methods: ['GET', 'POST']
+    )]
     public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session) : Response
     {
         if (0 < $this->getDoctrine()->getRepository(User::class)->count([])) {

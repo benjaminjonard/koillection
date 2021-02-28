@@ -28,9 +28,6 @@ class TagRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @return array
-     */
     public function findAll() : array
     {
         return $this
@@ -41,12 +38,6 @@ class TagRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param SearchTag $search
-     * @param string $context
-     * @param int $itemsCount
-     * @return array
-     */
     public function findForTagSearch(SearchTag $search, string $context, int $itemsCount) : array
     {
         $qb = $this
@@ -78,13 +69,6 @@ class TagRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @param SearchTag $search
-     * @param string $context
-     * @return int
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
     public function countForTagSearch(SearchTag $search, string $context) : int
     {
         $qb = $this->_em
@@ -107,13 +91,13 @@ class TagRepository extends EntityRepository
             ;
         }
 
-        return (int) $qb->getQuery()->getSingleScalarResult();
+        try {
+            return (int) $qb->getQuery()->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            return 0;
+        }
     }
 
-    /**
-     * @param string $string
-     * @return array
-     */
     public function findLike(string $string) : array
     {
         $string = trim($string);
@@ -132,13 +116,6 @@ class TagRepository extends EntityRepository
         ;
     }
 
-    /**
-     * Find tags that 100% of a collection items have in common.
-     *
-     * @param Collection $collection
-     *
-     * @return array
-     */
     public function findRelatedToCollection(Collection $collection) : array
     {
         return $this
@@ -157,13 +134,6 @@ class TagRepository extends EntityRepository
         ;
     }
 
-    /**
-     * Find for search.
-     *
-     * @param Search $search
-     *
-     * @return array
-     */
     public function findForSearch(Search $search) : array
     {
         $itemsCount = $this->_em->getRepository(Item::class)->count([]);
@@ -200,9 +170,6 @@ class TagRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @return array
-     */
     public function findAllForHighlight()
     {
         return $this->_em
@@ -215,10 +182,6 @@ class TagRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param Tag $tag
-     * @return array
-     */
     public function findRelatedTags(Tag $tag)
     {
         //Get all items ids the current tag is linked to

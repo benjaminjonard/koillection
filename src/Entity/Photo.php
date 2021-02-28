@@ -106,9 +106,6 @@ class Photo implements CacheableInterface
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();

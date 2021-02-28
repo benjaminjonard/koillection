@@ -99,6 +99,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.3"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -120,9 +123,6 @@
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
-    "nyholm/nsa": {
-        "version": "1.2.1"
-    },
     "ocramius/package-versions": {
         "version": "1.5.1"
     },
@@ -131,30 +131,6 @@
     },
     "php": {
         "version": "7.4"
-    },
-    "php-translation/common": {
-        "version": "3.0.1"
-    },
-    "php-translation/extractor": {
-        "version": "2.0.2"
-    },
-    "php-translation/symfony-bundle": {
-        "version": "0.10",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "0.10",
-            "ref": "5c712c2758c3cccb964713f0061493b8ce2dd430"
-        },
-        "files": [
-            "config/packages/dev/php_translation.yaml",
-            "config/packages/php_translation.yaml",
-            "config/routes/dev/php_translation.yaml",
-            "config/routes/php_translation.yaml"
-        ]
-    },
-    "php-translation/symfony-storage": {
-        "version": "2.2.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -580,9 +556,6 @@
     },
     "webimpress/safe-writer": {
         "version": "2.0.1"
-    },
-    "webmozart/assert": {
-        "version": "1.9.1"
     },
     "willdurand/js-translation-bundle": {
         "version": "2.0",
