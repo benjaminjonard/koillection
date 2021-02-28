@@ -40,6 +40,6 @@ class ItemNameGuesser
             }
         }
 
-        return [implode($highestValue + 1, $patternParts)];
+        return [implode((string) ($highestValue + 1), $patternParts)];
     }
 }
