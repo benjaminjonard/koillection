@@ -6,6 +6,9 @@ namespace App\Tests;
 
 class UserSmokeFunctionnalTest extends LoggedWebTestCase
 {
+    /**
+     * @dataProvider isSuccessfulUrlProvider
+     */
     public function testPageIsSuccessful(string $url)
     {
         $this->login('cthulhu@koillection.com');
@@ -13,6 +16,9 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 
+    /**
+     * @dataProvider isNotFoundUrlProvider
+     */
     public function testPageIsNotFound(string $url)
     {
         $this->login('cthulhu@koillection.com');

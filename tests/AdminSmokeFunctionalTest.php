@@ -6,6 +6,9 @@ namespace App\Tests;
 
 class AdminSmokeFunctionalTest extends LoggedWebTestCase
 {
+    /**
+     * @dataProvider isSuccessfulUrlProvider
+     */
     public function testPageIsSuccessful(string $url)
     {
         $this->login('khorne@koillection.com');
