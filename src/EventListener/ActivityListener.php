@@ -10,31 +10,16 @@ use Symfony\Component\Security\Core\Security;
 
 class ActivityListener
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * ActionListener constructor.
-     * @param Security $security
-     * @param EntityManagerInterface $em
-     */
     public function __construct(Security $security, EntityManagerInterface $em)
     {
         $this->security= $security;
         $this->em= $em;
     }
 
-    /**
-     * @return null
-     * @throws \Exception
-     */
     public function onKernelRequest()
     {
         $user = $this->security->getUser();

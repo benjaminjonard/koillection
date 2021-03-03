@@ -13,9 +13,6 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class WishlistRepository extends EntityRepository
 {
-    /**
-     * @return array
-     */
     public function findAll() : array
     {
         return $this
@@ -26,10 +23,6 @@ class WishlistRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param Wishlist $wishlist
-     * @return array
-     */
     public function findAllExcludingItself(Wishlist $wishlist) : array
     {
         $id = $wishlist->getId();
@@ -79,10 +72,6 @@ class WishlistRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @param Search $search
-     * @return array
-     */
     public function findForSearch(Search $search) : array
     {
         $qb = $this

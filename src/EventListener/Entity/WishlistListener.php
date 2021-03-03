@@ -10,9 +10,6 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class WishlistListener
 {
-    /**
-     * @param OnFlushEventArgs $args
-     */
     public function onFlush(OnFlushEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -35,10 +32,6 @@ class WishlistListener
         }
     }
 
-    /**
-     * @param $wishlist
-     * @param $visibility
-     */
     public function setVisibilityRecursively(Wishlist $wishlist, $visibility)
     {
         $wishlist->setVisibility($visibility);

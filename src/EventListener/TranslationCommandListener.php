@@ -19,9 +19,6 @@ final class TranslationCommandListener
         $this->assetsPath = $assetsPath;
     }
 
-    /**
-     * @param ConsoleTerminateEvent $event
-     */
     public function onConsoleTerminate(ConsoleTerminateEvent $event)
     {
         if ($event->getCommand()->getName() === 'bazinga:js-translation:dump') {

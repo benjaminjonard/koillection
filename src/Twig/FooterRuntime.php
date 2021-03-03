@@ -12,14 +12,6 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class FooterRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @param Environment $environment
-     * @param $object
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
     public function renderFooter(Environment $environment, $object)
     {
         if (property_exists($object, 'createdAt') && property_exists($object, 'updatedAt') && property_exists($object, 'seenCounter')) {

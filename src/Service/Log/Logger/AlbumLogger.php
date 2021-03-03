@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Log\Logger;
 
 use App\Entity\Album;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Enum\LogTypeEnum;
 use App\Enum\VisibilityEnum;
@@ -12,27 +13,17 @@ use App\Service\Log\Logger;
 
 class AlbumLogger extends Logger
 {
-    /**
-     * @return string
-     */
     public function getClass() : string
     {
         return Album::class;
     }
 
-    /**
-     * @return int
-     */
     public function getPriority() : int
     {
         return 1;
     }
 
-    /**
-     * @param $album
-     * @return Log|null
-     */
-    public function getCreateLog($album) : ?Log
+    public function getCreateLog(LoggableInterface $album) : ?Log
     {
         if (!$this->supports($album)) {
             return null;
@@ -41,11 +32,7 @@ class AlbumLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $album);
     }
 
-    /**
-     * @param $album
-     * @return Log|null
-     */
-    public function getDeleteLog($album) : ?Log
+    public function getDeleteLog(LoggableInterface $album) : ?Log
     {
         if (!$this->supports($album)) {
             return null;
@@ -54,13 +41,7 @@ class AlbumLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $album);
     }
 
-    /**
-     * @param $album
-     * @param array $changeset
-     * @param array $relations
-     * @return Log|null
-     */
-    public function getUpdateLog($album, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $album, array $changeset, array $relations = []) : ?Log
     {
         if (!$this->supports($album)) {
             return null;
@@ -106,12 +87,7 @@ class AlbumLogger extends Logger
         );
     }
 
-    /**
-     * @param $class
-     * @param array $payload
-     * @return null|string
-     */
-    public function formatPayload($class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload) : ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

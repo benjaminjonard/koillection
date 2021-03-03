@@ -22,27 +22,12 @@ use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
 {
-    /**
-     * @var UserPasswordEncoderInterface
-     */
     private UserPasswordEncoderInterface $passwordEncoder;
 
-    /**
-     * @var RouterInterface
-     */
     private RouterInterface $router;
 
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * UsernameOrEmailPasswordAuthenticator constructor.
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param RouterInterface $router
-     * @param EntityManagerInterface $em
-     */
     public function __construct(UserPasswordEncoderInterface $passwordEncoder, RouterInterface $router, EntityManagerInterface $em)
     {
         $this->passwordEncoder = $passwordEncoder;
@@ -50,10 +35,7 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
         $this->em = $em;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
         if (!$request->request->get('_login') || !$request->request->get('_password')) {
             return false;
@@ -62,10 +44,7 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getCredentials(Request $request)
+    public function getCredentials(Request $request): array
     {
         return [
             'login' => $request->request->get('_login'),
@@ -73,10 +52,7 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
         try {
             return $this->em->getRepository(User::class)->findOneByUsernameOrEmail($credentials['login']);
@@ -85,11 +61,12 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function checkCredentials($credentials, UserInterface $user)
+    public function checkCredentials($credentials, UserInterface $user): bool
     {
+        if ($user->isEnabled() === false) {
+            throw new CustomUserMessageAuthenticationException('error.user_not_enabled');
+        }
+
         if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
             throw new CustomUserMessageAuthenticationException('error.invalid_credentials');
         }
@@ -97,44 +74,29 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
     {
         return new RedirectResponse($this->router->generate('app_homepage'));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
     {
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
 
         return new RedirectResponse($this->router->generate('app_security_login'));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
         return new RedirectResponse($this->router->generate('app_security_login'));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function supportsRememberMe()
+    public function supportsRememberMe(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function createAuthenticatedToken(UserInterface $user, $providerKey)
+    public function createAuthenticatedToken(UserInterface $user, $providerKey): PostAuthenticationGuardToken
     {
         return new PostAuthenticationGuardToken(
             $user,

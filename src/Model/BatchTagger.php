@@ -8,47 +8,23 @@ use App\Entity\Collection;
 
 class BatchTagger
 {
-    /**
-     * @var Collection
-     */
     private Collection $collection;
 
-    /**
-     * @var array
-     */
     private array $tags;
 
-    /**
-     * @var bool
-     */
     private bool $recursive;
 
-    /**
-     * BatchTagger constructor.
-     */
     public function __construct()
     {
         $this->recursive = false;
         $this->tags = [];
     }
 
-    /**
-     * Get collection.
-     *
-     * @return Collection
-     */
     public function getCollection() : Collection
     {
         return $this->collection;
     }
 
-    /**
-     * Set collection.
-     *
-     * @param Collection $collection
-     *
-     * @return BatchTagger
-     */
     public function setCollection(Collection $collection) : BatchTagger
     {
         $this->collection = $collection;
@@ -56,23 +32,11 @@ class BatchTagger
         return $this;
     }
 
-    /**
-     * Get tags.
-     *
-     * @return array
-     */
     public function getTags() : array
     {
         return $this->tags;
     }
 
-    /**
-     * Set tags.
-     *
-     * @param array $tags
-     *
-     * @return BatchTagger
-     */
     public function setTags(array $tags) : BatchTagger
     {
         $this->tags = $tags;
@@ -80,23 +44,11 @@ class BatchTagger
         return $this;
     }
 
-    /**
-     * Get recursive.
-     *
-     * @return bool
-     */
     public function isRecursive() : bool
     {
         return $this->recursive;
     }
 
-    /**
-     * Set recursive.
-     *
-     * @param bool $recursive
-     *
-     * @return BatchTagger
-     */
     public function setRecursive(bool $recursive) : BatchTagger
     {
         $this->recursive = $recursive;

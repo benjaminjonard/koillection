@@ -11,9 +11,6 @@ use Doctrine\ORM\NonUniqueResultException;
 
 class TemplateRepository extends EntityRepository
 {
-    /**
-     * @return array
-     */
     public function findAll() : array
     {
         return $this
@@ -24,10 +21,6 @@ class TemplateRepository extends EntityRepository
         ;
     }
 
-
-    /**
-     * @return array
-     */
     public function findAllWithCounters() : array
     {
         return $this
@@ -43,11 +36,6 @@ class TemplateRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param string $id
-     * @return Template|null
-     * @throws NonUniqueResultException
-     */
     public function findWithItems(string $id) : ?Template
     {
         return $this
@@ -61,11 +49,6 @@ class TemplateRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param string $id
-     * @return Template|null
-     * @throws NonUniqueResultException
-     */
     public function findById(string $id) : ?Template
     {
         return $this

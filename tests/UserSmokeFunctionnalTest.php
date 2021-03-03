@@ -4,17 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-/**
- * Class AdminAccessFunctionnalTest
- *
- * @package App\Tests
- */
 class UserSmokeFunctionnalTest extends LoggedWebTestCase
 {
-    /**
-     * @dataProvider isSuccessfulUrlProvider
-     * @param string $url
-     */
     public function testPageIsSuccessful(string $url)
     {
         $this->login('cthulhu@koillection.com');
@@ -22,10 +13,6 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 
-    /**
-     * @dataProvider isNotFoundUrlProvider
-     * @param string $url
-     */
     public function testPageIsNotFound(string $url)
     {
         $this->login('cthulhu@koillection.com');
@@ -33,7 +20,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         $this->assertTrue($this->client->getResponse()->isNotFound());
     }
 
-    public function isSuccessfulUrlProvider()
+    public function isSuccessfulUrlProvider(): \Generator
     {
         yield ["/collections"];
         yield ["/collections/add"];
@@ -55,7 +42,7 @@ class UserSmokeFunctionnalTest extends LoggedWebTestCase
         yield ["/inventories/{{inventory}}"];
     }
 
-    public function isNotFoundUrlProvider()
+    public function isNotFoundUrlProvider(): \Generator
     {
         yield ["/admin"];
         yield ["/admin/users"];

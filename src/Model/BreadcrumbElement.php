@@ -10,53 +10,23 @@ class BreadcrumbElement
     public const TYPE_ENTITY = 'entity';
     public const TYPE_ACTION = 'action';
 
-    /**
-     * @var string
-     */
     private string $type;
 
-    /**
-     * @var string
-     */
     private string $label;
 
-    /**
-     * @var string
-     */
     private ?string $class = null;
 
-    /**
-     * @var string
-     */
     private string $route;
 
-    /**
-     * @var object
-     */
     private ?object $entity = null;
 
-    /**
-     * @var array
-     */
     private array $params;
 
-    /**
-     * Get type.
-     *
-     * @return string
-     */
     public function getType()
     {
         return $this->type;
     }
 
-    /**
-     * Set type.
-     *
-     * @param string $type
-     *
-     * @return BreadcrumbElement
-     */
     public function setType($type)
     {
         $this->type = $type;
@@ -64,23 +34,11 @@ class BreadcrumbElement
         return $this;
     }
 
-    /**
-     * Get label.
-     *
-     * @return string
-     */
     public function getLabel()
     {
         return $this->label;
     }
 
-    /**
-     * Set label.
-     *
-     * @param string $label
-     *
-     * @return BreadcrumbElement
-     */
     public function setLabel($label)
     {
         $this->label = $label;
@@ -88,23 +46,11 @@ class BreadcrumbElement
         return $this;
     }
 
-    /**
-     * Get route.
-     *
-     * @return string
-     */
     public function getRoute()
     {
         return $this->route;
     }
 
-    /**
-     * Set route.
-     *
-     * @param string $route
-     *
-     * @return BreadcrumbElement
-     */
     public function setRoute($route)
     {
         $this->route = $route;
@@ -112,23 +58,11 @@ class BreadcrumbElement
         return $this;
     }
 
-    /**
-     * Get class.
-     *
-     * @return string
-     */
     public function getClass()
     {
         return $this->class;
     }
 
-    /**
-     * Set class.
-     *
-     * @param string $class
-     *
-     * @return BreadcrumbElement
-     */
     public function setClass($class)
     {
         $this->class = $class;
@@ -136,23 +70,11 @@ class BreadcrumbElement
         return $this;
     }
 
-    /**
-     * Get params.
-     *
-     * @return array
-     */
     public function getParams()
     {
         return $this->params;
     }
 
-    /**
-     * Set params.
-     *
-     * @param array $params
-     *
-     * @return BreadcrumbElement
-     */
     public function setParams($params)
     {
         $this->params = $params;
@@ -160,23 +82,11 @@ class BreadcrumbElement
         return $this;
     }
 
-    /**
-     * Get entity.
-     *
-     * @return object
-     */
     public function getEntity()
     {
         return $this->entity;
     }
 
-    /**
-     * Set entity.
-     *
-     * @param object $entity
-     *
-     * @return BreadcrumbElement
-     */
     public function setEntity($entity)
     {
         $this->entity = $entity;

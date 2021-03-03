@@ -98,6 +98,12 @@
                         <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
                         {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
+                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') %}
+                        <span class="rating-display">
+                            {% for i in 1 .. 10 %}
+                                <label class="{{ loop.index % 2 == 0 ? 'fa-star' : 'fa-star-half' }} {{ i <= datum.value ? 'colored' }}"></label>
+                            {% endfor %}
+                        </span>
                     {% endif %}
                 </div>
             {% endfor %}

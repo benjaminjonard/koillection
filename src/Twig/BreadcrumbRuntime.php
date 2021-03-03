@@ -14,28 +14,14 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class BreadcrumbRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var BreadcrumbBuilder
-     */
     private BreadcrumbBuilder $breadcrumbBuilder;
 
-    /**
-     * BreadcrumbExtension constructor.
-     * @param BreadcrumbBuilder $breadcrumbBuilder
-     */
     public function __construct(BreadcrumbBuilder $breadcrumbBuilder)
     {
         $this->breadcrumbBuilder = $breadcrumbBuilder;
     }
 
-    /**
-     * @param array $root
-     * @param object $entity
-     * @param string|null $action
-     * @param null $parent
-     * @return array
-     */
-    public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, $parent = null)
+    public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, $parent = null): array
     {
         $breadcrumb = [];
 
@@ -73,15 +59,7 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
         return $breadcrumb;
     }
 
-    /**
-     * @param Environment $environment
-     * @param array $breadcrumb
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function renderBreadcrumb(Environment $environment, array $breadcrumb)
+    public function renderBreadcrumb(Environment $environment, array $breadcrumb): string
     {
         return $environment->render('App/_partials/_breadcrumb/_base.html.twig', [
             'breadcrumb' => $breadcrumb,

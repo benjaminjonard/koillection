@@ -8,10 +8,6 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 final class TimestampableListener
 {
-    /**
-     * @param LifecycleEventArgs $args
-     * @throws \Exception
-     */
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -24,10 +20,6 @@ final class TimestampableListener
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     * @throws \Exception
-     */
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();

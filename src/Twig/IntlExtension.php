@@ -9,9 +9,6 @@ use Twig\TwigFunction;
 
 class IntlExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions() : array
     {
         return [

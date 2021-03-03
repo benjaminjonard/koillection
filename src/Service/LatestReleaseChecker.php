@@ -15,19 +15,10 @@ class LatestReleaseChecker
         '1.2' => '8.0'
     ];
 
-    /**
-     * @var HttpClientInterface
-     */
     private HttpClientInterface $client;
 
-    /**
-     * @var array|null
-     */
     private ?array $latestReleaseData = null;
 
-    /**
-     * @var string|null
-     */
     private ?string $koillectionRelease = null;
 
     public function __construct(HttpClientInterface $client, string $koillectionRelease)
@@ -94,7 +85,7 @@ class LatestReleaseChecker
         return null;
     }
 
-    public function isRequiredPhpVersionForLatestReleaseOk()
+    public function isRequiredPhpVersionForLatestReleaseOk(): bool|int
     {
         return Comparator::greaterThanOrEqualTo(phpversion(), $this->getRequiredPhpVersionForLatestRelease());
     }

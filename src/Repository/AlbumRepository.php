@@ -18,10 +18,6 @@ class AlbumRepository extends EntityRepository
         parent::__construct($em, $class);
     }
 
-    /**
-     * @param Album $album
-     * @return array
-     */
     public function findAllExcludingItself(Album $album) : array
     {
         $id = $album->getId();
@@ -60,10 +56,6 @@ class AlbumRepository extends EntityRepository
         ;
     }
 
-    /**
-     * @param Search $search
-     * @return array
-     */
     public function findForSearch(Search $search) : array
     {
         $qb = $this

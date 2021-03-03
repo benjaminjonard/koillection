@@ -9,24 +9,13 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ItemNameGuesser
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * ItemHelper constructor.
-     * @param EntityManagerInterface $em
-     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
-    /**
-     * @param Item $item
-     * @return array|null
-     */
     public function guess(Item &$item) : ?array
     {
         $collection = $item->getCollection();
@@ -51,6 +40,6 @@ class ItemNameGuesser
             }
         }
 
-        return [implode($highestValue + 1, $patternParts)];
+        return [implode((string) ($highestValue + 1), $patternParts)];
     }
 }

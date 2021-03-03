@@ -4,19 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-/**
- * Class AdminSmokeFunctionalTest
- *
- * @package App\Tests
- */
 class AdminSmokeFunctionalTest extends LoggedWebTestCase
 {
-    /**
-     * Check if the admin has access to all the pages
-     *
-     * @dataProvider isSuccessfulUrlProvider
-     * @param string $url
-     */
     public function testPageIsSuccessful(string $url)
     {
         $this->login('khorne@koillection.com');
@@ -25,13 +14,13 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 
-    public function isSuccessfulUrlProvider()
+    public function isSuccessfulUrlProvider(): \Generator
     {
         //Main
         yield ["/collections"];
         yield ["/collections/add"];
         yield ["/collections/{{collection}}"];
-        //yield ["/collections/{{collection}}/edit"]; Not working on Travis, not reproducable, no idea what happens
+        yield ["/collections/{{collection}}/edit"];
         yield ["/collections/{{collection}}/batch-tagging"];
         yield ["/collections/{{collection}}/history"];
         yield ["/collections/{{collection}}/items"];
@@ -85,7 +74,6 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
 
         yield ["/admin"];
         yield ["/admin/users"];
-        //yield ["/admin/_trans"]; Page is bugged
 
         //Preview
         yield ["/preview"];

@@ -22,7 +22,7 @@ class CountersCache
         $this->contextHandler = $contextHandler;
     }
 
-    public function getCounters($element)
+    public function getCounters($element): array
     {
         $context = $this->contextHandler->getContext();
 

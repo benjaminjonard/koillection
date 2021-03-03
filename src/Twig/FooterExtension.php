@@ -9,9 +9,6 @@ use Twig\TwigFunction;
 
 class FooterExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions() : array
     {
         return [

@@ -26,28 +26,18 @@ use Doctrine\Persistence\ObjectManager;
 
 class KhorneFixtures extends Fixture implements OrderedFixtureInterface
 {
-    /**
-     * @var InventoryHandler
-     */
     private InventoryHandler $inventoryHandler;
 
-    /**
-     * AnubisFixtures constructor.
-     * @param InventoryHandler $inventoryHandler
-     */
     public function __construct(InventoryHandler $inventoryHandler)
     {
         $this->inventoryHandler = $inventoryHandler;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 1;
     }
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $admin = new User();
@@ -72,10 +62,6 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadCollections(User $user, ObjectManager $manager)
     {
         //TAGS CATEGORY
@@ -158,10 +144,6 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $manager->persist($inventory);
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadWishlists(User $user, ObjectManager $manager)
     {
         //WISHLIST
@@ -186,10 +168,6 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $manager->persist($wishDanboard);
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadAlbums(User $user, ObjectManager $manager)
     {
         //ALBUM
@@ -213,10 +191,6 @@ class KhorneFixtures extends Fixture implements OrderedFixtureInterface
         $manager->persist($photo1);
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadTemplates(User $user, ObjectManager $manager)
     {
         //TEMPLATE

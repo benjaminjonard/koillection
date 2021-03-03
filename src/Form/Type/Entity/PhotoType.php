@@ -21,31 +21,16 @@ use Symfony\Component\Security\Core\Security;
 
 class PhotoType extends AbstractType
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * PhotoType constructor.
-     * @param EntityManagerInterface $em
-     * @param Security $security
-     */
     public function __construct(EntityManagerInterface $em, Security $security)
     {
         $this->em = $em;
         $this->security = $security;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

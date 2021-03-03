@@ -11,30 +11,16 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 class UserListener
 {
-    /**
-     * @var PasswordUpdater
-     */
     private PasswordUpdater $passwordUpdater;
 
-    /**
-     * @var LogQueue
-     */
     private LogQueue $logQueue;
 
-    /**
-     * UserListener constructor.
-     * @param PasswordUpdater $passwordUpdater
-     * @param LogQueue $logQueue
-     */
     public function __construct(PasswordUpdater $passwordUpdater, LogQueue $logQueue)
     {
         $this->passwordUpdater = $passwordUpdater;
         $this->logQueue = $logQueue;
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -43,9 +29,6 @@ class UserListener
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -54,9 +37,6 @@ class UserListener
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function preRemove(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();

@@ -11,19 +11,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CleanUpCommand extends Command
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var string
-     */
     private string $publicPath;
 
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
 
     public function __construct(string $name = null, EntityManagerInterface $em, TranslatorInterface $translator, string $publicPath)
@@ -43,7 +34,7 @@ class CleanUpCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion('This action can be dangerous, please do a backup of both your database and /uploads folder. Are you sure you want to continue ? (y/N)', false);

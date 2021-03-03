@@ -40,14 +40,11 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $this->inventoryHandler = $inventoryHandler;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 2;
     }
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $cthulhu = new User();
@@ -72,10 +69,6 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadCollections(User $user, ObjectManager $manager)
     {
         //TAGS CATEGORY
@@ -156,10 +149,6 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $manager->persist($inventory);
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadWishlists(User $user, ObjectManager $manager)
     {
         //WISHLIST
@@ -184,10 +173,6 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $manager->persist($wishCthulhu);
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadAlbums(User $user, ObjectManager $manager)
     {
         //ALBUM
@@ -211,10 +196,6 @@ class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
         $manager->persist($photo1);
     }
 
-    /**
-     * @param User $user
-     * @param ObjectManager $manager
-     */
     private function loadTemplates(User $user, ObjectManager $manager)
     {
         //TEMPLATE

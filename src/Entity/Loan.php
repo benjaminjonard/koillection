@@ -26,7 +26,7 @@ class Loan
      * @var Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="loans")
      */
-    private Item $item;
+    private ?Item $item;
 
     /**
      * @var ?string
@@ -44,7 +44,7 @@ class Loan
      * @var \DateTimeInterface
      * @ORM\Column(type="date", nullable=true)
      */
-    private \DateTimeInterface $returnedAt;
+    private ?\DateTimeInterface $returnedAt;
 
     /**
      * @var ?User
@@ -57,9 +57,6 @@ class Loan
         $this->id = Uuid::uuid4();
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();

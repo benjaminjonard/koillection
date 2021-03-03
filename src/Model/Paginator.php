@@ -7,19 +7,18 @@ namespace App\Model;
 class Paginator
 {
     private int $totalItems;
+
     private int $numPages;
+
     private int $itemsPerPage;
+
     private int $currentPage;
+
     private string $url;
+
     private int $maxPagesToShow = 5;
 
-    /**
-     * @param int $totalItems The total number of items.
-     * @param int $itemsPerPage The number of items per page.
-     * @param int $currentPage The current page number.
-     * @param string $url The symfony route
-     */
-    public function __construct($totalItems, $itemsPerPage, $currentPage, $url)
+    public function __construct(int $totalItems, int $itemsPerPage, int $currentPage, string $url)
     {
         $this->totalItems = $totalItems;
         $this->itemsPerPage = $itemsPerPage;
@@ -33,113 +32,86 @@ class Paginator
         $this->numPages = ($this->itemsPerPage == 0 ? 0 : (int) ceil($this->totalItems / $this->itemsPerPage));
     }
 
-    /**
-     * @return int
-     */
-    public function getMaxPagesToShow()
+    public function getMaxPagesToShow(): int
     {
         return $this->maxPagesToShow;
     }
 
-    /**
-     * @param int $currentPage
-     */
-    public function setCurrentPage($currentPage)
+    public function setCurrentPage(int $currentPage)
     {
         $this->currentPage = $currentPage;
     }
 
-    /**
-     * @return int
-     */
-    public function getCurrentPage()
+    public function getCurrentPage(): int
     {
         return $this->currentPage;
     }
 
-    /**
-     * @param int $itemsPerPage
-     */
-    public function setItemsPerPage($itemsPerPage)
+    public function setItemsPerPage(int $itemsPerPage)
     {
         $this->itemsPerPage = $itemsPerPage;
         $this->updateNumPages();
     }
 
-    /**
-     * @return int
-     */
-    public function getItemsPerPage()
+    public function getItemsPerPage(): int
     {
         return $this->itemsPerPage;
     }
 
-    /**
-     * @param int $totalItems
-     */
     public function setTotalItems($totalItems)
     {
         $this->totalItems = $totalItems;
         $this->updateNumPages();
     }
 
-    /**
-     * @return int
-     */
-    public function getTotalItems()
+    public function getTotalItems(): int
     {
         return $this->totalItems;
     }
 
-    /**
-     * @return int
-     */
-    public function getNumPages()
+    public function getNumPages(): int
     {
         return $this->numPages;
     }
 
-    /**
-     * @param int $pageNum
-     * @return string
-     */
-    public function getPageUrl($pageNum)
+    public function getPageUrl($pageNum): string
     {
         return $this->url . (parse_url($this->url, PHP_URL_QUERY) ? '&' : '?') . "page=$pageNum";
     }
 
-    public function getNextPage()
+    public function getNextPage(): ?int
     {
         if ($this->currentPage < $this->numPages) {
             return $this->currentPage + 1;
         }
+
         return null;
     }
 
-    public function getPrevPage()
+    public function getPrevPage(): ?int
     {
         if ($this->currentPage > 1) {
             return $this->currentPage - 1;
         }
+
         return null;
     }
 
-    public function getNextUrl()
+    public function getNextUrl(): ?string
     {
         if (null === $this->getNextPage()) {
             return null;
         }
+
         return $this->getPageUrl($this->getNextPage());
     }
 
-    /**
-     * @return string|null
-     */
-    public function getPrevUrl()
+    public function getPrevUrl(): ?string
     {
         if (null === $this->getPrevPage()) {
             return null;
         }
+
         return $this->getPageUrl($this->getPrevPage());
     }
 
@@ -156,10 +128,8 @@ class Paginator
      *     ['num' => '...', 'url' => NULL,               'isCurrent' => false],
      *     ['num' => 10,    'url' => '/example/page/10', 'isCurrent' => false],
      * ]
-     *
-     * @return array
      */
-    public function getPages()
+    public function getPages(): array
     {
         $pages = [];
 
@@ -204,17 +174,11 @@ class Paginator
 
             $pages[] = $this->createPage($this->numPages, $this->currentPage == $this->numPages);
         }
+
         return $pages;
     }
 
-    /**
-     * Create a page data structure.
-     *
-     * @param int $pageNum
-     * @param bool $isCurrent
-     * @return array
-     */
-    private function createPage($pageNum, $isCurrent = false)
+    private function createPage(int $pageNum, bool $isCurrent = false): array
     {
         return [
             'num' => $pageNum,
@@ -222,10 +186,8 @@ class Paginator
             'isCurrent' => $isCurrent,
         ];
     }
-    /**
-     * @return array
-     */
-    private function createPageEllipsis()
+
+    private function createPageEllipsis(): array
     {
         return [
             'num' => '...',
@@ -234,25 +196,28 @@ class Paginator
         ];
     }
 
-    public function getCurrentPageFirstItem()
+    public function getCurrentPageFirstItem(): ?int
     {
         $first = ($this->currentPage - 1) * $this->itemsPerPage + 1;
         if ($first > $this->totalItems) {
             return null;
         }
+
         return $first;
     }
 
-    public function getCurrentPageLastItem()
+    public function getCurrentPageLastItem(): ?int
     {
         $first = $this->getCurrentPageFirstItem();
         if ($first === null) {
             return null;
         }
+
         $last = $first + $this->itemsPerPage - 1;
         if ($last > $this->totalItems) {
             return $this->totalItems;
         }
+
         return $last;
     }
 }

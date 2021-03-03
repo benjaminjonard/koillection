@@ -13,27 +13,12 @@ use Symfony\Component\Security\Core\Security;
 
 class DatabaseDumper
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * DatabaseDumper constructor.
-     * @param EntityManagerInterface $em
-     * @param Security $security
-     * @param ContextHandler $contextHandler
-     */
     public function __construct(EntityManagerInterface $em, Security $security, ContextHandler $contextHandler)
     {
         $this->em = $em;
@@ -41,11 +26,6 @@ class DatabaseDumper
         $this->contextHandler = $contextHandler;
     }
 
-    /**
-     * @return array
-     * @throws \Doctrine\DBAL\Driver\Exception
-     * @throws Exception
-     */
     public function dump() : array
     {
         $connection = $this->em->getConnection();
@@ -146,11 +126,6 @@ class DatabaseDumper
         return $rows;
     }
 
-    /**
-     * @param Connection $connection
-     * @return array
-     * @throws DBALException
-     */
     public function dumpSchema(Connection $connection) : array
     {
         $currentSchema = $connection->getSchemaManager()->createSchema();
@@ -163,12 +138,6 @@ class DatabaseDumper
         return $rows;
     }
 
-    /**
-     * @param $value
-     * @param string $property
-     * @param $metadata
-     * @return mixed|string
-     */
     private function formatValue($value, string $property, $metadata)
     {
         if (\is_string($value)) {

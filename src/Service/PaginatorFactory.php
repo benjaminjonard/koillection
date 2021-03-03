@@ -9,21 +9,10 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class PaginatorFactory
 {
-    /**
-     * @var RequestStack
-     */
     private RequestStack $requestStack;
 
-    /**
-     * @var int
-     */
     private int $paginationItemsPerPage;
 
-    /**
-     * PaginatorFactory constructor.
-     * @param RequestStack $requestStack
-     * @param int $paginationItemsPerPage
-     */
     public function __construct(RequestStack $requestStack, int $paginationItemsPerPage)
     {
         $this->requestStack = $requestStack;
@@ -45,9 +34,6 @@ class PaginatorFactory
         return new Paginator($totalItems, $this->paginationItemsPerPage, (int) $page, $url);
     }
 
-    /**
-     * @return int
-     */
     public function getPaginationItemsPerPage(): int
     {
         return $this->paginationItemsPerPage;

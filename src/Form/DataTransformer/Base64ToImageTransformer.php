@@ -10,10 +10,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Base64ToImageTransformer implements DataTransformerInterface
 {
-    /**
-     * @param mixed $file
-     * @return string
-     */
     public function transform($file)
     {
         if ($file instanceof File && $file->getRealPath()) {
@@ -26,11 +22,6 @@ class Base64ToImageTransformer implements DataTransformerInterface
         return null;
     }
 
-    /**
-     * @param mixed $base64
-     * @return UploadedFile|mixed
-     * @throws \Exception
-     */
     public function reverseTransform($base64)
     {
         if (null === $base64) {

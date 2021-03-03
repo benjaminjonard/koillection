@@ -12,31 +12,16 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 final class UploadListener
 {
-    /**
-     * @var UploadAnnotationReader
-     */
     private UploadAnnotationReader $reader;
 
-    /**
-     * @var ImageHandler
-     */
     private ImageHandler $handler;
 
-    /**
-     * UploadListener constructor.
-     * @param UploadAnnotationReader $reader
-     * @param ImageHandler $handler
-     */
     public function __construct(UploadAnnotationReader $reader, ImageHandler $handler)
     {
         $this->reader = $reader;
         $this->handler = $handler;
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     * @throws \Exception
-     */
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -45,10 +30,6 @@ final class UploadListener
         }
     }
 
-    /**
-     * @param OnFlushEventArgs $args
-     * @throws \Exception
-     */
     public function onFlush(OnFlushEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -62,10 +43,6 @@ final class UploadListener
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     * @throws \Exception
-     */
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -74,10 +51,6 @@ final class UploadListener
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     * @throws \Exception
-     */
     public function postRemove(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();

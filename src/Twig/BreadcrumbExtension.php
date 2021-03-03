@@ -9,9 +9,6 @@ use Twig\TwigFunction;
 
 class BreadcrumbExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions() : array
     {
         return [

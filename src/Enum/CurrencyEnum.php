@@ -9,9 +9,6 @@ use Symfony\Component\Intl\Currencies;
 
 class CurrencyEnum
 {
-    /**
-     * @return array
-     */
     public static function getCurrencyLabels() : array
     {
         $currencies = [];
@@ -29,10 +26,6 @@ class CurrencyEnum
         return $currencies;
     }
 
-    /**
-     * @param string $code
-     * @return null|string
-     */
     public static function getSymbolFromCode(string $code) : ?string
     {
         return Currencies::getSymbol($code);

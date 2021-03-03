@@ -16,35 +16,16 @@ use Symfony\Component\Routing\RouterInterface;
 
 class Autocompleter
 {
-    /**
-     * @var ContextHandler
-     */
     private ContextHandler $contextHandler;
 
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
     private array $params;
 
-    /**
-     * @var RouterInterface
-     */
     private RouterInterface $router;
 
-    /**
-     * @var FeatureChecker
-     */
     private FeatureChecker $featureChecker;
 
-    /**
-     * BreadcrumbBuilder constructor.
-     * @param ContextHandler $contextHandler
-     * @param EntityManagerInterface $em
-     * @param RouterInterface $router
-     * @param FeatureChecker $featureChecker
-     */
     public function __construct(ContextHandler $contextHandler, EntityManagerInterface $em, RouterInterface $router, FeatureChecker $featureChecker)
     {
         $this->contextHandler = $contextHandler;
@@ -53,7 +34,7 @@ class Autocompleter
         $this->featureChecker = $featureChecker;
     }
 
-    public function findForAutocomplete(string $term)
+    public function findForAutocomplete(string $term): array
     {
         $this->params = [];
         $queryParts = [];

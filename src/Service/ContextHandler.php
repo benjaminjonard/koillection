@@ -11,18 +11,11 @@ use Twig\Environment;
 
 class ContextHandler
 {
-    /**
-     * @var Environment
-     */
     private Environment $environment;
 
-    /**
-     * @var RouterInterface
-     */
     private RouterInterface $router;
 
     /**
-     * @var string
      * Possible values are :
      * admin: Admin pages
      * user: Public pages
@@ -31,21 +24,10 @@ class ContextHandler
      */
     private string $context;
 
-    /**
-     * @var User
-     */
     private ?User $user;
 
-    /**
-     * @var string
-     */
     private string $username;
 
-    /**
-     * ContextHandler constructor.
-     * @param Environment $environment
-     * @param RouterInterface $router
-     */
     public function __construct(Environment $environment, RouterInterface $router)
     {
         $this->environment = $environment;
@@ -71,7 +53,8 @@ class ContextHandler
         }
     }
 
-    public function getRouteContext($route) {
+    public function getRouteContext($route): string
+    {
         if (\in_array($this->context, ['user', 'preview'])) {
             $route = str_replace('app_', 'app_'.$this->context.'_', $route);
         }
@@ -79,7 +62,8 @@ class ContextHandler
         return $route;
     }
 
-    public function setContextUser(?User $user) {
+    public function setContextUser(?User $user): ?User
+    {
         $this->user = $user;
 
         return $user;

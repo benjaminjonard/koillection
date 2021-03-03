@@ -136,17 +136,11 @@ class Datum implements LoggableInterface
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getLabel() ?? '';
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -304,9 +298,6 @@ class Datum implements LoggableInterface
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getImageLargeThumbnail(): ?string
     {
         if ($this->imageLargeThumbnail === null) {
@@ -316,10 +307,6 @@ class Datum implements LoggableInterface
         return $this->imageLargeThumbnail;
     }
 
-    /**
-     * @param string|null $imageLargeThumbnail
-     * @return self
-     */
     public function setImageLargeThumbnail(?string $imageLargeThumbnail): self
     {
         $this->imageLargeThumbnail = $imageLargeThumbnail;
@@ -339,18 +326,11 @@ class Datum implements LoggableInterface
         return $this;
     }
 
-    /**
-     * @return File
-     */
     public function getFileFile(): ?File
     {
         return $this->fileFile;
     }
 
-    /**
-     * @param ?File $fileFile
-     * @return Datum
-     */
     public function setFileFile(?File $fileFile): Datum
     {
         $this->fileFile = $fileFile;
@@ -362,39 +342,26 @@ class Datum implements LoggableInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFile(): ?string
     {
         return $this->file;
     }
 
-    /**
-     * @param ?string $file
-     * @return Datum
-     */
     public function setFile(?string $file): Datum
     {
         $this->file = $file;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getOriginalFilename(): ?string
     {
         return $this->originalFilename;
     }
 
-    /**
-     * @param string $originalFilename
-     * @return Datum
-     */
     public function setOriginalFilename(string $originalFilename): Datum
     {
         $this->originalFilename = $originalFilename;
+
         return $this;
     }
 }

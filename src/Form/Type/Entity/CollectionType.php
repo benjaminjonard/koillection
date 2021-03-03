@@ -20,26 +20,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var Base64ToImageTransformer
-     */
     private Base64ToImageTransformer $base64ToImageTransformer;
-    /**
-     * @var FeatureChecker
-     */
+
     private FeatureChecker $featureChecker;
 
-    /**
-     * CollectionType constructor.
-     * @param Base64ToImageTransformer $base64ToImageTransformer
-     * @param EntityManagerInterface $em
-     * @param FeatureChecker $featureChecker
-     */
     public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
     {
         $this->base64ToImageTransformer = $base64ToImageTransformer;
@@ -47,10 +33,6 @@ class CollectionType extends AbstractType
         $this->featureChecker = $featureChecker;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $entity = $builder->getData();
@@ -112,9 +94,6 @@ class CollectionType extends AbstractType
         }
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

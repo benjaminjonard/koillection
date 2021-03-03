@@ -174,3 +174,9 @@
 .fa-upload:before {
   content: "\f093";
 }
+.fa-star:before {
+  content: "\f005";
+}
+.fa-star-half:before {
+  content: "\f089";
+}

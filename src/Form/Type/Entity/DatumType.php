@@ -8,6 +8,7 @@ use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,24 +20,13 @@ use Symfony\Component\Security\Core\Security;
 
 class DatumType extends AbstractType
 {
-    /**
-     * @var Security
-     */
     private Security $security;
 
-    /**
-     * LoanType constructor.
-     * @param Security $security
-     */
     public function __construct(Security $security)
     {
         $this->security = $security;
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -65,6 +55,16 @@ class DatumType extends AbstractType
                 $data = $event->getData();
 
                 switch ($data['type']) {
+                    case DatumTypeEnum::TYPE_RATING:
+                        $form
+                            ->add('value', ChoiceType::class, [
+                                'choices' => array_combine(range(1, 10), range(1, 10)),
+                                'expanded' => true,
+                                'multiple' => false,
+                                'required' => false
+                            ])
+                        ;
+                        break;
                     case DatumTypeEnum::TYPE_DATE:
                         $form
                             ->add('value', DateType::class, [
@@ -95,9 +95,6 @@ class DatumType extends AbstractType
         );
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

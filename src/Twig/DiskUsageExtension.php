@@ -9,9 +9,6 @@ use Twig\TwigFunction;
 
 class DiskUsageExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions() : array
     {
         return [

@@ -6,11 +6,6 @@ namespace App\Service;
 
 class RandomStringGenerator
 {
-    /**
-     * @param int $length
-     * @return string
-     * @throws \Exception
-     */
     public function generate(int $length = 10) : string
     {
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

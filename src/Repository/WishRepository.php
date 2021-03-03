@@ -11,11 +11,6 @@ use Doctrine\ORM\NoResultException;
 
 class WishRepository extends EntityRepository
 {
-    /**
-     * @param string $id
-     * @return Wish|null
-     * @throws NonUniqueResultException
-     */
     public function findById(string $id) : ?Wish
     {
         return $this

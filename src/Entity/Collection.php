@@ -127,9 +127,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
      */
     private ?\DateTimeInterface $updatedAt = null;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->id = Uuid::uuid4();
@@ -140,19 +137,11 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->seenCounter = 0;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getTitle() ?? '';
     }
 
-    /**
-     * Get items sorted naturally.
-     *
-     * @return array
-     */
     public function getNaturallySortedItems() : array
     {
         $array = $this->items->toArray();
@@ -163,9 +152,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $array;
     }
 
-    /**
-     * @return null|string
-     */
     public function getId() : ?string
     {
         return $this->id->toString();
@@ -267,9 +253,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Collection[]
-     */
     public function getChildren(): DoctrineCollection
     {
         return $this->children;
@@ -322,9 +305,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Item[]
-     */
     public function getItems(): DoctrineCollection
     {
         return $this->items;
@@ -381,9 +361,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    /**
-     * @return DoctrineCollection|Datum[]
-     */
     public function getData(): DoctrineCollection
     {
         return $this->data;

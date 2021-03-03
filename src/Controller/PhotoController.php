@@ -14,16 +14,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PhotoController extends AbstractController
 {
-    /**
-     * @Route({
-     *     "en": "/photos/ajouter",
-     *     "fr": "/photos/add"
-     * }, name="app_photo_add", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/photos/ajouter', 'fr' => '/photos/add'],
+        name: 'app_photo_add', methods: ['GET', 'POST']
+    )]
     public function add(Request $request, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -65,17 +59,10 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/photos/{id}/edit",
-     *     "fr": "/photos/{id}/editer"
-     * }, name="app_photo_edit", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Photo $photo
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/photos/{id}/edit', 'fr' => '/photos/{id}/editer'],
+        name: 'app_photo_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function edit(Request $request, Photo $photo, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -95,16 +82,10 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route({
-     *     "en": "/photos/{id}/delete",
-     *     "fr": "/photos/{id}/supprimer"
-     * }, name="app_photo_delete", requirements={"id"="%uuid_regex%"}, methods={"GET", "POST"})
-     *
-     * @param Photo $photo
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(
+        path: ['en' => '/photos/{id}/delete', 'fr' => '/photos/{id}/supprimer'],
+        name: 'app_photo_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+    )]
     public function delete(Photo $photo, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);

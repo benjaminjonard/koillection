@@ -13,13 +13,6 @@ class ThumbnailGenerator
         $this->gifResizer = $gifResizer;
     }
 
-    /**
-     * @param string $path
-     * @param string $thumbnailPath
-     * @param int $thumbnailWidth
-     * @return bool
-     * @throws \Exception
-     */
     public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : bool
     {
         if (!is_file($path)) {

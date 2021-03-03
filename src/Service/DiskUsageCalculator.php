@@ -11,27 +11,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DiskUsageCalculator
 {
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
 
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
-    /**
-     * @var string
-     */
     private string $publicPath;
 
-    /**
-     * DiskUsageCalculator constructor.
-     * @param TranslatorInterface $translator
-     * @param EntityManagerInterface $em
-     * @param string $publicPath
-     */
     public function __construct(TranslatorInterface $translator, EntityManagerInterface $em, string $publicPath)
     {
         $this->translator = $translator;
@@ -50,10 +35,6 @@ class DiskUsageCalculator
         return 0;
     }
 
-    /**
-     * @param User $user
-     * @return float
-     */
     public function getSpaceUsedByUser(User $user) : float
     {
         $userFolderPath = $this->publicPath . '/uploads/' . $user->getId();
@@ -65,11 +46,6 @@ class DiskUsageCalculator
         return 0;
     }
 
-    /**
-     * @param User $user
-     * @param File $file
-     * @throws \Exception
-     */
     public function hasEnoughSpaceForUpload(User $user, File $file)
     {
         if ($user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize()) {

@@ -9,23 +9,13 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class NonceListener
 {
-    /**
-     * @var NonceGenerator
-     */
     private NonceGenerator $nonceGenerator;
 
-    /**
-     * BeforeResponseListener constructor.
-     * @param NonceGenerator $nonceGenerator
-     */
     public function __construct(NonceGenerator $nonceGenerator)
     {
         $this->nonceGenerator = $nonceGenerator;
     }
 
-    /**
-     * @param ResponseEvent $event
-     */
     public function onKernelResponse(ResponseEvent $event)
     {
         // get the Response object from the event

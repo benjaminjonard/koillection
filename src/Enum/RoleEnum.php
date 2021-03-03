@@ -19,10 +19,6 @@ class RoleEnum
         self::ROLE_ADMIN => 'role.admin'
     ];
 
-    /**
-     * @param string $type
-     * @return string
-     */
     public static function getRoleLabel(string $role) : string
     {
         return self::ROLES_TRANS_KEYS[$role];
