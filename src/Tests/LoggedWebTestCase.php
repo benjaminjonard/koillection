@@ -26,7 +26,7 @@ class LoggedWebTestCase extends WebTestCase
 
     private User $user;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->client = self::createClient();
     }
