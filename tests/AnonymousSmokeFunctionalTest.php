@@ -6,6 +6,9 @@ namespace App\Tests;
 
 class AnonymousSmokeFunctionalTest extends LoggedWebTestCase
 {
+    /**
+     * @dataProvider isSuccessfulUrlProvider
+     */
     public function testPageIsSuccessful(string $url)
     {
         $this->client->request('GET', $this->replaceUrlParameters($url));

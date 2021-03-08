@@ -1,5 +1,5 @@
-var Encore = require('@symfony/webpack-encore');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const Encore = require('@symfony/webpack-encore');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
     .setOutputPath('../public/build/')
@@ -18,9 +18,14 @@ Encore
         { from: './img', to: 'images', ignore: ['flags/**/*'] }
     ]))
 
-    .configureUrlLoader({
-        images: { limit: 4096 },
-        fonts: { limit: 10240 }
+    .configureImageRule({
+        type: 'asset',
+        maxSize: 10 * 1024
+    })
+
+    .configureFontRule({
+        type: 'asset',
+        maxSize: 10 * 1024
     })
 
     .cleanupOutputBeforeBuild()
