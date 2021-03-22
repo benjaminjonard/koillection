@@ -28,7 +28,7 @@ class GifResizer
         $this->tempDir = $publicPath . '/tmp';
     }
 
-    function resize(string $path, string $thumbnailPath, int $width, int $height)
+    public function resize(string $path, string $thumbnailPath, int $width, int $height)
     {
         $this->decode($path);
         $this->wr = $width / $this->originalWidth;
@@ -206,7 +206,9 @@ class GifResizer
      */
     private function writeFrames(int $prepend)
     {
-        for ($i = 0; $i < sizeof($this->imageData); $i++) {
+        $size = sizeof($this->imageData);
+
+        for ($i = 0; $i < $size; $i++) {
             file_put_contents($this->tempDir . "/frame_" . $prepend . "_" . str_pad((string)$i, 2, "0", STR_PAD_LEFT) . ".gif", $this->imageInfo["gifheader"] . $this->imageData[$i]["graphicsextension"] . $this->imageData[$i]["imageData"] . chr(0x3b));
             $this->parsedFiles[] = $this->tempDir . "/frame_" . $prepend . "_" . str_pad((string)$i, 2, "0", STR_PAD_LEFT) . ".gif";
         }
@@ -300,9 +302,9 @@ class GifResizer
             } elseif ($type == 1) {
                 $this->orgVars["hasgx_type_1"] = 1;
                 $this->globalData["graphicsextension"] = $this->dataPart($start, $this->pointer - $start);
-            } elseif ($type == 0 && $this->decoding == false) {
+            } elseif ($type == 0 && $this->decoding === false) {
                 $this->encData[$this->index]["graphicsextension"] = $this->dataPart($start, $this->pointer - $start);
-            } elseif ($type == 0 && $this->decoding == true) {
+            } elseif ($type == 0 && $this->decoding === true) {
                 $this->orgVars["hasgx_type_0"] = 1;
                 $this->globalData["graphicsextension_0"] = $this->dataPart($start, $this->pointer - $start);
             }

@@ -95,7 +95,7 @@ class AppRuntime implements RuntimeExtensionInterface
     public function highlightTags(?string $text): array|string|null
     {
         if (null === $text) {
-            return $text;
+            return null;
         }
 
         $tags = $this->em->getRepository(Tag::class)->findAllForHighlight();

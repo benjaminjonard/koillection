@@ -5,6 +5,7 @@
     "license": "GPL-3.0-only",
     "require": {
         "php": "^8.0",
+        - sudo apt-get install php8.0-gd
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",

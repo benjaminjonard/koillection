@@ -43,8 +43,10 @@ class DatumController extends AbstractController
             $first = $collection->getItems()->first();
             if ($first instanceof Item) {
                 foreach ($first->getDataTexts() as $datum) {
-                    $field['datum'] = $datum;
-                    $field['type'] = $datum->getType();
+                    $field = [
+                        'datum' => $datum,
+                        'type' => $datum->getType()
+                    ];
                     $commonFields[$datum->getLabel()] = $field;
                 }
             }
