@@ -79,7 +79,7 @@ class SearchController extends AbstractController
         path: ['en' => '/search/autocomplete/{term}', 'fr' => '/recherche/autocompletion/{term}'],
         name: 'app_search_autocomplete', methods: ['GET', 'POST']
     )]
-    public function autocomplete(Request $request, Autocompleter $autocompleter, string $term) : Response
+    public function autocomplete(Autocompleter $autocompleter, string $term) : Response
     {
         $results = $autocompleter->findForAutocomplete($term);
 

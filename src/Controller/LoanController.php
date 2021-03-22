@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Loan;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -29,17 +30,21 @@ class LoanController extends AbstractController
 
     #[Route(
         path: ['en' => '/loans/{id}/delete', 'fr' => '/prets/{id}/supprimer'],
-        name: 'app_loan_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_loan_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Loan $loan, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Loan $loan, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($loan);
-        $em->flush();
+        $form = $this->createDeleteForm('app_loan_delete', $loan);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.loan_canceled', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($loan);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.loan_canceled', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_loan_index');
     }

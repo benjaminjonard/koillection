@@ -101,17 +101,21 @@ class TagCategoryController extends AbstractController
 
     #[Route(
         path: ['en' => '/tag-categories/{id}/delete', 'fr' => '/categories-de-tag/{id}/supprimer'],
-        name: 'app_tag_category_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_tag_category_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(TagCategory $category, TranslatorInterface $translator) : Response
+    public function delete(Request $request, TagCategory $category, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($category);
-        $em->flush();
+        $form = $this->createDeleteForm('app_tag_category_delete', $category);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.tag_category_deleted', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($category);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.tag_category_deleted', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_tag_category_index');
     }

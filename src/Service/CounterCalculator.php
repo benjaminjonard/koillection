@@ -65,6 +65,7 @@ class CounterCalculator
         $rsm->addScalarResult('children', 'children');
         $alias = $this->qng->generateJoinAlias('c');
         $ownerId = $this->contextHandler->getContextUser()->getId();
+        $results = [];
 
         $sql = "
             SELECT COUNT(DISTINCT id) as children

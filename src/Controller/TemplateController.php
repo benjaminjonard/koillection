@@ -94,17 +94,21 @@ class TemplateController extends AbstractController
 
     #[Route(
         path: ['en' => '/templates/{id}/delete', 'fr' => '/modeles/{id}/supprimer'],
-        name: 'app_template_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_template_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Template $template, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Template $template, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($template);
-        $em->flush();
+        $form = $this->createDeleteForm('app_template_delete', $template);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.template_deleted', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($template);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.template_deleted', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_template_index');
     }

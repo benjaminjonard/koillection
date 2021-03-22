@@ -81,7 +81,7 @@ class UserController extends AbstractController
     
     #[Route(
         path: ['en' => '/admin/users/{id}/delete', 'fr' => '/admin/utilisateurs/{id}/supprimer'],
-        name: 'app_admin_user_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'DELETE']
+        name: 'app_admin_user_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
     public function delete(Request $request, User $user, TranslatorInterface $translator) : Response
     {
@@ -92,27 +92,16 @@ class UserController extends AbstractController
             ]);
         }
 
-        $form = $this->createFormBuilder()
-            ->setMethod('DELETE')
-            ->add('confirm', CheckboxType::class, ['required' => true, 'mapped' => false, 'data' => false])
-            ->add('submit', SubmitType::class)
-            ->getForm()
-        ;
+        $form = $this->createDeleteForm('app_admin_user_delete', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
-
             $this->addFlash('notice', $translator->trans('message.user_deleted', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
-
-            return $this->redirectToRoute('app_admin_user_index');
         }
 
-        return $this->render('App/Admin/User/delete.html.twig', [
-            'user' => $user,
-            'form' => $form->createView()
-        ]);
+        return $this->redirectToRoute('app_admin_user_index');
     }
 }

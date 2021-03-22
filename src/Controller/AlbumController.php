@@ -107,17 +107,21 @@ class AlbumController extends AbstractController
 
     #[Route(
         path: ['en' => '/albums/{id}/delete', 'fr' => '/albums/{id}/supprimer'],
-        name: 'app_album_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_album_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Album $album, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Album $album, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($album);
-        $em->flush();
+        $form = $this->createDeleteForm('app_album_delete', $album);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.album_deleted', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($album);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.album_deleted', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_album_index');
     }

@@ -1,14 +1,12 @@
 {
-  "build/js/app.js": "/build/js/app.ce7c1a53.js",
-  "build/js/statistics.js": "/build/js/statistics.94eaed5b.js",
-  "build/css/app.css": "/build/css/app.96713594.css",
-  "build/css/app.otf": "/build/fonts/CooperHewitt-Bold.fc35c7fe.otf",
-  "build/css/app.svg": "/build/images/logo.4922b3c6.svg",
+  "build/js/app.js": "/build/js/app.b7aa3b9d.js",
+  "build/js/statistics.js": "/build/js/statistics.fe83edd0.js",
+  "build/css/app.css": "/build/css/app.1e431fbb.css",
   "build/css/themes/light-mode.css": "/build/css/themes/light-mode.c0e00ea6.css",
   "build/css/themes/dark-mode.css": "/build/css/themes/dark-mode.fbb8ceb5.css",
   "build/css/export.css": "/build/css/export.01d59534.css",
   "build/css/flags.css": "/build/css/flags.e548e89c.css",
   "build/fonts/CooperHewitt-Bold.otf": "/build/fonts/CooperHewitt-Bold.fc35c7fe.otf",
-  "build/fonts/font-awesome/font-awesome.svg?7ha2vg": "/build/images/font-awesome.c97e16ed.svg",
-  "build/img/logo.svg": "/build/images/logo.4922b3c6.svg"
+  "build/images/font-awesome.svg?7ha2vg": "/build/images/font-awesome.c97e16ed.svg",
+  "build/images/logo.svg": "/build/images/logo.4922b3c6.svg"
 }

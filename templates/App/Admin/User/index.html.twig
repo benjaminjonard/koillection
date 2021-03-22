@@ -24,9 +24,13 @@
             <h2 class="header">
                 {{ 'title.users'|trans }}
             </h2>
-            <a href="{{ path('app_admin_user_add') }}" class="btn waves-effect waves-light">
-                <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_user'|trans }}
-            </a>
+
+            <div class="row btn-holder">
+                <a href="{{ path('app_admin_user_add') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_user'|trans }}
+                </a>
+            </div>
+
             <table class="centered striped">
                 <thead>
                 <tr>
@@ -56,9 +60,7 @@
                                     <i class="fa fa-pencil fa-fw"></i>
                                 </a>
                                 {% if false == user.isAdmin() %}
-                                    <a title="{{ 'tooltip.delete'|trans }}" href="{{ path('app_admin_user_delete', {id : user.id}) }}">
-                                        <i class="fa fa-trash fa-fw"></i>
-                                    </a>
+                                    <a href="#delete-{{ user.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
                                 {% endif %}
                             </td>
                         </tr>
@@ -68,3 +70,10 @@
         </div>
     </div>
 {% endblock %}
+
+{% block modals %}
+    {% for user in users %}
+        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ user.id , 'route': url('app_admin_user_delete', {id: user.id}), transKey: 'message.delete.user'}) }}
+    {% endfor %}
+{% endblock %}
+

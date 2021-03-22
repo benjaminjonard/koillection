@@ -125,16 +125,21 @@ class ItemController extends AbstractController
 
     #[Route(
         path: ['en' => '/items/{id}/delete', 'fr' => '/objets/{id}/supprimer'],
-        name: 'app_item_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_item_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Item $item, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Item $item, TranslatorInterface $translator) : Response
     {
         $collection = $item->getCollection();
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($item);
-        $em->flush();
 
-        $this->addFlash('notice', $translator->trans('message.item_deleted', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
+        $form = $this->createDeleteForm('app_item_delete', $item);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($item);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.item_deleted', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
     }
