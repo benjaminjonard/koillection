@@ -27,3 +27,5 @@ yarn-error.log
 !/public/uploads/.gitkeep
 /public/tmp/*
 !public/tmp/.gitkeep
+
+/.idea/*
