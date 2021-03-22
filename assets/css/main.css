@@ -151,6 +151,7 @@ label div {font-size: 0.8rem;}
 .btn-holder .right {margin-top: 15px;}
 .btn-holder .left {margin-top: 15px;}
 .btn-holder i {margin: 0 5px;}
+.btn-holder a {display: flex;}
 .form-btn-holder button, .form-btn-holder a {margin: 5px;}
 
 ul.nav-pills {display: inline-block;}

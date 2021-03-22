@@ -115,17 +115,21 @@ class TagController extends AbstractController
 
     #[Route(
         path: ['en' => '/tags/{id}/delete', 'fr' => '/tags/{id}/supprimer'],
-        name: 'app_tag_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_tag_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Tag $tag, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Tag $tag, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($tag);
-        $em->flush();
+        $form = $this->createDeleteForm('app_tag_delete', $tag);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.tag_deleted', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($tag);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.tag_deleted', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_tag_index');
     }

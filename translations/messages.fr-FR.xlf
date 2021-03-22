@@ -4648,5 +4648,11 @@
         <target>Note</target>
       </segment>
     </unit>
+    <unit id="a9S54qV" name="message.delete.user">
+      <segment>
+        <source>message.delete.user</source>
+        <target>Êtes-vous sûr de vouloir supprimer cet utilisateur ? Il sera définitivement perdu...</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

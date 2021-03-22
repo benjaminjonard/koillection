@@ -9,6 +9,9 @@ use App\Model\BreadcrumbElement;
 use App\Service\ContextHandler;
 use App\Service\FeatureChecker;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -16,22 +19,22 @@ use Twig\Extension\RuntimeExtensionInterface;
 class AppRuntime implements RuntimeExtensionInterface
 {
     private TranslatorInterface $translator;
-
     private RouterInterface $router;
-
     private EntityManagerInterface $em;
-
     private ContextHandler $contextHandler;
-
     private FeatureChecker $featureChecker;
+    private FormFactoryInterface $formFactory;
 
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em, ContextHandler $contextHandler, FeatureChecker $featureChecker)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em,
+        ContextHandler $contextHandler, FeatureChecker $featureChecker, FormFactoryInterface $formFactory
+    )
     {
         $this->translator = $translator;
         $this->router = $router;
         $this->em = $em;
         $this->contextHandler = $contextHandler;
         $this->featureChecker = $featureChecker;
+        $this->formFactory = $formFactory;
     }
 
     public function safeContent(string $string) : string
@@ -160,5 +163,15 @@ class AppRuntime implements RuntimeExtensionInterface
     public function isFeatureEnabled(string $feature): bool
     {
         return $this->featureChecker->isFeatureEnabled($feature);
+    }
+
+    public function createDeleteForm($url): FormView
+    {
+        return $this->formFactory->createBuilder(FormType::class)
+            ->setAction($url)
+            ->setMethod('DELETE')
+            ->getForm()
+            ->createView()
+        ;
     }
 }

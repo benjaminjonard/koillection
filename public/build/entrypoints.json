@@ -2,17 +2,17 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/js/app.ce7c1a53.js"
+        "/build/js/app.0c53eabb.js"
       ]
     },
     "js/statistics": {
       "js": [
-        "/build/js/statistics.94eaed5b.js"
+        "/build/js/statistics.fe83edd0.js"
       ]
     },
     "css/app": {
       "css": [
-        "/build/css/app.96713594.css"
+        "/build/css/app.1e431fbb.css"
       ]
     },
     "css/themes/light-mode": {

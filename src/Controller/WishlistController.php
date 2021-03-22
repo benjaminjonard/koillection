@@ -125,17 +125,21 @@ class WishlistController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishlists/{id}/delete', 'fr' => '/listes-de-souhaits/{id}/supprimer'],
-        name: 'app_wishlist_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_wishlist_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Wishlist $wishlist, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Wishlist $wishlist, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($wishlist);
-        $em->flush();
+        $form = $this->createDeleteForm('app_wish_delete', $wishlist);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($wishlist);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_wishlist_index');
     }

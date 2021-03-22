@@ -4645,5 +4645,11 @@
         <target>Rating</target>
       </segment>
     </unit>
+    <unit id="a9S54qV" name="message.delete.user">
+      <segment>
+        <source>message.delete.user</source>
+        <target>Are you sure you want to delete this user ? It will be permanently lost...</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -84,17 +84,21 @@ class PhotoController extends AbstractController
 
     #[Route(
         path: ['en' => '/photos/{id}/delete', 'fr' => '/photos/{id}/supprimer'],
-        name: 'app_photo_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_photo_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Photo $photo, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Photo $photo, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($photo);
-        $em->flush();
+        $form = $this->createDeleteForm('app_photo_delete', $photo);
+        $form->handleRequest($photo);
 
-        $this->addFlash('notice', $translator->trans('message.photo_deleted', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($request);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.photo_deleted', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
     }

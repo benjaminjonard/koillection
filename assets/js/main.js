@@ -61,6 +61,14 @@ $(document).ready(function() {
         }
     });
 
+    //Init delete btn on modals
+    $('.js-modal-delete-submit').click(function () {
+        $('.tab').removeClass('current');
+        $(this).addClass('current');
+        $('.panel').addClass('hidden');
+        $('#' + $(this).attr('for')).removeClass('hidden');
+    });
+
     //Init tabs
     $('.tab').click(function () {
         $('.tab').removeClass('current');

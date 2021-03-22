@@ -44,15 +44,19 @@ class InventoryController extends AbstractController
 
     #[Route(
         path: ['en' => '/inventories/{id}/delete', 'fr' => '/inventaires/{id}/supprimer'],
-        name: 'app_inventory_delete', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_inventory_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
     )]
-    public function delete(Inventory $inventory, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Inventory $inventory, TranslatorInterface $translator) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($inventory);
-        $em->flush();
+        $form = $this->createDeleteForm('app_inventory_delete', $inventory);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.inventory_deleted', ['%inventory%' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($inventory);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.inventory_deleted', ['%inventory%' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
+        }
 
         return $this->redirectToRoute('app_tools_index');
     }

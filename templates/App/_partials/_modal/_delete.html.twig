@@ -12,8 +12,11 @@
 
             <div class="modal-footer">
                 <div class="right">
-                    <a href="{{ route }}" class="modal-action modal-close waves-effect waves-light btn col s2">Agree</a>
-                    <a class="modal-close waves-effect waves-light btn btn-cancel col s2">Disagree</a>
+                    {% set deleteForm = createDeleteForm(route) %}
+                    {{ form_start(deleteForm) }}
+                        <button type="submit" class="modal-action modal-close waves-effect waves-light btn col s2">Agree</button>
+                        <a class="modal-close waves-effect waves-light btn btn-cancel col s2">Disagree</a>
+                    {{ form_end(deleteForm) }}
                 </div>
             </div>
         </div>

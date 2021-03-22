@@ -146,15 +146,19 @@ class CollectionController extends AbstractController
 
     #[Route(
         path: ['en' => '/collections/{id}/delete', 'fr' => '/collections/{id}/supprimer'],
-        name: 'app_collection_delete', requirements: ['id' => '%uuid_regex%'],  methods: ['GET', 'POST']
+        name: 'app_collection_delete', requirements: ['id' => '%uuid_regex%'],  methods: ['DELETE']
     )]
-    public function delete(Collection $collection, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Collection $collection, TranslatorInterface $translator) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($collection);
-        $em->flush();
+        $form = $this->createDeleteForm('app_collection_delete', $collection);
+        $form->handleRequest($request);
 
-        $this->addFlash('notice', $translator->trans('message.collection_deleted', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($collection);
+            $em->flush();
+            $this->addFlash('notice', $translator->trans('message.collection_deleted', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
+        }
 
         if (null === $collection->getParent()) {
             return $this->redirectToRoute('app_collection_index');
