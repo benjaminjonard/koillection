@@ -4654,5 +4654,11 @@
         <target>Êtes-vous sûr de vouloir supprimer cet utilisateur ? Il sera définitivement perdu...</target>
       </segment>
     </unit>
+    <unit id="vQn6zq6" name="label.rating">
+      <segment>
+        <source>label.rating</source>
+        <target>Note</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
