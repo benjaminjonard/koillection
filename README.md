@@ -23,7 +23,9 @@ It is a project I did for my personal use. But since it can interest some people
 
 ## Warning
 
-Koillection is still in development. There might be some bugs, missing features and changes in the future.
+Please backup your database, especially when updating to a new version. I do my best to test new versions, especially when they contains data migrations but some edge cases may escape my vigilance.
+
+Please backup your database.
 
 ## Requirements
 
