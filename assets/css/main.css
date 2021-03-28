@@ -151,8 +151,7 @@ label div {font-size: 0.8rem;}
 .btn-holder .right {margin-top: 15px;}
 .btn-holder .left {margin-top: 15px;}
 .btn-holder i {margin: 0 5px;}
-.btn-holder a {display: flex;}
-.btn-holder .input-field {margin: 0;}
+.btn-holder .input-field {margin: 0px;}
 .form-btn-holder button, .form-btn-holder a {margin: 5px;}
 
 ul.nav-pills {display: inline-block;}
@@ -1318,4 +1317,3 @@ i.btn input {color: #fff; cursor: pointer;}
 .rating-form input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
 .rating-form label:hover ~ input:checked ~ label /* highlight previous selected stars */
 {color: #ffe57f;}
-
