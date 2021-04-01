@@ -91,6 +91,8 @@
                         {% for value in datum.value|split(',') %}
                             {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
                         {% endfor %}
+                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}
+                        {{ datum.value }}
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
                         <span class="flag flag-{{ datum.value|lower }}"></span>
                         <span class="country-name">({{ getCountryName(datum.value) }})</span>

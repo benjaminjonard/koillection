@@ -4660,5 +4660,17 @@
         <target>Note</target>
       </segment>
     </unit>
+    <unit id="9qoa5sq" name="btn.add_number">
+      <segment>
+        <source>btn.add_number</source>
+        <target>Nombre</target>
+      </segment>
+    </unit>
+    <unit id="An82xs4" name="label.number">
+      <segment>
+        <source>label.number</source>
+        <target>Nombre</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
