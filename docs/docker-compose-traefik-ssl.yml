@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+    # Koillection
+    koillection:
+        image: koillection/koillection:latest
+        container_name: koillection
+        restart: unless-stopped
+        environment:
+            - DB_DRIVER=pdo_pgsql
+            - DB_NAME=koillection
+            - DB_HOST=db
+            - DB_PORT=5432
+            - DB_USER=koillection
+            - DB_PASSWORD=SOMETHINGTRUSTY
+            - DB_VERSION=12.2
+            - PHP_TZ=Europe/Paris
+        networks:
+            - traefik_lan
+            - lan
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.koillection.entrypoints=websecure
+            - traefik.http.routers.koillection.rule=(Host(`$URL`) || Host(`www.$URL`)) && PathPrefix(`/`)
+            - traefik.http.routers.koillection.service=koillection
+            - traefik.http.routers.koillection.tls.certresolver=default
+            - traefik.http.services.koillection.loadbalancer.server.port=80
+            - traefik.docker.network=traefik_lan
+        depends_on:
+            - db
+        volumes:
+            - koillection-data-conf:/conf
+            - koillection-data-upload:/uploads
+
+
+    db:
+        image: postgres:latest
+        container_name: db
+        restart: unless-stopped
+        environment:
+            - POSTGRES_DB=koillection
+            - POSTGRES_USER=koillection
+            - POSTGRES_PASSWORD=SOMETHINGTRUSTY
+            - POSTGRES_HOST_AUTH_METHOD=trust
+        volumes:
+            - "koillection-data-db:/var/lib/postgresql/data"
+        networks:
+        - lan
+        labels:
+        - traefik.enable=false
+        
+volumes:
+  koillection-data-uploads:
+  koillection-data-conf:
+  koillection-data-db:
+  
+networks:
+  lan:
+  traefik_lan:
+    external: true
+    
+    
