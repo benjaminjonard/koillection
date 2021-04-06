@@ -29,7 +29,7 @@ class CollectionRepository extends EntityRepository
         ;
     }
 
-    public function findAllExcludingItself(Collection $collection) : array
+    public function efindAllExcludingItself(Collection $collection) : array
     {
         $id = $collection->getId();
         if ($collection->getCreatedAt() === null) {

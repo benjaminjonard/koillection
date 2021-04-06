@@ -11,6 +11,7 @@ class DatumTypeEnum
     public const TYPE_SIGN = 'sign';
     public const TYPE_DATE = 'date';
     public const TYPE_RATING = 'rating';
+    public const TYPE_NUMBER = 'number';
 
     public const TYPE_IMAGE = 'image';
     public const TYPE_FILE = 'file';
@@ -23,6 +24,7 @@ class DatumTypeEnum
         self::TYPE_FILE => 'label.file',
         self::TYPE_DATE => 'label.date',
         self::TYPE_RATING => 'label.rating',
+        self::TYPE_NUMBER => 'label.number',
     ];
 
     public static function getTypesLabels() : array

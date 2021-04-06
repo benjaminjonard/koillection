@@ -4651,5 +4651,23 @@
         <target>Are you sure you want to delete this user ? It will be permanently lost...</target>
       </segment>
     </unit>
+    <unit id="vQn6zq6" name="label.rating">
+      <segment>
+        <source>label.rating</source>
+        <target>Rating</target>
+      </segment>
+    </unit>
+    <unit id="9qoa5sq" name="btn.add_number">
+      <segment>
+        <source>btn.add_number</source>
+        <target>Number</target>
+      </segment>
+    </unit>
+    <unit id="An82xs4" name="label.number">
+      <segment>
+        <source>label.number</source>
+        <target>Number</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
