@@ -29,7 +29,7 @@
         <meta charset="UTF-8" />
         <title>Koillection</title>
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('build/css/export.css') }}" nonce="{{ csp_nonce() }}">
+        {{ encore_entry_link_tags('export') }}
     </head>
     <body>
         <div class="print" title="{{ 'tooltip.print'|trans }}">
@@ -44,9 +44,9 @@
         </div>
     </body>
 
-    <script nonce="{{ csp_nonce() }}">
-        var prints = document.getElementsByClassName("print");
-        var i;
+    <script>
+        let prints = document.getElementsByClassName("print");
+        let i;
         for (i = 0; i < prints.length; i++) {
             prints[i].onclick = function(){window.print();}
         }

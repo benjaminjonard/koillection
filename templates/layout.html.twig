@@ -67,6 +67,6 @@
 {% block javascripts %}
     {{ parent() }}
     {% for flash_message in app.session.flashbag.get('notice') %}
-        <script nonce="{{ csp_nonce() }}">M.toast({html: "{{ flash_message|safeContent }}", displayLength: 5000})</script>
+        <script>M.toast({html: "{{ flash_message|safeContent }}", displayLength: 5000})</script>
     {% endfor %}
 {% endblock %}

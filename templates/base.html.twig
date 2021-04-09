@@ -20,13 +20,38 @@
     <meta name="theme-color" content="#009688">
 
     {% block stylesheets %}
-        <link type="text/css" rel="stylesheet" href="{{ asset('build/css/app.css') }}" nonce="{{ csp_nonce() }}">
-
-        <link type="text/css" rel="stylesheet" href="{{ asset(app.user and app.user.isInDarkMode ? 'build/css/themes/dark-mode.css' : 'build/css/themes/light-mode.css') }}"  media="screen" nonce="{{ csp_nonce() }}"/>
-
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags(app.user and app.user.isInDarkMode ? 'dark-mode' : 'light-mode') }}
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <link type="text/css" rel="stylesheet" href="{{ asset('build/css/flags.css') }}"  media="screen" nonce="{{ csp_nonce() }}"/>
+            {{ encore_entry_link_tags('flags') }}
         {% endif %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        <script>
+            window.onload = window.onpageshow = function() {
+                document.documentElement.className = '';
+            };
+
+            if ('serviceWorker' in navigator) {
+                const LOADING = 0;
+                const LOADED = 1;
+                const FAILED = 2;
+                navigator.serviceWorker.register('{{ asset('sw.js') }}', { scope: "/" });
+                navigator.serviceWorker.addEventListener('message', function (event) {
+                    if (event.data === LOADING) {
+                        document.documentElement.className = 'loading';
+                    }
+                    if (event.data === LOADED) {
+                        document.documentElement.className = '';
+                    }
+                    if (event.data === FAILED) {
+                        document.documentElement.classList.add('fail');
+                    }
+                });
+            }
+        </script>
     {% endblock %}
 </head>
 <body class="
@@ -38,31 +63,5 @@
 {% block body %}{% endblock %}
 <div id="js-date-format" data-js-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"></div>
 <div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
-{% block javascripts %}
-    <script src="{{ asset('build/js/app.js') }}" nonce="{{ csp_nonce() }}"></script>
-    <script nonce="{{ csp_nonce() }}">
-        window.onload = window.onpageshow = function() {
-            document.documentElement.className = '';
-        };
-
-        if ('serviceWorker' in navigator) {
-            const LOADING = 0;
-            const LOADED = 1;
-            const FAILED = 2;
-            navigator.serviceWorker.register('{{ asset('sw.js') }}', { scope: "/" });
-            navigator.serviceWorker.addEventListener('message', function (event) {
-                if (event.data === LOADING) {
-                    document.documentElement.className = 'loading';
-                }
-                if (event.data === LOADED) {
-                    document.documentElement.className = '';
-                }
-                if (event.data === FAILED) {
-                    document.documentElement.classList.add('fail');
-                }
-            });
-        }
-    </script>
-{% endblock %}
 </body>
 </html>
