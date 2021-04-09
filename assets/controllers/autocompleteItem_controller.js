@@ -4,9 +4,13 @@ export default class extends Controller {
     static targets = ['input', 'formInput', 'result']
 
     connect() {
-        let $itemAutocompleteInput = $(this.inputTarget);
-        let $itemAutocompleteFormInput = $(this.formInputTarget);
-        let $itemAutocompleteResult = $(this.resultTarget);
+        let $itemAutocompleteInput = $(this.element).find('.js-autocomplete-input');
+        let $itemAutocompleteFormInput = $(this.element).find('.js-autocomplete-form-input');
+        let $itemAutocompleteResult = $(this.element).find('.js-autocomplete-result').find('tbody');
+
+        let $tagAutocompleteInput = $(this.inputTarget);
+        let $tagAutocompleteFormInput = $(this.formInputTarget);
+        let $tagAutocompleteResult = $(this.resultTarget);
 
         let items = [];
 
