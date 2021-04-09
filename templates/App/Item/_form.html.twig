@@ -10,7 +10,7 @@
                 {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default }) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select2'}}) }}
+                {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select'}}) }}
             </div>
         </div>
 
@@ -19,15 +19,15 @@
                 {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select2'}} ) }}
+                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select'}} ) }}
             </div>
         </div>
 
         {% if isFeatureEnabled('tags') %}
             <div class="row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3 js-tag-autocomplete">
+                <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocompleteTag">
                     <div class="input-field">
-                        <input type="text" id="tagsAutocomplete" class="js-autocomplete-input" autocomplete="off">
+                        <input type="text" class="js-autocomplete-input" autocomplete="off">
                         {{ form_label(form.tags, 'label.tags') }}
                         <div class="js-autocomplete-result ac-tags">
                         </div>
@@ -46,7 +46,7 @@
         <div class="row js-data-actions" data-entity="item">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                 {% if isFeatureEnabled('templates') %}
-                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'data-controller': 'select', 'class' : 'selectTemplate'}}) }}
                 {% endif %}
             </div>
             <div class="col s12 l3 xl2">
@@ -66,7 +66,7 @@
         </div>
 
         <div class="row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3 js-item-autocomplete">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocompleteItem">
                 <div class="js-autocomplete-result ac-tags">
                     <table class="centered striped">
                         <tbody>

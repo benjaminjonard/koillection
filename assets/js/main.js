@@ -33,20 +33,6 @@ $(document).ready(function() {
         });
     });
 
-    M.Timepicker.init(document.querySelectorAll('.timepicker'), {
-        showClearBtn: true,
-        twelveHour: false,
-        container: 'html',
-    });
-    M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
-    M.Modal.init(document.querySelectorAll('.modal'));
-    M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
-        enterDelay: 500,
-        outDuration: 100
-    });
-    M.Collapsible.init(document.querySelectorAll('.collapsible'));
-    utils.initDatepickers();
-
     $('form input').keydown(function (e) {
         if (e.keyCode == 13 && !$(this).closest('form').hasClass('login') && !$(this).closest('form').hasClass('search')) {
             e.preventDefault();

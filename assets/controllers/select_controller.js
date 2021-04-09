@@ -1,26 +1,23 @@
 import { Controller } from 'stimulus';
 import Translator from "../js/translator.min";
+import '../styles/select2.css';
 
 export default class extends Controller {
     connect() {
         $(this.element).select2({
-            templateSelection: function (country) {
-                if (!country.id) {
+            templateSelection: function (element) {
+                if (!element.id) {
                     return '';
                 }
 
-                return $(
-                    '<span class="flag-' + country.element.value.toLowerCase() + '"></span><span>' + country.text + '</span>'
-                );
+                return element.text;
             },
-            templateResult: function (country) {
-                if (!country.id) {
+            templateResult: function (element) {
+                if (!element.id) {
                     return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
                 }
 
-                return $(
-                    '<span class="flag-' + country.element.value.toLowerCase() + '"></span><span>' + country.text + '</span>'
-                );
+                return element.text;
             },
             language: {
                 noResults: function () {
@@ -37,7 +34,7 @@ export default class extends Controller {
 
                 return data;
             },
-            matcher:function(params, data) {
+            matcher: function(params, data) {
                 if ($.trim(params.term) === '') {
                     return data;
                 }

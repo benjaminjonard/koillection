@@ -1,6 +1,4 @@
 import * as utils from './utils'
-import * as tagAutocomplete from './tag-autocomplete'
-import * as itemAutocomplete from './item-autocomplete'
 
 //Init swiping
 let next = $('#next');
@@ -50,7 +48,6 @@ $('.selectTemplate').change( function() {
                     lastIndex++;
                 }
             });
-            utils.initDatepickers();
             utils.computePositions($('#data'));
             utils.computePositions($('#item-images'));
         }, "json" );
@@ -120,7 +117,6 @@ $('.js-add-field-btn').click( function() {
         utils.reloadSortableList($holder, '.datum');
         utils.computePositions($holder);
         utils.loadFilePreviews();
-        utils.initDatepickers();
     });
 });
 
@@ -128,7 +124,3 @@ $('#additionnalFields').on( "click", ".removeDatum", function() {
     $(this).closest('.datum').remove();
     utils.computePositions($(this).closest('.data-holder'));
 });
-
-
-tagAutocomplete.init();
-itemAutocomplete.init();

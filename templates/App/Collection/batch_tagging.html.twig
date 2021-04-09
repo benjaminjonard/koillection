@@ -19,14 +19,14 @@
         {{ form_start(form) }}
             <div class="row block-element">
                 <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3 autocomplete-wrapper">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3" data-controller="autocompleteTag">
                         <div class="input-field">
-                            <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
+                            <input type="text" class="js-autocomplete-input" autocomplete="off">
                             {{ form_label(form.tags, 'label.tags') }}
-                            <div class="ac-tags">
+                            <div class="js-autocomplete-result ac-tags">
                             </div>
                         </div>
-                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
+                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden js-autocomplete-form-input'}}) }}
                     </div>
                     <div class="col s12 l5 xl3">
                         {{ form_row(form.recursive, {'label': 'label.recursive', 'help': 'message.recursive'}) }}

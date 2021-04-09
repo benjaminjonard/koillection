@@ -67,6 +67,6 @@
 {% block javascripts %}
     {{ parent() }}
     {% for flash_message in app.session.flashbag.get('notice') %}
-        <script>M.toast({html: "{{ flash_message|safeContent }}", displayLength: 5000})</script>
+        <span data-controller="toast" data-message="{{ flash_message|safeContent }}"></span>
     {% endfor %}
 {% endblock %}
