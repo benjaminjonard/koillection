@@ -10,7 +10,7 @@
                 {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default }) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.collection, {'label' : 'label.collection'}) }}
+                {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select2'}}) }}
             </div>
         </div>
 
@@ -19,7 +19,7 @@
                 {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select2'}} ) }}
             </div>
         </div>
 

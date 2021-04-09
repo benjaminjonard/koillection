@@ -1,8 +1,6 @@
 import * as utils from './utils'
-import * as select from './select'
 import * as tagAutocomplete from './tag-autocomplete'
 import * as itemAutocomplete from './item-autocomplete'
-import Translator from "./translator.min";
 
 //Init swiping
 let next = $('#next');
@@ -52,7 +50,6 @@ $('.selectTemplate').change( function() {
                     lastIndex++;
                 }
             });
-            select.loadSelect2Countries();
             utils.initDatepickers();
             utils.computePositions($('#data'));
             utils.computePositions($('#item-images'));
@@ -77,7 +74,6 @@ $('.js-btn-common-fields').click( function(e) {
                 lastIndex++;
             }
         });
-        select.loadSelect2Countries();
         utils.computePositions($('#data'));
         utils.computePositions($('#item-images'));
     });
@@ -99,7 +95,6 @@ $('.js-btn-collection-fields').click( function(e) {
                 lastIndex++;
             }
         });
-        select.loadSelect2Countries();
         utils.computePositions($('#data'));
         utils.computePositions($('#item-images'));
     });
@@ -122,7 +117,6 @@ $('.js-add-field-btn').click( function() {
         $datum.find('.countable').characterCounter();
         $datum.find('.position').val($('#data').find('.datum').length);
         lastIndex++;
-        select.loadSelect2Countries();
         utils.reloadSortableList($holder, '.datum');
         utils.computePositions($holder);
         utils.loadFilePreviews();

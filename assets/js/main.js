@@ -1,7 +1,5 @@
 import Translator from './translator.min.js'
 import * as utils from './utils'
-import * as select from './select'
-import Cookies from '../node_modules/js-cookie'
 
 $(document).ready(function() {
     window.addEventListener('online', handleConnectionChange);
@@ -34,11 +32,6 @@ $(document).ready(function() {
             }
         });
     });
-
-    select.loadSelect2();
-    select.loadSelect2Countries();
-    select.loadSelect2Locales();
-    select.loadSelect2TagCategories();
 
     M.Timepicker.init(document.querySelectorAll('.timepicker'), {
         showClearBtn: true,
@@ -124,7 +117,6 @@ $(document).ready(function() {
         $newLinkDiv.before($newForm);
         console.log($newForm);
         indexFieldTemplate++;
-        select.loadSelect2();
         utils.computePositions($collectionHolder);
         utils.reloadSortableList($collectionHolder, '.field');
     }

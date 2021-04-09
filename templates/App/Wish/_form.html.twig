@@ -6,7 +6,7 @@
             {{ form_row(form.name, {'label' : 'label.name'}) }}
         </div>
         <div class="col s12 l5 xl3">
-            {{ form_row(form.wishlist, {'label' : 'label.wishlist'}) }}
+            {{ form_row(form.wishlist, {'label' : 'label.wishlist', 'attr': {'data-controller': 'select2'}}) }}
         </div>
     </div>
 
@@ -15,7 +15,7 @@
             {{ form_row(form.url, {'label' : 'label.url'}) }}
         </div>
         <div class="col s12 l5 xl3">
-            {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+            {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select2'}} ) }}
         </div>
     </div>
 
@@ -24,7 +24,7 @@
             {{ form_row(form.price, {'label' : 'label.price'}) }}
         </div>
         <div class="col s12 l5 xl3">
-            {{ form_row(form.currency, {'label' : 'label.currency'}) }}
+            {{ form_row(form.currency, {'label' : 'label.currency', 'attr': {'data-controller': 'select2'}}) }}
         </div>
     </div>
 

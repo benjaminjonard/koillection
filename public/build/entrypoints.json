@@ -4,12 +4,12 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors-node_modules_core-js_internals_array-method-is-strict_js-node_modules_core-js_modules-46988a.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-a99ceb.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-b2085e.js",
         "/build/js_translations_config_js-js_translations_javascript_en-GB_js-js_translations_javascript_fr-FR_js.js",
         "/build/app.js"
       ],
       "css": [
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-a99ceb.css",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-b2085e.css",
         "/build/app.css"
       ]
     },
