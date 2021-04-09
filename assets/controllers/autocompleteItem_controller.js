@@ -1,10 +1,13 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
+    static targets = ['input', 'formInput', 'result']
+
     connect() {
-        let $itemAutocompleteInput = $(this.element).find('.js-autocomplete-input');
-        let $itemAutocompleteFormInput = $(this.element).find('.js-autocomplete-form-input');
-        let $itemAutocompleteResult = $(this.element).find('.js-autocomplete-result').find('tbody');
+        let $itemAutocompleteInput = $(this.inputTarget);
+        let $itemAutocompleteFormInput = $(this.formInputTarget);
+        let $itemAutocompleteResult = $(this.resultTarget);
+
         let items = [];
 
         let itemAutocomplete = M.Autocomplete.init($itemAutocompleteInput, {

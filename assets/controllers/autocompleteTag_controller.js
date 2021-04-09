@@ -1,10 +1,12 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
+    static targets = ['input', 'formInput', 'result']
+
     connect() {
-        let $tagAutocompleteInput = $(this.element).find('.js-autocomplete-input');
-        let $tagAutocompleteFormInput = $(this.element).find('.js-autocomplete-form-input');
-        let $tagAutocompleteResult = $(this.element).find('.js-autocomplete-result');
+        let $tagAutocompleteInput = $(this.inputTarget);
+        let $tagAutocompleteFormInput = $(this.formInputTarget);
+        let $tagAutocompleteResult = $(this.resultTarget);
 
         if ($tagAutocompleteFormInput.length > 0) {
             $.each(JSON.parse($tagAutocompleteFormInput.val()), function (key, tag) {

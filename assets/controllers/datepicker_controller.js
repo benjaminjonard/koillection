@@ -3,7 +3,7 @@ import Translator from "../js/translator.min";
 
 export default class extends Controller {
     connect() {
-        M.Datepicker.init(item, {
+        M.Datepicker.init(this.element, {
             months: [Translator.trans('global.months.january'), Translator.trans('global.months.february'),
                 Translator.trans('global.months.march'), Translator.trans('global.months.april'), Translator.trans('global.months.may'),
                 Translator.trans('global.months.june'), Translator.trans('global.months.july'), Translator.trans('global.months.august'),
@@ -21,7 +21,7 @@ export default class extends Controller {
             clear: Translator.trans('btn.clear'),
             close: Translator.trans('btn.close'),
             today: Translator.trans('global.today').substring(0, 3)+'.',
-            format: $('#js-date-format').data('jsDateFormat'),
+            format: document.getElementById('js-date-format').dataset.jsDateFormat,
             container: '.main',
         });
     }

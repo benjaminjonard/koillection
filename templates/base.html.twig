@@ -60,8 +60,8 @@
         {{ status_code is defined ? 'error ' }}
     ">
 
-{% block body %}{% endblock %}
-<div id="js-date-format" data-js-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"></div>
-<div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
+    {% block body %}{% endblock %}
+    <div id="js-date-format" data-js-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"></div>
+    <div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
 </body>
 </html>
