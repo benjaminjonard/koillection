@@ -22,35 +22,37 @@
             </div>
         </div>
 
-        <ul class="profile-menu collection hidden">
-            <li class="collection-item"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
-            <li class="collection-item"><a href="{{ path('app_settings_index') }}"><i class="fa fa-gears fa-fw"></i><span>{{ 'menu.settings'|trans }}</span></a></li>
-            <li class="collection-item"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
-            {% if is_granted('ROLE_ADMIN') %}
-                <li class="collection-item"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
-            {% endif %}
-            <li class="collection-item"><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>
-        </ul>
-
-        <div class="main content-wrapper">
-            <div class="mobile-overlay"></div>
+        <div class="main content-wrapper" {{ stimulus_controller('burgermenu') }}>
+            <div class="mobile-overlay" data-action="click->burgermenu#hide"></div>
             <header class="expanded">
                 <div class="breadcrumb-wrapper">
-                    <div class="burger-menu" {{ stimulus_controller('burgermenu') }}>
+                    <div class="burger-menu">
                         <i class="fa fa-bars fa-fw" data-action="click->burgermenu#display"></i>
                     </div>
                     {% block breadcrumb %}{% endblock %}
                 </div>
 
                 {% if app.user %}
-                    <div class="header-profile">
-                        {% if app.user.avatar != null %}
-                            <img class="user-avatar" src="{{ asset(app.user.avatar) }}">
-                        {% else %}
-                            <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
-                        {% endif %}
-                        <span class="down-background"></span>
-                        <i class="fa fa-chevron-down fa-fw"></i>
+                    <div class="header-profile" {{ stimulus_controller('profile') }}>
+                        <span data-action="click->profile#show">
+                            {% if app.user.avatar != null %}
+                                <img class="user-avatar" src="{{ asset(app.user.avatar) }}">
+                            {% else %}
+                                <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
+                            {% endif %}
+                            <span class="down-background"></span>
+                            <i class="fa fa-chevron-down fa-fw"></i>
+                        </span>
+
+                        <ul class="profile-menu collection hidden" data-profile-target="menu">
+                            <li class="collection-item"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
+                            <li class="collection-item"><a href="{{ path('app_settings_index') }}"><i class="fa fa-gears fa-fw"></i><span>{{ 'menu.settings'|trans }}</span></a></li>
+                            <li class="collection-item"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li class="collection-item"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
+                            {% endif %}
+                            <li class="collection-item"><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>
+                        </ul>
                     </div>
                 {% endif %}
             </header>

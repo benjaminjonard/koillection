@@ -62,6 +62,6 @@
 
     {% block body %}{% endblock %}
     <div id="js-date-format" data-js-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"></div>
-    <div id="offline-message" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
+    <div id="offline-message" {{ stimulus_controller('offline-message')}} data-action="online@window->offline-message#hide offline@window->offline-message#show" class="valign-wrapper hidden"><span>{{ 'message.offline'|trans }}</span></div>
 </body>
 </html>

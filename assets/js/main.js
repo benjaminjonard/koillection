@@ -2,29 +2,6 @@ import Translator from './translator.min.js'
 import * as utils from './utils'
 
 $(document).ready(function() {
-    window.addEventListener('online', handleConnectionChange);
-    window.addEventListener('offline', handleConnectionChange);
-
-
-
-    $('.mobile-overlay').click(function (e) {
-        e.preventDefault();
-        $('body').removeClass('mobile-opened');
-    });
-
-    $('.header-profile').click(function (e) {
-        e.preventDefault();
-        $('.profile-menu').removeClass('hidden');
-
-        $(document).mouseup(function(e) {
-            var $container = $('.profile-menu');
-            if (!$container.is(e.target) && $container.has(e.target).length === 0) {
-                $container.addClass('hidden');
-                $(document).unbind('mouseup')
-            }
-        });
-    });
-
     $('form input').keydown(function (e) {
         if (e.keyCode == 13 && !$(this).closest('form').hasClass('login') && !$(this).closest('form').hasClass('search')) {
             e.preventDefault();
@@ -194,14 +171,3 @@ $(document).ready(function() {
         };
     })();
 });
-
-function handleConnectionChange(event){
-    var element = document.getElementById("offline-message");
-    if(event.type == "offline"){
-        element.classList.remove("hidden");
-    }
-
-    if(event.type == "online"){
-        element.classList.add("hidden");
-    }
-}

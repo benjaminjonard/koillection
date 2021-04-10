@@ -10,4 +10,9 @@ export default class extends Controller {
             document.body.classList.remove('mobile-opened');
         }
     }
+
+    hide(event) {
+        event.preventDefault();
+        document.body.classList.remove('mobile-opened');
+    }
 }

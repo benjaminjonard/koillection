@@ -14,5 +14,7 @@
   "build/js_translations_config_js-js_translations_javascript_en-GB_js-js_translations_javascript_fr-FR_js.js": "/build/js_translations_config_js-js_translations_javascript_en-GB_js-js_translations_javascript_fr-FR_js.js",
   "build/fonts/CooperHewitt-Bold.otf": "/build/fonts/CooperHewitt-Bold.fc35c7fe.otf",
   "build/images/font-awesome.svg?7ha2vg": "/build/images/font-awesome.c97e16ed.svg",
-  "build/images/logo.svg": "/build/images/logo.4922b3c6.svg"
+  "build/images/logo.svg": "/build/images/logo.4922b3c6.svg",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-612e8c.css": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-612e8c.css",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-612e8c.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-612e8c.js"
 }
