@@ -4669,5 +4669,11 @@
         <target>Number</target>
       </segment>
     </unit>
+    <unit id="D0soZ23" name="btn.add_field">
+      <segment>
+        <source>btn.add_field</source>
+        <target>Add a field</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

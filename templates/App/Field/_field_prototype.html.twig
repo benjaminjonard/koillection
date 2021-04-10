@@ -1,4 +1,4 @@
-<div class="row field">
+<div class="row field" data-template--field-target="field">
     <div class="col s1 handle icon-holder">
         <i class="fa fa-arrows-v fa-fw"></i>
     </div>
@@ -9,9 +9,9 @@
         {{ form_row(form.type, {'label':'label.type', 'attr': {'data-controller': 'select--default'}}) }}
     </div>
     <div class="input-field">
-        {{ form_row(form.position, {'attr': {'class' : 'position'}}) }}
+        {{ form_row(form.position, {'attr': {'class' : 'position', 'data-template--field-target': 'position'}}) }}
     </div>
     <div class="col s1 icon-holder">
-        <i class="fa fa-remove fa-fw removeDatum"></i>
+        <i class="fa fa-remove fa-fw removeDatum" data-action="click->template--field#remove"></i>
     </div>
 </div>

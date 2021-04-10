@@ -4672,5 +4672,11 @@
         <target>Nombre</target>
       </segment>
     </unit>
+    <unit id="D0soZ23" name="btn.add_field">
+      <segment>
+        <source>btn.add_field</source>
+        <target>Ajouter un champ</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
