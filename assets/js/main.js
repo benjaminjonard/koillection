@@ -5,15 +5,7 @@ $(document).ready(function() {
     window.addEventListener('online', handleConnectionChange);
     window.addEventListener('offline', handleConnectionChange);
 
-    $('.burger-menu').click(function (e) {
-        e.preventDefault();
-        var open = !$('body').hasClass('mobile-opened');
-        if (open) {
-            $('body').addClass('mobile-opened');
-        } else {
-            $('body').removeClass('mobile-opened');
-        }
-    });
+
 
     $('.mobile-overlay').click(function (e) {
         e.preventDefault();

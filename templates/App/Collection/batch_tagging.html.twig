@@ -19,7 +19,7 @@
         {{ form_start(form) }}
             <div class="row block-element">
                 <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3" data-controller="autocomplete--tag">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3" {{ stimulus_controller('autocomplete--tag') }}>
                         <div class="input-field">
                             <input type="text" data-autocomplete--tag-target="input" data-action="keyup->autocomplete--tag#autocomplete" autocomplete="off">
                             {{ form_label(form.tags, 'label.tags') }}

@@ -36,8 +36,8 @@
             <div class="mobile-overlay"></div>
             <header class="expanded">
                 <div class="breadcrumb-wrapper">
-                    <div class="burger-menu">
-                        <i class="fa fa-bars fa-fw"></i>
+                    <div class="burger-menu" {{ stimulus_controller('burgermenu') }}>
+                        <i class="fa fa-bars fa-fw" data-action="click->burgermenu#display"></i>
                     </div>
                     {% block breadcrumb %}{% endblock %}
                 </div>
@@ -67,6 +67,6 @@
 {% block javascripts %}
     {{ parent() }}
     {% for flash_message in app.session.flashbag.get('notice') %}
-        <span data-controller="toast" data-message="{{ flash_message|safeContent }}"></span>
+        <span {{ stimulus_controller('toast') }} data-message="{{ flash_message|safeContent }}"></span>
     {% endfor %}
 {% endblock %}
