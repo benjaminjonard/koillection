@@ -3,34 +3,28 @@ import { Controller } from 'stimulus';
 export default class extends Controller {
     static targets = ['input', 'formInput', 'result']
 
-    $autocompleteInput = null;
-    $autocompleteFormInput = null;
-    $autocompleteResult = null;
     timeout = null;
     autocompleteElement = null;
 
     connect() {
-        this.$autocompleteInput = $(this.inputTarget);
-        this.$autocompleteFormInput = $(this.formInputTarget);
-        this.$autocompleteResult = $(this.resultTarget);
         let self = this;
 
-        this.autocompleteElement = M.Autocomplete.init(this.$autocompleteInput, {
+        this.autocompleteElement = M.Autocomplete.init(this.inputTarget, {
             onAutocomplete: function (item) {
                 self.onAutocomplete(item)
             }
-        })[0];
+        });
 
-        if (this.$autocompleteFormInput.length > 0) {
-            let values = JSON.parse(this.$autocompleteFormInput.val());
+        if (this.formInputTarget.value.length > 0) {
+            let values = JSON.parse(this.formInputTarget.value);
             for (const item of values) {
-                this.$autocompleteResult.append(this.getChip(item));
+                this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(item));
             }
         }
     }
 
     remove(event) {
-        let existingTags = JSON.parse(this.$autocompleteFormInput.val());
+        let existingTags = JSON.parse(this.formInputTarget.value);
         let chip = event.target.closest('.chip');
         let index = existingTags.indexOf(chip.dataset.id);
 
@@ -38,26 +32,26 @@ export default class extends Controller {
             existingTags.splice(index, 1);
         }
 
-        this.$autocompleteFormInput.val(JSON.stringify(existingTags));
+        this.formInputTarget.value = JSON.stringify(existingTags);
     }
 
     autocomplete(event) {
         this.autocompleteElement.updateData({});
         clearTimeout(this.timeout);
-        let val = this.$autocompleteInput.val();
+        let value = this.inputTarget.value;
         let self = this;
 
-        if (val !== '') {
+        if (value !== '') {
             this.timeout = setTimeout(function () {
-                fetch('/tags/autocomplete/' + val, {
+                fetch('/tags/autocomplete/' + value, {
                     method: 'GET'
                 })
                 .then(response => response.json())
                 .then(function(results) {
                     let data = {};
-                    $.each(results, function (key, result) {
+                    for (const result of results) {
                         data[result] = null;
-                    });
+                    }
                     self.autocompleteElement.updateData(data);
                     self.autocompleteElement.open();
                 })
@@ -65,25 +59,25 @@ export default class extends Controller {
         }
 
         if (event.which === 13) {
-            this.onAutocomplete(val);
+            this.onAutocomplete(value);
         }
     }
 
     onAutocomplete(item) {
-        let existingElements = JSON.parse(this.$autocompleteFormInput.val());
+        let existingElements = JSON.parse(this.formInputTarget.value);
         let index = existingElements.indexOf(item);
         if (index === -1) {
             existingElements.push(item);
-            this.$autocompleteResult.append(this.getChip(item));
+            this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(item));
         }
 
-        this.$autocompleteFormInput.val(JSON.stringify(existingElements));
-        this.$autocompleteInput.val('');
+        this.formInputTarget.value = JSON.stringify(existingElements);
+        this.inputTarget.value = '';
     }
 
     getChip(label) {
         return '<div class="chip" data-id="' + label + '" data-text="' + label + '">'
-            + label + '<i data-action="click->autocompleteTag#remove" class="fa fa-times close"></i>' +
+            + label + '<i data-action="click->autocomplete--tag#remove" class="fa fa-times close"></i>' +
         '</div>';
     }
 }

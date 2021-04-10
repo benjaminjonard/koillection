@@ -548,6 +548,7 @@ i.btn input {color: #fff; cursor: pointer;}
 .autocomplete-results li:first-child {border-top-right-radius: 25px; border-top-left-radius: 25px;}
 .autocomplete-results li a {cursor: pointer; display: inline-block; width: 100%;}
 .autocomplete-results li span {color: #ccc;}
+.autocomplete-content li img {object-fit: cover;}
 
 .datum-original-filename {white-space: nowrap; margin-top: 12px; padding-left: 10px; text-overflow: ellipsis; overflow: hidden;}
 .file-field input[type="file"] {height: 3rem; margin-left: 10px; width: 48px;}
