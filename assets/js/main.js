@@ -2,16 +2,6 @@ import Translator from './translator.min.js'
 import * as utils from './utils'
 
 $(document).ready(function() {
-    //Init lightboxes
-    if ($('[name="data-lightbox"]').length > 0) {
-        lightbox.option({
-            'resizeDuration': 200,
-            'imageFadeDuration': 200,
-            'fadeDuration': 200,
-            'wrapAround': true
-        });
-    }
-
     //init image slider
     $('.slider-element').click(function (e) {
         e.preventDefault();

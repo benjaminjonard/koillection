@@ -15,7 +15,7 @@ footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; fo
 
 a {outline: 0;}
 
-/* Override lightbox, wtf man... */
+/* Override lightbox */
 body:after {content: none;}
 .lb-data .lb-close {background: none;}
 .lb-nav a.lb-next {background: none;}

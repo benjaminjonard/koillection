@@ -104,7 +104,7 @@
                     </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody {{ stimulus_controller('lightbox') }}>
                     {% for wish in wishes|naturalSorting %}
                         <tr class="list-element resize-element" data-title="{{ wish.name }}">
                             <td>
