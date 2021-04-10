@@ -166,8 +166,10 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .tabs-block li.tab {padding: 16px; font-size: 15px; line-height: 18px; cursor: pointer; color: #959494;}
 .tabs-block li.tab a {padding: 16px; color: #959494;}
 .tabs-block li.tab.current a {color: #000}
-.tabs-block li.tab.current{border-bottom: 3px solid #009688; color: #000; font-weight: bold;}
+.tabs-block li.tab.current {border-bottom: 3px solid #009688; color: #000; font-weight: bold;}
 .tabs-block {border-bottom: 1px solid #dce0e6; margin-bottom: 20px;}
+.panel {display: none;}
+.panel.current {display: block;}
 
 .collection {margin-top: 20px;}
 .resize-wrapper {display: flex; justify-content: space-around; flex-wrap: wrap; margin-bottom: 0; padding-left: 20px; padding-right: 20px;}

@@ -47,21 +47,21 @@
          data-theme-lightest-hue="{{ app.user.isInDarkMode ? '#b3f0e0' : '#80cbc4' }}"
          data-is-dark-mode="{{ app.user.isInDarkMode }}"
     >
-        <div class="content-block calendars">
+        <div class="content-block calendars" {{ stimulus_controller('tabs') }}>
             <div class="block-element">
                 <h2 class="statistics-title">{{ 'title.activity'|trans }}</h2>
                 <div class="tabs-block">
                     <ul class="nav nav-pills">
                         {% for year, value in calendarData %}
-                            <li class="tab {{ loop.first ? 'current' }}" for="calendar_{{ year }}">
-                                <span>{{ year }}</span>
+                            <li class="tab {{ loop.first ? 'current' }}" data-tabs-target="tab" data-action="click->tabs#display" data-for="calendar_{{ year }}">
+                                {{ year }}
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div id="calendars" data-json='{{ calendarData|json_encode() }}'></div>
                 {% for year, value in calendarData %}
-                    <div class="panel calendar {{ false == loop.first ? 'hidden' }}" id="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
+                    <div id="calendar_{{ year }}" class="panel calendar {{ loop.first ? 'current' }}" data-tabs-target="panel" data-name="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
                 {% endfor %}
             </div>
         </div>

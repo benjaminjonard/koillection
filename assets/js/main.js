@@ -2,21 +2,6 @@ import Translator from './translator.min.js'
 import * as utils from './utils'
 
 $(document).ready(function() {
-    $('form input').keydown(function (e) {
-        if (e.keyCode == 13 && !$(this).closest('form').hasClass('login') && !$(this).closest('form').hasClass('search')) {
-            e.preventDefault();
-            return false;
-        }
-    });
-
-    //Init tabs
-    $('.tab').click(function () {
-        $('.tab').removeClass('current');
-        $(this).addClass('current');
-        $('.panel').addClass('hidden');
-        $('#' + $(this).attr('for')).removeClass('hidden');
-    });
-
     //Init lightboxes
     if ($('[name="data-lightbox"]').length > 0) {
         lightbox.option({
