@@ -3,76 +3,87 @@ import { Controller } from 'stimulus';
 export default class extends Controller {
     static targets = ['input', 'formInput', 'result']
 
+    $autocompleteInput = null;
+    $autocompleteFormInput = null;
+    $autocompleteResult = null;
+    timeout = null;
+    autocompleteElement = null;
+
     connect() {
-        let $autocompleteInput = $(this.inputTarget);
-        let $autocompleteFormInput = $(this.formInputTarget);
-        let $autocompleteResult = $(this.resultTarget);
-        let autocompleteResults = [];
+        this.$autocompleteInput = $(this.inputTarget);
+        this.$autocompleteFormInput = $(this.formInputTarget);
+        this.$autocompleteResult = $(this.resultTarget);
+        let self = this;
 
-        if ($autocompleteFormInput.length > 0) {
-            $.each(JSON.parse($autocompleteFormInput.val()), function (key, item) {
-                $autocompleteResult.append(getChip(item));
-            });
-        }
-
-        let autocomplete = M.Autocomplete.init($autocompleteInput, {
+        this.autocompleteElement = M.Autocomplete.init(this.$autocompleteInput, {
             onAutocomplete: function (item) {
-                onAutocomplete(item)
+                self.onAutocomplete(item)
             }
         })[0];
 
-        let timeout = null;
-        $autocompleteInput.keyup(function (e) {
-            autocomplete.updateData({});
-            clearTimeout(timeout);
-            let val = $(this).val();
-
-            if (val !== '') {
-                timeout = setTimeout(function () {
-                    $.get('/tags/autocomplete/' + val, function (results) {
-                        autocompleteResults = results;
-                        let data = {};
-                        $.each(results, function (key, result) {
-                            data[result] = null;
-                        });
-                        autocomplete.updateData(data);
-                        autocomplete.open();
-                    }, "json");
-                }, 500);
+        if (this.$autocompleteFormInput.length > 0) {
+            let values = JSON.parse(this.$autocompleteFormInput.val());
+            for (const item of values) {
+                this.$autocompleteResult.append(this.getChip(item));
             }
+        }
+    }
 
-            if (e.which === 13) {
-                onAutocomplete($(this).val());
-            }
-        });
+    remove(event) {
+        let existingTags = JSON.parse(this.$autocompleteFormInput.val());
+        let chip = event.target.closest('.chip');
+        let index = existingTags.indexOf(chip.dataset.id);
 
-        $(this.element).on("click", ".close", function () {
-            let existingTags = JSON.parse($autocompleteFormInput.val());
-
-            let index = existingTags.indexOf($(this).parent('.chip').attr('data-id'));
-            if (index > -1) {
-                existingTags.splice(index, 1);
-            }
-
-            $autocompleteFormInput.val(JSON.stringify(existingTags));
-        });
-
-        function onAutocomplete(item) {
-            let existingElements = JSON.parse($autocompleteFormInput.val());
-            let id = item;
-
-            let index = existingElements.indexOf(id);
-            if (index === -1) {
-                existingElements.push(id);
-                $autocompleteResult.append(getChip(item));
-            }
-
-            $autocompleteFormInput.val(JSON.stringify(existingElements));
-            $autocompleteInput.val('');
+        if (index > -1) {
+            existingTags.splice(index, 1);
         }
 
-        function getChip(label) {
-            return '<div class="chip" data-id="' + label + '" data-text="' + label + '">' + label + '<i class="fa fa-times close"></i></div>'
+        this.$autocompleteFormInput.val(JSON.stringify(existingTags));
+    }
+
+    autocomplete(event) {
+        this.autocompleteElement.updateData({});
+        clearTimeout(this.timeout);
+        let val = this.$autocompleteInput.val();
+        let self = this;
+
+        if (val !== '') {
+            this.timeout = setTimeout(function () {
+                fetch('/tags/autocomplete/' + val, {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(function(results) {
+                    let data = {};
+                    $.each(results, function (key, result) {
+                        data[result] = null;
+                    });
+                    self.autocompleteElement.updateData(data);
+                    self.autocompleteElement.open();
+                })
+            }, 500);
         }
+
+        if (event.which === 13) {
+            this.onAutocomplete(val);
+        }
+    }
+
+    onAutocomplete(item) {
+        let existingElements = JSON.parse(this.$autocompleteFormInput.val());
+        let index = existingElements.indexOf(item);
+        if (index === -1) {
+            existingElements.push(item);
+            this.$autocompleteResult.append(this.getChip(item));
+        }
+
+        this.$autocompleteFormInput.val(JSON.stringify(existingElements));
+        this.$autocompleteInput.val('');
+    }
+
+    getChip(label) {
+        return '<div class="chip" data-id="' + label + '" data-text="' + label + '">'
+            + label + '<i data-action="click->autocompleteTag#remove" class="fa fa-times close"></i>' +
+        '</div>';
     }
 }

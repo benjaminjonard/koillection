@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocompleteTag">
                     <div class="input-field">
-                        <input type="text" data-autocompleteTag-target="input" autocomplete="off">
+                        <input type="text" data-autocompleteTag-target="input" data-action="keyup->autocompleteTag#autocomplete" autocomplete="off">
                         {{ form_label(form.tags, 'label.tags') }}
                         <div data-autocompleteTag-target="result" class="ac-tags"></div>
                     </div>
@@ -75,7 +75,7 @@
 
                 <div class="input-field">
                     {{ form_label(form.relatedItems, 'label.related_items') }}
-                    <input type="text" data-autocompleteItem-target="input" autocomplete="off">
+                    <input type="text" data-autocompleteItem-target="input" data-action="keyup->autocompleteItem#autocomplete" autocomplete="off">
                 </div>
                 {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocompleteItem-target': 'formInput'}}) }}
             </div>
