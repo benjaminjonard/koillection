@@ -7,7 +7,7 @@
                 {{ form_row(form.title, {'label' : 'label.title'} ) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select'}} ) }}
+                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--default'}} ) }}
             </div>
         </div>
 
@@ -22,7 +22,7 @@
 
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select'}} ) }}
+                {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}} ) }}
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="row js-data-actions" data-entity="collection">
             {% if isFeatureEnabled('templates') %}
                 <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'data-controller': 'select', 'class' : 'selectTemplate'}}) }}
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'data-controller': 'select--default', 'class' : 'selectTemplate'}}) }}
                 </div>
             {% endif %}
         </div>

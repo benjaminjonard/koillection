@@ -1,5 +1,5 @@
 <div class="input-field col s5">
-    <select id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]" data-controller="selectCountry">
+    <select id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]" data-controller="select--country">
         <option value="" {% if datum is not defined %}selected{% endif %}>
         {% for code, name in getCountriesList() %}
             <option value="{{ code }}" {% if datum is defined and datum.value == code %}selected{% endif %}>

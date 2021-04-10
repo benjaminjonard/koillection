@@ -10,7 +10,7 @@
                 {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default }) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select'}}) }}
+                {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select--default'}}) }}
             </div>
         </div>
 
@@ -19,19 +19,19 @@
                 {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select'}} ) }}
+                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--default'}} ) }}
             </div>
         </div>
 
         {% if isFeatureEnabled('tags') %}
             <div class="row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocompleteTag">
+                <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocomplete--tag">
                     <div class="input-field">
-                        <input type="text" data-autocompleteTag-target="input" data-action="keyup->autocompleteTag#autocomplete" autocomplete="off">
+                        <input type="text" data-autocomplete--tag-target="input" data-action="keyup->autocomplete--tag#autocomplete" autocomplete="off">
                         {{ form_label(form.tags, 'label.tags') }}
-                        <div data-autocompleteTag-target="result" class="ac-tags"></div>
+                        <div data-autocomplete--tag-target="result" class="ac-tags"></div>
                     </div>
-                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden', 'data-autocompleteTag-target': 'formInput'}}) }}
+                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden', 'data-autocomplete--tag-target': 'formInput'}}) }}
                 </div>
             </div>
         {% endif %}
@@ -45,7 +45,7 @@
         <div class="row js-data-actions" data-entity="item">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                 {% if isFeatureEnabled('templates') %}
-                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'data-controller': 'select', 'class' : 'selectTemplate'}}) }}
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'data-controller': 'select--default', 'class' : 'selectTemplate'}}) }}
                 {% endif %}
             </div>
             <div class="col s12 l3 xl2">
@@ -65,19 +65,19 @@
         </div>
 
         <div class="row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocompleteItem">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocomplete--item">
                 <div class="ac-tags">
                     <table class="centered striped">
-                        <tbody data-autocompleteItem-target="result">
+                        <tbody data-autocomplete--item-target="result">
                         </tbody>
                     </table>
                 </div>
 
                 <div class="input-field">
                     {{ form_label(form.relatedItems, 'label.related_items') }}
-                    <input type="text" data-autocompleteItem-target="input" data-action="keyup->autocompleteItem#autocomplete" autocomplete="off">
+                    <input type="text" data-autocomplete--item-target="input" data-action="keyup->autocomplete--item#autocomplete" autocomplete="off">
                 </div>
-                {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocompleteItem-target': 'formInput'}}) }}
+                {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--item-target': 'formInput'}}) }}
             </div>
         </div>
 

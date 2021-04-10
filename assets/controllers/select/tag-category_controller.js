@@ -1,6 +1,6 @@
 import { Controller } from 'stimulus';
-import Translator from "../js/translator.min";
-import '../styles/select2.css';
+import Translator from "../../js/translator.min";
+import '../../styles/select2.css';
 
 export default class extends Controller {
     connect() {
