@@ -32,7 +32,7 @@
             <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h2>
         </div>
 
-        <div class="row js-data-actions" data-entity="collection">
+        <div class="row" data-entity="collection">
             {% if isFeatureEnabled('templates') %}
                 <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                     {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'data-controller': 'select--default', 'class' : 'selectTemplate'}}) }}

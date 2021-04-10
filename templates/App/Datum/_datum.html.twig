@@ -1,5 +1,4 @@
-{% set stimulusControllerName = type == 'image' or type == 'sign' ? 'images' : 'texts' %}
-<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row">
+<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-item--data-target="datum">
     <div class="col s12 l10 offset-l1 xl6 offset-xl3">
         <div class="col s1 handle icon-holder handle">
             <i class="fa fa-arrows-v fa-fw"></i>
@@ -31,12 +30,11 @@
         {{ include('App/Datum/_' ~ type ~'.html.twig') }}
 
         <div class="col s1 icon-holder">
-            <i class="fa fa-remove fa-fw removeDatum" data-action="click->item--{{ stimulusControllerName }}#remove"></i>
+            <i class="fa fa-remove fa-fw removeDatum" data-action="click->item--data#remove"></i>
         </div>
 
         <div class="input-field">
-            <input data-item--{{ stimulusControllerName }}-target="position"
-                    class="position"
+            <input  class="position"
                     type="hidden"
                     id="data_{{ iteration }}_position"
                     name="{{ entity }}[data][{{ iteration }}][position]"

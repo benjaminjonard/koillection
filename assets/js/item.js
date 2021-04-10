@@ -81,24 +81,4 @@ $('.selectTemplate').change( function() {
     $(this).closest('.file-field').find('.datum-original-filename').html(filename);
 })*/
 
-$('.js-add-field-btn').click( function() {
-    $.get('/datum/' + $(this).data('type'), function( result ) {
-        if (result.type == 'image' || result.type == 'sign') {
-            var $holder = $('#item-images');
-        } else {
-            var $holder = $('#data');
-        }
-        $holder.append(result.html.replace(/__placeholder__/g, lastIndex).replace(/__entity_placeholder__/g, $('.js-data-actions').data('entity')));
-        let $datum = $holder.find('.datum:last');
-        $datum.find('.countable').characterCounter();
-        $datum.find('.position').val($('#data').find('.datum').length);
-        lastIndex++;
-        //utils.reloadSortableList($holder, '.datum');
-        //utils.computePositions($holder);
-    });
-});
 
-$('#additionnalFields').on( "click", ".removeDatum", function() {
-    $(this).closest('.datum').remove();
-    //utils.computePositions($(this).closest('.data-holder'));
-});
