@@ -42,6 +42,13 @@ export default class extends Controller {
         this.formInputTarget.value = JSON.stringify(existingItems);
     }
 
+    preventDefault(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            return false;
+        }
+    }
+
     autocomplete(event) {
         this.autocompleteElement.updateData({});
         clearTimeout(this.timeout);
@@ -64,10 +71,6 @@ export default class extends Controller {
                     self.autocompleteElement.open();
                 })
             }, 500);
-        }
-
-        if (event.which === 13) {
-            this.onAutocomplete(value);
         }
     }
 

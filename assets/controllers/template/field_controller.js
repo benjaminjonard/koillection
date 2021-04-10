@@ -31,7 +31,7 @@ export default class extends Controller {
 
     remove(event) {
         event.preventDefault();
-        event.originalTarget.closest('.field').remove();
+        event.target.closest('.field').remove();
         this.computePositions();
     }
 

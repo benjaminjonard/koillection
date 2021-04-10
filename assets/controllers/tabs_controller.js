@@ -10,8 +10,8 @@ export default class extends Controller {
 
         this.panelTargets.forEach((element) => {
             element.classList.remove('current');
-            if (event.originalTarget.dataset.for === element.dataset.name) {
-                event.originalTarget.classList.add('current');
+            if (event.target.dataset.for === element.dataset.name) {
+                event.target.classList.add('current');
                 element.classList.add('current');
             }
         })

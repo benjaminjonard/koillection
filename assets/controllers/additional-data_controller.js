@@ -44,7 +44,7 @@ export default class extends Controller {
 
     add(event) {
         let self = this;
-        fetch('/datum/' + event.originalTarget.dataset.type, {
+        fetch('/datum/' + event.target.dataset.type, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -60,7 +60,7 @@ export default class extends Controller {
 
     remove(event) {
         event.preventDefault();
-        event.originalTarget.closest('.datum').remove();
+        event.target.closest('.datum').remove();
         this.computePositions();
     }
 }

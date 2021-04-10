@@ -6,14 +6,14 @@ export default class extends Controller {
     display(event) {
         event.preventDefault();
 
-        this.frameTarget.querySelector('a').href = event.originalTarget.dataset.image;
-        this.frameTarget.querySelector('a').dataset.title = event.originalTarget.closest('a').dataset.title;
-        this.frameTarget.querySelector('img').src = event.originalTarget.src;
-        this.frameTarget.querySelector('.image-label').innerHTML = event.originalTarget.closest('a').dataset.title;
+        this.frameTarget.querySelector('a').href = event.target.dataset.image;
+        this.frameTarget.querySelector('a').dataset.title = event.target.closest('a').dataset.title;
+        this.frameTarget.querySelector('img').src = event.target.src;
+        this.frameTarget.querySelector('.image-label').innerHTML = event.target.closest('a').dataset.title;
 
         this.elementTargets.forEach((element) => {
             element.classList.remove('active');
         })
-        event.originalTarget.closest('a').classList.add('active');
+        event.target.closest('a').classList.add('active');
     }
 }
