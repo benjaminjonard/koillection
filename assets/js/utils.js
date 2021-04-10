@@ -18,7 +18,7 @@ export function reloadSortableList($holder, elementSelector) {
 }
 
 export function loadFilePreviews() {
-    $('.has-preview').unbind('change');
+    /*$('.has-preview').unbind('change');
     $('.has-preview').on('change', function(e) {
         var reader = new FileReader();
         var self = $(this);
@@ -26,7 +26,7 @@ export function loadFilePreviews() {
             self.closest('.row-file').find('img').attr('src', e.target.result);
         };
         reader.readAsDataURL(this.files[0]);
-    });
+    });*/
 }
 
 export function delay() {

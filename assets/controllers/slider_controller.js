@@ -5,7 +5,7 @@ export default class extends Controller {
 
     display(event) {
         event.preventDefault();
-        
+
         this.frameTarget.querySelector('a').href = event.originalTarget.dataset.image;
         this.frameTarget.querySelector('a').dataset.title = event.originalTarget.closest('a').dataset.title;
         this.frameTarget.querySelector('img').src = event.originalTarget.src;

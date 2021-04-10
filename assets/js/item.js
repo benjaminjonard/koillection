@@ -116,7 +116,6 @@ $('.js-add-field-btn').click( function() {
         lastIndex++;
         utils.reloadSortableList($holder, '.datum');
         utils.computePositions($holder);
-        utils.loadFilePreviews();
     });
 });
 

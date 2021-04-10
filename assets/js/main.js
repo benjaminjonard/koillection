@@ -2,23 +2,6 @@ import Translator from './translator.min.js'
 import * as utils from './utils'
 
 $(document).ready(function() {
-    //init image slider
-    $('.slider-element').click(function (e) {
-        e.preventDefault();
-        var $imageFrame = $(this).closest('.slider-container').find('.slider-frame:first');
-        console.log($(this).find('img').attr('data-image'));
-
-        $imageFrame.find('a:first').attr('href', $(this).attr('href'));
-        $imageFrame.find('a:first').attr('data-title', $(this).attr('data-title'));
-        $imageFrame.find('img:first').attr('src', $(this).find('img').attr('data-image'));
-        $imageFrame.find('.image-label:first').html($(this).attr('data-title'));
-        $(this).closest('.slider-elements').find('.slider-element').removeClass('active');
-        $(this).addClass('active');
-    });
-
-    utils.loadFilePreviews();
-
-
     //TEMPLATE FIELDS
     var $collectionHolder = $('#template-fields-holder');
     //Init sortable
