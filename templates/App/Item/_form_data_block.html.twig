@@ -1,6 +1,6 @@
 <div id="additionnalFields">
     <div class="wrapper">
-        <div id="data" class="data-holder block-element">
+        <div class="data-holder block-element" {{ stimulus_controller('item--texts') }}>
             <div class="row">
                 <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
             </div>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="wrapper">
-        <div id="item-images" class="data-holder block-element">
+        <div class="data-holder block-element" {{ stimulus_controller('item--images') }}>
             <div class="row">
                 <h3 class="header col s12">{{ 'title.item_images'|trans }}</h3>
             </div>
