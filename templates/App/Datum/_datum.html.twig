@@ -1,4 +1,4 @@
-<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-item--data-target="datum">
+<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-additional-data-target="datum">
     <div class="col s12 l10 offset-l1 xl6 offset-xl3">
         <div class="col s1 handle icon-holder handle">
             <i class="fa fa-arrows-v fa-fw"></i>
@@ -30,7 +30,7 @@
         {{ include('App/Datum/_' ~ type ~'.html.twig') }}
 
         <div class="col s1 icon-holder">
-            <i class="fa fa-remove fa-fw removeDatum" data-action="click->item--data#remove"></i>
+            <i class="fa fa-remove fa-fw removeDatum" data-action="click->additional-data#remove"></i>
         </div>
 
         <div class="input-field">

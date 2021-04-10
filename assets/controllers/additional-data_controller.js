@@ -19,17 +19,27 @@ export default class extends Controller {
             }
         }
 
-        new Sortable(this.textsHolderTarget, options);
-        new Sortable(this.imagesHolderTarget, options);
+        if (this.hasTextsHolderTarget) {
+            new Sortable(this.textsHolderTarget, options);
+        }
+
+        if (this.hasImagesHolderTarget) {
+            new Sortable(this.imagesHolderTarget, options);
+        }
     }
 
     computePositions() {
-        this.textsHolderTarget.querySelectorAll('.position').forEach((element, index) => {
-            element.value = index+1;
-        })
-        this.imagesHolderTarget.querySelectorAll('.position').forEach((element, index) => {
-            element.value = index+1;
-        })
+        if (this.hasTextsHolderTarget) {
+            this.textsHolderTarget.querySelectorAll('.position').forEach((element, index) => {
+                element.value = index+1;
+            })
+        }
+
+        if (this.hasImagesHolderTarget) {
+            this.imagesHolderTarget.querySelectorAll('.position').forEach((element, index) => {
+                element.value = index+1;
+            })
+        }
     }
 
     add(event) {
