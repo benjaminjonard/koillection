@@ -18,8 +18,8 @@ import './js/translations/javascript/fr-FR'
 
 import 'jquery'
 import 'croppie'
-import 'ts-select2'
 import 'materialize-css'
+import 'ts-select2'
 
 import './js/filters'
 import './js/main'

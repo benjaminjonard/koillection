@@ -63,4 +63,8 @@ export default class extends Controller {
         event.target.closest('.datum').remove();
         this.computePositions();
     }
+
+    displayFilename(event) {
+        event.target.nextElementSibling.innerHTML = event.target.files[0].name;
+    }
 }

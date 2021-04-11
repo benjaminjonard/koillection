@@ -2,54 +2,56 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.72a63d26.js",
-        "/build/800.3aa7a653.js",
-        "/build/836.8abed659.js",
-        "/build/app.620b8bd9.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-03206e.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-74eb7b.js",
+        "/build/js_translations_config_js-js_translations_javascript_en-GB_js-js_translations_javascript_fr-FR_js.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/836.e7b5f65a.css",
-        "/build/app.2d35e838.css"
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-74eb7b.css",
+        "/build/app.css"
       ]
     },
     "statistics": {
       "js": [
-        "/build/runtime.72a63d26.js",
-        "/build/800.3aa7a653.js",
-        "/build/548.7b3cd4ce.js",
-        "/build/statistics.f222d0c4.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-03206e.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_map_js-node_modules_core-js_modules_es_object_v-74b10b.js",
+        "/build/js_translations_config_js-js_translations_javascript_en-GB_js-js_translations_javascript_fr-FR_js.js",
+        "/build/statistics.js"
       ]
     },
     "export": {
       "js": [
-        "/build/runtime.72a63d26.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/export.01d59534.css"
+        "/build/export.css"
       ]
     },
     "flags": {
       "js": [
-        "/build/runtime.72a63d26.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/flags.e548e89c.css"
+        "/build/flags.css"
       ]
     },
     "dark-mode": {
       "js": [
-        "/build/runtime.72a63d26.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/dark-mode.fbb8ceb5.css"
+        "/build/dark-mode.css"
       ]
     },
     "light-mode": {
       "js": [
-        "/build/runtime.72a63d26.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/light-mode.c0e00ea6.css"
+        "/build/light-mode.css"
       ]
     }
   }

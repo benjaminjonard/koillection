@@ -548,7 +548,25 @@ i.btn input {color: #fff; cursor: pointer;}
 .autocomplete-content li img {object-fit: cover;}
 
 .datum-original-filename {white-space: nowrap; margin-top: 12px; padding-left: 10px; text-overflow: ellipsis; overflow: hidden;}
-.file-field input[type="file"] {height: 3rem; margin-left: 10px; width: 48px;}
+.file-data input[type="file"] {
+    height: 3rem;
+    margin-left: 10px;
+    width: 48px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+.file-data .btn {
+    float: left;
+    height: 3rem;
+    line-height: 3rem;
+}
 
 .switch-wrapper {margin-bottom: 4rem; }
 .input-field.input-checkbox {margin-bottom: 40px;}

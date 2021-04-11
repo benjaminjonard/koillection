@@ -11,7 +11,7 @@
             {% if form.vars.value is not empty %}
             <img src="{{ form.vars.value }}">
             {% else %}
-            <img src="{{ asset('build/images/default-round.png') }}" />
+            <img width="300" height="300" src="{{ asset('build/images/default-round.png') }}" />
             {% endif %}
         </div>
         <input type="hidden" class="file-input" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>

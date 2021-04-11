@@ -76,9 +76,5 @@ $('.selectTemplate').change( function() {
     });
 });*/
 
-/*$( "#data" ).on("change", ".file-path", function(e) {
-    let filename = e.target.files[0].name;
-    $(this).closest('.file-field').find('.datum-original-filename').html(filename);
-})*/
 
 
