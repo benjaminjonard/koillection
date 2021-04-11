@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus';
 import Translator from "../../js/translator.min";
 import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
-import '../../styles/select2.css';
 
 export default class extends Controller {
     connect() {
@@ -38,7 +37,7 @@ export default class extends Controller {
                 return data;
             },
             matcher: function(params, data) {
-                if ($.trim(params.term) === '') {
+                if (typeof params.term === 'undefined' || params.term.trim() === '') {
                     return data;
                 }
 
@@ -48,9 +47,11 @@ export default class extends Controller {
 
                 let idx = data.text.toLowerCase().indexOf(params.term.toLowerCase());
                 if (idx > -1) {
-                    return $.extend({
-                        'rank': (params.term.length / data.text.length)+ (data.text.length-params.term.length-idx)/(3*data.text.length)
-                    }, data, true);
+                    let rank = {
+                        'rank': (params.term.length / data.text.length) + (data.text.length-params.term.length-idx)/(3*data.text.length)
+                    };
+
+                    return {...rank, ...data};
                 }
 
                 return null;
