@@ -83,7 +83,14 @@
     position: absolute;
     left: -100000px;
     width: 100%;
-    z-index: 1051
+    z-index: 1051;
+    margin-left: 230px;
+}
+
+@media (max-width: 749px) {
+    .select2-dropdown {
+        margin-left: 0px;
+    }
 }
 
 .select2-results {

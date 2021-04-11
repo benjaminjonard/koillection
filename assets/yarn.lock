@@ -3409,11 +3409,6 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-lightbox2@^2.11.1:
-  version "2.11.3"
-  resolved "https://registry.yarnpkg.com/lightbox2/-/lightbox2-2.11.3.tgz#057d9244badb0f0fd4603c25d739a19a85a71978"
-  integrity sha512-Q4v6il/OK9ttgEkAxSok/jrI/LUbqTrePFchqP2x/59qaDIZgJjEEc5Xf7peSMc/55Zo5PAgmX6EiN/BeEeUBQ==
-
 lightgallery.js@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/lightgallery.js/-/lightgallery.js-1.4.0.tgz#f4b43b01b2acce43bd7e6d8dbcf1d5541cd2fb03"
@@ -5374,6 +5369,11 @@ toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+
+ts-select2@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ts-select2/-/ts-select2-0.2.0.tgz#1cd4cb699ab3730ed9ea2a7c9aef8e69c7f63d35"
+  integrity sha512-42OFOui/c87hx/tfivUOmmT++Le2Bc2odxuYvuFiXn4Rz8+p2NF/aTr2kQDCxH+DhAQnnHbaHDwiFhFhu6UW4Q==
 
 tslib@^2.0.3:
   version "2.2.0"

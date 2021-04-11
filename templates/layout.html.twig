@@ -69,6 +69,6 @@
 {% block javascripts %}
     {{ parent() }}
     {% for flash_message in app.session.flashbag.get('notice') %}
-        <span {{ stimulus_controller('toast') }} data-message="{{ flash_message|safeContent }}"></span>
+        <span {{ stimulus_controller('toast') }} data-message="{{ flash_message|e }}"></span>
     {% endfor %}
 {% endblock %}

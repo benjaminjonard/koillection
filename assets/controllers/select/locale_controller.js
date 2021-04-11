@@ -1,26 +1,29 @@
 import { Controller } from 'stimulus';
 import Translator from "../../js/translator.min";
+import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
 import '../../styles/select2.css';
 
 export default class extends Controller {
     connect() {
-        $(this.element).select2({
+        let self = this;
+
+        new TsSelect2(this.element, {
             templateSelection: function (locale) {
                 if (!locale.id) {
                     return '';
                 }
 
-                return $(
-                    '<span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span>'
+                return self.htmlToElement(
+                    '<div><span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span></div>'
                 );
             },
             templateResult: function (locale) {
                 if (!locale.id) {
-                    return $('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
+                    return self.htmlToElement('<div><span class="select-placeholder">' + Translator.trans('select2.none') + '</span></div>');
                 }
 
-                return $(
-                    '<span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span>'
+                return self.htmlToElement(
+                    '<div><span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span></div>'
                 );
             },
             language: {
@@ -32,5 +35,12 @@ export default class extends Controller {
                 }
             }
         })
+    }
+
+    htmlToElement(html) {
+        let template = document.createElement('template');
+        html = html.trim();
+        template.innerHTML = html;
+        return template.content.firstChild;
     }
 }
