@@ -9,17 +9,18 @@
             <input type="hidden"
                    id="data_{{ iteration }}_type"
                    name="{{ entity }}[data][{{ iteration }}][type]"
-                   length="255"
+                   maxlength="255"
                    value="{{ type }}"
             >
         </div>
 
-        <div class="input-field input-field col s5 itemLabel">
+        <div class="input-field input-field col s5 item-label">
             <input
                     type="text"
                     id="data_{{ iteration }}_label"
                     name="{{ entity }}[data][{{ iteration }}][label]"
-                    length="255"
+                    maxlength="255"
+                    data-additional-data-target="label"
                     {% if datum is defined %}value="{{ datum.label }}"{% elseif label is defined %}value="{{ label }}"{% endif %}
             >
             <label for="data_{{ iteration }}_label" class="required {% if label is defined or datum is defined %}active{% endif %}">
@@ -38,7 +39,7 @@
                     type="hidden"
                     id="data_{{ iteration }}_position"
                     name="{{ entity }}[data][{{ iteration }}][position]"
-                    length="255"
+                    maxlength="255"
                     {% if datum is defined %}value="{{ datum.position }}"{% endif %}
             >
         </div>

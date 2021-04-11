@@ -37,7 +37,7 @@
         {% endif %}
     </div>
 
-    <div class="content-block">
+    <div class="content-block" {{ stimulus_controller('additional-data') }} data-entity="item">
         <div class="row">
             <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h2>
         </div>
@@ -49,10 +49,20 @@
                 {% endif %}
             </div>
             <div class="col s12 l3 xl2">
-                <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_common_fields'|trans }}</button>
+                <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey"
+                        data-collection-id="{{ collection is defined ? collection.id }}"
+                        data-action="additional-data#loadCommonFields"
+                >
+                    {{ 'btn.apply_common_fields'|trans }}
+                </button>
             </div>
             <div class="col s12 l3 xl2">
-                <button class="btn waves-effect waves-light align-with-inputs js-btn-collection-fields grey" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_collection_fields'|trans }}</button>
+                <button class="btn waves-effect waves-light align-with-inputs js-btn-collection-fields grey"
+                        data-collection-id="{{ collection is defined ? collection.id }}"
+                        data-action="additional-data#loadCollectionFields"
+                >
+                    {{ 'btn.apply_collection_fields'|trans }}
+                </button>
             </div>
         </div>
 

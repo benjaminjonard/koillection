@@ -2,9 +2,14 @@ import { Controller } from 'stimulus';
 import Sortable from "sortablejs";
 
 export default class extends Controller {
-    static targets = ['datum', 'textsHolder', 'imagesHolder']
+    static targets = ['datum', 'label', 'textsHolder', 'imagesHolder']
 
     index = null;
+    boundInjectFields = null;
+
+    initialize() {
+        this.boundInjectFields = this.injectFields.bind(this);
+    }
 
     connect() {
         let self = this;
@@ -49,7 +54,7 @@ export default class extends Controller {
         })
         .then(response => response.json())
         .then(function(result) {
-            let holder = result.type == 'image' || result.type == 'sign' ? self.imagesHolderTarget : self.textsHolderTarget;
+            let holder = result.type === 'image' ? self.imagesHolderTarget : self.textsHolderTarget;
             let html = result.html.replace(/__placeholder__/g, self.index);
             html = html.replace(/__entity_placeholder__/g, self.element.dataset.entity);
             holder.insertAdjacentHTML('beforeend', html);
@@ -66,5 +71,46 @@ export default class extends Controller {
 
     displayFilename(event) {
         event.target.nextElementSibling.innerHTML = event.target.files[0].name;
+    }
+
+    loadCollectionFields(event) {
+        event.preventDefault();
+        this.injectFields('/datum/load-collection-fields/' + event.target.dataset.collectionId);
+    }
+
+    loadCommonFields(event) {
+        event.preventDefault();
+        this.injectFields('/datum/load-common-fields/' + event.target.dataset.collectionId);
+    }
+
+    injectFields(url) {
+        let self = this;
+        fetch(url, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(function(result) {
+            result.forEach((field) => {
+                let alreadyExists = false;
+                let type, label, html;
+                [type, label, html] = field;
+
+                self.labelTargets.forEach((input) => {
+                    if (input.value === label) {
+                        alreadyExists = true;
+                    }
+                });
+
+                if (alreadyExists === false) {
+                    let holder = type == 'image' ? self.imagesHolderTarget : self.textsHolderTarget;
+                    html = html.replace(/__placeholder__/g, self.index);
+                    html = html.replace(/__entity_placeholder__/g, self.element.dataset.entity);
+                    holder.insertAdjacentHTML('beforeend', html);
+                    self.index++;
+                }
+            })
+
+            self.computePositions();
+        })
     }
 }
