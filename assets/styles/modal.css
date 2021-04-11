@@ -1,3 +1,4 @@
+.modal { z-index: 1500!important;}
 .modal-custom .modal-footer .btn, .btn-holder .btn{margin: 10px 5px;}
 .modal-custom { max-width: 750px; }
 .modal-custom img { width: 100%; }

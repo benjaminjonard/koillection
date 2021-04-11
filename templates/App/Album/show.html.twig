@@ -90,20 +90,24 @@
         {% if photos is not empty %}
             <div class="block-element">
                 <h2 class="header">{{ 'title.photos'|trans }}</h2>
-                <div id="collection-items" class="grid-container-items">
+                <div id="collection-items" class="grid-container-items" {{ stimulus_controller('lightbox') }}>
                     {% for photo in photos %}
-                        <div class="collection-item element valign-wrapper" data-title="{{ photo.title }}">
                             {% set photoText = include('App/Album/_photo_text.html.twig') %}
-                            {% if photo.image %}
-                                <a href="{{ asset(photo.image) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
+                            <a class="collection-item element valign-wrapper"
+                               href="{{ asset(photo.image|default('build/images/default.png')) }}"
+                               data-lightbox-target="image"
+                               {% if context == 'default' %}
+                                   data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
+                                   data-delete-id="{{ 'delete-' ~ photo.id }}"
+                               {% endif %}
+                               data-sub-html="{{ photoText }}"
+                            >
+                                {% if photo.image %}
                                     {{ macros.lazyImage(photo.imageSmallThumbnail, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
-                                </a>
-                            {% else %}
-                                <a href="{{ asset('build/images/default.png') }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
+                                {% else %}
                                     <img class="preview-image" src="{{ asset('../build/images/default.png') }}" aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}" />
-                                </a>
-                            {% endif %}
-                        </div>
+                                {% endif %}
+                            </a>
                     {% endfor %}
                 </div>
             </div>

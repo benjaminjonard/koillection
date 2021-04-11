@@ -37,45 +37,50 @@
 <div class="content-block">
     <div class="item-wrapper">
         <div class="slider-container item-image-container {{ item.dataTexts|length > 0 ? 'margin-right-30' }}" {{ stimulus_controller('slider') }}>
-            <div class="slider-frame" data-slider-target="frame">
-                {% if item.image %}
-                    <a href="{{ asset(item.image) }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
-                        <img src="{{ asset(item.imageLargeThumbnail) }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}">
+            <div class="slider-frame" {{ stimulus_controller('lightbox') }}>
+                    <a href="{{ asset(item.image|default('build/images/default.png')) }}" data-sub-html="{{ 'label.main_image'|trans }}" data-slider-target="image" data-id="{{ item.id }}" class="active">
+                        <div>
+                            <img src="{{ asset(item.imageLargeThumbnail|default('build/images/default.png')) }}"
+                                 title="{{ 'label.main_image'|trans }}"
+                                 aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}"
+                            >
+                            <span class="image-label" data-slider-target="label">{{ 'label.main_image'|trans }}</span>
+                        </div>
                     </a>
-                {% else %}
-                    <a href="{{ asset('build/images/default.png') }}" data-lightbox="image-{{ item.id }}" data-title="{{ 'label.main_image'|trans }}">
-                        <img class="preview-image" src="{{ asset('build/images/default.png') }}" aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}" />
+                {% for datum in item.dataImages %}
+                    <a href="{{ asset(datum.image|default('build/images/default.png')) }}" data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                        <div>
+                            <img src="{{ asset(datum.imageLargeThumbnail|default('build/images/default.png')) }}"
+                                 title="{{ 'label.main_image'|trans }}"
+                                 aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}"
+                            >
+                            <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
+                        </div>
                     </a>
-                {% endif %}
-
-                <span class="image-label">{{ 'label.main_image'|trans }}</span>
+                {% endfor %}
             </div>
+
 
             {% if item.dataImages|length > 0 %}
                 <ul class="slider-elements">
                     <li>
-                        {% if item.image %}
-                            <a data-action="slider#display" data-slider-target="element" class="active" href="{{ asset(item.image) }}" data-title="{{ 'label.main_image'|trans }}">
-                                <img src="{{ asset(item.imageSmallThumbnail) }}" data-image="{{ asset(item.imageLargeThumbnail) }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
-                            </a>
-                        {% else %}
-                            <a data-action="slider#display" data-slider-target="element" class="active" href="{{ asset('build/images/default.png') }}" data-title="{{ 'label.main_image'|trans }}">
-                                <img src="{{ asset('build/images/default.png') }}" aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}">
-                            </a>
-                        {% endif %}
+                        <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}"
+                             class="active"
+                             data-id="{{ item.id }}"
+                             data-slider-target="thumbnail"
+                             data-action="click->slider#display"
+                             aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}"
+                        >
                     </li>
 
                     {% for datum in item.dataImages %}
                         <li>
-                            {% if datum.image %}
-                                <a data-action="slider#display" data-slider-target="element" href="{{ asset(datum.image) }}" data-title="{{ datum.label }}">
-                                    <img src="{{ asset(datum.imageSmallThumbnail) }}" data-image="{{ asset(datum.imageLargeThumbnail) }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
-                                </a>
-                            {% else %}
-                                <a data-action="slider#display" data-slider-target="element" href="{{ asset('build/images/default.png') }}" data-title="{{ datum.label }}">
-                                    <img src="{{ asset('build/images/default.png') }}" aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}">
-                                </a>
-                            {% endif %}
+                            <img src="{{ asset(datum.imageSmallThumbnail|default('build/images/default.png')) }}"
+                                 data-id="{{ datum.id }}"
+                                 data-slider-target="thumbnail"
+                                 data-action="click->slider#display"
+                                 aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}"
+                            >
                         </li>
                     {% endfor %}
                 </ul>

@@ -1,19 +1,22 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-    static targets = ['frame', 'element']
+    static targets = ['image', 'thumbnail']
 
     display(event) {
         event.preventDefault();
 
-        this.frameTarget.querySelector('a').href = event.target.dataset.image;
-        this.frameTarget.querySelector('a').dataset.title = event.target.closest('a').dataset.title;
-        this.frameTarget.querySelector('img').src = event.target.src;
-        this.frameTarget.querySelector('.image-label').innerHTML = event.target.closest('a').dataset.title;
+        this.imageTargets.forEach((element) => {
+            if (element.dataset.id === event.target.dataset.id) {
+                element.classList.add('active');
+            } else {
+                element.classList.remove('active');
+            }
+        })
 
-        this.elementTargets.forEach((element) => {
+        this.thumbnailTargets.forEach((element) => {
             element.classList.remove('active');
         })
-        event.target.closest('a').classList.add('active');
+        event.target.classList.add('active');
     }
 }

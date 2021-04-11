@@ -15,15 +15,6 @@ footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; fo
 
 a {outline: 0;}
 
-/* Override lightbox */
-body:after {content: none;}
-.lb-data .lb-close {background: none;}
-.lb-nav a.lb-next {background: none;}
-.lb-nav a.lb-prev {background: none;}
-.lb-nav a {background-image:none!important;}
-.lb-cancel {background: none;}
-/* ------------------------------ */
-
 thead {border-bottom: 1px solid #d0d0d0;}
 
 header {
@@ -237,9 +228,13 @@ button.align-with-inputs {margin-top: 25px;}
 .item-image-container {margin-bottom: 20px;}
 .tag-image-container {margin-bottom: 20px; float: left;}
 .slider-container .slider-frame img {max-width: 300px; width: 100%}
+.slider-frame a:not(.active) {display: none;}
 .slider-container ul li {display: inline-block; padding: 0 5px;}
-.slider-container ul li img {max-width: 100px; max-height: 100px;}
-.slider-container ul li a:not(.active) {opacity: 0.6;}
+.slider-container ul li img {max-width: 100px; max-height: 100px; cursor: pointer;}
+.slider-container ul li img:not(.active) {opacity: 0.6;}
+.lg-sub-html span {font-size: 15px;}
+.lg-sub-html .button {padding-top: 0px;}
+.lg-sub-html i {font-size: 16px;}
 
 .statistics {text-align: center;}
 .statistics .col {margin: 15px 0;}

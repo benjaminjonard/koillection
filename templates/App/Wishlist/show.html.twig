@@ -104,10 +104,10 @@
                     </tr>
                     </thead>
 
-                    <tbody {{ stimulus_controller('lightbox') }}>
+                    <tbody>
                     {% for wish in wishes|naturalSorting %}
                         <tr class="list-element resize-element" data-title="{{ wish.name }}">
-                            <td>
+                            <td {{ stimulus_controller('lightbox') }}>
                                 {% if wish.image %}
                                     <a href="{{ asset(wish.image) }}" data-lightbox="image-{{ wish.id }}">
                                         <img class="wishlist-item-avatar" src="{{ asset(wish.imageSmallThumbnail) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">

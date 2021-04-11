@@ -11,13 +11,13 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 import './js/lazy-loading'
+import 'lightgallery.js/dist/css/lightgallery.min.css'
 
 import './js/translations/config'
 import './js/translations/javascript/en-GB'
 import './js/translations/javascript/fr-FR'
 
 import 'jquery'
-import 'lightbox2'
 import 'croppie'
 import 'materialize-css'
 import 'select2'
