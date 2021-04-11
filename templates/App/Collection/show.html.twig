@@ -131,11 +131,7 @@
                     {% for item in items|naturalSorting %}
                         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
                             <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                                {% if item.image %}
-                                    {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
-                                {% else %}
-                                    <img class="preview-image" src="{{ asset('build/images/default.png') }}" aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}" />
-                                {% endif %}
+                                {{ macros.lazyImage(item.imageSmallThumbnail|default('build/images/default.png'), 'aria.item'|trans({'%name%': item.name}), item.name) }}
                             </a>
                         </div>
                     {% endfor %}

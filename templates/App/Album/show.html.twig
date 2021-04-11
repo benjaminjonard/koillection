@@ -102,11 +102,7 @@
                                {% endif %}
                                data-sub-html="{{ photoText }}"
                             >
-                                {% if photo.image %}
-                                    {{ macros.lazyImage(photo.imageSmallThumbnail, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
-                                {% else %}
-                                    <img class="preview-image" src="{{ asset('../build/images/default.png') }}" aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}" />
-                                {% endif %}
+                                {{ macros.lazyImage(photo.imageSmallThumbnail|default('build/images/default.png'), 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
                             </a>
                     {% endfor %}
                 </div>
