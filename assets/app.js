@@ -23,7 +23,6 @@ import 'ts-select2'
 
 import './js/filters'
 import './js/main'
-import './js/item'
 import './js/collection'
 import './js/inventory'
 import './js/tag'

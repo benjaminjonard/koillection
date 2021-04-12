@@ -6,6 +6,7 @@ export default class extends Controller {
 
     index = null;
     boundInjectFields = null;
+    currentTemplate = null;
 
     initialize() {
         this.boundInjectFields = this.injectFields.bind(this);
@@ -81,6 +82,25 @@ export default class extends Controller {
     loadCommonFields(event) {
         event.preventDefault();
         this.injectFields('/datum/load-common-fields/' + event.target.dataset.collectionId);
+    }
+
+    loadTemplateFields(event) {
+        event.preventDefault();
+
+        if (event.target.value !== this.currentTemplate) {
+            this.currentTemplate = event.target.value;
+            this.datumTargets.forEach((field) => {
+                if (field.dataset.template) {
+                    field.remove();
+                }
+            });
+
+            if (event.target.value == '') {
+                return;
+            }
+        }
+
+        this.injectFields('/templates/' + event.target.value + '/fields');
     }
 
     injectFields(url) {

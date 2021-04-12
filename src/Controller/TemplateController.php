@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Template;
+use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\TemplateType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -122,19 +123,18 @@ class TemplateController extends AbstractController
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
         $fields = [];
-        foreach ($template->getFields() as $field) {
-            $data = [];
-            $data['type'] = $field->getType();
-            $data['html'] = $fields[$field->getName()] = $this->render('App/Datum/_datum.html.twig', [
+        foreach ($template->getFields() as $i => $field) {
+            $fields[$i][] = in_array($field->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
+            $fields[$i][] = $field->getName();
+            $fields[$i][] = $this->render('App/Datum/_datum.html.twig', [
                 'entity' => '__entity_placeholder__',
                 'iteration' => '__placeholder__',
                 'type' => $field->getType(),
                 'label' => $field->getName(),
                 'template' => $template,
             ])->getContent();
-            $fields[$field->getName()] = $data;
         }
 
-        return new JsonResponse(['fields' => $fields]);
+        return new JsonResponse($fields);
     }
 }

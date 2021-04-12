@@ -35,7 +35,10 @@
         <div class="row" {{ stimulus_controller('additional-data') }} data-entity="collection">
             {% if isFeatureEnabled('templates') %}
                 <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'data-controller': 'select--default', 'class' : 'selectTemplate'}}) }}
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
+                        'data-controller': 'select--default',
+                        'data-action': 'change->additional-data#loadTemplateFields'
+                    }}) }}
                 </div>
             {% endif %}
 
