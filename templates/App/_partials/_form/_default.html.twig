@@ -1,21 +1,32 @@
 {% block form_row %}
-    <div class="input-field">
-        {{- form_errors(form) -}}
-        {{- form_widget(form) -}}
-        {{- form_label(form) -}}
+    {% if suggestions is defined and suggestions is not empty %}
+        <div class="input-field" {{ stimulus_controller('suggestions') }}>
+            {{- form_errors(form) -}}
+            {{- form_widget(form, {attr: {'data-suggestions-target': 'input'}}) -}}
+            {{- form_label(form, null, {label_attr: {'data-suggestions-target': 'label'}}) -}}
 
-        {% if suggestions is defined and suggestions is not empty %}
             <div class="suggestions">
                 {{ 'label.suggestions'|trans }}
                 {% for suggestion in suggestions %}
-                    <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
+                    <span class="suggestion"
+                          data-action="click->suggestions#fillInputWithSuggestion"
+                          data-suggestion="{{ suggestion }}"
+                    >
+                        {{ suggestion }}
+                    </span>
                     {{ not loop.last ? ',' }}
                 {% endfor %}
             </div>
-        {% endif %}
-
-        {{- form_help(form) -}}
-    </div>
+            {{- form_help(form) -}}
+        </div>
+    {% else %}
+        <div class="input-field">
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+            {{- form_label(form) -}}
+            {{- form_help(form) -}}
+        </div>
+    {% endif %}
 {% endblock form_row %}
 
 {% block file_widget %}
