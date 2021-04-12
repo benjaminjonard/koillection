@@ -360,7 +360,7 @@ echarts_lib_echarts__WEBPACK_IMPORTED_MODULE_21___default().init(document.getEle
 /******/ "use strict";
 /******/ 
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-da8571","vendors-node_modules_core-js_modules_es_array_map_js-node_modules_core-js_modules_es_object_e-20a30c","js_translations_config_js-js_translations_javascript_en-GB_js-js_translations_javascript_fr-FR_js"], () => (__webpack_exec__("./js/statistics.js")));
+/******/ __webpack_require__.O(0, ["vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-f9222b","vendors-node_modules_core-js_modules_es_array_map_js-node_modules_core-js_modules_es_object_v-74b10b","js_translations_config_js-js_translations_javascript_en-GB_js-js_translations_javascript_fr-FR_js"], () => (__webpack_exec__("./js/statistics.js")));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);

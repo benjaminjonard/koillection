@@ -50,6 +50,8 @@ export default class extends Controller {
 
     add(event) {
         let self = this;
+
+        document.documentElement.className = 'loading';
         fetch('/datum/' + event.target.dataset.type, {
             method: 'GET'
         })
@@ -62,6 +64,7 @@ export default class extends Controller {
             self.index++;
             self.computePositions();
         })
+        .finally(() => document.documentElement.className = '')
     }
 
     remove(event) {
@@ -105,6 +108,8 @@ export default class extends Controller {
 
     injectFields(url) {
         let self = this;
+
+        document.documentElement.className = 'loading';
         fetch(url, {
             method: 'GET'
         })
@@ -132,5 +137,6 @@ export default class extends Controller {
 
             self.computePositions();
         })
+        .finally(() => document.documentElement.className = '')
     }
 }

@@ -11,17 +11,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="collection-header">
-        <div class="title-block">
-            <h1>{{ 'menu.history'|trans }}</h1>
+    <div {{ stimulus_controller('filter-ajax') }}>
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>{{ 'menu.history'|trans }}</h1>
 
-            <div class="btn-holder">
-                {{ include('App/History/_form.html.twig') }}
+                <div class="btn-holder">
+                    {{ include('App/History/_form.html.twig') }}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="content-block">
-        {{ include('App/History/_logs_table.html.twig', {'logs': logs}) }}
+        <div class="content-block" data-filter-ajax-target="content">
+            {{ include('App/History/_logs_table.html.twig', {'logs': logs}) }}
+        </div>
     </div>
 {% endblock %}
