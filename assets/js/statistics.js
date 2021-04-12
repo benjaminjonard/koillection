@@ -14,240 +14,94 @@ require('echarts/lib/component/calendar');
 require('echarts/lib/component/tooltip');
 require('echarts/lib/component/visualMap');
 
+let monthsLabel = [
+    Translator.trans('global.months.january'),
+    Translator.trans('global.months.february'),
+    Translator.trans('global.months.march'),
+    Translator.trans('global.months.april'),
+    Translator.trans('global.months.may'),
+    Translator.trans('global.months.june'),
+    Translator.trans('global.months.july'),
+    Translator.trans('global.months.august'),
+    Translator.trans('global.months.september'),
+    Translator.trans('global.months.october'),
+    Translator.trans('global.months.november'),
+    Translator.trans('global.months.december')
+];
+
 let statisticHolder = document.querySelector('.statistics-holder');
 let isDarkMode =  statisticHolder.dataset.isDarkMode == 1 ? true : false;
 let themeMainHue = statisticHolder.dataset.themeMainHue;
 let themeDarkHue = statisticHolder.dataset.themeDarkHue;
 let themeLightHue = statisticHolder.dataset.themeLightHue;
 let themeLightestHue = statisticHolder.dataset.themeLightestHue;
-let monthDaysChartData = JSON.parse(document.querySelector('#month-days-chart').dataset.json);
-let hoursChartData = JSON.parse(document.querySelector('#hours-chart').dataset.json);
-let monthsChartData = JSON.parse(document.querySelector('#months-chart').dataset.json);
-let weekDaysChartData = JSON.parse(document.querySelector('#week-days-chart').dataset.json);
+
 let itemsEvolutionData = JSON.parse(document.querySelector('#items-evolution-chart').dataset.json);
 let calendarsData = JSON.parse(document.querySelector('#calendars').dataset.json);
 let treeJson = JSON.parse(document.querySelector('#radial-tree').dataset.json);
 
-// specify chart configuration item and data
-echarts.init(document.getElementById('month-days-chart')).setOption({
-    tooltip: {
-        formatter: function (params) {
-            return Translator.transChoice('statistics.items_added', params.value);
-        }
-    },
-    color: [themeMainHue],
-    xAxis: {
-        type : 'category',
-        data: monthDaysChartData.map(element => element.abscissa),
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisTick: {
-            alignWithLabel: true,
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    yAxis: {
-        splitLine: {
-            lineStyle: {
-                color: isDarkMode ? '#7d7f82': '#ccc'
-            }
-        },
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisTick: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    series: [{
-        type: 'bar',
-        data: monthDaysChartData.map(element => element.count)
-    }]
-});
+loadChart(document.querySelector('#month-days-chart'));
+loadChart(document.querySelector('#hours-chart'));
+loadChart(document.querySelector('#months-chart'));
+loadChart(document.querySelector('#week-days-chart'));
 
-echarts.init(document.getElementById('hours-chart')).setOption({
-    tooltip: {
-        formatter: function (params) {
-            return Translator.transChoice('statistics.items_added', params.value);
-        }
-    },
-    color: [themeMainHue],
-    xAxis: {
-        type : 'category',
-        data: hoursChartData.map(element => element.abscissa),
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
+function loadChart(element) {
+    const data = JSON.parse(element.dataset.json);
+    echarts.init(element).setOption({
+        tooltip: {
+            formatter: function (params) {
+                return Translator.transChoice('statistics.items_added', params.value);
             }
         },
-        axisTick: {
-            alignWithLabel: true,
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
+        color: [themeMainHue],
+        xAxis: {
+            type : 'category',
+            data: data.map(element => element.abscissa),
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisTick: {
+                alignWithLabel: true,
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
             }
         },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    yAxis: {
-        splitLine: {
-            lineStyle: {
-                color: isDarkMode ? '#7d7f82': '#ccc'
-            }
-        },
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisTick: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    series: [{
-        type: 'bar',
-        data: hoursChartData.map(element => element.count)
-    }]
-});
-
-echarts.init(document.getElementById('months-chart')).setOption({
-    tooltip: {
-        formatter: function (params) {
-            return Translator.transChoice('statistics.items_added', params.value);
-        }
-    },
-    color: [themeMainHue],
-    xAxis: {
-        type : 'category',
-        data: monthsChartData.map(element => element.abscissa),
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
+        yAxis: {
+            splitLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#7d7f82': '#ccc'
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisTick: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: isDarkMode ? '#f0f0f0': '#323233'
+                }
             }
         },
-        axisTick: {
-            alignWithLabel: true,
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    yAxis: {
-        splitLine: {
-            lineStyle: {
-                color: isDarkMode ? '#7d7f82': '#ccc'
-            }
-        },
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisTick: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    series: [{
-        type: 'bar',
-        data: monthsChartData.map(element => element.count)
-    }]
-});
-
-echarts.init(document.getElementById('week-days-chart')).setOption({
-    tooltip: {
-        formatter: function (params) {
-            return Translator.transChoice('statistics.items_added', params.value);
-        }
-    },
-    color: [themeMainHue],
-    xAxis: {
-        type : 'category',
-        data: weekDaysChartData.map(element => element.abscissa),
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisTick: {
-            alignWithLabel: true,
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    splitLine: {
-        lineStyle: {
-            color: isDarkMode ? '#7d7f82': '#ccc'
-        }
-    },
-    yAxis: {
-        axisLabel: {
-            textStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisTick: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: isDarkMode ? '#f0f0f0': '#323233'
-            }
-        }
-    },
-    series: [{
-        type: 'bar',
-        data: weekDaysChartData.map(element => element.count)
-    }]
-});
+        series: [{
+            type: 'bar',
+            data: data.map(element => element.count)
+        }]
+    });
+}
 
 echarts.init(document.getElementById('items-evolution-chart')).setOption({
     tooltip: {
@@ -323,20 +177,7 @@ echarts.init(document.getElementById('items-evolution-chart')).setOption({
     }]
 });
 
-let monthsLabel = [
-    Translator.trans('global.months.january'),
-    Translator.trans('global.months.february'),
-    Translator.trans('global.months.march'),
-    Translator.trans('global.months.april'),
-    Translator.trans('global.months.may'),
-    Translator.trans('global.months.june'),
-    Translator.trans('global.months.july'),
-    Translator.trans('global.months.august'),
-    Translator.trans('global.months.september'),
-    Translator.trans('global.months.october'),
-    Translator.trans('global.months.november'),
-    Translator.trans('global.months.december')
-];
+
 
 Object.entries(calendarsData).forEach(([year, yearData]) => {
     var data = [];
