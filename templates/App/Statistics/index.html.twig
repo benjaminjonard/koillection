@@ -40,13 +40,7 @@
         {% endif %}
     </div>
 
-    <div class="statistics-holder"
-         data-theme-main-hue="{{ app.user.isInDarkMode ? '#00ce99' : '#009688' }}"
-         data-theme-dark-hue="{{ app.user.isInDarkMode ? '#007C5C' : '#006355' }}"
-         data-theme-light-hue="{{ app.user.isInDarkMode ? '#4DDDB8' : '#1ab0a2' }}"
-         data-theme-lightest-hue="{{ app.user.isInDarkMode ? '#b3f0e0' : '#80cbc4' }}"
-         data-is-dark-mode="{{ app.user.isInDarkMode }}"
-    >
+    <div class="statistics-holder">
         <div class="content-block calendars" {{ stimulus_controller('tabs') }}>
             <div class="block-element">
                 <h2 class="statistics-title">{{ 'title.activity'|trans }}</h2>

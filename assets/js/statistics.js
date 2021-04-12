@@ -29,12 +29,11 @@ let monthsLabel = [
     Translator.trans('global.months.december')
 ];
 
-let statisticHolder = document.querySelector('.statistics-holder');
-let isDarkMode =  statisticHolder.dataset.isDarkMode == 1 ? true : false;
-let themeMainHue = statisticHolder.dataset.themeMainHue;
-let themeDarkHue = statisticHolder.dataset.themeDarkHue;
-let themeLightHue = statisticHolder.dataset.themeLightHue;
-let themeLightestHue = statisticHolder.dataset.themeLightestHue;
+let isDarkMode =  document.getElementById('settings').dataset.theme === 'dark';
+let themeMainHue = isDarkMode ? '#00ce99' : '#009688';
+let themeDarkHue = isDarkMode ? '#007C5C' : '#006355';
+let themeLightHue = isDarkMode ? '#4DDDB8' : '#1ab0a2';
+let themeLightestHue = isDarkMode ? '#b3f0e0' : '#80cbc4';
 
 let itemsEvolutionData = JSON.parse(document.querySelector('#items-evolution-chart').dataset.json);
 let calendarsData = JSON.parse(document.querySelector('#calendars').dataset.json);
@@ -204,6 +203,9 @@ Object.entries(calendarsData).forEach(([year, yearData]) => {
                 {min: 1, max: 5, color: themeLightestHue},
                 {min: 0, max: 0, color: '#ededed'}
             ],
+            textStyle: {
+                color: isDarkMode ? '#f0f0f0': '#323233'
+            }
         },
         calendar: {
             splitLine: {

@@ -21,7 +21,7 @@ export default class extends Controller {
             clear: Translator.trans('btn.clear'),
             close: Translator.trans('btn.close'),
             today: Translator.trans('global.today').substring(0, 3)+'.',
-            format: document.getElementById('js-date-format').dataset.jsDateFormat,
+            format: document.getElementById('settings').dataset.dateFormat,
             container: '.main',
         });
     }
