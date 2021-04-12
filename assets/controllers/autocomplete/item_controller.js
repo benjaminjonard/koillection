@@ -57,7 +57,6 @@ export default class extends Controller {
 
         if (value !== '') {
             this.timeout = setTimeout(function () {
-                document.documentElement.className = 'loading';
                 fetch('/items/autocomplete/' + value, {
                     method: 'GET'
                 })
@@ -71,7 +70,6 @@ export default class extends Controller {
                     self.autocompleteElement.updateData(data);
                     self.autocompleteElement.open();
                 })
-                .finally(() => document.documentElement.className = '')
             }, 500);
         }
     }

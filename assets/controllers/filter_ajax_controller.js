@@ -39,7 +39,6 @@ export default class extends Controller {
         let headers = new Headers();
         headers.append("X-Requested-With", "XMLHttpRequest");
 
-        document.documentElement.className = 'loading';
         fetch(url, {
             method: 'GET',
             headers: headers
@@ -49,6 +48,5 @@ export default class extends Controller {
             self.contentTarget.innerHTML = results;
             window.history.pushState(null,'', url);
         })
-        .finally(() => document.documentElement.className = '')
     }
 }

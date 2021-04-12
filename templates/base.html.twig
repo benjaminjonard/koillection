@@ -29,29 +29,6 @@
 
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
-        <script>
-            window.onload = window.onpageshow = function() {
-                document.documentElement.className = '';
-            };
-
-            if ('serviceWorker' in navigator) {
-                const LOADING = 0;
-                const LOADED = 1;
-                const FAILED = 2;
-                navigator.serviceWorker.register('{{ asset('sw.js') }}', { scope: "/" });
-                navigator.serviceWorker.addEventListener('message', function (event) {
-                    if (event.data === LOADING) {
-                        document.documentElement.className = 'loading';
-                    }
-                    if (event.data === LOADED) {
-                        document.documentElement.className = '';
-                    }
-                    if (event.data === FAILED) {
-                        document.documentElement.classList.add('fail');
-                    }
-                });
-            }
-        </script>
     {% endblock %}
 </head>
 <body class="
