@@ -1,5 +1,4 @@
 import Translator from './translator.min.js'
-import * as utils from './utils'
 
 $(document).ready(function() {
 

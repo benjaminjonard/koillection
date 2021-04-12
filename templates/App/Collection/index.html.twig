@@ -22,36 +22,38 @@
 {% endblock %}
 
 {% block content %}
-    <div class="collection-header">
-        <div class="title-block">
-            <h1>{{ 'menu.collections'|trans }}</h1>
-            <ul class="nav nav-pills">
-                <li>{{ 'counter.item'|trans({'%count%': getCounters('collections').items}) }}</li>
-                <li>{{ 'counter.collection'|trans({'%count%': getCounters('collections').children}) }}</li>
-            </ul>
+    <div {{ stimulus_controller('filter') }}>
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>{{ 'menu.collections'|trans }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.item'|trans({'%count%': getCounters('collections').items}) }}</li>
+                    <li>{{ 'counter.collection'|trans({'%count%': getCounters('collections').children}) }}</li>
+                </ul>
+            </div>
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_collection_add') }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                    {% endif %}
+                </div>
+                <div class="right">
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
         </div>
 
-        <div></div>
-
-        <div class="btn-holder">
-            <div class="left">
-                {% if context == 'default' %}
-                    <a href="{{ path('app_collection_add') }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
-                        <i class="fa fa-folder fa-fw"></i>
-                    </a>
-                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-                {% endif %}
+        <div class="content-block">
+            <div class="collections grid-container-collections">
+                {{ include('App/Collection/_list.html.twig', {'collections': collections}) }}
             </div>
-            <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
-    <div class="content-block">
-        <div class="collections grid-container-collections">
-            {{ include('App/Collection/_list.html.twig', {'collections': collections}) }}
         </div>
     </div>
 {% endblock %}

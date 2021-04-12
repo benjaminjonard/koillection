@@ -21,7 +21,6 @@ import 'croppie'
 import 'materialize-css'
 import 'ts-select2'
 
-import './js/filters'
 import './js/main'
 import './js/inventory'
 import './js/tag'
