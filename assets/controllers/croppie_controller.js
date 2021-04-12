@@ -1,13 +1,15 @@
 import { Controller } from 'stimulus';
+import Croppie from 'croppie'
 
 export default class extends Controller {
-    static target = ['area', 'input', 'preview'];
+    static targets = ['area', 'input', 'preview'];
 
     croppie = null;
 
     connect() {
         let self = this;
-        this.croppie = this.areaTarget.croppie({
+
+        this.croppie = new Croppie(this.areaTarget, {
             viewport: { width: 150, height: 150, type: 'circle' },
             boundary: { width: 200, height: 200 },
             showZoomer: false,
@@ -19,12 +21,12 @@ export default class extends Controller {
         /* Removes alt on preview image, causes a bug in Firefox */
         this.element.querySelector('.cr-image').alt = '';
         /* Add crosshair to cropper */
-        this.element.querySelector('.cr-vp-circle').classList.add('fa fa-plus fa-fw');
+        this.element.querySelector('.cr-vp-circle').classList.add('fa', 'fa-plus', 'fa-fw');
     }
 
     loadImage(event) {
         this.readFile();
-        self.areaTarget.dispatchEvent(new Event('mouseup'));
+        this.areaTarget.dispatchEvent(new Event('mouseup'));
     }
 
     refreshImage(event) {
@@ -34,7 +36,7 @@ export default class extends Controller {
 
         let form = this.element.querySelector('.file-input');
         let self = this;
-        this.croppie.croppie('result', {
+        this.croppie.result({
             type: "canvas",
             size: { width: 200, height: 200 }
         })
@@ -51,7 +53,7 @@ export default class extends Controller {
         if (this.inputTarget.files && this.inputTarget.files[0]) {
             let reader = new FileReader();
             reader.onload = function (e) {
-                self.croppie.croppie('bind', {
+                self.croppie.bind({
                     url : e.target.result,
                 });
             };

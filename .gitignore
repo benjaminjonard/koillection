@@ -13,7 +13,6 @@
 
 ###> symfony/webpack-encore-bundle ###
 /assets/node_modules/
-/public/build/
 /assets/npm-debug.log
 /assets/yarn-error.log
 ###< symfony/webpack-encore-bundle ###
