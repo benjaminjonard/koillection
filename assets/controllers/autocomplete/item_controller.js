@@ -55,7 +55,7 @@ export default class extends Controller {
         let value = this.inputTarget.value;
         let self = this;
 
-        if (value !== '') {
+        if (value) {
             this.timeout = setTimeout(function () {
                 fetch('/items/autocomplete/' + value, {
                     method: 'GET'

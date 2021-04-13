@@ -532,7 +532,6 @@ i.btn input {color: #fff; cursor: pointer;}
 
 .autocomplete-results {
     text-align: center;
-    display: none;
     position: absolute;
     top: 136px;
     margin-left: 11px;

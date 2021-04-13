@@ -48,7 +48,7 @@ export default class extends Controller {
         let value = this.inputTarget.value;
         let self = this;
 
-        if (value !== '') {
+        if (value) {
             this.timeout = setTimeout(function () {
                 fetch('/tags/autocomplete/' + value, {
                     method: 'GET'
@@ -65,7 +65,7 @@ export default class extends Controller {
             }, 500);
         }
 
-        if (event.which === 13) {
+        if (value && event.which === 13) {
             this.onAutocomplete(value);
         }
     }
