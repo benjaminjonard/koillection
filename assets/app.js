@@ -23,6 +23,5 @@ import 'ts-select2'
 
 import './js/loader'
 import './js/main'
-import './js/inventory'
 import './js/tag'
 

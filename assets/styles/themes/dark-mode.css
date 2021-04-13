@@ -53,7 +53,8 @@ input[type=date]:focus:not([readonly])+label, input[type=datetime-local]:focus:n
 textarea.materialize-textarea:focus:not([readonly])+label,
 .dropdown-content li>a,
 .picker__day.picker__day--today, .picker__close, .picker__today,
-a
+a,
+.inventory-collection-show
 {color: #222222;}
 
 .content-header .filter-block #filter-by-name-input:focus,
