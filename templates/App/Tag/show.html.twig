@@ -86,10 +86,10 @@
             {% if relatedTags is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.related_tags'|trans }}</h2>
-                    <div class="tags-block">
+                    <div class="tags-block" {{ stimulus_controller('show-more') }}>
                         <ul class="nav nav-tags">
                             {% for tag in relatedTags|naturalSorting %}
-                                <li class="tag chip {{ loop.index > 10 ? 'hidden'}}">
+                                <li class="tag chip {{ loop.index > 10 ? 'hidden'}}" {% if loop.index > 10 %}data-show-more-target="hideable"{% endif %}>
                                     <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
                                         {{ tag.label }}
                                     </a>
@@ -100,12 +100,11 @@
                             {% endfor %}
                             <li class="show-more-btn-holder">
                                 {% if relatedTags|length > 10 %}
-                                    <a href="#" class="js-show-more-tags">{{ 'btn.show_more'|trans({'%count%': relatedTags|length - 10}) }}</a>
-                                    <a href="#" class="js-show-less-tags hidden">{{ 'btn.show_less'|trans }}</a>
+                                    <a href="#" data-action="show-more#showMore" data-show-more-target="showMoreButton">{{ 'btn.show_more'|trans({'%count%': relatedTags|length - 10}) }}</a>
+                                    <a href="#" data-action="show-more#showLess" data-show-more-target="showLessButton" class="hidden">{{ 'btn.show_less'|trans }}</a>
                                 {% endif %}
                             </li>
                         </ul>
-
                     </div>
                 </div>
             {% endif %}
