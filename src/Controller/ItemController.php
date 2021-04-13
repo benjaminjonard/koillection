@@ -204,7 +204,7 @@ class ItemController extends AbstractController
             $data[] = [
                 'id' => $item->getId(),
                 'name' => $item->getName(),
-                'thumbnail' => $assetManager->getUrl($item->getImageSmallThumbnail()),
+                'thumbnail' => $item->getImageSmallThumbnail() ? $assetManager->getUrl($item->getImageSmallThumbnail()) : null,
             ];
         }
 

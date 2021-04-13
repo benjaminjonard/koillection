@@ -19,14 +19,13 @@
         {{ form_start(form) }}
             <div class="row block-element">
                 <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3 autocomplete-wrapper">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3" {{ stimulus_controller('autocomplete--tag') }}>
                         <div class="input-field">
-                            <input type="text" id="tagsAutocomplete" class="autocomplete" autocomplete="off">
+                            <input type="text" data-autocomplete--tag-target="input" data-action="keyup->autocomplete--tag#autocomplete keydown->autocomplete--tag#preventDefault" autocomplete="off">
                             {{ form_label(form.tags, 'label.tags') }}
-                            <div class="ac-tags">
-                            </div>
+                            <div data-autocomplete--tag-target="result" class="ac-tags"></div>
                         </div>
-                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden tags-holder'}}) }}
+                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--tag-target': 'formInput'}}) }}
                     </div>
                     <div class="col s12 l5 xl3">
                         {{ form_row(form.recursive, {'label': 'label.recursive', 'help': 'message.recursive'}) }}

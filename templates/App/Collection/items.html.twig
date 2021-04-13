@@ -24,55 +24,57 @@
 {% endblock %}
 
 {% block content %}
-    <div class="collection-header">
-        <div class="title-block">
-            <div class="left">
-                {% if collection.image != null %}
-                    <img class="thumbnail avatar" src="{{ asset(collection.image) }}">
-                {% else %}
-                    <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
-                {% endif %}
-            </div>
-            <div class="right">
-                <h1>{{ collection.title }}</h1>
-                <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|trans({'%count%': items|length}) }}</li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <div></div>
-
-        <div class="btn-holder">
-            <div class="left">
-                {% if context == 'default' %}
-                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-                {% endif %}
-            </div>
-            <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
-    <div class="content-block">
-        <!-- Collection's items -->
-        {% if items is not empty %}
-            <div class="block-element">
-                <h2 class="header">{{ 'title.items'|trans }}</h2>
-                <div id="collection-items" class="grid-container-items">
-                    {% for item in items|naturalSorting %}
-                        <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                            <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                                {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
-                            </a>
-                        </div>
-                    {% endfor %}
+    <div {{ stimulus_controller('filter') }}>
+        <div class="collection-header">
+            <div class="title-block">
+                <div class="left">
+                    {% if collection.image != null %}
+                        <img class="thumbnail avatar" src="{{ asset(collection.image) }}">
+                    {% else %}
+                        <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
+                    {% endif %}
                 </div>
+                <div class="right">
+                    <h1>{{ collection.title }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.item'|trans({'%count%': items|length}) }}</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
             </div>
-        {% endif %}
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    {% if context == 'default' %}
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                    {% endif %}
+                </div>
+                <div class="right">
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <!-- Collection's items -->
+            {% if items is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ 'title.items'|trans }}</h2>
+                    <div id="collection-items" class="grid-container-items">
+                        {% for item in items|naturalSorting %}
+                            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
+                                <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
+                                    {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 

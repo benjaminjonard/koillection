@@ -73,12 +73,10 @@ class InventoryHandler
         return $element;
     }
 
-    public function setCheckedValues(Inventory $inventory, array $itemIds)
+    public function setCheckedValue(Inventory $inventory, string $id, string $checked)
     {
         $content = $inventory->getContent();
-        foreach ($itemIds as $itemId => $checked) {
-            $content = preg_replace('/([^.]*{"id":"' . $itemId . '","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
-        };
+        $content = preg_replace('/([^.]*{"id":"' . $id . '","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
 
         $content = $this->computeCheckedValues(json_decode($content, true));
         $inventory->setContent(json_encode($content));

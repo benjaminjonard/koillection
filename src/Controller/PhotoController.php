@@ -91,11 +91,11 @@ class PhotoController extends AbstractController
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
         $form = $this->createDeleteForm('app_photo_delete', $photo);
-        $form->handleRequest($photo);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($request);
+            $em->remove($photo);
             $em->flush();
             $this->addFlash('notice', $translator->trans('message.photo_deleted', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
         }

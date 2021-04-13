@@ -1,12 +1,19 @@
 <li>
-    <form class="search" name="search" method="get" action="{{ path('app_search_index') }}">
+    <form class="search" name="search" method="get" action="{{ path('app_search_index') }}" {{ stimulus_controller('search') }}>
         <div>
-            <input id="search_term" name="search[term]" type="search" class="search-input placeholder" placeholder="{{ 'menu.search'|trans }}" autocomplete="off">
+            <input id="search_term"
+                   data-action="keyup->search#search click->search#open"
+                   name="search[term]"
+                   type="search"
+                   class="search-input placeholder"
+                   placeholder="{{ 'menu.search'|trans }}"
+                   autocomplete="off"
+            >
             <input id="search_searchInCollections" name="search[searchInCollections]" type="hidden">
             <input id="search_searchInItems" name="search[searchInItems]" type="hidden">
             <input id="search_searchInTags" name="search[searchInTags]" type="hidden">
         </div>
-        <ul class="autocomplete-results"></ul>
+        <ul class="autocomplete-results hidden" data-search-target="resultsWrapper"></ul>
     </form>
 </li>
 

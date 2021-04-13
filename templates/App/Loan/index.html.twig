@@ -19,21 +19,21 @@
         </ul>
     </div>
 
-    <div class="content-block">
+    <div class="content-block" {{ stimulus_controller('tabs') }}>
         <div class="row">
             <div class="tabs-block col s12 l10 offset-l1 xl6 offset-xl3">
                 <ul class="nav nav-pills">
-                    <li class="tab current" for="loans">
-                        <span>{{ 'tab.loans'|trans }}</span>
+                    <li class="tab current" data-tabs-target="tab" data-action="click->tabs#display" data-for="active">
+                        {{ 'tab.loans'|trans }}
                     </li>
-                    <li class="tab" for="returnedItems">
-                        <span>{{ 'tab.returned_items'|trans }}</span>
+                    <li class="tab" data-tabs-target="tab" data-action="click->tabs#display" data-for="returned">
+                        {{ 'tab.returned_items'|trans }}
                     </li>
                 </ul>
             </div>
         </div>
 
-        <div class="panel" id="loans">
+        <div class="panel current" data-tabs-target="panel" data-name="active">
             <table class="striped">
                 <thead>
                 <tr>
@@ -61,7 +61,7 @@
             </table>
         </div>
 
-        <div class="panel hidden" id="returnedItems">
+        <div class="panel" data-tabs-target="panel" data-name="returned">
             <table class="striped">
                 <thead>
                 <tr>

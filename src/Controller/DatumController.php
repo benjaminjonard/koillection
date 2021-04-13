@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Collection;
 use App\Entity\Item;
+use App\Enum\DatumTypeEnum;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,7 +27,7 @@ class DatumController extends AbstractController
 
         return new JsonResponse([
             'html' => $html,
-            'type' => $type
+            'type' => in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text'
         ]);
     }
 
@@ -37,55 +38,54 @@ class DatumController extends AbstractController
     #[Entity('collection', expr: 'repository.findWithItemsAndData(id)', class: Collection::class)]
     public function loadCommonFields(Collection $collection) : JsonResponse
     {
-        try {
-            $commonFields = [];
+        $commonFields = [];
 
-            $first = $collection->getItems()->first();
-            if ($first instanceof Item) {
-                foreach ($first->getDataTexts() as $datum) {
-                    $field = [
-                        'datum' => $datum,
-                        'type' => $datum->getType()
-                    ];
-                    $commonFields[$datum->getLabel()] = $field;
-                }
+        $first = $collection->getItems()->first();
+        if ($first instanceof Item) {
+            foreach ($first->getDataTexts() as $datum) {
+                $field = [
+                    'datum' => $datum,
+                    'type' => $datum->getType()
+                ];
+                $commonFields[$datum->getLabel()] = $field;
             }
+        }
 
-            foreach ($collection->getItems() as $key => $item) {
-                if ($key > 0 && $item->getDataTexts()->count() > 0) {
-                    foreach ($commonFields as $cfKey => &$commonField) {
-                        $existing = null;
-                        foreach ($item->getData() as $datum) {
-                            if ($datum->getLabel() === $commonField['datum']->getLabel()) {
-                                $existing = $commonField;
-                                break;
-                            }
+        foreach ($collection->getItems() as $key => $item) {
+            if ($key > 0 && $item->getDataTexts()->count() > 0) {
+                foreach ($commonFields as $cfKey => &$commonField) {
+                    $existing = null;
+                    foreach ($item->getData() as $datum) {
+                        if ($datum->getLabel() === $commonField['datum']->getLabel()) {
+                            $existing = $commonField;
+                            break;
                         }
-                        if (null === $existing) {
-                            unset($commonFields[$cfKey]);
-                        } elseif (isset($datum) && $datum->getValue() !== $commonField['datum']->getValue()) {
-                            $commonField['datum']->setValue(null);
-                        }
+                    }
+                    if (null === $existing) {
+                        unset($commonFields[$cfKey]);
+                    } elseif (isset($datum) && $datum->getValue() !== $commonField['datum']->getValue()) {
+                        $commonField['datum']->setValue(null);
                     }
                 }
             }
-
-            foreach ($commonFields as &$commonField) {
-                $commonField['html'] = $this->render('App/Datum/_datum.html.twig', [
-                            'entity' => 'item',
-                            'iteration' => '__placeholder__',
-                            'type' => $commonField['type'],
-                            'datum' => $commonField['datum']
-                        ])->getContent();
-                unset($commonField['datum']);
-            }
-
-            return new JsonResponse([
-                'fields' => $commonFields
-            ]);
-        } catch (\Exception $e) {
-            return new JsonResponse(false, 500);
         }
+
+        $result = [];
+        $i = 0;
+
+        foreach ($commonFields as $label => $commonField) {
+            $result[$i][] = in_array($commonField['type'], [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
+            $result[$i][] = $label;
+            $result[$i][] = $this->render('App/Datum/_datum.html.twig', [
+                'entity' => 'item',
+                'iteration' => '__placeholder__',
+                'type' => $commonField['type'],
+                'datum' => $commonField['datum']
+            ])->getContent();
+            $i++;
+        }
+
+        return new JsonResponse($result);
     }
 
     #[Route(
@@ -95,23 +95,18 @@ class DatumController extends AbstractController
     #[Entity('collection', expr: 'repository.findWithItemsAndData(id)', class: Collection::class)]
     public function loadCollectionFields(Collection $collection) : JsonResponse
     {
-        try {
-            $fields = [];
-            foreach ($collection->getData() as $datum) {
-                $fields[$datum->getLabel()]['type'] = $datum->getType();
-                $fields[$datum->getLabel()]['html'] = $this->render('App/Datum/_datum.html.twig', [
-                    'entity' => 'item',
-                    'iteration' => '__placeholder__',
-                    'type' => $datum->getType(),
-                    'datum' => $datum
-                ])->getContent();
-            }
-
-            return new JsonResponse([
-                'fields' => $fields
-            ]);
-        } catch (\Exception $e) {
-            return new JsonResponse(false, 500);
+        $fields = [];
+        foreach ($collection->getData() as $key => $datum) {
+            $fields[$key][] = in_array($datum->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
+            $fields[$key][] = $datum->getLabel();
+            $fields[$key][] = $this->render('App/Datum/_datum.html.twig', [
+                'entity' => 'item',
+                'iteration' => '__placeholder__',
+                'type' => $datum->getType(),
+                'datum' => $datum
+            ])->getContent();
         }
+
+        return new JsonResponse($fields);
     }
 }
