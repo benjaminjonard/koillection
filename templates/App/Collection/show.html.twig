@@ -24,124 +24,122 @@
 {% endblock %}
 
 {% block content %}
-    <div class="collection-header">
-        <div class="title-block">
-            <div class="left">
-                {% if collection.image != null %}
-                    <img class="thumbnail avatar" src="{{ asset(collection.image) }}">
-                {% else %}
-                    <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
-                {% endif %}
-            </div>
-            <div class="right">
-                <h1>{{ collection.title }}</h1>
-                <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|trans({'%count%': getCounters(collection).items}) }}</li>
-                    <li>{{ 'counter.collection'|trans({'%count%': getCounters(collection).children}) }}</li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <div></div>
-
-        <div class="btn-holder">
-            <div class="left">
-                {% if context == 'default' %}
-                    <a href="{{ path('app_item_add', {'collection': collection.id}) }}" class="button" title="{{ 'tooltip.add_item'|trans }}">
-                        <i class="fa fa-plus fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_collection_add', {'parent': collection.id} ) }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
-                        <i class="fa fa-folder fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_collection_edit', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                        <i class="fa fa-pencil fa-fw"></i>
-                    </a>
-                    <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                        <i class="fa fa-trash fa-fw"></i>
-                    </a>
-                    {% if isFeatureEnabled('tags') %}
-                        <a href="{{ path('app_collection_batch_tagging', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.tag'|trans }}">
-                            <i class="fa fa-terminal fa-fw"></i>
-                        </a>
+    <div {{ stimulus_controller('filter') }}>
+        <div class="collection-header">
+            <div class="title-block">
+                <div class="left">
+                    {% if collection.image != null %}
+                        <img class="thumbnail avatar" src="{{ asset(collection.image) }}">
+                    {% else %}
+                        <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
                     {% endif %}
-                    {% if isFeatureEnabled('history') %}
-                        <a href="{{ path('app_collection_history', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                            <i class="fa fa-history fa-fw"></i>
+                </div>
+                <div class="right">
+                    <h1>{{ collection.title }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.item'|trans({'%count%': getCounters(collection).items}) }}</li>
+                        <li>{{ 'counter.collection'|trans({'%count%': getCounters(collection).children}) }}</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_item_add', {'collection': collection.id}) }}" class="button" title="{{ 'tooltip.add_item'|trans }}">
+                            <i class="fa fa-plus fa-fw"></i>
                         </a>
-                    {% endif %}
-                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-                {% endif %}
-                <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
-                    <i class="fa fa-ellipsis-h fa-fw"></i>
-                </a>
-            </div>
-            <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
-    <div class="content-block">
-        <!-- Additional data -->
-        {% if collection.data is not empty %}
-            <div class="block-element">
-                <h2 class="header">{{ 'title.infos'|trans }}</h2>
-                <div class="row">
-                    {% set underlinedTags = getUnderlinedTags(collection.data) %}
-                    {% for datum in collection.data %}
-                        <div class="datum-row col s12 l5 xl3">
-                            <span class="label">{{ datum.label }} :</span>
-                            {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
-                                {% for value in datum.value|split(',') %}
-                                    {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
-                                {% endfor %}
-                            {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}
-                                {{ datum.value }}
-                            {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
-                                <span class="flag flag-{{ datum.value|lower }}"></span>
-                                <span class="country-name">({{ getCountryName(datum.value) }})</span>
-                            {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
-                                <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
-                            {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
-                                {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-
-        <!-- Child collections -->
-        {% if children is not empty %}
-            <div class="block-element">
-                <h2 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h2>
-                <div class="collections grid-container-collections">
-                    {{ include('App/Collection/_list.html.twig', {'collections': children|naturalSorting}) }}
-                </div>
-            </div>
-        {% endif %}
-
-        <!-- Collection's items -->
-        {% if items is not empty %}
-            <div class="block-element">
-                <h2 class="header">{{ collection.itemsTitle|default('title.items'|trans) }}</h2>
-                <div id="collection-items" class="grid-container-items">
-                    {% for item in items|naturalSorting %}
-                        <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
-                            <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                                {% if item.image %}
-                                    {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
-                                {% else %}
-                                    <img class="preview-image" src="{{ asset('build/images/default.png') }}" aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}" />
-                                {% endif %}
+                        <a href="{{ path('app_collection_add', {'parent': collection.id} ) }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_collection_edit', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                        {% if isFeatureEnabled('tags') %}
+                            <a href="{{ path('app_collection_batch_tagging', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.tag'|trans }}">
+                                <i class="fa fa-terminal fa-fw"></i>
                             </a>
-                        </div>
-                    {% endfor %}
+                        {% endif %}
+                        {% if isFeatureEnabled('history') %}
+                            <a href="{{ path('app_collection_history', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                                <i class="fa fa-history fa-fw"></i>
+                            </a>
+                        {% endif %}
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                    {% endif %}
+                    <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
+                        <i class="fa fa-ellipsis-h fa-fw"></i>
+                    </a>
                 </div>
+                <div class="right">
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
             </div>
-        {% endif %}
+        </div>
+
+        <div class="content-block">
+            <!-- Additional data -->
+            {% if collection.data is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ 'title.infos'|trans }}</h2>
+                    <div class="row">
+                        {% set underlinedTags = getUnderlinedTags(collection.data) %}
+                        {% for datum in collection.data %}
+                            <div class="datum-row col s12 l5 xl3">
+                                <span class="label">{{ datum.label }} :</span>
+                                {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
+                                    {% for value in datum.value|split(',') %}
+                                        {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
+                                    {% endfor %}
+                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}
+                                    {{ datum.value }}
+                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
+                                    <span class="flag flag-{{ datum.value|lower }}"></span>
+                                    <span class="country-name">({{ getCountryName(datum.value) }})</span>
+                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
+                                    <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
+                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
+                                    {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Child collections -->
+            {% if children is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h2>
+                    <div class="collections grid-container-collections">
+                        {{ include('App/Collection/_list.html.twig', {'collections': children|naturalSorting}) }}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Collection's items -->
+            {% if items is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ collection.itemsTitle|default('title.items'|trans) }}</h2>
+                    <div id="collection-items" class="grid-container-items">
+                        {% for item in items|naturalSorting %}
+                            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
+                                <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
+                                    {{ macros.lazyImage(item.imageSmallThumbnail|default('build/images/default.png'), 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 

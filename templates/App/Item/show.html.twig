@@ -25,15 +25,15 @@
 {% block content %}
     {{ include('App/Item/_content.html.twig') }}
 
-    <div class="navigation-block row">
+    <div class="navigation-block row" {{ stimulus_controller('swipe') }}>
         {% if previousItem is not null %}
-            <a id="previous" href="{{ path('app_item_show'|applyContext, {id: previousItem.id}) }}">
+            <a data--swipe-target="previous" href="{{ path('app_item_show'|applyContext, {id: previousItem.id}) }}">
                 <span class="unbreakable"><i class="fa fa-angle-left fa-fw"></i>{{ previousItem.name|u.truncate(30) }}</span>
             </a>
         {% endif %}
         {% if previousItem is not null and previousItem is not null %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
         {% if nextItem is not null %}
-            <a id="next" href="{{ path('app_item_show'|applyContext, {id: nextItem.id}) }}">
+            <a data--swipe-target="next" href="{{ path('app_item_show'|applyContext, {id: nextItem.id}) }}">
                 <span class="unbreakable">{{ nextItem.name|u.truncate(30) }}<i class="fa fa-angle-right fa-fw"></i></span>
             </a>
         {% endif %}

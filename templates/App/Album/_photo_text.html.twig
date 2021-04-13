@@ -1,17 +1,17 @@
-<div class="left">
-    {{ photo.title }}<br>
-    {{ photo.place ? 'label.place'|trans ~ ' : ' ~ photo.place }}<br>
-    {{ photo.takenAt ? 'label.taken_at'|trans ~ ' : ' ~ photo.takenAt|date(app.user.dateFormat|default('Y-m-d')) }}<br>
-    {{ photo.comment ? 'label.comment'|trans ~ ' : ' ~ photo.comment }}
-</div>
+{% apply spaceless %}
+    {{ photo.title }}
 
-{% if context == 'default' %}
-    <div class="right">
-        <a href="{{ path('app_photo_edit', {'id': photo.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-            <i class="fa fa-pencil fa-fw complementary-color"></i>
-        </a>
-        <a href="#delete-{{ photo.id }}" class="modal-trigger button btn-grey" title="{{ 'tooltip.delete'|trans }}">
-            <i class="fa fa-trash fa-fw complementary-color"></i>
-        </a>
-    </div>
-{% endif %}
+    <br>
+
+    {% if photo.place %}
+        <i class="fa fa-map-marker fa-fw"></i> {{ photo.place }}
+    {% endif %}
+    {% if photo.place and photo.takenAt %} &nbsp;/&nbsp; {% endif %}
+    {% if photo.takenAt %}
+        <i class="fa fa-calendar fa-fw"></i> {{ photo.takenAt|date(app.user.dateFormat|default('Y-m-d')) }}
+    {% endif %}
+
+    <br>
+
+    <span>{{ photo.comment }}</span>
+{% endapply %}

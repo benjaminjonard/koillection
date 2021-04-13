@@ -1,7 +1,7 @@
 {% import "macros.html.twig" as macros %}
 
 {% for collection in collections %}
-    <div class="collection-element element" data-title="{{ collection.title }}">
+    <div class="collection-element element" data-title="{{ collection.title }}" data-filter-target="element">
         <a class="collection-circle-thumbnail" href="{{ path('app_collection_show'|applyContext, {'id': collection.id}) }}" aria-label="{{ 'aria.collection'|trans({'%title%': collection.title}) }}">
             {% if collection.image != null %}
                 {{ macros.lazyImage(collection.image, null, null, 'placeholder--circle') }}

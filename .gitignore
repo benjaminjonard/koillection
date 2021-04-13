@@ -12,9 +12,9 @@
 /docker/*
 
 ###> symfony/webpack-encore-bundle ###
-/node_modules/
-npm-debug.log
-yarn-error.log
+/assets/node_modules/
+/assets/npm-debug.log
+/assets/yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> symfony/phpunit-bridge ###

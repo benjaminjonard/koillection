@@ -1,35 +1,50 @@
 {% block form_row %}
-    <div class="input-field">
-        {{- form_errors(form) -}}
-        {{- form_widget(form) -}}
-        {{- form_label(form) -}}
+    {% if suggestions is defined and suggestions is not empty %}
+        <div class="input-field" {{ stimulus_controller('suggestions') }}>
+            {{- form_errors(form) -}}
+            {{- form_widget(form, {attr: {'data-suggestions-target': 'input'}}) -}}
+            {{- form_label(form, null, {label_attr: {'data-suggestions-target': 'label'}}) -}}
 
-        {% if suggestions is defined and suggestions is not empty %}
             <div class="suggestions">
                 {{ 'label.suggestions'|trans }}
                 {% for suggestion in suggestions %}
-                    <span class="suggestion" data-suggestion="{{ suggestion }}">{{ suggestion }}</span>
+                    <span class="suggestion"
+                          data-action="click->suggestions#fillInputWithSuggestion"
+                          data-suggestion="{{ suggestion }}"
+                    >
+                        {{ suggestion }}
+                    </span>
                     {{ not loop.last ? ',' }}
                 {% endfor %}
             </div>
-        {% endif %}
-
-        {{- form_help(form) -}}
-    </div>
+            {{- form_help(form) -}}
+        </div>
+    {% else %}
+        <div class="input-field">
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+            {{- form_label(form) -}}
+            {{- form_help(form) -}}
+        </div>
+    {% endif %}
 {% endblock form_row %}
 
 {% block file_widget %}
     {% apply spaceless %}
         <div class="row row-file">
             <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                <div>
+                <div {{ stimulus_controller('preview') }}>
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
-                            <img class="preview-image" src="{{ asset(form.parent.vars.value.image) }}" />
+                            <img data-preview-target="image" class="preview-image" src="{{ asset(form.parent.vars.value.image) }}" />
                         {% else %}
-                            <img class="preview-image" src="{{ asset('build/images/default.png') }}" />
+                            <img data-preview-target="image" class="preview-image" src="{{ asset('build/images/default.png') }}" />
                         {% endif %}
-                        <input type="file" {{ block('widget_attributes') }} class="has-preview hidden" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"/>
+                        <input data-action="change->preview#load"
+                               type="file" {{ block('widget_attributes') }}
+                               class="hidden"
+                               accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+                        />
                     </label>
                 </div>
             </div>

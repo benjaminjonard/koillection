@@ -18,7 +18,11 @@
     <li>
         <p>
             <label>
-                <input type="checkbox" data-id="{{ collection.id }}">
+                <input type="checkbox"
+                       data-cascading-checkboxes-target="checkbox"
+                       data-action="change->cascading-checkboxes#update"
+                       data-id="{{ collection.id }}"
+                >
                 <span>{{ collection.title }}</span>
             </label>
         </p>
@@ -39,7 +43,7 @@
         <h1>{{ 'title.add_inventory'|trans }}</h1>
     </div>
 
-    <div class="content-block">
+    <div class="content-block" {{ stimulus_controller('cascading-checkboxes') }}>
         {{ form_start(form) }}
             <div class="block-element">
                 <div class="row">
@@ -55,7 +59,10 @@
                             <li>
                                 <p>
                                     <label>
-                                        <input type="checkbox" data-id="all">
+                                        <input type="checkbox"
+                                               data-id="all"
+                                               data-action="change->cascading-checkboxes#update"
+                                        >
                                         <span>{{ 'global.all_collections'|trans }}</span>
                                     </label>
                                 </p>
@@ -76,6 +83,7 @@
                 <a href="{{ path('app_tools_index') }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
             </div>
             <div class="clearfix"></div>
+            {{ form_row(form.content, {'attr' : {'data-cascading-checkboxes-target': 'input'}}) }}
         {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -28,7 +28,7 @@ class JsonToItemTransformer implements DataTransformerInterface
             $array[] = [
                 'id' => $item->getId(),
                 'name' => $item->getName(),
-                'thumbnail' => $this->assetManager->getUrl($item->getImageSmallThumbnail()),
+                'thumbnail' => $item->getImageSmallThumbnail() ? $this->assetManager->getUrl($item->getImageSmallThumbnail()) : null,
             ];
         }
 

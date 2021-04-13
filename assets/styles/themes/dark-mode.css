@@ -1,0 +1,195 @@
+/* Lightest */
+.progress,
+.picker__today:focus, .picker__clear:focus, .picker__close:focus,
+.select2-container--default .select2-results__option[aria-selected="true"]
+{background-color: #777;}
+
+.autocomplete-results li {border-bottom: 1px #777 solid;}
+
+/* Light */
+.breadcrumb-item + .breadcrumb-item::before
+{color: #5e5e5e;}
+
+.btn:hover,
+.btn-large:hover,
+.picker__date-display,
+.autocomplete-results li
+{background-color: #5e5e5e;}
+
+.croppie-container .cr-viewport, .croppie-container .cr-resizer
+{box-shadow: 0 0 2000px 2000px #5e5e5e;}
+
+.sidebar-element.separate-item
+{border-top: 1px solid #5e5e5e;}
+
+.sidebar-element.separate-item div
+{border: 1px solid #5e5e5e;}
+
+/* Medium */
+.sidebar-wrapper,
+.btn,
+.btn-large,
+.progress .determinate,
+.picker__weekday-display,
+.sidebar-element.separate-item div,
+.toast,
+.error .logo,
+.pagination li.active,
+.table-filter a.active,
+nav,
+table.striped > tbody > tr:nth-child(2n+1),
+.content-wrapper .btn-holder input[type="text"],
+header
+{background-color: #222222;}
+
+progress[value]::-webkit-progress-value{background-color:#222222;}
+progress[value]::-moz-progress-bar{background-color:#222222;}
+progress[value]::-ms-fill{background-color:#222222;}
+
+.breadcrumb .last,
+.secondary-content,
+input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label,
+input[type=date]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label,
+.dropdown-content li>a,
+.picker__day.picker__day--today, .picker__close, .picker__today,
+a,
+.inventory-collection-show
+{color: #222222;}
+
+.content-header .filter-block #filter-by-name-input:focus,
+[type="radio"].with-gap:checked + span:before,
+.tabs-block .tab.current,
+.pie-wrapper .pie .half-circle
+{border-color: #222222;}
+
+[type="radio"].with-gap:checked + span::after, [type="radio"]:checked + span::after
+{background-color : #222222; border-color: #222222;}
+
+[type="checkbox"]:checked + span:not(.lever)::before
+{border-right: 2px solid #222222;  border-bottom: 2px solid #222222;}
+
+input[type=range]::-moz-range-thumb
+{background: #222222;}
+
+input[type=range]::-webkit-slider-thumb
+{background: #222222;}
+
+input[type=range]::-ms-track
+{background: #222222;}
+
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]),
+input.valid:not([type]), input.valid:focus:not([type]), input.valid[type="text"], input.valid[type="text"]:focus, input.valid[type="password"], input.valid[type="password"]:focus, input.valid[type="email"],
+input.valid[type="email"]:focus, input.valid[type="url"], input.valid[type="url"]:focus, input.valid[type="time"], input.valid[type="time"]:focus, input.valid[type="date"], input.valid[type="date"]:focus, input.valid[type="datetime-local"],
+input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[type="tel"]:focus, input.valid[type="number"], input.valid[type="number"]:focus, input.valid[type="search"], input.valid[type="search"]:focus, textarea.materialize-textarea.valid, textarea.materialize-textarea.valid:focus
+{
+    border-bottom: 1px solid #222222;
+    box-shadow: 0 1px 0 0 #222222;
+}
+
+.tabs-block li.tab.current
+{
+    border-bottom: 3px solid #222222;
+}
+
+/* Complementary */
+.button, .right-icon, .complementary-color,
+.sidebar-element a span,
+.header-logo a span,
+.tabs-block li.tab.current, .tabs-block li.tab.current a,
+body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statistics-title, .burger-menu i,
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.autocomplete-content.dropdown-content li>span,
+.sidebar-element a i,
+.autocomplete-result a,
+.datepicker-day-button
+{color: #cccccc;}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b
+{border-color: #cccccc transparent transparent}
+
+[type="checkbox"] + span:not(.lever)::before, [type="checkbox"]:not(.filled-in) + span:not(.lever)::after
+{border: 2px solid #cccccc}
+
+.croppie-container .cr-viewport, .croppie-container .cr-resizer
+{border: 2px solid #cccccc;}
+
+/* Cancel */
+.btn-cancel {background-color: #E74646!important;}
+
+/* Specific overrides */
+.app, .modal, .modal .modal-footer, .select2-container--default .select2-selection--single, .select2-dropdown, .autocomplete-content,
+header #search_term,  .sidebar-wrapper .header-logo,
+.nav-wrapper #search_term
+{ background-color: #2a2a2a; }
+
+.croppie-container .cr-resizer, .croppie-container .cr-viewport
+{box-shadow: 0 0 2000px 2000px #7d7f82;}
+
+.sidebar-element.separate-item
+{ border-top: 1px solid #7d7f82; }
+
+.breadcrumb-item + .breadcrumb-item::before
+{color: #7d7f82}
+
+.pie-wrapper .shadow {
+    border: .1em solid #7d7f82;
+}
+
+[type="checkbox"]:checked + span:not(.lever)::before
+{border-right: 2px solid #009688; border-bottom: 2px solid #009688;}
+
+.button, a, .suggestion, h3.header, h2.header,
+.autocomplete-content li .highlight,
+.autocomplete-result a b
+{ color: #009688; }
+
+input:not([type]):focus:not([readonly]), input[type="date"]:not(.browser-default):focus:not([readonly]), input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), input[type="datetime"]:not(.browser-default):focus:not([readonly]), input[type="email"]:not(.browser-default):focus:not([readonly]), input[type="number"]:not(.browser-default):focus:not([readonly]), input[type="password"]:not(.browser-default):focus:not([readonly]), input[type="search"]:not(.browser-default):focus:not([readonly]), input[type="tel"]:not(.browser-default):focus:not([readonly]), input[type="text"]:not(.browser-default):focus:not([readonly]), input[type="time"]:not(.browser-default):focus:not([readonly]), input[type="url"]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
+{ border-bottom: 1px solid #009688; -webkit-box-shadow: 0 1px 0 0 #009688; box-shadow: 0 1px 0 0 #009688; }
+
+.modal-custom  .modal-header
+{ background: #009688; }
+
+input:not([type]):focus:not([readonly]) + label,
+input[type="date"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="datetime-local"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="datetime"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="email"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="number"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="password"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="search"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="tel"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="text"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="time"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="url"]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label,
+.item-details .data a, .breadcrumb .last,
+.picker__day.picker__day--today, .picker__close, .picker__today,
+a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today:not(.is-selected),
+.datum-row a 
+{ color: #009688; }
+
+.btn, .btn-large, .toast, html.loading:before,
+.sidebar-element a:hover, .sidebar-element.current a, .nav-bottom input:hover, .nav-bottom a:hover,
+.header-profile .down-background,
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.datepicker-date-display,
+.datepicker-table td.is-selected,
+.sidebar-wrapper .header-logo:hover,
+html.loading:before,
+#offline-message,
+.autocomplete-content li:hover
+{ background-color: #009688; }
+
+.pie-wrapper .pie .half-circle, .tabs-block li.tab.current
+{ border-color: #009688; }
+
+progress[value]::-webkit-progress-value{background-color:#009688;}
+progress[value]::-moz-progress-bar{background-color:#009688;}
+progress[value]::-ms-fill{background-color:#009688;}
+
+.avatar.circle.color-avatar, .user-avatar.circle {filter: brightness(80%);}
+
+.breadcrumb-item a, .datepicker-day-button:focus
+{color: #80cbc4;}

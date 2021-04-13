@@ -24,90 +24,94 @@
 {% endblock %}
 
 {% block content %}
-    <div class="collection-header">
-        <div class="title-block">
-            <div class="left">
-                {% if album.image != null %}
-                    <img class="thumbnail avatar" src="{{ asset(album.image) }}">
-                {% else %}
-                    <span class="thumbnail color-avatar circle avatar color-{{ album.color }}">{{album.title|first|upper}}</span>
-                {% endif %}
-            </div>
-            <div class="right">
-                <h1>{{ album.title }}</h1>
-                <ul class="nav nav-pills">
-                    <li>{{ 'counter.photo'|trans({'%count%': getCounters(album).items}) }}</li>
-                    <li>{{ 'counter.album'|trans({'%count%': getCounters(album).children}) }}</li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <div></div>
-
-        <div class="btn-holder">
-            <div class="left">
-                {% if context == 'default' %}
-                    <a href="{{ path('app_photo_add', {'album': album.id}) }}" class="button" title="{{ 'tooltip.add_photo'|trans }}">
-                        <i class="fa fa-plus fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_album_add', {'parent': album.id} ) }}" class="button" title="{{ 'tooltip.add_album'|trans }}">
-                        <i class="fa fa-folder fa-fw"></i>
-                    </a>
-                    <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
-                        <i class="fa fa-pencil fa-fw"></i>
-                    </a>
-                    <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                        <i class="fa fa-trash fa-fw"></i>
-                    </a>
-
-                    {% if isFeatureEnabled('history') %}
-                        <a href="{{ path('app_album_history', {'id': album.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                            <i class="fa fa-history fa-fw"></i>
-                        </a>
+    <div {{ stimulus_controller('filter') }}>
+        <div class="collection-header">
+            <div class="title-block">
+                <div class="left">
+                    {% if album.image != null %}
+                        <img class="thumbnail avatar" src="{{ asset(album.image) }}">
+                    {% else %}
+                        <span class="thumbnail color-avatar circle avatar color-{{ album.color }}">{{album.title|first|upper}}</span>
                     {% endif %}
-                    <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
-                {% endif %}
+                </div>
+                <div class="right">
+                    <h1>{{ album.title }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.photo'|trans({'%count%': getCounters(album).items}) }}</li>
+                        <li>{{ 'counter.album'|trans({'%count%': getCounters(album).children}) }}</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="right">
-                <input class="filter-input js-filter-input" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_photo_add', {'album': album.id}) }}" class="button" title="{{ 'tooltip.add_photo'|trans }}">
+                            <i class="fa fa-plus fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_album_add', {'parent': album.id} ) }}" class="button" title="{{ 'tooltip.add_album'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+
+                        {% if isFeatureEnabled('history') %}
+                            <a href="{{ path('app_album_history', {'id': album.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
+                                <i class="fa fa-history fa-fw"></i>
+                            </a>
+                        {% endif %}
+                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                    {% endif %}
+                </div>
+                <div class="right">
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
         </div>
-    </div>
 
-    <div class="content-block">
-        <!-- Child collections -->
-        {% if children is not empty %}
-            <div class="block-element">
-                <h2 class="header">{{ 'title.album_children'|trans }}</h2>
-                <div class="collections grid-container-collections">
-                    {{ include('App/Album/_list.html.twig', {'albums': children|naturalSorting}) }}
+        <div class="content-block">
+            <!-- Child collections -->
+            {% if children is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ 'title.album_children'|trans }}</h2>
+                    <div class="collections grid-container-collections">
+                        {{ include('App/Album/_list.html.twig', {'albums': children|naturalSorting}) }}
+                    </div>
                 </div>
-            </div>
-        {% endif %}
+            {% endif %}
 
-        {% if photos is not empty %}
-            <div class="block-element">
-                <h2 class="header">{{ 'title.photos'|trans }}</h2>
-                <div id="collection-items" class="grid-container-items">
-                    {% for photo in photos %}
-                        <div class="collection-item element valign-wrapper" data-title="{{ photo.title }}">
-                            {% set photoText = include('App/Album/_photo_text.html.twig') %}
-                            {% if photo.image %}
-                                <a href="{{ asset(photo.image) }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
-                                    {{ macros.lazyImage(photo.imageSmallThumbnail, 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
+            {% if photos is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ 'title.photos'|trans }}</h2>
+                    <div id="collection-items" class="grid-container-items" {{ stimulus_controller('lightbox') }}>
+                        {% for photo in photos %}
+                                {% set photoText = include('App/Album/_photo_text.html.twig') %}
+                                <a class="collection-item element valign-wrapper"
+                                   href="{{ asset(photo.image|default('build/images/default.png')) }}"
+                                   data-lightbox-target="image"
+                                   {% if context == 'default' %}
+                                       data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
+                                       data-delete-id="{{ 'delete-' ~ photo.id }}"
+                                   {% endif %}
+                                   data-sub-html="{{ photoText }}"
+                                   data-title="{{ photo.title }}"
+                                   data-filter-target="element"
+                                >
+                                    {{ macros.lazyImage(photo.imageSmallThumbnail|default('build/images/default.png'), 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
                                 </a>
-                            {% else %}
-                                <a href="{{ asset('build/images/default.png') }}" data-lightbox="image-{{ photo.id }}" data-title="{{ photoText }}">
-                                    <img class="preview-image" src="{{ asset('../build/images/default.png') }}" aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}" />
-                                </a>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 

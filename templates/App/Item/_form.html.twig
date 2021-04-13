@@ -10,7 +10,7 @@
                 {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default }) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.collection, {'label' : 'label.collection'}) }}
+                {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select--default'}}) }}
             </div>
         </div>
 
@@ -19,41 +19,53 @@
                 {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility'} ) }}
+                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--default'}} ) }}
             </div>
         </div>
 
         {% if isFeatureEnabled('tags') %}
             <div class="row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3 js-tag-autocomplete">
+                <div class="col s12 l10 offset-l1 xl6 offset-xl3" {{ stimulus_controller('autocomplete--tag') }}>
                     <div class="input-field">
-                        <input type="text" id="tagsAutocomplete" class="js-autocomplete-input" autocomplete="off">
+                        <input type="text" data-autocomplete--tag-target="input" data-action="keyup->autocomplete--tag#autocomplete keydown->autocomplete--tag#preventDefault" autocomplete="off">
                         {{ form_label(form.tags, 'label.tags') }}
-                        <div class="js-autocomplete-result ac-tags">
-                        </div>
+                        <div data-autocomplete--tag-target="result" class="ac-tags"></div>
                     </div>
-                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden js-autocomplete-form-input'}}) }}
+                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden', 'data-autocomplete--tag-target': 'formInput'}}) }}
                 </div>
             </div>
         {% endif %}
     </div>
 
-    <div class="content-block">
+    <div class="content-block" {{ stimulus_controller('additional-data') }} data-entity="item">
         <div class="row">
             <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h2>
         </div>
 
-        <div class="row js-data-actions" data-entity="item">
+        <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                 {% if isFeatureEnabled('templates') %}
-                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {'class' : 'selectTemplate'}}) }}
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
+                        'data-controller': 'select--default',
+                        'data-action': 'change->additional-data#loadTemplateFields'
+                    }}) }}
                 {% endif %}
             </div>
             <div class="col s12 l3 xl2">
-                <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_common_fields'|trans }}</button>
+                <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey"
+                        data-collection-id="{{ collection is defined ? collection.id }}"
+                        data-action="additional-data#loadCommonFields"
+                >
+                    {{ 'btn.apply_common_fields'|trans }}
+                </button>
             </div>
             <div class="col s12 l3 xl2">
-                <button class="btn waves-effect waves-light align-with-inputs js-btn-collection-fields grey" data-collection-id="{{ collection is defined ? collection.id }}">{{ 'btn.apply_collection_fields'|trans }}</button>
+                <button class="btn waves-effect waves-light align-with-inputs js-btn-collection-fields grey"
+                        data-collection-id="{{ collection is defined ? collection.id }}"
+                        data-action="additional-data#loadCollectionFields"
+                >
+                    {{ 'btn.apply_collection_fields'|trans }}
+                </button>
             </div>
         </div>
 
@@ -66,19 +78,19 @@
         </div>
 
         <div class="row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3 js-item-autocomplete">
-                <div class="js-autocomplete-result ac-tags">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3" {{ stimulus_controller('autocomplete--item') }}>
+                <div class="ac-tags">
                     <table class="centered striped">
-                        <tbody>
+                        <tbody data-autocomplete--item-target="result">
                         </tbody>
                     </table>
                 </div>
 
                 <div class="input-field">
                     {{ form_label(form.relatedItems, 'label.related_items') }}
-                    <input type="text" id="itemsAutocomplete" class="js-autocomplete-input" autocomplete="off">
+                    <input type="text" data-autocomplete--item-target="input" data-action="keyup->autocomplete--item#autocomplete keydown->autocomplete--item#preventDefault" autocomplete="off">
                 </div>
-                {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden js-autocomplete-form-input'}}) }}
+                {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--item-target': 'formInput'}}) }}
             </div>
         </div>
 
