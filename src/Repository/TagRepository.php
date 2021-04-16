@@ -55,7 +55,7 @@ class TagRepository extends EntityRepository
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
-        if (\in_array($context, ['user', 'preview'])) {
+        if ($context === 'user') {
             $qb->having('count(i.id) > 0');
         }
 
@@ -77,7 +77,7 @@ class TagRepository extends EntityRepository
             ->from(Tag::class, 't')
         ;
 
-        if (\in_array($context, ['user', 'preview'])) {
+        if ($context === 'user') {
             $qb
                 ->innerJoin('t.items', 'i')
                 ->having('count(i.id) > 1')

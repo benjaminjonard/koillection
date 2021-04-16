@@ -18,14 +18,14 @@ class ContextHandler
     /**
      * Possible values are :
      * admin: Admin pages
-     * user: Public pages
-     * preview: Preview pages
+     * user: Shared pages
      * default: everything else
      */
     private string $context;
 
-    private ?User $user;
+    private ?User $user = null;
 
+    // Username linked to the current page
     private string $username;
 
     public function __construct(Environment $environment, RouterInterface $router)
@@ -38,7 +38,7 @@ class ContextHandler
     {
         preg_match("/^\/(\w+)/", $request->getRequestUri(), $matches);
 
-        if (isset($matches[1]) && \in_array($matches[1], ['user', 'preview', 'admin'])) {
+        if (isset($matches[1]) && \in_array($matches[1], ['user', 'admin'])) {
             $this->context = $matches[1];
         } else {
             $this->context = 'default';
@@ -55,7 +55,7 @@ class ContextHandler
 
     public function getRouteContext($route): string
     {
-        if (\in_array($this->context, ['user', 'preview'])) {
+        if ($this->context === 'user') {
             $route = str_replace('app_', 'app_'.$this->context.'_', $route);
         }
 
@@ -77,6 +77,11 @@ class ContextHandler
     public function getContext() : string
     {
         return $this->context;
+    }
+
+    public function isAuthorized() : string
+    {
+        return $this->isAuthorized();
     }
 
     public function getUsername(): ?string

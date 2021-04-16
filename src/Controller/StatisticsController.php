@@ -21,10 +21,6 @@ class StatisticsController extends AbstractController
         path: ['en' => '/user/{username}/statistics', 'fr' => '/utilisateur/{username}/statistiques'],
         name: 'app_user_statistics_index', methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview/statistics', 'fr' => '/apercu/statistiques'],
-        name: 'app_preview_statistics_index', methods: ['GET']
-    )]
     public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder, User $user = null) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['statistics']);

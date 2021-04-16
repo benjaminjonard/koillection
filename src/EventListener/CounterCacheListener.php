@@ -40,7 +40,7 @@ class CounterCacheListener
     private function resetCache($entity)
     {
         if ($entity instanceof CacheableInterface) {
-            $this->countersCache->reset();
+            $this->countersCache->invalidateCurrentUser();
         }
     }
 }
