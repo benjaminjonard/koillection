@@ -18,10 +18,6 @@ class SignController extends AbstractController
         path: ['en' => '/user/{username}/signs', 'fr' => '/utilisateur/{username}/dedicaces'],
         name: 'app_user_sign_index', methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview/signs', 'fr' => '/apercu/dedicaces'],
-        name: 'app_preview_sign_index', methods: ['GET']
-    )]
     public function index() : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['signs']);

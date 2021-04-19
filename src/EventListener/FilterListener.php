@@ -31,9 +31,9 @@ class FilterListener
         $context = $this->contextHandler->getContext();
 
         //Visibility filter
-        if (\in_array($context, ['preview', 'user'], false)) {
+        if ($context === 'user') {
             $filter = $filters->enable('visibility');
-            $filter->setParameter('context', $context, 'string');
+            $filter->setParameter('user', $this->security->getUser() instanceof User ? $this->security->getUser()->getId() : null, 'string');
         } elseif ($filters->isEnabled('visibility')) {
             $filters->disable('visibility');
         }
@@ -43,7 +43,7 @@ class FilterListener
         $user = $this->contextHandler->getContextUser();
         if ($user && $context !== 'admin') {
             $filter = $filters->enable('ownership');
-            $filter->setParameter('id', $user->getId(), 'integer');
+            $filter->setParameter('id', $user->getId(), 'string');
         } elseif ($filters->isEnabled('ownership')) {
             $filters->disable('ownership');
         }

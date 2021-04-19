@@ -29,10 +29,6 @@ class TagController extends AbstractController
         path: ['en' => '/user/{username}/tags', 'fr' => '/utilisateur/{username}/tags'],
         name: 'app_user_tag_index', methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview/tags', 'fr' => '/apercu/tags'],
-        name: 'app_preview_tag_index', methods: ['GET']
-    )]
     public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler, int $paginationItemsPerPage) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -72,10 +68,6 @@ class TagController extends AbstractController
     #[Route(
         path: ['en' => '/user/{username}/tags/{id}', 'fr' => '/utilisateur/{username}/tags/{id}'],
         name: 'app_user_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/preview/tags/{id}', 'fr' => '/apercu/tags/{id}'],
-        name: 'app_preview_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     #[Entity('tag', expr: 'repository.findWithItems(id)', class: Tag::class)]
     public function show(Tag $tag) : Response
@@ -178,10 +170,6 @@ class TagController extends AbstractController
     #[Route(
         path: ['en' => '/user/{username}/tags/{tagId}/items/{itemId', 'fr' => '/utilisateur/{username}tags/{tagId}/objets/{itemId}'],
         name: 'app_user_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => 'tags/{tagId}/items/{itemId}', 'fr' => 'tags/{tagId}/objets/{itemId}'],
-        name: 'app_preview_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]

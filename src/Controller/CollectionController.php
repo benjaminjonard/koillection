@@ -25,10 +25,6 @@ class CollectionController extends AbstractController
         path: ['en' => '/user/{username}', 'fr' => '/utilisateur/{username}'],
         name: 'app_user_collection_index', methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview', 'fr' => '/apercu'],
-        name: 'app_preview_collection_index', methods: ['GET']
-    )]
     public function index() : Response
     {
         $collections = $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => null], ['title' => 'ASC']);
@@ -85,10 +81,6 @@ class CollectionController extends AbstractController
         path: ['en' => '/user/{username}/{id}', 'fr' => '/utilisateur/{username}/{id}'],
         name: 'app_user_collection_show', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview/{id}', 'fr' => '/apercu/{id}'],
-        name: 'app_preview_collection_show', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
-    )]
     public function show(Collection $collection) : Response
     {
         return $this->render('App/Collection/show.html.twig', [
@@ -105,10 +97,6 @@ class CollectionController extends AbstractController
     #[Route(
         path: ['en' => '/user/{username}/{id}/items', 'fr' => '/utilisateur/{username}/{id}/objets'],
         name: 'app_user_collection_items', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/preview/{id}/items', 'fr' => '/apercu/{id}/objets'],
-        name: 'app_preview_collection_items', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
     )]
     public function items(Collection $collection) : Response
     {

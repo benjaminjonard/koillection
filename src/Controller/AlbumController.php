@@ -23,10 +23,6 @@ class AlbumController extends AbstractController
         path: ['en' => '/user/{username}/albums', 'fr' => '/utilisateur/{username}/albums'],
         name: 'app_user_album_index', methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview/albums', 'fr' => '/apercu/albums'],
-        name: 'app_preview_album_index', methods: ['GET']
-    )]
     public function index() : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -133,10 +129,6 @@ class AlbumController extends AbstractController
     #[Route(
         path: ['en' => '/user/{username}/albums/{id}', 'fr' => '/utilisateur/{username}/albums/{id}'],
         name: 'app_user_album_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/preview/albums/{id}', 'fr' => '/apercu/albums/{id}'],
-        name: 'app_preview_album_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     public function show(Album $album) : Response
     {

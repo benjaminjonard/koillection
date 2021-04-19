@@ -67,7 +67,6 @@
     <unit id="SZRa31V" name="aria.album">
       <notes>
         <note category="file-source" priority="1">templates/App/User/albums.html.twig:37</note>
-        <note category="file-source" priority="1">templates/App/Preview/albums.html.twig:37</note>
         <note category="file-source" priority="1">templates/App/Album/index.html.twig:43</note>
       </notes>
       <segment>
@@ -89,7 +88,6 @@
     <unit id="aN._RWq" name="aria.collection">
       <notes>
         <note category="file-source" priority="1">templates/App/User/partials/collection.html.twig:2</note>
-        <note category="file-source" priority="1">templates/App/Preview/partials/collection.html.twig:2</note>
         <note category="file-source" priority="1">templates/App/Collection/partials/collection.html.twig:2</note>
       </notes>
       <segment>
@@ -109,7 +107,6 @@
     <unit id="eJUcXot" name="aria.datum_sign_thumbnail">
       <notes>
         <note category="file-source" priority="1">templates/App/User/signs.html.twig:23</note>
-        <note category="file-source" priority="1">templates/App/Preview/signs.html.twig:23</note>
         <note category="file-source" priority="1">templates/App/Datum/sign.html.twig:16</note>
         <note category="file-source" priority="1">templates/App/Sign/index.html.twig:30</note>
       </notes>
@@ -150,7 +147,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Item/show.html.twig:67</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:40</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:40</note>
       </notes>
       <segment>
         <source>aria.item_image_thumbnail</source>
@@ -161,7 +157,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Item/show.html.twig:52</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:25</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:25</note>
       </notes>
       <segment>
         <source>aria.item_main_image</source>
@@ -172,7 +167,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Item/show.html.twig:61</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:34</note>
       </notes>
       <segment>
         <source>aria.item_main_image_thumbnail</source>
@@ -185,8 +179,6 @@
         <note category="file-source" priority="1">templates/App/Tag/show.html.twig:66</note>
         <note category="file-source" priority="1">templates/App/User/tag.html.twig:54</note>
         <note category="file-source" priority="1">templates/App/User/collection.html.twig:63</note>
-        <note category="file-source" priority="1">templates/App/Preview/tag.html.twig:54</note>
-        <note category="file-source" priority="1">templates/App/Preview/collection.html.twig:63</note>
         <note category="file-source" priority="1">templates/App/Template/show.html.twig:53</note>
         <note category="file-source" priority="1">templates/App/Collection/items.html.twig:54</note>
         <note category="file-source" priority="1">templates/App/Collection/show.html.twig:91</note>
@@ -199,7 +191,6 @@
     <unit id="IMD9Qu2" name="aria.photo">
       <notes>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:44</note>
-        <note category="file-source" priority="1">templates/App/Preview/album.html.twig:44</note>
         <note category="file-source" priority="1">templates/App/Album/show.html.twig:56</note>
       </notes>
       <segment>
@@ -211,7 +202,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Item/show.html.twig:97</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:70</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:70</note>
       </notes>
       <segment>
         <source>aria.tag</source>
@@ -222,7 +212,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Tag/show.html.twig:49</note>
         <note category="file-source" priority="1">templates/App/User/tag.html.twig:37</note>
-        <note category="file-source" priority="1">templates/App/Preview/tag.html.twig:37</note>
       </notes>
       <segment>
         <source>aria.tag_thumbnail</source>
@@ -233,7 +222,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Wishlist/partials/list.html.twig:3</note>
         <note category="file-source" priority="1">templates/App/User/partials/list-wishlists.html.twig:3</note>
-        <note category="file-source" priority="1">templates/App/Preview/partials/list-wishlists.html.twig:3</note>
       </notes>
       <segment>
         <source>aria.wishlist</source>
@@ -244,7 +232,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:79</note>
         <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:64</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlist.html.twig:64</note>
       </notes>
       <segment>
         <source>aria.wish_thumbnail</source>
@@ -568,7 +555,6 @@
     <unit id="9N4x.TV" name="counter.album">
       <notes>
         <note category="file-source" priority="1">templates/App/User/albums.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Preview/albums.html.twig:19</note>
         <note category="file-source" priority="1">templates/App/Album/index.html.twig:19</note>
       </notes>
       <segment>
@@ -581,9 +567,6 @@
         <note category="file-source" priority="1">templates/App/User/collections.html.twig:19</note>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:18</note>
         <note category="file-source" priority="1">templates/App/User/collection.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Preview/collections.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Preview/collection.html.twig:27</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:18</note>
         <note category="file-source" priority="1">templates/App/Collection/index.html.twig:19</note>
         <note category="file-source" priority="1">templates/App/Collection/show.html.twig:28</note>
@@ -602,11 +585,6 @@
         <note category="file-source" priority="1">templates/App/User/partials/collection.html.twig:11</note>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:19</note>
         <note category="file-source" priority="1">templates/App/User/collection.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/Preview/tag.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Preview/collections.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Preview/partials/collection.html.twig:11</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Preview/collection.html.twig:26</note>
         <note category="file-source" priority="1">templates/App/Template/index.html.twig:50</note>
         <note category="file-source" priority="1">templates/App/Template/show.html.twig:19</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:19</note>
@@ -634,9 +612,6 @@
         <note category="file-source" priority="1">templates/App/User/albums.html.twig:18</note>
         <note category="file-source" priority="1">templates/App/User/albums.html.twig:42</note>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:23</note>
-        <note category="file-source" priority="1">templates/App/Preview/albums.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Preview/albums.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Preview/album.html.twig:23</note>
         <note category="file-source" priority="1">templates/App/Album/index.html.twig:18</note>
         <note category="file-source" priority="1">templates/App/Album/index.html.twig:48</note>
         <note category="file-source" priority="1">templates/App/Album/show.html.twig:23</note>
@@ -660,8 +635,6 @@
         <note category="file-source" priority="1">templates/App/Tag/index.html.twig:18</note>
         <note category="file-source" priority="1">templates/App/User/tags.html.twig:18</note>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:20</note>
-        <note category="file-source" priority="1">templates/App/Preview/tags.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:20</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:20</note>
       </notes>
       <segment>
@@ -694,8 +667,6 @@
         <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:27</note>
         <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:27</note>
         <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlist.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlists.html.twig:19</note>
       </notes>
       <segment>
         <source>counter.wishlist</source>
@@ -710,9 +681,6 @@
         <note category="file-source" priority="1">templates/App/User/partials/list-wishlists.html.twig:12</note>
         <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:26</note>
         <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Preview/partials/list-wishlists.html.twig:12</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlist.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlists.html.twig:18</note>
       </notes>
       <segment>
         <source>counter.wish</source>
@@ -722,7 +690,6 @@
     <unit id="Ul2mR7j" name="counter.sign">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:21</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:21</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:21</note>
       </notes>
       <segment>
@@ -788,13 +755,6 @@
         <note category="file-source" priority="1">templates/App/User/collection.html.twig:37</note>
         <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:37</note>
         <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Preview/tag.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/Preview/collections.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Preview/tags.html.twig:32</note>
-        <note category="file-source" priority="1">templates/App/Preview/albums.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Preview/collection.html.twig:37</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlist.html.twig:37</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlists.html.twig:27</note>
         <note category="file-source" priority="1">templates/App/Template/index.html.twig:31</note>
         <note category="file-source" priority="1">templates/App/Album/index.html.twig:33</note>
         <note category="file-source" priority="1">templates/App/Collection/index.html.twig:36</note>
@@ -820,7 +780,6 @@
         <note category="file-source" priority="1">templates/App/Item/history.html.twig:24</note>
         <note category="file-source" priority="1">templates/App/Item/show.html.twig:23</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:17</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:17</note>
       </notes>
       <segment>
         <source>global.created_at</source>
@@ -832,7 +791,6 @@
         <note category="file-source" priority="1">templates/App/Item/history.html.twig:25</note>
         <note category="file-source" priority="1">templates/App/Item/show.html.twig:24</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:17</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:17</note>
       </notes>
       <segment>
         <source>global.updated_at</source>
@@ -1287,7 +1245,6 @@
     <unit id="WqTho4C" name="label.comment">
       <notes>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Preview/album.html.twig:43</note>
         <note category="file-source" priority="1">templates/App/Album/show.html.twig:55</note>
       </notes>
       <segment>
@@ -1318,7 +1275,6 @@
         <note category="file-source" priority="1">templates/App/Search/index.html.twig:88</note>
         <note category="file-source" priority="1">templates/App/Tag/index.html.twig:44</note>
         <note category="file-source" priority="1">templates/App/User/tags.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Preview/tags.html.twig:43</note>
       </notes>
       <segment>
         <source>label.description</source>
@@ -1501,7 +1457,6 @@
         <note category="file-source" priority="1">templates/App/Search/index.html.twig:87</note>
         <note category="file-source" priority="1">templates/App/Tag/index.html.twig:43</note>
         <note category="file-source" priority="1">templates/App/User/tags.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Preview/tags.html.twig:42</note>
         <note category="file-source" priority="1">templates/App/Template/index.html.twig:40</note>
         <note category="file-source" priority="1">templates/App/Loan/index.html.twig:39</note>
         <note category="file-source" priority="1">templates/App/Loan/index.html.twig:67</note>
@@ -1529,9 +1484,6 @@
         <note category="file-source" priority="1">templates/App/User/item.html.twig:24</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:27</note>
         <note category="file-source" priority="1">templates/App/User/item.html.twig:33</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:24</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Preview/item.html.twig:33</note>
       </notes>
       <segment>
         <source>label.main_image</source>
@@ -1543,7 +1495,6 @@
         <note category="file-source" priority="1">templates/App/Search/index.html.twig:89</note>
         <note category="file-source" priority="1">templates/App/Tag/index.html.twig:45</note>
         <note category="file-source" priority="1">templates/App/User/tags.html.twig:44</note>
-        <note category="file-source" priority="1">templates/App/Preview/tags.html.twig:44</note>
       </notes>
       <segment>
         <source>label.number_of_items</source>
@@ -1573,7 +1524,6 @@
         <note category="file-source" priority="1">templates/App/Search/index.html.twig:90</note>
         <note category="file-source" priority="1">templates/App/Tag/index.html.twig:46</note>
         <note category="file-source" priority="1">templates/App/User/tags.html.twig:45</note>
-        <note category="file-source" priority="1">templates/App/Preview/tags.html.twig:45</note>
       </notes>
       <segment>
         <source>label.percent_of_items</source>
@@ -1583,7 +1533,6 @@
     <unit id="2.APxMI" name="label.place">
       <notes>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Preview/album.html.twig:43</note>
         <note category="file-source" priority="1">templates/App/Album/show.html.twig:55</note>
       </notes>
       <segment>
@@ -1666,7 +1615,6 @@
     <unit id="vpeY2jo" name="label.taken_at">
       <notes>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Preview/album.html.twig:43</note>
         <note category="file-source" priority="1">templates/App/Album/show.html.twig:55</note>
       </notes>
       <segment>
@@ -2076,25 +2024,12 @@
     </unit>
     <unit id="5hMk7ux" name="menu.albums">
       <notes>
-        <note category="file-source" priority="1">templates/layout-preview.html.twig:29</note>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:25</note>
-        <note category="file-source" priority="1">templates/layout-user.html.twig:29</note>
         <note category="file-source" priority="1">templates/App/User/albums.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Preview/albums.html.twig:16</note>
         <note category="file-source" priority="1">templates/App/Album/index.html.twig:16</note>
       </notes>
       <segment>
         <source>menu.albums</source>
         <target>Albums</target>
-      </segment>
-    </unit>
-    <unit id="6JAUdEU" name="menu.albums_preview">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.albums_preview</source>
-        <target>Preview (albums)</target>
       </segment>
     </unit>
     <unit id="Nl_I6SL" name="menu.albums_user">
@@ -2108,25 +2043,12 @@
     </unit>
     <unit id="MW4FPxn" name="menu.collections">
       <notes>
-        <note category="file-source" priority="1">templates/layout-preview.html.twig:26</note>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:19</note>
-        <note category="file-source" priority="1">templates/layout-user.html.twig:26</note>
         <note category="file-source" priority="1">templates/App/User/collections.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Preview/collections.html.twig:16</note>
         <note category="file-source" priority="1">templates/App/Collection/index.html.twig:16</note>
       </notes>
       <segment>
         <source>menu.collections</source>
         <target>Collections</target>
-      </segment>
-    </unit>
-    <unit id="1Y.ovWx" name="menu.collections_preview">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.collections_preview</source>
-        <target>Preview (collection)</target>
       </segment>
     </unit>
     <unit id="GpXPEkO" name="menu.collections_user">
@@ -2136,15 +2058,6 @@
       <segment>
         <source>menu.collections_user</source>
         <target>%username%'s collections</target>
-      </segment>
-    </unit>
-    <unit id="k3EiIPt" name="menu.exit_preview">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-preview.html.twig:35</note>
-      </notes>
-      <segment>
-        <source>menu.exit_preview</source>
-        <target>Exit preview</target>
       </segment>
     </unit>
     <unit id="Q.3FoSC" name="menu.history">
@@ -2197,25 +2110,12 @@
     </unit>
     <unit id="HLevxj." name="menu.signs">
       <notes>
-        <note category="file-source" priority="1">templates/layout-preview.html.twig:31</note>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:23</note>
-        <note category="file-source" priority="1">templates/layout-user.html.twig:31</note>
         <note category="file-source" priority="1">templates/App/User/signs.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Preview/signs.html.twig:16</note>
         <note category="file-source" priority="1">templates/App/Sign/index.html.twig:16</note>
       </notes>
       <segment>
         <source>menu.signs</source>
         <target>Signs</target>
-      </segment>
-    </unit>
-    <unit id="._KwjST" name="menu.signs_preview">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.signs_preview</source>
-        <target>Preview (signs)</target>
       </segment>
     </unit>
     <unit id="ltgwfbq" name="menu.signs_user">
@@ -2229,25 +2129,12 @@
     </unit>
     <unit id="Bhx8Fvg" name="menu.statistics">
       <notes>
-        <note category="file-source" priority="1">templates/layout-preview.html.twig:33</note>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:26</note>
-        <note category="file-source" priority="1">templates/layout-user.html.twig:33</note>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:16</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:16</note>
       </notes>
       <segment>
         <source>menu.statistics</source>
         <target>Statistics</target>
-      </segment>
-    </unit>
-    <unit id="_CyP3Pc" name="menu.statistics_preview">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.statistics_preview</source>
-        <target>Preview (statistics)</target>
       </segment>
     </unit>
     <unit id="tk6udpx" name="menu.statistics_user">
@@ -2261,25 +2148,12 @@
     </unit>
     <unit id="yo4f8Kh" name="menu.tags">
       <notes>
-        <note category="file-source" priority="1">templates/layout-preview.html.twig:28</note>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:21</note>
-        <note category="file-source" priority="1">templates/layout-user.html.twig:28</note>
         <note category="file-source" priority="1">templates/App/Tag/index.html.twig:16</note>
         <note category="file-source" priority="1">templates/App/User/tags.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Preview/tags.html.twig:16</note>
       </notes>
       <segment>
         <source>menu.tags</source>
         <target>Tags</target>
-      </segment>
-    </unit>
-    <unit id="aET50_." name="menu.tags_preview">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.tags_preview</source>
-        <target>Preview (tags)</target>
       </segment>
     </unit>
     <unit id="xLcWFGm" name="menu.tags_user">
@@ -2303,25 +2177,12 @@
     </unit>
     <unit id="iaYlgE1" name="menu.wishlists">
       <notes>
-        <note category="file-source" priority="1">templates/layout-preview.html.twig:27</note>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:20</note>
-        <note category="file-source" priority="1">templates/layout-user.html.twig:27</note>
         <note category="file-source" priority="1">templates/App/Wishlist/index.html.twig:16</note>
         <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlists.html.twig:16</note>
       </notes>
       <segment>
         <source>menu.wishlists</source>
         <target>Wishlists</target>
-      </segment>
-    </unit>
-    <unit id="GLomX5y" name="menu.wishlists_preview">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.wishlists_preview</source>
-        <target>Preview (wishlists)</target>
       </segment>
     </unit>
     <unit id="vd.6dAz" name="menu.wishlists_user">
@@ -2618,15 +2479,6 @@
         <target>You can then set visibility per item or collection. To do so, please go on the element edition page.</target>
       </segment>
     </unit>
-    <unit id="Oh1.W9H" name="message.visibility_preview">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:28</note>
-      </notes>
-      <segment>
-        <source>message.visibility_preview</source>
-        <target>You can check what users will see when looking at your collection by clicking on the following link :</target>
-      </segment>
-    </unit>
     <unit id="9RoxCzk" name="message.wish_added">
       <notes>
         <note category="file-source" priority="1">src/Controller/WishController.php:62</note>
@@ -2785,7 +2637,6 @@
     <unit id="svM3vNY" name="title.charts.hours">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:34</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:54</note>
       </notes>
       <segment>
@@ -2796,7 +2647,6 @@
     <unit id="jZqCZ_K" name="title.charts.months">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:39</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:59</note>
       </notes>
       <segment>
@@ -2807,7 +2657,6 @@
     <unit id="_tdjWIj" name="title.charts.month_days">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:31</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:31</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:51</note>
       </notes>
       <segment>
@@ -2818,7 +2667,6 @@
     <unit id="Rb73VaV" name="title.charts.radial_tree">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:48</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:48</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:68</note>
       </notes>
       <segment>
@@ -2829,7 +2677,6 @@
     <unit id="yfwVi.I" name="title.charts.week_days">
       <notes>
         <note category="file-source" priority="1">templates/App/User/statistics.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Preview/statistics.html.twig:42</note>
         <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:62</note>
       </notes>
       <segment>
@@ -2840,7 +2687,6 @@
     <unit id="5_Yv1gK" name="title.children">
       <notes>
         <note category="file-source" priority="1">templates/App/User/collection.html.twig:46</note>
-        <note category="file-source" priority="1">templates/App/Preview/collection.html.twig:46</note>
         <note category="file-source" priority="1">templates/App/Collection/show.html.twig:74</note>
         <note category="file-source" priority="1">templates/App/Collection/show.html.twig:74</note>
         <note category="file-source" priority="1">templates/App/Collection/show.html.twig:74</note>
@@ -2948,7 +2794,6 @@
         <note category="file-source" priority="1">templates/App/Item/add.html.twig:25</note>
         <note category="file-source" priority="1">templates/App/Tag/show.html.twig:46</note>
         <note category="file-source" priority="1">templates/App/User/tag.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Preview/tag.html.twig:34</note>
         <note category="file-source" priority="1">templates/App/Template/edit.html.twig:24</note>
         <note category="file-source" priority="1">templates/App/Template/add.html.twig:24</note>
       </notes>
@@ -2963,8 +2808,6 @@
         <note category="file-source" priority="1">templates/App/Tag/show.html.twig:61</note>
         <note category="file-source" priority="1">templates/App/User/tag.html.twig:49</note>
         <note category="file-source" priority="1">templates/App/User/collection.html.twig:58</note>
-        <note category="file-source" priority="1">templates/App/Preview/tag.html.twig:49</note>
-        <note category="file-source" priority="1">templates/App/Preview/collection.html.twig:58</note>
         <note category="file-source" priority="1">templates/App/Template/show.html.twig:48</note>
         <note category="file-source" priority="1">templates/App/Collection/items.html.twig:49</note>
         <note category="file-source" priority="1">templates/App/Collection/show.html.twig:86</note>
@@ -3074,7 +2917,6 @@
     <unit id="wP6FDOU" name="title.photos">
       <notes>
         <note category="file-source" priority="1">templates/App/User/album.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Preview/album.html.twig:39</note>
         <note category="file-source" priority="1">templates/App/Album/show.html.twig:51</note>
       </notes>
       <segment>
@@ -3140,7 +2982,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:71</note>
         <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:56</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlist.html.twig:56</note>
       </notes>
       <segment>
         <source>title.wishes</source>
@@ -3160,7 +3001,6 @@
       <notes>
         <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:61</note>
         <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:46</note>
-        <note category="file-source" priority="1">templates/App/Preview/wishlist.html.twig:46</note>
       </notes>
       <segment>
         <source>title.wishlist_children</source>
@@ -4673,6 +4513,12 @@
       <segment>
         <source>btn.add_field</source>
         <target>Add a field</target>
+      </segment>
+    </unit>
+    <unit id="Ljs97etT" name="global.visibilities.authenticated_users_only">
+      <segment>
+        <source>global.visibilities.authenticated_users_only</source>
+        <target>Authenticated users</target>
       </segment>
     </unit>
   </file>
