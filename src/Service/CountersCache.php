@@ -30,7 +30,6 @@ class CountersCache
 
     public function getCounters($element): array
     {
-        $this->clear();
         $context = $this->contextHandler->getContext();
         $contextUserId = $this->contextHandler->getContextUser()->getId();
 
