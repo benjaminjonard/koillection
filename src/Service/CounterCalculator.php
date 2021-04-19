@@ -32,6 +32,7 @@ class CounterCalculator
 
     public function computeCounters() : array
     {
+        dump('ok');
         //Collections and items
         $tableName = $this->em->getClassMetadata(Collection::class)->getTableName();
         $itemTableName = $this->em->getClassMetadata(Item::class)->getTableName();

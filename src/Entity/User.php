@@ -266,7 +266,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
         $this->id = Uuid::uuid4();
         $this->roles = ['ROLE_USER'];
         $this->diskSpaceAllowed = 536870912;
-        $this->enabled = false;
+        $this->enabled = true;
         $this->currency = 'EUR';
         $this->locale = LocaleEnum::LOCALE_EN_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
