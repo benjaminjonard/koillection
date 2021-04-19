@@ -34,11 +34,12 @@ class CountersCache
         $contextUserId = $this->contextHandler->getContextUser()->getId();
 
         $key = '';
+        $cacheKey = $contextUserId. '_' . $context;
         if ($context === 'user') {
             $key .= $this->security->getUser() instanceof User ? 'authenticated_' : 'anonymous_';
+            $cacheKey .= $this->security->getUser() instanceof User ? '_authenticated' : '_anonymous';
         }
 
-        $cacheKey = $contextUserId. '_' . $context;
         $counters = $this->cache->get($cacheKey, function (ItemInterface $item) use ($key, $contextUserId) {
             $counters = [];
 
