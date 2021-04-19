@@ -25,7 +25,7 @@ class ContextRuntime implements RuntimeExtensionInterface
     {
         $context = $this->contextHandler->getContext();
 
-        if (\in_array($context, ['user', 'preview'])) {
+        if ($context === 'user') {
             $trans .= '_'.$context;
         }
 

@@ -84,10 +84,6 @@ class ItemController extends AbstractController
         path: ['en' => '/user/{username}/items/{id}', 'fr' => '/utilisateur/{username}/objets/{id}'],
         name: 'app_user_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview/items/{id}', 'fr' => '/apercu/objets/{id}'],
-        name: 'app_preview_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
-    )]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function show(Item $item) : Response
     {

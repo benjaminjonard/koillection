@@ -4,48 +4,70 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\User;
 use Symfony\Component\Cache\Adapter\ApcuAdapter;
+use Symfony\Component\Cache\Adapter\TagAwareAdapter;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Cache\ItemInterface;
 
 class CountersCache
 {
-    private ApcuAdapter $cache;
+    private TagAwareAdapter $cache;
 
     private CounterCalculator $calculator;
 
     private ContextHandler $contextHandler;
 
-    public function __construct(CounterCalculator $calculator, ContextHandler $contextHandler)
+    private Security $security;
+
+    public function __construct(CounterCalculator $calculator, ContextHandler $contextHandler, Security $security)
     {
-        $this->cache = new ApcuAdapter();
+        $this->cache = new TagAwareAdapter(new ApcuAdapter());
         $this->calculator = $calculator;
         $this->contextHandler = $contextHandler;
+        $this->security = $security;
     }
 
     public function getCounters($element): array
     {
+        $this->clear();
         $context = $this->contextHandler->getContext();
+        $contextUserId = $this->contextHandler->getContextUser()->getId();
 
-        if (is_object($element)) {
-            $key = $context . '_' . $element->getId();
-        } else {
-            $key = $context . '_' . $element;
+        $key = '';
+        if ($context === 'user') {
+            $key .= $this->security->getUser() instanceof User ? 'authenticated_' : 'anonymous_';
         }
 
-        $counters = $this->cache->get($context.'_counters', function () use ($context) {
+        $cacheKey = $contextUserId. '_' . $context;
+        $counters = $this->cache->get($cacheKey, function (ItemInterface $item) use ($key, $contextUserId) {
             $counters = [];
+
             foreach ($this->calculator->computeCounters() as $id => $counter) {
-                $counters[$context . '_' . $id] = $counter;
+                $counters[$key . $id] = $counter;
             }
+
+            $item->tag($contextUserId);
 
             return $counters;
         });
 
+        if (is_object($element)) {
+            $key .= $element->getId();
+        } else {
+            $key .= $element;
+        }
+
         return $counters[$key];
     }
 
-    public function reset()
+    public function clear()
     {
-        $this->cache->deleteItems(['default_counters', 'preview_counters', 'user_counters', 'admin_counters']);
+        $this->cache->clear();
+    }
+
+    public function invalidateCurrentUser()
+    {
+        $this->cache->invalidateTags([$this->security->getUser()->getId()]);
     }
 }

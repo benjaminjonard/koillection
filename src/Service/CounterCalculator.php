@@ -73,9 +73,7 @@ class CounterCalculator
             WHERE $alias.owner_id = '$ownerId'
         ";
 
-        if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sql .= sprintf("AND %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
-        }
+        $this->addVisibilityCondition($sql, $alias, 'AND');
         $children = $this->em->createNativeQuery($sql, $rsm)->getResult()[0]['children'];
 
         $rsm = new ResultSetMapping();
@@ -88,9 +86,7 @@ class CounterCalculator
             WHERE $alias.owner_id = '$ownerId'
         ";
 
-        if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sql .= sprintf("AND %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
-        }
+        $this->addVisibilityCondition($sql, $alias, 'AND');
         $items = $this->em->createNativeQuery($sql, $rsm)->getResult()[0]['items'];
 
         $results[$cacheIndexName] = [
@@ -117,9 +113,7 @@ class CounterCalculator
             WHERE $alias.owner_id = '$ownerId'
         ";
 
-        if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sql .= sprintf("AND %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
-        };
+        $this->addVisibilityCondition($sql, $alias, 'AND');
 
         $results = [];
         foreach ($this->em->createNativeQuery($sql, $rsm)->getResult() as $id => $result) {
@@ -145,9 +139,8 @@ class CounterCalculator
         $i2 = $this->qng->generateJoinAlias('i');
 
         $visibilityCondition = '';
-        if ($this->em->getFilters()->isEnabled('visibility')) {
-            $visibilityCondition = sprintf(" AND %s.visibility = '%s'", $i1, VisibilityEnum::VISIBILITY_PUBLIC);
-        };
+        $this->addVisibilityCondition($visibilityCondition, $i1, 'AND');
+
 
         $sql = "
             WITH RECURSIVE counters AS (
@@ -163,11 +156,23 @@ class CounterCalculator
             ) SELECT CONCAT(COUNT(DISTINCT id) - 1, '-' , COUNT(DISTINCT item_id)) FROM counters $ch2
         ";
 
-        if ($this->em->getFilters()->isEnabled('visibility')) {
-            $sql .= sprintf("WHERE %s.visibility = '%s'", $ch2, VisibilityEnum::VISIBILITY_PUBLIC);
-        };
-
+        $this->addVisibilityCondition($sql, $ch2, 'WHERE');
 
         return $sql;
+    }
+
+    private function addVisibilityCondition(&$sql, $alias, $condition)
+    {
+        if ($this->em->getFilters()->isEnabled('visibility')) {
+            if ($this->em->getFilters()->getFilter('visibility')->getParameter('user') === "''") {
+                $sql .= sprintf("$condition %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
+            } else {
+                $sql .= sprintf("$condition %s.visibility IN ('%s', '%s')",
+                    $alias,
+                    VisibilityEnum::VISIBILITY_PUBLIC,
+                    VisibilityEnum::VISIBILITY_AUTHENTICATED_USERS_ONLY
+                );
+            }
+        }
     }
 }

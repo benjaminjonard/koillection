@@ -23,10 +23,6 @@ class WishlistController extends AbstractController
         path: ['en' => '/user/{username}/wishlists', 'fr' => '/utilisateur/{username}/listes-de-souhaits'],
         name: 'app_user_wishlist_index', methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/preview/wishlists', 'fr' => '/apercu/listes-de-souhaits'],
-        name: 'app_preview_wishlist_index', methods: ['GET']
-    )]
     public function index() : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -83,10 +79,6 @@ class WishlistController extends AbstractController
     #[Route(
         path: ['en' => '/user/{username}/wishlists/{id}', 'fr' => '/utilisateur/{username}/listes-de-souhaits/{id}'],
         name: 'app_user_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/preview/wishlists/{id}', 'fr' => '/apercu/listes-de-souhaits/{id}'],
-        name: 'app_preview_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     public function show(Wishlist $wishlist) : Response
     {
