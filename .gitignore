@@ -23,6 +23,8 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
+/assets/stats.json
+
 /public/uploads/*
 !/public/uploads/.gitkeep
 /public/tmp/*

@@ -1,5 +1,7 @@
 import Lightbox from "stimulus-lightbox"
+import '../node_modules/lightgallery.js/dist/css/lightgallery.min.css';
 
+/* stimulusFetch: 'lazy' */
 export default class extends Lightbox {
     static targets = ['image'];
 

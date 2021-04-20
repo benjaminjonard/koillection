@@ -1,6 +1,8 @@
 import { Controller } from 'stimulus';
 import Croppie from 'croppie'
+import '../node_modules/croppie/croppie.css';
 
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static targets = ['area', 'input', 'preview'];
 

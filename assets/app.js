@@ -13,6 +13,4 @@ import './js/translations/javascript/fr-FR'
 
 // import third-party libraries
 import 'materialize-css'
-import 'croppie'
-import 'ts-select2'
 

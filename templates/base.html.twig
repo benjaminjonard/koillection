@@ -22,9 +22,6 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
         {{ encore_entry_link_tags(app.user and app.user.isInDarkMode ? 'dark-mode' : 'light-mode') }}
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            {{ encore_entry_link_tags('flags') }}
-        {% endif %}
     {% endblock %}
 
     {% block javascripts %}
