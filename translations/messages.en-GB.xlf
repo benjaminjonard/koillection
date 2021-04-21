@@ -4521,5 +4521,11 @@
         <target>Authenticated users</target>
       </segment>
     </unit>
+    <unit id="s9A621q" name="label.space_used_by_user">
+      <segment>
+        <source>label.space_used_by_user</source>
+        <target>Total space used by user</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
