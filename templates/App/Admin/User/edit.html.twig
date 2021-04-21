@@ -3,7 +3,7 @@
 {% set breadcrumb = buildBreadcrumb([
     {'route': 'app_admin_index', 'trans': 'menu.admin'},
     {'route': 'app_admin_user_index', 'trans': 'menu.users'}
-]) %}
+], user) %}
 
 {% block title %}
     {{ renderTitle(breadcrumb)  }}
@@ -21,8 +21,21 @@
     <div class="content-block">
         {{ include('/App/Admin/tabs.html.twig', {current: 'users'}) }}
         <div class="block-element">
-            <h2 class="header">{{ 'title.edit_user'|trans({'%user%': user.username}) }}</h2>
+            <h2 class="header">{{ 'title.overview'|trans }}</h2>
+            <div class="row statistics">
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'%count%': counters.albums}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'%count%': counters.photos}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'%count%': counters.signs}) }}</div>
+                <div class="col s12 m4 xl2"><div class="counter">{{ getSpaceUsedByUser(app.user)|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
+            </div>
+
             <div class="row">
+                <h2 class="header">{{ 'title.edit_user'|trans({'%user%': user.username}) }}</h2>
                 <div class="form">
                     {{ form_start(form) }}
                         {{ form_errors(form) }}
