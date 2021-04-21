@@ -4008,7 +4008,7 @@
     <unit id="I4vwwju" name="title.overview">
       <segment>
         <source>title.overview</source>
-        <target>Aperçu</target>
+        <target>Overview</target>
       </segment>
     </unit>
     <unit id="U8IBiON" name="menu.overview">

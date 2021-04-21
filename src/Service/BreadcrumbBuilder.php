@@ -7,6 +7,7 @@ namespace App\Service;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Entity\Wishlist;
 use App\Model\BreadcrumbElement;
 
@@ -35,7 +36,7 @@ class BreadcrumbBuilder
         $breadcrumbElement = new BreadcrumbElement();
         $breadcrumbElement->setType(BreadcrumbElement::TYPE_ENTITY)
             ->setLabel($entity->__toString())
-            ->setRoute('app_'.$class.'_show')
+            ->setRoute($entity instanceof User ? 'app_admin_user_index' : 'app_'.$class.'_show')
             ->setEntity($entity)
             ->setParams(['id' => $entity->getId()]);
 

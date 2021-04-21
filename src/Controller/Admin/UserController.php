@@ -5,7 +5,16 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
+use App\Entity\Album;
+use App\Entity\Collection;
+use App\Entity\Datum;
+use App\Entity\Item;
+use App\Entity\Photo;
+use App\Entity\Tag;
 use App\Entity\User;
+use App\Entity\Wish;
+use App\Entity\Wishlist;
+use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\Admin\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -73,9 +82,21 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
         }
 
+        $em = $this->getDoctrine()->getManager();
+
         return $this->render('App/Admin/User/edit.html.twig', [
             'user' => $user,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'counters' => [
+                'collections' => $em->getRepository(Collection::class)->count(['owner' => $user]),
+                'items' => $em->getRepository(Item::class)->count(['owner' => $user]),
+                'tags' => $em->getRepository(Tag::class)->count(['owner' => $user]),
+                'wishlists' => $em->getRepository(Wishlist::class)->count(['owner' => $user]),
+                'wishes' => $em->getRepository(Wish::class)->count(['owner' => $user]),
+                'albums' => $em->getRepository(Album::class)->count(['owner' => $user]),
+                'photos' => $em->getRepository(Photo::class)->count(['owner' => $user]),
+                'signs' => $em->getRepository(Datum::class)->count(['owner' => $user, 'type' => DatumTypeEnum::TYPE_SIGN]),
+            ],
         ]);
     }
     
