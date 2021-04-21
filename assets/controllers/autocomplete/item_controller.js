@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus';
+import { Autocomplete } from 'materialize-css';
 
 export default class extends Controller {
     static targets = ['input', 'formInput', 'result']
