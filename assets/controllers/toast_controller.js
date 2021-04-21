@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus';
+import { toast } from 'materialize-css';
 
 export default class extends Controller {
     connect() {
