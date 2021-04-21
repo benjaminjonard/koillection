@@ -216,9 +216,11 @@ button.align-with-inputs {margin-top: 25px;}
 .bar-charts .left-chart{max-width: 770px; float: left;}
 .bar-charts .right-chart{margin-left: 700px;}
 .bar-chart h2 {white-space: nowrap;}
-.calendar, #radial-tree, #items-evolution-chart {margin: auto;}
 .statistics-holder {width: 1600px; margin: auto;}
-.chart {margin-left: 98px;}
+.chart {margin-left: 98px; width: 650px; height:400px;}
+.line {margin: auto; width: 1530px; height:400px;;}
+.calendar {margin: auto; width: 1500px; height: 200px;}
+.tree {margin: auto; width: 1200px; height: 1200px;}
 
 .separation {margin: 20px 0; border-top: 1px solid #dce0e6}
 .locales a {color: #000000;}

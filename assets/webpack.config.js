@@ -22,7 +22,6 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './app.js')
-    .addEntry('statistics', './js/statistics.js')
 
     .addStyleEntry('export', './styles/export.css')
     .addStyleEntry('dark-mode', './styles/themes/dark-mode.css')
