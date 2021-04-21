@@ -11,6 +11,3 @@ import './js/translations/config'
 import './js/translations/javascript/en-GB'
 import './js/translations/javascript/fr-FR'
 
-// import third-party libraries
-import 'materialize-css'
-

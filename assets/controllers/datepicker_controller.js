@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus';
+import { Datepicker } from 'materialize-css';
 import Translator from "../js/translator.min";
 
 export default class extends Controller {
