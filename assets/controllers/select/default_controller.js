@@ -1,7 +1,9 @@
 import { Controller } from 'stimulus';
 import Translator from "../../js/translator.min";
 import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
+import '../../styles/select2.css'
 
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     connect() {
         let self = this;

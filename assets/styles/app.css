@@ -1,9 +1,6 @@
 @import '../fonts/font-awesome/font-awesome.css';
 
 @import '../node_modules/materialize-css/dist/css/materialize.min.css';
-@import '../node_modules/croppie/croppie.css';
-@import '../node_modules/lightgallery.js/dist/css/lightgallery.min.css';
 
-@import './select2.css';
 @import './main.css';
 @import './modal.css';

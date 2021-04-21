@@ -1,19 +1,20 @@
 # Cheat sheets
 
-#### Symfony
+## Symfony
 ###### Update javascript translations
 - `php bin/console bazinga:js-translation:dump assets/js --format=js`
 
+
+## Assets
+All in assets directory
 ###### Reload assets
-- `cd ./assets/ && yarn encore production`
+- `yarn build`
+###### Generate stats
+- `yarn run --silent build --json > stats.json`
+- `yarn webpack-bundle-analyzer stats.json ../public/build`
 
-#### Docker
-###### Push a new image to github repo
-- `docker build . --no-cache`
-- `docker tag {tag_returned_by_previous_command} docker.pkg.github.com/koillection/koillection/{image}:{tag}`
-- `docker push docker.pkg.github.com/koillection/koillection/{image}:{tag}`
 
-#### Tests
-##### PhpUnit
+## Tests
+###### PhpUnit
 - `php -d memory_limit=512M ./bin/phpunit --stderr`
 

@@ -1,5 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -25,22 +25,23 @@ Encore
     .addEntry('statistics', './js/statistics.js')
 
     .addStyleEntry('export', './styles/export.css')
-    .addStyleEntry('flags', './styles/flags.css')
     .addStyleEntry('dark-mode', './styles/themes/dark-mode.css')
     .addStyleEntry('light-mode', './styles/themes/light-mode.css')
 
-    .addPlugin(new CopyWebpackPlugin([
-        { from: './img', to: 'images', ignore: ['flags/**/*'] }
-    ]))
+    .addPlugin(new CopyPlugin({
+        patterns: [
+            { from: './img', to: 'images', globOptions: { ignore: ['**/flags/**'] }}
+        ]}
+    ))
 
     .configureImageRule({
         type: 'asset',
-        maxSize: 10 * 1024
+        maxSize: 10 * 1024 //10ko
     })
 
     .configureFontRule({
         type: 'asset',
-        maxSize: 10 * 1024
+        maxSize: 10 * 1024 //10ko
     })
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
@@ -90,7 +91,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    .autoProvidejQuery()
+    //.autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
