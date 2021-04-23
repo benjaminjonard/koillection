@@ -53,9 +53,16 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div id="calendars" data-json='{{ calendarData|json_encode() }}'></div>
+
                 {% for year, value in calendarData %}
-                    <div id="calendar_{{ year }}" class="panel calendar {{ loop.first ? 'current' }}" data-tabs-target="panel" data-name="calendar_{{ year }}" style="width: 1500px; height:200px;"></div>
+                    <div {{ stimulus_controller('statistics--calendar') }}
+                            data-tabs-target="panel"
+                            data-json="{{ value|json_encode() }}"
+                            data-name="calendar_{{ year }}"
+                            data-year="{{ year }}"
+                            class="panel calendar {{ loop.first ? 'current' }}"
+                            data-action="resize@window->statistics--calendar#resize"
+                    ></div>
                 {% endfor %}
             </div>
         </div>
@@ -65,42 +72,61 @@
             <div class="block-element bar-chart-row">
                 <div class="left-chart bar-chart">
                     <h2 class="statistics-title">{{ 'title.charts.month_days'|trans }}</h2>
-                    <div id="month-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthDaysChartData|json_encode() }}'></div>
+                    <div {{ stimulus_controller('statistics--bar') }}
+                            class="chart"
+                            data-json="{{ monthDaysChartData|json_encode() }}"
+                            data-action="resize@window->statistics--bar#resize"
+                    ></div>
                 </div>
                 <div class="right-chart bar-chart">
                     <h2 class="statistics-title">{{ 'title.charts.hours'|trans }}</h2>
-                    <div id="hours-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ hoursChartData|json_encode() }}'></div>
+                    <div {{ stimulus_controller('statistics--bar') }}
+                            class="chart"
+                            data-json='{{ hoursChartData|json_encode() }}'
+                            data-action="resize@window->statistics--bar#resize"
+                    ></div>
                 </div>
             </div>
             <div class="block-element bar-chart-row last">
                 <div class="left-chart bar-chart">
                     <h2 class="statistics-title">{{ 'title.charts.months'|trans }}</h2>
-                    <div id="months-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ monthsChartData|json_encode() }}'></div>
+                    <div {{ stimulus_controller('statistics--bar') }}
+                            class="chart"
+                            data-json='{{ monthsChartData|json_encode() }}'
+                            data-action="resize@window->statistics--bar#resize"
+                    ></div>
                 </div>
                 <div class="right-chart bar-chart">
                     <h2 class="statistics-title">{{ 'title.charts.week_days'|trans }}</h2>
-                    <div id="week-days-chart" class="chart" style="width: 650px; height:400px;" data-json='{{ weekDaysChartData|json_encode() }}'></div>
+                    <div {{ stimulus_controller('statistics--bar') }}
+                            class="chart"
+                            data-json='{{ weekDaysChartData|json_encode() }}'
+                            data-action="resize@window->statistics--bar#resize"
+                    ></div>
                 </div>
             </div>
 
             <div class="block-element bar-chart-row last">
                 <h2 class="statistics-title">{{ 'title.charts.items_evolution'|trans }}</h2>
-                <div id="items-evolution-chart" class="chart" style="width: 1530px; height:400px;" data-json='{{ itemsEvolutionData|json_encode() }}'></div>
+                <div {{ stimulus_controller('statistics--line') }}
+                        class="line"
+                        data-json='{{ itemsEvolutionData|json_encode() }}'
+                        data-action="resize@window->statistics--bar#resize"
+                ></div>
             </div>
         </div>
 
         <div class="content-block bar-charts">
             <div class="block-element bar-chart-row">
                 <h2 class="statistics-title">{{ 'title.charts.radial_tree'|trans }}</h2>
-                <div id="radial-tree" style="width: 1200px; height: 1200px;" data-json='{{ treeJson }}'></div>
+                <div {{ stimulus_controller('statistics--tree') }}
+                        class="tree"
+                        data-json='{{ treeJson }}'
+                        data-action="resize@window->statistics--bar#resize"
+                ></div>
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('statistics') }}
 {% endblock %}
 
 {% block modals %}

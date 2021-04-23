@@ -2,27 +2,18 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.cade2c94.js",
-        "/build/633.d8e18f97.js",
-        "/build/326.615dd829.js",
-        "/build/app.97e2ff89.js"
+        "/build/runtime.9a9eb82d.js",
+        "/build/244.f9379d05.js",
+        "/build/app.ae94a3c6.js"
       ],
       "css": [
-        "/build/326.a186f1ba.css",
-        "/build/app.d3e9859e.css"
-      ]
-    },
-    "statistics": {
-      "js": [
-        "/build/runtime.cade2c94.js",
-        "/build/633.d8e18f97.js",
-        "/build/870.3e1ff4bb.js",
-        "/build/statistics.73ad329f.js"
+        "/build/244.a186f1ba.css",
+        "/build/app.a4334d65.css"
       ]
     },
     "export": {
       "js": [
-        "/build/runtime.cade2c94.js"
+        "/build/runtime.9a9eb82d.js"
       ],
       "css": [
         "/build/export.01d59534.css"
@@ -30,7 +21,7 @@
     },
     "dark-mode": {
       "js": [
-        "/build/runtime.cade2c94.js"
+        "/build/runtime.9a9eb82d.js"
       ],
       "css": [
         "/build/dark-mode.1a39a23f.css"
@@ -38,7 +29,7 @@
     },
     "light-mode": {
       "js": [
-        "/build/runtime.cade2c94.js"
+        "/build/runtime.9a9eb82d.js"
       ],
       "css": [
         "/build/light-mode.c0e00ea6.css"
