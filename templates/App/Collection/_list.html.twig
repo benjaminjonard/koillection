@@ -9,7 +9,7 @@
                 <span class="color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
             {% endif %}
         </a>
-        <span class="collection-title">{{ collection.title|u.truncate(27) }}</span>
+        <span class="collection-title">{{ collection.title }}</span>
         <p class="collection-stats">
             {{ 'counter.item'|trans({'%count%': getCounters(collection).items}) }}
         </p>

@@ -4527,5 +4527,17 @@
         <target>Total space used by user</target>
       </segment>
     </unit>
+    <unit id="qiz8znv" name="label.item.from_collection">
+      <segment>
+        <source>label.item.from_collection</source>
+        <target>From collection :</target>
+      </segment>
+    </unit>
+    <unit id="0isen64" name="menu.return_to_user_collection">
+      <segment>
+        <source>menu.return_to_user_collection</source>
+        <target>Return to my collection</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -24,6 +24,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.fa-rotate-180 {
+  -webkit-transform: rotate(180deg); transform: rotate(180deg);
+}
+
 .fa-file-image-o:before {
   content: "\f1c5";
 }
@@ -117,6 +121,9 @@
 .fa-exchange:before {
   content: "\f0ec";
 }
+.fa-angle-double-right:before {
+  content: "\f101";
+}
 .fa-angle-left:before {
   content: "\f104";
 }
@@ -177,12 +184,15 @@
 .fa-star:before {
   content: "\f005";
 }
-.fa-star-half:before {
-  content: "\f089";
-}
 .fa-map-marker:before {
   content: "\f041";
 }
 .fa-calendar:before {
   content: "\f073";
+}
+.fa-star-half:before {
+  content: "\f089";
+}
+.fa-sign-out:before {
+  content: "\f08b";
 }
