@@ -4536,5 +4536,11 @@
         <target>Collection d'origine :</target>
       </segment>
     </unit>
+    <unit id="0isen64" name="menu.return_to_user_collection">
+      <segment>
+        <source>menu.return_to_user_collection</source>
+        <target>Retourner à ma collection</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

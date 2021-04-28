@@ -29,3 +29,11 @@
         <a href="{{ path('app_user_statistics_index') }}"><i class="fa fa-area-chart fa-fw"></i><span>{{ 'menu.statistics'|trans }}</span></a>
     </li>
 {% endif %}
+
+
+{% if app.user and context == 'user' %}
+    <li class="separate-item sidebar-element"><div></div></li>
+    <li class="sidebar-element">
+        <a href="{{ path('app_homepage') }}"><i class="fa fa-sign-out fa-fw fa-rotate-180"></i><span>{{ 'menu.return_to_user_collection'|trans }}</span></a>
+    </li>
+{% endif %}

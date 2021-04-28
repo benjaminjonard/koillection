@@ -6,7 +6,7 @@
         <div class="sidebar-wrapper">
             <div class="nav-wrapper">
                 <div class="header-logo">
-                    <a href="{{ path('app_homepage') }}">
+                    <a href="{{ path('app_homepage'|applyContext) }}">
                         <img class='logo' src="{{ asset('build/images/logo.svg') }}" aria-label="Logo" height="45" width="45">
                         <span>Koillection</span>
                     </a>
@@ -56,6 +56,7 @@
                     </div>
                 {% endif %}
             </header>
+
             <div class="container-fluid container-limited">
                 {% block content %}{% endblock %}
             </div>
