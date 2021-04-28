@@ -6,6 +6,14 @@
                 <span class="quantity">(x{{ item.quantity }})</span>
             {% endif %}
         </h1>
+        {% if displayCollection is defined and displayCollection == true %}
+            <div>
+                {{ 'label.item.from_collection'|trans }}
+                <a href="{{ path('app_collection_show'|applyContext, {id: item.collection.id} ) }}">
+                    {{ item.collection.title }}
+                </a>
+            </div>
+        {% endif %}
     </div>
 
     <div>

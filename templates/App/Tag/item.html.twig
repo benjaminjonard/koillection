@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block content %}
-    {{ include('App/Item/_content.html.twig') }}
+    {{ include('App/Item/_content.html.twig', { displayCollection: true }) }}
 
     <div class="navigation-block row">
         {% if previousItem is not null %}
