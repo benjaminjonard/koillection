@@ -5,7 +5,6 @@ import './styles/app.css';
 import './bootstrap';
 
 // import global JS
-import './js/lazy-loading'
 import './js/loader'
 import './js/translations/config'
 import './js/translations/javascript/en-GB'

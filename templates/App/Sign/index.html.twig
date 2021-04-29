@@ -1,6 +1,4 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
-
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_sign_index', 'trans': 'menu.signs'}]) %}
 
 {% block title %}
@@ -47,7 +45,13 @@
                    data-sub-html="{{ sign.item.name }} - {{ sign.label }}"
                    data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
                 >
-                    {{ macros.lazyImage(sign.imageSmallThumbnail, 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}), sign.label) }}
+                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
+                        <img alt="{{ sign.label }}"
+                             data-src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}"
+                             data-lazy-loading-target="image"
+                             aria-label="{{ 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}) }}"
+                        >
+                    </div>
                 </a>
             {% endfor %}
         </div>

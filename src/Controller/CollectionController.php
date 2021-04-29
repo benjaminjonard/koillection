@@ -26,10 +26,6 @@ class CollectionController extends AbstractController
         name: 'app_user_collection_index', methods: ['GET']
     )]
     #[Route(
-        path: ['en' => '', 'fr' => ''],
-        name: 'app_homepage', methods: ['GET']
-    )]
-    #[Route(
         path: ['en' => '/user/{username}', 'fr' => '/utilisateur/{username}'],
         name: 'app_user_homepage', methods: ['GET']
     )]

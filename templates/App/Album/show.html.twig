@@ -1,5 +1,4 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_album_index', 'trans': 'menu.albums'}], album) %}
 
@@ -105,7 +104,13 @@
                                    data-title="{{ photo.title }}"
                                    data-filter-target="element"
                                 >
-                                    {{ macros.lazyImage(photo.imageSmallThumbnail|default('build/images/default.png'), 'aria.photo'|trans({'%title%': photo.title}), photo.title) }}
+                                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
+                                        <img alt="{{ photo.title }}"
+                                             data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
+                                             data-lazy-loading-target="image"
+                                             aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}"
+                                        >
+                                    </div>
                                 </a>
                         {% endfor %}
                     </div>
