@@ -1,5 +1,4 @@
 {% extends 'layout.html.twig' %}
-{% import "macros.html.twig" as macros %}
 
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_search_index', 'trans': 'menu.search'}], null, form.vars.value.term is not null ? form.vars.value.term : null) %}
 
@@ -68,7 +67,13 @@
                         {% for item in results.items|naturalSorting %}
                             <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
                                 <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
-                                    {{ macros.lazyImage(item.imageSmallThumbnail, 'aria.item'|trans({'%name%': item.name}), item.name) }}
+                                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
+                                        <img alt="{{ item.name }}"
+                                             data-src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}"
+                                             data-lazy-loading-target="image"
+                                             aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
+                                        >
+                                    </div>
                                 </a>
                             </div>
                         {% endfor %}

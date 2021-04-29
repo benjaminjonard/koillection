@@ -18,6 +18,7 @@
     "sortablejs": "^1.10.1",
     "stimulus": "^2.0.0",
     "stimulus-lightbox": "^2.0.0",
+    "stimulus-use": "^0.23.0",
     "ts-select2": "^0.2.0",
     "webpack-bundle-analyzer": "^4.4.1",
     "webpack-notifier": "^1.6.0"
