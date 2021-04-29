@@ -1,5 +1,6 @@
 import { Controller } from 'stimulus';
 import Translator from "../js/translator.min";
+import {useClickOutside} from "stimulus-use";
 
 export default class extends Controller {
     static targets = ['resultsWrapper'];
@@ -12,17 +13,18 @@ export default class extends Controller {
         };
     })();
 
-    boundHide = null;
-
-    initialize() {
-        this.boundHide = this.hide.bind(this);
+    connect() {
+        useClickOutside(this)
     }
 
     open(event) {
         if (event.target.value.length > 2) {
             this.resultsWrapperTarget.classList.remove('hidden');
-            document.addEventListener('mouseup', this.boundHide);
         }
+    }
+
+    clickOutside() {
+        this.resultsWrapperTarget.classList.add('hidden');
     }
 
     search(event) {
@@ -102,12 +104,5 @@ export default class extends Controller {
         html = html.trim();
         template.innerHTML = html;
         return template.content.firstChild;
-    }
-
-    hide(event) {
-        if (this.resultsWrapperTarget !== event.target.offsetParent) {
-            this.resultsWrapperTarget.classList.add('hidden');
-            document.removeEventListener('mouseup', this.boundHide);
-        }
     }
 }
