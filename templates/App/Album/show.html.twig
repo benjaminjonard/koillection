@@ -105,8 +105,7 @@
                                    data-filter-target="element"
                                 >
                                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                        <img alt="{{ photo.title }}"
-                                             data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
+                                        <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
                                              data-lazy-loading-target="image"
                                              aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}"
                                         >

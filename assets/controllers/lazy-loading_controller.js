@@ -9,8 +9,23 @@ export default class extends Controller {
     }
 
     appear() {
-        this.imageTarget.src = this.imageTarget.dataset.src;
-        this.imageTarget.removeAttribute('data-src');
-        this.element.classList.remove('placeholder');
+        let img = new Image()
+        let src = this.imageTarget.dataset.src;
+        let self = this;
+
+        img.onload = function() {
+            self.element.classList.remove("placeholder");
+            if (!! self.element.parent) {
+                self.element.replaceChild(img, el)
+            } else {
+                self.imageTarget.src = src;
+            }
+            self.imageTarget.removeAttribute('data-src');
+            self.element.removeAttribute('data-controller');
+        }
+
+        if (src != null) {
+            img.src = src;
+        }
     }
 }
