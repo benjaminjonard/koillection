@@ -46,8 +46,7 @@
                    data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
                 >
                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                        <img alt="{{ sign.label }}"
-                             data-src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}"
+                        <img data-src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}"
                              data-lazy-loading-target="image"
                              aria-label="{{ 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}) }}"
                         >
