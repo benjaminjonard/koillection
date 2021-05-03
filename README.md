@@ -34,7 +34,7 @@ Please backup your database.
     | Koillection | PHP version | Maintained                |
     | ------------| ----------- | ---------                 |
     | 1.2.x       | 8.0         | :heavy_check_mark:        |
-    | 1.1.x       | 7.4         | :heavy_check_mark:        |
+    | 1.1.x       | 7.4         | :x:                       |
     | 1.0.x       | 7.2         | :x:                       |
 
 2. You may need to add the following extensions:

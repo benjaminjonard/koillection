@@ -1,6 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] / 2021-05-03
+### Features
+- Add "rating" field type (Benjamin Jonard)
+- Add "number" field type (Benjamin Jonard)
+- Add new "Only to authenticated users" visibility (Benjamin Jonard)
+- Add some activity counters on admin dashboard (Benjamin Jonard)
+- Display a link to item's collection when viewing it from a tag page (Benjamin Jonard)
+- Add return to collection button when viewing another user collection (Benjamin Jonard)
+
+### Fixes
+- Fix release checking (Benjamin Jonard)
+- Fix breadcrumb on wish edit (Benjamin Jonard)
+- Fix item name guesser (Benjamin Jonard)
+- Prioritize thumbnails when available (Benjamin Jonard)
+
+### Miscellaneous
+- Add production ready docker setup example with Traefik and SSL (Zwordi)
+- Move all Javascript to Stimulus, remove jQuery (Benjamin Jonard)
+- Update PHP version requirement to 8.0 (Benjamin Jonard)
+- Update JS and PHP dependencies (Benjamin Jonard)
+
 ## [1.1.7] / 2021-01-27
 ### Features
 - Add a message in admin interface if a new release of Koillection is available  (Benjamin Jonard)
