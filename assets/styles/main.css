@@ -401,7 +401,7 @@ html.loading:before {
 .collapsed .sidebar-wrapper {width: 60px;}
 .collapsed {margin-left: 60px!important;}
 
-.profile-menu {position: fixed; top: 35px; right: 18px; z-index: 1; text-align: left}
+.profile-menu {position: absolute; top: 35px; right: 18px; z-index: 1; text-align: left}
 .profile-menu i {margin-right: 10px; width: 16px; display: inline-block;}
 
 @media (max-width: 749px)
