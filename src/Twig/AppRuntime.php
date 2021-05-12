@@ -171,9 +171,8 @@ class AppRuntime implements RuntimeExtensionInterface
     public function createDeleteForm($url): FormView
     {
         $scheme = $this->requestStack->getMasterRequest()->getScheme();
-        if ($scheme === 'https') {
-            $url = preg_replace('/^http:/', 'https:', $url);
-        }
+        $url = preg_replace('/^http:/', "$scheme:", $url);
+
 
         return $this->formFactory->createBuilder(FormType::class)
             ->setAction($url)
