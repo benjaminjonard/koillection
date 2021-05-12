@@ -17,6 +17,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -604,7 +605,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
     {
         $this->file = $file;
         //Force Doctrine to trigger an update
-        if ($file) {
+        if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
 

@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -354,7 +355,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     {
         $this->file = $file;
         //Force Doctrine to trigger an update
-        if ($file) {
+        if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
 

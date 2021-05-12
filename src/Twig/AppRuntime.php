@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -24,9 +25,10 @@ class AppRuntime implements RuntimeExtensionInterface
     private ContextHandler $contextHandler;
     private FeatureChecker $featureChecker;
     private FormFactoryInterface $formFactory;
+    private RequestStack $requestStack;
 
     public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em,
-        ContextHandler $contextHandler, FeatureChecker $featureChecker, FormFactoryInterface $formFactory
+        ContextHandler $contextHandler, FeatureChecker $featureChecker, FormFactoryInterface $formFactory, RequestStack $requestStack
     )
     {
         $this->translator = $translator;
@@ -35,6 +37,7 @@ class AppRuntime implements RuntimeExtensionInterface
         $this->contextHandler = $contextHandler;
         $this->featureChecker = $featureChecker;
         $this->formFactory = $formFactory;
+        $this->requestStack = $requestStack;
     }
 
     public function safeContent(string $string) : string
@@ -167,6 +170,11 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function createDeleteForm($url): FormView
     {
+        $scheme = $this->requestStack->getMasterRequest()->getScheme();
+        if ($scheme === 'https') {
+            $url = preg_replace('/^http:/', 'https:', $url);
+        }
+
         return $this->formFactory->createBuilder(FormType::class)
             ->setAction($url)
             ->setMethod('DELETE')

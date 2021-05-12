@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
@@ -300,7 +301,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     {
         $this->file = $file;
         //Force Doctrine to trigger an update
-        if ($file) {
+        if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
 
