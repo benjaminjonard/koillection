@@ -23,7 +23,7 @@ security:
                 always_use_default_target_path: false
                 use_referer: true
             remember_me:
-                secret: '%env(APP_SECRET)%'
+                secret: '%env(string:APP_SECRET)%'
                 lifetime: 31536000 # 1 year
                 secure: true
             logout:

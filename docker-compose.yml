@@ -30,7 +30,7 @@ services:
 
     postgresql:
         container_name: postgresql
-        image: postgresql:12
+        image: postgres:12
         environment:
             - POSTGRES_DB=koillection
             - POSTGRES_USER=root
