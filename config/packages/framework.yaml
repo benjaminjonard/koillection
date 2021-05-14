@@ -9,5 +9,5 @@ framework:
     php_errors:
         log: true
 
-    trusted_proxies: [%env(TRUSTED_PROXIES)%]
-    trusted_headers: [%env(TRUSTED_HEADERS)%]
+    trusted_proxies: ['%env(TRUSTED_PROXIES)%']
+    trusted_headers: ['%env(TRUSTED_HEADERS)%']
