@@ -22,7 +22,7 @@ services:
             - PHP_TZ=Europe/Paris
         depends_on:
             - mysql
-            - postgres
+            - postgresql
         volumes:
             - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
             - ./:/var/www/koillection
