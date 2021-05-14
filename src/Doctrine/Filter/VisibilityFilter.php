@@ -26,7 +26,7 @@ class VisibilityFilter extends SQLFilter
         return sprintf("%s.visibility IN ('%s', '%s')",
             $targetTableAlias,
             VisibilityEnum::VISIBILITY_PUBLIC,
-            VisibilityEnum::VISIBILITY_AUTHENTICATED_USERS_ONLY
+            VisibilityEnum::VISIBILITY_INTERNAL
         );
     }
 }

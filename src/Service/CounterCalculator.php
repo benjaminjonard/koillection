@@ -170,7 +170,7 @@ class CounterCalculator
                 $sql .= sprintf("$condition %s.visibility IN ('%s', '%s')",
                     $alias,
                     VisibilityEnum::VISIBILITY_PUBLIC,
-                    VisibilityEnum::VISIBILITY_AUTHENTICATED_USERS_ONLY
+                    VisibilityEnum::VISIBILITY_INTERNAL
                 );
             }
         }

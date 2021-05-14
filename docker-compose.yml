@@ -22,15 +22,15 @@ services:
             - PHP_TZ=Europe/Paris
         depends_on:
             - mysql
-            - postgres
+            - postgresql
         volumes:
             - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
             - ./:/var/www/koillection
         dns: 1.1.1.1
 
-    postgres:
-        container_name: postgres
-        image: postgres:latest
+    postgresql:
+        container_name: postgresql
+        image: postgresql:12
         environment:
             - POSTGRES_DB=koillection
             - POSTGRES_USER=root
