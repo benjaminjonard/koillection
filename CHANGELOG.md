@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.1] / 2021-05-17
+### Features
+- Add description to visibilities (Benjamin Jonard)
+
+### Fixes
+- Fix update date on all pages (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS and PHP dependencies, fix CVE-2021-21424 (Benjamin Jonard)
+
 ## [1.2.0] / 2021-05-03
 ### Features
 - Add "rating" field type (Benjamin Jonard)
