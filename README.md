@@ -92,6 +92,17 @@ Please backup your database.
 ### Using Docker
 * https://github.com/koillection/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
 
+## Updating
+
+Please backup your database and /uploads folder before updating
+
+### Using git or an archive file
+1. In the project root folder execute `bin/composer install --classmap-authoritative`
+2. Then `php bin/console doctrine:migrations:migrate`
+
+### Using Docker
+Just pulling the new image and restarting the container should be enough
+
 ## Licensing
 
 Koillection is an Open Source software, released under the MIT License. 
