@@ -4515,10 +4515,10 @@
         <target>Add a field</target>
       </segment>
     </unit>
-    <unit id="Ljs97etT" name="global.visibilities.authenticated_users_only">
+    <unit id="Ljs97etT" name="global.visibilities.internal">
       <segment>
-        <source>global.visibilities.authenticated_users_only</source>
-        <target>Authenticated users</target>
+        <source>global.visibilities.internal</source>
+        <target>Internal</target>
       </segment>
     </unit>
     <unit id="s9A621q" name="label.space_used_by_user">

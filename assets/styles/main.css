@@ -102,7 +102,7 @@ h3.header { text-align: center; font-size: 1.5rem; }
 .right-block a {width: 75%;}
 .collection {margin: 0.5rem 0 0;}
 .collection .collection-item.avatar {height: 70px;}
-.collection .second-line{color: #9e9e9e;}
+.collection .second-line, .select-tip {color: #9e9e9e;}
 .collection li.collection-item{padding-top: 15px;}
 .collection a.secondary-content{z-index: 1;}
 .collection .collection-item .collection-link{display:inline-block; width:100%; height:100%;}
@@ -401,7 +401,7 @@ html.loading:before {
 .collapsed .sidebar-wrapper {width: 60px;}
 .collapsed {margin-left: 60px!important;}
 
-.profile-menu {position: fixed; top: 35px; right: 18px; z-index: 1; text-align: left}
+.profile-menu {position: absolute; top: 35px; right: 18px; z-index: 1; text-align: left}
 .profile-menu i {margin-right: 10px; width: 16px; display: inline-block;}
 
 @media (max-width: 749px)
@@ -607,3 +607,5 @@ i.btn input {color: #fff; cursor: pointer;}
 .rating-form input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
 .rating-form label:hover ~ input:checked ~ label /* highlight previous selected stars */
 {color: #ffe57f;}
+
+.select-tip {display: block;}

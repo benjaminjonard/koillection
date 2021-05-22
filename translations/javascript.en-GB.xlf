@@ -187,5 +187,23 @@
         <target>No results</target>
       </segment>
     </unit>
+    <unit id="F9ao9ud" name="global.visibilities.internal.description">
+      <segment>
+        <source>global.visibilities.internal.description</source>
+        <target>Only authenticated users can see this page</target>
+      </segment>
+    </unit>
+    <unit id="qd1TsUx" name="global.visibilities.public.description">
+      <segment>
+        <source>global.visibilities.public.description</source>
+        <target>Anyone can see this page</target>
+      </segment>
+    </unit>
+    <unit id="yZ72cK4" name="global.visibilities.private.description">
+      <segment>
+        <source>global.visibilities.private.description</source>
+        <target>Only I can see this page</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

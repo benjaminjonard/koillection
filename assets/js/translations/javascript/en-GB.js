@@ -32,4 +32,7 @@ t.add("select2.searching", "Searching...", "javascript", "en-GB");
 t.add("select2.none", "None", "javascript", "en-GB");
 t.add("global.search.more_results", "{1} + %count% more result| ]1,Inf[ + %count% more results", "javascript", "en-GB");
 t.add("global.search.no_results", "No results", "javascript", "en-GB");
+t.add("global.visibilities.internal.description", "Only authenticated users can see this page", "javascript", "en-GB");
+t.add("global.visibilities.public.description", "Anyone can see this page", "javascript", "en-GB");
+t.add("global.visibilities.private.description", "Only I can see this page", "javascript", "en-GB");
 })(Translator);

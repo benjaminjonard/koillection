@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity
@@ -228,7 +229,7 @@ class Photo implements CacheableInterface
     {
         $this->file = $file;
         //Force Doctrine to trigger an update
-        if ($file) {
+        if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
 

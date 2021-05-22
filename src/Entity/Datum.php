@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
@@ -263,7 +264,7 @@ class Datum implements LoggableInterface
     {
         $this->fileImage = $fileImage;
         //Force Doctrine to trigger an update
-        if ($fileImage) {
+        if ($fileImage instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
 
@@ -339,7 +340,7 @@ class Datum implements LoggableInterface
     {
         $this->fileFile = $fileFile;
         //Force Doctrine to trigger an update
-        if ($fileFile) {
+        if ($fileFile instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
 

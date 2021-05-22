@@ -1,12 +1,12 @@
 doctrine:
     dbal:
-        dbname: '%env(DB_NAME)%'
-        host: '%env(DB_HOST)%'
-        port: '%env(DB_PORT)%'
-        user: '%env(DB_USER)%'
-        password: '%env(DB_PASSWORD)%'
-        server_version: '%env(DB_VERSION)%'
-        driver: '%env(DB_DRIVER)%'
+        dbname: '%env(string:DB_NAME)%'
+        host: '%env(string:DB_HOST)%'
+        port: '%env(int:DB_PORT)%'
+        user: '%env(string:DB_USER)%'
+        password: '%env(string:DB_PASSWORD)%'
+        server_version: '%env(string:DB_VERSION)%'
+        driver: '%env(string:DB_DRIVER)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware

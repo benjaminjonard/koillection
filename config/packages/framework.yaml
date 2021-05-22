@@ -1,5 +1,5 @@
 framework:
-    secret: '%env(APP_SECRET)%'
+    secret: '%env(string:APP_SECRET)%'
 
     session:
         handler_id: null
@@ -8,3 +8,6 @@ framework:
 
     php_errors:
         log: true
+
+    trusted_proxies: '%env(string:TRUSTED_PROXIES)%'
+    #trusted_headers: '%env(json:TRUSTED_HEADERS)%'

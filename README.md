@@ -34,7 +34,7 @@ Please backup your database.
     | Koillection | PHP version | Maintained                |
     | ------------| ----------- | ---------                 |
     | 1.2.x       | 8.0         | :heavy_check_mark:        |
-    | 1.1.x       | 7.4         | :heavy_check_mark:        |
+    | 1.1.x       | 7.4         | :x:                       |
     | 1.0.x       | 7.2         | :x:                       |
 
 2. You may need to add the following extensions:
@@ -91,6 +91,17 @@ Please backup your database.
 
 ### Using Docker
 * https://github.com/koillection/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
+
+## Updating
+
+Please backup your database and /uploads folder before updating
+
+### Using git or an archive file
+1. In the project root folder execute `bin/composer install --classmap-authoritative`
+2. Then `php bin/console doctrine:migrations:migrate`
+
+### Using Docker
+Just pulling the new image and restarting the container should be enough
 
 ## Licensing
 
