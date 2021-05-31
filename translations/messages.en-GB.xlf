@@ -3744,7 +3744,7 @@
     <unit id="_NUVI5O" name="global.date_formats.hyphen_ymd">
       <segment>
         <source>global.date_formats.hyphen_ymd</source>
-        <target>yyyy-dd-mm</target>
+        <target>yyyy-mm-dd</target>
       </segment>
     </unit>
     <unit id="VqbMfZ0" name="label.date_format">
