@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.3] / 2021-05-31
+### Fixes
+- Fix date format (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS, fix CVE-2021-32640 and CVE-2021-23386 (Benjamin Jonard)
+- Update to Symfony 5.3 (Benjamin Jonard)
+
 ## [1.2.2] / 2021-05-22
 ### Fixes
 - Fix select lists on first connection page (Benjamin Jonard)

@@ -20,5 +20,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: koillection/koillection
-          tags: latest,1.2.0
+          tags: latest,1.2.3
           build_args: GITHUB_RELEASE=master
