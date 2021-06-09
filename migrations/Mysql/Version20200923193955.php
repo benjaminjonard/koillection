@@ -11,7 +11,7 @@ final class Version20200923193955 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add features booleans on `koi_user`';
+        return '[Mysql] Add features booleans on `koi_user`';
     }
 
     public function up(Schema $schema) : void

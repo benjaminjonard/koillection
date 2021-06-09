@@ -11,7 +11,7 @@ final class Version20200429093452 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'First init.';
+        return '[Mysql] First init.';
     }
 
     public function up(Schema $schema) : void

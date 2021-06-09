@@ -11,7 +11,7 @@ final class Version20190314154104 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Create `koi_inventory` table.';
+        return '[Postgresql] Create `koi_inventory` table.';
     }
 
     public function up(Schema $schema) : void

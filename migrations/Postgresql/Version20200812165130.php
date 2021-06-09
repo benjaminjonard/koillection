@@ -11,7 +11,7 @@ final class Version20200812165130 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add file related properties to `koi_datum`';
+        return '[Postgresql] Add file related properties to `koi_datum`';
     }
 
     public function up(Schema $schema) : void

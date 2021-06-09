@@ -11,7 +11,7 @@ final class Version20200424103714 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Increase `locale` property length from 2 to 5 on `koi_user` table';
+        return '[Postgresql] Increase `locale` property length from 2 to 5 on `koi_user` table';
     }
 
     public function up(Schema $schema) : void

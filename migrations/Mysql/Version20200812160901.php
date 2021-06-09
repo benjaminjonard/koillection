@@ -11,7 +11,7 @@ final class Version20200812160901 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add file related properties to `koi_datum`';
+        return '[Mysql] Add file related properties to `koi_datum`';
     }
 
     public function up(Schema $schema) : void

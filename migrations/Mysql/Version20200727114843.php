@@ -11,7 +11,7 @@ final class Version20200727114843 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add relationship between `koi_datum` and `koi_collection`.';
+        return '[Mysql] Add relationship between `koi_datum` and `koi_collection`.';
     }
 
     public function up(Schema $schema) : void

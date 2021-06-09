@@ -11,7 +11,7 @@ final class Version20210514100228 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Update visibility values';
+        return '[Mysql] Update visibility values';
     }
 
     public function up(Schema $schema): void
