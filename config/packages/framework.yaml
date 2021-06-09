@@ -11,3 +11,9 @@ framework:
 
     trusted_proxies: '%env(string:TRUSTED_PROXIES)%'
     #trusted_headers: '%env(json:TRUSTED_HEADERS)%'
+
+when@test:
+    framework:
+        test: true
+        session:
+            storage_id: session.storage.mock_file
