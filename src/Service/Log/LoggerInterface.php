@@ -6,7 +6,9 @@ namespace App\Service\Log;
 
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
+#[Autoconfigure(tags: ['app.logger'])]
 interface LoggerInterface
 {
     public function getClass() : string;

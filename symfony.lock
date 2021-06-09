@@ -335,6 +335,9 @@
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
+    "symfony/password-hasher": {
+        "version": "v5.3.0"
+    },
     "symfony/phpunit-bridge": {
         "version": "4.3",
         "recipe": {
@@ -373,6 +376,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "1.16-dev"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
     },
     "symfony/process": {
         "version": "v5.0.2"
