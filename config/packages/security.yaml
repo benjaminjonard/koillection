@@ -1,4 +1,6 @@
 security:
+    enable_authenticator_manager: true
+
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -16,7 +18,7 @@ security:
             pattern: ^/
             form_login:
                 provider: app_provider
-                csrf_token_generator: security.csrf.token_manager
+                enable_csrf: true
                 login_path: app_security_login
                 check_path: app_security_login
                 default_target_path: app_homepage
@@ -28,18 +30,16 @@ security:
                 secure: true
             logout:
                 path: app_security_logout
-            anonymous: true
-            guard:
-                authenticators:
-                    - App\Security\UsernameOrEmailPasswordAuthenticator
+            custom_authenticators:
+                - App\Security\UsernameOrEmailPasswordAuthenticator
 
     access_control:
-        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/_profiler/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/user, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/first-connection, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/translations, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_wdt, roles: PUBLIC_ACCESS }
+        - { path: ^/_profiler/, role: PUBLIC_ACCESS }
+        - { path: ^/user, role: PUBLIC_ACCESS }
+        - { path: ^/login, role: PUBLIC_ACCESS }
+        - { path: ^/first-connection, role: PUBLIC_ACCESS }
+        - { path: ^/translations, role: PUBLIC_ACCESS }
+        - { path: ^/$, role: PUBLIC_ACCESS }
         - { path: ^/admin/_trans, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
