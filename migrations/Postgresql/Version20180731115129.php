@@ -11,7 +11,7 @@ final class Version20180731115129 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'First init.';
+        return '[Postgresql] First init.';
     }
 
     public function up(Schema $schema) : void

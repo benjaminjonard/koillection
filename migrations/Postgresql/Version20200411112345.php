@@ -11,7 +11,7 @@ final class Version20200411112345 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Remove property `color` for `koi_wish` table and regenerate all UUID types';
+        return '[Postgresql] Remove property `color` for `koi_wish` table and regenerate all UUID types';
     }
 
     public function up(Schema $schema) : void

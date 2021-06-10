@@ -11,7 +11,7 @@ final class Version20210514101359 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return '[Postgresql] Update visibility values';
     }
 
     public function up(Schema $schema): void

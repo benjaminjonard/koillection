@@ -4,3 +4,7 @@ twig:
         - 'App/_partials/_form/_default.html.twig'
         - 'App/_partials/_form/_cropper.html.twig'
         - 'App/_partials/_form/_switch.html.twig'
+
+when@test:
+    twig:
+        strict_variables: true

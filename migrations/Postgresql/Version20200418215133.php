@@ -11,7 +11,7 @@ final class Version20200418215133 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Rename `user_id` to `owner_id` in `koi_log` table';
+        return '[Postgresql] Rename `user_id` to `owner_id` in `koi_log` table';
     }
 
     public function up(Schema $schema) : void

@@ -8,34 +8,31 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Guard\AuthenticatorInterface;
-use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
+use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 
-class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
+class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
 {
-    private UserPasswordEncoderInterface $passwordEncoder;
-
+    private EntityManagerInterface $em;
     private RouterInterface $router;
 
-    private EntityManagerInterface $em;
-
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, RouterInterface $router, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, RouterInterface $router)
     {
-        $this->passwordEncoder = $passwordEncoder;
-        $this->router = $router;
         $this->em = $em;
+        $this->router = $router;
     }
 
-    public function supports(Request $request): bool
+    public function supports(Request $request): ?bool
     {
         if (!$request->request->get('_login') || !$request->request->get('_password')) {
             return false;
@@ -44,64 +41,36 @@ class UsernameOrEmailPasswordAuthenticator implements AuthenticatorInterface
         return true;
     }
 
-    public function getCredentials(Request $request): array
+    public function authenticate(Request $request): PassportInterface
     {
-        return [
-            'login' => $request->request->get('_login'),
-            'password' => $request->request->get('_password'),
-        ];
+        $login = $request->request->get('_login');
+        $password = $request->request->get('_password');
+
+        return new Passport(
+            new UserBadge($login, function ($userIdentifier) {
+                $user = $this->em->getRepository(User::class)->findOneByUsernameOrEmail($userIdentifier);
+
+                if ($user->isEnabled() === false) {
+                    throw new CustomUserMessageAuthenticationException('error.user_not_enabled');
+                }
+
+                return $user;
+            }),
+            new PasswordCredentials($password)
+        );
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
-    {
-        try {
-            return $this->em->getRepository(User::class)->findOneByUsernameOrEmail($credentials['login']);
-        } catch (UsernameNotFoundException $e) {
-            throw new CustomUserMessageAuthenticationException('error.invalid_credentials');
-        }
-    }
-
-    public function checkCredentials($credentials, UserInterface $user): bool
-    {
-        if ($user->isEnabled() === false) {
-            throw new CustomUserMessageAuthenticationException('error.user_not_enabled');
-        }
-
-        if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
-            throw new CustomUserMessageAuthenticationException('error.invalid_credentials');
-        }
-
-        return true;
-    }
-
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         return new RedirectResponse($this->router->generate('app_homepage'));
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+        if ($request->hasSession()) {
+            $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+        }
 
         return new RedirectResponse($this->router->generate('app_security_login'));
-    }
-
-    public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
-    {
-        return new RedirectResponse($this->router->generate('app_security_login'));
-    }
-
-    public function supportsRememberMe(): bool
-    {
-        return true;
-    }
-
-    public function createAuthenticatedToken(UserInterface $user, $providerKey): PostAuthenticationGuardToken
-    {
-        return new PostAuthenticationGuardToken(
-            $user,
-            $providerKey,
-            $user->getRoles()
-        );
     }
 }

@@ -11,7 +11,7 @@ final class Version20191003145915 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add `tag_category` table.';
+        return '[Postgresql] Add `tag_category` table.';
     }
 
     public function up(Schema $schema) : void

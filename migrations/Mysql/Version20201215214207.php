@@ -11,7 +11,7 @@ final class Version20201215214207 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add `large_thumbnail` property on `koi_item` and `koi_datum`';
+        return '[Mysql] Add `large_thumbnail` property on `koi_item` and `koi_datum`';
     }
 
     public function up(Schema $schema) : void

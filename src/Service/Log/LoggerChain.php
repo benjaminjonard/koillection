@@ -6,15 +6,17 @@ namespace App\Service\Log;
 
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 class LoggerChain
 {
     private iterable $loggers;
 
-    public function __construct(iterable $loggers)
+    public function __construct(#[TaggedIterator('app.logger')] iterable $loggers)
     {
         $this->loggers = $loggers;
     }
+
     private function getLoggerResponse($function, array $params)
     {
         $response = null;

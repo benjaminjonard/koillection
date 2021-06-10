@@ -11,7 +11,7 @@ final class Version20200426100023 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return '[Postgresql] Create indexes for images';
     }
 
     public function up(Schema $schema) : void

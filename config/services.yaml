@@ -117,24 +117,6 @@ services:
             - { name: doctrine.event_listener, event: preUpdate, lazy: true }
             - { name: doctrine.event_listener, event: preRemove, lazy: true }
 
-    #Log
-    App\Service\Log\Logger\CollectionLogger:
-        tags: [app.logger]
-    App\Service\Log\Logger\ItemLogger:
-        tags: [app.logger]
-    App\Service\Log\Logger\TagLogger:
-        tags: [app.logger]
-    App\Service\Log\Logger\DatumItemLogger:
-        tags: [app.logger]
-    App\Service\Log\Logger\DatumCollectionLogger:
-        tags: [app.logger]
-    App\Service\Log\Logger\AlbumLogger:
-        tags: [app.logger]
-    App\Service\Log\Logger\WishlistLogger:
-        tags: [app.logger]
-    App\Service\Log\LoggerChain:
-        arguments: [!tagged app.logger]
-
     # Form extension
     App\Form\Extension\ModelTransformerExtension:
         tags:

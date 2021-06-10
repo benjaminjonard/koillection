@@ -11,7 +11,7 @@ final class Version20200414145453 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add property `type` to table `koi_image`';
+        return '[Postgresql] Add property `type` to table `koi_image`';
     }
 
     public function up(Schema $schema) : void

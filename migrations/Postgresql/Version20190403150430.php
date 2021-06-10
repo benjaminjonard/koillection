@@ -11,7 +11,7 @@ final class Version20190403150430 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add `object_deleted` property to `koi_log`.';
+        return '[Postgresql] Add `object_deleted` property to `koi_log`.';
     }
 
     public function up(Schema $schema) : void

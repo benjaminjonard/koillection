@@ -11,7 +11,7 @@ final class Version20190702133405 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add index on `visibility` for every table having this property.';
+        return '[Postgresql] Add index on `visibility` for every table having this property.';
     }
 
     public function up(Schema $schema) : void

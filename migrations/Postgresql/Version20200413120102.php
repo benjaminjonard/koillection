@@ -11,7 +11,7 @@ final class Version20200413120102 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Rename `koi_medium` to `koi_image`';
+        return '[Postgresql] Rename `koi_medium` to `koi_image`';
     }
 
     public function up(Schema $schema) : void

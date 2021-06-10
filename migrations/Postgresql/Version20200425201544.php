@@ -11,7 +11,7 @@ final class Version20200425201544 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Remove `koi_image` table';
+        return '[Postgresql] Remove `koi_image` table';
     }
 
     public function up(Schema $schema) : void

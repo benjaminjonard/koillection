@@ -11,7 +11,7 @@ final class Version20200417113047 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add `parent` and `image` propertise to table `koi_album`';
+        return '[Postgresql] Add `parent` and `image` propertise to table `koi_album`';
     }
 
     public function up(Schema $schema) : void

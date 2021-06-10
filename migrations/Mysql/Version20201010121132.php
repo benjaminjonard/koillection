@@ -11,7 +11,7 @@ final class Version20201010121132 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Remove themes and add better dark mode support';
+        return '[Mysql] Remove themes and add better dark mode support';
     }
 
     public function up(Schema $schema) : void
