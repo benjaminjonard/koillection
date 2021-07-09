@@ -7,7 +7,7 @@ namespace App\Form\Type\Entity;
 use App\Entity\Album;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\AlbumRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,14 +17,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AlbumType extends AbstractType
 {
-    private EntityManagerInterface $em;
+    private AlbumRepository $albumRepository;
 
     private Base64ToImageTransformer $base64ToImageTransformer;
 
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em)
+    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, AlbumRepository $albumRepository)
     {
         $this->base64ToImageTransformer = $base64ToImageTransformer;
-        $this->em = $em;
+        $this->albumRepository = $albumRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -43,7 +43,7 @@ class AlbumType extends AbstractType
             ->add('parent', EntityType::class, [
                 'class' => Album::class,
                 'choice_label' => 'title',
-                'choices' => $this->em->getRepository(Album::class)->findAllExcludingItself($entity),
+                'choices' => $this->albumRepository->findAllExcludingItself($entity),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

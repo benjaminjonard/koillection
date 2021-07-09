@@ -7,7 +7,7 @@ namespace App\Form\Type\Entity;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\WishlistRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,14 +17,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WishlistType extends AbstractType
 {
-    private EntityManagerInterface $em;
+    private WishlistRepository $wishlistRepository;
 
     private Base64ToImageTransformer $base64ToImageTransformer;
 
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em)
+    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, WishlistRepository $wishlistRepository)
     {
         $this->base64ToImageTransformer = $base64ToImageTransformer;
-        $this->em = $em;
+        $this->wishlistRepository = $wishlistRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -42,7 +42,7 @@ class WishlistType extends AbstractType
             ->add('parent', EntityType::class, [
                 'class' => Wishlist::class,
                 'choice_label' => 'name',
-                'choices' => $this->em->getRepository(Wishlist::class)->findAllExcludingItself($entity),
+                'choices' => $this->wishlistRepository->findAllExcludingItself($entity),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

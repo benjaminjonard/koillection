@@ -6,17 +6,15 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Model\Search\Search;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping;
-use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 
-class CollectionRepository extends EntityRepository
+class CollectionRepository extends ServiceEntityRepository
 {
-    public function __construct(EntityManager $em, Mapping\ClassMetadata $class)
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($em, $class);
+        parent::__construct($registry, Collection::class);
     }
 
     public function findAll() : array

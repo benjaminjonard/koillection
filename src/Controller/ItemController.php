@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Loan;
-use App\Entity\Log;
-use App\Entity\Tag;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
+use App\Repository\CollectionRepository;
+use App\Repository\ItemRepository;
+use App\Repository\LogRepository;
+use App\Repository\TagRepository;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -27,13 +28,15 @@ class ItemController extends AbstractController
         path: ['en' => '/items/add', 'fr' => '/objets/ajouter'],
         name: 'app_item_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser) : Response
+    public function add(Request $request, CollectionRepository $collectionRepository, TagRepository $tagRepository,
+                        TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser
+    ) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         $collection = null;
         if ($request->query->has('collection')) {
-            $collection = $em->getRepository(Collection::class)->find($request->query->get('collection'));
+            $collection = $collectionRepository->find($request->query->get('collection'));
         }
 
         if (!$collection) {
@@ -49,7 +52,7 @@ class ItemController extends AbstractController
         //Preload tags shared by all items in that collection
         $suggestedNames = [];
         if ($request->isMethod('GET')) {
-            $item->setTags(new ArrayCollection($this->getDoctrine()->getRepository(Tag::class)->findRelatedToCollection($collection)));
+            $item->setTags(new ArrayCollection($tagRepository->findRelatedToCollection($collection)));
             $suggestedNames = $itemNameGuesser->guess($item);
         }
 
@@ -85,9 +88,9 @@ class ItemController extends AbstractController
         name: 'app_user_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
     )]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
-    public function show(Item $item) : Response
+    public function show(Item $item, ItemRepository $itemRepository) : Response
     {
-        $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $item->getCollection());
+        $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $item->getCollection());
 
         return $this->render('App/Item/show.html.twig', [
             'item' => $item,
@@ -144,13 +147,13 @@ class ItemController extends AbstractController
         path: ['en' => '/items/{id}/history', 'fr' => '/objets/{id}/historique'],
         name: 'app_item_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function history(Item $item) : Response
+    public function history(Item $item, LogRepository $logRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
 
         return $this->render('App/Item/history.html.twig', [
             'item' => $item,
-            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
+            'logs' => $logRepository->findBy([
                 'objectId' => $item->getId(),
                 'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($item))->getName(),
             ], [
@@ -192,9 +195,9 @@ class ItemController extends AbstractController
         path: ['en' => '/items/autocomplete/{search}', 'fr' => '/objets/autocompletion/{search}'],
         name: 'app_item_autocomplete', methods: ['GET']
     )]
-    public function autocomplete(string $search, Packages $assetManager) : JsonResponse
+    public function autocomplete(string $search, ItemRepository $itemRepository, Packages $assetManager) : JsonResponse
     {
-        $items = $this->getDoctrine()->getRepository(Item::class)->findLike($search);
+        $items = $itemRepository->findLike($search);
         $data = [];
         foreach ($items as $item) {
             $data[] = [

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -13,14 +12,11 @@ class DiskUsageCalculator
 {
     private TranslatorInterface $translator;
 
-    private EntityManagerInterface $em;
-
     private string $publicPath;
 
-    public function __construct(TranslatorInterface $translator, EntityManagerInterface $em, string $publicPath)
+    public function __construct(TranslatorInterface $translator, string $publicPath)
     {
         $this->translator = $translator;
-        $this->em = $em;
         $this->publicPath = $publicPath;
     }
 

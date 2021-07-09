@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Collection;
 use App\Entity\Inventory;
 use App\Form\Type\Entity\InventoryType;
+use App\Repository\CollectionRepository;
 use App\Service\InventoryHandler;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ class InventoryController extends AbstractController
         path: ['en' => '/inventories/add', 'fr' => '/inventaires/ajouter'],
         name: 'app_inventory_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, CollectionRepository $collectionRepository, TranslatorInterface $translator) : Response
     {
         $inventory = new Inventory();
         $em = $this->getDoctrine()->getManager();
@@ -38,7 +38,7 @@ class InventoryController extends AbstractController
 
         return $this->render('App/Inventory/add.html.twig', [
             'form' => $form->createView(),
-            'collections' => $this->getDoctrine()->getRepository(Collection::class)->findAll()
+            'collections' => $collectionRepository->findAll()
         ]);
     }
 

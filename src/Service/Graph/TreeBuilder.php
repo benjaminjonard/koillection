@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace App\Service\Graph;
 
 use App\Entity\Collection;
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CollectionRepository;
 
 class TreeBuilder
 {
-    private EntityManagerInterface $em;
+    private CollectionRepository $collectionRepository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(CollectionRepository $collectionRepository)
     {
-        $this->em = $em;
+        $this->collectionRepository = $collectionRepository;
     }
 
     public function buildCollectionTree(): array
     {
-        $collections = $this->em->getRepository(Collection::class)->findAllWithChildren();
+        $collections = $this->collectionRepository->findAllWithChildren();
         $tree = $this->createLeaf();
 
         $children = \array_filter($collections, function (Collection $element) {

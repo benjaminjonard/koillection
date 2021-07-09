@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Album;
 use App\Entity\Photo;
 use App\Form\Type\Entity\PhotoType;
+use App\Repository\AlbumRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,14 +18,14 @@ class PhotoController extends AbstractController
         path: ['en' => '/photos/ajouter', 'fr' => '/photos/add'],
         name: 'app_photo_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, AlbumRepository $albumRepository, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
         $em = $this->getDoctrine()->getManager();
         $album = null;
         if ($request->query->has('album')) {
-            $album = $em->getRepository(Album::class)->findOneBy([
+            $album = $albumRepository->findOneBy([
                 'id' => $request->query->get('album'),
                 'owner' => $this->getUser()
             ]);

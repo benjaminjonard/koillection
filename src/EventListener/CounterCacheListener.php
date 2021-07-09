@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use App\Entity\Album;
-use App\Entity\Collection;
 use App\Entity\Interfaces\CacheableInterface;
-use App\Entity\Item;
-use App\Entity\Wish;
-use App\Entity\Wishlist;
 use App\Service\CountersCache;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 

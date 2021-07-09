@@ -10,8 +10,9 @@ use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\JsonToItemTransformer;
 use App\Form\DataTransformer\JsonToTagTransformer;
+use App\Repository\CollectionRepository;
+use App\Repository\TemplateRepository;
 use App\Service\FeatureChecker;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -29,16 +30,22 @@ class ItemType extends AbstractType
 
     private JsonToItemTransformer $jsonToItemTransformer;
 
-    private EntityManagerInterface $em;
-
     private FeatureChecker $featureChecker;
 
-    public function __construct(JsonToTagTransformer $jsonToTagTransformer, JsonToItemTransformer $jsonToItemTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
+    private CollectionRepository $collectionRepository;
+
+    private TemplateRepository $templateRepository;
+
+    public function __construct(JsonToTagTransformer $jsonToTagTransformer, JsonToItemTransformer $jsonToItemTransformer,
+                                FeatureChecker $featureChecker, CollectionRepository $collectionRepository,
+                                TemplateRepository $templateRepository
+    )
     {
-        $this->em = $em;
         $this->jsonToTagTransformer = $jsonToTagTransformer;
         $this->jsonToItemTransformer = $jsonToItemTransformer;
         $this->featureChecker = $featureChecker;
+        $this->collectionRepository = $collectionRepository;
+        $this->templateRepository = $templateRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -58,7 +65,7 @@ class ItemType extends AbstractType
             ->add('collection', EntityType::class, [
                 'class' => Collection::class,
                 'choice_label' => 'title',
-                'choices' => $this->em->getRepository(Collection::class)->findAll(),
+                'choices' => $this->collectionRepository->findAll(),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,
@@ -96,7 +103,7 @@ class ItemType extends AbstractType
             $builder->add('template', EntityType::class, [
                 'class' => Template::class,
                 'choice_label' => 'name',
-                'choices' => $this->em->getRepository(Template::class)->findAll(),
+                'choices' => $this->templateRepository->findAll(),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

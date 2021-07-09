@@ -7,7 +7,7 @@ namespace App\Form\Type\Entity;
 use App\Entity\Album;
 use App\Entity\Photo;
 use App\Enum\VisibilityEnum;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\AlbumRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,13 +21,13 @@ use Symfony\Component\Security\Core\Security;
 
 class PhotoType extends AbstractType
 {
-    private EntityManagerInterface $em;
+    private AlbumRepository $albumRepository;
 
     private Security $security;
 
-    public function __construct(EntityManagerInterface $em, Security $security)
+    public function __construct(AlbumRepository $albumRepository, Security $security)
     {
-        $this->em = $em;
+        $this->albumRepository = $albumRepository;
         $this->security = $security;
     }
 
@@ -58,7 +58,7 @@ class PhotoType extends AbstractType
             ->add('album', EntityType::class, [
                 'class' => Album::class,
                 'choice_label' => 'title',
-                'choices' => $this->em->getRepository(Album::class)->findAll(),
+                'choices' => $this->albumRepository->findAll(),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

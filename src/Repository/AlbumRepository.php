@@ -6,16 +6,15 @@ namespace App\Repository;
 
 use App\Entity\Album;
 use App\Model\Search\Search;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 
-class AlbumRepository extends EntityRepository
+class AlbumRepository extends ServiceEntityRepository
 {
-    public function __construct(EntityManager $em, Mapping\ClassMetadata $class)
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($em, $class);
+        parent::__construct($registry, Album::class);
     }
 
     public function findAllExcludingItself(Album $album) : array

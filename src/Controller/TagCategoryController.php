@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\TagCategory;
 use App\Form\Type\Entity\TagCategoryType;
+use App\Repository\TagCategoryRepository;
 use App\Service\PaginatorFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,16 +20,16 @@ class TagCategoryController extends AbstractController
         path: ['en' => '/tag-categories', 'fr' => '/categories-de-tag'],
         name: 'app_tag_category_index', methods: ['GET']
     )]
-    public function index(Request $request, PaginatorFactory $paginatorFactory) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory, TagCategoryRepository $tagCategoryRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         $page = $request->query->get('page', 1);
         $search = $request->query->get('search', null);
-        $categoriesCount = $this->getDoctrine()->getRepository(TagCategory::class)->count([]);
+        $categoriesCount = $tagCategoryRepository->count([]);
 
         return $this->render('App/TagCategory/index.html.twig', [
-            'categories' => $this->getDoctrine()->getRepository(TagCategory::class)->findBy([], [], 10, ($page - 1) * 10),
+            'categories' => $tagCategoryRepository->findBy([], [], 10, ($page - 1) * 10),
             'search' => $search,
             'categoriesCount' => $categoriesCount,
             'paginator' => $paginatorFactory->generate($categoriesCount)

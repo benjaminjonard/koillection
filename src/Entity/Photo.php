@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
  * @ORM\Table(name="koi_photo", indexes={
  *     @ORM\Index(name="idx_photo_visibility", columns={"visibility"})
  * })

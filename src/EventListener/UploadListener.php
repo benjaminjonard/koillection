@@ -8,7 +8,6 @@ use App\Annotation\UploadAnnotationReader;
 use App\Service\ImageHandler;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 final class UploadListener
 {

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use Symfony\Component\Cache\Adapter\ApcuAdapter;
-use Symfony\Contracts\Cache\ItemInterface;
-
 class FeatureChecker
 {
     private ContextHandler $contextHandler;

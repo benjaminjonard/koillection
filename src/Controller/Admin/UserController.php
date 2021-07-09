@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
-use App\Entity\Album;
-use App\Entity\Collection;
-use App\Entity\Datum;
-use App\Entity\Item;
-use App\Entity\Photo;
-use App\Entity\Tag;
 use App\Entity\User;
-use App\Entity\Wish;
-use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\Admin\UserType;
+use App\Repository\AlbumRepository;
+use App\Repository\CollectionRepository;
+use App\Repository\DatumRepository;
+use App\Repository\ItemRepository;
+use App\Repository\PhotoRepository;
+use App\Repository\TagRepository;
+use App\Repository\UserRepository;
+use App\Repository\WishlistRepository;
+use App\Repository\WishRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,12 +32,10 @@ class UserController extends AbstractController
         path: ['en' => '/admin/users', 'fr' => '/admin/utilisateurs'],
         name: 'app_admin_user_index', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(UserRepository $userRepository) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('App/Admin/User/index.html.twig', [
-            'users' => $em->getRepository(User::class)->findBy([], ['lastDateOfActivity' => 'DESC'])
+            'users' => $userRepository->findBy([], ['lastDateOfActivity' => 'DESC'])
         ]);
     }
 
@@ -70,7 +67,11 @@ class UserController extends AbstractController
         path: ['en' => '/admin/users/{id}/edit', 'fr' => '/admin/utilisateurs/{id}/editer'],
         name: 'app_admin_user_edit', methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, User $user, TranslatorInterface $translator) : Response
+    public function edit(Request $request, User $user, TranslatorInterface $translator, CollectionRepository $collectionRepository,
+                         ItemRepository $itemRepository, TagRepository $tagRepository, WishlistRepository $wishlistRepository,
+                         WishRepository $wishRepository, AlbumRepository $albumRepository, PhotoRepository $photoRepository,
+                         DatumRepository $datumRepository
+    ) : Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -88,14 +89,14 @@ class UserController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
             'counters' => [
-                'collections' => $em->getRepository(Collection::class)->count(['owner' => $user]),
-                'items' => $em->getRepository(Item::class)->count(['owner' => $user]),
-                'tags' => $em->getRepository(Tag::class)->count(['owner' => $user]),
-                'wishlists' => $em->getRepository(Wishlist::class)->count(['owner' => $user]),
-                'wishes' => $em->getRepository(Wish::class)->count(['owner' => $user]),
-                'albums' => $em->getRepository(Album::class)->count(['owner' => $user]),
-                'photos' => $em->getRepository(Photo::class)->count(['owner' => $user]),
-                'signs' => $em->getRepository(Datum::class)->count(['owner' => $user, 'type' => DatumTypeEnum::TYPE_SIGN]),
+                'collections' => $collectionRepository->count(['owner' => $user]),
+                'items' => $itemRepository->count(['owner' => $user]),
+                'tags' => $tagRepository->count(['owner' => $user]),
+                'wishlists' => $wishlistRepository->count(['owner' => $user]),
+                'wishes' => $wishRepository->count(['owner' => $user]),
+                'albums' => $albumRepository->count(['owner' => $user]),
+                'photos' => $photoRepository->count(['owner' => $user]),
+                'signs' => $datumRepository->count(['owner' => $user, 'type' => DatumTypeEnum::TYPE_SIGN]),
             ],
         ]);
     }

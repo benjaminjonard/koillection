@@ -9,12 +9,17 @@ use App\Entity\Item;
 use App\Entity\Tag;
 use App\Model\Search\Search;
 use App\Model\Search\SearchTag;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NoResultException;
+use Doctrine\Persistence\ManagerRegistry;
 
-class TagRepository extends EntityRepository
+class TagRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Tag::class);
+    }
+
     public function findWithItems(string $id) : ?Tag
     {
         return $this

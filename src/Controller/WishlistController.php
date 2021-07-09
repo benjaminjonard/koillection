@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Log;
-use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
+use App\Repository\LogRepository;
+use App\Repository\WishlistRepository;
+use App\Repository\WishRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,11 +24,11 @@ class WishlistController extends AbstractController
         path: ['en' => '/user/{username}/wishlists', 'fr' => '/utilisateur/{username}/listes-de-souhaits'],
         name: 'app_user_wishlist_index', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(WishlistRepository $wishlistRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
-        $wishlists = $this->getDoctrine()->getRepository(Wishlist::class)->findBy(['parent' => null], ['name' => 'ASC']);
+        $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => 'ASC']);
 
         return $this->render('App/Wishlist/index.html.twig', [
             'wishlists' => $wishlists
@@ -38,7 +39,7 @@ class WishlistController extends AbstractController
         path: ['en' => '/wishlists/add', 'fr' => '/listes-de-souhaits/ajouter'],
         name: 'app_wishlist_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -46,7 +47,7 @@ class WishlistController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         if ($request->query->has('parent')) {
-            $parent = $em->getRepository(Wishlist::class)->findOneBy([
+            $parent = $wishlistRepository->findOneBy([
                 'id' => $request->query->get('parent'),
                 'owner' => $this->getUser()
             ]);
@@ -80,14 +81,14 @@ class WishlistController extends AbstractController
         path: ['en' => '/user/{username}/wishlists/{id}', 'fr' => '/utilisateur/{username}/listes-de-souhaits/{id}'],
         name: 'app_user_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function show(Wishlist $wishlist) : Response
+    public function show(Wishlist $wishlist, WishlistRepository $wishlistRepository, WishRepository $wishRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist,
-            'children' => $this->getDoctrine()->getRepository(Wishlist::class)->findBy(['parent' => $wishlist]),
-            'wishes' => $this->getDoctrine()->getRepository(Wish::class)->findBy(['wishlist' => $wishlist])
+            'children' => $wishlistRepository->findBy(['parent' => $wishlist]),
+            'wishes' => $wishRepository->findBy(['wishlist' => $wishlist])
         ]);
     }
 
@@ -140,13 +141,13 @@ class WishlistController extends AbstractController
         path: ['en' => '/wishlists/{id}/history', 'fr' => '/listes-de-souhaits/{id}/historique'],
         name: 'app_wishlist_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function history(Wishlist $wishlist) : Response
+    public function history(Wishlist $wishlist, LogRepository $logRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists', 'history']);
 
         return $this->render('App/Wishlist/history.html.twig', [
             'wishlist' => $wishlist,
-            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
+            'logs' => $logRepository->findBy([
                 'objectId' => $wishlist->getId(),
                 'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($wishlist))->getName(),
             ], [

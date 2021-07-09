@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Album;
-use App\Entity\Log;
-use App\Entity\Photo;
 use App\Form\Type\Entity\AlbumType;
+use App\Repository\AlbumRepository;
+use App\Repository\LogRepository;
+use App\Repository\PhotoRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,11 +24,11 @@ class AlbumController extends AbstractController
         path: ['en' => '/user/{username}/albums', 'fr' => '/utilisateur/{username}/albums'],
         name: 'app_user_album_index', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(AlbumRepository $albumRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
-        $albums = $this->getDoctrine()->getRepository(Album::class)->findBy(['parent' => null], ['title' => 'ASC']);
+        $albums = $albumRepository->findBy(['parent' => null], ['title' => 'ASC']);
         $photosCounter = 0;
         foreach ($albums as $album) {
             $photosCounter += \count($album->getPhotos());
@@ -43,7 +44,7 @@ class AlbumController extends AbstractController
         path: ['en' => '/albums/add', 'fr' => '/albums/ajouter'],
         name: 'app_album_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, TranslatorInterface $translator, AlbumRepository $albumRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -51,7 +52,7 @@ class AlbumController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         if ($request->query->has('parent')) {
-            $parent = $em->getRepository(Album::class)->findOneBy([
+            $parent = $albumRepository->findOneBy([
                 'id' => $request->query->get('parent'),
                 'owner' => $this->getUser()
             ]);
@@ -130,15 +131,15 @@ class AlbumController extends AbstractController
         path: ['en' => '/user/{username}/albums/{id}', 'fr' => '/utilisateur/{username}/albums/{id}'],
         name: 'app_user_album_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function show(Album $album) : Response
+    public function show(Album $album, AlbumRepository $albumRepository, PhotoRepository $photoRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
         $em = $this->getDoctrine()->getManager();
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
-            'children' => $em->getRepository(Album::class)->findBy(['parent' => $album]),
-            'photos' => $em->getRepository(Photo::class)->findBy(['album' => $album])
+            'children' => $albumRepository->findBy(['parent' => $album]),
+            'photos' => $photoRepository->findBy(['album' => $album])
         ]);
     }
 
@@ -146,13 +147,13 @@ class AlbumController extends AbstractController
         path: ['en' => '/albums/{id}/history', 'fr' => '/albums/{id}/historique'],
         name: 'app_album_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function history(Album $album) : Response
+    public function history(Album $album, LogRepository $logRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums', 'history']);
         
         return $this->render('App/Album/history.html.twig', [
             'album' => $album,
-            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
+            'logs' => $logRepository->findBy([
                 'objectId' => $album->getId(),
                 'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($album))->getName(),
             ], [

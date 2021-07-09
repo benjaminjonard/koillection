@@ -8,12 +8,17 @@ use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Model\Search\Search;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 
-class ItemRepository extends EntityRepository
+class ItemRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Item::class);
+    }
+
     public function findById(string $id) : ?Item
     {
         $qb = $this

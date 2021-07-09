@@ -6,11 +6,16 @@ namespace App\Repository;
 
 use App\Entity\Log;
 use App\Model\Search\SearchHistory;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class LogRepository extends EntityRepository
+class LogRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Log::class);
+    }
+
     public function findForSearch(SearchHistory $search) : array
     {
         $classes = array_map(function ($value) {

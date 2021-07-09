@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class FooterRuntime implements RuntimeExtensionInterface

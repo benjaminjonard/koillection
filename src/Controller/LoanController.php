@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Loan;
+use App\Repository\LoanRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +18,10 @@ class LoanController extends AbstractController
         path: ['en' => '/loans', 'fr' => '/prets'],
         name: 'app_loan_index', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(LoanRepository $loanRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
-        $loanRepository = $this->getDoctrine()->getRepository(Loan::class);
         return $this->render('App/Loan/index.html.twig', [
             'loans' => $loanRepository->findLent(),
             'returnedItems' => $loanRepository->findReturned(),

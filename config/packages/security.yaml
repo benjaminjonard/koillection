@@ -12,6 +12,7 @@ security:
         app_provider:
             entity:
                 class: App:User
+                property: username
 
     firewalls:
         main:

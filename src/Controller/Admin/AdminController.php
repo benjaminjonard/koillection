@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
-use App\Entity\Album;
-use App\Entity\Collection;
-use App\Entity\Datum;
-use App\Entity\Item;
-use App\Entity\Photo;
-use App\Entity\Tag;
-use App\Entity\User;
-use App\Entity\Wish;
-use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
-use App\Service\CommandExecutor;
+use App\Repository\AlbumRepository;
+use App\Repository\CollectionRepository;
+use App\Repository\DatumRepository;
+use App\Repository\ItemRepository;
+use App\Repository\PhotoRepository;
+use App\Repository\TagRepository;
+use App\Repository\UserRepository;
+use App\Repository\WishlistRepository;
+use App\Repository\WishRepository;
 use App\Service\DatabaseDumper;
 use App\Service\LatestReleaseChecker;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -32,7 +31,11 @@ use ZipStream\ZipStream;
 class AdminController extends AbstractController
 {
     #[Route(path: ['en' => '/admin', 'fr' => '/admin'], name: 'app_admin_index', methods: ['GET'])]
-    public function index(LatestReleaseChecker $latestVersionChecker) : Response
+    public function index(LatestReleaseChecker $latestVersionChecker, UserRepository $userRepository,
+                          CollectionRepository $collectionRepository, ItemRepository $itemRepository, TagRepository $tagRepository,
+                          WishlistRepository $wishlistRepository, WishRepository $wishRepository, AlbumRepository $albumRepository,
+                          PhotoRepository $photoRepository, DatumRepository $datumRepository
+    ) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -40,15 +43,15 @@ class AdminController extends AbstractController
             'freeSpace' => disk_free_space('/'),
             'totalSpace' => disk_total_space('/'),
             'counters' => [
-                'users' => $em->getRepository(User::class)->count([]),
-                'collections' => $em->getRepository(Collection::class)->count([]),
-                'items' => $em->getRepository(Item::class)->count([]),
-                'tags' => $em->getRepository(Tag::class)->count([]),
-                'wishlists' => $em->getRepository(Wishlist::class)->count([]),
-                'wishes' => $em->getRepository(Wish::class)->count([]),
-                'albums' => $em->getRepository(Album::class)->count([]),
-                'photos' => $em->getRepository(Photo::class)->count([]),
-                'signs' => $em->getRepository(Datum::class)->count(['type' => DatumTypeEnum::TYPE_SIGN]),
+                'users' => $userRepository->count([]),
+                'collections' => $collectionRepository->count([]),
+                'items' => $itemRepository->count([]),
+                'tags' => $tagRepository->count([]),
+                'wishlists' => $wishlistRepository->count([]),
+                'wishes' => $wishRepository->count([]),
+                'albums' => $albumRepository->count([]),
+                'photos' => $photoRepository->count([]),
+                'signs' => $datumRepository->count(['type' => DatumTypeEnum::TYPE_SIGN]),
             ],
             'currentRelease' => $latestVersionChecker->getCurrentRelease(),
             'latestRelease' => $latestVersionChecker->getLatestRelease(),
@@ -61,9 +64,9 @@ class AdminController extends AbstractController
     }
 
     #[Route(path: ['en' => '/admin/backup', 'fr' => '/admin/sauvegarde'], name: 'app_admin_backup', methods: ['GET'])]
-    public function backup(DatabaseDumper $databaseDumper) : StreamedResponse
+    public function backup(DatabaseDumper $databaseDumper, UserRepository $userRepository) : StreamedResponse
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $users = $userRepository->findAll();
 
         return new StreamedResponse(function () use ($databaseDumper, $users) {
             $options = new Archive();

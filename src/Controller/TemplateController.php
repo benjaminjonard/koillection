@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\TemplateType;
+use App\Repository\TemplateRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +21,12 @@ class TemplateController extends AbstractController
         path: ['en' => '/templates', 'fr' => '/modeles'],
         name: 'app_template_index', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(TemplateRepository $templateRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
         return $this->render('App/Template/index.html.twig', [
-            'results' => $this->getDoctrine()->getRepository(Template::class)->findAllWithCounters(),
+            'results' => $templateRepository->findAllWithCounters(),
         ]);
     }
 
