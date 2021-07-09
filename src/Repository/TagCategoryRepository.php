@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Entity\Collection;
-use App\Entity\Item;
-use App\Entity\Tag;
 use App\Entity\TagCategory;
-use App\Entity\User;
-use App\Model\Search;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class TagCategoryRepository extends EntityRepository
+class TagCategoryRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, TagCategory::class);
+    }
+
     public function findOneWithTags(string $id) : ?TagCategory
     {
         return $this

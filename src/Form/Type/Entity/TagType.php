@@ -7,7 +7,7 @@ namespace App\Form\Type\Entity;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
 use App\Enum\VisibilityEnum;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\TagRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,11 +19,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TagType extends AbstractType
 {
-    private EntityManagerInterface $em;
+    private TagRepository $tagRepository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(TagRepository $tagRepository)
     {
-        $this->em = $em;
+        $this->tagRepository = $tagRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -44,7 +44,7 @@ class TagType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => TagCategory::class,
                 'choice_label' => 'label',
-                'choices' => $this->em->getRepository(TagCategory::class)->findAll(),
+                'choices' => $this->tagRepository->findAll(),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

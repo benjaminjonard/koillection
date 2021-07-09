@@ -6,15 +6,18 @@ namespace App\Repository;
 
 use App\Entity\User;
 use App\Enum\DatumTypeEnum;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
-use Doctrine\ORM\Query\ResultSetMappingBuilder;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 
-class UserRepository extends EntityRepository
+class UserRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, User::class);
+    }
+
     public function findOneByUsernameOrEmail($login) : ?User
     {
         $user = $this
@@ -26,7 +29,7 @@ class UserRepository extends EntityRepository
         ;
 
         if (null === $user) {
-            throw new UsernameNotFoundException();
+            throw new UserNotFoundException();
         }
 
         return $user;

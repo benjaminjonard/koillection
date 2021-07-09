@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Service\Graph\CalendarBuilder;
 use App\Service\Graph\ChartBuilder;
 use App\Service\Graph\TreeBuilder;
@@ -21,7 +22,9 @@ class StatisticsController extends AbstractController
         path: ['en' => '/user/{username}/statistics', 'fr' => '/utilisateur/{username}/statistiques'],
         name: 'app_user_statistics_index', methods: ['GET']
     )]
-    public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder, User $user = null) : Response
+    public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder,
+                          UserRepository $userRepository, User $user = null
+    ) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['statistics']);
 
@@ -34,7 +37,7 @@ class StatisticsController extends AbstractController
         $calendar = \array_reverse($calendar, true);
 
         return $this->render('App/Statistics/index.html.twig', [
-            'counters' => $this->getDoctrine()->getRepository(User::class)->getCounters($user),
+            'counters' => $userRepository->getCounters($user),
             'calendarData' => $calendar,
             'treeJson' => json_encode($treeBuilder->buildCollectionTree()),
             'hoursChartData' => $chartBuilder->buildActivityByHour($user),

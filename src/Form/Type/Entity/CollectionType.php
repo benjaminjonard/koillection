@@ -8,8 +8,9 @@ use App\Entity\Collection;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
+use App\Repository\CollectionRepository;
+use App\Repository\TemplateRepository;
 use App\Service\FeatureChecker;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -20,17 +21,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType
 {
-    private EntityManagerInterface $em;
-
     private Base64ToImageTransformer $base64ToImageTransformer;
 
     private FeatureChecker $featureChecker;
 
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, EntityManagerInterface $em, FeatureChecker $featureChecker)
+    private CollectionRepository $collectionRepository;
+
+    private TemplateRepository $templateRepository;
+
+    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, FeatureChecker $featureChecker,
+                                CollectionRepository $collectionRepository, TemplateRepository $templateRepository
+    )
     {
         $this->base64ToImageTransformer = $base64ToImageTransformer;
-        $this->em = $em;
         $this->featureChecker = $featureChecker;
+        $this->collectionRepository = $collectionRepository;
+        $this->templateRepository = $templateRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -57,7 +63,7 @@ class CollectionType extends AbstractType
             ->add('parent', EntityType::class, [
                 'class' => Collection::class,
                 'choice_label' => 'title',
-                'choices' => $this->em->getRepository(Collection::class)->findAllExcludingItself($entity),
+                'choices' => $this->collectionRepository->findAllExcludingItself($entity),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,
@@ -84,7 +90,7 @@ class CollectionType extends AbstractType
             $builder->add('template', EntityType::class, [
                 'class' => Template::class,
                 'choice_label' => 'name',
-                'choices' => $this->em->getRepository(Template::class)->findAll(),
+                'choices' => $this->templateRepository->findAll(),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

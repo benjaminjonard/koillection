@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace App\Form\DataTransformer;
 
 use App\Entity\Tag;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\TagRepository;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class JsonToTagTransformer implements DataTransformerInterface
 {
-    private EntityManagerInterface $em;
+    private TagRepository $tagRepository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(TagRepository $tagRepository)
     {
-        $this->em = $em;
+        $this->tagRepository = $tagRepository;
     }
 
     public function transform($tags)
@@ -29,7 +29,6 @@ class JsonToTagTransformer implements DataTransformerInterface
 
     public function reverseTransform($json)
     {
-        $repo = $this->em->getRepository(Tag::class);
         $tags = [];
         foreach (json_decode($json) as $raw) {
             $label = trim($raw);
@@ -38,7 +37,7 @@ class JsonToTagTransformer implements DataTransformerInterface
                 continue;
             }
 
-            $tag = $repo->findOneBy(['label' => $label]);
+            $tag = $this->tagRepository->findOneBy(['label' => $label]);
 
             if (!$tag) {
                 $tag = new Tag();

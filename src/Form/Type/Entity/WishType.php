@@ -8,7 +8,7 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\CurrencyEnum;
 use App\Enum\VisibilityEnum;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\WishRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -20,11 +20,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WishType extends AbstractType
 {
-    private EntityManagerInterface $em;
+    private WishRepository $wishRepository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(WishRepository $wishRepository)
     {
-        $this->em = $em;
+        $this->wishRepository = $wishRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -56,7 +56,7 @@ class WishType extends AbstractType
             ->add('wishlist', EntityType::class, [
                 'class' => Wishlist::class,
                 'choice_label' => 'name',
-                'choices' => $this->em->getRepository(Wishlist::class)->findAll(),
+                'choices' => $this->wishRepository->findAll(),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

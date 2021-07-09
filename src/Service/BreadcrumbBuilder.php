@@ -8,18 +8,10 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
-use App\Entity\Wishlist;
 use App\Model\BreadcrumbElement;
 
 class BreadcrumbBuilder
 {
-    private ContextHandler $contextHandler;
-
-    public function __construct(ContextHandler $contextHandler)
-    {
-        $this->contextHandler = $contextHandler;
-    }
-
     public function build(BreadcrumbableInterface $entity, $parent = null): array
     {
         if (!$entity instanceof BreadcrumbableInterface) {

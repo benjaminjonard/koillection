@@ -5,17 +5,9 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Item;
-use Doctrine\ORM\EntityManagerInterface;
 
 class ItemNameGuesser
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
-
     public function guess(Item &$item) : ?array
     {
         $collection = $item->getCollection();

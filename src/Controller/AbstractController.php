@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Service\FeatureChecker;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController

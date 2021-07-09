@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Datum;
+use App\Repository\DatumRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,12 +18,12 @@ class SignController extends AbstractController
         path: ['en' => '/user/{username}/signs', 'fr' => '/utilisateur/{username}/dedicaces'],
         name: 'app_user_sign_index', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(DatumRepository $datumRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['signs']);
 
         return $this->render('App/Sign/index.html.twig', [
-            'signs' => $this->getDoctrine()->getRepository(Datum::class)->findSigns(),
+            'signs' => $datumRepository->findSigns(),
         ]);
     }
 }

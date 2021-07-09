@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
@@ -23,12 +21,13 @@ use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 
 class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
 {
-    private EntityManagerInterface $em;
+    private UserRepository $userRepository;
+
     private RouterInterface $router;
 
-    public function __construct(EntityManagerInterface $em, RouterInterface $router)
+    public function __construct(UserRepository $userRepository, RouterInterface $router)
     {
-        $this->em = $em;
+        $this->userRepository = $userRepository;
         $this->router = $router;
     }
 
@@ -48,7 +47,7 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
 
         return new Passport(
             new UserBadge($login, function ($userIdentifier) {
-                $user = $this->em->getRepository(User::class)->findOneByUsernameOrEmail($userIdentifier);
+                $user = $this->userRepository->findOneByUsernameOrEmail($userIdentifier);
 
                 if ($user->isEnabled() === false) {
                     throw new CustomUserMessageAuthenticationException('error.user_not_enabled');

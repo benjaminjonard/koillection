@@ -6,7 +6,6 @@ namespace App\Service;
 
 class GifResizer
 {
-
     public string $tempDir;
     private int $pointer = 0;
     private int $index = 0;

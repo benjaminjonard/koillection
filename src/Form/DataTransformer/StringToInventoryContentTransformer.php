@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\Collection;
+use App\Repository\CollectionRepository;
 use App\Service\InventoryHandler;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class StringToInventoryContentTransformer implements DataTransformerInterface
 {
     private InventoryHandler $inventoryHandler;
 
-    private EntityManagerInterface $em;
+    private CollectionRepository $collectionRepository;
 
-    public function __construct(InventoryHandler $inventoryHandler, EntityManagerInterface $em)
+    public function __construct(InventoryHandler $inventoryHandler, CollectionRepository $collectionRepository)
     {
         $this->inventoryHandler = $inventoryHandler;
-        $this->em = $em;
+        $this->collectionRepository = $collectionRepository;
     }
 
     public function transform($content)
@@ -33,7 +32,7 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
         }
 
         $ids = explode(',', $string);
-        $collections = $this->em->getRepository(Collection::class)->findAllWithItems();
+        $collections = $this->collectionRepository->findAllWithItems();
         $content = $this->inventoryHandler->buildInventory($collections, $ids);
 
         return json_encode($content);

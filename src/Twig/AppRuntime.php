@@ -6,13 +6,12 @@ namespace App\Twig;
 
 use App\Entity\Tag;
 use App\Model\BreadcrumbElement;
+use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\FeatureChecker;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -21,23 +20,21 @@ class AppRuntime implements RuntimeExtensionInterface
 {
     private TranslatorInterface $translator;
     private RouterInterface $router;
-    private EntityManagerInterface $em;
+    private TagRepository $tagRepository;
     private ContextHandler $contextHandler;
     private FeatureChecker $featureChecker;
     private FormFactoryInterface $formFactory;
-    private RequestStack $requestStack;
 
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, EntityManagerInterface $em,
-        ContextHandler $contextHandler, FeatureChecker $featureChecker, FormFactoryInterface $formFactory, RequestStack $requestStack
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, TagRepository $tagRepository,
+        ContextHandler $contextHandler, FeatureChecker $featureChecker, FormFactoryInterface $formFactory
     )
     {
         $this->translator = $translator;
         $this->router = $router;
-        $this->em = $em;
+        $this->tagRepository = $tagRepository;
         $this->contextHandler = $contextHandler;
         $this->featureChecker = $featureChecker;
         $this->formFactory = $formFactory;
-        $this->requestStack = $requestStack;
     }
 
     public function safeContent(string $string) : string
@@ -104,7 +101,7 @@ class AppRuntime implements RuntimeExtensionInterface
             return null;
         }
 
-        $tags = $this->em->getRepository(Tag::class)->findAllForHighlight();
+        $tags = $this->tagRepository->findAllForHighlight();
 
         $words = [];
         foreach ($tags as $tag) {
@@ -139,7 +136,7 @@ class AppRuntime implements RuntimeExtensionInterface
             }
         }
         $texts = array_map(function ($text) { return trim($text); }, $texts);
-        $tags = $this->em->getRepository(Tag::class)->findBy(['label' => $texts]);
+        $tags = $this->tagRepository->findBy(['label' => $texts]);
 
         $results = [];
         foreach ($texts as $text) {

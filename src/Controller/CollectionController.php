@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Collection;
-use App\Entity\Item;
-use App\Entity\Log;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
+use App\Repository\CollectionRepository;
+use App\Repository\ItemRepository;
+use App\Repository\LogRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,9 +30,9 @@ class CollectionController extends AbstractController
         path: ['en' => '/user/{username}', 'fr' => '/utilisateur/{username}'],
         name: 'app_user_homepage', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(CollectionRepository $collectionRepository) : Response
     {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => null], ['title' => 'ASC']);
+        $collections = $collectionRepository->findBy(['parent' => null], ['title' => 'ASC']);
 
         return $this->render('App/Collection/index.html.twig', [
             'collections' => $collections
@@ -42,13 +43,13 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/add', 'fr' => '/collections/ajouter'],
         name: 'app_collection_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, TranslatorInterface $translator, CollectionRepository $collectionRepository) : Response
     {
         $collection = new Collection();
         $em = $this->getDoctrine()->getManager();
 
         if ($request->query->has('parent')) {
-            $parent = $em->getRepository(Collection::class)->findOneBy([
+            $parent = $collectionRepository->findOneBy([
                 'id' => $request->query->get('parent'),
                 'owner' => $this->getUser()
             ]);
@@ -72,8 +73,8 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/add.html.twig', [
             'collection' => $collection,
             'form' => $form->createView(),
-            'suggestedItemsTitles' => $em->getRepository(Collection::class)->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $em->getRepository(Collection::class)->suggestChildrenTitles($collection)
+            'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
+            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection)
         ]);
     }
 
@@ -85,12 +86,12 @@ class CollectionController extends AbstractController
         path: ['en' => '/user/{username}/{id}', 'fr' => '/utilisateur/{username}/{id}'],
         name: 'app_user_collection_show', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
     )]
-    public function show(Collection $collection) : Response
+    public function show(Collection $collection, CollectionRepository $collectionRepository, ItemRepository $itemRepository) : Response
     {
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
-            'children' => $this->getDoctrine()->getRepository(Collection::class)->findBy(['parent' => $collection]),
-            'items' => $this->getDoctrine()->getRepository(Item::class)->findBy(['collection' => $collection])
+            'children' => $collectionRepository->findBy(['parent' => $collection]),
+            'items' => $itemRepository->findBy(['collection' => $collection])
         ]);
     }
 
@@ -102,11 +103,11 @@ class CollectionController extends AbstractController
         path: ['en' => '/user/{username}/{id}/items', 'fr' => '/utilisateur/{username}/{id}/objets'],
         name: 'app_user_collection_items', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
     )]
-    public function items(Collection $collection) : Response
+    public function items(Collection $collection, ItemRepository $itemRepository) : Response
     {
         return $this->render('App/Collection/items.html.twig', [
             'collection' => $collection,
-            'items' => $this->getDoctrine()->getRepository(Item::class)->findAllByCollection($collection),
+            'items' => $itemRepository->findAllByCollection($collection),
         ]);
     }
 
@@ -114,7 +115,7 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/{id}/edit', 'fr' => '/collections/{id}/editer'],
         name: 'app_collection_edit', requirements: ['id' => '%uuid_regex%'],  methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Collection $collection, TranslatorInterface $translator) : Response
+    public function edit(Request $request, Collection $collection, TranslatorInterface $translator, CollectionRepository $collectionRepository) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -131,8 +132,8 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/edit.html.twig', [
             'form' => $form->createView(),
             'collection' => $collection,
-            'suggestedItemsTitles' => $em->getRepository(Collection::class)->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $em->getRepository(Collection::class)->suggestChildrenTitles($collection),
+            'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
+            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
         ]);
     }
 
@@ -190,13 +191,13 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/{id}/history', 'fr' => '/collections/{id}/historique'],
         name: 'app_collection_history', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
     )]
-    public function history(Collection $collection) : Response
+    public function history(Collection $collection, LogRepository $logRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
 
         return $this->render('App/Collection/history.html.twig', [
             'collection' => $collection,
-            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
+            'logs' => $logRepository->findBy([
                 'objectId' => $collection->getId(),
                 'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($collection))->getName(),
             ], [

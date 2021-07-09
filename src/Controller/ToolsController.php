@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Collection;
-use App\Entity\Inventory;
 use App\Http\CsvResponse;
 use App\Http\FileResponse;
+use App\Repository\CollectionRepository;
+use App\Repository\InventoryRepository;
 use App\Service\DatabaseDumper;
-use Doctrine\DBAL\DBALException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,10 +21,10 @@ class ToolsController extends AbstractController
         path: ['en' => '/tools', 'fr' => '/outils'],
         name: 'app_tools_index', methods: ['GET']
     )]
-    public function index() : Response
+    public function index(InventoryRepository $inventoryRepository) : Response
     {
         return $this->render('App/Tools/index.html.twig', [
-            'inventories' => $this->getDoctrine()->getRepository(Inventory::class)->findAll()
+            'inventories' => $inventoryRepository->findAll()
         ]);
     }
 
@@ -33,9 +32,9 @@ class ToolsController extends AbstractController
         path: ['en' => '/tools/export/printable-list', 'fr' => '/outils/export/liste-imprimable'],
         name: 'app_tools_export_printable_list', methods: ['GET']
     )]
-    public function exportPrintableList() : Response
+    public function exportPrintableList(CollectionRepository $collectionRepository) : Response
     {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
+        $collections = $collectionRepository->findAllWithItems();
 
         return $this->render('App/Tools/printable_list.html.twig', [
             'collections' => $collections,
@@ -47,9 +46,9 @@ class ToolsController extends AbstractController
         path: ['en' => '/tools/export/csv', 'fr' => '/outils/export/csv'],
         name: 'app_tools_export_csv', methods: ['GET']
     )]
-    public function exportCsv() : CsvResponse
+    public function exportCsv(CollectionRepository $collectionRepository) : CsvResponse
     {
-        $collections = $this->getDoctrine()->getRepository(Collection::class)->findAllWithItems();
+        $collections = $collectionRepository->findAllWithItems();
 
         $rows = [];
         foreach ($collections as $collection) {

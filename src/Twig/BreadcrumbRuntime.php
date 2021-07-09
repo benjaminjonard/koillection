@@ -7,9 +7,6 @@ namespace App\Twig;
 use App\Model\BreadcrumbElement;
 use App\Service\BreadcrumbBuilder;
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class BreadcrumbRuntime implements RuntimeExtensionInterface

@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\Item;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ItemRepository;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class JsonToItemTransformer implements DataTransformerInterface
 {
-    private EntityManagerInterface $em;
+    private ItemRepository $itemRepository;
 
     private Packages $assetManager;
 
-    public function __construct(EntityManagerInterface $em, Packages $assetManager)
+    public function __construct(ItemRepository $itemRepository, Packages $assetManager)
     {
-        $this->em = $em;
+        $this->itemRepository = $itemRepository;
         $this->assetManager = $assetManager;
     }
 
@@ -37,10 +36,9 @@ class JsonToItemTransformer implements DataTransformerInterface
 
     public function reverseTransform($json)
     {
-        $repo = $this->em->getRepository(Item::class);
         $items = [];
         foreach (json_decode($json, true) as $id) {
-            $item = $repo->find($id);
+            $item = $this->itemRepository->find($id);
 
             if (!\in_array($item, $items, false)) {
                 $items[] = $item;

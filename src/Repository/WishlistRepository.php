@@ -6,13 +6,17 @@ namespace App\Repository;
 
 use App\Entity\Wishlist;
 use App\Model\Search\Search;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 
-class WishlistRepository extends EntityRepository
+class WishlistRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Wishlist::class);
+    }
+
     public function findAll() : array
     {
         return $this

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
@@ -19,11 +18,14 @@ class DatabaseDumper
 
     private Security $security;
 
-    public function __construct(EntityManagerInterface $em, Security $security, ContextHandler $contextHandler)
+    private UserRepository $userRepository;
+
+    public function __construct(EntityManagerInterface $em, Security $security, ContextHandler $contextHandler, UserRepository $userRepository)
     {
         $this->em = $em;
         $this->security = $security;
         $this->contextHandler = $contextHandler;
+        $this->userRepository = $userRepository;
     }
 
     public function dump() : array
@@ -55,7 +57,7 @@ class DatabaseDumper
         if ($this->contextHandler->getContext() !== 'admin') {
             $userIds[] = "'" . $this->security->getUser()->getId() . "'";
         } else {
-            foreach ($this->em->getRepository(User::class)->findAll() as $user) {
+            foreach ($this->userRepository->findAll() as $user) {
                 $userIds[] = "'" . $user->getId() . "'";
             };
         }

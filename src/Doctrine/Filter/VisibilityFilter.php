@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Doctrine\Filter;
 
-use App\Entity\Datum;
-use App\Entity\User;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;

@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\Security\UserType;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -20,9 +21,9 @@ class SecurityController extends AbstractController
         path: ['en' => '', 'fr' => ''],
         name: 'app_security_login', methods: ['GET', 'POST']
     )]
-    public function login(AuthenticationUtils $authenticationUtils) : Response
+    public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository) : Response
     {
-        if (0 === $this->getDoctrine()->getRepository(User::class)->count([])) {
+        if (0 === $userRepository->count([])) {
             return $this->redirectToRoute('app_security_first_connection');
         }
 
@@ -40,9 +41,11 @@ class SecurityController extends AbstractController
         path: ['en' => '/first-connection', 'fr' => '/premiere-connexion'],
         name: 'app_security_first_connection', methods: ['GET', 'POST']
     )]
-    public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session) : Response
+    public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session,
+                                          UserRepository $userRepository
+    ) : Response
     {
-        if (0 < $this->getDoctrine()->getRepository(User::class)->count([])) {
+        if (0 < $userRepository->count([])) {
             return $this->redirectToRoute('app_homepage');
         }
 

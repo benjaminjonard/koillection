@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Item;
-use App\Entity\Log;
 use App\Entity\Tag;
 use App\Form\Type\Entity\TagType;
 use App\Form\Type\Model\SearchTagType;
 use App\Model\Search\SearchTag;
+use App\Repository\ItemRepository;
+use App\Repository\LogRepository;
+use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -29,7 +31,9 @@ class TagController extends AbstractController
         path: ['en' => '/user/{username}/tags', 'fr' => '/utilisateur/{username}/tags'],
         name: 'app_user_tag_index', methods: ['GET']
     )]
-    public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler, int $paginationItemsPerPage) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler,
+                          int $paginationItemsPerPage, TagRepository $tagRepository
+    ) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -41,9 +45,9 @@ class TagController extends AbstractController
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
-        $itemsCount = $em->getRepository(Item::class)->count([]);
-        $tagsCount = $em->getRepository(Tag::class)->countForTagSearch($search, $context);
-        $results = $em->getRepository(Tag::class)->findForTagSearch($search, $context, $itemsCount);
+        $itemsCount = $tagRepository->count([]);
+        $tagsCount = $tagRepository->countForTagSearch($search, $context);
+        $results = $tagRepository->findForTagSearch($search, $context, $itemsCount);
 
         if ($request->isXmlHttpRequest()) {
             return $this->render('App/Tag/_tags_table.html.twig', [
@@ -70,13 +74,13 @@ class TagController extends AbstractController
         name: 'app_user_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     #[Entity('tag', expr: 'repository.findWithItems(id)', class: Tag::class)]
-    public function show(Tag $tag) : Response
+    public function show(Tag $tag, TagRepository $tagRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         return $this->render('App/Tag/show.html.twig', [
             'tag' => $tag,
-            'relatedTags' => $this->getDoctrine()->getRepository(Tag::class)->findRelatedTags($tag)
+            'relatedTags' => $tagRepository->findRelatedTags($tag)
         ]);
     }
 
@@ -130,11 +134,11 @@ class TagController extends AbstractController
         path: ['en' => '/tags/autocomplete/{search}', 'fr' => '/tags/autocompletion/{search}'],
         name: 'app_tag_autocomplete', methods: ['GET']
     )]
-    public function autocomplete(string $search) : JsonResponse
+    public function autocomplete(string $search, TagRepository $tagRepository) : JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
-        $tags = $this->getDoctrine()->getRepository(Tag::class)->findLike($search);
+        $tags = $tagRepository->findLike($search);
         $data = [];
         foreach ($tags as $tag) {
             $data[] = $tag->getLabel();
@@ -147,13 +151,13 @@ class TagController extends AbstractController
         path: ['en' => '/tags/{id}/history', 'fr' => '/tags/{id}/historique'],
         name: 'app_tag_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function history(Tag $tag) : Response
+    public function history(Tag $tag, LogRepository $logRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags', 'history']);
 
         return $this->render('App/Tag/history.html.twig', [
             'tag' => $tag,
-            'logs' => $this->getDoctrine()->getRepository(Log::class)->findBy([
+            'logs' => $logRepository->findBy([
                 'objectId' => $tag->getId(),
                 'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($tag))->getName(),
             ], [
@@ -173,9 +177,9 @@ class TagController extends AbstractController
     )]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]
-    public function item(Item $item, Tag $tag) : Response
+    public function item(Item $item, Tag $tag, ItemRepository $itemRepository) : Response
     {
-        $nextAndPrevious = $this->getDoctrine()->getRepository(Item::class)->findNextAndPrevious($item, $tag);
+        $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $tag);
 
         return $this->render('App/Tag/item.html.twig', [
             'item' => $item,

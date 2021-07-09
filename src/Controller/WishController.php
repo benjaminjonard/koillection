@@ -6,10 +6,10 @@ namespace App\Controller;
 
 use App\Entity\Item;
 use App\Entity\Wish;
-use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
+use App\Repository\WishlistRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +21,7 @@ class WishController extends AbstractController
         path: ['en' => '/wishes/add', 'fr' => '/souhaits/ajouter'],
         name: 'app_wish_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -29,7 +29,7 @@ class WishController extends AbstractController
 
         $wishlist = null;
         if ($request->query->has('wishlist')) {
-            $wishlist = $em->getRepository(Wishlist::class)->findOneBy([
+            $wishlist = $wishlistRepository->findOneBy([
                 'id' => $request->query->get('wishlist'),
                 'owner' => $this->getUser()
             ]);

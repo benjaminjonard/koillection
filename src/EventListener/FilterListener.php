@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Service\ContextHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -18,11 +19,14 @@ class FilterListener
 
     private Security $security;
 
-    public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, Security $security)
+    private UserRepository $userRepository;
+
+    public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, Security $security, UserRepository $userRepository)
     {
         $this->em = $em;
         $this->contextHandler = $contextHandler;
         $this->security = $security;
+        $this->userRepository = $userRepository;
     }
 
     public function onKernelRequest()
@@ -53,7 +57,7 @@ class FilterListener
     {
         $user = null;
         if ($this->contextHandler->getContext() === 'user') {
-            $user = $this->em->getRepository(User::class)->findOneBy(['username' => $this->contextHandler->getUsername()]);
+            $user = $this->userRepository->findOneBy(['username' => $this->contextHandler->getUsername()]);
             if (!$user) {
                 throw new NotFoundHttpException();
             }

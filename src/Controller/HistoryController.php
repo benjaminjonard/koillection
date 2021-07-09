@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Log;
 use App\Form\Type\Model\SearchHistoryType;
 use App\Model\Search\SearchHistory;
+use App\Repository\LogRepository;
 use App\Service\PaginatorFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,7 @@ class HistoryController extends AbstractController
         path: ['en' => '/history', 'fr' => '/historique'],
         name: 'app_history_index', methods: ['GET']
     )]
-    public function index(Request $request, PaginatorFactory $paginatorFactory, int $paginationItemsPerPage) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory, LogRepository $logRepository, int $paginationItemsPerPage) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
 
@@ -28,8 +28,8 @@ class HistoryController extends AbstractController
         ]);
         $form->handleRequest($request);
 
-        $count = $this->getDoctrine()->getRepository(Log::class)->countForSearch($search);
-        $logs = $this->getDoctrine()->getRepository(Log::class)->findForSearch($search);
+        $count = $logRepository->countForSearch($search);
+        $logs = $logRepository->findForSearch($search);
 
         if ($request->isXmlHttpRequest()) {
             return $this->render('App/History/_logs_table.html.twig', [
