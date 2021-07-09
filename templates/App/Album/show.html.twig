@@ -28,7 +28,7 @@
             <div class="title-block">
                 <div class="left">
                     {% if album.image != null %}
-                        <img class="thumbnail avatar" src="{{ asset(album.image) }}">
+                        <img class="thumbnail avatar" src="{{ preload(asset(album.image), {nopush: true}) }}">
                     {% else %}
                         <span class="thumbnail color-avatar circle avatar color-{{ album.color }}">{{album.title|first|upper}}</span>
                     {% endif %}
@@ -94,7 +94,7 @@
                         {% for photo in photos %}
                                 {% set photoText = include('App/Album/_photo_text.html.twig') %}
                                 <a class="collection-item element valign-wrapper"
-                                   href="{{ asset(photo.image|default('build/images/default.png')) }}"
+                                   href="{{ preload(asset(photo.image|default('build/images/default.png')), {nopush: true}) }}"
                                    data-lightbox-target="image"
                                    {% if context == 'default' %}
                                        data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
@@ -105,7 +105,7 @@
                                    data-filter-target="element"
                                 >
                                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                        <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
+                                        <img data-src="{{ preload(asset(photo.imageSmallThumbnail|default('build/images/default.png')), {nopush: true}) }}"
                                              data-lazy-loading-target="image"
                                              aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}"
                                         >

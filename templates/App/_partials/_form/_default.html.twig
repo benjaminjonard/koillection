@@ -36,9 +36,9 @@
                 <div {{ stimulus_controller('preview') }}>
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
-                            <img data-preview-target="image" class="preview-image" src="{{ asset(form.parent.vars.value.image) }}" />
+                            <img data-preview-target="image" class="preview-image" src="{{ preload(asset(form.parent.vars.value.image), {nopush: true}) }}" />
                         {% else %}
-                            <img data-preview-target="image" class="preview-image" src="{{ asset('build/images/default.png') }}" />
+                            <img data-preview-target="image" class="preview-image" src="{{ preload(asset('build/images/default.png'), {nopush: true}) }}" />
                         {% endif %}
                         <input data-action="change->preview#load"
                                type="file" {{ block('widget_attributes') }}

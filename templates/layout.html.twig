@@ -7,7 +7,7 @@
             <div class="nav-wrapper">
                 <div class="header-logo">
                     <a href="{{ path('app_homepage'|applyContext) }}">
-                        <img class='logo' src="{{ asset('build/images/logo.svg') }}" aria-label="Logo" height="45" width="45">
+                        <img class='logo' src="{{ preload(asset('build/images/logo.svg'), {nopush: true}) }}" aria-label="Logo" height="45" width="45">
                         <span>Koillection</span>
                     </a>
                 </div>
@@ -36,7 +36,7 @@
                     <div class="header-profile" {{ stimulus_controller('profile') }}>
                         <span data-action="click->profile#show">
                             {% if app.user.avatar != null %}
-                                <img class="user-avatar" src="{{ asset(app.user.avatar) }}">
+                                <img class="user-avatar" src="{{ preload(asset(app.user.avatar), {nopush: true}) }}">
                             {% else %}
                                 <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
                             {% endif %}
