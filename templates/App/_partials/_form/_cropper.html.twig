@@ -13,7 +13,7 @@
             </label>
         </div>
         <div class="col s12 l5 xl3 croppie-preview" data-croppie-target="preview">
-            <img src="{{ form.vars.value|default(asset('build/images/default-round.png')) }}">
+            <img src="{{ form.vars.value|default(preload(asset('build/images/default-round.png'), {nopush: true})) }}">
         </div>
         <input type="hidden" class="file-input" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>
     </div>

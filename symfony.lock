@@ -109,12 +109,6 @@
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
-    "laminas/laminas-eventmanager": {
-        "version": "3.2.1"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.0.3"
-    },
     "maennchen/zipstream-php": {
         "version": "1.2.0"
     },

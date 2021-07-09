@@ -15,7 +15,7 @@
         <div class="title-block">
             <div class="left">
                 {% if wishlist.image != null %}
-                    <img class="thumbnail avatar" src="{{ asset(wishlist.image) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image), {nopush: true}) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ wishlist.color }}" aria-hidden="true">{{wishlist.title|first|upper}}</span>
                 {% endif %}
