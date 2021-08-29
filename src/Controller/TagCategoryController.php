@@ -102,7 +102,7 @@ class TagCategoryController extends AbstractController
 
     #[Route(
         path: ['en' => '/tag-categories/{id}/delete', 'fr' => '/categories-de-tag/{id}/supprimer'],
-        name: 'app_tag_category_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_tag_category_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, TagCategory $category, TranslatorInterface $translator) : Response
     {

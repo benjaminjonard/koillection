@@ -124,7 +124,7 @@ class ItemController extends AbstractController
 
     #[Route(
         path: ['en' => '/items/{id}/delete', 'fr' => '/objets/{id}/supprimer'],
-        name: 'app_item_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_item_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Item $item, TranslatorInterface $translator) : Response
     {

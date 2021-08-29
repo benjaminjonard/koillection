@@ -96,7 +96,7 @@ class TemplateController extends AbstractController
 
     #[Route(
         path: ['en' => '/templates/{id}/delete', 'fr' => '/modeles/{id}/supprimer'],
-        name: 'app_template_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_template_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Template $template, TranslatorInterface $translator) : Response
     {

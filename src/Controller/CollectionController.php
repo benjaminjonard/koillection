@@ -139,7 +139,7 @@ class CollectionController extends AbstractController
 
     #[Route(
         path: ['en' => '/collections/{id}/delete', 'fr' => '/collections/{id}/supprimer'],
-        name: 'app_collection_delete', requirements: ['id' => '%uuid_regex%'],  methods: ['DELETE']
+        name: 'app_collection_delete', requirements: ['id' => '%uuid_regex%'],  methods: ['POST']
     )]
     public function delete(Request $request, Collection $collection, TranslatorInterface $translator) : Response
     {

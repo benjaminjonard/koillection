@@ -89,7 +89,7 @@ class WishController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishes/{id}/delete', 'fr' => '/souhaits/{id}/supprimer'],
-        name: 'app_wish_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_wish_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Wish $wish, TranslatorInterface $translator) : Response
     {
