@@ -4542,5 +4542,17 @@
         <target>Retourner à ma collection</target>
       </segment>
     </unit>
+    <unit id="987SJAq" name="label.new_password">
+      <segment>
+        <source>label.new_password</source>
+        <target>Nouveau mot de passe</target>
+      </segment>
+    </unit>
+    <unit id="987SJAq" name="label.repeat_new_password">
+      <segment>
+        <source>label.repeat_new_password</source>
+        <target>Confirmation du nouveau mot de passe</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

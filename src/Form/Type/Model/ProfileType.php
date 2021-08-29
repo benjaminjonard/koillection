@@ -7,6 +7,7 @@ namespace App\Form\Type\Model;
 use App\Entity\User;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType as SymfonyPasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -36,6 +37,14 @@ class ProfileType extends AbstractType
                 'type' => SymfonyPasswordType::class,
                 'required' => false,
                 'invalid_message'  => 'error.password.not_matching'
+            ])
+            ->add('username', TextType::class, [
+                'attr' => ['length' => 255],
+                'required' => true,
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => ['length' => 255],
+                'required' => true,
             ])
         ;
     }
