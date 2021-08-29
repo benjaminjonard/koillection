@@ -64,7 +64,11 @@
                         <tr class="list-element resize-element">
                             <td><a href="{{ path('app_inventory_show', {id: inventory.id}) }}">{{ inventory.name }}</a></td>
                             <td>{{ inventory.totalItemsCount }}</td>
-                            <td>{{ ((inventory.checkedItemsCount*100)/inventory.totalItemsCount)|round(2) }} %</td>
+                            {% if inventory.totalItemsCount == 0 %}
+                                <td>100 %</td>
+                            {% else %}
+                                <td>{{ inventory.totalItemsCount ((inventory.checkedItemsCount*100)/inventory.totalItemsCount)|round(2) }} %</td>
+                            {% endif %}
                             <td>{{ inventory.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         </tr>
                     {% endfor %}
