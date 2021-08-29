@@ -30,7 +30,7 @@ class LoanController extends AbstractController
 
     #[Route(
         path: ['en' => '/loans/{id}/delete', 'fr' => '/prets/{id}/supprimer'],
-        name: 'app_loan_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_loan_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Loan $loan, TranslatorInterface $translator) : Response
     {

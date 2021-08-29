@@ -33,7 +33,7 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl($url, ['id' => $entity->getId()]))
-            ->setMethod('DELETE')
+            ->setMethod('POST')
             ->getForm()
         ;
     }

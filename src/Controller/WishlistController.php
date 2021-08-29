@@ -118,7 +118,7 @@ class WishlistController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishlists/{id}/delete', 'fr' => '/listes-de-souhaits/{id}/supprimer'],
-        name: 'app_wishlist_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_wishlist_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Wishlist $wishlist, TranslatorInterface $translator) : Response
     {

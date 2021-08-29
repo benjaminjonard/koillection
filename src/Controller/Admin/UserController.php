@@ -103,7 +103,7 @@ class UserController extends AbstractController
     
     #[Route(
         path: ['en' => '/admin/users/{id}/delete', 'fr' => '/admin/utilisateurs/{id}/supprimer'],
-        name: 'app_admin_user_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_admin_user_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, User $user, TranslatorInterface $translator) : Response
     {

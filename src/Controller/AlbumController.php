@@ -104,7 +104,7 @@ class AlbumController extends AbstractController
 
     #[Route(
         path: ['en' => '/albums/{id}/delete', 'fr' => '/albums/{id}/supprimer'],
-        name: 'app_album_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_album_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Album $album, TranslatorInterface $translator) : Response
     {

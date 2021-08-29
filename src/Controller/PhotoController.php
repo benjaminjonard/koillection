@@ -84,7 +84,7 @@ class PhotoController extends AbstractController
 
     #[Route(
         path: ['en' => '/photos/{id}/delete', 'fr' => '/photos/{id}/supprimer'],
-        name: 'app_photo_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_photo_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Photo $photo, TranslatorInterface $translator) : Response
     {

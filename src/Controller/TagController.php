@@ -111,7 +111,7 @@ class TagController extends AbstractController
 
     #[Route(
         path: ['en' => '/tags/{id}/delete', 'fr' => '/tags/{id}/supprimer'],
-        name: 'app_tag_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_tag_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Tag $tag, TranslatorInterface $translator) : Response
     {

@@ -44,7 +44,7 @@ class InventoryController extends AbstractController
 
     #[Route(
         path: ['en' => '/inventories/{id}/delete', 'fr' => '/inventaires/{id}/supprimer'],
-        name: 'app_inventory_delete', requirements: ['id' => '%uuid_regex%'], methods: ['DELETE']
+        name: 'app_inventory_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
     public function delete(Request $request, Inventory $inventory, TranslatorInterface $translator) : Response
     {
