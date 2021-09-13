@@ -1,9 +1,9 @@
 name: Build beta image for Docker Hub
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
-  workflow_dispatch:
 
 jobs:
   push_to_docker_hub:

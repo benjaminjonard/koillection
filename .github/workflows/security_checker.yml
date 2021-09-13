@@ -1,5 +1,6 @@
 name: Security checker
 on:
+  workflow_dispatch:
   push:
     branches:
       - master

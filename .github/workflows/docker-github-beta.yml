@@ -1,9 +1,9 @@
 name: Build beta image for GitHub Packages
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
-  workflow_dispatch:
 
 jobs:
   push_to_git_hub_packages:
