@@ -24,4 +24,4 @@ jobs:
           registry: docker.pkg.github.com
           repository: koillection/koillection/fpm
           tags: latest,1.2.3
-          build_args: GITHUB_RELEASE=master
+          build_args: GITHUB_RELEASE=1.2.3
