@@ -11,8 +11,6 @@ framework:
     php_errors:
         log: true
 
-    trusted_proxies: '%env(string:TRUSTED_PROXIES)%'
-
 when@test:
     framework:
         test: true
