@@ -169,7 +169,7 @@ class AppRuntime implements RuntimeExtensionInterface
     {
         return $this->formFactory->createBuilder(FormType::class)
             ->setAction($url)
-            ->setMethod('DELETE')
+            ->setMethod('POST')
             ->getForm()
             ->createView()
         ;
