@@ -45,7 +45,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': url('app_template_delete', {id: template.id}), transKey: 'message.delete.template'}) }}
+        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_template_delete', {id: template.id}), transKey: 'message.delete.template'}) }}
     {% endif %}
 {% endblock %}
 

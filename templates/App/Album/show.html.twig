@@ -126,9 +126,9 @@
 {% block modals %}
     {% if context == 'default' %}
         {{ include('App/_partials/_modal/_share.html.twig', {'entity': album, 'route': url('app_user_album_show', {id: album.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': url('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
+        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
         {% for photo in photos %}
-            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': url('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
+            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': path('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}

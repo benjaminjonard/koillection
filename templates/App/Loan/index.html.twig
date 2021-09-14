@@ -95,10 +95,10 @@
 {% block modals %}
     {% if context == 'default' %}
         {% for loan in loans %}
-            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ loan.id , 'route': url('app_loan_delete', {id: loan.id}), transKey: 'message.delete.loan'}) }}
+            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ loan.id , 'route': path('app_loan_delete', {id: loan.id}), transKey: 'message.delete.loan'}) }}
         {% endfor %}
         {% for returnedItem in returnedItems %}
-            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ returnedItem.id , 'route': url('app_loan_delete', {id: returnedItem.id}), transKey: 'message.delete.loan'}) }}
+            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ returnedItem.id , 'route': path('app_loan_delete', {id: returnedItem.id}), transKey: 'message.delete.loan'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}
