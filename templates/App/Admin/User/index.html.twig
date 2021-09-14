@@ -73,7 +73,7 @@
 
 {% block modals %}
     {% for user in users %}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ user.id , 'route': url('app_admin_user_delete', {id: user.id}), transKey: 'message.delete.user'}) }}
+        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ user.id , 'route': path('app_admin_user_delete', {id: user.id}), transKey: 'message.delete.user'}) }}
     {% endfor %}
 {% endblock %}
 

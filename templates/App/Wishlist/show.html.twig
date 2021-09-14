@@ -163,9 +163,9 @@
 {% block modals %}
     {% if context == 'default' %}
         {{ include('App/_partials/_modal/_share.html.twig', {'entity': wishlist, 'route': url('app_user_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': url('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
+        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_wishlist_delete', {id: wishlist.id}), transKey: 'message.delete.wishlist'}) }}
         {% for wish in wishes %}
-            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': url('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
+            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ wish.id , 'route': path('app_wish_delete', {id: wish.id}), transKey: 'message.delete.wish'}) }}
         {% endfor %}
     {% endif %}
 {% endblock %}
