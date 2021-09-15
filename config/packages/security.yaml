@@ -28,7 +28,7 @@ security:
             remember_me:
                 secret: '%env(string:APP_SECRET)%'
                 lifetime: 31536000 # 1 year
-                secure: auto
+                secure: '%env(bool:HTTPS_ENABLED)%'
             logout:
                 path: app_security_logout
             custom_authenticators:
