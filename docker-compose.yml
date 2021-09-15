@@ -20,7 +20,7 @@ services:
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - DB_VERSION=8
             - PHP_TZ=Europe/Paris
-            - HTTPS_ENABLED=1
+            - HTTPS_ENABLED=true
         depends_on:
             - mysql
             - postgresql
