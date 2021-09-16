@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.4] / 2021-09-16
+### Features
+- Allow user to change username and email in their profile (Benjamin Jonard)
+
+### Fixes
+- Fix divisions by zero when inventory is empty (Benjamin Jonard)
+- Fix delete forms (Benjamin Jonard)
+
+### Miscellaneous
+- Preload assets (Benjamin Jonard)
+- Update JS dependencies, fix CVE-2021-33587 (Benjamin Jonard)
+- Update PHP dependencies  (Benjamin Jonard)
+
 ## [1.2.3] / 2021-05-31
 ### Fixes
 - Fix date format (Benjamin Jonard)
