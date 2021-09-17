@@ -6,10 +6,6 @@ services:
     koillection:
         container_name: koillection
         image: docker.pkg.github.com/koillection/koillection/fpm:dev
-<<<<<<< Updated upstream
-=======
-        #image: koillection/koillection:beta
->>>>>>> Stashed changes
         restart: always
         ports:
             - 80:80
@@ -52,7 +48,7 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - MYSQL_DATABASE=koillection
-            - MYSQL_USER=root
+
         ports:
             - 3306:3306
         volumes:
