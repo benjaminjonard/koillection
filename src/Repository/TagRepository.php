@@ -55,6 +55,7 @@ class TagRepository extends ServiceEntityRepository
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
             ->orderBy('itemCount', 'DESC')
+            ->addOrderBy('t.label', 'ASC')
             ->setFirstResult(($search->getPage() - 1) * $search->getItemsPerPage())
             ->setMaxResults($search->getItemsPerPage())
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
