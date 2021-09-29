@@ -15,10 +15,10 @@ export default class extends Controller {
 
     update(event) {
         let checked = event.target.checked;
-
-        event.target.closest('ul').getElementsByTagName('input').forEach((checkbox) => {
+        let checkboxes = event.target.closest('ul').getElementsByTagName('input');
+        for (const checkbox of checkboxes) {
             checkbox.checked = checked;
-        });
+        }
 
         this.updateInput();
     }
