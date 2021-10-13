@@ -20,14 +20,27 @@ services:
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - DB_VERSION=8
             - PHP_TZ=Europe/Paris
-            - HTTPS_ENABLED=1
+            - HTTPS_ENABLED=0
         depends_on:
             - mysql
             - postgresql
         volumes:
             - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
             - ./:/var/www/koillection
-        dns: 1.1.1.1
+
+    borgmatic:
+        image: modem7/borgmatic-docker
+        container_name: borgmatic
+        volumes:
+            - ./docker/volumes/koillection:/mnt/source               # first backup source
+            - ./docker/volumes/borg/borgmatic.d:/etc/borgmatic.d/  # borgmatic config file(s) + crontab.txt
+            - ./docker/volumes/borg/.config/borg:/root/.config/borg   # config and keyfiles
+            - ./docker/volumes/borg/.ssh:/root/.ssh                   # ssh key for remote repositories
+            - ./docker/volumes/borg/.cache/borg:/root/.cache/borg     # checksums used for deduplication
+        environment:
+            - TZ=Europe/Paris
+            - BORG_PASSPHRASE=replacewithsecretpassphrase
+        restart: always
 
     postgresql:
         container_name: postgresql

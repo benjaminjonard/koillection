@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\User;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class PasswordUpdater
 {
-    private EncoderFactoryInterface $encoderFactory;
+    private UserPasswordHasherInterface $passwordHasher;
 
-    public function __construct(EncoderFactoryInterface $encoderFactory)
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        $this->encoderFactory = $encoderFactory;
+        $this->passwordHasher = $passwordHasher;
     }
 
     public function hashPassword(User $user) : User
@@ -24,10 +24,7 @@ class PasswordUpdater
             return $user;
         }
 
-        $encoder = $this->encoderFactory->getEncoder($user);
-        $user->setSalt(null);
-
-        $hashedPassword = $encoder->encodePassword($plainPassword, $user->getSalt());
+        $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);
         $user->eraseCredentials();
 
