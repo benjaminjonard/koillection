@@ -18,6 +18,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -29,7 +30,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="error.email.not_unique")
  * @UniqueEntity(fields={"username"}, message="error.username.not_unique")
  */
-class User implements UserInterface, BreadcrumbableInterface, \Serializable
+class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Serializable
 {
     /**
      * @var UuidInterface
@@ -52,11 +53,6 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
      * @Assert\Email()
      */
     private ?string $email = null;
-
-    /**
-     * @var ?string
-     */
-    private ?string $salt = null;
 
     /**
      * @var ?string
@@ -301,12 +297,17 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
             ) = unserialize($serialized);
     }
 
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->getUsername();
+    }
+
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return $this->getUsername() ?? '';
+        return (string) $this->getUsername();
     }
 
     public function isAdmin(): bool
@@ -373,7 +374,7 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
 
     public function getSalt() : ?string
     {
-        return $this->salt;
+        return null;
     }
 
     public function setSalt(?string $salt) : self
@@ -410,7 +411,10 @@ class User implements UserInterface, BreadcrumbableInterface, \Serializable
 
     public function getRoles() : array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles) : self
