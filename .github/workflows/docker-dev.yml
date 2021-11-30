@@ -1,0 +1,24 @@
+name: Build dev image for Docker Hub
+on:
+  workflow_dispatch:
+
+jobs:
+  push_to_docker_hub:
+    name: Build dev image for Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          repository: koillection/koillection-docker
+          ref: dev
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1.1.1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: koillection/koillection
+          tags: |
+            dev

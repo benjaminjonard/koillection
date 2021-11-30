@@ -6,7 +6,6 @@ services:
     koillection:
         container_name: koillection
         image: koillection/koillection:dev
-        #image: koillection/koillection:beta
         restart: always
         ports:
             - 80:80
@@ -21,14 +20,13 @@ services:
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - DB_VERSION=8
             - PHP_TZ=Europe/Paris
-            - HTTPS_ENABLED=1
+            - HTTPS_ENABLED=0
         depends_on:
             - mysql
             - postgresql
         volumes:
             - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
             - ./:/var/www/koillection
-        dns: 1.1.1.1
 
     postgresql:
         container_name: postgresql
