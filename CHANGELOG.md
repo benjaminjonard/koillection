@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 ### Miscellaneous
 - Preload assets (Benjamin Jonard)
 - Update JS dependencies, fix CVE-2021-33587 (Benjamin Jonard)
-- Update PHP dependencies  (Benjamin Jonard)
+- Update PHP dependencies (Benjamin Jonard)
 
 ## [1.2.3] / 2021-05-31
 ### Fixes
