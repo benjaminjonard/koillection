@@ -66,6 +66,7 @@ Please backup your database.
     - `zip`              
 3. A webserver such as `Apache2` or `nginx` 
 4. A `Postgresql` or `Mysql` (version 8 or superior) database
+5. Yarn
 
 ## Installation
 ### Using git or an archive file
@@ -87,7 +88,8 @@ Please backup your database.
 4. In the project root folder execute `bin/composer install --classmap-authoritative`
 5. Then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)
-7. (Optional) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
+7. Generate assets : `cd assets/ && yarn build`
+8. (Optional) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 
 ### Using Docker
 * https://github.com/koillection/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
