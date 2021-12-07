@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LoanRepository")
@@ -16,9 +15,9 @@ class Loan
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
      */
-    private UuidInterface $id;
+    private string $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="loans")
@@ -47,12 +46,12 @@ class Loan
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = Uuid::v4()->toRfc4122();
     }
 
     public function getId() : ?string
     {
-        return $this->id->toString();
+        return $this->id;
     }
 
     public function getLentTo(): ?string

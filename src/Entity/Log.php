@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
@@ -16,9 +15,9 @@ class Log
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
      */
-    private UuidInterface $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -62,13 +61,13 @@ class Log
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = Uuid::v4()->toRfc4122();
         $this->objectDeleted = false;
     }
 
     public function getId() : ?string
     {
-        return $this->id->toString();
+        return $this->id;
     }
 
     public function getType(): ?string

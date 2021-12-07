@@ -12,10 +12,10 @@ services:
         environment:
             - APP_ENV=dev
             - APP_DEBUG=1
-            - DB_DRIVER=pdo_mysql
+            - DB_DRIVER=pdo_pgsql
             - DB_NAME=koillection
-            - DB_HOST=mysql
-            - DB_PORT=3306
+            - DB_HOST=postgresql
+            - DB_PORT=5432
             - DB_USER=root
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
             - DB_VERSION=8
@@ -53,11 +53,11 @@ services:
         volumes:
             - "./docker/volumes/mysql:/var/lib/mysql"
 
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
+    pgadmin:
+        image: dpage/pgadmin4
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: root
         ports:
             - "8080:80"
-        links:
-            - mysql
-        environment:
-            - PMA_HOST=mysql

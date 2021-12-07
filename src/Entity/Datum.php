@@ -8,10 +8,9 @@ use App\Annotation\Upload;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
@@ -23,9 +22,9 @@ class Datum implements LoggableInterface
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
      */
-    private UuidInterface $id;
+    private string $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
@@ -114,7 +113,7 @@ class Datum implements LoggableInterface
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = Uuid::v4()->toRfc4122();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
@@ -125,7 +124,7 @@ class Datum implements LoggableInterface
 
     public function getId() : ?string
     {
-        return $this->id->toString();
+        return $this->id;
     }
 
     public function getType(): ?string

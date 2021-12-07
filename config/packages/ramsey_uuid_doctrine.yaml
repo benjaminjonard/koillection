@@ -1,4 +1,0 @@
-doctrine:
-    dbal:
-        types:
-            uuid:  Ramsey\Uuid\Doctrine\UuidType
