@@ -88,7 +88,7 @@ Please backup your database.
 4. In the project root folder execute `bin/composer install --classmap-authoritative`
 5. Then `php bin/console doctrine:migrations:migrate`
 6. Configure a vhost (you can find an example for nginx in `docs` folder)
-7. Generate assets : `cd assets/ && yarn build`
+7. Generate assets : `cd assets/ && yarn install && yarn build && cd ..`
 8. (Optional) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
 
 ### Using Docker
