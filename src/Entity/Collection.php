@@ -27,103 +27,86 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private ?string $title = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $childrenTitle = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $itemsTitle = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Collection", mappedBy="parent", cascade={"all"})
      * @ORM\OrderBy({"title" = "ASC"})
      */
     private DoctrineCollection $children;
 
     /**
-     * @var ?Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="children")
      */
     private ?Collection $parent = null;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="collections")
      */
     private ?User $owner = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Item", mappedBy="collection", cascade={"all"})
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private DoctrineCollection $items;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Datum", mappedBy="collection", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private DoctrineCollection $data;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=6)
      */
     private ?string $color = null;
 
     /**
-     * @var ?File
      * @Upload(path="image")
      */
     private ?File $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var int
      * @ORM\Column(type="integer")
      */
     private int $seenCounter;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt = null;

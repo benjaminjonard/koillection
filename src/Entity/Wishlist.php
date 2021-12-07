@@ -26,83 +26,69 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="wishlists")
      */
     private ?User $owner = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Wish", mappedBy="wishlist", cascade={"all"})
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private DoctrineCollection $wishes;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=6)
      */
     private ?string $color = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="parent", cascade={"all"})
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private DoctrineCollection $children;
 
     /**
-     * @var ?Wishlist
      * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="children")
      */
     private ?Wishlist $parent = null;
 
     /**
-     * @var ?File
      * @Upload(path="image")
      */
     private ?File $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var int
      * @ORM\Column(type="integer")
      */
     private int $seenCounter;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt = null;

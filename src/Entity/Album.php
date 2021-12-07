@@ -26,89 +26,72 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $title = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=6)
      */
     private ?string $color = null;
 
     /**
-     * @var ?File
      * @Upload(path="image")
      */
     private ?File $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="albums")
      */
     private ?User $owner = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="album", cascade={"all"})
      */
     private DoctrineCollection $photos;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Album", mappedBy="parent", cascade={"all"})
      * @ORM\OrderBy({"title" = "ASC"})
      */
     private DoctrineCollection $children;
 
     /**
-     * @var ?Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="children")
      */
     private ?Album $parent = null;
 
     /**
-     * @var int
      * @ORM\Column(type="integer")
      */
     private int $seenCounter;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt = null;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->id = Uuid::uuid4();

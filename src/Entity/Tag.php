@@ -25,82 +25,68 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private string $label;
 
     /**
-     * @var string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $description = null;
 
     /**
-     * @var File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
     private ?File $file = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
 
     /**
-     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tags")
      */
     private ?User $owner = null;
 
     /**
-     * @var TagCategory
      * @ORM\ManyToOne(targetEntity="TagCategory", inversedBy="tags", fetch="EAGER", cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private ?TagCategory $category = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\ManyToMany(targetEntity="Item", mappedBy="tags")
      */
     private DoctrineCollection $items;
 
     /**
-     * @var int
      * @ORM\Column(type="integer")
      */
     private int $seenCounter;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt = null;

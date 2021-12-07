@@ -22,87 +22,72 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Wish implements CacheableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $url = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $price = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=6, nullable=true)
      */
     private ?string $currency;
 
     /**
-     * @var ?Wishlist
      * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="wishes")
      */
     private ?Wishlist $wishlist;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $comment = null;
 
     /**
-     * @var ?File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
     private ?File $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

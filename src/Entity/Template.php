@@ -18,40 +18,33 @@ use Ramsey\Uuid\UuidInterface;
 class Template implements BreadcrumbableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private DoctrineCollection $fields;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="templates")
      */
     private ?User $owner = null;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

@@ -10,9 +10,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
-    /**
-     * @var FeatureChecker
-     */
     protected FeatureChecker $featureChecker;
 
     public function __construct(FeatureChecker $featureChecker)

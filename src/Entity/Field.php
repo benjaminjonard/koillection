@@ -16,33 +16,27 @@ use Ramsey\Uuid\UuidInterface;
 class Field
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
 
     /**
-     * @var ?integer
      * @ORM\Column(type="integer")
      */
     private ?int $position = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $type = null;
 
     /**
-     * @var ?Template
      * @ORM\ManyToOne(targetEntity="Template", inversedBy="fields")
      */
     private ?Template $template = null;

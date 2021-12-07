@@ -29,40 +29,33 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $name = null;
 
     /**
-     * @var int
      * @ORM\Column(type="integer")
      * @Assert\GreaterThan(0)
      */
     private int $quantity;
 
     /**
-     * @var ?Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="items")
      */
     private ?Collection $collection = null;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="items", cascade={"persist"})
      * @ORM\JoinTable(
      *    name="koi_item_tag",
@@ -74,7 +67,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private DoctrineCollection $tags;
 
     /**
-     * @var DoctrineCollection
      * @ORM\ManyToMany(targetEntity="Item", cascade={"persist"}, inversedBy="relatedTo")
      * @ORM\JoinTable(
      *    name="koi_item_related_item",
@@ -86,69 +78,58 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private DoctrineCollection $relatedItems;
 
     /**
-     * @var DoctrineCollection
      * @ORM\ManyToMany(targetEntity="Item", mappedBy="relatedItems")
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private DoctrineCollection $relatedTo;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private DoctrineCollection $data;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Loan", mappedBy="item", cascade={"remove"})
      */
     private DoctrineCollection $loans;
 
     /**
-     * @var ?File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail", largeThumbnailPath="imageLargeThumbnail")
      */
     private ?File $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageLargeThumbnail = null;
 
     /**
-     * @var int
      * @ORM\Column(type="integer")
      */
     private int $seenCounter;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

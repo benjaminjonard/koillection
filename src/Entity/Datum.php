@@ -22,111 +22,92 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Datum implements LoggableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
      */
     private ?Item $item = null;
 
     /**
-     * @var ?Collection
      * @ORM\ManyToOne(targetEntity="Collection", inversedBy="data")
      */
     private ?Collection $collection = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=false)
      */
     private ?string $type = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $label = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $value = null;
 
     /**
-     * @var ?int
      * @ORM\Column(type="integer", nullable=true)
      */
     private ?int $position = null;
 
     /**
-     * @var ?File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail", largeThumbnailPath="imageLargeThumbnail")
      */
     private ?File $fileImage = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageLargeThumbnail = null;
 
     /**
-     * @var ?File
      * @Upload(path="file", originalFilenamePath="originalFilename")
      */
     private ?File $fileFile = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true)
      */
     private ?string $originalFilename = null;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;
