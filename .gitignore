@@ -24,6 +24,7 @@
 
 /assets/stats.json
 
+/public/build/*
 /public/uploads/*
 !/public/uploads/.gitkeep
 /public/tmp/*

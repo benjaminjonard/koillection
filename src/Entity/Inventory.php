@@ -16,44 +16,34 @@ use Ramsey\Uuid\UuidInterface;
 class Inventory implements BreadcrumbableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string")
      */
     private ?string $name = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="json")
      */
     private ?string $content = null;
 
-    /**
-     * @var array
-     */
     private array $contentAsArray = [];
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="inventories")
      */
     private ?User $owner = null;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

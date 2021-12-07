@@ -33,227 +33,189 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Serializable
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=32, unique=true)
      * @Assert\Regex(pattern="/^[a-z\d_]{2,32}$/i", message="error.username.incorrect")
      */
     private ?string $username = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email()
      */
     private ?string $email = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $password;
 
     /**
-     * @var ?string
      * @Assert\Regex(pattern="/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message="error.password.incorrect")
      */
     private ?string $plainPassword = null;
 
     /**
-     * @var ?File
      * @Upload(path="avatar")
      */
     private ?File $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $avatar = null;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean")
      */
     private bool $enabled;
 
     /**
-     * @var array
      * @ORM\Column(type="array")
      */
     private array $roles;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=3)
      */
     private string $currency;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=5)
      */
     private string $locale;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string")
      */
     private ?string $timezone = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $dateFormat;
 
     /**
-     * @var int
      * @ORM\Column(type="bigint", options={"default"=268435456})
      */
     private int $diskSpaceAllowed;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Collection", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $collections;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $tags;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="TagCategory", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $tagCategories;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $wishlists;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Template", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $templates;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Log", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $logs;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $albums;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Inventory", mappedBy="owner", cascade={"remove"})
      */
     private DoctrineCollection $inventories;
 
     /**
-     * @var ?DateTimeInterface
      * @ORM\Column(type="date", nullable=true)
      */
     private ?DateTimeInterface $lastDateOfActivity = null;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 0})
      */
     private bool $darkModeEnabled;
 
     /**
-     * @var ?\DateTime
      * @ORM\Column(type="time", nullable=true)
      */
     private ?\DateTime $automaticDarkModeStartAt;
 
     /**
-     * @var ?\DateTime
      * @ORM\Column(type="time", nullable=true)
      */
     private ?\DateTime $automaticDarkModeEndAt;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $wishlistsFeatureEnabled;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $tagsFeatureEnabled;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $signsFeatureEnabled;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $albumsFeatureEnabled;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $loansFeatureEnabled;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $templatesFeatureEnabled;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $historyFeatureEnabled;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     private bool $statisticsFeatureEnabled;
 
     /**
-     * @var DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private DateTimeInterface $createdAt;
 
     /**
-     * @var ?DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?DateTimeInterface $updatedAt;

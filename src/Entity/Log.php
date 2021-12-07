@@ -15,57 +15,47 @@ use Ramsey\Uuid\UuidInterface;
 class Log
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
     private ?string $type;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $loggedAt = null;
 
     /**
-     * @var string
      * @ORM\Column(type="uuid")
      */
     private string $objectId;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private string $objectLabel;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private string $objectClass;
 
     /**
-     * @var boolean
      * @ORM\Column(type="boolean", options={"default": 0})
      */
     private bool $objectDeleted;
 
     /**
-     * @var string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $payload;
 
     /**
-     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="logs")
      */
     private ?User $owner;

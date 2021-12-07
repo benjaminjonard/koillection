@@ -15,39 +15,32 @@ use Ramsey\Uuid\UuidInterface;
 class Loan
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var Item
      * @ORM\ManyToOne(targetEntity="Item", inversedBy="loans")
      */
     private ?Item $item;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $lentTo = null;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="date")
      */
     private ?\DateTimeInterface $lentAt = null;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="date", nullable=true)
      */
     private ?\DateTimeInterface $returnedAt;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;

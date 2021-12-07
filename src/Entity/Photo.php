@@ -22,81 +22,67 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Photo implements CacheableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $title = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $comment = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $place = null;
 
     /**
-     * @var ?Album
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
      */
     private ?Album $album;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
 
     /**
-     * @var ?File
      * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
      */
     private ?File $file = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $image = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private ?string $imageSmallThumbnail = null;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $takenAt = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
     private string $visibility;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;

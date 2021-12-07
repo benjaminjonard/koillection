@@ -18,51 +18,42 @@ use Ramsey\Uuid\UuidInterface;
 class TagCategory implements BreadcrumbableInterface
 {
     /**
-     * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=255)
      */
     private ?string $label = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $description = null;
 
     /**
-     * @var ?string
      * @ORM\Column(type="string", length=7)
      */
     private ?string $color = null;
 
     /**
-     * @var ?User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tagCategories")
      */
     private ?User $owner = null;
 
     /**
-     * @var DoctrineCollection
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="category")
      */
     private DoctrineCollection $tags;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
     /**
-     * @var ?\DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;
