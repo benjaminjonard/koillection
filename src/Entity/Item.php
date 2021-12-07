@@ -14,10 +14,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,9 +29,9 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
      */
-    private UuidInterface $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -136,7 +135,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = Uuid::v4()->toRfc4122();
         $this->seenCounter = 0;
         $this->quantity = 1;
         $this->tags = new ArrayCollection();
@@ -191,7 +190,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getId() : ?string
     {
-        return $this->id->toString();
+        return $this->id;
     }
 
     public function getName(): ?string

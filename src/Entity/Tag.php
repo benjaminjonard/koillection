@@ -11,10 +11,9 @@ use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
@@ -26,9 +25,9 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
      */
-    private UuidInterface $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -93,7 +92,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = Uuid::v4()->toRfc4122();
         $this->items = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->seenCounter = 0;
@@ -106,7 +105,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 
     public function getId() : ?string
     {
-        return $this->id->toString();
+        return $this->id;
     }
 
     public function getLabel(): ?string

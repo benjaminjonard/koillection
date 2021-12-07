@@ -13,13 +13,12 @@ use App\Enum\VisibilityEnum;
 use DateTimeInterface;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -34,9 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
      */
-    private UuidInterface $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string", length=32, unique=true)
@@ -222,7 +221,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = Uuid::v4()->toRfc4122();
         $this->roles = ['ROLE_USER'];
         $this->diskSpaceAllowed = 536870912;
         $this->enabled = true;
@@ -241,6 +240,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->statisticsFeatureEnabled = true;
     }
 
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->getUsername();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->getUsername();
+    }
+
     public function serialize(): ?string
     {
         return serialize([
@@ -257,19 +269,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
             $this->username,
             $this->password,
             ) = unserialize($serialized);
-    }
-
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->getUsername();
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return (string) $this->getUsername();
     }
 
     public function isAdmin(): bool
@@ -408,7 +407,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function getId() : ?string
     {
-        return $this->id->toString();
+        return $this->id;
     }
 
     public function setUsername(string $username): self
