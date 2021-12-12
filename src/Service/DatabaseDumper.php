@@ -85,7 +85,7 @@ class DatabaseDumper
 
         foreach ($selects as $select) {
             $stmt = $connection->prepare($select);
-            $stmt->executeQuery()->fetchAllAssociative();
+            $results = $stmt->executeQuery()->fetchAllAssociative();
 
             if (empty($results)) {
                 continue;
