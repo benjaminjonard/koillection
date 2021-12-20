@@ -9,6 +9,7 @@ use App\Form\Type\Entity\AlbumType;
 use App\Repository\AlbumRepository;
 use App\Repository\LogRepository;
 use App\Repository\PhotoRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,13 +45,11 @@ class AlbumController extends AbstractController
         path: ['en' => '/albums/add', 'fr' => '/albums/ajouter'],
         name: 'app_album_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator, AlbumRepository $albumRepository) : Response
+    public function add(Request $request, TranslatorInterface $translator, AlbumRepository $albumRepository, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
         $album = new Album();
-        $em = $this->getDoctrine()->getManager();
-
         if ($request->query->has('parent')) {
             $parent = $albumRepository->findOneBy([
                 'id' => $request->query->get('parent'),
@@ -65,8 +64,8 @@ class AlbumController extends AbstractController
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($album);
-            $em->flush();
+            $managerRegistry->getManager()->persist($album);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.album_added', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
 
@@ -82,7 +81,7 @@ class AlbumController extends AbstractController
         path: ['en' => '/albums/{id}/edit', 'fr' => '/albums/{id}/editer'],
         name: 'app_album_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Album $album, TranslatorInterface $translator) : Response
+    public function edit(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -90,7 +89,7 @@ class AlbumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.album_edited', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_album_show', ['id' => $album->getId()]);
@@ -106,7 +105,7 @@ class AlbumController extends AbstractController
         path: ['en' => '/albums/{id}/delete', 'fr' => '/albums/{id}/supprimer'],
         name: 'app_album_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Album $album, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -114,9 +113,8 @@ class AlbumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($album);
-            $em->flush();
+            $managerRegistry->getManager()->remove($album);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.album_deleted', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
         }
 
@@ -135,7 +133,6 @@ class AlbumController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
-        $em = $this->getDoctrine()->getManager();
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
             'children' => $albumRepository->findBy(['parent' => $album]),
@@ -147,7 +144,7 @@ class AlbumController extends AbstractController
         path: ['en' => '/albums/{id}/history', 'fr' => '/albums/{id}/historique'],
         name: 'app_album_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function history(Album $album, LogRepository $logRepository) : Response
+    public function history(Album $album, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums', 'history']);
         
@@ -155,7 +152,7 @@ class AlbumController extends AbstractController
             'album' => $album,
             'logs' => $logRepository->findBy([
                 'objectId' => $album->getId(),
-                'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($album))->getName(),
+                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($album))->getName(),
             ], [
                 'loggedAt' => 'DESC',
                 'type' => 'DESC'

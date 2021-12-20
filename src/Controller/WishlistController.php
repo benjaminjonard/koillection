@@ -9,6 +9,7 @@ use App\Form\Type\Entity\WishlistType;
 use App\Repository\LogRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,13 +40,11 @@ class WishlistController extends AbstractController
         path: ['en' => '/wishlists/add', 'fr' => '/listes-de-souhaits/ajouter'],
         name: 'app_wishlist_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator) : Response
+    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
         $wishlist = new Wishlist();
-        $em = $this->getDoctrine()->getManager();
-
         if ($request->query->has('parent')) {
             $parent = $wishlistRepository->findOneBy([
                 'id' => $request->query->get('parent'),
@@ -60,8 +59,8 @@ class WishlistController extends AbstractController
         $form = $this->createForm(WishlistType::class, $wishlist);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($wishlist);
-            $em->flush();
+            $managerRegistry->getManager()->persist($wishlist);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.wishlist_added', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
@@ -96,7 +95,7 @@ class WishlistController extends AbstractController
         path: ['en' => '/wishlists/{id}/edit', 'fr' => '/listes-de-souhaits/{id}/editer'],
         name: 'app_wishlist_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Wishlist $wishlist, TranslatorInterface $translator) : Response
+    public function edit(Request $request, Wishlist $wishlist, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -104,7 +103,7 @@ class WishlistController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.wishlist_edited', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wishlist->getId()]);
@@ -120,7 +119,7 @@ class WishlistController extends AbstractController
         path: ['en' => '/wishlists/{id}/delete', 'fr' => '/listes-de-souhaits/{id}/supprimer'],
         name: 'app_wishlist_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Wishlist $wishlist, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Wishlist $wishlist, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -128,9 +127,8 @@ class WishlistController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($wishlist);
-            $em->flush();
+            $managerRegistry->getManager()->remove($wishlist);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
         }
 
@@ -141,7 +139,7 @@ class WishlistController extends AbstractController
         path: ['en' => '/wishlists/{id}/history', 'fr' => '/listes-de-souhaits/{id}/historique'],
         name: 'app_wishlist_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function history(Wishlist $wishlist, LogRepository $logRepository) : Response
+    public function history(Wishlist $wishlist, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists', 'history']);
 
@@ -149,7 +147,7 @@ class WishlistController extends AbstractController
             'wishlist' => $wishlist,
             'logs' => $logRepository->findBy([
                 'objectId' => $wishlist->getId(),
-                'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($wishlist))->getName(),
+                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($wishlist))->getName(),
             ], [
                 'loggedAt' => 'DESC',
                 'type' => 'DESC'

@@ -8,6 +8,7 @@ use App\Entity\Inventory;
 use App\Form\Type\Entity\InventoryType;
 use App\Repository\CollectionRepository;
 use App\Service\InventoryHandler;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,16 +21,15 @@ class InventoryController extends AbstractController
         path: ['en' => '/inventories/add', 'fr' => '/inventaires/ajouter'],
         name: 'app_inventory_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, CollectionRepository $collectionRepository, TranslatorInterface $translator) : Response
+    public function add(Request $request, CollectionRepository $collectionRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $inventory = new Inventory();
-        $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(InventoryType::class, $inventory);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($inventory);
-            $em->flush();
+            $managerRegistry->getManager()->persist($inventory);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.inventory_added', ['%inventory%' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
 
@@ -46,15 +46,14 @@ class InventoryController extends AbstractController
         path: ['en' => '/inventories/{id}/delete', 'fr' => '/inventaires/{id}/supprimer'],
         name: 'app_inventory_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Inventory $inventory, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Inventory $inventory, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $form = $this->createDeleteForm('app_inventory_delete', $inventory);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($inventory);
-            $em->flush();
+            $managerRegistry->getManager()->remove($inventory);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.inventory_deleted', ['%inventory%' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
         }
 
@@ -65,10 +64,10 @@ class InventoryController extends AbstractController
         path: ['en' => '/inventories/{id}/check', 'fr' => '/inventaires/{id}/cocher'],
         name: 'app_inventory_check', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function check(Request $request, Inventory $inventory, InventoryHandler $inventoryHandler) : Response
+    public function check(Request $request, Inventory $inventory, InventoryHandler $inventoryHandler, ManagerRegistry $managerRegistry) : Response
     {
         $inventoryHandler->setCheckedValue($inventory, $request->request->get('id'), $request->request->get('checked'));
-        $this->getDoctrine()->getManager()->flush();
+        $managerRegistry->getManager()->flush();
 
         return new JsonResponse([
             'htmlForNavPills' => $this->render('App/Inventory/_nav_pills.html.twig', ['inventory' => $inventory])->getContent()

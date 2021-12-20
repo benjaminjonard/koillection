@@ -10,15 +10,15 @@ use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\RouterInterface;
 
 class Autocompleter
 {
     private ContextHandler $contextHandler;
 
-    private EntityManagerInterface $em;
+    private ManagerRegistry $managerRegistry;
 
     private array $params;
 
@@ -26,10 +26,10 @@ class Autocompleter
 
     private FeatureChecker $featureChecker;
 
-    public function __construct(ContextHandler $contextHandler, EntityManagerInterface $em, RouterInterface $router, FeatureChecker $featureChecker)
+    public function __construct(ContextHandler $contextHandler, ManagerRegistry $managerRegistry, RouterInterface $router, FeatureChecker $featureChecker)
     {
         $this->contextHandler = $contextHandler;
-        $this->em = $em;
+        $this->managerRegistry = $managerRegistry;
         $this->router = $router;
         $this->featureChecker = $featureChecker;
     }
@@ -38,23 +38,23 @@ class Autocompleter
     {
         $this->params = [];
         $queryParts = [];
-        $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection');
-        $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Item::class)->getTableName(), 'name', $term, 'item');
+        $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection');
+        $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Item::class)->getTableName(), 'name', $term, 'item');
         if ($this->featureChecker->isFeatureEnabled('tags')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag');
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag');
         }
         if ($this->featureChecker->isFeatureEnabled('tags')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album');
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album');
         }
         if ($this->featureChecker->isFeatureEnabled('tags')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->em->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist');
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist');
         }
         $sql = implode(' UNION ', $queryParts);
 
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('counter', 'counter');
         $counterSql = "SELECT COUNT(*) AS counter FROM ({$sql}) AS x";
-        $query = $this->em->createNativeQuery($counterSql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($counterSql, $rsm);
         foreach ($this->params as $key => $value) {
             $query->setParameter($key + 1, $value);
         }
@@ -69,7 +69,7 @@ class Autocompleter
             ORDER BY relevance DESC, seenCounter DESC, label ASC
             LIMIT 5
         ";
-        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         foreach ($this->params as $key => $value) {
             $query->setParameter($key + 1, $value);
         }
@@ -111,7 +111,7 @@ class Autocompleter
         $this->params[] = $user->getId();
         $this->params[] = '%'. $term . '%';
 
-        if ($this->em->getFilters()->isEnabled('visibility')) {
+        if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             $sql .= " AND visibility = ?";
             $this->params[] = VisibilityEnum::VISIBILITY_PUBLIC;
         };

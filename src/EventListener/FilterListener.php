@@ -7,13 +7,13 @@ namespace App\EventListener;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Service\ContextHandler;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Security;
 
 class FilterListener
 {
-    private EntityManagerInterface $em;
+    private ManagerRegistry $managerRegistry;
 
     private ContextHandler $contextHandler;
 
@@ -21,9 +21,9 @@ class FilterListener
 
     private UserRepository $userRepository;
 
-    public function __construct(EntityManagerInterface $em, ContextHandler $contextHandler, Security $security, UserRepository $userRepository)
+    public function __construct(ManagerRegistry $managerRegistry, ContextHandler $contextHandler, Security $security, UserRepository $userRepository)
     {
-        $this->em = $em;
+        $this->managerRegistry = $managerRegistry;
         $this->contextHandler = $contextHandler;
         $this->security = $security;
         $this->userRepository = $userRepository;
@@ -31,7 +31,7 @@ class FilterListener
 
     public function onKernelRequest()
     {
-        $filters = $this->em->getFilters();
+        $filters = $this->managerRegistry->getManager()->getFilters();
         $context = $this->contextHandler->getContext();
 
         //Visibility filter

@@ -20,7 +20,7 @@ class JsonToItemTransformer implements DataTransformerInterface
         $this->assetManager = $assetManager;
     }
 
-    public function transform($items)
+    public function transform($items): mixed
     {
         $array = [];
         foreach ($items as $item) {
@@ -34,7 +34,7 @@ class JsonToItemTransformer implements DataTransformerInterface
         return json_encode($array);
     }
 
-    public function reverseTransform($json)
+    public function reverseTransform($json): mixed
     {
         $items = [];
         foreach (json_decode($json, true) as $id) {

@@ -12,6 +12,7 @@ use App\Repository\ItemRepository;
 use App\Repository\TagRepository;
 use App\Repository\WishlistRepository;
 use App\Service\Autocompleter;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +37,6 @@ class SearchController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             if (true === $search->getSearchInCollections()) {
                 $collections = $collectionRepository->findForSearch($search);
                 if (!empty($collections)) {

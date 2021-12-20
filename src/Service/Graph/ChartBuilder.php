@@ -7,19 +7,19 @@ namespace App\Service\Graph;
 use App\Entity\Item;
 use App\Entity\User;
 use App\Enum\LogTypeEnum;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ChartBuilder
 {
-    private EntityManagerInterface $em;
+    private ManagerRegistry $managerRegistry;
 
     private TranslatorInterface $translator;
 
-    public function __construct(EntityManagerInterface $em, TranslatorInterface $translator)
+    public function __construct(ManagerRegistry $managerRegistry, TranslatorInterface $translator)
     {
-        $this->em = $em;
+        $this->managerRegistry = $managerRegistry;
         $this->translator = $translator;
     }
 
@@ -32,7 +32,7 @@ class ChartBuilder
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('date', 'date', 'datetime');
 
-        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
         $result = $query->getArrayResult();
 
@@ -61,7 +61,7 @@ class ChartBuilder
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('date', 'date', 'datetime');
 
-        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
         $result = $query->getArrayResult();
 
@@ -90,7 +90,7 @@ class ChartBuilder
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('date', 'date', 'datetime');
 
-        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
         $result = $query->getArrayResult();
 
@@ -128,7 +128,7 @@ class ChartBuilder
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('date', 'date', 'datetime');
 
-        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
         $result = $query->getArrayResult();
 
@@ -176,7 +176,7 @@ class ChartBuilder
         $rsm->addScalarResult('date', 'date', 'datetime');
         $rsm->addScalarResult('type', 'type', 'string');
 
-        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
         $query->setParameter(2, Item::class);
         $query->setParameter(3, [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE]);

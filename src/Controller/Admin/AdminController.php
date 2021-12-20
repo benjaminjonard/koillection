@@ -38,8 +38,6 @@ class AdminController extends AbstractController
                           PhotoRepository $photoRepository, DatumRepository $datumRepository
     ) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('App/Admin/Admin/index.html.twig', [
             'freeSpace' => disk_free_space('/'),
             'totalSpace' => disk_total_space('/'),

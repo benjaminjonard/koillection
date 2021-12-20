@@ -20,12 +20,12 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
         $this->collectionRepository = $collectionRepository;
     }
 
-    public function transform($content)
+    public function transform($content): mixed
     {
         return '';
     }
 
-    public function reverseTransform($string)
+    public function reverseTransform($string): mixed
     {
         if ($string === null) {
             return json_encode([]);

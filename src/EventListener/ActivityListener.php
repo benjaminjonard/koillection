@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Security;
 
 class ActivityListener
 {
-    private EntityManagerInterface $em;
+    private ManagerRegistry $managerRegistry;
 
     private Security $security;
 
-    public function __construct(Security $security, EntityManagerInterface $em)
+    public function __construct(Security $security, ManagerRegistry $managerRegistry)
     {
         $this->security= $security;
-        $this->em= $em;
+        $this->managerRegistry = $managerRegistry;
     }
 
     public function onKernelRequest()
@@ -30,6 +30,6 @@ class ActivityListener
         }
 
         $user->setLastDateOfActivity($now);
-        $this->em->flush();
+        $this->managerRegistry->getManager()->flush();
     }
 }

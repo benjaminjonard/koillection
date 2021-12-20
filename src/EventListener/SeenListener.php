@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class SeenListener
 {
-    private EntityManagerInterface $em;
+    private ManagerRegistry $managerRegistry;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->em = $em;
+        $this->managerRegistry = $managerRegistry;
     }
 
     public function onKernelResponse(ResponseEvent $event)
@@ -36,7 +36,7 @@ class SeenListener
         if ($type) {
             $id = $event->getRequest()->get('id');
             $sql = "UPDATE koi_$type SET seen_counter = seen_counter + 1 WHERE id = ?";
-            $stmt = $this->em->getConnection()->prepare($sql);
+            $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
             $stmt->bindParam(1, $id);
             $stmt->execute();
         }

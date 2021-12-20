@@ -8,6 +8,7 @@ use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\TemplateType;
 use App\Repository\TemplateRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,7 +35,7 @@ class TemplateController extends AbstractController
         path: ['en' => '/templates/add', 'fr' => '/modeles/ajouter'],
         name: 'app_template_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -42,9 +43,8 @@ class TemplateController extends AbstractController
         $form = $this->createForm(TemplateType::class, $template);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($template);
-            $em->flush();
+            $managerRegistry->getManager()->persist($template);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.template_added', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
 
@@ -61,14 +61,14 @@ class TemplateController extends AbstractController
         name: 'app_template_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
     #[Entity('template', expr: 'repository.findById(id)', class: Template::class)]
-    public function edit(Request $request, Template $template, TranslatorInterface $translator) : Response
+    public function edit(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
         $form = $this->createForm(TemplateType::class, $template);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.template_edited', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_template_show', ['id' => $template->getId()]);
@@ -98,7 +98,7 @@ class TemplateController extends AbstractController
         path: ['en' => '/templates/{id}/delete', 'fr' => '/modeles/{id}/supprimer'],
         name: 'app_template_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Template $template, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -106,9 +106,8 @@ class TemplateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($template);
-            $em->flush();
+            $managerRegistry->getManager()->remove($template);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.template_deleted', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
         }
 
