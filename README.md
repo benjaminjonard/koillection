@@ -32,12 +32,13 @@ Please backup your database.
 1. PHP
 
     | Koillection | PHP version | Maintained                |
-    | ------------| ----------- | ---------                 |
+    |-------------| ----------- | ---------                 |
+    | 1.3.x       | 8.1         | :heavy_check_mark:        | 
     | 1.2.x       | 8.0         | :heavy_check_mark:        |
     | 1.1.x       | 7.4         | :x:                       |
     | 1.0.x       | 7.2         | :x:                       |
-
-2. You may need to add the following extensions:
+3. 
+4. You may need to add the following extensions:
     - `apcu`
     - `cgi`
     - `ctype`
@@ -64,9 +65,9 @@ Please backup your database.
     - `xml`
     - `xmlwriter`    
     - `zip`              
-3. A webserver such as `Apache2` or `nginx` 
-4. A `Postgresql` or `Mysql` (version 8 or superior) database
-5. Yarn
+5. A webserver such as `Apache2` or `nginx` 
+6. A `Postgresql` or `Mysql` (version 8 or superior) database
+7. Yarn
 
 ## Installation
 ### Using git or an archive file

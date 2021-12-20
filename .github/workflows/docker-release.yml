@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: koillection/koillection-docker
-          ref: php8.0
+          ref: php8.1
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push to Docker Hub
