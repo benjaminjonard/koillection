@@ -20,12 +20,9 @@ use Symfony\Component\Security\Core\Security;
 
 class DatumType extends AbstractType
 {
-    private Security $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
+    public function __construct(
+        private Security $security
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

@@ -14,6 +14,7 @@ use App\Repository\LogRepository;
 use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +45,6 @@ class TagController extends AbstractController
         ]);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         $itemsCount = $tagRepository->count([]);
         $tagsCount = $tagRepository->countForTagSearch($search, $context);
         $results = $tagRepository->findForTagSearch($search, $context, $itemsCount);
@@ -88,7 +88,7 @@ class TagController extends AbstractController
         path: ['en' => '/tags/{id}/edit', 'fr' => '/tags/{id}/editer'],
         name: 'app_tag_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Tag $tag, TranslatorInterface $translator) : Response
+    public function edit(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -96,7 +96,7 @@ class TagController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.tag_edited', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_tag_show', ['id' => $tag->getId()]);
@@ -113,7 +113,7 @@ class TagController extends AbstractController
         path: ['en' => '/tags/{id}/delete', 'fr' => '/tags/{id}/supprimer'],
         name: 'app_tag_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Tag $tag, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -121,9 +121,8 @@ class TagController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($tag);
-            $em->flush();
+            $managerRegistry->getManager()->remove($tag);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.tag_deleted', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
         }
 
@@ -151,7 +150,7 @@ class TagController extends AbstractController
         path: ['en' => '/tags/{id}/history', 'fr' => '/tags/{id}/historique'],
         name: 'app_tag_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function history(Tag $tag, LogRepository $logRepository) : Response
+    public function history(Tag $tag, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags', 'history']);
 
@@ -159,7 +158,7 @@ class TagController extends AbstractController
             'tag' => $tag,
             'logs' => $logRepository->findBy([
                 'objectId' => $tag->getId(),
-                'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($tag))->getName(),
+                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($tag))->getName(),
             ], [
                 'loggedAt' => 'DESC',
                 'type' => 'DESC'

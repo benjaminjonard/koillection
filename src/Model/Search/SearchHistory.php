@@ -8,19 +8,14 @@ class SearchHistory
 {
     private ?string $term = null;
 
-    private int $page = 1;
-
-    private int $itemsPerPage;
-
     private array $classes = [];
 
     private array $types = [];
 
-    public function __construct(int $page, int $itemsPerPage)
-    {
-        $this->page = $page;
-        $this->itemsPerPage = $itemsPerPage;
-    }
+    public function __construct(
+        private int $page = 1,
+        private int $itemsPerPage = 10
+    ) {}
 
     public function getTerm(): ?string
     {

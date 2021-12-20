@@ -14,6 +14,7 @@ use App\Repository\LogRepository;
 use App\Repository\TagRepository;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -29,11 +30,9 @@ class ItemController extends AbstractController
         name: 'app_item_add', methods: ['GET', 'POST']
     )]
     public function add(Request $request, CollectionRepository $collectionRepository, TagRepository $tagRepository,
-                        TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser
+                        TranslatorInterface $translator, ItemNameGuesser $itemNameGuesser, ManagerRegistry $managerRegistry
     ) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         $collection = null;
         if ($request->query->has('collection')) {
             $collection = $collectionRepository->find($request->query->get('collection'));
@@ -59,8 +58,8 @@ class ItemController extends AbstractController
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($item);
-            $em->flush();
+            $managerRegistry->getManager()->persist($item);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.item_added', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
@@ -104,12 +103,12 @@ class ItemController extends AbstractController
         name: 'app_item_edit', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET', 'POST']
     )]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
-    public function edit(Request $request, Item $item, TranslatorInterface $translator) : Response
+    public function edit(Request $request, Item $item, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.item_edited', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_item_show', ['id' => $item->getId()]);
@@ -126,7 +125,7 @@ class ItemController extends AbstractController
         path: ['en' => '/items/{id}/delete', 'fr' => '/objets/{id}/supprimer'],
         name: 'app_item_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Item $item, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Item $item, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $collection = $item->getCollection();
 
@@ -134,9 +133,8 @@ class ItemController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($item);
-            $em->flush();
+            $managerRegistry->getManager()->remove($item);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.item_deleted', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
         }
 
@@ -147,7 +145,7 @@ class ItemController extends AbstractController
         path: ['en' => '/items/{id}/history', 'fr' => '/objets/{id}/historique'],
         name: 'app_item_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
-    public function history(Item $item, LogRepository $logRepository) : Response
+    public function history(Item $item, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
 
@@ -155,7 +153,7 @@ class ItemController extends AbstractController
             'item' => $item,
             'logs' => $logRepository->findBy([
                 'objectId' => $item->getId(),
-                'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($item))->getName(),
+                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($item))->getName(),
             ], [
                 'loggedAt' => 'DESC',
                 'type' => 'DESC'
@@ -167,7 +165,7 @@ class ItemController extends AbstractController
         path: ['en' => '/items/{id}/loan', 'fr' => '/objets/{id}/preter'],
         name: 'app_item_loan', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function loan(Request $request, Item $item, TranslatorInterface $translator) : Response
+    public function loan(Request $request, Item $item, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
@@ -176,9 +174,8 @@ class ItemController extends AbstractController
         $form = $this->createForm(LoanType::class, $loan);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($loan);
-            $em->flush();
+            $managerRegistry->getManager()->persist($loan);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.loan', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 

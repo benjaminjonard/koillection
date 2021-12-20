@@ -7,34 +7,25 @@ namespace App\Service;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Security;
 
 class DatabaseDumper
 {
-    private EntityManagerInterface $em;
-
-    private ContextHandler $contextHandler;
-
-    private Security $security;
-
-    private UserRepository $userRepository;
-
-    public function __construct(EntityManagerInterface $em, Security $security, ContextHandler $contextHandler, UserRepository $userRepository)
-    {
-        $this->em = $em;
-        $this->security = $security;
-        $this->contextHandler = $contextHandler;
-        $this->userRepository = $userRepository;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry,
+        private Security $security,
+        private ContextHandler $contextHandler,
+        private UserRepository $userRepository
+    ) {}
 
     public function dump() : array
     {
-        $connection = $this->em->getConnection();
+        $connection = $this->managerRegistry->getManager()->getConnection();
         $rows = [];
 
         //Disable foreign keys
-        $platformName = $this->em->getConnection()->getDatabasePlatform()->getName();
+        $platformName = $this->managerRegistry->getManager()->getConnection()->getDatabasePlatform()->getName();
         $disableForeignKeysCheck = null;
         $enableForeignKeysCheck = null;
         if ($platformName === 'postgresql') {
@@ -97,7 +88,7 @@ class DatabaseDumper
 
             $metadata = null;
             if (class_exists("App\Entity\\$entityName")) {
-                $metadata = $this->em->getClassMetadata("App\Entity\\$entityName");
+                $metadata = $this->managerRegistry->getManager()->getClassMetadata("App\Entity\\$entityName");
             }
 
             $headers = implode(',', \array_keys($results[0]));

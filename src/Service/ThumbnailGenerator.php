@@ -6,12 +6,9 @@ namespace App\Service;
 
 class ThumbnailGenerator
 {
-    private GifResizer $gifResizer;
-
-    public function __construct(GifResizer $gifResizer)
-    {
-        $this->gifResizer = $gifResizer;
-    }
+    public function __construct(
+        private GifResizer $gifResizer
+    ) {}
 
     public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : bool
     {

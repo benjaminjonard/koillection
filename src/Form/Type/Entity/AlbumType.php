@@ -17,15 +17,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AlbumType extends AbstractType
 {
-    private AlbumRepository $albumRepository;
-
-    private Base64ToImageTransformer $base64ToImageTransformer;
-
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, AlbumRepository $albumRepository)
-    {
-        $this->base64ToImageTransformer = $base64ToImageTransformer;
-        $this->albumRepository = $albumRepository;
-    }
+    public function __construct(
+        private Base64ToImageTransformer $base64ToImageTransformer,
+        private AlbumRepository $albumRepository
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

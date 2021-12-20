@@ -9,12 +9,9 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class CountersRuntime implements RuntimeExtensionInterface
 {
-    private CountersCache $countersCache;
-
-    public function __construct(CountersCache $countersCache)
-    {
-        $this->countersCache = $countersCache;
-    }
+    public function __construct(
+        private CountersCache $countersCache
+    ) {}
 
     public function getCounters($object): array
     {

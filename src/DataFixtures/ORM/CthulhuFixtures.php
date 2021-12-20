@@ -26,12 +26,9 @@ use Doctrine\Persistence\ObjectManager;
 
 class CthulhuFixtures extends Fixture implements OrderedFixtureInterface
 {
-    private InventoryHandler $inventoryHandler;
-
-    public function __construct(InventoryHandler $inventoryHandler)
-    {
-        $this->inventoryHandler = $inventoryHandler;
-    }
+    public function __construct(
+        private InventoryHandler $inventoryHandler
+    ) {}
 
     public function getOrder(): int
     {

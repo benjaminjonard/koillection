@@ -17,15 +17,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WishlistType extends AbstractType
 {
-    private WishlistRepository $wishlistRepository;
-
-    private Base64ToImageTransformer $base64ToImageTransformer;
-
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, WishlistRepository $wishlistRepository)
-    {
-        $this->base64ToImageTransformer = $base64ToImageTransformer;
-        $this->wishlistRepository = $wishlistRepository;
-    }
+    public function __construct(
+        private Base64ToImageTransformer $base64ToImageTransformer,
+        private WishlistRepository $wishlistRepository
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

@@ -16,15 +16,10 @@ use Symfony\Component\Security\Core\Security;
 
 class SearchType extends AbstractType
 {
-    private FeatureChecker $featureChecker;
-
-    private Security $security;
-
-    public function __construct(Security $security, FeatureChecker $featureChecker)
-    {
-        $this->security = $security;
-        $this->featureChecker = $featureChecker;
-    }
+    public function __construct(
+        private Security $security,
+        private FeatureChecker $featureChecker
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

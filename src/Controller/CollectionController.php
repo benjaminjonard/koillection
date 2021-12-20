@@ -11,6 +11,7 @@ use App\Model\BatchTagger;
 use App\Repository\CollectionRepository;
 use App\Repository\ItemRepository;
 use App\Repository\LogRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,10 +44,9 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/add', 'fr' => '/collections/ajouter'],
         name: 'app_collection_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator, CollectionRepository $collectionRepository) : Response
+    public function add(Request $request, TranslatorInterface $translator, CollectionRepository $collectionRepository, ManagerRegistry $managerRegistry) : Response
     {
         $collection = new Collection();
-        $em = $this->getDoctrine()->getManager();
 
         if ($request->query->has('parent')) {
             $parent = $collectionRepository->findOneBy([
@@ -62,8 +62,8 @@ class CollectionController extends AbstractController
         $form = $this->createForm(CollectionType::class, $collection);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($collection);
-            $em->flush();
+            $managerRegistry->getManager()->persist($collection);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.collection_added', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
 
@@ -115,15 +115,12 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/{id}/edit', 'fr' => '/collections/{id}/editer'],
         name: 'app_collection_edit', requirements: ['id' => '%uuid_regex%'],  methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Collection $collection, TranslatorInterface $translator, CollectionRepository $collectionRepository) : Response
+    public function edit(Request $request, Collection $collection, TranslatorInterface $translator, CollectionRepository $collectionRepository, ManagerRegistry $managerRegistry) : Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         $form = $this->createForm(CollectionType::class, $collection);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.collection_edited', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
@@ -141,15 +138,14 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/{id}/delete', 'fr' => '/collections/{id}/supprimer'],
         name: 'app_collection_delete', requirements: ['id' => '%uuid_regex%'],  methods: ['POST']
     )]
-    public function delete(Request $request, Collection $collection, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Collection $collection, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $form = $this->createDeleteForm('app_collection_delete', $collection);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($collection);
-            $em->flush();
+            $managerRegistry->getManager()->remove($collection);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.collection_deleted', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
         }
 
@@ -164,7 +160,7 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/{id}/batch-tagging', 'fr' => '/collections/{id}/tagguer-par-lot'],
         name: 'app_collection_batch_tagging', requirements: ['id' => '%uuid_regex%'],  methods: ['GET', 'POST']
     )]
-    public function batchTagging(Request $request, Collection $collection, TranslatorInterface $translator) : Response
+    public function batchTagging(Request $request, Collection $collection, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -175,7 +171,7 @@ class CollectionController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $itemsTaggedCount = $batchTagger->applyBatch();
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.items_tagged', ['%count%' => $itemsTaggedCount]));
 
             return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
@@ -191,7 +187,7 @@ class CollectionController extends AbstractController
         path: ['en' => '/collections/{id}/history', 'fr' => '/collections/{id}/historique'],
         name: 'app_collection_history', requirements: ['id' => '%uuid_regex%'],  methods: ['GET']
     )]
-    public function history(Collection $collection, LogRepository $logRepository) : Response
+    public function history(Collection $collection, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
 
@@ -199,7 +195,7 @@ class CollectionController extends AbstractController
             'collection' => $collection,
             'logs' => $logRepository->findBy([
                 'objectId' => $collection->getId(),
-                'objectClass' => $this->getDoctrine()->getManager()->getClassMetadata(\get_class($collection))->getName(),
+                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($collection))->getName(),
             ], [
                 'loggedAt' => 'DESC',
                 'type' => 'DESC'

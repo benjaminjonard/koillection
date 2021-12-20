@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace App\Service\Graph;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 
 class CalendarBuilder
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry
+    ) {}
 
     public function buildItemCalendar(User $user) : array
     {
@@ -27,7 +24,7 @@ class CalendarBuilder
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('date', 'date', 'datetime');
 
-        $query = $this->em->createNativeQuery($sql, $rsm);
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
 
         $result = $query->getArrayResult();

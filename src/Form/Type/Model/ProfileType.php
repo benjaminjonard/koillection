@@ -16,12 +16,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProfileType extends AbstractType
 {
-    private Base64ToImageTransformer $base64ToImageTransformer;
-
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer)
-    {
-        $this->base64ToImageTransformer = $base64ToImageTransformer;
-    }
+    public function __construct(
+        private Base64ToImageTransformer $base64ToImageTransformer
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

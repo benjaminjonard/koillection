@@ -6,7 +6,6 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Inventory;
 use App\Form\DataTransformer\StringToInventoryContentTransformer;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,15 +14,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class InventoryType extends AbstractType
 {
-    private EntityManagerInterface $em;
-
-    private StringToInventoryContentTransformer $stringToInventoryContentTransformer;
-
-    public function __construct(EntityManagerInterface $em, StringToInventoryContentTransformer $stringToInventoryContentTransformer)
-    {
-        $this->em = $em;
-        $this->stringToInventoryContentTransformer = $stringToInventoryContentTransformer;
-    }
+    public function __construct(
+        private StringToInventoryContentTransformer $stringToInventoryContentTransformer
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

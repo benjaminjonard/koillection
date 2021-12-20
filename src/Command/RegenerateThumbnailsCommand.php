@@ -8,8 +8,7 @@ use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
-use App\Service\ThumbnailGenerator;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,27 +20,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegenerateThumbnailsCommand extends Command
 {
-    private EntityManagerInterface $em;
-
-    private ThumbnailGenerator $thumbnailGenerator;
-
-    private TranslatorInterface $translator;
-
-    private string $publicPath;
-
-    private TokenStorageInterface $tokenStorage;
-
     public function __construct(
-        string $name = null, EntityManagerInterface $em, ThumbnailGenerator $thumbnailGenerator,
-        TranslatorInterface $translator, TokenStorageInterface $tokenStorage, string $publicPath)
+        private ManagerRegistry $managerRegistry,
+        private TranslatorInterface $translator,
+        private TokenStorageInterface $tokenStorage,
+        private string $publicPath
+    )
     {
-        $this->em = $em;
-        $this->publicPath = $publicPath;
-        $this->thumbnailGenerator = $thumbnailGenerator;
-        $this->translator = $translator;
-        $this->tokenStorage = $tokenStorage;
-        
-        parent::__construct($name);
+        parent::__construct();
     }
 
     protected function configure()
@@ -64,7 +50,7 @@ class RegenerateThumbnailsCommand extends Command
         $counter = 0;
         $classes = [Item::class, Datum::class, Wish::class, Photo::class, Tag::class];
         $objects = [];
-        $users = $this->em->getRepository(User::class)->findAll();
+        $users = $this->managerRegistry->getRepository(User::class)->findAll();
 
         foreach ($users as $user) {
             //Login user, needed for uploads
@@ -72,7 +58,7 @@ class RegenerateThumbnailsCommand extends Command
             $this->tokenStorage->setToken($token);
 
             foreach ($classes as $class) {
-                $result = $this->em->getRepository($class)->createQueryBuilder('o')
+                $result = $this->managerRegistry->getRepository($class)->createQueryBuilder('o')
                     ->where('o.image IS NOT NULL')
                     ->andWhere('o.owner = :user')
                     ->setParameter('user', $user)
@@ -100,11 +86,11 @@ class RegenerateThumbnailsCommand extends Command
                 }
 
                 if ($counter % 100) {
-                    $this->em->flush();
+                    $this->managerRegistry->getManager()->flush();
                 }
             }
 
-            $this->em->flush();
+            $this->managerRegistry->getManager()->flush();
         }
 
         $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['%count%' => $counter]));

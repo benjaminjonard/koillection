@@ -13,30 +13,15 @@ use Symfony\Component\Security\Core\Security;
 
 class ImageHandler
 {
-    private RandomStringGenerator $randomStringGenerator;
-
-    private ThumbnailGenerator $thumbnailGenerator;
-
-    private string $publicPath;
-
     private PropertyAccessor $accessor;
 
-    private DiskUsageCalculator $diskUsageCalculator;
-
-    private Security $security;
-
     public function __construct(
-        RandomStringGenerator $randomStringGenerator,
-        ThumbnailGenerator $thumbnailGenerator,
-        Security $security,
-        DiskUsageCalculator $diskUsageCalculator,
-        string $publicPath
+        private RandomStringGenerator $randomStringGenerator,
+        private ThumbnailGenerator $thumbnailGenerator,
+        private Security $security,
+        private DiskUsageCalculator $diskUsageCalculator,
+        private string $publicPath
     ) {
-        $this->randomStringGenerator = $randomStringGenerator;
-        $this->thumbnailGenerator = $thumbnailGenerator;
-        $this->security = $security;
-        $this->diskUsageCalculator = $diskUsageCalculator;
-        $this->publicPath = $publicPath;
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 

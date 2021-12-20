@@ -15,17 +15,12 @@ class LatestReleaseChecker
         '1.2' => '8.0'
     ];
 
-    private HttpClientInterface $client;
-
     private ?array $latestReleaseData = null;
 
-    private ?string $koillectionRelease = null;
-
-    public function __construct(HttpClientInterface $client, string $koillectionRelease)
-    {
-        $this->client = $client;
-        $this->koillectionRelease = $koillectionRelease;
-    }
+    public function __construct(
+        private HttpClientInterface $client,
+        private string $koillectionRelease
+    ) {}
 
     public function getLatestReleaseData() : ?array
     {

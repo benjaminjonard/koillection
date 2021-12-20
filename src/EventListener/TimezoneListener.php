@@ -11,15 +11,10 @@ use Twig\Extension\CoreExtension;
 
 class TimezoneListener
 {
-    private Environment $twig;
-
-    private Security $security;
-
-    public function __construct(Security $security, Environment $twig)
-    {
-        $this->security = $security;
-        $this->twig = $twig;
-    }
+    public function __construct(
+        private Security $security,
+        private Environment $twig
+    ) {}
 
     public function onKernelRequest()
     {

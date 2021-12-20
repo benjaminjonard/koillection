@@ -8,6 +8,7 @@ use App\Entity\TagCategory;
 use App\Form\Type\Entity\TagCategoryType;
 use App\Repository\TagCategoryRepository;
 use App\Service\PaginatorFactory;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,17 +55,16 @@ class TagCategoryController extends AbstractController
         path: ['en' => '/tag-categories/add', 'fr' => '/categories-de-tag/ajouter'],
         name: 'app_tag_category_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         $category = new TagCategory();
-        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(TagCategoryType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($category);
-            $em->flush();
+            $managerRegistry->getManager()->persist($category);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.tag_category_added', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
 
@@ -80,7 +80,7 @@ class TagCategoryController extends AbstractController
         path: ['en' => '/tag-categories/{id}/edit', 'fr' => '/categories-de-tag/{id}/editer'],
         name: 'app_tag_category_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, TagCategory $category, TranslatorInterface $translator) : Response
+    public function edit(Request $request, TagCategory $category, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -88,7 +88,7 @@ class TagCategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.tag_category_edited', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_tag_category_show', ['id' => $category->getId()]);
@@ -104,7 +104,7 @@ class TagCategoryController extends AbstractController
         path: ['en' => '/tag-categories/{id}/delete', 'fr' => '/categories-de-tag/{id}/supprimer'],
         name: 'app_tag_category_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, TagCategory $category, TranslatorInterface $translator) : Response
+    public function delete(Request $request, TagCategory $category, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -112,9 +112,8 @@ class TagCategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($category);
-            $em->flush();
+            $managerRegistry->getManager()->remove($category);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.tag_category_deleted', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
         }
 

@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\Type\Security\UserType;
 use App\Repository\UserRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -42,7 +43,7 @@ class SecurityController extends AbstractController
         name: 'app_security_first_connection', methods: ['GET', 'POST']
     )]
     public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session,
-                                          UserRepository $userRepository
+                                          UserRepository $userRepository, ManagerRegistry $managerRegistry
     ) : Response
     {
         if (0 < $userRepository->count([])) {
@@ -58,9 +59,8 @@ class SecurityController extends AbstractController
                 ->setEnabled(true)
                 ->addRole('ROLE_ADMIN')
             ;
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $managerRegistry->getManager()->persist($user);
+            $managerRegistry->getManager()->flush();
 
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
             $tokenStorage->setToken($token);

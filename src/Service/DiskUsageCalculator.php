@@ -10,15 +10,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DiskUsageCalculator
 {
-    private TranslatorInterface $translator;
-
-    private string $publicPath;
-
-    public function __construct(TranslatorInterface $translator, string $publicPath)
-    {
-        $this->translator = $translator;
-        $this->publicPath = $publicPath;
-    }
+    public function __construct(
+        private TranslatorInterface $translator,
+        private string $publicPath
+    ) {}
 
     public function getSpaceUsedByUsers() : float
     {

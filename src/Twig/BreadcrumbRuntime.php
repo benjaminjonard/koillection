@@ -11,12 +11,9 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class BreadcrumbRuntime implements RuntimeExtensionInterface
 {
-    private BreadcrumbBuilder $breadcrumbBuilder;
-
-    public function __construct(BreadcrumbBuilder $breadcrumbBuilder)
-    {
-        $this->breadcrumbBuilder = $breadcrumbBuilder;
-    }
+    public function __construct(
+        private BreadcrumbBuilder $breadcrumbBuilder
+    ) {}
 
     public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, $parent = null): array
     {

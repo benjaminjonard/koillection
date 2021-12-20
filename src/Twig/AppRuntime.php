@@ -18,24 +18,15 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class AppRuntime implements RuntimeExtensionInterface
 {
-    private TranslatorInterface $translator;
-    private RouterInterface $router;
-    private TagRepository $tagRepository;
-    private ContextHandler $contextHandler;
-    private FeatureChecker $featureChecker;
-    private FormFactoryInterface $formFactory;
-
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, TagRepository $tagRepository,
-        ContextHandler $contextHandler, FeatureChecker $featureChecker, FormFactoryInterface $formFactory
+    public function __construct(
+        private TranslatorInterface $translator,
+        private RouterInterface $router,
+        private TagRepository $tagRepository,
+        private ContextHandler $contextHandler,
+        private FeatureChecker $featureChecker,
+        private FormFactoryInterface $formFactory
     )
-    {
-        $this->translator = $translator;
-        $this->router = $router;
-        $this->tagRepository = $tagRepository;
-        $this->contextHandler = $contextHandler;
-        $this->featureChecker = $featureChecker;
-        $this->formFactory = $formFactory;
-    }
+    {}
 
     public function safeContent(string $string) : string
     {

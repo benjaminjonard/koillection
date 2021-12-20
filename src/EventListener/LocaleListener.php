@@ -7,21 +7,17 @@ namespace App\EventListener;
 use App\Entity\User;
 use App\Enum\LocaleEnum;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class LocaleListener
 {
-    private string $defaultLocale;
-
-    private SessionInterface $session;
-
-    public function __construct(SessionInterface $session, string $defaultLocale)
-    {
-        $this->defaultLocale = $defaultLocale;
-        $this->session = $session;
-    }
+    public function __construct(
+        private RequestStack $requestStack,
+        private string $defaultLocale
+    ) {}
 
     public function onKernelRequest(RequestEvent $event)
     {
@@ -46,7 +42,7 @@ class LocaleListener
         $user = $event->getAuthenticationToken()->getUser();
 
         if (null !== $user->getLocale()) {
-            $this->session->set('_locale', $user->getLocale());
+            $this->requestStack->getSession()->set('_locale', $user->getLocale());
         }
     }
 
@@ -55,7 +51,7 @@ class LocaleListener
         $entity = $args->getEntity();
 
         if ($entity instanceof User) {
-            $this->session->set('_locale', $entity->getLocale());
+            $this->requestStack->getSession()->set('_locale', $entity->getLocale());
         }
     }
 }

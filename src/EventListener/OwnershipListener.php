@@ -9,12 +9,9 @@ use Symfony\Component\Security\Core\Security;
 
 final class OwnershipListener
 {
-    private Security $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
+    public function __construct(
+        private Security $security
+    ) {}
 
     public function prePersist(LifecycleEventArgs $args)
     {

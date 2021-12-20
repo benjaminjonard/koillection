@@ -13,15 +13,10 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class LoggableListener
 {
-    private LoggerChain $loggerChain;
-
-    private LogQueue $logQueue;
-
-    public function __construct(LoggerChain $loggerChain, LogQueue $logQueue)
-    {
-        $this->loggerChain = $loggerChain;
-        $this->logQueue = $logQueue;
-    }
+    public function __construct(
+        private LoggerChain $loggerChain,
+        private LogQueue $logQueue
+    ) {}
 
     public function postPersist(LifecycleEventArgs $args)
     {

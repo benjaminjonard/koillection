@@ -21,15 +21,10 @@ use Symfony\Component\Security\Core\Security;
 
 class PhotoType extends AbstractType
 {
-    private AlbumRepository $albumRepository;
-
-    private Security $security;
-
-    public function __construct(AlbumRepository $albumRepository, Security $security)
-    {
-        $this->albumRepository = $albumRepository;
-        $this->security = $security;
-    }
+    public function __construct(
+        private AlbumRepository $albumRepository,
+        private Security $security
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

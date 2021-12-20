@@ -6,24 +6,15 @@ namespace App\Model;
 
 class Paginator
 {
-    private int $totalItems;
-
     private int $numPages;
-
-    private int $itemsPerPage;
-
-    private int $currentPage;
-
-    private string $url;
-
     private int $maxPagesToShow = 5;
 
-    public function __construct(int $totalItems, int $itemsPerPage, int $currentPage, string $url)
-    {
-        $this->totalItems = $totalItems;
-        $this->itemsPerPage = $itemsPerPage;
-        $this->currentPage = $currentPage;
-        $this->url = $url;
+    public function __construct(
+        private int $totalItems,
+        private int $itemsPerPage,
+        private int $currentPage,
+        private string $url
+    ) {
         $this->updateNumPages();
     }
 

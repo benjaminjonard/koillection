@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,19 +11,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CleanUpCommand extends Command
 {
-    private EntityManagerInterface $em;
-
-    private string $publicPath;
-
-    private TranslatorInterface $translator;
-
-    public function __construct(string $name = null, EntityManagerInterface $em, TranslatorInterface $translator, string $publicPath)
+    public function __construct(
+        private ManagerRegistry $managerRegistry,
+        private TranslatorInterface $translator,
+        private string $publicPath)
     {
-        $this->em = $em;
-        $this->publicPath = $publicPath;
-        $this->translator = $translator;
-
-        parent::__construct($name);
+        parent::__construct();
     }
 
     protected function configure()
@@ -72,7 +65,7 @@ class CleanUpCommand extends Command
             SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL;
         ";
 
-        $stmt = $this->em->getConnection()->prepare($sql);
+        $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
         $stmt->execute();
         $dbPaths = array_map(function ($row) { return $row['image']; }, $stmt->fetchAll());
 

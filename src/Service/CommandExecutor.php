@@ -11,12 +11,9 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class CommandExecutor
 {
-    private KernelInterface $kernel;
-
-    public function __construct(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
+    public function __construct(
+        private KernelInterface $kernel
+    ) {}
 
     public function execute(string $command, array $params = []): string
     {

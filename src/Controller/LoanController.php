@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Loan;
 use App\Repository\LoanRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,7 @@ class LoanController extends AbstractController
         path: ['en' => '/loans/{id}/delete', 'fr' => '/prets/{id}/supprimer'],
         name: 'app_loan_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Loan $loan, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
@@ -40,9 +41,8 @@ class LoanController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($loan);
-            $em->flush();
+            $managerRegistry->getManager()->remove($loan);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.loan_canceled', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
         }
 
@@ -54,12 +54,12 @@ class LoanController extends AbstractController
         name: 'app_loan_returned', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     #[Entity( 'loan', expr: 'repository.findByIdWithItem(id)', class:Loan::class)]
-    public function returned(Loan $loan, TranslatorInterface $translator) : Response
+    public function returned(Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
         $loan->setReturnedAt(new \DateTime());
-        $this->getDoctrine()->getManager()->flush();
+        $managerRegistry->getManager()->flush();
         $this->addFlash('notice', $translator->trans('message.item_returned', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
 
         return $this->redirectToRoute('app_loan_index');

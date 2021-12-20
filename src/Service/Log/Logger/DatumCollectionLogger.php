@@ -15,12 +15,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DatumCollectionLogger extends Logger
 {
-    private LogQueue $logQueue;
-
-    public function __construct(TranslatorInterface $translator, LogQueue $logQueue)
-    {
+    public function __construct(
+        TranslatorInterface $translator,
+        private LogQueue $logQueue
+    ) {
         parent::__construct($translator);
-        $this->logQueue = $logQueue;
     }
 
     public function getClass() : string

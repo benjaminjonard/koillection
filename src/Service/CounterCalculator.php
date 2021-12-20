@@ -12,45 +12,38 @@ use App\Entity\Photo;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\Persistence\ManagerRegistry;
 
 class CounterCalculator
 {
-    private EntityManagerInterface $em;
-
-    private QueryNameGenerator $qng;
-
-    private ContextHandler $contextHandler;
-
-    public function __construct(EntityManagerInterface $em, QueryNameGenerator $qng, ContextHandler $contextHandler)
-    {
-        $this->em = $em;
-        $this->qng = $qng;
-        $this->contextHandler = $contextHandler;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry,
+        private QueryNameGenerator $qng,
+        private ContextHandler $contextHandler
+    ) {}
 
     public function computeCounters() : array
     {
         //Collections and items
-        $tableName = $this->em->getClassMetadata(Collection::class)->getTableName();
-        $itemTableName = $this->em->getClassMetadata(Item::class)->getTableName();
+        $tableName = $this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName();
+        $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Item::class)->getTableName();
         $parentProperty = 'collection_id';
         $globalCacheIndexKey = 'collections';
         $collections = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $collections = array_merge($collections, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
         //Wishlists and wishes
-        $tableName = $this->em->getClassMetadata(Wishlist::class)->getTableName();
-        $itemTableName = $this->em->getClassMetadata(Wish::class)->getTableName();
+        $tableName = $this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName();
+        $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Wish::class)->getTableName();
         $parentProperty = 'wishlist_id';
         $globalCacheIndexKey = 'wishlists';
         $wishlists = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $wishlists = array_merge($wishlists, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
         //Albums and photos
-        $tableName = $this->em->getClassMetadata(Album::class)->getTableName();
-        $itemTableName = $this->em->getClassMetadata(Photo::class)->getTableName();
+        $tableName = $this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName();
+        $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Photo::class)->getTableName();
         $parentProperty = 'album_id';
         $globalCacheIndexKey = 'albums';
         $albums = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
@@ -74,7 +67,7 @@ class CounterCalculator
         ";
 
         $this->addVisibilityCondition($sql, $alias, 'AND');
-        $children = $this->em->createNativeQuery($sql, $rsm)->getResult()[0]['children'];
+        $children = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm)->getResult()[0]['children'];
 
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('items', 'items');
@@ -87,7 +80,7 @@ class CounterCalculator
         ";
 
         $this->addVisibilityCondition($sql, $alias, 'AND');
-        $items = $this->em->createNativeQuery($sql, $rsm)->getResult()[0]['items'];
+        $items = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm)->getResult()[0]['items'];
 
         $results[$cacheIndexName] = [
             'children' => $children,
@@ -116,7 +109,7 @@ class CounterCalculator
         $this->addVisibilityCondition($sql, $alias, 'AND');
 
         $results = [];
-        foreach ($this->em->createNativeQuery($sql, $rsm)->getResult() as $id => $result) {
+        foreach ($this->managerRegistry->getManager()->createNativeQuery($sql, $rsm)->getResult() as $id => $result) {
             $explodedCounters = explode('-', $result['counters']);
             $results[$id] = [
                 'children' => $explodedCounters[0],
@@ -163,8 +156,8 @@ class CounterCalculator
 
     private function addVisibilityCondition(&$sql, $alias, $condition)
     {
-        if ($this->em->getFilters()->isEnabled('visibility')) {
-            if ($this->em->getFilters()->getFilter('visibility')->getParameter('user') === "''") {
+        if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
+            if ($this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user') === "''") {
                 $sql .= sprintf("$condition %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
             } else {
                 $sql .= sprintf("$condition %s.visibility IN ('%s', '%s')",

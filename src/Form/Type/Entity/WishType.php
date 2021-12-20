@@ -20,12 +20,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WishType extends AbstractType
 {
-    private WishRepository $wishRepository;
-
-    public function __construct(WishRepository $wishRepository)
-    {
-        $this->wishRepository = $wishRepository;
-    }
+    public function __construct(
+        private WishRepository $wishRepository
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

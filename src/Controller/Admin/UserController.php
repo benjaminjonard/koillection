@@ -17,6 +17,7 @@ use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,16 +44,15 @@ class UserController extends AbstractController
         path: ['en' => '/admin/users/add', 'fr' => '/admin/utilisateurs/ajouter'],
         name: 'app_admin_user_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator) : Response
+    public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $managerRegistry->getManager()->persist($user);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.user_added', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
@@ -70,20 +70,18 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user, TranslatorInterface $translator, CollectionRepository $collectionRepository,
                          ItemRepository $itemRepository, TagRepository $tagRepository, WishlistRepository $wishlistRepository,
                          WishRepository $wishRepository, AlbumRepository $albumRepository, PhotoRepository $photoRepository,
-                         DatumRepository $datumRepository
+                         DatumRepository $datumRepository, ManagerRegistry $managerRegistry
     ) : Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.user_edited', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
         }
-
-        $em = $this->getDoctrine()->getManager();
 
         return $this->render('App/Admin/User/edit.html.twig', [
             'user' => $user,
@@ -105,7 +103,7 @@ class UserController extends AbstractController
         path: ['en' => '/admin/users/{id}/delete', 'fr' => '/admin/utilisateurs/{id}/supprimer'],
         name: 'app_admin_user_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, User $user, TranslatorInterface $translator) : Response
+    public function delete(Request $request, User $user, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         if ($user->isAdmin()) {
             return $this->render('App/Admin/User/delete.html.twig', [
@@ -118,9 +116,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
+            $managerRegistry->getManager()->remove($user);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.user_deleted', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
         }
 

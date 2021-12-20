@@ -11,12 +11,9 @@ use Symfony\Component\Console\Event\ConsoleTerminateEvent;
  */
 final class TranslationCommandListener
 {
-    private string $assetsPath;
-
-    public function __construct(string $assetsPath)
-    {
-        $this->assetsPath = $assetsPath;
-    }
+    public function __construct(
+        private string $assetsPath
+    ) {}
 
     public function onConsoleTerminate(ConsoleTerminateEvent $event)
     {

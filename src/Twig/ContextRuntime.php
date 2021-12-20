@@ -9,12 +9,9 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class ContextRuntime implements RuntimeExtensionInterface
 {
-    private ContextHandler $contextHandler;
-
-    public function __construct(ContextHandler $contextHandler)
-    {
-        $this->contextHandler = $contextHandler;
-    }
+    public function __construct(
+        private ContextHandler $contextHandler
+    ) {}
 
     public function applyContext(string $route) : string
     {

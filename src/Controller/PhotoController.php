@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Photo;
 use App\Form\Type\Entity\PhotoType;
 use App\Repository\AlbumRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,11 +19,10 @@ class PhotoController extends AbstractController
         path: ['en' => '/photos/ajouter', 'fr' => '/photos/add'],
         name: 'app_photo_add', methods: ['GET', 'POST']
     )]
-    public function add(Request $request, AlbumRepository $albumRepository, TranslatorInterface $translator) : Response
+    public function add(Request $request, AlbumRepository $albumRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
-        $em = $this->getDoctrine()->getManager();
         $album = null;
         if ($request->query->has('album')) {
             $album = $albumRepository->findOneBy([
@@ -44,9 +44,8 @@ class PhotoController extends AbstractController
         $form = $this->createForm(PhotoType::class, $photo);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($photo);
-            $em->flush();
+            $managerRegistry->getManager()->persist($photo);
+            $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.photo_added', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
 
@@ -63,14 +62,14 @@ class PhotoController extends AbstractController
         path: ['en' => '/photos/{id}/edit', 'fr' => '/photos/{id}/editer'],
         name: 'app_photo_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Photo $photo, TranslatorInterface $translator) : Response
+    public function edit(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
         $form = $this->createForm(PhotoType::class, $photo);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.photo_edited', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
@@ -86,7 +85,7 @@ class PhotoController extends AbstractController
         path: ['en' => '/photos/{id}/delete', 'fr' => '/photos/{id}/supprimer'],
         name: 'app_photo_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function delete(Request $request, Photo $photo, TranslatorInterface $translator) : Response
+    public function delete(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -94,9 +93,8 @@ class PhotoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($photo);
-            $em->flush();
+            $managerRegistry->getManager()->remove($photo);
+            $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.photo_deleted', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
         }
 
