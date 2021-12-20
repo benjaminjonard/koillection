@@ -21,14 +21,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegenerateThumbnailsCommand extends Command
 {
     public function __construct(
-        string $name = null,
         private ManagerRegistry $managerRegistry,
         private TranslatorInterface $translator,
         private TokenStorageInterface $tokenStorage,
         private string $publicPath
     )
     {
-        parent::__construct($name);
+        parent::__construct();
     }
 
     protected function configure()
