@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
 use App\Enum\DatumTypeEnum;
+use App\Http\FileResponse;
 use App\Repository\AlbumRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
@@ -63,18 +64,31 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route(path: ['en' => '/admin/backup', 'fr' => '/admin/sauvegarde'], name: 'app_admin_backup', methods: ['GET'])]
-    public function backup(DatabaseDumper $databaseDumper, UserRepository $userRepository) : StreamedResponse
+
+    #[Route(
+        path: ['en' => '/admin/export/sql', 'fr' => '/admin/export/sql'],
+        name: 'app_admin_export_sql', methods: ['GET']
+    )]
+    public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
+    {
+        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis') . '-koillection-database.sql');
+    }
+
+    #[Route(
+        path: ['en' => '/admin/export/images', 'fr' => '/admin/export/images'],
+        name: 'app_admin_export_images', methods: ['GET']
+    )]
+    public function exportImages(DatabaseDumper $databaseDumper, UserRepository $userRepository) : StreamedResponse
     {
         $users = $userRepository->findAll();
 
-        return new StreamedResponse(function () use ($databaseDumper, $users) {
+        return new StreamedResponse(function () use ($users) {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
 
-            $zipFilename = (new \DateTime())->format('Ymd') . '-koillection-backup.zip';
+            $zipFilename = (new \DateTime())->format('YmdHis') . '-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
 
             foreach ($users as $user) {
@@ -83,18 +97,10 @@ class AdminController extends AbstractController
                 $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
                 foreach ($files as $name => $file) {
                     if (!$file->isDir()) {
-                        $zip->addFileFromStream('/public/uploads/'. $user->getId() . '/' . $file->getFilename(), fopen($file->getRealPath(), 'r'));
+                        $zip->addFileFromStream($user->getId() . '/' . $file->getFilename(), fopen($file->getRealPath(), 'r'));
                     }
                 }
             }
-
-            $fh = fopen('php://memory', 'r+');
-            foreach ($databaseDumper->dump() as $row) {
-                fwrite($fh, $row);
-            }
-            rewind($fh);
-            $zip->addFileFromStream((new \DateTime())->format('Ymd') . '-koillection-export.sql', $fh);
-            fclose($fh);
 
             $zip->finish();
         });
