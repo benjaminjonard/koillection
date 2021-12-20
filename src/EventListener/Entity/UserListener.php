@@ -11,15 +11,10 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 class UserListener
 {
-    private PasswordUpdater $passwordUpdater;
-
-    private LogQueue $logQueue;
-
-    public function __construct(PasswordUpdater $passwordUpdater, LogQueue $logQueue)
-    {
-        $this->passwordUpdater = $passwordUpdater;
-        $this->logQueue = $logQueue;
-    }
+    public function __construct(
+        private PasswordUpdater $passwordUpdater,
+        private LogQueue $logQueue
+    ) {}
 
     public function prePersist(LifecycleEventArgs $args)
     {

@@ -9,12 +9,9 @@ use App\Repository\CollectionRepository;
 
 class TreeBuilder
 {
-    private CollectionRepository $collectionRepository;
-
-    public function __construct(CollectionRepository $collectionRepository)
-    {
-        $this->collectionRepository = $collectionRepository;
-    }
+    public function __construct(
+        private CollectionRepository $collectionRepository
+    ) {}
 
     public function buildCollectionTree(): array
     {

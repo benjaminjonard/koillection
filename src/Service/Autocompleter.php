@@ -16,23 +16,14 @@ use Symfony\Component\Routing\RouterInterface;
 
 class Autocompleter
 {
-    private ContextHandler $contextHandler;
-
-    private ManagerRegistry $managerRegistry;
-
     private array $params;
 
-    private RouterInterface $router;
-
-    private FeatureChecker $featureChecker;
-
-    public function __construct(ContextHandler $contextHandler, ManagerRegistry $managerRegistry, RouterInterface $router, FeatureChecker $featureChecker)
-    {
-        $this->contextHandler = $contextHandler;
-        $this->managerRegistry = $managerRegistry;
-        $this->router = $router;
-        $this->featureChecker = $featureChecker;
-    }
+    public function __construct(
+        private ContextHandler $contextHandler,
+        private ManagerRegistry $managerRegistry,
+        private RouterInterface $router,
+        private FeatureChecker $featureChecker
+    ) {}
 
     public function findForAutocomplete(string $term): array
     {

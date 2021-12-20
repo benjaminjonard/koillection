@@ -10,15 +10,10 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class JsonToItemTransformer implements DataTransformerInterface
 {
-    private ItemRepository $itemRepository;
-
-    private Packages $assetManager;
-
-    public function __construct(ItemRepository $itemRepository, Packages $assetManager)
-    {
-        $this->itemRepository = $itemRepository;
-        $this->assetManager = $assetManager;
-    }
+    public function __construct(
+        private ItemRepository $itemRepository,
+        private Packages $assetManager
+    ) {}
 
     public function transform($items): mixed
     {

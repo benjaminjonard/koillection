@@ -9,20 +9,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class PaginatorFactory
 {
-    private RequestStack $requestStack;
-
-    private int $paginationItemsPerPage;
-
-    public function __construct(RequestStack $requestStack, int $paginationItemsPerPage)
-    {
-        $this->requestStack = $requestStack;
-        $this->paginationItemsPerPage = $paginationItemsPerPage;
-    }
+    public function __construct(
+        private RequestStack $requestStack,
+        private int $paginationItemsPerPage
+    ) {}
 
     public function generate(int $totalItems, string $url = null, array $params = null, $queryParam = 'page') : Paginator
     {
-        $url = $url ?? $this->requestStack->getMasterRequest()->getPathInfo();
-        $params = $params ?? $this->requestStack->getMasterRequest()->query->all();
+        $url = $url ?? $this->requestStack->getMainRequest()->getPathInfo();
+        $params = $params ?? $this->requestStack->getMainRequest()->query->all();
         $page = $params[$queryParam] ?? 1;
 
         unset($params[$queryParam]);

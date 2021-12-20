@@ -11,15 +11,10 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class LogQueueListener
 {
-    private LogQueue $logQueue;
-
-    private ManagerRegistry $managerRegistry;
-
-    public function __construct(LogQueue $logQueue, ManagerRegistry $managerRegistry)
-    {
-        $this->logQueue = $logQueue;
-        $this->managerRegistry = $managerRegistry;
-    }
+    public function __construct(
+        private LogQueue $logQueue,
+        private ManagerRegistry $managerRegistry
+    ) {}
 
     /**
      *   As we are on a kernel response event, this code is triggered at every response.

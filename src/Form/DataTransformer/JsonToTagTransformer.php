@@ -10,12 +10,9 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class JsonToTagTransformer implements DataTransformerInterface
 {
-    private TagRepository $tagRepository;
-
-    public function __construct(TagRepository $tagRepository)
-    {
-        $this->tagRepository = $tagRepository;
-    }
+    public function __construct(
+        private TagRepository $tagRepository
+    ) {}
 
     public function transform($tags): mixed
     {

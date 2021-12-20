@@ -13,15 +13,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ChartBuilder
 {
-    private ManagerRegistry $managerRegistry;
-
-    private TranslatorInterface $translator;
-
-    public function __construct(ManagerRegistry $managerRegistry, TranslatorInterface $translator)
-    {
-        $this->managerRegistry = $managerRegistry;
-        $this->translator = $translator;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry,
+        private TranslatorInterface $translator
+    ) {}
 
     public function buildActivityByHour(User $user) : array
     {

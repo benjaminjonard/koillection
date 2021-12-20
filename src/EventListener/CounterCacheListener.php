@@ -10,12 +10,9 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 class CounterCacheListener
 {
-    private CountersCache $countersCache;
-
-    public function __construct(CountersCache $countersCache)
-    {
-        $this->countersCache = $countersCache;
-    }
+    public function __construct(
+        private CountersCache $countersCache
+    ) {}
 
     public function postPersist(LifecycleEventArgs $args)
     {

@@ -9,12 +9,9 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 class ColorListener
 {
-    private ColorPicker $colorPicker;
-
-    public function __construct(ColorPicker $colorPicker)
-    {
-        $this->colorPicker = $colorPicker;
-    }
+    public function __construct(
+        private ColorPicker $colorPicker
+    ) {}
 
     public function prePersist(LifecycleEventArgs $args)
     {

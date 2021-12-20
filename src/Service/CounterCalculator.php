@@ -17,18 +17,11 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class CounterCalculator
 {
-    private ManagerRegistry $managerRegistry;
-
-    private QueryNameGenerator $qng;
-
-    private ContextHandler $contextHandler;
-
-    public function __construct(ManagerRegistry $managerRegistry, QueryNameGenerator $qng, ContextHandler $contextHandler)
-    {
-        $this->managerRegistry = $managerRegistry;
-        $this->qng = $qng;
-        $this->contextHandler = $contextHandler;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry,
+        private QueryNameGenerator $qng,
+        private ContextHandler $contextHandler
+    ) {}
 
     public function computeCounters() : array
     {

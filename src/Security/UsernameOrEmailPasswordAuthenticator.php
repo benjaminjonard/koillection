@@ -21,15 +21,10 @@ use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 
 class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
 {
-    private UserRepository $userRepository;
-
-    private RouterInterface $router;
-
-    public function __construct(UserRepository $userRepository, RouterInterface $router)
-    {
-        $this->userRepository = $userRepository;
-        $this->router = $router;
-    }
+    public function __construct(
+        private UserRepository $userRepository,
+        private RouterInterface $router
+    ) {}
 
     public function supports(Request $request): ?bool
     {

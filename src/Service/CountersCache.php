@@ -14,18 +14,12 @@ class CountersCache
 {
     private TagAwareAdapter $cache;
 
-    private CounterCalculator $calculator;
-
-    private ContextHandler $contextHandler;
-
-    private Security $security;
-
-    public function __construct(CounterCalculator $calculator, ContextHandler $contextHandler, Security $security)
-    {
+    public function __construct(
+        private CounterCalculator $calculator,
+        private ContextHandler $contextHandler,
+        private Security $security
+    ) {
         $this->cache = new TagAwareAdapter(new ApcuAdapter());
-        $this->calculator = $calculator;
-        $this->contextHandler = $contextHandler;
-        $this->security = $security;
     }
 
     public function getCounters($element): array

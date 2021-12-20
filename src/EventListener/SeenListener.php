@@ -9,12 +9,9 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class SeenListener
 {
-    private ManagerRegistry $managerRegistry;
-
-    public function __construct(ManagerRegistry $managerRegistry)
-    {
-        $this->managerRegistry = $managerRegistry;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry
+    ) {}
 
     public function onKernelResponse(ResponseEvent $event)
     {

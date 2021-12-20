@@ -10,12 +10,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class Logger implements LoggerInterface
 {
-    protected TranslatorInterface $translator;
-
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
+    public function __construct(
+        protected TranslatorInterface $translator
+    ) {}
 
     public function supportsClass(string $class) : bool
     {

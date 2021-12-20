@@ -11,15 +11,10 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 final class UploadListener
 {
-    private UploadAnnotationReader $reader;
-
-    private ImageHandler $handler;
-
-    public function __construct(UploadAnnotationReader $reader, ImageHandler $handler)
-    {
-        $this->reader = $reader;
-        $this->handler = $handler;
-    }
+    public function __construct(
+        private UploadAnnotationReader $reader,
+        private ImageHandler $handler
+    ) {}
 
     public function prePersist(LifecycleEventArgs $args)
     {

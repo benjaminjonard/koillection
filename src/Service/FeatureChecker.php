@@ -6,12 +6,9 @@ namespace App\Service;
 
 class FeatureChecker
 {
-    private ContextHandler $contextHandler;
-
-    public function __construct(ContextHandler $contextHandler)
-    {
-        $this->contextHandler = $contextHandler;
-    }
+    public function __construct(
+        private ContextHandler $contextHandler
+    ) {}
 
     public function isFeatureEnabled(string $feature): bool
     {

@@ -8,16 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FileResponse extends Response
 {
-    private array $data;
-
-    private string $filename;
-
-    public function __construct(array $data = [], string $filename = 'koillection.txt', int $status = 200, array $headers = [])
-    {
+    public function __construct(
+        private array $data = [],
+        private string $filename = 'koillection.txt',
+        int $status = 200,
+        array $headers = []
+    ) {
         parent::__construct('', $status, $headers);
-
-        $this->data = $data;
-        $this->filename = $filename;
         $this->render();
     }
 

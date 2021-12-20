@@ -14,15 +14,10 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class LocaleListener
 {
-    private string $defaultLocale;
-
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack, string $defaultLocale)
-    {
-        $this->defaultLocale = $defaultLocale;
-        $this->requestStack = $requestStack;
-    }
+    public function __construct(
+        private RequestStack $requestStack,
+        private string $defaultLocale
+    ) {}
 
     public function onKernelRequest(RequestEvent $event)
     {

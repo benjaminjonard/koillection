@@ -12,21 +12,12 @@ use Symfony\Component\Security\Core\Security;
 
 class DatabaseDumper
 {
-    private ManagerRegistry $managerRegistry;
-
-    private ContextHandler $contextHandler;
-
-    private Security $security;
-
-    private UserRepository $userRepository;
-
-    public function __construct(ManagerRegistry $managerRegistry, Security $security, ContextHandler $contextHandler, UserRepository $userRepository)
-    {
-        $this->managerRegistry = $managerRegistry;
-        $this->security = $security;
-        $this->contextHandler = $contextHandler;
-        $this->userRepository = $userRepository;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry,
+        private Security $security,
+        private ContextHandler $contextHandler,
+        private UserRepository $userRepository
+    ) {}
 
     public function dump() : array
     {

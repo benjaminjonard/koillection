@@ -13,21 +13,12 @@ use Symfony\Component\Security\Core\Security;
 
 class FilterListener
 {
-    private ManagerRegistry $managerRegistry;
-
-    private ContextHandler $contextHandler;
-
-    private Security $security;
-
-    private UserRepository $userRepository;
-
-    public function __construct(ManagerRegistry $managerRegistry, ContextHandler $contextHandler, Security $security, UserRepository $userRepository)
-    {
-        $this->managerRegistry = $managerRegistry;
-        $this->contextHandler = $contextHandler;
-        $this->security = $security;
-        $this->userRepository = $userRepository;
-    }
+    public function __construct(
+        private ManagerRegistry $managerRegistry,
+        private ContextHandler $contextHandler,
+        private Security $security,
+        private UserRepository $userRepository
+    ) {}
 
     public function onKernelRequest()
     {

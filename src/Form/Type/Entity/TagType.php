@@ -19,12 +19,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TagType extends AbstractType
 {
-    private TagCategoryRepository $tagCategoryRepository;
-
-    public function __construct(TagCategoryRepository $tagCategoryRepository)
-    {
-        $this->tagCategoryRepository = $tagCategoryRepository;
-    }
+    public function __construct(
+        private TagCategoryRepository $tagCategoryRepository
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

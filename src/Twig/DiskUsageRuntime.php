@@ -10,12 +10,9 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class DiskUsageRuntime implements RuntimeExtensionInterface
 {
-    private DiskUsageCalculator $diskUsageCalculator;
-
-    public function __construct(DiskUsageCalculator $diskUsageCalculator)
-    {
-        $this->diskUsageCalculator = $diskUsageCalculator;
-    }
+    public function __construct(
+        private DiskUsageCalculator $diskUsageCalculator
+    ) {}
 
     public function getSpaceUsedByUser(User $user): float
     {

@@ -9,12 +9,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class PasswordUpdater
 {
-    private UserPasswordHasherInterface $passwordHasher;
-
-    public function __construct(UserPasswordHasherInterface $passwordHasher)
-    {
-        $this->passwordHasher = $passwordHasher;
-    }
+    public function __construct(
+        private UserPasswordHasherInterface $passwordHasher
+    ) {}
 
     public function hashPassword(User $user) : User
     {

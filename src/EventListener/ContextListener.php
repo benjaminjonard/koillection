@@ -9,12 +9,9 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class ContextListener
 {
-    private ContextHandler $contextHandler;
-
-    public function __construct(ContextHandler $contextHandler)
-    {
-        $this->contextHandler = $contextHandler;
-    }
+    public function __construct(
+        private ContextHandler $contextHandler
+    ) {}
 
     public function onKernelRequest(RequestEvent $event)
     {

@@ -8,12 +8,9 @@ use Doctrine\Common\Annotations\Reader;
 
 class UploadAnnotationReader
 {
-    private Reader $reader;
-
-    public function __construct(Reader $reader)
-    {
-        $this->reader = $reader;
-    }
+    public function __construct(
+        private Reader $reader
+    ) {}
 
     public function getUploadFields($entity) : array
     {

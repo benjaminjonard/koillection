@@ -10,15 +10,10 @@ use Symfony\Component\Security\Core\Security;
 
 class ActivityListener
 {
-    private ManagerRegistry $managerRegistry;
-
-    private Security $security;
-
-    public function __construct(Security $security, ManagerRegistry $managerRegistry)
-    {
-        $this->security= $security;
-        $this->managerRegistry = $managerRegistry;
-    }
+    public function __construct(
+        private Security $security,
+        private ManagerRegistry $managerRegistry
+    ) {}
 
     public function onKernelRequest()
     {

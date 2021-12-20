@@ -11,10 +11,6 @@ use Twig\Environment;
 
 class ContextHandler
 {
-    private Environment $environment;
-
-    private RouterInterface $router;
-
     /**
      * Possible values are :
      * admin: Admin pages
@@ -28,11 +24,10 @@ class ContextHandler
     // Username linked to the current page
     private string $username;
 
-    public function __construct(Environment $environment, RouterInterface $router)
-    {
-        $this->environment = $environment;
-        $this->router = $router;
-    }
+    public function __construct(
+        private Environment $environment,
+        private RouterInterface $router
+    ) {}
 
     public function init(Request $request)
     {

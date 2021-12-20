@@ -21,23 +21,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType
 {
-    private Base64ToImageTransformer $base64ToImageTransformer;
-
-    private FeatureChecker $featureChecker;
-
-    private CollectionRepository $collectionRepository;
-
-    private TemplateRepository $templateRepository;
-
-    public function __construct(Base64ToImageTransformer $base64ToImageTransformer, FeatureChecker $featureChecker,
-                                CollectionRepository $collectionRepository, TemplateRepository $templateRepository
-    )
-    {
-        $this->base64ToImageTransformer = $base64ToImageTransformer;
-        $this->featureChecker = $featureChecker;
-        $this->collectionRepository = $collectionRepository;
-        $this->templateRepository = $templateRepository;
-    }
+    public function __construct(
+        private Base64ToImageTransformer $base64ToImageTransformer,
+        private FeatureChecker $featureChecker,
+        private CollectionRepository $collectionRepository,
+        private TemplateRepository $templateRepository
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

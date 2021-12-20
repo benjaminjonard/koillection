@@ -9,12 +9,9 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class DateRuntime implements RuntimeExtensionInterface
 {
-    private TranslatorInterface $translator;
-
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
+    public function __construct(
+        private TranslatorInterface $translator
+    ) {}
 
     public function timeAgo(\DateTime $ago) : string
     {
