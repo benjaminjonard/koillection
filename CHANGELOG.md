@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 - Update PHP dependencies (Benjamin Jonard)
 - Remove built-in assets (Benjamin Jonard)
 - Admin: split backup function into two separated buttons (Benjamin Jonard)
-- 
+    
 ## [1.2.4] / 2021-09-16
 ### Features
 - Allow user to change username and email in their profile (Benjamin Jonard)
