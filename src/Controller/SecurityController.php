@@ -62,7 +62,7 @@ class SecurityController extends AbstractController
             $managerRegistry->getManager()->persist($user);
             $managerRegistry->getManager()->flush();
 
-            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
             $tokenStorage->setToken($token);
             $session->set('_security_main', serialize($token));
 

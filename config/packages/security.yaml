@@ -32,6 +32,7 @@ security:
                 path: app_security_logout
             custom_authenticators:
                 - App\Security\UsernameOrEmailPasswordAuthenticator
+            lazy: true
 
     access_control:
         - { path: ^/_wdt, roles: PUBLIC_ACCESS }
@@ -43,3 +44,4 @@ security:
         - { path: ^/$, role: PUBLIC_ACCESS }
         - { path: ^/admin/_trans, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
+
