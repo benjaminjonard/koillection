@@ -12,9 +12,9 @@ export default class extends Controller {
                 if (!country.id) {
                     return '';
                 }
-
+                console.log(country)
                 return self.htmlToElement(
-                    '<div><span class="flag-' + country.element.value.toLowerCase() + '"></span><span>' + country.text + '</span></div>'
+                    '<div><span class="flag">' + country.element.dataset.flag + '</span><span>' + country.text + '</span></div>'
                 );
             },
             templateResult: function (country) {
@@ -23,7 +23,7 @@ export default class extends Controller {
                 }
 
                 return self.htmlToElement(
-                    '<div><span class="flag-' + country.element.value.toLowerCase() + '"></span><span>' + country.text + '</span></div>'
+                    '<div><span class="flag">' + country.element.dataset.flag + '</span><span>' + country.text + '</span></div>'
                 );
             },
             language: {

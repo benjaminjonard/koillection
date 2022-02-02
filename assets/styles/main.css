@@ -478,7 +478,6 @@ input[type=color] {display: block; margin: 1rem 0;}
 
 .font-red { color: #e53935; }
 .font-green { color: #43a047; }
-.catalogue-list .flag {padding-left: 10px; position: relative; top: -3px;}
 
 .cr-boundary { cursor: pointer; }
 .image-field { display: flex; }
@@ -572,7 +571,7 @@ i.btn input {color: #fff; cursor: pointer;}
 .switch-wrapper {margin-bottom: 4rem; }
 .input-field.input-checkbox {margin-bottom: 40px;}
 .datum-row span.country-name {color: #7f8c8d; font-size: 12px; font-weight: unset;}
-.datum-row .flag {margin: 0 5px; top: 2px; position: relative;}
+.flag {margin: 0 5px; top: 2px; font-size: 17px; position: relative;}
 
 .box .input-field.input-checkbox {margin-bottom: 75px;}
 .box h2 {padding: 10px 0 !important;}

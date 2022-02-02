@@ -100,7 +100,7 @@
                                 {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}
                                     {{ datum.value }}
                                 {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
-                                    <span class="flag flag-{{ datum.value|lower }}"></span>
+                                    <span class="flag">{{ getCountryFlag(datum.value) }}</span>
                                     <span class="country-name">({{ getCountryName(datum.value) }})</span>
                                 {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
                                     <a href="{{ preload(asset(datum.file), {nopush: true}) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
