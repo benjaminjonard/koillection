@@ -29,7 +29,7 @@ Encore
 
     .addPlugin(new CopyPlugin({
         patterns: [
-            { from: './img', to: 'images', globOptions: { ignore: ['**/flags/**'] }}
+            { from: './img', to: 'images' }
         ]}
     ))
 
