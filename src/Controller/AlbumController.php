@@ -23,7 +23,7 @@ class AlbumController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/albums', 'fr' => '/utilisateur/{username}/albums'],
-        name: 'app_user_album_index', methods: ['GET']
+        name: 'app_shared_album_index', methods: ['GET']
     )]
     public function index(AlbumRepository $albumRepository) : Response
     {
@@ -58,6 +58,8 @@ class AlbumController extends AbstractController
             $album
                 ->setParent($parent)
                 ->setVisibility($parent->getVisibility())
+                ->setParentVisibility($parent->getVisibility())
+                ->setFinalVisibility($parent->getFinalVisibility())
             ;
         }
 
@@ -127,7 +129,7 @@ class AlbumController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/albums/{id}', 'fr' => '/utilisateur/{username}/albums/{id}'],
-        name: 'app_user_album_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_album_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     public function show(Album $album, AlbumRepository $albumRepository, PhotoRepository $photoRepository) : Response
     {

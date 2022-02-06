@@ -20,7 +20,7 @@ class StatisticsController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/statistics', 'fr' => '/utilisateur/{username}/statistiques'],
-        name: 'app_user_statistics_index', methods: ['GET']
+        name: 'app_shared_statistics_index', methods: ['GET']
     )]
     public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder,
                           UserRepository $userRepository, User $user = null

@@ -76,8 +76,8 @@ class AppRuntime implements RuntimeExtensionInterface
             }
 
             if ($element->getType() === 'root') {
-                if ($this->contextHandler->getContext() === 'user') {
-                    return $this->translator->trans($element->getLabel().'_user', ['%username%' => $this->contextHandler->getUsername()]);
+                if ($this->contextHandler->getContext() === 'shared') {
+                    return $this->translator->trans($element->getLabel().'_shared', ['%username%' => $this->contextHandler->getUsername()]);
                 }
                 return $this->translator->trans($element->getLabel());
             }

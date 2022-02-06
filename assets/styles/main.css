@@ -12,6 +12,7 @@ body.unauthorized {margin-left: 0;}
 footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; font-size: 12px; margin: 0 15px;}
 .show-on-mobile {display: none;}
 .fa {font-size: 20px;}
+.fa-rotate-180 {-webkit-transform: rotate(180deg); transform: rotate(180deg);}
 
 a {outline: 0;}
 
@@ -149,6 +150,10 @@ ul.nav-pills {display: inline-block;}
 ul.nav-pills li { white-space: nowrap; display: inline;}
 .content-wrapper  .stats-block ul.nav-pills li {text-transform: uppercase; font-size: 13px; font-weight: 600; line-height: 18px; padding: 11px 16px; letter-spacing: .4px; margin-left: 12px; }
 .button {padding-top: 17px; font-size: 20px; color: rgba(0,0,0,0.87); font-weight: 600; letter-spacing: 0.4px; line-height: 18px; cursor: pointer; display: inline-block; margin-bottom: 0; text-align: center; vertical-align: middle; white-space: nowrap;}
+
+.visibility {padding-top: 17px; font-size: 20px; font-weight: 600; letter-spacing: 0.4px; line-height: 18px; display: inline-block; margin-bottom: 0; text-align: center; vertical-align: middle; white-space: nowrap;}
+.visibility .fa-secondary {font-size: 13px;  font-weight: 600; margin-left: -14px;}
+
 .content-wrapper  .filter-block .filter-input {margin-top: 6px; width: 67%; height: 20px; padding: 9px 16px; font-size: 15px; line-height: 1.42; color: #54565b; background-color: #fff; border: 1px solid #e7e9ed; border-radius: 2px;}
 .content-wrapper  .filter-block .filter-input:focus {border-color: #009688; outline: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(127,143,164,0.6); box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(127,143,164,0.6);}
 input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-input {border-bottom: none; box-shadow: none;}

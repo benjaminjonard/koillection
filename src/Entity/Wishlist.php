@@ -8,6 +8,7 @@ use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -19,11 +20,13 @@ use Symfony\Component\Uid\Uuid;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WishlistRepository")
  * @ORM\Table(name="koi_wishlist", indexes={
- *     @ORM\Index(name="idx_wishlist_visibility", columns={"visibility"})
+ *     @ORM\Index(name="idx_wishlist_final_visibility", columns={"final_visibility"})
  * })
  */
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
+    use VisibilityTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
@@ -76,11 +79,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
      * @ORM\Column(type="integer")
      */
     private int $seenCounter;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $visibility;
 
     /**
      * @ORM\Column(type="datetime")
@@ -143,18 +141,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     public function setSeenCounter(int $seenCounter): self
     {
         $this->seenCounter = $seenCounter;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
 
         return $this;
     }

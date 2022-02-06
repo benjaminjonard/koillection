@@ -46,6 +46,8 @@ class ItemController extends AbstractController
         $item
             ->setCollection($collection)
             ->setVisibility($collection->getVisibility())
+            ->setParentVisibility($collection->getVisibility())
+            ->setFinalVisibility($collection->getFinalVisibility())
         ;
 
         //Preload tags shared by all items in that collection
@@ -84,7 +86,7 @@ class ItemController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/items/{id}', 'fr' => '/utilisateur/{username}/objets/{id}'],
-        name: 'app_user_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
+        name: 'app_shared_item_show', requirements: ['id' => '%uuid_regex%'] ,methods: ['GET']
     )]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function show(Item $item, ItemRepository $itemRepository) : Response

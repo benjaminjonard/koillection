@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Annotation\Upload;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -14,9 +15,7 @@ use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
- * @ORM\Table(name="koi_datum", indexes={
- *     @ORM\Index(name="idx_datum_visibility", columns={"visibility"})
- * })
+ * @ORM\Table(name="koi_datum")
  */
 class Datum implements LoggableInterface
 {
@@ -37,7 +36,7 @@ class Datum implements LoggableInterface
     private ?Collection $collection = null;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", length=10, nullable=false)
      */
     private ?string $type = null;
 
@@ -95,11 +94,6 @@ class Datum implements LoggableInterface
      * @ORM\ManyToOne(targetEntity="User")
      */
     private ?User $owner = null;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $visibility;
 
     /**
      * @ORM\Column(type="datetime")
@@ -171,18 +165,6 @@ class Datum implements LoggableInterface
     public function setPosition(?int $position): self
     {
         $this->position = $position;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
 
         return $this;
     }

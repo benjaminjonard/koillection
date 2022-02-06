@@ -42,6 +42,8 @@ class WishController extends AbstractController
         $wish
             ->setWishlist($wishlist)
             ->setVisibility($wishlist->getVisibility())
+            ->setParentVisibility($wishlist->getVisibility())
+            ->setFinalVisibility($wishlist->getFinalVisibility())
             ->setCurrency($this->getUser()->getCurrency())
         ;
 
@@ -117,6 +119,8 @@ class WishController extends AbstractController
 
         $item
             ->setVisibility($wish->getVisibility())
+            ->setParentVisibility($wish->getVisibility())
+            ->setFinalVisibility($wish->getFinalVisibility())
             ->setName($wish->getName())
             ->setImage($wish->getImage())
             ->setImageSmallThumbnail($wish->getImageSmallThumbnail())

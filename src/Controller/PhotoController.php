@@ -39,6 +39,8 @@ class PhotoController extends AbstractController
         $photo
             ->setAlbum($album)
             ->setVisibility($album->getVisibility())
+            ->setParentVisibility($album->getVisibility())
+            ->setFinalVisibility($album->getFinalVisibility())
         ;
 
         $form = $this->createForm(PhotoType::class, $photo);

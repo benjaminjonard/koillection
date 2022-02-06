@@ -20,7 +20,7 @@ class Log
     private string $id;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=6, nullable=true)
      */
     private ?string $type;
 
@@ -30,7 +30,7 @@ class Log
     private ?\DateTimeInterface $loggedAt = null;
 
     /**
-     * @ORM\Column(type="uuid")
+     * @ORM\Column(type="string", length=36)
      */
     private string $objectId;
 

@@ -76,7 +76,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     private int $seenCounter;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=10)
      */
     private string $visibility;
 

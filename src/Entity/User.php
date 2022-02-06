@@ -90,12 +90,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private string $locale;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=50)
      */
     private ?string $timezone = null;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=10)
      */
     private string $dateFormat;
 
@@ -105,7 +105,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private int $diskSpaceAllowed;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=10)
      */
     private string $visibility;
 

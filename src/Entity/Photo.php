@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Annotation\Upload;
 use App\Entity\Interfaces\CacheableInterface;
+use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -15,11 +16,13 @@ use Symfony\Component\Uid\Uuid;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
  * @ORM\Table(name="koi_photo", indexes={
- *     @ORM\Index(name="idx_photo_visibility", columns={"visibility"})
+ *     @ORM\Index(name="idx_photo_final_visibility", columns={"final_visibility"})
  * })
  */
 class Photo implements CacheableInterface
 {
+    use VisibilityTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
@@ -70,11 +73,6 @@ class Photo implements CacheableInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $takenAt = null;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $visibility;
 
     /**
      * @ORM\Column(type="datetime")
@@ -141,18 +139,6 @@ class Photo implements CacheableInterface
     public function setTakenAt(?\DateTimeInterface $takenAt): self
     {
         $this->takenAt = $takenAt;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
 
         return $this;
     }

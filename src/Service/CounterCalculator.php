@@ -137,12 +137,12 @@ class CounterCalculator
 
         $sql = "
             WITH RECURSIVE counters AS (
-                SELECT $c1.id, $c1.parent_id, $c1.visibility, $i1.id AS item_id
+                SELECT $c1.id, $c1.parent_id, $c1.final_visibility, $i1.id AS item_id
                 FROM $table $c1
                 LEFT JOIN $itemTable $i1 ON $i1.$parentProperty = $c1.id $visibilityCondition
                 WHERE $c1.id = $alias.id
                 UNION
-                SELECT $c2.id, $c2.parent_id, $c2.visibility, $i2.id AS item_id 
+                SELECT $c2.id, $c2.parent_id, $c2.final_visibility, $i2.id AS item_id 
                 FROM $table $c2
                 LEFT JOIN $itemTable $i2 ON $i2.$parentProperty = $c2.id
                 INNER JOIN counters $ch1 ON $ch1.id = $c2.parent_id
@@ -158,9 +158,9 @@ class CounterCalculator
     {
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             if ($this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user') === "''") {
-                $sql .= sprintf("$condition %s.visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
+                $sql .= sprintf("$condition %s.final_visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
             } else {
-                $sql .= sprintf("$condition %s.visibility IN ('%s', '%s')",
+                $sql .= sprintf("$condition %s.final_visibility IN ('%s', '%s')",
                     $alias,
                     VisibilityEnum::VISIBILITY_PUBLIC,
                     VisibilityEnum::VISIBILITY_INTERNAL

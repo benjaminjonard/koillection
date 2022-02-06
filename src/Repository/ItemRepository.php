@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Enum\DatumTypeEnum;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
@@ -178,6 +179,20 @@ class ItemRepository extends ServiceEntityRepository
             ->setParameter('name', '%'.$string.'%')
             ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findWithSigns() : array
+    {
+        return $this
+            ->createQueryBuilder('i')
+            ->leftJoin('i.data', 'd')
+            ->addSelect('d')
+            ->andWhere('d.type = :type')
+            ->orderBy('i.name', 'ASC')
+            ->setParameter('type', DatumTypeEnum::TYPE_SIGN)
             ->getQuery()
             ->getResult()
         ;

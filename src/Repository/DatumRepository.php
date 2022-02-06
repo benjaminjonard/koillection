@@ -15,18 +15,4 @@ class DatumRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Datum::class);
     }
-
-    public function findSigns() : array
-    {
-        return $this
-            ->createQueryBuilder('d')
-            ->leftJoin('d.item', 'i')
-            ->addSelect('i')
-            ->andWhere('d.type = :type')
-            ->orderBy('i.name', 'ASC')
-            ->setParameter('type', DatumTypeEnum::TYPE_SIGN)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
 }

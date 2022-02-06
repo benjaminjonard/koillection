@@ -11,10 +11,10 @@
 {% endblock %}
 
 {% block meta %}
-    {% if context == 'user'  %}
+    {% if context == 'shared'  %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')}),
             'image': collection.image
         }) }}
     {% else %}
@@ -34,7 +34,10 @@
                     {% endif %}
                 </div>
                 <div class="right">
-                    <h1>{{ collection.title }}</h1>
+                    <h1>
+                        {{ collection.title }}
+                    </h1>
+
                     <ul class="nav nav-pills">
                         <li>{{ 'counter.item'|trans({'%count%': getCounters(collection).items}) }}</li>
                         <li>{{ 'counter.collection'|trans({'%count%': getCounters(collection).children}) }}</li>
@@ -71,10 +74,11 @@
                             </a>
                         {% endif %}
                         <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                        <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
+                            <i class="fa fa-ellipsis-h fa-fw"></i>
+                        </a>
+                        {{ include('App/_partials/_visibility.html.twig', {'visibility': collection.finalVisibility}) }}
                     {% endif %}
-                    <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
-                        <i class="fa fa-ellipsis-h fa-fw"></i>
-                    </a>
                 </div>
                 <div class="right">
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
@@ -153,7 +157,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'entity': collection, 'route': url('app_user_collection_show', {id: collection.id, username: app.user.username})}) }}
+        {{ include('App/_partials/_modal/_share.html.twig', {'entity': collection, 'route': url('app_shared_collection_show', {id: collection.id, username: app.user.username})}) }}
         {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
     {% endif %}
 {% endblock %}

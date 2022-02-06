@@ -8,6 +8,7 @@ use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -20,11 +21,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CollectionRepository")
  * @ORM\Table(name="koi_collection", indexes={
- *     @ORM\Index(name="idx_collection_visibility", columns={"visibility"})
+ *     @ORM\Index(name="idx_collection_final_visibility", columns={"final_visibility"})
  * })
  */
 class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface
 {
+    use VisibilityTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
@@ -94,11 +97,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
      * @ORM\Column(type="integer")
      */
     private int $seenCounter;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $visibility;
 
     /**
      * @ORM\Column(type="datetime")
@@ -196,18 +194,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setSeenCounter(int $seenCounter): self
     {
         $this->seenCounter = $seenCounter;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
 
         return $this;
     }
