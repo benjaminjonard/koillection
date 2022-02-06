@@ -2,24 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Annotation;
+namespace App\Attribute;
 
-use Doctrine\Common\Annotations\Reader;
+use App\Entity\Collection;
 
 class UploadAnnotationReader
 {
-    public function __construct(
-        private Reader $reader
-    ) {}
-
     public function getUploadFields($entity) : array
     {
         $reflection = new \ReflectionClass(get_class($entity));
+
         $properties = [];
         foreach($reflection->getProperties() as $property) {
-            $annotation = $this->reader->getPropertyAnnotation($property, Upload::class);
-            if ($annotation !== null) {
-                $properties[$property->getName()] = $annotation;
+            foreach ($property->getAttributes() as $attribute) {
+                if ($attribute->getName() === Upload::class) {
+                    $properties[$property->getName()] = Upload::fromReflectionAttribute($attribute);
+                }
             }
         }
 

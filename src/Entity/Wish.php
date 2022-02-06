@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Annotation\Upload;
+use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
