@@ -4,44 +4,34 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Repository\LoanRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\LoanRepository")
- * @ORM\Table(name="koi_loan")
- */
+#[ORM\Entity(repositoryClass: LoanRepository::class)]
+#[ORM\Table(name: "koi_loan")]
 class Loan
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Item", inversedBy="loans")
-     */
+    #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "loans")]
     private ?Item $item;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $lentTo = null;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    #[ORM\Column(type: "datetime")]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $lentAt = null;
 
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $returnedAt;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     */
+    #[ORM\ManyToOne(targetEntity: "User")]
     private ?User $owner = null;
 
     public function __construct()

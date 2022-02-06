@@ -8,44 +8,30 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="koi_inventory")
- */
+#[ORM\Entity]
+#[ORM\Table(name: "koi_inventory")]
 class Inventory implements BreadcrumbableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    #[ORM\Column(type: "string")]
     private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: "json")]
     private ?string $content = null;
 
-    private array $contentAsArray = [];
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="inventories")
-     */
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "inventories")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt;
+
+    private array $contentAsArray = [];
 
     public function __construct()
     {

@@ -8,19 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait VisibilityTrait
 {
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    #[ORM\Column(type: "string", length: 10)]
     private string $visibility;
 
-    /**
-     * @ORM\Column(type="string", length=10, nullable=true)
-     */
+    #[ORM\Column(type: "string", length: 10, nullable: true)]
     private ?string $parentVisibility;
 
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    #[ORM\Column(type: "string", length: 10)]
     private string $finalVisibility;
 
     public function getVisibility(): ?string

@@ -6,103 +6,69 @@ namespace App\Entity;
 
 use App\Annotation\Upload;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
+use App\Repository\DatumRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
- * @ORM\Table(name="koi_datum")
- */
+#[ORM\Entity(repositoryClass: DatumRepository::class)]
+#[ORM\Table(name: "koi_datum")]
 class Datum implements LoggableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
-     */
+    #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "data")]
     private ?Item $item = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Collection", inversedBy="data")
-     */
+    #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "data")]
     private ?Collection $collection = null;
 
-    /**
-     * @ORM\Column(type="string", length=10, nullable=false)
-     */
+    #[ORM\Column(type: "string", length: 10)]
     private ?string $type = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: "string", nullable: true)]
+    #[Assert\NotBlank]
     private ?string $label = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $value = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: "integer", nullable: true)]
     private ?int $position = null;
 
-    /**
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail", largeThumbnailPath="imageLargeThumbnail")
-     */
+    #[Upload(path: "file", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
     private ?File $fileImage = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $image = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $imageSmallThumbnail = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $imageLargeThumbnail = null;
 
-    /**
-     * @Upload(path="file", originalFilenamePath="originalFilename")
-     */
+    #[Upload(path: "file", originalFilenamePath: "originalFilename")]
     private ?File $fileFile = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    #[ORM\Column(type: "string", nullable: true)]
     private ?string $originalFilename = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     */
+    #[ORM\ManyToOne(targetEntity: "User")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()

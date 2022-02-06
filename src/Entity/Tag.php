@@ -8,86 +8,60 @@ use App\Annotation\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
+use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
- * @ORM\Table(name="koi_tag", indexes={
- *     @ORM\Index(name="idx_tag_visibility", columns={"visibility"})
- * })
- */
+#[ORM\Entity(repositoryClass: TagRepository::class)]
+#[ORM\Table(name: "koi_tag")]
+#[ORM\Index(name: "idx_tag_visibility", columns: ["visibility"])]
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private string $label;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
 
-    /**
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
-     */
+    #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
     private ?File $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $image = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $imageSmallThumbnail = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="tags")
-     */
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "tags")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="TagCategory", inversedBy="tags", fetch="EAGER", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
+    #[ORM\ManyToOne(targetEntity: "TagCategory", inversedBy: "tags", fetch: "EAGER", cascade: ["persist"])]
+    #[ORM\JoinColumn(onDelete: "SET NULL")]
     private ?TagCategory $category = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Item", mappedBy="tags")
-     */
+    #[ORM\ManyToMany(targetEntity: "Item", mappedBy: "tags")]
     private DoctrineCollection $items;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: "integer")]
     private int $seenCounter;
 
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    #[ORM\Column(type: "string", length: 10)]
     private string $visibility;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()

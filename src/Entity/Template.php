@@ -5,47 +5,36 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Repository\TemplateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
- * @ORM\Table(name="koi_template")
- */
+#[ORM\Entity(repositoryClass: TemplateRepository::class)]
+#[ORM\Table(name: "koi_template")]
 class Template implements BreadcrumbableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Field", mappedBy="template", cascade={"all"}, orphanRemoval=true)
-     * @ORM\OrderBy({"position" = "ASC"})
-     */
+    #[ORM\OneToMany(targetEntity: "Field", mappedBy: "template", cascade: ["all"], orphanRemoval: true)]
+    #[ORM\OrderBy(["position" => "ASC"])]
     private DoctrineCollection $fields;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="templates")
-     */
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "templates")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()

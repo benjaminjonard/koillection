@@ -7,37 +7,27 @@ namespace App\Entity;
 use App\Enum\DatumTypeEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="koi_field")
- */
+#[ORM\Entity]
+#[ORM\Table(name: "koi_field")]
 class Field
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: "integer")]
     private ?int $position = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
     private ?string $type = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Template", inversedBy="fields")
-     */
+    #[ORM\ManyToOne(targetEntity: "Template", inversedBy: "fields")]
     private ?Template $template = null;
 
     public function __construct()

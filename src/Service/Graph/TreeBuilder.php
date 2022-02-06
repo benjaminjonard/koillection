@@ -29,11 +29,6 @@ class TreeBuilder
         return $tree;
     }
 
-    /**
-     * @param array $collections
-     * @param Collection $collection
-     * @return array
-     */
     private function buildRecursively(array $collections, Collection $collection): array
     {
         $leaf = $this->createLeaf($collection);
@@ -45,10 +40,6 @@ class TreeBuilder
         return $leaf;
     }
 
-    /**
-     * @param Collection|null $collection
-     * @return array
-     */
     private function createLeaf(?Collection $collection = null): array
     {
         $name = '';

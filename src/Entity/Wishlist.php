@@ -10,84 +10,60 @@ use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
+use App\Repository\WishlistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\WishlistRepository")
- * @ORM\Table(name="koi_wishlist", indexes={
- *     @ORM\Index(name="idx_wishlist_final_visibility", columns={"final_visibility"})
- * })
- */
+#[ORM\Entity(repositoryClass: WishlistRepository::class)]
+#[ORM\Table(name: "koi_wishlist")]
+#[ORM\Index(name: "idx_wishlist_final_visibility", columns: ["final_visibility"])]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
     use VisibilityTrait;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="wishlists")
-     */
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "wishlists")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Wish", mappedBy="wishlist", cascade={"all"})
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
+    #[ORM\OneToMany(targetEntity: "Wish", mappedBy: "wishlist", cascade: ["all"])]
+    #[ORM\OrderBy(["name" => "ASC"])]
     private DoctrineCollection $wishes;
 
-    /**
-     * @ORM\Column(type="string", length=6)
-     */
+    #[ORM\Column(type: "string", length: 6)]
     private ?string $color = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="parent", cascade={"all"})
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
+    #[ORM\OneToMany(targetEntity: "Wishlist", mappedBy: "parent", cascade: ["all"])]
+    #[ORM\OrderBy(["name" => "ASC"])]
     private DoctrineCollection $children;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="children")
-     */
+    #[ORM\ManyToOne(targetEntity: "Wishlist", inversedBy: "children")]
     private ?Wishlist $parent = null;
 
-    /**
-     * @Upload(path="image")
-     */
+    #[Upload(path: "image")]
     private ?File $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $image = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: "integer")]
     private int $seenCounter;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private ?\DateTimeInterface $createdAt = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()

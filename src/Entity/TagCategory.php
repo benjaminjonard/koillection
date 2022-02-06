@@ -5,56 +5,41 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Repository\TagCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\TagCategoryRepository")
- * @ORM\Table(name="koi_tag_category")
- */
+#[ORM\Entity(repositoryClass: TagCategoryRepository::class)]
+#[ORM\Table(name: "koi_tag_category")]
 class TagCategory implements BreadcrumbableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $label = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
 
-    /**
-     * @ORM\Column(type="string", length=7)
-     */
+    #[ORM\Column(type: "string", length: 7)]
     private ?string $color = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="tagCategories")
-     */
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "tagCategories")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Tag", mappedBy="category")
-     */
+    #[ORM\OneToMany(targetEntity: "Tag", mappedBy: "category")]
     private DoctrineCollection $tags;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()

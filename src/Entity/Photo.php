@@ -8,80 +8,56 @@ use App\Annotation\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
+use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
- * @ORM\Table(name="koi_photo", indexes={
- *     @ORM\Index(name="idx_photo_final_visibility", columns={"final_visibility"})
- * })
- */
+#[ORM\Entity(repositoryClass: PhotoRepository::class)]
+#[ORM\Table(name: "koi_photo")]
+#[ORM\Index(name: "idx_photo_final_visibility", columns: ["final_visibility"])]
 class Photo implements CacheableInterface
 {
     use VisibilityTrait;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $title = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $comment = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: "string", nullable: true)]
     private ?string $place = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
-     */
+    #[ORM\ManyToOne(targetEntity: "Album", inversedBy: "photos")]
     private ?Album $album;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     */
+    #[ORM\ManyToOne(targetEntity: "User")]
     private ?User $owner = null;
 
-    /**
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
-     */
+    #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
     private ?File $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $image = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $imageSmallThumbnail = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $takenAt = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()

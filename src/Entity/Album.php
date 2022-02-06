@@ -10,83 +10,59 @@ use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
+use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
- * @ORM\Table(name="koi_album", indexes={
- *     @ORM\Index(name="idx_album_final_visibility", columns={"final_visibility"})
- * })
- */
+#[ORM\Entity(repositoryClass: AlbumRepository::class)]
+#[ORM\Table(name: "koi_album")]
+#[ORM\Index(name: "idx_album_final_visibility", columns: ["final_visibility"])]
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     use VisibilityTrait;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $title = null;
 
-    /**
-     * @ORM\Column(type="string", length=6)
-     */
+    #[ORM\Column(type: "string", length: 6)]
     private ?string $color = null;
 
-    /**
-     * @Upload(path="image")
-     */
+    #[Upload(path: "image")]
     private ?File $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $image = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="albums")
-     */
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "albums")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="album", cascade={"all"})
-     */
+    #[ORM\OneToMany(targetEntity: "Photo", mappedBy: "album", cascade: ["all"])]
     private DoctrineCollection $photos;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Album", mappedBy="parent", cascade={"all"})
-     * @ORM\OrderBy({"title" = "ASC"})
-     */
+    #[ORM\OneToMany(targetEntity: "Album", mappedBy: "parent", cascade: ["all"])]
+    #[ORM\OrderBy(["title" => "ASC"])]
     private DoctrineCollection $children;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Album", inversedBy="children")
-     */
+    #[ORM\ManyToOne(targetEntity: "Album", inversedBy: "children")]
     private ?Album $parent = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: "integer")]
     private int $seenCounter;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private ?\DateTimeInterface $createdAt = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()

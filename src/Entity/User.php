@@ -10,6 +10,7 @@ use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\VisibilityEnum;
+use App\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,202 +22,125 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="koi_user", indexes={
- *     @ORM\Index(name="idx_user_visibility", columns={"visibility"})
- * })
- * @UniqueEntity(fields={"email"}, message="error.email.not_unique")
- * @UniqueEntity(fields={"username"}, message="error.username.not_unique")
- */
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: "koi_user")]
+#[ORM\Index(name: "idx_user_visibility", columns: ["visibility"])]
+#[UniqueEntity(fields: ["email"], message: "error.email.not_unique")]
+#[UniqueEntity(fields: ["username"], message: "error.username.not_unique")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Serializable
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=32, unique=true)
-     * @Assert\Regex(pattern="/^[a-z\d_]{2,32}$/i", message="error.username.incorrect")
-     */
+    #[ORM\Column(type: "string", length: 32, unique: true)]
+    #[Assert\Regex(pattern: "/^[a-z\d_]{2,32}$/i", message: "error.username.incorrect")]
     private ?string $username = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email()
-     */
+    #[ORM\Column(type: "string", unique: true)]
+    #[Assert\Email]
     private ?string $email = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
     private ?string $password;
 
-    /**
-     * @Assert\Regex(pattern="/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message="error.password.incorrect")
-     */
+    #[Assert\Regex(pattern: "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message: "error.password.incorrect")]
     private ?string $plainPassword = null;
 
-    /**
-     * @Upload(path="avatar")
-     */
+    #[Upload(path: "avatar")]
     private ?File $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $avatar = null;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: "boolean")]
     private bool $enabled;
 
-    /**
-     * @ORM\Column(type="array")
-     */
+    #[ORM\Column(type: "array")]
     private array $roles;
 
-    /**
-     * @ORM\Column(type="string", length=3)
-     */
+    #[ORM\Column(type: "string", length: 3)]
     private string $currency;
 
-    /**
-     * @ORM\Column(type="string", length=5)
-     */
+    #[ORM\Column(type: "string", length: 5)]
     private string $locale;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    #[ORM\Column(type: "string", length: 50)]
     private ?string $timezone = null;
 
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    #[ORM\Column(type: "string", length: 10)]
     private string $dateFormat;
 
-    /**
-     * @ORM\Column(type="bigint", options={"default"=268435456})
-     */
+    #[ORM\Column(type: "bigint", options: ["default" => 268435456])]
     private int $diskSpaceAllowed;
 
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    #[ORM\Column(type: "string", length: 10)]
     private string $visibility;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Collection", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Collection", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $collections;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Tag", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Tag", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $tags;
 
-    /**
-     * @ORM\OneToMany(targetEntity="TagCategory", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "TagCategory", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $tagCategories;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Wishlist", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $wishlists;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Template", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Template", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $templates;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Log", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Log", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $logs;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Album", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $albums;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Inventory", mappedBy="owner", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Inventory", mappedBy: "owner", cascade: ["remove"])]
     private DoctrineCollection $inventories;
 
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     */
+    #[ORM\Column(type: "date", nullable: true)]
     private ?DateTimeInterface $lastDateOfActivity = null;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 0})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 0])]
     private bool $darkModeEnabled;
 
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     */
+    #[ORM\Column(type: "time", nullable: true)]
     private ?\DateTime $automaticDarkModeStartAt;
 
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     */
+    #[ORM\Column(type: "time", nullable: true)]
     private ?\DateTime $automaticDarkModeEndAt;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $wishlistsFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $tagsFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $signsFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $albumsFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $loansFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $templatesFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $historyFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 1})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 1])]
     private bool $statisticsFeatureEnabled;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -245,9 +169,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return (string) $this->getUsername();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (string) $this->getUsername();

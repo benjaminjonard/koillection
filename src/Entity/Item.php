@@ -11,6 +11,7 @@ use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Traits\VisibilityTrait;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
+use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -20,115 +21,75 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
- * @ORM\Table(name="koi_item", indexes={
- *     @ORM\Index(name="idx_item_final_visibility", columns={"final_visibility"})
- * })
- */
+#[ORM\Entity(repositoryClass: ItemRepository::class)]
+#[ORM\Table(name: "koi_item")]
+#[ORM\Index(name: "idx_item_final_visibility", columns: ["final_visibility"])]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     use VisibilityTrait;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\GreaterThan(0)
-     */
+    #[ORM\Column(type: "integer")]
+    #[Assert\GreaterThan(0)]
     private int $quantity;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Collection", inversedBy="items")
-     */
+    #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "items")]
     private ?Collection $collection = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     */
+    #[ORM\ManyToOne(targetEntity: "User")]
     private ?User $owner = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="items", cascade={"persist"})
-     * @ORM\JoinTable(
-     *    name="koi_item_tag",
-     *    joinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")},
-     *    inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
-     * )
-     * @ORM\OrderBy({"label" = "ASC"})
-     */
+    #[ORM\ManyToMany(targetEntity: "Tag", inversedBy: "items", cascade: ["persist"])]
+    #[ORM\JoinTable(name: "koi_item_tag")]
+    #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
+    #[ORM\InverseJoinColumn(name: "tag_id", referencedColumnName: "id")]
+    #[ORM\OrderBy(["label" => "ASC"])]
     private DoctrineCollection $tags;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Item", cascade={"persist"}, inversedBy="relatedTo")
-     * @ORM\JoinTable(
-     *    name="koi_item_related_item",
-     *    joinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")},
-     *    inverseJoinColumns={@ORM\JoinColumn(name="related_item_id", referencedColumnName="id")}
-     * )
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
+    #[ORM\ManyToMany(targetEntity: "Item", inversedBy: "relatedTo")]
+    #[ORM\JoinTable(name: "koi_item_related_item")]
+    #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
+    #[ORM\InverseJoinColumn(name: "related_item_id", referencedColumnName: "id")]
+    #[ORM\OrderBy(["name" => "ASC"])]
     private DoctrineCollection $relatedItems;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Item", mappedBy="relatedItems")
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
+    #[ORM\ManyToMany(targetEntity: "Item", mappedBy: "relatedItems")]
+    #[ORM\OrderBy(["name" => "ASC"])]
     private DoctrineCollection $relatedTo;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Datum", mappedBy="item", cascade={"persist", "remove"}, orphanRemoval=true)
-     * @ORM\OrderBy({"position" = "ASC"})
-     */
+    #[ORM\OneToMany(targetEntity: "Datum", mappedBy: "item", cascade: ["persist", "remove"], orphanRemoval: true)]
+    #[ORM\OrderBy(["position" => "ASC"])]
     private DoctrineCollection $data;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Loan", mappedBy="item", cascade={"remove"})
-     */
+    #[ORM\OneToMany(targetEntity: "Loan", mappedBy: "item", cascade: ["remove"])]
     private DoctrineCollection $loans;
 
-    /**
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail", largeThumbnailPath="imageLargeThumbnail")
-     */
+    #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
     private ?File $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $image = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $imageSmallThumbnail = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
     private ?string $imageLargeThumbnail = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: "integer")]
     private int $seenCounter;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
