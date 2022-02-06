@@ -36,7 +36,7 @@ final class Version20220205175140 extends AbstractMigration
         $this->addSql('UPDATE koi_collection SET final_visibility=visibility WHERE parent_id IS NULL');
         $this->addSql('ALTER TABLE koi_collection ALTER final_visibility SET NOT NULL');
 
-        $this->addSql('DROP INDEX idx_datum_final_visibility');
+        $this->addSql('DROP INDEX idx_datum_visibility');
         $this->addSql('ALTER TABLE koi_datum DROP visibility');
 
         $this->addSql('DROP INDEX idx_item_visibility');
