@@ -4,34 +4,46 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LoanRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LoanRepository::class)]
 #[ORM\Table(name: "koi_loan")]
+#[ApiResource(
+    normalizationContext: ['groups' => ["loan:read"]],
+    denormalizationContext: ["groups" => ["loan:write"]],
+)]
 class Loan
 {
     #[ORM\Id]
     #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["loan:read"])]
     private string $id;
 
     #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "loans")]
+    #[Groups(["loan:read", "loan:write"])]
     private ?Item $item;
 
     #[ORM\Column(type: "string")]
     #[Assert\NotBlank]
+    #[Groups(["loan:read", "loan:write"])]
     private ?string $lentTo = null;
 
     #[ORM\Column(type: "datetime")]
     #[Assert\NotBlank]
+    #[Groups(["loan:read", "loan:write"])]
     private ?\DateTimeInterface $lentAt = null;
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["loan:read", "loan:write"])]
     private ?\DateTimeInterface $returnedAt;
 
     #[ORM\ManyToOne(targetEntity: "User")]
+    #[Groups(["loan:read"])]
     private ?User $owner = null;
 
     public function __construct()

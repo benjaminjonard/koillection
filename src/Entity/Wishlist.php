@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,54 +18,85 @@ use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WishlistRepository::class)]
 #[ORM\Table(name: "koi_wishlist")]
 #[ORM\Index(name: "idx_wishlist_final_visibility", columns: ["final_visibility"])]
+#[ApiResource(
+    normalizationContext: ['groups' => ["wishlist:read"]],
+    denormalizationContext: ["groups" => ["wishlist:write"]],
+)]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
-    use VisibilityTrait;
-
     #[ORM\Id]
     #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["wishlist:read"])]
     private string $id;
 
     #[ORM\Column(type: "string")]
+    #[Groups(["wishlist:read", "wishlist:write"])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "wishlists")]
+    #[Groups(["wishlist:read"])]
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: "Wish", mappedBy: "wishlist", cascade: ["all"])]
     #[ORM\OrderBy(["name" => "ASC"])]
+    #[Groups(["wishlist:read"])]
+    #[ApiSubresource]
     private DoctrineCollection $wishes;
 
     #[ORM\Column(type: "string", length: 6)]
+    #[Groups(["wishlist:read"])]
     private ?string $color = null;
 
     #[ORM\OneToMany(targetEntity: "Wishlist", mappedBy: "parent", cascade: ["all"])]
     #[ORM\OrderBy(["name" => "ASC"])]
+    #[Groups(["wishlist:read"])]
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
     #[ORM\ManyToOne(targetEntity: "Wishlist", inversedBy: "children")]
+    #[Groups(["wishlist:read", "wishlist:write"])]
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Wishlist $parent = null;
 
     #[Upload(path: "image")]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["wishlist:read"])]
     private ?string $image = null;
 
     #[ORM\Column(type: "integer")]
+    #[Groups(["wishlist:read"])]
     private int $seenCounter;
 
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["wishlist:read", "wishlist:write"])]
+    private string $visibility;
+
+    #[ORM\Column(type: "string", length: 10, nullable: true)]
+    #[Groups(["wishlist:read"])]
+    private ?string $parentVisibility;
+
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["wishlist:read"])]
+    private string $finalVisibility;
+
     #[ORM\Column(type: "datetime")]
+    #[Groups(["wishlist:read"])]
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["wishlist:read"])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
@@ -249,6 +282,42 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
+
+        return $this;
+    }
+
+    public function getVisibility(): ?string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getParentVisibility(): ?string
+    {
+        return $this->parentVisibility;
+    }
+
+    public function setParentVisibility(?string $parentVisibility): self
+    {
+        $this->parentVisibility = $parentVisibility;
+
+        return $this;
+    }
+
+    public function getFinalVisibility(): string
+    {
+        return $this->finalVisibility;
+    }
+
+    public function setFinalVisibility(string $finalVisibility): self
+    {
+        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

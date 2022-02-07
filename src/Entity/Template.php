@@ -4,37 +4,51 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Repository\TemplateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TemplateRepository::class)]
 #[ORM\Table(name: "koi_template")]
+#[ApiResource(
+    normalizationContext: ['groups' => ["template:read"]],
+    denormalizationContext: ["groups" => ["template:write"]],
+)]
 class Template implements BreadcrumbableInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["template:read"])]
     private string $id;
 
     #[ORM\Column(type: "string")]
+    #[Groups(["template:read", "template:write"])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: "Field", mappedBy: "template", cascade: ["all"], orphanRemoval: true)]
     #[ORM\OrderBy(["position" => "ASC"])]
+    #[Groups(["template:read", "template:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $fields;
 
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "templates")]
+    #[Groups(["template:read"])]
     private ?User $owner = null;
 
     #[ORM\Column(type: "datetime")]
+    #[Groups(["template:read"])]
     private \DateTimeInterface $createdAt;
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["template:read"])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()

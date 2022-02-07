@@ -10,7 +10,6 @@ use Doctrine\ORM\Query\Filter\SQLFilter;
 
 class VisibilityFilter extends SQLFilter
 {
-
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias): string
     {
         $filter = '';

@@ -1,4 +1,18 @@
 {
+    "api-platform/core": {
+        "version": "2.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "05b57782a78c21a664a42055dc11cf1954ca36bb"
+        },
+        "files": [
+            "config/packages/api_platform.yaml",
+            "config/routes/api_platform.yaml",
+            "src/Entity/.gitignore"
+        ]
+    },
     "composer/semver": {
         "version": "3.2.2"
     },
@@ -100,11 +114,32 @@
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
+    "fig/link-util": {
+        "version": "1.2.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
+    },
+    "lcobucci/clock": {
+        "version": "2.1.0"
+    },
+    "lcobucci/jwt": {
+        "version": "4.1.5"
+    },
+    "lexik/jwt-authentication-bundle": {
+        "version": "2.14",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "5b2157bcd5778166a5696e42f552ad36529a07a6"
+        },
+        "files": [
+            "config/packages/lexik_jwt_authentication.yaml"
+        ]
     },
     "maennchen/zipstream-php": {
         "version": "1.2.0"
@@ -114,6 +149,21 @@
     },
     "myclabs/php-enum": {
         "version": "1.7.2"
+    },
+    "namshi/jose": {
+        "version": "7.2.3"
+    },
+    "nelmio/cors-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
     },
     "nikic/php-parser": {
         "version": "v4.3.0"
@@ -126,6 +176,18 @@
     },
     "php": {
         "version": "7.4"
+    },
+    "phpdocumentor/reflection-common": {
+        "version": "2.2.0"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "5.3.0"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "1.6.0"
+    },
+    "phpstan/phpdoc-parser": {
+        "version": "1.2.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -305,9 +367,6 @@
     "symfony/options-resolver": {
         "version": "v5.0.2"
     },
-    "symfony/orm-pack": {
-        "version": "v1.0.6"
-    },
     "symfony/password-hasher": {
         "version": "v5.3.0"
     },
@@ -365,6 +424,9 @@
     "symfony/property-info": {
         "version": "v5.0.2"
     },
+    "symfony/proxy-manager-bridge": {
+        "version": "v6.0.3"
+    },
     "symfony/routing": {
         "version": "6.0",
         "recipe": {
@@ -404,9 +466,6 @@
     },
     "symfony/serializer": {
         "version": "v5.0.2"
-    },
-    "symfony/serializer-pack": {
-        "version": "v1.0.2"
     },
     "symfony/service-contracts": {
         "version": "v2.0.1"
@@ -540,6 +599,9 @@
     "webimpress/safe-writer": {
         "version": "2.0.1"
     },
+    "webmozart/assert": {
+        "version": "1.10.0"
+    },
     "willdurand/js-translation-bundle": {
         "version": "2.0",
         "recipe": {
@@ -551,6 +613,9 @@
         "files": [
             "config/routes/js_translation.yaml"
         ]
+    },
+    "willdurand/negotiation": {
+        "version": "3.1.0"
     },
     "zendframework/zend-code": {
         "version": "3.4.1"

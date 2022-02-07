@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Entity\Traits\VisibilityTrait;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\ItemRepository;
@@ -18,32 +20,40 @@ use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
 #[ORM\Table(name: "koi_item")]
 #[ORM\Index(name: "idx_item_final_visibility", columns: ["final_visibility"])]
+#[ApiResource(
+    normalizationContext: ['groups' => ["item:read"]],
+    denormalizationContext: ["groups" => ["item:write"]],
+)]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
-    use VisibilityTrait;
-
     #[ORM\Id]
     #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["item:read"])]
     private string $id;
 
     #[ORM\Column(type: "string")]
     #[Assert\NotBlank]
+    #[Groups(["item:read", "item:write"])]
     private ?string $name = null;
 
     #[ORM\Column(type: "integer")]
     #[Assert\GreaterThan(0)]
+    #[Groups(["item:read", "item:write"])]
     private int $quantity;
 
     #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "items")]
+    #[Groups(["item:read", "item:write"])]
     private ?Collection $collection = null;
 
     #[ORM\ManyToOne(targetEntity: "User")]
+    #[Groups(["item:read"])]
     private ?User $owner = null;
 
     #[ORM\ManyToMany(targetEntity: "Tag", inversedBy: "items", cascade: ["persist"])]
@@ -51,6 +61,8 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
     #[ORM\InverseJoinColumn(name: "tag_id", referencedColumnName: "id")]
     #[ORM\OrderBy(["label" => "ASC"])]
+    #[Groups(["item:read", "item:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
     #[ORM\ManyToMany(targetEntity: "Item", inversedBy: "relatedTo")]
@@ -58,6 +70,9 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
     #[ORM\InverseJoinColumn(name: "related_item_id", referencedColumnName: "id")]
     #[ORM\OrderBy(["name" => "ASC"])]
+    #[Groups(["item:read", "item:write"])]
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $relatedItems;
 
     #[ORM\ManyToMany(targetEntity: "Item", mappedBy: "relatedItems")]
@@ -66,30 +81,52 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\OneToMany(targetEntity: "Datum", mappedBy: "item", cascade: ["persist", "remove"], orphanRemoval: true)]
     #[ORM\OrderBy(["position" => "ASC"])]
+    #[Groups(["item:read", "item:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $data;
 
     #[ORM\OneToMany(targetEntity: "Loan", mappedBy: "item", cascade: ["remove"])]
+    #[Groups(["item:read"])]
+    #[ApiSubresource]
     private DoctrineCollection $loans;
 
     #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["item:read"])]
     private ?string $image = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["item:read"])]
     private ?string $imageSmallThumbnail = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["item:read"])]
     private ?string $imageLargeThumbnail = null;
 
     #[ORM\Column(type: "integer")]
+    #[Groups(["item:read"])]
     private int $seenCounter;
 
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["item:read", "item:write"])]
+    private string $visibility;
+
+    #[ORM\Column(type: "string", length: 10, nullable: true)]
+    #[Groups(["item:read"])]
+    private ?string $parentVisibility;
+
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["item:read"])]
+    private string $finalVisibility;
+
     #[ORM\Column(type: "datetime")]
+    #[Groups(["item:read"])]
     private \DateTimeInterface $createdAt;
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["item:read"])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -419,6 +456,42 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setImageLargeThumbnail(?string $imageLargeThumbnail): Item
     {
         $this->imageLargeThumbnail = $imageLargeThumbnail;
+
+        return $this;
+    }
+
+    public function getVisibility(): ?string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getParentVisibility(): ?string
+    {
+        return $this->parentVisibility;
+    }
+
+    public function setParentVisibility(?string $parentVisibility): self
+    {
+        $this->parentVisibility = $parentVisibility;
+
+        return $this;
+    }
+
+    public function getFinalVisibility(): string
+    {
+        return $this->finalVisibility;
+    }
+
+    public function setFinalVisibility(string $finalVisibility): self
+    {
+        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

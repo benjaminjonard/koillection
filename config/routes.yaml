@@ -13,3 +13,7 @@ app_homepage:
 
 app_security_logout:
   path: /logout
+
+api_authentication_token:
+  path: /api/authentication_token
+  methods: ['POST']

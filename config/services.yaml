@@ -106,6 +106,14 @@ services:
             - { name: doctrine.event_listener, event: preUpdate, lazy: true }
             - { name: doctrine.event_listener, event: preRemove, lazy: true }
 
+    App\OpenApi\JwtDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    App\Doctrine\Extension\OwnershipExtension:
+        tags:
+            - { name: api_platform.doctrine.orm.query_extension.collection }
+            - { name: api_platform.doctrine.orm.query_extension.item }
+
     # Form extension
     App\Form\Extension\ModelTransformerExtension:
         tags:
