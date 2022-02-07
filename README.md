@@ -108,5 +108,24 @@ Please backup your database and /uploads folder before updating
 Just pulling the new image and restarting the container should be enough
 
 ## Licensing
-
 Koillection is an Open Source software, released under the MIT License. 
+
+## API
+You can access a basic REST API documentation on /api.
+
+To use it you need get a JWT token using your username and your password by calling
+```
+POST /api/authentication_token
+{
+   "username": "johndoe",
+   "password": "password"
+}
+```
+Then for every requests to the API, add the following header :
+```
+Authorization: Bearer the_jwt_token
+```
+
+### Known limitations
+1. No access to admin features
+2. Uploads only work for POST requests 

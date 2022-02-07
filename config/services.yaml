@@ -106,13 +106,19 @@ services:
             - { name: doctrine.event_listener, event: preUpdate, lazy: true }
             - { name: doctrine.event_listener, event: preRemove, lazy: true }
 
-    App\OpenApi\JwtDecorator:
+    Api\OpenApi\JwtDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
-    App\Doctrine\Extension\OwnershipExtension:
+    Api\Doctrine\Extension\OwnershipExtension:
         tags:
             - { name: api_platform.doctrine.orm.query_extension.collection }
             - { name: api_platform.doctrine.orm.query_extension.item }
+    Api\Encoder\MultipartDecoder:
+        tags:
+            - { name: serializer.encoder }
+    Api\Serializer\UploadedFileDenormalizer:
+        tags:
+            - { name: serializer.normalizer }
 
     # Form extension
     App\Form\Extension\ModelTransformerExtension:

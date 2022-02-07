@@ -28,6 +28,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ['groups' => ["wishlist:read"]],
     denormalizationContext: ["groups" => ["wishlist:write"]],
+    collectionOperations: [
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+    ]
 )]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
@@ -68,7 +72,9 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[ApiSubresource(maxDepth: 1)]
     private ?Wishlist $parent = null;
 
-    #[Upload(path: "image")]
+    #[Upload(path: "image", maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
+    #[Groups(["wishlist:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]

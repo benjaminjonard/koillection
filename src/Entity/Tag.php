@@ -26,6 +26,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ['groups' => ["tag:read"]],
     denormalizationContext: ["groups" => ["tag:write"]],
+    collectionOperations: [
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+    ]
 )]
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {
@@ -44,6 +48,8 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     private ?string $description = null;
 
     #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
+    #[Groups(["tag:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]

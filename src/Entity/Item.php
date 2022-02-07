@@ -30,6 +30,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ['groups' => ["item:read"]],
     denormalizationContext: ["groups" => ["item:write"]],
+    collectionOperations: [
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+    ]
 )]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
@@ -49,6 +53,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private int $quantity;
 
     #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "items")]
+    #[Assert\NotBlank]
     #[Groups(["item:read", "item:write"])]
     private ?Collection $collection = null;
 
@@ -91,6 +96,8 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private DoctrineCollection $loans;
 
     #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
+    #[Groups(["item:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]

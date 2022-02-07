@@ -40,6 +40,7 @@ class Field
     private ?string $type = null;
 
     #[ORM\ManyToOne(targetEntity: "Template", inversedBy: "fields")]
+    #[Assert\NotBlank]
     #[Groups(["field:read", "field:write"])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Template $template = null;

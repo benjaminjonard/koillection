@@ -22,6 +22,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ["groups" => ["photo:read"]],
     denormalizationContext: ["groups" => ["photo:write"]],
+    collectionOperations: [
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+    ]
 )]
 class Photo implements CacheableInterface
 {
@@ -44,6 +48,7 @@ class Photo implements CacheableInterface
     private ?string $place = null;
 
     #[ORM\ManyToOne(targetEntity: "Album", inversedBy: "photos")]
+    #[Assert\NotBlank]
     #[Groups(["photo:read", "photo:write"])]
     private ?Album $album;
 
@@ -52,6 +57,8 @@ class Photo implements CacheableInterface
     private ?User $owner = null;
 
     #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
+    #[Groups(["photo:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]

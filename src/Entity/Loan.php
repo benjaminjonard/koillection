@@ -26,6 +26,7 @@ class Loan
 
     #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "loans")]
     #[Groups(["loan:read", "loan:write"])]
+    #[Assert\NotBlank]
     private ?Item $item;
 
     #[ORM\Column(type: "string")]

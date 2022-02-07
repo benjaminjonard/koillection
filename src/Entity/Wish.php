@@ -22,6 +22,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ["groups" => ["wish:read"]],
     denormalizationContext: ["groups" => ["wish:write"]],
+    collectionOperations: [
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+    ]
 )]
 class Wish implements CacheableInterface
 {
@@ -49,6 +53,7 @@ class Wish implements CacheableInterface
     private ?string $currency;
 
     #[ORM\ManyToOne(targetEntity: "Wishlist", inversedBy: "wishes")]
+    #[Assert\NotBlank]
     #[Groups(["wish:read", "wish:write"])]
     private ?Wishlist $wishlist;
 
@@ -61,6 +66,8 @@ class Wish implements CacheableInterface
     private ?string $comment = null;
 
     #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
+    #[Groups(["wish:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]

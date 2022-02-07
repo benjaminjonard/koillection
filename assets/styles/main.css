@@ -137,7 +137,7 @@ label div {font-size: 0.8rem;}
 .content-wrapper .title-block h1, .content-wrapper .title-block ul {margin: 0; font-family: "Cooper Hewitt",sans-serif;}
 .content-wrapper .title-block ul li {padding: 0 5px;}
 .content-wrapper .title-block .right {margin-left: 20px; margin-top: 20px;}
-.content-wrapper .title-block .thumbnail {display: inline-block; min-width: 100px; max-width: 100px; min-height: 100px; padding-left: 0!important; padding-right: 0!important;}
+.content-wrapper .title-block .thumbnail {display: inline-block; width: 100px; height: 100px; padding-left: 0!important; padding-right: 0!important; border-radius: 100%; object-fit: cover;}
 .content-wrapper .btn-holder:not(.no-margin) {margin-top: -5px;}
 .content-wrapper .btn-holder {display: inline-block;}
 .btn-holder .right {margin-top: 15px;}
@@ -201,7 +201,7 @@ li.list-element .list-content {width: 80%; display: inline-block;}
 .collections .collection-element a {display: block; text-align: center; margin: 0 auto;}
 .collections .collection-circle-thumbnail {width: 100px; height: 100px;}
 .collections .collection-element .collection-stats {text-align: center; margin : 0 0 10px 0; color: #9e9e9e;}
-.collections img {width: 100px; height: 100px;}
+.collections img {width: 100px; height: 100px; border-radius: 100%; object-fit: cover;}
 .collections .collection-element .collection-title {text-align: center; margin-top: 3px; word-break: normal; display:block; font-size: 15px; text-overflow: ellipsis; overflow: hidden; margin: 3px auto 0 auto;}
 
 /* Setting page */
@@ -250,7 +250,7 @@ button.align-with-inputs {margin-top: 25px;}
 .handle {cursor: move; font-size: 20px;}
 
 /* Cropper */
-.croppie-preview img{margin: 25px auto; width: 150px; height: 150px;}
+.croppie-preview img {margin: 25px auto; width: 150px; height: 150px; border-radius: 100%; object-fit: cover;}
 
 .line-height-1 {line-height: 1.0;}
 .additional-message {margin-top: 15px;}

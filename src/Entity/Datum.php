@@ -21,6 +21,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ['groups' => ["datum:read"]],
     denormalizationContext: ["groups" => ["datum:write"]],
+    collectionOperations: [
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+    ]
 )]
 class Datum implements LoggableInterface
 {
@@ -30,6 +34,7 @@ class Datum implements LoggableInterface
     private string $id;
 
     #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "data")]
+    #[Assert\NotBlank]
     #[Groups(["datum:read"])]
     private ?Item $item = null;
 
@@ -56,6 +61,8 @@ class Datum implements LoggableInterface
     private ?int $position = null;
 
     #[Upload(path: "file", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
+    #[Groups(["datum:write"])]
     private ?File $fileImage = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
@@ -71,6 +78,8 @@ class Datum implements LoggableInterface
     private ?string $imageLargeThumbnail = null;
 
     #[Upload(path: "file", originalFilenamePath: "originalFilename")]
+    #[Assert\File]
+    #[Groups(["datum:write"])]
     private ?File $fileFile = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]

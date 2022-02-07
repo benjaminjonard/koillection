@@ -28,6 +28,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ['groups' => ["album:read"]],
     denormalizationContext: ["groups" => ["album:write"]],
+    collectionOperations: [
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+    ]
 )]
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
@@ -45,7 +49,9 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Groups(["album:read"])]
     private ?string $color = null;
 
-    #[Upload(path: "image")]
+    #[Upload(path: "image", maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
+    #[Groups(["album:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
