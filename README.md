@@ -128,4 +128,5 @@ Authorization: Bearer the_jwt_token
 
 ### Known limitations
 1. No access to admin features
-2. Uploads only work for POST requests 
+2. No access to sharing features (you can't see someone else content)
+3. Uploads only work for POST requests
