@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 #[ORM\Table(name: "koi_field")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["field:read"]],
+    normalizationContext: ["groups" => ["field:read"]],
     denormalizationContext: ["groups" => ["field:write"]],
 )]
 class Field

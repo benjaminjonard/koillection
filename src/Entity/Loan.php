@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: LoanRepository::class)]
 #[ORM\Table(name: "koi_loan")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["loan:read"]],
+    normalizationContext: ["groups" => ["loan:read"]],
     denormalizationContext: ["groups" => ["loan:write"]],
 )]
 class Loan

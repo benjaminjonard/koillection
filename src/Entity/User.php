@@ -30,7 +30,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ["email"], message: "error.email.not_unique")]
 #[UniqueEntity(fields: ["username"], message: "error.username.not_unique")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["user:read"]],
+    normalizationContext: ["groups" => ["user:read"]],
     denormalizationContext: ["groups" => ["user:write"]],
     collectionOperations: ["get"],
     itemOperations: ["get", "put", "patch"]

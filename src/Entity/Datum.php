@@ -19,11 +19,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DatumRepository::class)]
 #[ORM\Table(name: "koi_datum")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["datum:read"]],
+    normalizationContext: ["groups" => ["datum:read"]],
     denormalizationContext: ["groups" => ["datum:write"]],
     collectionOperations: [
-        'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
     ]
 )]
 class Datum implements LoggableInterface

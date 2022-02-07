@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: TagCategoryRepository::class)]
 #[ORM\Table(name: "koi_tag_category")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["tagCategory:read"]],
+    normalizationContext: ["groups" => ["tagCategory:read"]],
     denormalizationContext: ["groups" => ["tagCategory:write"]],
 )]
 class TagCategory implements BreadcrumbableInterface

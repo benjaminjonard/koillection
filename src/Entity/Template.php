@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: TemplateRepository::class)]
 #[ORM\Table(name: "koi_template")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["template:read"]],
+    normalizationContext: ["groups" => ["template:read"]],
     denormalizationContext: ["groups" => ["template:write"]],
 )]
 class Template implements BreadcrumbableInterface

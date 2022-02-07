@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 #[ORM\Table(name: "koi_inventory")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["inventory:read"]],
+    normalizationContext: ["groups" => ["inventory:read"]],
     denormalizationContext: ["groups" => ["inventory:write"]],
 )]
 class Inventory implements BreadcrumbableInterface

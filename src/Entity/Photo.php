@@ -23,8 +23,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ["groups" => ["photo:read"]],
     denormalizationContext: ["groups" => ["photo:write"]],
     collectionOperations: [
-        'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
     ]
 )]
 class Photo implements CacheableInterface

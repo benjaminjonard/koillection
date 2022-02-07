@@ -26,11 +26,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: "koi_collection")]
 #[ORM\Index(name: "idx_collection_final_visibility", columns: ["final_visibility"])]
 #[ApiResource(
-    normalizationContext: ['groups' => ["collection:read"]],
+    normalizationContext: ["groups" => ["collection:read"]],
     denormalizationContext: ["groups" => ["collection:write"]],
     collectionOperations: [
-        'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
     ]
 )]
 class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface
@@ -64,6 +64,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(["collection:read", "collection:write"])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
+    #[Assert\Expression("not (value == this)", message: "error.parent.same_as_current_object")]
     private ?Collection $parent = null;
 
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "collections")]

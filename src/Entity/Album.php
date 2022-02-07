@@ -26,11 +26,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: "koi_album")]
 #[ORM\Index(name: "idx_album_final_visibility", columns: ["final_visibility"])]
 #[ApiResource(
-    normalizationContext: ['groups' => ["album:read"]],
+    normalizationContext: ["groups" => ["album:read"]],
     denormalizationContext: ["groups" => ["album:write"]],
     collectionOperations: [
-        'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
     ]
 )]
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
@@ -78,6 +78,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Groups(["album:read", "album:write"])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
+    #[Assert\Expression("not (value == this)", message: "error.parent.same_as_current_object")]
     private ?Album $parent = null;
 
     #[ORM\Column(type: "integer")]

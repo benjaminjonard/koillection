@@ -24,11 +24,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: "koi_tag")]
 #[ORM\Index(name: "idx_tag_visibility", columns: ["visibility"])]
 #[ApiResource(
-    normalizationContext: ['groups' => ["tag:read"]],
+    normalizationContext: ["groups" => ["tag:read"]],
     denormalizationContext: ["groups" => ["tag:write"]],
     collectionOperations: [
-        'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
     ]
 )]
 class Tag implements BreadcrumbableInterface, LoggableInterface

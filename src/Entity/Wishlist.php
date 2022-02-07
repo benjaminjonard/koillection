@@ -26,11 +26,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: "koi_wishlist")]
 #[ORM\Index(name: "idx_wishlist_final_visibility", columns: ["final_visibility"])]
 #[ApiResource(
-    normalizationContext: ['groups' => ["wishlist:read"]],
+    normalizationContext: ["groups" => ["wishlist:read"]],
     denormalizationContext: ["groups" => ["wishlist:write"]],
     collectionOperations: [
-        'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
     ]
 )]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
@@ -70,6 +70,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Groups(["wishlist:read", "wishlist:write"])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
+    #[Assert\Expression("not (value == this)", message: "error.parent.same_as_current_object")]
     private ?Wishlist $parent = null;
 
     #[Upload(path: "image", maxWidth: 200, maxHeight: 200)]

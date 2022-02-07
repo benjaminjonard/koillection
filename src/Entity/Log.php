@@ -13,7 +13,7 @@ use Symfony\Component\Uid\Uuid;
 #[ORM\Entity(repositoryClass: LogRepository::class)]
 #[ORM\Table(name: "koi_log")]
 #[ApiResource(
-    normalizationContext: ['groups' => ["log:read"]],
+    normalizationContext: ["groups" => ["log:read"]],
     denormalizationContext: ["groups" => ["log:write"]],
     collectionOperations: ["get"],
     itemOperations: ["get"]

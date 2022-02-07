@@ -28,11 +28,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: "koi_item")]
 #[ORM\Index(name: "idx_item_final_visibility", columns: ["final_visibility"])]
 #[ApiResource(
-    normalizationContext: ['groups' => ["item:read"]],
+    normalizationContext: ["groups" => ["item:read"]],
     denormalizationContext: ["groups" => ["item:write"]],
     collectionOperations: [
-        'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
     ]
 )]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
