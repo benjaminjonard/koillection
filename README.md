@@ -89,9 +89,10 @@ Please backup your database.
     - `PHP_TZ` -> Your timezone (ex: Europe/Paris)
 4. In the project root folder execute `bin/composer install --classmap-authoritative`
 5. Then `php bin/console doctrine:migrations:migrate`
-6. Configure a vhost (you can find an example for nginx in `docs` folder)
-7. Generate assets : `cd assets/ && yarn install && yarn build && cd ..`
-8. (Optional) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly 
+6. (Optional) Generate SSH keys for API `php bin/console lexik:jwt:generate-keypair`  (not mandatory if you do not plan on using the API)
+7. Configure a vhost (you can find an example for nginx in `docs` folder)
+8. Generate assets : `cd assets/ && yarn install && yarn build && cd ..`
+9. (Optional) Copy the values contained in `docs/php.ini` in your own `php.ini`. Not mandatory but can improve performance greatly
 
 ### Using Docker
 * https://github.com/koillection/koillection-docker ->  Comes with PHP FPM and nginx, based on the last release of Koillection.
