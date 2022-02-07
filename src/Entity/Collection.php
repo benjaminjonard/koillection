@@ -55,7 +55,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\OneToMany(targetEntity: "Collection", mappedBy: "parent", cascade: ["all"])]
     #[ORM\OrderBy(["title" => "ASC"])]
-    #[Groups(["collection:read"])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
@@ -73,13 +72,12 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\OneToMany(targetEntity: "Item", mappedBy: "collection", cascade: ["all"])]
     #[ORM\OrderBy(["name" => "ASC"])]
-    #[Groups(["collection:read"])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 
     #[ORM\OneToMany(targetEntity: "Datum", mappedBy: "collection", cascade: ["persist", "remove"], orphanRemoval: true)]
     #[ORM\OrderBy(["position" => "ASC"])]
-    #[Groups(["collection:read"])]
+    #[Groups(["collection:write"])]
     #[ApiSubresource]
     private DoctrineCollection $data;
 

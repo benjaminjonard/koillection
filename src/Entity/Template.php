@@ -35,7 +35,7 @@ class Template implements BreadcrumbableInterface
 
     #[ORM\OneToMany(targetEntity: "Field", mappedBy: "template", cascade: ["all"], orphanRemoval: true)]
     #[ORM\OrderBy(["position" => "ASC"])]
-    #[Groups(["template:read", "template:write"])]
+    #[Groups(["template:write"])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $fields;
 

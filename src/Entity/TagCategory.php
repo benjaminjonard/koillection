@@ -46,7 +46,6 @@ class TagCategory implements BreadcrumbableInterface
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: "Tag", mappedBy: "category")]
-    #[Groups(["tagCategory:read"])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 

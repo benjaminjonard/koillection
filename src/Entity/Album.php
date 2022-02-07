@@ -63,13 +63,11 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: "Photo", mappedBy: "album", cascade: ["all"])]
-    #[Groups(["album:read"])]
     #[ApiSubresource]
     private DoctrineCollection $photos;
 
     #[ORM\OneToMany(targetEntity: "Album", mappedBy: "parent", cascade: ["all"])]
     #[ORM\OrderBy(["title" => "ASC"])]
-    #[Groups(["album:read"])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;

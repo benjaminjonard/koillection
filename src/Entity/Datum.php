@@ -34,7 +34,6 @@ class Datum implements LoggableInterface
     private string $id;
 
     #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "data")]
-    #[Assert\NotBlank]
     #[Groups(["datum:read"])]
     private ?Item $item = null;
 

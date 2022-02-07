@@ -70,7 +70,6 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     private ?TagCategory $category = null;
 
     #[ORM\ManyToMany(targetEntity: "Item", mappedBy: "tags")]
-    #[Groups(["tag:read"])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 

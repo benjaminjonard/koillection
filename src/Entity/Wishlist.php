@@ -51,7 +51,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[ORM\OneToMany(targetEntity: "Wish", mappedBy: "wishlist", cascade: ["all"])]
     #[ORM\OrderBy(["name" => "ASC"])]
-    #[Groups(["wishlist:read"])]
     #[ApiSubresource]
     private DoctrineCollection $wishes;
 

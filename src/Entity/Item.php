@@ -66,7 +66,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
     #[ORM\InverseJoinColumn(name: "tag_id", referencedColumnName: "id")]
     #[ORM\OrderBy(["label" => "ASC"])]
-    #[Groups(["item:read", "item:write"])]
+    #[Groups(["item:write"])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
@@ -75,7 +75,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
     #[ORM\InverseJoinColumn(name: "related_item_id", referencedColumnName: "id")]
     #[ORM\OrderBy(["name" => "ASC"])]
-    #[Groups(["item:read", "item:write"])]
+    #[Groups(["item:write"])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $relatedItems;
@@ -86,12 +86,11 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\OneToMany(targetEntity: "Datum", mappedBy: "item", cascade: ["persist", "remove"], orphanRemoval: true)]
     #[ORM\OrderBy(["position" => "ASC"])]
-    #[Groups(["item:read", "item:write"])]
+    #[Groups(["item:write"])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $data;
 
     #[ORM\OneToMany(targetEntity: "Loan", mappedBy: "item", cascade: ["remove"])]
-    #[Groups(["item:read"])]
     #[ApiSubresource]
     private DoctrineCollection $loans;
 
