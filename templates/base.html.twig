@@ -11,10 +11,34 @@
         {{ include('App/_partials/_meta.html.twig') }}
     {% endblock %}
 
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="icon" sizes="32x32" type="image/png" href="{{ asset('icons/round/32.png') }}">
+    <link rel="icon" sizes="16x16" type="image/png" href="{{ asset('icons/round/16.png') }}">
+    <link rel="shortcut icon" sizes="512x512" type="image/png" href="{{ asset('icons/round/512.png') }}">
+    <link rel="shortcut icon" sizes="256x256" type="image/png" href="{{ asset('icons/round/256.png') }}">
+    <link rel="shortcut icon" sizes="196x196" type="image/png" href="{{ asset('icons/round/196.png') }}">
+    <link rel="shortcut icon" sizes="192x192" type="image/png" href="{{ asset('icons/round/192.png') }}">
+    <link rel="shortcut icon" sizes="160x160" type="image/png" href="{{ asset('icons/round/160.png') }}">
+    <link rel="shortcut icon" sizes="144x144" type="image/png" href="{{ asset('icons/round/144.png') }}">
+    <link rel="shortcut icon" sizes="128x128" type="image/png" href="{{ asset('icons/round/128.png') }}">
+    <link rel="shortcut icon" sizes="114x114" type="image/png" href="{{ asset('icons/round/114.png') }}">
+    <link rel="shortcut icon" sizes="72x72" type="image/png" href="{{ asset('icons/round/72.png') }}">
+    <link rel="shortcut icon" sizes="32x32" type="image/png" href="{{ asset('icons/round/32.png') }}">
+    <link rel="shortcut icon" sizes="16x16" type="image/png" href="{{ asset('icons/round/16.png') }}">
+    <link rel="apple-touch-icon" sizes="1024x1024" type="image/png" href="{{ asset('icons/square/1024.png') }}">
+    <link rel="apple-touch-icon" sizes="512x512" type="image/png" href="{{ asset('icons/square/512.png') }}">
+    <link rel="apple-touch-icon" sizes="256x256" type="image/png" href="{{ asset('icons/square/256.png') }}">
+    <link rel="apple-touch-icon" sizes="175x175" type="image/png" href="{{ asset('icons/square/175.png') }}">
+    <link rel="apple-touch-icon" sizes="128x128" type="image/png" href="{{ asset('icons/square/128.png') }}">
+    <link rel="apple-touch-icon" sizes="56x56" type="image/png" href="{{ asset('icons/square/56.png') }}">
+    <link rel="apple-touch-icon" sizes="16x16" type="image/png" href="{{ asset('icons/square/16.png') }}">
+    <meta name="msapplication-square72x72logo" content="{{ asset('icons/round/72.png') }}">
+    <meta name="msapplication-square160x160logo" content="{{ asset('icons/round/160.png') }}">
+    
     <link rel="manifest" href="{{ asset('manifest.json') }}">
     <meta name="theme-color" content="#009688">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#009688">
+    <meta name="apple-mobile-web-app-title" content="Koillection">
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
