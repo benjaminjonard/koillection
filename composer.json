@@ -13,7 +13,6 @@
         "ext-json": "*",
         "api-platform/core": "^2.6",
         "composer/semver": "^3.2",
-        "doctrine/annotations": "^1.11",
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.9",
@@ -65,7 +64,7 @@
         "willdurand/js-translation-bundle": "^5.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "hautelook/alice-bundle": "^2.10",
         "symfony/browser-kit": "^6.0",
         "symfony/css-selector": "^6.0",
         "symfony/maker-bundle": "^1.15",

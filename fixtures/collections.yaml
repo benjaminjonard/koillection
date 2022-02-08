@@ -1,0 +1,24 @@
+App\Entity\Collection:
+  collection_admin_{1..10}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@admin"
+
+  collection_user_{1..10}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@user"
+
+  collection_user_{11..20}:
+    title: "<word(2)>"
+    visibility: "private"
+    finalVisibility: "private"
+    owner: "@user"
+
+  collection_user_{21..30}:
+    title: "<word(2)>"
+    visibility: "internal"
+    finalVisibility: "internal"
+    owner: "@user"

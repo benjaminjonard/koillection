@@ -1,0 +1,32 @@
+App\Entity\Photo:
+  photo_admin_{1..50}:
+    title: "<word(2)>"
+    album: "@album_admin_<numberBetween(1, 10)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    owner: "@admin"
+
+  photo_user_{1..50}:
+    title: "<word(2)>"
+    album: "@album_user_<numberBetween(1, 10)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    owner: "@user"
+
+  photo_user_{51..100}:
+    title: "<word(2)>"
+    album: "@album_user_<numberBetween(1, 10)>"
+    visibility: "private"
+    parentVisibility: "private"
+    finalVisibility: "private"
+    owner: "@user"
+
+  photo_user_{101..150}:
+    title: "<word(2)>"
+    album: "@album_user_<numberBetween(1, 10)>"
+    visibility: "internal"
+    parentVisibility: "internal"
+    finalVisibility: "internal"
+    owner: "@user"

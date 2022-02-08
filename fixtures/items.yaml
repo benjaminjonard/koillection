@@ -1,0 +1,36 @@
+App\Entity\Item:
+  item_admin_{1..50}:
+    name: "<word(2)>"
+    collection: "@collection_admin_<numberBetween(1, 10)>"
+    tags: "5x @tag_admin_<numberBetween(1, 20)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    owner: "@admin"
+
+  item_user_{1..50}:
+    name: "<word(2)>"
+    collection: "@collection_user_<numberBetween(1, 10)>"
+    tags: "5x @tag_user_<numberBetween(1, 60)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    owner: "@user"
+
+  item_user_{51..100}:
+    name: "<word(2)>"
+    collection: "@collection_user_<numberBetween(1, 10)>"
+    tags: "5x @tag_user_<numberBetween(1, 60)>"
+    visibility: "private"
+    parentVisibility: "private"
+    finalVisibility: "private"
+    owner: "@user"
+
+  item_user_{101..150}:
+    name: "<word(2)>"
+    collection: "@collection_user_<numberBetween(1, 10)>"
+    tags: "5x @tag_user_<numberBetween(1, 60)>"
+    visibility: "internal"
+    parentVisibility: "internal"
+    finalVisibility: "internal"
+    owner: "@user"
