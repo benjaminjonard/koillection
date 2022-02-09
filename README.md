@@ -24,9 +24,9 @@ If you like Koillection please consider leaving a star, it gives additional moti
 
 ## Warning
 
-Please backup your database, especially when updating to a new version. I do my best to test new versions, especially when they contains data migrations but some edge cases may escape my vigilance.
+Please back up your database, especially when updating to a new version. I do my best to test new versions, especially when they contains data migrations but some edge cases may escape my vigilance.
 
-Please backup your database.
+Please do back up your database.
 
 ## Requirements
 
@@ -35,40 +35,15 @@ Please backup your database.
     | Koillection | PHP version | Maintained                |
     |-------------| ----------- | ---------                 |
     | 1.3.x       | 8.1         | :heavy_check_mark:        | 
-    | 1.2.x       | 8.0         | :heavy_check_mark:        |
+    | 1.2.x       | 8.0         | :x:                       |
     | 1.1.x       | 7.4         | :x:                       |
     | 1.0.x       | 7.2         | :x:                       |
-3. 
-4. You may need to add the following extensions:
-    - `apcu`
-    - `cgi`
-    - `ctype`
-    - `curl`
-    - `dom`   
-    - `exif`
-    - `fileinfo`
-    - `fpm`
-    - `gd`
-    - `iconv`
-    - `intl`
-    - `json`
-    - `mbstring`    
-    - `opcache`    
-    - `openssl`
-    - `pdo`    
-    - `pdo_pgsql`
-    - `pdo_mysql`    
-    - `phar`
-    - `session`
-    - `simplexml`
-    - `sodium`
-    - `tokenizer`
-    - `xml`
-    - `xmlwriter`    
-    - `zip`              
-5. A webserver such as `Apache2` or `nginx` 
-6. A `Postgresql` or `Mysql` (version 8 or superior) database
-7. Yarn
+
+2. Make sure you have the following PHP extensions installed:
+    - `ctype`, `fileinfo`, `gd`, `iconv`, `intl`, `json`
+3. A webserver such as `Apache2` or `nginx` 
+4. A `Postgresql` or `Mysql` (version 8 or superior) database
+5. Yarn
 
 ## Installation
 ### Using git or an archive file
