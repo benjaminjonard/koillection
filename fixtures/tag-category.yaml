@@ -1,8 +1,8 @@
 App\Entity\TagCategory:
-  tag_category_admin_{1..5}:
+  tag_category_admin_{1..10}:
     label: "<word(2)>"
     owner: "@admin"
 
-  tag_category_user_{1..5}:
+  tag_category_user_{1..10}:
     label: "<word(2)>"
     owner: "@user"

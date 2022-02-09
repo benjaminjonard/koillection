@@ -10,15 +10,3 @@ App\Entity\Wishlist:
     visibility: "public"
     finalVisibility: "public"
     owner: "@user"
-
-  wishlist_user_{11..20}:
-    name: "<word(2)>"
-    visibility: "private"
-    finalVisibility: "private"
-    owner: "@user"
-
-  wishlist_user_{21..30}:
-    name: "<word(2)>"
-    visibility: "internal"
-    finalVisibility: "internal"
-    owner: "@user"

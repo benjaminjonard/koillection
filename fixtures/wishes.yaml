@@ -14,19 +14,3 @@ App\Entity\Wish:
     parentVisibility: "public"
     finalVisibility: "public"
     owner: "@user"
-
-  wish_user_{51..100}:
-    name: "<word(2)>"
-    wishlist: "@wishlist_user_<numberBetween(1, 10)>"
-    visibility: "private"
-    parentVisibility: "private"
-    finalVisibility: "private"
-    owner: "@user"
-
-  wish_user_{101..150}:
-    name: "<word(2)>"
-    wishlist: "@wishlist_user_<numberBetween(1, 10)>"
-    visibility: "internal"
-    parentVisibility: "internal"
-    finalVisibility: "internal"
-    owner: "@user"

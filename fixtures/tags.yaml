@@ -1,20 +1,10 @@
 App\Entity\Tag:
-  tag_admin_{1..20}:
+  tag_admin_{1..10}:
     label: "<word(2)>"
     visibility: "public"
     owner: "@admin"
 
-  tag_user_{1..20}:
+  tag_user_{1..10}:
     label: "<word(2)>"
     visibility: "public"
-    owner: "@user"
-
-  tag_user_{21..40}:
-    label: "<word(2)>"
-    visibility: "private"
-    owner: "@user"
-
-  tag_user_{41..60}:
-    label: "<word(2)>"
-    visibility: "internal"
     owner: "@user"
