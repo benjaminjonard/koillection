@@ -1,0 +1,14 @@
+App\Entity\Datum:
+  datum_admin_{1..200}:
+    label: "<word(2)>"
+    value: "<word(2)>"
+    type: "text"
+    item: "@item_admin_<numberBetween(1, 50)>"
+    owner: "@admin"
+
+  datum_user_{1..200}:
+    label: "<word(2)>"
+    value: "<word(2)>"
+    type: "text"
+    item: "@item_user_<numberBetween(1, 50)>"
+    owner: "@user"

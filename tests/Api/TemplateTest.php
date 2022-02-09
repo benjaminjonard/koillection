@@ -3,27 +3,27 @@
 namespace App\Tests\Api;
 
 use Api\Tests\AuthenticatedTest;
-use App\Entity\Wishlist;
+use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-class WishlistTest extends AuthenticatedTest
+class TemplateTest extends AuthenticatedTest
 {
-    public function testGetWishlists(): void
+    public function testGetTemplates(): void
     {
-        $response = $this->createClientWithCredentials()->request('GET', '/api/wishlists');
+        $response = $this->createClientWithCredentials()->request('GET', '/api/templates');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
         $this->assertEquals(10, $data['hydra:totalItems']);
         $this->assertCount(10, $data['hydra:member']);
-        $this->assertMatchesResourceCollectionJsonSchema(Wishlist::class);
+        $this->assertMatchesResourceCollectionJsonSchema(Template::class);
     }
 
-    // Interacting with current User's wishlists
-    public function testGetWishlist(): void
+    // Interacting with current User's templates
+    public function testGetTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -33,10 +33,10 @@ class WishlistTest extends AuthenticatedTest
         ]);
     }
 
-    public function testPutWishlist(): void
+    public function testPutTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -49,10 +49,10 @@ class WishlistTest extends AuthenticatedTest
         ]);
     }
 
-    public function testPatchWishlist(): void
+    public function testPatchTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -68,29 +68,29 @@ class WishlistTest extends AuthenticatedTest
         ]);
     }
 
-    public function testDeleteWishlist(): void
+    public function testDeleteTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
 
-    // Interacting with another User's wishlists
-    public function testCantGetAnotherUserWishlist(): void
+    // Interacting with another User's templates
+    public function testCantGetAnotherUserTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
-    public function testCantPutAnotherUserWishlist(): void
+    public function testCantPutAnotherUserTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -99,10 +99,10 @@ class WishlistTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
-    public function testCantPatchAnotherUserWishlist(): void
+    public function testCantPatchAnotherUserTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -114,10 +114,10 @@ class WishlistTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
-    public function testCantDeleteAnotherUserWishlist(): void
+    public function testCantDeleteAnotherUserTemplate(): void
     {
-        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

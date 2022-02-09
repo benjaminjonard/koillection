@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests;
+namespace App\Tests\App;
+
+use App\Tests\LoggedWebTestCase;
 
 class AdminSmokeFunctionalTest extends LoggedWebTestCase
 {

@@ -4,6 +4,7 @@ namespace App\Tests\Api;
 
 use Api\Tests\AuthenticatedTest;
 use App\Entity\Collection;
+use Symfony\Component\HttpFoundation\Response;
 
 class CollectionTest extends AuthenticatedTest
 {
@@ -73,7 +74,7 @@ class CollectionTest extends AuthenticatedTest
         $iri = $this->iriConverter->getIriFromItem($collection);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
-        $this->assertResponseStatusCodeSame(204);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
 
     // Interacting with another User's collections
@@ -83,7 +84,7 @@ class CollectionTest extends AuthenticatedTest
         $iri = $this->iriConverter->getIriFromItem($collection);
 
         $this->createClientWithCredentials()->request('GET', $iri);
-        $this->assertResponseStatusCodeSame(404);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function testCantPutAnotherUserCollection(): void
@@ -95,7 +96,7 @@ class CollectionTest extends AuthenticatedTest
             'title' => 'updated title with PUT',
         ]]);
 
-        $this->assertResponseStatusCodeSame(404);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function testCantPatchAnotherUserCollection(): void
@@ -110,7 +111,7 @@ class CollectionTest extends AuthenticatedTest
             ]
         ]);
 
-        $this->assertResponseStatusCodeSame(404);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function testCantDeleteAnotherUserCollection(): void
@@ -119,6 +120,6 @@ class CollectionTest extends AuthenticatedTest
         $iri = $this->iriConverter->getIriFromItem($collection);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
-        $this->assertResponseStatusCodeSame(404);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 }

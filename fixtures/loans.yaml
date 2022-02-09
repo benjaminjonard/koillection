@@ -1,0 +1,12 @@
+App\Entity\Loan:
+  loan_admin_{1..5}:
+    item: "@item_admin_<numberBetween(1, 50)>"
+    lentTo: "<name()>"
+    lentAt: <(new \DateTime())>
+    owner: "@admin"
+
+  loan_user_{1..5}:
+    item: "@item_user_<numberBetween(1, 50)>"
+    lentTo: "<name()>"
+    lentAt: <(new \DateTime())>
+    owner: "@user"

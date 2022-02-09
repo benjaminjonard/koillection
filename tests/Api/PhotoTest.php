@@ -3,27 +3,27 @@
 namespace App\Tests\Api;
 
 use Api\Tests\AuthenticatedTest;
-use App\Entity\Album;
+use App\Entity\Photo;
 use Symfony\Component\HttpFoundation\Response;
 
-class AlbumTest extends AuthenticatedTest
+class PhotoTest extends AuthenticatedTest
 {
-    public function testGetAlbums(): void
+    public function testGetPhotos(): void
     {
-        $response = $this->createClientWithCredentials()->request('GET', '/api/albums');
+        $response = $this->createClientWithCredentials()->request('GET', '/api/photos');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(10, $data['hydra:totalItems']);
-        $this->assertCount(10, $data['hydra:member']);
-        $this->assertMatchesResourceCollectionJsonSchema(Album::class);
+        $this->assertEquals(50, $data['hydra:totalItems']);
+        $this->assertCount(30, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Photo::class);
     }
 
-    // Interacting with current User's albums
-    public function testGetAlbum(): void
+    // Interacting with current User's photos
+    public function testGetPhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -33,10 +33,10 @@ class AlbumTest extends AuthenticatedTest
         ]);
     }
 
-    public function testPutAlbum(): void
+    public function testPutPhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'title' => 'updated title with PUT',
@@ -49,10 +49,10 @@ class AlbumTest extends AuthenticatedTest
         ]);
     }
 
-    public function testPatchAlbum(): void
+    public function testPatchPhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -68,29 +68,29 @@ class AlbumTest extends AuthenticatedTest
         ]);
     }
 
-    public function testDeleteAlbum(): void
+    public function testDeletePhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
 
-    // Interacting with another User's albums
-    public function testCantGetAnotherUserAlbum(): void
+    // Interacting with another User's photos
+    public function testCantGetAnotherUserPhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
-    public function testCantPutAnotherUserAlbum(): void
+    public function testCantPutAnotherUserPhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'title' => 'updated title with PUT',
@@ -99,10 +99,10 @@ class AlbumTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
-    public function testCantPatchAnotherUserAlbum(): void
+    public function testCantPatchAnotherUserPhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -114,10 +114,10 @@ class AlbumTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
-    public function testCantDeleteAnotherUserAlbum(): void
+    public function testCantDeleteAnotherUserPhoto(): void
     {
-        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
