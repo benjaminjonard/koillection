@@ -1,0 +1,10 @@
+App\Entity\Tag:
+  tag_admin_{1..10}:
+    label: "<word(2)>"
+    visibility: "public"
+    owner: "@admin"
+
+  tag_user_{1..10}:
+    label: "<word(2)>"
+    visibility: "public"
+    owner: "@user"

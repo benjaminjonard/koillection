@@ -45,6 +45,10 @@ class Field
     #[ApiSubresource(maxDepth: 1)]
     private ?Template $template = null;
 
+    #[ORM\ManyToOne(targetEntity: "User")]
+    #[Groups(["field:read"])]
+    private ?User $owner = null;
+
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
@@ -104,6 +108,18 @@ class Field
     public function setTemplate(?Template $template): self
     {
         $this->template = $template;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): Field
+    {
+        $this->owner = $owner;
 
         return $this;
     }

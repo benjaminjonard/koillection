@@ -15,6 +15,7 @@ use App\Entity\Template;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
+use App\Enum\VisibilityEnum;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -24,7 +25,8 @@ class LoggedWebTestCase extends WebTestCase
 {
     protected KernelBrowser $client;
 
-    private User $user;
+    private ?User $user = null;
+    private array $visibilities = VisibilityEnum::VISIBILITIES;
 
     public function setUp(): void
     {
@@ -36,15 +38,18 @@ class LoggedWebTestCase extends WebTestCase
         $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);
         $this->user = $user;
 
-        $session = $this->client->getContainer()->get('session');
-        $firewallContext = 'main';
-        $token = new UsernamePasswordToken($user, null, $firewallContext, $user->getRoles());
+        $this->client->loginUser($user);
+    }
 
-        $session->set('_security_'.$firewallContext, serialize($token));
-        $session->save();
+    public function setUser(string $email)
+    {
+        $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);
+        $this->user = $user;
+    }
 
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+    public function setVisibilities(array $visibilities)
+    {
+        $this->visibilities = $visibilities;
     }
 
     public function replaceUrlParameters(string $url)
@@ -53,12 +58,6 @@ class LoggedWebTestCase extends WebTestCase
 
         foreach ($matches as $match) {
             switch ($match[0]) {
-                case '{{user}}':
-                    $url = str_replace($match[0], $this->user->getId(), $url);
-                    break;
-                case '{{username}}':
-                    $url = str_replace($match[0], $this->user->getUsername(), $url);
-                    break;
                 case '{{collection}}':
                     $url = str_replace($match[0], $this->getRelationFirstElement(Collection::class), $url);
                     break;
@@ -99,7 +98,14 @@ class LoggedWebTestCase extends WebTestCase
 
     private function getRelationFirstElement($class)
     {
+        $params = ['owner' => $this->user->getId()];
+        if (property_exists($class, 'finalVisibility')) {
+            $params['finalVisibility'] = $this->visibilities;
+        } elseif (property_exists($class, 'visibility')) {
+            $params['visibility'] = $this->visibilities;
+        }
+
         return $this->client->getContainer()->get('doctrine')->getManager()->getRepository($class)
-            ->findBy(['owner' => $this->user->getId()], null, 1)[0]->getId();
+            ->findBy($params, null, 1)[0]->getId();
     }
 }

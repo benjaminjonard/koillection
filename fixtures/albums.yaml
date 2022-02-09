@@ -1,0 +1,12 @@
+App\Entity\Album:
+  album_admin_{1..10}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@admin"
+
+  album_user_{1..10}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@user"

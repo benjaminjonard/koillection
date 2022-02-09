@@ -1,0 +1,18 @@
+App\Entity\Item:
+  item_admin_{1..50}:
+    name: "<word(2)>"
+    collection: "@collection_admin_<numberBetween(1, 10)>"
+    tags: "5x @tag_admin_<numberBetween(1, 10)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    owner: "@admin"
+
+  item_user_{1..50}:
+    name: "<word(2)>"
+    collection: "@collection_user_<numberBetween(1, 10)>"
+    tags: "5x @tag_user_<numberBetween(1, 10)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    owner: "@user"

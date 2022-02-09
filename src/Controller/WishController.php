@@ -48,6 +48,7 @@ class WishController extends AbstractController
         ;
 
         $form = $this->createForm(WishType::class, $wish);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->persist($wish);
