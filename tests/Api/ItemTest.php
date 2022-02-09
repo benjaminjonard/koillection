@@ -3,7 +3,10 @@
 namespace App\Tests\Api;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Datum;
 use App\Entity\Item;
+use App\Entity\Loan;
+use App\Entity\Tag;
 use Symfony\Component\HttpFoundation\Response;
 
 class ItemTest extends AuthenticatedTest
@@ -31,6 +34,62 @@ class ItemTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetItemData(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/data');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(10, $data['hydra:totalItems']);
+        $this->assertCount(10, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
+    }
+
+    public function testGetItemLoans(): void
+    {
+        $item = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->user], [], 1)[0]->getItem();
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/loans');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertCount(1, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Loan::class);
+    }
+
+    public function testGetItemRelatedItems(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findOneWithRelatedItemsByUser($this->user);
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/related_items');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertCount(1, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Item::class);
+    }
+
+    public function testGetItemTags(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/tags');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertCount(1, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
     }
 
     public function testPutItem(): void
@@ -86,6 +145,63 @@ class ItemTest extends AuthenticatedTest
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
+
+    public function testCantGetAnotherUserItemData(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/data');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
+    }
+
+    public function testCantGetAnotherUserItemLoans(): void
+    {
+        $item = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->otherUser], [], 1)[0]->getItem();
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/loans');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Loan::class);
+    }
+
+    public function testCantGetAnotherUserItemRelatedItems(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findOneWithRelatedItemsByUser($this->otherUser);
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/related_items');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Item::class);
+    }
+
+    public function testCantGetAnotherUserItemTags(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/tags');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
+    }
+
 
     public function testCantPutAnotherUserItem(): void
     {

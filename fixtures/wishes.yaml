@@ -1,7 +1,7 @@
 App\Entity\Wish:
   wish_admin_{1..50}:
     name: "<word(2)>"
-    wishlist: "@wishlist_admin_<numberBetween(1, 10)>"
+    wishlist: "@wishlist_admin_<($current % 10 + 1)>"
     visibility: "public"
     parentVisibility: "public"
     finalVisibility: "public"
@@ -9,7 +9,7 @@ App\Entity\Wish:
 
   wish_user_{1..50}:
     name: "<word(2)>"
-    wishlist: "@wishlist_user_<numberBetween(1, 10)>"
+    wishlist: "@wishlist_user_<($current % 10 + 1)>"
     visibility: "public"
     parentVisibility: "public"
     finalVisibility: "public"

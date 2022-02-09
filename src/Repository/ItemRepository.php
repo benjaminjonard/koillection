@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -195,6 +196,20 @@ class ItemRepository extends ServiceEntityRepository
             ->setParameter('type', DatumTypeEnum::TYPE_SIGN)
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    public function findOneWithRelatedItemsByUser(User $user)
+    {
+        return $this
+            ->createQueryBuilder('i')
+            ->leftJoin('i.relatedItems', 'r')
+            ->addSelect('r')
+            ->where('i.owner = :user')
+            ->setParameter('user', $user)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
         ;
     }
 }

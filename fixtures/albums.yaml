@@ -1,12 +1,26 @@
 App\Entity\Album:
-  album_admin_{1..10}:
+  album_admin_{1..5}:
     title: "<word(2)>"
     visibility: "public"
     finalVisibility: "public"
     owner: "@admin"
 
-  album_user_{1..10}:
+  album_admin_{6..10}:
     title: "<word(2)>"
     visibility: "public"
     finalVisibility: "public"
+    parent: "@album_admin_<($current - 5)>"
+    owner: "@admin"
+
+  album_user_{1..5}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@user"
+
+  album_user_{6..10}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    parent: "@album_user_<($current - 5)>"
     owner: "@user"

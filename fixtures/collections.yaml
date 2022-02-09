@@ -1,12 +1,26 @@
 App\Entity\Collection:
-  collection_admin_{1..10}:
+  collection_admin_{1..5}:
     title: "<word(2)>"
     visibility: "public"
     finalVisibility: "public"
     owner: "@admin"
 
-  collection_user_{1..10}:
+  collection_admin_{6..10}:
     title: "<word(2)>"
     visibility: "public"
     finalVisibility: "public"
+    parent: "@collection_admin_<($current - 5)>"
+    owner: "@admin"
+
+  collection_user_{1..5}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@user"
+
+  collection_user_{6..10}:
+    title: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    parent: "@collection_user_<($current - 5)>"
     owner: "@user"

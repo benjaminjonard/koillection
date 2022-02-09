@@ -1,18 +1,38 @@
 App\Entity\Item:
-  item_admin_{1..50}:
+  item_admin_{1..40}:
     name: "<word(2)>"
-    collection: "@collection_admin_<numberBetween(1, 10)>"
-    tags: "5x @tag_admin_<numberBetween(1, 10)>"
+    collection: "@collection_admin_<($current % 10 + 1)>" #5 items per collection
+    tags: "1x @tag_admin_<numberBetween(1, 10)>"
     visibility: "public"
     parentVisibility: "public"
     finalVisibility: "public"
     owner: "@admin"
 
-  item_user_{1..50}:
+  item_admin_{41..50}:
     name: "<word(2)>"
-    collection: "@collection_user_<numberBetween(1, 10)>"
+    collection: "@collection_admin_<($current % 10 + 1)>" #5 items per collection
+    tags: "5x @tag_admin_<numberBetween(1, 10)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    relatedItems: "1x @item_admin_<($current - 40)>"
+    owner: "@admin"
+
+  item_user_{1..40}:
+    name: "<word(2)>"
+    collection: "@collection_user_<($current % 10 + 1)>"
+    tags: "1x @tag_user_<numberBetween(1, 10)>"
+    visibility: "public"
+    parentVisibility: "public"
+    finalVisibility: "public"
+    owner: "@user"
+
+  item_user_{41..50}:
+    name: "<word(2)>"
+    collection: "@collection_user_<($current % 10 + 1)>" #5 items per collection
     tags: "5x @tag_user_<numberBetween(1, 10)>"
     visibility: "public"
     parentVisibility: "public"
     finalVisibility: "public"
+    relatedItems: "1x @item_user_<($current - 40)>"
     owner: "@user"

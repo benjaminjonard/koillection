@@ -1,7 +1,7 @@
 App\Entity\Photo:
   photo_admin_{1..50}:
     title: "<word(2)>"
-    album: "@album_admin_<numberBetween(1, 10)>"
+    album: "@album_admin_<($current % 10 + 1)>"
     visibility: "public"
     parentVisibility: "public"
     finalVisibility: "public"
@@ -9,7 +9,7 @@ App\Entity\Photo:
 
   photo_user_{1..50}:
     title: "<word(2)>"
-    album: "@album_user_<numberBetween(1, 10)>"
+    album: "@album_user_<($current % 10 + 1)>"
     visibility: "public"
     parentVisibility: "public"
     finalVisibility: "public"

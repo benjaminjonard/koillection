@@ -4,6 +4,8 @@ namespace App\Tests\Api;
 
 use Api\Tests\AuthenticatedTest;
 use App\Entity\Album;
+use App\Entity\Photo;
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\Response;
 
 class AlbumTest extends AuthenticatedTest
@@ -31,6 +33,53 @@ class AlbumTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetAlbumChildren(): void
+    {
+        $criteria = (new Criteria())
+            ->where(Criteria::expr()->neq('parent', null))
+            ->andWhere(Criteria::expr()->eq('owner', $this->user))
+        ;
+        $album = $this->em->getRepository(Album::class)->matching($criteria)[0]->getParent();
+        $iri = $this->iriConverter->getIriFromItem($album);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/childrens');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertCount(1, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Album::class);
+    }
+
+    public function testGetAlbumParent(): void
+    {
+        $criteria = (new Criteria())
+            ->where(Criteria::expr()->neq('parent', null))
+            ->andWhere(Criteria::expr()->eq('owner', $this->user))
+        ;
+        $album = $this->em->getRepository(Album::class)->matching($criteria)[0];
+        $iri = $this->iriConverter->getIriFromItem($album);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/parent');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Album::class);
+    }
+
+    public function testGetAlbumPhotos(): void
+    {
+        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($album);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/photos');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(5, $data['hydra:totalItems']);
+        $this->assertCount(5, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Photo::class);
     }
 
     public function testPutAlbum(): void
@@ -85,6 +134,51 @@ class AlbumTest extends AuthenticatedTest
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCantGetAnotherUserAlbumChildren(): void
+    {
+        $criteria = (new Criteria())
+            ->where(Criteria::expr()->neq('parent', null))
+            ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
+        ;
+        $album = $this->em->getRepository(Album::class)->matching($criteria)[0]->getParent();
+        $iri = $this->iriConverter->getIriFromItem($album);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/childrens');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Album::class);
+    }
+
+    public function testCantGetAnotherUserAlbumParent(): void
+    {
+        $criteria = (new Criteria())
+            ->where(Criteria::expr()->neq('parent', null))
+            ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
+        ;
+        $album = $this->em->getRepository(Album::class)->matching($criteria)[0];
+        $iri = $this->iriConverter->getIriFromItem($album);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/parent');
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCantGetAnotherUserAlbumPhotos(): void
+    {
+        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($album);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/photos');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Photo::class);
     }
 
     public function testCantPutAnotherUserAlbum(): void

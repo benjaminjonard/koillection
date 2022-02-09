@@ -1,14 +1,28 @@
 App\Entity\Datum:
-  datum_admin_{1..200}:
+  datum_admin_{1..100}:
     label: "<word(2)>"
     value: "<word(2)>"
     type: "text"
-    item: "@item_admin_<numberBetween(1, 50)>"
+    item: "@item_admin_<($current % 10 + 1)>" #10 data per item
     owner: "@admin"
 
-  datum_user_{1..200}:
+  datum_admin_{101..200}:
     label: "<word(2)>"
     value: "<word(2)>"
     type: "text"
-    item: "@item_user_<numberBetween(1, 50)>"
+    collection: "@collection_admin_<($current % 10 + 1)>"
+    owner: "@admin"
+
+  datum_user_{1..100}:
+    label: "<word(2)>"
+    value: "<word(2)>"
+    type: "text"
+    item: "@item_user_<($current % 10 + 1)>"
+    owner: "@user"
+
+  datum_user_{101..200}:
+    label: "<word(2)>"
+    value: "<word(2)>"
+    type: "text"
+    collection: "@collection_user_<($current % 10 + 1)>"
     owner: "@user"
