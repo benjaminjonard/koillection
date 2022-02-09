@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tests\Api;
+namespace App\Tests\Api\User;
 
 use Api\Tests\AuthenticatedTest;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserTest extends AuthenticatedTest
+class UserCurrentUserTest extends AuthenticatedTest
 {
     public function testGetUsers(): void
     {
@@ -18,7 +18,6 @@ class UserTest extends AuthenticatedTest
         //$this->assertMatchesResourceCollectionJsonSchema(User::class); Bug in validation because of bigint type ?
     }
 
-    // Interacting with current User's users
     public function testGetUser(): void
     {
         $iri = $this->iriConverter->getIriFromItem($this->user);
@@ -67,48 +66,6 @@ class UserTest extends AuthenticatedTest
     public function testDeleteUser(): void
     {
         $iri = $this->iriConverter->getIriFromItem($this->user);
-        $this->createClientWithCredentials()->request('DELETE', $iri);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
-    }
-
-    // Interacting with another User's users
-    public function testCantGetAnotherUserUser(): void
-    {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
-
-        $this->createClientWithCredentials()->request('GET', $iri);
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCantPutAnotherUserUser(): void
-    {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
-
-        $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
-            'username' => 'username_put',
-        ]]);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCantPatchAnotherUserUser(): void
-    {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
-
-        $this->createClientWithCredentials()->request('PATCH', $iri, [
-            'headers' => ['Content-Type: application/merge-patch+json'],
-            'json' => [
-                'username' => 'username_patch',
-            ]
-        ]);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCantDeleteAnotherUserUser(): void
-    {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

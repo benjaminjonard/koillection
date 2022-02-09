@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Tests\Api;
+namespace App\Tests\Api\Template;
 
 use Api\Tests\AuthenticatedTest;
 use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-class TemplateTest extends AuthenticatedTest
+class TemplateCurrentUserTest extends AuthenticatedTest
 {
     public function testGetTemplates(): void
     {
@@ -19,7 +19,6 @@ class TemplateTest extends AuthenticatedTest
         $this->assertMatchesResourceCollectionJsonSchema(Template::class);
     }
 
-    // Interacting with current User's templates
     public function testGetTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
@@ -75,51 +74,5 @@ class TemplateTest extends AuthenticatedTest
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
-    }
-
-    // Interacting with another User's templates
-    public function testCantGetAnotherUserTemplate(): void
-    {
-        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
-
-        $this->createClientWithCredentials()->request('GET', $iri);
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCantPutAnotherUserTemplate(): void
-    {
-        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
-
-        $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
-            'name' => 'updated name with PUT',
-        ]]);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCantPatchAnotherUserTemplate(): void
-    {
-        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
-
-        $this->createClientWithCredentials()->request('PATCH', $iri, [
-            'headers' => ['Content-Type: application/merge-patch+json'],
-            'json' => [
-                'name' => 'updated name with PATCH',
-            ]
-        ]);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCantDeleteAnotherUserTemplate(): void
-    {
-        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
-        $this->createClientWithCredentials()->request('DELETE', $iri);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 }

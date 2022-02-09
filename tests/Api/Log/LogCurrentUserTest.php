@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Tests\Api;
+namespace App\Tests\Api\Log;
 
 use Api\Tests\AuthenticatedTest;
 use App\Entity\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class LogTest extends AuthenticatedTest
+class LogCurrentUserTest extends AuthenticatedTest
 {
     public function testGetLogs(): void
     {
@@ -16,7 +16,6 @@ class LogTest extends AuthenticatedTest
         $this->assertMatchesResourceCollectionJsonSchema(Log::class);
     }
 
-    // Interacting with current User's logs
     public function testGetLog(): void
     {
         $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->user], [], 1)[0];
@@ -55,49 +54,6 @@ class LogTest extends AuthenticatedTest
     public function testDeleteLog(): void
     {
         $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
-        $this->createClientWithCredentials()->request('DELETE', $iri);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
-    }
-
-    // Interacting with another User's logs
-    public function testCantGetAnotherUserLog(): void
-    {
-        $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
-
-        $this->createClientWithCredentials()->request('GET', $iri);
-        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCantPutAnotherUserLog(): void
-    {
-        $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
-
-        $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
-            'lentTo' => 'updated lentTo with PUT',
-        ]]);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
-    }
-
-    public function testCantPatchAnotherUserLog(): void
-    {
-        $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
-
-        $this->createClientWithCredentials()->request('PATCH', $iri, [
-            'headers' => ['Content-Type: application/merge-patch+json']
-        ]);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
-    }
-
-    public function testCantDeleteAnotherUserLog(): void
-    {
-        $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($log);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
