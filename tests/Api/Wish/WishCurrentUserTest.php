@@ -4,6 +4,7 @@ namespace App\Tests\Api\Wish;
 
 use Api\Tests\AuthenticatedTest;
 use App\Entity\Wish;
+use App\Entity\Wishlist;
 use Symfony\Component\HttpFoundation\Response;
 
 class WishCurrentUserTest extends AuthenticatedTest
@@ -30,6 +31,17 @@ class WishCurrentUserTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetWishWishlist(): void
+    {
+        $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($wish);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/wishlist');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Wishlist::class);
     }
 
     public function testPutWish(): void

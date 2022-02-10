@@ -17,6 +17,15 @@ class WishOtherUserTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
+    public function testCantGetAnotherUseWishWishlist(): void
+    {
+        $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($wish);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/wishlist');
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function testCantPutAnotherUserWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
