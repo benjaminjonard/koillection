@@ -3,6 +3,7 @@
 namespace App\Tests\Api\TagCategory;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Tag;
 use App\Entity\TagCategory;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -30,6 +31,20 @@ class TagCategoryCurrentUserTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetTagCategoryTags(): void
+    {
+        $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/tags');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertCount(1, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
     }
 
     public function testPutTagCategory(): void

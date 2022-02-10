@@ -3,6 +3,7 @@
 namespace App\Tests\Api\TagCategory;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Tag;
 use App\Entity\TagCategory;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,6 +16,20 @@ class TagCategoryOtherUserTest extends AuthenticatedTest
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCantGetAnotherUserTagCategoryTags(): void
+    {
+        $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/tags');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
     }
 
     public function testCantPutAnotherUserTagCategory(): void
