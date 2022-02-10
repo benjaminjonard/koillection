@@ -32,14 +32,13 @@ class TagController extends AbstractController
         path: ['en' => '/user/{username}/tags', 'fr' => '/utilisateur/{username}/tags'],
         name: 'app_shared_tag_index', methods: ['GET']
     )]
-    public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler,
-                          int $paginationItemsPerPage, TagRepository $tagRepository
+    public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler, TagRepository $tagRepository
     ) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         $context = $contextHandler->getContext();
-        $search = new SearchTag($request->query->getInt('page', 1), $paginationItemsPerPage);
+        $search = new SearchTag($request->query->getInt('page', 1), 15);
         $form = $this->createForm(SearchTagType::class, $search, [
             'method' => 'GET',
         ]);

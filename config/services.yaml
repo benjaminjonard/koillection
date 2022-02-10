@@ -12,7 +12,6 @@ services:
             $defaultLocale: '%locale%'
             $publicPath: '%kernel.project_dir%/public'
             $assetsPath: '%kernel.project_dir%/assets'
-            $paginationItemsPerPage: "%env(int:APP_PAGINATION_ITEMS_PER_PAGE)%"
             $koillectionRelease: '%release%'
 
     App\:
