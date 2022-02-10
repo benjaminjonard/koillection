@@ -1,0 +1,12 @@
+App\Entity\Tag:
+  tag_admin_{1..10}:
+    label: "<word(2)>"
+    visibility: "public"
+    category: "@tag_category_admin_<current()>"
+    owner: "@admin"
+
+  tag_user_{1..10}:
+    label: "<word(2)>"
+    visibility: "public"
+    category: "@tag_category_user_<current()>"
+    owner: "@user"

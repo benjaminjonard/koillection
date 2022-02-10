@@ -48,7 +48,7 @@ class ContextHandler
         if ($this->context === 'shared') {
             preg_match("/^\/user\/(\w+)/", $request->getRequestUri(), $matches);
             $this->username = $matches[1];
-            $this->router->getContext()->setParameter('username',$this->username);
+            $this->router->getContext()->setParameter('username', $this->username);
         }
     }
 

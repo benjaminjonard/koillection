@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
@@ -19,6 +20,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -27,30 +29,43 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Index(name: "idx_user_visibility", columns: ["visibility"])]
 #[UniqueEntity(fields: ["email"], message: "error.email.not_unique")]
 #[UniqueEntity(fields: ["username"], message: "error.username.not_unique")]
+#[ApiResource(
+    normalizationContext: ["groups" => ["user:read"]],
+    denormalizationContext: ["groups" => ["user:write"]],
+    collectionOperations: ["get"],
+    itemOperations: ["get", "put", "patch"]
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Serializable
 {
     #[ORM\Id]
     #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["user:read"])]
     private string $id;
 
     #[ORM\Column(type: "string", length: 32, unique: true)]
     #[Assert\Regex(pattern: "/^[a-z\d_]{2,32}$/i", message: "error.username.incorrect")]
+    #[Groups(["user:read", "user:write"])]
     private ?string $username = null;
 
     #[ORM\Column(type: "string", unique: true)]
     #[Assert\Email]
+    #[Groups(["user:read", "user:write"])]
     private ?string $email = null;
 
     #[ORM\Column(type: "string")]
     private ?string $password;
 
     #[Assert\Regex(pattern: "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message: "error.password.incorrect")]
+    #[Groups(["user:read", "user:write"])]
     private ?string $plainPassword = null;
 
-    #[Upload(path: "avatar")]
+    #[Upload(path: "avatar", maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
+    #[Groups(["user:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["user:read"])]
     private ?string $avatar = null;
 
     #[ORM\Column(type: "boolean")]
@@ -60,21 +75,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private array $roles;
 
     #[ORM\Column(type: "string", length: 3)]
+    #[Assert\Currency]
+    #[Groups(["user:read", "user:write"])]
     private string $currency;
 
     #[ORM\Column(type: "string", length: 5)]
+    #[Groups(["user:read", "user:write"])]
+    #[Assert\Choice(choices: LocaleEnum::LOCALES)]
     private string $locale;
 
     #[ORM\Column(type: "string", length: 50)]
+    #[Groups(["user:read", "user:write"])]
+    #[Assert\Timezone]
     private ?string $timezone = null;
 
     #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["user:read", "user:write"])]
+    #[Assert\Choice(choices: DateFormatEnum::FORMATS)]
     private string $dateFormat;
 
     #[ORM\Column(type: "bigint", options: ["default" => 268435456])]
+    #[Groups(["user:read"])]
     private int $diskSpaceAllowed;
 
     #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["user:read", "user:write"])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\OneToMany(targetEntity: "Collection", mappedBy: "owner", cascade: ["remove"])]
@@ -102,45 +128,59 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private DoctrineCollection $inventories;
 
     #[ORM\Column(type: "date", nullable: true)]
+    #[Groups(["user:read"])]
     private ?DateTimeInterface $lastDateOfActivity = null;
 
     #[ORM\Column(type: "boolean", options: ["default" => 0])]
+    #[Groups(["user:read", "user:write"])]
     private bool $darkModeEnabled;
 
     #[ORM\Column(type: "time", nullable: true)]
+    #[Groups(["user:read", "user:write"])]
     private ?\DateTime $automaticDarkModeStartAt;
 
     #[ORM\Column(type: "time", nullable: true)]
+    #[Groups(["user:read", "user:write"])]
     private ?\DateTime $automaticDarkModeEndAt;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $wishlistsFeatureEnabled;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $tagsFeatureEnabled;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $signsFeatureEnabled;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $albumsFeatureEnabled;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $loansFeatureEnabled;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $templatesFeatureEnabled;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $historyFeatureEnabled;
 
     #[ORM\Column(type: "boolean", options: ["default" => 1])]
+    #[Groups(["user:read", "user:write"])]
     private bool $statisticsFeatureEnabled;
 
     #[ORM\Column(type: "datetime")]
+    #[Groups(["user:read"])]
     private DateTimeInterface $createdAt;
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["user:read"])]
     private ?DateTimeInterface $updatedAt;
 
     public function __construct()

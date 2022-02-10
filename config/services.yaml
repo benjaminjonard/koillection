@@ -62,7 +62,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, lazy: true }
 
-    #Global listeners
+    #Doctrine listeners
     App\EventListener\CounterCacheListener:
         tags:
             - { name: doctrine.event_listener, event: postPersist, lazy: true }
@@ -110,3 +110,20 @@ services:
     App\Form\Extension\ModelTransformerExtension:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    # API
+    Api\OpenApi\JwtDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    Api\Doctrine\Extension\OwnershipExtension:
+        tags:
+            - { name: api_platform.doctrine.orm.query_extension.collection }
+            - { name: api_platform.doctrine.orm.query_extension.item }
+    Api\Encoder\MultipartDecoder:
+        tags:
+            - { name: serializer.encoder }
+    Api\Serializer\ApiNormalizer:
+        decorates: 'api_platform.jsonld.normalizer.item'
+    Api\Serializer\UploadedFileDenormalizer:
+        tags:
+            - { name: serializer.normalizer }

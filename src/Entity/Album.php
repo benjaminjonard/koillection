@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Entity\Traits\VisibilityTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,53 +18,89 @@ use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
 #[ORM\Table(name: "koi_album")]
 #[ORM\Index(name: "idx_album_final_visibility", columns: ["final_visibility"])]
+#[ApiResource(
+    normalizationContext: ["groups" => ["album:read"]],
+    denormalizationContext: ["groups" => ["album:write"]],
+    collectionOperations: [
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+    ]
+)]
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
-    use VisibilityTrait;
-
     #[ORM\Id]
     #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["album:read"])]
     private string $id;
 
     #[ORM\Column(type: "string")]
     #[Assert\NotBlank]
+    #[Groups(["album:read", "album:write"])]
     private ?string $title = null;
 
     #[ORM\Column(type: "string", length: 6)]
+    #[Groups(["album:read"])]
     private ?string $color = null;
 
-    #[Upload(path: "image")]
+    #[Upload(path: "image", maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
+    #[Groups(["album:write"])]
     private ?File $file = null;
 
     #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["album:read"])]
     private ?string $image = null;
 
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "albums")]
+    #[Groups(["album:read"])]
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: "Photo", mappedBy: "album", cascade: ["all"])]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $photos;
 
     #[ORM\OneToMany(targetEntity: "Album", mappedBy: "parent", cascade: ["all"])]
     #[ORM\OrderBy(["title" => "ASC"])]
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
     #[ORM\ManyToOne(targetEntity: "Album", inversedBy: "children")]
+    #[Groups(["album:read", "album:write"])]
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ApiSubresource(maxDepth: 1)]
+    #[Assert\Expression("not (value == this)", message: "error.parent.same_as_current_object")]
     private ?Album $parent = null;
 
     #[ORM\Column(type: "integer")]
+    #[Groups(["album:read"])]
     private int $seenCounter;
 
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["album:read", "album:write"])]
+    private string $visibility;
+
+    #[ORM\Column(type: "string", length: 10, nullable: true)]
+    #[Groups(["album:read"])]
+    private ?string $parentVisibility;
+
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["album:read"])]
+    private string $finalVisibility;
+
     #[ORM\Column(type: "datetime")]
+    #[Groups(["album:read"])]
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["album:read"])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
@@ -248,6 +286,42 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
+
+        return $this;
+    }
+
+    public function getVisibility(): ?string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getParentVisibility(): ?string
+    {
+        return $this->parentVisibility;
+    }
+
+    public function setParentVisibility(?string $parentVisibility): self
+    {
+        $this->parentVisibility = $parentVisibility;
+
+        return $this;
+    }
+
+    public function getFinalVisibility(): string
+    {
+        return $this->finalVisibility;
+    }
+
+    public function setFinalVisibility(string $finalVisibility): self
+    {
+        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

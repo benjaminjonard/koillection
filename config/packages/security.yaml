@@ -14,6 +14,20 @@ security:
                 property: username
 
     firewalls:
+        dev:
+            pattern: ^/_(profiler|wdt)
+            security: false
+        api:
+            pattern: ^/api
+            stateless: true
+            provider: app_provider
+            json_login:
+                check_path: /api/authentication_token
+                username_path: username
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            jwt: ~
         main:
             pattern: ^/
             form_login:
@@ -32,16 +46,14 @@ security:
                 path: app_security_logout
             custom_authenticators:
                 - App\Security\UsernameOrEmailPasswordAuthenticator
-            lazy: true
 
     access_control:
-        - { path: ^/_wdt, roles: PUBLIC_ACCESS }
-        - { path: ^/_profiler/, role: PUBLIC_ACCESS }
         - { path: ^/user, role: PUBLIC_ACCESS }
         - { path: ^/login, role: PUBLIC_ACCESS }
         - { path: ^/first-connection, role: PUBLIC_ACCESS }
         - { path: ^/translations, role: PUBLIC_ACCESS }
+        - { path: ^/api$, role: PUBLIC_ACCESS }
+        - { path: ^/api/authentication_token, roles: PUBLIC_ACCESS }
         - { path: ^/$, role: PUBLIC_ACCESS }
-        - { path: ^/admin/_trans, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
 

@@ -43,6 +43,10 @@ class ImageHandler
             $this->removeOldFile($entity, $attribute);
             $this->accessor->setValue($entity, $attribute->getPath(), $relativePath.$fileName);
 
+            if ($attribute->getMaxWidth() || $attribute->getMaxHeight()) {
+                $this->thumbnailGenerator->crop($absolutePath.'/'.$fileName, $attribute->getMaxWidth(), $attribute->getMaxHeight());
+            }
+
             if ($attribute->getSmallThumbnailPath() !== null) {
                 $smallThumbnailFileName = $generatedName . '_small.' . $extension;
                 $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 300);

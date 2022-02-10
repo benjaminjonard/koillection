@@ -18,6 +18,15 @@ class DateFormatEnum
     public const CONTEXT_TWIG = 'twig';
     public const CONTEXT_JS = 'js';
 
+    public const FORMATS = [
+        self::FORMAT_SLASH_DMY,
+        self::FORMAT_SLASH_DMY,
+        self::FORMAT_SLASH_YMD,
+        self::FORMAT_HYPHEN_DMY,
+        self::FORMAT_HYPHEN_MDY,
+        self::FORMAT_HYPHEN_YMD
+    ];
+
     public const MAPPING = [
         self::FORMAT_SLASH_DMY => [self::CONTEXT_FORM => 'dd/MM/yyyy', self::CONTEXT_TWIG => 'd/m/Y', self::CONTEXT_JS => 'dd/mm/yyyy'],
         self::FORMAT_SLASH_MDY => [self::CONTEXT_FORM => 'MM/dd/yyyy', self::CONTEXT_TWIG => 'm/d/Y', self::CONTEXT_JS => 'mm/dd/yyyy'],

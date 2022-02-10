@@ -11,13 +11,17 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
+        "api-platform/core": "^2.6",
         "composer/semver": "^3.2",
-        "doctrine/annotations": "^1.11",
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.9",
         "doctrine/persistence": "^2.1",
+        "lexik/jwt-authentication-bundle": "^2.14",
         "maennchen/zipstream-php": "^1.2",
+        "nelmio/cors-bundle": "^2.2",
+        "phpdocumentor/reflection-docblock": "^5.3",
+        "phpstan/phpdoc-parser": "^1.2",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "^6.0",
         "symfony/cache": "^6.0",
@@ -39,6 +43,7 @@
         "symfony/process": "^6.0",
         "symfony/property-access": "^6.0",
         "symfony/property-info": "^6.0",
+        "symfony/proxy-manager-bridge": "^6.0",
         "symfony/routing": "^6.0",
         "symfony/runtime": "^6.0",
         "symfony/security-bundle": "^6.0",
@@ -59,7 +64,8 @@
         "willdurand/js-translation-bundle": "^5.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "hautelook/alice-bundle": "^2.10",
+        "justinrainbow/json-schema": "^5.2",
         "symfony/browser-kit": "^6.0",
         "symfony/css-selector": "^6.0",
         "symfony/maker-bundle": "^1.15",
@@ -76,7 +82,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Api\\": "api/"
         }
     },
     "autoload-dev": {

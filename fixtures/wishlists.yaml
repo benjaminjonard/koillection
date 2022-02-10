@@ -1,0 +1,26 @@
+App\Entity\Wishlist:
+  wishlist_admin_{1..5}:
+    name: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@admin"
+
+  wishlist_admin_{6..10}:
+    name: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    parent: "@wishlist_admin_<($current - 5)>"
+    owner: "@admin"
+
+  wishlist_user_{1..5}:
+    name: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    owner: "@user"
+
+  wishlist_user_{6..10}:
+    name: "<word(2)>"
+    visibility: "public"
+    finalVisibility: "public"
+    parent: "@wishlist_user_<($current - 5)>"
+    owner: "@user"

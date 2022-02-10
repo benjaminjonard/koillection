@@ -8,13 +8,24 @@ class DatumTypeEnum
 {
     public const TYPE_TEXT = 'text';
     public const TYPE_COUNTRY = 'country';
-    public const TYPE_SIGN = 'sign';
     public const TYPE_DATE = 'date';
     public const TYPE_RATING = 'rating';
     public const TYPE_NUMBER = 'number';
 
     public const TYPE_IMAGE = 'image';
     public const TYPE_FILE = 'file';
+    public const TYPE_SIGN = 'sign';
+
+    public const TYPES = [
+        self::TYPE_TEXT,
+        self::TYPE_COUNTRY,
+        self::TYPE_DATE,
+        self::TYPE_RATING,
+        self::TYPE_NUMBER,
+        self::TYPE_IMAGE,
+        self::TYPE_FILE,
+        self::TYPE_SIGN,
+    ];
 
     public const TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',

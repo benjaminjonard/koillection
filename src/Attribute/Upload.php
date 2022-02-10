@@ -11,7 +11,9 @@ class Upload
         private string $path,
         private ?string $smallThumbnailPath = null,
         private ?string $largeThumbnailPath = null,
-        private ?string $originalFilenamePath = null
+        private ?string $originalFilenamePath = null,
+        private ?int $maxWidth = null,
+        private ?int $maxHeight = null,
     ) {}
 
     public static function fromReflectionAttribute(\ReflectionAttribute $reflectionAttribute)
@@ -22,7 +24,9 @@ class Upload
             $arguments['path'] ?? null,
             $arguments['smallThumbnailPath'] ?? null,
             $arguments['largeThumbnailPath'] ?? null,
-            $arguments['originalFilenamePath'] ?? null
+            $arguments['originalFilenamePath'] ?? null,
+            $arguments['maxWidth'] ?? null,
+            $arguments['maxHeight'] ?? null
         );
     }
 
@@ -44,5 +48,15 @@ class Upload
     public function getOriginalFilenamePath(): ?string
     {
         return $this->originalFilenamePath;
+    }
+
+    public function getMaxWidth(): ?int
+    {
+        return $this->maxWidth;
+    }
+
+    public function getMaxHeight(): ?int
+    {
+        return $this->maxHeight;
     }
 }
