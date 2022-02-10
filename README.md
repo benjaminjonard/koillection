@@ -53,7 +53,6 @@ Please do back up your database.
 3. In `.env.local` replace the values by your configuration and remove all curly braces
     - `APP_ENV` -> Symfony environment, prod by default
     - `APP_DEBUG` -> activate Symfony debug mode, 0 or 1
-    - `APP_SECRET` -> a random string
     - `DB_DRIVER` -> pdo_mysql or pdo_pgsql
     - `DB_USER` -> your database user
     - `DB_PASSWORD` -> your database password
