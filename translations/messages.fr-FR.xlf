@@ -4596,5 +4596,11 @@
         <target>Interne - Raison : cette page est interne</target>
       </segment>
     </unit>
+    <unit id="d_e7ZU2" name="global.visibilities.reason.user_public">
+      <segment>
+          <source>global.visibilities.reason.user_public</source>
+          <target>Publique - Raison : votre profil est publique</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

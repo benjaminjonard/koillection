@@ -24,6 +24,10 @@ class VisibilityRuntime implements RuntimeExtensionInterface
     public function getVisibilityReason(?string $visibility, string $userVisibility): string
     {
         //Public
+        if ($visibility === null && $userVisibility === VisibilityEnum::VISIBILITY_PUBLIC) {
+            return $this->translator->trans('global.visibilities.reason.user_public');
+        }
+
         if ($visibility === VisibilityEnum::VISIBILITY_PUBLIC && $userVisibility === VisibilityEnum::VISIBILITY_PUBLIC) {
             return $this->translator->trans('global.visibilities.reason.both_public');
         }

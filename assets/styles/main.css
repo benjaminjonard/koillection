@@ -333,7 +333,7 @@ progress[value]::-ms-fill {background-color:#009688;}
 .table-filter {margin-top: 40px; text-align: left;}
 .table-filter a {margin: 0 10px;}
 .table-filter a.active {background-color: #009688; color: #f0f2f5; border-radius: 7px; padding: 5px; width: 100px; display: inline-block; text-align: center;}
-.table-filter .filter-title {font-weight: bold;}
+.table-filter .filter-title {font-weight: bold; top: -10px; position: relative;}
 
 .error-helper {text-align: center; color: #d9534f; padding-bottom: 15px;}
 .error-helper .fa {margin-right: 5px;}
@@ -505,7 +505,7 @@ form .row-file .file-label { margin-left: auto; margin-right: auto; }
 .tag-category-select-option {position: relative; margin-right: 3px; top: -1px;}
 form[name="search"] input[type="checkbox"] + span, form[name="search_history"] input[type="checkbox"] + span {margin-right: 25px; padding-left: 25px;}
 .inline-checkbox-wrapper {display: inline-block; margin: 0 60px;}
-.inline-checkbox-wrapper .input-checkbox {top: -52px; left: 16px;}
+.inline-checkbox-wrapper .input-checkbox {top: -78px; left: 16px;}
 .table-actions a {margin: 0 5px; font-size: 20px;}
 
 #template-fields-holder .icon-holder { padding-top: 45px; text-align: center; }
@@ -612,3 +612,5 @@ i.btn input {color: #fff; cursor: pointer;}
 {color: #ffe57f;}
 
 .select-tip {display: block;}
+.input-checkbox {margin: 3rem 0;}
+.input-checkbox > label {-webkit-transform: none; transform: none;}

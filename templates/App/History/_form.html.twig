@@ -1,10 +1,12 @@
 {{ form_start(form, {attr: {"data-filter-ajax-target": "form"}}) }}
-    {{ form_row(form.term, {'attr': {
-        'class': 'filter-input',
-        'data-action': 'keyup->filter-ajax#filter' ,
-        'placeholder': 'filter.by_name'|trans,
-        'autocomplete': 'off'
-    }}) }}
+    <div class="btn-holder">
+        {{ form_row(form.term, {'attr': {
+            'class': 'filter-input',
+            'data-action': 'keyup->filter-ajax#filter' ,
+            'placeholder': 'filter.by_name'|trans,
+            'autocomplete': 'off'
+        }}) }}
+    </div>
     <div class="table-filter">
         <div class="filter-title">{{ 'filter.title.types'|trans }} :</div>
         {% for child in form.classes.children %}

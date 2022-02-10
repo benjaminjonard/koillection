@@ -4554,13 +4554,13 @@
     <unit id="Q87ZYs9" name="global.visibilities.reason.both_public">
       <segment>
         <source>global.visibilities.reason.both_public</source>
-        <target>Public - Reason : both your profile and the page are public</target>
+        <target>Public - Reason : both your profile and this page are public</target>
       </segment>
     </unit>
     <unit id="Ks0iusy" name="global.visibilities.reason.both_private">
       <segment>
         <source>global.visibilities.reason.both_private</source>
-        <target>Private - Reason : both your profile and the page are private</target>
+        <target>Private - Reason : both your profile and this page are private</target>
       </segment>
     </unit>
     <unit id="cx9_iSs" name="global.visibilities.reason.user_private">
@@ -4572,13 +4572,13 @@
     <unit id="dsPIS92" name="global.visibilities.reason.object_private">
       <segment>
         <source>global.visibilities.reason.object_private</source>
-        <target>Private - Reason : the page is private</target>
+        <target>Private - Reason : this page is private</target>
       </segment>
     </unit>
     <unit id="Mpa1xsS" name="global.visibilities.reason.both_internal">
       <segment>
         <source>global.visibilities.reason.both_internal</source>
-        <target>Internal - Reason : both your profile and the page are internal</target>
+        <target>Internal - Reason : both your profile and this page are internal</target>
       </segment>
     </unit>
     <unit id="KZ8sjs6" name="global.visibilities.reason.user_internal">
@@ -4590,7 +4590,13 @@
     <unit id="azOcSsj" name="global.visibilities.reason.object_internal">
       <segment>
         <source>global.visibilities.reason.object_internal</source>
-        <target>Internal - Reason : the page is internal</target>
+        <target>Internal - Reason : this page is internal</target>
+      </segment>
+    </unit>
+    <unit id="d_e7ZU2" name="global.visibilities.reason.user_public">
+      <segment>
+          <source>global.visibilities.reason.user_public</source>
+          <target>Public - Reason : your profile is public</target>
       </segment>
     </unit>
   </file>
