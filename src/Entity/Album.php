@@ -63,7 +63,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: "Photo", mappedBy: "album", cascade: ["all"])]
-    #[ApiSubresource]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $photos;
 
     #[ORM\OneToMany(targetEntity: "Album", mappedBy: "parent", cascade: ["all"])]

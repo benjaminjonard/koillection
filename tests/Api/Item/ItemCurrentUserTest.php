@@ -3,6 +3,7 @@
 namespace App\Tests\Api\Item;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Loan;
@@ -33,6 +34,17 @@ class ItemCurrentUserTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetItemCollection(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Collection::class);
     }
 
     public function testGetItemData(): void

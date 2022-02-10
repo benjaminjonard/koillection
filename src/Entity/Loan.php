@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\LoanRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -27,6 +28,7 @@ class Loan
     #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "loans")]
     #[Groups(["loan:read", "loan:write"])]
     #[Assert\NotBlank]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Item $item;
 
     #[ORM\Column(type: "string")]

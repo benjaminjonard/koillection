@@ -55,6 +55,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "items")]
     #[Assert\NotBlank]
     #[Groups(["item:read", "item:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
     #[ORM\ManyToOne(targetEntity: "User")]
@@ -91,7 +92,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private DoctrineCollection $data;
 
     #[ORM\OneToMany(targetEntity: "Loan", mappedBy: "item", cascade: ["remove"])]
-    #[ApiSubresource]
+    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $loans;
 
     #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]

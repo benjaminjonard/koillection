@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\VisibilityEnum;
@@ -55,6 +56,7 @@ class Wish implements CacheableInterface
     #[ORM\ManyToOne(targetEntity: "Wishlist", inversedBy: "wishes")]
     #[Assert\NotBlank]
     #[Groups(["wish:read", "wish:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Wishlist $wishlist;
 
     #[ORM\ManyToOne(targetEntity: "User")]

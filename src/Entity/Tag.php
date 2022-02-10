@@ -67,6 +67,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     #[ORM\ManyToOne(targetEntity: "TagCategory", inversedBy: "tags", fetch: "EAGER", cascade: ["persist"])]
     #[ORM\JoinColumn(onDelete: "SET NULL")]
     #[Groups(["tag:read", "tag:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?TagCategory $category = null;
 
     #[ORM\ManyToMany(targetEntity: "Item", mappedBy: "tags")]

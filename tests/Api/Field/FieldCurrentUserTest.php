@@ -4,6 +4,7 @@ namespace App\Tests\Api\Field;
 
 use Api\Tests\AuthenticatedTest;
 use App\Entity\Field;
+use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 class FieldCurrentUserTest extends AuthenticatedTest
@@ -30,6 +31,17 @@ class FieldCurrentUserTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetFieldTemplate(): void
+    {
+        $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($field);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/template');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Template::class);
     }
 
     public function testPutField(): void

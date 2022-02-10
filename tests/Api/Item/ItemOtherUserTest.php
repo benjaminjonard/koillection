@@ -20,6 +20,15 @@ class ItemOtherUserTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
+    public function testCantGetAnotherUserItemCollection(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($item);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function testCantGetAnotherUserItemData(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];

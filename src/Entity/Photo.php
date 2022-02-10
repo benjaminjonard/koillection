@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\VisibilityEnum;
@@ -50,6 +51,7 @@ class Photo implements CacheableInterface
     #[ORM\ManyToOne(targetEntity: "Album", inversedBy: "photos")]
     #[Assert\NotBlank]
     #[Groups(["photo:read", "photo:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Album $album;
 
     #[ORM\ManyToOne(targetEntity: "User")]

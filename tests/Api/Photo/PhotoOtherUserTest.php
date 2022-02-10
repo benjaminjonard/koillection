@@ -29,6 +29,15 @@ class PhotoOtherUserTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
+    public function testCantGetAnotherUserPhotoAlbum(): void
+    {
+        $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($photo);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/album');
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function testCantPatchAnotherUserPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];

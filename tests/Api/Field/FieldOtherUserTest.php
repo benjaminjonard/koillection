@@ -17,6 +17,15 @@ class FieldOtherUserTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
+    public function testCantGetAnotherUserFieldTemplate(): void
+    {
+        $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($field);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/template');
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function testCantPutAnotherUserField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
