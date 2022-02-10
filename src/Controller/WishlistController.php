@@ -23,7 +23,7 @@ class WishlistController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/wishlists', 'fr' => '/utilisateur/{username}/listes-de-souhaits'],
-        name: 'app_user_wishlist_index', methods: ['GET']
+        name: 'app_shared_wishlist_index', methods: ['GET']
     )]
     public function index(WishlistRepository $wishlistRepository) : Response
     {
@@ -53,6 +53,8 @@ class WishlistController extends AbstractController
             $wishlist
                 ->setParent($parent)
                 ->setVisibility($parent->getVisibility())
+                ->setParentVisibility($parent->getVisibility())
+                ->setFinalVisibility($parent->getFinalVisibility())
             ;
         }
 
@@ -78,7 +80,7 @@ class WishlistController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/wishlists/{id}', 'fr' => '/utilisateur/{username}/listes-de-souhaits/{id}'],
-        name: 'app_user_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     public function show(Wishlist $wishlist, WishlistRepository $wishlistRepository, WishRepository $wishRepository) : Response
     {

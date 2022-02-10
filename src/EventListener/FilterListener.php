@@ -26,7 +26,7 @@ class FilterListener
         $context = $this->contextHandler->getContext();
 
         //Visibility filter
-        if ($context === 'user') {
+        if ($context === 'shared') {
             $filter = $filters->enable('visibility');
             $filter->setParameter('user', $this->security->getUser() instanceof User ? $this->security->getUser()->getId() : null, 'string');
         } elseif ($filters->isEnabled('visibility')) {
@@ -47,7 +47,7 @@ class FilterListener
     public function setContextUser()
     {
         $user = null;
-        if ($this->contextHandler->getContext() === 'user') {
+        if ($this->contextHandler->getContext() === 'shared') {
             $user = $this->userRepository->findOneBy(['username' => $this->contextHandler->getUsername()]);
             if (!$user) {
                 throw new NotFoundHttpException();

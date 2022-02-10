@@ -55,5 +55,11 @@
         <target>Vous devez entrer au moins 2 caractères</target>
       </segment>
     </unit>
+    <unit id="se7sq_i" name="error.parent.same_as_current_object">
+      <segment>
+        <source>error.parent.same_as_current_object</source>
+        <target>Le parent ne peut pas être identique à l'objet courant</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

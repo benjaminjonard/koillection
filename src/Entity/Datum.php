@@ -4,117 +4,109 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Annotation\Upload;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use App\Attribute\Upload;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\VisibilityEnum;
+use App\Enum\DatumTypeEnum;
+use App\Repository\DatumRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\DatumRepository")
- * @ORM\Table(name="koi_datum", indexes={
- *     @ORM\Index(name="idx_datum_visibility", columns={"visibility"})
- * })
- */
+#[ORM\Entity(repositoryClass: DatumRepository::class)]
+#[ORM\Table(name: "koi_datum")]
+#[ApiResource(
+    normalizationContext: ["groups" => ["datum:read"]],
+    denormalizationContext: ["groups" => ["datum:write"]],
+    collectionOperations: [
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+    ]
+)]
 class Datum implements LoggableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["datum:read"])]
     private string $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Item", inversedBy="data")
-     */
+    #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "data")]
+    #[Groups(["datum:read"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Collection", inversedBy="data")
-     */
+    #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "data")]
+    #[Groups(["datum:read"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=false)
-     */
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["datum:read", "datum:write"])]
+    #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     private ?string $type = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: "string", nullable: true)]
+    #[Groups(["datum:read", "datum:write"])]
+    #[Assert\NotBlank]
     private ?string $label = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
+    #[Groups(["datum:read", "datum:write"])]
     private ?string $value = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: "integer", nullable: true)]
+    #[Groups(["datum:read", "datum:write"])]
     private ?int $position = null;
 
-    /**
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail", largeThumbnailPath="imageLargeThumbnail")
-     */
+    #[Upload(path: "file", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
+    #[Groups(["datum:write"])]
     private ?File $fileImage = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["datum:read"])]
     private ?string $image = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["datum:read"])]
     private ?string $imageSmallThumbnail = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["datum:read"])]
     private ?string $imageLargeThumbnail = null;
 
-    /**
-     * @Upload(path="file", originalFilenamePath="originalFilename")
-     */
+    #[Upload(path: "file", originalFilenamePath: "originalFilename")]
+    #[Assert\File]
+    #[Groups(["datum:write"])]
     private ?File $fileFile = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["datum:read"])]
     private ?string $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    #[ORM\Column(type: "string", nullable: true)]
+    #[Groups(["datum:read"])]
     private ?string $originalFilename = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     */
+    #[ORM\ManyToOne(targetEntity: "User")]
+    #[Groups(["datum:read"])]
     private ?User $owner = null;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $visibility;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
+    #[Groups(["datum:read"])]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["datum:read"])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
     public function __toString(): string
@@ -171,18 +163,6 @@ class Datum implements LoggableInterface
     public function setPosition(?int $position): self
     {
         $this->position = $position;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
 
         return $this;
     }

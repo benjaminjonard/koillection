@@ -2032,12 +2032,12 @@
         <target>Albums</target>
       </segment>
     </unit>
-    <unit id="Nl_I6SL" name="menu.albums_user">
+    <unit id="Nl_I6SL" name="menu.albums_shared">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>menu.albums_user</source>
+        <source>menu.albums_shared</source>
         <target>%username%'s albums</target>
       </segment>
     </unit>
@@ -2051,12 +2051,12 @@
         <target>Collections</target>
       </segment>
     </unit>
-    <unit id="GpXPEkO" name="menu.collections_user">
+    <unit id="GpXPEkO" name="menu.collections_shared">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>menu.collections_user</source>
+        <source>menu.collections_shared</source>
         <target>%username%'s collections</target>
       </segment>
     </unit>
@@ -2118,12 +2118,12 @@
         <target>Signs</target>
       </segment>
     </unit>
-    <unit id="ltgwfbq" name="menu.signs_user">
+    <unit id="ltgwfbq" name="menu.signs_shared">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>menu.signs_user</source>
+        <source>menu.signs_shared</source>
         <target>%username%'s signs</target>
       </segment>
     </unit>
@@ -2137,12 +2137,12 @@
         <target>Statistics</target>
       </segment>
     </unit>
-    <unit id="tk6udpx" name="menu.statistics_user">
+    <unit id="tk6udpx" name="menu.statistics_shared">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>menu.statistics_user</source>
+        <source>menu.statistics_shared</source>
         <target>%username%'s statistics</target>
       </segment>
     </unit>
@@ -2156,12 +2156,12 @@
         <target>Tags</target>
       </segment>
     </unit>
-    <unit id="xLcWFGm" name="menu.tags_user">
+    <unit id="xLcWFGm" name="menu.tags_shared">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>menu.tags_user</source>
+        <source>menu.tags_shared</source>
         <target>%username%'s tags</target>
       </segment>
     </unit>
@@ -2185,12 +2185,12 @@
         <target>Wishlists</target>
       </segment>
     </unit>
-    <unit id="vd.6dAz" name="menu.wishlists_user">
+    <unit id="vd.6dAz" name="menu.wishlists_shared">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
-        <source>menu.wishlists_user</source>
+        <source>menu.wishlists_shared</source>
         <target>%username%'s wishlists</target>
       </segment>
     </unit>
@@ -4549,6 +4549,48 @@
       <segment>
         <source>label.repeat_new_password</source>
         <target>Repeat new password</target>
+      </segment>
+    </unit>
+    <unit id="Q87ZYs9" name="global.visibilities.reason.both_public">
+      <segment>
+        <source>global.visibilities.reason.both_public</source>
+        <target>Public - Reason : both your profile and the page are public</target>
+      </segment>
+    </unit>
+    <unit id="Ks0iusy" name="global.visibilities.reason.both_private">
+      <segment>
+        <source>global.visibilities.reason.both_private</source>
+        <target>Private - Reason : both your profile and the page are private</target>
+      </segment>
+    </unit>
+    <unit id="cx9_iSs" name="global.visibilities.reason.user_private">
+      <segment>
+        <source>global.visibilities.reason.user_private</source>
+        <target>Private - Reason : your profile is private</target>
+      </segment>
+    </unit>
+    <unit id="dsPIS92" name="global.visibilities.reason.object_private">
+      <segment>
+        <source>global.visibilities.reason.object_private</source>
+        <target>Private - Reason : the page is private</target>
+      </segment>
+    </unit>
+    <unit id="Mpa1xsS" name="global.visibilities.reason.both_internal">
+      <segment>
+        <source>global.visibilities.reason.both_internal</source>
+        <target>Internal - Reason : both your profile and the page are internal</target>
+      </segment>
+    </unit>
+    <unit id="KZ8sjs6" name="global.visibilities.reason.user_internal">
+      <segment>
+        <source>global.visibilities.reason.user_internal</source>
+        <target>Internal - Reason : your profile is internal</target>
+      </segment>
+    </unit>
+    <unit id="azOcSsj" name="global.visibilities.reason.object_internal">
+      <segment>
+        <source>global.visibilities.reason.object_internal</source>
+        <target>Internal - Reason : the page is internal</target>
       </segment>
     </unit>
   </file>

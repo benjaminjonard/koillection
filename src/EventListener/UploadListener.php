@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use App\Annotation\UploadAnnotationReader;
+use App\Attribute\UploadAnnotationReader;
 use App\Service\ImageHandler;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
@@ -19,8 +19,8 @@ final class UploadListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        foreach ($this->reader->getUploadFields($entity) as $property => $annotation) {
-            $this->handler->upload($entity, $property, $annotation);
+        foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
+            $this->handler->upload($entity, $property, $attribute);
         }
     }
 
@@ -30,8 +30,8 @@ final class UploadListener
         $uow = $em->getUnitOfWork();
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
-            foreach ($this->reader->getUploadFields($entity) as $property => $annotation) {
-                $this->handler->upload($entity, $property, $annotation);
+            foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
+                $this->handler->upload($entity, $property, $attribute);
                 $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($entity)), $entity);
             }
         }
@@ -40,16 +40,16 @@ final class UploadListener
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        foreach ($this->reader->getUploadFields($entity) as $property => $annotation) {
-            $this->handler->setFileFromFilename($entity, $property, $annotation);
+        foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
+            $this->handler->setFileFromFilename($entity, $property, $attribute);
         }
     }
 
     public function postRemove(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        foreach ($this->reader->getUploadFields($entity) as $annotation) {
-            $this->handler->removeOldFile($entity, $annotation);
+        foreach ($this->reader->getUploadFields($entity) as $attribute) {
+            $this->handler->removeOldFile($entity, $attribute);
         }
     }
 }

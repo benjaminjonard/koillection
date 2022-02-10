@@ -11,10 +11,10 @@
 {% endblock %}
 
 {% block meta %}
-    {% if context == 'user'  %}
+    {% if context == 'shared'  %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_user'|trans({'%username%':  app.request.get('username')})
+            'description': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')})
         }) }}
     {% else %}
         {{ parent() }}
@@ -37,6 +37,7 @@
     <div class="btn-holder">
         {% if context == 'default' %}
             <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+            {{ include('App/_partials/_visibility.html.twig') }}
         {% endif %}
     </div>
 
@@ -131,7 +132,7 @@
 
 {% block modals %}
     {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'route': url('app_user_statistics_index', {username: app.user.username})}) }}
+        {{ include('App/_partials/_modal/_share.html.twig', {'route': url('app_shared_statistics_index', {username: app.user.username})}) }}
     {% endif %}
 {% endblock %}
 

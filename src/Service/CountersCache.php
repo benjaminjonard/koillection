@@ -29,14 +29,13 @@ class CountersCache
 
         $key = '';
         $cacheKey = $contextUserId. '_' . $context;
-        if ($context === 'user') {
+        if ($context === 'shared') {
             $key .= $this->security->getUser() instanceof User ? 'authenticated_' : 'anonymous_';
             $cacheKey .= $this->security->getUser() instanceof User ? '_authenticated' : '_anonymous';
         }
 
         $counters = $this->cache->get($cacheKey, function (ItemInterface $item) use ($key, $contextUserId) {
             $counters = [];
-
             foreach ($this->calculator->computeCounters() as $id => $counter) {
                 $counters[$key . $id] = $counter;
             }
@@ -62,6 +61,8 @@ class CountersCache
 
     public function invalidateCurrentUser()
     {
-        $this->cache->invalidateTags([$this->security->getUser()->getId()]);
+        if ($this->security->getUser()) {
+            $this->cache->invalidateTags([$this->security->getUser()->getId()]);
+        }
     }
 }

@@ -42,10 +42,13 @@ class WishController extends AbstractController
         $wish
             ->setWishlist($wishlist)
             ->setVisibility($wishlist->getVisibility())
+            ->setParentVisibility($wishlist->getVisibility())
+            ->setFinalVisibility($wishlist->getFinalVisibility())
             ->setCurrency($this->getUser()->getCurrency())
         ;
 
         $form = $this->createForm(WishType::class, $wish);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->persist($wish);
@@ -117,6 +120,8 @@ class WishController extends AbstractController
 
         $item
             ->setVisibility($wish->getVisibility())
+            ->setParentVisibility($wish->getVisibility())
+            ->setFinalVisibility($wish->getFinalVisibility())
             ->setName($wish->getName())
             ->setImage($wish->getImage())
             ->setImageSmallThumbnail($wish->getImageSmallThumbnail())

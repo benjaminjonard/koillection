@@ -4,91 +4,100 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Annotation\Upload;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\VisibilityEnum;
+use App\Repository\WishRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\WishRepository")
- * @ORM\Table(name="koi_wish", indexes={
- *     @ORM\Index(name="idx_wish_visibility", columns={"visibility"})
- * })
- */
+#[ORM\Entity(repositoryClass: WishRepository::class)]
+#[ORM\Table(name: "koi_wish")]
+#[ORM\Index(name: "idx_wish_final_visibility", columns: ["final_visibility"])]
+#[ApiResource(
+    normalizationContext: ["groups" => ["wish:read"]],
+    denormalizationContext: ["groups" => ["wish:write"]],
+    collectionOperations: [
+        "get",
+        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+    ]
+)]
 class Wish implements CacheableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["wish:read"])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Groups(["wish:read", "wish:write"])]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
+    #[Groups(["wish:read", "wish:write"])]
     private ?string $url = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: "string", nullable: true)]
+    #[Groups(["wish:read", "wish:write"])]
     private ?string $price = null;
 
-    /**
-     * @ORM\Column(type="string", length=6, nullable=true)
-     */
+    #[ORM\Column(type: "string", length: 6, nullable: true)]
+    #[Groups(["wish:read", "wish:write"])]
+    #[Assert\Currency]
     private ?string $currency;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="wishes")
-     */
+    #[ORM\ManyToOne(targetEntity: "Wishlist", inversedBy: "wishes")]
+    #[Assert\NotBlank]
+    #[Groups(["wish:read", "wish:write"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Wishlist $wishlist;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     */
+    #[ORM\ManyToOne(targetEntity: "User")]
+    #[Groups(["wish:read"])]
     private ?User $owner = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
+    #[Groups(["wish:read", "wish:write"])]
     private ?string $comment = null;
 
-    /**
-     * @Upload(path="image", smallThumbnailPath="imageSmallThumbnail")
-     */
+    #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
+    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
+    #[Groups(["wish:write"])]
     private ?File $file = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["wish:read"])]
     private ?string $image = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, unique=true)
-     */
+    #[ORM\Column(type: "string", nullable: true, unique: true)]
+    #[Groups(["wish:read"])]
     private ?string $imageSmallThumbnail = null;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["wish:read", "wish:write"])]
     private string $visibility;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "string", length: 10, nullable: true)]
+    #[Groups(["wish:read"])]
+    private ?string $parentVisibility;
+
+    #[ORM\Column(type: "string", length: 10)]
+    #[Groups(["wish:read"])]
+    private string $finalVisibility;
+
+    #[ORM\Column(type: "datetime")]
+    #[Groups(["wish:read"])]
     private \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(["wish:read"])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -158,18 +167,6 @@ class Wish implements CacheableInterface
     public function setComment(?string $comment): self
     {
         $this->comment = $comment;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
 
         return $this;
     }
@@ -262,6 +259,42 @@ class Wish implements CacheableInterface
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
+
+        return $this;
+    }
+
+    public function getVisibility(): ?string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getParentVisibility(): ?string
+    {
+        return $this->parentVisibility;
+    }
+
+    public function setParentVisibility(?string $parentVisibility): self
+    {
+        $this->parentVisibility = $parentVisibility;
+
+        return $this;
+    }
+
+    public function getFinalVisibility(): string
+    {
+        return $this->finalVisibility;
+    }
+
+    public function setFinalVisibility(string $finalVisibility): self
+    {
+        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

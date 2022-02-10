@@ -30,7 +30,7 @@ class TagController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/tags', 'fr' => '/utilisateur/{username}/tags'],
-        name: 'app_user_tag_index', methods: ['GET']
+        name: 'app_shared_tag_index', methods: ['GET']
     )]
     public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler,
                           int $paginationItemsPerPage, TagRepository $tagRepository
@@ -71,7 +71,7 @@ class TagController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/tags/{id}', 'fr' => '/utilisateur/{username}/tags/{id}'],
-        name: 'app_user_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     #[Entity('tag', expr: 'repository.findWithItems(id)', class: Tag::class)]
     public function show(Tag $tag, TagRepository $tagRepository) : Response
@@ -172,7 +172,7 @@ class TagController extends AbstractController
     )]
     #[Route(
         path: ['en' => '/user/{username}/tags/{tagId}/items/{itemId', 'fr' => '/utilisateur/{username}tags/{tagId}/objets/{itemId}'],
-        name: 'app_user_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
     )]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]

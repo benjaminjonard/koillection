@@ -61,7 +61,7 @@ class TagRepository extends ServiceEntityRepository
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
-        if ($context === 'user') {
+        if ($context === 'shared') {
             $qb->having('count(i.id) > 0');
         }
 
@@ -83,7 +83,7 @@ class TagRepository extends ServiceEntityRepository
             ->from(Tag::class, 't')
         ;
 
-        if ($context === 'user') {
+        if ($context === 'shared') {
             $qb
                 ->innerJoin('t.items', 'i')
                 ->having('count(i.id) > 1')

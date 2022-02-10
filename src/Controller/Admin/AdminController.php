@@ -26,9 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
-/**
- * @IsGranted("ROLE_ADMIN")
- */
+#[IsGranted("ROLE_ADMIN")]
 class AdminController extends AbstractController
 {
     #[Route(path: ['en' => '/admin', 'fr' => '/admin'], name: 'app_admin_index', methods: ['GET'])]

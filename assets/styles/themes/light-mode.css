@@ -107,3 +107,5 @@ html.loading:before,
 
 /* Cancel */
 .btn-cancel {background-color: #e53935!important;}
+
+.visibility .fa-secondary {text-shadow: -1px 0 #FFF, 0 1px #FFF, 1px 0 #FFF, 0 -1px #FFF;}

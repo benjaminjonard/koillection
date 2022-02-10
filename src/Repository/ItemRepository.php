@@ -7,6 +7,8 @@ namespace App\Repository;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Entity\User;
+use App\Enum\DatumTypeEnum;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
@@ -180,6 +182,34 @@ class ItemRepository extends ServiceEntityRepository
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    public function findWithSigns() : array
+    {
+        return $this
+            ->createQueryBuilder('i')
+            ->leftJoin('i.data', 'd')
+            ->addSelect('d')
+            ->andWhere('d.type = :type')
+            ->orderBy('i.name', 'ASC')
+            ->setParameter('type', DatumTypeEnum::TYPE_SIGN)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findOneWithRelatedItemsByUser(User $user)
+    {
+        return $this
+            ->createQueryBuilder('i')
+            ->leftJoin('i.relatedItems', 'r')
+            ->addSelect('r')
+            ->where('i.owner = :user')
+            ->setParameter('user', $user)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
         ;
     }
 }

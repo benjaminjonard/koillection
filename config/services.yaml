@@ -62,7 +62,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, lazy: true }
 
-    #Global listeners
+    #Doctrine listeners
     App\EventListener\CounterCacheListener:
         tags:
             - { name: doctrine.event_listener, event: postPersist, lazy: true }
@@ -73,44 +73,34 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
             - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+
     App\EventListener\OwnershipListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
+
     App\EventListener\ColorListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
+
     App\EventListener\UploadListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
             - { name: doctrine.event_listener, event: postRemove, lazy: true }
             - { name: doctrine.event_listener, event: postLoad, lazy: true }
+
     App\EventListener\LoggableListener:
         tags:
             - { name: doctrine.event_listener, event: postPersist, lazy: true, priority: -5 }
             - { name: doctrine.event_listener, event: preRemove, lazy: true, priority: -5 }
             - { name: doctrine.event_listener, event: onFlush, lazy: true, priority: -5 }
 
-    #Entity listeners
-    App\EventListener\Entity\AlbumListener:
+    App\EventListener\VisibilityListener:
         tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\PhotoListener:
-        tags:
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\CollectionListener:
-        tags:
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\ItemListener:
-        tags:
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\WishlistListener:
-        tags:
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\WishListener:
-        tags:
-            - { name: doctrine.event_listener, event: onFlush, lazy: true }
-    App\EventListener\Entity\UserListener:
+
+    App\EventListener\UserListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
             - { name: doctrine.event_listener, event: preUpdate, lazy: true }
@@ -120,3 +110,20 @@ services:
     App\Form\Extension\ModelTransformerExtension:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    # API
+    Api\OpenApi\JwtDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    Api\Doctrine\Extension\OwnershipExtension:
+        tags:
+            - { name: api_platform.doctrine.orm.query_extension.collection }
+            - { name: api_platform.doctrine.orm.query_extension.item }
+    Api\Encoder\MultipartDecoder:
+        tags:
+            - { name: serializer.encoder }
+    Api\Serializer\ApiNormalizer:
+        decorates: 'api_platform.jsonld.normalizer.item'
+    Api\Serializer\UploadedFileDenormalizer:
+        tags:
+            - { name: serializer.normalizer }

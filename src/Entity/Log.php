@@ -4,59 +4,57 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\LogRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
- * @ORM\Table(name="koi_log")
- */
+#[ORM\Entity(repositoryClass: LogRepository::class)]
+#[ORM\Table(name: "koi_log")]
+#[ApiResource(
+    normalizationContext: ["groups" => ["log:read"]],
+    denormalizationContext: ["groups" => ["log:write"]],
+    collectionOperations: ["get"],
+    itemOperations: ["get"]
+)]
 class Log
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length="36", unique=true, options={"fixed"=true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
+    #[Groups(["log:read"])]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    #[ORM\Column(type: "string", length: 6, nullable: true)]
+    #[Groups(["log:read"])]
     private ?string $type;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
+    #[Groups(["log:read"])]
     private ?\DateTimeInterface $loggedAt = null;
 
-    /**
-     * @ORM\Column(type="uuid")
-     */
+    #[ORM\Column(type: "string", length: 36)]
+    #[Groups(["log:read"])]
     private string $objectId;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Groups(["log:read"])]
     private string $objectLabel;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string")]
+    #[Groups(["log:read"])]
     private string $objectClass;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": 0})
-     */
+    #[ORM\Column(type: "boolean", options: ["default" => 0])]
+    #[Groups(["log:read"])]
     private bool $objectDeleted;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
+    #[Groups(["log:read"])]
     private ?string $payload;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="logs")
-     */
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "logs")]
+    #[Groups(["log:read"])]
     private ?User $owner;
 
     public function __construct()

@@ -193,3 +193,5 @@ progress[value]::-ms-fill{background-color:#009688;}
 
 .breadcrumb-item a, .datepicker-day-button:focus
 {color: #80cbc4;}
+
+.visibility .fa-secondary {text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;}

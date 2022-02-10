@@ -1,0 +1,14 @@
+App\Entity\Field:
+  field_admin_{1..50}:
+    name: "<word(2)>"
+    template: "@template_admin_<($current % 10 + 1)>"
+    type: "text"
+    position: 1
+    owner: "@admin"
+
+  field_user_{1..50}:
+    name: "<word(2)>"
+    template: "@template_user_<($current % 10 + 1)>"
+    type: "text"
+    position: 1
+    owner: "@user"

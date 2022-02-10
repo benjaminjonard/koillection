@@ -36,21 +36,12 @@ class ThumbnailGenerator
         if ($mime === IMAGETYPE_GIF) {
             $this->gifResizer->resize($path, $thumbnailPath, $thumbnailWidth, $thumbnailHeight);
         } else {
-            switch ($mime) {
-                case IMAGETYPE_JPEG:
-                case IMAGETYPE_JPEG2000:
-                    $image = imagecreatefromjpeg($path);
-                    break;
-                case IMAGETYPE_PNG:
-                    $image = imagecreatefrompng($path);
-                    break;
-                case IMAGETYPE_WEBP:
-                    $image = imagecreatefromwebp($path);
-                    break;
-                default:
-                    throw new \Exception('Your image cannot be processed, please use another one.');
-            }
-
+            $image = match ($mime) {
+                IMAGETYPE_JPEG, IMAGETYPE_JPEG2000 => imagecreatefromjpeg($path),
+                IMAGETYPE_PNG => imagecreatefrompng($path),
+                IMAGETYPE_WEBP => imagecreatefromwebp($path),
+                default => throw new \Exception('Your image cannot be processed, please use another one.'),
+            };
 
             $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
@@ -86,5 +77,53 @@ class ThumbnailGenerator
         }
 
         return true;
+    }
+
+    function crop(string $path, int $maxWidth, int $maxHeight)
+    {
+        list($width, $height, $mime) = getimagesize($path);
+        $ratio = $width / $height;
+
+        if ($width > $height) {
+            $width = (int) ceil($width-($width*abs($ratio-$maxWidth/$maxHeight)));
+        } else {
+            $height = (int) ceil($height-($height*abs($ratio-$maxWidth/$maxHeight)));
+        }
+        $newWidth = $maxWidth;
+        $newHeight = $maxHeight;
+
+        $image = match ($mime) {
+            IMAGETYPE_JPEG, IMAGETYPE_JPEG2000 => imagecreatefromjpeg($path),
+            IMAGETYPE_PNG => imagecreatefrompng($path),
+            IMAGETYPE_WEBP => imagecreatefromwebp($path),
+            default => throw new \Exception('Your image cannot be processed, please use another one.'),
+        };
+
+
+        $resized = imagecreatetruecolor($newWidth, $newHeight);
+
+        //Transparency
+        if ($mime === IMAGETYPE_PNG || $mime === IMAGETYPE_WEBP) {
+            imagecolortransparent($resized, imagecolorallocate($resized, 0, 0, 0));
+            imagealphablending($resized, false);
+            imagesavealpha($resized, true);
+        }
+
+        imagecopyresampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+        switch ($mime) {
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
+                imagejpeg($resized, $path, 100);
+                break;
+            case IMAGETYPE_PNG:
+                imagepng($resized, $path);
+                break;
+            case IMAGETYPE_WEBP:
+                imagewebp($resized, $path, 100);
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -18,7 +18,7 @@ services:
             - DB_PORT=5432
             - DB_USER=postgres
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
-            - DB_VERSION=8
+            - DB_VERSION=14
             - PHP_TZ=Europe/Paris
             - HTTPS_ENABLED=0
         depends_on:
