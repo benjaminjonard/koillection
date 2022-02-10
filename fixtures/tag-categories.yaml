@@ -1,8 +1,10 @@
 App\Entity\TagCategory:
   tag_category_admin_{1..10}:
     label: "<word(2)>"
+    color: '<hexcolor()>'
     owner: "@admin"
 
   tag_category_user_{1..10}:
     label: "<word(2)>"
+    color: '<hexcolor()>'
     owner: "@user"
