@@ -11,7 +11,7 @@ class PaginatorFactory
 {
     public function __construct(
         private RequestStack $requestStack,
-        private int $paginationItemsPerPage
+        private int $paginationItemsPerPage = 15
     ) {}
 
     public function generate(int $totalItems, string $url = null, array $params = null, $queryParam = 'page') : Paginator

@@ -18,11 +18,11 @@ class HistoryController extends AbstractController
         path: ['en' => '/history', 'fr' => '/historique'],
         name: 'app_history_index', methods: ['GET']
     )]
-    public function index(Request $request, PaginatorFactory $paginatorFactory, LogRepository $logRepository, int $paginationItemsPerPage) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory, LogRepository $logRepository) : Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
 
-        $search = new SearchHistory($request->query->getInt('page', 1), $paginationItemsPerPage);
+        $search = new SearchHistory($request->query->getInt('page', 1), 15);
         $form = $this->createForm(SearchHistoryType::class, $search, [
             'method' => 'GET',
         ]);
