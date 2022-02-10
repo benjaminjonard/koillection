@@ -3,7 +3,9 @@
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Collection;
 use App\Entity\Datum;
+use App\Entity\Item;
 use Symfony\Component\HttpFoundation\Response;
 
 class DatumCurrentUserTest extends AuthenticatedTest
@@ -14,7 +16,7 @@ class DatumCurrentUserTest extends AuthenticatedTest
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(200, $data['hydra:totalItems']);
+        $this->assertEquals(600, $data['hydra:totalItems']);
         $this->assertCount(30, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
@@ -30,6 +32,28 @@ class DatumCurrentUserTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetDatumItem(): void
+    {
+        $datum = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0]->getData()[0];
+        $iri = $this->iriConverter->getIriFromItem($datum);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Item::class);
+    }
+
+    public function testGetDatumCollection(): void
+    {
+        $datum = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0]->getData()[0];
+        $iri = $this->iriConverter->getIriFromItem($datum);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Collection::class);
     }
 
     public function testPutDatum(): void

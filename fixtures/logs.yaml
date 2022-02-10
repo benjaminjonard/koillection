@@ -1,19 +1,19 @@
 App\Entity\Log:
-  log_admin_1:
+  log_admin_{1..50}:
     owner: "@admin"
     type: "create"
     loggedAt: <(new \DateTime())>
-    objectId: "@item_admin_1->id"
-    objectLabel: "@item_admin_1->name"
+    objectId: "@item_admin_<current()>->id"
+    objectLabel: "@item_admin_<current()>->name"
     objectClass: "App\\Entity\\Item"
     objectDeleted: false
 
 
-  log_user_1:
+  log_user_{1..50}:
     owner: "@user"
     type: "create"
     loggedAt: <(new \DateTime())>
-    objectId: "@item_user_1->id"
-    objectLabel: "@item_user_1->name"
+    objectId: "@item_user_<current()>->id"
+    objectLabel: "@item_user_<current()>->name"
     objectClass: "App\\Entity\\Item"
     objectDeleted: false

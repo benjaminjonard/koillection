@@ -17,6 +17,15 @@ class LoanOtherUserTest extends AuthenticatedTest
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
+    public function testCantGetAnotherUserFieldTemplate(): void
+    {
+        $loan = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($loan);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function testCantPutAnotherUserLoan(): void
     {
         $loan = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->otherUser], [], 1)[0];

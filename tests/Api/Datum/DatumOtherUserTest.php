@@ -3,7 +3,9 @@
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Collection;
 use App\Entity\Datum;
+use App\Entity\Item;
 use Symfony\Component\HttpFoundation\Response;
 
 class DatumOtherUserTest extends AuthenticatedTest
@@ -14,6 +16,24 @@ class DatumOtherUserTest extends AuthenticatedTest
         $iri = $this->iriConverter->getIriFromItem($datum);
 
         $this->createClientWithCredentials()->request('GET', $iri);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCantGetAnotherUserDatumItem(): void
+    {
+        $datum = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0]->getData()[0];
+        $iri = $this->iriConverter->getIriFromItem($datum);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCantGetAnotherUserDatumCollection(): void
+    {
+        $datum = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0]->getData()[0];
+        $iri = $this->iriConverter->getIriFromItem($datum);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 

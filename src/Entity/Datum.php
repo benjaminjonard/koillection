@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DatumTypeEnum;
@@ -35,10 +36,12 @@ class Datum implements LoggableInterface
 
     #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "data")]
     #[Groups(["datum:read"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
     #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "data")]
     #[Groups(["datum:read"])]
+    #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
     #[ORM\Column(type: "string", length: 10)]

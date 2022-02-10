@@ -3,6 +3,7 @@
 namespace App\Tests\Api\Template;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Field;
 use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,6 +16,20 @@ class TemplateOtherUserTest extends AuthenticatedTest
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCantGetAnotherUserTemplateFields(): void
+    {
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($template);
+
+        $response = $this->createClientWithCredentials()->request('GET', $iri . '/fields');
+        $data = $response->toArray();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertCount(0, $data['hydra:member']);
+        $this->assertMatchesResourceCollectionJsonSchema(Field::class);
     }
 
     public function testCantPutAnotherUserTemplate(): void

@@ -10,9 +10,12 @@ class LogCurrentUserTest extends AuthenticatedTest
 {
     public function testGetLogs(): void
     {
-        $this->createClientWithCredentials()->request('GET', '/api/logs');
+        $response = $this->createClientWithCredentials()->request('GET', '/api/logs');
+        $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
+        $this->assertEquals(50, $data['hydra:totalItems']);
+        $this->assertCount(30, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Log::class);
     }
 

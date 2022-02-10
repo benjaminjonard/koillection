@@ -3,6 +3,7 @@
 namespace App\Tests\Api\Loan;
 
 use Api\Tests\AuthenticatedTest;
+use App\Entity\Item;
 use App\Entity\Loan;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -30,6 +31,17 @@ class LoanCurrentUserTest extends AuthenticatedTest
         $this->assertJsonContains([
             '@id' => $iri
         ]);
+    }
+
+    public function testGetLoanItem(): void
+    {
+        $loan = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $iri = $this->iriConverter->getIriFromItem($loan);
+
+        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Item::class);
     }
 
     public function testPutLoan(): void
