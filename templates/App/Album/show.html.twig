@@ -95,7 +95,7 @@
                         {% for photo in photos %}
                                 {% set photoText = include('App/Album/_photo_text.html.twig') %}
                                 <a class="collection-item element valign-wrapper"
-                                   href="{{ preload(asset(photo.image|default('build/images/default.png')), {as: 'image'}) }}"
+                                   href="{{ asset(photo.image|default('build/images/default.png')) }}"
                                    data-lightbox-target="image"
                                    {% if context == 'default' %}
                                        data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
@@ -106,7 +106,7 @@
                                    data-filter-target="element"
                                 >
                                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                        <img data-src="{{ preload(asset(photo.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                                        <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
                                              data-lazy-loading-target="image"
                                              aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}"
                                         >
