@@ -4602,5 +4602,11 @@
           <target>Publique - Raison : votre profil est publique</target>
       </segment>
     </unit>
+    <unit id="smf987z" name="global.welcome">
+      <segment>
+          <source>global.welcome</source>
+          <target>Bienvenue sur Koillection</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

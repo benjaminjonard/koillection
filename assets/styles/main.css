@@ -378,11 +378,13 @@ html.loading:before {
 .box {max-width: 360px; margin: 100px auto 0 auto;}
 .box h1 {color: #f0f2f5; background-color: #009688; font-size: 28px; word-break: normal; padding: 40px 20px; text-align: center; position: relative; margin: 0;}
 .box .logo {position: absolute; left: 0; right: 0; bottom: -37px; height: 75px; width: 75px; background-image: url('../img/logo.svg'); background-repeat: no-repeat; background-size: 39px; background-position: center center; border-radius: 50%; margin: 0 auto; background-color: #009688; z-index: 5;}
+.error .box .logo {background-image: url('../img/error.png'); background-size: 57px;}
 .box .content {background-color: #fff;}
-.box form {padding: 30px 50px 50px 50px}
 .box h2.header {text-align: center; padding: 0 0 30px 0;}
 .box .locales-dropdown {padding: 10px 10px 0 0; float: right;}
 .box .submit {padding: 15px 0;}
+.box .body {padding: 30px 50px 50px;}
+.error .box .body {padding-top: 50px;}
 
 .header-profile {flex: 0 0 auto; height: 50px; cursor: pointer; margin-right: 10px; margin-top: auto; margin-bottom: auto;}
 .header-profile .user-avatar {height: 50px; width: 50px; border-radius: 50%; box-shadow: 0 1px 2px 0 rgba(60,64,67,.302),0 1px 3px 1px rgba(60,64,67,.149)}
@@ -614,3 +616,4 @@ i.btn input {color: #fff; cursor: pointer;}
 .select-tip {display: block;}
 .input-checkbox {margin: 3rem 0;}
 .input-checkbox > label {-webkit-transform: none; transform: none;}
+.error {background-color: #99a3a8;}

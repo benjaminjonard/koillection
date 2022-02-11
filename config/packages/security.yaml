@@ -15,7 +15,7 @@ security:
 
     firewalls:
         dev:
-            pattern: ^/_(profiler|wdt)
+            pattern: ^/_(profiler|wdt|error)
             security: false
         api:
             pattern: ^/api
