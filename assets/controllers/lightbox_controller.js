@@ -1,5 +1,5 @@
 import Lightbox from "stimulus-lightbox"
-import '../node_modules/lightgallery.js/dist/css/lightgallery.min.css';
+import '../node_modules/lightgallery/css/lightgallery-bundle.min.css';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Lightbox {
