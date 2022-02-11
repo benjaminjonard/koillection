@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import { Tooltip } from 'materialize-css';
+import { Tooltip } from '@materializecss/materialize';
 
 export default class extends Controller {
     connect() {

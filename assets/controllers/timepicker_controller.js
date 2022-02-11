@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import { Timepicker } from 'materialize-css';
+import { Timepicker } from '@materializecss/materialize';
 
 export default class extends Controller {
     connect() {

@@ -1,10 +1,10 @@
 import { Controller } from 'stimulus';
-import { Datepicker } from 'materialize-css';
+import { Datepicker } from '@materializecss/materialize';
 import Translator from "../js/translator.min";
 
 export default class extends Controller {
     connect() {
-        M.Datepicker.init(this.element, {
+        Datepicker.init(this.element, {
             months: [Translator.trans('global.months.january'), Translator.trans('global.months.february'),
                 Translator.trans('global.months.march'), Translator.trans('global.months.april'), Translator.trans('global.months.may'),
                 Translator.trans('global.months.june'), Translator.trans('global.months.july'), Translator.trans('global.months.august'),
