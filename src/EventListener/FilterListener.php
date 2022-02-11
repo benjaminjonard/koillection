@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Service\ContextHandler;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Security;
 
@@ -20,8 +21,12 @@ class FilterListener
         private UserRepository $userRepository
     ) {}
 
-    public function onKernelRequest()
+    public function onKernelRequest(RequestEvent $event)
     {
+        if ($event->getRequest()->attributes->has('exception')) {
+            return;
+        }
+
         $filters = $this->managerRegistry->getManager()->getFilters();
         $context = $this->contextHandler->getContext();
 
