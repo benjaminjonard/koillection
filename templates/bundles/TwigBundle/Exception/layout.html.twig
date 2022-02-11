@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="content-wrapper">
-        <div class="content-block">
-            <img src="{{ preload(asset('build/images/error.png'), {nopush: true}) }}">
-            <h3>{% block error %}{% endblock %}</h3>
-            <a href="{{ path('app_homepage') }}">{{ 'message.return_to_homepage'|trans }}</a>
+    <div class="content-wrapper error-page">
+        <div class="box">
+
+                <h1>
+                    Welcome to Koillection
+                    <div class='logo' aria-label="Logo"></div>
+                </h1>
+                <div class="content body">
+                    <h2 class="header">{% block error %}{% endblock %}</h2>
+                    <a href="{{ path('app_homepage') }}">{{ 'message.return_to_homepage'|trans }}</a>
+                </div>
+
+
         </div>
     </div>
 {% endblock %}

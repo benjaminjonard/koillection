@@ -4599,5 +4599,11 @@
           <target>Public - Reason : your profile is public</target>
       </segment>
     </unit>
+    <unit id="smf987z" name="global.welcome">
+      <segment>
+          <source>global.welcome</source>
+          <target>Welcome to Koillection</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
