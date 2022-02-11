@@ -1,8 +1,9 @@
 import { Controller } from 'stimulus';
-import echarts from "echarts/lib/echarts";
-import line from 'echarts/lib/chart/line';
-import tooltip from 'echarts/lib/component/tooltip';
 import Translator from "../../js/translator.min";
+import * as echarts from 'echarts/lib/echarts'
+import { GridComponent, DataZoomComponent, TooltipComponent } from 'echarts/components';
+import { LineChart } from 'echarts/charts';
+echarts.use([GridComponent, DataZoomComponent, TooltipComponent, LineChart]);
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
@@ -28,9 +29,7 @@ export default class extends Controller {
                 type: 'category',
                 data: Object.keys(data),
                 axisLabel: {
-                    textStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
-                    }
+                    color: this.isDarkMode ? '#f0f0f0': '#323233'
                 },
                 axisTick: {
                     alignWithLabel: true,
@@ -47,9 +46,7 @@ export default class extends Controller {
             yAxis: {
                 type: 'value',
                 axisLabel: {
-                    textStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
-                    }
+                    color: this.isDarkMode ? '#f0f0f0': '#323233'
                 },
                 axisTick: {
                     lineStyle: {
@@ -63,7 +60,7 @@ export default class extends Controller {
                 }
             },
             dataZoom: [{
-                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                handleIcon: 'path://M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
                 handleSize: '80%',
                 handleStyle: {
                     color: '#fff',
@@ -80,9 +77,7 @@ export default class extends Controller {
                 symbol: 'none',
                 sampling: 'average',
                 areaStyle: {
-                    normal: {
-                        color: this.isDarkMode ? '#00ce99' : '#009688'
-                    }
+                    color: this.isDarkMode ? '#00ce99' : '#009688'
                 }
             }]
         });

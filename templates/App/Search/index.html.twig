@@ -68,7 +68,7 @@
                             <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
                                 <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
                                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                        <img data-src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {nopush: true}) }}"
+                                        <img data-src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                              data-lazy-loading-target="image"
                                              aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
                                         >

@@ -47,9 +47,9 @@
     <div class="item-wrapper">
         <div class="slider-container item-image-container {{ item.dataTexts|length > 0 ? 'margin-right-30' }}" {{ stimulus_controller('slider') }}>
             <div class="slider-frame" {{ stimulus_controller('lightbox') }}>
-                    <a href="{{ preload(asset(item.image|default('build/images/default.png')), {nopush: true}) }}" data-sub-html="{{ 'label.main_image'|trans }}" data-slider-target="image" data-id="{{ item.id }}" class="active">
+                    <a href="{{ preload(asset(item.image|default('build/images/default.png')), {as: 'image'}) }}" data-sub-html="{{ 'label.main_image'|trans }}" data-slider-target="image" data-id="{{ item.id }}" class="active">
                         <div>
-                            <img src="{{ preload(asset(item.imageLargeThumbnail|default('build/images/default.png')), {nopush: true}) }}"
+                            <img src="{{ preload(asset(item.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  title="{{ 'label.main_image'|trans }}"
                                  aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}"
                             >
@@ -57,9 +57,9 @@
                         </div>
                     </a>
                 {% for datum in item.dataImages %}
-                    <a href="{{ preload(asset(datum.image|default('build/images/default.png')), {nopush: true}) }}" data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                    <a href="{{ preload(asset(datum.image|default('build/images/default.png')), {as: 'image'}) }}" data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
                         <div>
-                            <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {nopush: true}) }}"
+                            <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  title="{{ 'label.main_image'|trans }}"
                                  aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}"
                             >
@@ -73,7 +73,7 @@
             {% if item.dataImages|length > 0 %}
                 <ul class="slider-elements">
                     <li>
-                        <img src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {nopush: true}) }}"
+                        <img src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                              class="active"
                              data-id="{{ item.id }}"
                              data-slider-target="thumbnail"
@@ -84,7 +84,7 @@
 
                     {% for datum in item.dataImages %}
                         <li>
-                            <img src="{{ preload(asset(datum.imageSmallThumbnail|default('build/images/default.png')), {nopush: true}) }}"
+                            <img src="{{ preload(asset(datum.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  data-id="{{ datum.id }}"
                                  data-slider-target="thumbnail"
                                  data-action="click->slider#display"
@@ -111,7 +111,7 @@
                         <span class="flag">{{ getCountryFlag(datum.value) }}</span>
                         <span class="country-name">({{ getCountryName(datum.value) }})</span>
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
-                        <a href="{{ preload(asset(datum.file), {nopush: true}) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
+                        <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
                         {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') %}

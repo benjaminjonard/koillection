@@ -41,13 +41,13 @@
         <div id="collection-items" class="grid-container-items" {{ stimulus_controller('lightbox') }}>
             {% for sign in signs %}
                 <a class="collection-item element valign-wrapper"
-                   href="{{ preload(asset(sign.image), {nopush: true}) }}"
+                   href="{{ preload(asset(sign.image), {as: 'image'}) }}"
                    data-lightbox-target="image"
                    data-sub-html="{{ sign.item.name }} - {{ sign.label }}"
                    data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
                 >
                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                        <img data-src="{{ preload(asset(sign.imageSmallThumbnail|default('build/images/default.png')), {nopush: true}) }}"
+                        <img data-src="{{ preload(asset(sign.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                              data-lazy-loading-target="image"
                              aria-label="{{ 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}) }}"
                         >

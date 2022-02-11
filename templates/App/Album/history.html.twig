@@ -15,7 +15,7 @@
         <div class="title-block">
             <div class="left">
                 {% if album.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(album.image), {nopush: true}) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(album.image), {as: 'image'}) }}">
                 {% else %}
                     <span class="thumbnail color-avatar circle avatar color-{{ album.color }}" aria-hidden="true">{{album.title|first|upper}}</span>
                 {% endif %}
