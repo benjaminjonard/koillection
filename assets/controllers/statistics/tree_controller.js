@@ -1,8 +1,8 @@
 import { Controller } from 'stimulus';
-import echarts from "echarts/lib/echarts";
-import tree from 'echarts/lib/chart/tree';
-import tooltip from 'echarts/lib/component/tooltip';
-import Translator from "../../js/translator.min";
+import * as echarts from 'echarts/lib/echarts'
+import { TooltipComponent } from 'echarts/components';
+import { TreeChart } from 'echarts/charts';
+echarts.use([TooltipComponent, TreeChart]);
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {

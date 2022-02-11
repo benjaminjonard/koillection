@@ -1,10 +1,9 @@
 import { Controller } from 'stimulus';
-import echarts from "echarts/lib/echarts";
-import heatmap from 'echarts/lib/chart/heatmap';
-import calendar from 'echarts/lib/component/calendar';
-import visualMap from 'echarts/lib/component/visualMap';
-import tooltip from 'echarts/lib/component/tooltip';
 import Translator from "../../js/translator.min";
+import * as echarts from 'echarts/lib/echarts'
+import { TooltipComponent, CalendarComponent, VisualMapComponent } from 'echarts/components';
+import { HeatmapChart } from 'echarts/charts';
+echarts.use([TooltipComponent, CalendarComponent, VisualMapComponent, HeatmapChart]);
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
@@ -68,11 +67,9 @@ export default class extends Controller {
                 cellSize: 20,
                 yearLabel: {show: false},
                 itemStyle: {
-                    normal: {
-                        borderWidth: 2,
-                        borderColor: this.isDarkMode ? '#36393e' : '#ffffff',
-                        color: this.isDarkMode ? '#7d7f82' : '#ededed'
-                    },
+                    borderWidth: 2,
+                    borderColor: this.isDarkMode ? '#36393e' : '#ffffff',
+                    color: this.isDarkMode ? '#7d7f82' : '#ededed'
                 },
                 dayLabel: {
                     show: false

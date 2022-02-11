@@ -1,8 +1,9 @@
 import { Controller } from 'stimulus';
-import echarts from "echarts/lib/echarts";
-import bar from 'echarts/lib/chart/bar';
-import tooltip from 'echarts/lib/component/tooltip';
 import Translator from "../../js/translator.min";
+import * as echarts from 'echarts/lib/echarts'
+import { TooltipComponent } from 'echarts/components';
+import { BarChart } from 'echarts/charts';
+echarts.use([TooltipComponent, BarChart]);
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
@@ -24,9 +25,7 @@ export default class extends Controller {
                 type : 'category',
                 data: data.map(element => element.abscissa),
                 axisLabel: {
-                    textStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
-                    }
+                    color: this.isDarkMode ? '#f0f0f0': '#323233'
                 },
                 axisTick: {
                     alignWithLabel: true,
@@ -47,9 +46,7 @@ export default class extends Controller {
                     }
                 },
                 axisLabel: {
-                    textStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
-                    }
+                    color: this.isDarkMode ? '#f0f0f0': '#323233'
                 },
                 axisTick: {
                     lineStyle: {

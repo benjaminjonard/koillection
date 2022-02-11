@@ -311,7 +311,7 @@ form:not(.login) .required:after {content: "*"!important;}
 .btn-grey {color: #ccc}
 
 .pagination-wrapper {text-align: center; display: table; margin: 10px auto;}
-.pagination-wrapper ul {display: inline-block; margin: 0; padding: 0; /* For IE, the outcast */ zoom:1; *display: inline;}
+.pagination-wrapper ul {display: inline-block; margin: 0; padding: 0;}
 .pagination-wrapper li {float: left;}
 
 .error {display: flex; justify-content: center; align-items: center; }
