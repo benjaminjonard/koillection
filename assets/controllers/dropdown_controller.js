@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import { Dropdown } from 'materialize-css';
+import { Dropdown } from '@materializecss/materialize';
 
 export default class extends Controller {
     connect() {
