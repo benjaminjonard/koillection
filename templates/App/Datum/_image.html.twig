@@ -2,13 +2,13 @@
     <label class="file-label">
         {% if datum is defined and datum.image is not null %}
             <img data-preview-target="image"
-                 class="preview-image" src="{{ preload(asset(datum.imageSmallThumbnail), {nopush: true}) }}"
+                 class="preview-image" src="{{ preload(asset(datum.imageSmallThumbnail), {as: 'image'}) }}"
                  aria-label="{{ 'aria.datum_image_thumbnail' }}"
             />
         {% else %}
             <img data-preview-target="image"
                  class="preview-image"
-                 src="{{ preload(asset('build/images/default.png'), {nopush: true}) }}"
+                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
                  aria-label="{{ 'aria.default_image'|trans }}"
             />
         {% endif %}

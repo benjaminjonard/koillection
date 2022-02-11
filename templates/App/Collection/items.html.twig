@@ -28,7 +28,7 @@
             <div class="title-block">
                 <div class="left">
                     {% if collection.image != null %}
-                        <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {nopush: true}) }}">
+                        <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
                     {% else %}
                         <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
                     {% endif %}
@@ -68,7 +68,7 @@
                             <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
                                 <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                        <img data-src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {nopush: true}) }}"
+                                        <img data-src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                              data-lazy-loading-target="image"
                                              aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
                                         >

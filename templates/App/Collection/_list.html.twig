@@ -3,7 +3,7 @@
         <a class="collection-circle-thumbnail" href="{{ path('app_collection_show'|applyContext, {'id': collection.id}) }}" aria-label="{{ 'aria.collection'|trans({'%title%': collection.title}) }}">
             {% if collection.image != null %}
                 <div class="image-wrapper placeholder placeholder--circle" {{ stimulus_controller('lazy-loading') }}>
-                    <img data-src="{{ preload(asset(collection.image), {nopush: true}) }}" data-lazy-loading-target="image">
+                    <img data-src="{{ preload(asset(collection.image), {as: 'image'}) }}" data-lazy-loading-target="image">
                 </div>
             {% else %}
                 <span class="color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
