@@ -3,7 +3,7 @@
         <a class="collection-circle-thumbnail" href="{{ path('app_wishlist_show'|applyContext, {'id': wishlist.id}) }}"  aria-label="{{ 'aria.wishlist'|trans({'%name%': wishlist.name}) }}">
             {% if wishlist.image != null %}
                 <div class="image-wrapper placeholder placeholder--circle" {{ stimulus_controller('lazy-loading') }}>
-                    <img data-src="{{ preload(asset(wishlist.image), {as: 'image'}) }}" data-lazy-loading-target="image">
+                    <img data-src="{{ asset(wishlist.image) }}" data-lazy-loading-target="image">
                 </div>
             {% else %}
                 <span class="color-avatar circle avatar color-{{ wishlist.color }}">{{wishlist.name|first|upper}}</span>

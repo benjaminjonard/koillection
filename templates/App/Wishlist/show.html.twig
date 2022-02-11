@@ -111,7 +111,7 @@
                             <tr class="list-element resize-element" data-title="{{ wish.name }}" data-filter-target="element">
                                 <td {{ stimulus_controller('lightbox') }}>
                                     {% if wish.image %}
-                                        <a href="{{ preload(asset(wish.image), {as: 'image'}) }}" data-lightbox="image-{{ wish.id }}">
+                                        <a href="{{ asset(wish.image) }}" data-lightbox="image-{{ wish.id }}">
                                             <img class="wishlist-item-avatar" src="{{ preload(asset(wish.imageSmallThumbnail), {as: 'image'}) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
                                         </a>
                                     {% else %}

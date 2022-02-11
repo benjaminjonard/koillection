@@ -71,7 +71,7 @@
                     <h2 class="header">{{ 'title.infos'|trans }}</h2>
                     <div class="tag-image-container" {{ stimulus_controller('lightbox') }}>
                         {% if tag.image is not null %}
-                            <a href="{{ preload(asset(tag.image), {as: 'image'}) }}" data-lightbox="image-{{ tag.id }}">
+                            <a href="{{ asset(tag.image) }}" data-lightbox="image-{{ tag.id }}">
                                 <img class="tag-image" src="{{ preload(asset(tag.imageSmallThumbnail), {as: 'image'}) }}" aria-label="{{ 'aria.tag_thumbnail'|trans({'%label%': tag.label}) }}">
                             </a>
                         {% endif %}
@@ -117,7 +117,7 @@
                             <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
                                 <a href="{{ path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) }}">
                                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                        <img data-src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                                        <img data-src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}"
                                              data-lazy-loading-target="image"
                                              aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
                                         >

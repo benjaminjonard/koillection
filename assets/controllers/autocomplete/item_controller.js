@@ -94,8 +94,9 @@ export default class extends Controller {
     }
 
     getChip(item) {
+        var thumbnail = item.thumbnail ? item.thumbnail : '/build/images/default.png';
         return '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.name + '">' +
-            '<td><img src="' + item.thumbnail + '"></td>' +
+            '<td><img src="' + thumbnail + '"></td>' +
             '<td>' + item.name + '</td>' +
             '<td><i data-action="click->autocomplete--item#remove" class="fa fa-times close"></i></td>' +
         '</tr>';

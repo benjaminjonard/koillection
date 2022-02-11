@@ -46,8 +46,8 @@
 <div class="content-block">
     <div class="item-wrapper">
         <div class="slider-container item-image-container {{ item.dataTexts|length > 0 ? 'margin-right-30' }}" {{ stimulus_controller('slider') }}>
-            <div class="slider-frame" {{ stimulus_controller('lightbox') }}>
-                    <a href="{{ preload(asset(item.image|default('build/images/default.png')), {as: 'image'}) }}" data-sub-html="{{ 'label.main_image'|trans }}" data-slider-target="image" data-id="{{ item.id }}" class="active">
+            <div class="slider-frame" {{    stimulus_controller('lightbox') }}>
+                    <a href="{{ asset(item.image|default('build/images/default.png')) }}" data-sub-html="{{ 'label.main_image'|trans }}" data-slider-target="image" data-id="{{ item.id }}" class="active">
                         <div>
                             <img src="{{ preload(asset(item.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  title="{{ 'label.main_image'|trans }}"
@@ -57,7 +57,7 @@
                         </div>
                     </a>
                 {% for datum in item.dataImages %}
-                    <a href="{{ preload(asset(datum.image|default('build/images/default.png')), {as: 'image'}) }}" data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                    <a href="{{ asset(datum.image|default('build/images/default.png')) }}" data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
                         <div>
                             <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  title="{{ 'label.main_image'|trans }}"
