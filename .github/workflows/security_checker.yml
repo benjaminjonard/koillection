@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - master
-      - v1.0
-      - v1.1
+      - "1.0"
+      - "1.1"
+      - "1.2"
+      - "1.3"
 jobs:
   security_checker:
     name: Security checker

@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] / 2022-02-13
+### Features
+- Add a basic REST API, documentation is accessible on /api (Benjamin Jonard)
+- Enhance visibility mechanism: takes parent visibility into account without erasing own visibility (Benjamin Jonard)
+- Display visibility level icon on each page (Benjamin Jonard)
+
+### Fixes
+- Fix first connection auto-login error (Benjamin Jonard)
+- Fix exception loop (Benjamin Jonard)
+
+### Miscellaneous
+- Display flags as emoji instead of images (Benjamin Jonard)
+- Rework error pages (Benjamin Jonard)
+- Update PHP and JS dependencies, fix current CVEs (Benjamin Jonard)
+- Restore asset preloading (Benjamin Jonard)
+
 ## [1.2.5] / 2021-12-20
 ### Fixes
 - Fix duplicates from tags list, order alphabetically (Benjamin Jonard)
