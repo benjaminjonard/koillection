@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 - Display flags as emoji instead of images (Benjamin Jonard)
 - Rework error pages (Benjamin Jonard)
 - Update PHP and JS dependencies, fix current CVEs (Benjamin Jonard)
-- Restore asset preloading (Benjamin Jonard)**
+- Restore asset preloading (Benjamin Jonard)
 
 ## [1.2.5] / 2021-12-20
 ### Fixes
