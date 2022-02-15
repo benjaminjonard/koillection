@@ -48,7 +48,7 @@ services:
         - lan
         labels:
         - traefik.enable=false
-        
+    # Optionnal only if you want an UI to manage your DB   
     pgadmin:
         container_name: pgadmin4_container
         image: dpage/pgadmin4
