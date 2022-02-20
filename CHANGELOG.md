@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] / 2022-02-20
+### Fixes
+- Fix date pickers not displaying (Benjamin Jonard)
+- Fix bug where last common field was incorrectly generated (Benjamin Jonard)
+- Allow empty dates when loading common fields (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS dependencies (Benjamin Jonard)
+- Add pgadmin container to example configuration (Zwordi)
+
 ## [1.3.0] / 2022-02-13
 ### Features
 - Add a basic REST API, documentation is accessible on /api (Benjamin Jonard)

@@ -73,14 +73,14 @@ class DatumController extends AbstractController
         $result = [];
         $i = 0;
 
-        foreach ($commonFields as $label => $commonField) {
-            $result[$i][] = in_array($commonField['type'], [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
+        foreach ($commonFields as $label => $field) {
+            $result[$i][] = in_array($field['type'], [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
             $result[$i][] = $label;
             $result[$i][] = $this->render('App/Datum/_datum.html.twig', [
                 'entity' => 'item',
                 'iteration' => '__placeholder__',
-                'type' => $commonField['type'],
-                'datum' => $commonField['datum']
+                'type' => $field['type'],
+                'datum' => $field['datum']
             ])->getContent();
             $i++;
         }
