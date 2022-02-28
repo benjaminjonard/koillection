@@ -63,7 +63,7 @@ class Log
         $this->objectDeleted = false;
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

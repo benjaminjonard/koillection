@@ -22,22 +22,22 @@ class DatumItemLogger extends Logger
         parent::__construct($translator);
     }
 
-    public function getClass() : string
+    public function getClass(): string
     {
         return Item::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 2;
     }
 
-    public function supports($object) : bool
+    public function supports($object): bool
     {
-        return get_class($object) === Datum::class && $object->getItem() instanceof Item;
+        return \get_class($object) === Datum::class && $object->getItem() instanceof Item;
     }
 
-    public function getCreateLog(LoggableInterface $datum) : ?Log
+    public function getCreateLog(LoggableInterface $datum): ?Log
     {
         if (!$this->supports($datum)) {
             return null;
@@ -65,7 +65,7 @@ class DatumItemLogger extends Logger
         return $log;
     }
 
-    public function getDeleteLog(LoggableInterface $datum) : ?Log
+    public function getDeleteLog(LoggableInterface $datum): ?Log
     {
         if (!$this->supports($datum)) {
             return null;
@@ -88,12 +88,12 @@ class DatumItemLogger extends Logger
         return $log;
     }
 
-    public function getUpdateLog(LoggableInterface $datum, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $datum, array $changeset, array $relations = []): ?Log
     {
         return null;
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         return null;
     }

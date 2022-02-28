@@ -20,9 +20,10 @@ class SecurityController extends AbstractController
 {
     #[Route(
         path: ['en' => '', 'fr' => ''],
-        name: 'app_security_login', methods: ['GET', 'POST']
+        name: 'app_security_login',
+        methods: ['GET', 'POST']
     )]
-    public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository) : Response
+    public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository): Response
     {
         if (0 === $userRepository->count([])) {
             return $this->redirectToRoute('app_security_first_connection');
@@ -40,12 +41,16 @@ class SecurityController extends AbstractController
 
     #[Route(
         path: ['en' => '/first-connection', 'fr' => '/premiere-connexion'],
-        name: 'app_security_first_connection', methods: ['GET', 'POST']
+        name: 'app_security_first_connection',
+        methods: ['GET', 'POST']
     )]
-    public function firstConnectionAction(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session,
-                                          UserRepository $userRepository, ManagerRegistry $managerRegistry
-    ) : Response
-    {
+    public function firstConnectionAction(
+        Request $request,
+        TokenStorageInterface $tokenStorage,
+        SessionInterface $session,
+        UserRepository $userRepository,
+        ManagerRegistry $managerRegistry
+    ): Response {
         if (0 < $userRepository->count([])) {
             return $this->redirectToRoute('app_homepage');
         }

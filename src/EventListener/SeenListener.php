@@ -11,7 +11,8 @@ class SeenListener
 {
     public function __construct(
         private ManagerRegistry $managerRegistry
-    ) {}
+    ) {
+    }
 
     public function onKernelResponse(ResponseEvent $event)
     {

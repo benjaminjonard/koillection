@@ -45,7 +45,7 @@ class CountersCache
             return $counters;
         });
 
-        if (is_object($element)) {
+        if (\is_object($element)) {
             $key .= $element->getId();
         } else {
             $key .= $element;

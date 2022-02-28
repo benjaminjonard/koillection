@@ -23,7 +23,7 @@ class FieldType extends AbstractType
                 'label' => false,
             ])
             ->add('type', ChoiceType::class, [
-                'choices' => \array_flip(DatumTypeEnum::getTypesLabels()),
+                'choices' => array_flip(DatumTypeEnum::getTypesLabels()),
                 'expanded' => false,
                 'multiple' => false,
                 'label' => false,

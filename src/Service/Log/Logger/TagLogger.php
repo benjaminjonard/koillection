@@ -13,17 +13,17 @@ use App\Service\Log\Logger;
 
 class TagLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Tag::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $tag) : ?Log
+    public function getCreateLog(LoggableInterface $tag): ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -32,7 +32,7 @@ class TagLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $tag);
     }
 
-    public function getDeleteLog(LoggableInterface $tag) : ?Log
+    public function getDeleteLog(LoggableInterface $tag): ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -41,7 +41,7 @@ class TagLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $tag);
     }
 
-    public function getUpdateLog(LoggableInterface $tag, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $tag, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -93,7 +93,7 @@ class TagLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

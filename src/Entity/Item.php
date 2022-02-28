@@ -153,7 +153,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->getName() ?? '';
     }
 
-    public function getDataImages() : ArrayCollection
+    public function getDataImages(): ArrayCollection
     {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_SIGN))
@@ -163,7 +163,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->data->matching($criteria);
     }
 
-    public function getDataTexts() : DoctrineCollection
+    public function getDataTexts(): DoctrineCollection
     {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_TEXT))
@@ -177,7 +177,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->data->matching($criteria);
     }
 
-    public function getTagWithValue(string $value) : ?Tag
+    public function getTagWithValue(string $value): ?Tag
     {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('label', trim($value)));
@@ -186,12 +186,12 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $tag instanceof Tag ? $tag : null;
     }
 
-    public function hasTag(Tag $tag) : bool
+    public function hasTag(Tag $tag): bool
     {
         return $this->tags->contains($tag);
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

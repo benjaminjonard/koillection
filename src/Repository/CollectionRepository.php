@@ -17,7 +17,7 @@ class CollectionRepository extends ServiceEntityRepository
         parent::__construct($registry, Collection::class);
     }
 
-    public function findAll() : array
+    public function findAll(): array
     {
         return $this
             ->createQueryBuilder('c')
@@ -27,7 +27,7 @@ class CollectionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllExcludingItself(Collection $collection) : array
+    public function findAllExcludingItself(Collection $collection): array
     {
         $id = $collection->getId();
         if ($collection->getCreatedAt() === null) {
@@ -53,7 +53,7 @@ class CollectionRepository extends ServiceEntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = \array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
 
         return $this
             ->createQueryBuilder('c')
@@ -65,7 +65,7 @@ class CollectionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllWithItems() : array
+    public function findAllWithItems(): array
     {
         return $this
             ->createQueryBuilder('c')
@@ -79,7 +79,7 @@ class CollectionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllWithChildren() : array
+    public function findAllWithChildren(): array
     {
         return $this
             ->createQueryBuilder('c')
@@ -91,7 +91,7 @@ class CollectionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findWithItemsAndData(string $id) : ?Collection
+    public function findWithItemsAndData(string $id): ?Collection
     {
         return $this
             ->createQueryBuilder('c')
@@ -105,7 +105,7 @@ class CollectionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findForSearch(Search $search) : array
+    public function findForSearch(Search $search): array
     {
         $qb = $this
             ->createQueryBuilder('c')
@@ -131,7 +131,7 @@ class CollectionRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function suggestItemsTitles(Collection $collection) : array
+    public function suggestItemsTitles(Collection $collection): array
     {
         $qb = $this
             ->createQueryBuilder('c')
@@ -149,10 +149,10 @@ class CollectionRepository extends ServiceEntityRepository
             ;
         }
 
-        return \array_column($qb->getQuery()->getArrayResult(), "itemsTitle");
+        return array_column($qb->getQuery()->getArrayResult(), "itemsTitle");
     }
 
-    public function suggestChildrenTitles(Collection $collection) : array
+    public function suggestChildrenTitles(Collection $collection): array
     {
         $qb = $this
             ->createQueryBuilder('c')
@@ -170,6 +170,6 @@ class CollectionRepository extends ServiceEntityRepository
             ;
         }
 
-        return \array_column($qb->getQuery()->getArrayResult(), "childrenTitle");
+        return array_column($qb->getQuery()->getArrayResult(), "childrenTitle");
     }
 }

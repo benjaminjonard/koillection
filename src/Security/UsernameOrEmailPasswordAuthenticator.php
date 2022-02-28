@@ -23,7 +23,8 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
     public function __construct(
         private UserRepository $userRepository,
         private RouterInterface $router
-    ) {}
+    ) {
+    }
 
     public function supports(Request $request): ?bool
     {

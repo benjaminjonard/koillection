@@ -12,9 +12,10 @@ class CalendarBuilder
 {
     public function __construct(
         private ManagerRegistry $managerRegistry
-    ) {}
+    ) {
+    }
 
-    public function buildItemCalendar(User $user) : array
+    public function buildItemCalendar(User $user): array
     {
         $data = [];
         $sql = 'SELECT created_at AS date';

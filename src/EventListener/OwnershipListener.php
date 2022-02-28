@@ -11,7 +11,8 @@ final class OwnershipListener
 {
     public function __construct(
         private Security $security
-    ) {}
+    ) {
+    }
 
     public function prePersist(LifecycleEventArgs $args)
     {

@@ -12,7 +12,8 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
 {
     public function __construct(
         protected FeatureChecker $featureChecker
-    ) {}
+    ) {
+    }
 
     public function denyAccessUnlessFeaturesEnabled(array $features)
     {

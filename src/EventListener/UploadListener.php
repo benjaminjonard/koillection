@@ -14,7 +14,8 @@ final class UploadListener
     public function __construct(
         private UploadAnnotationReader $reader,
         private ImageHandler $handler
-    ) {}
+    ) {
+    }
 
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -32,7 +33,7 @@ final class UploadListener
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
             foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
                 $this->handler->upload($entity, $property, $attribute);
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($entity)), $entity);
+                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(\get_class($entity)), $entity);
             }
         }
     }

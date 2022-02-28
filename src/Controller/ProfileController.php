@@ -15,9 +15,10 @@ class ProfileController extends AbstractController
 {
     #[Route(
         path: ['en' => '/profile', 'fr' => '/profil'],
-        name: 'app_profile_index', methods: ['GET', 'POST']
+        name: 'app_profile_index',
+        methods: ['GET', 'POST']
     )]
-    public function index(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function index(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(ProfileType::class, $user);

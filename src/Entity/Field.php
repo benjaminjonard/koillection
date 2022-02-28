@@ -54,12 +54,12 @@ class Field
         $this->id = Uuid::v4()->toRfc4122();
     }
 
-    public function getTypeLabel() : string
+    public function getTypeLabel(): string
     {
         return DatumTypeEnum::getTypeLabel($this->type);
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

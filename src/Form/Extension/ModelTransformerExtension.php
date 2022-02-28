@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ModelTransformerExtension extends AbstractTypeExtension
 {
-    public static function getExtendedTypes() : iterable
+    public static function getExtendedTypes(): iterable
     {
         return [FormType::class];
     }

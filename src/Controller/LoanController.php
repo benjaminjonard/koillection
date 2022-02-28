@@ -17,9 +17,10 @@ class LoanController extends AbstractController
 {
     #[Route(
         path: ['en' => '/loans', 'fr' => '/prets'],
-        name: 'app_loan_index', methods: ['GET']
+        name: 'app_loan_index',
+        methods: ['GET']
     )]
-    public function index(LoanRepository $loanRepository) : Response
+    public function index(LoanRepository $loanRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
@@ -31,9 +32,11 @@ class LoanController extends AbstractController
 
     #[Route(
         path: ['en' => '/loans/{id}/delete', 'fr' => '/prets/{id}/supprimer'],
-        name: 'app_loan_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_loan_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
@@ -51,10 +54,12 @@ class LoanController extends AbstractController
 
     #[Route(
         path: ['en' => '/loans/{id}/returned', 'fr' => '/prets/{id}/rendu'],
-        name: 'app_loan_returned', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_loan_returned',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
-    #[Entity( 'loan', expr: 'repository.findByIdWithItem(id)', class:Loan::class)]
-    public function returned(Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    #[Entity('loan', expr: 'repository.findByIdWithItem(id)', class:Loan::class)]
+    public function returned(Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 

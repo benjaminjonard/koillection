@@ -20,7 +20,8 @@ class WishlistType extends AbstractType
     public function __construct(
         private Base64ToImageTransformer $base64ToImageTransformer,
         private WishlistRepository $wishlistRepository
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,7 +32,7 @@ class WishlistType extends AbstractType
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [

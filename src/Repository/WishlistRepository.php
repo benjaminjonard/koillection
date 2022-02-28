@@ -17,7 +17,7 @@ class WishlistRepository extends ServiceEntityRepository
         parent::__construct($registry, Wishlist::class);
     }
 
-    public function findAll() : array
+    public function findAll(): array
     {
         return $this
             ->createQueryBuilder('w')
@@ -27,7 +27,7 @@ class WishlistRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllExcludingItself(Wishlist $wishlist) : array
+    public function findAllExcludingItself(Wishlist $wishlist): array
     {
         $id = $wishlist->getId();
         if ($wishlist->getCreatedAt() === null) {
@@ -53,7 +53,7 @@ class WishlistRepository extends ServiceEntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = \array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
 
         return $this
             ->createQueryBuilder('w')
@@ -65,7 +65,7 @@ class WishlistRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findChildrenByWishlistId(string $id) : iterable
+    public function findChildrenByWishlistId(string $id): iterable
     {
         $qb = $this
             ->createQueryBuilder('w')
@@ -76,7 +76,7 @@ class WishlistRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findForSearch(Search $search) : array
+    public function findForSearch(Search $search): array
     {
         $qb = $this
             ->createQueryBuilder('w')

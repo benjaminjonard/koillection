@@ -6,7 +6,7 @@ namespace App\Service;
 
 class RandomStringGenerator
 {
-    public function generate(int $length = 10) : string
+    public function generate(int $length = 10): string
     {
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $string = '';

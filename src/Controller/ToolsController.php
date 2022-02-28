@@ -19,9 +19,10 @@ class ToolsController extends AbstractController
 {
     #[Route(
         path: ['en' => '/tools', 'fr' => '/outils'],
-        name: 'app_tools_index', methods: ['GET']
+        name: 'app_tools_index',
+        methods: ['GET']
     )]
-    public function index(InventoryRepository $inventoryRepository) : Response
+    public function index(InventoryRepository $inventoryRepository): Response
     {
         return $this->render('App/Tools/index.html.twig', [
             'inventories' => $inventoryRepository->findAll()
@@ -30,9 +31,10 @@ class ToolsController extends AbstractController
 
     #[Route(
         path: ['en' => '/tools/export/printable-list', 'fr' => '/outils/export/liste-imprimable'],
-        name: 'app_tools_export_printable_list', methods: ['GET']
+        name: 'app_tools_export_printable_list',
+        methods: ['GET']
     )]
-    public function exportPrintableList(CollectionRepository $collectionRepository) : Response
+    public function exportPrintableList(CollectionRepository $collectionRepository): Response
     {
         $collections = $collectionRepository->findAllWithItems();
 
@@ -44,9 +46,10 @@ class ToolsController extends AbstractController
 
     #[Route(
         path: ['en' => '/tools/export/csv', 'fr' => '/outils/export/csv'],
-        name: 'app_tools_export_csv', methods: ['GET']
+        name: 'app_tools_export_csv',
+        methods: ['GET']
     )]
-    public function exportCsv(CollectionRepository $collectionRepository) : CsvResponse
+    public function exportCsv(CollectionRepository $collectionRepository): CsvResponse
     {
         $collections = $collectionRepository->findAllWithItems();
 
@@ -62,18 +65,20 @@ class ToolsController extends AbstractController
 
     #[Route(
         path: ['en' => '/tools/export/sql', 'fr' => '/outils/export/sql'],
-        name: 'app_tools_export_sql', methods: ['GET']
+        name: 'app_tools_export_sql',
+        methods: ['GET']
     )]
-    public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
+    public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis') . '-koillection-export.sql');
     }
 
     #[Route(
         path: ['en' => '/tools/export/images', 'fr' => '/outils/export/images'],
-        name: 'app_tools_export_images', methods: ['GET']
+        name: 'app_tools_export_images',
+        methods: ['GET']
     )]
-    public function exportImages() : StreamedResponse
+    public function exportImages(): StreamedResponse
     {
         return new StreamedResponse(function () {
             $options = new Archive();

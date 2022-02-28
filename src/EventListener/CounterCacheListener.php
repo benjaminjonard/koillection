@@ -12,7 +12,8 @@ class CounterCacheListener
 {
     public function __construct(
         private CountersCache $countersCache
-    ) {}
+    ) {
+    }
 
     public function postPersist(LifecycleEventArgs $args)
     {

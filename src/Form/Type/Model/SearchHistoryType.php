@@ -17,7 +17,8 @@ class SearchHistoryType extends AbstractType
 {
     public function __construct(
         private FeatureChecker $featureChecker
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

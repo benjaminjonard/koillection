@@ -24,7 +24,8 @@ class PhotoType extends AbstractType
     public function __construct(
         private AlbumRepository $albumRepository,
         private Security $security
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -60,7 +61,7 @@ class PhotoType extends AbstractType
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
         ;

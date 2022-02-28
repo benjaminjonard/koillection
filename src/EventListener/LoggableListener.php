@@ -16,7 +16,8 @@ class LoggableListener
     public function __construct(
         private LoggerChain $loggerChain,
         private LogQueue $logQueue
-    ) {}
+    ) {
+    }
 
     public function postPersist(LifecycleEventArgs $args)
     {

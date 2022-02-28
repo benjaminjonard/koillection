@@ -26,7 +26,8 @@ class CollectionType extends AbstractType
         private FeatureChecker $featureChecker,
         private CollectionRepository $collectionRepository,
         private TemplateRepository $templateRepository
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -46,7 +47,7 @@ class CollectionType extends AbstractType
                 'required' => false
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [

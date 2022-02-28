@@ -23,7 +23,8 @@ class Autocompleter
         private ManagerRegistry $managerRegistry,
         private RouterInterface $router,
         private FeatureChecker $featureChecker
-    ) {}
+    ) {
+    }
 
     public function findForAutocomplete(string $term): array
     {
@@ -79,7 +80,7 @@ class Autocompleter
         ];
     }
 
-    private function buildRequestForGivenTable(string $collectionTable, string $labelProperty, string $term, string $type) : string
+    private function buildRequestForGivenTable(string $collectionTable, string $labelProperty, string $term, string $type): string
     {
         $user = $this->contextHandler->getContextUser();
         $terms = explode(' ', $term);

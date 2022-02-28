@@ -32,7 +32,8 @@ class ItemType extends AbstractType
         private FeatureChecker $featureChecker,
         private CollectionRepository $collectionRepository,
         private TemplateRepository $templateRepository
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -65,7 +66,7 @@ class ItemType extends AbstractType
                 'by_reference' => false
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
             ->add(

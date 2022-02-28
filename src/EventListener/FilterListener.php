@@ -19,7 +19,8 @@ class FilterListener
         private ContextHandler $contextHandler,
         private Security $security,
         private UserRepository $userRepository
-    ) {}
+    ) {
+    }
 
     public function onKernelRequest(RequestEvent $event)
     {

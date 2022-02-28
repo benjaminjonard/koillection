@@ -31,7 +31,8 @@ class VisibilityFilter extends SQLFilter
         }
 
         // If authenticated, show public and internal
-        return sprintf("%s.%s IN ('%s', '%s')",
+        return sprintf(
+            "%s.%s IN ('%s', '%s')",
             $targetTableAlias,
             $property,
             VisibilityEnum::VISIBILITY_PUBLIC,

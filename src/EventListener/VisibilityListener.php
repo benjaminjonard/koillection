@@ -36,7 +36,7 @@ class VisibilityListener
         }
 
         if ($entity instanceof Photo || $entity instanceof Item || $entity instanceof Wish) {
-            $parentVisibility = match (get_class($entity)) {
+            $parentVisibility = match (\get_class($entity)) {
                 Photo::class => $entity->getAlbum()->getFinalVisibility(),
                 Item::class => $entity->getCollection()->getFinalVisibility(),
                 Wish::class => $entity->getWishlist()->getFinalVisibility()
@@ -81,7 +81,7 @@ class VisibilityListener
     private function handleElement(Photo|Item|Wish $entity)
     {
         $changeset = $this->uow->getEntityChangeSet($entity);
-        $parentVisibility = match (get_class($entity)) {
+        $parentVisibility = match (\get_class($entity)) {
             Photo::class => $entity->getAlbum()->getFinalVisibility(),
             Item::class => $entity->getCollection()->getFinalVisibility(),
             Wish::class => $entity->getWishlist()->getFinalVisibility()
@@ -106,7 +106,7 @@ class VisibilityListener
 
     private function setVisibilityRecursively(Album|Collection|Wishlist $entity, string $visibility)
     {
-        $elements = match (get_class($entity)) {
+        $elements = match (\get_class($entity)) {
             Album::class => $entity->getPhotos(),
             Collection::class => $entity->getItems(),
             Wishlist::class => $entity->getWishes(),
@@ -115,13 +115,13 @@ class VisibilityListener
         foreach ($elements as $element) {
             $element->setParentVisibility($visibility);
             $element->setFinalVisibility($this->computeFinalVisibility($element->getVisibility(), $visibility));
-            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(get_class($element)), $element);
+            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(\get_class($element)), $element);
         }
 
         foreach ($entity->getChildren() as $child) {
             $child->setParentVisibility($visibility);
             $child->setFinalVisibility($this->computeFinalVisibility($child->getVisibility(), $visibility));
-            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(get_class($child)), $child);
+            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(\get_class($child)), $child);
 
             $this->setVisibilityRecursively($child, $visibility);
         }

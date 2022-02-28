@@ -13,7 +13,8 @@ class ActivityListener
     public function __construct(
         private Security $security,
         private ManagerRegistry $managerRegistry
-    ) {}
+    ) {
+    }
 
     public function onKernelRequest()
     {

@@ -22,7 +22,7 @@ class VisibilityEnum
         self::VISIBILITY_PRIVATE => 'private'
     ];
 
-    public static function getVisibilityLabels() : array
+    public static function getVisibilityLabels(): array
     {
         return [
             self::VISIBILITY_PUBLIC => 'global.visibilities.public',

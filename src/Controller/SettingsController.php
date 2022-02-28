@@ -15,9 +15,10 @@ class SettingsController extends AbstractController
 {
     #[Route(
         path: ['en' => '/settings', 'fr' => '/paramètres'],
-        name: 'app_settings_index', methods: ['GET', 'POST']
+        name: 'app_settings_index',
+        methods: ['GET', 'POST']
     )]
-    public function index(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function index(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(SettingsType::class, $user);

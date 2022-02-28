@@ -18,7 +18,7 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function findOneByUsernameOrEmail($login) : ?User
+    public function findOneByUsernameOrEmail($login): ?User
     {
         $user = $this
             ->createQueryBuilder('u')
@@ -35,7 +35,7 @@ class UserRepository extends ServiceEntityRepository
         return $user;
     }
 
-    public function getCounters(User $user) : array
+    public function getCounters(User $user): array
     {
         $collectionsSubQuery = 'SELECT COUNT(*) FROM koi_collection WHERE owner_id = ?';
         $itemsSubQuery = 'SELECT COUNT(*) FROM koi_item WHERE owner_id = ?';

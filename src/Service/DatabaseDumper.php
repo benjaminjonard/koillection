@@ -17,9 +17,10 @@ class DatabaseDumper
         private Security $security,
         private ContextHandler $contextHandler,
         private UserRepository $userRepository
-    ) {}
+    ) {
+    }
 
-    public function dump() : array
+    public function dump(): array
     {
         $connection = $this->managerRegistry->getManager()->getConnection();
         $rows = [];
@@ -30,10 +31,12 @@ class DatabaseDumper
         $enableForeignKeysCheck = null;
         if ($platformName === 'postgresql') {
             $disableForeignKeysCheck = 'SET session_replication_role = replica;'.PHP_EOL.PHP_EOL;
-            $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;'.PHP_EOL;;
-        } else if ($platformName === 'mysql') {
+            $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;'.PHP_EOL;
+            ;
+        } elseif ($platformName === 'mysql') {
             $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL.PHP_EOL;
-            $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;;
+            $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;
+            ;
         }
 
         if ($disableForeignKeysCheck !== null) {
@@ -91,7 +94,7 @@ class DatabaseDumper
                 $metadata = $this->managerRegistry->getManager()->getClassMetadata("App\Entity\\$entityName");
             }
 
-            $headers = implode(',', \array_keys($results[0]));
+            $headers = implode(',', array_keys($results[0]));
             $rows[] = "INSERT INTO $tableName ($headers) VALUES ".PHP_EOL;
 
             $count = \count($results);
@@ -118,11 +121,11 @@ class DatabaseDumper
         return $rows;
     }
 
-    public function dumpSchema(Connection $connection) : array
+    public function dumpSchema(Connection $connection): array
     {
         $currentSchema = $connection->getSchemaManager()->createSchema();
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
-        $rows = \array_map(function ($row) {
+        $rows = array_map(function ($row) {
             return $row.';'.PHP_EOL;
         }, $schemaRows);
         $rows[] = PHP_EOL;
@@ -139,11 +142,11 @@ class DatabaseDumper
         if ($value === null) {
             $value = 'NULL';
         } else {
-            if ($metadata && $metadata->getTypeOfField(\array_search($property, $metadata->columnNames)) === 'boolean') {
+            if ($metadata && $metadata->getTypeOfField(array_search($property, $metadata->columnNames)) === 'boolean') {
                 $value = $value === true ? 'true' : 'false';
             }
 
-            if ($metadata === null || \in_array($metadata->getTypeOfField(\array_search($property, $metadata->columnNames)), [null, 'string', 'datetime', 'date' ,'uuid', 'array', 'text'], true)) {
+            if ($metadata === null || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames)), [null, 'string', 'datetime', 'date' ,'uuid', 'array', 'text'], true)) {
                 $value = "'" . $value . "'";
             }
         }

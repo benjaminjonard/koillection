@@ -6,7 +6,7 @@ namespace App\Service;
 
 class ColorPicker
 {
-    public function pickRandomColor() : string
+    public function pickRandomColor(): string
     {
         $colors = [];
         $colors[] = 'E3F2FD';
@@ -16,6 +16,6 @@ class ColorPicker
         $colors[] = 'E8EAF6';
         shuffle($colors);
 
-        return \array_shift($colors);
+        return array_shift($colors);
     }
 }

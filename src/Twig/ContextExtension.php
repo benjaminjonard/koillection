@@ -9,7 +9,7 @@ use Twig\TwigFilter;
 
 class ContextExtension extends AbstractExtension
 {
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return [
             new TwigFilter('applyContext', [ContextRuntime::class, 'applyContext']),

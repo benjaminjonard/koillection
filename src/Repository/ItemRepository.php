@@ -21,7 +21,7 @@ class ItemRepository extends ServiceEntityRepository
         parent::__construct($registry, Item::class);
     }
 
-    public function findById(string $id) : ?Item
+    public function findById(string $id): ?Item
     {
         $qb = $this
             ->createQueryBuilder('i')
@@ -35,7 +35,7 @@ class ItemRepository extends ServiceEntityRepository
         return $qb->addSelect('t, d, c')->getQuery()->getOneOrNullResult();
     }
 
-    public function findNextAndPrevious(Item $item, $parent) : array
+    public function findNextAndPrevious(Item $item, $parent): array
     {
         $qb = $this->_em
             ->createQueryBuilder()
@@ -93,7 +93,7 @@ class ItemRepository extends ServiceEntityRepository
         ];
     }
 
-    public function findForSearch(Search $search) : array
+    public function findForSearch(Search $search): array
     {
         $qb = $this
             ->createQueryBuilder('i')
@@ -118,7 +118,7 @@ class ItemRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findAllByCollection(Collection $collection) : array
+    public function findAllByCollection(Collection $collection): array
     {
         //First we query all items id recursvely
         $id = "'".$collection->getId()."'";
@@ -156,7 +156,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findItemsByCollectionId(string $id) : iterable
+    public function findItemsByCollectionId(string $id): iterable
     {
         $qb = $this
             ->createQueryBuilder('i')
@@ -167,7 +167,7 @@ class ItemRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findLike(string $string) : array
+    public function findLike(string $string): array
     {
         $string = trim($string);
 
@@ -185,7 +185,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findWithSigns() : array
+    public function findWithSigns(): array
     {
         return $this
             ->createQueryBuilder('i')

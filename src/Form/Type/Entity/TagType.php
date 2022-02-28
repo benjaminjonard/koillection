@@ -21,7 +21,8 @@ class TagType extends AbstractType
 {
     public function __construct(
         private TagCategoryRepository $tagCategoryRepository
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -35,7 +36,7 @@ class TagType extends AbstractType
                 'label' => false,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
             ->add('category', EntityType::class, [

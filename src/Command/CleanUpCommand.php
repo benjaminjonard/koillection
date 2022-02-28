@@ -14,8 +14,8 @@ class CleanUpCommand extends Command
     public function __construct(
         private ManagerRegistry $managerRegistry,
         private TranslatorInterface $translator,
-        private string $publicPath)
-    {
+        private string $publicPath
+    ) {
         parent::__construct();
     }
 
@@ -67,7 +67,9 @@ class CleanUpCommand extends Command
 
         $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
         $stmt->execute();
-        $dbPaths = array_map(function ($row) { return $row['image']; }, $stmt->fetchAll());
+        $dbPaths = array_map(function ($row) {
+            return $row['image'];
+        }, $stmt->fetchAll());
 
         //Get all paths on disk
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath.'/uploads'));
@@ -79,7 +81,7 @@ class CleanUpCommand extends Command
         }
 
         //Compute the diff and delete the diff
-        $diff = \array_diff($diskPaths, $dbPaths);
+        $diff = array_diff($diskPaths, $dbPaths);
         foreach ($diff as $path) {
             if (file_exists($this->publicPath.'/'.$path)) {
                 unlink($this->publicPath.'/'.$path);

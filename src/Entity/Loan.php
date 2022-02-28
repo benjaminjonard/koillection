@@ -54,7 +54,7 @@ class Loan
         $this->id = Uuid::v4()->toRfc4122();
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

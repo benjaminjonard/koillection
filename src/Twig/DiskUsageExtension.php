@@ -9,7 +9,7 @@ use Twig\TwigFunction;
 
 class DiskUsageExtension extends AbstractExtension
 {
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('getSpaceUsedByUser', [DiskUsageRuntime::class, 'getSpaceUsedByUser']),

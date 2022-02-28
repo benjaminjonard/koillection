@@ -8,7 +8,7 @@ use Symfony\Component\Intl\Currencies;
 
 class CurrencyEnum
 {
-    public static function getCurrencyLabels() : array
+    public static function getCurrencyLabels(): array
     {
         $currencies = [];
         foreach (Currencies::getNames() as $code => $name) {
@@ -25,7 +25,7 @@ class CurrencyEnum
         return $currencies;
     }
 
-    public static function getSymbolFromCode(string $code) : ?string
+    public static function getSymbolFromCode(string $code): ?string
     {
         return Currencies::getSymbol($code);
     }

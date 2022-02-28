@@ -15,17 +15,17 @@ use App\Service\Log\Logger;
 
 class ItemLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Item::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $item) : ?Log
+    public function getCreateLog(LoggableInterface $item): ?Log
     {
         if (!$this->supports($item)) {
             return null;
@@ -34,7 +34,7 @@ class ItemLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $item);
     }
 
-    public function getDeleteLog(LoggableInterface $item) : ?Log
+    public function getDeleteLog(LoggableInterface $item): ?Log
     {
         if (!$this->supports($item)) {
             return null;
@@ -43,7 +43,7 @@ class ItemLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $item);
     }
 
-    public function getUpdateLog(LoggableInterface $item, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $item, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($item)) {
             return null;
@@ -112,7 +112,7 @@ class ItemLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

@@ -14,17 +14,17 @@ use App\Service\Log\Logger;
 
 class CollectionLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Collection::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $collection) : ?Log
+    public function getCreateLog(LoggableInterface $collection): ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -33,7 +33,7 @@ class CollectionLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $collection);
     }
 
-    public function getDeleteLog(LoggableInterface $collection) : ?Log
+    public function getDeleteLog(LoggableInterface $collection): ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -42,7 +42,7 @@ class CollectionLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $collection);
     }
 
-    public function getUpdateLog(LoggableInterface $collection, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $collection, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -88,7 +88,7 @@ class CollectionLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

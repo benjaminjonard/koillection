@@ -12,7 +12,8 @@ class DiskUsageRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private DiskUsageCalculator $diskUsageCalculator
-    ) {}
+    ) {
+    }
 
     public function getSpaceUsedByUser(User $user): float
     {

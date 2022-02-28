@@ -22,7 +22,8 @@ class DatumType extends AbstractType
 {
     public function __construct(
         private Security $security
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -46,7 +47,8 @@ class DatumType extends AbstractType
             ])
         ;
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT,
+        $builder->addEventListener(
+            FormEvents::PRE_SUBMIT,
             function (FormEvent $event) {
                 $form = $event->getForm();
                 $data = $event->getData();
@@ -64,7 +66,10 @@ class DatumType extends AbstractType
                         break;
                     case DatumTypeEnum::TYPE_DATE:
                         $form
-                            ->add('value', DateType::class, [
+                            ->add(
+                                'value',
+                                DateType::class,
+                                [
                                 'required' => false,
                                 'html5' => false,
                                 'widget' => 'single_text',

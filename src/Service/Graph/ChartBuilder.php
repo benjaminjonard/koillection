@@ -16,9 +16,10 @@ class ChartBuilder
     public function __construct(
         private ManagerRegistry $managerRegistry,
         private TranslatorInterface $translator
-    ) {}
+    ) {
+    }
 
-    public function buildActivityByHour(User $user) : array
+    public function buildActivityByHour(User $user): array
     {
         $sql = 'SELECT created_at as date';
         $sql .= ' FROM koi_item';
@@ -47,7 +48,7 @@ class ChartBuilder
         return $data;
     }
 
-    public function buildActivityByMonthDay(User $user) : array
+    public function buildActivityByMonthDay(User $user): array
     {
         $sql = 'SELECT created_at AS date';
         $sql .= ' FROM koi_item';
@@ -76,7 +77,7 @@ class ChartBuilder
         return $data;
     }
 
-    public function buildActivityByWeekDay(User $user) : array
+    public function buildActivityByWeekDay(User $user): array
     {
         $sql = 'SELECT created_at AS date';
         $sql .= ' FROM koi_item';
@@ -114,7 +115,7 @@ class ChartBuilder
         return $data;
     }
 
-    public function buildActivityByMonth(User $user) : array
+    public function buildActivityByMonth(User $user): array
     {
         $sql = 'SELECT created_at as date';
         $sql .= ' FROM koi_item';
@@ -157,7 +158,7 @@ class ChartBuilder
         return $data;
     }
 
-    public function buildItemEvolution(User $user) : array
+    public function buildItemEvolution(User $user): array
     {
         $data = [];
         $sql = 'SELECT logged_at AS date, type';

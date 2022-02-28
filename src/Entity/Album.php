@@ -117,7 +117,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this->getTitle() ?? '';
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

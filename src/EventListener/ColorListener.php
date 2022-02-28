@@ -11,7 +11,8 @@ class ColorListener
 {
     public function __construct(
         private ColorPicker $colorPicker
-    ) {}
+    ) {
+    }
 
     public function prePersist(LifecycleEventArgs $args)
     {

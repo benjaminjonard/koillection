@@ -13,17 +13,17 @@ use App\Service\Log\Logger;
 
 class WishlistLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Wishlist::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $wishlist) : ?Log
+    public function getCreateLog(LoggableInterface $wishlist): ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -32,7 +32,7 @@ class WishlistLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $wishlist);
     }
 
-    public function getDeleteLog(LoggableInterface $wishlist) : ?Log
+    public function getDeleteLog(LoggableInterface $wishlist): ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -41,7 +41,7 @@ class WishlistLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $wishlist);
     }
 
-    public function getUpdateLog(LoggableInterface $wishlist, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $wishlist, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -87,7 +87,7 @@ class WishlistLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

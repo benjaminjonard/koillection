@@ -11,7 +11,8 @@ class ContextListener
 {
     public function __construct(
         private ContextHandler $contextHandler
-    ) {}
+    ) {
+    }
 
     public function onKernelRequest(RequestEvent $event)
     {

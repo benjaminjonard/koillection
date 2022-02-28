@@ -12,7 +12,8 @@ class JsonToTagTransformer implements DataTransformerInterface
 {
     public function __construct(
         private TagRepository $tagRepository
-    ) {}
+    ) {
+    }
 
     public function transform($tags): mixed
     {

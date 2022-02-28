@@ -29,9 +29,10 @@ class UserController extends AbstractController
 {
     #[Route(
         path: ['en' => '/admin/users', 'fr' => '/admin/utilisateurs'],
-        name: 'app_admin_user_index', methods: ['GET']
+        name: 'app_admin_user_index',
+        methods: ['GET']
     )]
-    public function index(UserRepository $userRepository) : Response
+    public function index(UserRepository $userRepository): Response
     {
         return $this->render('App/Admin/User/index.html.twig', [
             'users' => $userRepository->findBy([], ['lastDateOfActivity' => 'DESC'])
@@ -40,9 +41,10 @@ class UserController extends AbstractController
 
     #[Route(
         path: ['en' => '/admin/users/add', 'fr' => '/admin/utilisateurs/ajouter'],
-        name: 'app_admin_user_add', methods: ['GET', 'POST']
+        name: 'app_admin_user_add',
+        methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -63,14 +65,23 @@ class UserController extends AbstractController
 
     #[Route(
         path: ['en' => '/admin/users/{id}/edit', 'fr' => '/admin/utilisateurs/{id}/editer'],
-        name: 'app_admin_user_edit', methods: ['GET', 'POST']
+        name: 'app_admin_user_edit',
+        methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, User $user, TranslatorInterface $translator, CollectionRepository $collectionRepository,
-                         ItemRepository $itemRepository, TagRepository $tagRepository, WishlistRepository $wishlistRepository,
-                         WishRepository $wishRepository, AlbumRepository $albumRepository, PhotoRepository $photoRepository,
-                         DatumRepository $datumRepository, ManagerRegistry $managerRegistry
-    ) : Response
-    {
+    public function edit(
+        Request $request,
+        User $user,
+        TranslatorInterface $translator,
+        CollectionRepository $collectionRepository,
+        ItemRepository $itemRepository,
+        TagRepository $tagRepository,
+        WishlistRepository $wishlistRepository,
+        WishRepository $wishRepository,
+        AlbumRepository $albumRepository,
+        PhotoRepository $photoRepository,
+        DatumRepository $datumRepository,
+        ManagerRegistry $managerRegistry
+    ): Response {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -96,12 +107,14 @@ class UserController extends AbstractController
             ],
         ]);
     }
-    
+
     #[Route(
         path: ['en' => '/admin/users/{id}/delete', 'fr' => '/admin/utilisateurs/{id}/supprimer'],
-        name: 'app_admin_user_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_admin_user_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, User $user, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, User $user, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         if ($user->isAdmin()) {
             return $this->render('App/Admin/User/delete.html.twig', [

@@ -11,14 +11,15 @@ class TreeBuilder
 {
     public function __construct(
         private CollectionRepository $collectionRepository
-    ) {}
+    ) {
+    }
 
     public function buildCollectionTree(): array
     {
         $collections = $this->collectionRepository->findAllWithChildren();
         $tree = $this->createLeaf();
 
-        $children = \array_filter($collections, function (Collection $element) {
+        $children = array_filter($collections, function (Collection $element) {
             return $element->getParent() === null;
         });
 

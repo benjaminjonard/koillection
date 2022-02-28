@@ -16,7 +16,8 @@ class InventoryType extends AbstractType
 {
     public function __construct(
         private StringToInventoryContentTransformer $stringToInventoryContentTransformer
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

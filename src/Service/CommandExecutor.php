@@ -13,7 +13,8 @@ class CommandExecutor
 {
     public function __construct(
         private KernelInterface $kernel
-    ) {}
+    ) {
+    }
 
     public function execute(string $command, array $params = []): string
     {

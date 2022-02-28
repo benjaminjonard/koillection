@@ -17,9 +17,10 @@ class PhotoController extends AbstractController
 {
     #[Route(
         path: ['en' => '/photos/ajouter', 'fr' => '/photos/add'],
-        name: 'app_photo_add', methods: ['GET', 'POST']
+        name: 'app_photo_add',
+        methods: ['GET', 'POST']
     )]
-    public function add(Request $request, AlbumRepository $albumRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function add(Request $request, AlbumRepository $albumRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -62,9 +63,11 @@ class PhotoController extends AbstractController
 
     #[Route(
         path: ['en' => '/photos/{id}/edit', 'fr' => '/photos/{id}/editer'],
-        name: 'app_photo_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_photo_edit',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function edit(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -85,9 +88,11 @@ class PhotoController extends AbstractController
 
     #[Route(
         path: ['en' => '/photos/{id}/delete', 'fr' => '/photos/{id}/supprimer'],
-        name: 'app_photo_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_photo_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 

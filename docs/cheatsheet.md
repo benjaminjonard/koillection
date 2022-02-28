@@ -14,7 +14,13 @@ All in assets directory
 - `yarn webpack-bundle-analyzer stats.json ../public/build`
 
 
-## Tests
+## Tools
 ###### PhpUnit
 - `php -d memory_limit=512M ./bin/phpunit --stderr`
 
+###### PHP CS fixer
+- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src`
+- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix api`
+
+- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --allow-risky=yes --rules=native_function_invocation`
+- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix api --allow-risky=yes --rules=native_function_invocation`

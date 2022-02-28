@@ -17,9 +17,10 @@ class LogRuntime implements RuntimeExtensionInterface
         private TranslatorInterface $translator,
         private RouterInterface $router,
         private LoggerChain $loggerChain
-    ) {}
+    ) {
+    }
 
-    public function getLogMessages(Log $log) : array
+    public function getLogMessages(Log $log): array
     {
         $messages = [];
 

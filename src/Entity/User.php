@@ -225,7 +225,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->username,
             $this->password,
@@ -237,7 +237,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
     }
 
-    public function isInDarkMode() : bool
+    public function isInDarkMode(): bool
     {
         if ($this->isDarkModeEnabled()) {
             return true;
@@ -270,12 +270,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return false;
     }
 
-    public function getDateFormatForJs() : string
+    public function getDateFormatForJs(): string
     {
         return DateFormatEnum::MAPPING[$this->dateFormat][DateFormatEnum::CONTEXT_JS];
     }
 
-    public function getDateFormatForForm() : string
+    public function getDateFormatForForm(): string
     {
         return DateFormatEnum::MAPPING[$this->dateFormat][DateFormatEnum::CONTEXT_FORM];
     }
@@ -289,41 +289,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     {
     }
 
-    public function getUsername() : ?string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function getSalt() : ?string
+    public function getSalt(): ?string
     {
         return null;
     }
 
-    public function setSalt(?string $salt) : self
+    public function setSalt(?string $salt): self
     {
         $this->salt = $salt;
 
         return $this;
     }
 
-    public function getPassword() : ?string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password) : self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
 
-    public function getPlainPassword() : ?string
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
 
-    public function setPlainPassword(?string $plainPassword) : self
+    public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
         $this->password = $plainPassword;
@@ -331,7 +331,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getRoles() : array
+    public function getRoles(): array
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
@@ -339,14 +339,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles) : self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
     }
 
-    public function addRole(string $role) : self
+    public function addRole(string $role): self
     {
         $role = strtoupper($role);
         if (!\in_array($role, $this->roles, true)) {
@@ -356,17 +356,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function removeRole(string $role) : self
+    public function removeRole(string $role): self
     {
-        if (false !== $key = \array_search(strtoupper($role), $this->roles, true)) {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
             unset($this->roles[$key]);
-            $this->roles = \array_values($this->roles);
+            $this->roles = array_values($this->roles);
         }
 
         return $this;
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

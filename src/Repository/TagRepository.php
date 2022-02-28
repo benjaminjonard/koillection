@@ -20,7 +20,7 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
-    public function findWithItems(string $id) : ?Tag
+    public function findWithItems(string $id): ?Tag
     {
         return $this
             ->createQueryBuilder('t')
@@ -33,7 +33,7 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAll() : array
+    public function findAll(): array
     {
         return $this
             ->createQueryBuilder('t')
@@ -43,7 +43,7 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findForTagSearch(SearchTag $search, string $context, int $itemsCount) : array
+    public function findForTagSearch(SearchTag $search, string $context, int $itemsCount): array
     {
         $qb = $this
             ->getEntityManager()
@@ -75,7 +75,7 @@ class TagRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function countForTagSearch(SearchTag $search, string $context) : int
+    public function countForTagSearch(SearchTag $search, string $context): int
     {
         $qb = $this->_em
             ->createQueryBuilder()
@@ -104,7 +104,7 @@ class TagRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLike(string $string) : array
+    public function findLike(string $string): array
     {
         $string = trim($string);
 
@@ -122,7 +122,7 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findRelatedToCollection(Collection $collection) : array
+    public function findRelatedToCollection(Collection $collection): array
     {
         return $this
             ->createQueryBuilder('t')
@@ -140,7 +140,7 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findForSearch(Search $search) : array
+    public function findForSearch(Search $search): array
     {
         $itemsCount = $this->_em->getRepository(Item::class)->count([]);
 
@@ -201,7 +201,7 @@ class TagRepository extends ServiceEntityRepository
             ->getArrayResult()
         ;
 
-        $itemIds = \array_map(function ($row) {
+        $itemIds = array_map(function ($row) {
             return $row['id'];
         }, $results);
 

@@ -114,7 +114,7 @@ class Datum implements LoggableInterface
         return $this->getLabel() ?? '';
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

@@ -9,7 +9,7 @@ use Twig\TwigFunction;
 
 class IntlExtension extends AbstractExtension
 {
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('getCountriesList', [IntlRuntime::class, 'getCountriesList']),

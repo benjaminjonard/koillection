@@ -16,7 +16,8 @@ class LoanType extends AbstractType
 {
     public function __construct(
         private Security $security
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

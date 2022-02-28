@@ -16,7 +16,7 @@ class LogRepository extends ServiceEntityRepository
         parent::__construct($registry, Log::class);
     }
 
-    public function findForSearch(SearchHistory $search) : array
+    public function findForSearch(SearchHistory $search): array
     {
         $classes = array_map(function ($value) {
             return 'App\Entity\\'.ucfirst($value);
@@ -43,7 +43,7 @@ class LogRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function countForSearch(SearchHistory $search) : int
+    public function countForSearch(SearchHistory $search): int
     {
         $classes = array_map(function ($value) {
             return 'App\Entity\\'.ucfirst($value);

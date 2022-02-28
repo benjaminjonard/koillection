@@ -25,15 +25,15 @@ class AppRuntime implements RuntimeExtensionInterface
         private ContextHandler $contextHandler,
         private FeatureChecker $featureChecker,
         private FormFactoryInterface $formFactory
-    )
-    {}
+    ) {
+    }
 
-    public function safeContent(string $string) : string
+    public function safeContent(string $string): string
     {
         return $string;
     }
 
-    public function bytes(float $bytes, int $precision = 2) : string
+    public function bytes(float $bytes, int $precision = 2): string
     {
         $base = $bytes > 0 ? log($bytes, 1024) : $bytes;
 
@@ -44,17 +44,17 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function renderTitle(array $breadcrumb): string
     {
-        $element = \array_shift($breadcrumb);
+        $element = array_shift($breadcrumb);
 
         if ($element instanceof BreadcrumbElement && isset($element->getParams()['username'])) {
             return $this->translator->trans($element->getLabel(), ['%username%' => $element->getParams()['username']]);
         }
 
-        $element = \count($breadcrumb) === 0 ? $element : \array_pop($breadcrumb);
+        $element = \count($breadcrumb) === 0 ? $element : array_pop($breadcrumb);
 
         if ($element instanceof BreadcrumbElement) {
             if ($element->getType() === 'action') {
-                $entityElement = \array_pop($breadcrumb);
+                $entityElement = array_pop($breadcrumb);
 
                 if ($entityElement instanceof BreadcrumbElement && $entityElement->getEntity() !== null) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
@@ -103,7 +103,7 @@ class AppRuntime implements RuntimeExtensionInterface
         return preg_replace_callback(
             "/\b(".implode('|', $words).")\b/ui",
             function ($matches) use ($words) {
-                $id = \array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words));
+                $id = array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words));
 
                 $route = $this->contextHandler->getRouteContext('app_tag_show');
                 $route = $this->router->generate($route, ['id' => $id]);
@@ -126,7 +126,9 @@ class AppRuntime implements RuntimeExtensionInterface
                 $texts = array_merge($texts, explode(',', $datum->getValue()));
             }
         }
-        $texts = array_map(function ($text) { return trim($text); }, $texts);
+        $texts = array_map(function ($text) {
+            return trim($text);
+        }, $texts);
         $tags = $this->tagRepository->findBy(['label' => $texts]);
 
         $results = [];

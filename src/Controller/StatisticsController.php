@@ -16,16 +16,21 @@ class StatisticsController extends AbstractController
 {
     #[Route(
         path: ['en' => '/statistics', 'fr' => '/statistiques'],
-        name: 'app_statistics_index', methods: ['GET']
+        name: 'app_statistics_index',
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/statistics', 'fr' => '/utilisateur/{username}/statistiques'],
-        name: 'app_shared_statistics_index', methods: ['GET']
+        name: 'app_shared_statistics_index',
+        methods: ['GET']
     )]
-    public function index(TreeBuilder $treeBuilder, CalendarBuilder $calendarBuilder, ChartBuilder $chartBuilder,
-                          UserRepository $userRepository, User $user = null
-    ) : Response
-    {
+    public function index(
+        TreeBuilder $treeBuilder,
+        CalendarBuilder $calendarBuilder,
+        ChartBuilder $chartBuilder,
+        UserRepository $userRepository,
+        User $user = null
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['statistics']);
 
         if (!$user instanceof User) {
@@ -34,7 +39,7 @@ class StatisticsController extends AbstractController
 
         $calendar = $calendarBuilder->buildItemCalendar($user);
         ksort($calendar);
-        $calendar = \array_reverse($calendar, true);
+        $calendar = array_reverse($calendar, true);
 
         return $this->render('App/Statistics/index.html.twig', [
             'counters' => $userRepository->getCounters($user),

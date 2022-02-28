@@ -19,7 +19,8 @@ class SearchType extends AbstractType
     public function __construct(
         private Security $security,
         private FeatureChecker $featureChecker
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

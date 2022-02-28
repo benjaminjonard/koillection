@@ -15,7 +15,8 @@ class SearchHistory
     public function __construct(
         private int $page = 1,
         private int $itemsPerPage = 10
-    ) {}
+    ) {
+    }
 
     public function getTerm(): ?string
     {

@@ -8,9 +8,10 @@ class ThumbnailGenerator
 {
     public function __construct(
         private GifResizer $gifResizer
-    ) {}
+    ) {
+    }
 
-    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : bool
+    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth): bool
     {
         if (!is_file($path)) {
             return false;
@@ -26,7 +27,7 @@ class ThumbnailGenerator
 
         // Create user directory in uploads
         $dir = explode('/', $thumbnailPath);
-        \array_pop($dir);
+        array_pop($dir);
         $dir = implode('/', $dir);
 
         if (!is_dir($dir) && !mkdir($dir) && !is_dir($dir)) {
@@ -79,7 +80,7 @@ class ThumbnailGenerator
         return true;
     }
 
-    function crop(string $path, int $maxWidth, int $maxHeight)
+    public function crop(string $path, int $maxWidth, int $maxHeight)
     {
         list($width, $height, $mime) = getimagesize($path);
         $ratio = $width / $height;

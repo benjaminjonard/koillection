@@ -17,7 +17,7 @@ class IntlRuntime implements RuntimeExtensionInterface
             . mb_chr($regionalOffset + mb_ord($countryCode[1], 'UTF-8'), 'UTF-8');
     }
 
-    public function getCountriesList() : array
+    public function getCountriesList(): array
     {
         $countries = [];
 

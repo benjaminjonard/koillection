@@ -30,12 +30,18 @@ use ZipStream\ZipStream;
 class AdminController extends AbstractController
 {
     #[Route(path: ['en' => '/admin', 'fr' => '/admin'], name: 'app_admin_index', methods: ['GET'])]
-    public function index(LatestReleaseChecker $latestVersionChecker, UserRepository $userRepository,
-                          CollectionRepository $collectionRepository, ItemRepository $itemRepository, TagRepository $tagRepository,
-                          WishlistRepository $wishlistRepository, WishRepository $wishRepository, AlbumRepository $albumRepository,
-                          PhotoRepository $photoRepository, DatumRepository $datumRepository
-    ) : Response
-    {
+    public function index(
+        LatestReleaseChecker $latestVersionChecker,
+        UserRepository $userRepository,
+        CollectionRepository $collectionRepository,
+        ItemRepository $itemRepository,
+        TagRepository $tagRepository,
+        WishlistRepository $wishlistRepository,
+        WishRepository $wishRepository,
+        AlbumRepository $albumRepository,
+        PhotoRepository $photoRepository,
+        DatumRepository $datumRepository
+    ): Response {
         return $this->render('App/Admin/Admin/index.html.twig', [
             'freeSpace' => disk_free_space('/'),
             'totalSpace' => disk_total_space('/'),
@@ -56,25 +62,27 @@ class AdminController extends AbstractController
             'isRequiredPhpVersionForLatestReleaseOk' => $latestVersionChecker->isRequiredPhpVersionForLatestReleaseOk(),
             'symfonyVersion' => Kernel::VERSION,
             'phpVersion' => phpversion(),
-            'isOpcacheAvailable' => function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled']
+            'isOpcacheAvailable' => \function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled']
         ]);
     }
 
 
     #[Route(
         path: ['en' => '/admin/export/sql', 'fr' => '/admin/export/sql'],
-        name: 'app_admin_export_sql', methods: ['GET']
+        name: 'app_admin_export_sql',
+        methods: ['GET']
     )]
-    public function exportSql(DatabaseDumper $databaseDumper) : FileResponse
+    public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis') . '-koillection-database.sql');
     }
 
     #[Route(
         path: ['en' => '/admin/export/images', 'fr' => '/admin/export/images'],
-        name: 'app_admin_export_images', methods: ['GET']
+        name: 'app_admin_export_images',
+        methods: ['GET']
     )]
-    public function exportImages(DatabaseDumper $databaseDumper, UserRepository $userRepository) : StreamedResponse
+    public function exportImages(DatabaseDumper $databaseDumper, UserRepository $userRepository): StreamedResponse
     {
         $users = $userRepository->findAll();
 

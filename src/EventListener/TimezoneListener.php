@@ -14,7 +14,8 @@ class TimezoneListener
     public function __construct(
         private Security $security,
         private Environment $twig
-    ) {}
+    ) {
+    }
 
     public function onKernelRequest()
     {

@@ -9,7 +9,7 @@ use Twig\TwigFilter;
 
 class ArrayExtension extends AbstractExtension
 {
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return [
             new TwigFilter('naturalSorting', [ArrayRuntime::class, 'naturalSorting'])

@@ -27,7 +27,8 @@ class ContextHandler
     public function __construct(
         private Environment $environment,
         private RouterInterface $router
-    ) {}
+    ) {
+    }
 
     public function init(Request $request)
     {
@@ -68,17 +69,17 @@ class ContextHandler
         return $user;
     }
 
-    public function getContextUser() : ?User
+    public function getContextUser(): ?User
     {
         return $this->user;
     }
 
-    public function getContext() : string
+    public function getContext(): string
     {
         return $this->context;
     }
 
-    public function isAuthorized() : string
+    public function isAuthorized(): string
     {
         return $this->isAuthorized();
     }

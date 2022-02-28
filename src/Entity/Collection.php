@@ -133,7 +133,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->getTitle() ?? '';
     }
 
-    public function getNaturallySortedItems() : array
+    public function getNaturallySortedItems(): array
     {
         $array = $this->items->toArray();
         usort($array, function (Item $a, Item $b) {
@@ -143,7 +143,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $array;
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

@@ -13,13 +13,15 @@ class SignController extends AbstractController
 {
     #[Route(
         path: ['en' => '/signs', 'fr' => '/dedicaces'],
-        name: 'app_sign_index', methods: ['GET']
+        name: 'app_sign_index',
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/signs', 'fr' => '/utilisateur/{username}/dedicaces'],
-        name: 'app_shared_sign_index', methods: ['GET']
+        name: 'app_shared_sign_index',
+        methods: ['GET']
     )]
-    public function index(ItemRepository $itemRepository) : Response
+    public function index(ItemRepository $itemRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['signs']);
 

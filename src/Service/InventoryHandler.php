@@ -84,7 +84,7 @@ class InventoryHandler
         return $inventory;
     }
 
-    private function computeCheckedValues(array $content) : array
+    private function computeCheckedValues(array $content): array
     {
         foreach ($content as &$collection) {
             $collection['totalCheckedItems'] = $this->getCheckedItems($collection);

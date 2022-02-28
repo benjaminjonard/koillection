@@ -11,9 +11,10 @@ class DateRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private TranslatorInterface $translator
-    ) {}
+    ) {
+    }
 
-    public function timeAgo(\DateTime $ago) : string
+    public function timeAgo(\DateTime $ago): string
     {
         $now = new \DateTime();
         $diff = $now->diff($ago);
@@ -43,7 +44,7 @@ class DateRuntime implements RuntimeExtensionInterface
             $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
-    public function timeDiff(\DateTime $start, \DateTime $end) : string
+    public function timeDiff(\DateTime $start, \DateTime $end): string
     {
         $diff = $start->diff($end);
 
@@ -71,7 +72,7 @@ class DateRuntime implements RuntimeExtensionInterface
         return $string ? implode(', ', $string) : '';
     }
 
-    public function dateAgo(\DateTime $ago) : string
+    public function dateAgo(\DateTime $ago): string
     {
         $now = new \DateTime();
         $diff = $now->diff($ago);

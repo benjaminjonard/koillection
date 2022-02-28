@@ -58,7 +58,7 @@ class Inventory implements BreadcrumbableInterface
         return $this->getName() ?? '';
     }
 
-    public function getContentAsArray() : array
+    public function getContentAsArray(): array
     {
         if (!empty($this->contentAsArray)) {
             return $this->contentAsArray;
@@ -69,7 +69,7 @@ class Inventory implements BreadcrumbableInterface
         return $this->contentAsArray;
     }
 
-    public function getCheckedItemsCount() : int
+    public function getCheckedItemsCount(): int
     {
         $content = $this->getContentAsArray();
         $checkedItems = 0;
@@ -81,7 +81,7 @@ class Inventory implements BreadcrumbableInterface
         return $checkedItems;
     }
 
-    public function getTotalItemsCount() : int
+    public function getTotalItemsCount(): int
     {
         $content = $this->getContentAsArray();
         $totalItems = 0;
@@ -93,7 +93,7 @@ class Inventory implements BreadcrumbableInterface
         return $totalItems;
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

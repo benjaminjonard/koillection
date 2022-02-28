@@ -8,7 +8,8 @@ class FeatureChecker
 {
     public function __construct(
         private ContextHandler $contextHandler
-    ) {}
+    ) {
+    }
 
     public function isFeatureEnabled(string $feature): bool
     {

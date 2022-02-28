@@ -17,7 +17,8 @@ class LocaleListener
     public function __construct(
         private RequestStack $requestStack,
         private string $defaultLocale
-    ) {}
+    ) {
+    }
 
     public function onKernelRequest(RequestEvent $event)
     {

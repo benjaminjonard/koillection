@@ -21,9 +21,10 @@ class CounterCalculator
         private ManagerRegistry $managerRegistry,
         private QueryNameGenerator $qng,
         private ContextHandler $contextHandler
-    ) {}
+    ) {
+    }
 
-    public function computeCounters() : array
+    public function computeCounters(): array
     {
         //Collections and items
         $tableName = $this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName();
@@ -49,10 +50,10 @@ class CounterCalculator
         $albums = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $albums = array_merge($albums, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        return \array_merge($collections, $wishlists, $albums);
+        return array_merge($collections, $wishlists, $albums);
     }
 
-    public function getGlobalCounters(string $table, string $itemTable, string $cacheIndexName) : array
+    public function getGlobalCounters(string $table, string $itemTable, string $cacheIndexName): array
     {
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('children', 'children');
@@ -90,7 +91,7 @@ class CounterCalculator
         return $results;
     }
 
-    public function executeItemQuery(string $table, string $itemTable, string $parentProperty) : array
+    public function executeItemQuery(string $table, string $itemTable, string $parentProperty): array
     {
         $rsm = new ResultSetMapping();
         $rsm->addIndexByScalar('id');
@@ -120,7 +121,7 @@ class CounterCalculator
         return $results;
     }
 
-    private function getSQLForCounters(string $alias, string $table, string $itemTable, string $parentProperty) : string
+    private function getSQLForCounters(string $alias, string $table, string $itemTable, string $parentProperty): string
     {
         $c1 = $this->qng->generateJoinAlias('c');
         $c2 = $this->qng->generateJoinAlias('c');
@@ -160,7 +161,8 @@ class CounterCalculator
             if ($this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user') === "''") {
                 $sql .= sprintf("$condition %s.final_visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
             } else {
-                $sql .= sprintf("$condition %s.final_visibility IN ('%s', '%s')",
+                $sql .= sprintf(
+                    "$condition %s.final_visibility IN ('%s', '%s')",
                     $alias,
                     VisibilityEnum::VISIBILITY_PUBLIC,
                     VisibilityEnum::VISIBILITY_INTERNAL

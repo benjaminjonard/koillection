@@ -8,7 +8,7 @@ use App\Entity\Item;
 
 class ItemNameGuesser
 {
-    public function guess(Item &$item) : ?array
+    public function guess(Item &$item): ?array
     {
         $collection = $item->getCollection();
         if ($collection === null || $collection->getItems()->count() < 1) {

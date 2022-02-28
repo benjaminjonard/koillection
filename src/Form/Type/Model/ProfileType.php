@@ -18,7 +18,8 @@ class ProfileType extends AbstractType
 {
     public function __construct(
         private Base64ToImageTransformer $base64ToImageTransformer
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

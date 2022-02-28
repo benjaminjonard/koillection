@@ -16,7 +16,8 @@ class BatchTaggerType extends AbstractType
 {
     public function __construct(
         private JsonToTagTransformer $jsonToTagTransformer
-    ) {}
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

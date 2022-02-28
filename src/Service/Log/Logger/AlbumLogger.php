@@ -13,17 +13,17 @@ use App\Service\Log\Logger;
 
 class AlbumLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Album::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $album) : ?Log
+    public function getCreateLog(LoggableInterface $album): ?Log
     {
         if (!$this->supports($album)) {
             return null;
@@ -32,7 +32,7 @@ class AlbumLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $album);
     }
 
-    public function getDeleteLog(LoggableInterface $album) : ?Log
+    public function getDeleteLog(LoggableInterface $album): ?Log
     {
         if (!$this->supports($album)) {
             return null;
@@ -41,7 +41,7 @@ class AlbumLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $album);
     }
 
-    public function getUpdateLog(LoggableInterface $album, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $album, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($album)) {
             return null;
@@ -87,7 +87,7 @@ class AlbumLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;

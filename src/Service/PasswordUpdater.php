@@ -11,9 +11,10 @@ class PasswordUpdater
 {
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher
-    ) {}
+    ) {
+    }
 
-    public function hashPassword(User $user) : User
+    public function hashPassword(User $user): User
     {
         $plainPassword = $user->getPlainPassword();
 

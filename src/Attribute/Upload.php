@@ -14,7 +14,8 @@ class Upload
         private ?string $originalFilenamePath = null,
         private ?int $maxWidth = null,
         private ?int $maxHeight = null,
-    ) {}
+    ) {
+    }
 
     public static function fromReflectionAttribute(\ReflectionAttribute $reflectionAttribute)
     {

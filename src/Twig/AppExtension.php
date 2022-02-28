@@ -10,7 +10,7 @@ use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return [
             new TwigFilter('safeContent', [AppRuntime::class, 'safeContent'], ['is_safe' => ['html']]),
@@ -19,7 +19,7 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('renderTitle', [AppRuntime::class, 'renderTitle']),

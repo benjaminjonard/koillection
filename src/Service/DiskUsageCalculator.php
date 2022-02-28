@@ -13,9 +13,10 @@ class DiskUsageCalculator
     public function __construct(
         private TranslatorInterface $translator,
         private string $publicPath
-    ) {}
+    ) {
+    }
 
-    public function getSpaceUsedByUsers() : float
+    public function getSpaceUsedByUsers(): float
     {
         $uploadFolderPath = $this->publicPath . '/uploads';
 
@@ -26,7 +27,7 @@ class DiskUsageCalculator
         return 0;
     }
 
-    public function getSpaceUsedByUser(User $user) : float
+    public function getSpaceUsedByUser(User $user): float
     {
         $userFolderPath = $this->publicPath . '/uploads/' . $user->getId();
 
@@ -44,7 +45,7 @@ class DiskUsageCalculator
         }
     }
 
-    private function getFolderSize($path) : float
+    private function getFolderSize($path): float
     {
         $size = 0;
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $file) {

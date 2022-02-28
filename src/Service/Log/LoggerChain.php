@@ -39,22 +39,22 @@ class LoggerChain
         return $response;
     }
 
-    public function getCreateLog(LoggableInterface $entity) : ?Log
+    public function getCreateLog(LoggableInterface $entity): ?Log
     {
         return $this->getLoggerResponse('getCreateLog', [$entity]);
     }
 
-    public function getDeleteLog(LoggableInterface $entity) : ?Log
+    public function getDeleteLog(LoggableInterface $entity): ?Log
     {
         return $this->getLoggerResponse('getDeleteLog', [$entity]);
     }
 
-    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []): ?Log
     {
         return $this->getLoggerResponse('getUpdateLog', [$entity, $changeset, $relations]);
     }
 
-    public function getFormattedPayload(string $class, array $payload) : ?string
+    public function getFormattedPayload(string $class, array $payload): ?string
     {
         return $this->getLoggerResponse('formatPayload', [$class, $payload]);
     }

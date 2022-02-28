@@ -13,7 +13,8 @@ final class TranslationCommandListener
 {
     public function __construct(
         private string $assetsPath
-    ) {}
+    ) {
+    }
 
     public function onConsoleTerminate(ConsoleTerminateEvent $event)
     {
@@ -44,6 +45,6 @@ final class TranslationCommandListener
         //Import translator in the file
         $fileContent = "import Translator from '$translatorPath'" . PHP_EOL . PHP_EOL . $fileContent;
 
-        file_put_contents ($path, $fileContent);
+        file_put_contents($path, $fileContent);
     }
 }

@@ -14,7 +14,8 @@ class UserListener
     public function __construct(
         private PasswordUpdater $passwordUpdater,
         private LogQueue $logQueue
-    ) {}
+    ) {
+    }
 
     public function prePersist(LifecycleEventArgs $args)
     {

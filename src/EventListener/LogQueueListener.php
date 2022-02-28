@@ -14,7 +14,8 @@ class LogQueueListener
     public function __construct(
         private LogQueue $logQueue,
         private ManagerRegistry $managerRegistry
-    ) {}
+    ) {
+    }
 
     /**
      *   As we are on a kernel response event, this code is triggered at every response.
