@@ -34,7 +34,7 @@ class DatumItemLogger extends Logger
 
     public function supports($object): bool
     {
-        return \get_class($object) === Datum::class && $object->getItem() instanceof Item;
+        return Datum::class === \get_class($object) && $object->getItem() instanceof Item;
     }
 
     public function getCreateLog(LoggableInterface $datum): ?Log
@@ -58,7 +58,7 @@ class DatumItemLogger extends Logger
             'property' => 'datum_added',
             'datum_label' => $datum->getLabel(),
             'datum_value' => $datum->getValue(),
-            'datum_type' => $datum->getType()
+            'datum_type' => $datum->getType(),
         ];
         $log->setPayload(json_encode($payload));
 
@@ -81,7 +81,7 @@ class DatumItemLogger extends Logger
             'property' => 'datum_removed',
             'datum_label' => $datum->getLabel(),
             'datum_value' => $datum->getValue(),
-            'datum_type' => $datum->getType()
+            'datum_type' => $datum->getType(),
         ];
         $log->setPayload(json_encode($payload));
 

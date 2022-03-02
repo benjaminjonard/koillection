@@ -16,7 +16,7 @@ class RoleEnum
 
     public const ROLES_TRANS_KEYS = [
         self::ROLE_USER => 'role.user',
-        self::ROLE_ADMIN => 'role.admin'
+        self::ROLE_ADMIN => 'role.admin',
     ];
 
     public static function getRoleLabel(string $role): string

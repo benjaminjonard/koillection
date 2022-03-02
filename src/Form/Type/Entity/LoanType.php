@@ -38,7 +38,7 @@ class LoanType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Loan::class
+            'data_class' => Loan::class,
         ]);
     }
 }

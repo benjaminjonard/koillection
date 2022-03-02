@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
-#[IsGranted("ROLE_ADMIN")]
+#[IsGranted('ROLE_ADMIN')]
 class AdminController extends AbstractController
 {
     #[Route(path: ['en' => '/admin', 'fr' => '/admin'], name: 'app_admin_index', methods: ['GET'])]
@@ -62,10 +62,9 @@ class AdminController extends AbstractController
             'isRequiredPhpVersionForLatestReleaseOk' => $latestVersionChecker->isRequiredPhpVersionForLatestReleaseOk(),
             'symfonyVersion' => Kernel::VERSION,
             'phpVersion' => phpversion(),
-            'isOpcacheAvailable' => \function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled']
+            'isOpcacheAvailable' => \function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled'],
         ]);
     }
-
 
     #[Route(
         path: ['en' => '/admin/export/sql', 'fr' => '/admin/export/sql'],
@@ -74,7 +73,7 @@ class AdminController extends AbstractController
     )]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
-        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis') . '-koillection-database.sql');
+        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis').'-koillection-database.sql');
     }
 
     #[Route(
@@ -92,16 +91,16 @@ class AdminController extends AbstractController
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
 
-            $zipFilename = (new \DateTime())->format('YmdHis') . '-koillection-images.zip';
+            $zipFilename = (new \DateTime())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
 
             foreach ($users as $user) {
-                $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $user->getId();
+                $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$user->getId();
 
                 $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
                 foreach ($files as $name => $file) {
                     if (!$file->isDir()) {
-                        $zip->addFileFromStream($user->getId() . '/' . $file->getFilename(), fopen($file->getRealPath(), 'r'));
+                        $zip->addFileFromStream($user->getId().'/'.$file->getFilename(), fopen($file->getRealPath(), 'r'));
                     }
                 }
             }

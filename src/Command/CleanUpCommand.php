@@ -37,7 +37,7 @@ class CleanUpCommand extends Command
         }
 
         //Get all paths in database (images + thumbnails)
-        $sql = "
+        $sql = '
             SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
 
             SELECT image AS image FROM koi_album WHERE image IS NOT NULL UNION
@@ -63,7 +63,7 @@ class CleanUpCommand extends Command
             
             SELECT image AS image FROM koi_wish WHERE image IS NOT NULL UNION
             SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL;
-        ";
+        ';
 
         $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
         $stmt->execute();
@@ -75,8 +75,8 @@ class CleanUpCommand extends Command
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath.'/uploads'));
         $diskPaths = [];
         foreach ($rii as $file) {
-            if (!$file->isDir() && $file->getFileName() !== '.gitkeep') {
-                $diskPaths[] = str_replace($this->publicPath. '/', '', $file->getPathname());
+            if (!$file->isDir() && '.gitkeep' !== $file->getFileName()) {
+                $diskPaths[] = str_replace($this->publicPath.'/', '', $file->getPathname());
             }
         }
 

@@ -18,7 +18,7 @@ class DiskUsageCalculator
 
     public function getSpaceUsedByUsers(): float
     {
-        $uploadFolderPath = $this->publicPath . '/uploads';
+        $uploadFolderPath = $this->publicPath.'/uploads';
 
         if (is_dir($uploadFolderPath)) {
             return $this->getFolderSize($uploadFolderPath);
@@ -29,7 +29,7 @@ class DiskUsageCalculator
 
     public function getSpaceUsedByUser(User $user): float
     {
-        $userFolderPath = $this->publicPath . '/uploads/' . $user->getId();
+        $userFolderPath = $this->publicPath.'/uploads/'.$user->getId();
 
         if (is_dir($userFolderPath)) {
             return $this->getFolderSize($userFolderPath);

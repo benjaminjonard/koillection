@@ -34,7 +34,7 @@ class WishlistController extends AbstractController
         $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => 'ASC']);
 
         return $this->render('App/Wishlist/index.html.twig', [
-            'wishlists' => $wishlists
+            'wishlists' => $wishlists,
         ]);
     }
 
@@ -51,7 +51,7 @@ class WishlistController extends AbstractController
         if ($request->query->has('parent')) {
             $parent = $wishlistRepository->findOneBy([
                 'id' => $request->query->get('parent'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
             $wishlist
                 ->setParent($parent)
@@ -73,7 +73,7 @@ class WishlistController extends AbstractController
         }
 
         return $this->render('App/Wishlist/add.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -96,7 +96,7 @@ class WishlistController extends AbstractController
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist,
             'children' => $wishlistRepository->findBy(['parent' => $wishlist]),
-            'wishes' => $wishRepository->findBy(['wishlist' => $wishlist])
+            'wishes' => $wishRepository->findBy(['wishlist' => $wishlist]),
         ]);
     }
 
@@ -165,8 +165,8 @@ class WishlistController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($wishlist))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 }

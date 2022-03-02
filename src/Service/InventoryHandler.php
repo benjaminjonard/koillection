@@ -14,9 +14,9 @@ class InventoryHandler
         $content = [];
 
         foreach ($collections as $collection) {
-            if ($collection->getParent() === null) {
+            if (null === $collection->getParent()) {
                 $element = $this->buildCollection($collection, $collectionIdsToAddInInventory);
-                if ($element !== null) {
+                if (null !== $element) {
                     $content[] = $element;
                 }
             }
@@ -38,30 +38,30 @@ class InventoryHandler
                 'children' => [],
                 'items' => [],
                 'totalItems' => 0,
-                'totalCheckedItems' => 0
+                'totalCheckedItems' => 0,
             ];
 
             foreach ($collection->getItems() as $item) {
                 $element['items'][] = [
                     'id' => $item->getId(),
                     'name' => $item->getName(),
-                    'checked' => false
+                    'checked' => false,
                 ];
 
-                $element['totalItems']++;
+                ++$element['totalItems'];
             }
         }
 
         foreach ($collection->getChildren() as $child) {
             $childElement = $this->buildCollection($child, $collectionIdsToAddInInventory);
-            if ($childElement !== null) {
-                if ($element === null) {
+            if (null !== $childElement) {
+                if (null === $element) {
                     $element = [
                         'id' => $collection->getId(),
                         'title' => $collection->getTitle(),
                         'items' => [],
                         'totalItems' => 0,
-                        'totalCheckedItems' => 0
+                        'totalCheckedItems' => 0,
                     ];
                 }
 
@@ -76,7 +76,7 @@ class InventoryHandler
     public function setCheckedValue(Inventory $inventory, string $id, string $checked)
     {
         $content = $inventory->getContent();
-        $content = preg_replace('/([^.]*{"id":"' . $id . '","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
+        $content = preg_replace('/([^.]*{"id":"'.$id.'","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
 
         $content = $this->computeCheckedValues(json_decode($content, true));
         $inventory->setContent(json_encode($content));
@@ -98,8 +98,8 @@ class InventoryHandler
         $count = 0;
 
         foreach ($collection['items'] as $item) {
-            if ($item['checked'] === true) {
-                $count++;
+            if (true === $item['checked']) {
+                ++$count;
             }
         }
 

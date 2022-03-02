@@ -31,7 +31,7 @@ class JsonToTagTransformer implements DataTransformerInterface
         foreach (json_decode($json) as $raw) {
             $label = trim($raw);
 
-            if ($label == '') {
+            if ('' == $label) {
                 continue;
             }
 

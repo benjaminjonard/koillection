@@ -25,7 +25,7 @@ class HistoryFilterEnum
 
     public const FILTERS_TYPE = [
         self::FILTER_TYPE_CREATE,
-        self::FILTER_TYPE_DELETE
+        self::FILTER_TYPE_DELETE,
     ];
 
     public const CLASS_TRANS_KEYS = [
@@ -33,7 +33,7 @@ class HistoryFilterEnum
         self::FILTER_CLASS_ITEM => 'enum.history_filter_class.item',
         self::FILTER_CLASS_TAG => 'enum.history_filter_class.tag',
         self::FILTER_CLASS_ALBUM => 'enum.history_filter_class.album',
-        self::FILTER_CLASS_WISHLIST => 'enum.history_filter_class.wishlist'
+        self::FILTER_CLASS_WISHLIST => 'enum.history_filter_class.wishlist',
     ];
 
     public const TYPES_TRANS_KEYS = [

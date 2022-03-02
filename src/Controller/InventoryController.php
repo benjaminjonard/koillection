@@ -39,7 +39,7 @@ class InventoryController extends AbstractController
 
         return $this->render('App/Inventory/add.html.twig', [
             'form' => $form->createView(),
-            'collections' => $collectionRepository->findAll()
+            'collections' => $collectionRepository->findAll(),
         ]);
     }
 
@@ -75,7 +75,7 @@ class InventoryController extends AbstractController
         $managerRegistry->getManager()->flush();
 
         return new JsonResponse([
-            'htmlForNavPills' => $this->render('App/Inventory/_nav_pills.html.twig', ['inventory' => $inventory])->getContent()
+            'htmlForNavPills' => $this->render('App/Inventory/_nav_pills.html.twig', ['inventory' => $inventory])->getContent(),
         ]);
     }
 
@@ -87,7 +87,7 @@ class InventoryController extends AbstractController
     public function show(Inventory $inventory): Response
     {
         return $this->render('App/Inventory/show.html.twig', [
-            'inventory' => $inventory
+            'inventory' => $inventory,
         ]);
     }
 }

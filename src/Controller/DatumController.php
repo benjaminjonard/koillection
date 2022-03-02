@@ -23,12 +23,12 @@ class DatumController extends AbstractController
         $html = $this->render('App/Datum/_datum.html.twig', [
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
-            'type' => $type
+            'type' => $type,
         ])->getContent();
 
         return new JsonResponse([
             'html' => $html,
-            'type' => \in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text'
+            'type' => \in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text',
         ]);
     }
 
@@ -48,7 +48,7 @@ class DatumController extends AbstractController
             foreach ($first->getDataTexts() as $datum) {
                 $field = [
                     'datum' => $datum,
-                    'type' => $datum->getType()
+                    'type' => $datum->getType(),
                 ];
                 $commonFields[$datum->getLabel()] = $field;
             }
@@ -83,9 +83,9 @@ class DatumController extends AbstractController
                 'entity' => 'item',
                 'iteration' => '__placeholder__',
                 'type' => $field['type'],
-                'datum' => $field['datum']
+                'datum' => $field['datum'],
             ])->getContent();
-            $i++;
+            ++$i;
         }
 
         return new JsonResponse($result);
@@ -108,7 +108,7 @@ class DatumController extends AbstractController
                 'entity' => 'item',
                 'iteration' => '__placeholder__',
                 'type' => $datum->getType(),
-                'datum' => $datum
+                'datum' => $datum,
             ])->getContent();
         }
 

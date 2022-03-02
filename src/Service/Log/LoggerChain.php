@@ -26,12 +26,12 @@ class LoggerChain
         }
 
         usort($loggers, function (LoggerInterface $a, LoggerInterface $b) {
-            return ($a->getPriority() <=> $b->getPriority());
+            return $a->getPriority() <=> $b->getPriority();
         });
 
         foreach ($loggers as $logger) {
             $response = $logger->$function(...$params);
-            if ($response !== null) {
+            if (null !== $response) {
                 break;
             }
         }

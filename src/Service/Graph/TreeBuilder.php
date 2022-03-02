@@ -20,7 +20,7 @@ class TreeBuilder
         $tree = $this->createLeaf();
 
         $children = array_filter($collections, function (Collection $element) {
-            return $element->getParent() === null;
+            return null === $element->getParent();
         });
 
         foreach ($children as $child) {
@@ -46,12 +46,12 @@ class TreeBuilder
         $name = '';
         if ($collection instanceof Collection) {
             $title = $collection->getTitle();
-            $name = \strlen($title) > 21 ? substr($title, 0, 18) . '...' : $title;
+            $name = \strlen($title) > 21 ? substr($title, 0, 18).'...' : $title;
         }
 
         return [
             'id' => $collection ? $collection->getId() : '',
             'name' => $name,
-            'children' => []];
+            'children' => [], ];
     }
 }

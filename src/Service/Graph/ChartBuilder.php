@@ -42,7 +42,7 @@ class ChartBuilder
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $hour = $raw['date']->setTimezone($timezone)->format('G');
-            $data[$hour]['count']++;
+            ++$data[$hour]['count'];
         }
 
         return $data;
@@ -71,7 +71,7 @@ class ChartBuilder
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $day = $raw['date']->setTimezone($timezone)->format('j');
-            $data[$day - 1]['count']++;
+            ++$data[$day - 1]['count'];
         }
 
         return $data;
@@ -97,7 +97,7 @@ class ChartBuilder
             mb_substr($this->translator->trans('global.days.wednesday'), 0, 3, 'UTF-8'),
             mb_substr($this->translator->trans('global.days.thursday'), 0, 3, 'UTF-8'),
             mb_substr($this->translator->trans('global.days.friday'), 0, 3, 'UTF-8'),
-            mb_substr($this->translator->trans('global.days.saturday'), 0, 3, 'UTF-8')
+            mb_substr($this->translator->trans('global.days.saturday'), 0, 3, 'UTF-8'),
         ];
 
         $data = [];
@@ -109,7 +109,7 @@ class ChartBuilder
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $weekDay = $raw['date']->setTimezone($timezone)->format('w');
-            $data[$weekDay]['count']++;
+            ++$data[$weekDay]['count'];
         }
 
         return $data;
@@ -152,7 +152,7 @@ class ChartBuilder
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $month = $raw['date']->setTimezone($timezone)->format('n');
-            $data[$month - 1]['count']++;
+            ++$data[$month - 1]['count'];
         }
 
         return $data;
@@ -183,7 +183,7 @@ class ChartBuilder
         foreach ($result as $row) {
             $date = $row['date']->setTimezone($timezone);
             $timestamp = (string) $date->format($user->getDateFormat());
-            $row['type'] === LogTypeEnum::TYPE_CREATE ? $total++ : $total--;
+            LogTypeEnum::TYPE_CREATE === $row['type'] ? $total++ : $total--;
             $data[$timestamp] = $total;
         }
 

@@ -18,7 +18,7 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
     public function denyAccessUnlessFeaturesEnabled(array $features)
     {
         foreach ($features as $feature) {
-            if ($this->featureChecker->isFeatureEnabled($feature) === false) {
+            if (false === $this->featureChecker->isFeatureEnabled($feature)) {
                 throw new AccessDeniedException();
             }
         }

@@ -20,7 +20,7 @@ class AlbumRepository extends ServiceEntityRepository
     public function findAllExcludingItself(Album $album): array
     {
         $id = $album->getId();
-        if ($album->getCreatedAt() === null) {
+        if (null === $album->getCreatedAt()) {
             return $this->findAll();
         }
 
@@ -43,7 +43,7 @@ class AlbumRepository extends ServiceEntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), 'id');
 
         return $this
             ->createQueryBuilder('a')

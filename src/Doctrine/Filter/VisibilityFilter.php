@@ -26,7 +26,7 @@ class VisibilityFilter extends SQLFilter
     private function addFilter($targetTableAlias, $property): string
     {
         // If user not authenticated, only show public
-        if ($this->getParameter('user') === "''") {
+        if ("''" === $this->getParameter('user')) {
             return sprintf("%s.%s = '%s'", $targetTableAlias, $property, VisibilityEnum::VISIBILITY_PUBLIC);
         }
 

@@ -12,7 +12,7 @@ class LatestReleaseChecker
     public const REQUIRED_PHP_VERSION_PER_RELEASE = [
         '1.0' => '7.2',
         '1.1' => '7.4',
-        '1.2' => '8.0'
+        '1.2' => '8.0',
     ];
 
     private ?array $latestReleaseData = null;
@@ -35,7 +35,7 @@ class LatestReleaseChecker
                 'https://api.github.com/repos/koillection/koillection/tags',
                 ['timeout' => 2.5, 'verify_peer' => false, 'verify_host' => false]
             );
-            if ($response->getStatusCode() !== 200) {
+            if (200 !== $response->getStatusCode()) {
                 throw new \Exception();
             }
             $content = json_decode($response->getContent(), true);
@@ -65,7 +65,7 @@ class LatestReleaseChecker
     {
         $latestRelease = $this->getLatestRelease();
 
-        if ($latestRelease === null) {
+        if (null === $latestRelease) {
             return null;
         }
 

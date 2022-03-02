@@ -24,7 +24,7 @@ class DateFormatEnum
         self::FORMAT_SLASH_YMD,
         self::FORMAT_HYPHEN_DMY,
         self::FORMAT_HYPHEN_MDY,
-        self::FORMAT_HYPHEN_YMD
+        self::FORMAT_HYPHEN_YMD,
     ];
 
     public const MAPPING = [
@@ -43,12 +43,12 @@ class DateFormatEnum
             'global.optgroup.date_formats.slash' => [
                 'global.date_formats.slash_dmy' => self::FORMAT_SLASH_DMY,
                 'global.date_formats.slash_mdy' => self::FORMAT_SLASH_MDY,
-                'global.date_formats.slash_ymd' => self::FORMAT_SLASH_YMD
+                'global.date_formats.slash_ymd' => self::FORMAT_SLASH_YMD,
             ],
             'global.optgroup.date_formats.hyphen' => [
                 'global.date_formats.hyphen_dmy' => self::FORMAT_HYPHEN_DMY,
                 'global.date_formats.hyphen_mdy' => self::FORMAT_HYPHEN_MDY,
-                'global.date_formats.hyphen_ymd' => self::FORMAT_HYPHEN_YMD
+                'global.date_formats.hyphen_ymd' => self::FORMAT_HYPHEN_YMD,
             ],
         ];
     }

@@ -58,7 +58,7 @@ class LoanController extends AbstractController
         requirements: ['id' => '%uuid_regex%'],
         methods: ['GET']
     )]
-    #[Entity('loan', expr: 'repository.findByIdWithItem(id)', class:Loan::class)]
+    #[Entity('loan', expr: 'repository.findByIdWithItem(id)', class: Loan::class)]
     public function returned(Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);

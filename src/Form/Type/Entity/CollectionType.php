@@ -40,11 +40,11 @@ class CollectionType extends AbstractType
             ])
             ->add('childrenTitle', TextType::class, [
                 'attr' => ['length' => 255],
-                'required' => false
+                'required' => false,
             ])
             ->add('itemsTitle', TextType::class, [
                 'attr' => ['length' => 255],
-                'required' => false
+                'required' => false,
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
@@ -65,13 +65,13 @@ class CollectionType extends AbstractType
                 'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false
+                'by_reference' => false,
             ])
             ->add(
                 $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
-                    'model_transformer' => $this->base64ToImageTransformer
+                    'model_transformer' => $this->base64ToImageTransformer,
                 ])
             )
         ;
@@ -85,7 +85,7 @@ class CollectionType extends AbstractType
                 'multiple' => false,
                 'choice_name' => null,
                 'required' => false,
-                'mapped' => false
+                'mapped' => false,
             ]);
         }
     }
@@ -93,7 +93,7 @@ class CollectionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Collection::class
+            'data_class' => Collection::class,
         ]);
     }
 }

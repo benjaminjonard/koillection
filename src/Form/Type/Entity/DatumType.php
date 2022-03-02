@@ -36,11 +36,11 @@ class DatumType extends AbstractType
             ])
             ->add('fileImage', FileType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
             ])
             ->add('fileFile', FileType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
             ])
             ->add('position', TextType::class, [
                 'required' => false,
@@ -60,7 +60,7 @@ class DatumType extends AbstractType
                                 'choices' => array_combine(range(1, 10), range(1, 10)),
                                 'expanded' => true,
                                 'multiple' => false,
-                                'required' => false
+                                'required' => false,
                             ])
                         ;
                         break;
@@ -76,12 +76,12 @@ class DatumType extends AbstractType
                                 'format' => $this->security->getUser()->getDateFormatForForm(),
                                 'model_transformer' => new CallbackTransformer(
                                     function ($string) {
-                                        return $string !== null ? new \DateTime($string) : null;
+                                        return null !== $string ? new \DateTime($string) : null;
                                     },
                                     function ($date) {
                                         return $date instanceof \DateTime ? $date->format('Y-m-d') : null;
                                     }
-                                )]
+                                ), ]
                             )
                         ;
                         break;
@@ -100,7 +100,7 @@ class DatumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Datum::class
+            'data_class' => Datum::class,
         ]);
     }
 }

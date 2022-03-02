@@ -39,7 +39,7 @@ class AlbumController extends AbstractController
 
         return $this->render('App/Album/index.html.twig', [
             'albums' => $albums,
-            'photosCounter' => $photosCounter
+            'photosCounter' => $photosCounter,
         ]);
     }
 
@@ -56,7 +56,7 @@ class AlbumController extends AbstractController
         if ($request->query->has('parent')) {
             $parent = $albumRepository->findOneBy([
                 'id' => $request->query->get('parent'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
             $album
                 ->setParent($parent)
@@ -149,7 +149,7 @@ class AlbumController extends AbstractController
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
             'children' => $albumRepository->findBy(['parent' => $album]),
-            'photos' => $photoRepository->findBy(['album' => $album])
+            'photos' => $photoRepository->findBy(['album' => $album]),
         ]);
     }
 
@@ -170,8 +170,8 @@ class AlbumController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($album))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 }

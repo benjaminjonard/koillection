@@ -11,7 +11,7 @@ class LocaleEnum
 
     public const LOCALES = [
         self::LOCALE_EN_GB => 'en-GB',
-        self::LOCALE_FR_FR => 'fr-FR'
+        self::LOCALE_FR_FR => 'fr-FR',
     ];
 
     public static function getLocaleLabels(): array

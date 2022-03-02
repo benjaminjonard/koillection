@@ -84,7 +84,7 @@ class DateRuntime implements RuntimeExtensionInterface
             'y' => 'year',
             'm' => 'month',
             'w' => 'week',
-            'd' => 'day'
+            'd' => 'day',
         ];
 
         foreach ($string as $k => &$v) {

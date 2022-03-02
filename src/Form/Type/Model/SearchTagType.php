@@ -17,7 +17,7 @@ class SearchTagType extends AbstractType
         $builder
             ->add('term', TextType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
         ;
     }
@@ -26,7 +26,7 @@ class SearchTagType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SearchTag::class,
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ]);
     }
 }

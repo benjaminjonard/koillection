@@ -14,7 +14,7 @@ class IntlRuntime implements RuntimeExtensionInterface
         $regionalOffset = 0x1F1A5;
 
         return mb_chr($regionalOffset + mb_ord($countryCode[0], 'UTF-8'), 'UTF-8')
-            . mb_chr($regionalOffset + mb_ord($countryCode[1], 'UTF-8'), 'UTF-8');
+            .mb_chr($regionalOffset + mb_ord($countryCode[1], 'UTF-8'), 'UTF-8');
     }
 
     public function getCountriesList(): array
@@ -25,7 +25,7 @@ class IntlRuntime implements RuntimeExtensionInterface
             $countries[] = [
                 'name' => $name,
                 'code' => $countryCode,
-                'flag' => $this->getEmojiFlag($countryCode)
+                'flag' => $this->getEmojiFlag($countryCode),
             ];
         }
 

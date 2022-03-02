@@ -49,7 +49,7 @@ class WishType extends AbstractType
             ])
             ->add('file', FileType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
             ])
             ->add('wishlist', EntityType::class, [
                 'class' => Wishlist::class,

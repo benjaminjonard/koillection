@@ -50,35 +50,37 @@ class AppRuntime implements RuntimeExtensionInterface
             return $this->translator->trans($element->getLabel(), ['%username%' => $element->getParams()['username']]);
         }
 
-        $element = \count($breadcrumb) === 0 ? $element : array_pop($breadcrumb);
+        $element = 0 === \count($breadcrumb) ? $element : array_pop($breadcrumb);
 
         if ($element instanceof BreadcrumbElement) {
-            if ($element->getType() === 'action') {
+            if ('action' === $element->getType()) {
                 $entityElement = array_pop($breadcrumb);
 
-                if ($entityElement instanceof BreadcrumbElement && $entityElement->getEntity() !== null) {
+                if ($entityElement instanceof BreadcrumbElement && null !== $entityElement->getEntity()) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
+
                     return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel().' · '.$this->translator->trans($element->getLabel());
-                } elseif (strpos($element->getLabel(), 'breadcrumb.') !== false) {
+                } elseif (false !== strpos($element->getLabel(), 'breadcrumb.')) {
                     return $this->translator->trans($element->getLabel());
                 }
 
                 return $this->translator->trans('label.search').' · '.$element->getLabel();
             }
 
-            if ($element->getType() === 'entity') {
+            if ('entity' === $element->getType()) {
                 $class = (new \ReflectionClass($element->getEntity()))->getShortName();
                 $pieces = preg_split('/(?=[A-Z])/', lcfirst($class));
                 $class = implode('_', $pieces);
                 $class = strtolower($class);
 
-                return $this->translator->trans('global.entities.'.strtolower($class)) .' · '. $element->getLabel();
+                return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$element->getLabel();
             }
 
-            if ($element->getType() === 'root') {
-                if ($this->contextHandler->getContext() === 'shared') {
+            if ('root' === $element->getType()) {
+                if ('shared' === $this->contextHandler->getContext()) {
                     return $this->translator->trans($element->getLabel().'_shared', ['%username%' => $this->contextHandler->getUsername()]);
                 }
+
                 return $this->translator->trans($element->getLabel());
             }
         }
@@ -116,13 +118,13 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function getUnderlinedTags(?iterable $data): array
     {
-        if ($this->isFeatureEnabled('tags') === false || empty($data)) {
+        if (false === $this->isFeatureEnabled('tags') || empty($data)) {
             return [];
         }
 
         $texts = [];
         foreach ($data as $datum) {
-            if ($datum->getValue() !== null) {
+            if (null !== $datum->getValue()) {
                 $texts = array_merge($texts, explode(',', $datum->getValue()));
             }
         }
@@ -144,7 +146,7 @@ class AppRuntime implements RuntimeExtensionInterface
             if ($matchingTag instanceof Tag) {
                 $route = $this->contextHandler->getRouteContext('app_tag_show');
                 $url = $this->router->generate($route, ['id' => $matchingTag->getId()]);
-                $results[$text] = '<a href="' . $url . '">' . $text . '</a>';
+                $results[$text] = '<a href="'.$url.'">'.$text.'</a>';
             } else {
                 $results[$text] = $text;
             }

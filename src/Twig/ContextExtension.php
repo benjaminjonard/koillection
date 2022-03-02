@@ -13,7 +13,7 @@ class ContextExtension extends AbstractExtension
     {
         return [
             new TwigFilter('applyContext', [ContextRuntime::class, 'applyContext']),
-            new TwigFilter('applyContextTrans', [ContextRuntime::class, 'applyContextTrans'])
+            new TwigFilter('applyContextTrans', [ContextRuntime::class, 'applyContextTrans']),
         ];
     }
 }

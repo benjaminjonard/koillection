@@ -34,7 +34,7 @@ class TagCategoryController extends AbstractController
             'categories' => $tagCategoryRepository->findBy([], [], 10, ($page - 1) * 10),
             'search' => $search,
             'categoriesCount' => $categoriesCount,
-            'paginator' => $paginatorFactory->generate($categoriesCount)
+            'paginator' => $paginatorFactory->generate($categoriesCount),
         ]);
     }
 
@@ -50,7 +50,7 @@ class TagCategoryController extends AbstractController
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         return $this->render('App/TagCategory/show.html.twig', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 

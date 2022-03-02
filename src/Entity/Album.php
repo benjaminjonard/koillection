@@ -23,84 +23,84 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
-#[ORM\Table(name: "koi_album")]
-#[ORM\Index(name: "idx_album_final_visibility", columns: ["final_visibility"])]
+#[ORM\Table(name: 'koi_album')]
+#[ORM\Index(name: 'idx_album_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ["groups" => ["album:read"]],
-    denormalizationContext: ["groups" => ["album:write"]],
+    normalizationContext: ['groups' => ['album:read']],
+    denormalizationContext: ['groups' => ['album:write']],
     collectionOperations: [
-        "get",
-        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['album:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    #[Groups(["album:read", "album:write"])]
+    #[Groups(['album:read', 'album:write'])]
     private ?string $title = null;
 
-    #[ORM\Column(type: "string", length: 6)]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'string', length: 6)]
+    #[Groups(['album:read'])]
     private ?string $color = null;
 
-    #[Upload(path: "image", maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
-    #[Groups(["album:write"])]
+    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
+    #[Groups(['album:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['album:read'])]
     private ?string $image = null;
 
-    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "albums")]
-    #[Groups(["album:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'albums')]
+    #[Groups(['album:read'])]
     private ?User $owner = null;
 
-    #[ORM\OneToMany(targetEntity: "Photo", mappedBy: "album", cascade: ["all"])]
+    #[ORM\OneToMany(targetEntity: 'Photo', mappedBy: 'album', cascade: ['all'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $photos;
 
-    #[ORM\OneToMany(targetEntity: "Album", mappedBy: "parent", cascade: ["all"])]
-    #[ORM\OrderBy(["title" => "ASC"])]
+    #[ORM\OneToMany(targetEntity: 'Album', mappedBy: 'parent', cascade: ['all'])]
+    #[ORM\OrderBy(['title' => 'ASC'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
-    #[ORM\ManyToOne(targetEntity: "Album", inversedBy: "children")]
-    #[Groups(["album:read", "album:write"])]
+    #[ORM\ManyToOne(targetEntity: 'Album', inversedBy: 'children')]
+    #[Groups(['album:read', 'album:write'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
-    #[Assert\Expression("not (value == this)", message: "error.parent.same_as_current_object")]
+    #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Album $parent = null;
 
-    #[ORM\Column(type: "integer")]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'integer')]
+    #[Groups(['album:read'])]
     private int $seenCounter;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["album:read", "album:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['album:read', 'album:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: "string", length: 10, nullable: true)]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[Groups(['album:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['album:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['album:read'])]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["album:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['album:read'])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()

@@ -35,14 +35,14 @@ class HistoryController extends AbstractController
         if ($request->isXmlHttpRequest()) {
             return $this->render('App/History/_logs_table.html.twig', [
                 'logs' => $logs,
-                'paginator' => $paginatorFactory->generate($count)
+                'paginator' => $paginatorFactory->generate($count),
             ]);
         }
 
         return $this->render('App/History/index.html.twig', [
             'form' => $form->createView(),
             'logs' => $logs,
-            'paginator' => $paginatorFactory->generate($count)
+            'paginator' => $paginatorFactory->generate($count),
         ]);
     }
 }

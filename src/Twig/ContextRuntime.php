@@ -23,7 +23,7 @@ class ContextRuntime implements RuntimeExtensionInterface
     {
         $context = $this->contextHandler->getContext();
 
-        if ($context === 'shared') {
+        if ('shared' === $context) {
             $trans .= '_'.$context;
         }
 

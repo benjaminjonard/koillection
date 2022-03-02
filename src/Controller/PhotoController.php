@@ -28,7 +28,7 @@ class PhotoController extends AbstractController
         if ($request->query->has('album')) {
             $album = $albumRepository->findOneBy([
                 'id' => $request->query->get('album'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
         }
 

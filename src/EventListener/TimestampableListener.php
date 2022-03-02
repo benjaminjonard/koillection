@@ -15,7 +15,7 @@ final class TimestampableListener
             $entity->setCreatedAt(new \DateTime());
         }
 
-        if (true === property_exists($entity, 'loggedAt') && $entity->getLoggedAt() === null) {
+        if (true === property_exists($entity, 'loggedAt') && null === $entity->getLoggedAt()) {
             $entity->setLoggedAt(new \DateTime());
         }
     }

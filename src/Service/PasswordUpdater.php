@@ -18,7 +18,7 @@ class PasswordUpdater
     {
         $plainPassword = $user->getPlainPassword();
 
-        if ($plainPassword === null) {
+        if (null === $plainPassword) {
             return $user;
         }
 

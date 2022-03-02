@@ -45,11 +45,11 @@ class PhotoType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->security->getUser()->getDateFormatForForm()
+                'format' => $this->security->getUser()->getDateFormatForForm(),
             ])
             ->add('file', FileType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
             ])
             ->add('album', EntityType::class, [
                 'class' => Album::class,
@@ -70,7 +70,7 @@ class PhotoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Photo::class
+            'data_class' => Photo::class,
         ]);
     }
 }

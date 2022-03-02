@@ -29,17 +29,15 @@ class DatabaseDumper
         $platformName = $this->managerRegistry->getManager()->getConnection()->getDatabasePlatform()->getName();
         $disableForeignKeysCheck = null;
         $enableForeignKeysCheck = null;
-        if ($platformName === 'postgresql') {
+        if ('postgresql' === $platformName) {
             $disableForeignKeysCheck = 'SET session_replication_role = replica;'.PHP_EOL.PHP_EOL;
             $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;'.PHP_EOL;
-            ;
-        } elseif ($platformName === 'mysql') {
+        } elseif ('mysql' === $platformName) {
             $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL.PHP_EOL;
             $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;
-            ;
         }
 
-        if ($disableForeignKeysCheck !== null) {
+        if (null !== $disableForeignKeysCheck) {
             $rows[] = $disableForeignKeysCheck;
         }
 
@@ -48,17 +46,17 @@ class DatabaseDumper
 
         //Data
         $userIds = [];
-        if ($this->contextHandler->getContext() !== 'admin') {
-            $userIds[] = "'" . $this->security->getUser()->getId() . "'";
+        if ('admin' !== $this->contextHandler->getContext()) {
+            $userIds[] = "'".$this->security->getUser()->getId()."'";
         } else {
             foreach ($this->userRepository->findAll() as $user) {
-                $userIds[] = "'" . $user->getId() . "'";
-            };
+                $userIds[] = "'".$user->getId()."'";
+            }
         }
         $userIds = implode(',', $userIds);
 
         $selects = [
-            "SELECT * FROM doctrine_migration_version",
+            'SELECT * FROM doctrine_migration_version',
             "SELECT * FROM koi_album WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_collection WHERE owner_id IN ($userIds)",
             "SELECT * FROM koi_datum WHERE owner_id IN ($userIds)",
@@ -79,7 +77,7 @@ class DatabaseDumper
 
         foreach ($selects as $select) {
             $stmt = $connection->prepare($select);
-            $results =  $stmt->executeQuery()->fetchAllAssociative();
+            $results = $stmt->executeQuery()->fetchAllAssociative();
 
             if (empty($results)) {
                 continue;
@@ -104,7 +102,7 @@ class DatabaseDumper
                     $values[] = $this->formatValue($value, $property, $metadata);
                 }
 
-                $content = '('.implode(',', $values) .')';
+                $content = '('.implode(',', $values).')';
                 $content .= $key === $count - 1 ? PHP_EOL : ','.PHP_EOL;
                 $rows[] = $content;
             }
@@ -114,7 +112,7 @@ class DatabaseDumper
         }
 
         //Enable foreign keys
-        if ($enableForeignKeysCheck !== null) {
+        if (null !== $enableForeignKeysCheck) {
             $rows[] = $enableForeignKeysCheck;
         }
 
@@ -139,15 +137,15 @@ class DatabaseDumper
             $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
         }
 
-        if ($value === null) {
+        if (null === $value) {
             $value = 'NULL';
         } else {
-            if ($metadata && $metadata->getTypeOfField(array_search($property, $metadata->columnNames)) === 'boolean') {
-                $value = $value === true ? 'true' : 'false';
+            if ($metadata && 'boolean' === $metadata->getTypeOfField(array_search($property, $metadata->columnNames))) {
+                $value = true === $value ? 'true' : 'false';
             }
 
-            if ($metadata === null || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames)), [null, 'string', 'datetime', 'date' ,'uuid', 'array', 'text'], true)) {
-                $value = "'" . $value . "'";
+            if (null === $metadata || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames)), [null, 'string', 'datetime', 'date', 'uuid', 'array', 'text'], true)) {
+                $value = "'".$value."'";
             }
         }
 

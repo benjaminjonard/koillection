@@ -23,7 +23,7 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
 
     public function reverseTransform($string): mixed
     {
-        if ($string === null) {
+        if (null === $string) {
             return json_encode([]);
         }
 

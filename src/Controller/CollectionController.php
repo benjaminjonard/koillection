@@ -39,7 +39,7 @@ class CollectionController extends AbstractController
         $collections = $collectionRepository->findBy(['parent' => null], ['title' => 'ASC']);
 
         return $this->render('App/Collection/index.html.twig', [
-            'collections' => $collections
+            'collections' => $collections,
         ]);
     }
 
@@ -55,7 +55,7 @@ class CollectionController extends AbstractController
         if ($request->query->has('parent')) {
             $parent = $collectionRepository->findOneBy([
                 'id' => $request->query->get('parent'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
             $collection
                 ->setParent($parent)
@@ -80,7 +80,7 @@ class CollectionController extends AbstractController
             'collection' => $collection,
             'form' => $form->createView(),
             'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection)
+            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
         ]);
     }
 
@@ -101,7 +101,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findBy(['parent' => $collection]),
-            'items' => $itemRepository->findBy(['collection' => $collection])
+            'items' => $itemRepository->findBy(['collection' => $collection]),
         ]);
     }
 
@@ -220,8 +220,8 @@ class CollectionController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($collection))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 }

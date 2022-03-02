@@ -50,17 +50,17 @@ class Autocompleter
         foreach ($this->params as $key => $value) {
             $query->setParameter($key + 1, $value);
         }
-        $counter =  $query->getSingleScalarResult();
+        $counter = $query->getSingleScalarResult();
 
         //Get the 5 most relevant results
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('id', 'id');
         $rsm->addScalarResult('label', 'label');
         $rsm->addScalarResult('type', 'type');
-        $sql .= "
+        $sql .= '
             ORDER BY relevance DESC, seenCounter DESC, label ASC
             LIMIT 5
-        ";
+        ';
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         foreach ($this->params as $key => $value) {
             $query->setParameter($key + 1, $value);
@@ -76,7 +76,7 @@ class Autocompleter
 
         return [
             'results' => $results,
-            'totalResultsCounter' => $counter
+            'totalResultsCounter' => $counter,
         ];
     }
 
@@ -99,14 +99,14 @@ class Autocompleter
         ";
 
         $this->params[] = $term;
-        $this->params[] = $term . '%';
+        $this->params[] = $term.'%';
         $this->params[] = $user->getId();
-        $this->params[] = '%'. $term . '%';
+        $this->params[] = '%'.$term.'%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            $sql .= " AND visibility = ?";
+            $sql .= ' AND visibility = ?';
             $this->params[] = VisibilityEnum::VISIBILITY_PUBLIC;
-        };
+        }
 
         return $sql;
     }

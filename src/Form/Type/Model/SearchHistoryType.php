@@ -38,21 +38,21 @@ class SearchHistoryType extends AbstractType
         $builder
             ->add('term', TextType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
             ->add('classes', ChoiceType::class, [
                 'choices' => array_flip($types),
                 'label' => false,
                 'required' => false,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
             ->add('types', ChoiceType::class, [
                 'choices' => array_flip(HistoryFilterEnum::TYPES_TRANS_KEYS),
                 'label' => false,
                 'required' => false,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
         ;
     }
@@ -61,7 +61,7 @@ class SearchHistoryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SearchHistory::class,
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ]);
     }
 }

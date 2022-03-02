@@ -32,14 +32,14 @@ class UserType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'required' => true,
-                'invalid_message'  => 'error.password.not_matching'
+                'invalid_message' => 'error.password.not_matching',
             ])
             ->add('timezone', TimezoneType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('dateFormat', ChoiceType::class, [
                 'choices' => DateFormatEnum::getChoicesList(),
-                'required' => true
+                'required' => true,
             ])
         ;
     }
@@ -47,7 +47,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class
+            'data_class' => User::class,
         ]);
     }
 }

@@ -17,7 +17,7 @@ class FooterRuntime implements RuntimeExtensionInterface
 
             return $environment->render('App/_partials/_footer.html.twig', [
                 'object' => $object,
-                'class' => $class
+                'class' => $class,
             ]);
         }
 

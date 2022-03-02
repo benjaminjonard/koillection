@@ -13,7 +13,7 @@ class DiskUsageExtension extends AbstractExtension
     {
         return [
             new TwigFunction('getSpaceUsedByUser', [DiskUsageRuntime::class, 'getSpaceUsedByUser']),
-            new TwigFunction('getSpaceUsedByUsers', [DiskUsageRuntime::class, 'getSpaceUsedByUsers'])
+            new TwigFunction('getSpaceUsedByUsers', [DiskUsageRuntime::class, 'getSpaceUsedByUsers']),
         ];
     }
 }

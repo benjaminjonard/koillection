@@ -15,8 +15,8 @@ use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -25,115 +25,115 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
-#[ORM\Table(name: "koi_item")]
-#[ORM\Index(name: "idx_item_final_visibility", columns: ["final_visibility"])]
+#[ORM\Table(name: 'koi_item')]
+#[ORM\Index(name: 'idx_item_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ["groups" => ["item:read"]],
-    denormalizationContext: ["groups" => ["item:write"]],
+    normalizationContext: ['groups' => ['item:read']],
+    denormalizationContext: ['groups' => ['item:write']],
     collectionOperations: [
-        "get",
-        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['item:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    #[Groups(["item:read", "item:write"])]
+    #[Groups(['item:read', 'item:write'])]
     private ?string $name = null;
 
-    #[ORM\Column(type: "integer")]
+    #[ORM\Column(type: 'integer')]
     #[Assert\GreaterThan(0)]
-    #[Groups(["item:read", "item:write"])]
+    #[Groups(['item:read', 'item:write'])]
     private int $quantity;
 
-    #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "items")]
+    #[ORM\ManyToOne(targetEntity: 'Collection', inversedBy: 'items')]
     #[Assert\NotBlank]
-    #[Groups(["item:read", "item:write"])]
+    #[Groups(['item:read', 'item:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
-    #[ORM\ManyToOne(targetEntity: "User")]
-    #[Groups(["item:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[Groups(['item:read'])]
     private ?User $owner = null;
 
-    #[ORM\ManyToMany(targetEntity: "Tag", inversedBy: "items", cascade: ["persist"])]
-    #[ORM\JoinTable(name: "koi_item_tag")]
-    #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
-    #[ORM\InverseJoinColumn(name: "tag_id", referencedColumnName: "id")]
-    #[ORM\OrderBy(["label" => "ASC"])]
-    #[Groups(["item:write"])]
+    #[ORM\ManyToMany(targetEntity: 'Tag', inversedBy: 'items', cascade: ['persist'])]
+    #[ORM\JoinTable(name: 'koi_item_tag')]
+    #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
+    #[ORM\OrderBy(['label' => 'ASC'])]
+    #[Groups(['item:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
-    #[ORM\ManyToMany(targetEntity: "Item", inversedBy: "relatedTo")]
-    #[ORM\JoinTable(name: "koi_item_related_item")]
-    #[ORM\JoinColumn(name: "item_id", referencedColumnName: "id")]
-    #[ORM\InverseJoinColumn(name: "related_item_id", referencedColumnName: "id")]
-    #[ORM\OrderBy(["name" => "ASC"])]
-    #[Groups(["item:write"])]
+    #[ORM\ManyToMany(targetEntity: 'Item', inversedBy: 'relatedTo')]
+    #[ORM\JoinTable(name: 'koi_item_related_item')]
+    #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'related_item_id', referencedColumnName: 'id')]
+    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[Groups(['item:write'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $relatedItems;
 
-    #[ORM\ManyToMany(targetEntity: "Item", mappedBy: "relatedItems")]
-    #[ORM\OrderBy(["name" => "ASC"])]
+    #[ORM\ManyToMany(targetEntity: 'Item', mappedBy: 'relatedItems')]
+    #[ORM\OrderBy(['name' => 'ASC'])]
     private DoctrineCollection $relatedTo;
 
-    #[ORM\OneToMany(targetEntity: "Datum", mappedBy: "item", cascade: ["persist", "remove"], orphanRemoval: true)]
-    #[ORM\OrderBy(["position" => "ASC"])]
-    #[Groups(["item:write"])]
+    #[ORM\OneToMany(targetEntity: 'Datum', mappedBy: 'item', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[Groups(['item:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $data;
 
-    #[ORM\OneToMany(targetEntity: "Loan", mappedBy: "item", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Loan', mappedBy: 'item', cascade: ['remove'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $loans;
 
-    #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
-    #[Groups(["item:write"])]
+    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Groups(['item:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['item:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['item:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['item:read'])]
     private ?string $imageLargeThumbnail = null;
 
-    #[ORM\Column(type: "integer")]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'integer')]
+    #[Groups(['item:read'])]
     private int $seenCounter;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["item:read", "item:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['item:read', 'item:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: "string", length: 10, nullable: true)]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[Groups(['item:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['item:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['item:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["item:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['item:read'])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -279,7 +279,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
         return $this;
     }
-
 
     public function setTags(DoctrineCollection $tags): self
     {
@@ -453,7 +452,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageLargeThumbnail(): ?string
     {
-        if ($this->imageLargeThumbnail === null) {
+        if (null === $this->imageLargeThumbnail) {
             return $this->image;
         }
 

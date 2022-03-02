@@ -23,99 +23,99 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CollectionRepository::class)]
-#[ORM\Table(name: "koi_collection")]
-#[ORM\Index(name: "idx_collection_final_visibility", columns: ["final_visibility"])]
+#[ORM\Table(name: 'koi_collection')]
+#[ORM\Index(name: 'idx_collection_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ["groups" => ["collection:read"]],
-    denormalizationContext: ["groups" => ["collection:write"]],
+    normalizationContext: ['groups' => ['collection:read']],
+    denormalizationContext: ['groups' => ['collection:write']],
     collectionOperations: [
-        "get",
-        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
 class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['collection:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    #[Groups(["collection:read", "collection:write"])]
+    #[Groups(['collection:read', 'collection:write'])]
     private ?string $title = null;
 
-    #[ORM\Column(type: "string", nullable: true)]
-    #[Groups(["collection:read", "collection:write"])]
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Groups(['collection:read', 'collection:write'])]
     private ?string $childrenTitle = null;
 
-    #[ORM\Column(type: "string", nullable: true)]
-    #[Groups(["collection:read", "collection:write"])]
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Groups(['collection:read', 'collection:write'])]
     private ?string $itemsTitle = null;
 
-    #[ORM\OneToMany(targetEntity: "Collection", mappedBy: "parent", cascade: ["all"])]
-    #[ORM\OrderBy(["title" => "ASC"])]
+    #[ORM\OneToMany(targetEntity: 'Collection', mappedBy: 'parent', cascade: ['all'])]
+    #[ORM\OrderBy(['title' => 'ASC'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
-    #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "children")]
-    #[Groups(["collection:read", "collection:write"])]
+    #[ORM\ManyToOne(targetEntity: 'Collection', inversedBy: 'children')]
+    #[Groups(['collection:read', 'collection:write'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
-    #[Assert\Expression("not (value == this)", message: "error.parent.same_as_current_object")]
+    #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Collection $parent = null;
 
-    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "collections")]
-    #[Groups(["collection:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'collections')]
+    #[Groups(['collection:read'])]
     private ?User $owner = null;
 
-    #[ORM\OneToMany(targetEntity: "Item", mappedBy: "collection", cascade: ["all"])]
-    #[ORM\OrderBy(["name" => "ASC"])]
+    #[ORM\OneToMany(targetEntity: 'Item', mappedBy: 'collection', cascade: ['all'])]
+    #[ORM\OrderBy(['name' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 
-    #[ORM\OneToMany(targetEntity: "Datum", mappedBy: "collection", cascade: ["persist", "remove"], orphanRemoval: true)]
-    #[ORM\OrderBy(["position" => "ASC"])]
-    #[Groups(["collection:write"])]
+    #[ORM\OneToMany(targetEntity: 'Datum', mappedBy: 'collection', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[Groups(['collection:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $data;
 
-    #[ORM\Column(type: "string", length: 6)]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'string', length: 6)]
+    #[Groups(['collection:read'])]
     private ?string $color = null;
 
-    #[Upload(path: "image", maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
-    #[Groups(["collection:write"])]
+    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
+    #[Groups(['collection:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['collection:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: "integer")]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'integer')]
+    #[Groups(['collection:read'])]
     private int $seenCounter;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["collection:read", "collection:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['collection:read', 'collection:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: "string", length: 10, nullable: true)]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[Groups(['collection:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['collection:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['collection:read'])]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["collection:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['collection:read'])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()

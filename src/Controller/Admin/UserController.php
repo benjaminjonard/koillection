@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[IsGranted("ROLE_ADMIN")]
+#[IsGranted('ROLE_ADMIN')]
 class UserController extends AbstractController
 {
     #[Route(
@@ -35,7 +35,7 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('App/Admin/User/index.html.twig', [
-            'users' => $userRepository->findBy([], ['lastDateOfActivity' => 'DESC'])
+            'users' => $userRepository->findBy([], ['lastDateOfActivity' => 'DESC']),
         ]);
     }
 
@@ -59,7 +59,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('App/Admin/User/add.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -119,7 +119,7 @@ class UserController extends AbstractController
         if ($user->isAdmin()) {
             return $this->render('App/Admin/User/delete.html.twig', [
                 'user' => $user,
-                'error' =>  $translator->trans('error.cannot_delete_admin_user')
+                'error' => $translator->trans('error.cannot_delete_admin_user'),
             ]);
         }
 

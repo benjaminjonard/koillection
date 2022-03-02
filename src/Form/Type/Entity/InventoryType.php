@@ -29,7 +29,7 @@ class InventoryType extends AbstractType
             ->add(
                 $builder->create('content', HiddenType::class, [
                     'required' => false,
-                    'model_transformer' => $this->stringToInventoryContentTransformer
+                    'model_transformer' => $this->stringToInventoryContentTransformer,
                 ])
             )
         ;
@@ -38,7 +38,7 @@ class InventoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Inventory::class
+            'data_class' => Inventory::class,
         ]);
     }
 }

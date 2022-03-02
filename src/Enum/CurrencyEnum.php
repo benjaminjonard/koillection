@@ -15,9 +15,9 @@ class CurrencyEnum
             if (!strpos($name, '(')) {
                 $symbol = Currencies::getSymbol($code);
                 if ($symbol === $code) {
-                    $currencies[$code] = ucwords($name) . " ($code)";
+                    $currencies[$code] = ucwords($name)." ($code)";
                 } else {
-                    $currencies[$code] = ucwords($name) . " $symbol ($code)";
+                    $currencies[$code] = ucwords($name)." $symbol ($code)";
                 }
             }
         }

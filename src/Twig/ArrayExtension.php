@@ -12,7 +12,7 @@ class ArrayExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('naturalSorting', [ArrayRuntime::class, 'naturalSorting'])
+            new TwigFilter('naturalSorting', [ArrayRuntime::class, 'naturalSorting']),
         ];
     }
 }

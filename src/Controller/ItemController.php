@@ -81,7 +81,7 @@ class ItemController extends AbstractController
             'form' => $form->createView(),
             'item' => $item,
             'collection' => $collection,
-            'suggestedNames' => $suggestedNames
+            'suggestedNames' => $suggestedNames,
         ]);
     }
 
@@ -105,7 +105,7 @@ class ItemController extends AbstractController
         return $this->render('App/Item/show.html.twig', [
             'item' => $item,
             'previousItem' => $nextAndPrevious['previous'],
-            'nextItem' => $nextAndPrevious['next']
+            'nextItem' => $nextAndPrevious['next'],
         ]);
     }
 
@@ -173,8 +173,8 @@ class ItemController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($item))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 

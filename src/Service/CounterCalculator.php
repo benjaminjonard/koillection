@@ -135,7 +135,6 @@ class CounterCalculator
         $visibilityCondition = '';
         $this->addVisibilityCondition($visibilityCondition, $i1, 'AND');
 
-
         $sql = "
             WITH RECURSIVE counters AS (
                 SELECT $c1.id, $c1.parent_id, $c1.final_visibility, $i1.id AS item_id
@@ -158,7 +157,7 @@ class CounterCalculator
     private function addVisibilityCondition(&$sql, $alias, $condition)
     {
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            if ($this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user') === "''") {
+            if ("''" === $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user')) {
                 $sql .= sprintf("$condition %s.final_visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
             } else {
                 $sql .= sprintf(

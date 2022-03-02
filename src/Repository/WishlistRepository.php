@@ -30,7 +30,7 @@ class WishlistRepository extends ServiceEntityRepository
     public function findAllExcludingItself(Wishlist $wishlist): array
     {
         $id = $wishlist->getId();
-        if ($wishlist->getCreatedAt() === null) {
+        if (null === $wishlist->getCreatedAt()) {
             return $this->findAll();
         }
 
@@ -53,7 +53,7 @@ class WishlistRepository extends ServiceEntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), 'id');
 
         return $this
             ->createQueryBuilder('w')

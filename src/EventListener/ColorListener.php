@@ -17,7 +17,7 @@ class ColorListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if (true === property_exists($entity, 'color') && $entity->getColor() === null) {
+        if (true === property_exists($entity, 'color') && null === $entity->getColor()) {
             $entity->setColor($this->colorPicker->pickRandomColor());
         }
     }

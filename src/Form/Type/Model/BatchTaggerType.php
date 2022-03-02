@@ -25,7 +25,7 @@ class BatchTaggerType extends AbstractType
             ->add(
                 $builder->create('tags', TextType::class, [
                     'required' => true,
-                    'model_transformer' => $this->jsonToTagTransformer
+                    'model_transformer' => $this->jsonToTagTransformer,
                 ])
             )
             ->add('recursive', CheckboxType::class, [

@@ -20,7 +20,7 @@ use Doctrine\ORM\UnitOfWork;
  * Each object has 3 visibility properties :
  * visibility -> the visibility of the object, the only one that can be changed by a user
  * parentVisibility -> the visibility of the object owning the current one
- * finalVisibility -> the visibility used to display or not the object, computed from the 2 previous properties
+ * finalVisibility -> the visibility used to display or not the object, computed from the 2 previous properties.
  */
 class VisibilityListener
 {
@@ -129,15 +129,15 @@ class VisibilityListener
 
     private function computeFinalVisibility(string $visibility, ?string $parentVisibility): string
     {
-        if ($parentVisibility === null) {
+        if (null === $parentVisibility) {
             return $visibility;
         }
 
-        if ($visibility === VisibilityEnum::VISIBILITY_PUBLIC && $parentVisibility === VisibilityEnum::VISIBILITY_PUBLIC) {
+        if (VisibilityEnum::VISIBILITY_PUBLIC === $visibility && VisibilityEnum::VISIBILITY_PUBLIC === $parentVisibility) {
             return VisibilityEnum::VISIBILITY_PUBLIC;
         }
 
-        if ($visibility === VisibilityEnum::VISIBILITY_PRIVATE || $parentVisibility === VisibilityEnum::VISIBILITY_PRIVATE) {
+        if (VisibilityEnum::VISIBILITY_PRIVATE === $visibility || VisibilityEnum::VISIBILITY_PRIVATE === $parentVisibility) {
             return VisibilityEnum::VISIBILITY_PRIVATE;
         }
 

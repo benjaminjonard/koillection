@@ -12,38 +12,38 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
-#[ORM\Table(name: "koi_inventory")]
+#[ORM\Table(name: 'koi_inventory')]
 #[ApiResource(
-    normalizationContext: ["groups" => ["inventory:read"]],
-    denormalizationContext: ["groups" => ["inventory:write"]],
+    normalizationContext: ['groups' => ['inventory:read']],
+    denormalizationContext: ['groups' => ['inventory:write']],
 )]
 class Inventory implements BreadcrumbableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["inventory:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['inventory:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
-    #[Groups(["inventory:read", "inventory:write"])]
+    #[ORM\Column(type: 'string')]
+    #[Groups(['inventory:read', 'inventory:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\Column(type: "json")]
-    #[Groups(["inventory:read", "inventory:write"])]
+    #[ORM\Column(type: 'json')]
+    #[Groups(['inventory:read', 'inventory:write'])]
     #[Assert\NotBlank]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "inventories")]
-    #[Groups(["inventory:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'inventories')]
+    #[Groups(['inventory:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["inventory:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['inventory:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["inventory:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['inventory:read'])]
     private ?\DateTimeInterface $updatedAt;
 
     private array $contentAsArray = [];

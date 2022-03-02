@@ -61,7 +61,7 @@ class TagRepository extends ServiceEntityRepository
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
-        if ($context === 'shared') {
+        if ('shared' === $context) {
             $qb->having('count(i.id) > 0');
         }
 
@@ -83,7 +83,7 @@ class TagRepository extends ServiceEntityRepository
             ->from(Tag::class, 't')
         ;
 
-        if ($context === 'shared') {
+        if ('shared' === $context) {
             $qb
                 ->innerJoin('t.items', 'i')
                 ->having('count(i.id) > 1')
@@ -210,7 +210,7 @@ class TagRepository extends ServiceEntityRepository
             ->select('DISTINCT partial t.{id, label}')
             ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
-            ->where("i.id IN (:itemIds)")
+            ->where('i.id IN (:itemIds)')
             ->andWhere('t.id != :tag')
             ->orderBy('t.label', 'ASC')
             ->setParameter('tag', $tag->getId())

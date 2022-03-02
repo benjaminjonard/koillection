@@ -13,40 +13,40 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
-#[ORM\Table(name: "koi_field")]
+#[ORM\Table(name: 'koi_field')]
 #[ApiResource(
-    normalizationContext: ["groups" => ["field:read"]],
-    denormalizationContext: ["groups" => ["field:write"]],
+    normalizationContext: ['groups' => ['field:read']],
+    denormalizationContext: ['groups' => ['field:write']],
 )]
 class Field
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["field:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['field:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
-    #[Groups(["field:read", "field:write"])]
+    #[ORM\Column(type: 'string')]
+    #[Groups(['field:read', 'field:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\Column(type: "integer")]
-    #[Groups(["field:read", "field:write"])]
+    #[ORM\Column(type: 'integer')]
+    #[Groups(['field:read', 'field:write'])]
     private ?int $position = null;
 
-    #[ORM\Column(type: "string")]
-    #[Groups(["field:read", "field:write"])]
+    #[ORM\Column(type: 'string')]
+    #[Groups(['field:read', 'field:write'])]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     private ?string $type = null;
 
-    #[ORM\ManyToOne(targetEntity: "Template", inversedBy: "fields")]
+    #[ORM\ManyToOne(targetEntity: 'Template', inversedBy: 'fields')]
     #[Assert\NotBlank]
-    #[Groups(["field:read", "field:write"])]
+    #[Groups(['field:read', 'field:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Template $template = null;
 
-    #[ORM\ManyToOne(targetEntity: "User")]
-    #[Groups(["field:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[Groups(['field:read'])]
     private ?User $owner = null;
 
     public function __construct()

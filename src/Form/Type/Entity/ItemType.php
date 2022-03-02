@@ -47,7 +47,7 @@ class ItemType extends AbstractType
             ])
             ->add('file', FileType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
             ])
             ->add('collection', EntityType::class, [
                 'class' => Collection::class,
@@ -63,7 +63,7 @@ class ItemType extends AbstractType
                 'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false
+                'by_reference' => false,
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
@@ -72,16 +72,15 @@ class ItemType extends AbstractType
             ->add(
                 $builder->create('relatedItems', HiddenType::class, [
                     'required' => false,
-                    'model_transformer' => $this->jsonToItemTransformer
+                    'model_transformer' => $this->jsonToItemTransformer,
                 ])
             );
-        ;
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {
             $builder->add(
                 $builder->create('tags', TextType::class, [
                     'required' => false,
-                    'model_transformer' => $this->jsonToTagTransformer
+                    'model_transformer' => $this->jsonToTagTransformer,
                 ])
             );
         }
@@ -95,7 +94,7 @@ class ItemType extends AbstractType
                 'multiple' => false,
                 'choice_name' => null,
                 'required' => false,
-                'mapped' => false
+                'mapped' => false,
             ]);
         }
     }
@@ -103,7 +102,7 @@ class ItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Item::class
+            'data_class' => Item::class,
         ]);
     }
 }

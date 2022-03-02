@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +33,7 @@ class SignController extends AbstractController
         }
 
         return $this->render('App/Sign/index.html.twig', [
-            'signs' => $signs
+            'signs' => $signs,
         ]);
     }
 }

@@ -44,7 +44,7 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
             new UserBadge($login, function ($userIdentifier) {
                 $user = $this->userRepository->findOneByUsernameOrEmail($userIdentifier);
 
-                if ($user->isEnabled() === false) {
+                if (false === $user->isEnabled()) {
                     throw new CustomUserMessageAuthenticationException('error.user_not_enabled');
                 }
 

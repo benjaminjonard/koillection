@@ -28,13 +28,13 @@ class ProfileType extends AbstractType
                 $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
-                    'model_transformer' => $this->base64ToImageTransformer
+                    'model_transformer' => $this->base64ToImageTransformer,
                 ])
             )
             ->add('plainPassword', RepeatedType::class, [
                 'type' => SymfonyPasswordType::class,
                 'required' => false,
-                'invalid_message'  => 'error.password.not_matching'
+                'invalid_message' => 'error.password.not_matching',
             ])
             ->add('username', TextType::class, [
                 'attr' => ['length' => 255],
@@ -50,7 +50,7 @@ class ProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class
+            'data_class' => User::class,
         ]);
     }
 }

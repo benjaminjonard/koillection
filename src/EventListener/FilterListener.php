@@ -32,7 +32,7 @@ class FilterListener
         $context = $this->contextHandler->getContext();
 
         //Visibility filter
-        if ($context === 'shared') {
+        if ('shared' === $context) {
             $filter = $filters->enable('visibility');
             $filter->setParameter('user', $this->security->getUser() instanceof User ? $this->security->getUser()->getId() : null, 'string');
         } elseif ($filters->isEnabled('visibility')) {
@@ -42,7 +42,7 @@ class FilterListener
 
         //Ownership filter
         $user = $this->contextHandler->getContextUser();
-        if ($user && $context !== 'admin') {
+        if ($user && 'admin' !== $context) {
             $filter = $filters->enable('ownership');
             $filter->setParameter('id', $user->getId(), 'string');
         } elseif ($filters->isEnabled('ownership')) {
@@ -53,7 +53,7 @@ class FilterListener
     public function setContextUser()
     {
         $user = null;
-        if ($this->contextHandler->getContext() === 'shared') {
+        if ('shared' === $this->contextHandler->getContext()) {
             $user = $this->userRepository->findOneBy(['username' => $this->contextHandler->getUsername()]);
             if (!$user) {
                 throw new NotFoundHttpException();

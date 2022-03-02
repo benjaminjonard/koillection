@@ -63,13 +63,12 @@ class RegenerateThumbnailsCommand extends Command
                     ->setParameter('user', $user)
                     ->getQuery()
                     ->getResult();
-                ;
+
                 $objects = array_merge($objects, $result);
             }
 
-
             foreach ($objects as $object) {
-                $imagePath = $this->publicPath . '/' . $object->getImage();
+                $imagePath = $this->publicPath.'/'.$object->getImage();
 
                 if (is_file($imagePath)) {
                     $filename = basename($imagePath);
@@ -81,7 +80,7 @@ class RegenerateThumbnailsCommand extends Command
                     } else {
                         $object->setFile($file);
                     }
-                    $counter++;
+                    ++$counter;
                 }
 
                 if ($counter % 100) {

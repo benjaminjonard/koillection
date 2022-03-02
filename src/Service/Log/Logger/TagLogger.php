@@ -54,7 +54,7 @@ class TagLogger extends Logger
                 'label' => $tag->getLabel(),
                 'property' => 'label',
                 'old' => $changeset['label'][0],
-                'new' => $tag->getLabel()
+                'new' => $tag->getLabel(),
             ];
         }
 
@@ -63,7 +63,7 @@ class TagLogger extends Logger
                 'label' => $tag->getLabel(),
                 'property' => 'description',
                 'old' => $changeset['description'][0],
-                'new' => $tag->getDescription()
+                'new' => $tag->getDescription(),
             ];
         }
 
@@ -72,13 +72,13 @@ class TagLogger extends Logger
                 'label' => $tag->getLabel(),
                 'property' => 'visibility',
                 'old' => $changeset['visibility'][0],
-                'new' => $tag->getVisibility()
+                'new' => $tag->getVisibility(),
             ];
         }
         if (\array_key_exists('image', $changeset)) {
             $mainPayload[] = [
                 'label' => $tag->getLabel(),
-                'property' => 'image'
+                'property' => 'image',
             ];
         }
 
@@ -105,12 +105,12 @@ class TagLogger extends Logger
             case 'visibility':
                 return $this->translator->trans('log.tag.property_updated', [
                     '%property%' => "<strong>$label</strong>",
-                    '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
-                    '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
+                    '%new%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']]).'</strong>',
+                    '%old%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']]).'</strong>',
                 ]);
             case 'image':
                 return $this->translator->trans('log.tag.image_updated', [
-                    '%property%' => "<strong>$label</strong>"
+                    '%property%' => "<strong>$label</strong>",
                 ]);
             default:
                 $defaultValue = $this->translator->trans('log.default_value');

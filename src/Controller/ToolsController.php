@@ -25,7 +25,7 @@ class ToolsController extends AbstractController
     public function index(InventoryRepository $inventoryRepository): Response
     {
         return $this->render('App/Tools/index.html.twig', [
-            'inventories' => $inventoryRepository->findAll()
+            'inventories' => $inventoryRepository->findAll(),
         ]);
     }
 
@@ -40,7 +40,7 @@ class ToolsController extends AbstractController
 
         return $this->render('App/Tools/printable_list.html.twig', [
             'collections' => $collections,
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -60,7 +60,7 @@ class ToolsController extends AbstractController
             }
         }
 
-        return new CsvResponse($rows, (new \DateTime())->format('YmdHis') . '-koillection-export.csv');
+        return new CsvResponse($rows, (new \DateTime())->format('YmdHis').'-koillection-export.csv');
     }
 
     #[Route(
@@ -70,7 +70,7 @@ class ToolsController extends AbstractController
     )]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
-        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis') . '-koillection-export.sql');
+        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis').'-koillection-export.sql');
     }
 
     #[Route(
@@ -86,10 +86,10 @@ class ToolsController extends AbstractController
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
 
-            $zipFilename = (new \DateTime())->format('YmdHis') . '-koillection-images.zip';
+            $zipFilename = (new \DateTime())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
 
-            $path = $this->getParameter('kernel.project_dir').'/public/uploads/'. $this->getUser()->getId();
+            $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$this->getUser()->getId();
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
             foreach ($files as $name => $file) {
                 if (!$file->isDir()) {

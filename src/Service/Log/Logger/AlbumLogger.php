@@ -54,14 +54,14 @@ class AlbumLogger extends Logger
                     'title' => $album->getTitle(),
                     'property' => $property,
                     'old' => $changeset[$property][0],
-                    'new' => $album->$function()
+                    'new' => $album->$function(),
                 ];
-            } elseif ($property === 'image') {
+            } elseif ('image' === $property) {
                 $mainPayload[] = [
                     'title' => $album->getTitle(),
-                    'property' => 'image'
+                    'property' => 'image',
                 ];
-            } elseif ($property === 'parent') {
+            } elseif ('parent' === $property) {
                 $old = $changeset['parent'][0] instanceof Album ? $changeset['parent'][0] : null;
                 $new = $album->getParent() instanceof Album ? $album->getParent() : null;
 
@@ -71,7 +71,7 @@ class AlbumLogger extends Logger
                     'old_title' => $old ? $old->getTitle() : null,
                     'new_id' => $new ? $new->getId() : null,
                     'new_title' => $new ? $new->getTitle() : null,
-                    'title' => $album->getTitle()
+                    'title' => $album->getTitle(),
                 ];
             }
         }
@@ -99,12 +99,12 @@ class AlbumLogger extends Logger
             case 'visibility':
                 return $this->translator->trans('log.album.property_updated', [
                     '%property%' => "<strong>$label</strong>",
-                    '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
-                    '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
+                    '%new%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']]).'</strong>',
+                    '%old%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']]).'</strong>',
                 ]);
             case 'image':
                 return $this->translator->trans('log.album.image_updated', [
-                    '%property%' => "<strong>$label</strong>"
+                    '%property%' => "<strong>$label</strong>",
                 ]);
             case 'parent':
                 $defaultValue = $this->translator->trans('log.album.default_parent');

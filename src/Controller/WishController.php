@@ -31,7 +31,7 @@ class WishController extends AbstractController
         if ($request->query->has('wishlist')) {
             $wishlist = $wishlistRepository->findOneBy([
                 'id' => $request->query->get('wishlist'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
         }
 
@@ -143,7 +143,7 @@ class WishController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.wish_transfered', [
                 '%wish%' => '&nbsp;<strong>'.$wish->getName().'</strong>&nbsp;',
-                '%collection%' => '&nbsp;<strong>'.$item->getCollection()->getTitle().'</strong>&nbsp;'
+                '%collection%' => '&nbsp;<strong>'.$item->getCollection()->getTitle().'</strong>&nbsp;',
             ]));
 
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);

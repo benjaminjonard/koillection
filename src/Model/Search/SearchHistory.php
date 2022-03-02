@@ -62,6 +62,7 @@ class SearchHistory
     public function setClasses(array $classes): SearchHistory
     {
         $this->classes = $classes;
+
         return $this;
     }
 
@@ -73,6 +74,7 @@ class SearchHistory
     public function setTypes(array $types): SearchHistory
     {
         $this->types = $types;
+
         return $this;
     }
 }

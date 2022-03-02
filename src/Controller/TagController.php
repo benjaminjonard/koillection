@@ -56,7 +56,7 @@ class TagController extends AbstractController
         if ($request->isXmlHttpRequest()) {
             return $this->render('App/Tag/_tags_table.html.twig', [
                 'results' => $results,
-                'paginator' => $paginatorFactory->generate($tagsCount)
+                'paginator' => $paginatorFactory->generate($tagsCount),
             ]);
         }
 
@@ -65,7 +65,7 @@ class TagController extends AbstractController
             'search' => $search,
             'tagsCount' => $tagsCount,
             'paginator' => $paginatorFactory->generate($tagsCount),
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -88,7 +88,7 @@ class TagController extends AbstractController
 
         return $this->render('App/Tag/show.html.twig', [
             'tag' => $tag,
-            'relatedTags' => $tagRepository->findRelatedTags($tag)
+            'relatedTags' => $tagRepository->findRelatedTags($tag),
         ]);
     }
 
@@ -111,7 +111,6 @@ class TagController extends AbstractController
 
             return $this->redirectToRoute('app_tag_show', ['id' => $tag->getId()]);
         }
-
 
         return $this->render('App/Tag/edit.html.twig', [
             'form' => $form->createView(),
@@ -176,8 +175,8 @@ class TagController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($tag))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 
@@ -203,7 +202,7 @@ class TagController extends AbstractController
             'item' => $item,
             'tag' => $tag,
             'previousItem' => $nextAndPrevious['previous'],
-            'nextItem' => $nextAndPrevious['next']
+            'nextItem' => $nextAndPrevious['next'],
         ]);
     }
 }

@@ -50,7 +50,7 @@ class AlbumType extends AbstractType
                 $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
-                    'model_transformer' => $this->base64ToImageTransformer
+                    'model_transformer' => $this->base64ToImageTransformer,
                 ])
             )
         ;
@@ -59,7 +59,7 @@ class AlbumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Album::class
+            'data_class' => Album::class,
         ]);
     }
 }

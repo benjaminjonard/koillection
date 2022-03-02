@@ -16,45 +16,45 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TagCategoryRepository::class)]
-#[ORM\Table(name: "koi_tag_category")]
+#[ORM\Table(name: 'koi_tag_category')]
 #[ApiResource(
-    normalizationContext: ["groups" => ["tagCategory:read"]],
-    denormalizationContext: ["groups" => ["tagCategory:write"]],
+    normalizationContext: ['groups' => ['tagCategory:read']],
+    denormalizationContext: ['groups' => ['tagCategory:write']],
 )]
 class TagCategory implements BreadcrumbableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["tagCategory:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['tagCategory:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
-    #[Groups(["tagCategory:read", "tagCategory:write"])]
+    #[ORM\Column(type: 'string')]
+    #[Groups(['tagCategory:read', 'tagCategory:write'])]
     #[Assert\NotBlank]
     private ?string $label = null;
 
-    #[ORM\Column(type: "text", nullable: true)]
-    #[Groups(["tagCategory:read", "tagCategory:write"])]
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups(['tagCategory:read', 'tagCategory:write'])]
     private ?string $description = null;
 
-    #[ORM\Column(type: "string", length: 7)]
-    #[Groups(["tagCategory:read", "tagCategory:write"])]
+    #[ORM\Column(type: 'string', length: 7)]
+    #[Groups(['tagCategory:read', 'tagCategory:write'])]
     private ?string $color = null;
 
-    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "tagCategories")]
-    #[Groups(["tagCategory:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'tagCategories')]
+    #[Groups(['tagCategory:read'])]
     private ?User $owner = null;
 
-    #[ORM\OneToMany(targetEntity: "Tag", mappedBy: "category")]
+    #[ORM\OneToMany(targetEntity: 'Tag', mappedBy: 'category')]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["tagCategory:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['tagCategory:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["tagCategory:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['tagCategory:read'])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()

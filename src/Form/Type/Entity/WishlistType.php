@@ -49,7 +49,7 @@ class WishlistType extends AbstractType
                 $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
-                    'model_transformer' => $this->base64ToImageTransformer
+                    'model_transformer' => $this->base64ToImageTransformer,
                 ])
             )
         ;
@@ -58,7 +58,7 @@ class WishlistType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Wishlist::class
+            'data_class' => Wishlist::class,
         ]);
     }
 }

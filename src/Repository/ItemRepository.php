@@ -72,7 +72,7 @@ class ItemRepository extends ServiceEntityRepository
             }
         }
 
-        if ($current === 0) {
+        if (0 === $current) {
             $previous = null;
             if ($count > 1) {
                 $next = $results[($current + 1) % $count];
@@ -89,7 +89,7 @@ class ItemRepository extends ServiceEntityRepository
 
         return [
             'previous' => $previous,
-            'next' => $next
+            'next' => $next,
         ];
     }
 
@@ -103,7 +103,7 @@ class ItemRepository extends ServiceEntityRepository
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
             $qb
                 ->andWhere('LOWER(i.name) LIKE LOWER(:term)')
-                ->setParameter('term', '%' . $search->getTerm() . '%');
+                ->setParameter('term', '%'.$search->getTerm().'%');
         }
 
         if ($search->getCreatedAt() instanceof \DateTime) {
@@ -144,7 +144,7 @@ class ItemRepository extends ServiceEntityRepository
         $ids = [];
         foreach ($this->getEntityManager()->createNativeQuery($sqlRecursive, $rsm)->getResult() as $result) {
             $ids[] = $result['id'];
-        };
+        }
 
         return $this
             ->createQueryBuilder('i')

@@ -27,43 +27,43 @@ class SearchType extends AbstractType
         $builder
             ->add('term', TextType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
             ->add('createdAt', DateType::class, [
                 'label' => false,
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->security->getUser()->getDateFormatForForm()
+                'format' => $this->security->getUser()->getDateFormatForForm(),
             ])
             ->add('searchInItems', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
             ->add('searchInCollections', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
         ;
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {
             $builder->add('searchInTags', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ]);
         }
 
         if ($this->featureChecker->isFeatureEnabled('albums')) {
             $builder->add('searchInAlbums', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ]);
         }
 
         if ($this->featureChecker->isFeatureEnabled('wishlists')) {
             $builder->add('searchInWishlists', CheckboxType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ]);
         }
     }
@@ -73,7 +73,6 @@ class SearchType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Search::class,
             'csrf_protection' => false,
-
         ]);
     }
 }

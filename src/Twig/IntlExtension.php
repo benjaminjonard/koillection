@@ -14,7 +14,7 @@ class IntlExtension extends AbstractExtension
         return [
             new TwigFunction('getCountriesList', [IntlRuntime::class, 'getCountriesList']),
             new TwigFunction('getCountryName', [IntlRuntime::class, 'getCountryName']),
-            new TwigFunction('getCountryFlag', [IntlRuntime::class, 'getCountryFlag'])
+            new TwigFunction('getCountryFlag', [IntlRuntime::class, 'getCountryFlag']),
         ];
     }
 }

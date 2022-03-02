@@ -18,81 +18,81 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
-#[ORM\Table(name: "koi_photo")]
-#[ORM\Index(name: "idx_photo_final_visibility", columns: ["final_visibility"])]
+#[ORM\Table(name: 'koi_photo')]
+#[ORM\Index(name: 'idx_photo_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ["groups" => ["photo:read"]],
-    denormalizationContext: ["groups" => ["photo:write"]],
+    normalizationContext: ['groups' => ['photo:read']],
+    denormalizationContext: ['groups' => ['photo:write']],
     collectionOperations: [
-        "get",
-        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
 class Photo implements CacheableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['photo:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    #[Groups(["photo:read", "photo:write"])]
+    #[Groups(['photo:read', 'photo:write'])]
     private ?string $title = null;
 
-    #[ORM\Column(type: "text", nullable: true)]
-    #[Groups(["photo:read", "photo:write"])]
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups(['photo:read', 'photo:write'])]
     private ?string $comment = null;
 
-    #[ORM\Column(type: "string", nullable: true)]
-    #[Groups(["photo:read", "photo:write"])]
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Groups(['photo:read', 'photo:write'])]
     private ?string $place = null;
 
-    #[ORM\ManyToOne(targetEntity: "Album", inversedBy: "photos")]
+    #[ORM\ManyToOne(targetEntity: 'Album', inversedBy: 'photos')]
     #[Assert\NotBlank]
-    #[Groups(["photo:read", "photo:write"])]
+    #[Groups(['photo:read', 'photo:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Album $album;
 
-    #[ORM\ManyToOne(targetEntity: "User")]
-    #[Groups(["photo:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[Groups(['photo:read'])]
     private ?User $owner = null;
 
-    #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
-    #[Groups(["photo:write"])]
+    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Groups(['photo:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['photo:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['photo:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['photo:read'])]
     private ?\DateTimeInterface $takenAt = null;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["photo:read", "photo:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['photo:read', 'photo:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: "string", length: 10, nullable: true)]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[Groups(['photo:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['photo:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['photo:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["photo:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['photo:read'])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -232,7 +232,7 @@ class Photo implements CacheableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
-        if ($this->imageSmallThumbnail === null) {
+        if (null === $this->imageSmallThumbnail) {
             return $this->image;
         }
 
