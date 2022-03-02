@@ -9,7 +9,7 @@ use App\Entity\Inventory;
 
 class InventoryHandler
 {
-    public function buildInventory(array $collections, array $collectionIdsToAddInInventory)
+    public function buildInventory(array $collections, array $collectionIdsToAddInInventory): array
     {
         $content = [];
 
@@ -27,7 +27,7 @@ class InventoryHandler
         return $content;
     }
 
-    public function buildCollection(Collection $collection, array $collectionIdsToAddInInventory)
+    public function buildCollection(Collection $collection, array $collectionIdsToAddInInventory): array|null
     {
         $element = null;
 
@@ -73,7 +73,7 @@ class InventoryHandler
         return $element;
     }
 
-    public function setCheckedValue(Inventory $inventory, string $id, string $checked)
+    public function setCheckedValue(Inventory $inventory, string $id, string $checked): Inventory
     {
         $content = $inventory->getContent();
         $content = preg_replace('/([^.]*{"id":"'.$id.'","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);

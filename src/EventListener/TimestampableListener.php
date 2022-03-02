@@ -8,7 +8,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 final class TimestampableListener
 {
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if (true === property_exists($entity, 'createdAt')) {
@@ -20,7 +20,7 @@ final class TimestampableListener
         }
     }
 
-    public function preUpdate(LifecycleEventArgs $args)
+    public function preUpdate(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if (true === property_exists($entity, 'updatedAt')) {

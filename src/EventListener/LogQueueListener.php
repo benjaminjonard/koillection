@@ -18,12 +18,12 @@ class LogQueueListener
     }
 
     /**
-     *   As we are on a kernel response event, this code is triggered at every response.
-     *   We have then to check if the EntityManager is still opened because if there was a problem
-     *   related to Doctrine before this event, the em may have been closed and another error will come up,
-     *   hiding the original one (bad for logging the true error).
+     * As we are on a kernel response event, this code is triggered at every response.
+     * We have then to check if the EntityManager is still opened because if there was a problem
+     * related to Doctrine before this event, the em may have been closed and another error will come up,
+     * hiding the original one (bad for logging the true error).
      */
-    public function onKernelResponse()
+    public function onKernelResponse(): void
     {
         if ($this->logQueue->isQueueProcessable() && !empty($this->logQueue->getLogs()) && $this->managerRegistry->getManager()->isOpen()) {
             $deletedIds = [];

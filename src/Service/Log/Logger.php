@@ -20,7 +20,7 @@ abstract class Logger implements LoggerInterface
         return $class === $this->getClass();
     }
 
-    public function supports($object): bool
+    public function supports(LoggableInterface $object): bool
     {
         return \get_class($object) === $this->getClass();
     }

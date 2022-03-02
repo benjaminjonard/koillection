@@ -54,12 +54,12 @@ class CountersCache
         return $counters[$key];
     }
 
-    public function clear()
+    public function clear(): void
     {
         $this->cache->clear();
     }
 
-    public function invalidateCurrentUser()
+    public function invalidateCurrentUser(): void
     {
         if ($this->security->getUser()) {
             $this->cache->invalidateTags([$this->security->getUser()->getId()]);

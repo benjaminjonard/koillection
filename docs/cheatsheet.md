@@ -27,3 +27,4 @@ All in assets directory
 
 ###### Psalm
 - `./vendor/bin/psalm`
+- `./vendor/bin/psalm --alter --issues=MissingReturnType,MissingParamType --dry-run`

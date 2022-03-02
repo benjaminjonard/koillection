@@ -17,7 +17,7 @@ class LoggerChain
         $this->loggers = $loggers;
     }
 
-    private function getLoggerResponse($function, array $params)
+    private function getLoggerResponse(string $function, array $params)
     {
         $response = null;
         $loggers = [];

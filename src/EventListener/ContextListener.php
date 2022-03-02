@@ -14,7 +14,7 @@ class ContextListener
     ) {
     }
 
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         $this->contextHandler->init($event->getRequest());
     }

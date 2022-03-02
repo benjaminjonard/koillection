@@ -17,7 +17,7 @@ class Upload
     ) {
     }
 
-    public static function fromReflectionAttribute(\ReflectionAttribute $reflectionAttribute)
+    public static function fromReflectionAttribute(\ReflectionAttribute $reflectionAttribute): self
     {
         $arguments = $reflectionAttribute->getArguments();
 

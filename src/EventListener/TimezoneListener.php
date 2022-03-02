@@ -17,7 +17,7 @@ class TimezoneListener
     ) {
     }
 
-    public function onKernelRequest()
+    public function onKernelRequest(): void
     {
         if ($this->security->getUser() instanceof User) {
             $this->twig->getExtension(CoreExtension::class)->setTimezone($this->security->getUser()->getTimezone());

@@ -22,7 +22,7 @@ class FilterListener
     ) {
     }
 
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         if ($event->getRequest()->attributes->has('exception')) {
             return;
@@ -50,7 +50,7 @@ class FilterListener
         }
     }
 
-    public function setContextUser()
+    public function setContextUser(): void
     {
         $user = null;
         if ('shared' === $this->contextHandler->getContext()) {

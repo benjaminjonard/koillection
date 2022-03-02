@@ -14,7 +14,7 @@ class SeenListener
     ) {
     }
 
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
         $route = $event->getRequest()->get('_route');
 

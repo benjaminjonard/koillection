@@ -176,7 +176,7 @@ class TagRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findAllForHighlight()
+    public function findAllForHighlight(): array
     {
         return $this->_em
             ->createQueryBuilder()

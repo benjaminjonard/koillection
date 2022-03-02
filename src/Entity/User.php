@@ -284,18 +284,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
     }
 
     public function getUsername(): ?string
     {
         return $this->username;
-    }
-
-    public function getSalt(): ?string
-    {
-        return null;
     }
 
     public function setSalt(?string $salt): self

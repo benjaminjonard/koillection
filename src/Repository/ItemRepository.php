@@ -35,7 +35,7 @@ class ItemRepository extends ServiceEntityRepository
         return $qb->addSelect('t, d, c')->getQuery()->getOneOrNullResult();
     }
 
-    public function findNextAndPrevious(Item $item, $parent): array
+    public function findNextAndPrevious(Item $item, Collection|Tag|null $parent): array
     {
         $qb = $this->_em
             ->createQueryBuilder()

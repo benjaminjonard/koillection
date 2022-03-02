@@ -154,7 +154,7 @@ class CounterCalculator
         return $sql;
     }
 
-    private function addVisibilityCondition(&$sql, $alias, $condition)
+    private function addVisibilityCondition(string &$sql, string $alias, string $condition): void
     {
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             if ("''" === $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user')) {

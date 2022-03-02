@@ -18,7 +18,7 @@ class Paginator
         $this->updateNumPages();
     }
 
-    private function updateNumPages()
+    private function updateNumPages(): void
     {
         $this->numPages = (0 == $this->itemsPerPage ? 0 : (int) ceil($this->totalItems / $this->itemsPerPage));
     }
@@ -28,7 +28,7 @@ class Paginator
         return $this->maxPagesToShow;
     }
 
-    public function setCurrentPage(int $currentPage)
+    public function setCurrentPage(int $currentPage): void
     {
         $this->currentPage = $currentPage;
     }
@@ -38,7 +38,7 @@ class Paginator
         return $this->currentPage;
     }
 
-    public function setItemsPerPage(int $itemsPerPage)
+    public function setItemsPerPage(int $itemsPerPage): void
     {
         $this->itemsPerPage = $itemsPerPage;
         $this->updateNumPages();
@@ -49,7 +49,7 @@ class Paginator
         return $this->itemsPerPage;
     }
 
-    public function setTotalItems($totalItems)
+    public function setTotalItems($totalItems): void
     {
         $this->totalItems = $totalItems;
         $this->updateNumPages();
@@ -65,7 +65,7 @@ class Paginator
         return $this->numPages;
     }
 
-    public function getPageUrl($pageNum): string
+    public function getPageUrl(int|null $pageNum): string
     {
         return $this->url.(parse_url($this->url, PHP_URL_QUERY) ? '&' : '?')."page=$pageNum";
     }

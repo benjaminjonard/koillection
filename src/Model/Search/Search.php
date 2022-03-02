@@ -85,7 +85,7 @@ class Search
     }
 
     #[Assert\Callback]
-    public function validate(ExecutionContextInterface $context)
+    public function validate(ExecutionContextInterface $context): void
     {
         if (null === $this->getTerm() && null === $this->getCreatedAt()) {
             $context->buildViolation('error.search.empty')

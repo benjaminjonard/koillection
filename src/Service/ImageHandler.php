@@ -25,7 +25,7 @@ class ImageHandler
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
-    public function upload(object $entity, string $property, Upload $attribute)
+    public function upload(object $entity, string $property, Upload $attribute): void
     {
         $file = $this->accessor->getValue($entity, $property);
 
@@ -65,7 +65,7 @@ class ImageHandler
         }
     }
 
-    public function setFileFromFilename(object $entity, string $property, Upload $attribute)
+    public function setFileFromFilename(object $entity, string $property, Upload $attribute): void
     {
         $path = $this->accessor->getValue($entity, $attribute->getPath());
 
@@ -75,7 +75,7 @@ class ImageHandler
         }
     }
 
-    public function removeOldFile(object $entity, Upload $attribute)
+    public function removeOldFile(object $entity, Upload $attribute): void
     {
         if (null !== $attribute->getPath()) {
             $path = $this->accessor->getValue($entity, $attribute->getPath());

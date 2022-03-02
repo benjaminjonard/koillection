@@ -27,7 +27,7 @@ class VisibilityListener
     private UnitOfWork $uow;
     private EntityManagerInterface $em;
 
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if ($entity instanceof Album || $entity instanceof Collection || $entity instanceof Wishlist) {
@@ -47,7 +47,7 @@ class VisibilityListener
         }
     }
 
-    public function onFlush(OnFlushEventArgs $args)
+    public function onFlush(OnFlushEventArgs $args): void
     {
         $this->em = $args->getEntityManager();
         $this->uow = $this->em->getUnitOfWork();
@@ -63,7 +63,7 @@ class VisibilityListener
         }
     }
 
-    private function handleContainer(Album|Collection|Wishlist $entity)
+    private function handleContainer(Album|Collection|Wishlist $entity): void
     {
         $changeset = $this->uow->getEntityChangeSet($entity);
 
@@ -78,7 +78,7 @@ class VisibilityListener
         }
     }
 
-    private function handleElement(Photo|Item|Wish $entity)
+    private function handleElement(Photo|Item|Wish $entity): void
     {
         $changeset = $this->uow->getEntityChangeSet($entity);
         $parentVisibility = match (\get_class($entity)) {
@@ -104,7 +104,7 @@ class VisibilityListener
         }
     }
 
-    private function setVisibilityRecursively(Album|Collection|Wishlist $entity, string $visibility)
+    private function setVisibilityRecursively(Album|Collection|Wishlist $entity, string $visibility): void
     {
         $elements = match (\get_class($entity)) {
             Album::class => $entity->getPhotos(),

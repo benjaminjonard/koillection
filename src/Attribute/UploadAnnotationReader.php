@@ -6,7 +6,7 @@ namespace App\Attribute;
 
 class UploadAnnotationReader
 {
-    public function getUploadFields($entity): array
+    public function getUploadFields(object $entity): array
     {
         $reflection = new \ReflectionClass(\get_class($entity));
 

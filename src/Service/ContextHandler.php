@@ -30,7 +30,7 @@ class ContextHandler
     ) {
     }
 
-    public function init(Request $request)
+    public function init(Request $request): void
     {
         preg_match("/^\/(\w+)/", $request->getRequestUri(), $matches);
 
@@ -53,7 +53,7 @@ class ContextHandler
         }
     }
 
-    public function getRouteContext($route): string
+    public function getRouteContext(string $route): string
     {
         if ('shared' === $this->context) {
             $route = str_replace('app_', 'app_'.$this->context.'_', $route);

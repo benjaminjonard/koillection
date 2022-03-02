@@ -16,7 +16,7 @@ final class TranslationCommandListener
     ) {
     }
 
-    public function onConsoleTerminate(ConsoleTerminateEvent $event)
+    public function onConsoleTerminate(ConsoleTerminateEvent $event): void
     {
         if ('bazinga:js-translation:dump' === $event->getCommand()->getName()) {
             //Config file
@@ -34,7 +34,7 @@ final class TranslationCommandListener
         }
     }
 
-    private function updateContent(string $path, string $translatorPath)
+    private function updateContent(string $path, string $translatorPath): void
     {
         $fileContent = file_get_contents($path);
 

@@ -15,22 +15,22 @@ class CounterCacheListener
     ) {
     }
 
-    public function postPersist(LifecycleEventArgs $args)
+    public function postPersist(LifecycleEventArgs $args): void
     {
         $this->resetCache($args->getEntity());
     }
 
-    public function postUpdate(LifecycleEventArgs $args)
+    public function postUpdate(LifecycleEventArgs $args): void
     {
         $this->resetCache($args->getEntity());
     }
 
-    public function postRemove(LifecycleEventArgs $args)
+    public function postRemove(LifecycleEventArgs $args): void
     {
         $this->resetCache($args->getEntity());
     }
 
-    private function resetCache($entity)
+    private function resetCache(object $entity): void
     {
         if ($entity instanceof CacheableInterface) {
             $this->countersCache->invalidateCurrentUser();

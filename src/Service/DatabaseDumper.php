@@ -131,7 +131,7 @@ class DatabaseDumper
         return $rows;
     }
 
-    private function formatValue($value, string $property, $metadata)
+    private function formatValue($value, string $property, \Doctrine\Persistence\Mapping\ClassMetadata|null $metadata)
     {
         if (\is_string($value)) {
             $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);

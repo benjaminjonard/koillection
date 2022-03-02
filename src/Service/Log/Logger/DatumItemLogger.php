@@ -32,7 +32,7 @@ class DatumItemLogger extends Logger
         return 2;
     }
 
-    public function supports($object): bool
+    public function supports(LoggableInterface $object): bool
     {
         return Datum::class === \get_class($object) && $object->getItem() instanceof Item;
     }

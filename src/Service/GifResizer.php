@@ -27,7 +27,7 @@ class GifResizer
         $this->tempDir = $publicPath.'/tmp';
     }
 
-    public function resize(string $path, string $thumbnailPath, int $width, int $height)
+    public function resize(string $path, string $thumbnailPath, int $width, int $height): void
     {
         $this->decode($path);
         $this->wr = $width / $this->originalWidth;
@@ -40,7 +40,7 @@ class GifResizer
     /**
      * Parses the GIF animation into single frames.
      */
-    private function decode(string $filename)
+    private function decode(string $filename): void
     {
         $this->decoding = true;
         $this->clearVariables();
@@ -67,7 +67,7 @@ class GifResizer
     /**
      * Combines the parsed GIF frames into one single animation.
      */
-    private function encode(string $newFilename, int $newWidth, int $newHeight)
+    private function encode(string $newFilename, int $newWidth, int $newHeight): void
     {
         $string = '';
         $this->pointer = 0;
@@ -182,7 +182,7 @@ class GifResizer
      * Variable Reset function
      * If a instance is used multiple times, it's needed. Trust me.
      */
-    private function clearVariables()
+    private function clearVariables(): void
     {
         $this->pointer = 0;
         $this->index = 0;
@@ -196,7 +196,7 @@ class GifResizer
      * Clear Frames function
      * For deleting the frames after encoding.
      */
-    private function clearFrames()
+    private function clearFrames(): void
     {
         foreach ($this->parsedFiles as $temp_frame) {
             unlink($temp_frame);
@@ -207,7 +207,7 @@ class GifResizer
      * Frame Writer
      * Writes the GIF frames into files.
      */
-    private function writeFrames(int $prepend)
+    private function writeFrames(int $prepend): void
     {
         $size = sizeof($this->imageData);
 
@@ -221,7 +221,7 @@ class GifResizer
      * Color Palette Transfer Device
      * Transferring Global Color Table (GCT) from frames into Local Color Tables in animation.
      */
-    private function transferColorTable(string $src, string &$dst)
+    private function transferColorTable(string $src, string &$dst): void
     {
         //src is gif header,dst is image data block
         //if global color table exists,transfer it
@@ -248,7 +248,7 @@ class GifResizer
     /**
      * Below functions are the main structure parser components.
      */
-    private function getGifHeader()
+    private function getGifHeader(): void
     {
         $this->pForward(10);
         if (1 == $this->readBits(($mybyte = $this->readByteInt()), 0, 1)) {
@@ -267,7 +267,7 @@ class GifResizer
         }
     }
 
-    private function getApplicationData()
+    private function getApplicationData(): void
     {
         $startData = $this->readByte(2);
         if ($startData == \chr(0x21).\chr(0xFF)) {
@@ -280,7 +280,7 @@ class GifResizer
         }
     }
 
-    private function getCommentData()
+    private function getCommentData(): void
     {
         $startData = $this->readByte(2);
         if ($startData == \chr(0x21).\chr(0xFE)) {
@@ -292,7 +292,7 @@ class GifResizer
         }
     }
 
-    private function getGraphicsExtension($type)
+    private function getGraphicsExtension(int $type): void
     {
         $startData = $this->readByte(2);
         if ($startData == \chr(0x21).\chr(0xF9)) {
@@ -315,7 +315,7 @@ class GifResizer
         }
     }
 
-    private function getimageBlock($type)
+    private function getimageBlock(int $type): void
     {
         if ($this->checkByte(0x2C)) {
             $start = $this->pointer;
@@ -352,7 +352,7 @@ class GifResizer
         }
     }
 
-    private function parseImageData()
+    private function parseImageData(): void
     {
         $this->imageData[$this->index]['disposal_method'] = $this->getImageDataBit('ext', 3, 3, 3);
         $this->imageData[$this->index]['user_input_flag'] = $this->getImageDataBit('ext', 3, 6, 1);
@@ -379,7 +379,7 @@ class GifResizer
         }
     }
 
-    private function getImageDataByte(string $type, int $start, int $length)
+    private function getImageDataByte(string $type, int $start, int $length): string
     {
         if ('ext' == $type && null !== $this->imageData[$this->index]['graphicsextension']) {
             return substr($this->imageData[$this->index]['graphicsextension'], $start, $length);
@@ -403,7 +403,7 @@ class GifResizer
         }
     }
 
-    private function dualByteVal($s)
+    private function dualByteVal($s): int
     {
         if (null === $s || !isset($s[1]) || !isset($s[0])) {
             return 0;
@@ -412,7 +412,7 @@ class GifResizer
         return \ord($s[1]) * 256 + \ord($s[0]);
     }
 
-    private function readDataStream($firstLength): bool
+    private function readDataStream(int $firstLength): bool
     {
         $this->pForward($firstLength);
         $length = $this->readByteInt();
@@ -426,19 +426,19 @@ class GifResizer
         return true;
     }
 
-    private function loadFile($filename)
+    private function loadFile(string $filename): void
     {
         $this->handle = fopen($filename, 'rb');
         $this->pointer = 0;
     }
 
-    private function closeFile()
+    private function closeFile(): void
     {
         fclose($this->handle);
         $this->handle = 0;
     }
 
-    private function readByte($byteCount)
+    private function readByte(int $byteCount): string|false
     {
         $data = fread($this->handle, $byteCount);
         $this->pointer += $byteCount;
@@ -454,7 +454,7 @@ class GifResizer
         return \ord($data);
     }
 
-    private function readBits(int $byte, int $start, int $length)
+    private function readBits(int $byte, int $start, int $length): float|int
     {
         $bin = str_pad(decbin($byte), 8, '0', STR_PAD_LEFT);
         $data = substr($bin, $start, $length);
@@ -462,19 +462,19 @@ class GifResizer
         return bindec($data);
     }
 
-    private function pRewind(int $length)
+    private function pRewind(int $length): void
     {
         $this->pointer -= $length;
         fseek($this->handle, $this->pointer);
     }
 
-    private function pForward(int $length)
+    private function pForward(int $length): void
     {
         $this->pointer += $length;
         fseek($this->handle, $this->pointer);
     }
 
-    private function dataPart(int $start, int $length)
+    private function dataPart(int $start, int $length): string|false
     {
         fseek($this->handle, $start);
         $data = fread($this->handle, $length);
@@ -510,7 +510,7 @@ class GifResizer
     /**
      * Resizes the animation frames.
      */
-    private function resizeFrames()
+    private function resizeFrames(): void
     {
         $k = 0;
         foreach ($this->parsedFiles as $img) {

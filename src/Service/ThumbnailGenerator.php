@@ -81,7 +81,7 @@ class ThumbnailGenerator
         return true;
     }
 
-    public function crop(string $path, int $maxWidth, int $maxHeight)
+    public function crop(string $path, int $maxWidth, int $maxHeight): void
     {
         list($width, $height, $mime) = getimagesize($path);
         $ratio = $width / $height;

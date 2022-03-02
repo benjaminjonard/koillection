@@ -16,7 +16,7 @@ class ModelTransformerExtension extends AbstractTypeExtension
         return [FormType::class];
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
 
@@ -25,7 +25,7 @@ class ModelTransformerExtension extends AbstractTypeExtension
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
         $resolver->setDefaults(['model_transformer' => null]);

@@ -29,7 +29,7 @@ class RegenerateThumbnailsCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('app:regenerate-thumbnails')
