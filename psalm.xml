@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<psalm errorLevel="7">
+<psalm errorLevel="6">
     <projectFiles>
         <directory name="src"/>
         <directory name="api"/>

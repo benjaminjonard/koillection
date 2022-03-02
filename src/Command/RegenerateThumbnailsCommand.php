@@ -53,7 +53,7 @@ class RegenerateThumbnailsCommand extends Command
 
         foreach ($users as $user) {
             //Login user, needed for uploads
-            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
             $this->tokenStorage->setToken($token);
 
             foreach ($classes as $class) {
