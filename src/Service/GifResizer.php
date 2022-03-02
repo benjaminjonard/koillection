@@ -392,6 +392,9 @@ class GifResizer
         return '';
     }
 
+    /**
+     * @return float|int|null
+     */
     private function getImageDataBit(string $type, int $byteIndex, int $bitStart, int $bitLength)
     {
         if ('ext' == $type && null !== $this->imageData[$this->index]['graphicsextension']) {
@@ -403,7 +406,7 @@ class GifResizer
         }
     }
 
-    private function dualByteVal($s): int
+    private function dualByteVal(string $s): int
     {
         if (null === $s || !isset($s[1]) || !isset($s[0])) {
             return 0;

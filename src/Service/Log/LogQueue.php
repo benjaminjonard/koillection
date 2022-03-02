@@ -40,7 +40,7 @@ class LogQueue
     {
         return $this->logs;
     }
-    
+
     public function find($id, string $class, string $type): ?Log
     {
         foreach ($this->logs as $log) {
