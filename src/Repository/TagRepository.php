@@ -134,7 +134,7 @@ class TagRepository extends ServiceEntityRepository
                 (SELECT COUNT(i2.id)
                 FROM App\Entity\Item i2
                 WHERE i2.collection = :collection)')
-            ->setParameter('collection', $collection)
+            ->setParameter('collection', $collection->getId())
             ->getQuery()
             ->getResult()
         ;
@@ -196,7 +196,7 @@ class TagRepository extends ServiceEntityRepository
             ->from(Item::class, 'i2')
             ->leftJoin('i2.tags', 't2')
             ->where('t2.id = :tag')
-            ->setParameter('tag', $tag)
+            ->setParameter('tag', $tag->getId())
             ->getQuery()
             ->getArrayResult()
         ;
@@ -213,7 +213,7 @@ class TagRepository extends ServiceEntityRepository
             ->where("i.id IN (:itemIds)")
             ->andWhere('t.id != :tag')
             ->orderBy('t.label', 'ASC')
-            ->setParameter('tag', $tag)
+            ->setParameter('tag', $tag->getId())
             ->setParameter('itemIds', $itemIds)
             ->getQuery()
             ->getResult()

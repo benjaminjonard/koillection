@@ -47,13 +47,13 @@ class ItemRepository extends ServiceEntityRepository
             $qb
                 ->leftJoin('i.collection', 'c')
                 ->where('c = :collection')
-                ->setParameter('collection', $parent)
+                ->setParameter('collection', $parent->getId())
             ;
         } elseif ($parent instanceof Tag) {
             $qb
                 ->leftJoin('i.tags', 't')
                 ->where('t = :tag')
-                ->setParameter('tag', $parent)
+                ->setParameter('tag', $parent->getId())
             ;
         }
 
@@ -206,7 +206,7 @@ class ItemRepository extends ServiceEntityRepository
             ->leftJoin('i.relatedItems', 'r')
             ->addSelect('r')
             ->where('i.owner = :user')
-            ->setParameter('user', $user)
+            ->setParameter('user', $user->getId())
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()

@@ -32,7 +32,10 @@
 
 /.idea/*
 ###> lexik/jwt-authentication-bundle ###
-/config/jwt/*.pem
+/config/jwt/*
 ###< lexik/jwt-authentication-bundle ###
 
-.php-cs-fixer.cache
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###

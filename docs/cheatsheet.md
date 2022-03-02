@@ -19,8 +19,11 @@ All in assets directory
 - `php -d memory_limit=512M ./bin/phpunit --stderr`
 
 ###### PHP CS fixer
-- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src`
-- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix api`
+- `./vendor/bin/php-cs-fixer fix src`
+- `./vendor/bin/php-cs-fixer fix api`
 
-- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --allow-risky=yes --rules=native_function_invocation`
-- `tools/php-cs-fixer/vendor/bin/php-cs-fixer fix api --allow-risky=yes --rules=native_function_invocation`
+- `./vendor/bin/php-cs-fixer fix src --allow-risky=yes --rules=native_function_invocation`
+- `./vendor/bin/php-cs-fixer fix api --allow-risky=yes --rules=native_function_invocation`
+
+###### Psalm
+- `./vendor/bin/psalm`
