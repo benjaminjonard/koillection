@@ -704,6 +704,9 @@
     "webmozart/path-util": {
         "version": "2.3.0"
     },
+    "weirdan/doctrine-psalm-plugin": {
+        "version": "v2.2.0"
+    },
     "willdurand/js-translation-bundle": {
         "version": "2.0",
         "recipe": {
