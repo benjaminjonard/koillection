@@ -30,6 +30,5 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          repository: koillection/koillection
           tags: beta
-          build_args: GITHUB_RELEASE=master
+          build-args: GITHUB_RELEASE=master
