@@ -32,4 +32,4 @@ jobs:
           context: .
           push: true
           build-args: GITHUB_RELEASE=master
-          tags: koillection:beta
+          tags: docker.io/koillection/koillection:beta
