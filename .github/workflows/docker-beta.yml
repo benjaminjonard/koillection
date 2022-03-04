@@ -31,5 +31,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: beta
+          push: true
           build-args: GITHUB_RELEASE=master
+          tags: beta
