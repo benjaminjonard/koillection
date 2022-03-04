@@ -16,8 +16,7 @@ jobs:
         with:
           repository: koillection/koillection-docker
           ref: php8.1
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
