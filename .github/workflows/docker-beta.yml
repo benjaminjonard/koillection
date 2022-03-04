@@ -32,4 +32,4 @@ jobs:
           context: .
           push: true
           build-args: GITHUB_RELEASE=master
-          tags: beta
+          tags: koillection:beta
