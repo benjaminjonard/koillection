@@ -617,3 +617,6 @@ i.btn input {color: #fff; cursor: pointer;}
 .input-checkbox {margin: 3rem 0;}
 .input-checkbox > label {-webkit-transform: none; transform: none;}
 .error {background-color: #99a3a8;}
+
+input[type="password"]:not(.browser-default).password-input {box-sizing: border-box; padding-right: 15%;}
+.show-password {cursor: pointer; position: relative; margin-left: 90%; top: -41px; height: 0; display: block; color: #9e9e9e;}

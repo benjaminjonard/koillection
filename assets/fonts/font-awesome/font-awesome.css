@@ -87,6 +87,9 @@
 .fa-eye:before {
   content: "\f06e";
 }
+.fa-eye-slash:before {
+  content: "\f070";
+}
 .fa-chevron-down:before {
   content: "\f078";
 }
