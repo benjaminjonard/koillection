@@ -129,6 +129,30 @@ class TagController extends AbstractController
     }
 
     #[Route(
+        path: ['en' => '/tags/delete-unused-tags', 'fr' => '/tags/{id}/supprimer'],
+        name: 'app_tag_delete_unused_tags', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+    )]
+    public function deleteUnusedTags(Request $request, TranslatorInterface $translator, TagRepository $tagRepository, ManagerRegistry $managerRegistry) : Response
+    {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
+        $form = $this->createDeleteForm('app_tag_delete_unused_tags');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $unusedTags = $tagRepository->getUnusedTags();
+            foreach ($unusedTags as $tag) {
+                $managerRegistry->getManager()->remove($tag);
+            }
+            $managerRegistry->getManager()->flush();
+
+            $this->addFlash('notice', $translator->trans('message.unused_tags_deleted', ['%count%' => \count($unusedTags)]));
+        }
+
+        return $this->redirectToRoute('app_tag_index');
+    }
+
+    #[Route(
         path: ['en' => '/tags/autocomplete/{search}', 'fr' => '/tags/autocompletion/{search}'],
         name: 'app_tag_autocomplete', methods: ['GET']
     )]

@@ -219,4 +219,15 @@ class TagRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function getUnusedTags()
+    {
+        return $this
+            ->createQueryBuilder('t')
+            ->leftJoin('t.items', 'i')
+            ->where('i.id IS NULL')
+            ->getQuery()
+            ->getResult()
+       ;
+    }
 }
