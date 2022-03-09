@@ -4608,5 +4608,23 @@
           <target>Bienvenue sur Koillection</target>
       </segment>
     </unit>
+    <unit id="lsis86z" name="message.unused_tags_deleted">
+        <segment>
+            <source>message.unused_tags_deleted</source>
+            <target>[0,1] %count% tag supprimé| ]1,Inf[ %count% tags supprimés</target>
+        </segment>
+    </unit>
+    <unit id="qmd8eu7" name="btn.delete_unused_tags">
+        <segment>
+            <source>btn.delete_unused_tags</source>
+            <target>Supprimer les tags non utilisés</target>
+        </segment>
+    </unit>
+    <unit id="mps8vb5" name="message.delete.unused_tag">
+        <segment>
+            <source>message.delete.unused_tag</source>
+            <target>Tous les tags qui ne sont liés à aucun objet seront supprimé. Êtes-vous sûr de vouloir les supprimer ? Ils seront définitivement perdus...</target>
+        </segment>
+    </unit>
   </file>
 </xliff>

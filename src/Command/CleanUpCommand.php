@@ -36,7 +36,7 @@ class CleanUpCommand extends Command
             return Command::SUCCESS;
         }
 
-        //Get all paths in database (images + thumbnails)
+        // Get all paths in database (images + thumbnails)
         $sql = '
             SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
 
@@ -71,7 +71,7 @@ class CleanUpCommand extends Command
             return $row['image'];
         }, $stmt->fetchAll());
 
-        //Get all paths on disk
+        // Get all paths on disk
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath.'/uploads'));
         $diskPaths = [];
         foreach ($rii as $file) {
@@ -80,7 +80,7 @@ class CleanUpCommand extends Command
             }
         }
 
-        //Compute the diff and delete the diff
+        // Compute the diff and delete the diff
         $diff = array_diff($diskPaths, $dbPaths);
         foreach ($diff as $path) {
             if (file_exists($this->publicPath.'/'.$path)) {

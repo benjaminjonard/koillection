@@ -43,7 +43,7 @@ class DatumCollectionLogger extends Logger
             return null;
         }
 
-        //If the collection was just created, we log nothing more
+        // If the collection was just created, we log nothing more
         if ($this->logQueue->find($datum->getCollection()->getId(), Collection::class, LogTypeEnum::TYPE_CREATE)) {
             return null;
         }

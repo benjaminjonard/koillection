@@ -120,7 +120,7 @@ class ItemRepository extends ServiceEntityRepository
 
     public function findAllByCollection(Collection $collection): array
     {
-        //First we query all items id recursvely
+        // First we query all items id recursvely
         $id = "'".$collection->getId()."'";
         $sqlRecursive = "
             SELECT i.id as id
@@ -175,8 +175,8 @@ class ItemRepository extends ServiceEntityRepository
             ->createQueryBuilder('i')
             ->addSelect('(CASE WHEN LOWER(i.name) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(i.name) LIKE LOWER(:name)')
-            ->orderBy('startWithOrder', 'ASC') //Order items starting with the search term first
-            ->addOrderBy('LOWER(i.name)', 'ASC') //Then order other matching items alphabetically
+            ->orderBy('startWithOrder', 'ASC') // Order items starting with the search term first
+            ->addOrderBy('LOWER(i.name)', 'ASC') // Then order other matching items alphabetically
             ->setParameter('name', '%'.$string.'%')
             ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)

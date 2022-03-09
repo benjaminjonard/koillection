@@ -85,7 +85,7 @@ class GifResizer
             $this->getGraphicsExtension(0);
             $this->getimageBlock(0);
 
-            //get transparent color index and color
+            // get transparent color index and color
             if (isset($this->encData[$this->index - 1])) {
                 $gxData = $this->encData[$this->index - 1]['graphicsextension'];
             } else {
@@ -102,28 +102,28 @@ class GifResizer
                 $trColor = substr($ghData, 13 + $trcx * 3, 3);
             }
 
-            //global color table to image data;
+            // global color table to image data;
             $this->transferColorTable($this->imageInfo['gifheader'], $this->imageData[$this->index - 1]['imageData']);
 
             $imageBlock = &$this->imageData[$this->index - 1]['imageData'];
 
-            //if transparency exists transfer transparency index
+            // if transparency exists transfer transparency index
             if ($hasTransparency) {
                 $hasLocalColorTable = ((\ord($imageBlock[9]) & 128) == 128);
                 if ($hasLocalColorTable) {
-                    //local table exists. determine boundaries and look for it.
+                    // local table exists. determine boundaries and look for it.
                     $tableSize = (pow(2, (\ord($imageBlock[9]) & 7) + 1) * 3) + 10;
                     $this->orgVars[$this->index - 1]['transparent_color_index'] =
                         ((strrpos(substr($this->imageData[$this->index - 1]['imageData'], 0, $tableSize), $trColor) - 10) / 3);
                 } else {
-                    //local table doesnt exist, look at the global one.
+                    // local table doesnt exist, look at the global one.
                     $tableSize = (pow(2, (\ord($gxData[10]) & 7) + 1) * 3) + 10;
                     $this->orgVars[$this->index - 1]['transparent_color_index'] =
                         ((strrpos(substr($ghData, 0, $tableSize), $trColor) - 10) / 3);
                 }
             }
 
-            //apply original delay time,transparent index and disposal values to graphics extension
+            // apply original delay time,transparent index and disposal values to graphics extension
 
             if (!$this->imageData[$this->index - 1]['graphicsextension']) {
                 $this->imageData[$this->index - 1]['graphicsextension'] = \chr(0x21).\chr(0xF9).\chr(0x04).\chr(0x00).\chr(0x00).\chr(0x00).\chr(0x00).\chr(0x00);
@@ -139,7 +139,7 @@ class GifResizer
             }
             $imageData[3] = \chr(\ord($imageData[3]) | $hasTransparency);
 
-            //apply calculated left and top offset
+            // apply calculated left and top offset
             $imageBlock[1] = \chr((int) round(($this->orgVars[$this->index - 1]['offset_left'] * $this->wr) % 256));
             $imageBlock[2] = \chr((int) floor(($this->orgVars[$this->index - 1]['offset_left'] * $this->wr) / 256));
             $imageBlock[3] = \chr((int) round(($this->orgVars[$this->index - 1]['offset_top'] * $this->hr) % 256));
@@ -168,13 +168,13 @@ class GifResizer
 
         $string .= \chr(0x3B);
 
-        //applying new width & height to gif header
+        // applying new width & height to gif header
         $string[6] = \chr($newWidth % 256);
         $string[7] = \chr((int) floor($newWidth / 256));
         $string[8] = \chr($newHeight % 256);
         $string[9] = \chr((int) floor($newHeight / 256));
         $string[11] = $this->orgVars['background_color'];
-        //if(file_exists($newFilename)){unlink($newFilename);}
+        // if(file_exists($newFilename)){unlink($newFilename);}
         file_put_contents($newFilename, $string);
     }
 
@@ -223,23 +223,23 @@ class GifResizer
      */
     private function transferColorTable(string $src, string &$dst): void
     {
-        //src is gif header,dst is image data block
-        //if global color table exists,transfer it
+        // src is gif header,dst is image data block
+        // if global color table exists,transfer it
         if ((\ord($src[10]) & 128) == 128) {
-            //Gif Header Global Color Table Length
+            // Gif Header Global Color Table Length
             $ghctl = pow(2, $this->readBits(\ord($src[10]), 5, 3) + 1) * 3;
-            //cut global color table from gif header
+            // cut global color table from gif header
             $ghgct = substr($src, 13, $ghctl);
-            //check image block color table length
+            // check image block color table length
             if ((\ord($dst[9]) & 128) == 128) {
-                //Image data contains color table. skip.
+                // Image data contains color table. skip.
             } else {
-                //Image data needs a color table.
-                //get last color table length so we can truncate the dummy color table
+                // Image data needs a color table.
+                // get last color table length so we can truncate the dummy color table
                 $idctl = pow(2, $this->readBits(\ord($dst[9]), 5, 3) + 1) * 3;
-                //set color table flag and length
+                // set color table flag and length
                 $dst[9] = \chr(\ord($dst[9]) | (0x80 | (log($ghctl / 3, 2) - 1)));
-                //inject color table
+                // inject color table
                 $dst = substr($dst, 0, 10).$ghgct.substr($dst, -1 * \strlen($dst) + 10);
             }
         }

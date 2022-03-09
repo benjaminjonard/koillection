@@ -25,7 +25,7 @@ class DatabaseDumper
         $connection = $this->managerRegistry->getManager()->getConnection();
         $rows = [];
 
-        //Disable foreign keys
+        // Disable foreign keys
         $platformName = $this->managerRegistry->getManager()->getConnection()->getDatabasePlatform()->getName();
         $disableForeignKeysCheck = null;
         $enableForeignKeysCheck = null;
@@ -41,10 +41,10 @@ class DatabaseDumper
             $rows[] = $disableForeignKeysCheck;
         }
 
-        //Schema
+        // Schema
         $rows += $this->dumpSchema($connection);
 
-        //Data
+        // Data
         $userIds = [];
         if ('admin' !== $this->contextHandler->getContext()) {
             $userIds[] = "'".$this->security->getUser()->getId()."'";
@@ -111,7 +111,7 @@ class DatabaseDumper
             $rows[] = PHP_EOL;
         }
 
-        //Enable foreign keys
+        // Enable foreign keys
         if (null !== $enableForeignKeysCheck) {
             $rows[] = $enableForeignKeysCheck;
         }

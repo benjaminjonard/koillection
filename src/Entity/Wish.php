@@ -227,7 +227,7 @@ class Wish implements CacheableInterface
     public function setFile(?File $file): self
     {
         $this->file = $file;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }

@@ -19,11 +19,11 @@ final class TranslationCommandListener
     public function onConsoleTerminate(ConsoleTerminateEvent $event): void
     {
         if ('bazinga:js-translation:dump' === $event->getCommand()->getName()) {
-            //Config file
+            // Config file
             $configFilePath = $this->assetsPath.'/js/translations/config.js';
             $this->updateContent($configFilePath, '../translator.min.js');
 
-            //Locale files (en.js, fr.js...)
+            // Locale files (en.js, fr.js...)
             $path = $this->assetsPath.'/js/translations/javascript';
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
             foreach ($files as $name => $file) {
@@ -38,11 +38,11 @@ final class TranslationCommandListener
     {
         $fileContent = file_get_contents($path);
 
-        //Replace encode dashes, makes the js crash
+        // Replace encode dashes, makes the js crash
         $contentChunks = explode('\u002D', $fileContent);
         $fileContent = implode('-', $contentChunks);
 
-        //Import translator in the file
+        // Import translator in the file
         $fileContent = "import Translator from '$translatorPath'".PHP_EOL.PHP_EOL.$fileContent;
 
         file_put_contents($path, $fileContent);

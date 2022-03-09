@@ -46,7 +46,7 @@ class ThumbnailGenerator
 
             $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
-            //Transparency
+            // Transparency
             if (IMAGETYPE_PNG === $mime || IMAGETYPE_WEBP === $mime) {
                 imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
                 imagealphablending($thumbnail, false);
@@ -103,7 +103,7 @@ class ThumbnailGenerator
 
         $resized = imagecreatetruecolor($newWidth, $newHeight);
 
-        //Transparency
+        // Transparency
         if (IMAGETYPE_PNG === $mime || IMAGETYPE_WEBP === $mime) {
             imagecolortransparent($resized, imagecolorallocate($resized, 0, 0, 0));
             imagealphablending($resized, false);

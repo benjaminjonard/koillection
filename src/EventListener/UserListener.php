@@ -37,7 +37,7 @@ class UserListener
     {
         $entity = $args->getEntity();
         if ($entity instanceof User) {
-            //If user is being deleted, we don't want to log anything
+            // If user is being deleted, we don't want to log anything
             $this->logQueue->disableQueue();
         }
     }

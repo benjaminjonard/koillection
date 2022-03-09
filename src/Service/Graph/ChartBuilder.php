@@ -33,12 +33,12 @@ class ChartBuilder
         $result = $query->getArrayResult();
 
         $data = [];
-        //Init an array with zeroed counts for each of the 24 hours of a day
+        // Init an array with zeroed counts for each of the 24 hours of a day
         for ($i = 0; $i < 24; ++$i) {
             $data[$i] = ['abscissa' => $i, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $hour = $raw['date']->setTimezone($timezone)->format('G');
@@ -62,12 +62,12 @@ class ChartBuilder
         $result = $query->getArrayResult();
 
         $data = [];
-        //Init an array with zeroed counts for each of the 31 possible number of days in a month
+        // Init an array with zeroed counts for each of the 31 possible number of days in a month
         for ($i = 1; $i <= 31; ++$i) {
             $data[] = ['abscissa' => $i, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $day = $raw['date']->setTimezone($timezone)->format('j');
@@ -105,7 +105,7 @@ class ChartBuilder
             $data[] = ['abscissa' => $day, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $weekDay = $raw['date']->setTimezone($timezone)->format('w');
@@ -148,7 +148,7 @@ class ChartBuilder
             $data[] = ['abscissa' => $month, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $month = $raw['date']->setTimezone($timezone)->format('n');

@@ -43,7 +43,7 @@ class DatumItemLogger extends Logger
             return null;
         }
 
-        //If the item was just created, we log nothing more
+        // If the item was just created, we log nothing more
         if ($this->logQueue->find($datum->getItem()->getId(), Item::class, LogTypeEnum::TYPE_CREATE)) {
             return null;
         }

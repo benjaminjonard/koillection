@@ -36,10 +36,15 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         }
     }
 
-    public function createDeleteForm(string $url, User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist $entity): FormInterface
+    public function createDeleteForm(string $url, User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist|null $entity): FormInterface
     {
+        $params = [];
+        if ($entity) {
+            $params['id'] = $entity->getId();
+        }
+
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl($url, ['id' => $entity->getId()]))
+            ->setAction($this->generateUrl($url, $params))
             ->setMethod('POST')
             ->getForm()
         ;

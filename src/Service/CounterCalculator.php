@@ -26,7 +26,7 @@ class CounterCalculator
 
     public function computeCounters(): array
     {
-        //Collections and items
+        // Collections and items
         $tableName = $this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName();
         $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Item::class)->getTableName();
         $parentProperty = 'collection_id';
@@ -34,7 +34,7 @@ class CounterCalculator
         $collections = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $collections = array_merge($collections, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        //Wishlists and wishes
+        // Wishlists and wishes
         $tableName = $this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName();
         $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Wish::class)->getTableName();
         $parentProperty = 'wishlist_id';
@@ -42,7 +42,7 @@ class CounterCalculator
         $wishlists = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $wishlists = array_merge($wishlists, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        //Albums and photos
+        // Albums and photos
         $tableName = $this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName();
         $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Photo::class)->getTableName();
         $parentProperty = 'album_id';
@@ -99,7 +99,7 @@ class CounterCalculator
         $alias = $this->qng->generateJoinAlias('c');
         $ownerId = $this->contextHandler->getContextUser()->getId();
 
-        //Counters per objects
+        // Counters per objects
         $sqlCounters = $this->getSQLForCounters($alias, $table, $itemTable, $parentProperty);
         $sql = "
             SELECT $alias.id as id, ($sqlCounters) as counters

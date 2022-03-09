@@ -33,7 +33,7 @@ class LogQueueListener
                 }
             }
 
-            //Persist logs
+            // Persist logs
             foreach ($this->logQueue->getLogs() as $log) {
                 if (
                     LogTypeEnum::TYPE_DELETE === $log->getType() ||
@@ -42,7 +42,7 @@ class LogQueueListener
                 }
             }
 
-            //If we have some 'delete' logs, set property objectDeleted to true on all logs concerning this object
+            // If we have some 'delete' logs, set property objectDeleted to true on all logs concerning this object
             if (!empty($deletedIds)) {
                 $this->managerRegistry->getManager()->createQueryBuilder()
                     ->update(Log::class, 'l')

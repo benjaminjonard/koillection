@@ -26,9 +26,10 @@
                     </div>
                 </div>
                 <div>
-                    <div class="input-field">
-                        <input type="password" id="password" name="_password" required="required" class="form-control" />
+                    <div class="input-field" {{ stimulus_controller('show-password') }}>
+                        <input data-show-password-target="input" type="password" id="password" name="_password" required="required" class="form-control password-input" />
                         <label class="required" for="password">{{ 'label.password'|trans }}</label>
+                        <i class="fa fa-eye fa-fw show-password" data-action="click->show-password#updateState"></i>
                     </div>
                 </div>
 

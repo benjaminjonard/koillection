@@ -78,7 +78,6 @@ class BreadcrumbElement
         return $this->params;
     }
 
-
     public function setParams(array $params): static
     {
         $this->params = $params;
@@ -90,7 +89,6 @@ class BreadcrumbElement
     {
         return $this->entity;
     }
-
 
     public function setEntity(User|BreadcrumbableInterface $entity): static
     {

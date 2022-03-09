@@ -223,7 +223,7 @@ class Datum implements LoggableInterface
     public function setFileImage(?File $fileImage): self
     {
         $this->fileImage = $fileImage;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($fileImage instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
@@ -299,7 +299,7 @@ class Datum implements LoggableInterface
     public function setFileFile(?File $fileFile): Datum
     {
         $this->fileFile = $fileFile;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($fileFile instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }

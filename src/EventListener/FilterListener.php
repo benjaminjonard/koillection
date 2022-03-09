@@ -31,7 +31,7 @@ class FilterListener
         $filters = $this->managerRegistry->getManager()->getFilters();
         $context = $this->contextHandler->getContext();
 
-        //Visibility filter
+        // Visibility filter
         if ('shared' === $context) {
             $filter = $filters->enable('visibility');
             $filter->setParameter('user', $this->security->getUser() instanceof User ? $this->security->getUser()->getId() : null, 'string');
@@ -40,7 +40,7 @@ class FilterListener
         }
         $this->setContextUser();
 
-        //Ownership filter
+        // Ownership filter
         $user = $this->contextHandler->getContextUser();
         if ($user && 'admin' !== $context) {
             $filter = $filters->enable('ownership');

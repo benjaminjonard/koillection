@@ -4605,5 +4605,23 @@
           <target>Welcome to Koillection</target>
       </segment>
     </unit>
+    <unit id="lsis86z" name="message.unused_tags_deleted">
+        <segment>
+            <source>message.unused_tags_deleted</source>
+            <target>{0} %count% tags deleted| {1} %count% tag deleted| ]1,Inf[ %count% tags deleted</target>
+        </segment>
+    </unit>
+    <unit id="qmd8eu7" name="btn.delete_unused_tags">
+        <segment>
+            <source>btn.delete_unused_tags</source>
+            <target>Delete unused tags</target>
+        </segment>
+    </unit>
+    <unit id="mps8vb5" name="message.delete.unused_tag">
+        <segment>
+            <source>message.delete.unused_tag</source>
+            <target>This will delete all tags with no items attached. Are you sure you want to delete those tags ? They will be permanently lost...</target>
+        </segment>
+    </unit>
   </file>
 </xliff>

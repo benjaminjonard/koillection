@@ -52,7 +52,7 @@ class Autocompleter
         }
         $counter = $query->getSingleScalarResult();
 
-        //Get the 5 most relevant results
+        // Get the 5 most relevant results
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('id', 'id');
         $rsm->addScalarResult('label', 'label');

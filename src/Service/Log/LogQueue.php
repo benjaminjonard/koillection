@@ -23,7 +23,7 @@ class LogQueue
             return;
         }
 
-        //If there is already a log for the current Id/Class/Type, unset it
+        // If there is already a log for the current Id/Class/Type, unset it
         foreach ($this->logs as $key => $existingLog) {
             if ($log->getObjectId() === $existingLog->getId() &&
                 $log->getObjectClass() === $existingLog->getObjectClass() &&

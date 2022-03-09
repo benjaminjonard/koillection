@@ -112,8 +112,8 @@ class TagRepository extends ServiceEntityRepository
             ->createQueryBuilder('t')
             ->addSelect('(CASE WHEN LOWER(t.label) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(t.label) LIKE LOWER(:label)')
-            ->orderBy('startWithOrder', 'ASC') //Order tags starting with the search term first
-            ->addOrderBy('LOWER(t.label)', 'ASC') //Then order other matching tags alphabetically
+            ->orderBy('startWithOrder', 'ASC') // Order tags starting with the search term first
+            ->addOrderBy('LOWER(t.label)', 'ASC') // Then order other matching tags alphabetically
             ->setParameter('label', '%'.$string.'%')
             ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
@@ -190,7 +190,7 @@ class TagRepository extends ServiceEntityRepository
 
     public function findRelatedTags(Tag $tag)
     {
-        //Get all items ids the current tag is linked to
+        // Get all items ids the current tag is linked to
         $results = $this->_em->createQueryBuilder()
             ->select('DISTINCT i2.id')
             ->from(Item::class, 'i2')
@@ -218,5 +218,16 @@ class TagRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function getUnusedTags()
+    {
+        return $this
+            ->createQueryBuilder('t')
+            ->leftJoin('t.items', 'i')
+            ->where('i.id IS NULL')
+            ->getQuery()
+            ->getResult()
+       ;
     }
 }

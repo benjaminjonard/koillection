@@ -55,7 +55,7 @@ class ItemController extends AbstractController
             ->setFinalVisibility($collection->getFinalVisibility())
         ;
 
-        //Preload tags shared by all items in that collection
+        // Preload tags shared by all items in that collection
         $suggestedNames = [];
         if ($request->isMethod('GET')) {
             $item->setTags(new ArrayCollection($tagRepository->findRelatedToCollection($collection)));

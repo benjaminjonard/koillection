@@ -16,7 +16,7 @@ class VisibilityRuntime implements RuntimeExtensionInterface
 
     public function getVisibilityReason(?string $visibility, string $userVisibility): string
     {
-        //Public
+        // Public
         if (null === $visibility && VisibilityEnum::VISIBILITY_PUBLIC === $userVisibility) {
             return $this->translator->trans('global.visibilities.reason.user_public');
         }
@@ -25,7 +25,7 @@ class VisibilityRuntime implements RuntimeExtensionInterface
             return $this->translator->trans('global.visibilities.reason.both_public');
         }
 
-        //Private
+        // Private
         if (VisibilityEnum::VISIBILITY_PRIVATE === $visibility && VisibilityEnum::VISIBILITY_PRIVATE === $userVisibility) {
             return $this->translator->trans('global.visibilities.reason.both_private');
         }
@@ -38,7 +38,7 @@ class VisibilityRuntime implements RuntimeExtensionInterface
             return $this->translator->trans('global.visibilities.reason.object_private');
         }
 
-        //Internal
+        // Internal
         if (VisibilityEnum::VISIBILITY_INTERNAL === $visibility && VisibilityEnum::VISIBILITY_INTERNAL === $userVisibility) {
             return $this->translator->trans('global.visibilities.reason.both_internal');
         }
