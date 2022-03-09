@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <psalm errorLevel="7">
     <projectFiles>
-        <directory name="src"/>
         <directory name="api"/>
+        <directory name="src"/>
+        <directory name="migrations"/>
+        <directory name="tests"/>
 
         <ignoreFiles>
             <file name="src/Kernel.php"/>
