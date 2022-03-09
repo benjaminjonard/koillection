@@ -31,7 +31,7 @@
         "symfony/error-handler": "^6.0",
         "symfony/event-dispatcher": "^6.0",
         "symfony/expression-language": "^6.0",
-        "symfony/flex": "^1.6",
+        "symfony/flex": "^2.1",
         "symfony/form": "^6.0",
         "symfony/framework-bundle": "^6.0",
         "symfony/http-client": "^6.0",
