@@ -8,7 +8,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class ArrayRuntime implements RuntimeExtensionInterface
 {
-    public function naturalSorting(iterable $array) : array
+    public function naturalSorting(iterable $array): array
     {
         $array = !\is_array($array) ? $array->toArray() : $array;
 

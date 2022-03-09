@@ -12,22 +12,26 @@ use App\Repository\ItemRepository;
 use App\Repository\TagRepository;
 use App\Repository\WishlistRepository;
 use App\Service\Autocompleter;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
     #[Route(
         path: ['en' => '/search', 'fr' => '/recherche'],
-        name: 'app_search_index', methods: ['GET', 'POST']
+        name: 'app_search_index',
+        methods: ['GET', 'POST']
     )]
-    public function index(Request $request, CollectionRepository $collectionRepository, ItemRepository $itemRepository,
-                          TagRepository $tagRepository, AlbumRepository $albumRepository, WishlistRepository $wishlistRepository
-    ) : Response
-    {
+    public function index(
+        Request $request,
+        CollectionRepository $collectionRepository,
+        ItemRepository $itemRepository,
+        TagRepository $tagRepository,
+        AlbumRepository $albumRepository,
+        WishlistRepository $wishlistRepository
+    ): Response {
         $results = [];
 
         $search = new Search();
@@ -73,15 +77,16 @@ class SearchController extends AbstractController
 
         return $this->render('App/Search/index.html.twig', [
             'form' => $form->createView(),
-            'results' => $results
+            'results' => $results,
         ]);
     }
 
     #[Route(
         path: ['en' => '/search/autocomplete/{term}', 'fr' => '/recherche/autocompletion/{term}'],
-        name: 'app_search_autocomplete', methods: ['GET', 'POST']
+        name: 'app_search_autocomplete',
+        methods: ['GET', 'POST']
     )]
-    public function autocomplete(Autocompleter $autocompleter, string $term) : Response
+    public function autocomplete(Autocompleter $autocompleter, string $term): Response
     {
         $results = $autocompleter->findForAutocomplete($term);
 

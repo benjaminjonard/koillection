@@ -11,12 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ModelTransformerExtension extends AbstractTypeExtension
 {
-    public static function getExtendedTypes() : iterable
+    public static function getExtendedTypes(): iterable
     {
         return [FormType::class];
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
 
@@ -25,7 +25,7 @@ class ModelTransformerExtension extends AbstractTypeExtension
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
         $resolver->setDefaults(['model_transformer' => null]);

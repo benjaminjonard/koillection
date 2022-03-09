@@ -14,9 +14,10 @@ final class UploadListener
     public function __construct(
         private UploadAnnotationReader $reader,
         private ImageHandler $handler
-    ) {}
+    ) {
+    }
 
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
@@ -24,7 +25,7 @@ final class UploadListener
         }
     }
 
-    public function onFlush(OnFlushEventArgs $args)
+    public function onFlush(OnFlushEventArgs $args): void
     {
         $em = $args->getEntityManager();
         $uow = $em->getUnitOfWork();
@@ -32,12 +33,12 @@ final class UploadListener
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
             foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
                 $this->handler->upload($entity, $property, $attribute);
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($entity)), $entity);
+                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(\get_class($entity)), $entity);
             }
         }
     }
 
-    public function postLoad(LifecycleEventArgs $args)
+    public function postLoad(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
@@ -45,7 +46,7 @@ final class UploadListener
         }
     }
 
-    public function postRemove(LifecycleEventArgs $args)
+    public function postRemove(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         foreach ($this->reader->getUploadFields($entity) as $attribute) {

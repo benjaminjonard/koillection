@@ -9,7 +9,7 @@ use Twig\TwigFunction;
 
 class VisibilityExtension extends AbstractExtension
 {
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('getVisibilityReason', [VisibilityRuntime::class, 'getVisibilityReason']),

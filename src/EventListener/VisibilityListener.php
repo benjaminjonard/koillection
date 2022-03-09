@@ -20,14 +20,14 @@ use Doctrine\ORM\UnitOfWork;
  * Each object has 3 visibility properties :
  * visibility -> the visibility of the object, the only one that can be changed by a user
  * parentVisibility -> the visibility of the object owning the current one
- * finalVisibility -> the visibility used to display or not the object, computed from the 2 previous properties
+ * finalVisibility -> the visibility used to display or not the object, computed from the 2 previous properties.
  */
 class VisibilityListener
 {
     private UnitOfWork $uow;
     private EntityManagerInterface $em;
 
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if ($entity instanceof Album || $entity instanceof Collection || $entity instanceof Wishlist) {
@@ -36,7 +36,7 @@ class VisibilityListener
         }
 
         if ($entity instanceof Photo || $entity instanceof Item || $entity instanceof Wish) {
-            $parentVisibility = match (get_class($entity)) {
+            $parentVisibility = match (\get_class($entity)) {
                 Photo::class => $entity->getAlbum()->getFinalVisibility(),
                 Item::class => $entity->getCollection()->getFinalVisibility(),
                 Wish::class => $entity->getWishlist()->getFinalVisibility()
@@ -47,7 +47,7 @@ class VisibilityListener
         }
     }
 
-    public function onFlush(OnFlushEventArgs $args)
+    public function onFlush(OnFlushEventArgs $args): void
     {
         $this->em = $args->getEntityManager();
         $this->uow = $this->em->getUnitOfWork();
@@ -63,7 +63,7 @@ class VisibilityListener
         }
     }
 
-    private function handleContainer(Album|Collection|Wishlist $entity)
+    private function handleContainer(Album|Collection|Wishlist $entity): void
     {
         $changeset = $this->uow->getEntityChangeSet($entity);
 
@@ -78,10 +78,10 @@ class VisibilityListener
         }
     }
 
-    private function handleElement(Photo|Item|Wish $entity)
+    private function handleElement(Photo|Item|Wish $entity): void
     {
         $changeset = $this->uow->getEntityChangeSet($entity);
-        $parentVisibility = match (get_class($entity)) {
+        $parentVisibility = match (\get_class($entity)) {
             Photo::class => $entity->getAlbum()->getFinalVisibility(),
             Item::class => $entity->getCollection()->getFinalVisibility(),
             Wish::class => $entity->getWishlist()->getFinalVisibility()
@@ -104,9 +104,9 @@ class VisibilityListener
         }
     }
 
-    private function setVisibilityRecursively(Album|Collection|Wishlist $entity, string $visibility)
+    private function setVisibilityRecursively(Album|Collection|Wishlist $entity, string $visibility): void
     {
-        $elements = match (get_class($entity)) {
+        $elements = match (\get_class($entity)) {
             Album::class => $entity->getPhotos(),
             Collection::class => $entity->getItems(),
             Wishlist::class => $entity->getWishes(),
@@ -115,13 +115,13 @@ class VisibilityListener
         foreach ($elements as $element) {
             $element->setParentVisibility($visibility);
             $element->setFinalVisibility($this->computeFinalVisibility($element->getVisibility(), $visibility));
-            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(get_class($element)), $element);
+            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(\get_class($element)), $element);
         }
 
         foreach ($entity->getChildren() as $child) {
             $child->setParentVisibility($visibility);
             $child->setFinalVisibility($this->computeFinalVisibility($child->getVisibility(), $visibility));
-            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(get_class($child)), $child);
+            $this->uow->recomputeSingleEntityChangeSet($this->em->getClassMetadata(\get_class($child)), $child);
 
             $this->setVisibilityRecursively($child, $visibility);
         }
@@ -129,15 +129,15 @@ class VisibilityListener
 
     private function computeFinalVisibility(string $visibility, ?string $parentVisibility): string
     {
-        if ($parentVisibility === null) {
+        if (null === $parentVisibility) {
             return $visibility;
         }
 
-        if ($visibility === VisibilityEnum::VISIBILITY_PUBLIC && $parentVisibility === VisibilityEnum::VISIBILITY_PUBLIC) {
+        if (VisibilityEnum::VISIBILITY_PUBLIC === $visibility && VisibilityEnum::VISIBILITY_PUBLIC === $parentVisibility) {
             return VisibilityEnum::VISIBILITY_PUBLIC;
         }
 
-        if ($visibility === VisibilityEnum::VISIBILITY_PRIVATE || $parentVisibility === VisibilityEnum::VISIBILITY_PRIVATE) {
+        if (VisibilityEnum::VISIBILITY_PRIVATE === $visibility || VisibilityEnum::VISIBILITY_PRIVATE === $parentVisibility) {
             return VisibilityEnum::VISIBILITY_PRIVATE;
         }
 

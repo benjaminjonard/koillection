@@ -32,7 +32,7 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
     public function normalize($object, $format = null, array $context = [])
     {
         $data = $this->decorated->normalize($object, $format, $context);
-        if (is_array($data) && in_array(get_class($object), [Album::class, Collection::class, Wishlist::class])) {
+        if (\is_array($data) && \in_array(\get_class($object), [Album::class, Collection::class, Wishlist::class])) {
             $counters = $this->countersCache->getCounters($object);
             $data['childrenCounter'] = $counters['children'];
             $data['itemsCounter'] = $counters['items'];
@@ -51,9 +51,12 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
         return $this->decorated->denormalize($data, $class, $format, $context);
     }
 
+    /**
+     * @return void
+     */
     public function setSerializer(SerializerInterface $serializer)
     {
-        if($this->decorated instanceof SerializerAwareInterface) {
+        if ($this->decorated instanceof SerializerAwareInterface) {
             $this->decorated->setSerializer($serializer);
         }
     }

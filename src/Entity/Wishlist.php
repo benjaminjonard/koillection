@@ -23,86 +23,86 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WishlistRepository::class)]
-#[ORM\Table(name: "koi_wishlist")]
-#[ORM\Index(name: "idx_wishlist_final_visibility", columns: ["final_visibility"])]
+#[ORM\Table(name: 'koi_wishlist')]
+#[ORM\Index(name: 'idx_wishlist_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ["groups" => ["wishlist:read"]],
-    denormalizationContext: ["groups" => ["wishlist:write"]],
+    normalizationContext: ['groups' => ['wishlist:read']],
+    denormalizationContext: ['groups' => ['wishlist:write']],
     collectionOperations: [
-        "get",
-        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['wishlist:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
-    #[Groups(["wishlist:read", "wishlist:write"])]
+    #[ORM\Column(type: 'string')]
+    #[Groups(['wishlist:read', 'wishlist:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "wishlists")]
-    #[Groups(["wishlist:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'wishlists')]
+    #[Groups(['wishlist:read'])]
     private ?User $owner = null;
 
-    #[ORM\OneToMany(targetEntity: "Wish", mappedBy: "wishlist", cascade: ["all"])]
-    #[ORM\OrderBy(["name" => "ASC"])]
+    #[ORM\OneToMany(targetEntity: 'Wish', mappedBy: 'wishlist', cascade: ['all'])]
+    #[ORM\OrderBy(['name' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $wishes;
 
-    #[ORM\Column(type: "string", length: 6)]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'string', length: 6)]
+    #[Groups(['wishlist:read'])]
     private ?string $color = null;
 
-    #[ORM\OneToMany(targetEntity: "Wishlist", mappedBy: "parent", cascade: ["all"])]
-    #[ORM\OrderBy(["name" => "ASC"])]
-    #[Groups(["wishlist:read"])]
+    #[ORM\OneToMany(targetEntity: 'Wishlist', mappedBy: 'parent', cascade: ['all'])]
+    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[Groups(['wishlist:read'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
-    #[ORM\ManyToOne(targetEntity: "Wishlist", inversedBy: "children")]
-    #[Groups(["wishlist:read", "wishlist:write"])]
+    #[ORM\ManyToOne(targetEntity: 'Wishlist', inversedBy: 'children')]
+    #[Groups(['wishlist:read', 'wishlist:write'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
-    #[Assert\Expression("not (value == this)", message: "error.parent.same_as_current_object")]
+    #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Wishlist $parent = null;
 
-    #[Upload(path: "image", maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
-    #[Groups(["wishlist:write"])]
+    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
+    #[Groups(['wishlist:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['wishlist:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: "integer")]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'integer')]
+    #[Groups(['wishlist:read'])]
     private int $seenCounter;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["wishlist:read", "wishlist:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['wishlist:read', 'wishlist:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: "string", length: 10, nullable: true)]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[Groups(['wishlist:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['wishlist:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['wishlist:read'])]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["wishlist:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['wishlist:read'])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
@@ -119,7 +119,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this->getName() ?? '';
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -284,7 +284,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     public function setFile(?File $file): self
     {
         $this->file = $file;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }

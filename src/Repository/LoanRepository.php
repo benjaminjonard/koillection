@@ -15,7 +15,7 @@ class LoanRepository extends ServiceEntityRepository
         parent::__construct($registry, Loan::class);
     }
 
-    public function findLent() : array
+    public function findLent(): array
     {
         return $this
             ->createQueryBuilder('l')
@@ -27,7 +27,7 @@ class LoanRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findReturned() : array
+    public function findReturned(): array
     {
         return $this
             ->createQueryBuilder('l')
@@ -39,7 +39,7 @@ class LoanRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByIdWithItem(string $id) : ?Loan
+    public function findByIdWithItem(string $id): ?Loan
     {
         return $this
             ->createQueryBuilder('l')

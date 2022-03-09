@@ -20,9 +20,10 @@ class WishController extends AbstractController
 {
     #[Route(
         path: ['en' => '/wishes/add', 'fr' => '/souhaits/ajouter'],
-        name: 'app_wish_add', methods: ['GET', 'POST']
+        name: 'app_wish_add',
+        methods: ['GET', 'POST']
     )]
-    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -30,7 +31,7 @@ class WishController extends AbstractController
         if ($request->query->has('wishlist')) {
             $wishlist = $wishlistRepository->findOneBy([
                 'id' => $request->query->get('wishlist'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
         }
 
@@ -67,9 +68,11 @@ class WishController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishes/{id}/edit', 'fr' => '/souhaits/{id}/editer'],
-        name: 'app_wish_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_wish_edit',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function edit(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -90,9 +93,11 @@ class WishController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishes/{id}/delete', 'fr' => '/souhaits/{id}/supprimer'],
-        name: 'app_wish_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_wish_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -110,9 +115,11 @@ class WishController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishes/{id}/transfer', 'fr' => '/souhaits/{id}/transferer'],
-        name: 'app_wish_transfer_to_collection', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_wish_transfer_to_collection',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
-    public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -136,7 +143,7 @@ class WishController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.wish_transfered', [
                 '%wish%' => '&nbsp;<strong>'.$wish->getName().'</strong>&nbsp;',
-                '%collection%' => '&nbsp;<strong>'.$item->getCollection()->getTitle().'</strong>&nbsp;'
+                '%collection%' => '&nbsp;<strong>'.$item->getCollection()->getTitle().'</strong>&nbsp;',
             ]));
 
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);

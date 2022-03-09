@@ -15,7 +15,8 @@ class SearchHistory
     public function __construct(
         private int $page = 1,
         private int $itemsPerPage = 10
-    ) {}
+    ) {
+    }
 
     public function getTerm(): ?string
     {
@@ -61,6 +62,7 @@ class SearchHistory
     public function setClasses(array $classes): SearchHistory
     {
         $this->classes = $classes;
+
         return $this;
     }
 
@@ -72,6 +74,7 @@ class SearchHistory
     public function setTypes(array $types): SearchHistory
     {
         $this->types = $types;
+
         return $this;
     }
 }

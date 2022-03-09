@@ -4,6 +4,18 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Album;
+use App\Entity\Collection;
+use App\Entity\Inventory;
+use App\Entity\Item;
+use App\Entity\Loan;
+use App\Entity\Photo;
+use App\Entity\Tag;
+use App\Entity\TagCategory;
+use App\Entity\Template;
+use App\Entity\User;
+use App\Entity\Wish;
+use App\Entity\Wishlist;
 use App\Service\FeatureChecker;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -12,18 +24,19 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
 {
     public function __construct(
         protected FeatureChecker $featureChecker
-    ) {}
+    ) {
+    }
 
-    public function denyAccessUnlessFeaturesEnabled(array $features)
+    public function denyAccessUnlessFeaturesEnabled(array $features): void
     {
         foreach ($features as $feature) {
-            if ($this->featureChecker->isFeatureEnabled($feature) === false) {
+            if (false === $this->featureChecker->isFeatureEnabled($feature)) {
                 throw new AccessDeniedException();
             }
         }
     }
 
-    public function createDeleteForm(string $url, $entity = null): FormInterface
+    public function createDeleteForm(string $url, User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist $entity = null): FormInterface
     {
         $params = [];
         if ($entity) {

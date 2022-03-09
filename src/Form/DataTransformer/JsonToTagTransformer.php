@@ -12,7 +12,8 @@ class JsonToTagTransformer implements DataTransformerInterface
 {
     public function __construct(
         private TagRepository $tagRepository
-    ) {}
+    ) {
+    }
 
     public function transform($tags): mixed
     {
@@ -30,7 +31,7 @@ class JsonToTagTransformer implements DataTransformerInterface
         foreach (json_decode($json) as $raw) {
             $label = trim($raw);
 
-            if ($label == '') {
+            if ('' == $label) {
                 continue;
             }
 

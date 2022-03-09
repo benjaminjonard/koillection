@@ -8,11 +8,12 @@ class FeatureChecker
 {
     public function __construct(
         private ContextHandler $contextHandler
-    ) {}
+    ) {
+    }
 
     public function isFeatureEnabled(string $feature): bool
     {
-        $getter = 'is' . ucfirst($feature) . 'FeatureEnabled';
+        $getter = 'is'.ucfirst($feature).'FeatureEnabled';
 
         return $this->contextHandler->getContextUser()->$getter();
     }

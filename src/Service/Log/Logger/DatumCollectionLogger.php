@@ -22,28 +22,28 @@ class DatumCollectionLogger extends Logger
         parent::__construct($translator);
     }
 
-    public function getClass() : string
+    public function getClass(): string
     {
         return Collection::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 2;
     }
 
-    public function supports($object) : bool
+    public function supports(LoggableInterface $object): bool
     {
-        return get_class($object) === Datum::class && $object->getCollection() instanceof Collection;
+        return Datum::class === \get_class($object) && $object->getCollection() instanceof Collection;
     }
 
-    public function getCreateLog(LoggableInterface $datum) : ?Log
+    public function getCreateLog(LoggableInterface $datum): ?Log
     {
         if (!$this->supports($datum)) {
             return null;
         }
 
-        //If the collection was just created, we log nothing more
+        // If the collection was just created, we log nothing more
         if ($this->logQueue->find($datum->getCollection()->getId(), Collection::class, LogTypeEnum::TYPE_CREATE)) {
             return null;
         }
@@ -58,14 +58,14 @@ class DatumCollectionLogger extends Logger
             'property' => 'datum_added',
             'datum_label' => $datum->getLabel(),
             'datum_value' => $datum->getValue(),
-            'datum_type' => $datum->getType()
+            'datum_type' => $datum->getType(),
         ];
         $log->setPayload(json_encode($payload));
 
         return $log;
     }
 
-    public function getDeleteLog(LoggableInterface $datum) : ?Log
+    public function getDeleteLog(LoggableInterface $datum): ?Log
     {
         if (!$this->supports($datum)) {
             return null;
@@ -81,19 +81,19 @@ class DatumCollectionLogger extends Logger
             'property' => 'datum_removed',
             'datum_label' => $datum->getLabel(),
             'datum_value' => $datum->getValue(),
-            'datum_type' => $datum->getType()
+            'datum_type' => $datum->getType(),
         ];
         $log->setPayload(json_encode($payload));
 
         return $log;
     }
 
-    public function getUpdateLog(LoggableInterface $datum, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $datum, array $changeset, array $relations = []): ?Log
     {
         return null;
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         return null;
     }

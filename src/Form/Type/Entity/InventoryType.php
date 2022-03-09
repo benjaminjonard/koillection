@@ -16,9 +16,10 @@ class InventoryType extends AbstractType
 {
     public function __construct(
         private StringToInventoryContentTransformer $stringToInventoryContentTransformer
-    ) {}
+    ) {
+    }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
@@ -28,16 +29,16 @@ class InventoryType extends AbstractType
             ->add(
                 $builder->create('content', HiddenType::class, [
                     'required' => false,
-                    'model_transformer' => $this->stringToInventoryContentTransformer
+                    'model_transformer' => $this->stringToInventoryContentTransformer,
                 ])
             )
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Inventory::class
+            'data_class' => Inventory::class,
         ]);
     }
 }

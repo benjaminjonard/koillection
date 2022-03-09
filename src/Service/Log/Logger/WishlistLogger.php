@@ -13,17 +13,17 @@ use App\Service\Log\Logger;
 
 class WishlistLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Wishlist::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $wishlist) : ?Log
+    public function getCreateLog(LoggableInterface $wishlist): ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -32,7 +32,7 @@ class WishlistLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $wishlist);
     }
 
-    public function getDeleteLog(LoggableInterface $wishlist) : ?Log
+    public function getDeleteLog(LoggableInterface $wishlist): ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -41,7 +41,7 @@ class WishlistLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $wishlist);
     }
 
-    public function getUpdateLog(LoggableInterface $wishlist, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $wishlist, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($wishlist)) {
             return null;
@@ -54,14 +54,14 @@ class WishlistLogger extends Logger
                     'title' => $wishlist->getName(),
                     'property' => $property,
                     'old' => $changeset[$property][0],
-                    'new' => $wishlist->$function()
+                    'new' => $wishlist->$function(),
                 ];
-            } elseif ($property === 'image') {
+            } elseif ('image' === $property) {
                 $mainPayload[] = [
                     'title' => $wishlist->getName(),
-                    'property' => 'image'
+                    'property' => 'image',
                 ];
-            } elseif ($property === 'parent') {
+            } elseif ('parent' === $property) {
                 $old = $changeset['parent'][0] instanceof Wishlist ? $changeset['parent'][0] : null;
                 $new = $wishlist->getParent() instanceof Wishlist ? $wishlist->getParent() : null;
 
@@ -71,7 +71,7 @@ class WishlistLogger extends Logger
                     'old_title' => $old ? $old->getName() : null,
                     'new_id' => $new ? $new->getId() : null,
                     'new_title' => $new ? $new->getName() : null,
-                    'title' => $wishlist->getName()
+                    'title' => $wishlist->getName(),
                 ];
             }
         }
@@ -87,7 +87,7 @@ class WishlistLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;
@@ -99,12 +99,12 @@ class WishlistLogger extends Logger
             case 'visibility':
                 return $this->translator->trans('log.wishlist.property_updated', [
                     '%property%' => "<strong>$label</strong>",
-                    '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
-                    '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
+                    '%new%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']]).'</strong>',
+                    '%old%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']]).'</strong>',
                 ]);
             case 'image':
                 return $this->translator->trans('log.wishlist.image_updated', [
-                    '%property%' => "<strong>$label</strong>"
+                    '%property%' => "<strong>$label</strong>",
                 ]);
             case 'parent':
                 $defaultValue = $this->translator->trans('log.wishlist.default_parent');

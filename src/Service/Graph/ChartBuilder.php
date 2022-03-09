@@ -16,9 +16,10 @@ class ChartBuilder
     public function __construct(
         private ManagerRegistry $managerRegistry,
         private TranslatorInterface $translator
-    ) {}
+    ) {
+    }
 
-    public function buildActivityByHour(User $user) : array
+    public function buildActivityByHour(User $user): array
     {
         $sql = 'SELECT created_at as date';
         $sql .= ' FROM koi_item';
@@ -32,22 +33,22 @@ class ChartBuilder
         $result = $query->getArrayResult();
 
         $data = [];
-        //Init an array with zeroed counts for each of the 24 hours of a day
+        // Init an array with zeroed counts for each of the 24 hours of a day
         for ($i = 0; $i < 24; ++$i) {
             $data[$i] = ['abscissa' => $i, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $hour = $raw['date']->setTimezone($timezone)->format('G');
-            $data[$hour]['count']++;
+            ++$data[$hour]['count'];
         }
 
         return $data;
     }
 
-    public function buildActivityByMonthDay(User $user) : array
+    public function buildActivityByMonthDay(User $user): array
     {
         $sql = 'SELECT created_at AS date';
         $sql .= ' FROM koi_item';
@@ -61,22 +62,22 @@ class ChartBuilder
         $result = $query->getArrayResult();
 
         $data = [];
-        //Init an array with zeroed counts for each of the 31 possible number of days in a month
+        // Init an array with zeroed counts for each of the 31 possible number of days in a month
         for ($i = 1; $i <= 31; ++$i) {
             $data[] = ['abscissa' => $i, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $day = $raw['date']->setTimezone($timezone)->format('j');
-            $data[$day - 1]['count']++;
+            ++$data[$day - 1]['count'];
         }
 
         return $data;
     }
 
-    public function buildActivityByWeekDay(User $user) : array
+    public function buildActivityByWeekDay(User $user): array
     {
         $sql = 'SELECT created_at AS date';
         $sql .= ' FROM koi_item';
@@ -96,7 +97,7 @@ class ChartBuilder
             mb_substr($this->translator->trans('global.days.wednesday'), 0, 3, 'UTF-8'),
             mb_substr($this->translator->trans('global.days.thursday'), 0, 3, 'UTF-8'),
             mb_substr($this->translator->trans('global.days.friday'), 0, 3, 'UTF-8'),
-            mb_substr($this->translator->trans('global.days.saturday'), 0, 3, 'UTF-8')
+            mb_substr($this->translator->trans('global.days.saturday'), 0, 3, 'UTF-8'),
         ];
 
         $data = [];
@@ -104,17 +105,17 @@ class ChartBuilder
             $data[] = ['abscissa' => $day, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $weekDay = $raw['date']->setTimezone($timezone)->format('w');
-            $data[$weekDay]['count']++;
+            ++$data[$weekDay]['count'];
         }
 
         return $data;
     }
 
-    public function buildActivityByMonth(User $user) : array
+    public function buildActivityByMonth(User $user): array
     {
         $sql = 'SELECT created_at as date';
         $sql .= ' FROM koi_item';
@@ -147,17 +148,17 @@ class ChartBuilder
             $data[] = ['abscissa' => $month, 'count' => 0];
         }
 
-        //Fill our array with the result of the SQL query
+        // Fill our array with the result of the SQL query
         $timezone = new \DateTimeZone($user->getTimezone());
         foreach ($result as $raw) {
             $month = $raw['date']->setTimezone($timezone)->format('n');
-            $data[$month - 1]['count']++;
+            ++$data[$month - 1]['count'];
         }
 
         return $data;
     }
 
-    public function buildItemEvolution(User $user) : array
+    public function buildItemEvolution(User $user): array
     {
         $data = [];
         $sql = 'SELECT logged_at AS date, type';
@@ -182,7 +183,7 @@ class ChartBuilder
         foreach ($result as $row) {
             $date = $row['date']->setTimezone($timezone);
             $timestamp = (string) $date->format($user->getDateFormat());
-            $row['type'] === LogTypeEnum::TYPE_CREATE ? $total++ : $total--;
+            LogTypeEnum::TYPE_CREATE === $row['type'] ? $total++ : $total--;
             $data[$timestamp] = $total;
         }
 

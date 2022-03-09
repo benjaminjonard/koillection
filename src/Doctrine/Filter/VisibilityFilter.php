@@ -23,15 +23,16 @@ class VisibilityFilter extends SQLFilter
         return $filter;
     }
 
-    private function addFilter($targetTableAlias, $property): string
+    private function addFilter(string $targetTableAlias, string $property): string
     {
         // If user not authenticated, only show public
-        if ($this->getParameter('user') === "''") {
+        if ("''" === $this->getParameter('user')) {
             return sprintf("%s.%s = '%s'", $targetTableAlias, $property, VisibilityEnum::VISIBILITY_PUBLIC);
         }
 
         // If authenticated, show public and internal
-        return sprintf("%s.%s IN ('%s', '%s')",
+        return sprintf(
+            "%s.%s IN ('%s', '%s')",
             $targetTableAlias,
             $property,
             VisibilityEnum::VISIBILITY_PUBLIC,

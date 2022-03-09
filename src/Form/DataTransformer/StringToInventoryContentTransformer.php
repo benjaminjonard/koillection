@@ -13,7 +13,8 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
     public function __construct(
         private InventoryHandler $inventoryHandler,
         private CollectionRepository $collectionRepository
-    ) {}
+    ) {
+    }
 
     public function transform($content): mixed
     {
@@ -22,7 +23,7 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
 
     public function reverseTransform($string): mixed
     {
-        if ($string === null) {
+        if (null === $string) {
             return json_encode([]);
         }
 

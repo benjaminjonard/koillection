@@ -15,28 +15,31 @@ class DatumController extends AbstractController
 {
     #[Route(
         path: ['en' => '/datum/{type}', 'fr' => '/datum/{type}'],
-        name: 'app_datum_get_html_by_type', methods: ['GET']
+        name: 'app_datum_get_html_by_type',
+        methods: ['GET']
     )]
-    public function getHtmlByType(string $type) : JsonResponse
+    public function getHtmlByType(string $type): JsonResponse
     {
         $html = $this->render('App/Datum/_datum.html.twig', [
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
-            'type' => $type
+            'type' => $type,
         ])->getContent();
 
         return new JsonResponse([
             'html' => $html,
-            'type' => in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text'
+            'type' => \in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text',
         ]);
     }
 
     #[Route(
         path: ['en' => '/datum/load-common-fields/{id}', 'fr' => '/datum/charger-les-champs-communs/{id}'],
-        name: 'app_datum_load_common_fields', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_datum_load_common_fields',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Entity('collection', expr: 'repository.findWithItemsAndData(id)', class: Collection::class)]
-    public function loadCommonFields(Collection $collection) : JsonResponse
+    public function loadCommonFields(Collection $collection): JsonResponse
     {
         $commonFields = [];
 
@@ -45,7 +48,7 @@ class DatumController extends AbstractController
             foreach ($first->getDataTexts() as $datum) {
                 $field = [
                     'datum' => $datum,
-                    'type' => $datum->getType()
+                    'type' => $datum->getType(),
                 ];
                 $commonFields[$datum->getLabel()] = $field;
             }
@@ -74,15 +77,15 @@ class DatumController extends AbstractController
         $i = 0;
 
         foreach ($commonFields as $label => $field) {
-            $result[$i][] = in_array($field['type'], [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
+            $result[$i][] = \in_array($field['type'], [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
             $result[$i][] = $label;
             $result[$i][] = $this->render('App/Datum/_datum.html.twig', [
                 'entity' => 'item',
                 'iteration' => '__placeholder__',
                 'type' => $field['type'],
-                'datum' => $field['datum']
+                'datum' => $field['datum'],
             ])->getContent();
-            $i++;
+            ++$i;
         }
 
         return new JsonResponse($result);
@@ -90,20 +93,22 @@ class DatumController extends AbstractController
 
     #[Route(
         path: ['en' => '/datum/load-collection-fields/{id}', 'fr' => '/datum/charger-les-champs-de-la-collection/{id}'],
-        name: 'app_datum_load_collection_fields', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_datum_load_collection_fields',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Entity('collection', expr: 'repository.findWithItemsAndData(id)', class: Collection::class)]
-    public function loadCollectionFields(Collection $collection) : JsonResponse
+    public function loadCollectionFields(Collection $collection): JsonResponse
     {
         $fields = [];
         foreach ($collection->getData() as $key => $datum) {
-            $fields[$key][] = in_array($datum->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
+            $fields[$key][] = \in_array($datum->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
             $fields[$key][] = $datum->getLabel();
             $fields[$key][] = $this->render('App/Datum/_datum.html.twig', [
                 'entity' => 'item',
                 'iteration' => '__placeholder__',
                 'type' => $datum->getType(),
-                'datum' => $datum
+                'datum' => $datum,
             ])->getContent();
         }
 

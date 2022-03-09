@@ -9,12 +9,12 @@ use Twig\TwigFilter;
 
 class DateExtension extends AbstractExtension
 {
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return [
             new TwigFilter('timeAgo', [DateRuntime::class, 'timeAgo']),
             new TwigFilter('timeDiff', [DateRuntime::class, 'timeDiff']),
-            new TwigFilter('dateAgo', [DateRuntime::class, 'dateAgo'])
+            new TwigFilter('dateAgo', [DateRuntime::class, 'dateAgo']),
         ];
     }
 }

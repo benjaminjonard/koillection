@@ -16,9 +16,10 @@ class HistoryController extends AbstractController
 {
     #[Route(
         path: ['en' => '/history', 'fr' => '/historique'],
-        name: 'app_history_index', methods: ['GET']
+        name: 'app_history_index',
+        methods: ['GET']
     )]
-    public function index(Request $request, PaginatorFactory $paginatorFactory, LogRepository $logRepository) : Response
+    public function index(Request $request, PaginatorFactory $paginatorFactory, LogRepository $logRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['history']);
 
@@ -34,14 +35,14 @@ class HistoryController extends AbstractController
         if ($request->isXmlHttpRequest()) {
             return $this->render('App/History/_logs_table.html.twig', [
                 'logs' => $logs,
-                'paginator' => $paginatorFactory->generate($count)
+                'paginator' => $paginatorFactory->generate($count),
             ]);
         }
 
         return $this->render('App/History/index.html.twig', [
             'form' => $form->createView(),
             'logs' => $logs,
-            'paginator' => $paginatorFactory->generate($count)
+            'paginator' => $paginatorFactory->generate($count),
         ]);
     }
 }

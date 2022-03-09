@@ -8,19 +8,19 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 final class TimestampableListener
 {
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if (true === property_exists($entity, 'createdAt')) {
             $entity->setCreatedAt(new \DateTime());
         }
 
-        if (true === property_exists($entity, 'loggedAt') && $entity->getLoggedAt() === null) {
+        if (true === property_exists($entity, 'loggedAt') && null === $entity->getLoggedAt()) {
             $entity->setLoggedAt(new \DateTime());
         }
     }
 
-    public function preUpdate(LifecycleEventArgs $args)
+    public function preUpdate(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if (true === property_exists($entity, 'updatedAt')) {

@@ -11,9 +11,10 @@ class SeenListener
 {
     public function __construct(
         private ManagerRegistry $managerRegistry
-    ) {}
+    ) {
+    }
 
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
         $route = $event->getRequest()->get('_route');
 

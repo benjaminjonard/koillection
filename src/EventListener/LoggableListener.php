@@ -16,9 +16,10 @@ class LoggableListener
     public function __construct(
         private LoggerChain $loggerChain,
         private LogQueue $logQueue
-    ) {}
+    ) {
+    }
 
-    public function postPersist(LifecycleEventArgs $args)
+    public function postPersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
 
@@ -27,7 +28,7 @@ class LoggableListener
         }
     }
 
-    public function onFlush(OnFlushEventArgs $args)
+    public function onFlush(OnFlushEventArgs $args): void
     {
         $em = $args->getEntityManager();
         $uow = $em->getUnitOfWork();
@@ -58,7 +59,7 @@ class LoggableListener
         }
     }
 
-    public function preRemove(LifecycleEventArgs $args)
+    public function preRemove(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
 

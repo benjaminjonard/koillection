@@ -13,7 +13,8 @@ class JsonToItemTransformer implements DataTransformerInterface
     public function __construct(
         private ItemRepository $itemRepository,
         private Packages $assetManager
-    ) {}
+    ) {
+    }
 
     public function transform($items): mixed
     {

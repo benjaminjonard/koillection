@@ -11,18 +11,19 @@ class ContextRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private ContextHandler $contextHandler
-    ) {}
+    ) {
+    }
 
-    public function applyContext(string $route) : string
+    public function applyContext(string $route): string
     {
         return $this->contextHandler->getRouteContext($route);
     }
 
-    public function applyContextTrans(string $trans) : string
+    public function applyContextTrans(string $trans): string
     {
         $context = $this->contextHandler->getContext();
 
-        if ($context === 'shared') {
+        if ('shared' === $context) {
             $trans .= '_'.$context;
         }
 

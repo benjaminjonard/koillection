@@ -19,13 +19,15 @@ class AlbumController extends AbstractController
 {
     #[Route(
         path: ['en' => '/albums', 'fr' => '/albums'],
-        name: 'app_album_index', methods: ['GET']
+        name: 'app_album_index',
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/albums', 'fr' => '/utilisateur/{username}/albums'],
-        name: 'app_shared_album_index', methods: ['GET']
+        name: 'app_shared_album_index',
+        methods: ['GET']
     )]
-    public function index(AlbumRepository $albumRepository) : Response
+    public function index(AlbumRepository $albumRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -37,15 +39,16 @@ class AlbumController extends AbstractController
 
         return $this->render('App/Album/index.html.twig', [
             'albums' => $albums,
-            'photosCounter' => $photosCounter
+            'photosCounter' => $photosCounter,
         ]);
     }
 
     #[Route(
         path: ['en' => '/albums/add', 'fr' => '/albums/ajouter'],
-        name: 'app_album_add', methods: ['GET', 'POST']
+        name: 'app_album_add',
+        methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator, AlbumRepository $albumRepository, ManagerRegistry $managerRegistry) : Response
+    public function add(Request $request, TranslatorInterface $translator, AlbumRepository $albumRepository, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -53,7 +56,7 @@ class AlbumController extends AbstractController
         if ($request->query->has('parent')) {
             $parent = $albumRepository->findOneBy([
                 'id' => $request->query->get('parent'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
             $album
                 ->setParent($parent)
@@ -81,9 +84,11 @@ class AlbumController extends AbstractController
 
     #[Route(
         path: ['en' => '/albums/{id}/edit', 'fr' => '/albums/{id}/editer'],
-        name: 'app_album_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_album_edit',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function edit(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -105,9 +110,11 @@ class AlbumController extends AbstractController
 
     #[Route(
         path: ['en' => '/albums/{id}/delete', 'fr' => '/albums/{id}/supprimer'],
-        name: 'app_album_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_album_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
@@ -125,31 +132,37 @@ class AlbumController extends AbstractController
 
     #[Route(
         path: ['en' => '/albums/{id}', 'fr' => '/albums/{id}'],
-        name: 'app_album_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_album_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/albums/{id}', 'fr' => '/utilisateur/{username}/albums/{id}'],
-        name: 'app_shared_album_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_album_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
-    public function show(Album $album, AlbumRepository $albumRepository, PhotoRepository $photoRepository) : Response
+    public function show(Album $album, AlbumRepository $albumRepository, PhotoRepository $photoRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
         return $this->render('App/Album/show.html.twig', [
             'album' => $album,
             'children' => $albumRepository->findBy(['parent' => $album]),
-            'photos' => $photoRepository->findBy(['album' => $album])
+            'photos' => $photoRepository->findBy(['album' => $album]),
         ]);
     }
 
     #[Route(
         path: ['en' => '/albums/{id}/history', 'fr' => '/albums/{id}/historique'],
-        name: 'app_album_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_album_history',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
-    public function history(Album $album, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
+    public function history(Album $album, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums', 'history']);
-        
+
         return $this->render('App/Album/history.html.twig', [
             'album' => $album,
             'logs' => $logRepository->findBy([
@@ -157,8 +170,8 @@ class AlbumController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($album))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 }

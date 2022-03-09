@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<psalm errorLevel="7">
+    <projectFiles>
+        <directory name="src"/>
+        <directory name="api"/>
+
+        <ignoreFiles>
+            <file name="src/Kernel.php"/>
+        </ignoreFiles>
+    </projectFiles>
+
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
+            <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
+        </pluginClass>
+        <pluginClass xmlns="https://getpsalm.org/schema/config" class="Psalm\PhpUnitPlugin\Plugin"/>
+        <pluginClass xmlns="https://getpsalm.org/schema/config" class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
+    </plugins>
+
+    <issueHandlers>
+        <ParamNameMismatch errorLevel="suppress"/>
+    </issueHandlers>
+</psalm>

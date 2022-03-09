@@ -19,69 +19,69 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SettingsType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('timezone', TimezoneType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('dateFormat', ChoiceType::class, [
                 'choices' => DateFormatEnum::getChoicesList(),
-                'required' => true
+                'required' => true,
             ])
             ->add('currency', ChoiceType::class, [
                 'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
-                'required' => true
+                'required' => true,
             ])
             ->add('locale', ChoiceType::class, [
                 'choices' => array_flip(LocaleEnum::getLocaleLabels()),
-                'required' => true
+                'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
-                'required' => true
+                'required' => true,
             ])
             ->add('darkModeEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('automaticDarkModeStartAt', TimeType::class, [
                 'required' => false,
                 'widget' => 'single_text',
-                'html5' => false
+                'html5' => false,
             ])
             ->add('automaticDarkModeEndAt', TimeType::class, [
                 'required' => false,
                 'widget' => 'single_text',
-                'html5' => false
+                'html5' => false,
             ])
             ->add('wishlistsFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('tagsFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('signsFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('albumsFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('loansFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('templatesFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('historyFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('statisticsFeatureEnabled', CheckboxType::class, [
-                'required' => false
+                'required' => false,
             ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,

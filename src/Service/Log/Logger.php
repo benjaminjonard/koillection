@@ -12,19 +12,20 @@ abstract class Logger implements LoggerInterface
 {
     public function __construct(
         protected TranslatorInterface $translator
-    ) {}
+    ) {
+    }
 
-    public function supportsClass(string $class) : bool
+    public function supportsClass(string $class): bool
     {
         return $class === $this->getClass();
     }
 
-    public function supports($object) : bool
+    public function supports(LoggableInterface $object): bool
     {
-        return get_class($object) === $this->getClass();
+        return \get_class($object) === $this->getClass();
     }
 
-    public function createLog(string $type, LoggableInterface $entity, array $payload = []) : Log
+    public function createLog(string $type, LoggableInterface $entity, array $payload = []): Log
     {
         $log = new Log();
         $log

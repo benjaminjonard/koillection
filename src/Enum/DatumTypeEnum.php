@@ -38,12 +38,12 @@ class DatumTypeEnum
         self::TYPE_NUMBER => 'label.number',
     ];
 
-    public static function getTypesLabels() : array
+    public static function getTypesLabels(): array
     {
         return self::TYPES_TRANS_KEYS;
     }
 
-    public static function getTypeLabel(string $type) : string
+    public static function getTypeLabel(string $type): string
     {
         return self::TYPES_TRANS_KEYS[$type];
     }

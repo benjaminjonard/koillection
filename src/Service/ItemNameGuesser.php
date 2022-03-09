@@ -8,10 +8,10 @@ use App\Entity\Item;
 
 class ItemNameGuesser
 {
-    public function guess(Item &$item) : ?array
+    public function guess(Item &$item): ?array
     {
         $collection = $item->getCollection();
-        if ($collection === null || $collection->getItems()->count() < 1) {
+        if (null === $collection || $collection->getItems()->count() < 1) {
             return null;
         }
 
@@ -20,7 +20,7 @@ class ItemNameGuesser
             return null;
         }
 
-        $pattern = '/' . implode('(\d+)', $patternParts) . '/';
+        $pattern = '/'.implode('(\d+)', $patternParts).'/';
 
         $highestValue = 0;
         foreach ($collection->getItems() as $otherItem) {

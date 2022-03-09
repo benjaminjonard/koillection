@@ -20,7 +20,7 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
-    public function findWithItems(string $id) : ?Tag
+    public function findWithItems(string $id): ?Tag
     {
         return $this
             ->createQueryBuilder('t')
@@ -33,7 +33,7 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAll() : array
+    public function findAll(): array
     {
         return $this
             ->createQueryBuilder('t')
@@ -43,7 +43,7 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findForTagSearch(SearchTag $search, string $context, int $itemsCount) : array
+    public function findForTagSearch(SearchTag $search, string $context, int $itemsCount): array
     {
         $qb = $this
             ->getEntityManager()
@@ -61,7 +61,7 @@ class TagRepository extends ServiceEntityRepository
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
         ;
 
-        if ($context === 'shared') {
+        if ('shared' === $context) {
             $qb->having('count(i.id) > 0');
         }
 
@@ -75,7 +75,7 @@ class TagRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function countForTagSearch(SearchTag $search, string $context) : int
+    public function countForTagSearch(SearchTag $search, string $context): int
     {
         $qb = $this->_em
             ->createQueryBuilder()
@@ -83,7 +83,7 @@ class TagRepository extends ServiceEntityRepository
             ->from(Tag::class, 't')
         ;
 
-        if ($context === 'shared') {
+        if ('shared' === $context) {
             $qb
                 ->innerJoin('t.items', 'i')
                 ->having('count(i.id) > 1')
@@ -104,7 +104,7 @@ class TagRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLike(string $string) : array
+    public function findLike(string $string): array
     {
         $string = trim($string);
 
@@ -112,8 +112,8 @@ class TagRepository extends ServiceEntityRepository
             ->createQueryBuilder('t')
             ->addSelect('(CASE WHEN LOWER(t.label) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(t.label) LIKE LOWER(:label)')
-            ->orderBy('startWithOrder', 'ASC') //Order tags starting with the search term first
-            ->addOrderBy('LOWER(t.label)', 'ASC') //Then order other matching tags alphabetically
+            ->orderBy('startWithOrder', 'ASC') // Order tags starting with the search term first
+            ->addOrderBy('LOWER(t.label)', 'ASC') // Then order other matching tags alphabetically
             ->setParameter('label', '%'.$string.'%')
             ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
@@ -122,7 +122,7 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findRelatedToCollection(Collection $collection) : array
+    public function findRelatedToCollection(Collection $collection): array
     {
         return $this
             ->createQueryBuilder('t')
@@ -134,13 +134,13 @@ class TagRepository extends ServiceEntityRepository
                 (SELECT COUNT(i2.id)
                 FROM App\Entity\Item i2
                 WHERE i2.collection = :collection)')
-            ->setParameter('collection', $collection)
+            ->setParameter('collection', $collection->getId())
             ->getQuery()
             ->getResult()
         ;
     }
 
-    public function findForSearch(Search $search) : array
+    public function findForSearch(Search $search): array
     {
         $itemsCount = $this->_em->getRepository(Item::class)->count([]);
 
@@ -176,7 +176,7 @@ class TagRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findAllForHighlight()
+    public function findAllForHighlight(): array
     {
         return $this->_em
             ->createQueryBuilder()
@@ -190,18 +190,18 @@ class TagRepository extends ServiceEntityRepository
 
     public function findRelatedTags(Tag $tag)
     {
-        //Get all items ids the current tag is linked to
+        // Get all items ids the current tag is linked to
         $results = $this->_em->createQueryBuilder()
             ->select('DISTINCT i2.id')
             ->from(Item::class, 'i2')
             ->leftJoin('i2.tags', 't2')
             ->where('t2.id = :tag')
-            ->setParameter('tag', $tag)
+            ->setParameter('tag', $tag->getId())
             ->getQuery()
             ->getArrayResult()
         ;
 
-        $itemIds = \array_map(function ($row) {
+        $itemIds = array_map(function ($row) {
             return $row['id'];
         }, $results);
 
@@ -210,10 +210,10 @@ class TagRepository extends ServiceEntityRepository
             ->select('DISTINCT partial t.{id, label}')
             ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
-            ->where("i.id IN (:itemIds)")
+            ->where('i.id IN (:itemIds)')
             ->andWhere('t.id != :tag')
             ->orderBy('t.label', 'ASC')
-            ->setParameter('tag', $tag)
+            ->setParameter('tag', $tag->getId())
             ->setParameter('itemIds', $itemIds)
             ->getQuery()
             ->getResult()

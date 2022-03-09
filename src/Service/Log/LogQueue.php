@@ -17,13 +17,13 @@ class LogQueue
         $this->processQueue = true;
     }
 
-    public function addLog(?Log $log)
+    public function addLog(?Log $log): void
     {
         if (null === $log) {
             return;
         }
 
-        //If there is already a log for the current Id/Class/Type, unset it
+        // If there is already a log for the current Id/Class/Type, unset it
         foreach ($this->logs as $key => $existingLog) {
             if ($log->getObjectId() === $existingLog->getId() &&
                 $log->getObjectClass() === $existingLog->getObjectClass() &&
@@ -41,7 +41,7 @@ class LogQueue
         return $this->logs;
     }
 
-    public function find($id, $class, $type): ?Log
+    public function find($id, string $class, string $type): ?Log
     {
         foreach ($this->logs as $log) {
             if ($log->getObjectId() === $id && $log->getObjectClass() === $class && $log->getType() === $type) {
@@ -52,7 +52,7 @@ class LogQueue
         return null;
     }
 
-    public function clearLogs()
+    public function clearLogs(): void
     {
         $this->logs = [];
     }
@@ -62,12 +62,12 @@ class LogQueue
         return $this->processQueue;
     }
 
-    public function enableQueue()
+    public function enableQueue(): void
     {
         $this->processQueue = true;
     }
 
-    public function disableQueue()
+    public function disableQueue(): void
     {
         $this->processQueue = false;
     }

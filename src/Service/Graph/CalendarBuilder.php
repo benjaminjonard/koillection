@@ -12,9 +12,10 @@ class CalendarBuilder
 {
     public function __construct(
         private ManagerRegistry $managerRegistry
-    ) {}
+    ) {
+    }
 
-    public function buildItemCalendar(User $user) : array
+    public function buildItemCalendar(User $user): array
     {
         $data = [];
         $sql = 'SELECT created_at AS date';
@@ -36,7 +37,7 @@ class CalendarBuilder
             $timestamp = (string) $date->format('Y-m-d');
             isset($data[$year]) ?: $data[$year] = [];
             isset($data[$year][$timestamp]) ?: $data[$year][$timestamp] = [$timestamp, 0];
-            $data[$year][$timestamp][1]++;
+            ++$data[$year][$timestamp][1];
         }
 
         return $data;

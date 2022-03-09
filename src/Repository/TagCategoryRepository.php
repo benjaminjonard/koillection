@@ -15,7 +15,7 @@ class TagCategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, TagCategory::class);
     }
 
-    public function findOneWithTags(string $id) : ?TagCategory
+    public function findOneWithTags(string $id): ?TagCategory
     {
         return $this
             ->createQueryBuilder('c')

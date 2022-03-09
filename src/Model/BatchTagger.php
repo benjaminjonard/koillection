@@ -20,48 +20,48 @@ class BatchTagger
         $this->tags = [];
     }
 
-    public function getCollection() : Collection
+    public function getCollection(): Collection
     {
         return $this->collection;
     }
 
-    public function setCollection(Collection $collection) : BatchTagger
+    public function setCollection(Collection $collection): BatchTagger
     {
         $this->collection = $collection;
 
         return $this;
     }
 
-    public function getTags() : array
+    public function getTags(): array
     {
         return $this->tags;
     }
 
-    public function setTags(array $tags) : BatchTagger
+    public function setTags(array $tags): BatchTagger
     {
         $this->tags = $tags;
 
         return $this;
     }
 
-    public function isRecursive() : bool
+    public function isRecursive(): bool
     {
         return $this->recursive;
     }
 
-    public function setRecursive(bool $recursive) : BatchTagger
+    public function setRecursive(bool $recursive): BatchTagger
     {
         $this->recursive = $recursive;
 
         return $this;
     }
 
-    public function applyBatch() : int
+    public function applyBatch(): int
     {
         return $this->processCollection($this->collection);
     }
 
-    private function processCollection(Collection $collection) : int
+    private function processCollection(Collection $collection): int
     {
         $itemCount = 0;
         foreach ($collection->getItems() as $item) {

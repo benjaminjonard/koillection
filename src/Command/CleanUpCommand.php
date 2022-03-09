@@ -14,12 +14,12 @@ class CleanUpCommand extends Command
     public function __construct(
         private ManagerRegistry $managerRegistry,
         private TranslatorInterface $translator,
-        private string $publicPath)
-    {
+        private string $publicPath
+    ) {
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('app:clean-up')
@@ -36,8 +36,8 @@ class CleanUpCommand extends Command
             return Command::SUCCESS;
         }
 
-        //Get all paths in database (images + thumbnails)
-        $sql = "
+        // Get all paths in database (images + thumbnails)
+        $sql = '
             SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
 
             SELECT image AS image FROM koi_album WHERE image IS NOT NULL UNION
@@ -63,23 +63,25 @@ class CleanUpCommand extends Command
             
             SELECT image AS image FROM koi_wish WHERE image IS NOT NULL UNION
             SELECT image_small_thumbnail AS image FROM koi_wish WHERE image_small_thumbnail IS NOT NULL;
-        ";
+        ';
 
         $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
         $stmt->execute();
-        $dbPaths = array_map(function ($row) { return $row['image']; }, $stmt->fetchAll());
+        $dbPaths = array_map(function ($row) {
+            return $row['image'];
+        }, $stmt->fetchAll());
 
-        //Get all paths on disk
+        // Get all paths on disk
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath.'/uploads'));
         $diskPaths = [];
         foreach ($rii as $file) {
-            if (!$file->isDir() && $file->getFileName() !== '.gitkeep') {
-                $diskPaths[] = str_replace($this->publicPath. '/', '', $file->getPathname());
+            if (!$file->isDir() && '.gitkeep' !== $file->getFileName()) {
+                $diskPaths[] = str_replace($this->publicPath.'/', '', $file->getPathname());
             }
         }
 
-        //Compute the diff and delete the diff
-        $diff = \array_diff($diskPaths, $dbPaths);
+        // Compute the diff and delete the diff
+        $diff = array_diff($diskPaths, $dbPaths);
         foreach ($diff as $path) {
             if (file_exists($this->publicPath.'/'.$path)) {
                 unlink($this->publicPath.'/'.$path);

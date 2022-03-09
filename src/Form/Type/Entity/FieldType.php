@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FieldType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
@@ -23,7 +23,7 @@ class FieldType extends AbstractType
                 'label' => false,
             ])
             ->add('type', ChoiceType::class, [
-                'choices' => \array_flip(DatumTypeEnum::getTypesLabels()),
+                'choices' => array_flip(DatumTypeEnum::getTypesLabels()),
                 'expanded' => false,
                 'multiple' => false,
                 'label' => false,
@@ -34,10 +34,10 @@ class FieldType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Field::class
+            'data_class' => Field::class,
         ]);
     }
 }

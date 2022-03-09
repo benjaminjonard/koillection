@@ -26,15 +26,20 @@ class TagController extends AbstractController
 {
     #[Route(
         path: ['en' => '/tags', 'fr' => '/tags'],
-        name: 'app_tag_index', methods: ['GET']
+        name: 'app_tag_index',
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/tags', 'fr' => '/utilisateur/{username}/tags'],
-        name: 'app_shared_tag_index', methods: ['GET']
+        name: 'app_shared_tag_index',
+        methods: ['GET']
     )]
-    public function index(Request $request, PaginatorFactory $paginatorFactory, ContextHandler $contextHandler, TagRepository $tagRepository
-    ) : Response
-    {
+    public function index(
+        Request $request,
+        PaginatorFactory $paginatorFactory,
+        ContextHandler $contextHandler,
+        TagRepository $tagRepository
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         $context = $contextHandler->getContext();
@@ -51,7 +56,7 @@ class TagController extends AbstractController
         if ($request->isXmlHttpRequest()) {
             return $this->render('App/Tag/_tags_table.html.twig', [
                 'results' => $results,
-                'paginator' => $paginatorFactory->generate($tagsCount)
+                'paginator' => $paginatorFactory->generate($tagsCount),
             ]);
         }
 
@@ -60,34 +65,40 @@ class TagController extends AbstractController
             'search' => $search,
             'tagsCount' => $tagsCount,
             'paginator' => $paginatorFactory->generate($tagsCount),
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route(
         path: ['en' => '/tags/{id}', 'fr' => '/tags/{id}'],
-        name: 'app_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_tag_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/tags/{id}', 'fr' => '/utilisateur/{username}/tags/{id}'],
-        name: 'app_shared_tag_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_tag_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Entity('tag', expr: 'repository.findWithItems(id)', class: Tag::class)]
-    public function show(Tag $tag, TagRepository $tagRepository) : Response
+    public function show(Tag $tag, TagRepository $tagRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         return $this->render('App/Tag/show.html.twig', [
             'tag' => $tag,
-            'relatedTags' => $tagRepository->findRelatedTags($tag)
+            'relatedTags' => $tagRepository->findRelatedTags($tag),
         ]);
     }
 
     #[Route(
         path: ['en' => '/tags/{id}/edit', 'fr' => '/tags/{id}/editer'],
-        name: 'app_tag_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_tag_edit',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function edit(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -101,7 +112,6 @@ class TagController extends AbstractController
             return $this->redirectToRoute('app_tag_show', ['id' => $tag->getId()]);
         }
 
-
         return $this->render('App/Tag/edit.html.twig', [
             'form' => $form->createView(),
             'tag' => $tag,
@@ -110,9 +120,11 @@ class TagController extends AbstractController
 
     #[Route(
         path: ['en' => '/tags/{id}/delete', 'fr' => '/tags/{id}/supprimer'],
-        name: 'app_tag_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_tag_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -132,7 +144,7 @@ class TagController extends AbstractController
         path: ['en' => '/tags/delete-unused-tags', 'fr' => '/tags/{id}/supprimer'],
         name: 'app_tag_delete_unused_tags', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
     )]
-    public function deleteUnusedTags(Request $request, TranslatorInterface $translator, TagRepository $tagRepository, ManagerRegistry $managerRegistry) : Response
+    public function deleteUnusedTags(Request $request, TranslatorInterface $translator, TagRepository $tagRepository, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -154,9 +166,10 @@ class TagController extends AbstractController
 
     #[Route(
         path: ['en' => '/tags/autocomplete/{search}', 'fr' => '/tags/autocompletion/{search}'],
-        name: 'app_tag_autocomplete', methods: ['GET']
+        name: 'app_tag_autocomplete',
+        methods: ['GET']
     )]
-    public function autocomplete(string $search, TagRepository $tagRepository) : JsonResponse
+    public function autocomplete(string $search, TagRepository $tagRepository): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -171,9 +184,11 @@ class TagController extends AbstractController
 
     #[Route(
         path: ['en' => '/tags/{id}/history', 'fr' => '/tags/{id}/historique'],
-        name: 'app_tag_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_tag_history',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
-    public function history(Tag $tag, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
+    public function history(Tag $tag, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags', 'history']);
 
@@ -184,22 +199,26 @@ class TagController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($tag))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 
     #[Route(
         path: ['en' => '/tags/{tagId}/items/{itemId}', 'fr' => '/tags/{tagId}/objets/{itemId}'],
-        name: 'app_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_tag_item_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/tags/{tagId}/items/{itemId', 'fr' => '/utilisateur/{username}tags/{tagId}/objets/{itemId}'],
-        name: 'app_shared_tag_item_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_tag_item_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]
-    public function item(Item $item, Tag $tag, ItemRepository $itemRepository) : Response
+    public function item(Item $item, Tag $tag, ItemRepository $itemRepository): Response
     {
         $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $tag);
 
@@ -207,7 +226,7 @@ class TagController extends AbstractController
             'item' => $item,
             'tag' => $tag,
             'previousItem' => $nextAndPrevious['previous'],
-            'nextItem' => $nextAndPrevious['next']
+            'nextItem' => $nextAndPrevious['next'],
         ]);
     }
 }

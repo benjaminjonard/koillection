@@ -14,17 +14,17 @@ use App\Service\Log\Logger;
 
 class CollectionLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Collection::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $collection) : ?Log
+    public function getCreateLog(LoggableInterface $collection): ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -33,7 +33,7 @@ class CollectionLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $collection);
     }
 
-    public function getDeleteLog(LoggableInterface $collection) : ?Log
+    public function getDeleteLog(LoggableInterface $collection): ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -42,7 +42,7 @@ class CollectionLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $collection);
     }
 
-    public function getUpdateLog(LoggableInterface $collection, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $collection, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($collection)) {
             return null;
@@ -55,14 +55,14 @@ class CollectionLogger extends Logger
                     'title' => $collection->getTitle(),
                     'property' => $property,
                     'old' => $changeset[$property][0],
-                    'new' => $collection->$function()
+                    'new' => $collection->$function(),
                 ];
-            } elseif ($property === 'image') {
+            } elseif ('image' === $property) {
                 $mainPayload[] = [
                     'title' => $collection->getTitle(),
-                    'property' => 'image'
+                    'property' => 'image',
                 ];
-            } elseif ($property === 'parent') {
+            } elseif ('parent' === $property) {
                 $old = $changeset['parent'][0] instanceof Collection ? $changeset['parent'][0] : null;
                 $new = $collection->getParent() instanceof Collection ? $collection->getParent() : null;
 
@@ -72,7 +72,7 @@ class CollectionLogger extends Logger
                     'old_title' => $old ? $old->getTitle() : null,
                     'new_id' => $new ? $new->getId() : null,
                     'new_title' => $new ? $new->getTitle() : null,
-                    'title' => $collection->getTitle()
+                    'title' => $collection->getTitle(),
                 ];
             }
         }
@@ -88,7 +88,7 @@ class CollectionLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;
@@ -100,12 +100,12 @@ class CollectionLogger extends Logger
             case 'visibility':
                 return $this->translator->trans('log.collection.property_updated', [
                     '%property%' => "<strong>$label</strong>",
-                    '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
-                    '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
+                    '%new%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']]).'</strong>',
+                    '%old%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']]).'</strong>',
                 ]);
             case 'image':
                 return $this->translator->trans('log.collection.image_updated', [
-                    '%property%' => "<strong>$label</strong>"
+                    '%property%' => "<strong>$label</strong>",
                 ]);
             case 'parent':
                 $defaultValue = $this->translator->trans('log.collection.default_parent');
@@ -121,22 +121,22 @@ class CollectionLogger extends Logger
                 switch ($payload['datum_type']) {
                     case DatumTypeEnum::TYPE_FILE:
                         return $this->translator->trans('log.item.file_added', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
                         ]);
                     case DatumTypeEnum::TYPE_IMAGE:
                         return $this->translator->trans('log.item.image_added', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
                         ]);
-                    case DatumTypeEnum::TYPE_SIGN: {
+                    case DatumTypeEnum::TYPE_SIGN:
                         return $this->translator->trans('log.item.sign_added', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
-                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
+                            '%value%' => '<strong>'.$payload['datum_value'].'</strong>',
                         ]);
-                    }
+
                     default:
                         return $this->translator->trans('log.item.property_added', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
-                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
+                            '%value%' => '<strong>'.$payload['datum_value'].'</strong>',
                         ]);
                 }
             // no break
@@ -144,22 +144,22 @@ class CollectionLogger extends Logger
                 switch ($payload['datum_type']) {
                     case DatumTypeEnum::TYPE_FILE:
                         return $this->translator->trans('log.item.file_removed', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
                         ]);
                     case DatumTypeEnum::TYPE_IMAGE:
                         return $this->translator->trans('log.item.image_removed', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
                         ]);
-                    case DatumTypeEnum::TYPE_SIGN: {
+                    case DatumTypeEnum::TYPE_SIGN:
                         return $this->translator->trans('log.item.sign_removed', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
-                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
+                            '%value%' => '<strong>'.$payload['datum_value'].'</strong>',
                         ]);
-                    }
+
                     default:
                         return $this->translator->trans('log.item.property_removed', [
-                            '%label%' => "<strong>".$payload['datum_label']."</strong>",
-                            '%value%' => "<strong>".$payload['datum_value']."</strong>"
+                            '%label%' => '<strong>'.$payload['datum_label'].'</strong>',
+                            '%value%' => '<strong>'.$payload['datum_value'].'</strong>',
                         ]);
                 }
             // no break

@@ -12,9 +12,10 @@ class PaginatorFactory
     public function __construct(
         private RequestStack $requestStack,
         private int $paginationItemsPerPage = 15
-    ) {}
+    ) {
+    }
 
-    public function generate(int $totalItems, string $url = null, array $params = null, $queryParam = 'page') : Paginator
+    public function generate(int $totalItems, string $url = null, array $params = null, $queryParam = 'page'): Paginator
     {
         $url = $url ?? $this->requestStack->getMainRequest()->getPathInfo();
         $params = $params ?? $this->requestStack->getMainRequest()->query->all();
@@ -23,7 +24,7 @@ class PaginatorFactory
         unset($params[$queryParam]);
 
         if (!empty($params)) {
-            $url .= '?' . http_build_query($params);
+            $url .= '?'.http_build_query($params);
         }
 
         return new Paginator($totalItems, $this->paginationItemsPerPage, (int) $page, $url);

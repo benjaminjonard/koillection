@@ -36,48 +36,48 @@ class Search
         return $this;
     }
 
-    public function getCreatedAt() : ?\DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTime $createdAt) : Search
+    public function setCreatedAt(?\DateTime $createdAt): Search
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getSearchInItems() : bool
+    public function getSearchInItems(): bool
     {
         return $this->searchInItems;
     }
 
-    public function setSearchInItems(bool $searchInItems) : Search
+    public function setSearchInItems(bool $searchInItems): Search
     {
         $this->searchInItems = $searchInItems;
 
         return $this;
     }
 
-    public function getSearchInCollections() : bool
+    public function getSearchInCollections(): bool
     {
         return $this->searchInCollections;
     }
 
-    public function setSearchInCollections(bool $searchInCollections) : Search
+    public function setSearchInCollections(bool $searchInCollections): Search
     {
         $this->searchInCollections = $searchInCollections;
 
         return $this;
     }
 
-    public function getSearchInTags() : bool
+    public function getSearchInTags(): bool
     {
         return $this->searchInTags;
     }
 
-    public function setSearchInTags(bool $searchInTags) : Search
+    public function setSearchInTags(bool $searchInTags): Search
     {
         $this->searchInTags = $searchInTags;
 
@@ -85,7 +85,7 @@ class Search
     }
 
     #[Assert\Callback]
-    public function validate(ExecutionContextInterface $context)
+    public function validate(ExecutionContextInterface $context): void
     {
         if (null === $this->getTerm() && null === $this->getCreatedAt()) {
             $context->buildViolation('error.search.empty')

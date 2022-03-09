@@ -17,9 +17,10 @@ class SearchHistoryType extends AbstractType
 {
     public function __construct(
         private FeatureChecker $featureChecker
-    ) {}
+    ) {
+    }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $types = [];
         $types[HistoryFilterEnum::FILTER_CLASS_COLLECTION] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_COLLECTION);
@@ -37,30 +38,30 @@ class SearchHistoryType extends AbstractType
         $builder
             ->add('term', TextType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
             ])
             ->add('classes', ChoiceType::class, [
                 'choices' => array_flip($types),
                 'label' => false,
                 'required' => false,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
             ->add('types', ChoiceType::class, [
                 'choices' => array_flip(HistoryFilterEnum::TYPES_TRANS_KEYS),
                 'label' => false,
                 'required' => false,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => SearchHistory::class,
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ]);
     }
 }
