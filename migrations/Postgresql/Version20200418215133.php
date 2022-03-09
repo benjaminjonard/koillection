@@ -9,14 +9,14 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20200418215133 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Rename `user_id` to `owner_id` in `koi_log` table';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_log DROP CONSTRAINT fk_9a4dc1f1a76ed395');
         $this->addSql('DROP INDEX idx_9a4dc1f1a76ed395');
@@ -25,7 +25,7 @@ final class Version20200418215133 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_9A4DC1F17E3C61F9 ON koi_log (owner_id)');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

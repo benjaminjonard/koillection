@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Wishlist;
 
 use Api\Tests\AuthenticatedTest;
@@ -30,7 +32,7 @@ class WishlistCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -43,7 +45,7 @@ class WishlistCurrentUserTest extends AuthenticatedTest
         $wishlist = $this->em->getRepository(Wishlist::class)->matching($criteria)[0]->getParent();
         $iri = $this->iriConverter->getIriFromItem($wishlist);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -61,7 +63,7 @@ class WishlistCurrentUserTest extends AuthenticatedTest
         $wishlist = $this->em->getRepository(Wishlist::class)->matching($criteria)[0];
         $iri = $this->iriConverter->getIriFromItem($wishlist);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/parent');
+        $this->createClientWithCredentials()->request('GET', $iri.'/parent');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Wishlist::class);
@@ -72,7 +74,7 @@ class WishlistCurrentUserTest extends AuthenticatedTest
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($wishlist);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/wishes');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/wishes');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -106,7 +108,7 @@ class WishlistCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'updated name with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

@@ -19,7 +19,7 @@ class AnonymousSmokeFunctionalTest extends LoggedWebTestCase
 
     public function isSuccessfulUrlProvider(): \Generator
     {
-        //Main
-        yield ["/"];
+        // Main
+        yield ['/'];
     }
 }

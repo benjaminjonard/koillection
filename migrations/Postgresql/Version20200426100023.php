@@ -9,15 +9,15 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20200426100023 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Create indexes for images';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE UNIQUE INDEX UNIQ_98E338D2C53D045F ON koi_wishlist (image)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_AC3250551677722F ON koi_user (avatar)');
@@ -35,7 +35,7 @@ final class Version20200426100023 extends AbstractMigration
         $this->addSql('CREATE UNIQUE INDEX UNIQ_F991BE59F979BF1 ON koi_datum (image_small_thumbnail)');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

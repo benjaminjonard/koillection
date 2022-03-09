@@ -209,7 +209,7 @@ class GifResizer
      */
     private function writeFrames(int $prepend): void
     {
-        $size = sizeof($this->imageData);
+        $size = \sizeof($this->imageData);
 
         for ($i = 0; $i < $size; ++$i) {
             file_put_contents($this->tempDir.'/frame_'.$prepend.'_'.str_pad((string) $i, 2, '0', STR_PAD_LEFT).'.gif', $this->imageInfo['gifheader'].$this->imageData[$i]['graphicsextension'].$this->imageData[$i]['imageData'].\chr(0x3B));

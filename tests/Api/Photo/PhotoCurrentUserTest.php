@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Photo;
 
 use Api\Tests\AuthenticatedTest;
 use App\Entity\Album;
-use App\Entity\Collection;
-use App\Entity\Item;
 use App\Entity\Photo;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -31,7 +31,7 @@ class PhotoCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -40,12 +40,11 @@ class PhotoCurrentUserTest extends AuthenticatedTest
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($photo);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/album');
+        $this->createClientWithCredentials()->request('GET', $iri.'/album');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Album::class);
     }
-
 
     public function testPutPhoto(): void
     {
@@ -72,7 +71,7 @@ class PhotoCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'updated title with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

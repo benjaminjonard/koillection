@@ -16,7 +16,7 @@ final class Version20220208094335 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE koi_field ADD owner_id CHAR(36) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_field ADD CONSTRAINT FK_4FD5B8917E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id)');

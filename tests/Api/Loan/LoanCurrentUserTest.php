@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Loan;
 
 use Api\Tests\AuthenticatedTest;
@@ -29,7 +31,7 @@ class LoanCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -38,7 +40,7 @@ class LoanCurrentUserTest extends AuthenticatedTest
         $loan = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($loan);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+        $this->createClientWithCredentials()->request('GET', $iri.'/item');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
@@ -69,7 +71,7 @@ class LoanCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'lentTo' => 'updated lentTo with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

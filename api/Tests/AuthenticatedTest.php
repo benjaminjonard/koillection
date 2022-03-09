@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Api\Tests;
 
 use ApiPlatform\Core\Api\IriConverterInterface;

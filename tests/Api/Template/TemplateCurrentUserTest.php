@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Template;
 
 use Api\Tests\AuthenticatedTest;
-use App\Entity\Album;
 use App\Entity\Field;
-use App\Entity\Photo;
 use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -31,7 +31,7 @@ class TemplateCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -40,7 +40,7 @@ class TemplateCurrentUserTest extends AuthenticatedTest
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($template);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/fields');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/fields');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -74,7 +74,7 @@ class TemplateCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'updated name with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

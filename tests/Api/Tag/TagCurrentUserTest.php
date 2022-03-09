@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Tag;
 
 use Api\Tests\AuthenticatedTest;
-use App\Entity\Field;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
-use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 class TagCurrentUserTest extends AuthenticatedTest
@@ -32,7 +32,7 @@ class TagCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -41,7 +41,7 @@ class TagCurrentUserTest extends AuthenticatedTest
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($tag);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/category');
+        $this->createClientWithCredentials()->request('GET', $iri.'/category');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(TagCategory::class);
@@ -52,7 +52,7 @@ class TagCurrentUserTest extends AuthenticatedTest
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($tag);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/items');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/items');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -86,7 +86,7 @@ class TagCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'updated label with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

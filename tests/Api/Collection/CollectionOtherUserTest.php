@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Collection;
 
 use Api\Tests\AuthenticatedTest;
@@ -29,7 +31,7 @@ class CollectionOtherUserTest extends AuthenticatedTest
         $collection = $this->em->getRepository(Collection::class)->matching($criteria)[0]->getParent();
         $iri = $this->iriConverter->getIriFromItem($collection);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -47,7 +49,7 @@ class CollectionOtherUserTest extends AuthenticatedTest
         $collection = $this->em->getRepository(Collection::class)->matching($criteria)[0];
         $iri = $this->iriConverter->getIriFromItem($collection);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/parent');
+        $this->createClientWithCredentials()->request('GET', $iri.'/parent');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -56,7 +58,7 @@ class CollectionOtherUserTest extends AuthenticatedTest
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($collection);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/items');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/items');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -70,7 +72,7 @@ class CollectionOtherUserTest extends AuthenticatedTest
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($collection);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/data');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/data');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -78,7 +80,6 @@ class CollectionOtherUserTest extends AuthenticatedTest
         $this->assertCount(0, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
-
 
     public function testCantPutAnotherUserCollection(): void
     {
@@ -101,7 +102,7 @@ class CollectionOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'updated title with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

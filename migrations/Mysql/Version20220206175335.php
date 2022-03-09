@@ -16,7 +16,7 @@ final class Version20220206175335 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE koi_loan CHANGE lent_at lent_at DATETIME NOT NULL, CHANGE returned_at returned_at DATETIME DEFAULT NULL');
     }

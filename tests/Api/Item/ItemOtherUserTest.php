@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Item;
 
 use Api\Tests\AuthenticatedTest;
@@ -25,7 +27,7 @@ class ItemOtherUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
+        $this->createClientWithCredentials()->request('GET', $iri.'/collection');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -34,7 +36,7 @@ class ItemOtherUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/data');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/data');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -48,7 +50,7 @@ class ItemOtherUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->otherUser], [], 1)[0]->getItem();
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/loans');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/loans');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -62,7 +64,7 @@ class ItemOtherUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findOneWithRelatedItemsByUser($this->otherUser);
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/related_items');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/related_items');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -76,7 +78,7 @@ class ItemOtherUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/tags');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/tags');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -84,7 +86,6 @@ class ItemOtherUserTest extends AuthenticatedTest
         $this->assertCount(0, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
     }
-
 
     public function testCantPutAnotherUserItem(): void
     {
@@ -107,7 +108,7 @@ class ItemOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'updated name with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

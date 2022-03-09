@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Log;
 
 use Api\Tests\AuthenticatedTest;
@@ -35,7 +37,7 @@ class LogOtherUserTest extends AuthenticatedTest
         $iri = $this->iriConverter->getIriFromItem($log);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
-            'headers' => ['Content-Type: application/merge-patch+json']
+            'headers' => ['Content-Type: application/merge-patch+json'],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

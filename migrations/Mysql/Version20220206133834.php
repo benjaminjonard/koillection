@@ -16,8 +16,8 @@ final class Version20220206133834 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-        
+        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
+
         $this->addSql('DROP INDEX idx_album_visibility ON koi_album');
         $this->addSql('ALTER TABLE koi_album ADD parent_visibility VARCHAR(10), ADD final_visibility VARCHAR(10), CHANGE visibility visibility VARCHAR(10) NOT NULL');
         $this->addSql('CREATE INDEX idx_album_final_visibility ON koi_album (final_visibility)');

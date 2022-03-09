@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\AuthenticatedTest;
@@ -30,7 +32,7 @@ class DatumCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -39,7 +41,7 @@ class DatumCurrentUserTest extends AuthenticatedTest
         $datum = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0]->getData()[0];
         $iri = $this->iriConverter->getIriFromItem($datum);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+        $this->createClientWithCredentials()->request('GET', $iri.'/item');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
@@ -50,7 +52,7 @@ class DatumCurrentUserTest extends AuthenticatedTest
         $datum = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0]->getData()[0];
         $iri = $this->iriConverter->getIriFromItem($datum);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
+        $this->createClientWithCredentials()->request('GET', $iri.'/collection');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Collection::class);
@@ -81,7 +83,7 @@ class DatumCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'updated label with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

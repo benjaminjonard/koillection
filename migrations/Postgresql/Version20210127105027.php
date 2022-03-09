@@ -9,14 +9,14 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20210127105027 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Add `koi_item_related_item` table';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE koi_item_related_item (item_id UUID NOT NULL, related_item_id UUID NOT NULL, PRIMARY KEY(item_id, related_item_id))');
@@ -28,7 +28,7 @@ final class Version20210127105027 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_item_related_item ADD CONSTRAINT FK_A78A49D2D7698FB FOREIGN KEY (related_item_id) REFERENCES koi_item (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

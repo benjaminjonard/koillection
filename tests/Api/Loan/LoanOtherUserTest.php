@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Loan;
 
 use Api\Tests\AuthenticatedTest;
@@ -22,7 +24,7 @@ class LoanOtherUserTest extends AuthenticatedTest
         $loan = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($loan);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+        $this->createClientWithCredentials()->request('GET', $iri.'/item');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -47,7 +49,7 @@ class LoanOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'lentTo' => 'updated lentTo with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

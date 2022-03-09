@@ -16,7 +16,7 @@ final class Version20210514101359 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('UPDATE koi_album SET visibility = \'internal\' WHERE visibility = \'authenticated-users-only\';');
         $this->addSql('UPDATE koi_collection SET visibility = \'internal\' WHERE visibility = \'authenticated-users-only\';');

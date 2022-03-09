@@ -21,7 +21,7 @@ class AdminSmokeFunctionalTest extends LoggedWebTestCase
 
     public function isSuccessfulUrlProvider(): \Generator
     {
-        yield ["/admin"];
-        yield ["/admin/users"];
+        yield ['/admin'];
+        yield ['/admin/users'];
     }
 }

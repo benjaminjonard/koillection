@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Log;
 
 use Api\Tests\AuthenticatedTest;
@@ -28,7 +30,7 @@ class LogCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -48,7 +50,7 @@ class LogCurrentUserTest extends AuthenticatedTest
         $iri = $this->iriConverter->getIriFromItem($log);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
-            'headers' => ['Content-Type: application/merge-patch+json']
+            'headers' => ['Content-Type: application/merge-patch+json'],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

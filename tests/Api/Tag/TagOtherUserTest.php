@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Tag;
 
 use Api\Tests\AuthenticatedTest;
@@ -23,7 +25,7 @@ class TagOtherUserTest extends AuthenticatedTest
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($tag);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/category');
+        $this->createClientWithCredentials()->request('GET', $iri.'/category');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -32,7 +34,7 @@ class TagOtherUserTest extends AuthenticatedTest
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($tag);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/items');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/items');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -62,7 +64,7 @@ class TagOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'updated label with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
