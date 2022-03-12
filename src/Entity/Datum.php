@@ -62,7 +62,7 @@ class Datum implements LoggableInterface
     #[Groups(['datum:read', 'datum:write'])]
     private ?int $position = null;
 
-    #[Upload(path: 'file', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['datum:write'])]
     private ?File $fileImage = null;
