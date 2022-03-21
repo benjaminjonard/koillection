@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] / 2022-03-21
+### Fixes
+- Fix image upload in additional data (Benjamin Jonard)
+
+### Miscellaneous
+- Add display password icon on login page (Benjamin Jonard)
+- Multi-arch image for docker, now supports ARM (Benjamin Jonard)
+
 ## [1.3.1] / 2022-02-20
 ### Fixes
 - Fix date pickers not displaying (Benjamin Jonard)
