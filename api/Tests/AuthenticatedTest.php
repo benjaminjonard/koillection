@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Api\Tests;
 
 use ApiPlatform\Core\Api\IriConverterInterface;
@@ -24,14 +26,14 @@ abstract class AuthenticatedTest extends ApiTestCase
         self::bootKernel();
 
         $this->em = $this->getContainer()->get('doctrine')->getManager();
-        $this->iriConverter =  $this->getContainer()->get('api_platform.iri_converter');
+        $this->iriConverter = $this->getContainer()->get('api_platform.iri_converter');
 
         $this->user = $this->em->getRepository(User::class)->findOneBy([
-            'username' => 'User'
+            'username' => 'User',
         ]);
 
         $this->otherUser = $this->em->getRepository(User::class)->findOneBy([
-            'username' => 'Admin'
+            'username' => 'Admin',
         ]);
     }
 
@@ -39,7 +41,7 @@ abstract class AuthenticatedTest extends ApiTestCase
     {
         $token = $token ?: $this->getToken();
 
-        return static::createClient([], ['headers' => ['Host' => 'localhost', 'Authorization' => 'Bearer ' . $token]]);
+        return static::createClient([], ['headers' => ['Host' => 'localhost', 'Authorization' => 'Bearer '.$token]]);
     }
 
     protected function getToken($body = []): string

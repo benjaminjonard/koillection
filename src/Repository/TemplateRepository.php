@@ -15,7 +15,7 @@ class TemplateRepository extends ServiceEntityRepository
         parent::__construct($registry, Template::class);
     }
 
-    public function findAll() : array
+    public function findAll(): array
     {
         return $this
             ->createQueryBuilder('t')
@@ -25,7 +25,7 @@ class TemplateRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllWithCounters() : array
+    public function findAllWithCounters(): array
     {
         return $this
             ->getEntityManager()
@@ -40,7 +40,7 @@ class TemplateRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findWithItems(string $id) : ?Template
+    public function findWithItems(string $id): ?Template
     {
         return $this
             ->createQueryBuilder('t')
@@ -53,7 +53,7 @@ class TemplateRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findById(string $id) : ?Template
+    public function findById(string $id): ?Template
     {
         return $this
             ->createQueryBuilder('t')

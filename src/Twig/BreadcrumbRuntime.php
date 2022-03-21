@@ -13,7 +13,8 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private BreadcrumbBuilder $breadcrumbBuilder
-    ) {}
+    ) {
+    }
 
     public function buildBreadcrumb(array $root = [], object $entity = null, string $action = null, $parent = null): array
     {
@@ -34,7 +35,7 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
         }
 
         if ($entity) {
-            $breadcrumb = \array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $parent));
+            $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $parent));
         }
 
         if (null !== $action) {
@@ -46,7 +47,7 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
             $breadcrumb[] = $actionElement;
         }
 
-        $last = \array_pop($breadcrumb);
+        $last = array_pop($breadcrumb);
         $last->setClass('last');
         $breadcrumb[] = $last;
 

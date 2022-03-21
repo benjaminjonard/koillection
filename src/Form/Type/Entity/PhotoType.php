@@ -24,9 +24,10 @@ class PhotoType extends AbstractType
     public function __construct(
         private AlbumRepository $albumRepository,
         private Security $security
-    ) {}
+    ) {
+    }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
@@ -44,11 +45,11 @@ class PhotoType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->security->getUser()->getDateFormatForForm()
+                'format' => $this->security->getUser()->getDateFormatForForm(),
             ])
             ->add('file', FileType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
             ])
             ->add('album', EntityType::class, [
                 'class' => Album::class,
@@ -60,16 +61,16 @@ class PhotoType extends AbstractType
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Photo::class
+            'data_class' => Photo::class,
         ]);
     }
 }

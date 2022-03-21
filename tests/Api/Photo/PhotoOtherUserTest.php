@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Photo;
 
 use Api\Tests\AuthenticatedTest;
@@ -34,7 +36,7 @@ class PhotoOtherUserTest extends AuthenticatedTest
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($photo);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/album');
+        $this->createClientWithCredentials()->request('GET', $iri.'/album');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -47,7 +49,7 @@ class PhotoOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'updated title with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

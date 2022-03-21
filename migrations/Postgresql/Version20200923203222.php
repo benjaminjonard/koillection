@@ -9,14 +9,14 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20200923203222 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Add features booleans on `koi_user`';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_user ADD wishlists_feature_enabled BOOLEAN DEFAULT \'true\' NOT NULL');
         $this->addSql('ALTER TABLE koi_user ADD tags_feature_enabled BOOLEAN DEFAULT \'true\' NOT NULL');
@@ -28,7 +28,7 @@ final class Version20200923203222 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_user ADD statistics_feature_enabled BOOLEAN DEFAULT \'true\' NOT NULL');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

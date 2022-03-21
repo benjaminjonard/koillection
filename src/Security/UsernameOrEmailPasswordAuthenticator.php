@@ -23,7 +23,8 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
     public function __construct(
         private UserRepository $userRepository,
         private RouterInterface $router
-    ) {}
+    ) {
+    }
 
     public function supports(Request $request): ?bool
     {
@@ -43,7 +44,7 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
             new UserBadge($login, function ($userIdentifier) {
                 $user = $this->userRepository->findOneByUsernameOrEmail($userIdentifier);
 
-                if ($user->isEnabled() === false) {
+                if (false === $user->isEnabled()) {
                     throw new CustomUserMessageAuthenticationException('error.user_not_enabled');
                 }
 

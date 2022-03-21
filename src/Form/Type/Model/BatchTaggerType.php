@@ -16,15 +16,16 @@ class BatchTaggerType extends AbstractType
 {
     public function __construct(
         private JsonToTagTransformer $jsonToTagTransformer
-    ) {}
+    ) {
+    }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
                 $builder->create('tags', TextType::class, [
                     'required' => true,
-                    'model_transformer' => $this->jsonToTagTransformer
+                    'model_transformer' => $this->jsonToTagTransformer,
                 ])
             )
             ->add('recursive', CheckboxType::class, [
@@ -34,7 +35,7 @@ class BatchTaggerType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => BatchTagger::class,

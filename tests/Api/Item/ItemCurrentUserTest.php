@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Item;
 
 use Api\Tests\AuthenticatedTest;
@@ -32,7 +34,7 @@ class ItemCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -41,7 +43,7 @@ class ItemCurrentUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
+        $this->createClientWithCredentials()->request('GET', $iri.'/collection');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Collection::class);
@@ -52,7 +54,7 @@ class ItemCurrentUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/data');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/data');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -66,7 +68,7 @@ class ItemCurrentUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->user], [], 1)[0]->getItem();
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/loans');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/loans');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -80,7 +82,7 @@ class ItemCurrentUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findOneWithRelatedItemsByUser($this->user);
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/related_items');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/related_items');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -94,7 +96,7 @@ class ItemCurrentUserTest extends AuthenticatedTest
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($item);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/tags');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/tags');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -128,7 +130,7 @@ class ItemCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'updated name with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\TagCategory;
 
 use Api\Tests\AuthenticatedTest;
@@ -29,7 +31,7 @@ class TagCategoryCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -38,7 +40,7 @@ class TagCategoryCurrentUserTest extends AuthenticatedTest
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($tagCategory);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/tags');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/tags');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -72,7 +74,7 @@ class TagCategoryCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'updated label with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

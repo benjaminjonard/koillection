@@ -14,9 +14,10 @@ class UserListener
     public function __construct(
         private PasswordUpdater $passwordUpdater,
         private LogQueue $logQueue
-    ) {}
+    ) {
+    }
 
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if ($entity instanceof User) {
@@ -24,7 +25,7 @@ class UserListener
         }
     }
 
-    public function preUpdate(LifecycleEventArgs $args)
+    public function preUpdate(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if ($entity instanceof User) {
@@ -32,11 +33,11 @@ class UserListener
         }
     }
 
-    public function preRemove(LifecycleEventArgs $args)
+    public function preRemove(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         if ($entity instanceof User) {
-            //If user is being deleted, we don't want to log anything
+            // If user is being deleted, we don't want to log anything
             $this->logQueue->disableQueue();
         }
     }

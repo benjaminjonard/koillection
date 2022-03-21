@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\User;
 
 use Api\Tests\AuthenticatedTest;
@@ -15,7 +17,7 @@ class UserCurrentUserTest extends AuthenticatedTest
         $this->assertResponseIsSuccessful();
         $this->assertEquals(1, $data['hydra:totalItems']);
         $this->assertCount(1, $data['hydra:member']);
-        //$this->assertMatchesResourceCollectionJsonSchema(User::class); Bug in validation because of bigint type ?
+        // $this->assertMatchesResourceCollectionJsonSchema(User::class); Bug in validation because of bigint type ?
     }
 
     public function testGetUser(): void
@@ -26,7 +28,7 @@ class UserCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -53,7 +55,7 @@ class UserCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'username' => 'username_patch',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

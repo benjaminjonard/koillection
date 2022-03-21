@@ -20,9 +20,10 @@ class AlbumType extends AbstractType
     public function __construct(
         private Base64ToImageTransformer $base64ToImageTransformer,
         private AlbumRepository $albumRepository
-    ) {}
+    ) {
+    }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $entity = $builder->getData();
 
@@ -32,7 +33,7 @@ class AlbumType extends AbstractType
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [
@@ -49,16 +50,16 @@ class AlbumType extends AbstractType
                 $builder->create('file', TextType::class, [
                     'required' => false,
                     'label' => false,
-                    'model_transformer' => $this->base64ToImageTransformer
+                    'model_transformer' => $this->base64ToImageTransformer,
                 ])
             )
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Album::class
+            'data_class' => Album::class,
         ]);
     }
 }

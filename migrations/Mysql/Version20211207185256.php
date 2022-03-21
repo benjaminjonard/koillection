@@ -16,7 +16,7 @@ final class Version20211207185256 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE koi_album CHANGE id id CHAR(36) NOT NULL, CHANGE owner_id owner_id CHAR(36) DEFAULT NULL, CHANGE parent_id parent_id CHAR(36) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_collection CHANGE id id CHAR(36) NOT NULL, CHANGE parent_id parent_id CHAR(36) DEFAULT NULL, CHANGE owner_id owner_id CHAR(36) DEFAULT NULL');

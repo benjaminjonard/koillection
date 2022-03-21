@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('username', TextType::class, [
@@ -31,21 +31,21 @@ class UserType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'required' => false,
-                'invalid_message'  => 'error.password.not_matching'
+                'invalid_message' => 'error.password.not_matching',
             ])
             ->add('diskSpaceAllowed', NumberType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('timezone', TimezoneType::class, [
-                'required' => true
+                'required' => true,
             ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class
+            'data_class' => User::class,
         ]);
     }
 }

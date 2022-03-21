@@ -8,9 +8,10 @@ class ThumbnailGenerator
 {
     public function __construct(
         private GifResizer $gifResizer
-    ) {}
+    ) {
+    }
 
-    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth) : bool
+    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth): bool
     {
         if (!is_file($path)) {
             return false;
@@ -26,14 +27,14 @@ class ThumbnailGenerator
 
         // Create user directory in uploads
         $dir = explode('/', $thumbnailPath);
-        \array_pop($dir);
+        array_pop($dir);
         $dir = implode('/', $dir);
 
         if (!is_dir($dir) && !mkdir($dir) && !is_dir($dir)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
 
-        if ($mime === IMAGETYPE_GIF) {
+        if (IMAGETYPE_GIF === $mime) {
             $this->gifResizer->resize($path, $thumbnailPath, $thumbnailWidth, $thumbnailHeight);
         } else {
             $image = match ($mime) {
@@ -45,8 +46,8 @@ class ThumbnailGenerator
 
             $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
-            //Transparency
-            if ($mime === IMAGETYPE_PNG || $mime === IMAGETYPE_WEBP) {
+            // Transparency
+            if (IMAGETYPE_PNG === $mime || IMAGETYPE_WEBP === $mime) {
                 imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
                 imagealphablending($thumbnail, false);
                 imagesavealpha($thumbnail, true);
@@ -73,21 +74,22 @@ class ThumbnailGenerator
         $thumbnailSize = filesize($thumbnailPath);
         if ($thumbnailSize >= $originalSize) {
             unlink($thumbnailPath);
+
             return false;
         }
 
         return true;
     }
 
-    function crop(string $path, int $maxWidth, int $maxHeight)
+    public function crop(string $path, int $maxWidth, int $maxHeight): void
     {
         list($width, $height, $mime) = getimagesize($path);
         $ratio = $width / $height;
 
         if ($width > $height) {
-            $width = (int) ceil($width-($width*abs($ratio-$maxWidth/$maxHeight)));
+            $width = (int) ceil($width - ($width * abs($ratio - $maxWidth / $maxHeight)));
         } else {
-            $height = (int) ceil($height-($height*abs($ratio-$maxWidth/$maxHeight)));
+            $height = (int) ceil($height - ($height * abs($ratio - $maxWidth / $maxHeight)));
         }
         $newWidth = $maxWidth;
         $newHeight = $maxHeight;
@@ -99,11 +101,10 @@ class ThumbnailGenerator
             default => throw new \Exception('Your image cannot be processed, please use another one.'),
         };
 
-
         $resized = imagecreatetruecolor($newWidth, $newHeight);
 
-        //Transparency
-        if ($mime === IMAGETYPE_PNG || $mime === IMAGETYPE_WEBP) {
+        // Transparency
+        if (IMAGETYPE_PNG === $mime || IMAGETYPE_WEBP === $mime) {
             imagecolortransparent($resized, imagecolorallocate($resized, 0, 0, 0));
             imagealphablending($resized, false);
             imagesavealpha($resized, true);

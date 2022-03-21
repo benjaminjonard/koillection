@@ -9,14 +9,14 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20200429093452 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Mysql] First init.';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE koi_wishlist (id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', owner_id CHAR(36) DEFAULT NULL COMMENT \'(DC2Type:uuid)\', parent_id CHAR(36) DEFAULT NULL COMMENT \'(DC2Type:uuid)\', name VARCHAR(255) NOT NULL, color VARCHAR(6) NOT NULL, image VARCHAR(255) DEFAULT NULL, seen_counter INT NOT NULL, visibility VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME DEFAULT NULL, UNIQUE INDEX UNIQ_98E338D2C53D045F (image), INDEX IDX_98E338D27E3C61F9 (owner_id), INDEX IDX_98E338D2727ACA70 (parent_id), INDEX idx_wishlist_visibility (visibility), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE koi_user (id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', username VARCHAR(32) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, avatar VARCHAR(255) DEFAULT NULL, enabled TINYINT(1) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\', theme VARCHAR(255) NOT NULL, currency VARCHAR(3) NOT NULL, locale VARCHAR(5) NOT NULL, timezone VARCHAR(255) NOT NULL, date_format VARCHAR(255) NOT NULL, disk_space_allowed BIGINT DEFAULT 268435456 NOT NULL, visibility VARCHAR(255) NOT NULL, last_date_of_activity DATE DEFAULT NULL, created_at DATETIME NOT NULL, updated_at DATETIME DEFAULT NULL, UNIQUE INDEX UNIQ_AC325055F85E0677 (username), UNIQUE INDEX UNIQ_AC325055E7927C74 (email), UNIQUE INDEX UNIQ_AC3250551677722F (avatar), INDEX idx_user_visibility (visibility), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -62,7 +62,7 @@ final class Version20200429093452 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_datum ADD CONSTRAINT FK_F991BE57E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id)');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

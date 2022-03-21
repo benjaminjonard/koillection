@@ -9,7 +9,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class FooterRuntime implements RuntimeExtensionInterface
 {
-    public function renderFooter(Environment $environment, $object)
+    public function renderFooter(Environment $environment, $object): string
     {
         if (property_exists($object, 'createdAt') && property_exists($object, 'updatedAt') && property_exists($object, 'seenCounter')) {
             $class = \get_class($object);
@@ -17,7 +17,7 @@ class FooterRuntime implements RuntimeExtensionInterface
 
             return $environment->render('App/_partials/_footer.html.twig', [
                 'object' => $object,
-                'class' => $class
+                'class' => $class,
             ]);
         }
 

@@ -12,7 +12,8 @@ final class JwtDecorator implements OpenApiFactoryInterface
 {
     public function __construct(
         private OpenApiFactoryInterface $decorated
-    ) {}
+    ) {
+    }
 
     public function __invoke(array $context = []): OpenApi
     {

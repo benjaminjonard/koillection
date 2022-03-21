@@ -11,22 +11,22 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class EnumRuntime implements RuntimeExtensionInterface
 {
-    public function getCurrencySymbol(string $code) : ?string
+    public function getCurrencySymbol(string $code): ?string
     {
         return CurrencyEnum::getSymbolFromCode($code);
     }
 
-    public function getRoleLabel(string $role) : string
+    public function getRoleLabel(string $role): string
     {
         return RoleEnum::getRoleLabel($role);
     }
 
-    public function getLocales() : array
+    public function getLocales(): array
     {
         return LocaleEnum::getLocaleLabels();
     }
 
-    public function getLocaleLabel(string $code) : string
+    public function getLocaleLabel(string $code): string
     {
         return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::getLocaleLabels()[LocaleEnum::LOCALE_EN_GB];
     }

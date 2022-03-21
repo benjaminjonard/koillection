@@ -9,14 +9,14 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20200411112345 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Remove property `color` for `koi_wish` table and regenerate all UUID types';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_wishlist ALTER id TYPE UUID');
         $this->addSql('ALTER TABLE koi_wishlist ALTER id DROP DEFAULT');
@@ -156,7 +156,7 @@ final class Version20200411112345 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN koi_medium.owner_id IS \'(DC2Type:uuid)\'');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

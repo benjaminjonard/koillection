@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Wish;
 
 use Api\Tests\AuthenticatedTest;
@@ -29,7 +31,7 @@ class WishCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -38,7 +40,7 @@ class WishCurrentUserTest extends AuthenticatedTest
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($wish);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/wishlist');
+        $this->createClientWithCredentials()->request('GET', $iri.'/wishlist');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Wishlist::class);
@@ -69,7 +71,7 @@ class WishCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'updated name with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

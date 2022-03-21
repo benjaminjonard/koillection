@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Api\Doctrine\Extension;
 
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
@@ -37,7 +39,7 @@ final class OwnershipExtension implements QueryCollectionExtensionInterface, Que
             $queryBuilder->setParameter('current_user', $this->security->getUser()->getId());
         }
 
-        if ($resourceClass === User::class) {
+        if (User::class === $resourceClass) {
             $queryBuilder->andWhere(sprintf('%s.id = :current_user', $rootAlias));
             $queryBuilder->setParameter('current_user', $this->security->getUser()->getId());
         }

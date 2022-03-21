@@ -14,7 +14,13 @@ All in assets directory
 - `yarn webpack-bundle-analyzer stats.json ../public/build`
 
 
-## Tests
+## Tools
 ###### PhpUnit
 - `php -d memory_limit=512M ./bin/phpunit --stderr`
 
+###### PHP CS fixer
+- `./vendor/bin/php-cs-fixer fix`
+
+###### Psalm
+- `./vendor/bin/psalm`
+- `./vendor/bin/psalm --alter --issues=MissingReturnType,MissingParamType --dry-run`

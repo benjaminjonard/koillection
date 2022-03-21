@@ -16,7 +16,7 @@ final class Version20220206175016 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_datum ALTER type TYPE VARCHAR(10)');
         $this->addSql('ALTER TABLE koi_loan ALTER lent_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');

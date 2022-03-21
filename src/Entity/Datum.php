@@ -18,90 +18,90 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DatumRepository::class)]
-#[ORM\Table(name: "koi_datum")]
+#[ORM\Table(name: 'koi_datum')]
 #[ApiResource(
-    normalizationContext: ["groups" => ["datum:read"]],
-    denormalizationContext: ["groups" => ["datum:write"]],
+    normalizationContext: ['groups' => ['datum:read']],
+    denormalizationContext: ['groups' => ['datum:write']],
     collectionOperations: [
-        "get",
-        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
 class Datum implements LoggableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['datum:read'])]
     private string $id;
 
-    #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "data")]
-    #[Groups(["datum:read"])]
+    #[ORM\ManyToOne(targetEntity: 'Item', inversedBy: 'data')]
+    #[Groups(['datum:read'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
-    #[ORM\ManyToOne(targetEntity: "Collection", inversedBy: "data")]
-    #[Groups(["datum:read"])]
+    #[ORM\ManyToOne(targetEntity: 'Collection', inversedBy: 'data')]
+    #[Groups(['datum:read'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["datum:read", "datum:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['datum:read', 'datum:write'])]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     private ?string $type = null;
 
-    #[ORM\Column(type: "string", nullable: true)]
-    #[Groups(["datum:read", "datum:write"])]
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Groups(['datum:read', 'datum:write'])]
     #[Assert\NotBlank]
     private ?string $label = null;
 
-    #[ORM\Column(type: "text", nullable: true)]
-    #[Groups(["datum:read", "datum:write"])]
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups(['datum:read', 'datum:write'])]
     private ?string $value = null;
 
-    #[ORM\Column(type: "integer", nullable: true)]
-    #[Groups(["datum:read", "datum:write"])]
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Groups(['datum:read', 'datum:write'])]
     private ?int $position = null;
 
-    #[Upload(path: "file", smallThumbnailPath: "imageSmallThumbnail", largeThumbnailPath: "imageLargeThumbnail")]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
-    #[Groups(["datum:write"])]
+    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Groups(['datum:write'])]
     private ?File $fileImage = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['datum:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['datum:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['datum:read'])]
     private ?string $imageLargeThumbnail = null;
 
-    #[Upload(path: "file", originalFilenamePath: "originalFilename")]
+    #[Upload(path: 'file', originalFilenamePath: 'originalFilename')]
     #[Assert\File]
-    #[Groups(["datum:write"])]
+    #[Groups(['datum:write'])]
     private ?File $fileFile = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['datum:read'])]
     private ?string $file = null;
 
-    #[ORM\Column(type: "string", nullable: true)]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Groups(['datum:read'])]
     private ?string $originalFilename = null;
 
-    #[ORM\ManyToOne(targetEntity: "User")]
-    #[Groups(["datum:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[Groups(['datum:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['datum:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["datum:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['datum:read'])]
     private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -114,7 +114,7 @@ class Datum implements LoggableInterface
         return $this->getLabel() ?? '';
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -223,7 +223,7 @@ class Datum implements LoggableInterface
     public function setFileImage(?File $fileImage): self
     {
         $this->fileImage = $fileImage;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($fileImage instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
@@ -265,7 +265,7 @@ class Datum implements LoggableInterface
 
     public function getImageLargeThumbnail(): ?string
     {
-        if ($this->imageLargeThumbnail === null) {
+        if (null === $this->imageLargeThumbnail) {
             return $this->image;
         }
 
@@ -299,7 +299,7 @@ class Datum implements LoggableInterface
     public function setFileFile(?File $fileFile): Datum
     {
         $this->fileFile = $fileFile;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($fileFile instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
@@ -315,6 +315,7 @@ class Datum implements LoggableInterface
     public function setFile(?string $file): Datum
     {
         $this->file = $file;
+
         return $this;
     }
 

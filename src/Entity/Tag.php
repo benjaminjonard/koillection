@@ -21,73 +21,73 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
-#[ORM\Table(name: "koi_tag")]
-#[ORM\Index(name: "idx_tag_visibility", columns: ["visibility"])]
+#[ORM\Table(name: 'koi_tag')]
+#[ORM\Index(name: 'idx_tag_visibility', columns: ['visibility'])]
 #[ApiResource(
-    normalizationContext: ["groups" => ["tag:read"]],
-    denormalizationContext: ["groups" => ["tag:write"]],
+    normalizationContext: ['groups' => ['tag:read']],
+    denormalizationContext: ['groups' => ['tag:write']],
     collectionOperations: [
-        "get",
-        "post" => ["input_formats" => ["multipart" => ["multipart/form-data"]]],
+        'get',
+        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["tag:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['tag:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string")]
-    #[Groups(["tag:read", "tag:write"])]
+    #[ORM\Column(type: 'string')]
+    #[Groups(['tag:read', 'tag:write'])]
     #[Assert\NotBlank]
     private string $label;
 
-    #[ORM\Column(type: "text", nullable: true)]
-    #[Groups(["tag:read", "tag:write"])]
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups(['tag:read', 'tag:write'])]
     private ?string $description = null;
 
-    #[Upload(path: "image", smallThumbnailPath: "imageSmallThumbnail")]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp", "image/gif"])]
-    #[Groups(["tag:write"])]
+    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Groups(['tag:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["tag:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['tag:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["tag:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['tag:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "tags")]
-    #[Groups(["tag:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'tags')]
+    #[Groups(['tag:read'])]
     private ?User $owner = null;
 
-    #[ORM\ManyToOne(targetEntity: "TagCategory", inversedBy: "tags", fetch: "EAGER", cascade: ["persist"])]
-    #[ORM\JoinColumn(onDelete: "SET NULL")]
-    #[Groups(["tag:read", "tag:write"])]
+    #[ORM\ManyToOne(targetEntity: 'TagCategory', inversedBy: 'tags', fetch: 'EAGER', cascade: ['persist'])]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
+    #[Groups(['tag:read', 'tag:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?TagCategory $category = null;
 
-    #[ORM\ManyToMany(targetEntity: "Item", mappedBy: "tags")]
+    #[ORM\ManyToMany(targetEntity: 'Item', mappedBy: 'tags')]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 
-    #[ORM\Column(type: "integer")]
-    #[Groups(["tag:read"])]
+    #[ORM\Column(type: 'integer')]
+    #[Groups(['tag:read'])]
     private int $seenCounter;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["tag:read", "tag:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['tag:read', 'tag:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["tag:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['tag:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["tag:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['tag:read'])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
@@ -103,7 +103,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this->getLabel() ?? '';
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -188,7 +188,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     public function setFile(?File $file): self
     {
         $this->file = $file;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }
@@ -210,7 +210,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
-        if ($this->imageSmallThumbnail === null) {
+        if (null === $this->imageSmallThumbnail) {
             return $this->image;
         }
 

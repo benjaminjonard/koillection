@@ -40,7 +40,7 @@ Please do back up your database.
     | 1.0.x       | 7.2         | :x:                       |
 
 2. Make sure you have the following PHP extensions installed:
-    - `ctype`, `fileinfo`, `gd`, `iconv`, `intl`, `json`
+    - `ctype`, `fileinfo`, `gd`, `iconv`, `intl`, `json`, `apcu`
 3. A webserver such as `Apache2` or `nginx` 
 4. A `Postgresql` or `Mysql` (version 8 or superior) database
 5. Yarn

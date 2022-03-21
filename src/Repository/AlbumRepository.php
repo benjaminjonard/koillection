@@ -17,10 +17,10 @@ class AlbumRepository extends ServiceEntityRepository
         parent::__construct($registry, Album::class);
     }
 
-    public function findAllExcludingItself(Album $album) : array
+    public function findAllExcludingItself(Album $album): array
     {
         $id = $album->getId();
-        if ($album->getCreatedAt() === null) {
+        if (null === $album->getCreatedAt()) {
             return $this->findAll();
         }
 
@@ -43,7 +43,7 @@ class AlbumRepository extends ServiceEntityRepository
             ) SELECT id FROM children ch2
         ";
 
-        $excluded = \array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), "id");
+        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), 'id');
 
         return $this
             ->createQueryBuilder('a')
@@ -55,7 +55,7 @@ class AlbumRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findForSearch(Search $search) : array
+    public function findForSearch(Search $search): array
     {
         $qb = $this
             ->createQueryBuilder('a')

@@ -8,9 +8,9 @@ use App\Entity\User;
 
 interface BreadcrumbableInterface
 {
-    public function getId() : ?string;
+    public function getId(): ?string;
 
-    public function getOwner() : ?User;
+    public function getOwner(): ?User;
 
-    public function __toString() : string;
+    public function __toString(): string;
 }

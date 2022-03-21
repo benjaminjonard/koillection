@@ -21,7 +21,7 @@ class ItemRepository extends ServiceEntityRepository
         parent::__construct($registry, Item::class);
     }
 
-    public function findById(string $id) : ?Item
+    public function findById(string $id): ?Item
     {
         $qb = $this
             ->createQueryBuilder('i')
@@ -35,7 +35,7 @@ class ItemRepository extends ServiceEntityRepository
         return $qb->addSelect('t, d, c')->getQuery()->getOneOrNullResult();
     }
 
-    public function findNextAndPrevious(Item $item, $parent) : array
+    public function findNextAndPrevious(Item $item, Collection|Tag|null $parent): array
     {
         $qb = $this->_em
             ->createQueryBuilder()
@@ -47,13 +47,13 @@ class ItemRepository extends ServiceEntityRepository
             $qb
                 ->leftJoin('i.collection', 'c')
                 ->where('c = :collection')
-                ->setParameter('collection', $parent)
+                ->setParameter('collection', $parent->getId())
             ;
         } elseif ($parent instanceof Tag) {
             $qb
                 ->leftJoin('i.tags', 't')
                 ->where('t = :tag')
-                ->setParameter('tag', $parent)
+                ->setParameter('tag', $parent->getId())
             ;
         }
 
@@ -72,7 +72,7 @@ class ItemRepository extends ServiceEntityRepository
             }
         }
 
-        if ($current === 0) {
+        if (0 === $current) {
             $previous = null;
             if ($count > 1) {
                 $next = $results[($current + 1) % $count];
@@ -89,11 +89,11 @@ class ItemRepository extends ServiceEntityRepository
 
         return [
             'previous' => $previous,
-            'next' => $next
+            'next' => $next,
         ];
     }
 
-    public function findForSearch(Search $search) : array
+    public function findForSearch(Search $search): array
     {
         $qb = $this
             ->createQueryBuilder('i')
@@ -103,7 +103,7 @@ class ItemRepository extends ServiceEntityRepository
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
             $qb
                 ->andWhere('LOWER(i.name) LIKE LOWER(:term)')
-                ->setParameter('term', '%' . $search->getTerm() . '%');
+                ->setParameter('term', '%'.$search->getTerm().'%');
         }
 
         if ($search->getCreatedAt() instanceof \DateTime) {
@@ -118,9 +118,9 @@ class ItemRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findAllByCollection(Collection $collection) : array
+    public function findAllByCollection(Collection $collection): array
     {
-        //First we query all items id recursvely
+        // First we query all items id recursvely
         $id = "'".$collection->getId()."'";
         $sqlRecursive = "
             SELECT i.id as id
@@ -144,7 +144,7 @@ class ItemRepository extends ServiceEntityRepository
         $ids = [];
         foreach ($this->getEntityManager()->createNativeQuery($sqlRecursive, $rsm)->getResult() as $result) {
             $ids[] = $result['id'];
-        };
+        }
 
         return $this
             ->createQueryBuilder('i')
@@ -156,7 +156,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findItemsByCollectionId(string $id) : iterable
+    public function findItemsByCollectionId(string $id): iterable
     {
         $qb = $this
             ->createQueryBuilder('i')
@@ -167,7 +167,7 @@ class ItemRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findLike(string $string) : array
+    public function findLike(string $string): array
     {
         $string = trim($string);
 
@@ -175,8 +175,8 @@ class ItemRepository extends ServiceEntityRepository
             ->createQueryBuilder('i')
             ->addSelect('(CASE WHEN LOWER(i.name) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(i.name) LIKE LOWER(:name)')
-            ->orderBy('startWithOrder', 'ASC') //Order items starting with the search term first
-            ->addOrderBy('LOWER(i.name)', 'ASC') //Then order other matching items alphabetically
+            ->orderBy('startWithOrder', 'ASC') // Order items starting with the search term first
+            ->addOrderBy('LOWER(i.name)', 'ASC') // Then order other matching items alphabetically
             ->setParameter('name', '%'.$string.'%')
             ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
@@ -185,7 +185,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findWithSigns() : array
+    public function findWithSigns(): array
     {
         return $this
             ->createQueryBuilder('i')
@@ -206,7 +206,7 @@ class ItemRepository extends ServiceEntityRepository
             ->leftJoin('i.relatedItems', 'r')
             ->addSelect('r')
             ->where('i.owner = :user')
-            ->setParameter('user', $user)
+            ->setParameter('user', $user->getId())
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()

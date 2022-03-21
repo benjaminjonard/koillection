@@ -13,16 +13,16 @@ class VisibilityEnum
     public const VISIBILITIES = [
         self::VISIBILITY_PUBLIC,
         self::VISIBILITY_INTERNAL,
-        self::VISIBILITY_PRIVATE
+        self::VISIBILITY_PRIVATE,
     ];
 
     public const VISIBILITIES_TRANS_KEYS = [
         self::VISIBILITY_PUBLIC => 'public',
         self::VISIBILITY_INTERNAL => 'internal',
-        self::VISIBILITY_PRIVATE => 'private'
+        self::VISIBILITY_PRIVATE => 'private',
     ];
 
-    public static function getVisibilityLabels() : array
+    public static function getVisibilityLabels(): array
     {
         return [
             self::VISIBILITY_PUBLIC => 'global.visibilities.public',

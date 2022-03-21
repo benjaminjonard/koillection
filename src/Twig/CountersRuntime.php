@@ -11,7 +11,8 @@ class CountersRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private CountersCache $countersCache
-    ) {}
+    ) {
+    }
 
     public function getCounters($object): array
     {

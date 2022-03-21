@@ -31,7 +31,7 @@
         "symfony/error-handler": "^6.0",
         "symfony/event-dispatcher": "^6.0",
         "symfony/expression-language": "^6.0",
-        "symfony/flex": "^1.6",
+        "symfony/flex": "^2.1",
         "symfony/form": "^6.0",
         "symfony/framework-bundle": "^6.0",
         "symfony/http-client": "^6.0",
@@ -64,15 +64,20 @@
         "willdurand/js-translation-bundle": "^5.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.6",
         "hautelook/alice-bundle": "^2.10",
         "justinrainbow/json-schema": "^5.2",
+        "psalm/plugin-phpunit": "^0.16.1",
+        "psalm/plugin-symfony": "^3.1",
         "symfony/browser-kit": "^6.0",
         "symfony/css-selector": "^6.0",
         "symfony/maker-bundle": "^1.15",
         "symfony/phpunit-bridge": "^6.0",
         "symfony/stopwatch": "^6.0",
         "symfony/var-dumper": "^6.0",
-        "symfony/web-profiler-bundle": "^6.0"
+        "symfony/web-profiler-bundle": "^6.0",
+        "vimeo/psalm": "^4.22",
+        "weirdan/doctrine-psalm-plugin": "^2.2"
     },
     "config": {
         "preferred-install": {

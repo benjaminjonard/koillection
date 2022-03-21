@@ -17,7 +17,7 @@ class LoggerChain
         $this->loggers = $loggers;
     }
 
-    private function getLoggerResponse($function, array $params)
+    private function getLoggerResponse(string $function, array $params)
     {
         $response = null;
         $loggers = [];
@@ -26,12 +26,12 @@ class LoggerChain
         }
 
         usort($loggers, function (LoggerInterface $a, LoggerInterface $b) {
-            return ($a->getPriority() <=> $b->getPriority());
+            return $a->getPriority() <=> $b->getPriority();
         });
 
         foreach ($loggers as $logger) {
             $response = $logger->$function(...$params);
-            if ($response !== null) {
+            if (null !== $response) {
                 break;
             }
         }
@@ -39,22 +39,22 @@ class LoggerChain
         return $response;
     }
 
-    public function getCreateLog(LoggableInterface $entity) : ?Log
+    public function getCreateLog(LoggableInterface $entity): ?Log
     {
         return $this->getLoggerResponse('getCreateLog', [$entity]);
     }
 
-    public function getDeleteLog(LoggableInterface $entity) : ?Log
+    public function getDeleteLog(LoggableInterface $entity): ?Log
     {
         return $this->getLoggerResponse('getDeleteLog', [$entity]);
     }
 
-    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []): ?Log
     {
         return $this->getLoggerResponse('getUpdateLog', [$entity, $changeset, $relations]);
     }
 
-    public function getFormattedPayload(string $class, array $payload) : ?string
+    public function getFormattedPayload(string $class, array $payload): ?string
     {
         return $this->getLoggerResponse('formatPayload', [$class, $payload]);
     }

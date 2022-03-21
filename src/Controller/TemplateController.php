@@ -20,9 +20,10 @@ class TemplateController extends AbstractController
 {
     #[Route(
         path: ['en' => '/templates', 'fr' => '/modeles'],
-        name: 'app_template_index', methods: ['GET']
+        name: 'app_template_index',
+        methods: ['GET']
     )]
-    public function index(TemplateRepository $templateRepository) : Response
+    public function index(TemplateRepository $templateRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -33,9 +34,10 @@ class TemplateController extends AbstractController
 
     #[Route(
         path: ['en' => '/templates/add', 'fr' => '/modeles/ajouter'],
-        name: 'app_template_add', methods: ['GET', 'POST']
+        name: 'app_template_add',
+        methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -58,10 +60,12 @@ class TemplateController extends AbstractController
 
     #[Route(
         path: ['en' => '/templates/{id}/edit', 'fr' => '/modeles/{id}/editer'],
-        name: 'app_template_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_template_edit',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
     #[Entity('template', expr: 'repository.findById(id)', class: Template::class)]
-    public function edit(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function edit(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -82,10 +86,12 @@ class TemplateController extends AbstractController
 
     #[Route(
         path: ['en' => '/templates/{id}', 'fr' => '/modeles/{id}'],
-        name: 'app_template_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_template_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Entity('template', expr: 'repository.findWithItems(id)', class: Template::class)]
-    public function show(Template $template) : Response
+    public function show(Template $template): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -96,9 +102,11 @@ class TemplateController extends AbstractController
 
     #[Route(
         path: ['en' => '/templates/{id}/delete', 'fr' => '/modeles/{id}/supprimer'],
-        name: 'app_template_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_template_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -116,15 +124,17 @@ class TemplateController extends AbstractController
 
     #[Route(
         path: ['en' => '/templates/{id}/fields', 'fr' => '/modeles/{id}/champs'],
-        name: 'app_template_fields', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_template_fields',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
-    public function getFields(Template $template) : JsonResponse
+    public function getFields(Template $template): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
         $fields = [];
         foreach ($template->getFields() as $i => $field) {
-            $fields[$i][] = in_array($field->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
+            $fields[$i][] = \in_array($field->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
             $fields[$i][] = $field->getName();
             $fields[$i][] = $this->render('App/Datum/_datum.html.twig', [
                 'entity' => '__entity_placeholder__',

@@ -9,18 +9,18 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20190403150430 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Add `object_deleted` property to `koi_log`.';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_log ADD object_deleted BOOLEAN DEFAULT \'false\' NOT NULL');
 
-        //Set `object_deleted` to true if there is a delete entry for the `object_id`.
+        // Set `object_deleted` to true if there is a delete entry for the `object_id`.
         $this->addSql('
             UPDATE koi_log 
             SET object_deleted = true 
@@ -31,7 +31,7 @@ final class Version20190403150430 extends AbstractMigration
             )
         ');
 
-        //Delete some logs that shouldn't exist
+        // Delete some logs that shouldn't exist
         $this->addSql('
             DELETE FROM koi_log WHERE id IN (
                 SELECT updated.id
@@ -45,7 +45,7 @@ final class Version20190403150430 extends AbstractMigration
         ');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

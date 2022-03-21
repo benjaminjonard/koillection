@@ -15,7 +15,7 @@ class WishRepository extends ServiceEntityRepository
         parent::__construct($registry, Wish::class);
     }
 
-    public function findById(string $id) : ?Wish
+    public function findById(string $id): ?Wish
     {
         return $this
             ->createQueryBuilder('wi')

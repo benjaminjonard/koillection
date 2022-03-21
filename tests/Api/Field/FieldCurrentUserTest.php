@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Field;
 
 use Api\Tests\AuthenticatedTest;
@@ -29,7 +31,7 @@ class FieldCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -38,7 +40,7 @@ class FieldCurrentUserTest extends AuthenticatedTest
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($field);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/template');
+        $this->createClientWithCredentials()->request('GET', $iri.'/template');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Template::class);
@@ -69,7 +71,7 @@ class FieldCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'updated name with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

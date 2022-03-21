@@ -11,12 +11,13 @@ class ColorListener
 {
     public function __construct(
         private ColorPicker $colorPicker
-    ) {}
+    ) {
+    }
 
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
-        if (true === property_exists($entity, 'color') && $entity->getColor() === null) {
+        if (true === property_exists($entity, 'color') && null === $entity->getColor()) {
             $entity->setColor($this->colorPicker->pickRandomColor());
         }
     }

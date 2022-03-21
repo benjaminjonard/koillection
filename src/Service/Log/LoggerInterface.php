@@ -11,15 +11,15 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 #[Autoconfigure(tags: ['app.logger'])]
 interface LoggerInterface
 {
-    public function getClass() : string;
+    public function getClass(): string;
 
-    public function getPriority() : int;
+    public function getPriority(): int;
 
-    public function getCreateLog(LoggableInterface $entity) : ?Log;
+    public function getCreateLog(LoggableInterface $entity): ?Log;
 
-    public function getDeleteLog(LoggableInterface $entity) : ?Log;
+    public function getDeleteLog(LoggableInterface $entity): ?Log;
 
-    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []) : ?Log;
+    public function getUpdateLog(LoggableInterface $entity, array $changeset, array $relations = []): ?Log;
 
-    public function formatPayload(string $class, array $payload) : ?string;
+    public function formatPayload(string $class, array $payload): ?string;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\User;
 
 use Api\Tests\AuthenticatedTest;
@@ -34,7 +36,7 @@ class UserOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'username' => 'username_patch',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

@@ -19,28 +19,31 @@ class WishlistController extends AbstractController
 {
     #[Route(
         path: ['en' => '/wishlists', 'fr' => '/listes-de-souhaits'],
-        name: 'app_wishlist_index', methods: ['GET']
+        name: 'app_wishlist_index',
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/wishlists', 'fr' => '/utilisateur/{username}/listes-de-souhaits'],
-        name: 'app_shared_wishlist_index', methods: ['GET']
+        name: 'app_shared_wishlist_index',
+        methods: ['GET']
     )]
-    public function index(WishlistRepository $wishlistRepository) : Response
+    public function index(WishlistRepository $wishlistRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
         $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => 'ASC']);
 
         return $this->render('App/Wishlist/index.html.twig', [
-            'wishlists' => $wishlists
+            'wishlists' => $wishlists,
         ]);
     }
 
     #[Route(
         path: ['en' => '/wishlists/add', 'fr' => '/listes-de-souhaits/ajouter'],
-        name: 'app_wishlist_add', methods: ['GET', 'POST']
+        name: 'app_wishlist_add',
+        methods: ['GET', 'POST']
     )]
-    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -48,7 +51,7 @@ class WishlistController extends AbstractController
         if ($request->query->has('parent')) {
             $parent = $wishlistRepository->findOneBy([
                 'id' => $request->query->get('parent'),
-                'owner' => $this->getUser()
+                'owner' => $this->getUser(),
             ]);
             $wishlist
                 ->setParent($parent)
@@ -70,34 +73,40 @@ class WishlistController extends AbstractController
         }
 
         return $this->render('App/Wishlist/add.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route(
         path: ['en' => '/wishlists/{id}', 'fr' => '/listes-de-souhaits/{id}'],
-        name: 'app_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_wishlist_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
     #[Route(
         path: ['en' => '/user/{username}/wishlists/{id}', 'fr' => '/utilisateur/{username}/listes-de-souhaits/{id}'],
-        name: 'app_shared_wishlist_show', requirements: ['id' => '%uuid_regex%'], methods: ['GET']
+        name: 'app_shared_wishlist_show',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET']
     )]
-    public function show(Wishlist $wishlist, WishlistRepository $wishlistRepository, WishRepository $wishRepository) : Response
+    public function show(Wishlist $wishlist, WishlistRepository $wishlistRepository, WishRepository $wishRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist,
             'children' => $wishlistRepository->findBy(['parent' => $wishlist]),
-            'wishes' => $wishRepository->findBy(['wishlist' => $wishlist])
+            'wishes' => $wishRepository->findBy(['wishlist' => $wishlist]),
         ]);
     }
 
     #[Route(
         path: ['en' => '/wishlists/{id}/edit', 'fr' => '/listes-de-souhaits/{id}/editer'],
-        name: 'app_wishlist_edit', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_wishlist_edit',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Wishlist $wishlist, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function edit(Request $request, Wishlist $wishlist, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -119,9 +128,11 @@ class WishlistController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishlists/{id}/delete', 'fr' => '/listes-de-souhaits/{id}/supprimer'],
-        name: 'app_wishlist_delete', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
+        name: 'app_wishlist_delete',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['POST']
     )]
-    public function delete(Request $request, Wishlist $wishlist, TranslatorInterface $translator, ManagerRegistry $managerRegistry) : Response
+    public function delete(Request $request, Wishlist $wishlist, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -139,9 +150,11 @@ class WishlistController extends AbstractController
 
     #[Route(
         path: ['en' => '/wishlists/{id}/history', 'fr' => '/listes-de-souhaits/{id}/historique'],
-        name: 'app_wishlist_history', requirements: ['id' => '%uuid_regex%'], methods: ['GET', 'POST']
+        name: 'app_wishlist_history',
+        requirements: ['id' => '%uuid_regex%'],
+        methods: ['GET', 'POST']
     )]
-    public function history(Wishlist $wishlist, LogRepository $logRepository, ManagerRegistry $managerRegistry) : Response
+    public function history(Wishlist $wishlist, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists', 'history']);
 
@@ -152,8 +165,8 @@ class WishlistController extends AbstractController
                 'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($wishlist))->getName(),
             ], [
                 'loggedAt' => 'DESC',
-                'type' => 'DESC'
-            ])
+                'type' => 'DESC',
+            ]),
         ]);
     }
 }

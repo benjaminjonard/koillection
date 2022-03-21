@@ -22,9 +22,10 @@ class WishType extends AbstractType
 {
     public function __construct(
         private WishlistRepository $wishlistRepository
-    ) {}
+    ) {
+    }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
@@ -38,7 +39,7 @@ class WishType extends AbstractType
                 'required' => false,
             ])
             ->add('currency', ChoiceType::class, [
-                'choices' => \array_flip(CurrencyEnum::getCurrencyLabels()),
+                'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
                 'expanded' => false,
                 'multiple' => false,
                 'required' => false,
@@ -48,7 +49,7 @@ class WishType extends AbstractType
             ])
             ->add('file', FileType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
             ])
             ->add('wishlist', EntityType::class, [
                 'class' => Wishlist::class,
@@ -60,13 +61,13 @@ class WishType extends AbstractType
                 'required' => true,
             ])
             ->add('visibility', ChoiceType::class, [
-                'choices' => \array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Wish::class,

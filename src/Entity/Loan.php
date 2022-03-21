@@ -13,40 +13,40 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LoanRepository::class)]
-#[ORM\Table(name: "koi_loan")]
+#[ORM\Table(name: 'koi_loan')]
 #[ApiResource(
-    normalizationContext: ["groups" => ["loan:read"]],
-    denormalizationContext: ["groups" => ["loan:write"]],
+    normalizationContext: ['groups' => ['loan:read']],
+    denormalizationContext: ['groups' => ['loan:write']],
 )]
 class Loan
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["loan:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['loan:read'])]
     private string $id;
 
-    #[ORM\ManyToOne(targetEntity: "Item", inversedBy: "loans")]
-    #[Groups(["loan:read", "loan:write"])]
+    #[ORM\ManyToOne(targetEntity: 'Item', inversedBy: 'loans')]
+    #[Groups(['loan:read', 'loan:write'])]
     #[Assert\NotBlank]
     #[ApiSubresource(maxDepth: 1)]
     private ?Item $item;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    #[Groups(["loan:read", "loan:write"])]
+    #[Groups(['loan:read', 'loan:write'])]
     private ?string $lentTo = null;
 
-    #[ORM\Column(type: "datetime")]
+    #[ORM\Column(type: 'datetime')]
     #[Assert\NotBlank]
-    #[Groups(["loan:read", "loan:write"])]
+    #[Groups(['loan:read', 'loan:write'])]
     private ?\DateTimeInterface $lentAt = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["loan:read", "loan:write"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['loan:read', 'loan:write'])]
     private ?\DateTimeInterface $returnedAt;
 
-    #[ORM\ManyToOne(targetEntity: "User")]
-    #[Groups(["loan:read"])]
+    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[Groups(['loan:read'])]
     private ?User $owner = null;
 
     public function __construct()
@@ -54,7 +54,7 @@ class Loan
         $this->id = Uuid::v4()->toRfc4122();
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }

@@ -9,14 +9,14 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20191113104851 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Change `disk_space_allowed` and `disk_space_used` types from `int` to `bigint` for `koi_user` table.';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_user ALTER disk_space_used TYPE BIGINT');
         $this->addSql('ALTER TABLE koi_user ALTER disk_space_used SET DEFAULT 0');
@@ -24,7 +24,7 @@ final class Version20191113104851 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_user ALTER disk_space_allowed SET DEFAULT 268435456');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

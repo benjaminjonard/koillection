@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Wish;
 
 use Api\Tests\AuthenticatedTest;
@@ -22,7 +24,7 @@ class WishOtherUserTest extends AuthenticatedTest
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($wish);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/wishlist');
+        $this->createClientWithCredentials()->request('GET', $iri.'/wishlist');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -47,7 +49,7 @@ class WishOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'updated name with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

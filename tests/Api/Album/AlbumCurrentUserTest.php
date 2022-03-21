@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Album;
 
 use Api\Tests\AuthenticatedTest;
@@ -30,7 +32,7 @@ class AlbumCurrentUserTest extends AuthenticatedTest
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri
+            '@id' => $iri,
         ]);
     }
 
@@ -43,7 +45,7 @@ class AlbumCurrentUserTest extends AuthenticatedTest
         $album = $this->em->getRepository(Album::class)->matching($criteria)[0]->getParent();
         $iri = $this->iriConverter->getIriFromItem($album);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -61,7 +63,7 @@ class AlbumCurrentUserTest extends AuthenticatedTest
         $album = $this->em->getRepository(Album::class)->matching($criteria)[0];
         $iri = $this->iriConverter->getIriFromItem($album);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/parent');
+        $this->createClientWithCredentials()->request('GET', $iri.'/parent');
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Album::class);
@@ -72,7 +74,7 @@ class AlbumCurrentUserTest extends AuthenticatedTest
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
         $iri = $this->iriConverter->getIriFromItem($album);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri . '/photos');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/photos');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -106,7 +108,7 @@ class AlbumCurrentUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'updated title with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseIsSuccessful();

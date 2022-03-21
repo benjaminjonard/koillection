@@ -9,14 +9,14 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20190702133405 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Add index on `visibility` for every table having this property.';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE INDEX idx_user_visibility ON koi_user (visibility)');
         $this->addSql('CREATE INDEX idx_album_visibility ON koi_album (visibility)');
@@ -29,7 +29,7 @@ final class Version20190702133405 extends AbstractMigration
         $this->addSql('CREATE INDEX idx_datum_visibility ON koi_datum (visibility)');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

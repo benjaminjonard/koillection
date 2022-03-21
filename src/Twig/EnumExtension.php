@@ -9,13 +9,13 @@ use Twig\TwigFunction;
 
 class EnumExtension extends AbstractExtension
 {
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('getCurrencySymbol', [EnumRuntime::class, 'getCurrencySymbol']),
             new TwigFunction('getRoleLabel', [EnumRuntime::class, 'getRoleLabel']),
             new TwigFunction('getLocales', [EnumRuntime::class, 'getLocales']),
-            new TwigFunction('getLocaleLabel', [EnumRuntime::class, 'getLocaleLabel'])
+            new TwigFunction('getLocaleLabel', [EnumRuntime::class, 'getLocaleLabel']),
         ];
     }
 }

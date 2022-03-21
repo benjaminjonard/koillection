@@ -9,16 +9,16 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20200425201544 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '[Postgresql] Remove `koi_image` table';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
-        $this->skipIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
 
-        //Add new image properties to other tables
+        // Add new image properties to other tables
         $this->addSql('ALTER TABLE koi_wishlist ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_user ADD avatar VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_wish ADD image VARCHAR(255) DEFAULT NULL');
@@ -34,7 +34,7 @@ final class Version20200425201544 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_datum ADD image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_datum ADD image_small_thumbnail VARCHAR(255) DEFAULT NULL');
 
-        //Migrate existing images
+        // Migrate existing images
         $this->addSql('UPDATE koi_wish SET image = i.path, image_small_thumbnail = i.thumbnail_path FROM koi_image AS i where image_id = i.id');
         $this->addSql('UPDATE koi_photo SET image = i.path, image_small_thumbnail = i.thumbnail_path FROM koi_image AS i where image_id = i.id');
         $this->addSql('UPDATE koi_item SET image = i.path, image_small_thumbnail = i.thumbnail_path FROM koi_image AS i where image_id = i.id');
@@ -45,7 +45,7 @@ final class Version20200425201544 extends AbstractMigration
         $this->addSql('UPDATE koi_album SET image = i.path FROM koi_image AS i where image_id = i.id');
         $this->addSql('UPDATE koi_user SET avatar = i.path FROM koi_image AS i where avatar_id = i.id');
 
-        //Drop references to koi_image
+        // Drop references to koi_image
         $this->addSql('ALTER TABLE koi_wish DROP CONSTRAINT fk_f670f2d53da5256d');
         $this->addSql('ALTER TABLE koi_collection DROP CONSTRAINT fk_7aa7b0573da5256d');
         $this->addSql('ALTER TABLE koi_wishlist DROP CONSTRAINT fk_98e338d23da5256d');
@@ -77,11 +77,11 @@ final class Version20200425201544 extends AbstractMigration
         $this->addSql('DROP INDEX uniq_f991be53da5256d');
         $this->addSql('ALTER TABLE koi_datum DROP image_id');
 
-        //Finally, drop the table
+        // Finally, drop the table
         $this->addSql('DROP TABLE koi_image');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
     }

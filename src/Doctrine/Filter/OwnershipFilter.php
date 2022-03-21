@@ -16,7 +16,7 @@ class OwnershipFilter extends SQLFilter
             return sprintf('%s.owner_id = %s', $targetTableAlias, $this->getParameter('id'));
         }
 
-        if ($targetEntity->getReflectionClass()->getName() === User::class) {
+        if (User::class === $targetEntity->getReflectionClass()->getName()) {
             return sprintf('%s.id = %s', $targetTableAlias, $this->getParameter('id'));
         }
 

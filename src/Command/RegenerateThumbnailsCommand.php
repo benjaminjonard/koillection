@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command;
 
 use App\Entity\Datum;
@@ -25,12 +27,11 @@ class RegenerateThumbnailsCommand extends Command
         private TranslatorInterface $translator,
         private TokenStorageInterface $tokenStorage,
         private string $publicPath
-    )
-    {
+    ) {
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('app:regenerate-thumbnails')
@@ -53,8 +54,8 @@ class RegenerateThumbnailsCommand extends Command
         $users = $this->managerRegistry->getRepository(User::class)->findAll();
 
         foreach ($users as $user) {
-            //Login user, needed for uploads
-            $token = new UsernamePasswordToken($user,null, 'main', $user->getRoles());
+            // Login user, needed for uploads
+            $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
             $this->tokenStorage->setToken($token);
 
             foreach ($classes as $class) {
@@ -64,13 +65,12 @@ class RegenerateThumbnailsCommand extends Command
                     ->setParameter('user', $user)
                     ->getQuery()
                     ->getResult();
-                ;
+
                 $objects = array_merge($objects, $result);
             }
 
-
             foreach ($objects as $object) {
-                $imagePath = $this->publicPath . '/' . $object->getImage();
+                $imagePath = $this->publicPath.'/'.$object->getImage();
 
                 if (is_file($imagePath)) {
                     $filename = basename($imagePath);
@@ -82,7 +82,7 @@ class RegenerateThumbnailsCommand extends Command
                     } else {
                         $object->setFile($file);
                     }
-                    $counter++;
+                    ++$counter;
                 }
 
                 if ($counter % 100) {

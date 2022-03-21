@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Entity\User;
+
 class BreadcrumbElement
 {
     public const TYPE_ROOT = 'root';
@@ -22,72 +25,72 @@ class BreadcrumbElement
 
     private array $params;
 
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function setType($type)
+    public function setType(string $type): static
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
 
-    public function setLabel($label)
+    public function setLabel(string $label): static
     {
         $this->label = $label;
 
         return $this;
     }
 
-    public function getRoute()
+    public function getRoute(): string
     {
         return $this->route;
     }
 
-    public function setRoute($route)
+    public function setRoute(string $route): static
     {
         $this->route = $route;
 
         return $this;
     }
 
-    public function getClass()
+    public function getClass(): string|null
     {
         return $this->class;
     }
 
-    public function setClass($class)
+    public function setClass(string $class): static
     {
         $this->class = $class;
 
         return $this;
     }
 
-    public function getParams()
+    public function getParams(): array
     {
         return $this->params;
     }
 
-    public function setParams($params)
+    public function setParams(array $params): static
     {
         $this->params = $params;
 
         return $this;
     }
 
-    public function getEntity()
+    public function getEntity(): object|null
     {
         return $this->entity;
     }
 
-    public function setEntity($entity)
+    public function setEntity(User|BreadcrumbableInterface $entity): static
     {
         $this->entity = $entity;
 

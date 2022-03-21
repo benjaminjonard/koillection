@@ -25,162 +25,162 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: "koi_user")]
-#[ORM\Index(name: "idx_user_visibility", columns: ["visibility"])]
-#[UniqueEntity(fields: ["email"], message: "error.email.not_unique")]
-#[UniqueEntity(fields: ["username"], message: "error.username.not_unique")]
+#[ORM\Table(name: 'koi_user')]
+#[ORM\Index(name: 'idx_user_visibility', columns: ['visibility'])]
+#[UniqueEntity(fields: ['email'], message: 'error.email.not_unique')]
+#[UniqueEntity(fields: ['username'], message: 'error.username.not_unique')]
 #[ApiResource(
-    normalizationContext: ["groups" => ["user:read"]],
-    denormalizationContext: ["groups" => ["user:write"]],
-    collectionOperations: ["get"],
-    itemOperations: ["get", "put", "patch"]
+    normalizationContext: ['groups' => ['user:read']],
+    denormalizationContext: ['groups' => ['user:write']],
+    collectionOperations: ['get'],
+    itemOperations: ['get', 'put', 'patch']
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Serializable
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36, unique: true, options: ["fixed" => true])]
-    #[Groups(["user:read"])]
+    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[Groups(['user:read'])]
     private string $id;
 
-    #[ORM\Column(type: "string", length: 32, unique: true)]
-    #[Assert\Regex(pattern: "/^[a-z\d_]{2,32}$/i", message: "error.username.incorrect")]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'string', length: 32, unique: true)]
+    #[Assert\Regex(pattern: "/^[a-z\d_]{2,32}$/i", message: 'error.username.incorrect')]
+    #[Groups(['user:read', 'user:write'])]
     private ?string $username = null;
 
-    #[ORM\Column(type: "string", unique: true)]
+    #[ORM\Column(type: 'string', unique: true)]
     #[Assert\Email]
-    #[Groups(["user:read", "user:write"])]
+    #[Groups(['user:read', 'user:write'])]
     private ?string $email = null;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     private ?string $password;
 
-    #[Assert\Regex(pattern: "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message: "error.password.incorrect")]
-    #[Groups(["user:read", "user:write"])]
+    #[Assert\Regex(pattern: "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message: 'error.password.incorrect')]
+    #[Groups(['user:read', 'user:write'])]
     private ?string $plainPassword = null;
 
-    #[Upload(path: "avatar", maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ["image/png", "image/jpeg", "image/webp"])]
-    #[Groups(["user:write"])]
+    #[Upload(path: 'avatar', maxWidth: 200, maxHeight: 200)]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
+    #[Groups(['user:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: "string", nullable: true, unique: true)]
-    #[Groups(["user:read"])]
+    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[Groups(['user:read'])]
     private ?string $avatar = null;
 
-    #[ORM\Column(type: "boolean")]
+    #[ORM\Column(type: 'boolean')]
     private bool $enabled;
 
-    #[ORM\Column(type: "array")]
+    #[ORM\Column(type: 'array')]
     private array $roles;
 
-    #[ORM\Column(type: "string", length: 3)]
+    #[ORM\Column(type: 'string', length: 3)]
     #[Assert\Currency]
-    #[Groups(["user:read", "user:write"])]
+    #[Groups(['user:read', 'user:write'])]
     private string $currency;
 
-    #[ORM\Column(type: "string", length: 5)]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'string', length: 5)]
+    #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: LocaleEnum::LOCALES)]
     private string $locale;
 
-    #[ORM\Column(type: "string", length: 50)]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'string', length: 50)]
+    #[Groups(['user:read', 'user:write'])]
     #[Assert\Timezone]
     private ?string $timezone = null;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: DateFormatEnum::FORMATS)]
     private string $dateFormat;
 
-    #[ORM\Column(type: "bigint", options: ["default" => 268435456])]
-    #[Groups(["user:read"])]
+    #[ORM\Column(type: 'bigint', options: ['default' => 268435456])]
+    #[Groups(['user:read'])]
     private int $diskSpaceAllowed;
 
-    #[ORM\Column(type: "string", length: 10)]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
-    #[ORM\OneToMany(targetEntity: "Collection", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Collection', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $collections;
 
-    #[ORM\OneToMany(targetEntity: "Tag", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Tag', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $tags;
 
-    #[ORM\OneToMany(targetEntity: "TagCategory", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'TagCategory', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $tagCategories;
 
-    #[ORM\OneToMany(targetEntity: "Wishlist", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Wishlist', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $wishlists;
 
-    #[ORM\OneToMany(targetEntity: "Template", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Template', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $templates;
 
-    #[ORM\OneToMany(targetEntity: "Log", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Log', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $logs;
 
-    #[ORM\OneToMany(targetEntity: "Album", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Album', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $albums;
 
-    #[ORM\OneToMany(targetEntity: "Inventory", mappedBy: "owner", cascade: ["remove"])]
+    #[ORM\OneToMany(targetEntity: 'Inventory', mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $inventories;
 
-    #[ORM\Column(type: "date", nullable: true)]
-    #[Groups(["user:read"])]
+    #[ORM\Column(type: 'date', nullable: true)]
+    #[Groups(['user:read'])]
     private ?DateTimeInterface $lastDateOfActivity = null;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 0])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 0])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $darkModeEnabled;
 
-    #[ORM\Column(type: "time", nullable: true)]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'time', nullable: true)]
+    #[Groups(['user:read', 'user:write'])]
     private ?\DateTime $automaticDarkModeStartAt;
 
-    #[ORM\Column(type: "time", nullable: true)]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'time', nullable: true)]
+    #[Groups(['user:read', 'user:write'])]
     private ?\DateTime $automaticDarkModeEndAt;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $wishlistsFeatureEnabled;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $tagsFeatureEnabled;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $signsFeatureEnabled;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $albumsFeatureEnabled;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $loansFeatureEnabled;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $templatesFeatureEnabled;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $historyFeatureEnabled;
 
-    #[ORM\Column(type: "boolean", options: ["default" => 1])]
-    #[Groups(["user:read", "user:write"])]
+    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $statisticsFeatureEnabled;
 
-    #[ORM\Column(type: "datetime")]
-    #[Groups(["user:read"])]
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['user:read'])]
     private DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Groups(["user:read"])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['user:read'])]
     private ?DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -219,17 +219,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return serialize([
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
         ]);
     }
 
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->username,
-            $this->password,
-            ) = unserialize($serialized);
+            $this->password) = unserialize($serialized);
     }
 
     public function isAdmin(): bool
@@ -237,7 +236,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
     }
 
-    public function isInDarkMode() : bool
+    public function isInDarkMode(): bool
     {
         if ($this->isDarkModeEnabled()) {
             return true;
@@ -270,12 +269,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return false;
     }
 
-    public function getDateFormatForJs() : string
+    public function getDateFormatForJs(): string
     {
         return DateFormatEnum::MAPPING[$this->dateFormat][DateFormatEnum::CONTEXT_JS];
     }
 
-    public function getDateFormatForForm() : string
+    public function getDateFormatForForm(): string
     {
         return DateFormatEnum::MAPPING[$this->dateFormat][DateFormatEnum::CONTEXT_FORM];
     }
@@ -285,45 +284,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
     }
 
-    public function getUsername() : ?string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function getSalt() : ?string
-    {
-        return null;
-    }
-
-    public function setSalt(?string $salt) : self
+    public function setSalt(?string $salt): self
     {
         $this->salt = $salt;
 
         return $this;
     }
 
-    public function getPassword() : ?string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password) : self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
 
-    public function getPlainPassword() : ?string
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
 
-    public function setPlainPassword(?string $plainPassword) : self
+    public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
         $this->password = $plainPassword;
@@ -331,7 +325,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getRoles() : array
+    public function getRoles(): array
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
@@ -339,14 +333,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles) : self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
     }
 
-    public function addRole(string $role) : self
+    public function addRole(string $role): self
     {
         $role = strtoupper($role);
         if (!\in_array($role, $this->roles, true)) {
@@ -356,17 +350,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function removeRole(string $role) : self
+    public function removeRole(string $role): self
     {
-        if (false !== $key = \array_search(strtoupper($role), $this->roles, true)) {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
             unset($this->roles[$key]);
-            $this->roles = \array_values($this->roles);
+            $this->roles = array_values($this->roles);
         }
 
         return $this;
     }
 
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -530,7 +524,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setFile(?File $file): self
     {
         $this->file = $file;
-        //Force Doctrine to trigger an update
+        // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTime());
         }

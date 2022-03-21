@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\AuthenticatedTest;
@@ -24,7 +26,7 @@ class DatumOtherUserTest extends AuthenticatedTest
         $datum = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0]->getData()[0];
         $iri = $this->iriConverter->getIriFromItem($datum);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/item');
+        $this->createClientWithCredentials()->request('GET', $iri.'/item');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -33,7 +35,7 @@ class DatumOtherUserTest extends AuthenticatedTest
         $datum = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0]->getData()[0];
         $iri = $this->iriConverter->getIriFromItem($datum);
 
-        $this->createClientWithCredentials()->request('GET', $iri . '/collection');
+        $this->createClientWithCredentials()->request('GET', $iri.'/collection');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -58,7 +60,7 @@ class DatumOtherUserTest extends AuthenticatedTest
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'updated label with PATCH',
-            ]
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

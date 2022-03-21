@@ -21,11 +21,12 @@ class CounterCalculator
         private ManagerRegistry $managerRegistry,
         private QueryNameGenerator $qng,
         private ContextHandler $contextHandler
-    ) {}
+    ) {
+    }
 
-    public function computeCounters() : array
+    public function computeCounters(): array
     {
-        //Collections and items
+        // Collections and items
         $tableName = $this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName();
         $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Item::class)->getTableName();
         $parentProperty = 'collection_id';
@@ -33,7 +34,7 @@ class CounterCalculator
         $collections = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $collections = array_merge($collections, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        //Wishlists and wishes
+        // Wishlists and wishes
         $tableName = $this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName();
         $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Wish::class)->getTableName();
         $parentProperty = 'wishlist_id';
@@ -41,7 +42,7 @@ class CounterCalculator
         $wishlists = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $wishlists = array_merge($wishlists, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        //Albums and photos
+        // Albums and photos
         $tableName = $this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName();
         $itemTableName = $this->managerRegistry->getManager()->getClassMetadata(Photo::class)->getTableName();
         $parentProperty = 'album_id';
@@ -49,10 +50,10 @@ class CounterCalculator
         $albums = $this->executeItemQuery($tableName, $itemTableName, $parentProperty);
         $albums = array_merge($albums, $this->getGlobalCounters($tableName, $itemTableName, $globalCacheIndexKey));
 
-        return \array_merge($collections, $wishlists, $albums);
+        return array_merge($collections, $wishlists, $albums);
     }
 
-    public function getGlobalCounters(string $table, string $itemTable, string $cacheIndexName) : array
+    public function getGlobalCounters(string $table, string $itemTable, string $cacheIndexName): array
     {
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('children', 'children');
@@ -90,7 +91,7 @@ class CounterCalculator
         return $results;
     }
 
-    public function executeItemQuery(string $table, string $itemTable, string $parentProperty) : array
+    public function executeItemQuery(string $table, string $itemTable, string $parentProperty): array
     {
         $rsm = new ResultSetMapping();
         $rsm->addIndexByScalar('id');
@@ -98,7 +99,7 @@ class CounterCalculator
         $alias = $this->qng->generateJoinAlias('c');
         $ownerId = $this->contextHandler->getContextUser()->getId();
 
-        //Counters per objects
+        // Counters per objects
         $sqlCounters = $this->getSQLForCounters($alias, $table, $itemTable, $parentProperty);
         $sql = "
             SELECT $alias.id as id, ($sqlCounters) as counters
@@ -120,7 +121,7 @@ class CounterCalculator
         return $results;
     }
 
-    private function getSQLForCounters(string $alias, string $table, string $itemTable, string $parentProperty) : string
+    private function getSQLForCounters(string $alias, string $table, string $itemTable, string $parentProperty): string
     {
         $c1 = $this->qng->generateJoinAlias('c');
         $c2 = $this->qng->generateJoinAlias('c');
@@ -133,7 +134,6 @@ class CounterCalculator
 
         $visibilityCondition = '';
         $this->addVisibilityCondition($visibilityCondition, $i1, 'AND');
-
 
         $sql = "
             WITH RECURSIVE counters AS (
@@ -154,13 +154,14 @@ class CounterCalculator
         return $sql;
     }
 
-    private function addVisibilityCondition(&$sql, $alias, $condition)
+    private function addVisibilityCondition(string &$sql, string $alias, string $condition): void
     {
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            if ($this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user') === "''") {
+            if ("''" === $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user')) {
                 $sql .= sprintf("$condition %s.final_visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
             } else {
-                $sql .= sprintf("$condition %s.final_visibility IN ('%s', '%s')",
+                $sql .= sprintf(
+                    "$condition %s.final_visibility IN ('%s', '%s')",
                     $alias,
                     VisibilityEnum::VISIBILITY_PUBLIC,
                     VisibilityEnum::VISIBILITY_INTERNAL

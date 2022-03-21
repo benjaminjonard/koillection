@@ -13,17 +13,17 @@ use App\Service\Log\Logger;
 
 class TagLogger extends Logger
 {
-    public function getClass() : string
+    public function getClass(): string
     {
         return Tag::class;
     }
 
-    public function getPriority() : int
+    public function getPriority(): int
     {
         return 1;
     }
 
-    public function getCreateLog(LoggableInterface $tag) : ?Log
+    public function getCreateLog(LoggableInterface $tag): ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -32,7 +32,7 @@ class TagLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_CREATE, $tag);
     }
 
-    public function getDeleteLog(LoggableInterface $tag) : ?Log
+    public function getDeleteLog(LoggableInterface $tag): ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -41,7 +41,7 @@ class TagLogger extends Logger
         return $this->createLog(LogTypeEnum::TYPE_DELETE, $tag);
     }
 
-    public function getUpdateLog(LoggableInterface $tag, array $changeset, array $relations = []) : ?Log
+    public function getUpdateLog(LoggableInterface $tag, array $changeset, array $relations = []): ?Log
     {
         if (!$this->supports($tag)) {
             return null;
@@ -54,7 +54,7 @@ class TagLogger extends Logger
                 'label' => $tag->getLabel(),
                 'property' => 'label',
                 'old' => $changeset['label'][0],
-                'new' => $tag->getLabel()
+                'new' => $tag->getLabel(),
             ];
         }
 
@@ -63,7 +63,7 @@ class TagLogger extends Logger
                 'label' => $tag->getLabel(),
                 'property' => 'description',
                 'old' => $changeset['description'][0],
-                'new' => $tag->getDescription()
+                'new' => $tag->getDescription(),
             ];
         }
 
@@ -72,13 +72,13 @@ class TagLogger extends Logger
                 'label' => $tag->getLabel(),
                 'property' => 'visibility',
                 'old' => $changeset['visibility'][0],
-                'new' => $tag->getVisibility()
+                'new' => $tag->getVisibility(),
             ];
         }
         if (\array_key_exists('image', $changeset)) {
             $mainPayload[] = [
                 'label' => $tag->getLabel(),
-                'property' => 'image'
+                'property' => 'image',
             ];
         }
 
@@ -93,7 +93,7 @@ class TagLogger extends Logger
         );
     }
 
-    public function formatPayload(string $class, array $payload) : ?string
+    public function formatPayload(string $class, array $payload): ?string
     {
         if (!$this->supportsClass($class)) {
             return null;
@@ -105,12 +105,12 @@ class TagLogger extends Logger
             case 'visibility':
                 return $this->translator->trans('log.tag.property_updated', [
                     '%property%' => "<strong>$label</strong>",
-                    '%new%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']])."</strong>",
-                    '%old%' => "<strong>".$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']])."</strong>",
+                    '%new%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['new']]).'</strong>',
+                    '%old%' => '<strong>'.$this->translator->trans('global.visibilities.'.VisibilityEnum::VISIBILITIES_TRANS_KEYS[$payload['old']]).'</strong>',
                 ]);
             case 'image':
                 return $this->translator->trans('log.tag.image_updated', [
-                    '%property%' => "<strong>$label</strong>"
+                    '%property%' => "<strong>$label</strong>",
                 ]);
             default:
                 $defaultValue = $this->translator->trans('log.default_value');

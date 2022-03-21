@@ -16,10 +16,8 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class LoggedWebTestCase extends WebTestCase
 {
