@@ -1,7 +1,0 @@
-monolog:
-  channels: [deprecation]
-  handlers:
-    deprecation:
-      type: stream
-      channels: [deprecation]
-      path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
