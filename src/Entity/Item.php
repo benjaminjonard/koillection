@@ -156,9 +156,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function getDataImages(): ArrayCollection
     {
         $criteria = Criteria::create();
-        $criteria->where(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_SIGN))
-            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_IMAGE))
-            ->orderBy(['position' => Criteria::ASC]);
+        $criteria
+            ->where(Criteria::expr()->in('type', DatumTypeEnum::IMAGE_TYPES))
+            ->orderBy(['position' => Criteria::ASC])
+        ;
 
         return $this->data->matching($criteria);
     }
@@ -166,13 +167,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function getDataTexts(): DoctrineCollection
     {
         $criteria = Criteria::create();
-        $criteria->where(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_TEXT))
-            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_NUMBER))
-            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_COUNTRY))
-            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_FILE))
-            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_DATE))
-            ->orWhere(Criteria::expr()->eq('type', DatumTypeEnum::TYPE_RATING))
-            ->orderBy(['position' => Criteria::ASC]);
+        $criteria
+            ->where(Criteria::expr()->in('type', DatumTypeEnum::TEXT_TYPES))
+            ->orderBy(['position' => Criteria::ASC])
+        ;
 
         return $this->data->matching($criteria);
     }
