@@ -10,6 +10,7 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Repository\TagCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
@@ -24,36 +25,36 @@ use Symfony\Component\Validator\Constraints as Assert;
 class TagCategory implements BreadcrumbableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['tagCategory:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['tagCategory:read', 'tagCategory:write'])]
     #[Assert\NotBlank]
     private ?string $label = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['tagCategory:read', 'tagCategory:write'])]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'string', length: 7)]
+    #[ORM\Column(type: Types::STRING, length: 7)]
     #[Groups(['tagCategory:read', 'tagCategory:write'])]
     private ?string $color = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'tagCategories')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tagCategories')]
     #[Groups(['tagCategory:read'])]
     private ?User $owner = null;
 
-    #[ORM\OneToMany(targetEntity: 'Tag', mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Tag::class, mappedBy: 'category')]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['tagCategory:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['tagCategory:read'])]
     private ?\DateTimeInterface $updatedAt;
 

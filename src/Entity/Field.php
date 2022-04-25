@@ -7,6 +7,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Enum\DatumTypeEnum;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
@@ -21,31 +22,31 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Field
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['field:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['field:read', 'field:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['field:read', 'field:write'])]
     private ?int $position = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['field:read', 'field:write'])]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     private ?string $type = null;
 
-    #[ORM\ManyToOne(targetEntity: 'Template', inversedBy: 'fields')]
+    #[ORM\ManyToOne(targetEntity: Template::class, inversedBy: 'fields')]
     #[Assert\NotBlank]
     #[Groups(['field:read', 'field:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Template $template = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['field:read'])]
     private ?User $owner = null;
 

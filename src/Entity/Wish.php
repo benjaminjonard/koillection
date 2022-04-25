@@ -10,6 +10,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -31,39 +32,39 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Wish implements CacheableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['wish:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['wish:read', 'wish:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['wish:read', 'wish:write'])]
     private ?string $url = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['wish:read', 'wish:write'])]
     private ?string $price = null;
 
-    #[ORM\Column(type: 'string', length: 6, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
     #[Groups(['wish:read', 'wish:write'])]
     #[Assert\Currency]
     private ?string $currency;
 
-    #[ORM\ManyToOne(targetEntity: 'Wishlist', inversedBy: 'wishes')]
+    #[ORM\ManyToOne(targetEntity: Wishlist::class, inversedBy: 'wishes')]
     #[Assert\NotBlank]
     #[Groups(['wish:read', 'wish:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Wishlist $wishlist;
 
-    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['wish:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['wish:read', 'wish:write'])]
     private ?string $comment = null;
 
@@ -72,31 +73,31 @@ class Wish implements CacheableInterface
     #[Groups(['wish:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['wish:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['wish:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wish:read', 'wish:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['wish:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wish:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['wish:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['wish:read'])]
     private ?\DateTimeInterface $updatedAt;
 

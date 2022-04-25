@@ -7,6 +7,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\LoanRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
@@ -21,31 +22,31 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Loan
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['loan:read'])]
     private string $id;
 
-    #[ORM\ManyToOne(targetEntity: 'Item', inversedBy: 'loans')]
+    #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'loans')]
     #[Groups(['loan:read', 'loan:write'])]
     #[Assert\NotBlank]
     #[ApiSubresource(maxDepth: 1)]
     private ?Item $item;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
     #[Groups(['loan:read', 'loan:write'])]
     private ?string $lentTo = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotBlank]
     #[Groups(['loan:read', 'loan:write'])]
     private ?\DateTimeInterface $lentAt = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['loan:read', 'loan:write'])]
     private ?\DateTimeInterface $returnedAt;
 
-    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['loan:read'])]
     private ?User $owner = null;
 

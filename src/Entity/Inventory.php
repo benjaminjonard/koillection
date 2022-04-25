@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
@@ -20,29 +21,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Inventory implements BreadcrumbableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['inventory:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['inventory:read', 'inventory:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'json')]
+    #[ORM\Column(type: Types::JSON)]
     #[Groups(['inventory:read', 'inventory:write'])]
     #[Assert\NotBlank]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'inventories')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'inventories')]
     #[Groups(['inventory:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['inventory:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['inventory:read'])]
     private ?\DateTimeInterface $updatedAt;
 

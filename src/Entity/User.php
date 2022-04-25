@@ -14,6 +14,7 @@ use App\Enum\VisibilityEnum;
 use App\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -38,21 +39,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Serializable
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['user:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string', length: 32, unique: true)]
+    #[ORM\Column(type: Types::STRING, length: 32, unique: true)]
     #[Assert\Regex(pattern: "/^[a-z\d_]{2,32}$/i", message: 'error.username.incorrect')]
     #[Groups(['user:read', 'user:write'])]
     private ?string $username = null;
 
-    #[ORM\Column(type: 'string', unique: true)]
+    #[ORM\Column(type: Types::STRING, unique: true)]
     #[Assert\Email]
     #[Groups(['user:read', 'user:write'])]
     private ?string $email = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     private ?string $password;
 
     #[Assert\Regex(pattern: "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message: 'error.password.incorrect')]
@@ -64,122 +65,122 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['user:read'])]
     private ?string $avatar = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $enabled;
 
-    #[ORM\Column(type: 'array')]
+    #[ORM\Column(type: Types::ARRAY)]
     private array $roles;
 
-    #[ORM\Column(type: 'string', length: 3)]
+    #[ORM\Column(type: Types::STRING, length: 3)]
     #[Assert\Currency]
     #[Groups(['user:read', 'user:write'])]
     private string $currency;
 
-    #[ORM\Column(type: 'string', length: 5)]
+    #[ORM\Column(type: Types::STRING, length: 5)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: LocaleEnum::LOCALES)]
     private string $locale;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Timezone]
     private ?string $timezone = null;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: DateFormatEnum::FORMATS)]
     private string $dateFormat;
 
-    #[ORM\Column(type: 'bigint', options: ['default' => 268435456])]
+    #[ORM\Column(type: Types::BIGINT, options: ['default' => 268435456])]
     #[Groups(['user:read'])]
     private int $diskSpaceAllowed;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
-    #[ORM\OneToMany(targetEntity: 'Collection', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $collections;
 
-    #[ORM\OneToMany(targetEntity: 'Tag', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Tag::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $tags;
 
-    #[ORM\OneToMany(targetEntity: 'TagCategory', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: TagCategory::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $tagCategories;
 
-    #[ORM\OneToMany(targetEntity: 'Wishlist', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $wishlists;
 
-    #[ORM\OneToMany(targetEntity: 'Template', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Template::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $templates;
 
-    #[ORM\OneToMany(targetEntity: 'Log', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Log::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $logs;
 
-    #[ORM\OneToMany(targetEntity: 'Album', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Album::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $albums;
 
-    #[ORM\OneToMany(targetEntity: 'Inventory', mappedBy: 'owner', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $inventories;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Groups(['user:read'])]
     private ?DateTimeInterface $lastDateOfActivity = null;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 0])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['user:read', 'user:write'])]
     private bool $darkModeEnabled;
 
-    #[ORM\Column(type: 'time', nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     #[Groups(['user:read', 'user:write'])]
     private ?\DateTime $automaticDarkModeStartAt;
 
-    #[ORM\Column(type: 'time', nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     #[Groups(['user:read', 'user:write'])]
     private ?\DateTime $automaticDarkModeEndAt;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $wishlistsFeatureEnabled;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $tagsFeatureEnabled;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $signsFeatureEnabled;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $albumsFeatureEnabled;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $loansFeatureEnabled;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $templatesFeatureEnabled;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $historyFeatureEnabled;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 1])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $statisticsFeatureEnabled;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['user:read'])]
     private DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['user:read'])]
     private ?DateTimeInterface $updatedAt;
 

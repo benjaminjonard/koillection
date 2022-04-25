@@ -10,6 +10,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DatumTypeEnum;
 use App\Repository\DatumRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -30,35 +31,35 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Datum implements LoggableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['datum:read'])]
     private string $id;
 
-    #[ORM\ManyToOne(targetEntity: 'Item', inversedBy: 'data')]
+    #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data')]
     #[Groups(['datum:read'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
-    #[ORM\ManyToOne(targetEntity: 'Collection', inversedBy: 'data')]
+    #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'data')]
     #[Groups(['datum:read'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['datum:read', 'datum:write'])]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     private ?string $type = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['datum:read', 'datum:write'])]
     #[Assert\NotBlank]
     private ?string $label = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['datum:read', 'datum:write'])]
     private ?string $value = null;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
     #[Groups(['datum:read', 'datum:write'])]
     private ?int $position = null;
 
@@ -67,15 +68,15 @@ class Datum implements LoggableInterface
     #[Groups(['datum:write'])]
     private ?File $fileImage = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['datum:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['datum:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['datum:read'])]
     private ?string $imageLargeThumbnail = null;
 
@@ -84,23 +85,23 @@ class Datum implements LoggableInterface
     #[Groups(['datum:write'])]
     private ?File $fileFile = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['datum:read'])]
     private ?string $file = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['datum:read'])]
     private ?string $originalFilename = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['datum:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['datum:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['datum:read'])]
     private ?\DateTimeInterface $updatedAt;
 
