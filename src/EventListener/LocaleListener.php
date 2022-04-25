@@ -50,7 +50,7 @@ class LocaleListener
     {
         $entity = $args->getEntity();
 
-        if ($entity instanceof User) {
+        if ($entity instanceof User && $this->requestStack->getMainRequest()) {
             $this->requestStack->getSession()->set('_locale', $entity->getLocale());
         }
     }

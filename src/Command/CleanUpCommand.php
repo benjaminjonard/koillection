@@ -5,12 +5,17 @@ declare(strict_types=1);
 namespace App\Command;
 
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+#[AsCommand(
+    name: 'app:clean-up',
+    description: 'Delete unused images',
+)]
 class CleanUpCommand extends Command
 {
     public function __construct(
@@ -19,14 +24,6 @@ class CleanUpCommand extends Command
         private string $publicPath
     ) {
         parent::__construct();
-    }
-
-    protected function configure(): void
-    {
-        $this
-            ->setName('app:clean-up')
-            ->setDescription('Delete unused images')
-        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -68,10 +65,11 @@ class CleanUpCommand extends Command
         ';
 
         $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
-        $stmt->execute();
+        $result = $stmt->executeQuery();
+
         $dbPaths = array_map(function ($row) {
             return $row['image'];
-        }, $stmt->fetchAll());
+        }, $result->fetchAllAssociative());
 
         // Get all paths on disk
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath.'/uploads'));
