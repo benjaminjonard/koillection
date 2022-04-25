@@ -36,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     collectionOperations: ['get'],
     itemOperations: ['get', 'put', 'patch']
 )]
-class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Serializable
+class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -215,21 +215,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return (string) $this->getUsername();
     }
 
-    public function serialize(): ?string
+    public function __serialize()
     {
-        return serialize([
+        return [
             $this->id,
             $this->username,
             $this->password,
-        ]);
+        ];
     }
 
-    public function unserialize($serialized)
+    public function __unserialize($serialized)
     {
         list(
             $this->id,
             $this->username,
-            $this->password) = unserialize($serialized);
+            $this->password
+        ) = $serialized;
     }
 
     public function isAdmin(): bool
