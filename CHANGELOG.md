@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.3.3] / 2022-03-21
+## [1.3.3] / 2022-05-04
 ### Features
 - Add new Link type (Benjamin Jonard)
 
