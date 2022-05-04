@@ -36,7 +36,7 @@ class DatumTypeEnum
         self::TYPE_RATING,
         self::TYPE_NUMBER,
         self::TYPE_LINK,
-        self::TYPE_FILE
+        self::TYPE_FILE,
     ];
 
     public const IMAGE_TYPES = [
