@@ -4629,5 +4629,11 @@
             <target>Link</target>
         </segment>
     </unit>
+    <unit id="qa8vmwN" name="label.link">
+      <segment>
+        <source>label.link</source>
+        <target>Link</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
