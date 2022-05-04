@@ -10,6 +10,7 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Repository\TemplateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
@@ -24,30 +25,30 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Template implements BreadcrumbableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['template:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['template:read', 'template:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\OneToMany(targetEntity: 'Field', mappedBy: 'template', cascade: ['all'], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Field::class, mappedBy: 'template', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
     #[Groups(['template:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $fields;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'templates')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'templates')]
     #[Groups(['template:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['template:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['template:read'])]
     private ?\DateTimeInterface $updatedAt;
 

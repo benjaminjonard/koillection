@@ -13,6 +13,7 @@ use App\Enum\VisibilityEnum;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -34,16 +35,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tag implements BreadcrumbableInterface, LoggableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['tag:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['tag:read', 'tag:write'])]
     #[Assert\NotBlank]
     private string $label;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['tag:read', 'tag:write'])]
     private ?string $description = null;
 
@@ -52,41 +53,41 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     #[Groups(['tag:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['tag:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['tag:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'tags')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tags')]
     #[Groups(['tag:read'])]
     private ?User $owner = null;
 
-    #[ORM\ManyToOne(targetEntity: 'TagCategory', inversedBy: 'tags', fetch: 'EAGER', cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: TagCategory::class, inversedBy: 'tags', fetch: 'EAGER', cascade: ['persist'])]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
     #[Groups(['tag:read', 'tag:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?TagCategory $category = null;
 
-    #[ORM\ManyToMany(targetEntity: 'Item', mappedBy: 'tags')]
+    #[ORM\ManyToMany(targetEntity: Item::class, mappedBy: 'tags')]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['tag:read'])]
     private int $seenCounter;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['tag:read', 'tag:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['tag:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['tag:read'])]
     private ?\DateTimeInterface $updatedAt = null;
 

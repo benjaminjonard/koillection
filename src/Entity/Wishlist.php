@@ -15,6 +15,7 @@ use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -36,36 +37,36 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['wishlist:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['wishlist:read', 'wishlist:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'wishlists')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'wishlists')]
     #[Groups(['wishlist:read'])]
     private ?User $owner = null;
 
-    #[ORM\OneToMany(targetEntity: 'Wish', mappedBy: 'wishlist', cascade: ['all'])]
+    #[ORM\OneToMany(targetEntity: Wish::class, mappedBy: 'wishlist', cascade: ['all'])]
     #[ORM\OrderBy(['name' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $wishes;
 
-    #[ORM\Column(type: 'string', length: 6)]
+    #[ORM\Column(type: Types::STRING, length: 6)]
     #[Groups(['wishlist:read'])]
     private ?string $color = null;
 
-    #[ORM\OneToMany(targetEntity: 'Wishlist', mappedBy: 'parent', cascade: ['all'])]
+    #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'parent', cascade: ['all'])]
     #[ORM\OrderBy(['name' => 'ASC'])]
     #[Groups(['wishlist:read'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
-    #[ORM\ManyToOne(targetEntity: 'Wishlist', inversedBy: 'children')]
+    #[ORM\ManyToOne(targetEntity: Wishlist::class, inversedBy: 'children')]
     #[Groups(['wishlist:read', 'wishlist:write'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
@@ -77,31 +78,31 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Groups(['wishlist:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['wishlist:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['wishlist:read'])]
     private int $seenCounter;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read', 'wishlist:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['wishlist:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['wishlist:read'])]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['wishlist:read'])]
     private ?\DateTimeInterface $updatedAt = null;
 

@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LogRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
@@ -21,39 +22,39 @@ use Symfony\Component\Uid\Uuid;
 class Log
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['log:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string', length: 6, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
     #[Groups(['log:read'])]
     private ?string $type;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['log:read'])]
     private ?\DateTimeInterface $loggedAt = null;
 
-    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\Column(type: Types::STRING, length: 36)]
     #[Groups(['log:read'])]
     private string $objectId;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['log:read'])]
     private string $objectLabel;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Groups(['log:read'])]
     private string $objectClass;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => 0])]
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['log:read'])]
     private bool $objectDeleted;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['log:read'])]
     private ?string $payload;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'logs')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'logs')]
     #[Groups(['log:read'])]
     private ?User $owner;
 

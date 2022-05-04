@@ -10,6 +10,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\PhotoRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -31,30 +32,30 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Photo implements CacheableInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36, unique: true, options: ['fixed' => true])]
+    #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['photo:read'])]
     private string $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
     #[Groups(['photo:read', 'photo:write'])]
     private ?string $title = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['photo:read', 'photo:write'])]
     private ?string $comment = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['photo:read', 'photo:write'])]
     private ?string $place = null;
 
-    #[ORM\ManyToOne(targetEntity: 'Album', inversedBy: 'photos')]
+    #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'photos')]
     #[Assert\NotBlank]
     #[Groups(['photo:read', 'photo:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Album $album;
 
-    #[ORM\ManyToOne(targetEntity: 'User')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['photo:read'])]
     private ?User $owner = null;
 
@@ -63,35 +64,35 @@ class Photo implements CacheableInterface
     #[Groups(['photo:write'])]
     private ?File $file = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['photo:read'])]
     private ?string $image = null;
 
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['photo:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['photo:read'])]
     private ?\DateTimeInterface $takenAt = null;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['photo:read', 'photo:write'])]
     private string $visibility;
 
-    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['photo:read'])]
     private ?string $parentVisibility;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['photo:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['photo:read'])]
     private \DateTimeInterface $createdAt;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['photo:read'])]
     private ?\DateTimeInterface $updatedAt;
 

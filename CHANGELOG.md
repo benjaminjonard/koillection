@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.3] / 2022-05-04
+### Features
+- Add new Link type (Benjamin Jonard)
+
+### Fixes
+- Fix CleanUp and RegenerateThumbnails commands (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS and PHP dependencies, fixing all current CVEs (Benjamin Jonard)
+
 ## [1.3.2] / 2022-03-21
 ### Fixes
 - Fix image upload in additional data (Benjamin Jonard)

@@ -6,7 +6,7 @@
             </div>
 
             <div data-additional-data-target="textsHolder">
-                {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY'), constant('App\\Enum\\DatumTypeEnum::TYPE_FILE'), constant('App\\Enum\\DatumTypeEnum::TYPE_DATE'), constant('App\\Enum\\DatumTypeEnum::TYPE_RATING'), constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER')])) %}
+                {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::TEXT_TYPES')) %}
                     {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
                 {% endfor %}
             </div>
@@ -20,6 +20,7 @@
             <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') }}">{{ 'btn.add_date'|trans }}</a>
             <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') }}">{{ 'btn.add_file'|trans }}</a>
             <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') }}">{{ 'btn.add_rating'|trans }}</a>
+            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_LINK') }}">{{ 'btn.add_link'|trans }}</a>
         </div>
     </div>
 
@@ -30,7 +31,7 @@
             </div>
 
             <div data-additional-data-target="imagesHolder">
-                {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE'), constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN')])) %}
+                {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::IMAGE_TYPES')) %}
                     {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
                 {% endfor %}
             </div>

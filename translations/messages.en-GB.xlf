@@ -4623,5 +4623,17 @@
             <target>This will delete all tags with no items attached. Are you sure you want to delete those tags ? They will be permanently lost...</target>
         </segment>
     </unit>
+    <unit id="q7sxz1A" name="btn.add_link">
+        <segment>
+            <source>btn.add_link</source>
+            <target>Link</target>
+        </segment>
+    </unit>
+    <unit id="qa8vmwN" name="label.link">
+      <segment>
+        <source>label.link</source>
+        <target>Link</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
