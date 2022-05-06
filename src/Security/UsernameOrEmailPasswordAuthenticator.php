@@ -14,11 +14,14 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 
-class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
+class UsernameOrEmailPasswordAuthenticator extends AbstractLoginFormAuthenticator
 {
     public function __construct(
         private UserRepository $userRepository,
@@ -26,19 +29,13 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
     ) {
     }
 
-    public function supports(Request $request): ?bool
-    {
-        if (!$request->request->get('_login') || !$request->request->get('_password')) {
-            return false;
-        }
-
-        return true;
-    }
-
     public function authenticate(Request $request): Passport
     {
         $login = $request->request->get('_login');
         $password = $request->request->get('_password');
+        $csrfToken = $request->request->get('_csrf_token');
+
+        $request->getSession()->set(Security::LAST_USERNAME, $login);
 
         return new Passport(
             new UserBadge($login, function ($userIdentifier) {
@@ -50,7 +47,8 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
 
                 return $user;
             }),
-            new PasswordCredentials($password)
+            new PasswordCredentials($password),
+            [new RememberMeBadge(), new CsrfTokenBadge('authenticate', $csrfToken)]
         );
     }
 
@@ -59,12 +57,17 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractAuthenticator
         return new RedirectResponse($this->router->generate('app_homepage'));
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
         if ($request->hasSession()) {
             $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         }
 
         return new RedirectResponse($this->router->generate('app_security_login'));
+    }
+
+    protected function getLoginUrl(Request $request): string
+    {
+        return $this->router->generate('app_security_login');
     }
 }

@@ -30,17 +30,9 @@ security:
             jwt: ~
         main:
             pattern: ^/
-            form_login:
-                provider: app_provider
-                enable_csrf: true
-                login_path: app_security_login
-                check_path: app_security_login
-                default_target_path: app_homepage
-                always_use_default_target_path: false
-                use_referer: true
             remember_me:
                 secret: '%env(string:APP_SECRET)%'
-                lifetime: 31536000 # 1 year
+                lifetime: 2628000 # 1 month
                 secure: auto
             logout:
                 path: app_security_logout
