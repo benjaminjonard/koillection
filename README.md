@@ -18,9 +18,22 @@
 
 # Koillection
 
+<a href="koillection.github.io">koillection.github.io</a>
+
 Koillection is a self-hosted service allowing users to manage any kind of collection.
 It is a project I did for my personal use. But since it can interest some people I decided to release it publicly.
 If you like Koillection please consider leaving a star, it gives additional motivation to continue working on the project.
+
+## Demo
+
+Gitpod will run a new and temporary instance for you.
+
+When Gitpod has finished loading, select :
+
+    More actions -> Open in browser
+
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/koillection/koillection-gitpod)
 
 ## Warning
 
