@@ -18,9 +18,10 @@
 
 # Koillection
 
-Koillection is a self-hosted service allowing users to manage any kind of collection.
-It is a project I did for my personal use. But since it can interest some people I decided to release it publicly.
-If you like Koillection please consider leaving a star, it gives additional motivation to continue working on the project.
+Koillection is a self-hosted collection manager created to keep track of physical (mostly) collections of any kind like books, DVDs, stamps, games... 
+As Koillection is meant to be used for any kind of collections, it doesn't support automatic download of metadata. But it offer the possibility to add your own metadata freely.
+
+If you like Koillection please consider leaving a ⭐, it gives additional motivation to continue working on the project.
     
 You can find detailled informations in the <a href="https://github.com/koillection/koillection/wiki">wiki</a> (under construction)
 
