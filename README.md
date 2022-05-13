@@ -20,8 +20,6 @@
 
 Koillection is a self-hosted collection manager created to keep track of physical (mostly) collections of any kind like books, DVDs, stamps, games... 
 As Koillection is meant to be used for any kind of collections, it doesn't support automatic download of metadata. But it offer the possibility to add your own metadata freely.
-
-If you like Koillection please consider leaving a ⭐, it gives additional motivation to continue working on the project.
     
 You can find detailled informations in the <a href="https://github.com/koillection/koillection/wiki">wiki</a> (under construction)
 
@@ -57,5 +55,14 @@ See the <a href="https://github.com/koillection/koillection/wiki/Installation">I
 ## Updating
 See the <a href="https://github.com/koillection/koillection/wiki/Updating">Updating page</a> in the wiki
 
+## Support Koillection
+
+There are a few things you can do to support Koillection :
+    
+* If you like Koillection please consider leaving a ⭐, it gives additional motivation to continue working on the project.
+* Report any bug or error you see
+* English is not my first language, it would be a huge help if you could report any mistakes in both Koillection or the wiki
+    
+    
 ## Licensing
 Koillection is an Open Source software, released under the MIT License. 
