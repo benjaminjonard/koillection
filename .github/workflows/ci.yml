@@ -19,17 +19,17 @@ jobs:
   phpunit_mysql:
     name: PHPUnit tests with Mysql ${{ matrix.mysql }}
     runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          mysql: [ 8 ]
-      services:
-        mysql:
-          image: mysql:${{ matrix.mysql }}
-          env:
-            MYSQL_ROOT_PASSWORD: root
-          ports:
-            - 3306:3306
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      matrix:
+        mysql: [ 8 ]
+    services:
+      mysql:
+        image: mysql:${{ matrix.mysql }}
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: ./.github/workflows/init
         with:
