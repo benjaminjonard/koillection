@@ -17,20 +17,4 @@ jobs:
       - uses: symfonycorp/security-checker-action@v2
 
   phpunit_mysql:
-    name: PHPUnit tests with Mysql ${{ matrix.mysql }}
-    uses: ./.github/workflows/phpunit.yml
-    with:
-      DB_DRIVER: pdo_mysql
-      DB_PORT: 3306
-      DB_VERSION: ${{ matrix.mysql }}
-    strategy:
-      matrix:
-        mysql: [ 8 ]
-    services:
-      mysql:
-        image: mysql:${{ matrix.mysql }}
-        env:
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    uses: ./.github/workflows/phpunit-mysql.yml
