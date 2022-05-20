@@ -49,8 +49,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: assets/yarn install
-      - run: assets/yarn build
+      - run: (cd assets && yarn install)
+      - run: (cd assets && yarn build)
 
       # Setup test environment
       - run: bin/console lexik:jwt:generate-keypair --env=prod
