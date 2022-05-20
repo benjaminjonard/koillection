@@ -84,12 +84,12 @@ jobs:
         with:
           node-version: 14
       - uses: actions/cache@v3
-          id: cache-node-modules
-          with:
-            path: ~/.npm
-            key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
-            restore-keys: |
-              ${{ runner.os }}-yarn-
+        id: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - run: (cd assets && yarn install)
       - run: (cd assets && yarn build)
 
