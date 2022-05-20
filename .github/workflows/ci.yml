@@ -1,0 +1,39 @@
+name: Koillection CI
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  security_checker:
+    name: Security checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        id: cache-db
+        with:
+          path: ~/.symfony/cache
+          key: db
+      - uses: symfonycorp/security-checker-action@v2
+
+  phpunit_mysql:
+    name: PHPUnit tests with Mysql ${{ matrix.mysql }}
+    runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          mysql: [ 8 ]
+      services:
+        mysql:
+          image: mysql:${{ matrix.mysql }}
+          env:
+            MYSQL_ROOT_PASSWORD: root
+          ports:
+            - 3306:3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: ./.github/workflows/init
+        with:
+          DB_DRIVER: pdo_mysql
+          DB_PORT: 3306
+          DB_VERSION: ${{ matrix.mysql }}
+      - run: php -d memory_limit=512M ./bin/phpunit --stderr
