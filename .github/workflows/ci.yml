@@ -2,6 +2,8 @@ name: Koillection CI
 on:
   workflow_dispatch:
   push:
+    branches:
+      - "master"
 
 jobs:
   security_checker:
