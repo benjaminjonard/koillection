@@ -18,7 +18,11 @@ jobs:
 
   phpunit_mysql:
     name: PHPUnit tests with Mysql ${{ matrix.mysql }}
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/phpunit.yml
+    with:
+      DB_DRIVER: pdo_mysql
+      DB_PORT: 3306
+      DB_VERSION: ${{ matrix.mysql }}
     strategy:
       matrix:
         mysql: [ 8 ]
@@ -30,8 +34,3 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-    uses: ./.github/workflows/phpunit.yml
-    with:
-      DB_DRIVER: pdo_mysql
-      DB_PORT: 3306
-      DB_VERSION: ${{ matrix.mysql }}
