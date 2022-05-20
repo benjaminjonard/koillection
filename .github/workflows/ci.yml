@@ -28,7 +28,7 @@ jobs:
           php-version: 8.1
           extensions: ctype, fileinfo, gd, iconv, intl, json
       - uses: actions/cache@v3
-        id: composer-cache
+        id: cache-composer
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -60,7 +60,7 @@ jobs:
           php-version: 8.1
           extensions: ctype, fileinfo, gd, iconv, intl, json
       - uses: actions/cache@v3
-        id: composer-cache
+        id: cache-composer
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -81,9 +81,16 @@ jobs:
       # Setup yarn
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: 14
+      - uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - run: (cd assets && yarn install)
-      - run: (cd assets && yarn build)
+      - run: (cd assets && yarn dev)
 
       # Setup test environment
       - run: bin/console lexik:jwt:generate-keypair --env=prod
@@ -116,7 +123,7 @@ jobs:
           php-version: 8.1
           extensions: ctype, fileinfo, gd, iconv, intl, json
       - uses: actions/cache@v3
-        id: composer-cache
+        id: cache-composer
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -136,9 +143,16 @@ jobs:
       # Setup yarn
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: 14
+      - uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - run: (cd assets && yarn install)
-      - run: (cd assets && yarn build)
+      - run: (cd assets && yarn dev)
 
       # Setup test environment
       - run: bin/console lexik:jwt:generate-keypair --env=prod
