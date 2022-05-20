@@ -16,7 +16,6 @@ on:
 jobs:
   phpunit:
     name: Init Koillection for tests
-
     steps:
       - uses: actions/checkout@v2
 
@@ -45,7 +44,6 @@ jobs:
       - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
       - run: sed -i "s|DB_USER=.*|DB_USER=root|i" ".env.local"
       - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.local"
-
 
       # Setup yarn
       - uses: actions/setup-node@v2
