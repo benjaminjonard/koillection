@@ -8,7 +8,7 @@ jobs:
     name: Security checker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/cache@v2
         id: cache-db
         with:
@@ -18,3 +18,6 @@ jobs:
 
   phpunit_mysql:
     uses: ./.github/workflows/phpunit-mysql.yml
+
+  phpunit_postgres:
+    uses: ./.github/workflows/phpunit-postgres.yml
