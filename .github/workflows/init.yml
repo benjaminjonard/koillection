@@ -34,15 +34,6 @@ jobs:
             ${{ runner.os }}-php-
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - uses: actions/cache@v3
-          id: composer-cache
-          with:
-            path: vendor
-            key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-            restore-keys: |
-              ${{ runner.os }}-php-
-      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
       # Setup environment variables
       - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
 
