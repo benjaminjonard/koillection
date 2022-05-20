@@ -91,7 +91,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: (cd assets && yarn install)
-      - run: (cd assets && yarn build)
+      - run: (cd assets && yarn dev)
 
       # Setup test environment
       - run: bin/console lexik:jwt:generate-keypair --env=prod
@@ -153,7 +153,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: (cd assets && yarn install)
-      - run: (cd assets && yarn build)
+      - run: (cd assets && yarn dev)
 
       # Setup test environment
       - run: bin/console lexik:jwt:generate-keypair --env=prod
