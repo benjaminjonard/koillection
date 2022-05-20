@@ -56,3 +56,6 @@ jobs:
       - run: bin/console lexik:jwt:generate-keypair --env=prod
       - run: bin/console doctrine:database:create --env=prod
       - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=prod
+
+      # Run tests
+      - run: php -d memory_limit=512M ./bin/phpunit --stderr

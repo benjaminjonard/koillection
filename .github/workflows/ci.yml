@@ -30,10 +30,8 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-    uses: ./.github/workflows/init.yml
+    uses: ./.github/workflows/phpunit.yml
     with:
       DB_DRIVER: pdo_mysql
       DB_PORT: 3306
       DB_VERSION: ${{ matrix.mysql }}
-    steps:
-      - run: php -d memory_limit=512M ./bin/phpunit --stderr
