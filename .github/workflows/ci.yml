@@ -1,0 +1,149 @@
+name: Koillection CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  security_checker:
+    name: Security checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v2
+        id: cache-db
+        with:
+          path: ~/.symfony/cache
+          key: db
+      - uses: symfonycorp/security-checker-action@v2
+
+  doctrine_schema_validator:
+    name: Doctrine schema validator
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: ctype, fileinfo, gd, iconv, intl, json
+      - uses: actions/cache@v3
+        id: composer-cache
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - run: bin/console doctrine:schema:validate --skip-sync
+
+  phpunit_mysql:
+    name: PHPUnit tests with Mysql ${{ matrix.mysql }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mysql: [ 8 ]
+    services:
+      mysql:
+        image: mysql:${{ matrix.mysql }}
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+    steps:
+      - uses: actions/checkout@v3
+
+      # Setup php env and install dependencies
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: ctype, fileinfo, gd, iconv, intl, json
+      - uses: actions/cache@v3
+        id: composer-cache
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      # Setup environment variables
+      - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
+      - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env.local"
+      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
+      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
+      - run: sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env.local"
+      - run: sed -i "s|DB_USER=.*|DB_USER=root|i" ".env.local"
+      - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.local"
+      - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env.local"
+
+      # Setup yarn
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: (cd assets && yarn install)
+      - run: (cd assets && yarn build)
+
+      # Setup test environment
+      - run: bin/console lexik:jwt:generate-keypair --env=prod
+      - run: bin/console doctrine:database:create --env=prod
+      - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=prod
+
+      ## Run tests
+      - run: php -d memory_limit=512M ./bin/phpunit --stderr
+
+  phpunit_postgres:
+    name: PHPUnit tests with Postgres ${{ matrix.postgres }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        postgres: [ 10, 11, 12, 13, 14 ]
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres }}
+        env:
+          POSTGRES_PASSWORD: root
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
+    steps:
+      - uses: actions/checkout@v3
+
+      # Setup php env and install dependencies
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: ctype, fileinfo, gd, iconv, intl, json
+      - uses: actions/cache@v3
+        id: composer-cache
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      # Setup environment variables
+      - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
+      - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env.local"
+      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
+      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
+      - run: sed -i "s|DB_PORT=.*|DB_PORT=5432|i" ".env.local"
+      - run: sed -i "s|DB_USER=.*|DB_USER=postgres|i" ".env.local"
+      - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.local"
+      - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.postgres }}|i" ".env.local"
+      # Setup yarn
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: (cd assets && yarn install)
+      - run: (cd assets && yarn build)
+
+      # Setup test environment
+      - run: bin/console lexik:jwt:generate-keypair --env=prod
+      - run: bin/console doctrine:database:create --env=prod
+      - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=prod
+
+      ## Run tests
+      - run: php -d memory_limit=512M ./bin/phpunit --stderr

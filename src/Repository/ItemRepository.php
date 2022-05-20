@@ -203,7 +203,7 @@ class ItemRepository extends ServiceEntityRepository
     {
         return $this
             ->createQueryBuilder('i')
-            ->leftJoin('i.relatedItems', 'r')
+            ->join('i.relatedItems', 'r')
             ->addSelect('r')
             ->where('i.owner = :user')
             ->setParameter('user', $user->getId())
