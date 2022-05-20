@@ -84,7 +84,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: root
         ports:
-          - 3306:3306
+          - 5432:5432
         options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
       - uses: actions/checkout@v3
@@ -107,7 +107,7 @@ jobs:
       - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
       - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env.local"
       - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
-      - run: sed -i "s|DB_HOST=.*|DB_HOST=localhost|i" ".env.local"
+      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
       - run: sed -i "s|DB_PORT=.*|DB_PORT=5432|i" ".env.local"
       - run: sed -i "s|DB_USER=.*|DB_USER=postgres|i" ".env.local"
       - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.local"
