@@ -34,6 +34,20 @@ When Gitpod has finished loading, select :
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/koillection/koillection-gitpod)
 
+## Screenshots
+
+<p align="center">
+    <img width="400px" src="https://user-images.githubusercontent.com/20560781/168048241-cfcb71ce-c296-4f1b-bbb8-ecfea1e31048.png">
+    <img width="400px" src="https://user-images.githubusercontent.com/20560781/168048246-53e991d1-77e9-4397-80c4-f1aa82504068.png">
+</p>
+
+<p align="center">
+    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049067-dbac37b1-1150-4be5-ab95-f784d606f300.png">
+    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049077-efac8291-4f5c-48d9-b2fa-d65a51842d25.png">
+    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049088-2cda1da5-6e55-4800-918f-001fad6559a6.png">
+    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049095-5f26e2c6-7218-42ae-bde1-4b32abae7e35.png">
+</p>    
+    
 ## Warning
 
 Please back up your database, especially when updating to a new version. I do my best to test new versions, especially when they contains data migrations but some edge cases may escape my vigilance.
@@ -48,6 +62,7 @@ Please do back up your database.
 | 1.2.x       | 8.0         | :x:                       |
 | 1.1.x       | 7.4         | :x:                       |
 | 1.0.x       | 7.2         | :x:                       |
+   
 
 ## Installation
 See the <a href="https://github.com/koillection/koillection/wiki/Installation">Installation page</a> in the wiki
