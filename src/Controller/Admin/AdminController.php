@@ -97,6 +97,10 @@ class AdminController extends AbstractController
             foreach ($users as $user) {
                 $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$user->getId();
 
+                if (!is_dir($path)) {
+                    continue;
+                }
+
                 $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
                 foreach ($files as $name => $file) {
                     if (!$file->isDir()) {
