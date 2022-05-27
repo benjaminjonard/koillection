@@ -16,11 +16,14 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
+use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class LoggedWebTestCase extends WebTestCase
+class AppTestCase extends WebTestCase
 {
+    use RefreshDatabaseTrait;
+
     protected KernelBrowser $client;
 
     private ?User $user = null;

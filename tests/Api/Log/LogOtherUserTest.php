@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Log;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class LogOtherUserTest extends AuthenticatedTest
+class LogOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserLog(): void
     {

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Loan;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Loan;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoanOtherUserTest extends AuthenticatedTest
+class LoanOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserLoan(): void
     {

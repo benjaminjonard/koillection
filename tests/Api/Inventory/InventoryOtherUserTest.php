@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Inventory;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Inventory;
 use Symfony\Component\HttpFoundation\Response;
 
-class InventoryOtherUserTest extends AuthenticatedTest
+class InventoryOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserInventory(): void
     {

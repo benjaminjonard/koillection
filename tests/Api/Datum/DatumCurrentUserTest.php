@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Datum;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
 use Symfony\Component\HttpFoundation\Response;
 
-class DatumCurrentUserTest extends AuthenticatedTest
+class DatumCurrentUserTest extends ApiTestCase
 {
     public function testGetData(): void
     {

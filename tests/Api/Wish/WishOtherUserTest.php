@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Wish;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Wish;
 use Symfony\Component\HttpFoundation\Response;
 
-class WishOtherUserTest extends AuthenticatedTest
+class WishOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserWish(): void
     {

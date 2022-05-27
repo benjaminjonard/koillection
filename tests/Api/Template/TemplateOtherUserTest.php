@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Template;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Field;
 use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-class TemplateOtherUserTest extends AuthenticatedTest
+class TemplateOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserTemplate(): void
     {

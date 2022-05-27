@@ -22,6 +22,11 @@ doctrine:
             ownership: App\Doctrine\Filter\OwnershipFilter
             visibility: App\Doctrine\Filter\VisibilityFilter
 
+when@test:
+    doctrine:
+        dbal:
+            dbname_suffix: '_test'
+
 when@prod:
     doctrine:
         orm:

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\User;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserOtherUserTest extends AuthenticatedTest
+class UserOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUser(): void
     {

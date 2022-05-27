@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
-use App\Tests\LoggedWebTestCase;
+use App\Tests\AppTestCase;
 
-class AnonymousSmokeFunctionalTest extends LoggedWebTestCase
+class AnonymousSmokeFunctionalTest extends AppTestCase
 {
     /**
      * @dataProvider isSuccessfulUrlProvider

@@ -16,6 +16,11 @@ All in assets directory
 
 ## Tools
 ###### PhpUnit
+Init test database if not alreasy created :
+- `php bin/console doctrine:database:create --env=test`
+- `php bin/console doctrine:migrations:migrate --env=test`
+
+Then
 - `php -d memory_limit=512M ./bin/phpunit --stderr`
 
 ###### PHP CS fixer
