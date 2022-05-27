@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Item;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
@@ -12,7 +12,7 @@ use App\Entity\Loan;
 use App\Entity\Tag;
 use Symfony\Component\HttpFoundation\Response;
 
-class ItemCurrentUserTest extends AuthenticatedTest
+class ItemCurrentUserTest extends ApiTestCase
 {
     public function testGetItems(): void
     {

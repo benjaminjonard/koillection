@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Album;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Album;
 use App\Entity\Photo;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\Response;
 
-class AlbumCurrentUserTest extends AuthenticatedTest
+class AlbumCurrentUserTest extends ApiTestCase
 {
     public function testGetAlbums(): void
     {

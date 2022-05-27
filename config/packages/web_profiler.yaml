@@ -13,3 +13,4 @@ when@test:
 
     framework:
         profiler: { collect: false }
+

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Tag;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
 use Symfony\Component\HttpFoundation\Response;
 
-class TagCurrentUserTest extends AuthenticatedTest
+class TagCurrentUserTest extends ApiTestCase
 {
     public function testGetTags(): void
     {

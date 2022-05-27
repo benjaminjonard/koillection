@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Wishlist;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\Response;
 
-class WishlistCurrentUserTest extends AuthenticatedTest
+class WishlistCurrentUserTest extends ApiTestCase
 {
     public function testGetWishlists(): void
     {
