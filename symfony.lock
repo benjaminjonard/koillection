@@ -144,13 +144,12 @@
         "version": "2.10",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.1",
-            "ref": "ff94d76b2ec0c552b5d67d401f59ab8fd62f3d5f"
+            "branch": "main",
+            "version": "2.2",
+            "ref": "c84e4f2b9d7f436d7d52e8369230b393367607ec"
         },
         "files": [
-            "config/packages/dev/hautelook_alice.yaml",
-            "config/packages/test/hautelook_alice.yaml",
+            "config/packages/hautelook_alice.yaml",
             "fixtures/.gitignore"
         ]
     },
