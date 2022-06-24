@@ -17,7 +17,7 @@ services:
             - DB_HOST=postgresql
             - DB_PORT=5432
             - DB_USER=postgres
-            - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
+            - DB_PASSWORD=password
             - DB_VERSION=14
             - PHP_TZ=Europe/Paris
             - HTTPS_ENABLED=0
@@ -34,7 +34,7 @@ services:
         environment:
             - POSTGRES_DB=koillection
             - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=m6iFpZTkR1U6klSvLtRF
+            - POSTGRES_PASSWORD=password
             - POSTGRES_HOST_AUTH_METHOD=trust
         ports:
             - 5432:5432
@@ -46,19 +46,10 @@ services:
         image: mysql:latest
         command: --default-authentication-plugin=mysql_native_password
         environment:
-            - MYSQL_ROOT_PASSWORD=m6iFpZTkR1U6klSvLtRF
+            - MYSQL_ROOT_PASSWORD=password
             - MYSQL_DATABASE=koillection
 
         ports:
             - 3306:3306
         volumes:
             - "./docker/volumes/mysql:/var/lib/mysql"
-
-    pgadmin:
-        image: dpage/pgadmin4
-        restart: always
-        environment:
-            PGADMIN_DEFAULT_EMAIL: admin@admin.com
-            PGADMIN_DEFAULT_PASSWORD: root
-        ports:
-            - "8080:80"
