@@ -1,6 +1,10 @@
 controllers:
   resource: ../src/Controller/
-  type: attribute
+  type: annotation
+
+kernel:
+  resource: ../src/Kernel.php
+  type: annotation
 
 app_security_logout:
   path: /logout

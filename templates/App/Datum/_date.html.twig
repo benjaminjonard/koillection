@@ -1,4 +1,4 @@
 <div class="input-field col col s5">
     <input type="text" {{ stimulus_controller('datepicker') }} id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]" length="255" {% if datum is defined %}value="{{ datum.value ? datum.value|date(app.user.dateFormat|default('Y-m-d')) : '' }}"{% endif %}>
-    <label for="data_{{ iteration }}_value" class="required {% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
+    <label for="data_{{ iteration }}_value" class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
 </div>

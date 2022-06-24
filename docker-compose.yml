@@ -12,13 +12,13 @@ services:
         environment:
             - APP_ENV=dev
             - APP_DEBUG=1
-            - DB_DRIVER=pdo_mysql
+            - DB_DRIVER=pdo_pgsql
             - DB_NAME=koillection
-            - DB_HOST=mysql
-            - DB_PORT=3306
-            - DB_USER=root
+            - DB_HOST=postgresql
+            - DB_PORT=5432
+            - DB_USER=postgres
             - DB_PASSWORD=m6iFpZTkR1U6klSvLtRF
-            - DB_VERSION=8
+            - DB_VERSION=14
             - PHP_TZ=Europe/Paris
             - HTTPS_ENABLED=0
         depends_on:
