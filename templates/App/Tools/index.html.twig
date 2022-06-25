@@ -67,7 +67,7 @@
                             {% if inventory.totalItemsCount == 0 %}
                                 <td>100 %</td>
                             {% else %}
-                                <td>{{ inventory.totalItemsCount ((inventory.checkedItemsCount*100)/inventory.totalItemsCount)|round(2) }} %</td>
+                                <td>{{ ((inventory.checkedItemsCount*100)/inventory.totalItemsCount)|round(2) }} %</td>
                             {% endif %}
                             <td>{{ inventory.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         </tr>
