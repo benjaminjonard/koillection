@@ -90,6 +90,11 @@ class ToolsController extends AbstractController
             $zip = new ZipStream($zipFilename, $options);
 
             $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$this->getUser()->getId();
+
+            if (!is_dir($path)) {
+                $zip->finish();
+            }
+
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
             foreach ($files as $name => $file) {
                 if (!$file->isDir()) {

@@ -10,6 +10,7 @@
 .php_cs.cache
 
 /docker/*
+docker-compose.yml
 
 ###> symfony/webpack-encore-bundle ###
 /assets/node_modules/

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Photo;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Photo;
 use Symfony\Component\HttpFoundation\Response;
 
-class PhotoOtherUserTest extends AuthenticatedTest
+class PhotoOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserPhoto(): void
     {

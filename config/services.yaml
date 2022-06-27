@@ -1,5 +1,5 @@
 parameters:
-    release: '1.3.3'
+    release: '1.3.4'
     locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
 
@@ -17,11 +17,10 @@ services:
     App\:
         resource: '../src/*'
         exclude:
-            - '../src/DependencyInjection/'
             - '../src/Entity/'
+            - '../src/Model/'
             - '../src/Kernel.php'
             - '../src/Tests/'
-            - '../src/Migrations/'
 
     App\Controller\:
         resource: '../src/Controller'

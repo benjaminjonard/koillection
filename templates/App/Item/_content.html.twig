@@ -110,10 +110,14 @@
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}
                         {{ datum.value }}
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
-                        <span class="flag">{{ getCountryFlag(datum.value) }}</span>
-                        <span class="country-name">({{ getCountryName(datum.value) }})</span>
+                        {% if datum.value is not empty %}
+                            <span class="flag">{{ getCountryFlag(datum.value) }}</span>
+                            <span class="country-name">({{ getCountryName(datum.value) }})</span>
+                        {% endif %}
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
-                        <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
+                        {% if datum.file is not empty %}
+                            <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
+                        {% endif %}
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
                         {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') %}

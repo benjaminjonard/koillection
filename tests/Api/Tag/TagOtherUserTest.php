@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Tag;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Item;
 use App\Entity\Tag;
 use Symfony\Component\HttpFoundation\Response;
 
-class TagOtherUserTest extends AuthenticatedTest
+class TagOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserTag(): void
     {

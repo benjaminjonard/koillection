@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Collection;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\Response;
 
-class CollectionCurrentUserTest extends AuthenticatedTest
+class CollectionCurrentUserTest extends ApiTestCase
 {
     public function testGetCollections(): void
     {

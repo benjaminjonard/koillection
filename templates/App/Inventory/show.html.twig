@@ -19,16 +19,12 @@
         <div class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green lighten-4' : 'red lighten-4' }}">
             {{ collection.title }} -
             <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span> / <span class="js-total-counter">{{ collection.totalItems }}</span>
-            (<span class="js-rate">{{ ((collection.totalCheckedItems*100)/collection.totalItems)|round(2) }}</span>%)
+            {% if collection.totalItems == 0 %}
+                (<span class="js-rate">100</span>%)
+            {% else %}
+                (<span class="js-rate">{{ ((collection.totalCheckedItems*100)/collection.totalItems)|round(2) }}</span>%)
+            {% endif %}
         </div>
-
-        {% if collection.children|length %}
-            <ul>
-                {% for child in collection.children %}
-                    {{ self.recursiveCollection(child) }}
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         {% if collection.items|length %}
             <ul>
@@ -44,6 +40,14 @@
                 {% endfor %}
             </ul>
         {% endif %}
+
+        {% if collection.children|length %}
+            <ul>
+                {% for child in collection.children %}
+                    {{ self.recursiveCollection(child) }}
+                {% endfor %}
+            </ul>
+        {% endif %} 
     </li>
 {% endmacro %}
 

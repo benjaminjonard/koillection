@@ -6,11 +6,6 @@ kernel:
   resource: ../src/Kernel.php
   type: annotation
 
-app_homepage:
-  path: /collections
-  defaults: { _controller: 'App\Controller\CollectionController::index' }
-  methods:  [GET]
-
 app_security_logout:
   path: /logout
 

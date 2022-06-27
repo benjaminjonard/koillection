@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Field;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Field;
 use App\Entity\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-class FieldCurrentUserTest extends AuthenticatedTest
+class FieldCurrentUserTest extends ApiTestCase
 {
     public function testGetFields(): void
     {

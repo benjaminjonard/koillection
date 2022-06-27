@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.4] / 2022-06-27
+### Fixes
+- Fix zip exports if user uploads directory doesn't exist (Benjamin Jonard)
+- Fix error when displaying item with empty file or country fields (Benjamin Jonard)
+- Remove Administration entry in menu on mobile for non admin users (Benjamin Jonard)
+- Fix completion percent on inventories (Benjamin Jonard)
+- Handle division by zero in inventories when a collection has no items (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS and PHP dependencies (Benjamin Jonard)
+
 ## [1.3.3] / 2022-05-04
 ### Features
 - Add new Link type (Benjamin Jonard)

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Item;
 
-use Api\Tests\AuthenticatedTest;
+use Api\Tests\ApiTestCase;
 use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Loan;
 use App\Entity\Tag;
 use Symfony\Component\HttpFoundation\Response;
 
-class ItemOtherUserTest extends AuthenticatedTest
+class ItemOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUserItem(): void
     {

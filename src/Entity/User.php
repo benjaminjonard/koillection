@@ -194,6 +194,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->locale = LocaleEnum::LOCALE_EN_GB;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
+        $this->automaticDarkModeStartAt = null;
         $this->darkModeEnabled = false;
         $this->wishlistsFeatureEnabled = true;
         $this->tagsFeatureEnabled = true;
