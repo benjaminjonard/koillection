@@ -70,8 +70,9 @@ jobs:
 
       # Setup environment variables
       - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
+      - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env.local"
       - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env.local"
-      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection_test|i" ".env.local"
+      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
       - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
       - run: sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env.local"
       - run: sed -i "s|DB_USER=.*|DB_USER=root|i" ".env.local"
@@ -133,8 +134,9 @@ jobs:
 
       # Setup environment variables
       - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
+      - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env.local"
       - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env.local"
-      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection_test|i" ".env.local"
+      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
       - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
       - run: sed -i "s|DB_PORT=.*|DB_PORT=5432|i" ".env.local"
       - run: sed -i "s|DB_USER=.*|DB_USER=postgres|i" ".env.local"
