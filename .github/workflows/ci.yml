@@ -69,15 +69,15 @@ jobs:
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       # Setup environment variables
-      - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
-      - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env.local"
-      - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env.local"
-      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
-      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
-      - run: sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env.local"
-      - run: sed -i "s|DB_USER=.*|DB_USER=root|i" ".env.local"
-      - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.local"
-      - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env.local"
+      - run: php -r "file_exists('.env.test') || copy('.env', '.env.test');"
+      - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env.test"
+      - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env.test"
+      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.test"
+      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.test"
+      - run: sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env.test"
+      - run: sed -i "s|DB_USER=.*|DB_USER=root|i" ".env.test"
+      - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.test"
+      - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env.test"
 
       # Setup yarn
       - uses: actions/setup-node@v2
@@ -133,15 +133,15 @@ jobs:
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       # Setup environment variables
-      - run: php -r "file_exists('.env.local') || copy('.env', '.env.local');"
-      - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env.local"
-      - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env.local"
-      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
-      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
-      - run: sed -i "s|DB_PORT=.*|DB_PORT=5432|i" ".env.local"
-      - run: sed -i "s|DB_USER=.*|DB_USER=postgres|i" ".env.local"
-      - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.local"
-      - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.postgres }}|i" ".env.local"
+      - run: php -r "file_exists('.env.test') || copy('.env', '.env.test');"
+      - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env.test"
+      - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env.test"
+      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.test"
+      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.test"
+      - run: sed -i "s|DB_PORT=.*|DB_PORT=5432|i" ".env.test"
+      - run: sed -i "s|DB_USER=.*|DB_USER=postgres|i" ".env.test"
+      - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.test"
+      - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.postgres }}|i" ".env.test"
       # Setup yarn
       - uses: actions/setup-node@v2
         with:
