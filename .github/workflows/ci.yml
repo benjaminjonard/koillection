@@ -94,9 +94,9 @@ jobs:
       - run: (cd assets && yarn dev)
 
       # Setup test environment
-      - run: bin/console lexik:jwt:generate-keypair --env=prod
-      - run: bin/console doctrine:database:create --env=prod
-      - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=prod
+      - run: bin/console lexik:jwt:generate-keypair --env=test
+      - run: bin/console doctrine:database:create --env=test
+      - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
       - run: php -d memory_limit=512M ./bin/phpunit --stderr
@@ -157,9 +157,9 @@ jobs:
       - run: (cd assets && yarn dev)
 
       # Setup test environment
-      - run: bin/console lexik:jwt:generate-keypair --env=prod
-      - run: bin/console doctrine:database:create --env=prod
-      - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=prod
+      - run: bin/console lexik:jwt:generate-keypair --env=test
+      - run: bin/console doctrine:database:create --env=test
+      - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
       - run: php -d memory_limit=512M ./bin/phpunit --stderr
