@@ -60,7 +60,12 @@
                         <a href="{{ path('app_collection_edit', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
-                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
+                        <a href="#modal-delete"
+                           class="modal-trigger button"
+                           data-path="{{ path('app_collection_delete', {id: collection.id}) }}"
+                           data-message="{{ 'message.delete.collection'|trans }}"
+                           title="{{ 'tooltip.delete'|trans }}"
+                        >
                             <i class="fa fa-trash fa-fw"></i>
                         </a>
                         {% if isFeatureEnabled('tags') %}
@@ -145,7 +150,7 @@
 {% block modals %}
     {% if context == 'default' %}
         {{ include('App/_partials/_modal/_share.html.twig', {'entity': collection, 'route': url('app_shared_collection_show', {id: collection.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_collection_delete', {id: collection.id}), transKey: 'message.delete.collection'}) }}
+        {{ include('App/_partials/_modal/_delete.html.twig') }}
     {% endif %}
 {% endblock %}
 

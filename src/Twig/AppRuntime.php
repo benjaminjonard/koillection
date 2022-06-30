@@ -160,10 +160,9 @@ class AppRuntime implements RuntimeExtensionInterface
         return $this->featureChecker->isFeatureEnabled($feature);
     }
 
-    public function createDeleteForm($url): FormView
+    public function createDeleteForm(): FormView
     {
         return $this->formFactory->createBuilder(FormType::class)
-            ->setAction($url)
             ->setMethod('POST')
             ->getForm()
             ->createView()
