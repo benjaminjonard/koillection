@@ -10,12 +10,17 @@ export default class extends Controller {
         new TsSelect2(this.element, {
             templateSelection: function (visibility) {
                 return self.htmlToElement(
-                    '<div><span>' + visibility.text + '</span></div>'
+                    '<div>' + self.getIcon(visibility.element.value) + '<span>' + visibility.text + '</span></div>'
                 );
             },
+
             templateResult: function (visibility) {
+                if (!visibility.id) {
+                    return '';
+                }
+
                 return self.htmlToElement(
-                    '<div><span>' + visibility.text + '</span><span class="select-tip">' + Translator.trans('global.visibilities.' + visibility.id + '.description') + '</span></div>'
+                    '<div>' + self.getIcon(visibility.element.value) + '<span>' + visibility.text + '</span><span class="select-tip">' + Translator.trans('global.visibilities.' + visibility.id + '.description') + '</span></div>'
                 );
             },
         })
@@ -26,5 +31,18 @@ export default class extends Controller {
         html = html.trim();
         template.innerHTML = html;
         return template.content.firstChild;
+    }
+
+    getIcon(value) {
+        switch (value) {
+            case 'public':
+                return '<i class="select-icon fa fa-globe fa-fw"></i><i class="select-icon fa fa-unlock-alt fa-fw fa-secondary"></i>';
+            case 'private':
+                return '<i class="select-icon fa fa-lock fa-fw"></i>';
+            case 'internal':
+                return '<i class="select-icon fa fa-user fa-fw"></i><i class="select-icon fa fa-unlock-alt fa-fw fa-secondary"></i>';
+        }
+
+        return '';
     }
 }
