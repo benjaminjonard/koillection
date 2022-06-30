@@ -11,11 +11,10 @@ export default class extends Lightbox {
         this.lightGallery
         let self = this;
 
-        this.element.addEventListener('onAfterSlide', function(event){
+        this.element.addEventListener('lgAfterAppendSlide', function(event){
             document.querySelectorAll('.js-custom-lightbox-button').forEach((element) => {
                 element.remove();
             })
-
             if (self.imageTargets.length > 0) {
                 if (self.imageTargets[event.detail.index].dataset.showUrl) {
                     let url = self.imageTargets[event.detail.index].dataset.showUrl;
@@ -27,9 +26,10 @@ export default class extends Lightbox {
                     self.injectEditButton(url);
                 }
 
-                if (self.imageTargets[event.detail.index].dataset.deleteId) {
-                    let deleteId = self.imageTargets[event.detail.index].dataset.deleteId;
-                    self.injectDeleteButton(deleteId);
+                if (self.imageTargets[event.detail.index].dataset.deletePath) {
+                    let path = self.imageTargets[event.detail.index].dataset.deletePath;
+                    let message = self.imageTargets[event.detail.index].dataset.deleteMessage;
+                    self.injectDeleteButton(path, message);
                 }
             }
 
@@ -64,14 +64,19 @@ export default class extends Lightbox {
         document.querySelector('.lg-toolbar').insertAdjacentHTML('beforeend', html);
     }
 
-    injectDeleteButton(id) {
+    injectDeleteButton(path, message) {
         let html = `
-            <a href="#__id_placeholder__" class="modal-trigger button btn-grey js-custom-lightbox-button lg-icon">
+            <a href="#modal-delete" 
+               class="modal-trigger button btn-grey js-custom-lightbox-button lg-icon"
+               data-path="__path_placeholder__"
+               data-message="__message_placeholder__"
+            >
                 <i class="fa fa-trash fa-fw"></i>
             </a>
         `;
 
-        html = html.replace('__id_placeholder__', id);
+        html = html.replace('__path_placeholder__', path);
+        html = html.replace('__message_placeholder__', message);
         document.querySelector('.lg-toolbar').insertAdjacentHTML('beforeend', html);
     }
 }

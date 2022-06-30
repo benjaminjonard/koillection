@@ -60,7 +60,14 @@
                                     <i class="fa fa-pencil fa-fw"></i>
                                 </a>
                                 {% if false == user.isAdmin() %}
-                                    <a href="#delete-{{ user.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>
+                                    <a href="#modal-delete"
+                                       class="modal-trigger"
+                                       title="{{ 'tooltip.delete'|trans }}"
+                                       data-path="{{ path('app_admin_user_delete', {id: user.id}) }}"
+                                       data-message="{{ 'message.delete.user'|trans }}"
+                                    >
+                                        <i class="fa fa-trash fa-fw"></i>
+                                    </a>
                                 {% endif %}
                             </td>
                         </tr>
@@ -72,8 +79,6 @@
 {% endblock %}
 
 {% block modals %}
-    {% for user in users %}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ user.id , 'route': path('app_admin_user_delete', {id: user.id}), transKey: 'message.delete.user'}) }}
-    {% endfor %}
+    {{ include('App/_partials/_modal/_delete.html.twig') }}
 {% endblock %}
 

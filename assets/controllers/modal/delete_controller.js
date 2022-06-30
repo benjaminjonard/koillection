@@ -7,7 +7,7 @@ export default class extends Controller {
         M.Modal.init(this.element, {
             onOpenStart: function (modal, trigger) {
                 modal.getElementsByTagName('form')[0].action = trigger.dataset.path;
-                modal.getElementsByClassName('modal-body')[0].html = trigger.dataset.message;
+                modal.getElementsByClassName('modal-body')[0].innerHTML = trigger.dataset.message;
             }
         });
     }
