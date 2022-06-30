@@ -52,14 +52,10 @@
                         <td>{{ loan.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         <td class="hide-on-small-only">{{ loan.lentAt|timeAgo }}</td>
                         <td class="table-actions">
-                            <a class="modal-trigger"
-                               href="#modal-delete"
-                               title="{{ 'tooltip.delete'|trans }}"
-                               data-path="{{ path('app_loan_delete', {id: loan.id}) }}"
-                               data-message="{{ 'message.delete.loan'|trans }}"
-                            >
-                                <i class="fa fa-trash fa-fw"></i>
-                            </a>
+                            {{ include('App/_partials/_delete_icon.html.twig', {
+                                path: path('app_loan_delete', {id: loan.id}),
+                                message: 'message.delete.loan'
+                            }) }}
                             <a href="{{ path('app_loan_returned', {'id' : loan.id}) }}" title="{{ 'tooltip.returned'|trans }}"><i class="fa fa-check fa-fw"></i></a>
                         </td>
                     </tr>
@@ -89,14 +85,10 @@
                         <td>{{ returnedItem.returnedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
                         <td class="hide-on-small-only">{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
                         <td class="table-actions">
-                            <a class="modal-trigger"
-                               href="#modal-delete"
-                               title="{{ 'tooltip.delete'|trans }}"
-                               data-path="{{ path('app_loan_delete', {id: returnedItem.id}) }}"
-                               data-message="{{ 'message.delete.loan'|trans }}"
-                            >
-                                <i class="fa fa-trash fa-fw"></i>
-                            </a>
+                            {{ include('App/_partials/_delete_icon.html.twig', {
+                                path: path('app_loan_delete', {id: returnedItem.id}),
+                                message: 'message.delete.loan'
+                            }) }}
                         </td>
                     </tr>
                 {% endfor %}
@@ -104,11 +96,5 @@
             </table>
         </div>
     </div>
-{% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_delete.html.twig') }}
-    {% endif %}
 {% endblock %}
 

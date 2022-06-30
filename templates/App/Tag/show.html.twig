@@ -45,15 +45,10 @@
                         <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
-                        <a href="#modal-delete"
-                           class="modal-trigger button"
-                           title="{{ 'tooltip.delete'|trans }}"
-                           data-path="{{ path('app_tag_delete', {id: tag.id}) }}"
-                           data-message="{{ 'message.delete.tag'|trans }}"
-                        >
-                            <i class="fa fa-trash fa-fw"></i>
-                        </a>
-
+                        {{ include('App/_partials/_delete_icon.html.twig', {
+                            path: path('app_tag_delete', {id: tag.id}),
+                            message: 'message.delete.tag'
+                        }) }}
                         {% if isFeatureEnabled('history') %}
                             <a href="{{ path('app_tag_history', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
                                 <i class="fa fa-history fa-fw"></i>
@@ -144,7 +139,6 @@
 {% block modals %}
     {% if context == 'default' %}
         {{ include('App/_partials/_modal/_share.html.twig', {'entity': tag, 'route': url('app_shared_tag_show', {id: tag.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig') }}
     {% endif %}
 {% endblock %}
 

@@ -36,14 +36,10 @@
                 </td>
                 <td class="table-actions center">
                     <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
-                    <a href="#modal-delete"
-                       class="modal-trigger"
-                       title="{{ 'tooltip.delete'|trans }}"
-                       data-path="{{ path('app_item_delete', {id: item.id}) }}"
-                       data-message="{{ 'message.delete.item'|trans }}"
-                    >
-                        <i class="fa fa-trash fa-fw"></i>
-                    </a>
+                    {{ include('App/_partials/_delete_icon.html.twig', {
+                        path: path('app_item_delete', {id: item.id}),
+                        message: 'message.delete.item'
+                    }) }}
                 </td>
             {% endif %}
         </tr>

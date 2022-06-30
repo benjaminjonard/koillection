@@ -149,7 +149,7 @@ label div {font-size: 0.8rem;}
 ul.nav-pills {display: inline-block;}
 ul.nav-pills li { white-space: nowrap; display: inline;}
 .content-wrapper  .stats-block ul.nav-pills li {text-transform: uppercase; font-size: 13px; font-weight: 600; line-height: 18px; padding: 11px 16px; letter-spacing: .4px; margin-left: 12px; }
-.button {padding-top: 17px; font-size: 20px; color: rgba(0,0,0,0.87); font-weight: 600; letter-spacing: 0.4px; line-height: 18px; cursor: pointer; display: inline-block; margin-bottom: 0; text-align: center; vertical-align: middle; white-space: nowrap;}
+.btn-holder .button {padding-top: 17px; font-size: 20px; color: rgba(0,0,0,0.87); font-weight: 600; letter-spacing: 0.4px; line-height: 18px; cursor: pointer; display: inline-block; margin-bottom: 0; text-align: center; vertical-align: middle; white-space: nowrap;}
 
 table .visibility {padding-top: 0px;}
 .visibility {padding-top: 17px; font-size: 20px; font-weight: 600; letter-spacing: 0.4px; line-height: 18px; display: inline-block; margin-bottom: 0; text-align: center; vertical-align: middle; white-space: nowrap;}

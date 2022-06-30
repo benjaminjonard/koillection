@@ -47,7 +47,6 @@
 {% block modals %}
     {% if context == 'default' %}
         {{ include('App/_partials/_modal/_share.html.twig', {'entity': item, 'route': url('app_shared_tag_item_show', {itemId: item.id, tagId: tag.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig') }}
     {% endif %}
 {% endblock %}
 

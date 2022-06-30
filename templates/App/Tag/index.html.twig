@@ -59,8 +59,7 @@
 
         <div class="content-block" data-filter-ajax-target="content">
             <div class="right">
-                <button
-                        data-target="modal-delete"
+                <button data-target="modal-delete"
                         class="btn waves-effect waves-light modal-trigger"
                         data-path="{{ path('app_tag_delete_unused_tags') }}"
                         data-message="{{ 'message.delete.unused_tag'|trans }}"
@@ -77,7 +76,6 @@
 {% block modals %}
     {% if context == 'default' %}
         {{ include('App/_partials/_modal/_share.html.twig', {'route': url('app_shared_tag_index', {username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig') }}
     {% endif %}
 {% endblock %}
 
