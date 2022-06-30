@@ -83,6 +83,7 @@ class Wish implements CacheableInterface
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wish:read', 'wish:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]

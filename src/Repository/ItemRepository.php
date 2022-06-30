@@ -148,7 +148,7 @@ class ItemRepository extends ServiceEntityRepository
 
         return $this
             ->createQueryBuilder('i')
-            ->select('partial i.{id, name, image, imageSmallThumbnail}')
+            ->select('partial i.{id, name, image, imageSmallThumbnail, finalVisibility}')
             ->where('i.id IN (:ids)')
             ->setParameter('ids', $ids)
             ->getQuery()

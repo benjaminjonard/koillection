@@ -14,7 +14,7 @@ export default class extends Controller {
                 }
                 console.log(country)
                 return self.htmlToElement(
-                    '<div><span class="flag">' + country.element.dataset.flag + '</span><span>' + country.text + '</span></div>'
+                    '<div><span class="select-icon">' + country.element.dataset.flag + '</span><span>' + country.text + '</span></div>'
                 );
             },
             templateResult: function (country) {
@@ -23,7 +23,7 @@ export default class extends Controller {
                 }
 
                 return self.htmlToElement(
-                    '<div><span class="flag">' + country.element.dataset.flag + '</span><span>' + country.text + '</span></div>'
+                    '<div><span class="select-icon">' + country.element.dataset.flag + '</span><span>' + country.text + '</span></div>'
                 );
             },
             language: {

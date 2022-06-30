@@ -11,6 +11,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -99,8 +100,14 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private int $seenCounter;
 
+    #[ORM\Column(type: Types::STRING, length: 4)]
+    #[Groups(['collection:read', 'collection:write'])]
+    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
+    private string $itemsDisplayMode;
+
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read', 'collection:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
@@ -126,6 +133,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->items = new ArrayCollection();
         $this->data = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
         $this->seenCounter = 0;
     }
 
@@ -365,6 +373,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
                 $data->setCollection(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getItemsDisplayMode(): string
+    {
+        return $this->itemsDisplayMode;
+    }
+
+    public function setItemsDisplayMode(string $itemsDisplayMode): Collection
+    {
+        $this->itemsDisplayMode = $itemsDisplayMode;
 
         return $this;
     }

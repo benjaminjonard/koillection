@@ -1,0 +1,45 @@
+<table class="highlight items-table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>{{ 'label.name'|trans }}</th>
+        <th class="center">{{ 'label.visibility'|trans }}</th>
+        {% if context == 'default' %}
+            <th class="center">{{ 'label.actions'|trans }}</th>
+        {% endif %}
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for item in items|naturalSorting %}
+        {% set link = path('app_item_show'|applyContext, {id: item.id}) %}
+        <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
+            <td>
+                <a class="table-link" href="{{ link }}"></a>
+                {% if item.imageSmallThumbnail %}
+                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
+                        <img data-src="{{ asset(item.imageSmallThumbnail) }}"
+                             data-lazy-loading-target="image"
+                             aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
+                        >
+                    </div>
+                {% endif %}
+            </td>
+            <td>
+                <a class="table-link" href="{{ link }}"></a>
+                {{item.name}}
+            </td>
+            <td class="center">
+                <a class="table-link" href="{{ link }}"></a>
+                {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
+            </td>
+            <td class="table-actions center">
+                {% if context == 'default' %}
+                    <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
+                    {#                                        <a href="#delete-{{ item.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>#}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

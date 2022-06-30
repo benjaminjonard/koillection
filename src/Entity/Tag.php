@@ -81,6 +81,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['tag:read', 'tag:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]

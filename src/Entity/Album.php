@@ -86,6 +86,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['album:read', 'album:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
