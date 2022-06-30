@@ -3,8 +3,8 @@
     <tr>
         <th></th>
         <th>{{ 'label.name'|trans }}</th>
-        <th class="center">{{ 'label.visibility'|trans }}</th>
         {% if context == 'default' %}
+            <th class="center">{{ 'label.visibility'|trans }}</th>
             <th class="center">{{ 'label.actions'|trans }}</th>
         {% endif %}
     </tr>
@@ -29,16 +29,16 @@
                 <a class="table-link" href="{{ link }}"></a>
                 {{item.name}}
             </td>
-            <td class="center">
-                <a class="table-link" href="{{ link }}"></a>
-                {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
-            </td>
-            <td class="table-actions center">
-                {% if context == 'default' %}
+            {% if context == 'default' %}
+                <td class="center">
+                    <a class="table-link" href="{{ link }}"></a>
+                    {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
+                </td>
+                <td class="table-actions center">
                     <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
-                    {#                                        <a href="#delete-{{ item.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>#}
-                {% endif %}
-            </td>
+                    {# <a href="#delete-{{ item.id }}" class="modal-trigger" title="{{ 'tooltip.delete'|trans }}"><i class="fa fa-trash fa-fw"></i></a>#}
+                </td>
+            {% endif %}
         </tr>
     {% endfor %}
     </tbody>
