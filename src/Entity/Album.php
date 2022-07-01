@@ -11,6 +11,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -84,6 +85,11 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Groups(['album:read'])]
     private int $seenCounter;
 
+    #[ORM\Column(type: Types::STRING, length: 4)]
+    #[Groups(['tag:read', 'tag:write'])]
+    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
+    private string $photosDisplayMode;
+
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['album:read', 'album:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
@@ -112,6 +118,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         $this->photos = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->photosDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
     }
 
     public function __toString(): string
@@ -324,6 +331,18 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     public function setFinalVisibility(string $finalVisibility): self
     {
         $this->finalVisibility = $finalVisibility;
+
+        return $this;
+    }
+
+    public function getPhotosDisplayMode(): string
+    {
+        return $this->photosDisplayMode;
+    }
+
+    public function setPhotosDisplayMode(string $photosDisplayMode): Album
+    {
+        $this->photosDisplayMode = $photosDisplayMode;
 
         return $this;
     }

@@ -11,10 +11,11 @@ export default class extends Lightbox {
         this.lightGallery
         let self = this;
 
-        this.element.addEventListener('lgAfterAppendSlide', function(event){
+        this.element.addEventListener('lgBeforeSlide', function(event){
             document.querySelectorAll('.js-custom-lightbox-button').forEach((element) => {
                 element.remove();
             })
+
             if (self.imageTargets.length > 0) {
                 if (self.imageTargets[event.detail.index].dataset.showUrl) {
                     let url = self.imageTargets[event.detail.index].dataset.showUrl;

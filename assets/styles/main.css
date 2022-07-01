@@ -13,6 +13,7 @@ footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; fo
 .show-on-mobile {display: none;}
 .fa {font-size: 20px;}
 .fa-rotate-180 {-webkit-transform: rotate(180deg); transform: rotate(180deg);}
+table img {vertical-align: middle;}
 
 a {outline: 0;}
 

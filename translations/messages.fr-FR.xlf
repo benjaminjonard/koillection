@@ -4656,5 +4656,11 @@
         <target>Afficher les objets dans une</target>
       </segment>
     </unit>
+    <unit id="bBCsu64" name="label.photos_display_mode">
+      <segment>
+        <source>label.photos_display_mode</source>
+        <target>Afficher les photos dans une</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

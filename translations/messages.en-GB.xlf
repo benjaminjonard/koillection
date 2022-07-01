@@ -4653,5 +4653,11 @@
         <target>Display items as a</target>
       </segment>
     </unit>
+    <unit id="bBCsu64" name="label.photos_display_mode">
+      <segment>
+        <source>label.photos_display_mode</source>
+        <target>Display photos as a</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

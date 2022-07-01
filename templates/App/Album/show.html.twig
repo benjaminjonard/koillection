@@ -92,30 +92,7 @@
             {% if photos is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.photos'|trans }}</h2>
-                    <div id="collection-items" class="grid-container-items" {{ stimulus_controller('lightbox') }}>
-                        {% for photo in photos %}
-                            {% set photoText = include('App/Album/_photo_text.html.twig') %}
-                            <a class="collection-item element valign-wrapper"
-                               href="{{ asset(photo.image|default('build/images/default.png')) }}"
-                               data-lightbox-target="image"
-                               {% if context == 'default' %}
-                                   data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
-                                   data-delete-path="{{ path('app_photo_delete', {id: photo.id}) }}"
-                                   data-delete-message="{{ 'message.delete.photo'|trans }}"
-                               {% endif %}
-                               data-sub-html="{{ photoText }}"
-                               data-title="{{ photo.title }}"
-                               data-filter-target="element"
-                            >
-                                <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                    <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
-                                         data-lazy-loading-target="image"
-                                         aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}"
-                                    >
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
+                    {{ include('App/Album/_photos_' ~ album.photosDisplayMode ~ '.html.twig', {'photos': photos}) }}
                 </div>
             {% endif %}
         </div>
