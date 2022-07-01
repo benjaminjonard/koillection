@@ -66,7 +66,7 @@
                             <i class="fa fa-history fa-fw"></i>
                         </a>
                         {% endif %}
-                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                        {{ include('App/_partials/_share_icon.html.twig', {route: 'app_shared_wishlist_show', entity: wishlist}) }}
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': wishlist.finalVisibility}) }}
                     {% endif %}
                 </div>
@@ -162,11 +162,5 @@
 
 {% block footer %}
     {{ renderFooter(wishlist)  }}
-{% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'entity': wishlist, 'route': url('app_shared_wishlist_show', {id: wishlist.id, username: app.user.username})}) }}
-    {% endif %}
 {% endblock %}
 

@@ -44,9 +44,3 @@
     {{ renderFooter(item)  }}
 {% endblock %}
 
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'entity': item, 'route': url('app_shared_item_show', {id: item.id, username: app.user.username})}) }}
-    {% endif %}
-{% endblock %}
-

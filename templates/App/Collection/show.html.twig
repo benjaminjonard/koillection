@@ -74,7 +74,7 @@
                                 <i class="fa fa-history fa-fw"></i>
                             </a>
                         {% endif %}
-                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                        {{ include('App/_partials/_share_icon.html.twig', {route: 'app_shared_collection_show', entity: collection}) }}
                         <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
                             <i class="fa fa-ellipsis-h fa-fw"></i>
                         </a>
@@ -141,11 +141,5 @@
 
 {% block footer %}
     {{ renderFooter(collection)  }}
-{% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'entity': collection, 'route': url('app_shared_collection_show', {id: collection.id, username: app.user.username})}) }}
-    {% endif %}
 {% endblock %}
 

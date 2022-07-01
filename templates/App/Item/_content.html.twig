@@ -36,7 +36,7 @@
                         <i class="fa fa-history fa-fw"></i>
                     </a>
                 {% endif %}
-                <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                {{ include('App/_partials/_share_icon.html.twig', {route: 'app_shared_item_show', entity: item}) }}
                 {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
             </div>
         {% endif %}

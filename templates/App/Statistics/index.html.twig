@@ -36,7 +36,7 @@
 
     <div class="btn-holder">
         {% if context == 'default' %}
-            <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+            {{ include('App/_partials/_share_icon.html.twig', {route: 'app_shared_statistics_index'}) }}
             {{ include('App/_partials/_visibility.html.twig') }}
         {% endif %}
     </div>
@@ -129,10 +129,3 @@
         </div>
     </div>
 {% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'route': url('app_shared_statistics_index', {username: app.user.username})}) }}
-    {% endif %}
-{% endblock %}
-
