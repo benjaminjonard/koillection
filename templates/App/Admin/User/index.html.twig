@@ -60,7 +60,7 @@
                                     <i class="fa fa-pencil fa-fw"></i>
                                 </a>
                                 {% if false == user.isAdmin() %}
-                                    {{ include('App/_partials/_delete_icon.html.twig', {
+                                    {{ include('App/_partials/_icon/_delete.html.twig', {
                                         path: path('app_admin_user_delete', {id: user.id}),
                                         message: 'message.delete.user'
                                     }) }}

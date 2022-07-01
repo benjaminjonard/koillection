@@ -39,7 +39,7 @@
                         <a href="{{ path('app_tag_category_index') }}" class="button" title="{{ 'tooltip.manage_tag_categories'|trans }}">
                             <i class="fa fa-gears fa-fw"></i>
                         </a>
-                        {{ include('App/_partials/_share_icon.html.twig', {route: 'app_shared_tag_index'}) }}
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_tag_index'}) }}
                         {{ include('App/_partials/_visibility.html.twig') }}
                     {% endif %}
                 </div>

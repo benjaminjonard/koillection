@@ -67,7 +67,7 @@
 
         <div class="btn-holder">
             <div class="left">
-                {{ include('App/_partials/_delete_icon.html.twig', {
+                {{ include('App/_partials/_icon/_delete.html.twig', {
                     path: path('app_inventory_delete', {id: inventory.id}),
                     message: 'message.delete.inventory'
                 }) }}

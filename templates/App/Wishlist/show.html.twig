@@ -57,7 +57,7 @@
                         <a href="{{ path('app_wishlist_edit', {id: wishlist.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
-                        {{ include('App/_partials/_delete_icon.html.twig', {
+                        {{ include('App/_partials/_icon/_delete.html.twig', {
                             path: path('app_wishlist_delete', {id: wishlist.id}),
                             message: 'message.delete.wishlist'
                         }) }}
@@ -66,7 +66,7 @@
                             <i class="fa fa-history fa-fw"></i>
                         </a>
                         {% endif %}
-                        {{ include('App/_partials/_share_icon.html.twig', {route: 'app_shared_wishlist_show', entity: wishlist}) }}
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_wishlist_show', entity: wishlist}) }}
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': wishlist.finalVisibility}) }}
                     {% endif %}
                 </div>
@@ -144,7 +144,7 @@
                                     <td class="table-actions">
                                         <a href="{{ path('app_wish_transfer_to_collection', {id: wish.id}) }}" title="{{ 'tooltip.transfer_to_collection'|trans }}"><i class="fa fa-plus fa-fw"></i></a>
                                         <a href="{{ path('app_wish_edit', {id: wish.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
-                                        {{ include('App/_partials/_delete_icon.html.twig', {
+                                        {{ include('App/_partials/_icon/_delete.html.twig', {
                                             path: path('app_wish_delete', {id: wish.id}),
                                             message: 'message.delete.wish'
                                         }) }}

@@ -60,7 +60,7 @@
                         <a href="{{ path('app_collection_edit', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
-                        {{ include('App/_partials/_delete_icon.html.twig', {
+                        {{ include('App/_partials/_icon/_delete.html.twig', {
                             path: path('app_collection_delete', {id: collection.id}),
                             message: 'message.delete.collection'
                         }) }}
@@ -74,7 +74,7 @@
                                 <i class="fa fa-history fa-fw"></i>
                             </a>
                         {% endif %}
-                        {{ include('App/_partials/_share_icon.html.twig', {route: 'app_shared_collection_show', entity: collection}) }}
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_show', entity: collection}) }}
                         <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
                             <i class="fa fa-ellipsis-h fa-fw"></i>
                         </a>

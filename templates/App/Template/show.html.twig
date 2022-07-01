@@ -24,7 +24,7 @@
         <a href="{{ path('app_template_edit', {'id': template.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
             <i class="fa fa-pencil fa-fw"></i>
         </a>
-        {{ include('App/_partials/_delete_icon.html.twig', {
+        {{ include('App/_partials/_icon/_delete.html.twig', {
             path: path('app_template_delete', {id: template.id}),
             message: 'message.delete.template'
         }) }}
