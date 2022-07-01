@@ -67,9 +67,10 @@
 
         <div class="btn-holder">
             <div class="left">
-                <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                    <i class="fa fa-trash fa-fw"></i>
-                </a>
+                {{ include('App/_partials/_icon/_delete.html.twig', {
+                    path: path('app_inventory_delete', {id: inventory.id}),
+                    message: 'message.delete.inventory'
+                }) }}
             </div>
             <div class="clearfix"></div>
         </div>
@@ -93,10 +94,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_inventory_delete', {id: inventory.id}), transKey: 'message.delete.inventory'}) }}
-    {% endif %}
 {% endblock %}

@@ -64,7 +64,10 @@
         </div>
     </div>
 
-    {% block modals %}{% endblock %}
+    {% if context == 'default' %}
+        {{ include('App/_partials/_modal/_delete.html.twig') }}
+        {{ include('App/_partials/_modal/_share.html.twig') }}
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
