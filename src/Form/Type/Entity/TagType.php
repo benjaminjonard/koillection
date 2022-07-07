@@ -6,6 +6,7 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Tag;
 use App\Entity\TagCategory;
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\TagCategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -37,6 +38,10 @@ class TagType extends AbstractType
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'required' => true,
+            ])
+            ->add('itemsDisplayMode', ChoiceType::class, [
+                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
                 'required' => true,
             ])
             ->add('category', EntityType::class, [

@@ -204,3 +204,9 @@
 .fa-unlock-alt:before {
   content: "\f13e";
 }
+.fa-th:before {
+  content: "\e901";
+}
+.fa-list:before {
+  content: "\e902";
+}

@@ -23,6 +23,12 @@ As Koillection is meant to be used for any kind of collections, it doesn't suppo
     
 You can find detailled informations in the <a href="https://github.com/koillection/koillection/wiki">wiki</a> (under construction)
 
+## Installation
+See the <a href="https://github.com/koillection/koillection/wiki/Installation">Installation page</a> in the wiki
+
+## Updating
+See the <a href="https://github.com/koillection/koillection/wiki/Updating">Updating page</a> in the wiki
+
 ## Demo
 
 Gitpod will run a new and temporary instance for you.
@@ -62,13 +68,6 @@ Please do back up your database.
 | 1.2.x       | 8.0         | :x:                       |
 | 1.1.x       | 7.4         | :x:                       |
 | 1.0.x       | 7.2         | :x:                       |
-   
-
-## Installation
-See the <a href="https://github.com/koillection/koillection/wiki/Installation">Installation page</a> in the wiki
-
-## Updating
-See the <a href="https://github.com/koillection/koillection/wiki/Updating">Updating page</a> in the wiki
 
 ## Support Koillection
 

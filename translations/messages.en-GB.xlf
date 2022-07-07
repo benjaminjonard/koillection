@@ -4635,5 +4635,29 @@
         <target>Link</target>
       </segment>
     </unit>
+    <unit id="Dlq9a72" name="global.display_mode.grid">
+      <segment>
+        <source>global.display_mode.grid</source>
+        <target>Grid</target>
+      </segment>
+    </unit>
+    <unit id="drd9ere" name="global.display_mode.list">
+      <segment>
+        <source>global.display_mode.list</source>
+        <target>List</target>
+      </segment>
+    </unit>
+    <unit id="dUss0q8" name="label.items_display_mode">
+      <segment>
+        <source>label.items_display_mode</source>
+        <target>Display items as a</target>
+      </segment>
+    </unit>
+    <unit id="bBCsu64" name="label.photos_display_mode">
+      <segment>
+        <source>label.photos_display_mode</source>
+        <target>Display photos as a</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

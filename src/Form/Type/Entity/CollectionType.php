@@ -6,6 +6,7 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
 use App\Entity\Template;
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use App\Repository\CollectionRepository;
@@ -48,6 +49,10 @@ class CollectionType extends AbstractType
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'required' => true,
+            ])
+            ->add('itemsDisplayMode', ChoiceType::class, [
+                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [

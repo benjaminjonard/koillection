@@ -57,16 +57,17 @@
                         <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
-                        <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                            <i class="fa fa-trash fa-fw"></i>
-                        </a>
+                        {{ include('App/_partials/_icon/_delete.html.twig', {
+                            path: path('app_album_delete', {id: album.id}),
+                            message: 'message.delete.album'
+                        }) }}
 
                         {% if isFeatureEnabled('history') %}
                             <a href="{{ path('app_album_history', {'id': album.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
                                 <i class="fa fa-history fa-fw"></i>
                             </a>
                         {% endif %}
-                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_album_show', entity: album}) }}
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': album.finalVisibility}) }}
                     {% endif %}
                 </div>
@@ -91,29 +92,7 @@
             {% if photos is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.photos'|trans }}</h2>
-                    <div id="collection-items" class="grid-container-items" {{ stimulus_controller('lightbox') }}>
-                        {% for photo in photos %}
-                                {% set photoText = include('App/Album/_photo_text.html.twig') %}
-                                <a class="collection-item element valign-wrapper"
-                                   href="{{ asset(photo.image|default('build/images/default.png')) }}"
-                                   data-lightbox-target="image"
-                                   {% if context == 'default' %}
-                                       data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
-                                       data-delete-id="{{ 'delete-' ~ photo.id }}"
-                                   {% endif %}
-                                   data-sub-html="{{ photoText }}"
-                                   data-title="{{ photo.title }}"
-                                   data-filter-target="element"
-                                >
-                                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                                        <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
-                                             data-lazy-loading-target="image"
-                                             aria-label="{{ 'aria.photo'|trans({'%title%': photo.title}) }}"
-                                        >
-                                    </div>
-                                </a>
-                        {% endfor %}
-                    </div>
+                    {{ include('App/Album/_photos_' ~ album.photosDisplayMode ~ '.html.twig', {'photos': photos}) }}
                 </div>
             {% endif %}
         </div>
@@ -122,14 +101,4 @@
 
 {% block footer %}
     {{ renderFooter(album)  }}
-{% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'entity': album, 'route': url('app_shared_album_show', {id: album.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_album_delete', {id: album.id}), transKey: 'message.delete.album'}) }}
-        {% for photo in photos %}
-            {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete-' ~ photo.id , 'route': path('app_photo_delete', {id: photo.id}), transKey: 'message.delete.photo'}) }}
-        {% endfor %}
-    {% endif %}
 {% endblock %}

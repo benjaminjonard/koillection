@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.5] / 2022-07-07
+### Features
+- Add a list view for items in collections, tags and albums (Benjamin Jonard)
+ 
+### Fixes
+- Prevent unnecessary image re-upload when submitting forms containing base64 images (Benjamin Jonard)
+- Fix swipe gesture on item page (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS and PHP dependencies (Benjamin Jonard)
+
 ## [1.3.4] / 2022-06-27
 ### Fixes
 - Fix zip exports if user uploads directory doesn't exist (Benjamin Jonard)

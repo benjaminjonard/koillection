@@ -1,4 +1,4 @@
-<div id="{{ id }}" {{ stimulus_controller('modal') }} class="modal modal-custom" tabindex="-1" role="dialog">
+<div id="modal-delete" {{ stimulus_controller('modal--delete') }} class="modal modal-custom" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,17 +6,15 @@
                 <i class="fa fa-close fa-fw modal-action modal-close right"></i>
             </div>
 
-            <div class="modal-body">
-                {{ transKey|trans }}
-            </div>
+            <div class="modal-body"></div>
 
             <div class="modal-footer">
                 <div class="right">
-                    {% set deleteForm = createDeleteForm(route) %}
-                    {{ form_start(deleteForm) }}
+                    <form name="form" method="post">
                         <button type="submit" class="modal-action modal-close waves-effect waves-light btn col s2">Agree</button>
                         <a class="modal-close waves-effect waves-light btn btn-cancel col s2">Disagree</a>
-                    {{ form_end(deleteForm) }}
+                        <input type="hidden" id="form__token" name="form[_token]" value="{{ csrf_token('form') }}">
+                    </form>
                 </div>
             </div>
         </div>

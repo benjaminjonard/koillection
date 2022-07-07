@@ -119,6 +119,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['item:read', 'item:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]

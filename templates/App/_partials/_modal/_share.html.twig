@@ -1,4 +1,12 @@
-<div id="modal-share" {{ stimulus_controller('modal') }} class="modal modal-custom" tabindex="-1" role="dialog">
+<div id="modal-share" {{ stimulus_controller('modal--share') }}
+     class="modal modal-custom"
+     tabindex="-1"
+     role="dialog"
+     data-user-visibility="{{ app.user.visibility }}"
+     data-message-private-user="{{ 'message.user_is_private'|trans }}"
+     data-message-private-entity="{{ 'message.user_is_private'|trans }}"
+     data-message-share-link="{{ 'message.share_link'|trans }}"
+>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,17 +15,7 @@
             </div>
 
             <div class="modal-body">
-                {% if app.user.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
-                    <p>{{ 'message.user_is_private'|trans }}</p>
-                {% elseif entity is defined and entity.visibility == constant('App\\Enum\\VisibilityEnum::VISIBILITY_PRIVATE') %}
-                    <p>{{ 'message.entity_is_private'|trans }}</p>
-                {% else %}
-                    <p>
-                        {{ 'message.share_link'|trans }}
-                        <br>
-                        <b><a href="{{ route }}">{{ route }}</a></b>
-                    </p>
-                {% endif %}
+                <p data-modal--share-target="message"></p>
             </div>
         </div>
     </div>

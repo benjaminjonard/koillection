@@ -210,12 +210,6 @@ class TagController extends AbstractController
         requirements: ['id' => '%uuid_regex%'],
         methods: ['GET']
     )]
-    #[Route(
-        path: ['en' => '/user/{username}/tags/{tagId}/items/{itemId', 'fr' => '/utilisateur/{username}tags/{tagId}/objets/{itemId}'],
-        name: 'app_shared_tag_item_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]
     public function item(Item $item, Tag $tag, ItemRepository $itemRepository): Response

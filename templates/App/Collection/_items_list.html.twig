@@ -1,0 +1,48 @@
+<table class="highlight items-table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>{{ 'label.name'|trans }}</th>
+        {% if context == 'default' %}
+            <th class="center">{{ 'label.visibility'|trans }}</th>
+            <th class="center">{{ 'label.actions'|trans }}</th>
+        {% endif %}
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for item in items|naturalSorting %}
+        {% set link = tag is defined ? path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) : path('app_item_show'|applyContext, {'id': item.id}) %}
+        <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
+            <td>
+                <a class="table-link" href="{{ link }}"></a>
+                {% if item.imageSmallThumbnail %}
+                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
+                        <img data-src="{{ asset(item.imageSmallThumbnail) }}"
+                             data-lazy-loading-target="image"
+                             aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
+                        >
+                    </div>
+                {% endif %}
+            </td>
+            <td>
+                <a class="table-link" href="{{ link }}"></a>
+                {{item.name}}
+            </td>
+            {% if context == 'default' %}
+                <td class="center">
+                    <a class="table-link" href="{{ link }}"></a>
+                    {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
+                </td>
+                <td class="table-actions center">
+                    <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
+                    {{ include('App/_partials/_icon/_delete.html.twig', {
+                        path: path('app_item_delete', {id: item.id}),
+                        message: 'message.delete.item'
+                    }) }}
+                </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

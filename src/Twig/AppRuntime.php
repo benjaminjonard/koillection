@@ -9,9 +9,7 @@ use App\Model\BreadcrumbElement;
 use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\FeatureChecker;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -158,15 +156,5 @@ class AppRuntime implements RuntimeExtensionInterface
     public function isFeatureEnabled(string $feature): bool
     {
         return $this->featureChecker->isFeatureEnabled($feature);
-    }
-
-    public function createDeleteForm($url): FormView
-    {
-        return $this->formFactory->createBuilder(FormType::class)
-            ->setAction($url)
-            ->setMethod('POST')
-            ->getForm()
-            ->createView()
-        ;
     }
 }

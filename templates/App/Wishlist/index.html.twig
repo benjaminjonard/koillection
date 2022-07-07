@@ -41,7 +41,7 @@
                         <a href="{{ path('app_wishlist_add') }}" class="button" title="{{ 'tooltip.add_wishlist'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
                         </a>
-                        <i data-target="modal-share" class="button btn-share modal-trigger fa fa-share fa-fw" title="{{ 'tooltip.share'|trans }}"></i>
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_wishlist_index'}) }}
                         {{ include('App/_partials/_visibility.html.twig') }}
                     {% endif %}
                 </div>
@@ -58,11 +58,5 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'route': url('app_shared_wishlist_index', {username: app.user.username})}) }}
-    {% endif %}
 {% endblock %}
 

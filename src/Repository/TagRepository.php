@@ -25,7 +25,7 @@ class TagRepository extends ServiceEntityRepository
         return $this
             ->createQueryBuilder('t')
             ->leftJoin('t.items', 'i')
-            ->addSelect('partial i.{id, name, image, imageSmallThumbnail}')
+            ->addSelect('partial i.{id, name, image, imageSmallThumbnail, finalVisibility}')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()

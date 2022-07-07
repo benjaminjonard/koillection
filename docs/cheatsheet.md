@@ -16,7 +16,7 @@ All in assets directory
 
 ## Tools
 ###### PhpUnit
-Init test database if not alreasy created :
+Init test database if not already created :
 - `php bin/console doctrine:database:create --env=test`
 - `php bin/console doctrine:migrations:migrate --env=test`
 

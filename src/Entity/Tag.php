@@ -9,6 +9,7 @@ use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -79,8 +80,14 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     #[Groups(['tag:read'])]
     private int $seenCounter;
 
+    #[ORM\Column(type: Types::STRING, length: 4)]
+    #[Groups(['tag:read', 'tag:write'])]
+    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
+    private string $itemsDisplayMode;
+
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['tag:read', 'tag:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -97,6 +104,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         $this->items = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->seenCounter = 0;
+        $this->itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
     }
 
     public function __toString(): string
@@ -270,6 +278,18 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
             $this->items->removeElement($item);
             $item->removeTag($this);
         }
+
+        return $this;
+    }
+
+    public function getItemsDisplayMode(): string
+    {
+        return $this->itemsDisplayMode;
+    }
+
+    public function setItemsDisplayMode(string $itemsDisplayMode): Tag
+    {
+        $this->itemsDisplayMode = $itemsDisplayMode;
 
         return $this;
     }

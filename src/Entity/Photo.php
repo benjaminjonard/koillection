@@ -78,6 +78,7 @@ class Photo implements CacheableInterface
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['photo:read', 'photo:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]

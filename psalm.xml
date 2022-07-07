@@ -8,6 +8,7 @@
 
         <ignoreFiles>
             <file name="src/Kernel.php"/>
+            <file name="config/bootstrap.php"/>
         </ignoreFiles>
     </projectFiles>
 

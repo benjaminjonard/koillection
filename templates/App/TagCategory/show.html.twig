@@ -28,9 +28,10 @@
                 <a href="{{ path('app_tag_category_edit', {'id': category.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
                     <i class="fa fa-pencil fa-fw"></i>
                 </a>
-                <a href="#delete" class="modal-trigger button" title="{{ 'tooltip.delete'|trans }}">
-                    <i class="fa fa-trash fa-fw"></i>
-                </a>
+                {{ include('App/_partials/_icon/_delete.html.twig', {
+                    path: path('app_tag_category_delete', {id: category.id}),
+                    message: 'message.delete.tag_category'
+                }) }}
             </div>
             <div class="clearfix"></div>
         </div>
@@ -52,9 +53,5 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block modals %}
-    {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_tag_category_delete', {id: category.id}), transKey: 'message.delete.tag_category'}) }}
 {% endblock %}
 

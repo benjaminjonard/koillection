@@ -94,7 +94,7 @@ input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[t
 }
 
 /* Complementary */
-.button, .right-icon, .complementary-color,
+.btn-holder .button, .right-icon, .complementary-color,
 .sidebar-element a span,
 .header-logo a span,
 .tabs-block li.tab.current, .tabs-block li.tab.current a,
@@ -140,7 +140,7 @@ header #search_term,  .sidebar-wrapper .header-logo,
 [type="checkbox"]:checked + span:not(.lever)::before
 {border-right: 2px solid #009688; border-bottom: 2px solid #009688;}
 
-.button, a, .suggestion, h3.header, h2.header,
+.btn-holder .button, a, .suggestion, h3.header, h2.header,
 .autocomplete-content li .highlight,
 .autocomplete-result a b
 { color: #009688; }
@@ -194,4 +194,4 @@ progress[value]::-ms-fill{background-color:#009688;}
 .breadcrumb-item a, .datepicker-day-button:focus
 {color: #80cbc4;}
 
-.visibility .fa-secondary {text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;}
+.visibility .fa-secondary, .select-icon.fa-secondary {text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;}

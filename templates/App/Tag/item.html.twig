@@ -43,11 +43,3 @@
 {% block footer %}
     {{ renderFooter(item)  }}
 {% endblock %}
-
-{% block modals %}
-    {% if context == 'default' %}
-        {{ include('App/_partials/_modal/_share.html.twig', {'entity': item, 'route': url('app_shared_tag_item_show', {itemId: item.id, tagId: tag.id, username: app.user.username})}) }}
-        {{ include('App/_partials/_modal/_delete.html.twig', {'id': 'delete', 'route': path('app_item_delete', {id: item.id}), transKey: 'message.delete.item'}) }}
-    {% endif %}
-{% endblock %}
-
