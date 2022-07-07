@@ -48,10 +48,16 @@ When Gitpod has finished loading, select :
 </p>
 
 <p align="center">
-    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049067-dbac37b1-1150-4be5-ab95-f784d606f300.png">
-    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049077-efac8291-4f5c-48d9-b2fa-d65a51842d25.png">
-    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049088-2cda1da5-6e55-4800-918f-001fad6559a6.png">
-    <img height="200px" src="https://user-images.githubusercontent.com/20560781/168049095-5f26e2c6-7218-42ae-bde1-4b32abae7e35.png">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/168049067-dbac37b1-1150-4be5-ab95-f784d606f300.png">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/168049077-efac8291-4f5c-48d9-b2fa-d65a51842d25.png">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/177819056-8f110583-08ae-42b6-9e32-3e3db4a3923a.png">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/177818960-6e988a73-67e0-47bc-a377-0c92c530d423.png">
+</p>
+<p align="center">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/168049088-2cda1da5-6e55-4800-918f-001fad6559a6.png">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/168049095-5f26e2c6-7218-42ae-bde1-4b32abae7e35.png">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/177819233-f3aa62c4-ce48-4184-9864-d40708367dbf.png">
+    <img height="215px" src="https://user-images.githubusercontent.com/20560781/177819299-048ea3ad-fa0a-463d-b5b7-1607773553e4.png">
 </p>    
     
 ## Warning
