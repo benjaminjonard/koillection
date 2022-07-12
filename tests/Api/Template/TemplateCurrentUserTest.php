@@ -49,6 +49,20 @@ class TemplateCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Field::class);
     }
 
+    public function testPostTemplate(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/templates', [
+            'json' => [
+                'name' => 'New template'
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'name' => 'New template',
+        ]);
+    }
+
     public function testPutTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];

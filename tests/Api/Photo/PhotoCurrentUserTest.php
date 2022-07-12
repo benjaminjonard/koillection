@@ -46,6 +46,25 @@ class PhotoCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Album::class);
     }
 
+    public function testPostPhoto(): void
+    {
+        $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $albumIri = $this->iriConverter->getIriFromItem($album);
+
+        $this->createClientWithCredentials()->request('POST', '/api/photos', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'title' => 'New photo',
+                'album' => $albumIri
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'title' => 'New photo'
+        ]);
+    }
+
     public function testPutPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];

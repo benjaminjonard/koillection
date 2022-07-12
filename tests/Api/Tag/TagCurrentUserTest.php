@@ -61,6 +61,21 @@ class TagCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Item::class);
     }
 
+    public function testPostTag(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/tags', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'label' => 'New tag'
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'label' => 'New tag',
+        ]);
+    }
+
     public function testPutTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];

@@ -105,6 +105,25 @@ class ItemCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
     }
 
+    public function testPostItem(): void
+    {
+        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $collectionIri = $this->iriConverter->getIriFromItem($collection);
+
+        $this->createClientWithCredentials()->request('POST', '/api/items', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'name' => 'New item',
+                'collection' => $collectionIri
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'name' => 'New item'
+        ]);
+    }
+
     public function testPutItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];

@@ -49,6 +49,20 @@ class TagCategoryCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
     }
 
+    public function testPostTagCategory(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/tag_categories', [
+            'json' => [
+                'label' => 'New tag category'
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'label' => 'New tag category',
+        ]);
+    }
+
     public function testPutTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];

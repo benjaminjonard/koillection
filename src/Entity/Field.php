@@ -33,11 +33,13 @@ class Field
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['field:read', 'field:write'])]
+    #[Assert\NotBlank]
     private ?int $position = null;
 
     #[ORM\Column(type: Types::STRING)]
     #[Groups(['field:read', 'field:write'])]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
+    #[Assert\NotBlank]
     private ?string $type = null;
 
     #[ORM\ManyToOne(targetEntity: Template::class, inversedBy: 'fields')]

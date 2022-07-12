@@ -26,11 +26,13 @@ final class MultipartDecoder implements DecoderInterface
             return null;
         }
 
+        $content = $request->getContent() ? json_decode($request->getContent(), true) : [];
+
         return array_map(static function (string $element) {
             $decoded = json_decode($element, true);
 
             return \is_array($decoded) ? $decoded : $element;
-        }, $request->request->all()) + $request->files->all();
+        }, $request->request->all()) + $request->files->all() + $content;
     }
 
     /**

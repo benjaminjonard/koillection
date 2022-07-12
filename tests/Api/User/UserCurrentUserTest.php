@@ -32,6 +32,13 @@ class UserCurrentUserTest extends ApiTestCase
         ]);
     }
 
+    public function testPostUser(): void
+    {
+        $this->createClientWithCredentials()->request('DELETE', '/api/users');
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
+    }
+
     public function testPutUser(): void
     {
         $iri = $this->iriConverter->getIriFromItem($this->user);

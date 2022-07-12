@@ -98,6 +98,21 @@ class CollectionCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
 
+    public function testPostCollection(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/collections', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'title' => 'New collection'
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'title' => 'New collection',
+        ]);
+    }
+
     public function testPutCollection(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];

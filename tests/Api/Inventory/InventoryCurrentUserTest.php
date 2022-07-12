@@ -34,6 +34,21 @@ class InventoryCurrentUserTest extends ApiTestCase
         ]);
     }
 
+    public function testPostInventory(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/inventories', [
+            'json' => [
+                'name' => 'New inventory',
+                'content' => '{}'
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'name' => 'New inventory'
+        ]);
+    }
+
     public function testPutInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->user], [], 1)[0];

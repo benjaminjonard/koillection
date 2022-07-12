@@ -8,7 +8,10 @@ use Api\Tests\ApiTestCase;
 use App\Entity\Album;
 use App\Entity\Photo;
 use Doctrine\Common\Collections\Criteria;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Part\DataPart;
+use Symfony\Component\Mime\Part\Multipart\FormDataPart;
 
 class AlbumCurrentUserTest extends ApiTestCase
 {
@@ -81,6 +84,21 @@ class AlbumCurrentUserTest extends ApiTestCase
         $this->assertEquals(5, $data['hydra:totalItems']);
         $this->assertCount(5, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Photo::class);
+    }
+
+    public function testPostAlbum(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/albums', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'title' => 'New album'
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'title' => 'New album',
+        ]);
     }
 
     public function testPutAlbum(): void

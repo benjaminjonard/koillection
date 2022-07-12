@@ -32,6 +32,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     "this.getItem() == null or this.getCollection() == null",
     message: 'error.datum.cant_be_used_by_both_collections_and_items',
 )]
+#[Assert\Expression(
+    "this.getItem() != null or this.getCollection() != null",
+    message: 'error.datum.must_provide_collection_or_item',
+)]
 class Datum implements LoggableInterface
 {
     #[ORM\Id]
@@ -51,6 +55,7 @@ class Datum implements LoggableInterface
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['datum:read', 'datum:write'])]
+    #[Assert\NotBlank]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     private ?string $type = null;
 

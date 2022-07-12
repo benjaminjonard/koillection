@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\ApiTestCase;
+use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
+use App\Enum\DatumTypeEnum;
 use Symfony\Component\HttpFoundation\Response;
 
 class DatumCurrentUserTest extends ApiTestCase
@@ -56,6 +58,86 @@ class DatumCurrentUserTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Collection::class);
+    }
+
+    public function testPostDatumWithCollection(): void
+    {
+        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $collectionIri = $this->iriConverter->getIriFromItem($collection);
+
+        $this->createClientWithCredentials()->request('POST', '/api/data', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'label' => 'New datum with collection',
+                'type' => DatumTypeEnum::TYPE_TEXT,
+                'collection' => $collectionIri
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'label' => 'New datum with collection'
+        ]);
+    }
+
+    public function testPostDatumWithItem(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $itemIri = $this->iriConverter->getIriFromItem($item);
+
+        $this->createClientWithCredentials()->request('POST', '/api/data', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'label' => 'New datum with item',
+                'type' => DatumTypeEnum::TYPE_TEXT,
+                'item' => $itemIri
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'label' => 'New datum with item'
+        ]);
+    }
+
+    public function testPostDatumWithCollectionAndItem(): void
+    {
+        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $collectionIri = $this->iriConverter->getIriFromItem($collection);
+
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $itemIri = $this->iriConverter->getIriFromItem($item);
+
+        $this->createClientWithCredentials()->request('POST', '/api/data', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'label' => 'New datum with item',
+                'type' => DatumTypeEnum::TYPE_TEXT,
+                'collection' => $collectionIri,
+                'item' => $itemIri
+            ],
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $this->assertJsonContains([
+            'hydra:description' => $this->translator->trans('error.datum.cant_be_used_by_both_collections_and_items', [], 'validators')
+        ]);
+    }
+
+    public function testPostDatumWithoutCollectionNorItem(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/data', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'label' => 'New datum with item',
+                'type' => DatumTypeEnum::TYPE_TEXT
+            ],
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $this->assertJsonContains([
+            'hydra:description' => $this->translator->trans('error.datum.must_provide_collection_or_item', [], 'validators')
+        ]);
     }
 
     public function testPutDatum(): void
