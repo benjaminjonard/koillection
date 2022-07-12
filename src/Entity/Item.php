@@ -88,9 +88,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'item', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
-    #[Groups(['item:write'])]
     #[ApiSubresource(maxDepth: 1)]
-    #[Assert\Valid]
     private DoctrineCollection $data;
 
     #[ORM\OneToMany(targetEntity: Loan::class, mappedBy: 'item', cascade: ['remove'])]

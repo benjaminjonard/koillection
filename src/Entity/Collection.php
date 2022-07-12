@@ -79,9 +79,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
-    #[Groups(['collection:write'])]
     #[ApiSubresource(maxDepth: 1)]
-    #[Assert\Valid]
     private DoctrineCollection $data;
 
     #[ORM\Column(type: Types::STRING, length: 6)]
