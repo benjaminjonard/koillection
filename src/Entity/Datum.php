@@ -28,6 +28,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
+#[Assert\Expression(
+    "this.getItem() == null or this.getCollection() == null",
+    message: 'error.datum.cant_be_used_by_both_collections_and_items',
+)]
 class Datum implements LoggableInterface
 {
     #[ORM\Id]
@@ -36,12 +40,12 @@ class Datum implements LoggableInterface
     private string $id;
 
     #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data')]
-    #[Groups(['datum:read'])]
+    #[Groups(['datum:read', 'datum:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'data')]
-    #[Groups(['datum:read'])]
+    #[Groups(['datum:read', 'datum:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 

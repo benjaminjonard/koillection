@@ -61,5 +61,11 @@
         <target>The parent can't be the same as the current item</target>
       </segment>
     </unit>
+    <unit id="zeq8z7" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <segment>
+        <source>error.datum.cant_be_used_by_both_collections_and_items</source>
+        <target>A datum cannot be used with both items and collections</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
