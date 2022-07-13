@@ -7,9 +7,11 @@ namespace App\Form\Type\Entity;
 use App\Entity\Collection;
 use App\Entity\Template;
 use App\Enum\DisplayModeEnum;
+use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use App\Repository\CollectionRepository;
+use App\Repository\DatumRepository;
 use App\Repository\TemplateRepository;
 use App\Service\FeatureChecker;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,13 +28,19 @@ class CollectionType extends AbstractType
         private Base64ToImageTransformer $base64ToImageTransformer,
         private FeatureChecker $featureChecker,
         private CollectionRepository $collectionRepository,
-        private TemplateRepository $templateRepository
+        private TemplateRepository $templateRepository,
+        private DatumRepository $datumRepository,
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $entity = $builder->getData();
+
+        $itemsSortingChoices = [
+            'form.item_sorting.default_value' => null
+        ];
+        $itemsSortingChoices = array_merge($itemsSortingChoices, $this->datumRepository->findAllLabelsInCollection($entity));
 
         $builder
             ->add('title', TextType::class, [
@@ -53,6 +61,14 @@ class CollectionType extends AbstractType
             ])
             ->add('itemsDisplayMode', ChoiceType::class, [
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
+                'required' => true,
+            ])
+            ->add('itemsSortingProperty', ChoiceType::class, [
+                'choices' => $itemsSortingChoices,
+                'required' => true,
+            ])
+            ->add('itemsSortingDirection', ChoiceType::class, [
+                'choices' => array_flip(SortingDirectionEnum::getSortingDirectionLabels()),
                 'required' => true,
             ])
             ->add('parent', EntityType::class, [

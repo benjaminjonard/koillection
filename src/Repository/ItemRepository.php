@@ -5,18 +5,20 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use App\Model\Search\Search;
+use App\Service\NaturalSorter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ItemRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private NaturalSorter $naturalSorter)
     {
         parent::__construct($registry, Item::class);
     }
@@ -211,5 +213,41 @@ class ItemRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    public function findOrdered(Collection $collection)
+    {
+        if ($collection->getItemsSortingProperty()) {
+            $subquery = $this->_em
+                ->createQueryBuilder()
+                ->select('datum.value')
+                ->from(Datum::class, 'datum')
+                ->where('datum.item = item')
+                ->andWhere('datum.label = :label')
+                ->andWhere('datum.type IN (:types)')
+                ->setMaxResults(1)
+                ->getDQL()
+            ;
+
+            $qb = $this
+                ->createQueryBuilder('item')
+                ->addSelect("($subquery) AS HIDDEN orderingValue")
+                ->where('item.collection = :collection')
+                ->setParameter('collection', $collection)
+                ->setParameter('label', $collection->getItemsSortingProperty())
+                ->setParameter('types', [DatumTypeEnum::TYPE_DATE, DatumTypeEnum::TYPE_RATING])
+                ->orderBy('orderingValue', $collection->getItemsSortingDirection())
+            ;
+
+            return  $qb->getQuery()->getResult();
+        }
+
+        $qb = $this
+            ->createQueryBuilder('item')
+            ->where('item.collection = :collection')
+            ->setParameter('collection', $collection)
+        ;
+
+        return  $this->naturalSorter->sort($qb->getQuery()->getResult(), $collection->getItemsSortingDirection());
     }
 }

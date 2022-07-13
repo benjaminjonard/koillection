@@ -12,6 +12,7 @@ use App\Repository\CollectionRepository;
 use App\Repository\ItemRepository;
 use App\Repository\LogRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -107,7 +108,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findBy(['parent' => $collection]),
-            'items' => $itemRepository->findBy(['collection' => $collection]),
+            'items' => $itemRepository->findOrdered($collection),
         ]);
     }
 
