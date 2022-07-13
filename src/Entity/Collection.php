@@ -12,6 +12,7 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DisplayModeEnum;
+use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -109,6 +110,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Groups(['collection:read', 'collection:write'])]
+    #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
     private ?string $itemsSortingDirection;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
