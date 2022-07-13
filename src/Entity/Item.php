@@ -139,6 +139,8 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[Groups(['item:read'])]
     private ?\DateTimeInterface $updatedAt;
 
+    private ?string $orderingValue;
+
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
@@ -499,6 +501,18 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setFinalVisibility(string $finalVisibility): self
     {
         $this->finalVisibility = $finalVisibility;
+
+        return $this;
+    }
+
+    public function getOrderingValue(): ?string
+    {
+        return $this->orderingValue;
+    }
+
+    public function setOrderingValue(?string $orderingValue): Item
+    {
+        $this->orderingValue = $orderingValue;
 
         return $this;
     }
