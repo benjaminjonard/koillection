@@ -9,7 +9,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class ArrayRuntime implements RuntimeExtensionInterface
 {
-    public function naturalSorting(iterable $array, string $direction = SortingDirectionEnum::ASCENDING): array
+    public function naturalSorting(iterable $array, string $direction = SortingDirectionEnum::ASCENDING, bool $withOrderingValues = false): array
     {
         $array = !\is_array($array) ? $array->toArray() : $array;
 
@@ -19,15 +19,20 @@ class ArrayRuntime implements RuntimeExtensionInterface
         // Sort by using __toString() function of elements
         $collator->asort($array);
 
-        if (isset($array[0]) && $array[0]->getOrderingValue()) {
+        if ($withOrderingValues) {
             usort($array, function($a, $b) use ($collator, $direction) {
+                if ($direction == SortingDirectionEnum::DESCENDING) {
+                    return $collator->compare((string) $b->getOrderingValue(), (string) $a->getOrderingValue());
+                }
                 return $collator->compare((string) $a->getOrderingValue(), (string) $b->getOrderingValue());
             });
+        } else {
+            if ($direction == SortingDirectionEnum::DESCENDING) {
+                $array = array_reverse($array);
+            }
         }
-        
-        if ($direction == SortingDirectionEnum::DESCENDING) {
-            $array = array_reverse($array);
-        }
+
+
 
         return $array;
     }

@@ -139,7 +139,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[Groups(['item:read'])]
     private ?\DateTimeInterface $updatedAt;
 
-    private ?string $orderingValue;
+    private ?string $orderingValue = null;
 
     public function __construct()
     {
