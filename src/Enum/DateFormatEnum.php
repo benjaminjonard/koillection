@@ -20,7 +20,7 @@ class DateFormatEnum
 
     public const FORMATS = [
         self::FORMAT_SLASH_DMY,
-        self::FORMAT_SLASH_DMY,
+        self::FORMAT_SLASH_MDY,
         self::FORMAT_SLASH_YMD,
         self::FORMAT_HYPHEN_DMY,
         self::FORMAT_HYPHEN_MDY,
