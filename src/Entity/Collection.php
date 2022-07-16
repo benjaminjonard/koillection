@@ -11,6 +11,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
@@ -107,6 +108,11 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
     private ?string $itemsSortingProperty;
+
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
+    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?string $itemsSortingType;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -413,6 +419,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function getItemsSortingDirection(): ?string
     {
         return $this->itemsSortingDirection;
+    }
+
+    public function getItemsSortingType(): ?string
+    {
+        return $this->itemsSortingType;
+    }
+
+    public function setItemsSortingType(?string $itemsSortingType): Collection
+    {
+        $this->itemsSortingType = $itemsSortingType;
+
+        return $this;
     }
 
     public function setItemsSortingDirection(?string $itemsSortingDirection): Collection

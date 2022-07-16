@@ -20,16 +20,18 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType
 {
     public function __construct(
-        private Base64ToImageTransformer $base64ToImageTransformer,
-        private FeatureChecker $featureChecker,
-        private CollectionRepository $collectionRepository,
-        private TemplateRepository $templateRepository,
-        private DatumRepository $datumRepository,
+        private readonly Base64ToImageTransformer $base64ToImageTransformer,
+        private readonly FeatureChecker $featureChecker,
+        private readonly CollectionRepository $collectionRepository,
+        private readonly TemplateRepository $templateRepository,
+        private readonly DatumRepository $datumRepository,
     ) {
     }
 
@@ -40,7 +42,11 @@ class CollectionType extends AbstractType
         $itemsSortingChoices = [
             'form.item_sorting.default_value' => null
         ];
-        $itemsSortingChoices = array_merge($itemsSortingChoices, $this->datumRepository->findAllLabelsInCollection($entity));
+
+        $labels = $this->datumRepository->findAllLabelsInCollection($entity);
+        foreach ($labels as $label) {
+            $itemsSortingChoices[$label['label']] = $label['label'];
+        }
 
         $builder
             ->add('title', TextType::class, [
@@ -109,6 +115,17 @@ class CollectionType extends AbstractType
                 'mapped' => false,
             ]);
         }
+
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($labels) {
+            $collection = $event->getData();
+
+            foreach ($labels as $label) {
+                if ($label['label'] === $collection->getItemsSortingProperty()) {
+                    $collection->setItemsSortingType($label['type']);
+                    break;
+                }
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

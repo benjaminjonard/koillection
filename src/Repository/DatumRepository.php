@@ -19,9 +19,7 @@ class DatumRepository extends ServiceEntityRepository
 
     public function findAllLabelsInCollection(Collection $collection): array
     {
-        $labels = [];
-
-        $results = $this
+        return $this
             ->createQueryBuilder('datum')
             ->leftJoin('datum.item', 'item')
             ->select('datum.label, datum.type')
@@ -29,16 +27,9 @@ class DatumRepository extends ServiceEntityRepository
             ->where('item.collection = :collection')
             ->andWhere('datum.type IN (:types)')
             ->setParameter('collection', $collection)
-            ->setParameter('types', [DatumTypeEnum::TYPE_DATE, DatumTypeEnum::TYPE_RATING])
+            ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ->getQuery()
             ->getArrayResult()
         ;
-
-        foreach ($results as $result) {
-            $key = $result['label'] . ' (' . $result['type'] . ')';
-            $labels[$key] = $result['label'];
-        }
-
-        return $labels;
     }
 }

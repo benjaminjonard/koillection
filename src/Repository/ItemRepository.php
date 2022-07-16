@@ -233,7 +233,7 @@ class ItemRepository extends ServiceEntityRepository
                 ->where('item.collection = :collection')
                 ->setParameter('collection', $collection)
                 ->setParameter('label', $collection->getItemsSortingProperty())
-                ->setParameter('types', [DatumTypeEnum::TYPE_DATE, DatumTypeEnum::TYPE_RATING])
+                ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ;
 
             return array_map(function ($result) {

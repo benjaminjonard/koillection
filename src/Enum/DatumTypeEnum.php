@@ -47,6 +47,12 @@ class DatumTypeEnum
         self::TYPE_SIGN,
     ];
 
+    public const AVAILABLE_FOR_ORDERING = [
+        self::TYPE_DATE,
+        self::TYPE_NUMBER,
+        self::TYPE_RATING
+    ];
+
     public const TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',
         self::TYPE_TEXTAREA => 'label.textarea',

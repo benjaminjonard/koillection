@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-    {% for item in items|naturalSorting(collection.itemsSortingDirection, collection.itemsSortingProperty is not null) %}
+    {% for item in items|naturalSorting(collection.itemsSortingDirection, collection.itemsSortingType) %}
         {% set link = tag is defined ? path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) : path('app_item_show'|applyContext, {'id': item.id}) %}
         <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
             <td>
