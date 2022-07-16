@@ -344,6 +344,7 @@ progress[value]::-ms-fill {background-color:#009688;}
 
 .error-helper {text-align: center; color: #d9534f; padding-bottom: 15px;}
 .error-helper .fa {margin-right: 5px;}
+.error-helper.inline ul {display: inline-block;}
 
 html.loading:before {
     z-index: 101;

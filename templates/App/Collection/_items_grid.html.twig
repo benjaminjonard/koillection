@@ -1,5 +1,5 @@
 <div id="collection-items" class="grid-container-items">
-    {% for item in items|naturalSorting %}
+    {% for item in items|naturalSorting(collection.itemsSortingDirection, collection.itemsSortingProperty is not null) %}
         <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
             <a href="{{ tag is defined ? path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) : path('app_item_show'|applyContext, {'id': item.id}) }}">
                 <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>

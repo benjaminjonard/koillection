@@ -4662,5 +4662,35 @@
         <target>Afficher les photos dans une</target>
       </segment>
     </unit>
+    <unit id="RT9_dq7" name="label.items_sorting_property">
+      <segment>
+        <source>label.items_sorting_property</source>
+        <target>Trier les objets par</target>
+      </segment>
+    </unit>
+    <unit id="SD_Z2uA" name="label.items_sorting_direction">
+      <segment>
+        <source>label.items_sorting_direction</source>
+        <target>Trier les objets par ordre</target>
+      </segment>
+    </unit>
+    <unit id="osq_Y32" name="form.item_sorting.default_value">
+      <segment>
+        <source>form.item_sorting.default_value</source>
+        <target>Nom (par défaut)</target>
+      </segment>
+    </unit>
+    <unit id="mxd7s10" name="global.sorting_direction.asc">
+      <segment>
+        <source>global.sorting_direction.asc</source>
+        <target>Croissant</target>
+      </segment>
+    </unit>
+    <unit id="xcZ1shh" name="global.sorting_direction.desc">
+      <segment>
+        <source>global.sorting_direction.desc</source>
+        <target>Décroissant</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

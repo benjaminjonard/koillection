@@ -5,6 +5,10 @@
                 <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
             </div>
 
+            <div class="error-helper inline">
+                {{ form_errors(form) }}
+            </div>
+
             <div data-additional-data-target="textsHolder">
                 {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::TEXT_TYPES')) %}
                     {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
