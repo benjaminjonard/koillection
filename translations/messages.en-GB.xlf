@@ -4581,5 +4581,11 @@
         <target>Descending</target>
       </segment>
     </unit>
+    <unit id="xiu6a_1" name="btn.add_textarea">
+      <segment>
+        <source>btn.add_textarea</source>
+        <target>Long text</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

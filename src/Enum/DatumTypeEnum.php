@@ -7,6 +7,7 @@ namespace App\Enum;
 class DatumTypeEnum
 {
     public const TYPE_TEXT = 'text';
+    public const TYPE_TEXTAREA = 'textarea';
     public const TYPE_COUNTRY = 'country';
     public const TYPE_DATE = 'date';
     public const TYPE_RATING = 'rating';
@@ -19,6 +20,7 @@ class DatumTypeEnum
 
     public const TYPES = [
         self::TYPE_TEXT,
+        self::TYPE_TEXTAREA,
         self::TYPE_COUNTRY,
         self::TYPE_DATE,
         self::TYPE_RATING,
@@ -31,6 +33,7 @@ class DatumTypeEnum
 
     public const TEXT_TYPES = [
         self::TYPE_TEXT,
+        self::TYPE_TEXTAREA,
         self::TYPE_COUNTRY,
         self::TYPE_DATE,
         self::TYPE_RATING,
@@ -46,6 +49,7 @@ class DatumTypeEnum
 
     public const TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',
+        self::TYPE_TEXTAREA => 'label.textarea',
         self::TYPE_SIGN => 'label.sign',
         self::TYPE_IMAGE => 'label.image',
         self::TYPE_COUNTRY => 'label.country',

@@ -4692,5 +4692,11 @@
         <target>Décroissant</target>
       </segment>
     </unit>
+    <unit id="xiu6a_1" name="btn.add_textarea">
+      <segment>
+        <source>btn.add_textarea</source>
+        <target>Texte long</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
