@@ -4551,5 +4551,35 @@
         <target>Display photos as a</target>
       </segment>
     </unit>
+    <unit id="RT9_dq7" name="label.items_sorting_property">
+      <segment>
+        <source>label.items_sorting_property</source>
+        <target>Sort items by</target>
+      </segment>
+    </unit>
+    <unit id="SD_Z2uA" name="label.items_sorting_direction">
+      <segment>
+        <source>label.items_sorting_direction</source>
+        <target>Sort items order</target>
+      </segment>
+    </unit>
+    <unit id="osq_Y32" name="form.item_sorting.default_value">
+      <segment>
+        <source>form.item_sorting.default_value</source>
+        <target>Name (default)</target>
+      </segment>
+    </unit>
+    <unit id="mxd7s10" name="global.sorting_direction.asc">
+      <segment>
+        <source>global.sorting_direction.asc</source>
+        <target>Ascending</target>
+      </segment>
+    </unit>
+    <unit id="xcZ1shh" name="global.sorting_direction.desc">
+      <segment>
+        <source>global.sorting_direction.desc</source>
+        <target>Descending</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

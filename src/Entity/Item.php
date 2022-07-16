@@ -14,6 +14,7 @@ use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\ItemRepository;
+use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
@@ -89,6 +90,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'item', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
+    #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 
     #[ORM\OneToMany(targetEntity: Loan::class, mappedBy: 'item', cascade: ['remove'])]
@@ -136,6 +138,8 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['item:read'])]
     private ?\DateTimeInterface $updatedAt;
+
+    private ?string $orderingValue = null;
 
     public function __construct()
     {
@@ -497,6 +501,18 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setFinalVisibility(string $finalVisibility): self
     {
         $this->finalVisibility = $finalVisibility;
+
+        return $this;
+    }
+
+    public function getOrderingValue(): ?string
+    {
+        return $this->orderingValue;
+    }
+
+    public function setOrderingValue(?string $orderingValue): Item
+    {
+        $this->orderingValue = $orderingValue;
 
         return $this;
     }

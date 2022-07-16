@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
@@ -210,6 +211,45 @@ class ItemRepository extends ServiceEntityRepository
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()
+        ;
+    }
+
+    public function findOrdered(Collection $collection)
+    {
+        if ($collection->getItemsSortingProperty()) {
+            $subQuery = $this->_em
+                ->createQueryBuilder()
+                ->select('datum.value')
+                ->from(Datum::class, 'datum')
+                ->where('datum.item = item')
+                ->andWhere('datum.label = :label')
+                ->andWhere('datum.type IN (:types)')
+                ->setMaxResults(1)
+            ;
+
+            $qb = $this
+                ->createQueryBuilder('item')
+                ->addSelect("($subQuery) AS orderingValue")
+                ->where('item.collection = :collection')
+                ->setParameter('collection', $collection)
+                ->setParameter('label', $collection->getItemsSortingProperty())
+                ->setParameter('types', [DatumTypeEnum::TYPE_DATE, DatumTypeEnum::TYPE_RATING])
+            ;
+
+            return array_map(function ($result) {
+                $item = $result[0];
+                $item->setOrderingValue($result['orderingValue']);
+
+                return $item;
+            }, $qb->getQuery()->getResult());
+        }
+
+        return $this
+            ->createQueryBuilder('item')
+            ->where('item.collection = :collection')
+            ->setParameter('collection', $collection)
+            ->getQuery()
+            ->getResult()
         ;
     }
 }

@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DatumRepository::class)]
 #[ORM\Table(name: 'koi_datum')]
+#[ORM\Index(name: 'idx_datum_label', columns: ['label'])]
 #[ApiResource(
     normalizationContext: ['groups' => ['datum:read']],
     denormalizationContext: ['groups' => ['datum:write']],
