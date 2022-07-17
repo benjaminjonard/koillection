@@ -55,13 +55,13 @@ class LoanCurrentUserTest extends ApiTestCase
             'json' => [
                 'item' => $itemIri,
                 'lentTo' => 'Somebody',
-                'lentAt' => (new \DateTime())->format('Y-m-d H:i:s')
+                'lentAt' => (new \DateTime())->format('Y-m-d H:i:s'),
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'lentTo' => 'Somebody'
+            'lentTo' => 'Somebody',
         ]);
     }
 

@@ -53,7 +53,7 @@ class TemplateCurrentUserTest extends ApiTestCase
     {
         $this->createClientWithCredentials()->request('POST', '/api/templates', [
             'json' => [
-                'name' => 'New template'
+                'name' => 'New template',
             ],
         ]);
 

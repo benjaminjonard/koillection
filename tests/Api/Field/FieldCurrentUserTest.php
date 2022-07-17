@@ -57,13 +57,13 @@ class FieldCurrentUserTest extends ApiTestCase
                 'name' => 'New field',
                 'type' => DatumTypeEnum::TYPE_TEXT,
                 'position' => 0,
-                'template' => $templateIri
+                'template' => $templateIri,
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'name' => 'New field'
+            'name' => 'New field',
         ]);
     }
 

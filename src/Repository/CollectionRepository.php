@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Collection;
-use App\Entity\Datum;
-use App\Enum\DatumTypeEnum;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;

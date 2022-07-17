@@ -103,7 +103,7 @@ class CollectionCurrentUserTest extends ApiTestCase
         $this->createClientWithCredentials()->request('POST', '/api/collections', [
             'headers' => ['Content-Type: multipart/form-data'],
             'json' => [
-                'title' => 'New collection'
+                'title' => 'New collection',
             ],
         ]);
 

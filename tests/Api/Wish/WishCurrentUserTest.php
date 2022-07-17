@@ -55,13 +55,13 @@ class WishCurrentUserTest extends ApiTestCase
             'headers' => ['Content-Type: multipart/form-data'],
             'json' => [
                 'name' => 'New wish',
-                'wishlist' => $wishlistIri
+                'wishlist' => $wishlistIri,
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'name' => 'New wish'
+            'name' => 'New wish',
         ]);
     }
 

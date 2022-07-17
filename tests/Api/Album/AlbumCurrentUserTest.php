@@ -8,10 +8,7 @@ use Api\Tests\ApiTestCase;
 use App\Entity\Album;
 use App\Entity\Photo;
 use Doctrine\Common\Collections\Criteria;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Part\DataPart;
-use Symfony\Component\Mime\Part\Multipart\FormDataPart;
 
 class AlbumCurrentUserTest extends ApiTestCase
 {
@@ -91,7 +88,7 @@ class AlbumCurrentUserTest extends ApiTestCase
         $this->createClientWithCredentials()->request('POST', '/api/albums', [
             'headers' => ['Content-Type: multipart/form-data'],
             'json' => [
-                'title' => 'New album'
+                'title' => 'New album',
             ],
         ]);
 

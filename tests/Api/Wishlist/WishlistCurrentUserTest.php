@@ -88,7 +88,7 @@ class WishlistCurrentUserTest extends ApiTestCase
         $this->createClientWithCredentials()->request('POST', '/api/wishlists', [
             'headers' => ['Content-Type: multipart/form-data'],
             'json' => [
-                'name' => 'New wishlist'
+                'name' => 'New wishlist',
             ],
         ]);
 

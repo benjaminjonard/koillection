@@ -53,7 +53,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
     {
         $this->createClientWithCredentials()->request('POST', '/api/tag_categories', [
             'json' => [
-                'label' => 'New tag category'
+                'label' => 'New tag category',
             ],
         ]);
 

@@ -7,7 +7,6 @@ namespace App\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class UniqueDatumLabelValidator extends ConstraintValidator
 {
@@ -24,7 +23,7 @@ class UniqueDatumLabelValidator extends ConstraintValidator
         $labels = [];
         foreach ($value as $position => $datum) {
             $label = $datum->getLabel();
-            if (in_array($label, $labels)) {
+            if (\in_array($label, $labels)) {
                 $this->context->buildViolation($constraint->message)
                     ->setParameter('{{ label }}', $label)
                     ->addViolation();

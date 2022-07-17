@@ -14,8 +14,7 @@ class ArrayRuntime implements RuntimeExtensionInterface
         iterable $array,
         ?string $direction = SortingDirectionEnum::ASCENDING,
         ?string $type = null
-    ): array
-    {
+    ): array {
         $array = !\is_array($array) ? $array->toArray() : $array;
 
         $collator = collator_create('root');
@@ -27,8 +26,8 @@ class ArrayRuntime implements RuntimeExtensionInterface
         switch ($type) {
             case DatumTypeEnum::TYPE_RATING:
             case DatumTypeEnum::TYPE_NUMBER:
-                usort($array, function($a, $b) use ($direction) {
-                    if ($direction == SortingDirectionEnum::DESCENDING) {
+                usort($array, function ($a, $b) use ($direction) {
+                    if (SortingDirectionEnum::DESCENDING == $direction) {
                         return (int) $b->getOrderingValue() <=> (int) $a->getOrderingValue();
                     }
 
@@ -36,8 +35,8 @@ class ArrayRuntime implements RuntimeExtensionInterface
                 });
                 break;
             case DatumTypeEnum::TYPE_DATE:
-                usort($array, function($a, $b) use ($direction) {
-                    if ($direction == SortingDirectionEnum::DESCENDING) {
+                usort($array, function ($a, $b) use ($direction) {
+                    if (SortingDirectionEnum::DESCENDING == $direction) {
                         return new \DateTime($b->getOrderingValue()) <=> new \DateTime($a->getOrderingValue());
                     }
 
@@ -45,7 +44,7 @@ class ArrayRuntime implements RuntimeExtensionInterface
                 });
                 break;
             default:
-                if ($direction == SortingDirectionEnum::DESCENDING) {
+                if (SortingDirectionEnum::DESCENDING == $direction) {
                     $array = array_reverse($array);
                 }
                 break;

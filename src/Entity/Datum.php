@@ -30,11 +30,11 @@ use Symfony\Component\Validator\Constraints as Assert;
     ]
 )]
 #[Assert\Expression(
-    "this.getItem() == null or this.getCollection() == null",
+    'this.getItem() == null or this.getCollection() == null',
     message: 'error.datum.cant_be_used_by_both_collections_and_items',
 )]
 #[Assert\Expression(
-    "this.getItem() != null or this.getCollection() != null",
+    'this.getItem() != null or this.getCollection() != null',
     message: 'error.datum.must_provide_collection_or_item',
 )]
 class Datum implements LoggableInterface

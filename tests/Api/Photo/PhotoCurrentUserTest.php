@@ -55,13 +55,13 @@ class PhotoCurrentUserTest extends ApiTestCase
             'headers' => ['Content-Type: multipart/form-data'],
             'json' => [
                 'title' => 'New photo',
-                'album' => $albumIri
+                'album' => $albumIri,
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'title' => 'New photo'
+            'title' => 'New photo',
         ]);
     }
 

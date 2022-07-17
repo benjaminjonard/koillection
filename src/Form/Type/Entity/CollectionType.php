@@ -40,7 +40,7 @@ class CollectionType extends AbstractType
         $entity = $builder->getData();
 
         $itemsSortingChoices = [
-            'form.item_sorting.default_value' => null
+            'form.item_sorting.default_value' => null,
         ];
 
         $labels = $this->datumRepository->findAllLabelsInCollection($entity);

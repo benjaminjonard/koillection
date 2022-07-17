@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
@@ -70,13 +69,13 @@ class DatumCurrentUserTest extends ApiTestCase
             'json' => [
                 'label' => 'New datum with collection',
                 'type' => DatumTypeEnum::TYPE_TEXT,
-                'collection' => $collectionIri
+                'collection' => $collectionIri,
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'label' => 'New datum with collection'
+            'label' => 'New datum with collection',
         ]);
     }
 
@@ -90,13 +89,13 @@ class DatumCurrentUserTest extends ApiTestCase
             'json' => [
                 'label' => 'New datum with item',
                 'type' => DatumTypeEnum::TYPE_TEXT,
-                'item' => $itemIri
+                'item' => $itemIri,
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'label' => 'New datum with item'
+            'label' => 'New datum with item',
         ]);
     }
 
@@ -114,13 +113,13 @@ class DatumCurrentUserTest extends ApiTestCase
                 'label' => 'New datum with item',
                 'type' => DatumTypeEnum::TYPE_TEXT,
                 'collection' => $collectionIri,
-                'item' => $itemIri
+                'item' => $itemIri,
             ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertJsonContains([
-            'hydra:description' => $this->translator->trans('error.datum.cant_be_used_by_both_collections_and_items', [], 'validators')
+            'hydra:description' => $this->translator->trans('error.datum.cant_be_used_by_both_collections_and_items', [], 'validators'),
         ]);
     }
 
@@ -130,13 +129,13 @@ class DatumCurrentUserTest extends ApiTestCase
             'headers' => ['Content-Type: multipart/form-data'],
             'json' => [
                 'label' => 'New datum with item',
-                'type' => DatumTypeEnum::TYPE_TEXT
+                'type' => DatumTypeEnum::TYPE_TEXT,
             ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertJsonContains([
-            'hydra:description' => $this->translator->trans('error.datum.must_provide_collection_or_item', [], 'validators')
+            'hydra:description' => $this->translator->trans('error.datum.must_provide_collection_or_item', [], 'validators'),
         ]);
     }
 

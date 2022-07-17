@@ -39,13 +39,13 @@ class InventoryCurrentUserTest extends ApiTestCase
         $this->createClientWithCredentials()->request('POST', '/api/inventories', [
             'json' => [
                 'name' => 'New inventory',
-                'content' => '{}'
+                'content' => '{}',
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'name' => 'New inventory'
+            'name' => 'New inventory',
         ]);
     }
 

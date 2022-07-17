@@ -8,8 +8,7 @@ class ThumbnailGenerator
 {
     public function __construct(
         private GifResizer $gifResizer
-    )
-    {
+    ) {
     }
 
     public function generate(string $path, string $thumbnailPath, int $thumbnailWidth): bool
@@ -20,7 +19,7 @@ class ThumbnailGenerator
 
         list($width, $height, $mime) = getimagesize($path);
         $originalSize = filesize($path);
-        $thumbnailHeight = (int)floor($height * ($thumbnailWidth / $width));
+        $thumbnailHeight = (int) floor($height * ($thumbnailWidth / $width));
 
         if ($width <= $thumbnailWidth) {
             return false;
@@ -90,9 +89,9 @@ class ThumbnailGenerator
         $ratio = $width / $height;
 
         if ($width > $height) {
-            $width = (int)ceil($width - ($width * abs($ratio - $maxWidth / $maxHeight)));
+            $width = (int) ceil($width - ($width * abs($ratio - $maxWidth / $maxHeight)));
         } else {
-            $height = (int)ceil($height - ($height * abs($ratio - $maxWidth / $maxHeight)));
+            $height = (int) ceil($height - ($height * abs($ratio - $maxWidth / $maxHeight)));
         }
         $newWidth = $maxWidth;
         $newHeight = $maxHeight;
@@ -134,15 +133,15 @@ class ThumbnailGenerator
         }
     }
 
-    function guessRotation(string $path): int
+    public function guessRotation(string $path): int
     {
         $deg = 0;
 
-        if (function_exists('exif_read_data')) {
+        if (\function_exists('exif_read_data')) {
             $exif = exif_read_data($path);
             if ($exif && isset($exif['Orientation'])) {
                 $orientation = $exif['Orientation'];
-                if ($orientation != 1) {
+                if (1 != $orientation) {
                     switch ($orientation) {
                         case 3:
                             $deg = 180;

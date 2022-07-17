@@ -10,7 +10,6 @@ use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class ApiTestCase extends ApiPlatformApiTestCase

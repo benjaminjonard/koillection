@@ -140,8 +140,6 @@ class ItemController extends AbstractController
             return $this->redirectToRoute('app_item_show', ['id' => $item->getId()]);
         }
 
-        //dd($form->createView());
-
         return $this->render('App/Item/edit.html.twig', [
             'form' => $form->createView(),
             'item' => $item,

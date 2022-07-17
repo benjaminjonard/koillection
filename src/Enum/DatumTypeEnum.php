@@ -50,7 +50,7 @@ class DatumTypeEnum
     public const AVAILABLE_FOR_ORDERING = [
         self::TYPE_DATE,
         self::TYPE_NUMBER,
-        self::TYPE_RATING
+        self::TYPE_RATING,
     ];
 
     public const TYPES_TRANS_KEYS = [

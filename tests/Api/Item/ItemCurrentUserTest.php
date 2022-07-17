@@ -114,13 +114,13 @@ class ItemCurrentUserTest extends ApiTestCase
             'headers' => ['Content-Type: multipart/form-data'],
             'json' => [
                 'name' => 'New item',
-                'collection' => $collectionIri
+                'collection' => $collectionIri,
             ],
         ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            'name' => 'New item'
+            'name' => 'New item',
         ]);
     }
 
