@@ -13,16 +13,15 @@
 
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedItemsTitles|default} ) }}
+                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
             </div>
         </div>
 
+        <h3 class="header col s12">{{ 'collection.items_settings'|trans }}</h3>
+
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+                {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedItemsTitles|default} ) }}
             </div>
             <div class="col s12 l5 xl3">
                 {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
@@ -35,6 +34,14 @@
             </div>
             <div class="col s12 l5 xl3">
                 {{ form_row(form.itemsSortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
+            </div>
+        </div>
+
+        <h3 class="header col s12">{{ 'collection.children_settings'|trans }}</h3>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
             </div>
         </div>
     </div>

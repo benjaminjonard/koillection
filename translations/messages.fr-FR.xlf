@@ -4698,5 +4698,17 @@
         <target>Texte long</target>
       </segment>
     </unit>
+    <unit id="Ml6qaa0" name="collection.items_settings">
+      <segment>
+        <source>collection.items_settings</source>
+        <target>Paramètres des objets</target>
+      </segment>
+    </unit>
+    <unit id="NBD7uzA" name="collection.children_settings">
+      <segment>
+        <source>collection.children_settings</source>
+        <target>Paramètres des sous-collections</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
