@@ -8,7 +8,8 @@ class ThumbnailGenerator
 {
     public function __construct(
         private GifResizer $gifResizer
-    ) {
+    )
+    {
     }
 
     public function generate(string $path, string $thumbnailPath, int $thumbnailWidth): bool
@@ -19,7 +20,7 @@ class ThumbnailGenerator
 
         list($width, $height, $mime) = getimagesize($path);
         $originalSize = filesize($path);
-        $thumbnailHeight = (int) floor($height * ($thumbnailWidth / $width));
+        $thumbnailHeight = (int)floor($height * ($thumbnailWidth / $width));
 
         if ($width <= $thumbnailWidth) {
             return false;
@@ -54,6 +55,8 @@ class ThumbnailGenerator
             }
 
             imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $width, $height);
+            $deg = $this->guessRotation($path);
+            $thumbnail = imagerotate($thumbnail, $deg, 0);
 
             switch ($mime) {
                 case IMAGETYPE_JPEG:
@@ -87,9 +90,9 @@ class ThumbnailGenerator
         $ratio = $width / $height;
 
         if ($width > $height) {
-            $width = (int) ceil($width - ($width * abs($ratio - $maxWidth / $maxHeight)));
+            $width = (int)ceil($width - ($width * abs($ratio - $maxWidth / $maxHeight)));
         } else {
-            $height = (int) ceil($height - ($height * abs($ratio - $maxWidth / $maxHeight)));
+            $height = (int)ceil($height - ($height * abs($ratio - $maxWidth / $maxHeight)));
         }
         $newWidth = $maxWidth;
         $newHeight = $maxHeight;
@@ -112,6 +115,9 @@ class ThumbnailGenerator
 
         imagecopyresampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
+        $deg = $this->guessRotation($path);
+        imagerotate($resized, $deg, 0);
+
         switch ($mime) {
             case IMAGETYPE_JPEG:
             case IMAGETYPE_JPEG2000:
@@ -126,5 +132,32 @@ class ThumbnailGenerator
             default:
                 break;
         }
+    }
+
+    function guessRotation(string $path): int
+    {
+        $deg = 0;
+
+        if (function_exists('exif_read_data')) {
+            $exif = exif_read_data($path);
+            if ($exif && isset($exif['Orientation'])) {
+                $orientation = $exif['Orientation'];
+                if ($orientation != 1) {
+                    switch ($orientation) {
+                        case 3:
+                            $deg = 180;
+                            break;
+                        case 6:
+                            $deg = 270;
+                            break;
+                        case 8:
+                            $deg = 90;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return $deg;
     }
 }

@@ -40,6 +40,7 @@ class ImageHandler
             $fileName = $generatedName.'_original.'.$extension;
             $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
             $file->move($absolutePath, $fileName);
+
             $this->removeOldFile($entity, $attribute);
             $this->accessor->setValue($entity, $attribute->getPath(), $relativePath.$fileName);
 
