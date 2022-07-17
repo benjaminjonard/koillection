@@ -13,7 +13,7 @@ final class Version20220713065947 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Add sorting properties for items in collections';
+        return '[Postgresql] Add sorting properties for items in collections';
     }
 
     public function up(Schema $schema): void

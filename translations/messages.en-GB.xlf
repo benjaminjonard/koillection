@@ -1110,7 +1110,7 @@
       </notes>
       <segment>
         <source>label.children_title</source>
-        <target>Sub collections label</target>
+        <target>Sub-collections section label</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
@@ -1270,7 +1270,7 @@
       </notes>
       <segment>
         <source>label.items_title</source>
-        <target>Items label</target>
+        <target>Items section label</target>
       </segment>
     </unit>
     <unit id="Kp3d.qQ" name="label.label">
@@ -4597,6 +4597,18 @@
       <segment>
         <source>collection.children_settings</source>
         <target>Sub-collections settings</target>
+      </segment>
+    </unit>
+    <unit id="lqRR6ax" name="label.items_default_template">
+      <segment>
+        <source>label.items_default_template</source>
+        <target>Default template applied to items</target>
+      </segment>
+    </unit>
+    <unit id="qdo7yzn" name="label.textarea">
+      <segment>
+        <source>label.textarea</source>
+        <target>Long text</target>
       </segment>
     </unit>
   </file>

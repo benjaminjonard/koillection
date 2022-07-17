@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Loan;
+use App\Entity\Template;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
 use App\Repository\CollectionRepository;
@@ -54,6 +56,17 @@ class ItemController extends AbstractController
             ->setParentVisibility($collection->getVisibility())
             ->setFinalVisibility($collection->getFinalVisibility())
         ;
+
+        $template = $collection->getItemsDefaultTemplate();
+        if ($template instanceof Template) {
+            foreach ($template->getFields() as $field) {
+                $item->addData((new Datum())
+                    ->setLabel($field->getName())
+                    ->setType($field->getType())
+                    ->setPosition($field->getPosition())
+                );
+            }
+        }
 
         // Preload tags shared by all items in that collection
         $suggestedNames = [];

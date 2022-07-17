@@ -12,7 +12,7 @@ final class Version20220713152238 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Add sorting properties for items in collections';
+        return '[Mysql] Add sorting properties for items in collections';
     }
 
     public function up(Schema $schema): void

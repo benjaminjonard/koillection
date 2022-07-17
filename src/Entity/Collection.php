@@ -100,6 +100,11 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private int $seenCounter;
 
+    #[ORM\ManyToOne(targetEntity: Template::class)]
+    #[Groups(['item:read', 'item:write'])]
+    #[ApiSubresource(maxDepth: 1)]
+    private ?Template $itemsDefaultTemplate = null;
+
     #[ORM\Column(type: Types::STRING, length: 4)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
@@ -388,6 +393,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
                 $data->setCollection(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getItemsDefaultTemplate(): ?Template
+    {
+        return $this->itemsDefaultTemplate;
+    }
+
+    public function setItemsDefaultTemplate(?Template $itemsDefaultTemplate): Collection
+    {
+        $this->itemsDefaultTemplate = $itemsDefaultTemplate;
 
         return $this;
     }

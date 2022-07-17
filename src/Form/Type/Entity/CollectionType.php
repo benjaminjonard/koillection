@@ -65,6 +65,15 @@ class CollectionType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
+            ->add('itemsDefaultTemplate', EntityType::class, [
+                'class' => Template::class,
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => false,
+                'choice_name' => null,
+                'empty_data' => '',
+                'required' => false,
+            ])
             ->add('itemsDisplayMode', ChoiceType::class, [
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
                 'required' => true,
