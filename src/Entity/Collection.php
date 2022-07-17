@@ -154,7 +154,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
         $this->seenCounter = 0;
-        $this->itemsSortingDirection = 'ASC';
+        $this->itemsSortingDirection = 'asc';
     }
 
     public function __toString(): string

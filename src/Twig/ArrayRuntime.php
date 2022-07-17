@@ -12,7 +12,7 @@ class ArrayRuntime implements RuntimeExtensionInterface
 {
     public function naturalSorting(
         iterable $array,
-        string $direction = SortingDirectionEnum::ASCENDING,
+        ?string $direction = SortingDirectionEnum::ASCENDING,
         ?string $type = null
     ): array
     {
