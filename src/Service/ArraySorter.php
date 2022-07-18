@@ -19,11 +19,8 @@ class ArraySorter
         $collator = collator_create('root');
         $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
 
+        // Order alphabetically first, so if two items have the same orderingValue, the two of them will be ordered alphabetically
         usort($array, function ($a, $b) use ($collator, $direction) {
-            if (SortingDirectionEnum::DESCENDING == $direction) {
-                return $collator->compare($b['name'], $a['name']);
-            }
-
             return $collator->compare($a['name'], $b['name']);
         });
 
@@ -48,6 +45,7 @@ class ArraySorter
                 });
                 break;
             default:
+                $array = array_reverse($array);
                 break;
         }
 
@@ -65,10 +63,6 @@ class ArraySorter
         $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
 
         usort($array, function ($a, $b) use ($collator, $direction) {
-            if (SortingDirectionEnum::DESCENDING == $direction) {
-                return $collator->compare($b->__toString(), $a->__toString());
-            }
-
             return $collator->compare($a->__toString(), $b->__toString());
         });
 
@@ -93,6 +87,7 @@ class ArraySorter
                 });
                 break;
             default:
+                $array = array_reverse($array);
                 break;
         }
 
