@@ -25,7 +25,7 @@ class Base64ToImageTransformer implements DataTransformerInterface
         return null;
     }
 
-    public function reverseTransform($base64): ?\UploadedFile
+    public function reverseTransform($base64): ?UploadedFile
     {
         if (null === $base64 || $base64 === $this->originalBase64) {
             return null;

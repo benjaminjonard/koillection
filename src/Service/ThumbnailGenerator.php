@@ -138,7 +138,7 @@ class ThumbnailGenerator
         $deg = 0;
 
         if (\function_exists('exif_read_data')) {
-            $exif = exif_read_data($path);
+            $exif = @exif_read_data($path);
             if ($exif && isset($exif['Orientation'])) {
                 $orientation = $exif['Orientation'];
                 if (1 != $orientation) {
