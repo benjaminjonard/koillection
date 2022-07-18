@@ -36,11 +36,15 @@ class ArrayRuntime implements RuntimeExtensionInterface
                 break;
             case DatumTypeEnum::TYPE_DATE:
                 usort($array, function ($a, $b) use ($direction) {
+                    $a = is_string($a->getOrderingValue()) ? new \DateTime($a->getOrderingValue()) : null;
+                    $b = is_string($b->getOrderingValue()) ? new \DateTime($b->getOrderingValue()) : null;
+
+
                     if (SortingDirectionEnum::DESCENDING == $direction) {
-                        return new \DateTime($b->getOrderingValue()) <=> new \DateTime($a->getOrderingValue());
+                        return $b <=> $a;
                     }
 
-                    return new \DateTime($a->getOrderingValue()) <=> new \DateTime($b->getOrderingValue());
+                    return $a <=> $b;
                 });
                 break;
             default:
