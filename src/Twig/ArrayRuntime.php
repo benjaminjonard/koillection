@@ -6,54 +6,19 @@ namespace App\Twig;
 
 use App\Enum\DatumTypeEnum;
 use App\Enum\SortingDirectionEnum;
+use App\Service\ArraySorter;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class ArrayRuntime implements RuntimeExtensionInterface
 {
+    public function __construct(private readonly ArraySorter $arraySorter)
+    {}
+
     public function naturalSorting(
         iterable $array,
         ?string $direction = SortingDirectionEnum::ASCENDING,
         ?string $type = null
     ): array {
-        $array = !\is_array($array) ? $array->toArray() : $array;
-
-        $collator = collator_create('root');
-        $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
-
-        // Sort by using __toString() function of elements
-        $collator->asort($array);
-
-        switch ($type) {
-            case DatumTypeEnum::TYPE_RATING:
-            case DatumTypeEnum::TYPE_NUMBER:
-                usort($array, function ($a, $b) use ($direction) {
-                    if (SortingDirectionEnum::DESCENDING == $direction) {
-                        return (int) $b->getOrderingValue() <=> (int) $a->getOrderingValue();
-                    }
-
-                    return (int) $a->getOrderingValue() <=> (int) $b->getOrderingValue();
-                });
-                break;
-            case DatumTypeEnum::TYPE_DATE:
-                usort($array, function ($a, $b) use ($direction) {
-                    $a = is_string($a->getOrderingValue()) ? new \DateTime($a->getOrderingValue()) : null;
-                    $b = is_string($b->getOrderingValue()) ? new \DateTime($b->getOrderingValue()) : null;
-
-
-                    if (SortingDirectionEnum::DESCENDING == $direction) {
-                        return $b <=> $a;
-                    }
-
-                    return $a <=> $b;
-                });
-                break;
-            default:
-                if (SortingDirectionEnum::DESCENDING == $direction) {
-                    $array = array_reverse($array);
-                }
-                break;
-        }
-
-        return $array;
+        return $this->arraySorter->sortObjects($array, $direction, $type);
     }
 }

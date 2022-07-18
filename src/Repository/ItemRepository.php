@@ -11,14 +11,16 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use App\Model\Search\Search;
+use App\Service\ArraySorter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ItemRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
+    public function __construct(ManagerRegistry $registry,
+        private readonly ArraySorter $arraySorter
+    ) {
         parent::__construct($registry, Item::class);
     }
 
@@ -38,31 +40,24 @@ class ItemRepository extends ServiceEntityRepository
 
     public function findNextAndPrevious(Item $item, Collection|Tag|null $parent): array
     {
-        $qb = $this->_em
-            ->createQueryBuilder()
-            ->select('DISTINCT partial i.{id, name}')
-            ->from(Item::class, 'i')
-        ;
-
+        $results = [];
         if ($parent instanceof Collection) {
-            $qb
-                ->leftJoin('i.collection', 'c')
-                ->where('c = :collection')
-                ->setParameter('collection', $parent->getId())
-            ;
+            $results = $this->findForOrdering($parent, true);
         } elseif ($parent instanceof Tag) {
-            $qb
+            $results = $this->_em
+                ->createQueryBuilder()
+                ->select('DISTINCT i')
+                ->from(Item::class, 'i')
                 ->leftJoin('i.tags', 't')
                 ->where('t = :tag')
                 ->setParameter('tag', $parent->getId())
+                ->getQuery()->getArrayResult()
             ;
         }
 
-        $results = $qb->getQuery()->getArrayResult();
-
-        usort($results, function (array $a, array $b) {
-            return strnatcmp($a['name'], $b['name']);
-        });
+        $sortDirection = $parent instanceof Collection ? $parent->getItemsSortingDirection() : null;
+        $sortType = $parent instanceof Collection ? $parent->getItemsSortingType() : null;
+        $results = $this->arraySorter->sortArrays($results, $sortDirection, $sortType);
 
         $count = \count($results);
         $current = null;
@@ -214,7 +209,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findOrdered(Collection $collection)
+    public function findForOrdering(Collection $collection, bool $asArray = false)
     {
         if ($collection->getItemsSortingProperty()) {
             $subQuery = $this->_em
@@ -236,20 +231,27 @@ class ItemRepository extends ServiceEntityRepository
                 ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ;
 
-            return array_map(function ($result) {
+            $results = $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
+
+            return array_map(function ($result) use ($asArray) {
                 $item = $result[0];
-                $item->setOrderingValue($result['orderingValue']);
+
+                if ($asArray) {
+                    $item['orderingValue'] = $result['orderingValue'];
+                } else {
+                    $item->setOrderingValue($result['orderingValue']);
+                }
 
                 return $item;
-            }, $qb->getQuery()->getResult());
+            }, $results);
         }
 
-        return $this
+        $qb = $this
             ->createQueryBuilder('item')
             ->where('item.collection = :collection')
             ->setParameter('collection', $collection)
-            ->getQuery()
-            ->getResult()
         ;
+
+        return $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
     }
 }

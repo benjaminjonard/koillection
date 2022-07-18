@@ -128,11 +128,17 @@ class CollectionType extends AbstractType
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($labels) {
             $collection = $event->getData();
 
+            $found = false;
             foreach ($labels as $label) {
                 if ($label['label'] === $collection->getItemsSortingProperty()) {
                     $collection->setItemsSortingType($label['type']);
+                    $found = true;
                     break;
                 }
+            }
+
+            if ($found === false) {
+                $collection->setItemsSortingType(null);
             }
         });
     }

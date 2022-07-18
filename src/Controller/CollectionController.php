@@ -107,7 +107,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findBy(['parent' => $collection]),
-            'items' => $itemRepository->findOrdered($collection),
+            'items' => $itemRepository->findForOrdering($collection),
         ]);
     }
 
