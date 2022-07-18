@@ -45,7 +45,9 @@ class ArraySorter
                 });
                 break;
             default:
-                $array = array_reverse($array);
+                if (SortingDirectionEnum::DESCENDING == $direction) {
+                    $array = array_reverse($array);
+                }
                 break;
         }
 
@@ -87,7 +89,9 @@ class ArraySorter
                 });
                 break;
             default:
-                $array = array_reverse($array);
+                if (SortingDirectionEnum::DESCENDING == $direction) {
+                    $array = array_reverse($array);
+                }
                 break;
         }
 
