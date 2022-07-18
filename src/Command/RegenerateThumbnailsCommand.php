@@ -28,10 +28,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegenerateThumbnailsCommand extends Command
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry,
-        private TranslatorInterface $translator,
-        private TokenStorageInterface $tokenStorage,
-        private string $publicPath
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly TranslatorInterface $translator,
+        private readonly TokenStorageInterface $tokenStorage,
+        private readonly string $publicPath
     ) {
         parent::__construct();
     }

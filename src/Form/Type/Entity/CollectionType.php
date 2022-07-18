@@ -137,7 +137,7 @@ class CollectionType extends AbstractType
                 }
             }
 
-            if ($found === false) {
+            if (false === $found) {
                 $collection->setItemsSortingType(null);
             }
         });

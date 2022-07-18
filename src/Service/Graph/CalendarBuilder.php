@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class CalendarBuilder
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry
+        private readonly ManagerRegistry $managerRegistry
     ) {
     }
 

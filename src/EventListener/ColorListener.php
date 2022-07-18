@@ -10,7 +10,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 class ColorListener
 {
     public function __construct(
-        private ColorPicker $colorPicker
+        private readonly ColorPicker $colorPicker
     ) {
     }
 

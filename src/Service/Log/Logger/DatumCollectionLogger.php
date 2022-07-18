@@ -17,7 +17,7 @@ class DatumCollectionLogger extends Logger
 {
     public function __construct(
         TranslatorInterface $translator,
-        private LogQueue $logQueue
+        private readonly LogQueue $logQueue
     ) {
         parent::__construct($translator);
     }

@@ -11,7 +11,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 class CounterCacheListener
 {
     public function __construct(
-        private CountersCache $countersCache
+        private readonly CountersCache $countersCache
     ) {
     }
 

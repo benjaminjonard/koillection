@@ -10,7 +10,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 class CountersRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private CountersCache $countersCache
+        private readonly CountersCache $countersCache
     ) {
     }
 

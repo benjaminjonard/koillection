@@ -10,7 +10,7 @@ use App\Repository\CollectionRepository;
 class TreeBuilder
 {
     public function __construct(
-        private CollectionRepository $collectionRepository
+        private readonly CollectionRepository $collectionRepository
     ) {
     }
 

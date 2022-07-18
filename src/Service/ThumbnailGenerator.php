@@ -7,7 +7,7 @@ namespace App\Service;
 class ThumbnailGenerator
 {
     public function __construct(
-        private GifResizer $gifResizer
+        private readonly GifResizer $gifResizer
     ) {
     }
 

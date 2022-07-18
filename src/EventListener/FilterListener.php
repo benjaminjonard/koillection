@@ -15,10 +15,10 @@ use Symfony\Component\Security\Core\Security;
 class FilterListener
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry,
-        private ContextHandler $contextHandler,
-        private Security $security,
-        private UserRepository $userRepository
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly ContextHandler $contextHandler,
+        private readonly Security $security,
+        private readonly UserRepository $userRepository
     ) {
     }
 

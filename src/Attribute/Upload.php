@@ -8,12 +8,12 @@ namespace App\Attribute;
 class Upload
 {
     public function __construct(
-        private string $path,
-        private ?string $smallThumbnailPath = null,
-        private ?string $largeThumbnailPath = null,
-        private ?string $originalFilenamePath = null,
-        private ?int $maxWidth = null,
-        private ?int $maxHeight = null,
+        private readonly string $path,
+        private readonly ?string $smallThumbnailPath = null,
+        private readonly ?string $largeThumbnailPath = null,
+        private readonly ?string $originalFilenamePath = null,
+        private readonly ?int $maxWidth = null,
+        private readonly ?int $maxHeight = null,
     ) {
     }
 

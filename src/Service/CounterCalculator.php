@@ -18,9 +18,9 @@ use Doctrine\Persistence\ManagerRegistry;
 class CounterCalculator
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry,
-        private QueryNameGenerator $qng,
-        private ContextHandler $contextHandler
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly QueryNameGenerator $qng,
+        private readonly ContextHandler $contextHandler
     ) {
     }
 

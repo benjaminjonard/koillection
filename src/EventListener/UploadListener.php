@@ -12,8 +12,8 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 final class UploadListener
 {
     public function __construct(
-        private UploadAnnotationReader $reader,
-        private ImageHandler $handler
+        private readonly UploadAnnotationReader $reader,
+        private readonly ImageHandler $handler
     ) {
     }
 

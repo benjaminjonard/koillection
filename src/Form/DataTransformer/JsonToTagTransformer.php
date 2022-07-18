@@ -11,11 +11,11 @@ use Symfony\Component\Form\DataTransformerInterface;
 class JsonToTagTransformer implements DataTransformerInterface
 {
     public function __construct(
-        private TagRepository $tagRepository
+        private readonly TagRepository $tagRepository
     ) {
     }
 
-    public function transform($tags): mixed
+    public function transform($tags): string|bool
     {
         $array = [];
         foreach ($tags as $tag) {
@@ -25,7 +25,7 @@ class JsonToTagTransformer implements DataTransformerInterface
         return json_encode($array);
     }
 
-    public function reverseTransform($json): mixed
+    public function reverseTransform($json): array
     {
         $tags = [];
         foreach (json_decode($json) as $raw) {

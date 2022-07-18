@@ -10,7 +10,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 class ContextRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private ContextHandler $contextHandler
+        private readonly ContextHandler $contextHandler
     ) {
     }
 

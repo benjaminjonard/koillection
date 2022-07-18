@@ -20,7 +20,7 @@ class ArraySorter
         $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
 
         // Order alphabetically first, so if two items have the same orderingValue, the two of them will be ordered alphabetically
-        usort($array, function ($a, $b) use ($collator, $direction) {
+        usort($array, function ($a, $b) use ($collator) {
             return $collator->compare($a['name'], $b['name']);
         });
 
@@ -64,7 +64,7 @@ class ArraySorter
         $collator = collator_create('root');
         $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
 
-        usort($array, function ($a, $b) use ($collator, $direction) {
+        usort($array, function ($a, $b) use ($collator) {
             return $collator->compare($a->__toString(), $b->__toString());
         });
 

@@ -139,7 +139,7 @@ class CollectionLogger extends Logger
                             '%value%' => '<strong>'.$payload['datum_value'].'</strong>',
                         ]);
                 }
-            // no break
+                // no break
             case 'datum_removed':
                 switch ($payload['datum_type']) {
                     case DatumTypeEnum::TYPE_FILE:
@@ -162,7 +162,7 @@ class CollectionLogger extends Logger
                             '%value%' => '<strong>'.$payload['datum_value'].'</strong>',
                         ]);
                 }
-            // no break
+                // no break
             default:
                 $defaultValue = $this->translator->trans('log.default_value');
                 $old = $payload['old'] ? $payload['old'] : $defaultValue;

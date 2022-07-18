@@ -13,7 +13,7 @@ class Paginator
         private int $totalItems,
         private int $itemsPerPage,
         private int $currentPage,
-        private string $url
+        private readonly string $url
     ) {
         $this->updateNumPages();
     }

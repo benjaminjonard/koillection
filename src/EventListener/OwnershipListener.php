@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Security;
 final class OwnershipListener
 {
     public function __construct(
-        private Security $security
+        private readonly Security $security
     ) {
     }
 

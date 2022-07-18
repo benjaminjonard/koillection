@@ -16,11 +16,11 @@ class ImageHandler
     private PropertyAccessor $accessor;
 
     public function __construct(
-        private RandomStringGenerator $randomStringGenerator,
-        private ThumbnailGenerator $thumbnailGenerator,
-        private Security $security,
-        private DiskUsageCalculator $diskUsageCalculator,
-        private string $publicPath
+        private readonly RandomStringGenerator $randomStringGenerator,
+        private readonly ThumbnailGenerator $thumbnailGenerator,
+        private readonly Security $security,
+        private readonly DiskUsageCalculator $diskUsageCalculator,
+        private readonly string $publicPath
     ) {
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }

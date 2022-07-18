@@ -13,10 +13,10 @@ use Symfony\Component\Security\Core\Security;
 class DatabaseDumper
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry,
-        private Security $security,
-        private ContextHandler $contextHandler,
-        private UserRepository $userRepository
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly Security $security,
+        private readonly ContextHandler $contextHandler,
+        private readonly UserRepository $userRepository
     ) {
     }
 

@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 class FileResponse extends Response
 {
     public function __construct(
-        private array $data = [],
-        private string $filename = 'koillection.txt',
+        private readonly array $data = [],
+        private readonly string $filename = 'koillection.txt',
         int $status = 200,
         array $headers = []
     ) {

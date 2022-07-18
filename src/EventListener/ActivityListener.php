@@ -11,8 +11,8 @@ use Symfony\Component\Security\Core\Security;
 class ActivityListener
 {
     public function __construct(
-        private Security $security,
-        private ManagerRegistry $managerRegistry
+        private readonly Security $security,
+        private readonly ManagerRegistry $managerRegistry
     ) {
     }
 

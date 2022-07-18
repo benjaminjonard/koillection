@@ -12,8 +12,8 @@ use Twig\Extension\CoreExtension;
 class TimezoneListener
 {
     public function __construct(
-        private Security $security,
-        private Environment $twig
+        private readonly Security $security,
+        private readonly Environment $twig
     ) {
     }
 
