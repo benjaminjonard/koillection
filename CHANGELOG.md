@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.6] / 2022-07-20
+### Features
+- Add sorting feature on collections; sorting is available on item name and data of type Date, Number and Rating (Benjamin Jonard)
+- Add textarea (long text) data type (Benjamin Jonard)
+- Add an items default template field in collection form (Benjamin Jonard)
+
+### Fixes
+- Fix missing DateFormat in enum (Benjamin Jonard)
+- Fix wrong column label on wishes list (Benjamin Jonard)
+- Properly handle currency display based on user locale (Benjamin Jonard)
+- Fix broken path to shared items in a tag (Benjamin Jonard)
+- Improve thumbnails generation, now properly takes image EXIF orientation into account (Benjamin Jonard)
+
+### Miscellaneous
+- Api - add possibility to directly link a Datum to an item or a collection (Benjamin Jonard)
+- Improve english translation (Benjamin Jonard)
+- Update JS and PHP dependencies (Benjamin Jonard)
+
 ## [1.3.5] / 2022-07-07
 ### Features
 - Add a list view for items in collections, tags and albums (Benjamin Jonard)
