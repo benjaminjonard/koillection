@@ -62,7 +62,7 @@ class WishlistRepository extends ServiceEntityRepository
             ->setParameter('excluded', $excluded)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findChildrenByWishlistId(string $id): iterable

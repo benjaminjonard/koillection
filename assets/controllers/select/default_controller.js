@@ -10,7 +10,7 @@ export default class extends Controller {
         new TsSelect2(this.element, {
             templateSelection: function (element) {
                 if (!element.id) {
-                    return '';
+                    return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
                 }
 
                 return element.text;

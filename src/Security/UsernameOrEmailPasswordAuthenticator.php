@@ -23,8 +23,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 class UsernameOrEmailPasswordAuthenticator extends AbstractLoginFormAuthenticator
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private RouterInterface $router
+        private readonly UserRepository $userRepository,
+        private readonly RouterInterface $router
     ) {
     }
 

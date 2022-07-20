@@ -12,7 +12,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 class BreadcrumbRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private BreadcrumbBuilder $breadcrumbBuilder
+        private readonly BreadcrumbBuilder $breadcrumbBuilder
     ) {
     }
 

@@ -11,8 +11,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class DiskUsageCalculator
 {
     public function __construct(
-        private TranslatorInterface $translator,
-        private string $publicPath
+        private readonly TranslatorInterface $translator,
+        private readonly string $publicPath
     ) {
     }
 

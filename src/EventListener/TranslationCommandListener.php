@@ -12,7 +12,7 @@ use Symfony\Component\Console\Event\ConsoleTerminateEvent;
 final class TranslationCommandListener
 {
     public function __construct(
-        private string $assetsPath
+        private readonly string $assetsPath
     ) {
     }
 

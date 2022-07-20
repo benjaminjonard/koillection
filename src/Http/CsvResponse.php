@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 class CsvResponse extends Response
 {
     public function __construct(
-        private array $data = [],
-        private string $filename = 'koillection.csv',
+        private readonly array $data = [],
+        private readonly string $filename = 'koillection.csv',
         int $status = 200,
         array $headers = []
     ) {

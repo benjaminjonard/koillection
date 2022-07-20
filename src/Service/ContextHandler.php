@@ -25,8 +25,8 @@ class ContextHandler
     private string $username;
 
     public function __construct(
-        private Environment $environment,
-        private RouterInterface $router
+        private readonly Environment $environment,
+        private readonly RouterInterface $router
     ) {
     }
 

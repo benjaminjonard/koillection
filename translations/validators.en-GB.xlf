@@ -61,5 +61,17 @@
         <target>The parent can't be the same as the current item</target>
       </segment>
     </unit>
+    <unit id="zeq8z7" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <segment>
+        <source>error.datum.cant_be_used_by_both_collections_and_items</source>
+        <target>A datum cannot be used with both item and collection</target>
+      </segment>
+    </unit>
+    <unit id="1qzhkiF" name="error.datum.must_provide_collection_or_item">
+      <segment>
+        <source>error.datum.must_provide_collection_or_item</source>
+        <target>A collection or an item must be provided</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

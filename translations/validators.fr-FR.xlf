@@ -61,5 +61,17 @@
         <target>Le parent ne peut pas être identique à l'objet courant</target>
       </segment>
     </unit>
+    <unit id="zeq8z7" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <segment>
+        <source>error.datum.cant_be_used_by_both_collections_and_items</source>
+        <target>Un objet Datum ne peut être utilisé par un objet et une collection en même temps</target>
+      </segment>
+    </unit>
+    <unit id="1qzhkiF" name="error.datum.must_provide_collection_or_item">
+      <segment>
+        <source>error.datum.must_provide_collection_or_item</source>
+        <target>Une collection ou un item doit être renseigné</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

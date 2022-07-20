@@ -14,9 +14,9 @@ use Twig\Extension\RuntimeExtensionInterface;
 class LogRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private TranslatorInterface $translator,
-        private RouterInterface $router,
-        private LoggerChain $loggerChain
+        private readonly TranslatorInterface $translator,
+        private readonly RouterInterface $router,
+        private readonly LoggerChain $loggerChain
     ) {
     }
 

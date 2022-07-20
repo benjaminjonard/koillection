@@ -10,6 +10,7 @@ use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class ApiTestCase extends ApiPlatformApiTestCase
 {
@@ -18,6 +19,7 @@ abstract class ApiTestCase extends ApiPlatformApiTestCase
     private ?string $token = null;
     protected ?User $user = null;
     protected ?User $otherUser = null;
+    protected ?TranslatorInterface $translator = null;
     protected ?EntityManagerInterface $em = null;
     protected ?IriConverterInterface $iriConverter = null;
 
@@ -25,6 +27,7 @@ abstract class ApiTestCase extends ApiPlatformApiTestCase
     {
         self::bootKernel();
 
+        $this->translator = $this->getContainer()->get('translator');
         $this->em = $this->getContainer()->get('doctrine')->getManager();
         $this->iriConverter = $this->getContainer()->get('api_platform.iri_converter');
 

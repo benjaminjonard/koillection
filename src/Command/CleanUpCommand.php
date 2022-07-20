@@ -19,9 +19,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class CleanUpCommand extends Command
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry,
-        private TranslatorInterface $translator,
-        private string $publicPath
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly TranslatorInterface $translator,
+        private readonly string $publicPath
     ) {
         parent::__construct();
     }

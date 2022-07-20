@@ -11,12 +11,12 @@ use Symfony\Component\Form\DataTransformerInterface;
 class JsonToItemTransformer implements DataTransformerInterface
 {
     public function __construct(
-        private ItemRepository $itemRepository,
-        private Packages $assetManager
+        private readonly ItemRepository $itemRepository,
+        private readonly Packages $assetManager
     ) {
     }
 
-    public function transform($items): mixed
+    public function transform($items): string|bool
     {
         $array = [];
         foreach ($items as $item) {
@@ -30,7 +30,7 @@ class JsonToItemTransformer implements DataTransformerInterface
         return json_encode($array);
     }
 
-    public function reverseTransform($json): mixed
+    public function reverseTransform($json): array
     {
         $items = [];
         foreach (json_decode($json, true) as $id) {

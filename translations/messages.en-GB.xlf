@@ -2,227 +2,138 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
   <file id="messages.en-GB">
     <unit id="1d_kHPL" name="about.welcome">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:41</note>
-      </notes>
       <segment>
         <source>about.welcome</source>
         <target>Welcome to Koillection !</target>
       </segment>
     </unit>
     <unit id="8g43J_h" name="about.desc">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:42</note>
-      </notes>
       <segment>
         <source>about.desc</source>
         <target>Koillection is a simple tool that helps you to organize any kind of collections you want. Just create a new collection and add your items.</target>
       </segment>
     </unit>
     <unit id="Ht9zIf1" name="about.why">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:45</note>
-      </notes>
       <segment>
         <source>about.why</source>
         <target>Why Koillection ?</target>
       </segment>
     </unit>
     <unit id="_YEIYeX" name="about.why_1">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:47</note>
-      </notes>
       <segment>
         <source>about.why_1</source>
         <target>You can organize any type of collections you want</target>
       </segment>
     </unit>
     <unit id="1k3cEa1" name="about.why_2">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:48</note>
-      </notes>
       <segment>
         <source>about.why_2</source>
         <target>Your collection is private</target>
       </segment>
     </unit>
     <unit id="3qAAKnj" name="about.why_3">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:49</note>
-      </notes>
       <segment>
         <source>about.why_3</source>
         <target>You are free to add informations on your items</target>
       </segment>
     </unit>
     <unit id="4pZSUFq" name="about.why_4">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:50</note>
-      </notes>
       <segment>
         <source>about.why_4</source>
         <target>A tag system is available to quickly find related items</target>
       </segment>
     </unit>
     <unit id="SZRa31V" name="aria.album">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/albums.html.twig:37</note>
-        <note category="file-source" priority="1">templates/App/Album/index.html.twig:43</note>
-      </notes>
       <segment>
         <source>aria.album</source>
         <target>Album %title%</target>
       </segment>
     </unit>
     <unit id="pxzFuuC" name="aria.breadcrumb">
-      <notes>
-        <note category="file-source" priority="1">templates/Breadcrumb/breadcrumb-entity.html.twig:1</note>
-        <note category="file-source" priority="1">templates/Breadcrumb/breadcrumb-root.html.twig:2</note>
-        <note category="file-source" priority="1">templates/Breadcrumb/breadcrumb-action.html.twig:1</note>
-      </notes>
       <segment>
         <source>aria.breadcrumb</source>
         <target>Breadcrumb %label%</target>
       </segment>
     </unit>
     <unit id="aN._RWq" name="aria.collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/partials/collection.html.twig:2</note>
-        <note category="file-source" priority="1">templates/App/Collection/partials/collection.html.twig:2</note>
-      </notes>
       <segment>
         <source>aria.collection</source>
         <target>Collection %title%</target>
       </segment>
     </unit>
     <unit id=".OfBwZP" name="aria.datum_image_thumbnail">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>aria.datum_image_thumbnail</source>
         <target>Datum thumbnail</target>
       </segment>
     </unit>
     <unit id="eJUcXot" name="aria.datum_sign_thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/signs.html.twig:23</note>
-        <note category="file-source" priority="1">templates/App/Datum/sign.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Sign/index.html.twig:30</note>
-      </notes>
       <segment>
         <source>aria.datum_sign_thumbnail</source>
-        <target>Sign %label% thumbnail</target>
+        <target>Signature %label% thumbnail</target>
       </segment>
     </unit>
     <unit id="kwGqXUG" name="aria.default_image">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Datum/sign.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Datum/image.html.twig:18</note>
-      </notes>
       <segment>
         <source>aria.default_image</source>
         <target>Default image</target>
       </segment>
     </unit>
     <unit id="Qy2wfS4" name="aria.flag.en">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>aria.flag.en</source>
         <target>English flag</target>
       </segment>
     </unit>
     <unit id="ZCafVrG" name="aria.flag.fr">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>aria.flag.fr</source>
         <target>French flag</target>
       </segment>
     </unit>
     <unit id="gCqy_VQ" name="aria.item_image_thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:67</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:40</note>
-      </notes>
       <segment>
         <source>aria.item_image_thumbnail</source>
         <target>Item %name% %label% thumbnail</target>
       </segment>
     </unit>
     <unit id="BedkqjF" name="aria.item_main_image">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:52</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:25</note>
-      </notes>
       <segment>
         <source>aria.item_main_image</source>
         <target>Item %name% main image</target>
       </segment>
     </unit>
     <unit id="FyeUYLH" name="aria.item_main_image_thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:61</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:34</note>
-      </notes>
       <segment>
         <source>aria.item_main_image_thumbnail</source>
         <target>Item %name% main image thumbnail</target>
       </segment>
     </unit>
     <unit id="v1JlplL" name="aria.item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:72</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:66</note>
-        <note category="file-source" priority="1">templates/App/User/tag.html.twig:54</note>
-        <note category="file-source" priority="1">templates/App/User/collection.html.twig:63</note>
-        <note category="file-source" priority="1">templates/App/Template/show.html.twig:53</note>
-        <note category="file-source" priority="1">templates/App/Collection/items.html.twig:54</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:91</note>
-      </notes>
       <segment>
         <source>aria.item</source>
         <target>Item %name%</target>
       </segment>
     </unit>
     <unit id="IMD9Qu2" name="aria.photo">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/album.html.twig:44</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:56</note>
-      </notes>
       <segment>
         <source>aria.photo</source>
         <target>Photo %title%</target>
       </segment>
     </unit>
     <unit id="MMzqfRq" name="aria.tag">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:97</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:70</note>
-      </notes>
       <segment>
         <source>aria.tag</source>
         <target>Tag %label%</target>
       </segment>
     </unit>
     <unit id="3sffOSc" name="aria.tag_thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:49</note>
-        <note category="file-source" priority="1">templates/App/User/tag.html.twig:37</note>
-      </notes>
       <segment>
         <source>aria.tag_thumbnail</source>
         <target>Tag %label% thumbnail</target>
       </segment>
     </unit>
     <unit id="dhdFWBS" name="aria.wishlist">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/partials/list.html.twig:3</note>
-        <note category="file-source" priority="1">templates/App/User/partials/list-wishlists.html.twig:3</note>
-      </notes>
       <segment>
         <source>aria.wishlist</source>
         <target>Wishlist %name%</target>
@@ -508,11 +419,6 @@
       </segment>
     </unit>
     <unit id="IPh2SKn" name="btn.sign_in">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:30</note>
-        <note category="file-source" priority="1">templates/App/Security/email-confirmed.html.twig:6</note>
-        <note category="file-source" priority="1">templates/App/Security/email-confirmed.html.twig:10</note>
-      </notes>
       <segment>
         <source>btn.sign_in</source>
         <target>Sign in</target>
@@ -674,14 +580,6 @@
       </segment>
     </unit>
     <unit id="XjUwmT9" name="counter.wish">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/index.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/partials/list.html.twig:12</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/User/partials/list-wishlists.html.twig:12</note>
-        <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:18</note>
-      </notes>
       <segment>
         <source>counter.wish</source>
         <target>{0} %count% wishes| {1} %count% wish| ]1,Inf[ %count% wishes</target>
@@ -694,7 +592,7 @@
       </notes>
       <segment>
         <source>counter.sign</source>
-        <target>{0} %count% signs| {1} %count% sign| ]1,Inf[ %count% signs</target>
+        <target>{0} %count% signatures| {1} %count% signature| ]1,Inf[ %count% signatures</target>
       </segment>
     </unit>
     <unit id="lSRJ.UY" name="error.default">
@@ -1212,7 +1110,7 @@
       </notes>
       <segment>
         <source>label.children_title</source>
-        <target>Sub collections label</target>
+        <target>Sub-collections section label</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
@@ -1372,7 +1270,7 @@
       </notes>
       <segment>
         <source>label.items_title</source>
-        <target>Items label</target>
+        <target>Items section label</target>
       </segment>
     </unit>
     <unit id="Kp3d.qQ" name="label.label">
@@ -1609,7 +1507,7 @@
       </notes>
       <segment>
         <source>label.sign</source>
-        <target>Sign</target>
+        <target>Signature</target>
       </segment>
     </unit>
     <unit id="vpeY2jo" name="label.taken_at">
@@ -1914,7 +1812,7 @@
       </notes>
       <segment>
         <source>log.item.sign_added</source>
-        <target>Sign %label% was added</target>
+        <target>Signature %label% was added</target>
       </segment>
     </unit>
     <unit id="aDc4Khw" name="log.item.image_added">
@@ -1941,7 +1839,7 @@
       </notes>
       <segment>
         <source>log.item.sign_removed</source>
-        <target>Sign %label% was removed</target>
+        <target>Signature %label% was removed</target>
       </segment>
     </unit>
     <unit id="nnFeqXM" name="log.item.image_removed">
@@ -2115,7 +2013,7 @@
       </notes>
       <segment>
         <source>menu.signs</source>
-        <target>Signs</target>
+        <target>Signatures</target>
       </segment>
     </unit>
     <unit id="ltgwfbq" name="menu.signs_shared">
@@ -2124,7 +2022,7 @@
       </notes>
       <segment>
         <source>menu.signs_shared</source>
-        <target>%username%'s signs</target>
+        <target>%username%'s signatures</target>
       </segment>
     </unit>
     <unit id="Bhx8Fvg" name="menu.statistics">
@@ -2799,7 +2697,7 @@
       </notes>
       <segment>
         <source>title.infos</source>
-        <target>Infos</target>
+        <target>Info</target>
       </segment>
     </unit>
     <unit id="YHlU3_1" name="title.items">
@@ -4168,18 +4066,12 @@
       </segment>
     </unit>
     <unit id="SBtfHBi" name="log.album.deleted">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.album.deleted</source>
         <target>Album %label% was deleted</target>
       </segment>
     </unit>
     <unit id="su92SFL" name="log.wishlist.deleted">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.wishlist.deleted</source>
         <target>Wishlist %label% was deleted</target>
@@ -4278,7 +4170,7 @@
     <unit id="zCTHmk." name="btn.add_sign">
       <segment>
         <source>btn.add_sign</source>
-        <target>Sign</target>
+        <target>Signature</target>
       </segment>
     </unit>
     <unit id=".hornAL" name="log.item.file_removed">
@@ -4320,7 +4212,7 @@
     <unit id="5g5Fm08" name="label.signs_feature_enabled">
       <segment>
         <source>label.signs_feature_enabled</source>
-        <target>Signs</target>
+        <target>Signatures</target>
       </segment>
     </unit>
     <unit id="VDd2HS6" name="label.albums_feature_enabled">
@@ -4446,13 +4338,13 @@
     <unit id="e9psgbF" name="counter.signs">
       <segment>
         <source>counter.signs</source>
-        <target>{0} %count% signs| {1} %count% sign| ]1,Inf[ %count% signs</target>
+        <target>{0} %count% signatures| {1} %count% signature| ]1,Inf[ %count% signatures</target>
       </segment>
     </unit>
     <unit id="aCCqbt1" name="counter.without_number.signs">
       <segment>
         <source>counter.without_number.signs</source>
-        <target>{0} signs| {1} sign| ]1,Inf[ signs</target>
+        <target>{0} signatures| {1} signature| ]1,Inf[ signatures</target>
       </segment>
     </unit>
     <unit id="ME6A6U0" name="title.related_items">
@@ -4657,6 +4549,66 @@
       <segment>
         <source>label.photos_display_mode</source>
         <target>Display photos as a</target>
+      </segment>
+    </unit>
+    <unit id="RT9_dq7" name="label.items_sorting_property">
+      <segment>
+        <source>label.items_sorting_property</source>
+        <target>Sort items by</target>
+      </segment>
+    </unit>
+    <unit id="SD_Z2uA" name="label.items_sorting_direction">
+      <segment>
+        <source>label.items_sorting_direction</source>
+        <target>Sort items order</target>
+      </segment>
+    </unit>
+    <unit id="osq_Y32" name="form.item_sorting.default_value">
+      <segment>
+        <source>form.item_sorting.default_value</source>
+        <target>Name (default)</target>
+      </segment>
+    </unit>
+    <unit id="mxd7s10" name="global.sorting_direction.asc">
+      <segment>
+        <source>global.sorting_direction.asc</source>
+        <target>Ascending</target>
+      </segment>
+    </unit>
+    <unit id="xcZ1shh" name="global.sorting_direction.desc">
+      <segment>
+        <source>global.sorting_direction.desc</source>
+        <target>Descending</target>
+      </segment>
+    </unit>
+    <unit id="xiu6a_1" name="btn.add_textarea">
+      <segment>
+        <source>btn.add_textarea</source>
+        <target>Long text</target>
+      </segment>
+    </unit>
+    <unit id="Ml6qaa0" name="collection.items_settings">
+      <segment>
+        <source>collection.items_settings</source>
+        <target>Items settings</target>
+      </segment>
+    </unit>
+    <unit id="NBD7uzA" name="collection.children_settings">
+      <segment>
+        <source>collection.children_settings</source>
+        <target>Sub-collections settings</target>
+      </segment>
+    </unit>
+    <unit id="lqRR6ax" name="label.items_default_template">
+      <segment>
+        <source>label.items_default_template</source>
+        <target>Default template applied to items</target>
+      </segment>
+    </unit>
+    <unit id="qdo7yzn" name="label.textarea">
+      <segment>
+        <source>label.textarea</source>
+        <target>Long text</target>
       </segment>
     </unit>
   </file>

@@ -4,18 +4,22 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Enum\SortingDirectionEnum;
+use App\Service\ArraySorter;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class ArrayRuntime implements RuntimeExtensionInterface
 {
-    public function naturalSorting(iterable $array): array
-    {
-        $array = !\is_array($array) ? $array->toArray() : $array;
+    public function __construct(
+        private readonly ArraySorter $arraySorter
+    ) {
+    }
 
-        $collator = collator_create('root');
-        $collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
-        $collator->asort($array);
-
-        return $array;
+    public function naturalSorting(
+        iterable $array,
+        ?string $direction = SortingDirectionEnum::ASCENDING,
+        ?string $type = null
+    ): array {
+        return $this->arraySorter->sortObjects($array, $direction, $type);
     }
 }

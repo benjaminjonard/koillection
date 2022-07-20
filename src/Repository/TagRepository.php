@@ -228,6 +228,6 @@ class TagRepository extends ServiceEntityRepository
             ->where('i.id IS NULL')
             ->getQuery()
             ->getResult()
-       ;
+        ;
     }
 }

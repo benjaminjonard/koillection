@@ -7,7 +7,7 @@ namespace App\Service;
 class ThumbnailGenerator
 {
     public function __construct(
-        private GifResizer $gifResizer
+        private readonly GifResizer $gifResizer
     ) {
     }
 
@@ -54,6 +54,8 @@ class ThumbnailGenerator
             }
 
             imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $width, $height);
+            $deg = $this->guessRotation($path);
+            $thumbnail = imagerotate($thumbnail, $deg, 0);
 
             switch ($mime) {
                 case IMAGETYPE_JPEG:
@@ -112,6 +114,9 @@ class ThumbnailGenerator
 
         imagecopyresampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
+        $deg = $this->guessRotation($path);
+        imagerotate($resized, $deg, 0);
+
         switch ($mime) {
             case IMAGETYPE_JPEG:
             case IMAGETYPE_JPEG2000:
@@ -126,5 +131,32 @@ class ThumbnailGenerator
             default:
                 break;
         }
+    }
+
+    public function guessRotation(string $path): int
+    {
+        $deg = 0;
+
+        if (\function_exists('exif_read_data')) {
+            $exif = @exif_read_data($path);
+            if ($exif && isset($exif['Orientation'])) {
+                $orientation = $exif['Orientation'];
+                if (1 != $orientation) {
+                    switch ($orientation) {
+                        case 3:
+                            $deg = 180;
+                            break;
+                        case 6:
+                            $deg = 270;
+                            break;
+                        case 8:
+                            $deg = 90;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return $deg;
     }
 }

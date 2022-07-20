@@ -96,7 +96,6 @@
                 </ul>
             {% endif %}
         </div>
-
         <div class="data">
             {% set underlinedTags = getUnderlinedTags(item.dataTexts) %}
             {% for datum in item.dataTexts %}
@@ -106,6 +105,8 @@
                         {% for value in datum.value|split(',') %}
                             {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
                         {% endfor %}
+                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXTAREA') %}
+                        {{ datum.value|nl2br }}
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_LINK') %}
                         <a href="{{ datum.value }}" target="_blank">{{ datum.value|u.truncate(50, '...') }}</a>
                     {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}

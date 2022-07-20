@@ -16,11 +16,11 @@ class ImageHandler
     private PropertyAccessor $accessor;
 
     public function __construct(
-        private RandomStringGenerator $randomStringGenerator,
-        private ThumbnailGenerator $thumbnailGenerator,
-        private Security $security,
-        private DiskUsageCalculator $diskUsageCalculator,
-        private string $publicPath
+        private readonly RandomStringGenerator $randomStringGenerator,
+        private readonly ThumbnailGenerator $thumbnailGenerator,
+        private readonly Security $security,
+        private readonly DiskUsageCalculator $diskUsageCalculator,
+        private readonly string $publicPath
     ) {
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
@@ -40,6 +40,7 @@ class ImageHandler
             $fileName = $generatedName.'_original.'.$extension;
             $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
             $file->move($absolutePath, $fileName);
+
             $this->removeOldFile($entity, $attribute);
             $this->accessor->setValue($entity, $attribute->getPath(), $relativePath.$fileName);
 

@@ -11,7 +11,9 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
+use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -73,13 +75,11 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'collection', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 
-    #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
-    #[Groups(['collection:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $data;
 
@@ -100,10 +100,29 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private int $seenCounter;
 
+    #[ORM\ManyToOne(targetEntity: Template::class)]
+    #[Groups(['item:read', 'item:write'])]
+    #[ApiSubresource(maxDepth: 1)]
+    private ?Template $itemsDefaultTemplate = null;
+
     #[ORM\Column(type: Types::STRING, length: 4)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
     private string $itemsDisplayMode;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?string $itemsSortingProperty;
+
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
+    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?string $itemsSortingType;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Groups(['collection:read', 'collection:write'])]
+    #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
+    private ?string $itemsSortingDirection;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -135,6 +154,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
         $this->seenCounter = 0;
+        $this->itemsSortingDirection = 'asc';
     }
 
     public function __toString(): string
@@ -377,6 +397,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
+    public function getItemsDefaultTemplate(): ?Template
+    {
+        return $this->itemsDefaultTemplate;
+    }
+
+    public function setItemsDefaultTemplate(?Template $itemsDefaultTemplate): Collection
+    {
+        $this->itemsDefaultTemplate = $itemsDefaultTemplate;
+
+        return $this;
+    }
+
     public function getItemsDisplayMode(): string
     {
         return $this->itemsDisplayMode;
@@ -385,6 +417,42 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setItemsDisplayMode(string $itemsDisplayMode): Collection
     {
         $this->itemsDisplayMode = $itemsDisplayMode;
+
+        return $this;
+    }
+
+    public function getItemsSortingProperty(): ?string
+    {
+        return $this->itemsSortingProperty;
+    }
+
+    public function setItemsSortingProperty(?string $itemsSortingProperty): Collection
+    {
+        $this->itemsSortingProperty = $itemsSortingProperty;
+
+        return $this;
+    }
+
+    public function getItemsSortingDirection(): ?string
+    {
+        return $this->itemsSortingDirection;
+    }
+
+    public function getItemsSortingType(): ?string
+    {
+        return $this->itemsSortingType;
+    }
+
+    public function setItemsSortingType(?string $itemsSortingType): Collection
+    {
+        $this->itemsSortingType = $itemsSortingType;
+
+        return $this;
+    }
+
+    public function setItemsSortingDirection(?string $itemsSortingDirection): Collection
+    {
+        $this->itemsSortingDirection = $itemsSortingDirection;
 
         return $this;
     }

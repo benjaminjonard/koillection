@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DatumRepository::class)]
 #[ORM\Table(name: 'koi_datum')]
+#[ORM\Index(name: 'idx_datum_label', columns: ['label'])]
 #[ApiResource(
     normalizationContext: ['groups' => ['datum:read']],
     denormalizationContext: ['groups' => ['datum:write']],
@@ -27,6 +28,14 @@ use Symfony\Component\Validator\Constraints as Assert;
         'get',
         'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
+)]
+#[Assert\Expression(
+    'this.getItem() == null or this.getCollection() == null',
+    message: 'error.datum.cant_be_used_by_both_collections_and_items',
+)]
+#[Assert\Expression(
+    'this.getItem() != null or this.getCollection() != null',
+    message: 'error.datum.must_provide_collection_or_item',
 )]
 class Datum implements LoggableInterface
 {
@@ -36,17 +45,18 @@ class Datum implements LoggableInterface
     private string $id;
 
     #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data')]
-    #[Groups(['datum:read'])]
+    #[Groups(['datum:read', 'datum:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'data')]
-    #[Groups(['datum:read'])]
+    #[Groups(['datum:read', 'datum:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['datum:read', 'datum:write'])]
+    #[Assert\NotBlank]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     private ?string $type = null;
 

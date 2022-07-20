@@ -12,8 +12,8 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 class UserListener
 {
     public function __construct(
-        private PasswordUpdater $passwordUpdater,
-        private LogQueue $logQueue
+        private readonly PasswordUpdater $passwordUpdater,
+        private readonly LogQueue $logQueue
     ) {
     }
 

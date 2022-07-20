@@ -10,7 +10,7 @@ export default class extends Controller {
         new TsSelect2(this.element, {
             templateSelection: function (category) {
                 if (!category.id) {
-                    return '';
+                    return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
                 }
 
                 return self.htmlToElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span>' + category.text +'</span></div>');

@@ -11,7 +11,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 class DiskUsageRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private DiskUsageCalculator $diskUsageCalculator
+        private readonly DiskUsageCalculator $diskUsageCalculator
     ) {
     }
 

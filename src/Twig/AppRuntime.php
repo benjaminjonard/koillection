@@ -9,7 +9,6 @@ use App\Model\BreadcrumbElement;
 use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\FeatureChecker;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -17,12 +16,11 @@ use Twig\Extension\RuntimeExtensionInterface;
 class AppRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private TranslatorInterface $translator,
-        private RouterInterface $router,
-        private TagRepository $tagRepository,
-        private ContextHandler $contextHandler,
-        private FeatureChecker $featureChecker,
-        private FormFactoryInterface $formFactory
+        private readonly TranslatorInterface $translator,
+        private readonly RouterInterface $router,
+        private readonly TagRepository $tagRepository,
+        private readonly ContextHandler $contextHandler,
+        private readonly FeatureChecker $featureChecker
     ) {
     }
 

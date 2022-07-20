@@ -15,9 +15,9 @@ class CountersCache
     private TagAwareAdapter $cache;
 
     public function __construct(
-        private CounterCalculator $calculator,
-        private ContextHandler $contextHandler,
-        private Security $security
+        private readonly CounterCalculator $calculator,
+        private readonly ContextHandler $contextHandler,
+        private readonly Security $security
     ) {
         $this->cache = new TagAwareAdapter(new ApcuAdapter());
     }

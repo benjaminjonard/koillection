@@ -14,8 +14,8 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 class LoggableListener
 {
     public function __construct(
-        private LoggerChain $loggerChain,
-        private LogQueue $logQueue
+        private readonly LoggerChain $loggerChain,
+        private readonly LogQueue $logQueue
     ) {
     }
 

@@ -14,8 +14,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ChartBuilder
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry,
-        private TranslatorInterface $translator
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly TranslatorInterface $translator
     ) {
     }
 

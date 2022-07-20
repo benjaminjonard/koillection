@@ -11,17 +11,17 @@ use Symfony\Component\Form\DataTransformerInterface;
 class StringToInventoryContentTransformer implements DataTransformerInterface
 {
     public function __construct(
-        private InventoryHandler $inventoryHandler,
-        private CollectionRepository $collectionRepository
+        private readonly InventoryHandler $inventoryHandler,
+        private readonly CollectionRepository $collectionRepository
     ) {
     }
 
-    public function transform($content): mixed
+    public function transform($content): string
     {
         return '';
     }
 
-    public function reverseTransform($string): mixed
+    public function reverseTransform($string): string|bool
     {
         if (null === $string) {
             return json_encode([]);

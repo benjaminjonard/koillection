@@ -19,10 +19,10 @@ class Autocompleter
     private array $params;
 
     public function __construct(
-        private ContextHandler $contextHandler,
-        private ManagerRegistry $managerRegistry,
-        private RouterInterface $router,
-        private FeatureChecker $featureChecker
+        private readonly ContextHandler $contextHandler,
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly RouterInterface $router,
+        private readonly FeatureChecker $featureChecker
     ) {
     }
 

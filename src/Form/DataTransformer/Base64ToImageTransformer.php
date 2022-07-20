@@ -12,7 +12,7 @@ class Base64ToImageTransformer implements DataTransformerInterface
 {
     private ?string $originalBase64 = null;
 
-    public function transform($file): mixed
+    public function transform($file): ?string
     {
         if ($file instanceof File && $file->getRealPath()) {
             $type = pathinfo($file->getRealPath(), PATHINFO_EXTENSION);
@@ -25,7 +25,7 @@ class Base64ToImageTransformer implements DataTransformerInterface
         return null;
     }
 
-    public function reverseTransform($base64): mixed
+    public function reverseTransform($base64): ?UploadedFile
     {
         if (null === $base64 || $base64 === $this->originalBase64) {
             return null;

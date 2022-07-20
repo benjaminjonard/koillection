@@ -46,6 +46,25 @@ class WishCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Wishlist::class);
     }
 
+    public function testPostWish(): void
+    {
+        $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $wishlistIri = $this->iriConverter->getIriFromItem($wishlist);
+
+        $this->createClientWithCredentials()->request('POST', '/api/wishes', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'name' => 'New wish',
+                'wishlist' => $wishlistIri,
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'name' => 'New wish',
+        ]);
+    }
+
     public function testPutWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];

@@ -13,26 +13,48 @@
 
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
+                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+            </div>
+        </div>
+
+        <h3 class="header col s12">{{ 'collection.items_settings'|trans }}</h3>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedItemsTitles|default} ) }}
             </div>
             <div class="col s12 l5 xl3">
-                {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedItemsTitles|default} ) }}
+                {{ form_row(form.itemsDefaultTemplate, {'label' : 'label.items_default_template', 'attr': {'data-controller': 'select--default'}} ) }}
             </div>
         </div>
 
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+                {{ form_row(form.itemsSortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
             </div>
             <div class="col s12 l5 xl3">
+                {{ form_row(form.itemsSortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                 {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
+            </div>
+        </div>
+
+        <h3 class="header col s12">{{ 'collection.children_settings'|trans }}</h3>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
             </div>
         </div>
     </div>
 
     <div class="content-block">
         <div class="row">
-            <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h2>
+            <h3 class="header col s12">{{ 'title.additional_fields'|trans }}</h3>
         </div>
 
         <div class="row" {{ stimulus_controller('additional-data') }} data-entity="collection">

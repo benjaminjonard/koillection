@@ -12,8 +12,8 @@ use Doctrine\Persistence\ManagerRegistry;
 class LogQueueListener
 {
     public function __construct(
-        private LogQueue $logQueue,
-        private ManagerRegistry $managerRegistry
+        private readonly LogQueue $logQueue,
+        private readonly ManagerRegistry $managerRegistry
     ) {
     }
 

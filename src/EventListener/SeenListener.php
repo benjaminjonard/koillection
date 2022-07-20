@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 class SeenListener
 {
     public function __construct(
-        private ManagerRegistry $managerRegistry
+        private readonly ManagerRegistry $managerRegistry
     ) {
     }
 

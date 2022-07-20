@@ -20,6 +20,9 @@ Init test database if not already created :
 - `php bin/console doctrine:database:create --env=test`
 - `php bin/console doctrine:migrations:migrate --env=test`
 
+Create API keys
+- `php bin/console lexik:jwt:generate-keypair`
+
 Then
 - `php -d memory_limit=512M ./bin/phpunit --stderr`
 

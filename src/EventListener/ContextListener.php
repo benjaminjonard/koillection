@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 class ContextListener
 {
     public function __construct(
-        private ContextHandler $contextHandler
+        private readonly ContextHandler $contextHandler
     ) {
     }
 

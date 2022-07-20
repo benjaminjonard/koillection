@@ -46,6 +46,25 @@ class LoanCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Item::class);
     }
 
+    public function testPostLoan(): void
+    {
+        $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $itemIri = $this->iriConverter->getIriFromItem($item);
+
+        $this->createClientWithCredentials()->request('POST', '/api/loans', [
+            'json' => [
+                'item' => $itemIri,
+                'lentTo' => 'Somebody',
+                'lentAt' => (new \DateTime())->format('Y-m-d H:i:s'),
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'lentTo' => 'Somebody',
+        ]);
+    }
+
     public function testPutLoan(): void
     {
         $loan = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->user], [], 1)[0];

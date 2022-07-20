@@ -132,7 +132,7 @@ class GifResizer
             $imageData = &$this->imageData[$this->index - 1]['graphicsextension'];
 
             $imageData[3] = \chr((\ord($imageData[3]) & 0xE3) | ($this->orgVars[$this->index - 1]['disposal_method'] << 2));
-            $imageData[4] = \chr(($this->orgVars[$this->index - 1]['delay_time'] % 256));
+            $imageData[4] = \chr($this->orgVars[$this->index - 1]['delay_time'] % 256);
             $imageData[5] = \chr((int) floor($this->orgVars[$this->index - 1]['delay_time'] / 256));
             if ($hasTransparency) {
                 $imageData[6] = \chr($this->orgVars[$this->index - 1]['transparent_color_index']);
@@ -251,7 +251,7 @@ class GifResizer
     private function getGifHeader(): void
     {
         $this->pForward(10);
-        if (1 == $this->readBits(($mybyte = $this->readByteInt()), 0, 1)) {
+        if (1 == $this->readBits($mybyte = $this->readByteInt(), 0, 1)) {
             $this->pForward(2);
             $this->pForward(pow(2, $this->readBits($mybyte, 5, 3) + 1) * 3);
         } else {
@@ -320,7 +320,7 @@ class GifResizer
         if ($this->checkByte(0x2C)) {
             $start = $this->pointer;
             $this->pForward(9);
-            if (1 == $this->readBits(($mybyte = $this->readByteInt()), 0, 1)) {
+            if (1 == $this->readBits($mybyte = $this->readByteInt(), 0, 1)) {
                 $this->pForward(pow(2, $this->readBits($mybyte, 5, 3) + 1) * 3);
             }
             $this->pForward(1);

@@ -13,13 +13,17 @@ class LatestReleaseChecker
         '1.0' => '7.2',
         '1.1' => '7.4',
         '1.2' => '8.0',
+        '1.3' => '8.1',
+        '1.4' => '8.2',
+        '1.5' => '8.3',
+        '1.6' => '8.4',
     ];
 
     private ?array $latestReleaseData = null;
 
     public function __construct(
-        private HttpClientInterface $client,
-        private string $koillectionRelease
+        private readonly HttpClientInterface $client,
+        private readonly string $koillectionRelease
     ) {
     }
 

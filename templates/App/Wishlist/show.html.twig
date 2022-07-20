@@ -99,7 +99,7 @@
                             <th>{{ 'label.image'|trans }}</th>
                             <th>{{ 'label.name'|trans }}</th>
                             <th>{{ 'label.price'|trans }}</th>
-                            <th class="hide-on-small-only">{{ 'label.name'|trans }}</th>
+                            <th class="hide-on-small-only">{{ 'label.comment'|trans }}</th>
                             {% if context == 'default' %}
                                 <th>{{ 'label.actions'|trans }}</th>
                             {% endif %}
@@ -128,13 +128,12 @@
                                 <td>
                                     {% if wish.price is not null %}
                                         <span>
-                                                {% if wish.price is not null %}
-                                                    {{ wish.price }}
-                                                    {% if wish.currency is not null %}
-                                                        &nbsp;{{ getCurrencySymbol(wish.currency) }}
-                                                    {% endif %}
-                                                {% endif %}
-                                            </span>
+                                            {% if wish.currency is not null %}
+                                                {{ wish.price|format_currency(wish.currency) }}
+                                            {% else %}
+                                                {{ wish.price }}
+                                            {% endif %}
+                                        </span>
                                     {% endif %}
                                 </td>
                                 <td class="hide-on-small-only">

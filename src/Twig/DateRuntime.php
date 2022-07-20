@@ -10,7 +10,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 class DateRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private TranslatorInterface $translator
+        private readonly TranslatorInterface $translator
     ) {
     }
 

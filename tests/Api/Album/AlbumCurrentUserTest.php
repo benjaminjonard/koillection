@@ -83,6 +83,21 @@ class AlbumCurrentUserTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Photo::class);
     }
 
+    public function testPostAlbum(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/albums', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'json' => [
+                'title' => 'New album',
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'title' => 'New album',
+        ]);
+    }
+
     public function testPutAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];

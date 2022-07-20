@@ -180,7 +180,7 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .hidden {display: none;}
 
 .item-wrapper {text-align: center; max-width: 1200px; margin-left: auto; margin-right: auto;}
-.item-wrapper .data {margin-top: -8px; overflow: auto; vertical-align: top; max-width: 75%;}
+.item-wrapper .data {margin-top: -8px; overflow: auto; vertical-align: top; max-width: 50%;}
 .item-wrapper .data .datum-row {text-align: left}
 .datum-row {line-height: 30px; text-align: center;}
 .datum-row a {color: rgba(0, 0, 0, 0.87); border-bottom: 1px dashed #9e9e9e}
@@ -344,6 +344,7 @@ progress[value]::-ms-fill {background-color:#009688;}
 
 .error-helper {text-align: center; color: #d9534f; padding-bottom: 15px;}
 .error-helper .fa {margin-right: 5px;}
+.error-helper.inline ul {display: inline-block;}
 
 html.loading:before {
     z-index: 101;
@@ -420,6 +421,7 @@ html.loading:before {
 
 @media (max-width: 749px)
 {
+    .item-wrapper .data {max-width: 90%;}
     .item-image-container, .tag-image-container {float: none; width: 100%; margin-bottom: 20px;}
 
     /* Collection header */

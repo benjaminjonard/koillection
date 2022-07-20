@@ -1187,38 +1187,25 @@
       </segment>
     </unit>
     <unit id="OMwE8EU" name="label.apply_template">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.apply_template</source>
         <target>Appliquer un modèle</target>
       </segment>
     </unit>
     <unit id="BVAvHSW" name="label.browse">
-      <notes>
-        <note category="file-source" priority="1">templates/Form/fields.html.twig:13</note>
-        <note category="file-source" priority="1">templates/App/Datum/sign.html.twig:12</note>
-        <note category="file-source" priority="1">templates/App/Datum/image.html.twig:12</note>
-      </notes>
       <segment>
         <source>label.browse</source>
         <target>Parcourir</target>
       </segment>
     </unit>
     <unit id="YQjIBl7" name="label.children_title">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.children_title</source>
-        <target>Label des sous collections</target>
+        <target>Label de la section sous collections</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
+
       <segment>
         <source>label.collection</source>
         <target>Collection</target>
@@ -1367,12 +1354,9 @@
       </segment>
     </unit>
     <unit id="frik1CZ" name="label.items_title">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.items_title</source>
-        <target>Label des objets</target>
+        <target>Label de la section objets</target>
       </segment>
     </unit>
     <unit id="Kp3d.qQ" name="label.label">
@@ -4660,6 +4644,66 @@
       <segment>
         <source>label.photos_display_mode</source>
         <target>Afficher les photos dans une</target>
+      </segment>
+    </unit>
+    <unit id="RT9_dq7" name="label.items_sorting_property">
+      <segment>
+        <source>label.items_sorting_property</source>
+        <target>Trier les objets par</target>
+      </segment>
+    </unit>
+    <unit id="SD_Z2uA" name="label.items_sorting_direction">
+      <segment>
+        <source>label.items_sorting_direction</source>
+        <target>Trier les objets par ordre</target>
+      </segment>
+    </unit>
+    <unit id="osq_Y32" name="form.item_sorting.default_value">
+      <segment>
+        <source>form.item_sorting.default_value</source>
+        <target>Nom (par défaut)</target>
+      </segment>
+    </unit>
+    <unit id="mxd7s10" name="global.sorting_direction.asc">
+      <segment>
+        <source>global.sorting_direction.asc</source>
+        <target>Croissant</target>
+      </segment>
+    </unit>
+    <unit id="xcZ1shh" name="global.sorting_direction.desc">
+      <segment>
+        <source>global.sorting_direction.desc</source>
+        <target>Décroissant</target>
+      </segment>
+    </unit>
+    <unit id="xiu6a_1" name="btn.add_textarea">
+      <segment>
+        <source>btn.add_textarea</source>
+        <target>Texte long</target>
+      </segment>
+    </unit>
+    <unit id="Ml6qaa0" name="collection.items_settings">
+      <segment>
+        <source>collection.items_settings</source>
+        <target>Paramètres des objets</target>
+      </segment>
+    </unit>
+    <unit id="NBD7uzA" name="collection.children_settings">
+      <segment>
+        <source>collection.children_settings</source>
+        <target>Paramètres des sous-collections</target>
+      </segment>
+    </unit>
+    <unit id="lqRR6ax" name="label.items_default_template">
+      <segment>
+        <source>label.items_default_template</source>
+        <target>Modèle appliqué aux objets par défaut</target>
+      </segment>
+    </unit>
+    <unit id="qdo7yzn" name="label.textarea">
+      <segment>
+        <source>label.textarea</source>
+        <target>Texte long</target>
       </segment>
     </unit>
   </file>

@@ -7,6 +7,7 @@ namespace App\Tests\Api\Field;
 use Api\Tests\ApiTestCase;
 use App\Entity\Field;
 use App\Entity\Template;
+use App\Enum\DatumTypeEnum;
 use Symfony\Component\HttpFoundation\Response;
 
 class FieldCurrentUserTest extends ApiTestCase
@@ -44,6 +45,26 @@ class FieldCurrentUserTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Template::class);
+    }
+
+    public function testPostField(): void
+    {
+        $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
+        $templateIri = $this->iriConverter->getIriFromItem($template);
+
+        $this->createClientWithCredentials()->request('POST', '/api/fields', [
+            'json' => [
+                'name' => 'New field',
+                'type' => DatumTypeEnum::TYPE_TEXT,
+                'position' => 0,
+                'template' => $templateIri,
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'name' => 'New field',
+        ]);
     }
 
     public function testPutField(): void

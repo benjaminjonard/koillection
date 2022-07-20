@@ -7,7 +7,7 @@ namespace App\Service;
 class FeatureChecker
 {
     public function __construct(
-        private ContextHandler $contextHandler
+        private readonly ContextHandler $contextHandler
     ) {
     }
 

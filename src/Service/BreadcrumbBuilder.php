@@ -14,10 +14,6 @@ class BreadcrumbBuilder
 {
     public function build(BreadcrumbableInterface $entity, $parent = null): array
     {
-        if (!$entity instanceof BreadcrumbableInterface) {
-            return [];
-        }
-
         $explodedNamespace = explode('\\', \get_class($entity));
         $class = array_pop($explodedNamespace);
         $pieces = preg_split('/(?=[A-Z])/', lcfirst($class));

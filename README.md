@@ -1,7 +1,5 @@
 <p align="center">
-    <a href="https://koillection.github.io/" target="_blank">
-        <img src="https://user-images.githubusercontent.com/20560781/80213166-0e560e00-8639-11ea-944e-4f79fdbcef55.png" width="75" height="75">
-    </a>
+    <img src="https://user-images.githubusercontent.com/20560781/80213166-0e560e00-8639-11ea-944e-4f79fdbcef55.png" width="75" height="75">
 </p>
 
 <p align="center">

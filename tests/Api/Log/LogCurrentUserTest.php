@@ -44,6 +44,13 @@ class LogCurrentUserTest extends ApiTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
     }
 
+    public function testPostLog(): void
+    {
+        $this->createClientWithCredentials()->request('POST', '/api/logs');
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
+    }
+
     public function testPatchLog(): void
     {
         $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->user], [], 1)[0];
