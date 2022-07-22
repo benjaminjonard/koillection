@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Album;
-use App\Entity\ChoiceList;
 use App\Form\Type\Entity\AlbumType;
 use App\Repository\AlbumRepository;
 use App\Repository\LogRepository;

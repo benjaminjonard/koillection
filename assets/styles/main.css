@@ -15,6 +15,44 @@ footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; fo
 .fa-rotate-180 {-webkit-transform: rotate(180deg); transform: rotate(180deg);}
 table img {vertical-align: middle;}
 
+
+.select2-selection--multiple {
+    cursor: pointer!important;
+    min-height: 45px!important;
+}
+.select2-selection__choice
+{
+    background-color: #e4e4e4!important; color: rgba(0,0,0,.6)!important; font-size: 13px!important;
+    font-weight: 500!important; border-radius: 16px!important; padding: 0 3px 0 12px!important;
+    line-height: 32px!important; margin-bottom: 0px!important; margin-right: 5px!important;
+}
+.select2-selection__choice__remove {
+    float: right!important;
+    margin-left: 3px!important;
+    margin-top: 6px!important;
+}
+.select2-selection__choice__remove:hover {
+    background-color: #e4e4e4!important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove span {
+    display: none;
+}
+.select2-selection__choice__remove {
+    border: none;
+}
+.select2-selection__choice__remove::before {
+    font-size: 16px!important;
+    font-family: 'font-awesome' !important;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    content: "\f00d";
+    color: rgba(0,0,0,.6)!important;
+}
+.select2-selection--multiple .select2-search {
+    display: none;
+}
+
 a {outline: 0;}
 
 thead {border-bottom: 1px solid #d0d0d0;}
@@ -637,3 +675,5 @@ input[type="text"]:not(.browser-default).password-input {box-sizing: border-box;
 .items-table td { position:relative}
 .items-table td .table-link{ position:absolute; top:0; bottom:0; right:0; left:0;}
 .items-table .visibility { position: inherit; }
+
+.datum-btn a {margin-bottom: 10px;}

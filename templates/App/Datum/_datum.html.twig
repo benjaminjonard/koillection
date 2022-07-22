@@ -10,7 +10,7 @@
                    id="data_{{ iteration }}_type"
                    name="{{ entity }}[data][{{ iteration }}][type]"
                    maxlength="255"
-                   value="{{ choiceList is not null ? 'list' : type }}"
+                   value="{{ type }}"
             >
         </div>
 
@@ -33,12 +33,7 @@
             </label>
         </div>
 
-        {% if choiceList is not null %}
-            {{ include('App/Datum/_' ~ choiceList.type ~ '.html.twig') }}
-        {% else %}
-            {{ include('App/Datum/_' ~ type ~ '.html.twig') }}
-        {% endif %}
-
+        {{ include('App/Datum/_' ~ type ~ '.html.twig') }}
 
         <div class="col s1 icon-holder">
             <i class="fa fa-remove fa-fw removeDatum" data-action="click->additional-data#remove"></i>

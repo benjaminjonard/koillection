@@ -4617,5 +4617,11 @@
         <target>List display mode columns</target>
       </segment>
     </unit>
+    <unit id="Sdgqz78" name="label.add_list">
+      <segment>
+        <source>label.add_list</source>
+        <target>Add list :</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

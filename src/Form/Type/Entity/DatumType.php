@@ -7,6 +7,7 @@ namespace App\Form\Type\Entity;
 use App\Entity\ChoiceList;
 use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
+use App\Repository\ChoiceListRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
@@ -24,7 +25,8 @@ use Symfony\Component\Security\Core\Security;
 class DatumType extends AbstractType
 {
     public function __construct(
-        private Security $security
+        private readonly Security $security,
+        private readonly ChoiceListRepository $choiceListRepository
     ) {
     }
 
@@ -69,10 +71,7 @@ class DatumType extends AbstractType
                         break;
                     case DatumTypeEnum::TYPE_DATE:
                         $form
-                            ->add(
-                                'value',
-                                DateType::class,
-                                [
+                            ->add( 'value',DateType::class, [
                                 'required' => false,
                                 'html5' => false,
                                 'widget' => 'single_text',
@@ -84,8 +83,8 @@ class DatumType extends AbstractType
                                     function ($date) {
                                         return $date instanceof \DateTime ? $date->format('Y-m-d') : null;
                                     }
-                                ), ]
-                            )
+                                ),
+                            ])
                         ;
                         break;
                     case DatumTypeEnum::TYPE_LINK:
@@ -97,8 +96,18 @@ class DatumType extends AbstractType
                         break;
                     case DatumTypeEnum::TYPE_LIST:
                         $form
-                            ->add('value', TextType::class, [
+                            ->add('value', ChoiceType::class, [
+                                'multiple' => true,
                                 'required' => false,
+                                'choices' => $this->choiceListRepository->find($data['choiceList'])->getChoices(),
+                                'model_transformer' => new CallbackTransformer(
+                                    function ($string) {
+                                        return null !== $string ? json_decode($string, true) : null;
+                                    },
+                                    function ($array) {
+                                        return is_array($array) ? json_encode($array) : null;
+                                    }
+                                ),
                             ])
                             ->add('choiceList', EntityType::class, [
                                 'class' => ChoiceList::class,

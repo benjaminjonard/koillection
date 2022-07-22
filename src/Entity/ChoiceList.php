@@ -30,11 +30,6 @@ class ChoiceList
     #[Groups(['choiceList:read', 'choiceList:write'])]
     private string $name;
 
-    #[ORM\Column(type: Types::STRING, length: 13)]
-    #[Groups(['choiceList:read', 'choiceList:write'])]
-    #[Assert\Choice(choices: ChoiceListTypeEnum::TYPES)]
-    private string $type;
-
     #[ORM\Column(type: Types::ARRAY)]
     #[Groups(['choiceList:read', 'choiceList:write'])]
     private array $choices;

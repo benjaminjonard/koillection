@@ -4712,5 +4712,11 @@
         <target>Colonnes de la liste</target>
       </segment>
     </unit>
+    <unit id="Sdgqz78" name="label.add_list">
+      <segment>
+        <source>label.add_list</source>
+        <target>Ajouter une liste :</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
