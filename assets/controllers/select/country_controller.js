@@ -12,7 +12,7 @@ export default class extends Controller {
                 if (!country.id) {
                     return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
                 }
-                console.log(country)
+
                 return self.htmlToElement(
                     '<div><span class="select-icon">' + country.element.dataset.flag + '</span><span>' + country.text + '</span></div>'
                 );

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\ChoiceList;
 use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -90,6 +92,17 @@ class DatumType extends AbstractType
                         $form
                             ->add('value', UrlType::class, [
                                 'required' => false,
+                            ])
+                        ;
+                        break;
+                    case DatumTypeEnum::TYPE_LIST:
+                        $form
+                            ->add('value', TextType::class, [
+                                'required' => false,
+                            ])
+                            ->add('choiceList', EntityType::class, [
+                                'class' => ChoiceList::class,
+                                'required' => true
                             ])
                         ;
                         break;

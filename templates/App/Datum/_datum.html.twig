@@ -10,7 +10,7 @@
                    id="data_{{ iteration }}_type"
                    name="{{ entity }}[data][{{ iteration }}][type]"
                    maxlength="255"
-                   value="{{ type }}"
+                   value="{{ choiceList is not null ? 'list' : type }}"
             >
         </div>
 
@@ -22,27 +22,51 @@
                     maxlength="255"
                     data-additional-data-target="label"
                     required
-                    {% if datum is defined %}value="{{ datum.label }}"{% elseif label is defined %}value="{{ label }}"{% endif %}
+                    {% if datum is defined %}
+                        value="{{ datum.label }}"
+                    {% elseif choiceList is defined %}
+                        value="{{ choiceList.name }}"
+                    {% endif %}
             >
-            <label for="data_{{ iteration }}_label" class="required {% if label is defined or datum is defined %}active{% endif %}">
+            <label for="data_{{ iteration }}_label" class="required {% if choiceList is defined or datum is defined %}active{% endif %}">
                 {{ 'label.label'|trans }}
             </label>
         </div>
 
-        {{ include('App/Datum/_' ~ type ~'.html.twig') }}
+        {% if choiceList is not null %}
+            {{ include('App/Datum/_' ~ choiceList.type ~ '.html.twig') }}
+        {% else %}
+            {{ include('App/Datum/_' ~ type ~ '.html.twig') }}
+        {% endif %}
+
 
         <div class="col s1 icon-holder">
             <i class="fa fa-remove fa-fw removeDatum" data-action="click->additional-data#remove"></i>
         </div>
 
         <div class="input-field">
-            <input  class="position"
-                    type="hidden"
-                    id="data_{{ iteration }}_position"
-                    name="{{ entity }}[data][{{ iteration }}][position]"
-                    maxlength="255"
-                    {% if datum is defined %}value="{{ datum.position }}"{% endif %}
+            <input class="position"
+                   type="hidden"
+                   id="data_{{ iteration }}_position"
+                   name="{{ entity }}[data][{{ iteration }}][position]"
+                   maxlength="255"
+                   {% if datum is defined %}value="{{ datum.position }}"{% endif %}
             >
         </div>
+
+        {% if choiceList is defined and choiceList is not null %}
+            <div class="input-field">
+                <input type="hidden"
+                       id="data_{{ iteration }}_choiceList"
+                       name="{{ entity }}[data][{{ iteration }}][choiceList]"
+                       maxlength="255"
+                       {% if datum is defined %}
+                           value="{{ choiceList.id }}"
+                       {% elseif choiceList is defined %}
+                           value="{{ choiceList.id }}"
+                       {% endif %}
+                >
+            </div>
+        {% endif %}
     </div>
 </div>

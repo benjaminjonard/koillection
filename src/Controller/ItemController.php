@@ -10,6 +10,7 @@ use App\Entity\Loan;
 use App\Entity\Template;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
+use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\ItemRepository;
 use App\Repository\LogRepository;
@@ -35,6 +36,7 @@ class ItemController extends AbstractController
     public function add(
         Request $request,
         CollectionRepository $collectionRepository,
+        ChoiceListRepository $choiceListRepository,
         TagRepository $tagRepository,
         TranslatorInterface $translator,
         ItemNameGuesser $itemNameGuesser,
@@ -95,6 +97,7 @@ class ItemController extends AbstractController
             'item' => $item,
             'collection' => $collection,
             'suggestedNames' => $suggestedNames,
+            'choiceLists' => $choiceListRepository->findAll()
         ]);
     }
 
@@ -129,7 +132,13 @@ class ItemController extends AbstractController
         methods: ['GET', 'POST']
     )]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
-    public function edit(Request $request, Item $item, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
+    public function edit(
+        Request $request,
+        Item $item,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry,
+        ChoiceListRepository $choiceListRepository
+    ): Response
     {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
@@ -144,6 +153,7 @@ class ItemController extends AbstractController
             'form' => $form->createView(),
             'item' => $item,
             'collection' => $item->getCollection(),
+            'choiceLists' => $choiceListRepository->findAll()
         ]);
     }
 

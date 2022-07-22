@@ -103,6 +103,10 @@ class Datum implements LoggableInterface
     #[Groups(['datum:read'])]
     private ?string $originalFilename = null;
 
+    #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
+    #[Groups(['datum:read'])]
+    private ?ChoiceList $choiceList = null;
+
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['datum:read'])]
     private ?User $owner = null;
@@ -338,6 +342,18 @@ class Datum implements LoggableInterface
     public function setOriginalFilename(string $originalFilename): Datum
     {
         $this->originalFilename = $originalFilename;
+
+        return $this;
+    }
+
+    public function getChoiceList(): ?ChoiceList
+    {
+        return $this->choiceList;
+    }
+
+    public function setChoiceList(?ChoiceList $choiceList): Datum
+    {
+        $this->choiceList = $choiceList;
 
         return $this;
     }

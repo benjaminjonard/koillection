@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\ChoiceList;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,12 +25,31 @@ class DatumController extends AbstractController
         $html = $this->render('App/Datum/_datum.html.twig', [
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
-            'type' => $type,
+            'type' => $type
         ])->getContent();
 
         return new JsonResponse([
             'html' => $html,
             'type' => \in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text',
+        ]);
+    }
+
+    #[Route(
+        path: ['en' => '/datum/choice-list/{id}', 'fr' => '/datum/choice-list/{id}'],
+        name: 'app_datum_choice_list_get_html',
+        methods: ['GET']
+    )]
+    public function getChoiceListHtml(ChoiceList $choiceList): JsonResponse
+    {
+        $html = $this->render('App/Datum/_datum.html.twig', [
+            'entity' => '__entity_placeholder__',
+            'iteration' => '__placeholder__',
+            'type' => DatumTypeEnum::TYPE_LIST,
+            'choiceList' => $choiceList
+        ])->getContent();
+
+        return new JsonResponse([
+            'html' => $html
         ]);
     }
 

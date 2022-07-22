@@ -42,6 +42,10 @@ class Field
     #[Assert\NotBlank]
     private ?string $type = null;
 
+    #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
+    #[Groups(['datum:read'])]
+    private ?ChoiceList $choiceList = null;
+
     #[ORM\ManyToOne(targetEntity: Template::class, inversedBy: 'fields')]
     #[Assert\NotBlank]
     #[Groups(['field:read', 'field:write'])]
@@ -123,6 +127,18 @@ class Field
     public function setOwner(?User $owner): Field
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getChoiceList(): ?ChoiceList
+    {
+        return $this->choiceList;
+    }
+
+    public function setChoiceList(?ChoiceList $choiceList): Field
+    {
+        $this->choiceList = $choiceList;
 
         return $this;
     }

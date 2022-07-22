@@ -66,6 +66,22 @@ export default class extends Controller {
         })
     }
 
+    addChoiceList(event) {
+        let self = this;
+
+        fetch('/datum/choice-list/' + event.target.dataset.id, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(function(result) {
+            let html = result.html.replace(/__placeholder__/g, self.index);
+            html = html.replace(/__entity_placeholder__/g, self.element.dataset.entity);
+            self.textsHolderTarget.insertAdjacentHTML('beforeend', html);
+            self.index++;
+            self.computePositions();
+        })
+    }
+
     remove(event) {
         event.preventDefault();
         event.target.closest('.datum').remove();
