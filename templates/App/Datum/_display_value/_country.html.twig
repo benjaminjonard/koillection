@@ -1,0 +1,4 @@
+{% if datum.value is not empty %}
+    <span class="flag">{{ getCountryFlag(datum.value) }}</span>
+    <span class="country-name">({{ getCountryName(datum.value) }})</span>
+{% endif %}

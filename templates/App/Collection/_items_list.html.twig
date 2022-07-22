@@ -3,6 +3,9 @@
     <tr>
         <th></th>
         <th>{{ 'label.name'|trans }}</th>
+        {% for column in collection.itemsDisplayModeListColumns %}
+            <th class="center hide-on-small-and-down">{{ column }}</th>
+        {% endfor %}
         {% if context == 'default' %}
             <th class="center">{{ 'label.visibility'|trans }}</th>
             <th class="center">{{ 'label.actions'|trans }}</th>
@@ -27,11 +30,19 @@
             </td>
             <td>
                 <a class="table-link" href="{{ link }}"></a>
-                {{item.name}}
+                {{ item.name|u.truncate(50, '...') }}
             </td>
+            {% for column in collection.itemsDisplayModeListColumns %}
+                <td class="center hide-on-small-and-down">
+                    <a class="table-link" href="{{ link }}"></a>
+                    {% set datum = item.getDatumByLabel(column) %}
+                    {% if datum is not null %}
+                        {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                    {% endif %}
+                </td>
+            {% endfor %}
             {% if context == 'default' %}
                 <td class="center">
-                    <a class="table-link" href="{{ link }}"></a>
                     {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
                 </td>
                 <td class="table-actions center">

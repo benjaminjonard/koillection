@@ -110,6 +110,10 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
     private string $itemsDisplayMode;
 
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?array $itemsDisplayModeListColumns = [];
+
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
     private ?string $itemsSortingProperty;
@@ -489,6 +493,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setFinalVisibility(string $finalVisibility): self
     {
         $this->finalVisibility = $finalVisibility;
+
+        return $this;
+    }
+
+    public function getItemsDisplayModeListColumns(): ?array
+    {
+        return $this->itemsDisplayModeListColumns;
+    }
+
+    public function setItemsDisplayModeListColumns(?array $itemsDisplayModeListColumns): Collection
+    {
+        $this->itemsDisplayModeListColumns = $itemsDisplayModeListColumns;
 
         return $this;
     }

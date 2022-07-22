@@ -37,9 +37,20 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" {{ stimulus_controller('items-display-mode-list-columns') }}>
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
+                {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {
+                    'data-controller': 'select--display-mode',
+                    'data-action': 'change->items-display-mode-list-columns#displayChoices'
+                }} ) }}
+            </div>
+            <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}" data-items-display-mode-list-columns-target="list">
+                <div>{{ form_label(form.itemsDisplayModeListColumns, 'label.items_display_mode_list_columns') }}</div>
+                {% for child in form.itemsDisplayModeListColumns.children %}
+                    <div>
+                        {{ form_row(child) }}
+                    </div>
+                {% endfor %}
             </div>
         </div>
 

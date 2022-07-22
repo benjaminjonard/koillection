@@ -4706,5 +4706,11 @@
         <target>Texte long</target>
       </segment>
     </unit>
+    <unit id="Qz77s1b" name="label.items_display_mode_list_columns">
+      <segment>
+        <source>label.items_display_mode_list_columns</source>
+        <target>Colonnes de la liste</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

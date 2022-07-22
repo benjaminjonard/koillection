@@ -6,6 +6,7 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
 use App\Entity\Template;
+use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
@@ -42,10 +43,15 @@ class CollectionType extends AbstractType
         $itemsSortingChoices = [
             'form.item_sorting.default_value' => null,
         ];
-
-        $labels = $this->datumRepository->findAllLabelsInCollection($entity);
+        $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING);
         foreach ($labels as $label) {
             $itemsSortingChoices[$label['label']] = $label['label'];
+        }
+
+        $itemsDisplayModeListColumnsChoices = [];
+        $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
+        foreach ($labels as $label) {
+            $itemsDisplayModeListColumnsChoices[$label['label']] = $label['label'];
         }
 
         $builder
@@ -81,6 +87,12 @@ class CollectionType extends AbstractType
             ->add('itemsSortingProperty', ChoiceType::class, [
                 'choices' => $itemsSortingChoices,
                 'required' => true,
+            ])
+            ->add('itemsDisplayModeListColumns', ChoiceType::class, [
+                'choices' => $itemsDisplayModeListColumnsChoices,
+                'multiple' => true,
+                'expanded' => true,
+                'required' => false,
             ])
             ->add('itemsSortingDirection', ChoiceType::class, [
                 'choices' => array_flip(SortingDirectionEnum::getSortingDirectionLabels()),

@@ -54,7 +54,7 @@
 
 {% block checkbox_row %}
     {% apply spaceless %}
-        <div class="input-field input-checkbox">
+        <p>
             <label>
                 <input type="checkbox" value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
                 <span>{{ label|trans }}</span>
@@ -62,7 +62,7 @@
                     <span class="helper-text" data-error="wrong" data-success="right">{{ help|trans }}</span>
                 {% endif %}
             </label>
-        </div>
+        </p>
         {{- form_errors(form) -}}
     {% endapply %}
 {% endblock checkbox_row %}

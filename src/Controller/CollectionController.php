@@ -9,6 +9,7 @@ use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
 use App\Repository\CollectionRepository;
+use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
 use App\Repository\LogRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -102,12 +103,17 @@ class CollectionController extends AbstractController
         requirements: ['id' => '%uuid_regex%'],
         methods: ['GET']
     )]
-    public function show(Collection $collection, CollectionRepository $collectionRepository, ItemRepository $itemRepository): Response
+    public function show(
+        Collection $collection,
+        CollectionRepository $collectionRepository,
+        ItemRepository $itemRepository,
+        DatumRepository $datumRepository
+    ): Response
     {
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findBy(['parent' => $collection]),
-            'items' => $itemRepository->findForOrdering($collection),
+            'items' => $itemRepository->findForOrdering($collection)
         ]);
     }
 

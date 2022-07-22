@@ -224,7 +224,8 @@ class ItemRepository extends ServiceEntityRepository
 
             $qb = $this
                 ->createQueryBuilder('item')
-                ->addSelect("($subQuery) AS orderingValue")
+                ->join('item.data', 'data')
+                ->addSelect("($subQuery) AS orderingValue, data")
                 ->where('item.collection = :collection')
                 ->setParameter('collection', $collection)
                 ->setParameter('label', $collection->getItemsSortingProperty())
