@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Entity\ChoiceList;
 use App\Entity\Log;
 use App\Entity\Photo;
 use App\Entity\Wish;
@@ -29,8 +30,6 @@ class LogRuntime implements RuntimeExtensionInterface
         $class = strtolower($class);
         if ('tagcategory' == $class) {
             $class = 'tag_category';
-        } elseif ('choicelist' == $class) {
-            $class = 'choice_list';
         }
 
         $objectLabel = $log->getObjectLabel();
@@ -40,7 +39,7 @@ class LogRuntime implements RuntimeExtensionInterface
                 if ($log->isObjectDeleted()) {
                     $label = "<strong class='deleted'>$objectLabel</strong>";
                 } else {
-                    if (Wish::class === $log->getObjectClass() || Photo::class === $log->getObjectClass()) {
+                    if (in_array($log->getObjectClass(), [Wish::class, Photo::class, ChoiceList::class])) {
                         $label = "<strong>$objectLabel</strong>";
                     } else {
                         $route = $this->router->generate('app_'.$class.'_show', ['id' => $log->getObjectId()]);

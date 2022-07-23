@@ -3523,5 +3523,47 @@
         <target>Wish %label% was deleted</target>
       </segment>
     </unit>
+    <unit id="i6kuHyl" name="message.choice_list_added">
+      <segment>
+        <source>message.choice_list_added</source>
+        <target>Choice list %list% has been added</target>
+      </segment>
+    </unit>
+    <unit id="68XhVFG" name="message.choice_list_deleted">
+      <segment>
+        <source>message.choice_list_deleted</source>
+        <target>Choice list %list% has been deleted</target>
+      </segment>
+    </unit>
+    <unit id="8bGQnJ6" name="message.choice_list_edited">
+      <segment>
+        <source>message.choice_list_edited</source>
+        <target>Choice list %list% has been updated</target>
+      </segment>
+    </unit>
+    <unit id="HhMB4AC" name="menu.choice_lists">
+      <segment>
+        <source>menu.choice_lists</source>
+        <target>Choice lists</target>
+      </segment>
+    </unit>
+    <unit id="V0bbvyv" name="counter.choice_lists">
+      <segment>
+        <source>counter.choice_lists</source>
+        <target>{0} %count% choice lists| {1} %count% choice list| ]1,Inf[ %count% choice lists</target>
+      </segment>
+    </unit>
+    <unit id="nrZfnFO" name="tooltip.add_choice_list">
+      <segment>
+        <source>tooltip.add_choice_list</source>
+        <target>Add a new choice lists</target>
+      </segment>
+    </unit>
+    <unit id="l40ZNPM" name="label.choices">
+      <segment>
+        <source>label.choices</source>
+        <target>Choices</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

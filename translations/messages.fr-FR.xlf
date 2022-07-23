@@ -3524,5 +3524,47 @@
         <target>Le souhait %label% a été supprimé</target>
       </segment>
     </unit>
+    <unit id="i6kuHyl" name="message.choice_list_added">
+      <segment>
+        <source>message.choice_list_added</source>
+        <target>La liste de choix %list% a été ajoutée</target>
+      </segment>
+    </unit>
+    <unit id="68XhVFG" name="message.choice_list_deleted">
+      <segment>
+        <source>message.choice_list_deleted</source>
+        <target>La liste de choix %list% a été supprimée</target>
+      </segment>
+    </unit>
+    <unit id="8bGQnJ6" name="message.choice_list_edited">
+      <segment>
+        <source>message.choice_list_edited</source>
+        <target>La liste de choix %list% a été mise à jour</target>
+      </segment>
+    </unit>
+    <unit id="HhMB4AC" name="menu.choice_lists">
+      <segment>
+        <source>menu.choice_lists</source>
+        <target>Listes de choix</target>
+      </segment>
+    </unit>
+    <unit id="V0bbvyv" name="counter.choice_lists">
+      <segment>
+        <source>counter.choice_lists</source>
+        <target>[0,1] %count% liste de choix| ]1,Inf[ %count% listes de choix</target>
+      </segment>
+    </unit>
+    <unit id="nrZfnFO" name="tooltip.add_choice_list">
+      <segment>
+        <source>tooltip.add_choice_list</source>
+        <target>Ajouter une nouvelle liste de choix</target>
+      </segment>
+    </unit>
+    <unit id="l40ZNPM" name="label.choices">
+      <segment>
+        <source>label.choices</source>
+        <target>Choix</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

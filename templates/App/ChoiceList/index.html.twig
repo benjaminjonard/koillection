@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_choice_list_index', 'trans': 'menu.choice_lists'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb)  }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb)  }}
+{% endblock %}
+
+{% block content %}
+    <div {{ stimulus_controller('filter') }}>
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>{{ 'menu.templates'|trans }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.choice_lists'|trans({'%count%': choiceLists|length}) }}</li>
+                </ul>
+            </div>
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    <a href="{{ path('app_choice_list_add') }}" class="button" title="{{ 'tooltip.add_choice_list'|trans }}">
+                        <i class="fa fa-plus fa-fw"></i>
+                    </a>
+                </div>
+                <div class="right">
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>{{ 'label.name'|trans }}</th>
+                    <th>{{ 'label.choices'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for choiceList in choiceLists %}
+                    <tr class="list-element resize-element" data-title="{{ choiceList.name }}" data-filter-target="element">
+                        <td><a href="{{ path('app_choice_list_show', {'id' : choiceList.id}) }}"><strong>{{ choiceList.name }}</strong></a></td>
+                        <td>
+                            {% for value in choiceList.values %}
+                                {{ value }}{% if loop.last == false %},{% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
