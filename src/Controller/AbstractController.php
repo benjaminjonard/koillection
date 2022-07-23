@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Album;
+use App\Entity\ChoiceList;
 use App\Entity\Collection;
 use App\Entity\Inventory;
 use App\Entity\Item;
@@ -36,7 +37,10 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         }
     }
 
-    public function createDeleteForm(string $url, User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist $entity = null): FormInterface
+    public function createDeleteForm(
+        string $url,
+        User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist|ChoiceList $entity = null
+    ): FormInterface
     {
         $params = [];
         if ($entity) {

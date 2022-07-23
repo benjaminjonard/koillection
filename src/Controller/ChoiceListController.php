@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\ChoiceList;
-use App\Entity\Template;
 use App\Form\Type\Entity\ChoiceListType;
 use App\Repository\ChoiceListRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -45,7 +44,7 @@ class ChoiceListController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.choice_list_added', ['%list%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
 
-            return $this->redirectToRoute('app_choice_list_show', ['id' => $choiceList->getId()]);
+            return $this->redirectToRoute('app_choice_list_index');
         }
 
         return $this->render('App/ChoiceList/add.html.twig', [
@@ -59,18 +58,15 @@ class ChoiceListController extends AbstractController
         requirements: ['id' => '%uuid_regex%'],
         methods: ['GET', 'POST']
     )]
-    #[Entity('template', expr: 'repository.findById(id)', class: Template::class)]
     public function edit(Request $request, ChoiceList $choiceList, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
-        $this->denyAccessUnlessFeaturesEnabled(['templates']);
-
         $form = $this->createForm(ChoiceListType::class, $choiceList);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.template_edited', ['%list%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.choice_list_edited', ['%list%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
 
-            return $this->redirectToRoute('app_choice_list_show', ['id' => $choiceList->getId()]);
+            return $this->redirectToRoute('app_choice_list_index');
         }
 
         return $this->render('App/ChoiceList/edit.html.twig', [
@@ -81,7 +77,7 @@ class ChoiceListController extends AbstractController
 
     #[Route(
         path: ['en' => '/choice-lists/{id}/delete', 'fr' => '/listes-de-choix/{id}/supprimer'],
-        name: 'app_template_delete',
+        name: 'app_choice_list_delete',
         requirements: ['id' => '%uuid_regex%'],
         methods: ['POST']
     )]
@@ -93,7 +89,7 @@ class ChoiceListController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($choiceList);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.choice_list_deleted', ['%template%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.choice_list_deleted', ['%list%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_choice_list_index');

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\ChoiceListRepository;
 use Doctrine\DBAL\Types\Types;
@@ -18,7 +19,7 @@ use Symfony\Component\Uid\Uuid;
     normalizationContext: ['groups' => ['choiceList:read']],
     denormalizationContext: ['groups' => ['choiceList:write']],
 )]
-class ChoiceList implements LoggableInterface
+class ChoiceList implements BreadcrumbableInterface, LoggableInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -48,7 +49,7 @@ class ChoiceList implements LoggableInterface
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->values = [];
+        $this->choices = [];
     }
 
     public function __toString(): string
@@ -93,6 +94,24 @@ class ChoiceList implements LoggableInterface
     public function setChoices(array $choices): ChoiceList
     {
         $this->choices = $choices;
+
+        return $this;
+    }
+
+    public function addChoice(string $choice): ChoiceList
+    {
+        if (!in_array($choice, $this->choices)) {
+            $this->choices[] = $choice;
+        }
+
+        return $this;
+    }
+
+    public function removeChoice(string $choice): ChoiceList
+    {
+        if (($key = array_search($choice, $this->choices)) !== false) {
+            unset($this->choices[$key]);
+        }
 
         return $this;
     }

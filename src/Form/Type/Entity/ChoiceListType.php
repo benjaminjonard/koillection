@@ -20,7 +20,7 @@ class ChoiceListType extends AbstractType
                 'required' => true,
                 'label' => false,
             ])
-            ->add('fields', SymfonyCollectionType::class, [
+            ->add('choices', SymfonyCollectionType::class, [
                 'entry_type' => TextType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
