@@ -8,6 +8,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishRepository;
 use Doctrine\DBAL\Types\Types;
@@ -29,7 +30,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
     ]
 )]
-class Wish implements CacheableInterface
+class Wish implements CacheableInterface, LoggableInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

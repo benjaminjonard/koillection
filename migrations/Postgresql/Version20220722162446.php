@@ -35,6 +35,5 @@ final class Version20220722162446 extends AbstractMigration
     public function down(Schema $schema): void
     {
         $this->skipIf(true, 'Always move forward.');
-
     }
 }

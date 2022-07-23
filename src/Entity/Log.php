@@ -50,10 +50,6 @@ class Log
     #[Groups(['log:read'])]
     private bool $objectDeleted;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['log:read'])]
-    private ?string $payload;
-
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'logs')]
     #[Groups(['log:read'])]
     private ?User $owner;
@@ -137,18 +133,6 @@ class Log
     public function setObjectDeleted(bool $objectDeleted): self
     {
         $this->objectDeleted = $objectDeleted;
-
-        return $this;
-    }
-
-    public function getPayload(): ?string
-    {
-        return $this->payload;
-    }
-
-    public function setPayload(?string $payload): self
-    {
-        $this->payload = $payload;
 
         return $this;
     }

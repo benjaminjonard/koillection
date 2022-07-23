@@ -214,26 +214,4 @@ class CollectionController extends AbstractController
             'collection' => $collection,
         ]);
     }
-
-    #[Route(
-        path: ['en' => '/collections/{id}/history', 'fr' => '/collections/{id}/historique'],
-        name: 'app_collection_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    public function history(Collection $collection, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['history']);
-
-        return $this->render('App/Collection/history.html.twig', [
-            'collection' => $collection,
-            'logs' => $logRepository->findBy([
-                'objectId' => $collection->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($collection))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
-        ]);
-    }
 }

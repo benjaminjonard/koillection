@@ -61,11 +61,6 @@
                             path: path('app_wishlist_delete', {id: wishlist.id}),
                             message: 'message.delete.wishlist'
                         }) }}
-                        {% if isFeatureEnabled('history') %}
-                        <a href="{{ path('app_wishlist_history', {'id': wishlist.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                            <i class="fa fa-history fa-fw"></i>
-                        </a>
-                        {% endif %}
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_wishlist_show', entity: wishlist}) }}
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': wishlist.finalVisibility}) }}
                     {% endif %}

@@ -180,28 +180,6 @@ class ItemController extends AbstractController
     }
 
     #[Route(
-        path: ['en' => '/items/{id}/history', 'fr' => '/objets/{id}/historique'],
-        name: 'app_item_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    public function history(Item $item, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['history']);
-
-        return $this->render('App/Item/history.html.twig', [
-            'item' => $item,
-            'logs' => $logRepository->findBy([
-                'objectId' => $item->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($item))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
-        ]);
-    }
-
-    #[Route(
         path: ['en' => '/items/{id}/loan', 'fr' => '/objets/{id}/preter'],
         name: 'app_item_loan',
         requirements: ['id' => '%uuid_regex%'],

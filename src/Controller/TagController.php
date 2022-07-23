@@ -183,28 +183,6 @@ class TagController extends AbstractController
     }
 
     #[Route(
-        path: ['en' => '/tags/{id}/history', 'fr' => '/tags/{id}/historique'],
-        name: 'app_tag_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    public function history(Tag $tag, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['tags', 'history']);
-
-        return $this->render('App/Tag/history.html.twig', [
-            'tag' => $tag,
-            'logs' => $logRepository->findBy([
-                'objectId' => $tag->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($tag))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
-        ]);
-    }
-
-    #[Route(
         path: ['en' => '/tags/{tagId}/items/{itemId}', 'fr' => '/tags/{tagId}/objets/{itemId}'],
         name: 'app_tag_item_show',
         methods: ['GET']

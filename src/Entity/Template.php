@@ -7,6 +7,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\TemplateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -22,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['template:read']],
     denormalizationContext: ['groups' => ['template:write']],
 )]
-class Template implements BreadcrumbableInterface
+class Template implements BreadcrumbableInterface, LoggableInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

@@ -140,279 +140,174 @@
       </segment>
     </unit>
     <unit id="3nGLdcL" name="aria.wish_thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:79</note>
-        <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:64</note>
-      </notes>
       <segment>
         <source>aria.wish_thumbnail</source>
         <target>Wish %name% thumbnail</target>
       </segment>
     </unit>
     <unit id="ZS8DP_P" name="breadcrumb.add_album">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.add_album</source>
         <target>Add a new album</target>
       </segment>
     </unit>
     <unit id="BgP_6X7" name="breadcrumb.add_collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.add_collection</source>
         <target>Add a new collection</target>
       </segment>
     </unit>
     <unit id="QP9HnQT" name="breadcrumb.add_item">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.add_item</source>
         <target>Add a new item</target>
       </segment>
     </unit>
     <unit id="HN3MXIl" name="breadcrumb.add_photo">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.add_photo</source>
         <target>Add a new photo</target>
       </segment>
     </unit>
     <unit id="TsOMFfZ" name="breadcrumb.add_template">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.add_template</source>
         <target>Create a new template</target>
       </segment>
     </unit>
     <unit id="1tk3BkL" name="breadcrumb.add_wish">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.add_wish</source>
         <target>Add a new wish</target>
       </segment>
     </unit>
     <unit id="MeiAPvl" name="breadcrumb.add_wishlist">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.add_wishlist</source>
         <target>Add a new wishlist</target>
       </segment>
     </unit>
     <unit id="wsZg2PB" name="breadcrumb.batch_tagging">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.batch_tagging</source>
         <target>Batch tagging</target>
       </segment>
     </unit>
     <unit id="FBXvLM8" name="breadcrumb.edit_album">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_album</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="4FXosb_" name="breadcrumb.edit_collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_collection</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="dQjPnaL" name="breadcrumb.edit_template">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_template</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="wJbJaxc" name="breadcrumb.edit_item">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_item</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="sARt1zq" name="breadcrumb.edit_photo">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_photo</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="YAIWLja" name="breadcrumb.edit_tag">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_tag</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="MK15Ex5" name="breadcrumb.edit_wish">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_wish</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="bzp39NU" name="breadcrumb.edit_wishlist">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.edit_wishlist</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="hNB8Xw0" name="breadcrumb.history_collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.history_collection</source>
         <target>History</target>
       </segment>
     </unit>
     <unit id="1ruRfsb" name="breadcrumb.history_item">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.history_item</source>
         <target>History</target>
       </segment>
     </unit>
     <unit id="Pnd0n71" name="breadcrumb.history_tag">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.history_tag</source>
         <target>History</target>
       </segment>
     </unit>
     <unit id="eG2_sfn" name="breadcrumb.items_collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.items_collection</source>
         <target>Items</target>
       </segment>
     </unit>
     <unit id="ERFTL0f" name="breadcrumb.lend_item">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>breadcrumb.lend_item</source>
         <target>Lend</target>
       </segment>
     </unit>
     <unit id="uAfIh0u" name="btn.apply_common_fields">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
-      </notes>
       <segment>
         <source>btn.apply_common_fields</source>
         <target>Load common fields</target>
       </segment>
     </unit>
     <unit id="ImSHWcX" name="btn.apply_collection_fields">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:74</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:75</note>
-      </notes>
       <segment>
         <source>btn.apply_collection_fields</source>
         <target>Load collection fields</target>
       </segment>
     </unit>
     <unit id="u5LRF8p" name="btn.cancel">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/edit.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/add.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:99</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:101</note>
-        <note category="file-source" priority="1">templates/App/Wish/edit.html.twig:59</note>
-        <note category="file-source" priority="1">templates/App/Wish/add.html.twig:59</note>
-        <note category="file-source" priority="1">templates/App/Template/edit.html.twig:44</note>
-        <note category="file-source" priority="1">templates/App/Template/add.html.twig:44</note>
-        <note category="file-source" priority="1">templates/App/Loan/loan.html.twig:35</note>
-        <note category="file-source" priority="1">templates/App/Photo/edit.html.twig:54</note>
-        <note category="file-source" priority="1">templates/App/Photo/add.html.twig:54</note>
-        <note category="file-source" priority="1">templates/App/Album/edit.html.twig:32</note>
-        <note category="file-source" priority="1">templates/App/Album/add.html.twig:32</note>
-        <note category="file-source" priority="1">templates/App/Collection/batch-tagging.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Collection/edit.html.twig:65</note>
-        <note category="file-source" priority="1">templates/App/Collection/add.html.twig:66</note>
-      </notes>
       <segment>
         <source>btn.cancel</source>
         <target>Cancel</target>
       </segment>
     </unit>
     <unit id="9iTV1LM" name="btn.delete_tags_without_items">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>btn.delete_tags_without_items</source>
         <target>Delete tags w/o items</target>
       </segment>
     </unit>
     <unit id="JQuOMkX" name="btn.details">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:49</note>
-      </notes>
       <segment>
         <source>btn.details</source>
         <target>Details</target>
       </segment>
     </unit>
     <unit id="ZckcCop" name="btn.search">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:30</note>
-      </notes>
       <segment>
         <source>btn.search</source>
         <target>Search</target>
       </segment>
     </unit>
     <unit id="EnarzNU" name="btn.send_new_confirmation">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/email-confirmed.html.twig:8</note>
-      </notes>
       <segment>
         <source>btn.send_new_confirmation</source>
         <target>Send a new confirmation email</target>
@@ -425,155 +320,72 @@
       </segment>
     </unit>
     <unit id="fRQmA2t" name="btn.submit">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/edit.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/add.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:98</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:99</note>
-        <note category="file-source" priority="1">templates/App/Wish/edit.html.twig:58</note>
-        <note category="file-source" priority="1">templates/App/Wish/add.html.twig:58</note>
-        <note category="file-source" priority="1">templates/App/Template/edit.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Template/add.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Loan/loan.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Profile/index.html.twig:62</note>
-        <note category="file-source" priority="1">templates/App/Photo/edit.html.twig:53</note>
-        <note category="file-source" priority="1">templates/App/Photo/add.html.twig:53</note>
-        <note category="file-source" priority="1">templates/App/Album/edit.html.twig:31</note>
-        <note category="file-source" priority="1">templates/App/Album/add.html.twig:31</note>
-        <note category="file-source" priority="1">templates/App/Collection/batch-tagging.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Collection/edit.html.twig:64</note>
-        <note category="file-source" priority="1">templates/App/Collection/add.html.twig:65</note>
-      </notes>
       <segment>
         <source>btn.submit</source>
         <target>Submit</target>
       </segment>
     </unit>
     <unit id="Hxk36Kv" name="btn.submit_and_add_another">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:100</note>
-      </notes>
       <segment>
         <source>btn.submit_and_add_another</source>
         <target>Submit and add another item</target>
       </segment>
     </unit>
     <unit id="9N4x.TV" name="counter.album">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/albums.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Album/index.html.twig:19</note>
-      </notes>
       <segment>
         <source>counter.album</source>
         <target>{0} %count% albums| {1} %count% album| ]1,Inf[ %count% albums</target>
       </segment>
     </unit>
     <unit id="Ttj5ZLt" name="counter.collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/collections.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/User/collection.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Collection/index.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:28</note>
-      </notes>
       <segment>
         <source>counter.collection</source>
         <target>{0} %count% collections| {1} %count% collection| ]1,Inf[ %count% collections</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Tag/history.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/User/tag.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/User/collections.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/User/partials/collection.html.twig:11</note>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/User/collection.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:50</note>
-        <note category="file-source" priority="1">templates/App/Template/show.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Collection/index.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Collection/partials/collection.html.twig:11</note>
-        <note category="file-source" priority="1">templates/App/Collection/items.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:27</note>
-      </notes>
       <segment>
         <source>counter.item</source>
         <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
       </segment>
     </unit>
     <unit id="nlD7D9j" name="counter.loan">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:18</note>
-      </notes>
       <segment>
         <source>counter.loan</source>
         <target>{0} %count% loans| {1} %count% loan| ]1,Inf[ %count% loans</target>
       </segment>
     </unit>
     <unit id="1NZRNj4" name="counter.photo">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/albums.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/User/albums.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/User/album.html.twig:23</note>
-        <note category="file-source" priority="1">templates/App/Album/index.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/Album/index.html.twig:48</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:23</note>
-      </notes>
       <segment>
         <source>counter.photo</source>
         <target>{0} %count% photos| {1} %count% photo| ]1,Inf[ %count% photos</target>
       </segment>
     </unit>
     <unit id="0Nr1G8_" name="counter.returned">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:19</note>
-      </notes>
       <segment>
         <source>counter.returned</source>
         <target>{0} %count% loans returned| {1} %count% loan returned| ]1,Inf[ %count% loans returned</target>
       </segment>
     </unit>
     <unit id="If3y3hC" name="counter.tag">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Tag/index.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/User/tags.html.twig:18</note>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:20</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:20</note>
-      </notes>
       <segment>
         <source>counter.tag</source>
         <target>{0} %count% tags| {1} %count% tag| ]1,Inf[ %count% tags</target>
       </segment>
     </unit>
     <unit id="hIdqfHr" name="counter.template">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:18</note>
-      </notes>
       <segment>
         <source>counter.template</source>
         <target>{0} %count% templates| {1} %count% template| ]1,Inf[ %count% templates</target>
       </segment>
     </unit>
     <unit id="1MYrutS" name="counter.field">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:49</note>
-        <note category="file-source" priority="1">templates/App/Template/show.html.twig:18</note>
-      </notes>
       <segment>
         <source>counter.field</source>
         <target>{0} %count% fields| {1} %count% field| ]1,Inf[ %count% fields</target>
       </segment>
     </unit>
     <unit id="Joxd_.h" name="counter.wishlist">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/index.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:19</note>
-      </notes>
       <segment>
         <source>counter.wishlist</source>
         <target>{0} %count% wishlists| {1} %count% wishlist| ]1,Inf[ %count% wishlists</target>
@@ -586,1678 +398,1014 @@
       </segment>
     </unit>
     <unit id="Ul2mR7j" name="counter.sign">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:21</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:21</note>
-      </notes>
       <segment>
         <source>counter.sign</source>
         <target>{0} %count% signatures| {1} %count% signature| ]1,Inf[ %count% signatures</target>
       </segment>
     </unit>
     <unit id="lSRJ.UY" name="error.default">
-      <notes>
-        <note category="file-source" priority="1">templates/bundles/TwigBundle/Exception/error.html.twig:4</note>
-      </notes>
       <segment>
         <source>error.default</source>
         <target>Oops, something went wrong :(</target>
       </segment>
     </unit>
     <unit id="l9GnTBr" name="error.404">
-      <notes>
-        <note category="file-source" priority="1">templates/bundles/TwigBundle/Exception/error404.html.twig:4</note>
-      </notes>
       <segment>
         <source>error.404</source>
         <target>Oops, page not found :(</target>
       </segment>
     </unit>
     <unit id="nIFzees" name="error.500">
-      <notes>
-        <note category="file-source" priority="1">templates/bundles/TwigBundle/Exception/error500.html.twig:4</note>
-      </notes>
       <segment>
         <source>error.500</source>
         <target>Oops, a critical error occured :(</target>
       </segment>
     </unit>
     <unit id="buUu8ng" name="error.invalid_credentials">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>error.invalid_credentials</source>
         <target>Invalid credentials</target>
       </segment>
     </unit>
     <unit id="tg4uV16" name="error.not_enough_space">
-      <notes>
-        <note category="file-source" priority="1">src/Service/DiskUsageChecker.php:44</note>
-      </notes>
       <segment>
         <source>error.not_enough_space</source>
         <target>There is not enough space left on your account to execute this action :(</target>
       </segment>
     </unit>
     <unit id="A5gFwZv" name="filter.by_name">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/index.html.twig:33</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:52</note>
-        <note category="file-source" priority="1">templates/App/Tag/index.html.twig:33</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:38</note>
-        <note category="file-source" priority="1">templates/App/User/tag.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/User/collections.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/User/tags.html.twig:32</note>
-        <note category="file-source" priority="1">templates/App/User/albums.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/User/collection.html.twig:37</note>
-        <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:37</note>
-        <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:31</note>
-        <note category="file-source" priority="1">templates/App/Album/index.html.twig:33</note>
-        <note category="file-source" priority="1">templates/App/Collection/index.html.twig:36</note>
-        <note category="file-source" priority="1">templates/App/Collection/items.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:64</note>
-      </notes>
       <segment>
         <source>filter.by_name</source>
         <target>Filter by name</target>
       </segment>
     </unit>
     <unit id="jsUGqKL" name="global.byte_abbreviation">
-      <notes>
-        <note category="file-source" priority="1">src/Twig/AppExtension.php:88</note>
-      </notes>
       <segment>
         <source>global.byte_abbreviation</source>
         <target>B</target>
       </segment>
     </unit>
     <unit id="U4lp2Ma" name="global.created_at">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/history.html.twig:24</note>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:23</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:17</note>
-      </notes>
       <segment>
         <source>global.created_at</source>
         <target>Creation : %date%</target>
       </segment>
     </unit>
     <unit id="ylc8ODN" name="global.updated_at">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/history.html.twig:25</note>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:24</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:17</note>
-      </notes>
       <segment>
         <source>global.updated_at</source>
         <target>Last update : %date%</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:130</note>
-      </notes>
       <segment>
         <source>global.days.monday</source>
         <target>Monday</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:131</note>
-      </notes>
       <segment>
         <source>global.days.tuesday</source>
         <target>Thuesday</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:132</note>
-      </notes>
       <segment>
         <source>global.days.wednesday</source>
         <target>Wednesday</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:133</note>
-      </notes>
       <segment>
         <source>global.days.thursday</source>
         <target>Thursday</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:134</note>
-      </notes>
       <segment>
         <source>global.days.friday</source>
         <target>Friday</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:135</note>
-      </notes>
       <segment>
         <source>global.days.saturday</source>
         <target>Saturday</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:129</note>
-      </notes>
       <segment>
         <source>global.days.sunday</source>
         <target>Sunday</target>
       </segment>
     </unit>
     <unit id="T3BhL7X" name="global.entities.album">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.album</source>
         <target>Album</target>
       </segment>
     </unit>
     <unit id="YTxyJQJ" name="global.entities.collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.collection</source>
         <target>Collection</target>
       </segment>
     </unit>
     <unit id="ecDv.KB" name="global.entities.item">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.item</source>
         <target>Item</target>
       </segment>
     </unit>
     <unit id="yt20IWO" name="global.entities.tag">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.tag</source>
         <target>Tag</target>
       </segment>
     </unit>
     <unit id="iFOTgZ3" name="global.entities.template">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.template</source>
         <target>Template</target>
       </segment>
     </unit>
     <unit id="JKLodag" name="global.entities.user">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.user</source>
         <target>User</target>
       </segment>
     </unit>
     <unit id="1MevJac" name="global.entities.wish">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.wish</source>
         <target>Wish</target>
       </segment>
     </unit>
     <unit id="nFTPCfN" name="global.entities.wishlist">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.entities.wishlist</source>
         <target>Wishlist</target>
       </segment>
     </unit>
     <unit id="GV09tqG" name="global.koillection">
-      <notes>
-        <note category="file-source" priority="1">src/Twig/AppExtension.php:272</note>
-      </notes>
       <segment>
         <source>global.koillection</source>
         <target>Koillection</target>
       </segment>
     </unit>
     <unit id="s2RK8Ci" name="global.months.january">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:172</note>
-      </notes>
       <segment>
         <source>global.months.january</source>
         <target>January</target>
       </segment>
     </unit>
     <unit id="u5P6LMj" name="global.months.february">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:173</note>
-      </notes>
       <segment>
         <source>global.months.february</source>
         <target>February</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:174</note>
-      </notes>
       <segment>
         <source>global.months.march</source>
         <target>March</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:175</note>
-      </notes>
       <segment>
         <source>global.months.april</source>
         <target>April</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:176</note>
-      </notes>
       <segment>
         <source>global.months.may</source>
         <target>May</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:177</note>
-      </notes>
       <segment>
         <source>global.months.june</source>
         <target>June</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:178</note>
-      </notes>
       <segment>
         <source>global.months.july</source>
         <target>July</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:179</note>
-      </notes>
       <segment>
         <source>global.months.august</source>
         <target>August</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:180</note>
-      </notes>
       <segment>
         <source>global.months.september</source>
         <target>September</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:181</note>
-      </notes>
       <segment>
         <source>global.months.october</source>
         <target>October</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:182</note>
-      </notes>
       <segment>
         <source>global.months.november</source>
         <target>November</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:183</note>
-      </notes>
       <segment>
         <source>global.months.december</source>
         <target>December</target>
       </segment>
     </unit>
     <unit id="bKzhzsy" name="global.time.ago">
-      <notes>
-        <note category="file-source" priority="1">src/Twig/AppExtension.php:122</note>
-      </notes>
       <segment>
         <source>global.time.ago</source>
         <target>%time% ago</target>
       </segment>
     </unit>
     <unit id="kBJEdcf" name="global.time.just_now">
-      <notes>
-        <note category="file-source" priority="1">src/Twig/AppExtension.php:123</note>
-      </notes>
       <segment>
         <source>global.time.just_now</source>
         <target>Just now</target>
       </segment>
     </unit>
     <unit id="S3BSG8X" name="global.time.year">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.time.year</source>
         <target>{0} %count% years| {1} %count% year| ]1,Inf[ %count% years</target>
       </segment>
     </unit>
     <unit id="I6EoiYa" name="global.time.month">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.time.month</source>
         <target>{0} %count% months| {1} %count% month| ]1,Inf[ %count% months</target>
       </segment>
     </unit>
     <unit id="BXLOUij" name="global.time.week">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.time.week</source>
         <target>{0} %count% weeks| {1} %count% week| ]1,Inf[ %count% weeks</target>
       </segment>
     </unit>
     <unit id="r1RqqRg" name="global.time.day">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.time.day</source>
         <target>{0} %count% days| {1} %count% day| ]1,Inf[ %count% days</target>
       </segment>
     </unit>
     <unit id="QeraM7P" name="global.time.hour">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.time.hour</source>
         <target>{0} %count% hours| {1} %count% hour| ]1,Inf[ %count% hours</target>
       </segment>
     </unit>
     <unit id="UN2onP4" name="global.time.minute">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.time.minute</source>
         <target>{0} %count% minutes| {1} %count% minute| ]1,Inf[ %count% minutes</target>
       </segment>
     </unit>
     <unit id="JQSurmk" name="global.time.second">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.time.second</source>
         <target>{0} %count% seconds| {1} %count% second| ]1,Inf[ %count% seconds</target>
       </segment>
     </unit>
     <unit id="Gu6E4Ll" name="global.unknown">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Graph/ChartBuilder.php:269</note>
-      </notes>
       <segment>
         <source>global.unknown</source>
         <target>Unknown</target>
       </segment>
     </unit>
     <unit id="fSiEIlQ" name="global.visibilities.public">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.visibilities.public</source>
         <target>Public</target>
       </segment>
     </unit>
     <unit id="ky9YEBY" name="global.visibilities.private">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>global.visibilities.private</source>
         <target>Private</target>
       </segment>
     </unit>
     <unit id="zldXQq6" name="label.actions">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:72</note>
-      </notes>
       <segment>
         <source>label.actions</source>
         <target>Actions</target>
       </segment>
     </unit>
     <unit id="obhh9xq" name="label.added_at">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.added_at</source>
         <target>Added at</target>
       </segment>
     </unit>
     <unit id="kfURNUL" name="label.album">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.album</source>
         <target>Album</target>
       </segment>
     </unit>
     <unit id="OMwE8EU" name="label.apply_template">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.apply_template</source>
         <target>Apply a template</target>
       </segment>
     </unit>
     <unit id="BVAvHSW" name="label.browse">
-      <notes>
-        <note category="file-source" priority="1">templates/Form/fields.html.twig:13</note>
-        <note category="file-source" priority="1">templates/App/Datum/sign.html.twig:12</note>
-        <note category="file-source" priority="1">templates/App/Datum/image.html.twig:12</note>
-      </notes>
       <segment>
         <source>label.browse</source>
         <target>Browse</target>
       </segment>
     </unit>
     <unit id="YQjIBl7" name="label.children_title">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.children_title</source>
         <target>Sub-collections section label</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.collection</source>
         <target>Collection</target>
       </segment>
     </unit>
     <unit id="Jjqrud5" name="label.collections">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:43</note>
-      </notes>
       <segment>
         <source>label.collections</source>
         <target>Collections</target>
       </segment>
     </unit>
     <unit id="otd2FZd" name="label.currency">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.currency</source>
         <target>Currency</target>
       </segment>
     </unit>
     <unit id="WqTho4C" name="label.comment">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:55</note>
-      </notes>
       <segment>
         <source>label.comment</source>
         <target>Comment</target>
       </segment>
     </unit>
     <unit id="SdQCTjI" name="label.database_name">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.database_name</source>
         <target>Database name</target>
       </segment>
     </unit>
     <unit id="BMJXSQo" name="label.days">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.days</source>
         <target>Days</target>
       </segment>
     </unit>
     <unit id="4cEApe1" name="label.description">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:88</note>
-        <note category="file-source" priority="1">templates/App/Tag/index.html.twig:44</note>
-        <note category="file-source" priority="1">templates/App/User/tags.html.twig:43</note>
-      </notes>
       <segment>
         <source>label.description</source>
         <target>Description</target>
       </segment>
     </unit>
     <unit id="p1Fs6iF" name="label.disk_space_allowed">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:32</note>
-      </notes>
       <segment>
         <source>label.disk_space_allowed</source>
         <target>Disk space allowed</target>
       </segment>
     </unit>
     <unit id="Tv.rI94" name="label.disk_space_used">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:31</note>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:32</note>
-      </notes>
       <segment>
         <source>label.disk_space_used</source>
         <target>Disk space used</target>
       </segment>
     </unit>
     <unit id="D2N6_cP" name="label.email">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:30</note>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:31</note>
-      </notes>
       <segment>
         <source>label.email</source>
         <target>Email</target>
       </segment>
     </unit>
     <unit id="0n2CBIS" name="label.event">
-      <notes>
-        <note category="file-source" priority="1">templates/App/History/partials/table.html.twig:5</note>
-      </notes>
       <segment>
         <source>label.event</source>
         <target>Event</target>
       </segment>
     </unit>
     <unit id="bYyoqn6" name="label.fields">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:41</note>
-      </notes>
       <segment>
         <source>label.fields</source>
         <target>Fields</target>
       </segment>
     </unit>
     <unit id="zq.Isv9" name="label.host">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.host</source>
         <target>Host</target>
       </segment>
     </unit>
     <unit id="txRonia" name="label.id">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:28</note>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:29</note>
-      </notes>
       <segment>
         <source>label.id</source>
         <target>Id</target>
       </segment>
     </unit>
     <unit id="rapb2ag" name="label.image">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Datum/image.html.twig:7</note>
-      </notes>
       <segment>
         <source>label.image</source>
         <target>Image</target>
       </segment>
     </unit>
     <unit id="zfmgf2l" name="label.items">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:44</note>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:42</note>
-      </notes>
       <segment>
         <source>label.items</source>
         <target>Items</target>
       </segment>
     </unit>
     <unit id="frik1CZ" name="label.items_title">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.items_title</source>
         <target>Items section label</target>
       </segment>
     </unit>
     <unit id="Kp3d.qQ" name="label.label">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Datum/text.html.twig:13</note>
-        <note category="file-source" priority="1">templates/App/Datum/sign.html.twig:24</note>
-        <note category="file-source" priority="1">templates/App/Datum/image.html.twig:23</note>
-      </notes>
       <segment>
         <source>label.label</source>
         <target>Label</target>
       </segment>
     </unit>
     <unit id="vMjoUw7" name="label.last_date_of_activity">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:33</note>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:33</note>
-      </notes>
       <segment>
         <source>label.last_date_of_activity</source>
         <target>Last activity</target>
       </segment>
     </unit>
     <unit id="Az510BV" name="label.loan_duration">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:71</note>
-      </notes>
       <segment>
         <source>label.loan_duration</source>
         <target>Loan duration</target>
       </segment>
     </unit>
     <unit id="EWnP8ZQ" name="label.loaned_ago">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:42</note>
-      </notes>
       <segment>
         <source>label.loaned_ago</source>
         <target>Ago</target>
       </segment>
     </unit>
     <unit id="2ZgbVvL" name="label.loaned_at">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:41</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:69</note>
-      </notes>
       <segment>
         <source>label.loaned_at</source>
         <target>Date</target>
       </segment>
     </unit>
     <unit id="lYyKRwZ" name="label.loaned_to">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:40</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:68</note>
-      </notes>
       <segment>
         <source>label.loaned_to</source>
         <target>To</target>
       </segment>
     </unit>
     <unit id="WwKLHxh" name="label.logged_at">
-      <notes>
-        <note category="file-source" priority="1">templates/App/History/partials/table.html.twig:6</note>
-      </notes>
       <segment>
         <source>label.logged_at</source>
         <target>Date</target>
       </segment>
     </unit>
     <unit id="ZAtrhtu" name="label.login">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:20</note>
-      </notes>
       <segment>
         <source>label.login</source>
         <target>Username or email</target>
       </segment>
     </unit>
     <unit id="ysOvPSq" name="label.name">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:87</note>
-        <note category="file-source" priority="1">templates/App/Tag/index.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/User/tags.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:40</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:67</note>
-      </notes>
       <segment>
         <source>label.name</source>
         <target>Name</target>
       </segment>
     </unit>
     <unit id="M1E9Lfi" name="label.new_data">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:68</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:69</note>
-      </notes>
       <segment>
         <source>label.new_data</source>
         <target>Add a new field</target>
       </segment>
     </unit>
     <unit id="HmUuNCa" name="label.main_image">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:51</note>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:54</note>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:60</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:24</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/User/item.html.twig:33</note>
-      </notes>
       <segment>
         <source>label.main_image</source>
         <target>Main image</target>
       </segment>
     </unit>
     <unit id="ak1St8x" name="label.number_of_items">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:89</note>
-        <note category="file-source" priority="1">templates/App/Tag/index.html.twig:45</note>
-        <note category="file-source" priority="1">templates/App/User/tags.html.twig:44</note>
-      </notes>
       <segment>
         <source>label.number_of_items</source>
         <target># of items</target>
       </segment>
     </unit>
     <unit id="NGzz2k3" name="label.parent">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.parent</source>
         <target>Parent</target>
       </segment>
     </unit>
     <unit id="9pvowqn" name="label.password">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/login.html.twig:26</note>
-      </notes>
       <segment>
         <source>label.password</source>
         <target>Password</target>
       </segment>
     </unit>
     <unit id="dFDOuk." name="label.percent_of_items">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:90</note>
-        <note category="file-source" priority="1">templates/App/Tag/index.html.twig:46</note>
-        <note category="file-source" priority="1">templates/App/User/tags.html.twig:45</note>
-      </notes>
       <segment>
         <source>label.percent_of_items</source>
         <target>Percent of items</target>
       </segment>
     </unit>
     <unit id="2.APxMI" name="label.place">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:55</note>
-      </notes>
       <segment>
         <source>label.place</source>
         <target>Place</target>
       </segment>
     </unit>
     <unit id="N5IFef_" name="label.port">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.port</source>
         <target>Port</target>
       </segment>
     </unit>
     <unit id="arTFX42" name="label.price">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.price</source>
         <target>Price</target>
       </segment>
     </unit>
     <unit id="ymgENEq" name="label.quantity">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.quantity</source>
         <target>Quantity</target>
       </segment>
     </unit>
     <unit id="HVZAEc7" name="label.recursive">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.recursive</source>
         <target>Recursive</target>
       </segment>
     </unit>
     <unit id="rU9cSfq" name="label.repeat_password">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.repeat_password</source>
         <target>Repeat password</target>
       </segment>
     </unit>
     <unit id="R25XMb2" name="label.return_date">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:70</note>
-      </notes>
       <segment>
         <source>label.return_date</source>
         <target>Return date</target>
       </segment>
     </unit>
     <unit id="BNjUIYA" name="label.search">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.search</source>
         <target>Search</target>
       </segment>
     </unit>
     <unit id="w5u.bJo" name="label.sign">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Datum/sign.html.twig:7</note>
-      </notes>
       <segment>
         <source>label.sign</source>
         <target>Signature</target>
       </segment>
     </unit>
     <unit id="vpeY2jo" name="label.taken_at">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/album.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:55</note>
-      </notes>
       <segment>
         <source>label.taken_at</source>
         <target>Taken the</target>
       </segment>
     </unit>
     <unit id="ijQyGRo" name="label.tags">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:45</note>
-      </notes>
       <segment>
         <source>label.tags</source>
         <target>Tags</target>
       </segment>
     </unit>
     <unit id="UQI8T0S" name="label.text">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Datum/text.html.twig:7</note>
-      </notes>
       <segment>
         <source>label.text</source>
         <target>Text</target>
       </segment>
     </unit>
     <unit id="YEoCETJ" name="label.thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/Form/fields.html.twig:28</note>
-        <note category="file-source" priority="1">templates/Form/fields.html.twig:49</note>
-        <note category="file-source" priority="1">templates/Form/fields.html.twig:70</note>
-      </notes>
       <segment>
         <source>label.thumbnail</source>
         <target>Thumbnail</target>
       </segment>
     </unit>
     <unit id="UrRn8xj" name="label.title">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.title</source>
         <target>Title</target>
       </segment>
     </unit>
     <unit id="ZzykrnK" name="label.space_free">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:39</note>
-      </notes>
       <segment>
         <source>label.space_free</source>
         <target>%free% free</target>
       </segment>
     </unit>
     <unit id="4fDIeO4" name="label.space_used">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:38</note>
-      </notes>
       <segment>
         <source>label.space_used</source>
         <target>%used% / %total% used</target>
       </segment>
     </unit>
     <unit id="jNAS_YE" name="label.space_used_by_koillection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:48</note>
-      </notes>
       <segment>
         <source>label.space_used_by_koillection</source>
         <target>Total space used by Koillection</target>
       </segment>
     </unit>
     <unit id="pnGDFmf" name="label.type">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.type</source>
         <target>Type</target>
       </segment>
     </unit>
     <unit id="UJDm2vF" name="label.url">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.url</source>
         <target>Url</target>
       </segment>
     </unit>
     <unit id="O2X4xZH" name="label.user">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.user</source>
         <target>User</target>
       </segment>
     </unit>
     <unit id="LDhDPrF" name="label.username">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:29</note>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:30</note>
-      </notes>
       <segment>
         <source>label.username</source>
         <target>Username</target>
       </segment>
     </unit>
     <unit id="jI3fm2M" name="label.users">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:42</note>
-      </notes>
       <segment>
         <source>label.users</source>
         <target>Users</target>
       </segment>
     </unit>
     <unit id="szWUC0C" name="label.value">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Datum/text.html.twig:18</note>
-      </notes>
       <segment>
         <source>label.value</source>
         <target>Value</target>
       </segment>
     </unit>
     <unit id="H3WsEKh" name="label.visibility">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.visibility</source>
         <target>Visibility</target>
       </segment>
     </unit>
     <unit id="KbVLd5O" name="label.wishes">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:47</note>
-      </notes>
       <segment>
         <source>label.wishes</source>
         <target>Wishes</target>
       </segment>
     </unit>
     <unit id="hmlddlA" name="label.wishlist">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>label.wishlist</source>
         <target>Wishlist</target>
       </segment>
     </unit>
     <unit id="vVTVy9_" name="label.wishlists">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:46</note>
-      </notes>
       <segment>
         <source>label.wishlists</source>
         <target>Wishlists</target>
       </segment>
     </unit>
     <unit id="9UHmLu7" name="log.default_value">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:259</note>
-        <note category="file-source" priority="1">src/Service/Log/Logger/CollectionLogger.php:187</note>
-        <note category="file-source" priority="1">src/Service/Log/Logger/TagLogger.php:152</note>
-      </notes>
       <segment>
         <source>log.default_value</source>
         <target>the default value</target>
       </segment>
     </unit>
     <unit id="oq5I4KJ" name="log.collection.created">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.collection.created</source>
         <target>Collection %label% was created</target>
       </segment>
     </unit>
     <unit id="kJVARQs" name="log.collection.deleted">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.collection.deleted</source>
         <target>Collection %label% was deleted</target>
       </segment>
     </unit>
-    <unit id="FolQnGa" name="log.collection.default_parent">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/CollectionLogger.php:176</note>
-      </notes>
-      <segment>
-        <source>log.collection.default_parent</source>
-        <target>the default collection</target>
-      </segment>
-    </unit>
-    <unit id="65B6Z.P" name="log.collection.property_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/CollectionLogger.php:164</note>
-        <note category="file-source" priority="1">src/Service/Log/Logger/CollectionLogger.php:191</note>
-      </notes>
-      <segment>
-        <source>log.collection.property_updated</source>
-        <target>Property %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
-    <unit id="X8TmsCm" name="log.collection.image_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/CollectionLogger.php:171</note>
-      </notes>
-      <segment>
-        <source>log.collection.image_updated</source>
-        <target>Property %property% was updated</target>
-      </segment>
-    </unit>
-    <unit id="ZgubPA8" name="log.collection.parent_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/CollectionLogger.php:180</note>
-      </notes>
-      <segment>
-        <source>log.collection.parent_updated</source>
-        <target>Property %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
     <unit id="CQhzBXW" name="log.item.created">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.item.created</source>
         <target>Item %label% was created</target>
       </segment>
     </unit>
     <unit id="rV1McBT" name="log.item.deleted">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.item.deleted</source>
         <target>Item %label% was deleted</target>
       </segment>
     </unit>
-    <unit id="hBaCwDn" name="log.item.property_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:183</note>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:263</note>
-      </notes>
-      <segment>
-        <source>log.item.property_updated</source>
-        <target>Property %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
-    <unit id="vHNFecs" name="log.item.image_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:190</note>
-      </notes>
-      <segment>
-        <source>log.item.image_updated</source>
-        <target>Property %property% was updated</target>
-      </segment>
-    </unit>
-    <unit id="eC8RV3w" name="log.item.collection_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:198</note>
-      </notes>
-      <segment>
-        <source>log.item.collection_updated</source>
-        <target>Property %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
     <unit id="T.ABiea" name="log.item.tag_added">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:205</note>
-      </notes>
       <segment>
         <source>log.item.tag_added</source>
         <target>Tag %tag% was added</target>
       </segment>
     </unit>
     <unit id="XyCsJHB" name="log.item.tag_removed">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:210</note>
-      </notes>
       <segment>
         <source>log.item.tag_removed</source>
         <target>Tag %tag% was removed</target>
       </segment>
     </unit>
     <unit id="GMz7R9E" name="log.item.sign_added">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:222</note>
-      </notes>
       <segment>
         <source>log.item.sign_added</source>
         <target>Signature %label% was added</target>
       </segment>
     </unit>
     <unit id="aDc4Khw" name="log.item.image_added">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:217</note>
-      </notes>
       <segment>
         <source>log.item.image_added</source>
         <target>Image %label% was added</target>
       </segment>
     </unit>
     <unit id="HtlfUjV" name="log.item.property_added">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:229</note>
-      </notes>
       <segment>
         <source>log.item.property_added</source>
         <target>Property %label% with the value of %value% was added</target>
       </segment>
     </unit>
     <unit id="YXeF5Ti" name="log.item.sign_removed">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:244</note>
-      </notes>
       <segment>
         <source>log.item.sign_removed</source>
         <target>Signature %label% was removed</target>
       </segment>
     </unit>
     <unit id="nnFeqXM" name="log.item.image_removed">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:239</note>
-      </notes>
       <segment>
         <source>log.item.image_removed</source>
         <target>Image %label% was removed</target>
       </segment>
     </unit>
     <unit id="8NjBClV" name="log.item.property_removed">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/ItemLogger.php:251</note>
-      </notes>
       <segment>
         <source>log.item.property_removed</source>
         <target>Property %label% with the value of %value% was removed</target>
       </segment>
     </unit>
     <unit id="rZbNjjk" name="log.tag.created">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.tag.created</source>
         <target>Tag %label% was created</target>
       </segment>
     </unit>
     <unit id="C6hJE7c" name="log.tag.deleted">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>log.tag.deleted</source>
         <target>Tag %label% was deleted</target>
       </segment>
     </unit>
-    <unit id="KiUXj51" name="log.tag.property_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/TagLogger.php:140</note>
-        <note category="file-source" priority="1">src/Service/Log/Logger/TagLogger.php:156</note>
-      </notes>
-      <segment>
-        <source>log.tag.property_updated</source>
-        <target>Property %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
-    <unit id="tHo0TuF" name="log.tag.image_updated">
-      <notes>
-        <note category="file-source" priority="1">src/Service/Log/Logger/TagLogger.php:147</note>
-      </notes>
-      <segment>
-        <source>log.tag.image_updated</source>
-        <target>Property %property% was updated</target>
-      </segment>
-    </unit>
     <unit id="PBKgpKb" name="menu.about">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:38</note>
-      </notes>
       <segment>
         <source>menu.about</source>
         <target>About</target>
       </segment>
     </unit>
     <unit id="wvvYSw_" name="menu.admin">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:36</note>
-        <note category="file-source" priority="1">templates/bundles/TranslationBundle/WebUI/index.html.twig:20</note>
-        <note category="file-source" priority="1">templates/bundles/TranslationBundle/WebUI/show.html.twig:20</note>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:19</note>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:19</note>
-      </notes>
       <segment>
         <source>menu.admin</source>
         <target>Administration</target>
       </segment>
     </unit>
     <unit id="5hMk7ux" name="menu.albums">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/albums.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Album/index.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.albums</source>
         <target>Albums</target>
       </segment>
     </unit>
     <unit id="Nl_I6SL" name="menu.albums_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>menu.albums_shared</source>
         <target>%username%'s albums</target>
       </segment>
     </unit>
     <unit id="MW4FPxn" name="menu.collections">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/collections.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Collection/index.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.collections</source>
         <target>Collections</target>
       </segment>
     </unit>
     <unit id="GpXPEkO" name="menu.collections_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>menu.collections_shared</source>
         <target>%username%'s collections</target>
       </segment>
     </unit>
     <unit id="Q.3FoSC" name="menu.history">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:33</note>
-        <note category="file-source" priority="1">templates/App/History/index.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.history</source>
         <target>History</target>
       </segment>
     </unit>
     <unit id="VFvXW.m" name="menu.loans">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:28</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.loans</source>
         <target>Loans</target>
       </segment>
     </unit>
     <unit id="wBTFKFR" name="menu.logout">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:39</note>
-      </notes>
       <segment>
         <source>menu.logout</source>
         <target>Logout</target>
       </segment>
     </unit>
     <unit id="XSS5BT8" name="menu.profile">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:32</note>
-        <note category="file-source" priority="1">templates/App/Profile/index.html.twig:18</note>
-      </notes>
       <segment>
         <source>menu.profile</source>
         <target>Profile</target>
       </segment>
     </unit>
     <unit id="k6VxCsO" name="menu.search">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:17</note>
-      </notes>
       <segment>
         <source>menu.search</source>
         <target>Search</target>
       </segment>
     </unit>
     <unit id="HLevxj." name="menu.signs">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/signs.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Sign/index.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.signs</source>
         <target>Signatures</target>
       </segment>
     </unit>
     <unit id="ltgwfbq" name="menu.signs_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>menu.signs_shared</source>
         <target>%username%'s signatures</target>
       </segment>
     </unit>
     <unit id="Bhx8Fvg" name="menu.statistics">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.statistics</source>
         <target>Statistics</target>
       </segment>
     </unit>
     <unit id="tk6udpx" name="menu.statistics_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>menu.statistics_shared</source>
         <target>%username%'s statistics</target>
       </segment>
     </unit>
     <unit id="yo4f8Kh" name="menu.tags">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Tag/index.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/User/tags.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.tags</source>
         <target>Tags</target>
       </segment>
     </unit>
     <unit id="xLcWFGm" name="menu.tags_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>menu.tags_shared</source>
         <target>%username%'s tags</target>
       </segment>
     </unit>
     <unit id="kXYXu7R" name="menu.templates">
-      <notes>
-        <note category="file-source" priority="1">templates/layout-autorized.html.twig:29</note>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.templates</source>
         <target>Templates</target>
       </segment>
     </unit>
     <unit id="iaYlgE1" name="menu.wishlists">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/index.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/User/wishlists.html.twig:16</note>
-      </notes>
       <segment>
         <source>menu.wishlists</source>
         <target>Wishlists</target>
       </segment>
     </unit>
     <unit id="vd.6dAz" name="menu.wishlists_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>menu.wishlists_shared</source>
         <target>%username%'s wishlists</target>
       </segment>
     </unit>
     <unit id="ls5sYo8" name="message.album_added">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/AlbumController.php:62</note>
-      </notes>
       <segment>
         <source>message.album_added</source>
         <target>Album %album% has been added</target>
       </segment>
     </unit>
     <unit id="oawVfJJ" name="message.album_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/AlbumController.php:115</note>
-      </notes>
       <segment>
         <source>message.album_deleted</source>
         <target>Album %album% has been deleted</target>
       </segment>
     </unit>
     <unit id="0lwPpH7" name="message.album_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/AlbumController.php:90</note>
-      </notes>
       <segment>
         <source>message.album_edited</source>
         <target>Album %album% has been updated</target>
       </segment>
     </unit>
     <unit id="_sN4yvV" name="message.collection_added">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/CollectionController.php:92</note>
-      </notes>
       <segment>
         <source>message.collection_added</source>
         <target>Collection %collection% has been added</target>
       </segment>
     </unit>
     <unit id="m3B26dq" name="message.collection_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/CollectionController.php:184</note>
-      </notes>
       <segment>
         <source>message.collection_deleted</source>
         <target>Collection %collection% has been deleted</target>
       </segment>
     </unit>
     <unit id="p.bp_UN" name="message.collection_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/CollectionController.php:157</note>
-      </notes>
       <segment>
         <source>message.collection_edited</source>
         <target>Collection %collection% has been updated</target>
       </segment>
     </unit>
     <unit id="LYZR0u." name="message.done">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/AdminController.php:156</note>
-      </notes>
       <segment>
         <source>message.done</source>
         <target>Done</target>
       </segment>
     </unit>
     <unit id="1y_BRyd" name="message.entity_is_private">
-      <notes>
-        <note category="file-source" priority="1">templates/App/share.html.twig:9</note>
-      </notes>
       <segment>
         <source>message.entity_is_private</source>
         <target>This page is set to private, you can't share it.</target>
       </segment>
     </unit>
     <unit id="ehI_Ih2" name="message.items_tagged">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>message.items_tagged</source>
         <target>{0} %count% items tagged| {1} %count% item tagged| ]1,Inf[ %count% items tagged</target>
       </segment>
     </unit>
     <unit id="TMGiC1d" name="message.item_added">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/ItemController.php:74</note>
-      </notes>
       <segment>
         <source>message.item_added</source>
         <target>Item %item% has been added</target>
       </segment>
     </unit>
     <unit id="HgYxNo9" name="message.item_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/ItemController.php:152</note>
-      </notes>
       <segment>
         <source>message.item_deleted</source>
         <target>Item %item% has been deleted</target>
       </segment>
     </unit>
     <unit id="UGVMo0W" name="message.item_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/ItemController.php:122</note>
-      </notes>
       <segment>
         <source>message.item_edited</source>
         <target>Item %item% has been updated</target>
       </segment>
     </unit>
     <unit id="FlBhKyx" name="message.loan_canceled">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/LoanController.php:54</note>
-      </notes>
       <segment>
         <source>message.loan_canceled</source>
         <target>Item %item% loan has been canceled</target>
       </segment>
     </unit>
     <unit id="AT9p7pU" name="message.loan">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/ItemController.php:198</note>
-      </notes>
       <segment>
         <source>message.loan</source>
         <target>Item %item% is now marked as loaned</target>
       </segment>
     </unit>
     <unit id="zkp2rxS" name="message.item_returned">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/LoanController.php:72</note>
-      </notes>
       <segment>
         <source>message.item_returned</source>
         <target>Item %item% is now mark as returned</target>
       </segment>
     </unit>
     <unit id="lohoxDU" name="message.parameters_updated">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>message.parameters_updated</source>
         <target>Your parameters has been sucessfully updated</target>
       </segment>
     </unit>
     <unit id="n5rS9vY" name="message.photo_added">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/PhotoController.php:64</note>
-      </notes>
       <segment>
         <source>message.photo_added</source>
         <target>Photo %photo% has been added</target>
       </segment>
     </unit>
     <unit id="p5Rmjm9" name="message.photo_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/PhotoController.php:119</note>
-      </notes>
       <segment>
         <source>message.photo_deleted</source>
         <target>Photo %photo% has been deleted</target>
       </segment>
     </unit>
     <unit id="hIxqW3m" name="message.photo_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/PhotoController.php:92</note>
-      </notes>
       <segment>
         <source>message.photo_edited</source>
         <target>Photo %photo% has been updated</target>
@@ -2270,531 +1418,336 @@
       </segment>
     </unit>
     <unit id="NLlL04M" name="message.recursive">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/batch-tagging.html.twig:37</note>
-      </notes>
       <segment>
         <source>message.recursive</source>
         <target>If checked, tags will be applied to all sub-collections aswell</target>
       </segment>
     </unit>
     <unit id="xw23vtl" name="message.search_empty">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:109</note>
-      </notes>
       <segment>
         <source>message.search_empty</source>
         <target>No results</target>
       </segment>
     </unit>
     <unit id="3EE._Y4" name="message.tag_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/TagController.php:81</note>
-      </notes>
       <segment>
         <source>message.tag_edited</source>
         <target>Tag %tag% has been updated</target>
       </segment>
     </unit>
     <unit id="_PrKtDW" name="message.tag_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/TagController.php:106</note>
-      </notes>
       <segment>
         <source>message.tag_deleted</source>
         <target>Tag %tag% has been deleted</target>
       </segment>
     </unit>
     <unit id="MP5YHNd" name="message.tags_without_items_deleted">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>message.tags_without_items_deleted</source>
         <target>%count% tags have been deleted</target>
       </segment>
     </unit>
     <unit id="xM.mW1R" name="message.template_added">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/TemplateController.php:57</note>
-      </notes>
       <segment>
         <source>message.template_added</source>
         <target>Template %template% has been added</target>
       </segment>
     </unit>
     <unit id="ZMxcm6L" name="message.template_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/TemplateController.php:127</note>
-      </notes>
       <segment>
         <source>message.template_deleted</source>
         <target>Template %template% has been deleted</target>
       </segment>
     </unit>
     <unit id="5d2N5Ar" name="message.template_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/TemplateController.php:85</note>
-      </notes>
       <segment>
         <source>message.template_edited</source>
         <target>Template %template% has been updated</target>
       </segment>
     </unit>
     <unit id="pWVM8oW" name="message.test_email_sent">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/AdminController.php:174</note>
-      </notes>
       <segment>
         <source>message.test_email_sent</source>
         <target>Test email sent</target>
       </segment>
     </unit>
     <unit id="eMPgFR5" name="message.user_is_private">
-      <notes>
-        <note category="file-source" priority="1">templates/App/share.html.twig:7</note>
-      </notes>
       <segment>
         <source>message.user_is_private</source>
         <target>Your profil is set to private, you can't share this page.</target>
       </segment>
     </unit>
     <unit id="eG38lKI" name="message.visibility">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:24</note>
-      </notes>
       <segment>
         <source>message.visibility</source>
         <target>If you set visibility to public, your collection will be accessible by anyone using the following link :</target>
       </segment>
     </unit>
     <unit id="RjUO3kd" name="message.visibility_per_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:31</note>
-      </notes>
       <segment>
         <source>message.visibility_per_item</source>
         <target>You can then set visibility per item or collection. To do so, please go on the element edition page.</target>
       </segment>
     </unit>
     <unit id="9RoxCzk" name="message.wish_added">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/WishController.php:62</note>
-      </notes>
       <segment>
         <source>message.wish_added</source>
         <target>Wish %wish% has been added</target>
       </segment>
     </unit>
     <unit id="akgCJp9" name="message.wish_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/WishController.php:117</note>
-      </notes>
       <segment>
         <source>message.wish_deleted</source>
         <target>Wish %wish% has been deleted</target>
       </segment>
     </unit>
     <unit id="XoB_zRK" name="message.wish_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/WishController.php:90</note>
-      </notes>
       <segment>
         <source>message.wish_edited</source>
         <target>Wish %wish% has been updated</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/WishlistController.php:72</note>
-      </notes>
       <segment>
         <source>message.wishlist_added</source>
         <target>Wishlist %wishlist% has been added</target>
       </segment>
     </unit>
     <unit id="8ujnJmR" name="message.wishlist_deleted">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/WishlistController.php:142</note>
-      </notes>
       <segment>
         <source>message.wishlist_deleted</source>
         <target>Wishlist %wishlist% has been deleted</target>
       </segment>
     </unit>
     <unit id="NfYGrwC" name="message.wishlist_edited">
-      <notes>
-        <note category="file-source" priority="1">src/Controller/WishlistController.php:117</note>
-      </notes>
       <segment>
         <source>message.wishlist_edited</source>
         <target>Wishlist %wishlist% has been updated</target>
       </segment>
     </unit>
     <unit id="1Jpq5QX" name="tab.loans">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:27</note>
-      </notes>
       <segment>
         <source>tab.loans</source>
         <target>Loans</target>
       </segment>
     </unit>
     <unit id="F60bUq_" name="tab.returned_items">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:30</note>
-      </notes>
       <segment>
         <source>tab.returned_items</source>
         <target>Returned</target>
       </segment>
     </unit>
     <unit id="z8doNW0" name="tab.statistics">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/partials/tabs.html.twig:5</note>
-      </notes>
       <segment>
         <source>tab.statistics</source>
         <target>Statistics</target>
       </segment>
     </unit>
     <unit id="MJ22R1T" name="tab.users">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/partials/tabs.html.twig:10</note>
-      </notes>
       <segment>
         <source>tab.users</source>
         <target>Users</target>
       </segment>
     </unit>
     <unit id="ssT2wiw" name="title.activity">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:33</note>
-      </notes>
       <segment>
         <source>title.activity</source>
         <target>Activity</target>
       </segment>
     </unit>
     <unit id="pRl.hWU" name="title.add_album">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Album/edit.html.twig:16</note>
-        <note category="file-source" priority="1">templates/App/Album/add.html.twig:16</note>
-      </notes>
       <segment>
         <source>title.add_album</source>
         <target>Add a new album</target>
       </segment>
     </unit>
     <unit id="tpcX1HE" name="title.add_album_photo">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Photo/add.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.add_album_photo</source>
         <target>Add a new photo to the album %album%</target>
       </segment>
     </unit>
     <unit id="AiXAfVP" name="title.add_collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/add.html.twig:18</note>
-      </notes>
       <segment>
         <source>title.add_collection</source>
         <target>Add a new collection</target>
       </segment>
     </unit>
     <unit id="nXRtrJb" name="title.add_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.add_item</source>
         <target>Add a new item</target>
       </segment>
     </unit>
     <unit id="H0D7KGB" name="title.add_wishlist_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wish/add.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.add_wishlist_item</source>
         <target>Add a new item to the wishlist %wishlist%</target>
       </segment>
     </unit>
     <unit id="DCLoAZA" name="title.additional_fields">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:60</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:61</note>
-      </notes>
       <segment>
         <source>title.additional_fields</source>
         <target>Additional fields</target>
       </segment>
     </unit>
     <unit id="svM3vNY" name="title.charts.hours">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:54</note>
-      </notes>
       <segment>
         <source>title.charts.hours</source>
         <target>Items added per day hour</target>
       </segment>
     </unit>
     <unit id="jZqCZ_K" name="title.charts.months">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:59</note>
-      </notes>
       <segment>
         <source>title.charts.months</source>
         <target>Items added per month</target>
       </segment>
     </unit>
     <unit id="_tdjWIj" name="title.charts.month_days">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:31</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:51</note>
-      </notes>
       <segment>
         <source>title.charts.month_days</source>
         <target>Items added per day of month</target>
       </segment>
     </unit>
     <unit id="Rb73VaV" name="title.charts.radial_tree">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:48</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:68</note>
-      </notes>
       <segment>
         <source>title.charts.radial_tree</source>
         <target>Radial representation of your collection</target>
       </segment>
     </unit>
     <unit id="yfwVi.I" name="title.charts.week_days">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/statistics.html.twig:42</note>
-        <note category="file-source" priority="1">templates/App/Statistics/index.html.twig:62</note>
-      </notes>
       <segment>
         <source>title.charts.week_days</source>
         <target>Items added per weekday</target>
       </segment>
     </unit>
     <unit id="5_Yv1gK" name="title.children">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/collection.html.twig:46</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:74</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:74</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:74</note>
-      </notes>
       <segment>
         <source>title.children</source>
         <target>Sub-collections</target>
       </segment>
     </unit>
     <unit id="78xJTtJ" name="title.collections">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:56</note>
-      </notes>
       <segment>
         <source>title.collections</source>
         <target>Collections</target>
       </segment>
     </unit>
     <unit id="AzJJmQ_" name="title.currency">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:87</note>
-      </notes>
       <segment>
         <source>title.currency</source>
         <target>Currency</target>
       </segment>
     </unit>
     <unit id="qh23U11" name="title.disk_usage">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Profile/index.html.twig:23</note>
-      </notes>
       <segment>
         <source>title.disk_usage</source>
         <target>Disk usage</target>
       </segment>
     </unit>
     <unit id="yXxCCBI" name="title.edit_album_photo">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Photo/edit.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.edit_album_photo</source>
         <target>Edit photo %photo%</target>
       </segment>
     </unit>
     <unit id="KlxVsBD" name="title.edit_collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/edit.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.edit_collection</source>
         <target>Edit collection %collection%</target>
       </segment>
     </unit>
     <unit id="0w7FrTh" name="title.edit_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.edit_item</source>
         <target>Edit item %item%</target>
       </segment>
     </unit>
     <unit id="w4I3.hu" name="title.edit_template">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Template/edit.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.edit_template</source>
         <target>Edit template %template%</target>
       </segment>
     </unit>
     <unit id="9dYc4WP" name="title.edit_wishlist_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wish/edit.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.edit_wishlist_item</source>
         <target>Edit wish %name%</target>
       </segment>
     </unit>
     <unit id="1Uc4qIA" name="title.edit_wishlist">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/edit.html.twig:18</note>
-      </notes>
       <segment>
         <source>title.edit_wishlist</source>
         <target>Edit wishlist %wishlist%</target>
       </segment>
     </unit>
     <unit id="8QFZX9d" name="title.fields">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Template/show.html.twig:36</note>
-        <note category="file-source" priority="1">templates/App/Template/edit.html.twig:33</note>
-        <note category="file-source" priority="1">templates/App/Template/add.html.twig:33</note>
-      </notes>
       <segment>
         <source>title.fields</source>
         <target>Fields</target>
       </segment>
     </unit>
     <unit id="StAuTu9" name="title.infos">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:25</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:25</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:46</note>
-        <note category="file-source" priority="1">templates/App/User/tag.html.twig:34</note>
-        <note category="file-source" priority="1">templates/App/Template/edit.html.twig:24</note>
-        <note category="file-source" priority="1">templates/App/Template/add.html.twig:24</note>
-      </notes>
       <segment>
         <source>title.infos</source>
         <target>Info</target>
       </segment>
     </unit>
     <unit id="YHlU3_1" name="title.items">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:67</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:61</note>
-        <note category="file-source" priority="1">templates/App/User/tag.html.twig:49</note>
-        <note category="file-source" priority="1">templates/App/User/collection.html.twig:58</note>
-        <note category="file-source" priority="1">templates/App/Template/show.html.twig:48</note>
-        <note category="file-source" priority="1">templates/App/Collection/items.html.twig:49</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:86</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:86</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:86</note>
-      </notes>
       <segment>
         <source>title.items</source>
         <target>Items</target>
       </segment>
     </unit>
     <unit id="uJUJ6Ir" name="title.data">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:79</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:80</note>
-      </notes>
       <segment>
         <source>title.data</source>
         <target>Data</target>
       </segment>
     </unit>
     <unit id="bWfooH2" name="title.item_images">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/edit.html.twig:86</note>
-        <note category="file-source" priority="1">templates/App/Item/add.html.twig:87</note>
-      </notes>
       <segment>
         <source>title.item_images</source>
         <target>Images</target>
       </segment>
     </unit>
     <unit id="D5y_AEE" name="title.join_form">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Security/join.html.twig:6</note>
-      </notes>
       <segment>
         <source>title.join_form</source>
         <target>Account creation</target>
       </segment>
     </unit>
     <unit id="spXPl9V" name="title.language">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:71</note>
-      </notes>
       <segment>
         <source>title.language</source>
         <target>Language</target>
       </segment>
     </unit>
     <unit id="a3BdRfd" name="title.last_collections_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>title.last_collections_added</source>
         <target>Last collections added</target>
       </segment>
     </unit>
     <unit id="oAboyvt" name="title.last_items_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>title.last_items_added</source>
         <target>Last items added</target>
       </segment>
     </unit>
     <unit id="bmt.5SD" name="title.loan_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/loan.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.loan_item</source>
         <target>Loan item %item%</target>
       </segment>
     </unit>
     <unit id="zXS9TNU" name="title.new_template">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Template/add.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.new_template</source>
         <target>Add a new template</target>
       </segment>
     </unit>
     <unit id="aCKOxah" name="title.new_wishlist">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/add.html.twig:18</note>
-      </notes>
       <segment>
         <source>title.new_wishlist</source>
         <target>Add a new wishlist</target>
@@ -2813,305 +1766,186 @@
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
-      <notes>
-        <note category="file-source" priority="1">templates/App/User/album.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:51</note>
-      </notes>
       <segment>
         <source>title.photos</source>
         <target>Photos</target>
       </segment>
     </unit>
     <unit id="hR4DWGd" name="title.statistics">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/index.html.twig:25</note>
-      </notes>
       <segment>
         <source>title.statistics</source>
         <target>Statistics</target>
       </segment>
     </unit>
     <unit id="uzSzjYY" name="title.tags">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Search/index.html.twig:82</note>
-      </notes>
       <segment>
         <source>title.tags</source>
         <target>Tags</target>
       </segment>
     </unit>
     <unit id="8yVQg94" name="title.tag_collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/batch-tagging.html.twig:17</note>
-      </notes>
       <segment>
         <source>title.tag_collection</source>
         <target>Batch tagging %collection%</target>
       </segment>
     </unit>
     <unit id="mvzqhh8" name="title.user_details">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/user.html.twig:24</note>
-      </notes>
       <segment>
         <source>title.user_details</source>
         <target>User detail</target>
       </segment>
     </unit>
     <unit id="fKgc.kW" name="title.users">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/users.html.twig:25</note>
-      </notes>
       <segment>
         <source>title.users</source>
         <target>Users</target>
       </segment>
     </unit>
     <unit id="N7jz_F1" name="title.visibility">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Settings/index.html.twig:22</note>
-      </notes>
       <segment>
         <source>title.visibility</source>
         <target>Visibility</target>
       </segment>
     </unit>
     <unit id="KhJnPFW" name="title.wishes">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:71</note>
-        <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:56</note>
-      </notes>
       <segment>
         <source>title.wishes</source>
         <target>Wishes</target>
       </segment>
     </unit>
     <unit id="Wf8jJNQ" name="title.wishlist">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment>
         <source>title.wishlist</source>
         <target>Wishlist %wishlist%</target>
       </segment>
     </unit>
     <unit id="c9cNWH4" name="title.wishlist_children">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:61</note>
-        <note category="file-source" priority="1">templates/App/User/wishlist.html.twig:46</note>
-      </notes>
       <segment>
         <source>title.wishlist_children</source>
         <target>Sub-wishlists</target>
       </segment>
     </unit>
     <unit id="NOenNu3" name="tooltip.add_album">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Album/index.html.twig:27</note>
-      </notes>
       <segment>
         <source>tooltip.add_album</source>
         <target>Add a new album</target>
       </segment>
     </unit>
     <unit id="0Vhz2n." name="tooltip.add_collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/index.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:41</note>
-      </notes>
       <segment>
         <source>tooltip.add_collection</source>
         <target>Add a new collection</target>
       </segment>
     </unit>
     <unit id="FTnVc5X" name="tooltip.add_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:38</note>
-      </notes>
       <segment>
         <source>tooltip.add_item</source>
         <target>Add a new item</target>
       </segment>
     </unit>
     <unit id="AHajX3P" name="tooltip.add_photo">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:33</note>
-      </notes>
       <segment>
         <source>tooltip.add_photo</source>
         <target>Add a new photo</target>
       </segment>
     </unit>
     <unit id=".pBdt4A" name="tooltip.add_template">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Template/index.html.twig:26</note>
-      </notes>
       <segment>
         <source>tooltip.add_template</source>
         <target>Create a new template</target>
       </segment>
     </unit>
     <unit id="VRKRvlp" name="tooltip.add_wish">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:37</note>
-      </notes>
       <segment>
         <source>tooltip.add_wish</source>
         <target>Add a new wish</target>
       </segment>
     </unit>
     <unit id="U27QnHb" name="tooltip.add_wishlist">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/index.html.twig:27</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:40</note>
-      </notes>
       <segment>
         <source>tooltip.add_wishlist</source>
         <target>Add a new wishlist</target>
       </segment>
     </unit>
     <unit id="qWc975i" name="tooltip.delete">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:46</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:103</note>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:32</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:29</note>
-        <note category="file-source" priority="1">templates/App/Template/show.html.twig:29</note>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:54</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:62</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:47</note>
-      </notes>
       <segment>
         <source>tooltip.delete</source>
         <target>Delete</target>
       </segment>
     </unit>
     <unit id="nbcWSI3" name="tooltip.edit">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:43</note>
-        <note category="file-source" priority="1">templates/App/Wishlist/show.html.twig:102</note>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:29</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/Template/show.html.twig:26</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:36</note>
-        <note category="file-source" priority="1">templates/App/Album/show.html.twig:59</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:44</note>
-      </notes>
       <segment>
         <source>tooltip.edit</source>
         <target>Edit</target>
       </segment>
     </unit>
     <unit id="0Iya7gx" name="tooltip.history">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:38</note>
-        <note category="file-source" priority="1">templates/App/Tag/show.html.twig:32</note>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:53</note>
-      </notes>
       <segment>
         <source>tooltip.history</source>
         <target>History</target>
       </segment>
     </unit>
     <unit id="bQoqYij" name="tooltip.items">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:57</note>
-      </notes>
       <segment>
         <source>tooltip.items</source>
         <target>See all items</target>
       </segment>
     </unit>
     <unit id="DYfAFeM" name="tooltip.print">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/export.html.twig:33</note>
-      </notes>
       <segment>
         <source>tooltip.print</source>
         <target>Print</target>
       </segment>
     </unit>
     <unit id="3AT7pPP" name="tooltip.share">
-      <notes>
-        <note category="file-source" priority="1">templates/App/share.html.twig:1</note>
-      </notes>
       <segment>
         <source>tooltip.share</source>
         <target>Share</target>
       </segment>
     </unit>
     <unit id="6H1fBLk" name="tooltip.tag">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/show.html.twig:50</note>
-      </notes>
       <segment>
         <source>tooltip.tag</source>
         <target>Tag</target>
       </segment>
     </unit>
     <unit id="4O6JaLx" name="tooltip.loan_item">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Item/show.html.twig:35</note>
-      </notes>
       <segment>
         <source>tooltip.loan_item</source>
         <target>Loan this item</target>
       </segment>
     </unit>
     <unit id="uFEIsab" name="tooltip.returned">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Loan/index.html.twig:55</note>
-      </notes>
       <segment>
         <source>tooltip.returned</source>
         <target>Returned</target>
       </segment>
     </unit>
     <unit id=".TUUZqf" name="tutorial.no_collection">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/index.html.twig:46</note>
-      </notes>
       <segment>
         <source>tutorial.no_collection</source>
         <target>Oops, you don't have any collection yet. Click here to begin.</target>
       </segment>
     </unit>
     <unit id="mhRNReS" name="aria.collection_thumbnail">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/history.html.twig:19</note>
-      </notes>
       <segment>
         <source>aria.collection_thumbnail</source>
         <target>Collection %title% thumbnail</target>
       </segment>
     </unit>
     <unit id="92pQmfM" name="label.suggestions">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Collection/edit.html.twig:38</note>
-        <note category="file-source" priority="1">templates/App/Collection/edit.html.twig:48</note>
-        <note category="file-source" priority="1">templates/App/Collection/add.html.twig:39</note>
-        <note category="file-source" priority="1">templates/App/Collection/add.html.twig:49</note>
-      </notes>
       <segment>
         <source>label.suggestions</source>
         <target>Suggestions : </target>
       </segment>
     </unit>
     <unit id="3C0OGP." name="tab.translations">
-      <notes>
-        <note category="file-source" priority="1">templates/App/Admin/partials/tabs.html.twig:26</note>
-      </notes>
       <segment>
         <source>tab.translations</source>
         <target>Translations</target>
       </segment>
     </unit>
     <unit id="SIWS8O4" name="label.configs">
-      <notes>
-        <note category="file-source" priority="1">templates/bundles/TranslationBundle/WebUI/index.html.twig:27</note>
-        <note category="state" priority="1">new</note>
-      </notes>
       <segment>
         <source>label.configs</source>
         <target>Configs : </target>
@@ -4029,30 +2863,6 @@
         <target>Album %label% was created</target>
       </segment>
     </unit>
-    <unit id="K8cW39N" name="log.album.property_updated">
-      <segment>
-        <source>log.album.property_updated</source>
-        <target>Property %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
-    <unit id="9prbmiu" name="log.album.default_parent">
-      <segment>
-        <source>log.album.default_parent</source>
-        <target>the default album</target>
-      </segment>
-    </unit>
-    <unit id="winaT9n" name="log.album.parent_updated">
-      <segment>
-        <source>log.album.parent_updated</source>
-        <target>Property %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
-    <unit id="K_pMaB6" name="log.album.image_updated">
-      <segment>
-        <source>log.album.image_updated</source>
-        <target>Property %property% was updated</target>
-      </segment>
-    </unit>
     <unit id="tCaXH8D" name="enum.history_filter_class.album">
       <segment>
         <source>enum.history_filter_class.album</source>
@@ -4087,30 +2897,6 @@
       <segment>
         <source>log.wishlist.created</source>
         <target>Wishlist %label% was created</target>
-      </segment>
-    </unit>
-    <unit id="hInIZ_x" name="log.wishlist.property_updated">
-      <segment>
-        <source>log.wishlist.property_updated</source>
-        <target>Wishlist %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
-    <unit id="ocKd5wr" name="log.wishlist.default_parent">
-      <segment>
-        <source>log.wishlist.default_parent</source>
-        <target>the default wishlist</target>
-      </segment>
-    </unit>
-    <unit id="Oa9ZyXy" name="log.wishlist.parent_updated">
-      <segment>
-        <source>log.wishlist.parent_updated</source>
-        <target>Wishlist %property% was updated from %old% to %new%</target>
-      </segment>
-    </unit>
-    <unit id="bv2t1yX" name="log.wishlist.image_updated">
-      <segment>
-        <source>log.wishlist.image_updated</source>
-        <target>Property %property% was updated</target>
       </segment>
     </unit>
     <unit id="GXrTvzK" name="label.albums">
@@ -4621,6 +3407,120 @@
       <segment>
         <source>label.add_list</source>
         <target>Add list :</target>
+      </segment>
+    </unit>
+    <unit id="LxS4CxQ" name="enum.history_filter_class.template">
+      <segment>
+        <source>enum.history_filter_class.template</source>
+        <target>Template</target>
+      </segment>
+    </unit>
+    <unit id="UrxvNEi" name="enum.history_filter_class.choice_list">
+      <segment>
+        <source>enum.history_filter_class.choice_list</source>
+        <target>Choice list</target>
+      </segment>
+    </unit>
+    <unit id="NlqXkWs" name="enum.history_filter_class.inventory">
+      <segment>
+        <source>enum.history_filter_class.inventory</source>
+        <target>Inventory</target>
+      </segment>
+    </unit>
+    <unit id="kj0Q1Ff" name="enum.history_filter_class.tag_category">
+      <segment>
+        <source>enum.history_filter_class.tag_category</source>
+        <target>Tag category</target>
+      </segment>
+    </unit>
+    <unit id="QnYEnRK" name="enum.history_filter_class.photo">
+      <segment>
+        <source>enum.history_filter_class.photo</source>
+        <target>Photo</target>
+      </segment>
+    </unit>
+    <unit id="2Fo2Uq2" name="enum.history_filter_class.wish">
+      <segment>
+        <source>enum.history_filter_class.wish</source>
+        <target>Wish</target>
+      </segment>
+    </unit>
+    <unit id="rQfm6zk" name="message.logs_generated">
+      <segment>
+        <source>message.logs_generated</source>
+        <target>{0} %count% logs generated| {1} %count% log generated| ]1,Inf[ %count% logs regenerated</target>
+      </segment>
+    </unit>
+    <unit id="mR1e3QM" name="log.photo.created">
+      <segment>
+        <source>log.photo.created</source>
+        <target>Photo %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="9pCgrPX" name="log.photo.deleted">
+      <segment>
+        <source>log.photo.deleted</source>
+        <target>Photo %label% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="4vuCgXu" name="log.tag_category.created">
+      <segment>
+        <source>log.tag_category.created</source>
+        <target>Tag category %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="8mNrcyf" name="log.tag_category.deleted">
+      <segment>
+        <source>log.tag_category.deleted</source>
+        <target>Tag category %label% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="5rtBrNu" name="log.template.created">
+      <segment>
+        <source>log.template.created</source>
+        <target>Template %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="ngdDrOx" name="log.template.deleted">
+      <segment>
+        <source>log.template.deleted</source>
+        <target>Template %label% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="MgU97i1" name="log.inventory.created">
+      <segment>
+        <source>log.inventory.created</source>
+        <target>Inventory %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="a6smwLk" name="log.inventory.deleted">
+      <segment>
+        <source>log.inventory.deleted</source>
+        <target>Inventory %label% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="oz3NpLH" name="log.choice_list.created">
+      <segment>
+        <source>log.choice_list.created</source>
+        <target>Choice list %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="z6vkVDV" name="log.choice_list.deleted">
+      <segment>
+        <source>log.choice_list.deleted</source>
+        <target>Choice list %label% was deleted</target>
+      </segment>
+    </unit>
+    <unit id="I4AaDrn" name="log.wish.created">
+      <segment>
+        <source>log.wish.created</source>
+        <target>Wish %label% was created</target>
+      </segment>
+    </unit>
+    <unit id="xDWB80B" name="log.wish.deleted">
+      <segment>
+        <source>log.wish.deleted</source>
+        <target>Wish %label% was deleted</target>
       </segment>
     </unit>
   </file>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\ChoiceListTypeEnum;
 use App\Repository\ChoiceListRepository;
 use Doctrine\DBAL\Types\Types;
@@ -19,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['choiceList:read']],
     denormalizationContext: ['groups' => ['choiceList:write']],
 )]
-class ChoiceList
+class ChoiceList implements LoggableInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

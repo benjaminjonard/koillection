@@ -33,12 +33,15 @@
             <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') }}">{{ 'btn.add_rating'|trans }}</a>
             <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_LINK') }}">{{ 'btn.add_link'|trans }}</a>
         </div>
-        <div class="row center-align datum-btn">
-            <label>{{ 'label.add_list'|trans }}</label>
-            {% for choiceList in choiceLists %}
-                <a data-action="additional-data#addChoiceList" class="waves-effect waves-light btn-small grey" data-id="{{ choiceList.id }}">{{ choiceList.name }}</a>
-            {% endfor %}
-        </div>
+
+        {% if choiceLists is defined and choiceLists is not empty %}
+            <div class="row center-align datum-btn">
+                <label>{{ 'label.add_list'|trans }}</label>
+                {% for choiceList in choiceLists %}
+                    <a data-action="additional-data#addChoiceList" class="waves-effect waves-light btn-small grey" data-id="{{ choiceList.id }}">{{ choiceList.name }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 
     <div class="wrapper">

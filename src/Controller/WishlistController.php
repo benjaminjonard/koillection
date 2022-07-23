@@ -147,26 +147,4 @@ class WishlistController extends AbstractController
 
         return $this->redirectToRoute('app_wishlist_index');
     }
-
-    #[Route(
-        path: ['en' => '/wishlists/{id}/history', 'fr' => '/listes-de-souhaits/{id}/historique'],
-        name: 'app_wishlist_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
-    public function history(Wishlist $wishlist, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['wishlists', 'history']);
-
-        return $this->render('App/Wishlist/history.html.twig', [
-            'wishlist' => $wishlist,
-            'logs' => $logRepository->findBy([
-                'objectId' => $wishlist->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($wishlist))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
-        ]);
-    }
 }

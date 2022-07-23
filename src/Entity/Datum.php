@@ -7,7 +7,6 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
-use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DatumTypeEnum;
 use App\Repository\DatumRepository;
 use Doctrine\DBAL\Types\Types;
@@ -37,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     'this.getItem() != null or this.getCollection() != null',
     message: 'error.datum.must_provide_collection_or_item',
 )]
-class Datum implements LoggableInterface
+class Datum
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

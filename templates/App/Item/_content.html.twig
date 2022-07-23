@@ -31,11 +31,6 @@
                         <i class="fa fa-exchange fa-fw"></i>
                     </a>
                 {% endif %}
-                {% if isFeatureEnabled('history') %}
-                    <a href="{{ path('app_item_history', {'id': item.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                        <i class="fa fa-history fa-fw"></i>
-                    </a>
-                {% endif %}
                 {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_item_show', entity: item}) }}
                 {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
             </div>

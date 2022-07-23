@@ -69,11 +69,6 @@
                                 <i class="fa fa-terminal fa-fw"></i>
                             </a>
                         {% endif %}
-                        {% if isFeatureEnabled('history') %}
-                            <a href="{{ path('app_collection_history', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                                <i class="fa fa-history fa-fw"></i>
-                            </a>
-                        {% endif %}
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_show', entity: collection}) }}
                         <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
                             <i class="fa fa-ellipsis-h fa-fw"></i>

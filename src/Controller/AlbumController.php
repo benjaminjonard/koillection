@@ -152,26 +152,4 @@ class AlbumController extends AbstractController
             'photos' => $photoRepository->findBy(['album' => $album]),
         ]);
     }
-
-    #[Route(
-        path: ['en' => '/albums/{id}/history', 'fr' => '/albums/{id}/historique'],
-        name: 'app_album_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    public function history(Album $album, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['albums', 'history']);
-
-        return $this->render('App/Album/history.html.twig', [
-            'album' => $album,
-            'logs' => $logRepository->findBy([
-                'objectId' => $album->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($album))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
-        ]);
-    }
 }
