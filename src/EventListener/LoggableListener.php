@@ -7,10 +7,7 @@ namespace App\EventListener;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Enum\LogTypeEnum;
-use App\Service\Log\LoggerChain;
-use App\Service\Log\LogQueue;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class LoggableListener
 {

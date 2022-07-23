@@ -8,7 +8,6 @@ use App\Entity\ChoiceList;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
-use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,7 +24,7 @@ class DatumController extends AbstractController
         $html = $this->render('App/Datum/_datum.html.twig', [
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
-            'type' => $type
+            'type' => $type,
         ])->getContent();
 
         return new JsonResponse([
@@ -45,11 +44,11 @@ class DatumController extends AbstractController
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
             'type' => DatumTypeEnum::TYPE_LIST,
-            'choiceList' => $choiceList
+            'choiceList' => $choiceList,
         ])->getContent();
 
         return new JsonResponse([
-            'html' => $html
+            'html' => $html,
         ]);
     }
 

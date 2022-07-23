@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
-use App\Repository\LogRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
 use Doctrine\Persistence\ManagerRegistry;

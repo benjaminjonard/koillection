@@ -11,7 +11,6 @@ use App\Model\BatchTagger;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
-use App\Repository\LogRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -108,12 +107,11 @@ class CollectionController extends AbstractController
         CollectionRepository $collectionRepository,
         ItemRepository $itemRepository,
         DatumRepository $datumRepository
-    ): Response
-    {
+    ): Response {
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findBy(['parent' => $collection]),
-            'items' => $itemRepository->findForOrdering($collection)
+            'items' => $itemRepository->findForOrdering($collection),
         ]);
     }
 

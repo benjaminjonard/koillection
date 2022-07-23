@@ -274,7 +274,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function getDateFormatWithTime(): string
     {
-        return $this->dateFormat . ' H:i:s';
+        return $this->dateFormat.' H:i:s';
     }
 
     public function getDateFormatForJs(): string

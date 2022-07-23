@@ -6,7 +6,6 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Datum;
-use App\Enum\DatumTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

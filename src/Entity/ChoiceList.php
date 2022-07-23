@@ -6,13 +6,11 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\ChoiceListTypeEnum;
 use App\Repository\ChoiceListRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ChoiceListRepository::class)]
 #[ORM\Table(name: 'koi_choice_list')]

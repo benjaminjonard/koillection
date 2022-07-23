@@ -8,7 +8,6 @@ use App\Entity\Log;
 use App\Entity\Photo;
 use App\Entity\Wish;
 use App\Enum\LogTypeEnum;
-use App\Service\Log\LoggerChain;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -28,9 +27,9 @@ class LogRuntime implements RuntimeExtensionInterface
         $explodedNamespace = explode('\\', $log->getObjectClass());
         $class = array_pop($explodedNamespace);
         $class = strtolower($class);
-        if ($class == 'tagcategory') {
+        if ('tagcategory' == $class) {
             $class = 'tag_category';
-        } elseif ($class == 'choicelist') {
+        } elseif ('choicelist' == $class) {
             $class = 'choice_list';
         }
 
@@ -41,7 +40,7 @@ class LogRuntime implements RuntimeExtensionInterface
                 if ($log->isObjectDeleted()) {
                     $label = "<strong class='deleted'>$objectLabel</strong>";
                 } else {
-                    if ($log->getObjectClass() === Wish::class || $log->getObjectClass() === Photo::class) {
+                    if (Wish::class === $log->getObjectClass() || Photo::class === $log->getObjectClass()) {
                         $label = "<strong>$objectLabel</strong>";
                     } else {
                         $route = $this->router->generate('app_'.$class.'_show', ['id' => $log->getObjectId()]);

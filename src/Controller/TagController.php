@@ -10,7 +10,6 @@ use App\Form\Type\Entity\TagType;
 use App\Form\Type\Model\SearchTagType;
 use App\Model\Search\SearchTag;
 use App\Repository\ItemRepository;
-use App\Repository\LogRepository;
 use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;

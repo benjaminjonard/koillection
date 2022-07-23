@@ -38,6 +38,8 @@
                     {% set datum = item.getDatumByLabel(column) %}
                     {% if datum is not null %}
                         {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                    {% else %}
+                        -
                     {% endif %}
                 </td>
             {% endfor %}

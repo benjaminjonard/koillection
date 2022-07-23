@@ -71,7 +71,7 @@ class DatumType extends AbstractType
                         break;
                     case DatumTypeEnum::TYPE_DATE:
                         $form
-                            ->add( 'value',DateType::class, [
+                            ->add('value', DateType::class, [
                                 'required' => false,
                                 'html5' => false,
                                 'widget' => 'single_text',
@@ -105,13 +105,13 @@ class DatumType extends AbstractType
                                         return null !== $string ? json_decode($string, true) : null;
                                     },
                                     function ($array) {
-                                        return is_array($array) ? json_encode($array) : null;
+                                        return \is_array($array) ? json_encode($array) : null;
                                     }
                                 ),
                             ])
                             ->add('choiceList', EntityType::class, [
                                 'class' => ChoiceList::class,
-                                'required' => true
+                                'required' => true,
                             ])
                         ;
                         break;

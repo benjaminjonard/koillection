@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Form\Type\Entity\AlbumType;
 use App\Repository\AlbumRepository;
-use App\Repository\LogRepository;
 use App\Repository\PhotoRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;

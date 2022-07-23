@@ -13,7 +13,6 @@ use App\Form\Type\Entity\LoanType;
 use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\ItemRepository;
-use App\Repository\LogRepository;
 use App\Repository\TagRepository;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -97,7 +96,7 @@ class ItemController extends AbstractController
             'item' => $item,
             'collection' => $collection,
             'suggestedNames' => $suggestedNames,
-            'choiceLists' => $choiceListRepository->findAll()
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 
@@ -138,8 +137,7 @@ class ItemController extends AbstractController
         TranslatorInterface $translator,
         ManagerRegistry $managerRegistry,
         ChoiceListRepository $choiceListRepository
-    ): Response
-    {
+    ): Response {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -153,7 +151,7 @@ class ItemController extends AbstractController
             'form' => $form->createView(),
             'item' => $item,
             'collection' => $item->getCollection(),
-            'choiceLists' => $choiceListRepository->findAll()
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 

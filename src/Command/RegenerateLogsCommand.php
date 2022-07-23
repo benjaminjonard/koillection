@@ -46,7 +46,7 @@ class RegenerateLogsCommand extends Command
             Album::class, Photo::class,
             Tag::class, TagCategory::class,
             Template::class, ChoiceList::class,
-            Inventory::class
+            Inventory::class,
         ];
 
         foreach ($classes as $class) {
@@ -60,7 +60,7 @@ class RegenerateLogsCommand extends Command
             foreach ($results as $result) {
                 $log = $this->managerRegistry->getRepository(Log::class)->findOneBy([
                     'type' => LogTypeEnum::TYPE_CREATE,
-                    'objectId' => $result->getId()
+                    'objectId' => $result->getId(),
                 ]);
 
                 if (!$log instanceof Log) {
@@ -73,7 +73,7 @@ class RegenerateLogsCommand extends Command
                         ->setOwner($result->getOwner())
                     ;
                     $this->managerRegistry->getManager()->persist($log);
-                    $counter++;
+                    ++$counter;
                 }
             }
 

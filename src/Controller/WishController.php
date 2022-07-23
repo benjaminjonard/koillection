@@ -126,8 +126,7 @@ class WishController extends AbstractController
         TranslatorInterface $translator,
         ManagerRegistry $managerRegistry,
         ChoiceListRepository $choiceListRepository
-    ): Response
-    {
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
         $item = new Item();
@@ -161,7 +160,7 @@ class WishController extends AbstractController
             'item' => $item,
             'wish' => $wish,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
-            'choiceLists' => $choiceListRepository->findAll()
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 }
