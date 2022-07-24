@@ -49,11 +49,17 @@
     </li>
 {% endif %}
 
+<li class="separate-item sidebar-element"><div></div></li>
+
 {% if isFeatureEnabled('templates') %}
     <li class="{{ 'app_template' in route ? 'current' }} sidebar-element">
         <a href="{{ path('app_template_index') }}"><i class="fa fa-clone fa-fw"></i><span>{{ 'menu.templates'|trans }}</span></a>
     </li>
 {% endif %}
+
+<li class="{{ 'app_choice_list' in route ? 'current' }} sidebar-element">
+    <a href="{{ path('app_choice_list_index') }}"><i class="fa fa-list fa-fw"></i><span>{{ 'menu.choice_lists'|trans }}</span></a>
+</li>
 
 {% if isFeatureEnabled('history') or isFeatureEnabled('statistics') %}
     <li class="separate-item sidebar-element"><div></div></li>

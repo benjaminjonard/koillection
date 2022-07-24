@@ -15,7 +15,6 @@ footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; fo
 .fa-rotate-180 {-webkit-transform: rotate(180deg); transform: rotate(180deg);}
 table img {vertical-align: middle;}
 
-
 .select2-selection--multiple {
     cursor: pointer!important;
     min-height: 45px!important;
@@ -557,8 +556,7 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .inline-checkbox-wrapper .input-checkbox {top: -78px; left: 16px;}
 .table-actions a {margin: 0 5px; font-size: 20px;}
 
-#template-fields-holder .icon-holder { padding-top: 45px; text-align: center; }
-#additionnalFields .icon-holder { padding-top: 30px; text-align: center; }
+.icon-holder { padding-top: 30px!important; text-align: center; }
 .removeDatum, .related-item .close {cursor: pointer;}
 
 .datum .preview-image {max-height: 100px; max-width: 100%;}

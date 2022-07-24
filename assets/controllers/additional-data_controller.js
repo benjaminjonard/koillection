@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus';
 import Sortable from "sortablejs";
 
-/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static targets = ['datum', 'label', 'textsHolder', 'imagesHolder']
 

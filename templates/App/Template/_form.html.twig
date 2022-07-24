@@ -19,7 +19,6 @@
         <div class="row">
             <div class="col s12 l10 offset-l1 xl6 offset-xl3">
                 <div {{ stimulus_controller('template-field') }}
-                     id="template-fields-holder"
                      data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}"
                 >
                     {{ form_row(form.fields) }}

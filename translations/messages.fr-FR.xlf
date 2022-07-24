@@ -3566,5 +3566,47 @@
         <target>Choix</target>
       </segment>
     </unit>
+    <unit id="1EYnJj4" name="label.list">
+      <segment>
+        <source>label.list</source>
+        <target>Liste</target>
+      </segment>
+    </unit>
+    <unit id="aD0i7U3" name="label.choice_list">
+      <segment>
+        <source>label.choice_list</source>
+        <target>Liste de choix</target>
+      </segment>
+    </unit>
+    <unit id="oFA0bWV" name="breadcrumb.add_choice_list">
+      <segment>
+        <source>breadcrumb.add_choice_list</source>
+        <target>Ajouter une nouvelle liste de choix</target>
+      </segment>
+    </unit>
+    <unit id="BlieLoV" name="title.new_choice_list">
+      <segment>
+        <source>title.new_choice_list</source>
+        <target>Ajouter une nouvelle liste de choix</target>
+      </segment>
+    </unit>
+    <unit id="VGW2uC0" name="title.choices">
+      <segment>
+        <source>title.choices</source>
+        <target>Choix</target>
+      </segment>
+    </unit>
+    <unit id="VGW2uC0" name="label.choice">
+      <segment>
+        <source>label.choice</source>
+        <target>Choix</target>
+      </segment>
+    </unit>
+    <unit id="jEWaBMn" name="btn.add_choice">
+      <segment>
+        <source>btn.add_choice</source>
+        <target>Ajouter un nouveau choix</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

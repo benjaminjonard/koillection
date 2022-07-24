@@ -4,14 +4,19 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\ChoiceList;
 use App\Entity\Field;
 use App\Enum\DatumTypeEnum;
 use App\Repository\ChoiceListRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FieldType extends AbstractType
@@ -23,7 +28,6 @@ class FieldType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $choiceLists = $this->choiceListRepository->findAll();
         $types = array_flip(DatumTypeEnum::getTypesLabels());
 
         $builder
@@ -32,14 +36,31 @@ class FieldType extends AbstractType
                 'label' => false,
             ])
             ->add('type', ChoiceType::class, [
-                'choices' => array_flip(DatumTypeEnum::getTypesLabels()),
+                'choices' => $types,
                 'expanded' => false,
                 'multiple' => false,
                 'label' => false,
             ])
             ->add('position', HiddenType::class, [
                 'required' => false,
-            ]);
+            ])
+            ->add('choiceList', EntityType::class, [
+                'class' => ChoiceList::class,
+                'required' => true,
+            ])
+        ;
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT,
+            function (FormEvent $event) {
+                $data = $event->getData();
+
+                if ($data['type'] !== DatumTypeEnum::TYPE_LIST) {
+                    $data['choiceList'] = null;
+                }
+
+                $event->setData($data);
+            }
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
