@@ -3607,5 +3607,17 @@
         <target>Add a new choice</target>
       </segment>
     </unit>
+    <unit id="Zy9Zqlc" name="breadcrumb.edit_choice_list">
+      <segment>
+        <source>breadcrumb.edit_choice_list</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="IHKWbZj" name="title.edit_choice_list">
+      <segment>
+        <source>title.edit_choice_list</source>
+        <target>Edit choice list %list%</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
