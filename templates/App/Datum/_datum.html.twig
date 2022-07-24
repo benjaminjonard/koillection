@@ -1,3 +1,4 @@
+{% set hasChoiceList = choiceList is defined and choiceList is not null  %}
 <div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-additional-data-target="datum">
     <div class="col s12 l10 offset-l1 xl6 offset-xl3">
         <div class="col s1 handle icon-holder handle">
@@ -22,13 +23,9 @@
                     maxlength="255"
                     data-additional-data-target="label"
                     required
-                    {% if datum is defined %}
-                        value="{{ datum.label }}"
-                    {% elseif choiceList is defined %}
-                        value="{{ choiceList.name }}"
-                    {% endif %}
+                    value="{{ label }}"
             >
-            <label for="data_{{ iteration }}_label" class="required {% if choiceList is defined or datum is defined %}active{% endif %}">
+            <label for="data_{{ iteration }}_label" class="required {% if label is not null %}active{% endif %}">
                 {{ 'label.label'|trans }}
             </label>
         </div>
@@ -49,17 +46,13 @@
             >
         </div>
 
-        {% if choiceList is defined and choiceList is not null %}
+        {% if hasChoiceList %}
             <div class="input-field">
                 <input type="hidden"
                        id="data_{{ iteration }}_choiceList"
                        name="{{ entity }}[data][{{ iteration }}][choiceList]"
                        maxlength="255"
-                       {% if datum is defined %}
-                           value="{{ choiceList.id }}"
-                       {% elseif choiceList is defined %}
-                           value="{{ choiceList.id }}"
-                       {% endif %}
+                       value="{{ choiceList.id }}"
                 >
             </div>
         {% endif %}

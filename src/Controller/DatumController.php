@@ -25,6 +25,7 @@ class DatumController extends AbstractController
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
             'type' => $type,
+            'label' => null
         ])->getContent();
 
         return new JsonResponse([
@@ -45,6 +46,7 @@ class DatumController extends AbstractController
             'iteration' => '__placeholder__',
             'type' => DatumTypeEnum::TYPE_LIST,
             'choiceList' => $choiceList,
+            'label' => $choiceList->getName()
         ])->getContent();
 
         return new JsonResponse([
