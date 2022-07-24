@@ -71,6 +71,8 @@ class DatumController extends AbstractController
                 $field = [
                     'datum' => $datum,
                     'type' => $datum->getType(),
+                    'label' => $datum->getLabel(),
+                    'choiceList' => $datum->getChoiceList()
                 ];
                 $commonFields[$datum->getLabel()] = $field;
             }
@@ -106,6 +108,8 @@ class DatumController extends AbstractController
                 'iteration' => '__placeholder__',
                 'type' => $field['type'],
                 'datum' => $field['datum'],
+                'label' => $field['label'],
+                'choiceList' => $field['choiceList'],
             ])->getContent();
             ++$i;
         }
