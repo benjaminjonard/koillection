@@ -135,6 +135,8 @@ class DatumController extends AbstractController
                 'iteration' => '__placeholder__',
                 'type' => $datum->getType(),
                 'datum' => $datum,
+                'label' => $datum->getLabel(),
+                'choiceList' => $datum->getChoiceList()
             ])->getContent();
         }
 
