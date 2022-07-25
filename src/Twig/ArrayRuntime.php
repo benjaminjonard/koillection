@@ -20,6 +20,6 @@ class ArrayRuntime implements RuntimeExtensionInterface
         ?string $direction = SortingDirectionEnum::ASCENDING,
         ?string $type = null
     ): array {
-        return $this->arraySorter->sortObjects($array, $direction, $type);
+        return $this->arraySorter->sort($array, $direction, $type);
     }
 }
