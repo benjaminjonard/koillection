@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Enum\DatumTypeEnum;
 use App\Enum\SortingDirectionEnum;
+use Symfony\Component\Intl\Countries;
 
 class ArraySorter
 {
@@ -35,13 +36,28 @@ class ArraySorter
                     return (int) $a['orderingValue'] <=> (int) $b['orderingValue'];
                 });
                 break;
+            case DatumTypeEnum::TYPE_LIST:
+            case DatumTypeEnum::TYPE_TEXT:
             case DatumTypeEnum::TYPE_DATE:
-                usort($array, function ($a, $b) use ($direction) {
+                usort($array, function ($a, $b) use ($direction, $collator) {
                     if (SortingDirectionEnum::DESCENDING == $direction) {
-                        return $b['orderingValue'] <=> $a['orderingValue'];
+                        return $collator->compare((string) $b['orderingValue'], (string) $a['orderingValue']);
                     }
 
-                    return $a['orderingValue'] <=> $b['orderingValue'];
+                    return $collator->compare((string) $a['orderingValue'], (string) $b['orderingValue']);
+                });
+                break;
+            case DatumTypeEnum::TYPE_COUNTRY:
+                $countries = Countries::getNames();
+                usort($array, function ($a, $b) use ($direction, $collator, $countries) {
+                    $a = $countries[$a['orderingValue']] ?? '';
+                    $b = $countries[$b['orderingValue']] ?? '';
+
+                    if (SortingDirectionEnum::DESCENDING == $direction) {
+                        return $collator->compare($b, $a);
+                    }
+
+                    return $collator->compare($a, $b);
                 });
                 break;
             default:
@@ -79,13 +95,28 @@ class ArraySorter
                     return (int) $a->getOrderingValue() <=> (int) $b->getOrderingValue();
                 });
                 break;
+            case DatumTypeEnum::TYPE_LIST:
+            case DatumTypeEnum::TYPE_TEXT:
             case DatumTypeEnum::TYPE_DATE:
-                usort($array, function ($a, $b) use ($direction) {
+                usort($array, function ($a, $b) use ($direction, $collator) {
                     if (SortingDirectionEnum::DESCENDING == $direction) {
-                        return $b->getOrderingValue() <=> $a->getOrderingValue();
+                        return $collator->compare((string) $b->getOrderingValue(), (string) $a->getOrderingValue());
                     }
 
-                    return $a->getOrderingValue() <=> $b->getOrderingValue();
+                    return $collator->compare((string) $a->getOrderingValue(), (string) $b->getOrderingValue());
+                });
+                break;
+            case DatumTypeEnum::TYPE_COUNTRY:
+                $countries = Countries::getNames();
+                usort($array, function ($a, $b) use ($direction, $collator, $countries) {
+                    $a = $countries[$a->getOrderingValue()] ?? '';
+                    $b = $countries[$b->getOrderingValue()] ?? '';
+
+                    if (SortingDirectionEnum::DESCENDING == $direction) {
+                        return $collator->compare($b, $a);
+                    }
+
+                    return $collator->compare($a, $b);
                 });
                 break;
             default:

@@ -51,9 +51,12 @@ class DatumTypeEnum
     ];
 
     public const AVAILABLE_FOR_ORDERING = [
+        self::TYPE_TEXT,
+        self::TYPE_LIST,
         self::TYPE_DATE,
         self::TYPE_NUMBER,
         self::TYPE_RATING,
+        self::TYPE_COUNTRY,
     ];
 
     public const TYPES_TRANS_KEYS = [
