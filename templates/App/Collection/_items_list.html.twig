@@ -37,7 +37,7 @@
                     <a class="table-link" href="{{ link }}"></a>
                     {% set datum = item.getDatumByLabel(column) %}
                     {% if datum is not null %}
-                        {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                        {% include 'App/Datum/_display_value/_' ~ datum.type ~ '.html.twig' with {'datum': datum} only %}
                     {% else %}
                         -
                     {% endif %}
@@ -45,14 +45,14 @@
             {% endfor %}
             {% if context == 'default' %}
                 <td class="center">
-                    {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
+                    {% include 'App/_partials/_visibility.html.twig' with {'visibility': item.finalVisibility} only %}
                 </td>
                 <td class="table-actions center">
                     <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
-                    {{ include('App/_partials/_icon/_delete.html.twig', {
+                    {% include 'App/_partials/_icon/_delete.html.twig' with {
                         path: path('app_item_delete', {id: item.id}),
                         message: 'message.delete.item'
-                    }) }}
+                    } only %}
                 </td>
             {% endif %}
         </tr>

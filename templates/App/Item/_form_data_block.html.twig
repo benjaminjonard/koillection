@@ -10,14 +10,14 @@
 
         <div data-additional-data-target="textsHolder">
             {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::TEXT_TYPES')) %}
-                {{ include('App/Datum/_datum.html.twig', {
+                {% include 'App/Datum/_datum.html.twig' with {
                     datum: datum,
                     iteration: key,
                     type: datum.type,
                     choiceList: datum.choiceList,
                     label: datum.label,
                     entity: 'item'
-                }) }}
+                } only %}
             {% endfor %}
         </div>
     </div>
@@ -52,13 +52,13 @@
 
         <div data-additional-data-target="imagesHolder">
             {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::IMAGE_TYPES')) %}
-                {{ include('App/Datum/_datum.html.twig', {
+                {% include 'App/Datum/_datum.html.twig' with {
                     datum: datum,
                     iteration: key,
                     type: datum.type,
                     entity: 'item',
                     label: datum.label
-                }) }}
+                } only %}
             {% endfor %}
         </div>
     </div>
