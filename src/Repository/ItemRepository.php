@@ -10,6 +10,7 @@ use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Enum\DatumTypeEnum;
+use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
 use App\Service\ArraySorter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -142,14 +143,23 @@ class ItemRepository extends ServiceEntityRepository
             $ids[] = $result['id'];
         }
 
-        return $this
+        $qb = $this
             ->createQueryBuilder('i')
             ->select('partial i.{id, name, image, imageSmallThumbnail, finalVisibility}')
             ->where('i.id IN (:ids)')
             ->setParameter('ids', $ids)
-            ->getQuery()
-            ->getResult()
         ;
+
+        if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
+            $qb
+                ->leftJoin('i.data', 'data')
+                ->addSelect('partial data.{id, label, type, value}')
+                ->andWhere('data.label IN (:labels) OR data IS NULL')
+                ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+            ;
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findItemsByCollectionId(string $id): iterable
@@ -212,6 +222,7 @@ class ItemRepository extends ServiceEntityRepository
     public function findForOrdering(Collection $collection, bool $asArray = false)
     {
         if ($collection->getItemsSortingProperty()) {
+            // Get ordering value
             $subQuery = $this->_em
                 ->createQueryBuilder()
                 ->select('datum.value')
@@ -227,10 +238,18 @@ class ItemRepository extends ServiceEntityRepository
                 ->join('item.data', 'data')
                 ->addSelect("($subQuery) AS orderingValue, data")
                 ->where('item.collection = :collection')
+                ->andWhere('data.label = :label OR data.label IS NULL')
                 ->setParameter('collection', $collection)
                 ->setParameter('label', $collection->getItemsSortingProperty())
                 ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ;
+
+            if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
+                $qb
+                    ->andWhere('data.label IN (:labels) OR data.label IS NULL')
+                    ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                ;
+            }
 
             $results = $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
 
@@ -252,6 +271,15 @@ class ItemRepository extends ServiceEntityRepository
             ->where('item.collection = :collection')
             ->setParameter('collection', $collection)
         ;
+
+        if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
+            $qb
+                ->addSelect('data')
+                ->leftJoin('item.data', 'data')
+                ->andWhere('data.label IN (:labels) OR data.label IS NULL')
+                ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+            ;
+        }
 
         return $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
     }
