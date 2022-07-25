@@ -12,7 +12,7 @@ use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\UserRepository;
-use DateTimeInterface;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -128,21 +128,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $inventories;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     #[Groups(['user:read'])]
-    private ?DateTimeInterface $lastDateOfActivity = null;
+    private ?DateTimeImmutable $lastDateOfActivity = null;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['user:read', 'user:write'])]
     private bool $darkModeEnabled;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read', 'user:write'])]
-    private ?\DateTime $automaticDarkModeStartAt;
+    private ?\DateTimeImmutable $automaticDarkModeStartAt;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read', 'user:write'])]
-    private ?\DateTime $automaticDarkModeEndAt;
+    private ?\DateTimeImmutable $automaticDarkModeEndAt;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
@@ -176,13 +176,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:read', 'user:write'])]
     private bool $statisticsFeatureEnabled;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['user:read'])]
-    private DateTimeInterface $createdAt;
+    private DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read'])]
-    private ?DateTimeInterface $updatedAt;
+    private ?DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
@@ -248,7 +248,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         if ($this->getAutomaticDarkModeStartAt() && $this->getAutomaticDarkModeEndAt()) {
             // Apply timezone to get current time for the user
             $timezone = new \DateTimeZone('Europe/Paris');
-            $currentTime = strtotime((new \DateTime())->setTimezone($timezone)->format('H:i'));
+            $currentTime = strtotime((new \DateTimeImmutable())->setTimezone($timezone)->format('H:i'));
             $startTime = strtotime($this->getAutomaticDarkModeStartAt()->format('H:i'));
             $endTime = strtotime($this->getAutomaticDarkModeEndAt()->format('H:i'));
 
@@ -476,36 +476,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getLastDateOfActivity(): ?DateTimeInterface
+    public function getLastDateOfActivity(): ?DateTimeImmutable
     {
         return $this->lastDateOfActivity;
     }
 
-    public function setLastDateOfActivity(?DateTimeInterface $lastDateOfActivity): self
+    public function setLastDateOfActivity(?DateTimeImmutable $lastDateOfActivity): self
     {
         $this->lastDateOfActivity = $lastDateOfActivity;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeInterface
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -534,7 +534,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->file = $file;
         // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
-            $this->setUpdatedAt(new \DateTime());
+            $this->setUpdatedAt(new \DateTimeImmutable());
         }
 
         return $this;
@@ -648,24 +648,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getAutomaticDarkModeStartAt(): ?\DateTime
+    public function getAutomaticDarkModeStartAt(): ?\DateTimeImmutable
     {
         return $this->automaticDarkModeStartAt;
     }
 
-    public function setAutomaticDarkModeStartAt(?\DateTime $automaticDarkModeStartAt): User
+    public function setAutomaticDarkModeStartAt(?\DateTimeImmutable $automaticDarkModeStartAt): User
     {
         $this->automaticDarkModeStartAt = $automaticDarkModeStartAt;
 
         return $this;
     }
 
-    public function getAutomaticDarkModeEndAt(): ?\DateTime
+    public function getAutomaticDarkModeEndAt(): ?\DateTimeImmutable
     {
         return $this->automaticDarkModeEndAt;
     }
 
-    public function setAutomaticDarkModeEndAt(?\DateTime $automaticDarkModeEndAt): User
+    public function setAutomaticDarkModeEndAt(?\DateTimeImmutable $automaticDarkModeEndAt): User
     {
         $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;
 

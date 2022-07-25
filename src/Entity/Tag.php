@@ -90,13 +90,13 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['tag:read'])]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['tag:read'])]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
@@ -165,24 +165,24 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -199,7 +199,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
         $this->file = $file;
         // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
-            $this->setUpdatedAt(new \DateTime());
+            $this->setUpdatedAt(new \DateTimeImmutable());
         }
 
         return $this;

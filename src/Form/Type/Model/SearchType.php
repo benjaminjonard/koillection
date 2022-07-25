@@ -30,6 +30,7 @@ class SearchType extends AbstractType
                 'required' => false,
             ])
             ->add('createdAt', DateType::class, [
+                'input' => 'datetime_immutable',
                 'label' => false,
                 'required' => false,
                 'html5' => false,

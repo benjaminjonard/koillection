@@ -131,13 +131,13 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[Groups(['item:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['item:read'])]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['item:read'])]
-    private ?\DateTimeInterface $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     private ?string $orderingValue = null;
 
@@ -246,24 +246,24 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -426,7 +426,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
         // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
-            $this->setUpdatedAt(new \DateTime());
+            $this->setUpdatedAt(new \DateTimeImmutable());
         }
 
         return $this;

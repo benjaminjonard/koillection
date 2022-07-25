@@ -103,7 +103,7 @@ class ItemRepository extends ServiceEntityRepository
                 ->setParameter('term', '%'.$search->getTerm().'%');
         }
 
-        if ($search->getCreatedAt() instanceof \DateTime) {
+        if ($search->getCreatedAt() instanceof \DateTimeImmutable) {
             $createdAt = $search->getCreatedAt();
             $qb
                 ->andWhere('i.createdAt BETWEEN :start AND :end')

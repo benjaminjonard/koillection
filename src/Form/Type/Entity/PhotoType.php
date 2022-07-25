@@ -42,6 +42,7 @@ class PhotoType extends AbstractType
                 'required' => false,
             ])
             ->add('takenAt', DateType::class, [
+                'input' => 'datetime_immutable',
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',

@@ -30,9 +30,9 @@ class Log
     #[Groups(['log:read'])]
     private ?string $type;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['log:read'])]
-    private ?\DateTimeInterface $loggedAt = null;
+    private ?\DateTimeImmutable $loggedAt = null;
 
     #[ORM\Column(type: Types::STRING, length: 36)]
     #[Groups(['log:read'])]
@@ -77,12 +77,12 @@ class Log
         return $this;
     }
 
-    public function getLoggedAt(): ?\DateTimeInterface
+    public function getLoggedAt(): ?\DateTimeImmutable
     {
         return $this->loggedAt;
     }
 
-    public function setLoggedAt(\DateTimeInterface $loggedAt): self
+    public function setLoggedAt(\DateTimeImmutable $loggedAt): self
     {
         $this->loggedAt = $loggedAt;
 

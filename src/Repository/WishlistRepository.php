@@ -90,7 +90,7 @@ class WishlistRepository extends ServiceEntityRepository
             ;
         }
 
-        if ($search->getCreatedAt() instanceof \DateTime) {
+        if ($search->getCreatedAt() instanceof \DateTimeImmutable) {
             $createdAt = $search->getCreatedAt();
             $qb
                 ->andWhere('w.createdAt BETWEEN :start AND :end')

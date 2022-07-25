@@ -119,7 +119,7 @@ class CollectionRepository extends ServiceEntityRepository
             ;
         }
 
-        if ($search->getCreatedAt() instanceof \DateTime) {
+        if ($search->getCreatedAt() instanceof \DateTimeImmutable) {
             $createdAt = $search->getCreatedAt();
             $qb
                 ->andWhere('c.createdAt BETWEEN :start AND :end')

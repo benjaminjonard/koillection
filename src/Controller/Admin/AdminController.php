@@ -73,7 +73,7 @@ class AdminController extends AbstractController
     )]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
-        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis').'-koillection-database.sql');
+        return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis').'-koillection-database.sql');
     }
 
     #[Route(
@@ -91,7 +91,7 @@ class AdminController extends AbstractController
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
 
-            $zipFilename = (new \DateTime())->format('YmdHis').'-koillection-images.zip';
+            $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
 
             foreach ($users as $user) {

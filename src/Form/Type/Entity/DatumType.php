@@ -72,16 +72,17 @@ class DatumType extends AbstractType
                     case DatumTypeEnum::TYPE_DATE:
                         $form
                             ->add('value', DateType::class, [
+                                'input' => 'datetime_immutable',
                                 'required' => false,
                                 'html5' => false,
                                 'widget' => 'single_text',
                                 'format' => $this->security->getUser()->getDateFormatForForm(),
                                 'model_transformer' => new CallbackTransformer(
                                     function ($string) {
-                                        return null !== $string ? new \DateTime($string) : null;
+                                        return null !== $string ? new \DateTimeImmutable($string) : null;
                                     },
                                     function ($date) {
-                                        return $date instanceof \DateTime ? $date->format('Y-m-d') : null;
+                                        return $date instanceof \DateTimeImmutable ? $date->format('Y-m-d') : null;
                                     }
                                 ),
                             ])

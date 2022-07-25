@@ -45,11 +45,13 @@ class SettingsType extends AbstractType
                 'required' => false,
             ])
             ->add('automaticDarkModeStartAt', TimeType::class, [
+                'input' => 'datetime_immutable',
                 'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
             ])
             ->add('automaticDarkModeEndAt', TimeType::class, [
+                'input' => 'datetime_immutable',
                 'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
