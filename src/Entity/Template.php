@@ -9,6 +9,7 @@ use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\TemplateRepository;
+use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\DBAL\Types\Types;
@@ -38,6 +39,7 @@ class Template implements BreadcrumbableInterface, LoggableInterface
     #[ORM\OneToMany(targetEntity: Field::class, mappedBy: 'template', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
+    #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $fields;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'templates')]

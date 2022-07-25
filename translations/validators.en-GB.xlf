@@ -61,5 +61,11 @@
         <target>A collection or an item must be provided</target>
       </segment>
     </unit>
+    <unit id="tOthJaw" name="error.label.must_be_unique">
+      <segment>
+        <source>error.label.must_be_unique</source>
+        <target>"{{ label }}" label is used multiple times, all labels must be unique</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

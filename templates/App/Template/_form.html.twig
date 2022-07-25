@@ -18,6 +18,10 @@
 
         <div class="row">
             <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+                <div class="error-helper">
+                    {{ form_errors(form) }}
+                </div>
+
                 <div {{ stimulus_controller('template-field') }}
                      data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}"
                 >

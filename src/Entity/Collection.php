@@ -15,6 +15,7 @@ use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
+use App\Validator as AppAssert;
 use App\Repository\CollectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -81,6 +82,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
+    #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 
     #[ORM\Column(type: Types::STRING, length: 6)]

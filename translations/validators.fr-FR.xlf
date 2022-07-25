@@ -61,5 +61,11 @@
         <target>Une collection ou un item doit être renseigné</target>
       </segment>
     </unit>
+    <unit id="tOthJaw" name="error.label.must_be_unique">
+      <segment>
+        <source>error.label.must_be_unique</source>
+        <target>Le label "{{ label }}" est utilisé plusieurs fois, les labels doivent être uniques</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
