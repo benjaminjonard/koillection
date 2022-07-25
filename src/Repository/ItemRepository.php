@@ -235,10 +235,10 @@ class ItemRepository extends ServiceEntityRepository
 
             $qb = $this
                 ->createQueryBuilder('item')
-                ->join('item.data', 'data')
+                ->leftJoin('item.data', 'data')
                 ->addSelect("($subQuery) AS orderingValue, data")
                 ->where('item.collection = :collection')
-                ->andWhere('data.label = :label OR data.label IS NULL')
+                //->andWhere('data.label = :label OR data IS NULL')
                 ->setParameter('collection', $collection)
                 ->setParameter('label', $collection->getItemsSortingProperty())
                 ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
@@ -246,8 +246,8 @@ class ItemRepository extends ServiceEntityRepository
 
             if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
                 $qb
-                    ->andWhere('data.label IN (:labels) OR data.label IS NULL')
-                    ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                    //->andWhere('data.label IN (:labels) OR data IS NULL')
+                    //->setParameter('labels', $collection->getItemsDisplayModeListColumns())
                 ;
             }
 
@@ -276,8 +276,8 @@ class ItemRepository extends ServiceEntityRepository
             $qb
                 ->addSelect('data')
                 ->leftJoin('item.data', 'data')
-                ->andWhere('data.label IN (:labels) OR data.label IS NULL')
-                ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                //->andWhere('data.label IN (:labels) OR data IS NULL')
+                //->setParameter('labels', $collection->getItemsDisplayModeListColumns())
             ;
         }
 
