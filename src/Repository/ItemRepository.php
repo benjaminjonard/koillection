@@ -235,19 +235,23 @@ class ItemRepository extends ServiceEntityRepository
 
             $qb = $this
                 ->createQueryBuilder('item')
-                ->leftJoin('item.data', 'data')
                 ->addSelect("($subQuery) AS orderingValue, data")
                 ->where('item.collection = :collection')
-                //->andWhere('data.label = :label OR data IS NULL')
                 ->setParameter('collection', $collection)
                 ->setParameter('label', $collection->getItemsSortingProperty())
                 ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ;
 
+            //If list, preload datum used for ordering and in columns
             if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
                 $qb
-                    //->andWhere('data.label IN (:labels) OR data IS NULL')
-                    //->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                    ->leftJoin('item.data', 'data', 'WITH', 'data.label = :label OR data.label IN (:labels) OR data IS NULL')
+                    ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                ;
+            } else {
+                // Else only preload datum used for ordering
+                $qb
+                    ->leftJoin('item.data', 'data', 'WITH', 'data.label = :label OR data IS NULL')
                 ;
             }
 
@@ -275,9 +279,8 @@ class ItemRepository extends ServiceEntityRepository
         if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
             $qb
                 ->addSelect('data')
-                ->leftJoin('item.data', 'data')
-                //->andWhere('data.label IN (:labels) OR data IS NULL')
-                //->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                ->leftJoin('item.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
+                ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
             ;
         }
 
