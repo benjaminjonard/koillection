@@ -112,6 +112,15 @@ class AppRuntime implements RuntimeExtensionInterface
         );
     }
 
+    public function jsonDecode(?string $string): array
+    {
+        if (empty($string)) {
+            return [];
+        }
+
+        return json_decode($string, true);
+    }
+
     public function getUnderlinedTags(?iterable $data): array
     {
         if (false === $this->isFeatureEnabled('tags') || empty($data)) {

@@ -1,17 +1,29 @@
-<div class="row field" data-template--field-target="field">
+<div class="row field" data-template-field-target="field" {{ stimulus_controller('field') }}>
     <div class="col s1 handle icon-holder">
         <i class="fa fa-arrows-v fa-fw"></i>
     </div>
-    <div class="input-field col s5">
+    <div class="col s4">
         {{ form_row(form.name, {'label':'label.name'}) }}
     </div>
-    <div class="input-field col s5">
-        {{ form_row(form.type, {'label':'label.type', 'attr': {'data-controller': 'select--default'}}) }}
+    <div class="col s3">
+        {{ form_row(form.type, {'label':'label.type', 'attr': {
+            'data-controller': 'select--default',
+            'data-field-target': 'typeInput',
+            'data-action': 'change->field#updateChoiceList'
+        }}) }}
     </div>
-    <div class="input-field">
-        {{ form_row(form.position, {'attr': {'class' : 'position', 'data-template--field-target': 'position'}}) }}
+    <div class="col s3" >
+        <span class="hidden" data-field-target="choiceList">
+            {{ form_row(form.choiceList, {'label':'label.choice_list', 'attr': {
+                'data-controller': 'select--default'
+            }}) }}
+        </span>
     </div>
+    <div>
+        {{ form_row(form.position, {'attr': {'class' : 'position', 'data-template-field-target': 'position'}}) }}
+    </div>
+
     <div class="col s1 icon-holder">
-        <i class="fa fa-remove fa-fw removeDatum" data-action="click->template--field#remove"></i>
+        <i class="fa fa-remove fa-fw removeDatum" data-action="click->template-field#remove"></i>
     </div>
 </div>

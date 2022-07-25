@@ -18,13 +18,16 @@
 
         <div class="row">
             <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                <div {{ stimulus_controller('template--field') }}
-                     id="template-fields-holder"
+                <div class="error-helper">
+                    {{ form_errors(form) }}
+                </div>
+
+                <div {{ stimulus_controller('template-field') }}
                      data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}"
                 >
                     {{ form_row(form.fields) }}
-                    <a data-template--field-target="button"
-                       data-action="click->template--field#add"
+                    <a data-template-field-target="button"
+                       data-action="click->template-field#add"
                        href="#"
                        class="add_field_link waves-effect waves-light btn"
                     >

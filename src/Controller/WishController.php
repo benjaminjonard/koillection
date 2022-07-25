@@ -9,6 +9,7 @@ use App\Entity\Wish;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
+use App\Repository\ChoiceListRepository;
 use App\Repository\WishlistRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -119,8 +120,13 @@ class WishController extends AbstractController
         requirements: ['id' => '%uuid_regex%'],
         methods: ['GET', 'POST']
     )]
-    public function transferToCollection(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
-    {
+    public function transferToCollection(
+        Request $request,
+        Wish $wish,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry,
+        ChoiceListRepository $choiceListRepository
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
         $item = new Item();
@@ -154,6 +160,7 @@ class WishController extends AbstractController
             'item' => $item,
             'wish' => $wish,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 }

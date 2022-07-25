@@ -15,6 +15,43 @@ footer {position: absolute; left: 0;  right: 0; bottom: 15px; color: #7f8c8d; fo
 .fa-rotate-180 {-webkit-transform: rotate(180deg); transform: rotate(180deg);}
 table img {vertical-align: middle;}
 
+.select2-selection--multiple {
+    cursor: pointer!important;
+    min-height: 45px!important;
+}
+.select2-selection__choice
+{
+    background-color: #e4e4e4!important; color: rgba(0,0,0,.6)!important; font-size: 13px!important;
+    font-weight: 500!important; border-radius: 16px!important; padding: 0 3px 0 12px!important;
+    line-height: 32px!important; margin-bottom: 0px!important; margin-right: 5px!important;
+}
+.select2-selection__choice__remove {
+    float: right!important;
+    margin-left: 3px!important;
+    margin-top: 6px!important;
+}
+.select2-selection__choice__remove:hover {
+    background-color: #e4e4e4!important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove span {
+    display: none;
+}
+.select2-selection__choice__remove {
+    border: none;
+}
+.select2-selection__choice__remove::before {
+    font-size: 16px!important;
+    font-family: 'font-awesome' !important;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    content: "\f00d";
+    color: rgba(0,0,0,.6)!important;
+}
+.select2-selection--multiple .select2-search {
+    display: none;
+}
+
 a {outline: 0;}
 
 thead {border-bottom: 1px solid #d0d0d0;}
@@ -519,8 +556,7 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .inline-checkbox-wrapper .input-checkbox {top: -78px; left: 16px;}
 .table-actions a {margin: 0 5px; font-size: 20px;}
 
-#template-fields-holder .icon-holder { padding-top: 45px; text-align: center; }
-#additionnalFields .icon-holder { padding-top: 30px; text-align: center; }
+.icon-holder { padding-top: 30px!important; text-align: center; }
 .removeDatum, .related-item .close {cursor: pointer;}
 
 .datum .preview-image {max-height: 100px; max-width: 100%;}
@@ -544,7 +580,7 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 .select-placeholder  {font-style: italic; color: #9e9e9e;}
 .select2-results__option--highlighted .select-placeholder {color: #fff;}
 
-#additionnalFields .wrapper {margin-top: 45px; }
+.wrapper {margin-top: 45px; }
 i.btn input {color: #fff; cursor: pointer;}
 
 .autocomplete-results {
@@ -601,16 +637,18 @@ i.btn input {color: #fff; cursor: pointer;}
 
 
 /* STAR RATING */
+.rating-display span {display: inline-block;}
 .rating-form {display: inline-block; border: 0; margin-top: 10px;}
 .rating-form > input {display: none;}  /* Hide radio */
 .rating-form > label {float: right; position: unset;} /* Order correctly by floating highest to the right */
-.rating-display > label {font-size: 15px;}
+.rating-display label {font-size: 15px;}
 /* Full star */
 .rating-form > label:before {display: inline-block; font-size: 2rem; padding: .3rem .2rem; margin: 0; cursor: pointer; }
-.rating-display > label:before {display: inline-block; margin: 0; cursor: pointer;}
+.rating-display label:before {display: inline-block; margin: 0; cursor: pointer;}
 /* Half star */
 .rating-form .fa-star-half:before {position: absolute; padding-right: 0;}
 .rating-display .fa-star-half:before {position: absolute; padding-right: 0; padding-top: 6px;}
+table .rating-display .fa-star-half:before {position: absolute; padding-right: 0; padding-top: 2px;}
 /* Click + hover color */
 .rating-form input:checked ~ label, /* color current and previous stars on checked */
 .rating-form label:hover, .rating-form label:hover ~ label, /* color previous stars on hover */
@@ -632,6 +670,8 @@ input[type="text"]:not(.browser-default).password-input {box-sizing: border-box;
 .show-password {cursor: pointer; position: relative; margin-left: 90%; top: -41px; height: 0; display: block; color: #9e9e9e;}
 
 .items-table td, .items-table th {padding: 10px 5px;}
-.items-table td { position:relative;}
+.items-table td { position:relative}
 .items-table td .table-link{ position:absolute; top:0; bottom:0; right:0; left:0;}
 .items-table .visibility { position: inherit; }
+
+.datum-btn a {margin-bottom: 10px;}

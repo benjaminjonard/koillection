@@ -1,0 +1,37 @@
+{{ form_start(form) }}
+    <div class="content-block">
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.name, {'label': 'label.name'}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="row">
+            <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.choices'|trans }}</h2>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+                <div {{ stimulus_controller('choice-list-value') }}
+                     data-prototype="{% apply escape %} {{ include('App/ChoiceList/_value_prototype.html.twig', { 'form': form.choices.vars.prototype }) }} {% endapply %}"
+                >
+                    {{ form_row(form.choices) }}
+                    <a data-choice-list-value-target="button"
+                       data-action="click->choice-list-value#add"
+                       href="#"
+                       class="add_field_link waves-effect waves-light btn"
+                    >
+                        {{ 'btn.add_choice'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row center-align form-btn-holder">
+        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        <a href="{{ path('app_choice_list_index') }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+    </div>
+{{ form_end(form) }}

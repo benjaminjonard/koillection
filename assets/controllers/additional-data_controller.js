@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus';
 import Sortable from "sortablejs";
 
-/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static targets = ['datum', 'label', 'textsHolder', 'imagesHolder']
 
@@ -61,6 +60,22 @@ export default class extends Controller {
             let html = result.html.replace(/__placeholder__/g, self.index);
             html = html.replace(/__entity_placeholder__/g, self.element.dataset.entity);
             holder.insertAdjacentHTML('beforeend', html);
+            self.index++;
+            self.computePositions();
+        })
+    }
+
+    addChoiceList(event) {
+        let self = this;
+
+        fetch('/datum/choice-list/' + event.target.dataset.id, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(function(result) {
+            let html = result.html.replace(/__placeholder__/g, self.index);
+            html = html.replace(/__entity_placeholder__/g, self.element.dataset.entity);
+            self.textsHolderTarget.insertAdjacentHTML('beforeend', html);
             self.index++;
             self.computePositions();
         })

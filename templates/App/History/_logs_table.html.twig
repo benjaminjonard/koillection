@@ -2,6 +2,7 @@
     <table class="striped">
         <thead>
         <tr>
+            <th></th>
             <th>{{ 'label.event'|trans }}</th>
             <th>{{ 'label.logged_at'|trans }}</th>
         </tr>
@@ -10,6 +11,13 @@
         <tbody>
         {% for log in logs %}
             <tr class="list-element resize-element">
+                <td class="center">
+                    {% if log.type == 'create' %}
+                        <i class="fa fa-plus fa-fw green-text"></i>
+                    {% else %}
+                        <i class="fa fa-trash fa-fw red-text"></i>
+                    {% endif %}
+                </td>
                 <td>
                     <ul class="log">
                         {% for message in getLogMessages(log) %}
@@ -17,7 +25,7 @@
                         {% endfor %}
                     </ul>
                 </td>
-                <td title="{{ log.loggedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}">{{ log.loggedAt|timeAgo }}</td>
+                <td title="{{ log.loggedAt|date(app.user.dateFormatWithTime|default('Y-m-d H:i:s'), app.user.timezone|default('UTC')) }}">{{ log.loggedAt|timeAgo }}</td>
             </tr>
         {% endfor %}
         </tbody>

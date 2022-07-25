@@ -9,6 +9,13 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class IntlRuntime implements RuntimeExtensionInterface
 {
+    private array $countries;
+
+    public function __construct()
+    {
+        $this->countries = Countries::getNames();
+    }
+
     public function getEmojiFlag(string $countryCode): string
     {
         $regionalOffset = 0x1F1A5;
@@ -21,7 +28,7 @@ class IntlRuntime implements RuntimeExtensionInterface
     {
         $countries = [];
 
-        foreach (Countries::getNames() as $countryCode => $name) {
+        foreach ($this->countries as $countryCode => $name) {
             $countries[] = [
                 'name' => $name,
                 'code' => $countryCode,
@@ -34,7 +41,7 @@ class IntlRuntime implements RuntimeExtensionInterface
 
     public function getCountryName(string $code): string
     {
-        return Countries::getName($code);
+        return $this->countries[$code];
     }
 
     public function getCountryFlag(string $code): string

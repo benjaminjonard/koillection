@@ -10,9 +10,9 @@ use App\Entity\Loan;
 use App\Entity\Template;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
+use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\ItemRepository;
-use App\Repository\LogRepository;
 use App\Repository\TagRepository;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -35,6 +35,7 @@ class ItemController extends AbstractController
     public function add(
         Request $request,
         CollectionRepository $collectionRepository,
+        ChoiceListRepository $choiceListRepository,
         TagRepository $tagRepository,
         TranslatorInterface $translator,
         ItemNameGuesser $itemNameGuesser,
@@ -95,6 +96,7 @@ class ItemController extends AbstractController
             'item' => $item,
             'collection' => $collection,
             'suggestedNames' => $suggestedNames,
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 
@@ -129,8 +131,13 @@ class ItemController extends AbstractController
         methods: ['GET', 'POST']
     )]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
-    public function edit(Request $request, Item $item, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
-    {
+    public function edit(
+        Request $request,
+        Item $item,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry,
+        ChoiceListRepository $choiceListRepository
+    ): Response {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -144,6 +151,7 @@ class ItemController extends AbstractController
             'form' => $form->createView(),
             'item' => $item,
             'collection' => $item->getCollection(),
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 
@@ -167,28 +175,6 @@ class ItemController extends AbstractController
         }
 
         return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
-    }
-
-    #[Route(
-        path: ['en' => '/items/{id}/history', 'fr' => '/objets/{id}/historique'],
-        name: 'app_item_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    public function history(Item $item, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['history']);
-
-        return $this->render('App/Item/history.html.twig', [
-            'item' => $item,
-            'logs' => $logRepository->findBy([
-                'objectId' => $item->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($item))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
-        ]);
     }
 
     #[Route(

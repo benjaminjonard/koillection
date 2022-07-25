@@ -15,6 +15,7 @@ use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
+use App\Validator as AppAssert;
 use App\Repository\CollectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -81,6 +82,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
+    #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 
     #[ORM\Column(type: Types::STRING, length: 6)]
@@ -109,6 +111,10 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
     private string $itemsDisplayMode;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?array $itemsDisplayModeListColumns = [];
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -489,6 +495,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setFinalVisibility(string $finalVisibility): self
     {
         $this->finalVisibility = $finalVisibility;
+
+        return $this;
+    }
+
+    public function getItemsDisplayModeListColumns(): ?array
+    {
+        return $this->itemsDisplayModeListColumns;
+    }
+
+    public function setItemsDisplayModeListColumns(?array $itemsDisplayModeListColumns): Collection
+    {
+        $this->itemsDisplayModeListColumns = $itemsDisplayModeListColumns;
 
         return $this;
     }

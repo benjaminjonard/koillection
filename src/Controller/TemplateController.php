@@ -141,6 +141,7 @@ class TemplateController extends AbstractController
                 'iteration' => '__placeholder__',
                 'type' => $field->getType(),
                 'label' => $field->getName(),
+                'choiceList' => $field->getChoiceList(),
                 'template' => $template,
             ])->getContent();
         }

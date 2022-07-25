@@ -13,6 +13,7 @@ class DatumTypeEnum
     public const TYPE_RATING = 'rating';
     public const TYPE_NUMBER = 'number';
     public const TYPE_LINK = 'link';
+    public const TYPE_LIST = 'list';
 
     public const TYPE_IMAGE = 'image';
     public const TYPE_FILE = 'file';
@@ -26,6 +27,7 @@ class DatumTypeEnum
         self::TYPE_RATING,
         self::TYPE_NUMBER,
         self::TYPE_LINK,
+        self::TYPE_LIST,
         self::TYPE_IMAGE,
         self::TYPE_FILE,
         self::TYPE_SIGN,
@@ -40,6 +42,7 @@ class DatumTypeEnum
         self::TYPE_NUMBER,
         self::TYPE_LINK,
         self::TYPE_FILE,
+        self::TYPE_LIST,
     ];
 
     public const IMAGE_TYPES = [
@@ -48,9 +51,12 @@ class DatumTypeEnum
     ];
 
     public const AVAILABLE_FOR_ORDERING = [
+        self::TYPE_TEXT,
+        self::TYPE_LIST,
         self::TYPE_DATE,
         self::TYPE_NUMBER,
         self::TYPE_RATING,
+        self::TYPE_COUNTRY,
     ];
 
     public const TYPES_TRANS_KEYS = [
@@ -64,6 +70,7 @@ class DatumTypeEnum
         self::TYPE_RATING => 'label.rating',
         self::TYPE_NUMBER => 'label.number',
         self::TYPE_LINK => 'label.link',
+        self::TYPE_LIST => 'label.list',
     ];
 
     public static function getTypesLabels(): array

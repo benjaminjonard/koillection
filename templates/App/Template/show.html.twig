@@ -33,13 +33,25 @@
     <div class="content-block">
         <div class="block-element">
             <h2 class="header">{{ 'title.fields'|trans }}</h2>
-            <ul class="reset-margin">
+
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>{{ 'label.name'|trans }}</th>
+                    <th>{{ 'label.type'|trans }}</th>
+                    <th>{{ 'label.choice_list'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
                 {% for field in template.fields %}
-                    <li class="list-element">
-                        {{ field.name }} - <span class="complementary-color">{{ field.typeLabel|trans }}</span>
-                    </li>
+                    <tr class="list-element">
+                        <td>{{ field.name }}</td>
+                        <td>{{ field.typeLabel|trans }}</td>
+                        <td>{{ field.choiceList.name|default('-') }}</td>
+                    </tr>
                 {% endfor %}
-            </ul>
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

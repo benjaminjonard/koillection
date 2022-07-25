@@ -7,7 +7,9 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\TemplateRepository;
+use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\DBAL\Types\Types;
@@ -22,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['template:read']],
     denormalizationContext: ['groups' => ['template:write']],
 )]
-class Template implements BreadcrumbableInterface
+class Template implements BreadcrumbableInterface, LoggableInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -37,6 +39,7 @@ class Template implements BreadcrumbableInterface
     #[ORM\OneToMany(targetEntity: Field::class, mappedBy: 'template', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
     #[ApiSubresource(maxDepth: 1)]
+    #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $fields;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'templates')]

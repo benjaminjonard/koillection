@@ -2,37 +2,25 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="fr-FR">
   <file id="validators.fr">
     <unit id="7OcgSlg" name="error.email.not_unique">
-      <notes>
-        <note category="file-source" priority="1">src/Entity/User.php:0</note>
-      </notes>
-      <segment>
+        <segment>
         <source>error.email.not_unique</source>
         <target>Adresse email déjà utilisée</target>
       </segment>
     </unit>
     <unit id="qoRxC7z" name="error.username.not_unique">
-      <notes>
-        <note category="file-source" priority="1">src/Entity/User.php:0</note>
-      </notes>
-      <segment>
+        <segment>
         <source>error.username.not_unique</source>
         <target>Ce nom d'utilisateur est déjà pris</target>
       </segment>
     </unit>
     <unit id="PjAj0XF" name="error.username.incorrect">
-      <notes>
-        <note category="file-source" priority="1">src/Entity/User.php:0</note>
-      </notes>
-      <segment>
+        <segment>
         <source>error.username.incorrect</source>
         <target>Le nom d'utilisateur doit comprendre entre 2 et 32 caractères (seules les lettres, les nombres et les underscores sont autorisés)</target>
       </segment>
     </unit>
     <unit id="_d89Gke" name="error.search.empty">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
+        <segment>
         <source>error.search.empty</source>
         <target>Merci de remplir au moins un des champs</target>
       </segment>
@@ -71,6 +59,12 @@
       <segment>
         <source>error.datum.must_provide_collection_or_item</source>
         <target>Une collection ou un item doit être renseigné</target>
+      </segment>
+    </unit>
+    <unit id="tOthJaw" name="error.label.must_be_unique">
+      <segment>
+        <source>error.label.must_be_unique</source>
+        <target>Le label "{{ label }}" est utilisé plusieurs fois, les labels doivent être uniques</target>
       </segment>
     </unit>
   </file>

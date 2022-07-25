@@ -134,19 +134,13 @@
       </segment>
     </unit>
     <unit id="AghNVUV" name="statistics.items_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
+        <segment>
         <source>statistics.items_added</source>
         <target>{0} %count% items added| {1} %count% item added| ]1,Inf[ %count% items added</target>
       </segment>
     </unit>
     <unit id="0DU28lZ" name="statistics.users">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
+        <segment>
         <source>statistics.users</source>
         <target>{0} %count% users| {1} %count% user| ]1,Inf[ %count% users</target>
       </segment>

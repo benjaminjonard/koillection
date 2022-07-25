@@ -7,7 +7,6 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
-use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\DatumTypeEnum;
 use App\Repository\DatumRepository;
 use Doctrine\DBAL\Types\Types;
@@ -37,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     'this.getItem() != null or this.getCollection() != null',
     message: 'error.datum.must_provide_collection_or_item',
 )]
-class Datum implements LoggableInterface
+class Datum
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -102,6 +101,10 @@ class Datum implements LoggableInterface
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['datum:read'])]
     private ?string $originalFilename = null;
+
+    #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
+    #[Groups(['datum:read'])]
+    private ?ChoiceList $choiceList = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['datum:read'])]
@@ -338,6 +341,18 @@ class Datum implements LoggableInterface
     public function setOriginalFilename(string $originalFilename): Datum
     {
         $this->originalFilename = $originalFilename;
+
+        return $this;
+    }
+
+    public function getChoiceList(): ?ChoiceList
+    {
+        return $this->choiceList;
+    }
+
+    public function setChoiceList(?ChoiceList $choiceList): Datum
+    {
+        $this->choiceList = $choiceList;
 
         return $this;
     }

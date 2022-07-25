@@ -1,0 +1,7 @@
+{% if underlinedTags is defined %}
+    {% for value in datum.value|split(',') %}
+        {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
+    {% endfor %}
+{% else %}
+    {{ datum.value }}
+{% endif %}

@@ -1,0 +1,3 @@
+{% for value in datum.value|jsonDecode %}
+    {{ value }}{% if loop.last == false %}, {% endif %}
+{% endfor %}

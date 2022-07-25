@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\ChoiceList;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
@@ -24,11 +25,32 @@ class DatumController extends AbstractController
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
             'type' => $type,
+            'label' => null
         ])->getContent();
 
         return new JsonResponse([
             'html' => $html,
             'type' => \in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text',
+        ]);
+    }
+
+    #[Route(
+        path: ['en' => '/datum/choice-list/{id}', 'fr' => '/datum/choice-list/{id}'],
+        name: 'app_datum_choice_list_get_html',
+        methods: ['GET']
+    )]
+    public function getChoiceListHtml(ChoiceList $choiceList): JsonResponse
+    {
+        $html = $this->render('App/Datum/_datum.html.twig', [
+            'entity' => '__entity_placeholder__',
+            'iteration' => '__placeholder__',
+            'type' => DatumTypeEnum::TYPE_LIST,
+            'choiceList' => $choiceList,
+            'label' => $choiceList->getName()
+        ])->getContent();
+
+        return new JsonResponse([
+            'html' => $html,
         ]);
     }
 
@@ -49,6 +71,8 @@ class DatumController extends AbstractController
                 $field = [
                     'datum' => $datum,
                     'type' => $datum->getType(),
+                    'label' => $datum->getLabel(),
+                    'choiceList' => $datum->getChoiceList()
                 ];
                 $commonFields[$datum->getLabel()] = $field;
             }
@@ -84,6 +108,8 @@ class DatumController extends AbstractController
                 'iteration' => '__placeholder__',
                 'type' => $field['type'],
                 'datum' => $field['datum'],
+                'label' => $field['label'],
+                'choiceList' => $field['choiceList'],
             ])->getContent();
             ++$i;
         }
@@ -109,6 +135,8 @@ class DatumController extends AbstractController
                 'iteration' => '__placeholder__',
                 'type' => $datum->getType(),
                 'datum' => $datum,
+                'label' => $datum->getLabel(),
+                'choiceList' => $datum->getChoiceList()
             ])->getContent();
         }
 

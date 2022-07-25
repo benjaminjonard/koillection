@@ -9,8 +9,8 @@ use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
 use App\Repository\CollectionRepository;
+use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
-use App\Repository\LogRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -102,8 +102,12 @@ class CollectionController extends AbstractController
         requirements: ['id' => '%uuid_regex%'],
         methods: ['GET']
     )]
-    public function show(Collection $collection, CollectionRepository $collectionRepository, ItemRepository $itemRepository): Response
-    {
+    public function show(
+        Collection $collection,
+        CollectionRepository $collectionRepository,
+        ItemRepository $itemRepository,
+        DatumRepository $datumRepository
+    ): Response {
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findBy(['parent' => $collection]),
@@ -206,28 +210,6 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/batch_tagging.html.twig', [
             'form' => $form->createView(),
             'collection' => $collection,
-        ]);
-    }
-
-    #[Route(
-        path: ['en' => '/collections/{id}/history', 'fr' => '/collections/{id}/historique'],
-        name: 'app_collection_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    public function history(Collection $collection, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['history']);
-
-        return $this->render('App/Collection/history.html.twig', [
-            'collection' => $collection,
-            'logs' => $logRepository->findBy([
-                'objectId' => $collection->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($collection))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
         ]);
     }
 }

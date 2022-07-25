@@ -1,51 +1,71 @@
-<div id="additionnalFields">
-    <div class="wrapper">
-        <div class="data-holder block-element">
-            <div class="row">
-                <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
-            </div>
-
-            <div class="error-helper inline">
-                {{ form_errors(form) }}
-            </div>
-
-            <div data-additional-data-target="textsHolder">
-                {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::TEXT_TYPES')) %}
-                    {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
-                {% endfor %}
-            </div>
+<div class="wrapper">
+    <div class="data-holder block-element">
+        <div class="row">
+            <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
         </div>
 
-        <div class="row center-align">
-            <label>{{ 'label.add_field'|trans }}</label>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') }}">{{ 'btn.add_text'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_TEXTAREA') }}">{{ 'btn.add_textarea'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') }}">{{ 'btn.add_number'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') }}">{{ 'btn.add_country'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') }}">{{ 'btn.add_date'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') }}">{{ 'btn.add_file'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') }}">{{ 'btn.add_rating'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_LINK') }}">{{ 'btn.add_link'|trans }}</a>
+        <div class="error-helper">
+            {{ form_errors(form) }}
+        </div>
+
+        <div data-additional-data-target="textsHolder">
+            {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::TEXT_TYPES')) %}
+                {% include 'App/Datum/_datum.html.twig' with {
+                    datum: datum,
+                    iteration: key,
+                    type: datum.type,
+                    choiceList: datum.choiceList,
+                    label: datum.label,
+                    entity: 'item'
+                } only %}
+            {% endfor %}
         </div>
     </div>
 
-    <div class="wrapper">
-        <div class="data-holder block-element">
-            <div class="row">
-                <h3 class="header col s12">{{ 'title.item_images'|trans }}</h3>
-            </div>
+    <div class="row center-align datum-btn">
+        <label>{{ 'label.add_field'|trans }}</label>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') }}">{{ 'btn.add_text'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_TEXTAREA') }}">{{ 'btn.add_textarea'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') }}">{{ 'btn.add_number'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') }}">{{ 'btn.add_country'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') }}">{{ 'btn.add_date'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') }}">{{ 'btn.add_file'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') }}">{{ 'btn.add_rating'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_LINK') }}">{{ 'btn.add_link'|trans }}</a>
+    </div>
 
-            <div data-additional-data-target="imagesHolder">
-                {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::IMAGE_TYPES')) %}
-                    {{ include('App/Datum/_datum.html.twig', {datum: datum, iteration: key, type: datum.type, entity: 'item'}) }}
-                {% endfor %}
-            </div>
+    {% if choiceLists is defined and choiceLists is not empty %}
+        <div class="row center-align datum-btn">
+            <label>{{ 'label.add_list'|trans }}</label>
+            {% for choiceList in choiceLists %}
+                <a data-action="additional-data#addChoiceList" class="waves-effect waves-light btn-small grey" data-id="{{ choiceList.id }}">{{ choiceList.name }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="wrapper">
+    <div class="data-holder block-element">
+        <div class="row">
+            <h3 class="header col s12">{{ 'title.item_images'|trans }}</h3>
         </div>
 
-        <div class="row center-align">
-            <label>{{ 'label.add_field'|trans }}</label>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE') }}">{{ 'btn.add_image'|trans }}</a>
-            <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN') }}">{{ 'btn.add_sign'|trans }}</a>
+        <div data-additional-data-target="imagesHolder">
+            {% for key, datum in data|filter(datum => datum.type in constant('App\\Enum\\DatumTypeEnum::IMAGE_TYPES')) %}
+                {% include 'App/Datum/_datum.html.twig' with {
+                    datum: datum,
+                    iteration: key,
+                    type: datum.type,
+                    entity: 'item',
+                    label: datum.label
+                } only %}
+            {% endfor %}
         </div>
+    </div>
+
+    <div class="row center-align">
+        <label>{{ 'label.add_field'|trans }}</label>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_IMAGE') }}">{{ 'btn.add_image'|trans }}</a>
+        <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_SIGN') }}">{{ 'btn.add_sign'|trans }}</a>
     </div>
 </div>

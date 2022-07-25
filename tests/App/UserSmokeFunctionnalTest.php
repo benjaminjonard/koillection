@@ -36,19 +36,16 @@ class UserSmokeFunctionnalTest extends AppTestCase
         yield ['/collections/{{collection}}'];
         yield ['/collections/{{collection}}/edit'];
         yield ['/collections/{{collection}}/batch-tagging'];
-        yield ['/collections/{{collection}}/history'];
         yield ['/collections/{{collection}}/items'];
 
         yield ['/items/{{item}}'];
         yield ['/items/add?collection={{collection}}'];
         yield ['/items/{{item}}/edit'];
         yield ['/items/{{item}}/loan'];
-        yield ['/items/{{item}}/history'];
 
         yield ['/tags'];
         yield ['/tags/{{tag}}'];
         yield ['/tags/{{tag}}/edit'];
-        yield ['/tags/{{tag}}/history'];
 
         yield ['/tag-categories'];
         yield ['/tag-categories/add'];

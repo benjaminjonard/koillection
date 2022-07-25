@@ -31,11 +31,6 @@
                         <i class="fa fa-exchange fa-fw"></i>
                     </a>
                 {% endif %}
-                {% if isFeatureEnabled('history') %}
-                    <a href="{{ path('app_item_history', {'id': item.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                        <i class="fa fa-history fa-fw"></i>
-                    </a>
-                {% endif %}
                 {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_item_show', entity: item}) }}
                 {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
             </div>
@@ -101,34 +96,7 @@
             {% for datum in item.dataTexts %}
                 <div class="datum-row">
                     <span class="label">{{ datum.label }} :</span>
-                    {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
-                        {% for value in datum.value|split(',') %}
-                            {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
-                        {% endfor %}
-                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXTAREA') %}
-                        {{ datum.value|nl2br }}
-                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_LINK') %}
-                        <a href="{{ datum.value }}" target="_blank">{{ datum.value|u.truncate(50, '...') }}</a>
-                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}
-                        {{ datum.value }}
-                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
-                        {% if datum.value is not empty %}
-                            <span class="flag">{{ getCountryFlag(datum.value) }}</span>
-                            <span class="country-name">({{ getCountryName(datum.value) }})</span>
-                        {% endif %}
-                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
-                        {% if datum.file is not empty %}
-                            <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
-                        {% endif %}
-                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
-                        {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
-                    {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_RATING') %}
-                        <span class="rating-display">
-                            {% for i in 1 .. 10 %}
-                                <label class="{{ loop.index % 2 == 0 ? 'fa-star' : 'fa-star-half' }} {{ i <= datum.value ? 'colored' }}"></label>
-                            {% endfor %}
-                        </span>
-                    {% endif %}
+                    {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
                 </div>
             {% endfor %}
         </div>

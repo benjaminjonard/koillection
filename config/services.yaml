@@ -52,10 +52,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.response}
 
-    App\EventListener\LogQueueListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.response, priority: 5 }
-
     App\EventListener\AccessDeniedListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, lazy: true }
@@ -89,9 +85,8 @@ services:
 
     App\EventListener\LoggableListener:
         tags:
-            - { name: doctrine.event_listener, event: postPersist, lazy: true, priority: -5 }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true, priority: -5 }
             - { name: doctrine.event_listener, event: preRemove, lazy: true, priority: -5 }
-            - { name: doctrine.event_listener, event: onFlush, lazy: true, priority: -5 }
 
     App\EventListener\VisibilityListener:
         tags:
@@ -102,7 +97,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
             - { name: doctrine.event_listener, event: preUpdate, lazy: true }
-            - { name: doctrine.event_listener, event: preRemove, lazy: true }
 
     # Form extension
     App\Form\Extension\ModelTransformerExtension:

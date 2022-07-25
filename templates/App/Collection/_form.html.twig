@@ -37,9 +37,20 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" {{ stimulus_controller('items-display-mode-list-columns') }}>
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
+                {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {
+                    'data-controller': 'select--display-mode',
+                    'data-action': 'change->items-display-mode-list-columns#displayChoices'
+                }} ) }}
+            </div>
+            <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}" data-items-display-mode-list-columns-target="list">
+                <div>{{ form_label(form.itemsDisplayModeListColumns, 'label.items_display_mode_list_columns') }}</div>
+                {% for child in form.itemsDisplayModeListColumns.children %}
+                    <div>
+                        {{ form_row(child) }}
+                    </div>
+                {% endfor %}
             </div>
         </div>
 
@@ -50,24 +61,21 @@
                 {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
             </div>
         </div>
-    </div>
-
-    <div class="content-block">
-        <div class="row">
-            <h3 class="header col s12">{{ 'title.additional_fields'|trans }}</h3>
-        </div>
 
         <div class="row" {{ stimulus_controller('additional-data') }} data-entity="collection">
-            {% if isFeatureEnabled('templates') %}
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
-                        'data-controller': 'select--default',
-                        'data-action': 'change->additional-data#loadTemplateFields'
-                    }}) }}
-                </div>
-            {% endif %}
+            <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
 
-            {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                    {% if isFeatureEnabled('templates') %}
+                        {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
+                            'data-controller': 'select--default',
+                            'data-action': 'change->additional-data#loadTemplateFields'
+                        }}) }}
+                    {% endif %}
+                </div>
+                {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}
+            </div>
         </div>
     </div>
 

@@ -49,11 +49,6 @@
                             path: path('app_tag_delete', {id: tag.id}),
                             message: 'message.delete.tag'
                         }) }}
-                        {% if isFeatureEnabled('history') %}
-                            <a href="{{ path('app_tag_history', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.history'|trans }}">
-                                <i class="fa fa-history fa-fw"></i>
-                            </a>
-                        {% endif %}
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_tag_show', entity: tag}) }}
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': tag.visibility}) }}
                     {% endif %}

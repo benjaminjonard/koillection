@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Form\Type\Entity\AlbumType;
 use App\Repository\AlbumRepository;
-use App\Repository\LogRepository;
 use App\Repository\PhotoRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -150,28 +149,6 @@ class AlbumController extends AbstractController
             'album' => $album,
             'children' => $albumRepository->findBy(['parent' => $album]),
             'photos' => $photoRepository->findBy(['album' => $album]),
-        ]);
-    }
-
-    #[Route(
-        path: ['en' => '/albums/{id}/history', 'fr' => '/albums/{id}/historique'],
-        name: 'app_album_history',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    public function history(Album $album, LogRepository $logRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['albums', 'history']);
-
-        return $this->render('App/Album/history.html.twig', [
-            'album' => $album,
-            'logs' => $logRepository->findBy([
-                'objectId' => $album->getId(),
-                'objectClass' => $managerRegistry->getManager()->getClassMetadata(\get_class($album))->getName(),
-            ], [
-                'loggedAt' => 'DESC',
-                'type' => 'DESC',
-            ]),
         ]);
     }
 }

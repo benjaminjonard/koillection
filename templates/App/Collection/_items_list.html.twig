@@ -3,6 +3,9 @@
     <tr>
         <th></th>
         <th>{{ 'label.name'|trans }}</th>
+        {% for column in collection.itemsDisplayModeListColumns %}
+            <th class="center hide-on-small-and-down">{{ column }}</th>
+        {% endfor %}
         {% if context == 'default' %}
             <th class="center">{{ 'label.visibility'|trans }}</th>
             <th class="center">{{ 'label.actions'|trans }}</th>
@@ -27,19 +30,29 @@
             </td>
             <td>
                 <a class="table-link" href="{{ link }}"></a>
-                {{item.name}}
+                {{ item.name|u.truncate(50, '...') }}
             </td>
+            {% for column in collection.itemsDisplayModeListColumns %}
+                <td class="center hide-on-small-and-down">
+                    <a class="table-link" href="{{ link }}"></a>
+                    {% set datum = item.getDatumByLabel(column) %}
+                    {% if datum is not null %}
+                        {% include 'App/Datum/_display_value/_' ~ datum.type ~ '.html.twig' with {'datum': datum} only %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            {% endfor %}
             {% if context == 'default' %}
                 <td class="center">
-                    <a class="table-link" href="{{ link }}"></a>
-                    {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
+                    {% include 'App/_partials/_visibility.html.twig' with {'visibility': item.finalVisibility} only %}
                 </td>
                 <td class="table-actions center">
                     <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
-                    {{ include('App/_partials/_icon/_delete.html.twig', {
+                    {% include 'App/_partials/_icon/_delete.html.twig' with {
                         path: path('app_item_delete', {id: item.id}),
                         message: 'message.delete.item'
-                    }) }}
+                    } only %}
                 </td>
             {% endif %}
         </tr>
