@@ -6,19 +6,20 @@
     </div>
 
     <div data-additional-data-target="textsHolder">
-        {% for key, datum in data|filter(datum => datum.type in ([constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT'), constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY'), constant('App\\Enum\\DatumTypeEnum::TYPE_FILE'), constant('App\\Enum\\DatumTypeEnum::TYPE_DATE'), constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER')])) %}
+        {% for key, datum in data %}
             {% include 'App/Datum/_datum.html.twig' with {
                 datum: datum,
                 iteration: key,
                 type: datum.type,
                 entity: 'collection',
-                label: datum.label
+                label: datum.label,
+                choiceList: datum.choiceList
             } only %}
         {% endfor %}
     </div>
 </div>
 
-<div class="row center-align">
+<div class="row center-align datum-btn">
     <label>{{ 'label.add_field'|trans }}</label>
     <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') }}">{{ 'btn.add_text'|trans }}</a>
     <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') }}">{{ 'btn.add_number'|trans }}</a>
@@ -26,3 +27,12 @@
     <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') }}">{{ 'btn.add_date'|trans }}</a>
     <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey" data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') }}">{{ 'btn.add_file'|trans }}</a>
 </div>
+
+{% if choiceLists is defined and choiceLists is not empty %}
+    <div class="row center-align datum-btn">
+        <label>{{ 'label.add_list'|trans }}</label>
+        {% for choiceList in choiceLists %}
+            <a data-action="additional-data#addChoiceList" class="waves-effect waves-light btn-small grey" data-id="{{ choiceList.id }}">{{ choiceList.name }}</a>
+        {% endfor %}
+    </div>
+{% endif %}

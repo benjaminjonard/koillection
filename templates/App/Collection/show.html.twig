@@ -93,20 +93,7 @@
                         {% for datum in collection.data %}
                             <div class="datum-row col s12 l5 xl3">
                                 <span class="label">{{ datum.label }} :</span>
-                                {% if datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') %}
-                                    {% for value in datum.value|split(',') %}
-                                        {{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}{{ not loop.last ? ',' }}
-                                    {% endfor %}
-                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') %}
-                                    {{ datum.value }}
-                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_COUNTRY') %}
-                                    <span class="flag">{{ getCountryFlag(datum.value) }}</span>
-                                    <span class="country-name">({{ getCountryName(datum.value) }})</span>
-                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_FILE') %}
-                                    <a href="{{ asset(datum.file) }}" class="file" target="_blank" download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
-                                {% elseif datum.type == constant('App\\Enum\\DatumTypeEnum::TYPE_DATE') %}
-                                    {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
-                                {% endif %}
+                                {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
                             </div>
                         {% endfor %}
                     </div>
