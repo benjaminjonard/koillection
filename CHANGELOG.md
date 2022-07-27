@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Features
 - Add possibility to choose which columns to display in collection list view based on items metadata (Benjamin Jonard)
 - Add new choice list type (Benjamin Jonard)
-- Add possibility to order s collection's items on text, list and country metadata types (Benjamin Jonard)
+- Add possibility to order collection's items on text, list and country metadata types (Benjamin Jonard)
 
 ### Miscellaneous
 - Update JS dependencies, fix CVE-2022-25858 (Benjamin Jonard)

@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Entity\Album;
+use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Photo;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Wish;
+use App\Entity\Wishlist;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -46,8 +49,7 @@ class RegenerateThumbnailsCommand extends Command
         }
 
         $counter = 0;
-        $classes = [Item::class, Datum::class, Wish::class, Photo::class, Tag::class];
-        $objects = [];
+        $classes = [Album::class, Collection::class, Wishlist::class, Item::class, Datum::class, Wish::class, Photo::class, Tag::class];
         $users = $this->managerRegistry->getRepository(User::class)->findAll();
 
         foreach ($users as $user) {
@@ -55,43 +57,55 @@ class RegenerateThumbnailsCommand extends Command
             $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
             $this->tokenStorage->setToken($token);
 
+            $this->processImage($user);
+
             foreach ($classes as $class) {
-                $result = $this->managerRegistry->getRepository($class)->createQueryBuilder('o')
+                $results = $this->managerRegistry->getRepository($class)->createQueryBuilder('o')
                     ->where('o.image IS NOT NULL')
                     ->andWhere('o.owner = :user')
                     ->setParameter('user', $user)
                     ->getQuery()
-                    ->getResult();
+                    ->toIterable();
 
-                $objects = array_merge($objects, $result);
-            }
-
-            foreach ($objects as $object) {
-                $imagePath = $this->publicPath.'/'.$object->getImage();
-
-                if (is_file($imagePath)) {
-                    $filename = basename($imagePath);
-                    $mime = mime_content_type($imagePath);
-                    $file = new UploadedFile($imagePath, $filename, $mime, null, true);
-
-                    if ($object instanceof Datum) {
-                        $object->setFileImage($file);
-                    } else {
-                        $object->setFile($file);
-                    }
+                foreach ($results as $entity) {
+                    $this->processImage($entity);
                     ++$counter;
+
+                    if ($counter % 100 === 0) {
+                        $this->managerRegistry->getManager()->flush();
+                        $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['%count%' => $counter]));
+                    }
                 }
 
-                if ($counter % 100) {
-                    $this->managerRegistry->getManager()->flush();
-                }
+                $this->managerRegistry->getManager()->flush();
+                $this->managerRegistry->getManager()->clear();
             }
-
-            $this->managerRegistry->getManager()->flush();
         }
 
+        $this->managerRegistry->getManager()->flush();
         $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['%count%' => $counter]));
 
         return Command::SUCCESS;
+    }
+
+    private function processImage($entity)
+    {
+        if ($entity instanceof User) {
+            $imagePath = $this->publicPath.'/'.$entity->getAvatar();
+        } else {
+            $imagePath = $this->publicPath.'/'.$entity->getImage();
+        }
+
+        if (is_file($imagePath)) {
+            $filename = basename($imagePath);
+            $mime = mime_content_type($imagePath);
+            $file = new UploadedFile($imagePath, $filename, $mime, null, true);
+
+            if ($entity instanceof Datum) {
+                $entity->setFileImage($file);
+            } else {
+                $entity->setFile($file);
+            }
+        }
     }
 }

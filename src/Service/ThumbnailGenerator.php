@@ -60,13 +60,13 @@ class ThumbnailGenerator
             switch ($mime) {
                 case IMAGETYPE_JPEG:
                 case IMAGETYPE_JPEG2000:
-                    imagejpeg($thumbnail, $thumbnailPath, 100);
+                    imagejpeg($thumbnail, $thumbnailPath, 85);
                     break;
                 case IMAGETYPE_PNG:
-                    imagepng($thumbnail, $thumbnailPath);
+                    imagepng($thumbnail, $thumbnailPath, 9);
                     break;
                 case IMAGETYPE_WEBP:
-                    imagewebp($thumbnail, $thumbnailPath, 100);
+                    imagewebp($thumbnail, $thumbnailPath, 85);
                     break;
                 default:
                     break;
@@ -120,13 +120,13 @@ class ThumbnailGenerator
         switch ($mime) {
             case IMAGETYPE_JPEG:
             case IMAGETYPE_JPEG2000:
-                imagejpeg($resized, $path, 100);
+                imagejpeg($resized, $path, 85);
                 break;
             case IMAGETYPE_PNG:
-                imagepng($resized, $path);
+                imagepng($resized, $path, 9);
                 break;
             case IMAGETYPE_WEBP:
-                imagewebp($resized, $path, 100);
+                imagewebp($resized, $path, 85);
                 break;
             default:
                 break;
