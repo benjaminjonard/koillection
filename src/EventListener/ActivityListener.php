@@ -19,7 +19,7 @@ class ActivityListener
     public function onKernelRequest()
     {
         $user = $this->security->getUser();
-        $now = (new \DateTime())->setTime(0, 0, 0, 0);
+        $now = (new \DateTimeImmutable())->setTime(0, 0, 0, 0);
 
         if (!$user instanceof User || $user->getLastDateOfActivity() == $now) {
             return null;

@@ -37,14 +37,14 @@ class Loan
     #[Groups(['loan:read', 'loan:write'])]
     private ?string $lentTo = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Assert\NotBlank]
     #[Groups(['loan:read', 'loan:write'])]
-    private ?\DateTimeInterface $lentAt = null;
+    private ?\DateTimeImmutable $lentAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['loan:read', 'loan:write'])]
-    private ?\DateTimeInterface $returnedAt;
+    private ?\DateTimeImmutable $returnedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['loan:read'])]
@@ -72,24 +72,24 @@ class Loan
         return $this;
     }
 
-    public function getLentAt(): ?\DateTimeInterface
+    public function getLentAt(): ?\DateTimeImmutable
     {
         return $this->lentAt;
     }
 
-    public function setLentAt(\DateTimeInterface $lentAt): self
+    public function setLentAt(\DateTimeImmutable $lentAt): self
     {
         $this->lentAt = $lentAt;
 
         return $this;
     }
 
-    public function getReturnedAt(): ?\DateTimeInterface
+    public function getReturnedAt(): ?\DateTimeImmutable
     {
         return $this->returnedAt;
     }
 
-    public function setReturnedAt(?\DateTimeInterface $returnedAt): self
+    public function setReturnedAt(?\DateTimeImmutable $returnedAt): self
     {
         $this->returnedAt = $returnedAt;
 

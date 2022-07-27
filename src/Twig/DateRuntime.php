@@ -14,9 +14,9 @@ class DateRuntime implements RuntimeExtensionInterface
     ) {
     }
 
-    public function timeAgo(\DateTime $ago): string
+    public function timeAgo(\DateTimeImmutable $ago): string
     {
-        $now = new \DateTime();
+        $now = new \DateTimeImmutable();
         $diff = $now->diff($ago);
 
         $diff->w = floor($diff->d / 7);
@@ -44,7 +44,7 @@ class DateRuntime implements RuntimeExtensionInterface
             $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
-    public function timeDiff(\DateTime $start, \DateTime $end): string
+    public function timeDiff(\DateTimeImmutable $start, \DateTimeImmutable $end): string
     {
         $diff = $start->diff($end);
 
@@ -72,9 +72,9 @@ class DateRuntime implements RuntimeExtensionInterface
         return $string ? implode(', ', $string) : '';
     }
 
-    public function dateAgo(\DateTime $ago): string
+    public function dateAgo(\DateTimeImmutable $ago): string
     {
-        $now = new \DateTime();
+        $now = new \DateTimeImmutable();
         $diff = $now->diff($ago);
 
         $diff->w = floor($diff->d / 7);

@@ -2,11 +2,11 @@ App\Entity\Loan:
   loan_admin_{1..5}:
     item: "@item_admin_<current()>"
     lentTo: "<name()>"
-    lentAt: <(new \DateTime())>
+    lentAt: <(new \DateTimeImmutable())>
     owner: "@admin"
 
   loan_user_{1..5}:
     item: "@item_user_<current()>"
     lentTo: "<name()>"
-    lentAt: <(new \DateTime())>
+    lentAt: <(new \DateTimeImmutable())>
     owner: "@user"

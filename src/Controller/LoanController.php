@@ -63,7 +63,7 @@ class LoanController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
-        $loan->setReturnedAt(new \DateTime());
+        $loan->setReturnedAt(new \DateTimeImmutable());
         $managerRegistry->getManager()->flush();
         $this->addFlash('notice', $translator->trans('message.item_returned', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
 

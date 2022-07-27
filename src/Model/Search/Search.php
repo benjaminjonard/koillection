@@ -12,7 +12,7 @@ class Search
     #[Assert\Length(min: 2, minMessage: 'error.search.too_short')]
     private ?string $term = null;
 
-    private ?\DateTime $createdAt = null;
+    private ?\DateTimeImmutable $createdAt = null;
 
     private bool $searchInItems = true;
 
@@ -36,12 +36,12 @@ class Search
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTime $createdAt): Search
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): Search
     {
         $this->createdAt = $createdAt;
 

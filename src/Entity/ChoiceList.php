@@ -38,13 +38,13 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface
     #[Groups(['choiceList:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['choiceList:read'])]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['choiceList:read'])]
-    private ?\DateTimeInterface $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
@@ -128,24 +128,24 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface
         return $this;
     }
 
-    public function getCreatedAt(): \DateTimeInterface
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): ChoiceList
+    public function setCreatedAt(\DateTimeImmutable $createdAt): ChoiceList
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): ChoiceList
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): ChoiceList
     {
         $this->updatedAt = $updatedAt;
 

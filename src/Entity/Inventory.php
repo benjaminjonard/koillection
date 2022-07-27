@@ -40,13 +40,13 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface
     #[Groups(['inventory:read'])]
     private ?User $owner = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['inventory:read'])]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['inventory:read'])]
-    private ?\DateTimeInterface $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     private array $contentAsArray = [];
 
@@ -124,24 +124,24 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

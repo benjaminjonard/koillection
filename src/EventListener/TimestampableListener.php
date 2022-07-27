@@ -12,11 +12,11 @@ final class TimestampableListener
     {
         $entity = $args->getEntity();
         if (true === property_exists($entity, 'createdAt')) {
-            $entity->setCreatedAt(new \DateTime());
+            $entity->setCreatedAt(new \DateTimeImmutable());
         }
 
         if (true === property_exists($entity, 'loggedAt') && null === $entity->getLoggedAt()) {
-            $entity->setLoggedAt(new \DateTime());
+            $entity->setLoggedAt(new \DateTimeImmutable());
         }
     }
 
@@ -24,7 +24,7 @@ final class TimestampableListener
     {
         $entity = $args->getEntity();
         if (true === property_exists($entity, 'updatedAt')) {
-            $entity->setUpdatedAt(new \DateTime());
+            $entity->setUpdatedAt(new \DateTimeImmutable());
         }
     }
 }

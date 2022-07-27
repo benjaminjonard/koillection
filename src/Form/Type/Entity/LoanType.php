@@ -23,6 +23,7 @@ class LoanType extends AbstractType
     {
         $builder
             ->add('lentAt', DateType::class, [
+                'input' => 'datetime_immutable',
                 'required' => true,
                 'html5' => false,
                 'widget' => 'single_text',

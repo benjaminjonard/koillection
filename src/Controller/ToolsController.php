@@ -60,7 +60,7 @@ class ToolsController extends AbstractController
             }
         }
 
-        return new CsvResponse($rows, (new \DateTime())->format('YmdHis').'-koillection-export.csv');
+        return new CsvResponse($rows, (new \DateTimeImmutable())->format('YmdHis').'-koillection-export.csv');
     }
 
     #[Route(
@@ -70,7 +70,7 @@ class ToolsController extends AbstractController
     )]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
-        return new FileResponse($databaseDumper->dump(), (new \DateTime())->format('YmdHis').'-koillection-export.sql');
+        return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis').'-koillection-export.sql');
     }
 
     #[Route(
@@ -86,7 +86,7 @@ class ToolsController extends AbstractController
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
 
-            $zipFilename = (new \DateTime())->format('YmdHis').'-koillection-images.zip';
+            $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
 
             $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$this->getUser()->getId();

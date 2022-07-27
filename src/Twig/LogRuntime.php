@@ -30,6 +30,8 @@ class LogRuntime implements RuntimeExtensionInterface
         $class = strtolower($class);
         if ('tagcategory' == $class) {
             $class = 'tag_category';
+        } elseif ('choicelist' == $class) {
+            $class = 'choice_list';
         }
 
         $objectLabel = $log->getObjectLabel();

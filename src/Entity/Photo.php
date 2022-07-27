@@ -73,9 +73,9 @@ class Photo implements CacheableInterface, LoggableInterface
     #[Groups(['photo:read'])]
     private ?string $imageSmallThumbnail = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['photo:read'])]
-    private ?\DateTimeInterface $takenAt = null;
+    private ?\DateTimeImmutable $takenAt = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['photo:read', 'photo:write'])]
@@ -90,13 +90,13 @@ class Photo implements CacheableInterface, LoggableInterface
     #[Groups(['photo:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['photo:read'])]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['photo:read'])]
-    private ?\DateTimeInterface $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
@@ -150,36 +150,36 @@ class Photo implements CacheableInterface, LoggableInterface
         return $this;
     }
 
-    public function getTakenAt(): ?\DateTimeInterface
+    public function getTakenAt(): ?\DateTimeImmutable
     {
         return $this->takenAt;
     }
 
-    public function setTakenAt(?\DateTimeInterface $takenAt): self
+    public function setTakenAt(?\DateTimeImmutable $takenAt): self
     {
         $this->takenAt = $takenAt;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -220,7 +220,7 @@ class Photo implements CacheableInterface, LoggableInterface
         $this->file = $file;
         // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
-            $this->setUpdatedAt(new \DateTime());
+            $this->setUpdatedAt(new \DateTimeImmutable());
         }
 
         return $this;

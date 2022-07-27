@@ -98,13 +98,13 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Groups(['wishlist:read'])]
     private string $finalVisibility;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['wishlist:read'])]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['wishlist:read'])]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
@@ -161,24 +161,24 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -287,7 +287,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         $this->file = $file;
         // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
-            $this->setUpdatedAt(new \DateTime());
+            $this->setUpdatedAt(new \DateTimeImmutable());
         }
 
         return $this;

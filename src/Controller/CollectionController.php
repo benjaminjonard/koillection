@@ -8,6 +8,7 @@ use App\Entity\Collection;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
+use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
@@ -53,7 +54,13 @@ class CollectionController extends AbstractController
         name: 'app_collection_add',
         methods: ['GET', 'POST']
     )]
-    public function add(Request $request, TranslatorInterface $translator, CollectionRepository $collectionRepository, ManagerRegistry $managerRegistry): Response
+    public function add(
+        Request $request,
+        TranslatorInterface $translator,
+        CollectionRepository $collectionRepository,
+        ChoiceListRepository $choiceListRepository,
+        ManagerRegistry $managerRegistry
+    ): Response
     {
         $collection = new Collection();
 
@@ -87,6 +94,7 @@ class CollectionController extends AbstractController
             'form' => $form->createView(),
             'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
             'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 
@@ -141,7 +149,14 @@ class CollectionController extends AbstractController
         requirements: ['id' => '%uuid_regex%'],
         methods: ['GET', 'POST']
     )]
-    public function edit(Request $request, Collection $collection, TranslatorInterface $translator, CollectionRepository $collectionRepository, ManagerRegistry $managerRegistry): Response
+    public function edit(
+        Request $request,
+        Collection $collection,
+        TranslatorInterface $translator,
+        CollectionRepository $collectionRepository,
+        ChoiceListRepository $choiceListRepository,
+        ManagerRegistry $managerRegistry
+    ): Response
     {
         $form = $this->createForm(CollectionType::class, $collection);
         $form->handleRequest($request);
@@ -157,6 +172,7 @@ class CollectionController extends AbstractController
             'collection' => $collection,
             'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
             'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
+            'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
 
