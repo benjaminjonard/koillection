@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.7] / 2022-07-27
+### Features
+- Add possibility to choose which columns to display in collection list view based on items metadata (Benjamin Jonard)
+- Add new choice list type (Benjamin Jonard)
+- Add possibility to order s collection's items on text, list and country metadata types (Benjamin Jonard)
+
+### Miscellaneous
+- Update JS dependencies, fix CVE-2022-25858 (Benjamin Jonard)
+- Remove update logs, add create/delete logs for more entities (Benjamin Jonard)
+
 ## [1.3.6] / 2022-07-20
 ### Features
 - Add sorting feature on collections; sorting is available on item name and data of type Date, Number and Rating (Benjamin Jonard)
