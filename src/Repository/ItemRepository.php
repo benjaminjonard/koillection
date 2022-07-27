@@ -152,9 +152,8 @@ class ItemRepository extends ServiceEntityRepository
 
         if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
             $qb
-                ->leftJoin('i.data', 'data')
+                ->leftJoin('i.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
                 ->addSelect('partial data.{id, label, type, value}')
-                ->andWhere('data.label IN (:labels) OR data IS NULL')
                 ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
             ;
         }
