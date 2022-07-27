@@ -46,4 +46,21 @@ class LoggableListener
             $args->getEntityManager()->persist($log);
         }
     }
+
+    public function postRemove(LifecycleEventArgs $args): void
+    {
+        $entity = $args->getEntity();
+
+        if ($entity instanceof LoggableInterface) {
+            $args->getEntityManager()->createQueryBuilder()
+                ->update(Log::class, 'l')
+                ->set('l.objectDeleted', '?1')
+                ->where('l.objectId = ?2')
+                ->setParameter(1, true)
+                ->setParameter(2, $entity->getId())
+                ->getQuery()
+                ->execute()
+            ;
+        }
+    }
 }

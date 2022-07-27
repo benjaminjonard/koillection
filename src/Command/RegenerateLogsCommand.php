@@ -83,6 +83,30 @@ class RegenerateLogsCommand extends Command
 
         $output->writeln($this->translator->trans('message.logs_generated', ['%count%' => $counter]));
 
+        $results = $this->managerRegistry->getManager()->createQueryBuilder()
+            ->select('l.objectId')
+            ->distinct()
+            ->from(Log::class, 'l')
+            ->where('l.type = ?1')
+            ->setParameter(1, LogTypeEnum::TYPE_DELETE)
+            ->getQuery()
+            ->execute()
+        ;
+
+        $ids = array_map(function ($result) {
+            return $result['objectId'];
+        }, $results);
+
+        $this->managerRegistry->getManager()->createQueryBuilder()
+            ->update(Log::class, 'l')
+            ->set('l.objectDeleted', '?1')
+            ->where('l.objectId IN (?2)')
+            ->setParameter(1, true)
+            ->setParameter(2, $ids)
+            ->getQuery()
+            ->execute()
+        ;
+
         return Command::SUCCESS;
     }
 }
