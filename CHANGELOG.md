@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.8] / 2022-07-28
+### Fixes
+- Fix error when submitting forms with "date" metadata (Benjamin Jonard)
+
 ## [1.3.7] / 2022-07-27
 ### Features
 - Add possibility to choose which columns to display in collection list view based on items metadata (Benjamin Jonard)
