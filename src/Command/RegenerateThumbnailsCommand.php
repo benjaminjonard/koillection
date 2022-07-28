@@ -57,7 +57,7 @@ class RegenerateThumbnailsCommand extends Command
             $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
             $this->tokenStorage->setToken($token);
 
-            $this->processImage($user);
+            $this->processAvatar($user);
 
             foreach ($classes as $class) {
                 $results = $this->managerRegistry->getRepository($class)->createQueryBuilder('o')
@@ -68,7 +68,12 @@ class RegenerateThumbnailsCommand extends Command
                     ->toIterable();
 
                 foreach ($results as $entity) {
-                    $this->processImage($entity);
+                    if (in_array($class, [Album::class, Collection::class, Wishlist::class])) {
+                        $this->processAvatar($entity);
+                    } else {
+                        $this->processImage($entity);
+                    }
+
                     ++$counter;
 
                     if ($counter % 100 === 0) {
@@ -88,13 +93,9 @@ class RegenerateThumbnailsCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function processImage($entity)
+    private function processImage(Item|Datum|Wish|Photo|Tag $entity)
     {
-        if ($entity instanceof User) {
-            $imagePath = $this->publicPath.'/'.$entity->getAvatar();
-        } else {
-            $imagePath = $this->publicPath.'/'.$entity->getImage();
-        }
+        $imagePath = $this->publicPath.'/'.$entity->getImage();
 
         if (is_file($imagePath)) {
             $filename = basename($imagePath);
@@ -106,6 +107,25 @@ class RegenerateThumbnailsCommand extends Command
             } else {
                 $entity->setFile($file);
             }
+        }
+    }
+
+    private function processAvatar(Album|Collection|Wishlist|User $entity)
+    {
+        if ($entity instanceof User) {
+            $imagePath = $this->publicPath.'/'.$entity->getAvatar();
+        } else {
+            $imagePath = $this->publicPath.'/'.$entity->getImage();
+        }
+
+        if (is_file($imagePath)) {
+            $image = imagecreatefrompng($imagePath);
+            $thumbnail = imagecreatetruecolor(200, 200);
+            imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
+            imagealphablending($thumbnail, false);
+            imagesavealpha($thumbnail, true);
+            imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, 200, 200, 200, 200);
+            imagepng($thumbnail, $imagePath, 9);
         }
     }
 }
