@@ -71,18 +71,22 @@ class DatumType extends AbstractType
                         break;
                     case DatumTypeEnum::TYPE_DATE:
                         $form
-                            ->add('value', DateType::class, [
-                                'input' => 'datetime_immutable',
+                            ->add('value', TextType::class, [
                                 'required' => false,
-                                'html5' => false,
-                                'widget' => 'single_text',
-                                'format' => $this->security->getUser()->getDateFormatForForm(),
                                 'model_transformer' => new CallbackTransformer(
                                     function ($string) {
-                                        return null !== $string ? new \DateTimeImmutable($string) : null;
+                                        if (!empty($string)) {
+                                            return \DateTimeImmutable::createFromFormat('Y-m-d', $string)->format($this->security->getUser()->getDateFormat());
+                                        }
+
+                                        return null;
                                     },
                                     function ($date) {
-                                        return $date instanceof \DateTimeImmutable ? $date->format('Y-m-d') : null;
+                                        if (!empty($date)) {
+                                            return \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date)->format('Y-m-d');
+                                        }
+
+                                        return null;
                                     }
                                 ),
                             ])
