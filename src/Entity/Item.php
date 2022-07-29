@@ -97,7 +97,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $loans;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Upload(path: 'image', extraSmallThumbnailPath: 'imageExtraSmallThumbnail', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['item:write'])]
     private ?File $file = null;
@@ -105,6 +105,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['item:read'])]
     private ?string $image = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
+    #[Groups(['item:read'])]
+    private ?string $imageExtraSmallThumbnail = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['item:read'])]
@@ -440,6 +444,30 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageExtraSmallThumbnail(): ?string
+    {
+        if ($this->imageExtraSmallThumbnail) {
+            return $this->imageExtraSmallThumbnail;
+        }
+
+        if ($this->imageSmallThumbnail) {
+            return $this->imageSmallThumbnail;
+        }
+
+        if ($this->imageLargeThumbnail) {
+            return $this->imageLargeThumbnail;
+        }
+
+        return $this->image;
+    }
+
+    public function setImageExtraSmallThumbnail(?string $imageExtraSmallThumbnail): Item
+    {
+        $this->imageExtraSmallThumbnail = $imageExtraSmallThumbnail;
 
         return $this;
     }

@@ -48,15 +48,21 @@ class ImageHandler
                 $this->thumbnailGenerator->crop($absolutePath.'/'.$fileName, $attribute->getMaxWidth(), $attribute->getMaxHeight());
             }
 
+            if (null !== $attribute->getExtraSmallThumbnailPath()) {
+                $extraSmallThumbnailFileName = $generatedName.'_extra_small.'.$extension;
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$extraSmallThumbnailFileName, 60);
+                $this->accessor->setValue($entity, $attribute->getExtraSmallThumbnailPath(), $result ? $relativePath.$extraSmallThumbnailFileName : null);
+            }
+
             if (null !== $attribute->getSmallThumbnailPath()) {
                 $smallThumbnailFileName = $generatedName.'_small.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 300);
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 150);
                 $this->accessor->setValue($entity, $attribute->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
             }
 
             if (null !== $attribute->getLargeThumbnailPath()) {
                 $largeThumbnailFileName = $generatedName.'_large.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$largeThumbnailFileName, 600);
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$largeThumbnailFileName, 300);
                 $this->accessor->setValue($entity, $attribute->getLargeThumbnailPath(), $result ? $relativePath.$largeThumbnailFileName : null);
             }
 

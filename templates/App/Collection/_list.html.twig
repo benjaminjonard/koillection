@@ -1,9 +1,9 @@
 {% for collection in collections %}
     <div class="collection-element element" data-title="{{ collection.title }}" data-filter-target="element">
         <a class="collection-circle-thumbnail" href="{{ path('app_collection_show'|applyContext, {'id': collection.id}) }}" aria-label="{{ 'aria.collection'|trans({'%title%': collection.title}) }}">
-            {% if collection.image != null %}
+            {% if collection.imageSmallThumbnail != null %}
                 <div class="image-wrapper placeholder placeholder--circle" {{ stimulus_controller('lazy-loading') }}>
-                    <img data-src="{{ asset(collection.image) }}" data-lazy-loading-target="image">
+                    <img data-src="{{ asset(collection.imageSmallThumbnail) }}" data-lazy-loading-target="image">
                 </div>
             {% else %}
                 <span class="color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>

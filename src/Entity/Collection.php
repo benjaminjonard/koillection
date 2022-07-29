@@ -89,14 +89,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private ?string $color = null;
 
-    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
-    #[Groups(['collection:write'])]
+    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Groups(['item:write'])]
     private ?File $file = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['collection:read'])]
     private ?string $image = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
+    #[Groups(['item:read'])]
+    private ?string $imageSmallThumbnail = null;
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['collection:read'])]
@@ -355,6 +359,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageSmallThumbnail(): ?string
+    {
+        return $this->imageSmallThumbnail;
+    }
+
+    public function setImageSmallThumbnail(?string $imageSmallThumbnail): Collection
+    {
+        $this->imageSmallThumbnail = $imageSmallThumbnail;
 
         return $this;
     }

@@ -18,12 +18,10 @@ class ThumbnailGenerator
         }
 
         list($width, $height, $mime) = getimagesize($path);
-        $originalSize = filesize($path);
-        $thumbnailHeight = (int) floor($height * ($thumbnailWidth / $width));
-
         if ($width <= $thumbnailWidth) {
-            return false;
+            $thumbnailWidth = $width;
         }
+        $thumbnailHeight = (int) floor($height * ($thumbnailWidth / $width));
 
         // Create user directory in uploads
         $dir = explode('/', $thumbnailPath);
@@ -71,13 +69,6 @@ class ThumbnailGenerator
                 default:
                     break;
             }
-        }
-
-        $thumbnailSize = filesize($thumbnailPath);
-        if ($thumbnailSize >= $originalSize) {
-            unlink($thumbnailPath);
-
-            return false;
         }
 
         return true;

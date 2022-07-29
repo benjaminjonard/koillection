@@ -38,12 +38,16 @@ class CleanUpCommand extends Command
         // Get all paths in database (images + thumbnails)
         $sql = '
             SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_collection WHERE image_small_thumbnail IS NOT NULL UNION
 
             SELECT image AS image FROM koi_album WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_album WHERE image_small_thumbnail IS NOT NULL UNION
             
             SELECT image AS image FROM koi_wishlist WHERE image IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_wishlist WHERE image_small_thumbnail IS NOT NULL UNION
             
             SELECT avatar AS image FROM koi_user WHERE avatar IS NOT NULL UNION
+            SELECT image_small_thumbnail AS image FROM koi_user WHERE image_small_thumbnail IS NOT NULL UNION
             
             SELECT image AS image FROM koi_tag WHERE image IS NOT NULL UNION
             SELECT image_small_thumbnail AS image FROM koi_tag WHERE image_small_thumbnail IS NOT NULL UNION
@@ -52,6 +56,7 @@ class CleanUpCommand extends Command
             SELECT image_small_thumbnail AS image FROM koi_photo WHERE image_small_thumbnail IS NOT NULL UNION
             
             SELECT image AS image FROM koi_item WHERE image IS NOT NULL UNION
+            SELECT image_extra_small_thumbnail AS image FROM koi_item WHERE image_extra_small_thumbnail IS NOT NULL UNION
             SELECT image_small_thumbnail AS image FROM koi_item WHERE image_small_thumbnail IS NOT NULL UNION
             SELECT image_large_thumbnail AS image FROM koi_item WHERE image_large_thumbnail IS NOT NULL UNION
             

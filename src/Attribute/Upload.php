@@ -9,6 +9,7 @@ class Upload
 {
     public function __construct(
         private readonly string $path,
+        private readonly ?string $extraSmallThumbnailPath = null,
         private readonly ?string $smallThumbnailPath = null,
         private readonly ?string $largeThumbnailPath = null,
         private readonly ?string $originalFilenamePath = null,
@@ -23,6 +24,7 @@ class Upload
 
         return new self(
             $arguments['path'] ?? null,
+            $arguments['extraSmallThumbnailPath'] ?? null,
             $arguments['smallThumbnailPath'] ?? null,
             $arguments['largeThumbnailPath'] ?? null,
             $arguments['originalFilenamePath'] ?? null,
@@ -34,6 +36,11 @@ class Upload
     public function getPath(): ?string
     {
         return $this->path;
+    }
+
+    public function getExtraSmallThumbnailPath(): ?string
+    {
+        return $this->extraSmallThumbnailPath;
     }
 
     public function getSmallThumbnailPath(): ?string

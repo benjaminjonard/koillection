@@ -58,6 +58,7 @@ class RegenerateThumbnailsCommand extends Command
             $this->tokenStorage->setToken($token);
 
             $this->processAvatar($user);
+            $this->processImage($user);
 
             foreach ($classes as $class) {
                 $results = $this->managerRegistry->getRepository($class)->createQueryBuilder('o')
@@ -70,9 +71,10 @@ class RegenerateThumbnailsCommand extends Command
                 foreach ($results as $entity) {
                     if (in_array($class, [Album::class, Collection::class, Wishlist::class])) {
                         $this->processAvatar($entity);
-                    } else {
-                        $this->processImage($entity);
                     }
+
+                    $this->processImage($entity);
+
 
                     ++$counter;
 
@@ -93,9 +95,13 @@ class RegenerateThumbnailsCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function processImage(Item|Datum|Wish|Photo|Tag $entity)
+    private function processImage($entity)
     {
-        $imagePath = $this->publicPath.'/'.$entity->getImage();
+        if ($entity instanceof User) {
+            $imagePath = $this->publicPath.'/'.$entity->getAvatar();
+        } else {
+            $imagePath = $this->publicPath.'/'.$entity->getImage();
+        }
 
         if (is_file($imagePath)) {
             $filename = basename($imagePath);
