@@ -56,7 +56,8 @@ class ImageHandler
 
             if (null !== $attribute->getSmallThumbnailPath()) {
                 $smallThumbnailFileName = $generatedName.'_small.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 150);
+                $size = $attribute->getMaxWidth() == 200 &&  $attribute->getMaxHeight() == 200 ? 100 : 150;
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, $size);
                 $this->accessor->setValue($entity, $attribute->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
             }
 
@@ -86,6 +87,13 @@ class ImageHandler
     {
         if (null !== $attribute->getPath()) {
             $path = $this->accessor->getValue($entity, $attribute->getPath());
+            if (null !== $path) {
+                @unlink($this->publicPath.'/'.$path);
+            }
+        }
+
+        if (null !== $attribute->getExtraSmallThumbnailPath()) {
+            $path = $this->accessor->getValue($entity, $attribute->getExtraSmallThumbnailPath());
             if (null !== $path) {
                 @unlink($this->publicPath.'/'.$path);
             }

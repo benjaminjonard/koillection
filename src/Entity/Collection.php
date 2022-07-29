@@ -89,7 +89,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private ?string $color = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['item:write'])]
     private ?File $file = null;
