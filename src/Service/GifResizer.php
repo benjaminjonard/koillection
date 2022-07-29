@@ -516,12 +516,19 @@ class GifResizer
     private function resizeFrames(): void
     {
         $k = 0;
+
         foreach ($this->parsedFiles as $img) {
             $src = imagecreatefromgif($img);
             $sw = $this->imageData[$k]['width'];
             $sh = $this->imageData[$k]['height'];
+
             $nw = (int) round($sw * $this->wr);
             $nh = (int) round($sh * $this->hr);
+
+            if ($nh === 0 || $nw === 0) {
+                continue;
+            }
+
             $sprite = imagecreatetruecolor($nw, $nh);
             $trans = imagecolortransparent($sprite);
             imagealphablending($sprite, false);
