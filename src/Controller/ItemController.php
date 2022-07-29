@@ -65,6 +65,7 @@ class ItemController extends AbstractController
                     ->setLabel($field->getName())
                     ->setType($field->getType())
                     ->setPosition($field->getPosition())
+                    ->setChoiceList($field->getChoiceList())
                 );
             }
         }
