@@ -9,6 +9,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChoiceListType extends AbstractType
@@ -24,8 +27,11 @@ class ChoiceListType extends AbstractType
                 'entry_type' => TextType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false,
                 'label' => false,
+                // Calling setChoices ensures that submitted choices order is preserved
+                'setter' => function (&$choiceList, ?array $choices): void {
+                    $choiceList->setChoices($choices);
+                },
             ])
         ;
     }

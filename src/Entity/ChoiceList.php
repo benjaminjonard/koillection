@@ -98,24 +98,6 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface
         return $this;
     }
 
-    public function addChoice(string $choice): ChoiceList
-    {
-        if (!in_array($choice, $this->choices)) {
-            $this->choices[] = $choice;
-        }
-
-        return $this;
-    }
-
-    public function removeChoice(string $choice): ChoiceList
-    {
-        if (($key = array_search($choice, $this->choices)) !== false) {
-            unset($this->choices[$key]);
-        }
-
-        return $this;
-    }
-
     public function getOwner(): ?User
     {
         return $this->owner;

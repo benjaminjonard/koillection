@@ -1,7 +1,16 @@
 <div class="row value" data-choice-list-value-target="value">
-    <div class="input-field col s10">
-        <input type="text" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" required>
-        <label for="{{ form.vars.full_name }}" class="required">{{ 'label.choice'|trans }}</label>
+    <div class="col s1 handle icon-holder">
+        <i class="fa fa-arrows-v fa-fw"></i>
+    </div>
+    <div class="input-field col s9">
+        <input data-choice-list-value-target="input"
+               type="text"
+               id="{{ form.vars.id }}"
+               name="{{ form.vars.full_name }}"
+               value="{{ form.vars.value }}"
+               required
+        >
+        <label data-choice-list-value-target="label" for="{{ form.vars.full_name }}" class="required">{{ 'label.choice'|trans }}</label>
     </div>
     <div class="col s1 icon-holder">
         <i class="fa fa-remove fa-fw removeDatum" data-action="click->choice-list-value#remove"></i>
