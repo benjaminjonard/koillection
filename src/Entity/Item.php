@@ -454,7 +454,19 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageExtraSmallThumbnail(): ?string
     {
-        return $this->imageExtraSmallThumbnail;
+        if ($this->imageExtraSmallThumbnail) {
+            return $this->imageExtraSmallThumbnail;
+        }
+
+        if ($this->imageSmallThumbnail) {
+            return $this->imageSmallThumbnail;
+        }
+
+        if ($this->imageLargeThumbnail) {
+            return $this->imageLargeThumbnail;
+        }
+
+        return $this->image;
     }
 
     public function setImageExtraSmallThumbnail(?string $imageExtraSmallThumbnail): Item
@@ -466,7 +478,15 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageSmallThumbnail(): ?string
     {
-        return $this->imageSmallThumbnail;
+        if ($this->imageSmallThumbnail) {
+            return $this->imageSmallThumbnail;
+        }
+
+        if ($this->imageLargeThumbnail) {
+            return $this->imageLargeThumbnail;
+        }
+
+        return $this->image;
     }
 
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
@@ -478,7 +498,11 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageLargeThumbnail(): ?string
     {
-        return $this->imageLargeThumbnail;
+        if ($this->imageLargeThumbnail) {
+            return $this->imageLargeThumbnail;
+        }
+
+        return $this->image;
     }
 
     public function setImageLargeThumbnail(?string $imageLargeThumbnail): Item

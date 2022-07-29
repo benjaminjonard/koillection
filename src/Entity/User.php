@@ -533,7 +533,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function getAvatarSmallThumbnail(): ?string
     {
-        return $this->avatarSmallThumbnail;
+        if ($this->avatarSmallThumbnail) {
+            return $this->avatarSmallThumbnail;
+        }
+
+        return $this->avatar;
     }
 
     public function setAvatarSmallThumbnail(?string $avatarSmallThumbnail): User

@@ -286,7 +286,11 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     public function getImageSmallThumbnail(): ?string
     {
-        return $this->imageSmallThumbnail;
+        if ($this->imageSmallThumbnail) {
+            return $this->imageSmallThumbnail;
+        }
+
+        return $this->image;
     }
 
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): Wishlist

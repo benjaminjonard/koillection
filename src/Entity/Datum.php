@@ -276,7 +276,15 @@ class Datum
 
     public function getImageSmallThumbnail(): ?string
     {
-        return $this->imageSmallThumbnail;
+        if ($this->imageSmallThumbnail) {
+            return $this->imageSmallThumbnail;
+        }
+
+        if ($this->imageLargeThumbnail) {
+            return $this->imageLargeThumbnail;
+        }
+
+        return $this->image;
     }
 
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
@@ -288,11 +296,11 @@ class Datum
 
     public function getImageLargeThumbnail(): ?string
     {
-        if (null === $this->imageLargeThumbnail) {
-            return $this->image;
+        if ($this->imageLargeThumbnail) {
+            return $this->imageLargeThumbnail;
         }
 
-        return $this->imageLargeThumbnail;
+        return $this->image;
     }
 
     public function setImageLargeThumbnail(?string $imageLargeThumbnail): self

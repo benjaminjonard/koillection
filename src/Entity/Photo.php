@@ -242,7 +242,11 @@ class Photo implements CacheableInterface, LoggableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
-        return $this->imageSmallThumbnail;
+        if ($this->imageSmallThumbnail) {
+            return $this->imageSmallThumbnail;
+        }
+
+        return $this->image;
     }
 
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
