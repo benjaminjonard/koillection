@@ -517,18 +517,13 @@ class GifResizer
     {
         $k = 0;
 
+        $sw = $this->imageData[0]['width'];
+        $sh = $this->imageData[0]['height'];
+        $nw = (int) round($sw * $this->wr);
+        $nh = (int) round($sh * $this->hr);
+
         foreach ($this->parsedFiles as $img) {
             $src = imagecreatefromgif($img);
-            $sw = $this->imageData[$k]['width'];
-            $sh = $this->imageData[$k]['height'];
-
-            $nw = (int) round($sw * $this->wr);
-            $nh = (int) round($sh * $this->hr);
-
-            if ($nh === 0 || $nw === 0) {
-                continue;
-            }
-
             $sprite = imagecreatetruecolor($nw, $nh);
             $trans = imagecolortransparent($sprite);
             imagealphablending($sprite, false);
