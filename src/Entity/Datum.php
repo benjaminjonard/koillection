@@ -73,7 +73,7 @@ class Datum
     private ?int $position = null;
 
     #[Upload(path: 'image',
-        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 100,
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 150,
         largeThumbnailPath: 'imageLargeThumbnail', largeThumbnailSize: 300,
     )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]

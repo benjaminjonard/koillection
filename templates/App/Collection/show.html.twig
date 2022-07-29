@@ -27,8 +27,8 @@
         <div class="collection-header">
             <div class="title-block">
                 <div class="left">
-                    {% if collection.image != null %}
-                        <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
+                    {% if collection.imageSmallThumbnail != null %}
+                        <img class="thumbnail avatar" src="{{ preload(asset(collection.imageSmallThumbnail), {as: 'image'}) }}">
                     {% else %}
                         <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
                     {% endif %}

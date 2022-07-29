@@ -27,8 +27,8 @@
         <div class="collection-header">
             <div class="title-block">
                 <div class="left">
-                    {% if wishlist.image != null %}
-                        <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image), {as: 'image'}) }}">
+                    {% if wishlist.imageSmallThumbnail != null %}
+                        <img class="thumbnail avatar" src="{{ preload(asset(wishlist.imageSmallThumbnail), {as: 'image'}) }}">
                     {% else %}
                         <span class="thumbnail color-avatar circle avatar color-{{ wishlist.color }}">{{ wishlist.name|first|upper }}</span>
                     {% endif %}

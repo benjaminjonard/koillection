@@ -70,7 +70,7 @@ class Wish implements CacheableInterface, LoggableInterface
     private ?string $comment = null;
 
     #[Upload(path: 'image',
-        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 150,
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 100,
     )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['wish:write'])]
