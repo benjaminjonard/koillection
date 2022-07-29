@@ -60,7 +60,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:read', 'user:write'])]
     private ?string $plainPassword = null;
 
-    #[Upload(path: 'avatar', maxWidth: 200, maxHeight: 200)]
+    #[Upload(path: 'avatar',
+        smallThumbnailPath: 'avatarSmallThumbnail', smallThumbnailSize: 100,
+        maxWidth: 200, maxHeight: 200
+    )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
     #[Groups(['user:write'])]
     private ?File $file = null;
@@ -68,6 +71,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['user:read'])]
     private ?string $avatar = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
+    #[Groups(['user:read'])]
+    private ?string $avatarSmallThumbnail = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $enabled;
@@ -520,6 +527,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getAvatarSmallThumbnail(): ?string
+    {
+        return $this->avatarSmallThumbnail;
+    }
+
+    public function setAvatarSmallThumbnail(?string $avatarSmallThumbnail): User
+    {
+        $this->avatarSmallThumbnail = $avatarSmallThumbnail;
 
         return $this;
     }

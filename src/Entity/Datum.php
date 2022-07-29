@@ -72,7 +72,10 @@ class Datum
     #[Groups(['datum:read', 'datum:write'])]
     private ?int $position = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Upload(path: 'image',
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 100,
+        largeThumbnailPath: 'imageLargeThumbnail', largeThumbnailSize: 300,
+    )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['datum:write'])]
     private ?File $fileImage = null;
@@ -273,15 +276,7 @@ class Datum
 
     public function getImageSmallThumbnail(): ?string
     {
-        if ($this->imageSmallThumbnail) {
-            return $this->imageSmallThumbnail;
-        }
-
-        if ($this->imageLargeThumbnail) {
-            return $this->imageLargeThumbnail;
-        }
-
-        return $this->image;
+        return $this->imageSmallThumbnail;
     }
 
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self

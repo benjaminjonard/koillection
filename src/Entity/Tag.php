@@ -49,7 +49,9 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
     #[Groups(['tag:read', 'tag:write'])]
     private ?string $description = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Upload(path: 'image',
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 150,
+    )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['tag:write'])]
     private ?File $file = null;
@@ -219,10 +221,6 @@ class Tag implements BreadcrumbableInterface, LoggableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
-        if (null === $this->imageSmallThumbnail) {
-            return $this->image;
-        }
-
         return $this->imageSmallThumbnail;
     }
 

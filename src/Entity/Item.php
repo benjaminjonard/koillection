@@ -97,7 +97,11 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $loans;
 
-    #[Upload(path: 'image', extraSmallThumbnailPath: 'imageExtraSmallThumbnail', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Upload(path: 'image',
+        extraSmallThumbnailPath: 'imageExtraSmallThumbnail', extraSmallThumbnailSize: 60,
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 150,
+        largeThumbnailPath: 'imageLargeThumbnail', largeThumbnailSize: 300,
+    )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['item:write'])]
     private ?File $file = null;
@@ -450,19 +454,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageExtraSmallThumbnail(): ?string
     {
-        if ($this->imageExtraSmallThumbnail) {
-            return $this->imageExtraSmallThumbnail;
-        }
-
-        if ($this->imageSmallThumbnail) {
-            return $this->imageSmallThumbnail;
-        }
-
-        if ($this->imageLargeThumbnail) {
-            return $this->imageLargeThumbnail;
-        }
-
-        return $this->image;
+        return $this->imageExtraSmallThumbnail;
     }
 
     public function setImageExtraSmallThumbnail(?string $imageExtraSmallThumbnail): Item
@@ -474,15 +466,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageSmallThumbnail(): ?string
     {
-        if ($this->imageSmallThumbnail) {
-            return $this->imageSmallThumbnail;
-        }
-
-        if ($this->imageLargeThumbnail) {
-            return $this->imageLargeThumbnail;
-        }
-
-        return $this->image;
+        return $this->imageSmallThumbnail;
     }
 
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
@@ -494,10 +478,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     public function getImageLargeThumbnail(): ?string
     {
-        if (null === $this->imageLargeThumbnail) {
-            return $this->image;
-        }
-
         return $this->imageLargeThumbnail;
     }
 

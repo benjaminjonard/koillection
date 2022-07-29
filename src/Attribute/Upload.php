@@ -13,6 +13,9 @@ class Upload
         private readonly ?string $smallThumbnailPath = null,
         private readonly ?string $largeThumbnailPath = null,
         private readonly ?string $originalFilenamePath = null,
+        private readonly ?int $extraSmallThumbnailSize = 60,
+        private readonly ?int $smallThumbnailSize = 150,
+        private readonly ?int $largeThumbnailSize = 300,
         private readonly ?int $maxWidth = null,
         private readonly ?int $maxHeight = null,
     ) {
@@ -28,6 +31,9 @@ class Upload
             $arguments['smallThumbnailPath'] ?? null,
             $arguments['largeThumbnailPath'] ?? null,
             $arguments['originalFilenamePath'] ?? null,
+            $arguments['extraSmallThumbnailSize'] ?? 60,
+            $arguments['smallThumbnailSize'] ?? 150,
+            $arguments['largeThumbnailSize'] ?? 300,
             $arguments['maxWidth'] ?? null,
             $arguments['maxHeight'] ?? null
         );
@@ -56,6 +62,21 @@ class Upload
     public function getOriginalFilenamePath(): ?string
     {
         return $this->originalFilenamePath;
+    }
+
+    public function getExtraSmallThumbnailSize(): ?int
+    {
+        return $this->extraSmallThumbnailSize;
+    }
+
+    public function getSmallThumbnailSize(): ?int
+    {
+        return $this->smallThumbnailSize;
+    }
+
+    public function getLargeThumbnailSize(): ?int
+    {
+        return $this->largeThumbnailSize;
     }
 
     public function getMaxWidth(): ?int

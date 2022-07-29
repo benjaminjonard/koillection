@@ -35,8 +35,8 @@
                 {% if app.user %}
                     <div class="header-profile" {{ stimulus_controller('profile') }}>
                         <span data-action="click->profile#show">
-                            {% if app.user.avatar != null %}
-                                <img class="user-avatar" src="{{ preload(asset(app.user.avatar), {as: 'image'}) }}">
+                            {% if app.user.avatarSmallThumbnail != null %}
+                                <img class="user-avatar" src="{{ preload(asset(app.user.avatarSmallThumbnail), {as: 'image'}) }}">
                             {% else %}
                                 <span class="user-avatar circle avatar">{{ app.user.username|first|upper }}</span>
                             {% endif %}

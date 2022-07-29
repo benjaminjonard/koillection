@@ -60,7 +60,9 @@ class Photo implements CacheableInterface, LoggableInterface
     #[Groups(['photo:read'])]
     private ?User $owner = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Upload(path: 'image',
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 150,
+    )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['photo:write'])]
     private ?File $file = null;
@@ -240,10 +242,6 @@ class Photo implements CacheableInterface, LoggableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
-        if (null === $this->imageSmallThumbnail) {
-            return $this->image;
-        }
-
         return $this->imageSmallThumbnail;
     }
 

@@ -69,7 +69,9 @@ class Wish implements CacheableInterface, LoggableInterface
     #[Groups(['wish:read', 'wish:write'])]
     private ?string $comment = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Upload(path: 'image',
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 150,
+    )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
     #[Groups(['wish:write'])]
     private ?File $file = null;
@@ -257,10 +259,6 @@ class Wish implements CacheableInterface, LoggableInterface
 
     public function getImageSmallThumbnail(): ?string
     {
-        if (null === $this->imageSmallThumbnail) {
-            return $this->image;
-        }
-
         return $this->imageSmallThumbnail;
     }
 

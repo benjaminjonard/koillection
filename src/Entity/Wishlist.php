@@ -72,7 +72,10 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Wishlist $parent = null;
 
-    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
+    #[Upload(path: 'image',
+        smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 100,
+        maxWidth: 200, maxHeight: 200
+    )]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
     #[Groups(['wishlist:write'])]
     private ?File $file = null;
@@ -80,6 +83,10 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['wishlist:read'])]
     private ?string $image = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
+    #[Groups(['wishlist:read'])]
+    private ?string $imageSmallThumbnail = null;
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['wishlist:read'])]
@@ -273,6 +280,18 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageSmallThumbnail(): ?string
+    {
+        return $this->imageSmallThumbnail;
+    }
+
+    public function setImageSmallThumbnail(?string $imageSmallThumbnail): Wishlist
+    {
+        $this->imageSmallThumbnail = $imageSmallThumbnail;
 
         return $this;
     }

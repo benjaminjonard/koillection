@@ -28,7 +28,6 @@ class ImageHandler
     public function upload(object $entity, string $property, Upload $attribute): void
     {
         $file = $this->accessor->getValue($entity, $property);
-
         if ($file instanceof UploadedFile) {
             $user = $this->security->getUser();
             $relativePath = 'uploads/'.$user->getId().'/';
@@ -50,20 +49,19 @@ class ImageHandler
 
             if (null !== $attribute->getExtraSmallThumbnailPath()) {
                 $extraSmallThumbnailFileName = $generatedName.'_extra_small.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$extraSmallThumbnailFileName, 60);
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$extraSmallThumbnailFileName, $attribute->getExtraSmallThumbnailSize());
                 $this->accessor->setValue($entity, $attribute->getExtraSmallThumbnailPath(), $result ? $relativePath.$extraSmallThumbnailFileName : null);
             }
 
             if (null !== $attribute->getSmallThumbnailPath()) {
                 $smallThumbnailFileName = $generatedName.'_small.'.$extension;
-                $size = $attribute->getMaxWidth() == 200 &&  $attribute->getMaxHeight() == 200 ? 100 : 150;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, $size);
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, $attribute->getSmallThumbnailSize());
                 $this->accessor->setValue($entity, $attribute->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
             }
 
             if (null !== $attribute->getLargeThumbnailPath()) {
                 $largeThumbnailFileName = $generatedName.'_large.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$largeThumbnailFileName, 300);
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$largeThumbnailFileName, $attribute->getLargeThumbnailSize());
                 $this->accessor->setValue($entity, $attribute->getLargeThumbnailPath(), $result ? $relativePath.$largeThumbnailFileName : null);
             }
 

@@ -47,7 +47,7 @@ class CleanUpCommand extends Command
             SELECT image_small_thumbnail AS image FROM koi_wishlist WHERE image_small_thumbnail IS NOT NULL UNION
             
             SELECT avatar AS image FROM koi_user WHERE avatar IS NOT NULL UNION
-            SELECT image_small_thumbnail AS image FROM koi_user WHERE image_small_thumbnail IS NOT NULL UNION
+            SELECT avatar_small_thumbnail AS image FROM koi_user WHERE avatar_small_thumbnail IS NOT NULL UNION
             
             SELECT image AS image FROM koi_tag WHERE image IS NOT NULL UNION
             SELECT image_small_thumbnail AS image FROM koi_tag WHERE image_small_thumbnail IS NOT NULL UNION
