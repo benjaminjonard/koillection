@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.9] / 2022-07-29
+### Features
+- Add possibility to order choices in choice list form (Benjamin Jonard)
+
+### Fixes
+- Fix choice list not loading when using default item template from a collection (Benjamin Jonard)
+- Fix choice list not displaying choices containing special characters (Benjamin Jonard)
+- Fix errors on gif upload (Benjamin Jonard)
+
+## [1.3.8] / 2022-07-28
+### Fixes
+- Fix error when submitting forms with "date" metadata (Benjamin Jonard)
+
 ## [1.3.7] / 2022-07-27
 ### Features
 - Add possibility to choose which columns to display in collection list view based on items metadata (Benjamin Jonard)
@@ -8,7 +21,7 @@ All notable changes to this project will be documented in this file.
 - Add possibility to order collection's items on text, list and country metadata types (Benjamin Jonard)
 
 ### Miscellaneous
-- Update JS dependencies, fix CVE-2022-25858 (Benjamin Jonard)
+- Update JS dependencies, fixes CVE-2022-25858 (Benjamin Jonard)
 - Remove update logs, add create/delete logs for more entities (Benjamin Jonard)
 
 ## [1.3.6] / 2022-07-20

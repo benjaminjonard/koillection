@@ -128,6 +128,20 @@ class Datum
         return $this->getLabel() ?? '';
     }
 
+    public function getOrderedListChoices(): array
+    {
+        $selectedChoices = json_decode($this->value, true);
+        $orderedSelectedChoices = [];
+
+        foreach ($this->getChoiceList()->getChoices() as $availableChoice) {
+            if (in_array($availableChoice, $selectedChoices)) {
+                $orderedSelectedChoices[] = $availableChoice;
+            }
+        }
+
+        return $orderedSelectedChoices;
+    }
+
     public function getId(): ?string
     {
         return $this->id;
