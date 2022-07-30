@@ -73,6 +73,7 @@ class Datum
     private ?int $position = null;
 
     #[Upload(path: 'image',
+        extraSmallThumbnailPath: 'imageExtraSmallThumbnail', extraSmallThumbnailSize: 100,
         smallThumbnailPath: 'imageSmallThumbnail', smallThumbnailSize: 150,
         largeThumbnailPath: 'imageLargeThumbnail', largeThumbnailSize: 300,
     )]
@@ -83,6 +84,10 @@ class Datum
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['datum:read'])]
     private ?string $image = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
+    #[Groups(['datum:read'])]
+    private ?string $imageExtraSmallThumbnail = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['datum:read'])]
@@ -271,6 +276,29 @@ class Datum
     {
         $this->owner = $owner;
 
+        return $this;
+    }
+
+    public function getImageExtraSmallThumbnail(): ?string
+    {
+        if ($this->imageExtraSmallThumbnail) {
+            return $this->imageExtraSmallThumbnail;
+        }
+
+        if ($this->imageSmallThumbnail) {
+            return $this->imageSmallThumbnail;
+        }
+
+        if ($this->imageLargeThumbnail) {
+            return $this->imageLargeThumbnail;
+        }
+
+        return $this->image;
+    }
+
+    public function setImageExtraSmallThumbnail(?string $imageExtraSmallThumbnail): Datum
+    {
+        $this->imageExtraSmallThumbnail = $imageExtraSmallThumbnail;
         return $this;
     }
 

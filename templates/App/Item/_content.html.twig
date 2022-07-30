@@ -69,7 +69,7 @@
             {% if item.dataImages|length > 0 %}
                 <ul class="slider-elements">
                     <li>
-                        <img src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                        <img src="{{ preload(asset(item.imageExtraSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                              class="active"
                              data-id="{{ item.id }}"
                              data-slider-target="thumbnail"
@@ -80,7 +80,7 @@
 
                     {% for datum in item.dataImages %}
                         <li>
-                            <img src="{{ preload(asset(datum.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                            <img src="{{ preload(asset(datum.imageExtraSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  data-id="{{ datum.id }}"
                                  data-slider-target="thumbnail"
                                  data-action="click->slider#display"

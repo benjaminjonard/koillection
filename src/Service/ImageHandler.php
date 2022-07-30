@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Attribute\Upload;
+use App\Entity\Datum;
+use App\Enum\DatumTypeEnum;
+use App\Form\Type\Entity\DatumType;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -54,9 +57,11 @@ class ImageHandler
             }
 
             if (null !== $attribute->getSmallThumbnailPath()) {
-                $smallThumbnailFileName = $generatedName.'_small.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, $attribute->getSmallThumbnailSize());
-                $this->accessor->setValue($entity, $attribute->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
+                if (!$entity instanceof Datum || $entity->getType() === DatumTypeEnum::TYPE_SIGN) {
+                    $smallThumbnailFileName = $generatedName.'_small.'.$extension;
+                    $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, $attribute->getSmallThumbnailSize());
+                    $this->accessor->setValue($entity, $attribute->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
+                }
             }
 
             if (null !== $attribute->getLargeThumbnailPath()) {
