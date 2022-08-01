@@ -648,24 +648,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getAutomaticDarkModeStartAt(): ?\DateTimeImmutable
+    public function getAutomaticDarkModeStartAt(): ?DateTimeImmutable
     {
         return $this->automaticDarkModeStartAt;
     }
 
-    public function setAutomaticDarkModeStartAt(?\DateTimeImmutable $automaticDarkModeStartAt): User
+    public function setAutomaticDarkModeStartAt(?DateTimeImmutable $automaticDarkModeStartAt): User
     {
         $this->automaticDarkModeStartAt = $automaticDarkModeStartAt;
 
         return $this;
     }
 
-    public function getAutomaticDarkModeEndAt(): ?\DateTimeImmutable
+    public function getAutomaticDarkModeEndAt(): ?DateTimeImmutable
     {
         return $this->automaticDarkModeEndAt;
     }
 
-    public function setAutomaticDarkModeEndAt(?\DateTimeImmutable $automaticDarkModeEndAt): User
+    public function setAutomaticDarkModeEndAt(?DateTimeImmutable $automaticDarkModeEndAt): User
     {
         $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;
 

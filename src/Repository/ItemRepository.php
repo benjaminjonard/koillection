@@ -150,7 +150,7 @@ class ItemRepository extends ServiceEntityRepository
             ->setParameter('ids', $ids)
         ;
 
-        if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
+        if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayMode()) {
             $qb
                 ->leftJoin('i.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
                 ->addSelect('partial data.{id, label, type, value}')
@@ -236,13 +236,13 @@ class ItemRepository extends ServiceEntityRepository
                 ->createQueryBuilder('item')
                 ->addSelect("($subQuery) AS orderingValue, data")
                 ->where('item.collection = :collection')
-                ->setParameter('collection', $collection)
+                ->setParameter('collection', $collection->getId())
                 ->setParameter('label', $collection->getItemsSortingProperty())
                 ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ;
 
-            //If list, preload datum used for ordering and in columns
-            if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
+            // If list, preload datum used for ordering and in columns
+            if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayMode()) {
                 $qb
                     ->leftJoin('item.data', 'data', 'WITH', 'data.label = :label OR data.label IN (:labels) OR data IS NULL')
                     ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
@@ -272,10 +272,10 @@ class ItemRepository extends ServiceEntityRepository
         $qb = $this
             ->createQueryBuilder('item')
             ->where('item.collection = :collection')
-            ->setParameter('collection', $collection)
+            ->setParameter('collection', $collection->getId())
         ;
 
-        if ($collection->getItemsDisplayMode() === DisplayModeEnum::DISPLAY_MODE_LIST) {
+        if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayMode()) {
             $qb
                 ->addSelect('data')
                 ->leftJoin('item.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')

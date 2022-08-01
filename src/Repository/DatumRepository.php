@@ -25,7 +25,7 @@ class DatumRepository extends ServiceEntityRepository
             ->distinct()
             ->where('item.collection = :collection')
             ->andWhere('datum.type IN (:types)')
-            ->setParameter('collection', $collection)
+            ->setParameter('collection', $collection->getId())
             ->setParameter('types', $types)
             ->getQuery()
             ->getArrayResult()

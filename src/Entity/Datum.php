@@ -134,7 +134,7 @@ class Datum
         $orderedSelectedChoices = [];
 
         foreach ($this->getChoiceList()->getChoices() as $availableChoice) {
-            if (in_array($availableChoice, $selectedChoices)) {
+            if (\in_array($availableChoice, $selectedChoices)) {
                 $orderedSelectedChoices[] = $availableChoice;
             }
         }

@@ -69,11 +69,11 @@ class ArraySorter
 
     private function getOrderingValue($element)
     {
-        return is_array($element) ? $element['orderingValue'] : $element->getOrderingValue();
+        return \is_array($element) ? $element['orderingValue'] : $element->getOrderingValue();
     }
 
     private function getName($element)
     {
-        return is_array($element) ? $element['name'] : $element->__toString();
+        return \is_array($element) ? $element['name'] : $element->__toString();
     }
 }

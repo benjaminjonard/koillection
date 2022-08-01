@@ -60,8 +60,7 @@ class CollectionController extends AbstractController
         CollectionRepository $collectionRepository,
         ChoiceListRepository $choiceListRepository,
         ManagerRegistry $managerRegistry
-    ): Response
-    {
+    ): Response {
         $collection = new Collection();
 
         if ($request->query->has('parent')) {
@@ -156,8 +155,7 @@ class CollectionController extends AbstractController
         CollectionRepository $collectionRepository,
         ChoiceListRepository $choiceListRepository,
         ManagerRegistry $managerRegistry
-    ): Response
-    {
+    ): Response {
         $form = $this->createForm(CollectionType::class, $collection);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
