@@ -7,7 +7,10 @@ namespace App\EventListener;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Enum\LogTypeEnum;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\UnitOfWork;
 
 class LoggableListener
 {
@@ -15,36 +18,37 @@ class LoggableListener
     ) {
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function onFlush(OnFlushEventArgs $eventArgs): void
     {
-        $entity = $args->getEntity();
+        $em = $eventArgs->getEntityManager();
+        $uow = $em->getUnitOfWork();
 
-        if ($entity instanceof LoggableInterface) {
-            $log = (new Log())
-                ->setType(LogTypeEnum::TYPE_CREATE)
-                ->setObjectId($entity->getId())
-                ->setObjectLabel($entity->__toString())
-                ->setObjectClass($entity::class)
-                ->setOwner($entity->getOwner())
-            ;
-            $args->getEntityManager()->persist($log);
+        foreach ($uow->getScheduledEntityInsertions() as $entity) {
+            if ($entity instanceof LoggableInterface) {
+                $this->persistLog($em, $uow, $entity, LogTypeEnum::TYPE_CREATE);
+            }
+        }
+
+        foreach ($uow->getScheduledEntityDeletions() as $entity) {
+            if ($entity instanceof LoggableInterface) {
+                $this->persistLog($em, $uow, $entity, LogTypeEnum::TYPE_DELETE);
+            }
         }
     }
 
-    public function preRemove(LifecycleEventArgs $args): void
+    private function persistLog(EntityManagerInterface $em, UnitOfWork $uow, $entity, string $type): void
     {
-        $entity = $args->getEntity();
+        $log = (new Log())
+            ->setType($type)
+            ->setObjectId($entity->getId())
+            ->setObjectLabel($entity->__toString())
+            ->setObjectClass($entity::class)
+            ->setOwner($entity->getOwner())
+        ;
 
-        if ($entity instanceof LoggableInterface) {
-            $log = (new Log())
-                ->setType(LogTypeEnum::TYPE_DELETE)
-                ->setObjectId($entity->getId())
-                ->setObjectLabel($entity->__toString())
-                ->setObjectClass($entity::class)
-                ->setOwner($entity->getOwner())
-            ;
-            $args->getEntityManager()->persist($log);
-        }
+        $em->persist($log);
+        $classMetadata = $em->getClassMetadata(Log::class);
+        $uow->computeChangeSet($classMetadata, $log);
     }
 
     public function postRemove(LifecycleEventArgs $args): void
