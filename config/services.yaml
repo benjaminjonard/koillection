@@ -85,8 +85,7 @@ services:
 
     App\EventListener\LoggableListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist, lazy: true, priority: -5 }
-            - { name: doctrine.event_listener, event: preRemove, lazy: true, priority: -5 }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true, priority: -5 }
             - { name: doctrine.event_listener, event: postRemove, lazy: true, priority: -5 }
 
     App\EventListener\VisibilityListener:
