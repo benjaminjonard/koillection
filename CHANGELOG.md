@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.10] / 2022-08-03
+### Features
+- Search will now use metadata (Benjamin Jonard)
+
+### Fixes
+- Fix decoding of lists metadata (Benjamin Jonard)
+- Fix error when adding a new tag to an item (Benjamin Jonard)
+
 ## [1.3.9] / 2022-07-29
 ### Features
 - Add possibility to order choices in choice list form (Benjamin Jonard)
