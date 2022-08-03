@@ -1,5 +1,5 @@
 parameters:
-    release: '1.3.9'
+    release: '1.3.10'
     locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
 
@@ -85,8 +85,7 @@ services:
 
     App\EventListener\LoggableListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist, lazy: true, priority: -5 }
-            - { name: doctrine.event_listener, event: preRemove, lazy: true, priority: -5 }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true, priority: -5 }
             - { name: doctrine.event_listener, event: postRemove, lazy: true, priority: -5 }
 
     App\EventListener\VisibilityListener:

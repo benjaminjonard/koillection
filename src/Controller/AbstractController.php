@@ -40,8 +40,7 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
     public function createDeleteForm(
         string $url,
         User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist|ChoiceList $entity = null
-    ): FormInterface
-    {
+    ): FormInterface {
         $params = [];
         if ($entity) {
             $params['id'] = $entity->getId();

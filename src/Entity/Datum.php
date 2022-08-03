@@ -130,11 +130,11 @@ class Datum
 
     public function getOrderedListChoices(): array
     {
-        $selectedChoices = json_decode($this->value);
+        $selectedChoices = json_decode($this->value, true);
         $orderedSelectedChoices = [];
 
         foreach ($this->getChoiceList()->getChoices() as $availableChoice) {
-            if (in_array($availableChoice, $selectedChoices)) {
+            if (\in_array($availableChoice, $selectedChoices)) {
                 $orderedSelectedChoices[] = $availableChoice;
             }
         }

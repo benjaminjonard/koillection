@@ -25,7 +25,7 @@ class DatumController extends AbstractController
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
             'type' => $type,
-            'label' => null
+            'label' => null,
         ])->getContent();
 
         return new JsonResponse([
@@ -46,7 +46,7 @@ class DatumController extends AbstractController
             'iteration' => '__placeholder__',
             'type' => DatumTypeEnum::TYPE_LIST,
             'choiceList' => $choiceList,
-            'label' => $choiceList->getName()
+            'label' => $choiceList->getName(),
         ])->getContent();
 
         return new JsonResponse([
@@ -72,7 +72,7 @@ class DatumController extends AbstractController
                     'datum' => $datum,
                     'type' => $datum->getType(),
                     'label' => $datum->getLabel(),
-                    'choiceList' => $datum->getChoiceList()
+                    'choiceList' => $datum->getChoiceList(),
                 ];
                 $commonFields[$datum->getLabel()] = $field;
             }
@@ -136,7 +136,7 @@ class DatumController extends AbstractController
                 'type' => $datum->getType(),
                 'datum' => $datum,
                 'label' => $datum->getLabel(),
-                'choiceList' => $datum->getChoiceList()
+                'choiceList' => $datum->getChoiceList(),
             ])->getContent();
         }
 

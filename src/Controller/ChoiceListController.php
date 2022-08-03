@@ -8,7 +8,6 @@ use App\Entity\ChoiceList;
 use App\Form\Type\Entity\ChoiceListType;
 use App\Repository\ChoiceListRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
