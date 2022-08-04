@@ -2,6 +2,7 @@ parameters:
     release: '1.3.10'
     locale: 'en-GB'
     uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    container.dumper.inline_factories: true
 
 services:
     _defaults:
