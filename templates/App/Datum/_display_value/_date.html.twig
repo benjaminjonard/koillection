@@ -1,1 +1,3 @@
-{{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
+{% if datum.value is not empty %}
+    {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
+{% endif %}
