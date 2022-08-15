@@ -3520,109 +3520,109 @@
     <unit id="I4AaDrn" name="log.wish.created">
       <segment>
         <source>log.wish.created</source>
-        <target>Wish %label% was created</target>
+        <target>El elemento deseado %label% ha sido creado</target>
       </segment>
     </unit>
     <unit id="xDWB80B" name="log.wish.deleted">
       <segment>
         <source>log.wish.deleted</source>
-        <target>Wish %label% was deleted</target>
+        <target>El elemento deseado %label% ha sido eliminado</target>
       </segment>
     </unit>
     <unit id="i6kuHyl" name="message.choice_list_added">
       <segment>
         <source>message.choice_list_added</source>
-        <target>Choice list %list% has been added</target>
+        <target>La lista de opciones %list% ha sido añadida</target>
       </segment>
     </unit>
     <unit id="68XhVFG" name="message.choice_list_deleted">
       <segment>
         <source>message.choice_list_deleted</source>
-        <target>Choice list %list% has been deleted</target>
+        <target>La lista de opciones %list% ha sida eliminada</target>
       </segment>
     </unit>
     <unit id="8bGQnJ6" name="message.choice_list_edited">
       <segment>
         <source>message.choice_list_edited</source>
-        <target>Choice list %list% has been updated</target>
+        <target>La lista de opciones %list% ha sido actualizada</target>
       </segment>
     </unit>
     <unit id="HhMB4AC" name="menu.choice_lists">
       <segment>
         <source>menu.choice_lists</source>
-        <target>Choice lists</target>
+        <target>Listas de opciones</target>
       </segment>
     </unit>
     <unit id="V0bbvyv" name="counter.choice_lists">
       <segment>
         <source>counter.choice_lists</source>
-        <target>{0} %count% choice lists| {1} %count% choice list| ]1,Inf[ %count% choice lists</target>
+        <target>{0} %count% listas de opciones| {1} %count% lista de opciones| ]1,Inf[ %count% listas de opciones</target>
       </segment>
     </unit>
     <unit id="nrZfnFO" name="tooltip.add_choice_list">
       <segment>
         <source>tooltip.add_choice_list</source>
-        <target>Add a new choice lists</target>
+        <target>Añadir nueva lista de opciones</target>
       </segment>
     </unit>
     <unit id="l40ZNPM" name="label.choices">
       <segment>
         <source>label.choices</source>
-        <target>Choices</target>
+        <target>Opciones</target>
       </segment>
     </unit>
     <unit id="1EYnJj4" name="label.list">
       <segment>
         <source>label.list</source>
-        <target>List</target>
+        <target>Lista</target>
       </segment>
     </unit>
     <unit id="aD0i7U3" name="label.choice_list">
       <segment>
         <source>label.choice_list</source>
-        <target>Choice list</target>
+        <target>Lista de opciones</target>
       </segment>
     </unit>
     <unit id="oFA0bWV" name="breadcrumb.add_choice_list">
       <segment>
         <source>breadcrumb.add_choice_list</source>
-        <target>Add a new choice list</target>
+        <target>Añadir una nueva lista de opciones</target>
       </segment>
     </unit>
     <unit id="BlieLoV" name="title.new_choice_list">
       <segment>
         <source>title.new_choice_list</source>
-        <target>Add a new choice list</target>
+        <target>Añadir una nueva lista de opciones</target>
       </segment>
     </unit>
     <unit id="VGW2uC0" name="title.choices">
       <segment>
         <source>title.choices</source>
-        <target>Choices</target>
+        <target>Opciones</target>
       </segment>
     </unit>
     <unit id="VGW2uC0" name="label.choice">
       <segment>
         <source>label.choice</source>
-        <target>Choice</target>
+        <target>Opción</target>
       </segment>
     </unit>
     <unit id="jEWaBMn" name="btn.add_choice">
       <segment>
         <source>btn.add_choice</source>
-        <target>Add a new choice</target>
+        <target>Añadir nueva opción</target>
       </segment>
     </unit>
     <unit id="Zy9Zqlc" name="breadcrumb.edit_choice_list">
       <segment>
         <source>breadcrumb.edit_choice_list</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="IHKWbZj" name="title.edit_choice_list">
       <segment>
         <source>title.edit_choice_list</source>
-        <target>Edit choice list %list%</target>
+        <target>Editar lista de opciones %list%</target>
       </segment>
     </unit>
   </file>
