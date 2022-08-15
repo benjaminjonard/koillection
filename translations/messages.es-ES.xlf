@@ -418,31 +418,31 @@
     <unit id="l9GnTBr" name="error.404">
       <segment>
         <source>error.404</source>
-        <target>Oops, page not found :(</target>
+        <target>Ups, página no encontrada :(</target>
       </segment>
     </unit>
     <unit id="nIFzees" name="error.500">
       <segment>
         <source>error.500</source>
-        <target>Oops, a critical error occured :(</target>
+        <target>Ups, ocurrió un error crítico :(</target>
       </segment>
     </unit>
     <unit id="buUu8ng" name="error.invalid_credentials">
       <segment>
         <source>error.invalid_credentials</source>
-        <target>Invalid credentials</target>
+        <target>Datos de acceso inválidos</target>
       </segment>
     </unit>
     <unit id="tg4uV16" name="error.not_enough_space">
       <segment>
         <source>error.not_enough_space</source>
-        <target>There is not enough space left on your account to execute this action :(</target>
+        <target>No hay suficiente es:(</target>
       </segment>
     </unit>
     <unit id="A5gFwZv" name="filter.by_name">
       <segment>
         <source>filter.by_name</source>
-        <target>Filter by name</target>
+        <target>Filtrar por nombre</target>
       </segment>
     </unit>
     <unit id="jsUGqKL" name="global.byte_abbreviation">
@@ -454,103 +454,103 @@
     <unit id="U4lp2Ma" name="global.created_at">
       <segment>
         <source>global.created_at</source>
-        <target>Creation : %date%</target>
+        <target>Creado el : %date%</target>
       </segment>
     </unit>
     <unit id="ylc8ODN" name="global.updated_at">
       <segment>
         <source>global.updated_at</source>
-        <target>Last update : %date%</target>
+        <target>Última actualización : %date%</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
       <segment>
         <source>global.days.monday</source>
-        <target>Monday</target>
+        <target>Lunes</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
       <segment>
         <source>global.days.tuesday</source>
-        <target>Thuesday</target>
+        <target>Martes</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
       <segment>
         <source>global.days.wednesday</source>
-        <target>Wednesday</target>
+        <target>Miércoles</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
       <segment>
         <source>global.days.thursday</source>
-        <target>Thursday</target>
+        <target>Jueves</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
       <segment>
         <source>global.days.friday</source>
-        <target>Friday</target>
+        <target>Viernes</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
       <segment>
         <source>global.days.saturday</source>
-        <target>Saturday</target>
+        <target>Sábado</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
       <segment>
         <source>global.days.sunday</source>
-        <target>Sunday</target>
+        <target>Domingo</target>
       </segment>
     </unit>
     <unit id="T3BhL7X" name="global.entities.album">
       <segment>
         <source>global.entities.album</source>
-        <target>Album</target>
+        <target>Álbum</target>
       </segment>
     </unit>
     <unit id="YTxyJQJ" name="global.entities.collection">
       <segment>
         <source>global.entities.collection</source>
-        <target>Collection</target>
+        <target>Colección</target>
       </segment>
     </unit>
     <unit id="ecDv.KB" name="global.entities.item">
       <segment>
         <source>global.entities.item</source>
-        <target>Item</target>
+        <target>Elemento</target>
       </segment>
     </unit>
     <unit id="yt20IWO" name="global.entities.tag">
       <segment>
         <source>global.entities.tag</source>
-        <target>Tag</target>
+        <target>Etiqueta</target>
       </segment>
     </unit>
     <unit id="iFOTgZ3" name="global.entities.template">
       <segment>
         <source>global.entities.template</source>
-        <target>Template</target>
+        <target>Plantilla</target>
       </segment>
     </unit>
     <unit id="JKLodag" name="global.entities.user">
       <segment>
         <source>global.entities.user</source>
-        <target>User</target>
+        <target>Usuario</target>
       </segment>
     </unit>
     <unit id="1MevJac" name="global.entities.wish">
       <segment>
         <source>global.entities.wish</source>
-        <target>Wish</target>
+        <target>Deseado</target>
       </segment>
     </unit>
     <unit id="nFTPCfN" name="global.entities.wishlist">
       <segment>
         <source>global.entities.wishlist</source>
-        <target>Wishlist</target>
+        <target>Lista de deseos</target>
       </segment>
     </unit>
     <unit id="GV09tqG" name="global.koillection">
@@ -562,259 +562,259 @@
     <unit id="s2RK8Ci" name="global.months.january">
       <segment>
         <source>global.months.january</source>
-        <target>January</target>
+        <target>Enero</target>
       </segment>
     </unit>
     <unit id="u5P6LMj" name="global.months.february">
       <segment>
         <source>global.months.february</source>
-        <target>February</target>
+        <target>Febrero</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
       <segment>
         <source>global.months.march</source>
-        <target>March</target>
+        <target>Marzo</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
       <segment>
         <source>global.months.april</source>
-        <target>April</target>
+        <target>Abril</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
       <segment>
         <source>global.months.may</source>
-        <target>May</target>
+        <target>Mayo</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
       <segment>
         <source>global.months.june</source>
-        <target>June</target>
+        <target>Junio</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
       <segment>
         <source>global.months.july</source>
-        <target>July</target>
+        <target>Julio</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
       <segment>
         <source>global.months.august</source>
-        <target>August</target>
+        <target>Agosto</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
       <segment>
         <source>global.months.september</source>
-        <target>September</target>
+        <target>Septiembre</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
       <segment>
         <source>global.months.october</source>
-        <target>October</target>
+        <target>Octubre</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
       <segment>
         <source>global.months.november</source>
-        <target>November</target>
+        <target>Noviembre</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
       <segment>
         <source>global.months.december</source>
-        <target>December</target>
+        <target>Diciembre</target>
       </segment>
     </unit>
     <unit id="bKzhzsy" name="global.time.ago">
       <segment>
         <source>global.time.ago</source>
-        <target>%time% ago</target>
+        <target>hace %time%</target>
       </segment>
     </unit>
     <unit id="kBJEdcf" name="global.time.just_now">
       <segment>
         <source>global.time.just_now</source>
-        <target>Just now</target>
+        <target>Ahora</target>
       </segment>
     </unit>
     <unit id="S3BSG8X" name="global.time.year">
       <segment>
         <source>global.time.year</source>
-        <target>{0} %count% years| {1} %count% year| ]1,Inf[ %count% years</target>
+        <target>{0} %count% años| {1} %count% año| ]1,Inf[ %count% años</target>
       </segment>
     </unit>
     <unit id="I6EoiYa" name="global.time.month">
       <segment>
         <source>global.time.month</source>
-        <target>{0} %count% months| {1} %count% month| ]1,Inf[ %count% months</target>
+        <target>{0} %count% meses| {1} %count% mes| ]1,Inf[ %count% meses</target>
       </segment>
     </unit>
     <unit id="BXLOUij" name="global.time.week">
       <segment>
         <source>global.time.week</source>
-        <target>{0} %count% weeks| {1} %count% week| ]1,Inf[ %count% weeks</target>
+        <target>{0} %count% semanas| {1} %count% semana| ]1,Inf[ %count% semanas</target>
       </segment>
     </unit>
     <unit id="r1RqqRg" name="global.time.day">
       <segment>
         <source>global.time.day</source>
-        <target>{0} %count% days| {1} %count% day| ]1,Inf[ %count% days</target>
+        <target>{0} %count% días| {1} %count% día| ]1,Inf[ %count% días</target>
       </segment>
     </unit>
     <unit id="QeraM7P" name="global.time.hour">
       <segment>
         <source>global.time.hour</source>
-        <target>{0} %count% hours| {1} %count% hour| ]1,Inf[ %count% hours</target>
+        <target>{0} %count% horas| {1} %count% hora| ]1,Inf[ %count% horas</target>
       </segment>
     </unit>
     <unit id="UN2onP4" name="global.time.minute">
       <segment>
         <source>global.time.minute</source>
-        <target>{0} %count% minutes| {1} %count% minute| ]1,Inf[ %count% minutes</target>
+        <target>{0} %count% minutos| {1} %count% minuto| ]1,Inf[ %count% minutos</target>
       </segment>
     </unit>
     <unit id="JQSurmk" name="global.time.second">
       <segment>
         <source>global.time.second</source>
-        <target>{0} %count% seconds| {1} %count% second| ]1,Inf[ %count% seconds</target>
+        <target>{0} %count% segundos| {1} %count% segundo| ]1,Inf[ %count% segundos</target>
       </segment>
     </unit>
     <unit id="Gu6E4Ll" name="global.unknown">
       <segment>
         <source>global.unknown</source>
-        <target>Unknown</target>
+        <target>Desconocido</target>
       </segment>
     </unit>
     <unit id="fSiEIlQ" name="global.visibilities.public">
       <segment>
         <source>global.visibilities.public</source>
-        <target>Public</target>
+        <target>Público</target>
       </segment>
     </unit>
     <unit id="ky9YEBY" name="global.visibilities.private">
       <segment>
         <source>global.visibilities.private</source>
-        <target>Private</target>
+        <target>Privado</target>
       </segment>
     </unit>
     <unit id="zldXQq6" name="label.actions">
       <segment>
         <source>label.actions</source>
-        <target>Actions</target>
+        <target>Acciones</target>
       </segment>
     </unit>
     <unit id="obhh9xq" name="label.added_at">
       <segment>
         <source>label.added_at</source>
-        <target>Added at</target>
+        <target>Añadido el</target>
       </segment>
     </unit>
     <unit id="kfURNUL" name="label.album">
       <segment>
         <source>label.album</source>
-        <target>Album</target>
+        <target>Álbum</target>
       </segment>
     </unit>
     <unit id="OMwE8EU" name="label.apply_template">
       <segment>
         <source>label.apply_template</source>
-        <target>Apply a template</target>
+        <target>Aplicar plantilla</target>
       </segment>
     </unit>
     <unit id="BVAvHSW" name="label.browse">
       <segment>
         <source>label.browse</source>
-        <target>Browse</target>
+        <target>Navegar</target>
       </segment>
     </unit>
     <unit id="YQjIBl7" name="label.children_title">
       <segment>
         <source>label.children_title</source>
-        <target>Sub-collections section label</target>
+        <target>Etiqueta de Subcolección</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
       <segment>
         <source>label.collection</source>
-        <target>Collection</target>
+        <target>Colección</target>
       </segment>
     </unit>
     <unit id="Jjqrud5" name="label.collections">
       <segment>
         <source>label.collections</source>
-        <target>Collections</target>
+        <target>Colecciones</target>
       </segment>
     </unit>
     <unit id="otd2FZd" name="label.currency">
       <segment>
         <source>label.currency</source>
-        <target>Currency</target>
+        <target>Moneda</target>
       </segment>
     </unit>
     <unit id="WqTho4C" name="label.comment">
       <segment>
         <source>label.comment</source>
-        <target>Comment</target>
+        <target>Comentario</target>
       </segment>
     </unit>
     <unit id="SdQCTjI" name="label.database_name">
       <segment>
         <source>label.database_name</source>
-        <target>Database name</target>
+        <target>Nombre de la base de datos</target>
       </segment>
     </unit>
     <unit id="BMJXSQo" name="label.days">
       <segment>
         <source>label.days</source>
-        <target>Days</target>
+        <target>Días</target>
       </segment>
     </unit>
     <unit id="4cEApe1" name="label.description">
       <segment>
         <source>label.description</source>
-        <target>Description</target>
+        <target>Descripción</target>
       </segment>
     </unit>
     <unit id="p1Fs6iF" name="label.disk_space_allowed">
       <segment>
         <source>label.disk_space_allowed</source>
-        <target>Disk space allowed</target>
+        <target>Espacio en disco permitido</target>
       </segment>
     </unit>
     <unit id="Tv.rI94" name="label.disk_space_used">
       <segment>
         <source>label.disk_space_used</source>
-        <target>Disk space used</target>
+        <target>Espacio en disco usado</target>
       </segment>
     </unit>
     <unit id="D2N6_cP" name="label.email">
       <segment>
         <source>label.email</source>
-        <target>Email</target>
+        <target>Correo</target>
       </segment>
     </unit>
     <unit id="0n2CBIS" name="label.event">
       <segment>
         <source>label.event</source>
-        <target>Event</target>
+        <target>Evento</target>
       </segment>
     </unit>
     <unit id="bYyoqn6" name="label.fields">
       <segment>
         <source>label.fields</source>
-        <target>Fields</target>
+        <target>Campos</target>
       </segment>
     </unit>
     <unit id="zq.Isv9" name="label.host">
       <segment>
         <source>label.host</source>
-        <target>Host</target>
+        <target>Servidor</target>
       </segment>
     </unit>
     <unit id="txRonia" name="label.id">
@@ -826,73 +826,73 @@
     <unit id="rapb2ag" name="label.image">
       <segment>
         <source>label.image</source>
-        <target>Image</target>
+        <target>Imagen</target>
       </segment>
     </unit>
     <unit id="zfmgf2l" name="label.items">
       <segment>
         <source>label.items</source>
-        <target>Items</target>
+        <target>Elementos</target>
       </segment>
     </unit>
     <unit id="frik1CZ" name="label.items_title">
       <segment>
         <source>label.items_title</source>
-        <target>Items section label</target>
+        <target>Etiqueta de elementos</target>
       </segment>
     </unit>
     <unit id="Kp3d.qQ" name="label.label">
       <segment>
         <source>label.label</source>
-        <target>Label</target>
+        <target>Etiqueta</target>
       </segment>
     </unit>
     <unit id="vMjoUw7" name="label.last_date_of_activity">
       <segment>
         <source>label.last_date_of_activity</source>
-        <target>Last activity</target>
+        <target>Última actividad</target>
       </segment>
     </unit>
     <unit id="Az510BV" name="label.loan_duration">
       <segment>
         <source>label.loan_duration</source>
-        <target>Loan duration</target>
+        <target>Duración del préstamo</target>
       </segment>
     </unit>
     <unit id="EWnP8ZQ" name="label.loaned_ago">
       <segment>
         <source>label.loaned_ago</source>
-        <target>Ago</target>
+        <target>Hace</target>
       </segment>
     </unit>
     <unit id="2ZgbVvL" name="label.loaned_at">
       <segment>
         <source>label.loaned_at</source>
-        <target>Date</target>
+        <target>Fecha</target>
       </segment>
     </unit>
     <unit id="lYyKRwZ" name="label.loaned_to">
       <segment>
         <source>label.loaned_to</source>
-        <target>To</target>
+        <target>A</target>
       </segment>
     </unit>
     <unit id="WwKLHxh" name="label.logged_at">
       <segment>
         <source>label.logged_at</source>
-        <target>Date</target>
+        <target>Fecha</target>
       </segment>
     </unit>
     <unit id="ZAtrhtu" name="label.login">
       <segment>
         <source>label.login</source>
-        <target>Username or email</target>
+        <target>Usuario o correo</target>
       </segment>
     </unit>
     <unit id="ysOvPSq" name="label.name">
       <segment>
         <source>label.name</source>
-        <target>Name</target>
+        <target>Nombre</target>
       </segment>
     </unit>
     <unit id="M1E9Lfi" name="label.new_data">
