@@ -2698,511 +2698,517 @@
     <unit id="G97C3_o" name="global.entities.tag_category">
       <segment>
         <source>global.entities.tag_category</source>
-        <target>Tag category</target>
+        <target>Categoría de etiqueta</target>
       </segment>
     </unit>
     <unit id="vg07kkR" name="message.tag_category_edited">
       <segment>
         <source>message.tag_category_edited</source>
-        <target>Tag category %category% has been updated</target>
+        <target>La categoría de etiqueta %category% ha sido actualizada</target>
       </segment>
     </unit>
     <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
       <segment>
         <source>breadcrumb.edit_tag_category</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="4z_wk_J" name="title.edit_tag_category">
       <segment>
         <source>title.edit_tag_category</source>
-        <target>Edit tag category %category%</target>
+        <target>Editar categoría de etiqueta %category%</target>
       </segment>
     </unit>
     <unit id="p4z8GI6" name="title.edit_tag">
       <segment>
         <source>title.edit_tag</source>
-        <target>Edit tag %tag%</target>
+        <target>Editar etiqueta %tag%</target>
       </segment>
     </unit>
     <unit id="k7MJQ82" name="label.country">
       <segment>
         <source>label.country</source>
-        <target>Country</target>
+        <target>País</target>
+      </segment>
+    </unit>
+    <unit id="RjehIwh" name="global.locale.en-GB">
+      <segment>
+        <source>global.locale.es-ES</source>
+        <target>Español</target>
       </segment>
     </unit>
     <unit id="TjepIwh" name="global.locale.en-GB">
       <segment>
         <source>global.locale.en-GB</source>
-        <target>English</target>
+        <target>Inglés</target>
       </segment>
     </unit>
     <unit id="Acw13X3" name="global.locale.fr-FR">
       <segment>
         <source>global.locale.fr-FR</source>
-        <target>Français</target>
+        <target>Francés</target>
       </segment>
     </unit>
     <unit id="I4vwwju" name="title.overview">
       <segment>
         <source>title.overview</source>
-        <target>Overview</target>
+        <target>Vista general</target>
       </segment>
     </unit>
     <unit id="U8IBiON" name="menu.overview">
       <segment>
         <source>menu.overview</source>
-        <target>Overview</target>
+        <target>Vista general</target>
       </segment>
     </unit>
     <unit id="_wv_IKT" name="title.config">
       <segment>
         <source>title.config</source>
-        <target>Configuration</target>
+        <target>Configuración</target>
       </segment>
     </unit>
     <unit id="fGUHPE5" name="label.php_version">
       <segment>
         <source>label.php_version</source>
-        <target>PHP version</target>
+        <target>Versión PHP</target>
       </segment>
     </unit>
     <unit id="9qQ81pM" name="label.is_opcache_available">
       <segment>
         <source>label.is_opcache_available</source>
-        <target>Opcache enabled</target>
+        <target>¿Opcache está activo?</target>
       </segment>
     </unit>
     <unit id="335X_OI" name="tab.overview">
       <segment>
         <source>tab.overview</source>
-        <target>Overview</target>
+        <target>Vista general</target>
       </segment>
     </unit>
     <unit id="nWdqGKI" name="label.symfony_version">
       <segment>
         <source>label.symfony_version</source>
-        <target>Symfony version</target>
+        <target>Versión de Symfony</target>
       </segment>
     </unit>
     <unit id="domeXiF" name="title.edit_album">
       <segment>
         <source>title.edit_album</source>
-        <target>Edit album %title%</target>
+        <target>Editar álbum %title%</target>
       </segment>
     </unit>
     <unit id="YklQlf8" name="btn.show_more">
       <segment>
         <source>btn.show_more</source>
-        <target>Show more (%count%)</target>
+        <target>Mostrar más (%count%)</target>
       </segment>
     </unit>
     <unit id="zOA0UTD" name="btn.show_less">
       <segment>
         <source>btn.show_less</source>
-        <target>Show less</target>
+        <target>Mostrar menos</target>
       </segment>
     </unit>
     <unit id="mEDsKHk" name="label.locale">
       <segment>
         <source>label.locale</source>
-        <target>Locale</target>
+        <target>Lugar</target>
       </segment>
     </unit>
     <unit id="ryRhoHH" name="title.album_children">
       <segment>
         <source>title.album_children</source>
-        <target>Sub-album</target>
+        <target>Subálbum</target>
       </segment>
     </unit>
     <unit id="d3LXAOu" name="tooltip.add_tag_category">
       <segment>
         <source>tooltip.add_tag_category</source>
-        <target>Add a new tag category</target>
+        <target>Añadir nueva categoría de etiqueta</target>
       </segment>
     </unit>
     <unit id="7SH9MME" name="tooltip.manage_tag_categories">
       <segment>
         <source>tooltip.manage_tag_categories</source>
-        <target>Manage tag categories</target>
+        <target>Organizar categorías de etiquetas</target>
       </segment>
     </unit>
     <unit id="FA5XLbh" name="enum.history_filter_class.collection">
       <segment>
         <source>enum.history_filter_class.collection</source>
-        <target>Collection</target>
+        <target>Colecciones</target>
       </segment>
     </unit>
     <unit id=".s91X7z" name="enum.history_filter_class.item">
       <segment>
         <source>enum.history_filter_class.item</source>
-        <target>Item</target>
+        <target>Elementos</target>
       </segment>
     </unit>
     <unit id="Bbv77ja" name="enum.history_filter_class.tag">
       <segment>
         <source>enum.history_filter_class.tag</source>
-        <target>Tag</target>
+        <target>Etiquetados</target>
       </segment>
     </unit>
     <unit id="XKMAo1i" name="enum.history_filter_type.create">
       <segment>
         <source>enum.history_filter_type.create</source>
-        <target>Create</target>
+        <target>Creados</target>
       </segment>
     </unit>
     <unit id="4AoD3Gf" name="enum.history_filter_type.delete">
       <segment>
         <source>enum.history_filter_type.delete</source>
-        <target>Delete</target>
+        <target>Eliminados</target>
       </segment>
     </unit>
     <unit id="2j7vQYy" name="breadcrumb.history_album">
       <segment>
         <source>breadcrumb.history_album</source>
-        <target>History</target>
+        <target>Histórico</target>
       </segment>
     </unit>
     <unit id="v31H5lC" name="log.album.created">
       <segment>
         <source>log.album.created</source>
-        <target>Album %label% was created</target>
+        <target>El álbum %label% fue creado</target>
       </segment>
     </unit>
     <unit id="tCaXH8D" name="enum.history_filter_class.album">
       <segment>
         <source>enum.history_filter_class.album</source>
-        <target>Album</target>
+        <target>Álbum</target>
       </segment>
     </unit>
     <unit id="CHK7Dzf" name="enum.history_filter_class.wishlist">
       <segment>
         <source>enum.history_filter_class.wishlist</source>
-        <target>Wishlist</target>
+        <target>Lista de deseo</target>
       </segment>
     </unit>
     <unit id="SBtfHBi" name="log.album.deleted">
       <segment>
         <source>log.album.deleted</source>
-        <target>Album %label% was deleted</target>
+        <target>El álbum %label% fue eliminado</target>
       </segment>
     </unit>
     <unit id="su92SFL" name="log.wishlist.deleted">
       <segment>
         <source>log.wishlist.deleted</source>
-        <target>Wishlist %label% was deleted</target>
+        <target>La lista de deseos %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="HJFRPmK" name="breadcrumb.history_wishlist">
       <segment>
         <source>breadcrumb.history_wishlist</source>
-        <target>History</target>
+        <target>Histórico</target>
       </segment>
     </unit>
     <unit id="GBK.flU" name="log.wishlist.created">
       <segment>
         <source>log.wishlist.created</source>
-        <target>Wishlist %label% was created</target>
+        <target>La lista de deseos %label% fue creada</target>
       </segment>
     </unit>
     <unit id="GXrTvzK" name="label.albums">
       <segment>
         <source>label.albums</source>
-        <target>Albums</target>
+        <target>Álbums</target>
       </segment>
     </unit>
     <unit id="Gki98oO" name="title.albums">
       <segment>
         <source>title.albums</source>
-        <target>Albums</target>
+        <target>Álbums</target>
       </segment>
     </unit>
     <unit id="ZtbL6rD" name="title.wishlists">
       <segment>
         <source>title.wishlists</source>
-        <target>Wishlists</target>
+        <target>Listas de deseos</target>
       </segment>
     </unit>
     <unit id="uKZb2q3" name="btn.regenerate_thumbnails">
       <segment>
         <source>btn.regenerate_thumbnails</source>
-        <target>Regenerate thumbnails</target>
+        <target>Regenerar las miniaturas</target>
       </segment>
     </unit>
     <unit id="OswwPau" name="message.thumbnails_regenerated">
       <segment>
         <source>message.thumbnails_regenerated</source>
-        <target>{0} %count% thumbnails regenerated| {1} %count% thumbnail regenerated| ]1,Inf[ %count% thumbnails regenerated</target>
+        <target>{0} %count% miniaturas generadas| {1} %count% miniatura generada| ]1,Inf[ %count% miniaturas generadas</target>
       </segment>
     </unit>
     <unit id="5l_KSLb" name="btn.add_text">
       <segment>
         <source>btn.add_text</source>
-        <target>Text</target>
+        <target>Texto</target>
       </segment>
     </unit>
     <unit id="FD827k7" name="btn.add_country">
       <segment>
         <source>btn.add_country</source>
-        <target>Country</target>
+        <target>País</target>
       </segment>
     </unit>
     <unit id="ixrxzme" name="label.add_field">
       <segment>
         <source>label.add_field</source>
-        <target>Add field :</target>
+        <target>Añadir campo:</target>
       </segment>
     </unit>
     <unit id="7s.6nrQ" name="btn.add_image">
       <segment>
         <source>btn.add_image</source>
-        <target>Image</target>
+        <target>Imagen</target>
       </segment>
     </unit>
     <unit id="zCTHmk." name="btn.add_sign">
       <segment>
         <source>btn.add_sign</source>
-        <target>Signature</target>
+        <target>Firma</target>
       </segment>
     </unit>
     <unit id=".hornAL" name="log.item.file_removed">
       <segment>
         <source>log.item.file_removed</source>
-        <target>File %label% was removed</target>
+        <target>El archivo %label% fue eliminado</target>
       </segment>
     </unit>
     <unit id="zpORTk0" name="log.item.file_added">
       <segment>
         <source>log.item.file_added</source>
-        <target>File %label% was added</target>
+        <target>El archivo %label% fue añadido</target>
       </segment>
     </unit>
     <unit id="1bwI2L." name="btn.add_file">
       <segment>
         <source>btn.add_file</source>
-        <target>File</target>
+        <target>Archivo</target>
       </segment>
     </unit>
     <unit id="fQNztng" name="title.update_features">
       <segment>
         <source>title.update_features</source>
-        <target>Edit active features</target>
+        <target>Editar características activas</target>
       </segment>
     </unit>
     <unit id="Qo7wr5F" name="label.wishlists_feature_enabled">
       <segment>
         <source>label.wishlists_feature_enabled</source>
-        <target>Wishlists</target>
+        <target>Listas de deseos</target>
       </segment>
     </unit>
     <unit id="d7dTHZ." name="label.tags_feature_enabled">
       <segment>
         <source>label.tags_feature_enabled</source>
-        <target>Tags</target>
+        <target>Etiquetas</target>
       </segment>
     </unit>
     <unit id="5g5Fm08" name="label.signs_feature_enabled">
       <segment>
         <source>label.signs_feature_enabled</source>
-        <target>Signatures</target>
+        <target>Firmas</target>
       </segment>
     </unit>
     <unit id="VDd2HS6" name="label.albums_feature_enabled">
       <segment>
         <source>label.albums_feature_enabled</source>
-        <target>Albums</target>
+        <target>Álbums</target>
       </segment>
     </unit>
     <unit id="hE9F5PK" name="label.loans_feature_enabled">
       <segment>
         <source>label.loans_feature_enabled</source>
-        <target>Loans</target>
+        <target>Préstamos</target>
       </segment>
     </unit>
     <unit id="_HAg.fc" name="label.templates_feature_enabled">
       <segment>
         <source>label.templates_feature_enabled</source>
-        <target>Templates</target>
+        <target>Plantillas</target>
       </segment>
     </unit>
     <unit id="FfhJCxR" name="label.history_feature_enabled">
       <segment>
         <source>label.history_feature_enabled</source>
-        <target>History</target>
+        <target>Histórico</target>
       </segment>
     </unit>
     <unit id="_G1H7r2" name="label.statistics_feature_enabled">
       <segment>
         <source>label.statistics_feature_enabled</source>
-        <target>Statistics</target>
+        <target>Estadísticas</target>
       </segment>
     </unit>
     <unit id="I0M_1B7" name="label.dark_mode_enabled">
       <segment>
         <source>label.dark_mode_enabled</source>
-        <target>Permanent dark mode</target>
+        <target>Modo oscuro permanente</target>
       </segment>
     </unit>
     <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
       <segment>
         <source>label.automatic_dark_mode_start_at</source>
-        <target>Automatic dark mode start time</target>
+        <target>Inicio modo oscuro automático</target>
       </segment>
     </unit>
     <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
       <segment>
         <source>label.automatic_dark_mode_end_at</source>
-        <target>Automatic dark mode end time</target>
+        <target>Finalización modo oscuro automático</target>
       </segment>
     </unit>
     <unit id="4UTsL.X" name="menu.settings">
       <segment>
         <source>menu.settings</source>
-        <target>Settings</target>
+        <target>Opciones</target>
       </segment>
     </unit>
     <unit id="9dYyUYD" name="title.update_visibility">
       <segment>
         <source>title.update_visibility</source>
-        <target>Edit visibility</target>
+        <target>Editar visibilidad</target>
       </segment>
     </unit>
     <unit id="JA.9t2S" name="title.update_dark_mode">
       <segment>
         <source>title.update_dark_mode</source>
-        <target>Edit dark mode</target>
+        <target>Editar modo oscuro</target>
       </segment>
     </unit>
     <unit id="B0loISu" name="label.remember_me">
       <segment>
         <source>label.remember_me</source>
-        <target>Keep me logged in</target>
+        <target>Mantener la conexión</target>
       </segment>
     </unit>
     <unit id="eqnKfFG" name="label.outdated_release">
       <segment>
         <source>label.outdated_release</source>
-        <target>Version %release% is available</target>
+        <target>Está disponible la versión %release%</target>
       </segment>
     </unit>
     <unit id="EvNVLVb" name="label.required_php_version">
       <segment>
         <source>label.required_php_version</source>
-        <target>PHP %version% is required</target>
+        <target>Se requiere la versión PHP %version%</target>
       </segment>
     </unit>
     <unit id="J1HjVfO" name="label.up_to_date_release">
       <segment>
         <source>label.up_to_date_release</source>
-        <target>The latest version is installed</target>
+        <target>Está instalada la última versión</target>
       </segment>
     </unit>
     <unit id="otAT7D6" name="btn.add_date">
       <segment>
         <source>btn.add_date</source>
-        <target>Date</target>
+        <target>Añadir fecha</target>
       </segment>
     </unit>
     <unit id="H1qEi4d" name="label.date">
       <segment>
         <source>label.date</source>
-        <target>Date</target>
+        <target>Fecha</target>
       </segment>
     </unit>
     <unit id="YkTUtk1" name="label.file">
       <segment>
         <source>label.file</source>
-        <target>File</target>
+        <target>Archivo</target>
       </segment>
     </unit>
     <unit id="QJMsz.z" name="counter.without_number.albums">
       <segment>
         <source>counter.without_number.albums</source>
-        <target>{0} albums| {1} album| ]1,Inf[ albums</target>
+        <target>{0} álbums| {1} álbum| ]1,Inf[álbums</target>
       </segment>
     </unit>
     <unit id="YKRNql5" name="counter.without_number.photos">
       <segment>
         <source>counter.without_number.photos</source>
-        <target>{0} photos| {1} photo| ]1,Inf[ photos</target>
+        <target>{0} fotos| {1} foto| ]1,Inf[ fotos</target>
       </segment>
     </unit>
     <unit id="e9psgbF" name="counter.signs">
       <segment>
         <source>counter.signs</source>
-        <target>{0} %count% signatures| {1} %count% signature| ]1,Inf[ %count% signatures</target>
+        <target>{0} %count% firmas| {1} %count% firma| ]1,Inf[ %count% sigfirmasnatures</target>
       </segment>
     </unit>
     <unit id="aCCqbt1" name="counter.without_number.signs">
       <segment>
         <source>counter.without_number.signs</source>
-        <target>{0} signatures| {1} signature| ]1,Inf[ signatures</target>
+        <target>{0} firmas| {1} firma| ]1,Inf[ firmas</target>
       </segment>
     </unit>
     <unit id="ME6A6U0" name="title.related_items">
       <segment>
         <source>title.related_items</source>
-        <target>Related items</target>
+        <target>Elementos relacionados</target>
       </segment>
     </unit>
     <unit id="BgCxgOK" name="label.related_items">
       <segment>
         <source>label.related_items</source>
-        <target>Add a related item</target>
+        <target>Añadir un elemento relacionado</target>
       </segment>
     </unit>
     <unit id="Q14jRAj" name="label.list_related_items">
       <segment>
         <source>label.list_related_items</source>
-        <target>Related items</target>
+        <target>Elementos relacionados</target>
       </segment>
     </unit>
     <unit id="dk8szaV" name="error.user_not_enabled">
       <segment>
         <source>error.user_not_enabled</source>
-        <target>User not activated</target>
+        <target>Usuario no activado</target>
       </segment>
     </unit>
     <unit id="mq9AusA" name="btn.add_rating">
       <segment>
         <source>btn.add_rating</source>
-        <target>Rating</target>
+        <target>Valoración</target>
       </segment>
     </unit>
     <unit id="a9S54qV" name="message.delete.user">
       <segment>
         <source>message.delete.user</source>
-        <target>Are you sure you want to delete this user ? It will be permanently lost...</target>
+        <target>¿Seguro que quieres borrar el usuario? Esta acción no se puede deshacer.</target>
       </segment>
     </unit>
     <unit id="vQn6zq6" name="label.rating">
       <segment>
         <source>label.rating</source>
-        <target>Rating</target>
+        <target>Valoración</target>
       </segment>
     </unit>
     <unit id="9qoa5sq" name="btn.add_number">
       <segment>
         <source>btn.add_number</source>
-        <target>Number</target>
+        <target>Añadir número</target>
       </segment>
     </unit>
     <unit id="An82xs4" name="label.number">
       <segment>
         <source>label.number</source>
-        <target>Number</target>
+        <target>Numérico</target>
       </segment>
     </unit>
     <unit id="D0soZ23" name="btn.add_field">
       <segment>
         <source>btn.add_field</source>
-        <target>Add a field</target>
+        <target>Añadir un campo</target>
       </segment>
     </unit>
     <unit id="Ljs97etT" name="global.visibilities.internal">
       <segment>
         <source>global.visibilities.internal</source>
-        <target>Internal</target>
+        <target>Interna</target>
       </segment>
     </unit>
     <unit id="s9A621q" name="label.space_used_by_user">
