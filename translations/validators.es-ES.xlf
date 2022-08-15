@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
-  <file id="validators.en-GB">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="es-ES" trgLang="es-ES">
+  <file id="validators.es-ES">
     <unit id="7OcgSlg" name="error.email.not_unique">
         <segment>
         <source>error.email.not_unique</source>
