@@ -1,274 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
-  <file id="messages.en-GB">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="es-ES" trgLang="es-ES">
+  <file id="messages.es-ES">
     <unit id="1d_kHPL" name="about.welcome">
       <segment>
         <source>about.welcome</source>
-        <target>Welcome to Koillection !</target>
+        <target>¡Bienvenidos a Koillection!</target>
       </segment>
     </unit>
     <unit id="8g43J_h" name="about.desc">
       <segment>
         <source>about.desc</source>
-        <target>Koillection is a simple tool that helps you to organize any kind of collections you want. Just create a new collection and add your items.</target>
+        <target>Koillection es una herramienta sencilla que te ayuda a organizar cualquier tipo de colección. Solo tienes que crear una colección y añadir tus elementos.</target>
       </segment>
     </unit>
     <unit id="Ht9zIf1" name="about.why">
       <segment>
         <source>about.why</source>
-        <target>Why Koillection ?</target>
+        <target>¿Por qué Koillection?</target>
       </segment>
     </unit>
     <unit id="_YEIYeX" name="about.why_1">
       <segment>
         <source>about.why_1</source>
-        <target>You can organize any type of collections you want</target>
+        <target>Puedes organizar cualquier tipo de colección que quieras</target>
       </segment>
     </unit>
     <unit id="1k3cEa1" name="about.why_2">
       <segment>
         <source>about.why_2</source>
-        <target>Your collection is private</target>
+        <target>Tu colección es privada</target>
       </segment>
     </unit>
     <unit id="3qAAKnj" name="about.why_3">
       <segment>
         <source>about.why_3</source>
-        <target>You are free to add informations on your items</target>
+        <target>Eres libre de añadir la información necesaria a tus elementos</target>
       </segment>
     </unit>
     <unit id="4pZSUFq" name="about.why_4">
       <segment>
         <source>about.why_4</source>
-        <target>A tag system is available to quickly find related items</target>
+        <target>Con un sistema de etiquetas para encontrar elementos relacionados fácilmente</target>
       </segment>
     </unit>
     <unit id="SZRa31V" name="aria.album">
       <segment>
         <source>aria.album</source>
-        <target>Album %title%</target>
+        <target>Álbum %title%</target>
       </segment>
     </unit>
     <unit id="pxzFuuC" name="aria.breadcrumb">
       <segment>
         <source>aria.breadcrumb</source>
-        <target>Breadcrumb %label%</target>
+        <target>Localización %label%</target>
       </segment>
     </unit>
     <unit id="aN._RWq" name="aria.collection">
       <segment>
         <source>aria.collection</source>
-        <target>Collection %title%</target>
+        <target>Colección %title%</target>
       </segment>
     </unit>
     <unit id=".OfBwZP" name="aria.datum_image_thumbnail">
       <segment>
         <source>aria.datum_image_thumbnail</source>
-        <target>Datum thumbnail</target>
+        <target>Dato de miniatura</target>
       </segment>
     </unit>
     <unit id="eJUcXot" name="aria.datum_sign_thumbnail">
       <segment>
         <source>aria.datum_sign_thumbnail</source>
-        <target>Signature %label% thumbnail</target>
+        <target>Firma miniatura %label%</target>
       </segment>
     </unit>
     <unit id="kwGqXUG" name="aria.default_image">
       <segment>
         <source>aria.default_image</source>
-        <target>Default image</target>
+        <target>Imagen por defecto</target>
       </segment>
     </unit>
     <unit id="Qy2wfS4" name="aria.flag.en">
       <segment>
         <source>aria.flag.en</source>
-        <target>English flag</target>
+        <target>Bandera Inglés</target>
       </segment>
     </unit>
     <unit id="ZCafVrG" name="aria.flag.fr">
       <segment>
         <source>aria.flag.fr</source>
-        <target>French flag</target>
+        <target>Bandera Francés</target>
+      </segment>
+    </unit>
+    <unit id="ZwafdrG" name="aria.flag.es">
+      <segment>
+        <source>aria.flag.es</source>
+        <target>Bandera Español</target>
       </segment>
     </unit>
     <unit id="gCqy_VQ" name="aria.item_image_thumbnail">
       <segment>
         <source>aria.item_image_thumbnail</source>
-        <target>Item %name% %label% thumbnail</target>
+        <target>Miniatura del elemento %name% %label%</target>
       </segment>
     </unit>
     <unit id="BedkqjF" name="aria.item_main_image">
       <segment>
         <source>aria.item_main_image</source>
-        <target>Item %name% main image</target>
+        <target>Elemento %name% imagen principal</target>
       </segment>
     </unit>
     <unit id="FyeUYLH" name="aria.item_main_image_thumbnail">
       <segment>
         <source>aria.item_main_image_thumbnail</source>
-        <target>Item %name% main image thumbnail</target>
+        <target>Elemento %name% miniatura imagen principal</target>
       </segment>
     </unit>
     <unit id="v1JlplL" name="aria.item">
       <segment>
         <source>aria.item</source>
-        <target>Item %name%</target>
+        <target>Elemento %name%</target>
       </segment>
     </unit>
     <unit id="IMD9Qu2" name="aria.photo">
       <segment>
         <source>aria.photo</source>
-        <target>Photo %title%</target>
+        <target>Foto %title%</target>
       </segment>
     </unit>
     <unit id="MMzqfRq" name="aria.tag">
       <segment>
         <source>aria.tag</source>
-        <target>Tag %label%</target>
+        <target>Etiqueta %label%</target>
       </segment>
     </unit>
     <unit id="3sffOSc" name="aria.tag_thumbnail">
       <segment>
         <source>aria.tag_thumbnail</source>
-        <target>Tag %label% thumbnail</target>
+        <target>Miniuatura de etiqueta %label%</target>
       </segment>
     </unit>
     <unit id="dhdFWBS" name="aria.wishlist">
       <segment>
         <source>aria.wishlist</source>
-        <target>Wishlist %name%</target>
+        <target>Lista de deseos %name%</target>
       </segment>
     </unit>
     <unit id="3nGLdcL" name="aria.wish_thumbnail">
       <segment>
         <source>aria.wish_thumbnail</source>
-        <target>Wish %name% thumbnail</target>
+        <target>Miniatura de deseos %name%</target>
       </segment>
     </unit>
     <unit id="ZS8DP_P" name="breadcrumb.add_album">
       <segment>
         <source>breadcrumb.add_album</source>
-        <target>Add a new album</target>
+        <target>Añadir nuevo álbum</target>
       </segment>
     </unit>
     <unit id="BgP_6X7" name="breadcrumb.add_collection">
       <segment>
         <source>breadcrumb.add_collection</source>
-        <target>Add a new collection</target>
+        <target>Añadir nueva colección</target>
       </segment>
     </unit>
     <unit id="QP9HnQT" name="breadcrumb.add_item">
       <segment>
         <source>breadcrumb.add_item</source>
-        <target>Add a new item</target>
+        <target>Añadir nuevo elemento</target>
       </segment>
     </unit>
     <unit id="HN3MXIl" name="breadcrumb.add_photo">
       <segment>
         <source>breadcrumb.add_photo</source>
-        <target>Add a new photo</target>
+        <target>Añadir nueva foto</target>
       </segment>
     </unit>
     <unit id="TsOMFfZ" name="breadcrumb.add_template">
       <segment>
         <source>breadcrumb.add_template</source>
-        <target>Create a new template</target>
+        <target>Crear una nueva plantilla</target>
       </segment>
     </unit>
     <unit id="1tk3BkL" name="breadcrumb.add_wish">
       <segment>
         <source>breadcrumb.add_wish</source>
-        <target>Add a new wish</target>
+        <target>Añadir nuevo deseado</target>
       </segment>
     </unit>
     <unit id="MeiAPvl" name="breadcrumb.add_wishlist">
       <segment>
         <source>breadcrumb.add_wishlist</source>
-        <target>Add a new wishlist</target>
+        <target>Añadir nueva lista de deseos</target>
       </segment>
     </unit>
     <unit id="wsZg2PB" name="breadcrumb.batch_tagging">
       <segment>
         <source>breadcrumb.batch_tagging</source>
-        <target>Batch tagging</target>
+        <target>Etiquetado en lote</target>
       </segment>
     </unit>
     <unit id="FBXvLM8" name="breadcrumb.edit_album">
       <segment>
         <source>breadcrumb.edit_album</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="4FXosb_" name="breadcrumb.edit_collection">
       <segment>
         <source>breadcrumb.edit_collection</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="dQjPnaL" name="breadcrumb.edit_template">
       <segment>
         <source>breadcrumb.edit_template</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="wJbJaxc" name="breadcrumb.edit_item">
       <segment>
         <source>breadcrumb.edit_item</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="sARt1zq" name="breadcrumb.edit_photo">
       <segment>
         <source>breadcrumb.edit_photo</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="YAIWLja" name="breadcrumb.edit_tag">
       <segment>
         <source>breadcrumb.edit_tag</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="MK15Ex5" name="breadcrumb.edit_wish">
       <segment>
         <source>breadcrumb.edit_wish</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="bzp39NU" name="breadcrumb.edit_wishlist">
       <segment>
         <source>breadcrumb.edit_wishlist</source>
-        <target>Edit</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="hNB8Xw0" name="breadcrumb.history_collection">
       <segment>
         <source>breadcrumb.history_collection</source>
-        <target>History</target>
+        <target>Histórico</target>
       </segment>
     </unit>
     <unit id="1ruRfsb" name="breadcrumb.history_item">
       <segment>
         <source>breadcrumb.history_item</source>
-        <target>History</target>
+        <target>Histórico</target>
       </segment>
     </unit>
     <unit id="Pnd0n71" name="breadcrumb.history_tag">
       <segment>
         <source>breadcrumb.history_tag</source>
-        <target>History</target>
+        <target>Histórico</target>
       </segment>
     </unit>
     <unit id="eG2_sfn" name="breadcrumb.items_collection">
       <segment>
         <source>breadcrumb.items_collection</source>
-        <target>Items</target>
+        <target>Elementos</target>
       </segment>
     </unit>
     <unit id="ERFTL0f" name="breadcrumb.lend_item">
       <segment>
         <source>breadcrumb.lend_item</source>
-        <target>Lend</target>
+        <target>Prestados</target>
       </segment>
     </unit>
     <unit id="uAfIh0u" name="btn.apply_common_fields">
