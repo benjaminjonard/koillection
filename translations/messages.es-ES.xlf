@@ -1270,133 +1270,133 @@
     <unit id="tk6udpx" name="menu.statistics_shared">
       <segment>
         <source>menu.statistics_shared</source>
-        <target>%username%'s statistics</target>
+        <target>Estadísticas de %username%</target>
       </segment>
     </unit>
     <unit id="yo4f8Kh" name="menu.tags">
       <segment>
         <source>menu.tags</source>
-        <target>Tags</target>
+        <target>Etiquetas</target>
       </segment>
     </unit>
     <unit id="xLcWFGm" name="menu.tags_shared">
       <segment>
         <source>menu.tags_shared</source>
-        <target>%username%'s tags</target>
+        <target>Etiquetas de %username%</target>
       </segment>
     </unit>
     <unit id="kXYXu7R" name="menu.templates">
       <segment>
         <source>menu.templates</source>
-        <target>Templates</target>
+        <target>Plantillas</target>
       </segment>
     </unit>
     <unit id="iaYlgE1" name="menu.wishlists">
       <segment>
         <source>menu.wishlists</source>
-        <target>Wishlists</target>
+        <target>Listas de deseos</target>
       </segment>
     </unit>
     <unit id="vd.6dAz" name="menu.wishlists_shared">
       <segment>
         <source>menu.wishlists_shared</source>
-        <target>%username%'s wishlists</target>
+        <target>Listas de deseos de %username%</target>
       </segment>
     </unit>
     <unit id="ls5sYo8" name="message.album_added">
       <segment>
         <source>message.album_added</source>
-        <target>Album %album% has been added</target>
+        <target>El álbum %album% ha sido añadido</target>
       </segment>
     </unit>
     <unit id="oawVfJJ" name="message.album_deleted">
       <segment>
         <source>message.album_deleted</source>
-        <target>Album %album% has been deleted</target>
+        <target>El álbum %album% ha sido eliminado</target>
       </segment>
     </unit>
     <unit id="0lwPpH7" name="message.album_edited">
       <segment>
         <source>message.album_edited</source>
-        <target>Album %album% has been updated</target>
+        <target>El álbum %album% ha sido actualizado</target>
       </segment>
     </unit>
     <unit id="_sN4yvV" name="message.collection_added">
       <segment>
         <source>message.collection_added</source>
-        <target>Collection %collection% has been added</target>
+        <target>La Colección %collection% ha sido añadida</target>
       </segment>
     </unit>
     <unit id="m3B26dq" name="message.collection_deleted">
       <segment>
         <source>message.collection_deleted</source>
-        <target>Collection %collection% has been deleted</target>
+        <target>La Colección %collection% ha sido eliminada</target>
       </segment>
     </unit>
     <unit id="p.bp_UN" name="message.collection_edited">
       <segment>
         <source>message.collection_edited</source>
-        <target>Collection %collection% has been updated</target>
+        <target>La Colección %collection% ha sido actualizada</target>
       </segment>
     </unit>
     <unit id="LYZR0u." name="message.done">
       <segment>
         <source>message.done</source>
-        <target>Done</target>
+        <target>Hecho</target>
       </segment>
     </unit>
     <unit id="1y_BRyd" name="message.entity_is_private">
       <segment>
         <source>message.entity_is_private</source>
-        <target>This page is set to private, you can't share it.</target>
+        <target>Esta página está configurada como privada, no puedes compartirla.</target>
       </segment>
     </unit>
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment>
         <source>message.items_tagged</source>
-        <target>{0} %count% items tagged| {1} %count% item tagged| ]1,Inf[ %count% items tagged</target>
+        <target>{0} %count% elementos etiquetados| {1} %count% elemento etiquetado| ]1,Inf[ %count% elementos etiquetados</target>
       </segment>
     </unit>
     <unit id="TMGiC1d" name="message.item_added">
       <segment>
         <source>message.item_added</source>
-        <target>Item %item% has been added</target>
+        <target>El elemento %item% ha sido añadido</target>
       </segment>
     </unit>
     <unit id="HgYxNo9" name="message.item_deleted">
       <segment>
         <source>message.item_deleted</source>
-        <target>Item %item% has been deleted</target>
+        <target>El elemento %item% ha sido eliminado</target>
       </segment>
     </unit>
     <unit id="UGVMo0W" name="message.item_edited">
       <segment>
         <source>message.item_edited</source>
-        <target>Item %item% has been updated</target>
+        <target>El elemento %item% ha sido actualizado</target>
       </segment>
     </unit>
     <unit id="FlBhKyx" name="message.loan_canceled">
       <segment>
         <source>message.loan_canceled</source>
-        <target>Item %item% loan has been canceled</target>
+        <target>El elemento %item% prestado ha sido cancelado</target>
       </segment>
     </unit>
     <unit id="AT9p7pU" name="message.loan">
       <segment>
         <source>message.loan</source>
-        <target>Item %item% is now marked as loaned</target>
+        <target>El elemento %item% se ha marcado como prestado</target>
       </segment>
     </unit>
     <unit id="zkp2rxS" name="message.item_returned">
       <segment>
         <source>message.item_returned</source>
-        <target>Item %item% is now mark as returned</target>
+        <target>El elemento %item% se ha marcado como devuelto</target>
       </segment>
     </unit>
     <unit id="lohoxDU" name="message.parameters_updated">
       <segment>
         <source>message.parameters_updated</source>
-        <target>Your parameters has been sucessfully updated</target>
+        <target>Tu configuración ha sido actualizada correctamente</target>
       </segment>
     </unit>
     <unit id="n5rS9vY" name="message.photo_added">
