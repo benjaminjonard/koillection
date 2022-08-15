@@ -3208,313 +3208,313 @@
     <unit id="s9A621q" name="label.space_used_by_user">
       <segment>
         <source>label.space_used_by_user</source>
-        <target>Total space used by user</target>
+        <target>Espacio total usado por ususario</target>
       </segment>
     </unit>
     <unit id="qiz8znv" name="label.item.from_collection">
       <segment>
         <source>label.item.from_collection</source>
-        <target>From collection :</target>
+        <target>De la colección:</target>
       </segment>
     </unit>
     <unit id="0isen64" name="menu.return_to_user_collection">
       <segment>
         <source>menu.return_to_user_collection</source>
-        <target>Return to my collection</target>
+        <target>Volver a mi colección</target>
       </segment>
     </unit>
     <unit id="987SJAq" name="label.new_password">
       <segment>
         <source>label.new_password</source>
-        <target>New password</target>
+        <target>Nueva contraseña</target>
       </segment>
     </unit>
     <unit id="987SJAq" name="label.repeat_new_password">
       <segment>
         <source>label.repeat_new_password</source>
-        <target>Repeat new password</target>
+        <target>Respite tu nueva contraseña</target>
       </segment>
     </unit>
     <unit id="Q87ZYs9" name="global.visibilities.reason.both_public">
       <segment>
         <source>global.visibilities.reason.both_public</source>
-        <target>Public - Reason : both your profile and this page are public</target>
+        <target>Pública - Razón: tu perfil y esta página son públicos</target>
       </segment>
     </unit>
     <unit id="Ks0iusy" name="global.visibilities.reason.both_private">
       <segment>
         <source>global.visibilities.reason.both_private</source>
-        <target>Private - Reason : both your profile and this page are private</target>
+        <target>Privada - Razón: tu perfil y esta página son privados</target>
       </segment>
     </unit>
     <unit id="cx9_iSs" name="global.visibilities.reason.user_private">
       <segment>
         <source>global.visibilities.reason.user_private</source>
-        <target>Private - Reason : your profile is private</target>
+        <target>Privada - Razón: tu perfil es privado</target>
       </segment>
     </unit>
     <unit id="dsPIS92" name="global.visibilities.reason.object_private">
       <segment>
         <source>global.visibilities.reason.object_private</source>
-        <target>Private - Reason : this page is private</target>
+        <target>Privada - Razón: esta página es privada</target>
       </segment>
     </unit>
     <unit id="Mpa1xsS" name="global.visibilities.reason.both_internal">
       <segment>
         <source>global.visibilities.reason.both_internal</source>
-        <target>Internal - Reason : both your profile and this page are internal</target>
+        <target>Interna - Razón: esta página y tu perfil son internos</target>
       </segment>
     </unit>
     <unit id="KZ8sjs6" name="global.visibilities.reason.user_internal">
       <segment>
         <source>global.visibilities.reason.user_internal</source>
-        <target>Internal - Reason : your profile is internal</target>
+        <target>Interna - Razón: tu perfil es interno</target>
       </segment>
     </unit>
     <unit id="azOcSsj" name="global.visibilities.reason.object_internal">
       <segment>
         <source>global.visibilities.reason.object_internal</source>
-        <target>Internal - Reason : this page is internal</target>
+        <target>Interno - Razón: esta página es interna</target>
       </segment>
     </unit>
     <unit id="d_e7ZU2" name="global.visibilities.reason.user_public">
       <segment>
           <source>global.visibilities.reason.user_public</source>
-          <target>Public - Reason : your profile is public</target>
+          <target>Público - Razón: tu perfil es público</target>
       </segment>
     </unit>
     <unit id="smf987z" name="global.welcome">
       <segment>
           <source>global.welcome</source>
-          <target>Welcome to Koillection</target>
+          <target>Bienvenido a Koillection</target>
       </segment>
     </unit>
     <unit id="lsis86z" name="message.unused_tags_deleted">
         <segment>
             <source>message.unused_tags_deleted</source>
-            <target>{0} %count% tags deleted| {1} %count% tag deleted| ]1,Inf[ %count% tags deleted</target>
+            <target>{0} %count% etiquetas borradas| {1} %count% etiqueta borrada| ]1,Inf[ %count% etiquetas borradas</target>
         </segment>
     </unit>
     <unit id="qmd8eu7" name="btn.delete_unused_tags">
         <segment>
             <source>btn.delete_unused_tags</source>
-            <target>Delete unused tags</target>
+            <target>Borrar etiquetas sin elementos</target>
         </segment>
     </unit>
     <unit id="mps8vb5" name="message.delete.unused_tag">
         <segment>
             <source>message.delete.unused_tag</source>
-            <target>This will delete all tags with no items attached. Are you sure you want to delete those tags ? They will be permanently lost...</target>
+            <target>Esta acción borrará todas las etiquetas sin elementos. ¿Seguro que quieres realizar la acción? Esta acción no se puede deshacer...</target>
         </segment>
     </unit>
     <unit id="q7sxz1A" name="btn.add_link">
         <segment>
             <source>btn.add_link</source>
-            <target>Link</target>
+            <target>Enlace</target>
         </segment>
     </unit>
     <unit id="qa8vmwN" name="label.link">
       <segment>
         <source>label.link</source>
-        <target>Link</target>
+        <target>Enlace</target>
       </segment>
     </unit>
     <unit id="Dlq9a72" name="global.display_mode.grid">
       <segment>
         <source>global.display_mode.grid</source>
-        <target>Grid</target>
+        <target>Rejilla</target>
       </segment>
     </unit>
     <unit id="drd9ere" name="global.display_mode.list">
       <segment>
         <source>global.display_mode.list</source>
-        <target>List</target>
+        <target>Lista</target>
       </segment>
     </unit>
     <unit id="dUss0q8" name="label.items_display_mode">
       <segment>
         <source>label.items_display_mode</source>
-        <target>Display items as a</target>
+        <target>Mostrar elementos como</target>
       </segment>
     </unit>
     <unit id="bBCsu64" name="label.photos_display_mode">
       <segment>
         <source>label.photos_display_mode</source>
-        <target>Display photos as a</target>
+        <target>Mostrar fotos como</target>
       </segment>
     </unit>
     <unit id="RT9_dq7" name="label.items_sorting_property">
       <segment>
         <source>label.items_sorting_property</source>
-        <target>Sort items by</target>
+        <target>Ordenar elementos por</target>
       </segment>
     </unit>
     <unit id="SD_Z2uA" name="label.items_sorting_direction">
       <segment>
         <source>label.items_sorting_direction</source>
-        <target>Sort items order</target>
+        <target>Ordenar elementos por</target>
       </segment>
     </unit>
     <unit id="osq_Y32" name="form.item_sorting.default_value">
       <segment>
         <source>form.item_sorting.default_value</source>
-        <target>Name (default)</target>
+        <target>Nombre (por defecto)</target>
       </segment>
     </unit>
     <unit id="mxd7s10" name="global.sorting_direction.asc">
       <segment>
         <source>global.sorting_direction.asc</source>
-        <target>Ascending</target>
+        <target>Ascendente</target>
       </segment>
     </unit>
     <unit id="xcZ1shh" name="global.sorting_direction.desc">
       <segment>
         <source>global.sorting_direction.desc</source>
-        <target>Descending</target>
+        <target>Descendente</target>
       </segment>
     </unit>
     <unit id="xiu6a_1" name="btn.add_textarea">
       <segment>
         <source>btn.add_textarea</source>
-        <target>Long text</target>
+        <target>Área de texto</target>
       </segment>
     </unit>
     <unit id="Ml6qaa0" name="collection.items_settings">
       <segment>
         <source>collection.items_settings</source>
-        <target>Items settings</target>
+        <target>Opciones de elementos</target>
       </segment>
     </unit>
     <unit id="NBD7uzA" name="collection.children_settings">
       <segment>
         <source>collection.children_settings</source>
-        <target>Sub-collections settings</target>
+        <target>Opciones de subcolecciones</target>
       </segment>
     </unit>
     <unit id="lqRR6ax" name="label.items_default_template">
       <segment>
         <source>label.items_default_template</source>
-        <target>Default template applied to items</target>
+        <target>Plantilla por defecto aplicada a los elementos</target>
       </segment>
     </unit>
     <unit id="qdo7yzn" name="label.textarea">
       <segment>
         <source>label.textarea</source>
-        <target>Long text</target>
+        <target>Área de texto</target>
       </segment>
     </unit>
     <unit id="Qz77s1b" name="label.items_display_mode_list_columns">
       <segment>
         <source>label.items_display_mode_list_columns</source>
-        <target>List display mode columns</target>
+        <target>Muestra de lista por columnas</target>
       </segment>
     </unit>
     <unit id="Sdgqz78" name="label.add_list">
       <segment>
         <source>label.add_list</source>
-        <target>Add list :</target>
+        <target>Añadir lista:</target>
       </segment>
     </unit>
     <unit id="LxS4CxQ" name="enum.history_filter_class.template">
       <segment>
         <source>enum.history_filter_class.template</source>
-        <target>Template</target>
+        <target>Plantilla</target>
       </segment>
     </unit>
     <unit id="UrxvNEi" name="enum.history_filter_class.choice_list">
       <segment>
         <source>enum.history_filter_class.choice_list</source>
-        <target>Choice list</target>
+        <target>Lista de opciones</target>
       </segment>
     </unit>
     <unit id="NlqXkWs" name="enum.history_filter_class.inventory">
       <segment>
         <source>enum.history_filter_class.inventory</source>
-        <target>Inventory</target>
+        <target>Inventario</target>
       </segment>
     </unit>
     <unit id="kj0Q1Ff" name="enum.history_filter_class.tag_category">
       <segment>
         <source>enum.history_filter_class.tag_category</source>
-        <target>Tag category</target>
+        <target>Categoría de etiqueta</target>
       </segment>
     </unit>
     <unit id="QnYEnRK" name="enum.history_filter_class.photo">
       <segment>
         <source>enum.history_filter_class.photo</source>
-        <target>Photo</target>
+        <target>Foto</target>
       </segment>
     </unit>
     <unit id="2Fo2Uq2" name="enum.history_filter_class.wish">
       <segment>
         <source>enum.history_filter_class.wish</source>
-        <target>Wish</target>
+        <target>Deseado</target>
       </segment>
     </unit>
     <unit id="rQfm6zk" name="message.logs_generated">
       <segment>
         <source>message.logs_generated</source>
-        <target>{0} %count% logs generated| {1} %count% log generated| ]1,Inf[ %count% logs regenerated</target>
+        <target>{0} %count% registros generados| {1} %count% registro generado| ]1,Inf[ %count% registros generados</target>
       </segment>
     </unit>
     <unit id="mR1e3QM" name="log.photo.created">
       <segment>
         <source>log.photo.created</source>
-        <target>Photo %label% was created</target>
+        <target>La foto %label% fue creada</target>
       </segment>
     </unit>
     <unit id="9pCgrPX" name="log.photo.deleted">
       <segment>
         <source>log.photo.deleted</source>
-        <target>Photo %label% was deleted</target>
+        <target>La foto %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="4vuCgXu" name="log.tag_category.created">
       <segment>
         <source>log.tag_category.created</source>
-        <target>Tag category %label% was created</target>
+        <target>La categoría de la etiqueta %label% fue creada</target>
       </segment>
     </unit>
     <unit id="8mNrcyf" name="log.tag_category.deleted">
       <segment>
         <source>log.tag_category.deleted</source>
-        <target>Tag category %label% was deleted</target>
+        <target>La categoría de la etiqueta %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="5rtBrNu" name="log.template.created">
       <segment>
         <source>log.template.created</source>
-        <target>Template %label% was created</target>
+        <target>La plantilla %label% fue creada</target>
       </segment>
     </unit>
     <unit id="ngdDrOx" name="log.template.deleted">
       <segment>
         <source>log.template.deleted</source>
-        <target>Template %label% was deleted</target>
+        <target>La plantilla %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="MgU97i1" name="log.inventory.created">
       <segment>
         <source>log.inventory.created</source>
-        <target>Inventory %label% was created</target>
+        <target>El inventario %label% fue creado</target>
       </segment>
     </unit>
     <unit id="a6smwLk" name="log.inventory.deleted">
       <segment>
         <source>log.inventory.deleted</source>
-        <target>Inventory %label% was deleted</target>
+        <target>El inventario %label% fue eliminado</target>
       </segment>
     </unit>
     <unit id="oz3NpLH" name="log.choice_list.created">
       <segment>
         <source>log.choice_list.created</source>
-        <target>Choice list %label% was created</target>
+        <target>La lista de opciones %label% ha sido creada</target>
       </segment>
     </unit>
     <unit id="z6vkVDV" name="log.choice_list.deleted">
       <segment>
         <source>log.choice_list.deleted</source>
-        <target>Choice list %label% was deleted</target>
+        <target>La lista de opciones %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="I4AaDrn" name="log.wish.created">

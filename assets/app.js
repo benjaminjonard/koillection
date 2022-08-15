@@ -9,4 +9,5 @@ import './js/loader'
 import './js/translations/config'
 import './js/translations/javascript/en-GB'
 import './js/translations/javascript/fr-FR'
+import './js/translations/javascript/es-ES'
 
