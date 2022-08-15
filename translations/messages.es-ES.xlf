@@ -280,139 +280,139 @@
     <unit id="uAfIh0u" name="btn.apply_common_fields">
       <segment>
         <source>btn.apply_common_fields</source>
-        <target>Load common fields</target>
+        <target>Cargar campos comunes</target>
       </segment>
     </unit>
     <unit id="ImSHWcX" name="btn.apply_collection_fields">
       <segment>
         <source>btn.apply_collection_fields</source>
-        <target>Load collection fields</target>
+        <target>Cargar campos de colección</target>
       </segment>
     </unit>
     <unit id="u5LRF8p" name="btn.cancel">
       <segment>
         <source>btn.cancel</source>
-        <target>Cancel</target>
+        <target>Cancelar</target>
       </segment>
     </unit>
     <unit id="9iTV1LM" name="btn.delete_tags_without_items">
       <segment>
         <source>btn.delete_tags_without_items</source>
-        <target>Delete tags w/o items</target>
+        <target>Borrar etiquetas con/o elementos</target>
       </segment>
     </unit>
     <unit id="JQuOMkX" name="btn.details">
       <segment>
         <source>btn.details</source>
-        <target>Details</target>
+        <target>Detalles</target>
       </segment>
     </unit>
     <unit id="ZckcCop" name="btn.search">
       <segment>
         <source>btn.search</source>
-        <target>Search</target>
+        <target>Buscar</target>
       </segment>
     </unit>
     <unit id="EnarzNU" name="btn.send_new_confirmation">
       <segment>
         <source>btn.send_new_confirmation</source>
-        <target>Send a new confirmation email</target>
+        <target>Enviar un nuevo correo de confirmación</target>
       </segment>
     </unit>
     <unit id="IPh2SKn" name="btn.sign_in">
       <segment>
         <source>btn.sign_in</source>
-        <target>Sign in</target>
+        <target>Entrar</target>
       </segment>
     </unit>
     <unit id="fRQmA2t" name="btn.submit">
       <segment>
         <source>btn.submit</source>
-        <target>Submit</target>
+        <target>Enviar</target>
       </segment>
     </unit>
     <unit id="Hxk36Kv" name="btn.submit_and_add_another">
       <segment>
         <source>btn.submit_and_add_another</source>
-        <target>Submit and add another item</target>
+        <target>Enviar y añadir otro elemento</target>
       </segment>
     </unit>
     <unit id="9N4x.TV" name="counter.album">
       <segment>
         <source>counter.album</source>
-        <target>{0} %count% albums| {1} %count% album| ]1,Inf[ %count% albums</target>
+        <target>{0} %count% álbums| {1} %count% álbum| ]1,Inf[ %count% álbums</target>
       </segment>
     </unit>
     <unit id="Ttj5ZLt" name="counter.collection">
       <segment>
         <source>counter.collection</source>
-        <target>{0} %count% collections| {1} %count% collection| ]1,Inf[ %count% collections</target>
+        <target>{0} %count% colleciones| {1} %count% colección| ]1,Inf[ %count% collecciones</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">
       <segment>
         <source>counter.item</source>
-        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
+        <target>{0} %count% elementos| {1} %count% elemento| ]1,Inf[ %count% elementos</target>
       </segment>
     </unit>
     <unit id="nlD7D9j" name="counter.loan">
       <segment>
         <source>counter.loan</source>
-        <target>{0} %count% loans| {1} %count% loan| ]1,Inf[ %count% loans</target>
+        <target>{0} %count% prestados| {1} %count% prestado| ]1,Inf[ %count% prestados</target>
       </segment>
     </unit>
     <unit id="1NZRNj4" name="counter.photo">
       <segment>
         <source>counter.photo</source>
-        <target>{0} %count% photos| {1} %count% photo| ]1,Inf[ %count% photos</target>
+        <target>{0} %count% fotos| {1} %count% foto| ]1,Inf[ %count% fotos</target>
       </segment>
     </unit>
     <unit id="0Nr1G8_" name="counter.returned">
       <segment>
         <source>counter.returned</source>
-        <target>{0} %count% loans returned| {1} %count% loan returned| ]1,Inf[ %count% loans returned</target>
+        <target>{0} %count% devueltos| {1} %count% devuelto| ]1,Inf[ %count% devueltos</target>
       </segment>
     </unit>
     <unit id="If3y3hC" name="counter.tag">
       <segment>
         <source>counter.tag</source>
-        <target>{0} %count% tags| {1} %count% tag| ]1,Inf[ %count% tags</target>
+        <target>{0} %count% etiquetas| {1} %count% etiqueta| ]1,Inf[ %count% etiquetas</target>
       </segment>
     </unit>
     <unit id="hIdqfHr" name="counter.template">
       <segment>
         <source>counter.template</source>
-        <target>{0} %count% templates| {1} %count% template| ]1,Inf[ %count% templates</target>
+        <target>{0} %count% plantillas| {1} %count% plantilla| ]1,Inf[ %count% plantillas</target>
       </segment>
     </unit>
     <unit id="1MYrutS" name="counter.field">
       <segment>
         <source>counter.field</source>
-        <target>{0} %count% fields| {1} %count% field| ]1,Inf[ %count% fields</target>
+        <target>{0} %count% campos| {1} %count% campo| ]1,Inf[ %count% campos</target>
       </segment>
     </unit>
     <unit id="Joxd_.h" name="counter.wishlist">
       <segment>
         <source>counter.wishlist</source>
-        <target>{0} %count% wishlists| {1} %count% wishlist| ]1,Inf[ %count% wishlists</target>
+        <target>{0} %count% listas de deseos| {1} %count% lista de deseos| ]1,Inf[ %count% listas de deseos</target>
       </segment>
     </unit>
     <unit id="XjUwmT9" name="counter.wish">
       <segment>
         <source>counter.wish</source>
-        <target>{0} %count% wishes| {1} %count% wish| ]1,Inf[ %count% wishes</target>
+        <target>{0} %count% deseados| {1} %count% deseado| ]1,Inf[ %count% deseados</target>
       </segment>
     </unit>
     <unit id="Ul2mR7j" name="counter.sign">
       <segment>
         <source>counter.sign</source>
-        <target>{0} %count% signatures| {1} %count% signature| ]1,Inf[ %count% signatures</target>
+        <target>{0} %count% firmados| {1} %count% firmado| ]1,Inf[ %count% firmados</target>
       </segment>
     </unit>
     <unit id="lSRJ.UY" name="error.default">
       <segment>
         <source>error.default</source>
-        <target>Oops, something went wrong :(</target>
+        <target>Ups, algo ha ido mal :(</target>
       </segment>
     </unit>
     <unit id="l9GnTBr" name="error.404">
