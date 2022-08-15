@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
+  <file id="javascript.en-GB">
+    <unit id="s2RK8Ci" name="global.months.january">
+      <segment>
+        <source>global.months.january</source>
+        <target>Enero</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <segment>
+        <source>global.months.february</source>
+        <target>Febrero</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <segment>
+        <source>global.months.march</source>
+        <target>Marzo</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <segment>
+        <source>global.months.april</source>
+        <target>Abril</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <segment>
+        <source>global.months.may</source>
+        <target>Mayo</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <segment>
+        <source>global.months.june</source>
+        <target>Junio</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <segment>
+        <source>global.months.july</source>
+        <target>Julio</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <segment>
+        <source>global.months.august</source>
+        <target>Agosto</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <segment>
+        <source>global.months.september</source>
+        <target>Septiembre</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <segment>
+        <source>global.months.october</source>
+        <target>Octubre</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <segment>
+        <source>global.months.november</source>
+        <target>Noviembre</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <segment>
+        <source>global.months.december</source>
+        <target>Diciembre</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <segment>
+        <source>global.days.monday</source>
+        <target>Lunes</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <segment>
+        <source>global.days.tuesday</source>
+        <target>Martes</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <segment>
+        <source>global.days.wednesday</source>
+        <target>Miércoles</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <segment>
+        <source>global.days.thursday</source>
+        <target>Jueves</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <segment>
+        <source>global.days.friday</source>
+        <target>Viernes</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <segment>
+        <source>global.days.saturday</source>
+        <target>Sábado</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <segment>
+        <source>global.days.sunday</source>
+        <target>Domingo</target>
+      </segment>
+    </unit>
+    <unit id="mdcgZEB" name="global.today">
+      <segment>
+        <source>global.today</source>
+        <target>Hoy</target>
+      </segment>
+    </unit>
+    <unit id="exiimju" name="btn.clear">
+      <segment>
+        <source>btn.clear</source>
+        <target>Limpiar</target>
+      </segment>
+    </unit>
+    <unit id="Jd_qITE" name="btn.close">
+      <segment>
+        <source>btn.close</source>
+        <target>Cerrar</target>
+      </segment>
+    </unit>
+    <unit id="AghNVUV" name="statistics.items_added">
+        <segment>
+        <source>statistics.items_added</source>
+        <target>{0} %count% elementos añadidos| {1} %count% elemento añadido| ]1,Inf[ %count% elementos añadidos</target>
+      </segment>
+    </unit>
+    <unit id="0DU28lZ" name="statistics.users">
+        <segment>
+        <source>statistics.users</source>
+        <target>{0} %count% usuarios| {1} %count% usuario| ]1,Inf[ %count% usuarios</target>
+      </segment>
+    </unit>
+    <unit id="cEDaX3_" name="statistics.items">
+      <segment>
+        <source>statistics.items</source>
+        <target>{0} %count% elementos| {1} %count% elemento| ]1,Inf[ %count% elementos</target>
+      </segment>
+    </unit>
+    <unit id="w0J8w0G" name="select2.no_results">
+      <segment>
+        <source>select2.no_results</source>
+        <target>No hay resultados</target>
+      </segment>
+    </unit>
+    <unit id="vX0eXJK" name="select2.searching">
+      <segment>
+        <source>select2.searching</source>
+        <target>Buscando...</target>
+      </segment>
+    </unit>
+    <unit id="VWNWjeJ" name="select2.none">
+      <segment>
+        <source>select2.none</source>
+        <target>Ninguno</target>
+      </segment>
+    </unit>
+    <unit id="Em6KHMM" name="global.search.more_results">
+      <segment>
+        <source>global.search.more_results</source>
+        <target>{1} + %count% resultado más| ]1,Inf[ + %count% resultados más</target>
+      </segment>
+    </unit>
+    <unit id="nfDV3tB" name="global.search.no_results">
+      <segment>
+        <source>global.search.no_results</source>
+        <target>Sin resultados</target>
+      </segment>
+    </unit>
+    <unit id="F9ao9ud" name="global.visibilities.internal.description">
+      <segment>
+        <source>global.visibilities.internal.description</source>
+        <target>Solo usuarios conectados pueden ver esta página</target>
+      </segment>
+    </unit>
+    <unit id="qd1TsUx" name="global.visibilities.public.description">
+      <segment>
+        <source>global.visibilities.public.description</source>
+        <target>Cualquiera puede ver esta página</target>
+      </segment>
+    </unit>
+    <unit id="yZ72cK4" name="global.visibilities.private.description">
+      <segment>
+        <source>global.visibilities.private.description</source>
+        <target>Solo yo puedo ver esta página</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
