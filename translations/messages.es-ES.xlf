@@ -1138,133 +1138,133 @@
     <unit id="GMz7R9E" name="log.item.sign_added">
       <segment>
         <source>log.item.sign_added</source>
-        <target>Signature %label% was added</target>
+        <target>La firma %label% fue añadida</target>
       </segment>
     </unit>
     <unit id="aDc4Khw" name="log.item.image_added">
       <segment>
         <source>log.item.image_added</source>
-        <target>Image %label% was added</target>
+        <target>La imagen %label% fue añadida</target>
       </segment>
     </unit>
     <unit id="HtlfUjV" name="log.item.property_added">
       <segment>
         <source>log.item.property_added</source>
-        <target>Property %label% with the value of %value% was added</target>
+        <target>La propiedad %label% con el valor de %value% fue añadida</target>
       </segment>
     </unit>
     <unit id="YXeF5Ti" name="log.item.sign_removed">
       <segment>
         <source>log.item.sign_removed</source>
-        <target>Signature %label% was removed</target>
+        <target>La firma %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="nnFeqXM" name="log.item.image_removed">
       <segment>
         <source>log.item.image_removed</source>
-        <target>Image %label% was removed</target>
+        <target>La imagen %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="8NjBClV" name="log.item.property_removed">
       <segment>
         <source>log.item.property_removed</source>
-        <target>Property %label% with the value of %value% was removed</target>
+        <target>La propiedad %label% conel valor de %value% fue eliminada</target>
       </segment>
     </unit>
     <unit id="rZbNjjk" name="log.tag.created">
       <segment>
         <source>log.tag.created</source>
-        <target>Tag %label% was created</target>
+        <target>La etiqueta %label% fue añadida</target>
       </segment>
     </unit>
     <unit id="C6hJE7c" name="log.tag.deleted">
       <segment>
         <source>log.tag.deleted</source>
-        <target>Tag %label% was deleted</target>
+        <target>La etiqueta %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="PBKgpKb" name="menu.about">
       <segment>
         <source>menu.about</source>
-        <target>About</target>
+        <target>Sobre nosotros</target>
       </segment>
     </unit>
     <unit id="wvvYSw_" name="menu.admin">
       <segment>
         <source>menu.admin</source>
-        <target>Administration</target>
+        <target>Administración</target>
       </segment>
     </unit>
     <unit id="5hMk7ux" name="menu.albums">
       <segment>
         <source>menu.albums</source>
-        <target>Albums</target>
+        <target>Álbums</target>
       </segment>
     </unit>
     <unit id="Nl_I6SL" name="menu.albums_shared">
       <segment>
         <source>menu.albums_shared</source>
-        <target>%username%'s albums</target>
+        <target>Álbums de %username%</target>
       </segment>
     </unit>
     <unit id="MW4FPxn" name="menu.collections">
       <segment>
         <source>menu.collections</source>
-        <target>Collections</target>
+        <target>Colecciones</target>
       </segment>
     </unit>
     <unit id="GpXPEkO" name="menu.collections_shared">
       <segment>
         <source>menu.collections_shared</source>
-        <target>%username%'s collections</target>
+        <target>Colecciones de %username%</target>
       </segment>
     </unit>
     <unit id="Q.3FoSC" name="menu.history">
       <segment>
         <source>menu.history</source>
-        <target>History</target>
+        <target>Histórico</target>
       </segment>
     </unit>
     <unit id="VFvXW.m" name="menu.loans">
       <segment>
         <source>menu.loans</source>
-        <target>Loans</target>
+        <target>Préstamos</target>
       </segment>
     </unit>
     <unit id="wBTFKFR" name="menu.logout">
       <segment>
         <source>menu.logout</source>
-        <target>Logout</target>
+        <target>Salir</target>
       </segment>
     </unit>
     <unit id="XSS5BT8" name="menu.profile">
       <segment>
         <source>menu.profile</source>
-        <target>Profile</target>
+        <target>Perfil</target>
       </segment>
     </unit>
     <unit id="k6VxCsO" name="menu.search">
       <segment>
         <source>menu.search</source>
-        <target>Search</target>
+        <target>Buscar</target>
       </segment>
     </unit>
     <unit id="HLevxj." name="menu.signs">
       <segment>
         <source>menu.signs</source>
-        <target>Signatures</target>
+        <target>Firmas</target>
       </segment>
     </unit>
     <unit id="ltgwfbq" name="menu.signs_shared">
       <segment>
         <source>menu.signs_shared</source>
-        <target>%username%'s signatures</target>
+        <target>Firmas de %username%</target>
       </segment>
     </unit>
     <unit id="Bhx8Fvg" name="menu.statistics">
       <segment>
         <source>menu.statistics</source>
-        <target>Statistics</target>
+        <target>Estadísticas</target>
       </segment>
     </unit>
     <unit id="tk6udpx" name="menu.statistics_shared">
