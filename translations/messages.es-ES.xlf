@@ -898,145 +898,145 @@
     <unit id="M1E9Lfi" name="label.new_data">
       <segment>
         <source>label.new_data</source>
-        <target>Add a new field</target>
+        <target>Añadir nuevo campo</target>
       </segment>
     </unit>
     <unit id="HmUuNCa" name="label.main_image">
       <segment>
         <source>label.main_image</source>
-        <target>Main image</target>
+        <target>Imagen principal</target>
       </segment>
     </unit>
     <unit id="ak1St8x" name="label.number_of_items">
       <segment>
         <source>label.number_of_items</source>
-        <target># of items</target>
+        <target># de elementos</target>
       </segment>
     </unit>
     <unit id="NGzz2k3" name="label.parent">
       <segment>
         <source>label.parent</source>
-        <target>Parent</target>
+        <target>Padre</target>
       </segment>
     </unit>
     <unit id="9pvowqn" name="label.password">
       <segment>
         <source>label.password</source>
-        <target>Password</target>
+        <target>Contraseña</target>
       </segment>
     </unit>
     <unit id="dFDOuk." name="label.percent_of_items">
       <segment>
         <source>label.percent_of_items</source>
-        <target>Percent of items</target>
+        <target>Porfentaje de elementos</target>
       </segment>
     </unit>
     <unit id="2.APxMI" name="label.place">
       <segment>
         <source>label.place</source>
-        <target>Place</target>
+        <target>Lugar</target>
       </segment>
     </unit>
     <unit id="N5IFef_" name="label.port">
       <segment>
         <source>label.port</source>
-        <target>Port</target>
+        <target>Puerto</target>
       </segment>
     </unit>
     <unit id="arTFX42" name="label.price">
       <segment>
         <source>label.price</source>
-        <target>Price</target>
+        <target>Precio</target>
       </segment>
     </unit>
     <unit id="ymgENEq" name="label.quantity">
       <segment>
         <source>label.quantity</source>
-        <target>Quantity</target>
+        <target>Cantidad</target>
       </segment>
     </unit>
     <unit id="HVZAEc7" name="label.recursive">
       <segment>
         <source>label.recursive</source>
-        <target>Recursive</target>
+        <target>Recursivo</target>
       </segment>
     </unit>
     <unit id="rU9cSfq" name="label.repeat_password">
       <segment>
         <source>label.repeat_password</source>
-        <target>Repeat password</target>
+        <target>Repetir contraseña</target>
       </segment>
     </unit>
     <unit id="R25XMb2" name="label.return_date">
       <segment>
         <source>label.return_date</source>
-        <target>Return date</target>
+        <target>Fecha devuelta</target>
       </segment>
     </unit>
     <unit id="BNjUIYA" name="label.search">
       <segment>
         <source>label.search</source>
-        <target>Search</target>
+        <target>Buscar</target>
       </segment>
     </unit>
     <unit id="w5u.bJo" name="label.sign">
       <segment>
         <source>label.sign</source>
-        <target>Signature</target>
+        <target>Firmas</target>
       </segment>
     </unit>
     <unit id="vpeY2jo" name="label.taken_at">
       <segment>
         <source>label.taken_at</source>
-        <target>Taken the</target>
+        <target>Cogido el</target>
       </segment>
     </unit>
     <unit id="ijQyGRo" name="label.tags">
       <segment>
         <source>label.tags</source>
-        <target>Tags</target>
+        <target>Etiquetas</target>
       </segment>
     </unit>
     <unit id="UQI8T0S" name="label.text">
       <segment>
         <source>label.text</source>
-        <target>Text</target>
+        <target>Texto</target>
       </segment>
     </unit>
     <unit id="YEoCETJ" name="label.thumbnail">
       <segment>
         <source>label.thumbnail</source>
-        <target>Thumbnail</target>
+        <target>Miniaturas</target>
       </segment>
     </unit>
     <unit id="UrRn8xj" name="label.title">
       <segment>
         <source>label.title</source>
-        <target>Title</target>
+        <target>Título</target>
       </segment>
     </unit>
     <unit id="ZzykrnK" name="label.space_free">
       <segment>
         <source>label.space_free</source>
-        <target>%free% free</target>
+        <target>%free% libre</target>
       </segment>
     </unit>
     <unit id="4fDIeO4" name="label.space_used">
       <segment>
         <source>label.space_used</source>
-        <target>%used% / %total% used</target>
+        <target>%used% / %total% usado</target>
       </segment>
     </unit>
     <unit id="jNAS_YE" name="label.space_used_by_koillection">
       <segment>
         <source>label.space_used_by_koillection</source>
-        <target>Total space used by Koillection</target>
+        <target>Espacio total usado por Koillection</target>
       </segment>
     </unit>
     <unit id="pnGDFmf" name="label.type">
       <segment>
         <source>label.type</source>
-        <target>Type</target>
+        <target>Tipo</target>
       </segment>
     </unit>
     <unit id="UJDm2vF" name="label.url">
@@ -1048,91 +1048,91 @@
     <unit id="O2X4xZH" name="label.user">
       <segment>
         <source>label.user</source>
-        <target>User</target>
+        <target>Usuario</target>
       </segment>
     </unit>
     <unit id="LDhDPrF" name="label.username">
       <segment>
         <source>label.username</source>
-        <target>Username</target>
+        <target>Nombre de usuario</target>
       </segment>
     </unit>
     <unit id="jI3fm2M" name="label.users">
       <segment>
         <source>label.users</source>
-        <target>Users</target>
+        <target>Usuarios</target>
       </segment>
     </unit>
     <unit id="szWUC0C" name="label.value">
       <segment>
         <source>label.value</source>
-        <target>Value</target>
+        <target>Valor</target>
       </segment>
     </unit>
     <unit id="H3WsEKh" name="label.visibility">
       <segment>
         <source>label.visibility</source>
-        <target>Visibility</target>
+        <target>Visibilidad</target>
       </segment>
     </unit>
     <unit id="KbVLd5O" name="label.wishes">
       <segment>
         <source>label.wishes</source>
-        <target>Wishes</target>
+        <target>Deseados</target>
       </segment>
     </unit>
     <unit id="hmlddlA" name="label.wishlist">
       <segment>
         <source>label.wishlist</source>
-        <target>Wishlist</target>
+        <target>Lista de deseo</target>
       </segment>
     </unit>
     <unit id="vVTVy9_" name="label.wishlists">
       <segment>
         <source>label.wishlists</source>
-        <target>Wishlists</target>
+        <target>Lista de deseos</target>
       </segment>
     </unit>
     <unit id="9UHmLu7" name="log.default_value">
       <segment>
         <source>log.default_value</source>
-        <target>the default value</target>
+        <target>el valor por defecto</target>
       </segment>
     </unit>
     <unit id="oq5I4KJ" name="log.collection.created">
       <segment>
         <source>log.collection.created</source>
-        <target>Collection %label% was created</target>
+        <target>La coleccion %label% fue creada</target>
       </segment>
     </unit>
     <unit id="kJVARQs" name="log.collection.deleted">
       <segment>
         <source>log.collection.deleted</source>
-        <target>Collection %label% was deleted</target>
+        <target>La colección %label% fue eliminada</target>
       </segment>
     </unit>
     <unit id="CQhzBXW" name="log.item.created">
       <segment>
         <source>log.item.created</source>
-        <target>Item %label% was created</target>
+        <target>El elemento %label% fue creado</target>
       </segment>
     </unit>
     <unit id="rV1McBT" name="log.item.deleted">
       <segment>
         <source>log.item.deleted</source>
-        <target>Item %label% was deleted</target>
+        <target>El elemento %label% fue eliminado</target>
       </segment>
     </unit>
     <unit id="T.ABiea" name="log.item.tag_added">
       <segment>
         <source>log.item.tag_added</source>
-        <target>Tag %tag% was added</target>
+        <target>La etiqueta %tag% fue añadida</target>
       </segment>
     </unit>
     <unit id="XyCsJHB" name="log.item.tag_removed">
       <segment>
         <source>log.item.tag_removed</source>
-        <target>Tag %tag% was removed</target>
+        <target>La etiqueta %tag% fue eliminada</target>
       </segment>
     </unit>
     <unit id="GMz7R9E" name="log.item.sign_added">
