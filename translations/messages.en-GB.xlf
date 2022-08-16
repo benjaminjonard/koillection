@@ -1474,7 +1474,7 @@
     <unit id="eMPgFR5" name="message.user_is_private">
       <segment>
         <source>message.user_is_private</source>
-        <target>Your profil is set to private, you can't share this page.</target>
+        <target>Your profile is set to private, you can't share this page.</target>
       </segment>
     </unit>
     <unit id="eG38lKI" name="message.visibility">
