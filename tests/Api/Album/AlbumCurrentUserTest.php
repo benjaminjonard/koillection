@@ -85,9 +85,7 @@ class AlbumCurrentUserTest extends ApiTestCase
 
     public function testPostAlbum(): void
     {
-        $this->createClientWithCredentials()->request('POST', '/api/albums', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/albums', [ 'json' => [
                 'title' => 'New album',
             ],
         ]);

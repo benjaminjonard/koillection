@@ -51,9 +51,7 @@ class PhotoCurrentUserTest extends ApiTestCase
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
         $albumIri = $this->iriConverter->getIriFromItem($album);
 
-        $this->createClientWithCredentials()->request('POST', '/api/photos', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/photos', ['json' => [
                 'title' => 'New photo',
                 'album' => $albumIri,
             ],

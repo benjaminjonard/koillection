@@ -27,6 +27,10 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    Api\Controller\:
+        resource: '../api/Controller'
+        tags: [ 'controller.service_arguments' ]
+
     #Kernel listeners
     App\EventListener\TranslationCommandListener:
         tags:

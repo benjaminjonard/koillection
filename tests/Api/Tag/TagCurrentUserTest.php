@@ -63,9 +63,7 @@ class TagCurrentUserTest extends ApiTestCase
 
     public function testPostTag(): void
     {
-        $this->createClientWithCredentials()->request('POST', '/api/tags', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/tags', ['json' => [
                 'label' => 'New tag',
             ],
         ]);

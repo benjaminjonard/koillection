@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Api\Controller\UploadController;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
@@ -34,7 +35,24 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['item:write']],
     collectionOperations: [
         'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        'post' => ['input_formats' => [
+            'json' => ['application/json', 'application/ld+json'],
+            'multipart' => ['multipart/form-data'],
+        ]],
+    ],
+    itemOperations: [
+        'get',
+        'put',
+        'delete',
+        'patch',
+        'image' => [
+            'method' => 'POST',
+            'path' => '/items/{id}/image',
+            'controller' => UploadController::class,
+            'denormalization_context' => ['groups' => ['item:image']],
+            'input_formats' => ['multipart' => ['multipart/form-data']],
+            'openapi_context' => ['summary' => 'Upload the Item image.']
+        ]
     ]
 )]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
@@ -99,7 +117,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
-    #[Groups(['item:write'])]
+    #[Groups(['item:write', 'item:image'])]
     private ?File $file = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]

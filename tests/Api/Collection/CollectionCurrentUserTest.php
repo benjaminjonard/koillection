@@ -100,9 +100,7 @@ class CollectionCurrentUserTest extends ApiTestCase
 
     public function testPostCollection(): void
     {
-        $this->createClientWithCredentials()->request('POST', '/api/collections', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/collections', ['json' => [
                 'title' => 'New collection',
             ],
         ]);

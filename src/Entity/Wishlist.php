@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Api\Controller\UploadController;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
@@ -31,7 +32,24 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['wishlist:write']],
     collectionOperations: [
         'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        'post' => ['input_formats' => [
+            'json' => ['application/json', 'application/ld+json'],
+            'multipart' => ['multipart/form-data']
+        ]],
+    ],
+    itemOperations: [
+        'get',
+        'put',
+        'delete',
+        'patch',
+        'image' => [
+            'method' => 'POST',
+            'path' => '/wishlists/{id}/image',
+            'controller' => UploadController::class,
+            'denormalization_context' => ['groups' => ['wishlist:image']],
+            'input_formats' => ['multipart' => ['multipart/form-data']],
+            'openapi_context' => ['summary' => 'Upload the Wishlist image.']
+        ]
     ]
 )]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
@@ -74,7 +92,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
-    #[Groups(['wishlist:write'])]
+    #[Groups(['wishlist:write', 'wishlist:image'])]
     private ?File $file = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]

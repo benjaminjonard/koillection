@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Api\Controller\UploadController;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
@@ -27,7 +28,24 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['wish:write']],
     collectionOperations: [
         'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        'post' => ['input_formats' => [
+            'json' => ['application/json', 'application/ld+json'],
+            'multipart' => ['multipart/form-data']
+        ]],
+    ],
+    itemOperations: [
+        'get',
+        'put',
+        'delete',
+        'patch',
+        'image' => [
+            'method' => 'POST',
+            'path' => '/wishes/{id}/image',
+            'controller' => UploadController::class,
+            'denormalization_context' => ['groups' => ['wish:image']],
+            'input_formats' => ['multipart' => ['multipart/form-data']],
+            'openapi_context' => ['summary' => 'Upload the Wish image.']
+        ]
     ]
 )]
 class Wish implements CacheableInterface, LoggableInterface
@@ -71,7 +89,7 @@ class Wish implements CacheableInterface, LoggableInterface
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
-    #[Groups(['wish:write'])]
+    #[Groups(['wish:write', 'wish:image'])]
     private ?File $file = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
