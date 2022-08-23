@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="es-ES">
+  <file id="validators.es-ES">
+    <unit id="7OcgSlg" name="error.email.not_unique">
+        <segment>
+        <source>error.email.not_unique</source>
+        <target>Este correo ya está en uso</target>
+      </segment>
+    </unit>
+    <unit id="qoRxC7z" name="error.username.not_unique">
+        <segment>
+        <source>error.username.not_unique</source>
+        <target>El nombre de usuario ya está en uso</target>
+      </segment>
+    </unit>
+    <unit id="PjAj0XF" name="error.username.incorrect">
+        <segment>
+        <source>error.username.incorrect</source>
+        <target>El nombre de usuario tiene que tener entre 2 y 32 caracteres (sólo se permiten letras, números y guiones bajos)</target>
+      </segment>
+    </unit>
+    <unit id="_d89Gke" name="error.search.empty">
+        <segment>
+        <source>error.search.empty</source>
+        <target>Por favor, rellena al menos un de los campos</target>
+      </segment>
+    </unit>
+    <unit id="4Bdfyy1" name="error.password.incorrect">
+      <segment>
+        <source>error.password.incorrect</source>
+        <target>Tu contrasña debe tener al menos 8 caracteres (con al menos una ltra y un número)</target>
+      </segment>
+    </unit>
+    <unit id="4m1Sgo3" name="error.password.not_matching">
+      <segment>
+        <source>error.password.not_matching</source>
+        <target>Las dos contraseñas no coinciden</target>
+      </segment>
+    </unit>
+    <unit id=".OeR.gK" name="error.search.too_short">
+      <segment>
+        <source>error.search.too_short</source>
+        <target>Debes introducir al menos 2 caracteres</target>
+      </segment>
+    </unit>
+    <unit id="se7sq_i" name="error.parent.same_as_current_object">
+      <segment>
+        <source>error.parent.same_as_current_object</source>
+        <target>El elemento padre no debe ser el mismo que el elemento actual</target>
+      </segment>
+    </unit>
+    <unit id="zeq8z7" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <segment>
+        <source>error.datum.cant_be_used_by_both_collections_and_items</source>
+        <target>Un dato no puede ser usado para ambos, elementos y colecciones</target>
+      </segment>
+    </unit>
+    <unit id="1qzhkiF" name="error.datum.must_provide_collection_or_item">
+      <segment>
+        <source>error.datum.must_provide_collection_or_item</source>
+        <target>Se debe proporcionar un elemento y una colección</target>
+      </segment>
+    </unit>
+    <unit id="tOthJaw" name="error.label.must_be_unique">
+      <segment>
+        <source>error.label.must_be_unique</source>
+        <target>La etiqueta "{{ label }}" se ha usado muchas veces, las etiquetas deben ser únicas</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
