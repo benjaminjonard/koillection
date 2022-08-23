@@ -3431,6 +3431,7 @@
     </unit>
     <unit id="rapb2ag" name="label.image">
       <notes>
+        <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:66</note>
         <note category="file-source" priority="1">koillection/templates/App/Wishlist/show.html.twig:94</note>
       </notes>
       <segment>
@@ -4082,7 +4083,7 @@
     </unit>
     <unit id="ymgENEq" name="label.quantity">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Item/_form.html.twig:19</note>
       </notes>
       <segment>
         <source>label.quantity</source>
@@ -4091,7 +4092,7 @@
     </unit>
     <unit id="HVZAEc7" name="label.recursive">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Collection/batch_tagging.html.twig:31</note>
       </notes>
       <segment>
         <source>label.recursive</source>
@@ -4100,7 +4101,9 @@
     </unit>
     <unit id="rU9cSfq" name="label.repeat_password">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Admin/User/add.html.twig:43</note>
+         <note category="file-source" priority="1">koillection/templates/App/Admin/User/edit.html.twig:56</note>
+         <note category="file-source" priority="1">koillection/templates/App/Security/first_connection.html.twig:21</note>
       </notes>
       <segment>
         <source>label.repeat_password</source>
@@ -4109,7 +4112,7 @@
     </unit>
     <unit id="w5u.bJo" name="label.sign">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:65</note>
       </notes>
       <segment>
         <source>label.sign</source>
@@ -4118,7 +4121,7 @@
     </unit>
     <unit id="vpeY2jo" name="label.taken_at">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Photo/_form.html.twig:17</note>
       </notes>
       <segment>
         <source>label.taken_at</source>
@@ -4127,7 +4130,11 @@
     </unit>
     <unit id="ijQyGRo" name="label.tags">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Collection/batch_tagging.html.twig:25</note>
+         <note category="file-source" priority="1">koillection/templates/App/Collection/batch_tagging.html.twig:28</note>
+         <note category="file-source" priority="1">koillection/templates/App/Item/_form.html.twig:31</note>
+         <note category="file-source" priority="1">koillection/templates/App/Item/_form.html.twig:34</note>
+         <note category="file-source" priority="1">koillection/templates/App/Search/index.html.twig:39</note>
       </notes>
       <segment>
         <source>label.tags</source>
@@ -4136,7 +4143,7 @@
     </unit>
     <unit id="UQI8T0S" name="label.text">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:63</note>
       </notes>
       <segment>
         <source>label.text</source>
@@ -4145,43 +4152,16 @@
     </unit>
     <unit id="UJDm2vF" name="label.url">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Wish/_form.html.twig:15</note>
       </notes>
       <segment>
         <source>label.url</source>
         <target>Url</target>
       </segment>
     </unit>
-    <unit id="O2X4xZH" name="label.user">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.user</source>
-        <target>Utilisateur</target>
-      </segment>
-    </unit>
-    <unit id="jI3fm2M" name="label.users">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.users</source>
-        <target>Utilisateurs</target>
-      </segment>
-    </unit>
-    <unit id="KbVLd5O" name="label.wishes">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.wishes</source>
-        <target>Souhaits</target>
-      </segment>
-    </unit>
     <unit id="hmlddlA" name="label.wishlist">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Wish/_form.html.twig:9</note>
       </notes>
       <segment>
         <source>label.wishlist</source>
@@ -4190,25 +4170,16 @@
     </unit>
     <unit id="vVTVy9_" name="label.wishlists">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/templates/App/Search/index.html.twig:49</note>
       </notes>
       <segment>
         <source>label.wishlists</source>
         <target>Listes de souhaits</target>
       </segment>
     </unit>
-    <unit id="9UHmLu7" name="log.default_value">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.default_value</source>
-        <target>la valeur par défaut</target>
-      </segment>
-    </unit>
     <unit id="oq5I4KJ" name="log.collection.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.collection.created</source>
@@ -4217,7 +4188,7 @@
     </unit>
     <unit id="kJVARQs" name="log.collection.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.collection.deleted</source>
@@ -4226,7 +4197,7 @@
     </unit>
     <unit id="CQhzBXW" name="log.item.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.item.created</source>
@@ -4235,7 +4206,7 @@
     </unit>
     <unit id="rV1McBT" name="log.item.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.item.deleted</source>
@@ -4316,7 +4287,7 @@
     </unit>
     <unit id="rZbNjjk" name="log.tag.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.tag.created</source>
@@ -4325,7 +4296,7 @@
     </unit>
     <unit id="C6hJE7c" name="log.tag.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.tag.deleted</source>
@@ -5162,7 +5133,7 @@
     </unit>
     <unit id="k7MJQ82" name="label.country">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:67</note>
       </notes>
       <segment>
         <source>label.country</source>
@@ -5270,7 +5241,7 @@
     </unit>
     <unit id="v31H5lC" name="log.album.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.album.created</source>
@@ -5297,7 +5268,7 @@
     </unit>
     <unit id="SBtfHBi" name="log.album.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.album.deleted</source>
@@ -5324,7 +5295,7 @@
     </unit>
     <unit id="GBK.flU" name="log.wishlist.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.wishlist.created</source>
@@ -5468,7 +5439,7 @@
     </unit>
     <unit id="H1qEi4d" name="label.date">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:69</note>
       </notes>
       <segment>
         <source>label.date</source>
@@ -5477,7 +5448,7 @@
     </unit>
     <unit id="YkTUtk1" name="label.file">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:68</note>
       </notes>
       <segment>
         <source>label.file</source>
@@ -5513,7 +5484,7 @@
     </unit>
     <unit id="JD2NF8b" name="label.rating">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:70</note>
       </notes>
       <segment>
         <source>label.rating</source>
@@ -5522,7 +5493,7 @@
     </unit>
     <unit id="39AtPxQ" name="label.number">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:71</note>
       </notes>
       <segment>
         <source>label.number</source>
@@ -5558,7 +5529,7 @@
     </unit>
     <unit id="jbdcgnz" name="label.link">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:72</note>
       </notes>
       <segment>
         <source>label.link</source>
@@ -5648,7 +5619,7 @@
     </unit>
     <unit id="M6VfIb7" name="label.textarea">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:64</note>
       </notes>
       <segment>
         <source>label.textarea</source>
@@ -5720,7 +5691,7 @@
     </unit>
     <unit id="qbaO3DI" name="log.photo.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.photo.created</source>
@@ -5729,7 +5700,7 @@
     </unit>
     <unit id="LFxS4N." name="log.photo.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.photo.deleted</source>
@@ -5738,7 +5709,7 @@
     </unit>
     <unit id="FetHbDe" name="log.tag_category.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.tag_category.created</source>
@@ -5747,7 +5718,7 @@
     </unit>
     <unit id="fQ0vpBr" name="log.tag_category.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.tag_category.deleted</source>
@@ -5756,7 +5727,7 @@
     </unit>
     <unit id="NXWixPs" name="log.template.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.template.created</source>
@@ -5765,7 +5736,7 @@
     </unit>
     <unit id="ewUDkTE" name="log.template.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.template.deleted</source>
@@ -5774,7 +5745,7 @@
     </unit>
     <unit id="_eUCsYY" name="log.inventory.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.inventory.created</source>
@@ -5783,7 +5754,7 @@
     </unit>
     <unit id="poWDB.l" name="log.inventory.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.inventory.deleted</source>
@@ -5792,7 +5763,7 @@
     </unit>
     <unit id="mtFIeHM" name="log.choice_list.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.choice_list.created</source>
@@ -5801,7 +5772,7 @@
     </unit>
     <unit id="rlvIomT" name="log.choice_list.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.choice_list.deleted</source>
@@ -5810,7 +5781,7 @@
     </unit>
     <unit id="upWFjf_" name="log.wish.created">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
       </notes>
       <segment>
         <source>log.wish.created</source>
@@ -5819,7 +5790,7 @@
     </unit>
     <unit id="7la3BTO" name="log.wish.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.wish.deleted</source>
@@ -5828,7 +5799,7 @@
     </unit>
     <unit id="o.z2uRm" name="label.list">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DatumTypeEnum.php:73</note>
       </notes>
       <segment>
         <source>label.list</source>

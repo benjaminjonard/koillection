@@ -90,7 +90,7 @@
                     {{ form_label(form.relatedItems, 'label.related_items') }}
                     <input type="text" data-autocomplete--item-target="input" data-action="keyup->autocomplete--item#autocomplete keydown->autocomplete--item#preventDefault" autocomplete="off">
                 </div>
-                {{ form_widget(form.relatedItems, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--item-target': 'formInput'}}) }}
+                {{ form_widget(form.relatedItems, {'label' : 'label.related_items', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--item-target': 'formInput'}}) }}
             </div>
         </div>
 
