@@ -2731,7 +2731,7 @@
         <target>País</target>
       </segment>
     </unit>
-    <unit id="RjehIwh" name="global.locale.en-GB">
+    <unit id="RjehIwh" name="global.locale.es-ES">
       <segment>
         <source>global.locale.es-ES</source>
         <target>Español</target>
@@ -2740,13 +2740,13 @@
     <unit id="TjepIwh" name="global.locale.en-GB">
       <segment>
         <source>global.locale.en-GB</source>
-        <target>Inglés</target>
+        <target>English</target>
       </segment>
     </unit>
     <unit id="Acw13X3" name="global.locale.fr-FR">
       <segment>
         <source>global.locale.fr-FR</source>
-        <target>Francés</target>
+        <target>Français</target>
       </segment>
     </unit>
     <unit id="I4vwwju" name="title.overview">
@@ -3136,7 +3136,7 @@
     <unit id="e9psgbF" name="counter.signs">
       <segment>
         <source>counter.signs</source>
-        <target>{0} %count% firmas| {1} %count% firma| ]1,Inf[ %count% sigfirmasnatures</target>
+        <target>{0} %count% firmas| {1} %count% firma| ]1,Inf[ %count% firmas</target>
       </segment>
     </unit>
     <unit id="aCCqbt1" name="counter.without_number.signs">

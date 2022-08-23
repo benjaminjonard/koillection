@@ -2725,6 +2725,12 @@
         <target>Country</target>
       </segment>
     </unit>
+    <unit id="RjehIwh" name="global.locale.es-ES">
+      <segment>
+        <source>global.locale.es-ES</source>
+        <target>Español</target>
+      </segment>
+    </unit>
     <unit id="TjepIwh" name="global.locale.en-GB">
       <segment>
         <source>global.locale.en-GB</source>
