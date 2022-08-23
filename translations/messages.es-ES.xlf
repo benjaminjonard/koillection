@@ -4501,7 +4501,8 @@
     </unit>
     <unit id="iOJaZ01" name="global.entities.inventory">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:58</note>
+         <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:72</note>
       </notes>
       <segment>
         <source>global.entities.inventory</source>
@@ -4510,34 +4511,16 @@
     </unit>
     <unit id="O6z2.Zr" name="message.delete.inventory">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Inventory/show.html.twig:72</note>
       </notes>
       <segment>
         <source>message.delete.inventory</source>
         <target>¿Estás seguro que quieres eliminar este inventario?</target>
       </segment>
     </unit>
-    <unit id="fXireSj" name="btn.clean_unused_files">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>btn.clean_unused_files</source>
-        <target>Limpiar archivos en deshuso</target>
-      </segment>
-    </unit>
-    <unit id="p6vgwuI" name="btn.backup">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>btn.backup</source>
-        <target>Copia de seguridad (imágenes y base de datos)</target>
-      </segment>
-    </unit>
     <unit id="HFhQzXX" name="breadcrumb.add_tag_category">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/TagCategory/show.html.twig:3</note>
       </notes>
       <segment>
         <source>breadcrumb.add_tag_category</source>
@@ -4546,7 +4529,7 @@
     </unit>
     <unit id="bjhCeK0" name="message.delete.tag_category">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/TagCategory/show.html.twig:33</note>
       </notes>
       <segment>
         <source>message.delete.tag_category</source>
@@ -4555,7 +4538,8 @@
     </unit>
     <unit id="G97C3_o" name="global.entities.tag_category">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:58</note>
+         <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:72</note>
       </notes>
       <segment>
         <source>global.entities.tag_category</source>
@@ -4564,7 +4548,7 @@
     </unit>
     <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/TagCategory/edit.html.twig:3</note>
       </notes>
       <segment>
         <source>breadcrumb.edit_tag_category</source>
@@ -4582,7 +4566,7 @@
     </unit>
     <unit id="Kg4E_mI" name="global.locale.es-ES">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/LocaleEnum.php:24</note>
       </notes>
       <segment>
         <source>global.locale.es-ES</source>
@@ -4591,7 +4575,7 @@
     </unit>
     <unit id="TjepIwh" name="global.locale.en-GB">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/LocaleEnum.php:22</note>
       </notes>
       <segment>
         <source>global.locale.en-GB</source>
@@ -4600,7 +4584,7 @@
     </unit>
     <unit id="Acw13X3" name="global.locale.fr-FR">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/LocaleEnum.php:23</note>
       </notes>
       <segment>
         <source>global.locale.fr-FR</source>
@@ -4609,7 +4593,7 @@
     </unit>
     <unit id="U8IBiON" name="menu.overview">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Admin/Admin/index.html.twig:5</note>
       </notes>
       <segment>
         <source>menu.overview</source>
@@ -4618,7 +4602,7 @@
     </unit>
     <unit id="mEDsKHk" name="label.locale">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:25</note>
       </notes>
       <segment>
         <source>label.locale</source>
@@ -4627,7 +4611,7 @@
     </unit>
     <unit id="FA5XLbh" name="enum.history_filter_class.collection">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:45</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.collection</source>
@@ -4636,7 +4620,7 @@
     </unit>
     <unit id=".s91X7z" name="enum.history_filter_class.item">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:46</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.item</source>
@@ -4645,7 +4629,7 @@
     </unit>
     <unit id="Bbv77ja" name="enum.history_filter_class.tag">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:47</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.tag</source>
@@ -4654,7 +4638,7 @@
     </unit>
     <unit id="XKMAo1i" name="enum.history_filter_type.create">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:60</note>
       </notes>
       <segment>
         <source>enum.history_filter_type.create</source>
@@ -4663,7 +4647,7 @@
     </unit>
     <unit id="4AoD3Gf" name="enum.history_filter_type.delete">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:61</note>
       </notes>
       <segment>
         <source>enum.history_filter_type.delete</source>
@@ -4672,7 +4656,7 @@
     </unit>
     <unit id="2j7vQYy" name="breadcrumb.history_album">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Album/history.html.twig:3</note>
       </notes>
       <segment>
         <source>breadcrumb.history_album</source>
@@ -4690,7 +4674,7 @@
     </unit>
     <unit id="tCaXH8D" name="enum.history_filter_class.album">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:48</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.album</source>
@@ -4699,7 +4683,7 @@
     </unit>
     <unit id="CHK7Dzf" name="enum.history_filter_class.wishlist">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:49</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.wishlist</source>
@@ -4726,7 +4710,7 @@
     </unit>
     <unit id="HJFRPmK" name="breadcrumb.history_wishlist">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Wishlist/history.html.twig:3</note>
       </notes>
       <segment>
         <source>breadcrumb.history_wishlist</source>
@@ -4744,43 +4728,16 @@
     </unit>
     <unit id="GXrTvzK" name="label.albums">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Search/index.html.twig:44</note>
       </notes>
       <segment>
         <source>label.albums</source>
         <target>Álbums</target>
       </segment>
     </unit>
-    <unit id="uKZb2q3" name="btn.regenerate_thumbnails">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>btn.regenerate_thumbnails</source>
-        <target>Regenerar las miniaturas</target>
-      </segment>
-    </unit>
-    <unit id=".hornAL" name="log.item.file_removed">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.file_removed</source>
-        <target>El archivo %label% fue eliminado</target>
-      </segment>
-    </unit>
-    <unit id="zpORTk0" name="log.item.file_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.file_added</source>
-        <target>El archivo %label% fue añadido</target>
-      </segment>
-    </unit>
     <unit id="Qo7wr5F" name="label.wishlists_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:80</note>
       </notes>
       <segment>
         <source>label.wishlists_feature_enabled</source>
@@ -4789,7 +4746,7 @@
     </unit>
     <unit id="d7dTHZ." name="label.tags_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:83</note>
       </notes>
       <segment>
         <source>label.tags_feature_enabled</source>
@@ -4798,7 +4755,7 @@
     </unit>
     <unit id="5g5Fm08" name="label.signs_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:88</note>
       </notes>
       <segment>
         <source>label.signs_feature_enabled</source>
@@ -4807,7 +4764,7 @@
     </unit>
     <unit id="VDd2HS6" name="label.albums_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:91</note>
       </notes>
       <segment>
         <source>label.albums_feature_enabled</source>
@@ -4816,7 +4773,7 @@
     </unit>
     <unit id="hE9F5PK" name="label.loans_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:97</note>
       </notes>
       <segment>
         <source>label.loans_feature_enabled</source>
@@ -4825,7 +4782,7 @@
     </unit>
     <unit id="_HAg.fc" name="label.templates_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:100</note>
       </notes>
       <segment>
         <source>label.templates_feature_enabled</source>
@@ -4834,7 +4791,7 @@
     </unit>
     <unit id="FfhJCxR" name="label.history_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:106</note>
       </notes>
       <segment>
         <source>label.history_feature_enabled</source>
@@ -4843,7 +4800,7 @@
     </unit>
     <unit id="_G1H7r2" name="label.statistics_feature_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:109</note>
       </notes>
       <segment>
         <source>label.statistics_feature_enabled</source>
@@ -4852,7 +4809,7 @@
     </unit>
     <unit id="I0M_1B7" name="label.dark_mode_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:72</note>
       </notes>
       <segment>
         <source>label.dark_mode_enabled</source>
@@ -4861,7 +4818,7 @@
     </unit>
     <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:63</note>
       </notes>
       <segment>
         <source>label.automatic_dark_mode_start_at</source>
@@ -4870,7 +4827,7 @@
     </unit>
     <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:66</note>
       </notes>
       <segment>
         <source>label.automatic_dark_mode_end_at</source>
@@ -4897,7 +4854,8 @@
     </unit>
     <unit id="BgCxgOK" name="label.related_items">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Item/_form.html.twig:90</note>
+        <note category="file-source" priority="1">koillection/templates/App/Item/_form.html.twig:93</note>
       </notes>
       <segment>
         <source>label.related_items</source>
@@ -4906,7 +4864,7 @@
     </unit>
     <unit id="nXb.5Pm" name="error.user_not_enabled">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Security/UsernameOrEmailPasswordAuthenticator.php:44</note>
       </notes>
       <segment>
         <source>error.user_not_enabled</source>
@@ -4915,7 +4873,7 @@
     </unit>
     <unit id="zFu6NvC" name="message.delete.user">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Admin/User/index.html.twig:65</note>
       </notes>
       <segment>
         <source>message.delete.user</source>
@@ -4942,7 +4900,7 @@
     </unit>
     <unit id="6faiqOu" name="global.visibilities.internal">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/VisibilityEnum.php:29</note>
       </notes>
       <segment>
         <source>global.visibilities.internal</source>
@@ -4951,7 +4909,7 @@
     </unit>
     <unit id="iiWFLaI" name="label.new_password">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Profile/index.html.twig:54</note>
       </notes>
       <segment>
         <source>label.new_password</source>
@@ -4960,7 +4918,7 @@
     </unit>
     <unit id="uG3LLvE" name="label.repeat_new_password">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Profile/index.html.twig:57</note>
       </notes>
       <segment>
         <source>label.repeat_new_password</source>
@@ -4978,7 +4936,7 @@
     </unit>
     <unit id="vyczzVz" name="global.display_mode.grid">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DisplayModeEnum.php:20</note>
       </notes>
       <segment>
         <source>global.display_mode.grid</source>
@@ -4987,7 +4945,7 @@
     </unit>
     <unit id="cWn8jLd" name="global.display_mode.list">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/DisplayModeEnum.php:21</note>
       </notes>
       <segment>
         <source>global.display_mode.list</source>
@@ -4996,7 +4954,8 @@
     </unit>
     <unit id="qcUvWAj" name="label.items_display_mode">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/_form.html.twig:42</note>
+        <note category="file-source" priority="1">koillection/templates/App/Tag/_form.html.twig:18</note>
       </notes>
       <segment>
         <source>label.items_display_mode</source>
@@ -5005,7 +4964,7 @@
     </unit>
     <unit id="maYJbRz" name="label.photos_display_mode">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Album/_form.html.twig:17</note>
       </notes>
       <segment>
         <source>label.photos_display_mode</source>
@@ -5014,7 +4973,7 @@
     </unit>
     <unit id="Eqd5CcJ" name="label.items_sorting_property">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/_form.html.twig:33</note>
       </notes>
       <segment>
         <source>label.items_sorting_property</source>
@@ -5023,7 +4982,7 @@
     </unit>
     <unit id="5RTM2D6" name="label.items_sorting_direction">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/_form.html.twig:36</note>
       </notes>
       <segment>
         <source>label.items_sorting_direction</source>
@@ -5032,7 +4991,7 @@
     </unit>
     <unit id="g53kXhj" name="global.sorting_direction.asc">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/SortingDirectionEnum.php:20</note>
       </notes>
       <segment>
         <source>global.sorting_direction.asc</source>
@@ -5041,7 +5000,7 @@
     </unit>
     <unit id="a3O9P2o" name="global.sorting_direction.desc">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/SortingDirectionEnum.php:21</note>
       </notes>
       <segment>
         <source>global.sorting_direction.desc</source>
@@ -5050,7 +5009,7 @@
     </unit>
     <unit id="wPplZ1u" name="label.items_default_template">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/_form.html.twig:27</note>
       </notes>
       <segment>
         <source>label.items_default_template</source>
@@ -5068,7 +5027,7 @@
     </unit>
     <unit id="0ZXz2Ap" name="label.items_display_mode_list_columns">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/_form.html.twig:48</note>
       </notes>
       <segment>
         <source>label.items_display_mode_list_columns</source>
@@ -5077,7 +5036,7 @@
     </unit>
     <unit id="RI32F3o" name="enum.history_filter_class.template">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:49</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.template</source>
@@ -5086,7 +5045,7 @@
     </unit>
     <unit id="cmatIVa" name="enum.history_filter_class.choice_list">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:53</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.choice_list</source>
@@ -5095,7 +5054,7 @@
     </unit>
     <unit id="Oapz0PO" name="enum.history_filter_class.inventory">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:52</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.inventory</source>
@@ -5104,7 +5063,7 @@
     </unit>
     <unit id="BfIpT_W" name="enum.history_filter_class.tag_category">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:54</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.tag_category</source>
@@ -5113,7 +5072,7 @@
     </unit>
     <unit id="7xj7gJl" name="enum.history_filter_class.photo">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:55</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.photo</source>
@@ -5122,7 +5081,7 @@
     </unit>
     <unit id="8EqSejP" name="enum.history_filter_class.wish">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+         <note category="file-source" priority="1">koillection/src/Enum/HistoryFilterEnum.php:56</note>
       </notes>
       <segment>
         <source>enum.history_filter_class.wish</source>
@@ -5194,7 +5153,7 @@
     </unit>
     <unit id="poWDB.l" name="log.inventory.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.inventory.deleted</source>
@@ -5212,7 +5171,7 @@
     </unit>
     <unit id="rlvIomT" name="log.choice_list.deleted">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:56</note>
       </notes>
       <segment>
         <source>log.choice_list.deleted</source>
@@ -5248,7 +5207,7 @@
     </unit>
     <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/ChoiceList/_form.html.twig:3</note>
       </notes>
       <segment>
         <source>breadcrumb.add_choice_list</source>
@@ -5257,7 +5216,7 @@
     </unit>
     <unit id="nMiYLFJ" name="breadcrumb.edit_choice_list">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/ChoiceList/edit.html.twig:3</note>
       </notes>
       <segment>
         <source>breadcrumb.edit_choice_list</source>
