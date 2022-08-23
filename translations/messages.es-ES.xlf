@@ -1774,24 +1774,15 @@
     </unit>
     <unit id="nQDmBI4" name="menu.collections_shared">
       <notes>
-        <note category="file-source" priority="1">koillection/templates/App/Album/index.html.twig:17</note>
-        <note category="file-source" priority="1">koillection/templates/App/Album/show.html.twig:17</note>
         <note category="file-source" priority="1">koillection/templates/App/Collection/index.html.twig:12</note>
         <note category="file-source" priority="1">koillection/templates/App/Collection/index.html.twig:13</note>
         <note category="file-source" priority="1">koillection/templates/App/Collection/items.html.twig:17</note>
         <note category="file-source" priority="1">koillection/templates/App/Collection/show.html.twig:17</note>
         <note category="file-source" priority="1">koillection/templates/App/Item/show.html.twig:17</note>
-        <note category="file-source" priority="1">koillection/templates/App/Sign/index.html.twig:16</note>
-        <note category="file-source" priority="1">koillection/templates/App/Statistics/index.html.twig:17</note>
-        <note category="file-source" priority="1">koillection/templates/App/Tag/index.html.twig:17</note>
-        <note category="file-source" priority="1">koillection/templates/App/Tag/item.html.twig:17</note>
-        <note category="file-source" priority="1">koillection/templates/App/Tag/show.html.twig:17</note>
-        <note category="file-source" priority="1">koillection/templates/App/Wishlist/index.html.twig:17</note>
-        <note category="file-source" priority="1">koillection/templates/App/Wishlist/show.html.twig:17</note>
       </notes>
       <segment>
         <source>menu.collections_shared</source>
-        <target>Colecciones de %username%</target>
+        <target>Colección de %username%</target>
       </segment>
     </unit>
     <unit id="5hMk7ux" name="menu.albums">
@@ -4213,78 +4204,6 @@
         <target>El elemento %label% fue eliminado</target>
       </segment>
     </unit>
-    <unit id="T.ABiea" name="log.item.tag_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.tag_added</source>
-        <target>La etiqueta %tag% fue añadida</target>
-      </segment>
-    </unit>
-    <unit id="XyCsJHB" name="log.item.tag_removed">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.tag_removed</source>
-        <target>La etiqueta %tag% fue eliminada</target>
-      </segment>
-    </unit>
-    <unit id="GMz7R9E" name="log.item.sign_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.sign_added</source>
-        <target>La firma %label% fue añadida</target>
-      </segment>
-    </unit>
-    <unit id="aDc4Khw" name="log.item.image_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.image_added</source>
-        <target>La imagen %label% fue añadida</target>
-      </segment>
-    </unit>
-    <unit id="HtlfUjV" name="log.item.property_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.property_added</source>
-        <target>La propiedad %label% con el valor de %value% fue añadida</target>
-      </segment>
-    </unit>
-    <unit id="YXeF5Ti" name="log.item.sign_removed">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.sign_removed</source>
-        <target>La firma %label% fue eliminada</target>
-      </segment>
-    </unit>
-    <unit id="nnFeqXM" name="log.item.image_removed">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.image_removed</source>
-        <target>La imagen %label% fue eliminada</target>
-      </segment>
-    </unit>
-    <unit id="8NjBClV" name="log.item.property_removed">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>log.item.property_removed</source>
-        <target>La propiedad %label% conel valor de %value% fue eliminada</target>
-      </segment>
-    </unit>
     <unit id="rZbNjjk" name="log.tag.created">
       <notes>
          <note category="file-source" priority="1">koillection/src/Twig/LogRuntime.php:52</note>
@@ -4303,450 +4222,27 @@
         <target>La etiqueta %label% fue eliminada</target>
       </segment>
     </unit>
-    <unit id="PBKgpKb" name="menu.about">
+    <unit id="NLlL04M" name="help.recursive">
       <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.about</source>
-        <target>Sobre nosotros</target>
-      </segment>
-    </unit>
-    <unit id="uEgjXKw" name="menu.albums_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.albums_shared</source>
-        <target>Álbums de %username%</target>
-      </segment>
-    </unit>
-    <unit id="PSUY15l" name="menu.signs_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.signs_shared</source>
-        <target>Firmas de %username%</target>
-      </segment>
-    </unit>
-    <unit id="dCsYBHs" name="menu.statistics_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.statistics_shared</source>
-        <target>Estadísticas de %username%</target>
-      </segment>
-    </unit>
-    <unit id="ZrEDTZp" name="menu.tags_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.tags_shared</source>
-        <target>Etiquetas de %username%</target>
-      </segment>
-    </unit>
-    <unit id="1sy2QVa" name="menu.wishlists_shared">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.wishlists_shared</source>
-        <target>Listas de deseos de %username%</target>
-      </segment>
-    </unit>
-    <unit id="LYZR0u." name="message.done">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>message.done</source>
-        <target>Hecho</target>
-      </segment>
-    </unit>
-    <unit id="1y_BRyd" name="message.entity_is_private">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>message.entity_is_private</source>
-        <target>Esta página está configurada como privada, no puedes compartirla.</target>
-      </segment>
-    </unit>
-    <unit id="lohoxDU" name="message.parameters_updated">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>message.parameters_updated</source>
-        <target>Tu configuración ha sido actualizada correctamente</target>
-      </segment>
-    </unit>
-    <unit id="NLlL04M" name="message.recursive">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/batch_tagging.html.twig:31</note>
       </notes>
       <segment>
         <source>message.recursive</source>
         <target>Si se marca, las etiquetas se aplicarán a las subcolecciones también</target>
       </segment>
     </unit>
-    <unit id="MP5YHNd" name="message.tags_without_items_deleted">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>message.tags_without_items_deleted</source>
-        <target>%count% etiquetas han sido eliminadas</target>
-      </segment>
-    </unit>
-    <unit id="pWVM8oW" name="message.test_email_sent">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>message.test_email_sent</source>
-        <target>EL correo de prueba se envió</target>
-      </segment>
-    </unit>
-    <unit id="z8doNW0" name="tab.statistics">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tab.statistics</source>
-        <target>Estadísticas</target>
-      </segment>
-    </unit>
-    <unit id="AzJJmQ_" name="title.currency">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.currency</source>
-        <target>Moneda</target>
-      </segment>
-    </unit>
-    <unit id="D5y_AEE" name="title.join_form">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.join_form</source>
-        <target>Creación de cuenta</target>
-      </segment>
-    </unit>
-    <unit id="spXPl9V" name="title.language">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.language</source>
-        <target>Idioma</target>
-      </segment>
-    </unit>
-    <unit id="a3BdRfd" name="title.last_collections_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.last_collections_added</source>
-        <target>Última colección añadida</target>
-      </segment>
-    </unit>
-    <unit id="oAboyvt" name="title.last_items_added">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.last_items_added</source>
-        <target>Últimos elementos añadidos</target>
-      </segment>
-    </unit>
-    <unit id="hR4DWGd" name="title.statistics">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.statistics</source>
-        <target>Estadísticas</target>
-      </segment>
-    </unit>
-    <unit id="mvzqhh8" name="title.user_details">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.user_details</source>
-        <target>Detalles de usuario</target>
-      </segment>
-    </unit>
-    <unit id="N7jz_F1" name="title.visibility">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.visibility</source>
-        <target>Visibilidad</target>
-      </segment>
-    </unit>
-    <unit id="Wf8jJNQ" name="title.wishlist">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.wishlist</source>
-        <target>Lista de deseos %wishlist%</target>
-      </segment>
-    </unit>
-    <unit id="0Iya7gx" name="tooltip.history">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tooltip.history</source>
-        <target>Histórico</target>
-      </segment>
-    </unit>
-    <unit id=".TUUZqf" name="tutorial.no_collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tutorial.no_collection</source>
-        <target>Ups, no tienes ninguna colección. Clic aquí para empezar.</target>
-      </segment>
-    </unit>
-    <unit id="3C0OGP." name="tab.translations">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tab.translations</source>
-        <target>Traducciones</target>
-      </segment>
-    </unit>
-    <unit id="SIWS8O4" name="label.configs">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.configs</source>
-        <target>Configuraciones: </target>
-      </segment>
-    </unit>
-    <unit id="qm7xyXZ" name="menu.translations">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.translations</source>
-        <target>Traducciones</target>
-      </segment>
-    </unit>
-    <unit id="fw94.4n" name="menu.users">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>menu.users</source>
-        <target>Usuarios</target>
-      </segment>
-    </unit>
-    <unit id="Ho1FG0i" name="label.locales">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.locales</source>
-        <target>Locales: </target>
-      </segment>
-    </unit>
-    <unit id="27zqEjU" name="label.domains">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.domains</source>
-        <target>Dominios: </target>
-      </segment>
-    </unit>
-    <unit id="7kMAyC4" name="header.create_translation">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>header.create_translation</source>
-        <target>Crear nueva traducción</target>
-      </segment>
-    </unit>
-    <unit id="oSwCv_s" name="header.translations">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>header.translations</source>
-        <target>Traducciones</target>
-      </segment>
-    </unit>
-    <unit id="XFMXVix" name="message.confirmation">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>message.confirmation</source>
-        <target>¿Estás seguro?</target>
-      </segment>
-    </unit>
-    <unit id="Zqs7GvW" name="label.other_translations">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.other_translations</source>
-        <target>Otras traducciones</target>
-      </segment>
-    </unit>
-    <unit id="6_gBi2x" name="label.key">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.key</source>
-        <target>Clave</target>
-      </segment>
-    </unit>
-    <unit id="ldlccG3" name="label.from">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.from</source>
-        <target>Desde</target>
-      </segment>
-    </unit>
-    <unit id="DQah9vr" name="tooltip.new">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tooltip.new</source>
-        <target>Nuevo</target>
-      </segment>
-    </unit>
-    <unit id="2ulK36u" name="tooltip.warning">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tooltip.warning</source>
-        <target>Cuidado</target>
-      </segment>
-    </unit>
-    <unit id="M23tqyv" name="tooltip.delete_translation">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tooltip.delete_translation</source>
-        <target>Borrar la traducción</target>
-      </segment>
-    </unit>
-    <unit id="iPvRWrq" name="btn.create">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>btn.create</source>
-        <target>Crear</target>
-      </segment>
-    </unit>
-    <unit id="6mIqcx6" name="tooltip.empty">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>tooltip.empty</source>
-        <target>Vaciar</target>
-      </segment>
-    </unit>
-    <unit id="hzhzbqw" name="label.status">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.status</source>
-        <target>Estado</target>
-      </segment>
-    </unit>
-    <unit id="zB7DGiM" name="label.translation">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.translation</source>
-        <target>Traducción</target>
-      </segment>
-    </unit>
-    <unit id="lx8jvbW" name="btn.login">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>btn.login</source>
-        <target>Conectarse</target>
-      </segment>
-    </unit>
-    <unit id="RzK48dw" name="filter.tag">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>filter.tag</source>
-        <target>Etiqueta</target>
-      </segment>
-    </unit>
-    <unit id="1.3zJOb" name="filter.item">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>filter.item</source>
-        <target>Elemento</target>
-      </segment>
-    </unit>
-    <unit id="lxmo2xQ" name="filter.collection">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>filter.collection</source>
-        <target>Colección</target>
-      </segment>
-    </unit>
     <unit id="cQsMebl" name="breadcrumb.transfer_wish">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Wish/transfer_to_collection.html.twig:3</note>
       </notes>
       <segment>
         <source>breadcrumb.transfer_wish</source>
         <target>Transferir deseado a otra colección</target>
       </segment>
     </unit>
-    <unit id="ftu6zLh" name="global.others">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>global.others</source>
-        <target>Otros</target>
-      </segment>
-    </unit>
     <unit id="Dpg9wp." name="role.user">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/RoleEnum.php:18</note>
       </notes>
       <segment>
         <source>role.user</source>
@@ -4755,70 +4251,28 @@
     </unit>
     <unit id="tlZBAKL" name="role.admin">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/RoleEnum.php:19</note>
       </notes>
       <segment>
         <source>role.admin</source>
         <target>Administrador</target>
       </segment>
     </unit>
-    <unit id="XulMPsF" name="first_connection.header">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>first_connection.header</source>
-        <target>Primera conexión</target>
-      </segment>
-    </unit>
-    <unit id="ivST7Bo" name="first_connection.parameters">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>first_connection.parameters</source>
-        <target>Parámetros de la base de datos</target>
-      </segment>
-    </unit>
     <unit id="7o9hj19" name="first_connection.user">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Security/first_connection.html.twig:16</note>
       </notes>
       <segment>
         <source>first_connection.user</source>
         <target>Información del usuario</target>
       </segment>
     </unit>
-    <unit id="a7zU.My" name="title.delete_user">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>title.delete_user</source>
-        <target>Eliminar usuario %user%</target>
-      </segment>
-    </unit>
-    <unit id="PNA2Sv7" name="label.confirm">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>label.confirm</source>
-        <target>Confirmar</target>
-      </segment>
-    </unit>
-    <unit id="1_PoPqY" name="message.user_delete_warning">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>message.user_delete_warning</source>
-        <target>Esta acción eliminará el usuario y toda su infromación, incluidas las fotos subidas. Esta acción no se puede deshacer, ¿estás seguro?</target>
-      </segment>
-    </unit>
     <unit id="dmtPdwq" name="label.timezone">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Admin/User/add.html.twig:52</note>
+        <note category="file-source" priority="1">koillection/templates/App/Admin/User/edit.html.twig:65</note>
+        <note category="file-source" priority="1">koillection/templates/App/Security/first_connection.html.twig:22</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:34</note>
       </notes>
       <segment>
         <source>label.timezone</source>
@@ -4827,7 +4281,7 @@
     </unit>
     <unit id="U4y7aZO" name="message.delete.tag">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Tag/show.html.twig:50</note>
       </notes>
       <segment>
         <source>message.delete.tag</source>
@@ -4836,7 +4290,8 @@
     </unit>
     <unit id="v5OgDgx" name="message.delete.item">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/_items_list.html.twig:53</note>
+        <note category="file-source" priority="1">koillection/templates/App/Item/_content.html.twig:27</note>
       </notes>
       <segment>
         <source>message.delete.item</source>
@@ -4845,7 +4300,7 @@
     </unit>
     <unit id="zHvuaSF" name="message.delete.album">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Album/show.html.twig:62</note>
       </notes>
       <segment>
         <source>message.delete.album</source>
@@ -4854,7 +4309,7 @@
     </unit>
     <unit id="F5mLnYt" name="message.delete.template">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Template/show.html.twig:29</note>
       </notes>
       <segment>
         <source>message.delete.template</source>
@@ -4863,7 +4318,7 @@
     </unit>
     <unit id="JMVpPAR" name="message.delete.wishlist">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Wishlist/show.html.twig:62</note>
       </notes>
       <segment>
         <source>message.delete.wishlist</source>
@@ -4872,7 +4327,7 @@
     </unit>
     <unit id="YTTkLLK" name="message.delete.wish">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Wishlist/show.html.twig:143</note>
       </notes>
       <segment>
         <source>message.delete.wish</source>
@@ -4881,7 +4336,7 @@
     </unit>
     <unit id="5Z0Lnp." name="message.delete.collection">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Collection/show.html.twig:65</note>
       </notes>
       <segment>
         <source>message.delete.collection</source>
@@ -4890,7 +4345,8 @@
     </unit>
     <unit id="_HekiQE" name="message.delete.loan">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Loan/index.html.twig:57</note>
+        <note category="file-source" priority="1">koillection/templates/App/Loan/index.html.twig:90</note>
       </notes>
       <segment>
         <source>message.delete.loan</source>
@@ -4899,7 +4355,7 @@
     </unit>
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/_partials/_footer.html.twig:9</note>
       </notes>
       <segment>
         <source>global.seen_counter.album</source>
@@ -4908,7 +4364,7 @@
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/_partials/_footer.html.twig:9</note>
       </notes>
       <segment>
         <source>global.seen_counter.collection</source>
@@ -4917,7 +4373,7 @@
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/_partials/_footer.html.twig:9</note>
       </notes>
       <segment>
         <source>global.seen_counter.item</source>
@@ -4926,7 +4382,7 @@
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/_partials/_footer.html.twig:9</note>
       </notes>
       <segment>
         <source>global.seen_counter.tag</source>
@@ -4935,34 +4391,16 @@
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/_partials/_footer.html.twig:9</note>
       </notes>
       <segment>
         <source>global.seen_counter.wishlist</source>
         <target>{0} lista de deseos consultada %count% veces| {1} lista de deseos consultada %count% vez| ]1,Inf[ lista de deseos consultada %count% veces</target>
       </segment>
     </unit>
-    <unit id="Lx7mAxQ" name="filter.create">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>filter.create</source>
-        <target>Crear</target>
-      </segment>
-    </unit>
-    <unit id="xRzOAVz" name="filter.delete">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
-      <segment>
-        <source>filter.delete</source>
-        <target>Eliminar</target>
-      </segment>
-    </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:44</note>
       </notes>
       <segment>
         <source>global.date_formats.slash_dmy</source>
@@ -4971,7 +4409,7 @@
     </unit>
     <unit id="ZajD1iq" name="global.date_formats.slash_mdy">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:45</note>
       </notes>
       <segment>
         <source>global.date_formats.slash_mdy</source>
@@ -4980,7 +4418,7 @@
     </unit>
     <unit id="YlAUA0n" name="global.date_formats.slash_ymd">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:46</note>
       </notes>
       <segment>
         <source>global.date_formats.slash_ymd</source>
@@ -4989,7 +4427,7 @@
     </unit>
     <unit id="bCHcuOE" name="global.date_formats.hyphen_dmy">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:49</note>
       </notes>
       <segment>
         <source>global.date_formats.hyphen_dmy</source>
@@ -4998,7 +4436,7 @@
     </unit>
     <unit id="SlR19of" name="global.date_formats.hyphen_mdy">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:50</note>
       </notes>
       <segment>
         <source>global.date_formats.hyphen_mdy</source>
@@ -5007,7 +4445,7 @@
     </unit>
     <unit id="_NUVI5O" name="global.date_formats.hyphen_ymd">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:51</note>
       </notes>
       <segment>
         <source>global.date_formats.hyphen_ymd</source>
@@ -5016,7 +4454,8 @@
     </unit>
     <unit id="VqbMfZ0" name="label.date_format">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Security/first_connection.html.twig:23</note>
+        <note category="file-source" priority="1">koillection/templates/App/Settings/index.html.twig:37</note>
       </notes>
       <segment>
         <source>label.date_format</source>
@@ -5025,7 +4464,7 @@
     </unit>
     <unit id="V5iMey4" name="global.optgroup.date_formats.slash">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:43</note>
       </notes>
       <segment>
         <source>global.optgroup.date_formats.slash</source>
@@ -5034,7 +4473,7 @@
     </unit>
     <unit id="oYuZ6vx" name="global.optgroup.date_formats.hyphen">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/src/Enum/DateFormatEnum.php:48</note>
       </notes>
       <segment>
         <source>global.optgroup.date_formats.hyphen</source>
@@ -5043,7 +4482,7 @@
     </unit>
     <unit id="_.ADUgd" name="breadcrumb.add_inventory">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Inventory/add.html.twig:6</note>
       </notes>
       <segment>
         <source>breadcrumb.add_inventory</source>
@@ -5052,7 +4491,8 @@
     </unit>
     <unit id="Wjv..OL" name="menu.inventories">
       <notes>
-        <note category="state" priority="1">obsolete</note>
+        <note category="file-source" priority="1">koillection/templates/App/Inventory/add.html.twig:5</note>
+        <note category="file-source" priority="1">koillection/templates/App/Inventory/show.html.twig:5</note>
       </notes>
       <segment>
         <source>menu.inventories</source>
@@ -5822,6 +5262,60 @@
       <segment>
         <source>breadcrumb.edit_choice_list</source>
         <target>Editar</target>
+      </segment>
+    </unit>
+    <unit id="ltgwfbq" name="menu.signs_shared">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:77</note>
+        <note category="file-source" priority="1">koillection/templates/App/Signs/index.html.twig:16</note>
+      </notes>
+      <segment>
+        <source>menu.signs_shared</source>
+        <target>Firmas de %username%</target>
+      </segment>
+    </unit>
+    <unit id="tk6udpx" name="menu.statistics_shared">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:77</note>
+        <note category="file-source" priority="1">koillection/templates/App/Statistics/index.html.twig:17</note>
+      </notes>
+      <segment>
+        <source>menu.statistics_shared</source>
+        <target>Estadísticas de %username%</target>
+      </segment>
+    </unit>
+    <unit id="xLcWFGm" name="menu.tags_shared">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:77</note>
+        <note category="file-source" priority="1">koillection/templates/App/Tag/index.html.twig:17</note>
+        <note category="file-source" priority="1">koillection/templates/App/Tag/item.html.twig:17</note>
+        <note category="file-source" priority="1">koillection/templates/App/Tag/show.html.twig:17</note>
+      </notes>
+      <segment>
+        <source>menu.tags_shared</source>
+        <target>Etiquetas de %username%</target>
+      </segment>
+    </unit>
+    <unit id="vd.6dAz" name="menu.wishlists_shared">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:77</note>
+        <note category="file-source" priority="1">koillection/templates/App/Wishlist/index.html.twig:17</note>
+        <note category="file-source" priority="1">koillection/templates/App/Wishlist/show.html.twig:17</note>
+      </notes>
+      <segment>
+        <source>menu.wishlists_shared</source>
+        <target>Listas de deseos de %username%</target>
+      </segment>
+    </unit>
+    <unit id="Nl_I6SL" name="menu.albums_shared">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Twig/AppRuntime.php:77</note>
+        <note category="file-source" priority="1">koillection/templates/App/Album/index.html.twig:17</note>
+        <note category="file-source" priority="1">koillection/templates/App/Album/show.html.twig:17</note>
+      </notes>
+      <segment>
+        <source>menu.albums_shared</source>
+        <target>Álbums de %username%</target>
       </segment>
     </unit>
   </file>

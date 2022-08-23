@@ -14,7 +14,7 @@
     {% if context == 'shared'  %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.tags_shared'|trans({'%username%':  app.request.get('username')}),
             'image': item.imageSmallThumbnail
         }) }}
     {% else %}
