@@ -24,6 +24,7 @@ docker-compose.yml
 ###< symfony/phpunit-bridge ###
 
 /assets/stats.json
+/assets/js/translations/*
 
 /public/build/*
 /public/uploads/*
