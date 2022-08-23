@@ -47,7 +47,6 @@
                         <div>
                             <img src="{{ preload(asset(item.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  title="{{ 'label.main_image'|trans }}"
-                                 aria-label="{{ 'aria.item_main_image'|trans({'%name%': item.name}) }}"
                             >
                             <span class="image-label" data-slider-target="label">{{ 'label.main_image'|trans }}</span>
                         </div>
@@ -57,7 +56,6 @@
                         <div>
                             <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                  title="{{ 'label.main_image'|trans }}"
-                                 aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}"
                             >
                             <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
                         </div>
@@ -74,7 +72,6 @@
                              data-id="{{ item.id }}"
                              data-slider-target="thumbnail"
                              data-action="click->slider#display"
-                             aria-label="{{ 'aria.item_main_image_thumbnail'|trans({'%name%': item.name}) }}"
                         >
                     </li>
 
@@ -84,7 +81,6 @@
                                  data-id="{{ datum.id }}"
                                  data-slider-target="thumbnail"
                                  data-action="click->slider#display"
-                                 aria-label="{{ 'aria.item_image_thumbnail'|trans({'%name%': item.name, '%label%': datum.label}) }}"
                             >
                         </li>
                     {% endfor %}
@@ -118,7 +114,7 @@
         <ul class="nav nav-tags">
             {% for tag in item.tags|naturalSorting %}
                 <li class="tag chip">
-                    <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
+                    <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}">
                         {{ tag.label }}
                     </a>
                     {% if tag.category is not empty %}

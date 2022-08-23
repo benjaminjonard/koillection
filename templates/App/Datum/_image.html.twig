@@ -3,13 +3,11 @@
         {% if datum is defined and datum.image is not null %}
             <img data-preview-target="image"
                  class="preview-image" src="{{ preload(asset(datum.imageSmallThumbnail), {as: 'image'}) }}"
-                 aria-label="{{ 'aria.datum_image_thumbnail' }}"
             />
         {% else %}
             <img data-preview-target="image"
                  class="preview-image"
                  src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
-                 aria-label="{{ 'aria.default_image'|trans }}"
             />
         {% endif %}
         <input data-action="change->preview#load"

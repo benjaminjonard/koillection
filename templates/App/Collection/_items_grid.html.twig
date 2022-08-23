@@ -5,7 +5,6 @@
                 <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
                     <img data-src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}"
                          data-lazy-loading-target="image"
-                         aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
                     >
                 </div>
             </a>

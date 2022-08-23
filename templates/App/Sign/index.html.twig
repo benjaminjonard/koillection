@@ -49,7 +49,6 @@
                     <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
                         <img data-src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}"
                              data-lazy-loading-target="image"
-                             aria-label="{{ 'aria.datum_sign_thumbnail'|trans({'%label%': sign.label}) }}"
                         >
                     </div>
                 </a>

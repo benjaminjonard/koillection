@@ -107,10 +107,10 @@
                                 <td {{ stimulus_controller('lightbox') }}>
                                     {% if wish.image %}
                                         <a href="{{ asset(wish.image) }}" data-lightbox="image-{{ wish.id }}">
-                                            <img class="wishlist-item-avatar" src="{{ preload(asset(wish.imageSmallThumbnail), {as: 'image'}) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
+                                            <img class="wishlist-item-avatar" src="{{ preload(asset(wish.imageSmallThumbnail), {as: 'image'}) }}">
                                         </a>
                                     {% else %}
-                                        <img class="wishlist-item-avatar" src="{{ preload(asset('../build/images/default.png'), {as: 'image'}) }}" aria-label="{{ 'aria.wish_thumbnail'|trans({'%name%': wish.name}) }}">
+                                        <img class="wishlist-item-avatar" src="{{ preload(asset('../build/images/default.png'), {as: 'image'}) }}">
                                     {% endif %}
                                 </td>
                                 <td>

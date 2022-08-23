@@ -1,6 +1,6 @@
 {% for album in albums %}
     <div class="collection-element element" data-title="{{ album.title }}" data-filter-target="element">
-        <a class="collection-circle-thumbnail" href="{{ path('app_album_show'|applyContext, {'id': album.id}) }}" aria-label="{{ 'aria.album'|trans({'%title%': album.title}) }}">
+        <a class="collection-circle-thumbnail" href="{{ path('app_album_show'|applyContext, {'id': album.id}) }}">
             {% if album.image != null %}
                 <div class="image-wrapper placeholder placeholder--circle" {{ stimulus_controller('lazy-loading') }}>
                     <img data-src="{{ asset(album.image) }}" data-lazy-loading-target="image">

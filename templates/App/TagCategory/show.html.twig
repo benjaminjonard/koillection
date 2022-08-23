@@ -44,7 +44,7 @@
                 <ul class="nav nav-tags">
                     {% for tag in category.tags|naturalSorting %}
                         <li class="tag chip">
-                            <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
+                            <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}">
                                 {{ tag.label }}
                             </a>
                         </li>
