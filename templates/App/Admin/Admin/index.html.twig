@@ -6,11 +6,11 @@
 ]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -28,7 +28,8 @@
                         {% set percent = ((totalSpace - freeSpace) * 100 / totalSpace)|round(0, 'floor') %}
                         <span class="label">{{ percent }}<span class="smaller">%</span></span>
                         <div class="pie {{ percent > 50 ? 'above50' : '' }}">
-                            <div class="left-side half-circle" style="-webkit-transform: rotate({{ percent*360/100 }}deg); transform: rotate({{ percent*360/100 }}deg);"></div>
+                            <div class="left-side half-circle"
+                                 style="-webkit-transform: rotate({{ percent*360/100 }}deg); transform: rotate({{ percent*360/100 }}deg);"></div>
                             <div class="right-side half-circle"></div>
                         </div>
                         <div class="shadow"></div>
@@ -38,16 +39,36 @@
                         <div>{{ 'label.space_free'|trans({'%free%' : freeSpace|bytes}) }}</div>
                     </div>
                 </div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'%count%': counters.users}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'%count%': counters.albums}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'%count%': counters.photos}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'%count%': counters.signs}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ getSpaceUsedByUsers()|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}</div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'%count%': counters.users}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'%count%': counters.albums}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'%count%': counters.photos}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'%count%': counters.signs}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ getSpaceUsedByUsers()|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}
+                </div>
             </div>
         </div>
 
@@ -69,9 +90,15 @@
                         {{ 'label.up_to_date_release'|trans }}
                     {% endif %}
                 </div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}</div>
-                <div class="col s12 m4 xl2"><div class="counter"><i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i></div>{{ 'label.is_opcache_available'|trans }}</div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}</div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">
+                        <i
+                                class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
+                    </div>{{ 'label.is_opcache_available'|trans }}</div>
             </div>
         </div>
 

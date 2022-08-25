@@ -1,51 +1,51 @@
 {{ form_start(form) }}
-    <div class="content-block">
-        <div class="row">
-            <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.infos'|trans }}</h2>
-        </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.name, {'label': 'label.name'}) }}
-            </div>
-        </div>
+<div class="content-block">
+    <div class="row">
+        <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.infos'|trans }}</h2>
     </div>
 
-    <div class="content-block">
-        <div class="row">
-            <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.fields'|trans }}</h2>
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.name, {'label': 'label.name'}) }}
         </div>
+    </div>
+</div>
 
-        <div class="row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                <div class="error-helper">
-                    {{ form_errors(form) }}
-                </div>
+<div class="content-block">
+    <div class="row">
+        <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.fields'|trans }}</h2>
+    </div>
 
-                <div {{ stimulus_controller('template-field') }}
-                     data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}"
+    <div class="row">
+        <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+            <div class="error-helper">
+                {{ form_errors(form) }}
+            </div>
+
+            <div data-controller="template-field"
+                 data-prototype="{% apply escape %} {{ include('App/Field/_field_prototype.html.twig', { 'form': form.fields.vars.prototype }) }} {% endapply %}"
+            >
+                {{ form_row(form.fields) }}
+                <a data-template-field-target="button"
+                   data-action="click->template-field#add"
+                   href="#"
+                   class="add_field_link waves-effect waves-light btn"
                 >
-                    {{ form_row(form.fields) }}
-                    <a data-template-field-target="button"
-                       data-action="click->template-field#add"
-                       href="#"
-                       class="add_field_link waves-effect waves-light btn"
-                    >
-                        {{ 'btn.add_field'|trans }}
-                    </a>
-                </div>
+                    {{ 'btn.add_field'|trans }}
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="row center-align form-btn-holder">
-        {% if app.request.get('_route') == 'app_template_add' %}
-            {% set cancelUrl = path('app_collection_index') %}
-        {% else %}
-            {% set cancelUrl = path('app_template_show', {id: template.id}) %}
-        {% endif %}
+<div class="row center-align form-btn-holder">
+    {% if app.request.get('_route') == 'app_template_add' %}
+        {% set cancelUrl = path('app_collection_index') %}
+    {% else %}
+        {% set cancelUrl = path('app_template_show', {id: template.id}) %}
+    {% endif %}
 
-        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-        <a href="{{ cancelUrl }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
-    </div>
+    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+    <a href="{{ cancelUrl }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+</div>
 {{ form_end(form) }}

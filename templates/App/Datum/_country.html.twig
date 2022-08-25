@@ -1,10 +1,12 @@
 <div class="input-field col s5">
-    <select id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]" {{ stimulus_controller('select--country') }}>
+    <select id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]"
+            data-controller="select--country">
         <option value="" {% if datum is not defined %}selected{% endif %}>
-        {% for country in getCountriesList() %}
-            <option value="{{ country.code }}" data-flag="{{ country.flag }}" {% if datum is defined and datum.value == country.code %}selected{% endif %}>
-                {{ country.name }}
-            </option>
+            {% for country in getCountriesList() %}
+        <option value="{{ country.code }}" data-flag="{{ country.flag }}"
+                {% if datum is defined and datum.value == country.code %}selected{% endif %}>
+            {{ country.name }}
+        </option>
         {% endfor %}
     </select>
     <label for="data_{{ iteration }}_value">{{ 'label.value'|trans }}</label>

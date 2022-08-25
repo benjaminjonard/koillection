@@ -6,11 +6,11 @@
 ], null, 'breadcrumb.add_inventory') %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% macro recursiveCollection(collection) %}
@@ -43,47 +43,48 @@
         <h1>{{ 'title.add_inventory'|trans }}</h1>
     </div>
 
-    <div class="content-block" {{ stimulus_controller('cascading-checkboxes') }}>
+    <div class="content-block" data-controller="cascading-checkboxes">
         {{ form_start(form) }}
-            <div class="block-element">
-                <div class="row">
-                    <h2 class="header">{{ 'title.infos'|trans }}</h2>
-                    <div class="col s12 m5 offset-m1">
-                        {{ form_row(form.name, {'label' : 'label.name'}) }}
-                    </div>
-                </div>
-                <div class="row">
-                    <h2 class="header">{{ 'title.collections'|trans }}</h2>
-                    <div class="col s12 m5 offset-m1">
-                        <ul class="inventory-collection">
-                            <li>
-                                <p>
-                                    <label>
-                                        <input type="checkbox"
-                                               data-id="all"
-                                               data-action="change->cascading-checkboxes#update"
-                                        >
-                                        <span>{{ 'global.all_collections'|trans }}</span>
-                                    </label>
-                                </p>
-
-                                {% for collection in collections|filter(collection => collection.parent == null) %}
-                                    <ul class="inventory-collection">
-                                        {{ recursiveCollection(collection) }}
-                                    </ul>
-                                {% endfor %}
-                            </li>
-                        </ul>
-                    </div>
+        <div class="block-element">
+            <div class="row">
+                <h2 class="header">{{ 'title.infos'|trans }}</h2>
+                <div class="col s12 m5 offset-m1">
+                    {{ form_row(form.name, {'label' : 'label.name'}) }}
                 </div>
             </div>
+            <div class="row">
+                <h2 class="header">{{ 'title.collections'|trans }}</h2>
+                <div class="col s12 m5 offset-m1">
+                    <ul class="inventory-collection">
+                        <li>
+                            <p>
+                                <label>
+                                    <input type="checkbox"
+                                           data-id="all"
+                                           data-action="change->cascading-checkboxes#update"
+                                    >
+                                    <span>{{ 'global.all_collections'|trans }}</span>
+                                </label>
+                            </p>
 
-            <div class="form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                <a href="{{ path('app_tools_index') }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+                            {% for collection in collections|filter(collection => collection.parent == null) %}
+                                <ul class="inventory-collection">
+                                    {{ recursiveCollection(collection) }}
+                                </ul>
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="clearfix"></div>
-            {{ form_row(form.content, {'attr' : {'data-cascading-checkboxes-target': 'input'}}) }}
+        </div>
+
+        <div class="form-btn-holder">
+            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            <a href="{{ path('app_tools_index') }}"
+               class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+        </div>
+        <div class="clearfix"></div>
+        {{ form_row(form.content, {'attr' : {'data-cascading-checkboxes-target': 'input'}}) }}
         {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -3,7 +3,8 @@
         <div class="switch-wrapper">
             <div class="switch input-field">
                 <label>
-                    <input type="checkbox" value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
+                    <input type="checkbox"
+                           value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
                     <span class="lever"></span>
                     {{ label|trans }}
                 </label>

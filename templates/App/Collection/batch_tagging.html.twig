@@ -3,40 +3,43 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.batch_tagging') %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
     <div class="title-block">
-          <h1>{{ 'title.tag_collection'|trans({'%collection%': collection.title}) }}</h1>
+        <h1>{{ 'title.tag_collection'|trans({'%collection%': collection.title}) }}</h1>
     </div>
 
     <div class="content-block">
         {{ form_start(form) }}
-            <div class="row block-element">
-                <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3" {{ stimulus_controller('autocomplete--tag') }}>
-                        <div class="input-field">
-                            <input type="text" data-autocomplete--tag-target="input" data-action="keyup->autocomplete--tag#autocomplete keydown->autocomplete--tag#preventDefault" autocomplete="off">
-                            {{ form_label(form.tags, 'label.tags') }}
-                            <div data-autocomplete--tag-target="result" class="ac-tags"></div>
-                        </div>
-                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--tag-target': 'formInput'}}) }}
+        <div class="row block-element">
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl3 offset-xl3" data-controller="autocomplete--tag">
+                    <div class="input-field">
+                        <input type="text" data-autocomplete--tag-target="input"
+                               data-action="keyup->autocomplete--tag#autocomplete keydown->autocomplete--tag#preventDefault"
+                               autocomplete="off">
+                        {{ form_label(form.tags, 'label.tags') }}
+                        <div data-autocomplete--tag-target="result" class="ac-tags"></div>
                     </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(form.recursive, {'label': 'label.recursive', 'help': 'help.recursive'}) }}
-                    </div>
+                    {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--tag-target': 'formInput'}}) }}
                 </div>
-
-                <div class="row center-align form-btn-holder">
-                    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                    <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+                <div class="col s12 l5 xl3">
+                    {{ form_row(form.recursive, {'label': 'label.recursive', 'help': 'help.recursive'}) }}
                 </div>
             </div>
+
+            <div class="row center-align form-btn-holder">
+                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+                <a href="{{ path('app_collection_show', {'id' : collection.id}) }}"
+                   class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+            </div>
+        </div>
         {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -5,7 +5,7 @@
         {% if collection.children|length %}
             <ul>
                 {% for child in collection.children %}
-                    {% for _collection in collections|filter(_collection => _collection.id == child.id)  %}
+                    {% for _collection in collections|filter(_collection => _collection.id == child.id) %}
                         {{ self.recursiveCollection(_collection, collections) }}
                     {% endfor %}
                 {% endfor %}
@@ -14,7 +14,8 @@
         {% if collection.items|length %}
             <ul>
                 {% for item in collection.items|naturalSorting %}
-                    <li class="item"><input type="checkbox">{{ item.name }}</li>
+                    <li class="item">
+                        <input type="checkbox">{{ item.name }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
@@ -26,7 +27,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8"/>
         <title>Koillection</title>
 
         {{ encore_entry_link_tags('export') }}
@@ -48,7 +49,9 @@
         let prints = document.getElementsByClassName("print");
         let i;
         for (i = 0; i < prints.length; i++) {
-            prints[i].onclick = function(){window.print();}
+            prints[i].onclick = function () {
+                window.print();
+            }
         }
     </script>
 </html>

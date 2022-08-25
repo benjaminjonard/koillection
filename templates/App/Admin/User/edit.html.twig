@@ -6,11 +6,11 @@
 ], user) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -23,54 +23,73 @@
         <div class="block-element">
             <h2 class="header">{{ 'title.overview'|trans }}</h2>
             <div class="row statistics">
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'%count%': counters.albums}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'%count%': counters.photos}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'%count%': counters.signs}) }}</div>
-                <div class="col s12 m4 xl2"><div class="counter">{{ getSpaceUsedByUser(user)|bytes }}</div>{{ 'label.space_used_by_user'|trans }}</div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'%count%': counters.albums}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'%count%': counters.photos}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'%count%': counters.signs}) }}
+                </div>
+                <div class="col s12 m4 xl2">
+                    <div class="counter">{{ getSpaceUsedByUser(user)|bytes }}</div>{{ 'label.space_used_by_user'|trans }}
+                </div>
             </div>
 
             <div class="row">
                 <h2 class="header">{{ 'title.edit_user'|trans({'%user%': user.username}) }}</h2>
                 <div class="form">
                     {{ form_start(form) }}
-                        {{ form_errors(form) }}
-                        <div class="row">
-                            <div class="col offset-s1 s10 m5 offset-m1">
-                                {{ form_row(form.username, {'label' : 'label.username'} ) }}
-                            </div>
-                            <div class="col offset-s1 s10 offset-m0 m5">
-                                {{ form_row(form.email, {'label' : 'label.email'} ) }}
-                            </div>
+                    {{ form_errors(form) }}
+                    <div class="row">
+                        <div class="col offset-s1 s10 m5 offset-m1">
+                            {{ form_row(form.username, {'label' : 'label.username'} ) }}
                         </div>
+                        <div class="col offset-s1 s10 offset-m0 m5">
+                            {{ form_row(form.email, {'label' : 'label.email'} ) }}
+                        </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col offset-s1 s10 m5 offset-m1">
-                                {{ form_row(form.plainPassword.first, {'label': 'label.password', 'attr': {'autocomplete': 'off'}}) }}
-                            </div>
-                            <div class="col offset-s1 s10 offset-m0 m5">
-                                {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
-                            </div>
+                    <div class="row">
+                        <div class="col offset-s1 s10 m5 offset-m1">
+                            {{ form_row(form.plainPassword.first, {'label': 'label.password', 'attr': {'autocomplete': 'off'}}) }}
                         </div>
+                        <div class="col offset-s1 s10 offset-m0 m5">
+                            {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
+                        </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col offset-s1 s10 m5 offset-m1">
-                                {{ form_row(form.diskSpaceAllowed, {'label': 'label.disk_space_allowed'}) }}
-                            </div>
-                            <div class="col offset-s1 s10 m5 offset-m0">
-                                {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
-                            </div>
+                    <div class="row">
+                        <div class="col offset-s1 s10 m5 offset-m1">
+                            {{ form_row(form.diskSpaceAllowed, {'label': 'label.disk_space_allowed'}) }}
                         </div>
+                        <div class="col offset-s1 s10 m5 offset-m0">
+                            {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
+                        </div>
+                    </div>
 
-                        <div class="form-btn-holder">
-                            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                            <a href="{{ path('app_admin_user_index') }}" class="waves-effect waves-light btn btn-cancel"> {{ 'btn.cancel'|trans }}</a>
-                        </div>
-                        <div class="clearfix"></div>
+                    <div class="form-btn-holder">
+                        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+                        <a href="{{ path('app_admin_user_index') }}"
+                           class="waves-effect waves-light btn btn-cancel"> {{ 'btn.cancel'|trans }}</a>
+                    </div>
+                    <div class="clearfix"></div>
                     {{ form_end(form) }}
                 </div>
             </div>

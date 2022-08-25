@@ -3,15 +3,15 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block meta %}
-    {% if context == 'shared'  %}
+    {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')}),
@@ -23,14 +23,14 @@
 {% endblock %}
 
 {% block content %}
-    <div {{ stimulus_controller('filter') }}>
+    <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
                 <div class="left">
                     {% if collection.image != null %}
                         <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
                     {% else %}
-                        <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{collection.title|first|upper}}</span>
+                        <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
                     {% endif %}
                 </div>
                 <div class="right">
@@ -51,13 +51,16 @@
             <div class="btn-holder">
                 <div class="left">
                     {% if context == 'default' %}
-                        <a href="{{ path('app_item_add', {'collection': collection.id}) }}" class="button" title="{{ 'tooltip.add_item'|trans }}">
+                        <a href="{{ path('app_item_add', {'collection': collection.id}) }}" class="button"
+                           title="{{ 'tooltip.add_item'|trans }}">
                             <i class="fa fa-plus fa-fw"></i>
                         </a>
-                        <a href="{{ path('app_collection_add', {'parent': collection.id} ) }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
+                        <a href="{{ path('app_collection_add', {'parent': collection.id} ) }}" class="button"
+                           title="{{ 'tooltip.add_collection'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
                         </a>
-                        <a href="{{ path('app_collection_edit', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                        <a href="{{ path('app_collection_edit', {'id': collection.id}) }}" class="button"
+                           title="{{ 'tooltip.edit'|trans }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_icon/_delete.html.twig', {
@@ -65,19 +68,22 @@
                             message: 'message.delete.collection'
                         }) }}
                         {% if isFeatureEnabled('tags') %}
-                            <a href="{{ path('app_collection_batch_tagging', {'id': collection.id}) }}" class="button" title="{{ 'tooltip.tag'|trans }}">
+                            <a href="{{ path('app_collection_batch_tagging', {'id': collection.id}) }}" class="button"
+                               title="{{ 'tooltip.tag'|trans }}">
                                 <i class="fa fa-terminal fa-fw"></i>
                             </a>
                         {% endif %}
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_show', entity: collection}) }}
-                        <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button" title="{{ 'tooltip.items'|trans }}">
+                        <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button"
+                           title="{{ 'tooltip.items'|trans }}">
                             <i class="fa fa-ellipsis-h fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': collection.finalVisibility}) }}
                     {% endif %}
                 </div>
                 <div class="right">
-                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -122,6 +128,6 @@
 {% endblock %}
 
 {% block footer %}
-    {{ renderFooter(collection)  }}
+    {{ renderFooter(collection) }}
 {% endblock %}
 

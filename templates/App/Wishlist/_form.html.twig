@@ -1,32 +1,32 @@
 {{ form_start(form) }}
     {{ form_row(form.file) }}
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.name, {'label' : 'label.name'}) }}
-        </div>
-        <div class="col s12 l5 xl3">
-            {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
-        </div>
+<div class="row">
+    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        {{ form_row(form.name, {'label' : 'label.name'}) }}
     </div>
-
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}}) }}
-        </div>
+    <div class="col s12 l5 xl3">
+        {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
     </div>
+</div>
 
-    <div class="row center-align form-btn-holder">
-        {% if app.request.get('_route') == 'app_wishlist_add' %}
-            {% if app.request.query.has('parent') %}
-                {% set cancelUrl = path('app_wishlist_show', {id: app.request.query.get('parent')}) %}
-            {% else %}
-                {% set cancelUrl = path('app_wishlist_index') %}
-            {% endif %}
+<div class="row">
+    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}}) }}
+    </div>
+</div>
+
+<div class="row center-align form-btn-holder">
+    {% if app.request.get('_route') == 'app_wishlist_add' %}
+        {% if app.request.query.has('parent') %}
+            {% set cancelUrl = path('app_wishlist_show', {id: app.request.query.get('parent')}) %}
         {% else %}
-            {% set cancelUrl = path('app_wishlist_show', {id: wishlist.id}) %}
+            {% set cancelUrl = path('app_wishlist_index') %}
         {% endif %}
+    {% else %}
+        {% set cancelUrl = path('app_wishlist_show', {id: wishlist.id}) %}
+    {% endif %}
 
-        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-        <a href="{{ cancelUrl }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
-    </div>
+    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+    <a href="{{ cancelUrl }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
+</div>
 {{ form_end(form) }}

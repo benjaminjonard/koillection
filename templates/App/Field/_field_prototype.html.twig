@@ -1,4 +1,4 @@
-<div class="row field" data-template-field-target="field" {{ stimulus_controller('field') }}>
+<div class="row field" data-template-field-target="field" data-controller="field">
     <div class="col s1 handle icon-holder">
         <i class="fa fa-arrows-v fa-fw"></i>
     </div>
@@ -12,7 +12,7 @@
             'data-action': 'change->field#updateChoiceList'
         }}) }}
     </div>
-    <div class="col s3" >
+    <div class="col s3">
         <span class="hidden" data-field-target="choiceList">
             {{ form_row(form.choiceList, {'label':'label.choice_list', 'attr': {
                 'data-controller': 'select--default'

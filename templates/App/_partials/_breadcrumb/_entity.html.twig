@@ -1,3 +1,4 @@
-<a class="{{ element.class|default('') }}" {% if element.route != '' %} href="{{ path(element.route|applyContext, element.params) }} {% endif %}">
+<a class="{{ element.class|default('') }}" {% if element.route != '' %}
+   href="{{ path(element.route|applyContext, element.params) }} {% endif %}">
     {{ element.label }}
 </a>

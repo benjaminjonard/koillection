@@ -1,5 +1,5 @@
 <li>
-    <form class="search" name="search" method="get" action="{{ path('app_search_index') }}" {{ stimulus_controller('search') }}>
+    <form class="search" name="search" method="get" action="{{ path('app_search_index') }}" data-controller="search">
         <div>
             <input id="search_term"
                    data-action="keyup->search#search click->search#open"
@@ -17,75 +17,150 @@
     </form>
 </li>
 
-<li class="{{ 'app_collection' in route or 'app_item' in route ? 'current' }} sidebar-element"><a href="{{ path('app_collection_index') }}"><i class="fa fa-archive fa-fw"></i><span>{{ 'menu.collections'|trans }}</span></a></li>
+<li class="{{ 'app_collection' in route or 'app_item' in route ? 'current' }} sidebar-element">
+    <a
+            href="{{ path('app_collection_index') }}">
+        <i
+                class="fa fa-archive fa-fw"></i>
+        <span>{{ 'menu.collections'|trans }}</span>
+    </a>
+</li>
 
 {% if isFeatureEnabled('wishlists') %}
     <li class="{{ 'app_wishlist' in route or 'app_wish' in route ? 'current' }} sidebar-element">
-        <a href="{{ path('app_wishlist_index') }}"><i class="fa fa-heart fa-fw"></i><span>{{ 'menu.wishlists'|trans }}</span></a>
+        <a href="{{ path('app_wishlist_index') }}">
+            <i
+                    class="fa fa-heart fa-fw"></i>
+            <span>{{ 'menu.wishlists'|trans }}</span>
+        </a>
     </li>
 {% endif %}
 
 {% if isFeatureEnabled('tags') %}
     <li class="{{ 'app_tag' in route ? 'current' }} sidebar-element">
-        <a href="{{ path('app_tag_index') }}"><i class="fa fa-tags fa-fw"></i><span>{{ 'menu.tags'|trans }}</span></a>
+        <a href="{{ path('app_tag_index') }}">
+            <i class="fa fa-tags fa-fw"></i>
+            <span>{{ 'menu.tags'|trans }}</span>
+        </a>
     </li>
 {% endif %}
 
 {% if isFeatureEnabled('signs') %}
     <li class="{{ 'app_sign' in route ? 'current' }} sidebar-element">
-        <a href="{{ path('app_sign_index') }}"><i class="fa fa-leaf fa-fw"></i><span>{{ 'menu.signs'|trans }}</span></a>
+        <a href="{{ path('app_sign_index') }}">
+            <i class="fa fa-leaf fa-fw"></i>
+            <span>{{ 'menu.signs'|trans }}</span>
+        </a>
     </li>
 {% endif %}
 
 {% if isFeatureEnabled('albums') %}
     <li class="{{ 'app_album' in route or 'app_photo' in route  ? 'current' }} sidebar-element">
-        <a href="{{ path('app_album_index') }}"><i class="fa fa-camera fa-fw"></i><span>{{ 'menu.albums'|trans }}</span></a>
+        <a href="{{ path('app_album_index') }}">
+            <i class="fa fa-camera fa-fw"></i>
+            <span>{{ 'menu.albums'|trans }}</span>
+        </a>
     </li>
 {% endif %}
 
 {% if isFeatureEnabled('loans') %}
     <li class="{{ 'app_loan' in route ? 'current' }} sidebar-element">
-        <a href="{{ path('app_loan_index') }}"><i class="fa fa-exchange fa-fw"></i><span>{{ 'menu.loans'|trans }}</span></a>
+        <a href="{{ path('app_loan_index') }}">
+            <i class="fa fa-exchange fa-fw"></i>
+            <span>{{ 'menu.loans'|trans }}</span>
+        </a>
     </li>
 {% endif %}
 
-<li class="separate-item sidebar-element"><div></div></li>
+<li class="separate-item sidebar-element">
+    <div></div>
+</li>
 
 {% if isFeatureEnabled('templates') %}
     <li class="{{ 'app_template' in route ? 'current' }} sidebar-element">
-        <a href="{{ path('app_template_index') }}"><i class="fa fa-clone fa-fw"></i><span>{{ 'menu.templates'|trans }}</span></a>
+        <a href="{{ path('app_template_index') }}">
+            <i
+                    class="fa fa-clone fa-fw"></i>
+            <span>{{ 'menu.templates'|trans }}</span>
+        </a>
     </li>
 {% endif %}
 
 <li class="{{ 'app_choice_list' in route ? 'current' }} sidebar-element">
-    <a href="{{ path('app_choice_list_index') }}"><i class="fa fa-list fa-fw"></i><span>{{ 'menu.choice_lists'|trans }}</span></a>
+    <a href="{{ path('app_choice_list_index') }}">
+        <i
+                class="fa fa-list fa-fw"></i>
+        <span>{{ 'menu.choice_lists'|trans }}</span>
+    </a>
 </li>
 
 {% if isFeatureEnabled('history') or isFeatureEnabled('statistics') %}
-    <li class="separate-item sidebar-element"><div></div></li>
+    <li class="separate-item sidebar-element">
+        <div></div>
+    </li>
 {% endif %}
 
 {% if isFeatureEnabled('history') %}
     <li class="{{ 'app_history' in route ? 'current' }} sidebar-element">
         <a href="{{ path('app_history_index', {'search_history[classes]': ['collection', 'item', isFeatureEnabled('tags') ? 'tag', isFeatureEnabled('albums') ? 'album', isFeatureEnabled('wishlists') ? 'wishlist'], 'search_history[types]': ['create', 'delete']}) }}">
-            <i class="fa fa-history fa-fw"></i><span>{{ 'menu.history'|trans }}</span>
+            <i class="fa fa-history fa-fw"></i>
+            <span>{{ 'menu.history'|trans }}</span>
         </a>
     </li>
 {% endif %}
 
 {% if isFeatureEnabled('statistics') %}
     <li class="{{ 'app_statistics' in route ? 'current' }} sidebar-element">
-        <a href="{{ path('app_statistics_index') }}"><i class="fa fa-area-chart fa-fw"></i><span>{{ 'menu.statistics'|trans }}</span></a>
+        <a href="{{ path('app_statistics_index') }}">
+            <i
+                    class="fa fa-area-chart fa-fw"></i>
+            <span>{{ 'menu.statistics'|trans }}</span>
+        </a>
     </li>
 {% endif %}
 
 {# MOBILE #}
-<li class="separate-item show-on-mobile sidebar-element"><div></div></li>
-<li class="{{ 'app_profile' in route ? 'current' }} show-on-mobile sidebar-element"><a href="{{ path('app_profile_index') }}"><i class="fa fa-user fa-fw"></i><span>{{ 'menu.profile'|trans }}</span></a></li>
-<li class="{{ 'app_settings' in route ? 'current' }} show-on-mobile sidebar-element"><a href="{{ path('app_settings_index') }}"><i class="fa fa-gears fa-fw"></i><span>{{ 'menu.settings'|trans }}</span></a></li>
-<li class="{{ 'app_tools' in route ? 'current' }} show-on-mobile sidebar-element"><a href="{{ path('app_tools_index') }}"><i class="fa fa-wrench fa-fw"></i><span>{{ 'menu.tools'|trans }}</span></a></li>
+<li class="separate-item show-on-mobile sidebar-element">
+    <div></div>
+</li>
+<li class="{{ 'app_profile' in route ? 'current' }} show-on-mobile sidebar-element">
+    <a
+            href="{{ path('app_profile_index') }}">
+        <i
+                class="fa fa-user fa-fw"></i>
+        <span>{{ 'menu.profile'|trans }}</span>
+    </a>
+</li>
+<li class="{{ 'app_settings' in route ? 'current' }} show-on-mobile sidebar-element">
+    <a
+            href="{{ path('app_settings_index') }}">
+        <i
+                class="fa fa-gears fa-fw"></i>
+        <span>{{ 'menu.settings'|trans }}</span>
+    </a>
+</li>
+<li class="{{ 'app_tools' in route ? 'current' }} show-on-mobile sidebar-element">
+    <a
+            href="{{ path('app_tools_index') }}">
+        <i class="fa fa-wrench fa-fw"></i>
+        <span>{{ 'menu.tools'|trans }}</span>
+    </a>
+</li>
 {% if is_granted('ROLE_ADMIN') %}
-    <li class="{{ 'app_admin' in route or 'translation' in route ? 'current' }}  show-on-mobile sidebar-element"><a href="{{ path('app_admin_index') }}"><i class="fa fa-eye fa-fw"></i><span>{{ 'menu.admin'|trans }}</span></a></li>
+    <li class="{{ 'app_admin' in route or 'translation' in route ? 'current' }}  show-on-mobile sidebar-element">
+        <a
+                href="{{ path('app_admin_index') }}">
+            <i
+                    class="fa fa-eye fa-fw"></i>
+            <span>{{ 'menu.admin'|trans }}</span>
+        </a>
+    </li>
 {% endif %}
-<li class="show-on-mobile sidebar-element"><a href="{{ path('app_security_logout') }}"><i class="fa fa-power-off fa-fw"></i><span>{{ 'menu.logout'|trans }}</span></a></li>
+<li class="show-on-mobile sidebar-element">
+    <a href="{{ path('app_security_logout') }}">
+        <i
+                class="fa fa-power-off fa-fw"></i>
+        <span>{{ 'menu.logout'|trans }}</span>
+    </a>
+</li>
 

@@ -1,4 +1,4 @@
-<div class="input-field image-preview-wrapper image-field col s5 row-file" {{ stimulus_controller('preview') }}>
+<div class="input-field image-preview-wrapper image-field col s5 row-file" data-controller="preview">
     <label class="file-label">
         {% if datum is defined and datum.image is not null %}
             <img data-preview-target="image"

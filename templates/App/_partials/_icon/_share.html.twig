@@ -1,10 +1,10 @@
 <i data-target="modal-share"
    class="button btn-share modal-trigger fa fa-share fa-fw"
    title="{{ 'tooltip.share'|trans }}"
-   {% if entity is defined and entity is not null %}
-       data-path="{{ url(route, {id: entity.id, username: app.user.username}) }}"
-       data-visibility="{{ entity.finalVisibility is defined ? entity.finalVisibility : entity.visibility }}"
-   {% else %}
-       data-path="{{ url(route, {username: app.user.username}) }}"
-   {% endif %}
+        {% if entity is defined and entity is not null %}
+            data-path="{{ url(route, {id: entity.id, username: app.user.username}) }}"
+            data-visibility="{{ entity.finalVisibility is defined ? entity.finalVisibility : entity.visibility }}"
+        {% else %}
+            data-path="{{ url(route, {username: app.user.username}) }}"
+        {% endif %}
 ></i>

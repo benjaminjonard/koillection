@@ -1,4 +1,4 @@
-<div id="collection-items" class="grid-container-items" {{ stimulus_controller('lightbox') }}>
+<div id="collection-items" class="grid-container-items" data-controller="lightbox">
     {% for photo in photos %}
         {% set photoText = include('App/Album/_photo_text.html.twig') %}
         <a class="collection-item element valign-wrapper"
@@ -13,7 +13,7 @@
            data-title="{{ photo.title }}"
            data-filter-target="element"
         >
-            <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
+            <div class="image-wrapper placeholder" data-controller="lazy-loading">
                 <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
                      data-lazy-loading-target="image"
                 >

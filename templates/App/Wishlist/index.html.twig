@@ -3,15 +3,15 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block meta %}
-    {% if context == 'shared'  %}
+    {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.wishlists_shared'|trans({'%username%':  app.request.get('username')}),
@@ -23,7 +23,7 @@
 
 
 {% block content %}
-    <div {{ stimulus_controller('filter') }}>
+    <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
                 <h1>{{ 'menu.wishlists'|trans }}</h1>
@@ -38,7 +38,8 @@
             <div class="btn-holder">
                 <div class="left">
                     {% if context == 'default' %}
-                        <a href="{{ path('app_wishlist_add') }}" class="button" title="{{ 'tooltip.add_wishlist'|trans }}">
+                        <a href="{{ path('app_wishlist_add') }}" class="button"
+                           title="{{ 'tooltip.add_wishlist'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_wishlist_index'}) }}
@@ -46,7 +47,8 @@
                     {% endif %}
                 </div>
                 <div class="right">
-                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
                 <div class="clearfix"></div>
             </div>

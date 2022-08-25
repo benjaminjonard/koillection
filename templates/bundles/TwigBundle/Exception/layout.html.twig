@@ -4,14 +4,14 @@
     <div class="content-wrapper error-page">
         <div class="box">
 
-                <h1>
-                    Welcome to Koillection
-                    <div class='logo' aria-label="Logo"></div>
-                </h1>
-                <div class="content body">
-                    <h2 class="header">{% block error %}{% endblock %}</h2>
-                    <a href="{{ path('app_homepage') }}">{{ 'message.return_to_homepage'|trans }}</a>
-                </div>
+            <h1>
+                Welcome to Koillection
+                <div class='logo' aria-label="Logo"></div>
+            </h1>
+            <div class="content body">
+                <h2 class="header">{% block error %}{% endblock %}</h2>
+                <a href="{{ path('app_homepage') }}">{{ 'message.return_to_homepage'|trans }}</a>
+            </div>
 
 
         </div>

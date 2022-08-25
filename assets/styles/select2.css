@@ -8,6 +8,7 @@
     position: relative;
     vertical-align: middle
 }
+
 .select2 {
     /*width: calc(100% - 45px) !important;*/
     width: 100% !important;
@@ -709,7 +710,7 @@
     background-color: #42A5F5
 }
 
-.select2  + label {
+.select2 + label {
     position: absolute;
     top: -26px;
     font-size: 0.8rem;

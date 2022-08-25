@@ -21,13 +21,15 @@
 
                 <div>
                     <div class="input-field">
-                        <input type="text" id="login" name="_login" value="{{ lastUsername }}" required="required" class="form-control"/>
+                        <input type="text" id="login" name="_login" value="{{ lastUsername }}" required="required"
+                               class="form-control"/>
                         <label class="required" for="login">{{ 'label.login'|trans }}</label>
                     </div>
                 </div>
                 <div>
-                    <div class="input-field" {{ stimulus_controller('show-password') }}>
-                        <input data-show-password-target="input" type="password" id="password" name="_password" required="required" class="form-control password-input" />
+                    <div class="input-field" data-controller="show-password">
+                        <input data-show-password-target="input" type="password" id="password" name="_password"
+                               required="required" class="form-control password-input"/>
                         <label class="required" for="password">{{ 'label.password'|trans }}</label>
                         <i class="fa fa-eye fa-fw show-password" data-action="click->show-password#updateState"></i>
                     </div>
@@ -41,7 +43,8 @@
                 </div>
 
                 <div class="submit">
-                    <input type="submit" name="submit" value="{{ 'btn.sign_in'|trans }}" class="btn waves-effect waves-light btn-lg btn-success btn-block right" />
+                    <input type="submit" name="submit" value="{{ 'btn.sign_in'|trans }}"
+                           class="btn waves-effect waves-light btn-lg btn-success btn-block right"/>
                 </div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </form>

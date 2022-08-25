@@ -13,17 +13,18 @@
 
                 <div class="body">
                     {{ form_start(form) }}
-                        <h2 class="header">{{ 'title.first_connection.user'|trans }}</h2>
-                        {{ form_errors(form) }}
-                        {{ form_row(form.username, {'label' : 'label.username'} ) }}
-                        {{ form_row(form.email, {'label' : 'label.email'} ) }}
-                        {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
-                        {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
-                        {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
-                        {{ form_row(form.dateFormat, {'label': 'label.date_format', 'attr': {'data-controller': 'select--default'}}) }}
-                        <div class="submit">
-                            <button type="submit" class="btn waves-effect waves-light btn-lg btn-success btn-block right">{{ 'btn.submit'|trans }}</button>
-                        </div>
+                    <h2 class="header">{{ 'title.first_connection.user'|trans }}</h2>
+                    {{ form_errors(form) }}
+                    {{ form_row(form.username, {'label' : 'label.username'} ) }}
+                    {{ form_row(form.email, {'label' : 'label.email'} ) }}
+                    {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
+                    {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
+                    {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
+                    {{ form_row(form.dateFormat, {'label': 'label.date_format', 'attr': {'data-controller': 'select--default'}}) }}
+                    <div class="submit">
+                        <button type="submit"
+                                class="btn waves-effect waves-light btn-lg btn-success btn-block right">{{ 'btn.submit'|trans }}</button>
+                    </div>
                     {{ form_end(form) }}
                 </div>
             </div>

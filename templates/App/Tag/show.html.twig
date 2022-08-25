@@ -3,15 +3,15 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}], tag) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block meta %}
-    {% if context == 'shared'  %}
+    {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
             'description': 'menu.tags_shared'|trans({'%username%':  app.request.get('username')}),
@@ -23,13 +23,14 @@
 {% endblock %}
 
 {% block content %}
-    <div {{ stimulus_controller('filter') }}>
+    <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
                 <h1>
                     {{ tag.label }}
                     {% if tag.category is not empty %}
-                        <span class="tag-category-color" style="background-color: {{ tag.category.color }}" title="{{ tag.category.label }}"></span>
+                        <span class="tag-category-color" style="background-color: {{ tag.category.color }}"
+                              title="{{ tag.category.label }}"></span>
                     {% endif %}
                 </h1>
                 <ul class="nav nav-pills">
@@ -42,7 +43,8 @@
             <div class="btn-holder">
                 <div class="left">
                     {% if context == 'default' %}
-                        <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                        <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="button"
+                           title="{{ 'tooltip.edit'|trans }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_icon/_delete.html.twig', {
@@ -54,7 +56,8 @@
                     {% endif %}
                 </div>
                 <div class="right">
-                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -64,10 +67,11 @@
             {% if null != tag.image or null != tag.description %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.infos'|trans }}</h2>
-                    <div class="tag-image-container" {{ stimulus_controller('lightbox') }}>
+                    <div class="tag-image-container" data-controller="lightbox">
                         {% if tag.image is not null %}
                             <a href="{{ asset(tag.image) }}" data-lightbox="image-{{ tag.id }}">
-                                <img class="tag-image" src="{{ preload(asset(tag.imageSmallThumbnail), {as: 'image'}) }}">
+                                <img class="tag-image"
+                                     src="{{ preload(asset(tag.imageSmallThumbnail), {as: 'image'}) }}">
                             </a>
                         {% endif %}
                     </div>
@@ -81,22 +85,27 @@
             {% if relatedTags is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.related_tags'|trans }}</h2>
-                    <div class="tags-block" {{ stimulus_controller('show-more') }}>
+                    <div class="tags-block" data-controller="show-more">
                         <ul class="nav nav-tags">
                             {% for tag in relatedTags|naturalSorting %}
-                                <li class="tag chip {{ loop.index > 10 ? 'hidden'}}" {% if loop.index > 10 %}data-show-more-target="hideable"{% endif %}>
+                                <li class="tag chip {{ loop.index > 10 ? 'hidden' }}"
+                                    {% if loop.index > 10 %}data-show-more-target="hideable"{% endif %}>
                                     <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}">
                                         {{ tag.label }}
                                     </a>
                                     {% if tag.category is not empty %}
-                                        <span class="tag-category-color" style="background-color: {{ tag.category.color }}" title="{{ tag.category.label }}"></span>
+                                        <span class="tag-category-color"
+                                              style="background-color: {{ tag.category.color }}"
+                                              title="{{ tag.category.label }}"></span>
                                     {% endif %}
                                 </li>
                             {% endfor %}
                             <li class="show-more-btn-holder">
                                 {% if relatedTags|length > 10 %}
-                                    <a href="#" data-action="show-more#showMore" data-show-more-target="showMoreButton">{{ 'btn.show_more'|trans({'%count%': relatedTags|length - 10}) }}</a>
-                                    <a href="#" data-action="show-more#showLess" data-show-more-target="showLessButton" class="hidden">{{ 'btn.show_less'|trans }}</a>
+                                    <a href="#" data-action="show-more#showMore"
+                                       data-show-more-target="showMoreButton">{{ 'btn.show_more'|trans({'%count%': relatedTags|length - 10}) }}</a>
+                                    <a href="#" data-action="show-more#showLess" data-show-more-target="showLessButton"
+                                       class="hidden">{{ 'btn.show_less'|trans }}</a>
                                 {% endif %}
                             </li>
                         </ul>
@@ -115,6 +124,6 @@
 {% endblock %}
 
 {% block footer %}
-    {{ renderFooter(tag)  }}
+    {{ renderFooter(tag) }}
 {% endblock %}
 

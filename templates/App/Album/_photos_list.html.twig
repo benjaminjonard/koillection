@@ -1,50 +1,51 @@
 <table class="highlight items-table">
     <thead>
-    <tr>
-        <th></th>
-        <th>{{ 'label.title'|trans }}</th>
-        {% if context == 'default' %}
-            <th class="center">{{ 'label.visibility'|trans }}</th>
-        {% endif %}
-    </tr>
-    </thead>
-
-    <tbody {{ stimulus_controller('lightbox') }}>
-    {% for photo in photos %}
-        {% set photoText = include('App/Album/_photo_text.html.twig') %}
-        <tr class="list-element resize-element" data-title="{{ photo.title }}" data-filter-target="element" src="{{ asset(photo.image|default('build/images/default.png')) }}">
-            <td>
-                <a class="table-link" href=""></a>
-                <a class="collection-item element valign-wrapper"
-                   href="{{ asset(photo.image|default('build/images/default.png')) }}"
-                   data-lightbox-target="image"
-                        {% if context == 'default' %}
-                            data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
-                            data-delete-path="{{ path('app_photo_delete', {'id': photo.id}) }}"
-                            data-delete-message="{{ 'message.delete.photo'|trans }}"
-                        {% endif %}
-                   data-sub-html="{{ photoText }}"
-                   data-title="{{ photo.title }}"
-                   data-filter-target="element"
-                >
-                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                        <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
-                             data-lazy-loading-target="image"
-                        >
-                    </div>
-                </a>
-            </td>
-            <td>
-                <a class="table-link" href=""></a>
-                {{photo.title}}
-            </td>
+        <tr>
+            <th></th>
+            <th>{{ 'label.title'|trans }}</th>
             {% if context == 'default' %}
-                <td class="center">
-                    <a class="table-link" href=""></a>
-                    {{ include('App/_partials/_visibility.html.twig', {'visibility': photo.finalVisibility}) }}
-                </td>
+                <th class="center">{{ 'label.visibility'|trans }}</th>
             {% endif %}
         </tr>
-    {% endfor %}
+    </thead>
+
+    <tbody data-controller="lightbox">
+        {% for photo in photos %}
+            {% set photoText = include('App/Album/_photo_text.html.twig') %}
+            <tr class="list-element resize-element" data-title="{{ photo.title }}" data-filter-target="element"
+                src="{{ asset(photo.image|default('build/images/default.png')) }}">
+                <td>
+                    <a class="table-link" href=""></a>
+                    <a class="collection-item element valign-wrapper"
+                       href="{{ asset(photo.image|default('build/images/default.png')) }}"
+                       data-lightbox-target="image"
+                            {% if context == 'default' %}
+                                data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
+                                data-delete-path="{{ path('app_photo_delete', {'id': photo.id}) }}"
+                                data-delete-message="{{ 'message.delete.photo'|trans }}"
+                            {% endif %}
+                       data-sub-html="{{ photoText }}"
+                       data-title="{{ photo.title }}"
+                       data-filter-target="element"
+                    >
+                        <div class="image-wrapper placeholder" data-controller="lazy-loading">
+                            <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
+                                 data-lazy-loading-target="image"
+                            >
+                        </div>
+                    </a>
+                </td>
+                <td>
+                    <a class="table-link" href=""></a>
+                    {{ photo.title }}
+                </td>
+                {% if context == 'default' %}
+                    <td class="center">
+                        <a class="table-link" href=""></a>
+                        {{ include('App/_partials/_visibility.html.twig', {'visibility': photo.finalVisibility}) }}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
     </tbody>
 </table>

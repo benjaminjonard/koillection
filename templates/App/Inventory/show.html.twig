@@ -6,11 +6,11 @@
 ], inventory) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% macro recursiveCollection(collection) %}
@@ -18,11 +18,17 @@
     <li class="inventory-collection-show">
         <div class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green lighten-4' : 'red lighten-4' }}">
             {{ collection.title }} -
-            <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span> / <span class="js-total-counter">{{ collection.totalItems }}</span>
+            <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span>
+            /
+            <span
+                    class="js-total-counter">{{ collection.totalItems }}</span>
             {% if collection.totalItems == 0 %}
-                (<span class="js-rate">100</span>%)
+                (
+                <span class="js-rate">100</span>%)
             {% else %}
-                (<span class="js-rate">{{ ((collection.totalCheckedItems*100)/collection.totalItems)|round(2) }}</span>%)
+                (
+                <span
+                        class="js-rate">{{ ((collection.totalCheckedItems*100)/collection.totalItems)|round(2) }}</span>%)
             {% endif %}
         </div>
 
@@ -32,7 +38,8 @@
                     <li>
                         <p>
                             <label>
-                                <input type="checkbox" data-action="change->inventory#update" data-id="{{ item.id }}" {{ item.checked ? 'checked' }}>
+                                <input type="checkbox" data-action="change->inventory#update"
+                                       data-id="{{ item.id }}" {{ item.checked ? 'checked' }}>
                                 <span>{{ item.name }}</span>
                             </label>
                         </p>
@@ -47,14 +54,14 @@
                     {{ self.recursiveCollection(child) }}
                 {% endfor %}
             </ul>
-        {% endif %} 
+        {% endif %}
     </li>
 {% endmacro %}
 
 {% from _self import recursiveCollection %}
 
 {% block content %}
-    <div {{ stimulus_controller('inventory') }} data-inventory-id="{{ inventory.id }}">
+<div data-controller="inventory" data-inventory-id="{{ inventory.id }}">
     <div class="title-block">
         <h1>
             {{ inventory.name }}

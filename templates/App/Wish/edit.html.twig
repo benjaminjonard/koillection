@@ -3,16 +3,16 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], wish.wishlist, 'breadcrumb.edit_wish') %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
     <div class="title-block">
-          <h1>{{ 'title.edit_wishlist_item'|trans({'%name%': wish.name}) }}</h1>
+        <h1>{{ 'title.edit_wishlist_item'|trans({'%name%': wish.name}) }}</h1>
     </div>
     <div class="clearfix"></div>
 

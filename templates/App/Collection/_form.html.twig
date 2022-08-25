@@ -1,96 +1,97 @@
 {{ form_start(form) }}
     {% do form.data.setRendered %}
-    <div class="content-block">
-        {{ form_row(form.file) }}
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.title, {'label' : 'label.title'} ) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}} ) }}
-            </div>
+<div class="content-block">
+    {{ form_row(form.file) }}
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.title, {'label' : 'label.title'} ) }}
         </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
-            </div>
+        <div class="col s12 l5 xl3">
+            {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}} ) }}
         </div>
+    </div>
 
-        <h3 class="header col s12">{{ 'collection.items_settings'|trans }}</h3>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedItemsTitles|default} ) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.itemsDefaultTemplate, {'label' : 'label.items_default_template', 'attr': {'data-controller': 'select--default'}} ) }}
-            </div>
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.itemsSortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.itemsSortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
-            </div>
+    <h3 class="header col s12">{{ 'collection.items_settings'|trans }}</h3>
+
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedItemsTitles|default} ) }}
         </div>
-
-        <div class="row" {{ stimulus_controller('items-display-mode-list-columns') }}>
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {
-                    'data-controller': 'select--display-mode',
-                    'data-action': 'change->items-display-mode-list-columns#displayChoices'
-                }} ) }}
-            </div>
-            <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}" data-items-display-mode-list-columns-target="list">
-                <div>{{ form_label(form.itemsDisplayModeListColumns, 'label.items_display_mode_list_columns') }}</div>
-                {% for child in form.itemsDisplayModeListColumns.children %}
-                    <div>
-                        {{ form_row(child) }}
-                    </div>
-                {% endfor %}
-            </div>
+        <div class="col s12 l5 xl3">
+            {{ form_row(form.itemsDefaultTemplate, {'label' : 'label.items_default_template', 'attr': {'data-controller': 'select--default'}} ) }}
         </div>
+    </div>
 
-        <h3 class="header col s12">{{ 'collection.children_settings'|trans }}</h3>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
-            </div>
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.itemsSortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
         </div>
+        <div class="col s12 l5 xl3">
+            {{ form_row(form.itemsSortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
+        </div>
+    </div>
 
-        <div class="row" {{ stimulus_controller('additional-data') }} data-entity="collection">
-            <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
-
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {% if isFeatureEnabled('templates') %}
-                        {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
-                            'data-controller': 'select--default',
-                            'data-action': 'change->additional-data#loadTemplateFields'
-                        }}) }}
-                    {% endif %}
+    <div class="row" data-controller="items-display-mode-list-columns">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {
+                'data-controller': 'select--display-mode',
+                'data-action': 'change->items-display-mode-list-columns#displayChoices'
+            }} ) }}
+        </div>
+        <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
+             data-items-display-mode-list-columns-target="list">
+            <div>{{ form_label(form.itemsDisplayModeListColumns, 'label.items_display_mode_list_columns') }}</div>
+            {% for child in form.itemsDisplayModeListColumns.children %}
+                <div>
+                    {{ form_row(child) }}
                 </div>
-                {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}
-            </div>
+            {% endfor %}
         </div>
     </div>
 
-    <div class="row center-align form-btn-holder">
-        {% if app.request.get('_route') == 'app_collection_add' %}
-            {% if app.request.query.has('parent') %}
-                {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('parent')}) %}
-            {% else %}
-                {% set cancelUrl = path('app_collection_index') %}
-            {% endif %}
-        {% else %}
-            {% set cancelUrl = path('app_collection_show', {id: collection.id}) %}
-        {% endif %}
+    <h3 class="header col s12">{{ 'collection.children_settings'|trans }}</h3>
 
-        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-        <a href="{{ cancelUrl }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
+        </div>
     </div>
+
+    <div class="row" data-controller="additional-data" data-entity="collection">
+        <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {% if isFeatureEnabled('templates') %}
+                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
+                        'data-controller': 'select--default',
+                        'data-action': 'change->additional-data#loadTemplateFields'
+                    }}) }}
+                {% endif %}
+            </div>
+            {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row center-align form-btn-holder">
+    {% if app.request.get('_route') == 'app_collection_add' %}
+        {% if app.request.query.has('parent') %}
+            {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('parent')}) %}
+        {% else %}
+            {% set cancelUrl = path('app_collection_index') %}
+        {% endif %}
+    {% else %}
+        {% set cancelUrl = path('app_collection_show', {id: collection.id}) %}
+    {% endif %}
+
+    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+    <a href="{{ cancelUrl }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
+</div>
 {{ form_end(form) }}

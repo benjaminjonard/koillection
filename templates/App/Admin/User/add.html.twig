@@ -6,11 +6,11 @@
 ]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -55,7 +55,8 @@
 
                     <div class="form-btn-holder">
                         <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                        <a href="{{ path('app_admin_user_index') }}" class="waves-effect waves-light btn btn-cancel"> {{ 'btn.cancel'|trans }}</a>
+                        <a href="{{ path('app_admin_user_index') }}"
+                           class="waves-effect waves-light btn btn-cancel"> {{ 'btn.cancel'|trans }}</a>
                     </div>
                     <div class="clearfix"></div>
                     {{ form_end(form) }}

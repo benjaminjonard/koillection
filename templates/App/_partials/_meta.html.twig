@@ -3,13 +3,13 @@
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri  }}">
+<meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}">
 <meta property="og:title" content="{{ title ?? 'Koillection' }}">
 <meta property="og:description" content="{{ description ?? 'meta.description'|trans }}">
 <meta property="og:image" content="{{ absolute_url(asset(image)) }}">
 <meta property="og:site_name" content="Koillection">
 <meta property="og:locale" content="{{ currentLocale }}">
-{% for locale in getLocales()|filter(locale => locale != currentLocale)  %}
+{% for locale in getLocales()|filter(locale => locale != currentLocale) %}
     <meta property="og:locale:alternate" content="{{ locale }}">
 {% endfor %}
 
