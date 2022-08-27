@@ -29,7 +29,7 @@ use ZipStream\ZipStream;
 #[IsGranted('ROLE_ADMIN')]
 class AdminController extends AbstractController
 {
-    #[Route(path: ['en' => '/admin', 'fr' => '/admin'], name: 'app_admin_index', methods: ['GET'])]
+    #[Route(path: '/admin', name: 'app_admin_index', methods: ['GET'])]
     public function index(
         LatestReleaseChecker $latestVersionChecker,
         UserRepository $userRepository,
@@ -66,21 +66,13 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/admin/export/sql', 'fr' => '/admin/export/sql'],
-        name: 'app_admin_export_sql',
-        methods: ['GET']
-    )]
+    #[Route(path: '/admin/export/sql', name: 'app_admin_export_sql', methods: ['GET'])]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis').'-koillection-database.sql');
     }
 
-    #[Route(
-        path: ['en' => '/admin/export/images', 'fr' => '/admin/export/images'],
-        name: 'app_admin_export_images',
-        methods: ['GET']
-    )]
+    #[Route(path: '/admin/export/images', name: 'app_admin_export_images', methods: ['GET'])]
     public function exportImages(DatabaseDumper $databaseDumper, UserRepository $userRepository): StreamedResponse
     {
         $users = $userRepository->findAll();

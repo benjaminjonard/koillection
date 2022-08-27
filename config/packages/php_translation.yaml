@@ -1,6 +1,6 @@
 when@dev:
     translation:
-        locales: ["en-GB", "fr-FR", "es-ES"]
+        locales: "%available_locales%"
         symfony_profiler:
             enabled: true
         webui:

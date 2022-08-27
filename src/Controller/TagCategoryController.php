@@ -17,11 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TagCategoryController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/tag-categories', 'fr' => '/categories-de-tag'],
-        name: 'app_tag_category_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tag-categories', name: 'app_tag_category_index', methods: ['GET'])]
     public function index(Request $request, PaginatorFactory $paginatorFactory, TagCategoryRepository $tagCategoryRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -38,12 +34,7 @@ class TagCategoryController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tag-categories/{id}', 'fr' => '/categories-de-tag/{id}'],
-        name: 'app_tag_category_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/tag-categories/{id}', name: 'app_tag_category_show', methods: ['GET'])]
     #[Entity('category', expr: 'repository.findOneWithTags(id)', class: TagCategory::class)]
     public function show(TagCategory $category): Response
     {
@@ -54,11 +45,7 @@ class TagCategoryController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tag-categories/add', 'fr' => '/categories-de-tag/ajouter'],
-        name: 'app_tag_category_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/tag-categories/add', name: 'app_tag_category_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -80,12 +67,7 @@ class TagCategoryController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tag-categories/{id}/edit', 'fr' => '/categories-de-tag/{id}/editer'],
-        name: 'app_tag_category_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/tag-categories/{id}/edit', name: 'app_tag_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TagCategory $category, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -106,12 +88,7 @@ class TagCategoryController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tag-categories/{id}/delete', 'fr' => '/categories-de-tag/{id}/supprimer'],
-        name: 'app_tag_category_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/tag-categories/{id}/delete', name: 'app_tag_category_delete', methods: ['POST'])]
     public function delete(Request $request, TagCategory $category, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);

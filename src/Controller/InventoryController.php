@@ -17,11 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class InventoryController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/inventories/add', 'fr' => '/inventaires/ajouter'],
-        name: 'app_inventory_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/inventories/add', name: 'app_inventory_add', methods: ['GET', 'POST'])]
     public function add(Request $request, CollectionRepository $collectionRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $inventory = new Inventory();
@@ -43,12 +39,7 @@ class InventoryController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/inventories/{id}/delete', 'fr' => '/inventaires/{id}/supprimer'],
-        name: 'app_inventory_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/inventories/{id}/delete', name: 'app_inventory_delete', methods: ['POST'])]
     public function delete(Request $request, Inventory $inventory, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $form = $this->createDeleteForm('app_inventory_delete', $inventory);
@@ -63,12 +54,7 @@ class InventoryController extends AbstractController
         return $this->redirectToRoute('app_tools_index');
     }
 
-    #[Route(
-        path: ['en' => '/inventories/{id}/check', 'fr' => '/inventaires/{id}/cocher'],
-        name: 'app_inventory_check',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/inventories/{id}/check', name: 'app_inventory_check', methods: ['POST'])]
     public function check(Request $request, Inventory $inventory, InventoryHandler $inventoryHandler, ManagerRegistry $managerRegistry): Response
     {
         $inventoryHandler->setCheckedValue($inventory, $request->request->get('id'), $request->request->get('checked'));
@@ -79,11 +65,7 @@ class InventoryController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/inventories/{id}', 'fr' => '/inventaires/{id}'],
-        name: 'app_inventory_show',
-        methods: ['GET']
-    )]
+    #[Route(path: '/inventories/{id}', name: 'app_inventory_show', methods: ['GET'])]
     public function show(Inventory $inventory): Response
     {
         return $this->render('App/Inventory/show.html.twig', [

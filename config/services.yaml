@@ -1,7 +1,7 @@
 parameters:
     release: '1.3.10'
-    locale: 'en-GB'
-    uuid_regex: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    available_locales: ['en', 'fr', 'es']
+    default_locale: 'en'
     container.dumper.inline_factories: true
 
 services:
@@ -10,7 +10,7 @@ services:
         autoconfigure: true
         public: false
         bind:
-            $defaultLocale: '%locale%'
+            $defaultLocale: '%default_locale%'
             $publicPath: '%kernel.project_dir%/public'
             $assetsPath: '%kernel.project_dir%/assets'
             $koillectionRelease: '%release%'

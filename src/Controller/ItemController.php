@@ -27,11 +27,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ItemController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/items/add', 'fr' => '/objets/ajouter'],
-        name: 'app_item_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/items/add', name: 'app_item_add', methods: ['GET', 'POST'])]
     public function add(
         Request $request,
         CollectionRepository $collectionRepository,
@@ -101,18 +97,8 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/items/{id}', 'fr' => '/objets/{id}'],
-        name: 'app_item_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/items/{id}', 'fr' => '/utilisateur/{username}/objets/{id}'],
-        name: 'app_shared_item_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/items/{id}', name: 'app_item_show', methods: ['GET'])]
+    #[Route(path: '/user/{username}/items/{id}', name: 'app_shared_item_show', methods: ['GET'])]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function show(Item $item, ItemRepository $itemRepository): Response
     {
@@ -125,12 +111,7 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/items/{id}/edit', 'fr' => '/objets/{id}/editer'],
-        name: 'app_item_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/items/{id}/edit', name: 'app_item_edit', methods: ['GET', 'POST'])]
     #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function edit(
         Request $request,
@@ -156,12 +137,7 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/items/{id}/delete', 'fr' => '/objets/{id}/supprimer'],
-        name: 'app_item_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/items/{id}/delete', name: 'app_item_delete', methods: ['POST'])]
     public function delete(Request $request, Item $item, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $collection = $item->getCollection();
@@ -178,12 +154,7 @@ class ItemController extends AbstractController
         return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
     }
 
-    #[Route(
-        path: ['en' => '/items/{id}/loan', 'fr' => '/objets/{id}/preter'],
-        name: 'app_item_loan',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/items/{id}/loan', name: 'app_item_loan', methods: ['GET', 'POST'])]
     public function loan(Request $request, Item $item, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
@@ -207,11 +178,7 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/items/autocomplete/{search}', 'fr' => '/objets/autocompletion/{search}'],
-        name: 'app_item_autocomplete',
-        methods: ['GET']
-    )]
+    #[Route(path: '/items/autocomplete/{search}', name: 'app_item_autocomplete', methods: ['GET'])]
     public function autocomplete(string $search, ItemRepository $itemRepository, Packages $assetManager): JsonResponse
     {
         $items = $itemRepository->findLike($search);

@@ -13,11 +13,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SettingsController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/settings', 'fr' => '/paramètres'],
-        name: 'app_settings_index',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/settings', name: 'app_settings_index', methods: ['GET', 'POST'])]
     public function index(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $user = $this->getUser();

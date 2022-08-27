@@ -18,11 +18,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TemplateController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/templates', 'fr' => '/modeles'],
-        name: 'app_template_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/templates', name: 'app_template_index', methods: ['GET'])]
     public function index(TemplateRepository $templateRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
@@ -32,11 +28,7 @@ class TemplateController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/templates/add', 'fr' => '/modeles/ajouter'],
-        name: 'app_template_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/templates/add', name: 'app_template_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
@@ -58,12 +50,7 @@ class TemplateController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/templates/{id}/edit', 'fr' => '/modeles/{id}/editer'],
-        name: 'app_template_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/templates/{id}/edit', name: 'app_template_edit', methods: ['GET', 'POST'])]
     #[Entity('template', expr: 'repository.findById(id)', class: Template::class)]
     public function edit(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
@@ -84,12 +71,7 @@ class TemplateController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/templates/{id}', 'fr' => '/modeles/{id}'],
-        name: 'app_template_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/templates/{id}', name: 'app_template_show', methods: ['GET'])]
     #[Entity('template', expr: 'repository.findWithItems(id)', class: Template::class)]
     public function show(Template $template): Response
     {
@@ -100,12 +82,7 @@ class TemplateController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/templates/{id}/delete', 'fr' => '/modeles/{id}/supprimer'],
-        name: 'app_template_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/templates/{id}/delete', name: 'app_template_delete', methods: ['POST'])]
     public function delete(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
@@ -122,12 +99,7 @@ class TemplateController extends AbstractController
         return $this->redirectToRoute('app_template_index');
     }
 
-    #[Route(
-        path: ['en' => '/templates/{id}/fields', 'fr' => '/modeles/{id}/champs'],
-        name: 'app_template_fields',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/templates/{id}/fields', name: 'app_template_fields', methods: ['GET'])]
     public function getFields(Template $template): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);

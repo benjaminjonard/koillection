@@ -19,11 +19,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class WishController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/wishes/add', 'fr' => '/souhaits/ajouter'],
-        name: 'app_wish_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/wishes/add', name: 'app_wish_add', methods: ['GET', 'POST'])]
     public function add(Request $request, WishlistRepository $wishlistRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -67,12 +63,7 @@ class WishController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/wishes/{id}/edit', 'fr' => '/souhaits/{id}/editer'],
-        name: 'app_wish_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/wishes/{id}/edit', name: 'app_wish_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -92,12 +83,7 @@ class WishController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/wishes/{id}/delete', 'fr' => '/souhaits/{id}/supprimer'],
-        name: 'app_wish_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/wishes/{id}/delete', name: 'app_wish_delete', methods: ['POST'])]
     public function delete(Request $request, Wish $wish, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
@@ -114,12 +100,7 @@ class WishController extends AbstractController
         return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);
     }
 
-    #[Route(
-        path: ['en' => '/wishes/{id}/transfer', 'fr' => '/souhaits/{id}/transferer'],
-        name: 'app_wish_transfer_to_collection',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/wishes/{id}/transfer', name: 'app_wish_transfer_to_collection', methods: ['GET', 'POST'])]
     public function transferToCollection(
         Request $request,
         Wish $wish,

@@ -10,16 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SignController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/signs', 'fr' => '/dedicaces'],
-        name: 'app_sign_index',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/signs', 'fr' => '/utilisateur/{username}/dedicaces'],
-        name: 'app_shared_sign_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/signs', name: 'app_sign_index', methods: ['GET'])]
+    #[Route(path: '/user/{username}/signs', name: 'app_shared_sign_index', methods: ['GET'])]
     public function index(ItemRepository $itemRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['signs']);

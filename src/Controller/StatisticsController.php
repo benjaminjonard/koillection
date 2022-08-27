@@ -14,16 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StatisticsController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/statistics', 'fr' => '/statistiques'],
-        name: 'app_statistics_index',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/statistics', 'fr' => '/utilisateur/{username}/statistiques'],
-        name: 'app_shared_statistics_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/statistics', name: 'app_statistics_index', methods: ['GET'])]
+    #[Route(path: '/user/{username}/statistics', name: 'app_shared_statistics_index', methods: ['GET'])]
     public function index(
         TreeBuilder $treeBuilder,
         CalendarBuilder $calendarBuilder,

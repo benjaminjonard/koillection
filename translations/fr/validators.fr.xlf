@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="fr-FR">
-  <file id="validators.fr-FR">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+  <file id="validators.fr">
     <unit id="YW21SPH">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/Album.php:0</note>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
-  <file id="messages.en-GB">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="messages.en">
     <unit id="xGPqLcT" name="message.files_deleted">
       <notes>
         <note category="file-source" priority="1">koillection/src/Command/CleanUpCommand.php:91</note>
@@ -4564,30 +4564,30 @@
         <target>Country</target>
       </segment>
     </unit>
-    <unit id="Kg4E_mI" name="global.locale.es-ES">
+    <unit id="Kg4E_mI" name="global.locale.es">
       <notes>
          <note category="file-source" priority="1">koillection/src/Enum/LocaleEnum.php:24</note>
       </notes>
       <segment>
-        <source>global.locale.es-ES</source>
+        <source>global.locale.es</source>
         <target>Español</target>
       </segment>
     </unit>
-    <unit id="TjepIwh" name="global.locale.en-GB">
+    <unit id="TjepIwh" name="global.locale.en">
       <notes>
          <note category="file-source" priority="1">koillection/src/Enum/LocaleEnum.php:22</note>
       </notes>
       <segment>
-        <source>global.locale.en-GB</source>
+        <source>global.locale.en</source>
         <target>English</target>
       </segment>
     </unit>
-    <unit id="Acw13X3" name="global.locale.fr-FR">
+    <unit id="Acw13X3" name="global.locale.fr">
       <notes>
          <note category="file-source" priority="1">koillection/src/Enum/LocaleEnum.php:23</note>
       </notes>
       <segment>
-        <source>global.locale.fr-FR</source>
+        <source>global.locale.fr</source>
         <target>Français</target>
       </segment>
     </unit>

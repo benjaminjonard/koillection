@@ -15,11 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PhotoController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/photos/ajouter', 'fr' => '/photos/add'],
-        name: 'app_photo_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/photos/add', name: 'app_photo_add', methods: ['GET', 'POST'])]
     public function add(Request $request, AlbumRepository $albumRepository, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -61,12 +57,7 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/photos/{id}/edit', 'fr' => '/photos/{id}/editer'],
-        name: 'app_photo_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/photos/{id}/edit', name: 'app_photo_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -86,12 +77,7 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/photos/{id}/delete', 'fr' => '/photos/{id}/supprimer'],
-        name: 'app_photo_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/photos/{id}/delete', name: 'app_photo_delete', methods: ['POST'])]
     public function delete(Request $request, Photo $photo, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);

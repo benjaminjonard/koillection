@@ -16,16 +16,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AlbumController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/albums', 'fr' => '/albums'],
-        name: 'app_album_index',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/albums', 'fr' => '/utilisateur/{username}/albums'],
-        name: 'app_shared_album_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/albums', name: 'app_album_index', methods: ['GET'])]
+    #[Route(path: '/user/{username}/albums', name: 'app_shared_album_index', methods: ['GET'])]
     public function index(AlbumRepository $albumRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -42,11 +34,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/albums/add', 'fr' => '/albums/ajouter'],
-        name: 'app_album_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/albums/add', name: 'app_album_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, AlbumRepository $albumRepository, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -81,12 +69,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/albums/{id}/edit', 'fr' => '/albums/{id}/editer'],
-        name: 'app_album_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/albums/{id}/edit', name: 'app_album_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -107,12 +90,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/albums/{id}/delete', 'fr' => '/albums/{id}/supprimer'],
-        name: 'app_album_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route( path: '/albums/{id}/delete', name: 'app_album_delete', methods: ['POST'])]
     public function delete(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -129,18 +107,8 @@ class AlbumController extends AbstractController
         return $this->redirectToRoute('app_album_index');
     }
 
-    #[Route(
-        path: ['en' => '/albums/{id}', 'fr' => '/albums/{id}'],
-        name: 'app_album_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/albums/{id}', 'fr' => '/utilisateur/{username}/albums/{id}'],
-        name: 'app_shared_album_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/albums/{id}', name: 'app_album_show', methods: ['GET'])]
+    #[Route(path: '/user/{username}/albums/{id}', name: 'app_shared_album_show', methods: ['GET'])]
     public function show(Album $album, AlbumRepository $albumRepository, PhotoRepository $photoRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);

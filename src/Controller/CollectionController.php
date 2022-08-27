@@ -20,26 +20,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CollectionController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/collections', 'fr' => '/collections'],
-        name: 'app_collection_index',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/collections', 'fr' => '/collections'],
-        name: 'app_homepage',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/collections', 'fr' => '/utilisateur/{username}/collections'],
-        name: 'app_shared_collection_index',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}', 'fr' => '/utilisateur/{username}'],
-        name: 'app_shared_homepage',
-        methods: ['GET']
-    )]
+    #[Route(path: '/collections', name: 'app_collection_index', methods: ['GET'])]
+    #[Route(path: '/collections', name: 'app_homepage', methods: ['GET'])]
+    #[Route(path: '/user/{username}/collections', name: 'app_shared_collection_index', methods: ['GET'])]
+    #[Route(path: '/user/{username}', name: 'app_shared_homepage', methods: ['GET'])]
     public function index(CollectionRepository $collectionRepository): Response
     {
         $collections = $collectionRepository->findBy(['parent' => null], ['title' => 'ASC']);
@@ -49,11 +33,7 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/collections/add', 'fr' => '/collections/ajouter'],
-        name: 'app_collection_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/collections/add', name: 'app_collection_add', methods: ['GET', 'POST'])]
     public function add(
         Request $request,
         TranslatorInterface $translator,
@@ -97,18 +77,8 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/collections/{id}', 'fr' => '/collections/{id}'],
-        name: 'app_collection_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/{id}', 'fr' => '/utilisateur/{username}/{id}'],
-        name: 'app_shared_collection_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/collections/{id}', name: 'app_collection_show', methods: ['GET'])]
+    #[Route(path: '/user/{username}/{id}', name: 'app_shared_collection_show', methods: ['GET'])]
     public function show(
         Collection $collection,
         CollectionRepository $collectionRepository,
@@ -122,18 +92,8 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/collections/{id}/items', 'fr' => '/collections/{id}/objets'],
-        name: 'app_collection_items',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/{id}/items', 'fr' => '/utilisateur/{username}/{id}/objets'],
-        name: 'app_shared_collection_items',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/collections/{id}/items', name: 'app_collection_items', methods: ['GET'])]
+    #[Route(path: '/user/{username}/{id}/items', name: 'app_shared_collection_items', methods: ['GET'])]
     public function items(Collection $collection, ItemRepository $itemRepository): Response
     {
         return $this->render('App/Collection/items.html.twig', [
@@ -142,12 +102,7 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/collections/{id}/edit', 'fr' => '/collections/{id}/editer'],
-        name: 'app_collection_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/collections/{id}/edit', name: 'app_collection_edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request,
         Collection $collection,
@@ -174,12 +129,7 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/collections/{id}/delete', 'fr' => '/collections/{id}/supprimer'],
-        name: 'app_collection_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/collections/{id}/delete', name: 'app_collection_delete', methods: ['POST'])]
     public function delete(Request $request, Collection $collection, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $form = $this->createDeleteForm('app_collection_delete', $collection);
@@ -198,12 +148,7 @@ class CollectionController extends AbstractController
         return $this->redirectToRoute('app_collection_show', ['id' => $collection->getParent()->getId()]);
     }
 
-    #[Route(
-        path: ['en' => '/collections/{id}/batch-tagging', 'fr' => '/collections/{id}/tagguer-par-lot'],
-        name: 'app_collection_batch_tagging',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/collections/{id}/batch-tagging', name: 'app_collection_batch_tagging', methods: ['GET', 'POST'])]
     public function batchTagging(Request $request, Collection $collection, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);

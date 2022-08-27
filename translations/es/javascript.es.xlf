@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en-GB" trgLang="en-GB">
-  <file id="javascript.en-GB">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="es">
+  <file id="javascript.es">
     <unit id="s2RK8Ci" name="global.months.january">
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
         <source>global.months.january</source>
-        <target>January</target>
+        <target>Enero</target>
       </segment>
     </unit>
     <unit id="u5P6LMj" name="global.months.february">
@@ -16,7 +16,7 @@
       </notes>
       <segment>
         <source>global.months.february</source>
-        <target>February</target>
+        <target>Febrero</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
@@ -25,7 +25,7 @@
       </notes>
       <segment>
         <source>global.months.march</source>
-        <target>March</target>
+        <target>Marzo</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
@@ -34,7 +34,7 @@
       </notes>
       <segment>
         <source>global.months.april</source>
-        <target>April</target>
+        <target>Abril</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
@@ -43,7 +43,7 @@
       </notes>
       <segment>
         <source>global.months.may</source>
-        <target>May</target>
+        <target>Mayo</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
@@ -52,7 +52,7 @@
       </notes>
       <segment>
         <source>global.months.june</source>
-        <target>June</target>
+        <target>Junio</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
@@ -61,7 +61,7 @@
       </notes>
       <segment>
         <source>global.months.july</source>
-        <target>July</target>
+        <target>Julio</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
@@ -70,7 +70,7 @@
       </notes>
       <segment>
         <source>global.months.august</source>
-        <target>August</target>
+        <target>Agosto</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
@@ -79,7 +79,7 @@
       </notes>
       <segment>
         <source>global.months.september</source>
-        <target>September</target>
+        <target>Septiembre</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
@@ -88,7 +88,7 @@
       </notes>
       <segment>
         <source>global.months.october</source>
-        <target>October</target>
+        <target>Octubre</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
@@ -97,7 +97,7 @@
       </notes>
       <segment>
         <source>global.months.november</source>
-        <target>November</target>
+        <target>Noviembre</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
@@ -106,7 +106,7 @@
       </notes>
       <segment>
         <source>global.months.december</source>
-        <target>December</target>
+        <target>Diciembre</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
@@ -115,7 +115,7 @@
       </notes>
       <segment>
         <source>global.days.monday</source>
-        <target>Monday</target>
+        <target>Lunes</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
@@ -124,7 +124,7 @@
       </notes>
       <segment>
         <source>global.days.tuesday</source>
-        <target>Tuesday</target>
+        <target>Martes</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
@@ -133,7 +133,7 @@
       </notes>
       <segment>
         <source>global.days.wednesday</source>
-        <target>Wednesday</target>
+        <target>Miércoles</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
@@ -142,7 +142,7 @@
       </notes>
       <segment>
         <source>global.days.thursday</source>
-        <target>Thursday</target>
+        <target>Jueves</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
@@ -151,7 +151,7 @@
       </notes>
       <segment>
         <source>global.days.friday</source>
-        <target>Friday</target>
+        <target>Viernes</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
@@ -160,7 +160,7 @@
       </notes>
       <segment>
         <source>global.days.saturday</source>
-        <target>Saturday</target>
+        <target>Sábado</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
@@ -169,7 +169,7 @@
       </notes>
       <segment>
         <source>global.days.sunday</source>
-        <target>Sunday</target>
+        <target>Domingo</target>
       </segment>
     </unit>
     <unit id="mdcgZEB" name="global.today">
@@ -178,7 +178,7 @@
       </notes>
       <segment>
         <source>global.today</source>
-        <target>Today</target>
+        <target>Hoy</target>
       </segment>
     </unit>
     <unit id="exiimju" name="btn.clear">
@@ -187,7 +187,7 @@
       </notes>
       <segment>
         <source>btn.clear</source>
-        <target>Clear</target>
+        <target>Limpiar</target>
       </segment>
     </unit>
     <unit id="Jd_qITE" name="btn.close">
@@ -196,7 +196,7 @@
       </notes>
       <segment>
         <source>btn.close</source>
-        <target>Close</target>
+        <target>Cerrar</target>
       </segment>
     </unit>
     <unit id="AghNVUV" name="statistics.items_added">
@@ -205,7 +205,7 @@
       </notes>
       <segment>
         <source>statistics.items_added</source>
-        <target>{0} %count% items added| {1} %count% item added| ]1,Inf[ %count% items added</target>
+        <target>{0} %count% elementos añadidos| {1} %count% elemento añadido| ]1,Inf[ %count% elementos añadidos</target>
       </segment>
     </unit>
     <unit id="0DU28lZ" name="statistics.users">
@@ -214,7 +214,7 @@
       </notes>
       <segment>
         <source>statistics.users</source>
-        <target>{0} %count% users| {1} %count% user| ]1,Inf[ %count% users</target>
+        <target>{0} %count% usuarios| {1} %count% usuario| ]1,Inf[ %count% usuarios</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
@@ -223,7 +223,7 @@
       </notes>
       <segment>
         <source>statistics.items</source>
-        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
+        <target>{0} %count% elementos| {1} %count% elemento| ]1,Inf[ %count% elementos</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">
@@ -232,7 +232,7 @@
       </notes>
       <segment>
         <source>select2.no_results</source>
-        <target>No results found</target>
+        <target>No hay resultados</target>
       </segment>
     </unit>
     <unit id="vX0eXJK" name="select2.searching">
@@ -241,7 +241,7 @@
       </notes>
       <segment>
         <source>select2.searching</source>
-        <target>Searching...</target>
+        <target>Buscando...</target>
       </segment>
     </unit>
     <unit id="VWNWjeJ" name="select2.none">
@@ -250,7 +250,7 @@
       </notes>
       <segment>
         <source>select2.none</source>
-        <target>None</target>
+        <target>Ninguno</target>
       </segment>
     </unit>
     <unit id="Em6KHMM" name="global.search.more_results">
@@ -259,7 +259,7 @@
       </notes>
       <segment>
         <source>global.search.more_results</source>
-        <target>{1} + %count% more result| ]1,Inf[ + %count% more results</target>
+        <target>{1} + %count% resultado más| ]1,Inf[ + %count% resultados más</target>
       </segment>
     </unit>
     <unit id="nfDV3tB" name="global.search.no_results">
@@ -268,7 +268,7 @@
       </notes>
       <segment>
         <source>global.search.no_results</source>
-        <target>No results</target>
+        <target>Sin resultados</target>
       </segment>
     </unit>
     <unit id="V4dRe88" name="global.visibilities.internal.description">
@@ -277,7 +277,7 @@
       </notes>
       <segment>
         <source>global.visibilities.internal.description</source>
-        <target>Only authenticated users can see this page</target>
+        <target>Solo usuarios conectados pueden ver esta página</target>
       </segment>
     </unit>
     <unit id="RU9kBPV" name="global.visibilities.public.description">
@@ -286,7 +286,7 @@
       </notes>
       <segment>
         <source>global.visibilities.public.description</source>
-        <target>Anyone can see this page</target>
+        <target>Cualquiera puede ver esta página</target>
       </segment>
     </unit>
     <unit id="GA2PrMk" name="global.visibilities.private.description">
@@ -295,7 +295,7 @@
       </notes>
       <segment>
         <source>global.visibilities.private.description</source>
-        <target>Only I can see this page</target>
+        <target>Solo yo puedo ver esta página</target>
       </segment>
     </unit>
   </file>
