@@ -33,11 +33,16 @@
                 </td>
                 {% for column in collection.itemsDisplayModeListColumns %}
                     <td class="center hide-on-small-and-down">
-                        <a class="table-link" href="{{ link }}"></a>
                         {% set datum = item.getDatumByLabel(column) %}
+
                         {% if datum is not null %}
+                            {% if datum.type != 'link' %}
+                                <a class="table-link" href="{{ link }}"></a>
+                            {% endif %}
+
                             {% include 'App/Datum/_display_value/_' ~ datum.type ~ '.html.twig' with {'datum': datum} only %}
                         {% else %}
+                            <a class="table-link" href="{{ link }}"></a>
                             -
                         {% endif %}
                     </td>
