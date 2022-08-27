@@ -6,7 +6,7 @@ App\Entity\User:
     enabled: 1
     roles: ["ROLE_ADMIN"]
     currency: "<currencyCode()>"
-    locale: "en-GB"
+    locale: "en"
     timezone: "<timezone()>"
     dateFormat: "d/m/Y"
     diskSpaceAllowed: 268435456
@@ -19,7 +19,7 @@ App\Entity\User:
     enabled: 1
     roles: ["ROLE_USER"]
     currency: "<currencyCode()>"
-    locale: "fr-FR"
+    locale: "fr"
     timezone: "<timezone()>"
     dateFormat: "d/m/Y"
     diskSpaceAllowed: 268435456

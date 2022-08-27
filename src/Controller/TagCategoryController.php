@@ -34,17 +34,6 @@ class TagCategoryController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/tag-categories/{id}', name: 'app_tag_category_show', methods: ['GET'])]
-    #[Entity('category', expr: 'repository.findOneWithTags(id)', class: TagCategory::class)]
-    public function show(TagCategory $category): Response
-    {
-        $this->denyAccessUnlessFeaturesEnabled(['tags']);
-
-        return $this->render('App/TagCategory/show.html.twig', [
-            'category' => $category,
-        ]);
-    }
-
     #[Route(path: '/tag-categories/add', name: 'app_tag_category_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
@@ -64,6 +53,17 @@ class TagCategoryController extends AbstractController
 
         return $this->render('App/TagCategory/add.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route(path: '/tag-categories/{id}', name: 'app_tag_category_show', methods: ['GET'])]
+    #[Entity('category', expr: 'repository.findOneWithTags(id)', class: TagCategory::class)]
+    public function show(TagCategory $category): Response
+    {
+        $this->denyAccessUnlessFeaturesEnabled(['tags']);
+
+        return $this->render('App/TagCategory/show.html.twig', [
+            'category' => $category,
         ]);
     }
 
