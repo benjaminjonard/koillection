@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Api\Controller\UploadController;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
@@ -27,7 +28,24 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['photo:write']],
     collectionOperations: [
         'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        'post' => ['input_formats' => [
+            'json' => ['application/json', 'application/ld+json'],
+            'multipart' => ['multipart/form-data']
+        ]],
+    ],
+    itemOperations: [
+        'get',
+        'put',
+        'delete',
+        'patch',
+        'image' => [
+            'method' => 'POST',
+            'path' => '/photos/{id}/image',
+            'controller' => UploadController::class,
+            'denormalization_context' => ['groups' => ['photo:image']],
+            'input_formats' => ['multipart' => ['multipart/form-data']],
+            'openapi_context' => ['summary' => 'Upload the Photo image.']
+        ]
     ]
 )]
 class Photo implements CacheableInterface, LoggableInterface
@@ -62,7 +80,7 @@ class Photo implements CacheableInterface, LoggableInterface
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
-    #[Groups(['photo:write'])]
+    #[Groups(['photo:write', 'photo:image'])]
     private ?File $file = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]

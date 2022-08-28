@@ -1,11 +1,12 @@
 <div class="input-field col col s5">
     {% apply spaceless %}
-    <textarea id="data_{{ iteration }}_value"
-              name="{{ entity }}[data][{{ iteration }}][value]"
-              class="materialize-textarea"
-    >
+        <textarea id="data_{{ iteration }}_value"
+                  name="{{ entity }}[data][{{ iteration }}][value]"
+                  class="materialize-textarea"
+        >
         {% if datum is defined %}{{ datum.value }}{% endif %}
     </textarea>
     {% endapply %}
-    <label for="data_{{ iteration }}_value" class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
+    <label for="data_{{ iteration }}_value"
+           class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
 </div>

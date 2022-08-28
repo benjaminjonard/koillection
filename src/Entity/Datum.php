@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Api\Controller\UploadController;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Attribute\Upload;
@@ -25,7 +26,32 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['datum:write']],
     collectionOperations: [
         'get',
-        'post' => ['input_formats' => ['multipart' => ['multipart/form-data']]],
+        'post' => ['input_formats' => [
+            'json' => ['application/json', 'application/ld+json'],
+            'multipart' => ['multipart/form-data']
+        ]],
+    ],
+    itemOperations: [
+        'get',
+        'put',
+        'delete',
+        'patch',
+        'image' => [
+            'method' => 'POST',
+            'path' => '/data/{id}/image',
+            'controller' => UploadController::class,
+            'denormalization_context' => ['groups' => ['datum:image']],
+            'input_formats' => ['multipart' => ['multipart/form-data']],
+            'openapi_context' => ['summary' => 'Upload the Datum image.']
+        ],
+        'file' => [
+            'method' => 'POST',
+            'path' => '/data/{id}/file',
+            'controller' => UploadController::class,
+            'denormalization_context' => ['groups' => ['datum:file']],
+            'input_formats' => ['multipart' => ['multipart/form-data']],
+            'openapi_context' => ['summary' => 'Upload the Datum file.']
+        ]
     ]
 )]
 #[Assert\Expression(
@@ -74,7 +100,7 @@ class Datum
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
-    #[Groups(['datum:write'])]
+    #[Groups(['datum:write', 'datum:image'])]
     private ?File $fileImage = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
@@ -91,7 +117,7 @@ class Datum
 
     #[Upload(path: 'file', originalFilenamePath: 'originalFilename')]
     #[Assert\File]
-    #[Groups(['datum:write'])]
+    #[Groups(['datum:write', 'datum:file'])]
     private ?File $fileFile = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]

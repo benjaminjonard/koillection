@@ -19,11 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/search', 'fr' => '/recherche'],
-        name: 'app_search_index',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/search', name: 'app_search_index', methods: ['GET', 'POST'])]
     public function index(
         Request $request,
         CollectionRepository $collectionRepository,
@@ -81,11 +77,7 @@ class SearchController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/search/autocomplete/{term}', 'fr' => '/recherche/autocompletion/{term}'],
-        name: 'app_search_autocomplete',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/search/autocomplete/{term}', name: 'app_search_autocomplete', methods: ['GET', 'POST'])]
     public function autocomplete(Autocompleter $autocompleter, string $term): Response
     {
         $results = $autocompleter->findForAutocomplete($term);

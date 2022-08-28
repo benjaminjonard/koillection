@@ -51,9 +51,7 @@ class WishCurrentUserTest extends ApiTestCase
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
         $wishlistIri = $this->iriConverter->getIriFromItem($wishlist);
 
-        $this->createClientWithCredentials()->request('POST', '/api/wishes', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/wishes', ['json' => [
                 'name' => 'New wish',
                 'wishlist' => $wishlistIri,
             ],

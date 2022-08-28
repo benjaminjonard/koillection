@@ -1,32 +1,33 @@
 {{ form_start(form) }}
     {{ form_row(form.file) }}
 
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.label, {'label': 'label.name'}) }}
-        </div>
-        <div class="col s12 l5 xl3">
-            {{ form_row(form.category, {'label' : 'label.tag_category', 'attr': {'data-controller': 'select--tag-category'}} ) }}
-        </div>
+<div class="row">
+    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        {{ form_row(form.label, {'label': 'label.name'}) }}
     </div>
+    <div class="col s12 l5 xl3">
+        {{ form_row(form.category, {'label' : 'label.tag_category', 'attr': {'data-controller': 'select--tag-category'}} ) }}
+    </div>
+</div>
 
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
-        </div>
-        <div class="col s12 l5 xl3">
-            {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
-        </div>
+<div class="row">
+    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
     </div>
+    <div class="col s12 l5 xl3">
+        {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
+    </div>
+</div>
 
-    <div class="row">
-        <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-            {{ form_row(form.description, {'label': 'label.description', 'attr' : {'class': 'materialize-textarea'}}) }}
-        </div>
+<div class="row">
+    <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+        {{ form_row(form.description, {'label': 'label.description', 'attr' : {'class': 'materialize-textarea'}}) }}
     </div>
+</div>
 
-    <div class="row center-align form-btn-holder">
-        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-        <a href="{{ path('app_tag_show', { id : tag.id }) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
-    </div>
+<div class="row center-align form-btn-holder">
+    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+    <a href="{{ path('app_tag_show', { id : tag.id }) }}"
+       class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+</div>
 {{ form_end(form) }}

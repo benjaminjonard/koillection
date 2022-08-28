@@ -3,11 +3,11 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.history_collection') %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -15,9 +15,10 @@
         <div class="title-block">
             <div class="left">
                 {% if collection.image != null %}
-                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}" aria-label="{{ 'aria.collection_thumbnail'|trans({'%title%': collection.title}) }}">
+                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
                 {% else %}
-                    <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}" aria-hidden="true">{{collection.title|first|upper}}</span>
+                    <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}"
+                          aria-hidden="true">{{ collection.title|first|upper }}</span>
                 {% endif %}
             </div>
             <div class="right">

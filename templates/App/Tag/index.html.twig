@@ -3,18 +3,18 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block meta %}
-    {% if context == 'shared'  %}
+    {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.tags_shared'|trans({'%username%':  app.request.get('username')}),
         }) }}
     {% else %}
         {{ parent() }}
@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block content %}
-    <div {{ stimulus_controller('filter-ajax') }}>
+    <div data-controller="filter-ajax">
         <div class="collection-header">
             <div class="title-block">
                 <h1>{{ 'menu.tags'|trans }}</h1>
@@ -36,7 +36,8 @@
             <div class="btn-holder">
                 <div class="left">
                     {% if context == 'default' %}
-                        <a href="{{ path('app_tag_category_index') }}" class="button" title="{{ 'tooltip.manage_tag_categories'|trans }}">
+                        <a href="{{ path('app_tag_category_index') }}" class="button"
+                           title="{{ 'tooltip.manage_tag_categories'|trans }}">
                             <i class="fa fa-gears fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_tag_index'}) }}
@@ -45,12 +46,12 @@
                 </div>
                 <div class="right">
                     {{ form_start(form, {attr: {"data-filter-ajax-target": "form"}}) }}
-                        {{ form_row(form.term, {'attr': {
-                            'class': 'filter-input',
-                            'data-action': 'keyup->filter-ajax#filter' ,
-                            'placeholder': 'filter.by_name'|trans,
-                            'autocomplete': 'off'
-                        }}) }}
+                    {{ form_row(form.term, {'attr': {
+                        'class': 'filter-input',
+                        'data-action': 'keyup->filter-ajax#filter' ,
+                        'placeholder': 'filter.by_name'|trans,
+                        'autocomplete': 'off'
+                    }}) }}
                     {{ form_end(form) }}
                 </div>
                 <div class="clearfix"></div>

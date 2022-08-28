@@ -27,11 +27,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[IsGranted('ROLE_ADMIN')]
 class UserController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/admin/users', 'fr' => '/admin/utilisateurs'],
-        name: 'app_admin_user_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/admin/users', name: 'app_admin_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('App/Admin/User/index.html.twig', [
@@ -39,11 +35,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/admin/users/add', 'fr' => '/admin/utilisateurs/ajouter'],
-        name: 'app_admin_user_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/admin/users/add', name: 'app_admin_user_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $user = new User();
@@ -63,11 +55,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/admin/users/{id}/edit', 'fr' => '/admin/utilisateurs/{id}/editer'],
-        name: 'app_admin_user_edit',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/admin/users/{id}/edit', name: 'app_admin_user_edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request,
         User $user,
@@ -108,12 +96,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/admin/users/{id}/delete', 'fr' => '/admin/utilisateurs/{id}/supprimer'],
-        name: 'app_admin_user_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/admin/users/{id}/delete', name: 'app_admin_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         if ($user->isAdmin()) {

@@ -34,7 +34,6 @@ export default class extends Controller {
         this.delay(function() {
             if (value.length < 2) {
                 this.resultsWrapperTarget.classList.add('hidden');
-                document.removeEventListener('mouseup', this.boundHide);
                 return;
             }
 
@@ -44,7 +43,6 @@ export default class extends Controller {
                 .then(response => response.json())
                 .then(function(data) {
                     self.resultsWrapperTarget.classList.remove('hidden');
-                    document.addEventListener('mouseup', self.boundHide);
                     self.resultsWrapperTarget.innerHTML = '';
                     data.results.forEach((result) => {
                         let highlightedResult = self.highlight(result.label, value);
@@ -52,7 +50,7 @@ export default class extends Controller {
                     });
 
                     if (data.totalResultsCounter > 5) {
-                        let url = "/search?search[term]=" + value + "&search[searchInCollections]=&search[searchInItems]=&search[searchInTags]=";
+                        let url = "/search?search[term]=" + value + "&search[searchInWishlists]&search[searchInAlbums]=&search[searchInCollections]=&search[searchInItems]=&search[searchInTags]=";
                         let label = Translator.transChoice('global.search.more_results', data.totalResultsCounter - 5);
                         self.resultsWrapperTarget.appendChild(self.autocompleteResultFactory(label, url));
                     }
@@ -63,7 +61,7 @@ export default class extends Controller {
                         self.resultsWrapperTarget.appendChild(self.autocompleteResultFactory(label, url));
                     }
                 })
-        }, 250 );
+        }, 400);
     }
 
     highlight(content, terms) {

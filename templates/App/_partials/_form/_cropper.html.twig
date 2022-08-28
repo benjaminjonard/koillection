@@ -1,7 +1,8 @@
 {% block cropper %}
-    <div class="row row-file" {{ stimulus_controller('croppie') }}>
+    <div class="row row-file" data-controller="croppie">
         <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            <div data-croppie-target="area" data-action="mouseup->croppie#refreshImage mousewheel->croppie#refreshImage"></div>
+            <div data-croppie-target="area"
+                 data-action="mouseup->croppie#refreshImage mousewheel->croppie#refreshImage"></div>
             <label class="btn waves-effect waves-light">
                 <span>{{ 'label.thumbnail'|trans }}</span>
                 <input class="js-croppie-file-input crop-input"

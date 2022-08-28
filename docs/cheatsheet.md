@@ -24,7 +24,7 @@ Create API keys
 - `php bin/console lexik:jwt:generate-keypair`
 
 Then
-- `php -d memory_limit=512M ./bin/phpunit --stderr`
+- `php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit`
 
 ###### PHP CS fixer
 - `./vendor/bin/php-cs-fixer fix`

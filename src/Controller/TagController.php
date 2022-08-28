@@ -23,16 +23,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TagController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/tags', 'fr' => '/tags'],
-        name: 'app_tag_index',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/tags', 'fr' => '/utilisateur/{username}/tags'],
-        name: 'app_shared_tag_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tags', name: 'app_tag_index', methods: ['GET'])]
+    #[Route(path: '/user/{username}/tags', name: 'app_shared_tag_index', methods: ['GET'])]
     public function index(
         Request $request,
         PaginatorFactory $paginatorFactory,
@@ -68,18 +60,8 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tags/{id}', 'fr' => '/tags/{id}'],
-        name: 'app_tag_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/tags/{id}', 'fr' => '/utilisateur/{username}/tags/{id}'],
-        name: 'app_shared_tag_show',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET']
-    )]
+    #[Route(path: '/tags/{id}', name: 'app_tag_show', methods: ['GET'])]
+    #[Route(path: '/user/{username}/tags/{id}', name: 'app_shared_tag_show', methods: ['GET'])]
     #[Entity('tag', expr: 'repository.findWithItems(id)', class: Tag::class)]
     public function show(Tag $tag, TagRepository $tagRepository): Response
     {
@@ -91,12 +73,7 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tags/{id}/edit', 'fr' => '/tags/{id}/editer'],
-        name: 'app_tag_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/tags/{id}/edit', name: 'app_tag_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -117,12 +94,7 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tags/{id}/delete', 'fr' => '/tags/{id}/supprimer'],
-        name: 'app_tag_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/tags/{id}/delete', name: 'app_tag_delete', methods: ['POST'])]
     public function delete(Request $request, Tag $tag, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -139,10 +111,7 @@ class TagController extends AbstractController
         return $this->redirectToRoute('app_tag_index');
     }
 
-    #[Route(
-        path: ['en' => '/tags/delete-unused-tags', 'fr' => '/tags/{id}/supprimer'],
-        name: 'app_tag_delete_unused_tags', requirements: ['id' => '%uuid_regex%'], methods: ['POST']
-    )]
+    #[Route(path: '/tags/delete-unused-tags', name: 'app_tag_delete_unused_tags', methods: ['POST'])]
     public function deleteUnusedTags(Request $request, TranslatorInterface $translator, TagRepository $tagRepository, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -163,11 +132,7 @@ class TagController extends AbstractController
         return $this->redirectToRoute('app_tag_index');
     }
 
-    #[Route(
-        path: ['en' => '/tags/autocomplete/{search}', 'fr' => '/tags/autocompletion/{search}'],
-        name: 'app_tag_autocomplete',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tags/autocomplete/{search}', name: 'app_tag_autocomplete', methods: ['GET'])]
     public function autocomplete(string $search, TagRepository $tagRepository): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
@@ -181,16 +146,8 @@ class TagController extends AbstractController
         return new JsonResponse($data);
     }
 
-    #[Route(
-        path: ['en' => '/tags/{tagId}/items/{itemId}', 'fr' => '/tags/{tagId}/objets/{itemId}'],
-        name: 'app_tag_item_show',
-        methods: ['GET']
-    )]
-    #[Route(
-        path: ['en' => '/user/{username}/tags/{tagId}/items/{itemId}', 'fr' => '/utilisateur/{username}/tags/{tagId}/objets/{itemId}'],
-        name: 'app_shared_tag_item_show',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tags/{tagId}/items/{itemId}',  name: 'app_tag_item_show', methods: ['GET'])]
+    #[Route(path: '/user/{username}/tags/{tagId}/items/{itemId}', name: 'app_shared_tag_item_show', methods: ['GET'])]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]
     public function item(Item $item, Tag $tag, ItemRepository $itemRepository): Response

@@ -1,5 +1,5 @@
 {% if context == 'default' %}
-    <span class="visibility" title="{{ getVisibilityReason(visibility|default(null), app.user.visibility) }}" >
+    <span class="visibility" title="{{ getVisibilityReason(visibility|default(null), app.user.visibility) }}">
         {% if (visibility is not defined or visibility == 'public') and app.user.visibility == 'public' %}
             <i class="fa fa-globe fa-fw"></i>
             <i class="fa fa-unlock-alt fa-fw fa-secondary"></i>

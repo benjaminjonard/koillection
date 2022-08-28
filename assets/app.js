@@ -7,7 +7,7 @@ import './bootstrap';
 // import global JS
 import './js/loader'
 import './js/translations/config'
-import './js/translations/javascript/en-GB'
-import './js/translations/javascript/fr-FR'
-import './js/translations/javascript/es-ES'
+import './js/translations/javascript/en'
+import './js/translations/javascript/fr'
+import './js/translations/javascript/es'
 

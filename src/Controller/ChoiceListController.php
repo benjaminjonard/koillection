@@ -15,11 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ChoiceListController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/choice-lists', 'fr' => '/listes-de-choix'],
-        name: 'app_choice_list_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/choice-lists', name: 'app_choice_list_index', methods: ['GET'])]
     public function index(ChoiceListRepository $choiceListRepository): Response
     {
         return $this->render('App/ChoiceList/index.html.twig', [
@@ -27,11 +23,7 @@ class ChoiceListController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/choice-lists/add', 'fr' => '/listes-de-choix/ajouter'],
-        name: 'app_choice_list_add',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/choice-lists/add', name: 'app_choice_list_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $choiceList = new ChoiceList();
@@ -51,12 +43,7 @@ class ChoiceListController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/choice-lists/{id}/edit', 'fr' => '/listes-de-choix/{id}/editer'],
-        name: 'app_choice_list_edit',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/choice-lists/{id}/edit', name: 'app_choice_list_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ChoiceList $choiceList, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $form = $this->createForm(ChoiceListType::class, $choiceList);
@@ -74,12 +61,7 @@ class ChoiceListController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/choice-lists/{id}/delete', 'fr' => '/listes-de-choix/{id}/supprimer'],
-        name: 'app_choice_list_delete',
-        requirements: ['id' => '%uuid_regex%'],
-        methods: ['POST']
-    )]
+    #[Route(path: '/choice-lists/{id}/delete', name: 'app_choice_list_delete', methods: ['POST'])]
     public function delete(Request $request, ChoiceList $choiceList, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $form = $this->createDeleteForm('app_choice_list_delete', $choiceList);

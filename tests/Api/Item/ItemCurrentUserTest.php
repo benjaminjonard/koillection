@@ -110,9 +110,7 @@ class ItemCurrentUserTest extends ApiTestCase
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
         $collectionIri = $this->iriConverter->getIriFromItem($collection);
 
-        $this->createClientWithCredentials()->request('POST', '/api/items', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/items', ['json' => [
                 'name' => 'New item',
                 'collection' => $collectionIri,
             ],

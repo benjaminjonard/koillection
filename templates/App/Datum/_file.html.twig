@@ -1,8 +1,9 @@
-<div class="input-field file-data col s5" {{ stimulus_controller('preview') }}>
+<div class="input-field file-data col s5" data-controller="preview">
     <div class="btn">
         <i class="fa fa-upload fa-fw"></i>
     </div>
-    <input data-action="change->additional-data#displayFilename" type="file" id="data_{{ iteration }}_fileFile" name="{{ entity }}[data][{{ iteration }}][fileFile]">
+    <input data-action="change->additional-data#displayFilename" type="file" id="data_{{ iteration }}_fileFile"
+           name="{{ entity }}[data][{{ iteration }}][fileFile]">
     <div class="datum-original-filename">
         {% if datum is defined %}{{ datum.originalFilename }}{% endif %}
     </div>

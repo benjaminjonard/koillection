@@ -92,7 +92,7 @@ class Autocompleter
             SELECT id AS id, {$labelProperty} AS label, '{$type}' AS type, seen_counter AS seenCounter,
                 (CASE 
                      WHEN LOWER({$labelProperty}) = LOWER(?) THEN 4 -- exact match
-                     WHEN LOWER({$labelProperty}) LIKE LOWER(?) THEN 3 -- end with                     
+                     WHEN LOWER({$labelProperty}) LIKE LOWER(?) THEN 3 -- contains                     
                      ELSE 0
                 END) AS relevance
             FROM {$collectionTable} 
@@ -101,7 +101,7 @@ class Autocompleter
         ";
 
         $this->params[] = $term;
-        $this->params[] = $term.'%';
+        $this->params[] = '%'.$term.'%';
         $this->params[] = $user->getId();
         $this->params[] = '%'.$term.'%';
 
@@ -127,7 +127,7 @@ class Autocompleter
                      WHEN LOWER(i.name) = LOWER(?) THEN 4 -- item exact match
                      WHEN LOWER(i.name) LIKE LOWER(?) THEN 3 -- item end with
                      WHEN LOWER(d.value) = LOWER(?) THEN 2 -- datum exact match
-                     WHEN LOWER(d.value) LIKE LOWER(?) THEN 1 -- datum end with 
+                     WHEN LOWER(d.value) LIKE LOWER(?) THEN 1 -- datum contains
                      ELSE 0
                 END) AS relevance
             FROM {$itemTable} i
@@ -137,9 +137,9 @@ class Autocompleter
         ";
 
         $this->params[] = $term;
-        $this->params[] = $term.'%';
+        $this->params[] = '%'.$term.'%';
         $this->params[] = $term;
-        $this->params[] = $term.'%';
+        $this->params[] = '%'.$term.'%';
         $this->params[] = DatumTypeEnum::TYPE_TEXT;
         $this->params[] = $user->getId();
         $this->params[] = '%'.$term.'%';

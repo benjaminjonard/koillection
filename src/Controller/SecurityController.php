@@ -18,11 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '', 'fr' => ''],
-        name: 'app_security_login',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '', name: 'app_security_login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository): Response
     {
         if (0 === $userRepository->count([])) {
@@ -39,11 +35,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/first-connection', 'fr' => '/premiere-connexion'],
-        name: 'app_security_first_connection',
-        methods: ['GET', 'POST']
-    )]
+    #[Route(path: '/first-connection', name: 'app_security_first_connection', methods: ['GET', 'POST'])]
     public function firstConnectionAction(
         Request $request,
         TokenStorageInterface $tokenStorage,

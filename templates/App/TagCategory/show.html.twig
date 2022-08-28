@@ -3,11 +3,11 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_category_index', 'trans': 'menu.tag_categories'}], category) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -25,7 +25,8 @@
 
         <div class="btn-holder">
             <div class="left">
-                <a href="{{ path('app_tag_category_edit', {'id': category.id}) }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                <a href="{{ path('app_tag_category_edit', {'id': category.id}) }}" class="button"
+                   title="{{ 'tooltip.edit'|trans }}">
                     <i class="fa fa-pencil fa-fw"></i>
                 </a>
                 {{ include('App/_partials/_icon/_delete.html.twig', {
@@ -44,7 +45,7 @@
                 <ul class="nav nav-tags">
                     {% for tag in category.tags|naturalSorting %}
                         <li class="tag chip">
-                            <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}" aria-label="{{ 'aria.tag'|trans({'%label%': tag.label}) }}">
+                            <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}">
                                 {{ tag.label }}
                             </a>
                         </li>

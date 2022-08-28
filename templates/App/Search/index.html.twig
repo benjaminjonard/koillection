@@ -3,11 +3,11 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_search_index', 'trans': 'menu.search'}], null, form.vars.value.term is not null ? form.vars.value.term : null) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -17,44 +17,44 @@
 
     <div class="content-block">
         {{ form_start(form, {'method': 'GET'}) }}
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.term, {'label' : 'label.search'}) }}
-                </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(form.createdAt, {'label' : 'label.added_at', 'attr': {'data-controller' : 'datepicker' } }) }}
-                </div>
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.term, {'label' : 'label.search'}) }}
             </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.createdAt, {'label' : 'label.added_at', 'attr': {'data-controller' : 'datepicker' } }) }}
+            </div>
+        </div>
 
-            <div class="row search-checkbox-row">
-                <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                    <div class="col s4">
-                        {{ form_row(form.searchInCollections, {'label': 'label.collections'}) }}
-                    </div>
-                    <div class="col s4">
-                        {{ form_row(form.searchInItems, {'label': 'label.items'}) }}
-                    </div>
-                    {% if isFeatureEnabled('tags') %}
-                        <div class="col s4">
-                            {{ form_row(form.searchInTags, {'label': 'label.tags'}) }}
-                        </div>
-                    {% endif %}
-                    {% if isFeatureEnabled('albums') %}
-                        <div class="col s4">
-                            {{ form_row(form.searchInAlbums, {'label': 'label.albums'}) }}
-                        </div>
-                    {% endif %}
-                    {% if isFeatureEnabled('wishlists') %}
-                        <div class="col s4">
-                            {{ form_row(form.searchInWishlists, {'label': 'label.wishlists'}) }}
-                        </div>
-                    {% endif %}
+        <div class="row search-checkbox-row">
+            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+                <div class="col s4">
+                    {{ form_row(form.searchInCollections, {'label': 'label.collections'}) }}
                 </div>
+                <div class="col s4">
+                    {{ form_row(form.searchInItems, {'label': 'label.items'}) }}
+                </div>
+                {% if isFeatureEnabled('tags') %}
+                    <div class="col s4">
+                        {{ form_row(form.searchInTags, {'label': 'label.tags'}) }}
+                    </div>
+                {% endif %}
+                {% if isFeatureEnabled('albums') %}
+                    <div class="col s4">
+                        {{ form_row(form.searchInAlbums, {'label': 'label.albums'}) }}
+                    </div>
+                {% endif %}
+                {% if isFeatureEnabled('wishlists') %}
+                    <div class="col s4">
+                        {{ form_row(form.searchInWishlists, {'label': 'label.wishlists'}) }}
+                    </div>
+                {% endif %}
             </div>
+        </div>
 
-            <div class="row center-align form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-            </div>
+        <div class="row center-align form-btn-holder">
+            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        </div>
         {{ form_end(form) }}
     </div>
 
@@ -67,10 +67,9 @@
                         {% for item in results.items|naturalSorting %}
                             <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
                                 <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
-                                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
+                                    <div class="image-wrapper placeholder" data-controller="lazy-loading">
                                         <img data-src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}"
                                              data-lazy-loading-target="image"
-                                             aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
                                         >
                                     </div>
                                 </a>
@@ -114,23 +113,25 @@
                     <div>
                         <table class="centered striped">
                             <thead>
-                            <tr>
-                                <th>{{ 'label.name'|trans }}</th>
-                                <th>{{ 'label.description'|trans }}</th>
-                                <th>{{ 'label.number_of_items'|trans }}</th>
-                                <th>{{ 'label.percent_of_items'|trans }}</th>
-                            </tr>
+                                <tr>
+                                    <th>{{ 'label.name'|trans }}</th>
+                                    <th>{{ 'label.description'|trans }}</th>
+                                    <th>{{ 'label.number_of_items'|trans }}</th>
+                                    <th>{{ 'label.percent_of_items'|trans }}</th>
+                                </tr>
                             </thead>
 
                             <tbody>
-                            {% for result in results.tags %}
-                                <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
-                                    <td><a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a></td>
-                                    <td>{{ result.tag.description|u.truncate(50) }}</td>
-                                    <td>{{ result.itemCount }}</td>
-                                    <td>{{ result.percent|round(2, 'common') }} %</td>
-                                </tr>
-                            {% endfor %}
+                                {% for result in results.tags %}
+                                    <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
+                                        <td>
+                                            <a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a>
+                                        </td>
+                                        <td>{{ result.tag.description|u.truncate(50) }}</td>
+                                        <td>{{ result.itemCount }}</td>
+                                        <td>{{ result.percent|round(2, 'common') }} %</td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

@@ -191,7 +191,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->diskSpaceAllowed = 536870912;
         $this->enabled = true;
         $this->currency = 'EUR';
-        $this->locale = LocaleEnum::LOCALE_EN_GB;
+        $this->locale = LocaleEnum::LOCALE_EN;
         $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
         $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
         $this->automaticDarkModeStartAt = null;

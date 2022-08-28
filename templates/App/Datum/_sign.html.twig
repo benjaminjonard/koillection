@@ -1,16 +1,14 @@
-<div class="input-field image-preview-wrapper image-field col s5 row-file" {{ stimulus_controller('preview') }}>
+<div class="input-field image-preview-wrapper image-field col s5 row-file" data-controller="preview">
     <label class="file-label">
         {% if datum is defined and datum.image is not null %}
             <img data-preview-target="image"
                  class="preview-image"
                  src="{{ preload(asset(datum.imageSmallThumbnail), {as: 'image'}) }}"
-                 aria-label="{{ 'aria.datum_sign_thumbnail'|trans({'%label%': datum.label}) }}"
             />
         {% else %}
             <img data-preview-target="image"
                  class="preview-image"
                  src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
-                 aria-label="{{ 'aria.default_image'|trans }}"
             />
         {% endif %}
         <input data-action="change->preview#load"

@@ -6,11 +6,11 @@
 ]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -33,16 +33,16 @@
 
             <table class="centered striped">
                 <thead>
-                <tr>
-                    <th class="hide-on-small-and-down">{{ 'label.id'|trans }}</th>
-                    <th>{{ 'label.username'|trans }}</th>
-                    <th>{{ 'label.role'|trans }}</th>
-                    <th class="hide-on-med-and-down">{{ 'label.email'|trans }}</th>
-                    <th>{{ 'label.disk_space_used'|trans }}</th>
-                    <th>{{ 'label.disk_space_allowed'|trans }}</th>
-                    <th class="hide-on-small-and-down">{{ 'label.last_date_of_activity'|trans }}</th>
-                    <th>{{ 'label.actions'|trans }}</th>
-                </tr>
+                    <tr>
+                        <th class="hide-on-small-and-down">{{ 'label.id'|trans }}</th>
+                        <th>{{ 'label.username'|trans }}</th>
+                        <th>{{ 'label.role'|trans }}</th>
+                        <th class="hide-on-med-and-down">{{ 'label.email'|trans }}</th>
+                        <th>{{ 'label.disk_space_used'|trans }}</th>
+                        <th>{{ 'label.disk_space_allowed'|trans }}</th>
+                        <th class="hide-on-small-and-down">{{ 'label.last_date_of_activity'|trans }}</th>
+                        <th>{{ 'label.actions'|trans }}</th>
+                    </tr>
                 </thead>
 
                 <tbody>
@@ -54,9 +54,11 @@
                             <td class="hide-on-med-and-down">{{ user.email }}</td>
                             <td>{{ getSpaceUsedByUser(user)|bytes }}</td>
                             <td>{{ user.diskSpaceAllowed|bytes }}</td>
-                            <td class="hide-on-small-and-down" title="{{ user.lastDateOfActivity|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}">{{ user.lastDateOfActivity ? user.lastDateOfActivity|dateAgo : '-' }}</td>
+                            <td class="hide-on-small-and-down"
+                                title="{{ user.lastDateOfActivity|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}">{{ user.lastDateOfActivity ? user.lastDateOfActivity|dateAgo : '-' }}</td>
                             <td class="table-actions">
-                                <a title="{{ 'tooltip.edit'|trans }}" href="{{ path('app_admin_user_edit', {id : user.id}) }}">
+                                <a title="{{ 'tooltip.edit'|trans }}"
+                                   href="{{ path('app_admin_user_edit', {id : user.id}) }}">
                                     <i class="fa fa-pencil fa-fw"></i>
                                 </a>
                                 {% if false == user.isAdmin() %}

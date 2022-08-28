@@ -64,9 +64,7 @@ class DatumCurrentUserTest extends ApiTestCase
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
         $collectionIri = $this->iriConverter->getIriFromItem($collection);
 
-        $this->createClientWithCredentials()->request('POST', '/api/data', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/data', ['json' => [
                 'label' => 'New datum with collection',
                 'type' => DatumTypeEnum::TYPE_TEXT,
                 'collection' => $collectionIri,
@@ -84,9 +82,7 @@ class DatumCurrentUserTest extends ApiTestCase
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
         $itemIri = $this->iriConverter->getIriFromItem($item);
 
-        $this->createClientWithCredentials()->request('POST', '/api/data', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/data', ['json' => [
                 'label' => 'New datum with item',
                 'type' => DatumTypeEnum::TYPE_TEXT,
                 'item' => $itemIri,
@@ -107,9 +103,7 @@ class DatumCurrentUserTest extends ApiTestCase
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
         $itemIri = $this->iriConverter->getIriFromItem($item);
 
-        $this->createClientWithCredentials()->request('POST', '/api/data', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/data', ['json' => [
                 'label' => 'New datum with item',
                 'type' => DatumTypeEnum::TYPE_TEXT,
                 'collection' => $collectionIri,
@@ -125,9 +119,7 @@ class DatumCurrentUserTest extends ApiTestCase
 
     public function testPostDatumWithoutCollectionNorItem(): void
     {
-        $this->createClientWithCredentials()->request('POST', '/api/data', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/data', ['json' => [
                 'label' => 'New datum with item',
                 'type' => DatumTypeEnum::TYPE_TEXT,
             ],

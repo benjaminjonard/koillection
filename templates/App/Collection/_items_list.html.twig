@@ -1,61 +1,68 @@
 <table class="highlight items-table">
     <thead>
-    <tr>
-        <th></th>
-        <th>{{ 'label.name'|trans }}</th>
-        {% for column in collection.itemsDisplayModeListColumns %}
-            <th class="center hide-on-small-and-down">{{ column }}</th>
-        {% endfor %}
-        {% if context == 'default' %}
-            <th class="center">{{ 'label.visibility'|trans }}</th>
-            <th class="center">{{ 'label.actions'|trans }}</th>
-        {% endif %}
-    </tr>
+        <tr>
+            <th></th>
+            <th>{{ 'label.name'|trans }}</th>
+            {% for column in collection.itemsDisplayModeListColumns %}
+                <th class="center hide-on-small-and-down">{{ column }}</th>
+            {% endfor %}
+            {% if context == 'default' %}
+                <th class="center">{{ 'label.visibility'|trans }}</th>
+                <th class="center">{{ 'label.actions'|trans }}</th>
+            {% endif %}
+        </tr>
     </thead>
 
     <tbody>
-    {% for item in items|naturalSorting(collection.itemsSortingDirection|default(null), collection.itemsSortingType|default(null)) %}
-        {% set link = tag is defined ? path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) : path('app_item_show'|applyContext, {'id': item.id}) %}
-        <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
-            <td>
-                <a class="table-link" href="{{ link }}"></a>
-                {% if item.imageSmallThumbnail %}
-                    <div class="image-wrapper placeholder" {{ stimulus_controller('lazy-loading') }}>
-                        <img data-src="{{ asset(item.imageSmallThumbnail) }}"
-                             data-lazy-loading-target="image"
-                             aria-label="{{ 'aria.item'|trans({'%name%': item.name}) }}"
-                        >
-                    </div>
-                {% endif %}
-            </td>
-            <td>
-                <a class="table-link" href="{{ link }}"></a>
-                {{ item.name|u.truncate(50, '...') }}
-            </td>
-            {% for column in collection.itemsDisplayModeListColumns %}
-                <td class="center hide-on-small-and-down">
+        {% for item in items|naturalSorting(collection.itemsSortingDirection|default(null), collection.itemsSortingType|default(null)) %}
+            {% set link = tag is defined ? path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) : path('app_item_show'|applyContext, {'id': item.id}) %}
+            <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
+                <td>
                     <a class="table-link" href="{{ link }}"></a>
-                    {% set datum = item.getDatumByLabel(column) %}
-                    {% if datum is not null %}
-                        {% include 'App/Datum/_display_value/_' ~ datum.type ~ '.html.twig' with {'datum': datum} only %}
-                    {% else %}
-                        -
+                    {% if item.imageSmallThumbnail %}
+                        <div class="image-wrapper placeholder" data-controller="lazy-loading">
+                            <img data-src="{{ asset(item.imageSmallThumbnail) }}"
+                                 data-lazy-loading-target="image"
+                            >
+                        </div>
                     {% endif %}
                 </td>
-            {% endfor %}
-            {% if context == 'default' %}
-                <td class="center">
-                    {% include 'App/_partials/_visibility.html.twig' with {'visibility': item.finalVisibility} only %}
+                <td>
+                    <a class="table-link" href="{{ link }}"></a>
+                    {{ item.name|u.truncate(50, '...') }}
                 </td>
-                <td class="table-actions center">
-                    <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}"><i class="fa fa-pencil fa-fw"></i></a>
-                    {% include 'App/_partials/_icon/_delete.html.twig' with {
-                        path: path('app_item_delete', {id: item.id}),
-                        message: 'message.delete.item'
-                    } only %}
-                </td>
-            {% endif %}
-        </tr>
-    {% endfor %}
+                {% for column in collection.itemsDisplayModeListColumns %}
+                    <td class="center hide-on-small-and-down">
+                        {% set datum = item.getDatumByLabel(column) %}
+
+                        {% if datum is not null %}
+                            {% if datum.type != 'link' %}
+                                <a class="table-link" href="{{ link }}"></a>
+                            {% endif %}
+
+                            {% include 'App/Datum/_display_value/_' ~ datum.type ~ '.html.twig' with {'datum': datum} only %}
+                        {% else %}
+                            <a class="table-link" href="{{ link }}"></a>
+                            -
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                {% if context == 'default' %}
+                    <td class="center">
+                        {% include 'App/_partials/_visibility.html.twig' with {'visibility': item.finalVisibility} only %}
+                    </td>
+                    <td class="table-actions center">
+                        <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}">
+                            <i
+                                    class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        {% include 'App/_partials/_icon/_delete.html.twig' with {
+                            path: path('app_item_delete', {id: item.id}),
+                            message: 'message.delete.item'
+                        } only %}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
     </tbody>
 </table>

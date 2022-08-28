@@ -3,11 +3,11 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_category_index', 'trans': 'menu.tag_categories'}]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
@@ -32,23 +32,27 @@
         <div>
             <table class="centered striped">
                 <thead>
-                <tr>
-                    <th>{{ 'label.label'|trans }}</th>
-                    <th>{{ 'label.description'|trans }}</th>
-                    <th>{{ 'label.color'|trans }}</th>
-                </tr>
+                    <tr>
+                        <th>{{ 'label.label'|trans }}</th>
+                        <th>{{ 'label.description'|trans }}</th>
+                        <th>{{ 'label.color'|trans }}</th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                {% for category in categories %}
-                    <tr class="list-element resize-element" data-title="{{ category.label }}">
-                        <td>
-                            <strong><a href="{{ path('app_tag_category_show', {'id' : category.id}) }}">{{ category.label|u.truncate(50) }}</a></strong>
-                        </td>
-                        <td>{{ category.description|u.truncate(50) }}</td>
-                        <td><span class="list-color" style="background-color: {{ category.color }}" title="{{ category.label }}"></span></td>
-                    </tr>
-                {% endfor %}
+                    {% for category in categories %}
+                        <tr class="list-element resize-element" data-title="{{ category.label }}">
+                            <td>
+                                <strong>
+                                    <a href="{{ path('app_tag_category_show', {'id' : category.id}) }}">{{ category.label|u.truncate(50) }}</a>
+                                </strong>
+                            </td>
+                            <td>{{ category.description|u.truncate(50) }}</td>
+                            <td><span class="list-color" style="background-color: {{ category.color }}"
+                                      title="{{ category.label }}"></span>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
             {{ include('App/_partials/_pagination.html.twig', {paginator: paginator}) }}

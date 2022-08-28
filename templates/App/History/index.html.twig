@@ -3,15 +3,15 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_history_index', 'trans': 'menu.history'}]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
-    <div {{ stimulus_controller('filter-ajax') }}>
+    <div data-controller="filter-ajax">
         <div class="collection-header">
             <div class="title-block">
                 <h1>{{ 'menu.history'|trans }}</h1>

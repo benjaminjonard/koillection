@@ -3,15 +3,15 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_template_index', 'trans': 'menu.templates'}]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
-    <div {{ stimulus_controller('filter') }}>
+    <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
                 <h1>{{ 'menu.templates'|trans }}</h1>
@@ -29,7 +29,8 @@
                     </a>
                 </div>
                 <div class="right">
-                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -38,18 +39,23 @@
         <div class="content-block">
             <table class="striped">
                 <thead>
-                <tr>
-                    <th>{{ 'label.name'|trans }}</th>
-                    <th>{{ 'label.fields'|trans }}</th>
-                </tr>
+                    <tr>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.fields'|trans }}</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for result in results %}
-                    <tr class="list-element resize-element" data-title="{{ result.template.name }}" data-filter-target="element">
-                        <td><a href="{{ path('app_template_show', {'id' : result.template.id}) }}"><strong>{{ result.template.name }}</strong></a></td>
-                        <td>{{ 'counter.field'|trans({'%count%': result.fieldsCounter}) }}</td>
-                    </tr>
-                {% endfor %}
+                    {% for result in results %}
+                        <tr class="list-element resize-element" data-title="{{ result.template.name }}"
+                            data-filter-target="element">
+                            <td>
+                                <a href="{{ path('app_template_show', {'id' : result.template.id}) }}">
+                                    <strong>{{ result.template.name }}</strong>
+                                </a>
+                            </td>
+                            <td>{{ 'counter.field'|trans({'%count%': result.fieldsCounter}) }}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

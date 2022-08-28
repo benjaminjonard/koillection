@@ -1,8 +1,11 @@
 <div class="input-field col col s5">
     <div class="rating-form">
         {% for i in 10..1 %}
-            <input type="radio" id="data_{{ iteration }}_value_{{ i }}" name="{{ entity }}[data][{{ iteration }}][value]" value="{{ i }}" {% if datum is defined and datum.value == i %}checked{% endif %}>
-            <label class="{{ i % 2 == 0 ? 'fa-star' : 'fa-star-half' }}" for="data_{{ iteration }}_value_{{ i }}"></label>
+            <input type="radio" id="data_{{ iteration }}_value_{{ i }}"
+                   name="{{ entity }}[data][{{ iteration }}][value]" value="{{ i }}"
+                   {% if datum is defined and datum.value == i %}checked{% endif %}>
+            <label class="{{ i % 2 == 0 ? 'fa-star' : 'fa-star-half' }}"
+                   for="data_{{ iteration }}_value_{{ i }}"></label>
         {% endfor %}
     </div>
 </div>

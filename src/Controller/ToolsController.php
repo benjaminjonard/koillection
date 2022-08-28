@@ -17,11 +17,7 @@ use ZipStream\ZipStream;
 
 class ToolsController extends AbstractController
 {
-    #[Route(
-        path: ['en' => '/tools', 'fr' => '/outils'],
-        name: 'app_tools_index',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tools', name: 'app_tools_index', methods: ['GET'])]
     public function index(InventoryRepository $inventoryRepository): Response
     {
         return $this->render('App/Tools/index.html.twig', [
@@ -29,11 +25,7 @@ class ToolsController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tools/export/printable-list', 'fr' => '/outils/export/liste-imprimable'],
-        name: 'app_tools_export_printable_list',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tools/export/printable-list', name: 'app_tools_export_printable_list', methods: ['GET'])]
     public function exportPrintableList(CollectionRepository $collectionRepository): Response
     {
         $collections = $collectionRepository->findAllWithItems();
@@ -44,11 +36,7 @@ class ToolsController extends AbstractController
         ]);
     }
 
-    #[Route(
-        path: ['en' => '/tools/export/csv', 'fr' => '/outils/export/csv'],
-        name: 'app_tools_export_csv',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tools/export/csv', name: 'app_tools_export_csv', methods: ['GET'])]
     public function exportCsv(CollectionRepository $collectionRepository): CsvResponse
     {
         $collections = $collectionRepository->findAllWithItems();
@@ -63,21 +51,13 @@ class ToolsController extends AbstractController
         return new CsvResponse($rows, (new \DateTimeImmutable())->format('YmdHis').'-koillection-export.csv');
     }
 
-    #[Route(
-        path: ['en' => '/tools/export/sql', 'fr' => '/outils/export/sql'],
-        name: 'app_tools_export_sql',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tools/export/sql', name: 'app_tools_export_sql', methods: ['GET'])]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
         return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis').'-koillection-export.sql');
     }
 
-    #[Route(
-        path: ['en' => '/tools/export/images', 'fr' => '/outils/export/images'],
-        name: 'app_tools_export_images',
-        methods: ['GET']
-    )]
+    #[Route(path: '/tools/export/images', name: 'app_tools_export_images', methods: ['GET'])]
     public function exportImages(): StreamedResponse
     {
         return new StreamedResponse(function () {

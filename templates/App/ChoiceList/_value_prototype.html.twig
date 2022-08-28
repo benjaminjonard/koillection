@@ -10,7 +10,8 @@
                value="{{ form.vars.value }}"
                required
         >
-        <label data-choice-list-value-target="label" for="{{ form.vars.full_name }}" class="required">{{ 'label.choice'|trans }}</label>
+        <label data-choice-list-value-target="label" for="{{ form.vars.full_name }}"
+               class="required">{{ 'label.choice'|trans }}</label>
     </div>
     <div class="col s1 icon-holder">
         <i class="fa fa-remove fa-fw removeDatum" data-action="click->choice-list-value#remove"></i>

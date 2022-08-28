@@ -3,11 +3,11 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb)  }}
+    {{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block meta %}
-    {% if context == 'shared'  %}
+    {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')}),
             'description': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')})
@@ -18,11 +18,11 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb)  }}
+    {{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
-    <div {{ stimulus_controller('filter') }}>
+    <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
                 <h1>{{ 'menu.collections'|trans }}</h1>
@@ -37,7 +37,8 @@
             <div class="btn-holder">
                 <div class="left">
                     {% if context == 'default' %}
-                        <a href="{{ path('app_collection_add') }}" class="button" title="{{ 'tooltip.add_collection'|trans }}">
+                        <a href="{{ path('app_collection_add') }}" class="button"
+                           title="{{ 'tooltip.add_collection'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_index'}) }}
@@ -45,7 +46,8 @@
                     {% endif %}
                 </div>
                 <div class="right">
-                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}" />
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
                 <div class="clearfix"></div>
             </div>

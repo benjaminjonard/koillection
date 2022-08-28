@@ -89,6 +89,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - run: bin/console bazinga:js-translation:dump assets/js --format=js
       - run: (cd assets && yarn install)
       - run: (cd assets && yarn dev)
 
@@ -98,7 +99,7 @@ jobs:
       - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
-      - run: php -d memory_limit=512M ./bin/phpunit --stderr
+      - run: php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit
 
   phpunit_postgres:
     name: PHPUnit tests with Postgres ${{ matrix.postgres }}
@@ -151,6 +152,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - run: bin/console bazinga:js-translation:dump assets/js --format=js
       - run: (cd assets && yarn install)
       - run: (cd assets && yarn dev)
 
@@ -160,4 +162,4 @@ jobs:
       - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
-      - run: php -d memory_limit=512M ./bin/phpunit --stderr
+      - run: php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit

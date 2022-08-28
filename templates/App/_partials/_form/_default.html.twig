@@ -1,6 +1,6 @@
 {% block form_row %}
     {% if suggestions is defined and suggestions is not empty %}
-        <div class="input-field" {{ stimulus_controller('suggestions') }}>
+        <div class="input-field" data-controller="suggestions">
             {{- form_errors(form) -}}
             {{- form_widget(form, {attr: {'data-suggestions-target': 'input'}}) -}}
             {{- form_label(form, null, {label_attr: {'data-suggestions-target': 'label'}}) -}}
@@ -33,17 +33,20 @@
     {% apply spaceless %}
         <div class="row row-file">
             <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                <div {{ stimulus_controller('preview') }}>
+                <div data-controller="preview">
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
-                            <img data-preview-target="image" class="preview-image" src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}" />
+                            <img data-preview-target="image" class="preview-image"
+                                 src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"/>
                         {% else %}
-                            <img data-preview-target="image" class="preview-image" src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}" />
+                            <img data-preview-target="image" class="preview-image"
+                                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"/>
                         {% endif %}
-                        <input data-action="change->preview#load"
-                               type="file" {{ block('widget_attributes') }}
-                               class="hidden"
-                               accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+                        <input {{ block('widget_attributes') }}
+                                data-action="change->preview#load"
+                                type="file"
+                                class="hidden"
+                                accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
                         />
                     </label>
                 </div>
@@ -56,7 +59,8 @@
     {% apply spaceless %}
         <p>
             <label>
-                <input type="checkbox" value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
+                <input type="checkbox"
+                       value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
                 <span>{{ label|trans }}</span>
                 {% if help %}
                     <span class="helper-text" data-error="wrong" data-success="right">{{ help|trans }}</span>
@@ -101,7 +105,8 @@
         <option value="" {% if not render_preferred_choices|default(false) and value == '' %} selected="selected"{% endif %}>
         </option>
         {% for choice in options %}
-            <option data-color="{{ choice.data.color }}" value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>
+            <option data-color="{{ choice.data.color }}"
+                    value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>
                 {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}
             </option>
         {% endfor %}
