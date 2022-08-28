@@ -1,388 +1,402 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.3.10] / 2022-08-03
+## [1.3.11] / 2022-08-28
 ### Features
-- Search will now use metadata (Benjamin Jonard)
+- Add Spanish translation (crishnakh)
+- Add new API endpoints for uploads (benjaminjonard)
 
 ### Fixes
-- Fix decoding of lists metadata (Benjamin Jonard)
-- Fix error when adding a new tag to an item (Benjamin Jonard)
+- Make link properly clickable in list display mode (benjaminjonard)
+- Properly display empty date metadata (benjaminjonard)
+
+### Miscellaneous
+- Small improvements for search (benjaminjonard)
+- Remove phpunit and composer binaries (benjaminjonard)
+- Clean up translation files (benjaminjonard)
+
+## [1.3.10] / 2022-08-03
+### Features
+- Search will now use metadata (benjaminjonard)
+
+### Fixes
+- Fix decoding of lists metadata (benjaminjonard)
+- Fix error when adding a new tag to an item (benjaminjonard)
 
 ## [1.3.9] / 2022-07-29
 ### Features
-- Add possibility to order choices in choice list form (Benjamin Jonard)
+- Add possibility to order choices in choice list form (benjaminjonard)
 
 ### Fixes
-- Fix choice list not loading when using default item template from a collection (Benjamin Jonard)
-- Fix choice list not displaying choices containing special characters (Benjamin Jonard)
-- Fix errors on gif upload (Benjamin Jonard)
+- Fix choice list not loading when using default item template from a collection (benjaminjonard)
+- Fix choice list not displaying choices containing special characters (benjaminjonard)
+- Fix errors on gif upload (benjaminjonard)
 
 ## [1.3.8] / 2022-07-28
 ### Fixes
-- Fix error when submitting forms with "date" metadata (Benjamin Jonard)
+- Fix error when submitting forms with "date" metadata (benjaminjonard)
 
 ## [1.3.7] / 2022-07-27
 ### Features
-- Add possibility to choose which columns to display in collection list view based on items metadata (Benjamin Jonard)
-- Add new choice list type (Benjamin Jonard)
-- Add possibility to order s collection's items on text, list and country metadata types (Benjamin Jonard)
+- Add possibility to choose which columns to display in collection list view based on items metadata (benjaminjonard)
+- Add new choice list type (benjaminjonard)
+- Add possibility to order s collection's items on text, list and country metadata types (benjaminjonard)
 
 ### Miscellaneous
-- Update JS dependencies, fixes CVE-2022-25858 (Benjamin Jonard)
-- Remove update logs, add create/delete logs for more entities (Benjamin Jonard)
+- Update JS dependencies, fixes CVE-2022-25858 (benjaminjonard)
+- Remove update logs, add create/delete logs for more entities (benjaminjonard)
 
 ## [1.3.6] / 2022-07-20
 ### Features
-- Add sorting feature on collections; sorting is available on item name and data of type Date, Number and Rating (Benjamin Jonard)
-- Add textarea (long text) data type (Benjamin Jonard)
-- Add an items default template field in collection form (Benjamin Jonard)
+- Add sorting feature on collections; sorting is available on item name and data of type Date, Number and Rating (benjaminjonard)
+- Add textarea (long text) data type (benjaminjonard)
+- Add an items default template field in collection form (benjaminjonard)
 
 ### Fixes
-- Fix missing DateFormat in enum (Benjamin Jonard)
-- Fix wrong column label on wishes list (Benjamin Jonard)
-- Properly handle currency display based on user locale (Benjamin Jonard)
-- Fix broken path to shared items in a tag (Benjamin Jonard)
-- Improve thumbnails generation, now properly takes image EXIF orientation into account (Benjamin Jonard)
+- Fix missing DateFormat in enum (benjaminjonard)
+- Fix wrong column label on wishes list (benjaminjonard)
+- Properly handle currency display based on user locale (benjaminjonard)
+- Fix broken path to shared items in a tag (benjaminjonard)
+- Improve thumbnails generation, now properly takes image EXIF orientation into account (benjaminjonard)
 
 ### Miscellaneous
-- Api - add possibility to directly link a Datum to an item or a collection (Benjamin Jonard)
-- Improve english translation (Benjamin Jonard)
-- Update JS and PHP dependencies (Benjamin Jonard)
+- Api - add possibility to directly link a Datum to an item or a collection (benjaminjonard)
+- Improve english translation (benjaminjonard)
+- Update JS and PHP dependencies (benjaminjonard)
 
 ## [1.3.5] / 2022-07-07
 ### Features
-- Add a list view for items in collections, tags and albums (Benjamin Jonard)
+- Add a list view for items in collections, tags and albums (benjaminjonard)
  
 ### Fixes
-- Prevent unnecessary image re-upload when submitting forms containing base64 images (Benjamin Jonard)
-- Fix swipe gesture on item page (Benjamin Jonard)
+- Prevent unnecessary image re-upload when submitting forms containing base64 images (benjaminjonard)
+- Fix swipe gesture on item page (benjaminjonard)
 
 ### Miscellaneous
-- Update JS and PHP dependencies (Benjamin Jonard)
+- Update JS and PHP dependencies (benjaminjonard)
 
 ## [1.3.4] / 2022-06-27
 ### Fixes
-- Fix zip exports if user uploads directory doesn't exist (Benjamin Jonard)
-- Fix error when displaying item with empty file or country fields (Benjamin Jonard)
-- Remove Administration entry in menu on mobile for non admin users (Benjamin Jonard)
-- Fix completion percent on inventories (Benjamin Jonard)
-- Handle division by zero in inventories when a collection has no items (Benjamin Jonard)
+- Fix zip exports if user uploads directory doesn't exist (benjaminjonard)
+- Fix error when displaying item with empty file or country fields (benjaminjonard)
+- Remove Administration entry in menu on mobile for non admin users (benjaminjonard)
+- Fix completion percent on inventories (benjaminjonard)
+- Handle division by zero in inventories when a collection has no items (benjaminjonard)
 
 ### Miscellaneous
-- Update JS and PHP dependencies (Benjamin Jonard)
+- Update JS and PHP dependencies (benjaminjonard)
 
 ## [1.3.3] / 2022-05-04
 ### Features
-- Add new Link type (Benjamin Jonard)
+- Add new Link type (benjaminjonard)
 
 ### Fixes
-- Fix CleanUp and RegenerateThumbnails commands (Benjamin Jonard)
+- Fix CleanUp and RegenerateThumbnails commands (benjaminjonard)
 
 ### Miscellaneous
-- Update JS and PHP dependencies, fixing all current CVEs (Benjamin Jonard)
+- Update JS and PHP dependencies, fixing all current CVEs (benjaminjonard)
 
 ## [1.3.2] / 2022-03-21
 ### Fixes
-- Fix image upload in additional data (Benjamin Jonard)
+- Fix image upload in additional data (benjaminjonard)
 
 ### Miscellaneous
-- Add display password icon on login page (Benjamin Jonard)
-- Multi-arch image for docker, now supports ARM (Benjamin Jonard)
+- Add display password icon on login page (benjaminjonard)
+- Multi-arch image for docker, now supports ARM (benjaminjonard)
 
 ## [1.3.1] / 2022-02-20
 ### Fixes
-- Fix date pickers not displaying (Benjamin Jonard)
-- Fix bug where last common field was incorrectly generated (Benjamin Jonard)
-- Allow empty dates when loading common fields (Benjamin Jonard)
+- Fix date pickers not displaying (benjaminjonard)
+- Fix bug where last common field was incorrectly generated (benjaminjonard)
+- Allow empty dates when loading common fields (benjaminjonard)
 
 ### Miscellaneous
-- Update JS dependencies (Benjamin Jonard)
+- Update JS dependencies (benjaminjonard)
 - Add pgadmin container to example configuration (Zwordi)
 
 ## [1.3.0] / 2022-02-13
 ### Features
-- Add a basic REST API, documentation is accessible on /api (Benjamin Jonard)
-- Enhance visibility mechanism: takes parent visibility into account without erasing own visibility (Benjamin Jonard)
-- Display visibility level icon on each page (Benjamin Jonard)
+- Add a basic REST API, documentation is accessible on /api (benjaminjonard)
+- Enhance visibility mechanism: takes parent visibility into account without erasing own visibility (benjaminjonard)
+- Display visibility level icon on each page (benjaminjonard)
 
 ### Fixes
-- Fix first connection auto-login error (Benjamin Jonard)
-- Fix exception loop (Benjamin Jonard)
+- Fix first connection auto-login error (benjaminjonard)
+- Fix exception loop (benjaminjonard)
 
 ### Miscellaneous
-- Display flags as emoji instead of images (Benjamin Jonard)
-- Rework error pages (Benjamin Jonard)
-- Update PHP and JS dependencies, fix current CVEs (Benjamin Jonard)
-- Restore asset preloading (Benjamin Jonard)
+- Display flags as emoji instead of images (benjaminjonard)
+- Rework error pages (benjaminjonard)
+- Update PHP and JS dependencies, fix current CVEs (benjaminjonard)
+- Restore asset preloading (benjaminjonard)
 
 ## [1.2.5] / 2021-12-20
 ### Fixes
-- Fix duplicates from tags list, order alphabetically (Benjamin Jonard)
-- Fix tag edition (Benjamin Jonard)
-- Fix sql dump (Benjamin Jonard)
+- Fix duplicates from tags list, order alphabetically (benjaminjonard)
+- Fix tag edition (benjaminjonard)
+- Fix sql dump (benjaminjonard)
 
 ### Miscellaneous
-- Update JS dependencies (Benjamin Jonard)
-- Update PHP dependencies (Benjamin Jonard)
-- Remove built-in assets (Benjamin Jonard)
-- Admin: split backup function into two separated buttons (Benjamin Jonard)
+- Update JS dependencies (benjaminjonard)
+- Update PHP dependencies (benjaminjonard)
+- Remove built-in assets (benjaminjonard)
+- Admin: split backup function into two separated buttons (benjaminjonard)
 
 ## [1.2.4] / 2021-09-16
 ### Features
-- Allow user to change username and email in their profile (Benjamin Jonard)
+- Allow user to change username and email in their profile (benjaminjonard)
 
 ### Fixes
-- Fix divisions by zero when inventory is empty (Benjamin Jonard)
-- Fix delete forms (Benjamin Jonard)
+- Fix divisions by zero when inventory is empty (benjaminjonard)
+- Fix delete forms (benjaminjonard)
 
 ### Miscellaneous
-- Preload assets (Benjamin Jonard)
-- Update JS dependencies, fix CVE-2021-33587 (Benjamin Jonard)
-- Update PHP dependencies (Benjamin Jonard)
+- Preload assets (benjaminjonard)
+- Update JS dependencies, fix CVE-2021-33587 (benjaminjonard)
+- Update PHP dependencies (benjaminjonard)
 
 ## [1.2.3] / 2021-05-31
 ### Fixes
-- Fix date format (Benjamin Jonard)
+- Fix date format (benjaminjonard)
 
 ### Miscellaneous
-- Update JS, fix CVE-2021-32640 and CVE-2021-23386 (Benjamin Jonard)
-- Update to Symfony 5.3 (Benjamin Jonard)
+- Update JS, fix CVE-2021-32640 and CVE-2021-23386 (benjaminjonard)
+- Update to Symfony 5.3 (benjaminjonard)
 
 ## [1.2.2] / 2021-05-22
 ### Fixes
-- Fix select lists on first connection page (Benjamin Jonard)
+- Fix select lists on first connection page (benjaminjonard)
 
 ## [1.2.1] / 2021-05-17
 ### Features
-- Add description to visibilities (Benjamin Jonard)
+- Add description to visibilities (benjaminjonard)
 
 ### Fixes
-- Fix update date on all pages (Benjamin Jonard)
+- Fix update date on all pages (benjaminjonard)
 
 ### Miscellaneous
-- Update JS and PHP dependencies, fix CVE-2021-21424 (Benjamin Jonard)
+- Update JS and PHP dependencies, fix CVE-2021-21424 (benjaminjonard)
 
 ## [1.2.0] / 2021-05-03
 ### Features
-- Add "rating" field type (Benjamin Jonard)
-- Add "number" field type (Benjamin Jonard)
-- Add new "Only to authenticated users" visibility (Benjamin Jonard)
-- Add some activity counters on admin dashboard (Benjamin Jonard)
-- Display a link to item's collection when viewing it from a tag page (Benjamin Jonard)
-- Add return to collection button when viewing another user collection (Benjamin Jonard)
+- Add "rating" field type (benjaminjonard)
+- Add "number" field type (benjaminjonard)
+- Add new "Only to authenticated users" visibility (benjaminjonard)
+- Add some activity counters on admin dashboard (benjaminjonard)
+- Display a link to item's collection when viewing it from a tag page (benjaminjonard)
+- Add return to collection button when viewing another user collection (benjaminjonard)
 
 ### Fixes
-- Fix release checking (Benjamin Jonard)
-- Fix breadcrumb on wish edit (Benjamin Jonard)
-- Fix item name guesser (Benjamin Jonard)
-- Prioritize thumbnails when available (Benjamin Jonard)
+- Fix release checking (benjaminjonard)
+- Fix breadcrumb on wish edit (benjaminjonard)
+- Fix item name guesser (benjaminjonard)
+- Prioritize thumbnails when available (benjaminjonard)
 
 ### Miscellaneous
 - Add production ready docker setup example with Traefik and SSL (Zwordi)
-- Move all Javascript to Stimulus, remove jQuery (Benjamin Jonard)
-- Update PHP version requirement to 8.0 (Benjamin Jonard)
-- Update JS and PHP dependencies (Benjamin Jonard)
+- Move all Javascript to Stimulus, remove jQuery (benjaminjonard)
+- Update PHP version requirement to 8.0 (benjaminjonard)
+- Update JS and PHP dependencies (benjaminjonard)
 
 ## [1.1.7] / 2021-01-27
 ### Features
-- Add a message in admin interface if a new release of Koillection is available  (Benjamin Jonard)
-- Add a new field type for dates on item page (Benjamin Jonard)
-- Add .gif support for uploads (Benjamin Jonard)
-- Add the possibility to add related items to an item (Benjamin Jonard)
+- Add a message in admin interface if a new release of Koillection is available  (benjaminjonard)
+- Add a new field type for dates on item page (benjaminjonard)
+- Add .gif support for uploads (benjaminjonard)
+- Add the possibility to add related items to an item (benjaminjonard)
 
 ### Miscellaneous
-- Update JS and PHP dependencies (Benjamin Jonard)
-- Trim white spaces on tag autocomplete (Benjamin Jonard)
-- Change text color and font weight on autocompletes (Benjamin Jonard)
-- Multiple small dark mode improvements (Benjamin Jonard)
-- Add a CONTRIBUTING.md file (Benjamin Jonard)
-- Add some new counters in admin dashboard (Benjamin Jonard)
-- Remove preload support as it was dropped by Chrome (Benjamin Jonard)
+- Update JS and PHP dependencies (benjaminjonard)
+- Trim white spaces on tag autocomplete (benjaminjonard)
+- Change text color and font weight on autocompletes (benjaminjonard)
+- Multiple small dark mode improvements (benjaminjonard)
+- Add a CONTRIBUTING.md file (benjaminjonard)
+- Add some new counters in admin dashboard (benjaminjonard)
+- Remove preload support as it was dropped by Chrome (benjaminjonard)
 
 ### Fixes
-- Fix social media metas (Benjamin Jonard)
+- Fix social media metas (benjaminjonard)
 
 ## [1.1.6] / 2020-10-17
 ### Features
-- Functionalities can now be activated/deactivated in settings page (Benjamin Jonard)
-- Dark mode can be automatically activated between two hours (Benjamin Jonard)
-- On mobile devices, user can swipe left or right to navigate between items (Benjamin Jonard)
-- Add a "remember me" option on login page (Benjamin Jonard)
-- Keep tag context when navigating tag's items instead of switching to the item's collection (Benjamin Jonard)
+- Functionalities can now be activated/deactivated in settings page (benjaminjonard)
+- Dark mode can be automatically activated between two hours (benjaminjonard)
+- On mobile devices, user can swipe left or right to navigate between items (benjaminjonard)
+- Add a "remember me" option on login page (benjaminjonard)
+- Keep tag context when navigating tag's items instead of switching to the item's collection (benjaminjonard)
 
 ### Miscellaneous
-- Rework profile and settings pages (Benjamin Jonard)
-- Move search bar at the top of the left menu (Benjamin Jonard)
-- Remove themes for now (Benjamin Jonard)
-- Improve dark mode (Benjamin Jonard)
-- Update JS and PHP dependencies (Benjamin Jonard)
+- Rework profile and settings pages (benjaminjonard)
+- Move search bar at the top of the left menu (benjaminjonard)
+- Remove themes for now (benjaminjonard)
+- Improve dark mode (benjaminjonard)
+- Update JS and PHP dependencies (benjaminjonard)
 
 ### Fixes
-- Fix album breadcrumb (Benjamin Jonard)
-- Fix preload for assets (Benjamin Jonard)
+- Fix album breadcrumb (benjaminjonard)
+- Fix preload for assets (benjaminjonard)
 
 ## [1.1.5] / 2020-09-21
 ### Fixes
-- Update migration configuration to comply with the new syntax introduced in doctrine/doctrine-migrations-bundle v3.0 (Benjamin Jonard)
+- Update migration configuration to comply with the new syntax introduced in doctrine/doctrine-migrations-bundle v3.0 (benjaminjonard)
 
 ### Miscellaneous
-- Update JS and PHP dependencies (Benjamin Jonard)
+- Update JS and PHP dependencies (benjaminjonard)
 
 ## [1.1.4] / 2020-09-11
 ### Fixes
-- Fix clean up function (Benjamin Jonard)
-- Fix all deprecations (Benjamin Jonard)
+- Fix clean up function (benjaminjonard)
+- Fix all deprecations (benjaminjonard)
 
 ### Miscellaneous
-- Update PHP dependencies to fix high severity alert on symfony/http-kernel (Benjamin Jonard)
-- Update JS dependencies (Benjamin Jonard)
+- Update PHP dependencies to fix high severity alert on symfony/http-kernel (benjaminjonard)
+- Update JS dependencies (benjaminjonard)
 
 ## [1.1.3] / 2020-08-14
 ### Features
-- New file field for items and collections (Benjamin Jonard)
+- New file field for items and collections (benjaminjonard)
 
 ### Fixes
-- Fix multiple data display on item page (Benjamin Jonard)
-- Fix links in underlined tags (Benjamin Jonard)
-- Properly handle context in tag links (Benjamin Jonard)
+- Fix multiple data display on item page (benjaminjonard)
+- Fix links in underlined tags (benjaminjonard)
+- Properly handle context in tag links (benjaminjonard)
 
 ### Miscellaneous
-- Update PHP and JS dependencies (Benjamin Jonard)
+- Update PHP and JS dependencies (benjaminjonard)
 
 ## [1.1.2] / 2020-07-30
 ### Features
-- Collections can have additional fields like items (Benjamin Jonard)
-- Add an autocomplete on search in the header (Benjamin Jonard)
-- Rework additional fields creation (Benjamin Jonard)
+- Collections can have additional fields like items (benjaminjonard)
+- Add an autocomplete on search in the header (benjaminjonard)
+- Rework additional fields creation (benjaminjonard)
 
 ### Fixes
-- Fix upload on item data (Benjamin Jonard)
-- Fix detection of common fields on item data (Benjamin Jonard)
-- Fix tag search (Benjamin Jonard)
-- Fix locale dropdown on login page (Benjamin Jonard)
-- Prevent default selection on country fields (Benjamin Jonard) 
+- Fix upload on item data (benjaminjonard)
+- Fix detection of common fields on item data (benjaminjonard)
+- Fix tag search (benjaminjonard)
+- Fix locale dropdown on login page (benjaminjonard)
+- Prevent default selection on country fields (benjaminjonard) 
 
 ### Miscellaneous
-- Handle echarts properly through yarn (Benjamin Jonard)
-- Update JS dependencies (Benjamin Jonard)
-- Update PHP dependencies (Benjamin Jonard)
+- Handle echarts properly through yarn (benjaminjonard)
+- Update JS dependencies (benjaminjonard)
+- Update PHP dependencies (benjaminjonard)
 
 ## [1.1.1] / 2020-06-25
 ### Features
-- Add a button in admin panel to regenerate thumbnails (Benjamin Jonard)
+- Add a button in admin panel to regenerate thumbnails (benjaminjonard)
 
 ### Fixes
-- Fix locale updates (Benjamin Jonard)
-- Fix wish transfer to collection form (Benjamin Jonard)
+- Fix locale updates (benjaminjonard)
+- Fix wish transfer to collection form (benjaminjonard)
 
 ### Miscellaneous
-- Upgrade to Symfony 5.1  (Benjamin Jonard)
-- Improve dark mode (Benjamin Jonard)
-- Fix vulnerabilities in JS dependencies (Benjamin Jonard)
+- Upgrade to Symfony 5.1  (benjaminjonard)
+- Improve dark mode (benjaminjonard)
+- Fix vulnerabilities in JS dependencies (benjaminjonard)
 
 ## [1.1.0] / 2020-04-30
 ### Important
-- Update PHP minimum version to 7.4 (Benjamin Jonard)
-- Update to Symfony 5 (Benjamin Jonard)
-- Update to Twig 3 (Benjamin Jonard)
-- Add support of Mysql for version 8 and superior (Benjamin Jonard)
+- Update PHP minimum version to 7.4 (benjaminjonard)
+- Update to Symfony 5 (benjaminjonard)
+- Update to Twig 3 (benjaminjonard)
+- Add support of Mysql for version 8 and superior (benjaminjonard)
 
 ### Features
-- Dark mode (Benjamin Jonard)
-- Suggest new item name based on other items in the collection (Benjamin Jonard)
-- Webp format support for images (Benjamin Jonard)
-- Support for all currencies (Benjamin Jonard)
-- Add a field `Country` for items (Benjamin Jonard)
-- Users can choose how dates should be displayed (Benjamin Jonard)
-- Add Inventory (Benjamin Jonard)
-- Tags can now be assigned to a category (Benjamin Jonard)
-- Admins can do a full backup : database + images (Benjamin Jonard)
-- Admins can clean obsoletes images (Benjamin Jonard)
-- Tag autocompletion will now priotarize words starting the same way as the word searched (Benjamin Jonard)
-- Add metadata for content sharing on social networks (Benjamin Jonard)
-- Use select2 for all dropdown lists (Benjamin Jonard)
-- Add 'See more' button on related tags (Benjamin Jonard)
-- Add history for Albums and Wishlists (Benjamin Jonard)
-- Add possibility to create child albums (Benjamin Jonard)
-- Search now search in Albums and Wishlists (Benjamin Jonard)
-- Urls now depends on user's locale (Benjamin Jonard)
-- Merge Profile and Settings menus (Benjamin Jonard)
+- Dark mode (benjaminjonard)
+- Suggest new item name based on other items in the collection (benjaminjonard)
+- Webp format support for images (benjaminjonard)
+- Support for all currencies (benjaminjonard)
+- Add a field `Country` for items (benjaminjonard)
+- Users can choose how dates should be displayed (benjaminjonard)
+- Add Inventory (benjaminjonard)
+- Tags can now be assigned to a category (benjaminjonard)
+- Admins can do a full backup : database + images (benjaminjonard)
+- Admins can clean obsoletes images (benjaminjonard)
+- Tag autocompletion will now priotarize words starting the same way as the word searched (benjaminjonard)
+- Add metadata for content sharing on social networks (benjaminjonard)
+- Use select2 for all dropdown lists (benjaminjonard)
+- Add 'See more' button on related tags (benjaminjonard)
+- Add history for Albums and Wishlists (benjaminjonard)
+- Add possibility to create child albums (benjaminjonard)
+- Search now search in Albums and Wishlists (benjaminjonard)
+- Urls now depends on user's locale (benjaminjonard)
+- Merge Profile and Settings menus (benjaminjonard)
 
 ### Miscellaneous
-- Rework responsive on forms (Benjamin Jonard)
-- Rework modals (Benjamin Jonard)
-- Rework counters (Benjamin Jonard)
-- Rework file upload system (Benjamin Jonard)
-- Add indexes on `visibility` property (Benjamin Jonard)
-- Lazy load Doctrine listeners (Benjamin Jonard)
+- Rework responsive on forms (benjaminjonard)
+- Rework modals (benjaminjonard)
+- Rework counters (benjaminjonard)
+- Rework file upload system (benjaminjonard)
+- Add indexes on `visibility` property (benjaminjonard)
+- Lazy load Doctrine listeners (benjaminjonard)
 
 ### Fixes
-- Avatars are now correctly deleted (Benjamin Jonard)
-- Fix floating label on croppers when using Firefox (Benjamin Jonard)
-- Fix streamed responses when downloading backups (Benjamin Jonard)
-- Fix infinite loading bar (Benjamin Jonard)
+- Avatars are now correctly deleted (benjaminjonard)
+- Fix floating label on croppers when using Firefox (benjaminjonard)
+- Fix streamed responses when downloading backups (benjaminjonard)
+- Fix infinite loading bar (benjaminjonard)
 
 ## [1.0.4] / 2019-03-06
 ### Fixes
- - Improve header responsiveness (Benjamin Jonard)
+ - Improve header responsiveness (benjaminjonard)
  
 ### Features
- - Add a scrollbar on navbar for mobile devices (Benjamin Jonard)
- - Add hidden menu for mobile devices (Benjamin Jonard)
+ - Add a scrollbar on navbar for mobile devices (benjaminjonard)
+ - Add hidden menu for mobile devices (benjaminjonard)
  
 ### Miscellaneous
-- Update dependencies and config files (Benjamin Jonard)
-- Switch to the new .env system (with .env.local) (Benjamin Jonard)
-- Update phpUnit version (Benjamin Jonard)
+- Update dependencies and config files (benjaminjonard)
+- Switch to the new .env system (with .env.local) (benjaminjonard)
+- Update phpUnit version (benjaminjonard)
 
 ## [1.0.3] / 2019-02-26
 ### Fixes
-- Fix recompute disk usage action (Benjamin Jonard)
-- Fix collection placeholder style (Benjamin Jonard)
-- Fix item images margins (Benjamin Jonard)
-- Fix signs linked to a private item (Benjamin Jonard)
-- Fix date search (Benjamin Jonard)
-- Fix deprecations on transchoices (Benjamin Jonard)
-- Fix twig deprecations in blocks (Benjamin Jonard)
+- Fix recompute disk usage action (benjaminjonard)
+- Fix collection placeholder style (benjaminjonard)
+- Fix item images margins (benjaminjonard)
+- Fix signs linked to a private item (benjaminjonard)
+- Fix date search (benjaminjonard)
+- Fix deprecations on transchoices (benjaminjonard)
+- Fix twig deprecations in blocks (benjaminjonard)
 
 ### Features
-- Add action filter on history page (Benjamin Jonard)
-- Use referer for redirection after user login (Benjamin Jonard)
+- Add action filter on history page (benjaminjonard)
+- Use referer for redirection after user login (benjaminjonard)
 
 ### Miscellaneous
-- Upgrade Encore version (Benjamin Jonard)
-- Upgrade to Symfony 4.2 (Benjamin Jonard)
-- Update some english translations for proper plurals handling (Benjamin Jonard)
-- Update general style for the header (Benjamin Jonard)
-- Rework search input style (Benjamin Jonard)
-- Replace all generateUrl with redirectToRoute (Benjamin Jonard)
-- Replace deprecated TranslatorInterface (Benjamin Jonard)
-- Add debug env for local docker (Benjamin Jonard)
+- Upgrade Encore version (benjaminjonard)
+- Upgrade to Symfony 4.2 (benjaminjonard)
+- Update some english translations for proper plurals handling (benjaminjonard)
+- Update general style for the header (benjaminjonard)
+- Rework search input style (benjaminjonard)
+- Replace all generateUrl with redirectToRoute (benjaminjonard)
+- Replace deprecated TranslatorInterface (benjaminjonard)
+- Add debug env for local docker (benjaminjonard)
 
  
 ## [1.0.2] / 2018-09-28
 ### Fixes
-- Fix error pages style (Benjamin Jonard)
-- Fix sortable fields on item edition page (Benjamin Jonard)
-- Fix custom field selection on item edition page (Benjamin Jonard)
+- Fix error pages style (benjaminjonard)
+- Fix sortable fields on item edition page (benjaminjonard)
+- Fix custom field selection on item edition page (benjaminjonard)
 
 ## [1.0.1] / 2018-09-18
 ### Features
-- Add SQL export (Benjamin Jonard)
-- Add images export (Benjamin Jonard)
-- Add tooltips on some images (Benjamin Jonard)
+- Add SQL export (benjaminjonard)
+- Add images export (benjaminjonard)
+- Add tooltips on some images (benjaminjonard)
 
 ### Miscellaneous
-- Update php dependencies (Benjamin Jonard)
-- Fix deprecations (Benjamin Jonard)
-- Switch from Gulp to Symfony Encore for managing assets (Benjamin Jonard)
-- Update materializecss to v1.0.0 (Benjamin Jonard)
-- Remove FOSJsRoutingBundle (Benjamin Jonard)
-- Remove unused FontAwesome icons and inline the others (Benjamin Jonard)
+- Update php dependencies (benjaminjonard)
+- Fix deprecations (benjaminjonard)
+- Switch from Gulp to Symfony Encore for managing assets (benjaminjonard)
+- Update materializecss to v1.0.0 (benjaminjonard)
+- Remove FOSJsRoutingBundle (benjaminjonard)
+- Remove unused FontAwesome icons and inline the others (benjaminjonard)
 
 ### Refactoring
-- Move javascript from Twig template to a JS file on statistics page (Benjamin Jonard)
+- Move javascript from Twig template to a JS file on statistics page (benjaminjonard)
 
 ## [1.0.0] / 2018-07-31
-- Initial release (Benjamin Jonard)
+- Initial release (benjaminjonard)
