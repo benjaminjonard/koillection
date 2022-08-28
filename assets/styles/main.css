@@ -101,6 +101,10 @@ table img {
     display: none;
 }
 
+.btn {
+    height: auto;
+}
+
 a {
     outline: 0;
 }
