@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.12] / 2022-08-29
+### Fixes
+- Fix empty logs in production environment (benjaminjonard)
+- Add missing migration for new locale values (benjaminjonard)
+
 ## [1.3.11] / 2022-08-28
 ### Features
 - Add Spanish translation (crishnakh)
