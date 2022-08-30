@@ -45,13 +45,23 @@
             }} ) }}
         </div>
         <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
-             data-items-display-mode-list-columns-target="list">
+             data-controller="columns-list"
+             data-items-display-mode-list-columns-target="list"
+        >
             <div>{{ form_label(form.itemsDisplayModeListColumns, 'label.items_display_mode_list_columns') }}</div>
-            {% for child in form.itemsDisplayModeListColumns.children %}
-                <div>
-                    {{ form_row(child) }}
+
+            <div>
+                <div data-columns-list-target="checkedHolder">
+                    {% for child in form.itemsDisplayModeListColumns.children|filter(child => child.vars.data == true) %}
+                        {{ form_row(child) }}
+                    {% endfor %}
                 </div>
-            {% endfor %}
+                <div data-columns-list-target="uncheckedHolder">
+                    {% for child in form.itemsDisplayModeListColumns.children|filter(child => child.vars.data == false) %}
+                        {{ form_row(child) }}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 
