@@ -17,7 +17,7 @@ class WishCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(50, $data['hydra:totalItems']);
+        $this->assertSame(50, $data['hydra:totalItems']);
         $this->assertCount(30, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Wish::class);
     }

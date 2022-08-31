@@ -38,7 +38,7 @@ class TagOtherUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(0, $data['hydra:totalItems']);
+        $this->assertSame(0, $data['hydra:totalItems']);
         $this->assertCount(0, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Item::class);
     }

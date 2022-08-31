@@ -16,7 +16,7 @@ class LogCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(215, $data['hydra:totalItems']);
+        $this->assertSame(215, $data['hydra:totalItems']);
         $this->assertCount(30, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Log::class);
     }

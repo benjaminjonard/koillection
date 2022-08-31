@@ -17,7 +17,7 @@ class TemplateCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(10, $data['hydra:totalItems']);
+        $this->assertSame(10, $data['hydra:totalItems']);
         $this->assertCount(10, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Template::class);
     }
@@ -44,7 +44,7 @@ class TemplateCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(5, $data['hydra:totalItems']);
+        $this->assertSame(5, $data['hydra:totalItems']);
         $this->assertCount(5, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Field::class);
     }

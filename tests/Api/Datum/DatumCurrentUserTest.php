@@ -19,7 +19,7 @@ class DatumCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(600, $data['hydra:totalItems']);
+        $this->assertSame(600, $data['hydra:totalItems']);
         $this->assertCount(30, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
