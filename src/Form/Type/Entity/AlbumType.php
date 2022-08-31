@@ -19,8 +19,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class AlbumType extends AbstractType
 {
     public function __construct(
-        private Base64ToImageTransformer $base64ToImageTransformer,
-        private AlbumRepository $albumRepository
+        private readonly Base64ToImageTransformer $base64ToImageTransformer,
+        private readonly AlbumRepository $albumRepository
     ) {
     }
 

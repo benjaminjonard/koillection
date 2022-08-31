@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Security;
 class LoanType extends AbstractType
 {
     public function __construct(
-        private Security $security
+        private readonly Security $security
     ) {
     }
 

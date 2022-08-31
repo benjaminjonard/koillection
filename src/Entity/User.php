@@ -37,7 +37,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     collectionOperations: ['get'],
     itemOperations: ['get', 'put', 'patch']
 )]
-class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

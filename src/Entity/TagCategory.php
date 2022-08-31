@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['tagCategory:read']],
     denormalizationContext: ['groups' => ['tagCategory:write']],
 )]
-class TagCategory implements BreadcrumbableInterface, LoggableInterface
+class TagCategory implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

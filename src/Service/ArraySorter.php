@@ -10,7 +10,7 @@ use Symfony\Component\Intl\Countries;
 
 class ArraySorter
 {
-    private ?\Collator $collator;
+    private readonly ?\Collator $collator;
 
     public function __construct()
     {

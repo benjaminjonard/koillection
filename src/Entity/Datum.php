@@ -62,7 +62,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     'this.getItem() != null or this.getCollection() != null',
     message: 'error.datum.must_provide_collection_or_item',
 )]
-class Datum
+class Datum implements \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

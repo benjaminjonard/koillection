@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class WishType extends AbstractType
 {
     public function __construct(
-        private WishlistRepository $wishlistRepository
+        private readonly WishlistRepository $wishlistRepository
     ) {
     }
 

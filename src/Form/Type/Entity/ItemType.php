@@ -27,11 +27,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ItemType extends AbstractType
 {
     public function __construct(
-        private JsonToTagTransformer $jsonToTagTransformer,
-        private JsonToItemTransformer $jsonToItemTransformer,
-        private FeatureChecker $featureChecker,
-        private CollectionRepository $collectionRepository,
-        private TemplateRepository $templateRepository
+        private readonly JsonToTagTransformer $jsonToTagTransformer,
+        private readonly JsonToItemTransformer $jsonToItemTransformer,
+        private readonly FeatureChecker $featureChecker,
+        private readonly CollectionRepository $collectionRepository,
+        private readonly TemplateRepository $templateRepository
     ) {
     }
 

@@ -9,7 +9,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class IntlRuntime implements RuntimeExtensionInterface
 {
-    private array $countries;
+    private readonly array $countries;
 
     public function __construct()
     {

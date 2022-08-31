@@ -17,8 +17,8 @@ use Symfony\Component\Security\Core\Security;
 class SearchType extends AbstractType
 {
     public function __construct(
-        private Security $security,
-        private FeatureChecker $featureChecker
+        private readonly Security $security,
+        private readonly FeatureChecker $featureChecker
     ) {
     }
 

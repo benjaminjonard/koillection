@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class BatchTaggerType extends AbstractType
 {
     public function __construct(
-        private JsonToTagTransformer $jsonToTagTransformer
+        private readonly JsonToTagTransformer $jsonToTagTransformer
     ) {
     }
 

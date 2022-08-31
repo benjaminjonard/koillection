@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TagType extends AbstractType
 {
     public function __construct(
-        private TagCategoryRepository $tagCategoryRepository
+        private readonly TagCategoryRepository $tagCategoryRepository
     ) {
     }
 

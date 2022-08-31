@@ -8,7 +8,7 @@ class UploadAnnotationReader
 {
     public function getUploadFields(object $entity): array
     {
-        $reflection = new \ReflectionClass(\get_class($entity));
+        $reflection = new \ReflectionClass($entity::class);
 
         $properties = [];
         foreach ($reflection->getProperties() as $property) {

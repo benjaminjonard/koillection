@@ -54,7 +54,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ]
     ]
 )]
-class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
+class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

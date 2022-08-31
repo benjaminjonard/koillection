@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Security;
 
 class ImageHandler
 {
-    private PropertyAccessor $accessor;
+    private readonly PropertyAccessor $accessor;
 
     public function __construct(
         private readonly RandomStringGenerator $randomStringGenerator,

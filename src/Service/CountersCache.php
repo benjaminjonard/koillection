@@ -12,7 +12,7 @@ use Symfony\Contracts\Cache\ItemInterface;
 
 class CountersCache
 {
-    private TagAwareAdapter $cache;
+    private readonly TagAwareAdapter $cache;
 
     public function __construct(
         private readonly CounterCalculator $calculator,

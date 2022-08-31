@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SearchHistoryType extends AbstractType
 {
     public function __construct(
-        private FeatureChecker $featureChecker
+        private readonly FeatureChecker $featureChecker
     ) {
     }
 

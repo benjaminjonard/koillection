@@ -13,6 +13,14 @@ use Rector\Set\ValueObject\SetList;
 use Rector\Symfony\Rector\Class_\EventListenerToEventSubscriberRector;
 use Rector\Symfony\Set\SymfonySetList;
 use Rector\Transform\Rector\Attribute\AttributeKeyToClassConstFetchRector;
+use Rector\Php80\Rector\Switch_\ChangeSwitchToMatchRector;
+use Rector\Php80\Rector\FuncCall\ClassOnObjectRector;
+use Rector\Php80\Rector\NotIdentical\StrContainsRector;
+use Rector\Php80\Rector\Identical\StrEndsWithRector;
+use Rector\Php80\Rector\Identical\StrStartsWithRector;
+use Rector\Php80\Rector\Class_\StringableForToStringRector;
+use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
+use \Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
 
 
 return static function (RectorConfig $rectorConfig): void {
@@ -27,6 +35,19 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
+
+    $rectorConfig->rules([
+        // PHP 8.0
+        ChangeSwitchToMatchRector::class,
+        ClassOnObjectRector::class,
+        StrContainsRector::class,
+        StrEndsWithRector::class,
+        StrStartsWithRector::class,
+        StringableForToStringRector::class,
+        // PHP 8.1
+        NewInInitializerRector::class,
+        ReadOnlyPropertyRector::class
+    ]);
 
     $rectorConfig->sets([
         SetList::CODE_QUALITY,

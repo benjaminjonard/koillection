@@ -51,7 +51,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ]
     ]
 )]
-class Tag implements BreadcrumbableInterface, LoggableInterface
+class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

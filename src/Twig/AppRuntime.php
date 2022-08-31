@@ -56,7 +56,7 @@ class AppRuntime implements RuntimeExtensionInterface
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
 
                     return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel().' · '.$this->translator->trans($element->getLabel());
-                } elseif (false !== strpos($element->getLabel(), 'breadcrumb.')) {
+                } elseif (str_contains($element->getLabel(), 'breadcrumb.')) {
                     return $this->translator->trans($element->getLabel());
                 }
 

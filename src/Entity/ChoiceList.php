@@ -19,7 +19,7 @@ use Symfony\Component\Uid\Uuid;
     normalizationContext: ['groups' => ['choiceList:read']],
     denormalizationContext: ['groups' => ['choiceList:write']],
 )]
-class ChoiceList implements BreadcrumbableInterface, LoggableInterface
+class ChoiceList implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['template:read']],
     denormalizationContext: ['groups' => ['template:write']],
 )]
-class Template implements BreadcrumbableInterface, LoggableInterface
+class Template implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]

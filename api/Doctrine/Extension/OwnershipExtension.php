@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Security;
 
 final class OwnershipExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
 {
-    private Security $security;
+    private readonly Security $security;
 
     public function __construct(Security $security)
     {

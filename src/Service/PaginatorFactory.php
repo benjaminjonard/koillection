@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class PaginatorFactory
 {
     public function __construct(
-        private RequestStack $requestStack,
-        private int $paginationItemsPerPage = 15
+        private readonly RequestStack $requestStack,
+        private readonly int $paginationItemsPerPage = 15
     ) {
     }
 
