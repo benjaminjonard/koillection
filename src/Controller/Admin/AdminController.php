@@ -72,12 +72,13 @@ class AdminController extends AbstractController
         return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis').'-koillection-database.sql');
     }
 
+
     #[Route(path: '/admin/export/images', name: 'app_admin_export_images', methods: ['GET'])]
-    public function exportImages(DatabaseDumper $databaseDumper, UserRepository $userRepository): StreamedResponse
+    public function exportImages(UserRepository $userRepository, string $kernelProjectDir): StreamedResponse
     {
         $users = $userRepository->findAll();
 
-        return new StreamedResponse(function () use ($users) {
+        return new StreamedResponse(function () use ($users, $kernelProjectDir) {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
@@ -87,7 +88,7 @@ class AdminController extends AbstractController
             $zip = new ZipStream($zipFilename, $options);
 
             foreach ($users as $user) {
-                $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$user->getId();
+                $path = $kernelProjectDir.'/public/uploads/'.$user->getId();
 
                 if (!is_dir($path)) {
                     continue;

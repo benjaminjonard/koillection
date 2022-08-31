@@ -19,9 +19,11 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Service\FeatureChecker;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 
-abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
+abstract class AbstractController extends SymfonyAbstractController
 {
     public function __construct(
         protected FeatureChecker $featureChecker
@@ -48,7 +50,7 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
 
         return $this->createFormBuilder()
             ->setAction($this->generateUrl($url, $params))
-            ->setMethod('POST')
+            ->setMethod(Request::METHOD_POST)
             ->getForm()
         ;
     }
