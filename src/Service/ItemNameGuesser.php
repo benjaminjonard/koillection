@@ -11,7 +11,7 @@ class ItemNameGuesser
     public function guess(Item &$item): ?array
     {
         $collection = $item->getCollection();
-        if (null === $collection || $collection->getItems()->count() < 1) {
+        if (!$collection instanceof \App\Entity\Collection || $collection->getItems()->count() < 1) {
             return null;
         }
 

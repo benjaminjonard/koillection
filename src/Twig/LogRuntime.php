@@ -40,13 +40,11 @@ class LogRuntime implements RuntimeExtensionInterface
             case LogTypeEnum::TYPE_CREATE:
                 if ($log->isObjectDeleted()) {
                     $label = "<strong class='deleted'>$objectLabel</strong>";
+                } elseif (\in_array($log->getObjectClass(), [Wish::class, Photo::class, ChoiceList::class])) {
+                    $label = "<strong>$objectLabel</strong>";
                 } else {
-                    if (\in_array($log->getObjectClass(), [Wish::class, Photo::class, ChoiceList::class])) {
-                        $label = "<strong>$objectLabel</strong>";
-                    } else {
-                        $route = $this->router->generate('app_'.$class.'_show', ['id' => $log->getObjectId()]);
-                        $label = "<strong><a href='$route'>$objectLabel</a></strong>";
-                    }
+                    $route = $this->router->generate('app_'.$class.'_show', ['id' => $log->getObjectId()]);
+                    $label = "<strong><a href='$route'>$objectLabel</a></strong>";
                 }
 
                 $messages[] = $this->translator->trans('log.'.$class.'.created', ['%label%' => $label]);

@@ -12,7 +12,9 @@ class FooterExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('renderFooter', [FooterRuntime::class, 'renderFooter'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction('renderFooter', function (\Twig\Environment $environment, $object) : string {
+                return (new FooterRuntime())->renderFooter($environment, $object);
+            }, ['needs_environment' => true, 'is_safe' => ['html']]),
         ];
     }
 }

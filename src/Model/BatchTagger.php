@@ -10,15 +10,9 @@ class BatchTagger
 {
     private Collection $collection;
 
-    private array $tags;
+    private array $tags = [];
 
-    private bool $recursive;
-
-    public function __construct()
-    {
-        $this->recursive = false;
-        $this->tags = [];
-    }
+    private bool $recursive = false;
 
     public function getCollection(): Collection
     {

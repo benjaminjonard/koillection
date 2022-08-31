@@ -26,7 +26,7 @@ final class TranslationCommandListener
             // Locale files (en.js, fr.js...)
             $path = $this->assetsPath.'/js/translations/javascript';
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
-            foreach ($files as $name => $file) {
+            foreach ($files as $file) {
                 if (!$file->isDir() && 'js' == $file->getExtension()) {
                     $this->updateContent($file->getPathname(), '../../translator.min.js');
                 }

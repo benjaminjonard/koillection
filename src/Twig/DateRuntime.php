@@ -40,7 +40,7 @@ class DateRuntime implements RuntimeExtensionInterface
         }
         $string = \array_slice($string, 0, 1);
 
-        return $string ?
+        return $string !== [] ?
             $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
@@ -69,7 +69,7 @@ class DateRuntime implements RuntimeExtensionInterface
         }
         $string = \array_slice($string, 0, 1);
 
-        return $string ? implode(', ', $string) : '';
+        return $string !== [] ? implode(', ', $string) : '';
     }
 
     public function dateAgo(\DateTimeImmutable $ago): string
@@ -96,7 +96,7 @@ class DateRuntime implements RuntimeExtensionInterface
         }
         $string = \array_slice($string, 0, 1);
 
-        return $string ?
+        return $string !== [] ?
             $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.today');
     }
 }

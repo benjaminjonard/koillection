@@ -44,8 +44,7 @@ class AppTestCase extends WebTestCase
 
     public function setUser(string $email)
     {
-        $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);
-        $this->user = $user;
+        $this->user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);
     }
 
     public function setVisibilities(array $visibilities)

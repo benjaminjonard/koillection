@@ -37,31 +37,31 @@ class SearchController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (true === $search->getSearchInCollections()) {
+            if ($search->getSearchInCollections()) {
                 $collections = $collectionRepository->findForSearch($search);
                 if (!empty($collections)) {
                     $results['collections'] = $collections;
                 }
             }
-            if (true === $search->getSearchInItems()) {
+            if ($search->getSearchInItems()) {
                 $items = $itemRepository->findForSearch($search);
                 if (!empty($items)) {
                     $results['items'] = $items;
                 }
             }
-            if ($this->featureChecker->isFeatureEnabled('tags') && true === $search->getSearchInTags()) {
+            if ($this->featureChecker->isFeatureEnabled('tags') && $search->getSearchInTags()) {
                 $tags = $tagRepository->findForSearch($search);
                 if (!empty($tags)) {
                     $results['tags'] = $tags;
                 }
             }
-            if ($this->featureChecker->isFeatureEnabled('albums') && true === $search->getSearchInAlbums()) {
+            if ($this->featureChecker->isFeatureEnabled('albums') && $search->getSearchInAlbums()) {
                 $albums = $albumRepository->findForSearch($search);
                 if (!empty($albums)) {
                     $results['albums'] = $albums;
                 }
             }
-            if ($this->featureChecker->isFeatureEnabled('wishlists') && true === $search->getSearchInWishlists()) {
+            if ($this->featureChecker->isFeatureEnabled('wishlists') && $search->getSearchInWishlists()) {
                 $wishlists = $wishlistRepository->findForSearch($search);
                 if (!empty($wishlists)) {
                     $results['wishlists'] = $wishlists;

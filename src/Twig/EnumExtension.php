@@ -12,10 +12,18 @@ class EnumExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getCurrencySymbol', [EnumRuntime::class, 'getCurrencySymbol']),
-            new TwigFunction('getRoleLabel', [EnumRuntime::class, 'getRoleLabel']),
-            new TwigFunction('getLocales', [EnumRuntime::class, 'getLocales']),
-            new TwigFunction('getLocaleLabel', [EnumRuntime::class, 'getLocaleLabel']),
+            new TwigFunction('getCurrencySymbol', function (string $code) : ?string {
+                return (new EnumRuntime())->getCurrencySymbol($code);
+            }),
+            new TwigFunction('getRoleLabel', function (string $role) : string {
+                return (new EnumRuntime())->getRoleLabel($role);
+            }),
+            new TwigFunction('getLocales', function () : array {
+                return (new EnumRuntime())->getLocales();
+            }),
+            new TwigFunction('getLocaleLabel', function (string $code) : string {
+                return (new EnumRuntime())->getLocaleLabel($code);
+            }),
         ];
     }
 }

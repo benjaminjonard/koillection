@@ -37,7 +37,7 @@ class BreadcrumbBuilder
         if ($entity instanceof Item) {
             if ($parent instanceof Tag) {
                 $breadcrumb = array_merge($this->build($parent), $breadcrumb);
-            } elseif ($entity->getCollection()) {
+            } elseif ($entity->getCollection() !== null) {
                 $breadcrumb = array_merge($this->build($entity->getCollection()), $breadcrumb);
             }
         }

@@ -50,7 +50,7 @@ class TreeBuilder
         }
 
         return [
-            'id' => $collection ? $collection->getId() : '',
+            'id' => $collection !== null ? $collection->getId() : '',
             'name' => $name,
             'children' => [], ];
     }

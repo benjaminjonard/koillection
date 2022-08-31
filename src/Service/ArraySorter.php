@@ -23,7 +23,7 @@ class ArraySorter
         ?string $direction = SortingDirectionEnum::ASCENDING,
         ?string $type = null
     ): array {
-        $array = !\is_array($array) ? $array->toArray() : $array;
+        $array = \is_array($array) ? $array : $array->toArray();
 
         usort($array, function ($a, $b) {
             return $this->compare($this->getName($a), $this->getName($b));

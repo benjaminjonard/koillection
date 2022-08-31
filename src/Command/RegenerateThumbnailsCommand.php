@@ -82,7 +82,7 @@ class RegenerateThumbnailsCommand extends Command
                     ++$counter;
                 }
 
-                if ($counter % 100) {
+                if ($counter % 100 !== 0) {
                     $this->managerRegistry->getManager()->flush();
                 }
             }

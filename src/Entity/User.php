@@ -71,20 +71,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private ?string $avatar = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
-    private bool $enabled;
+    private bool $enabled = true;
 
     #[ORM\Column(type: Types::ARRAY)]
-    private array $roles;
+    private array $roles = ['ROLE_USER'];
 
     #[ORM\Column(type: Types::STRING, length: 3)]
     #[Assert\Currency]
     #[Groups(['user:read', 'user:write'])]
-    private string $currency;
+    private string $currency = 'EUR';
 
     #[ORM\Column(type: Types::STRING, length: 5)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: LocaleEnum::LOCALES)]
-    private string $locale;
+    private string $locale = LocaleEnum::LOCALE_EN;
 
     #[ORM\Column(type: Types::STRING, length: 50)]
     #[Groups(['user:read', 'user:write'])]
@@ -94,16 +94,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: DateFormatEnum::FORMATS)]
-    private string $dateFormat;
+    private string $dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
 
     #[ORM\Column(type: Types::BIGINT, options: ['default' => 268435456])]
     #[Groups(['user:read'])]
-    private int $diskSpaceAllowed;
+    private int $diskSpaceAllowed = 536870912;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['user:read', 'user:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PRIVATE;
 
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $collections;
@@ -135,11 +135,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $darkModeEnabled;
+    private bool $darkModeEnabled = false;
 
     #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read', 'user:write'])]
-    private ?\DateTimeImmutable $automaticDarkModeStartAt;
+    private ?\DateTimeImmutable $automaticDarkModeStartAt = null;
 
     #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read', 'user:write'])]
@@ -147,35 +147,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $wishlistsFeatureEnabled;
+    private bool $wishlistsFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $tagsFeatureEnabled;
+    private bool $tagsFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $signsFeatureEnabled;
+    private bool $signsFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $albumsFeatureEnabled;
+    private bool $albumsFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $loansFeatureEnabled;
+    private bool $loansFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $templatesFeatureEnabled;
+    private bool $templatesFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $historyFeatureEnabled;
+    private bool $historyFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
-    private bool $statisticsFeatureEnabled;
+    private bool $statisticsFeatureEnabled = true;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['user:read'])]
@@ -196,23 +196,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->albums = new ArrayCollection();
         $this->inventories = new ArrayCollection();
         $this->id = Uuid::v4()->toRfc4122();
-        $this->roles = ['ROLE_USER'];
-        $this->diskSpaceAllowed = 536870912;
-        $this->enabled = true;
-        $this->currency = 'EUR';
-        $this->locale = LocaleEnum::LOCALE_EN;
-        $this->visibility = VisibilityEnum::VISIBILITY_PRIVATE;
-        $this->dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
-        $this->automaticDarkModeStartAt = null;
-        $this->darkModeEnabled = false;
-        $this->wishlistsFeatureEnabled = true;
-        $this->tagsFeatureEnabled = true;
-        $this->signsFeatureEnabled = true;
-        $this->albumsFeatureEnabled = true;
-        $this->loansFeatureEnabled = true;
-        $this->templatesFeatureEnabled = true;
-        $this->historyFeatureEnabled = true;
-        $this->statisticsFeatureEnabled = true;
     }
 
     public function getUserIdentifier(): string
@@ -312,8 +295,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function setSalt(?string $salt): self
     {
-        $this->salt = $salt;
-
         return $this;
     }
 

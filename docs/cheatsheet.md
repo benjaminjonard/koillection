@@ -30,4 +30,4 @@ Then
 - `./vendor/bin/php-cs-fixer fix`
 
 ###### Rector
-- `./vendor/bin/rector`
+- `./vendor/bin/rector --dry-run`

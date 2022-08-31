@@ -46,7 +46,7 @@ class AppRuntime implements RuntimeExtensionInterface
             return $this->translator->trans($element->getLabel(), ['%username%' => $element->getParams()['username']]);
         }
 
-        $element = 0 === \count($breadcrumb) ? $element : array_pop($breadcrumb);
+        $element = [] === $breadcrumb ? $element : array_pop($breadcrumb);
 
         if ($element instanceof BreadcrumbElement) {
             if ('action' === $element->getType()) {
@@ -123,7 +123,7 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function getUnderlinedTags(?iterable $data): array
     {
-        if (false === $this->isFeatureEnabled('tags') || empty($data)) {
+        if (!$this->isFeatureEnabled('tags') || empty($data)) {
             return [];
         }
 

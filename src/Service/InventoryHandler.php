@@ -22,9 +22,7 @@ class InventoryHandler
             }
         }
 
-        $content = $this->computeCheckedValues($content);
-
-        return $content;
+        return $this->computeCheckedValues($content);
     }
 
     public function buildCollection(Collection $collection, array $collectionIdsToAddInInventory): array|null
@@ -65,7 +63,7 @@ class InventoryHandler
                     ];
                 }
 
-                $element['totalItems'] = $element['totalItems'] + $childElement['totalItems'];
+                $element['totalItems'] += $childElement['totalItems'];
                 $element['children'][] = $childElement;
             }
         }

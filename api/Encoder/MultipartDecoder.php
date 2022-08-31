@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Api\Encoder;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
@@ -11,7 +12,7 @@ final class MultipartDecoder implements DecoderInterface
 {
     public const FORMAT = 'multipart';
 
-    public function __construct(private RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
     }
 
@@ -22,7 +23,7 @@ final class MultipartDecoder implements DecoderInterface
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        if (!$request) {
+        if (!$request instanceof Request) {
             return null;
         }
 

@@ -14,10 +14,6 @@ use Doctrine\ORM\UnitOfWork;
 
 class LoggableListener
 {
-    public function __construct(
-    ) {
-    }
-
     public function onFlush(OnFlushEventArgs $eventArgs): void
     {
         $em = $eventArgs->getEntityManager();

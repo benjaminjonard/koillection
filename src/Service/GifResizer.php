@@ -12,7 +12,7 @@ class GifResizer
     private array $globalData = [];
     private array $imageData = [];
     private array $imageInfo = [];
-    private $handle = null;
+    private $handle;
     private array $orgVars = [];
     private array $encData = [];
     private array $parsedFiles = [];
@@ -86,16 +86,12 @@ class GifResizer
             $this->getimageBlock(0);
 
             // get transparent color index and color
-            if (isset($this->encData[$this->index - 1])) {
-                $gxData = $this->encData[$this->index - 1]['graphicsextension'];
-            } else {
-                $gxData = null;
-            }
+            $gxData = isset($this->encData[$this->index - 1]) ? $this->encData[$this->index - 1]['graphicsextension'] : null;
 
             $ghData = $this->imageInfo['gifheader'];
             $trColor = '';
 
-            $hasTransparency = $gxData ? (bool) $gxData[3] : false;
+            $hasTransparency = $gxData && (bool) $gxData[3];
 
             if ($hasTransparency) {
                 $trcx = \ord($gxData[6]);
@@ -209,7 +205,7 @@ class GifResizer
      */
     private function writeFrames(int $prepend): void
     {
-        $size = \sizeof($this->imageData);
+        $size = count($this->imageData);
 
         for ($i = 0; $i < $size; ++$i) {
             file_put_contents($this->tempDir.'/frame_'.$prepend.'_'.str_pad((string) $i, 2, '0', STR_PAD_LEFT).'.gif', $this->imageInfo['gifheader'].$this->imageData[$i]['graphicsextension'].$this->imageData[$i]['imageData'].\chr(0x3B));
@@ -234,9 +230,6 @@ class GifResizer
             if ((\ord($dst[9]) & 128) == 128) {
                 // Image data contains color table. skip.
             } else {
-                // Image data needs a color table.
-                // get last color table length so we can truncate the dummy color table
-                $idctl = pow(2, $this->readBits(\ord($dst[9]), 5, 3) + 1) * 3;
                 // set color table flag and length
                 $dst[9] = \chr(\ord($dst[9]) | (0x80 | (log($ghctl / 3, 2) - 1)));
                 // inject color table
@@ -304,9 +297,9 @@ class GifResizer
             } elseif (1 == $type) {
                 $this->orgVars['hasgx_type_1'] = 1;
                 $this->globalData['graphicsextension'] = $this->dataPart($start, $this->pointer - $start);
-            } elseif (0 == $type && false === $this->decoding) {
+            } elseif (0 == $type && !$this->decoding) {
                 $this->encData[$this->index]['graphicsextension'] = $this->dataPart($start, $this->pointer - $start);
-            } elseif (0 == $type && true === $this->decoding) {
+            } elseif (0 == $type && $this->decoding) {
                 $this->orgVars['hasgx_type_0'] = 1;
                 $this->globalData['graphicsextension_0'] = $this->dataPart($start, $this->pointer - $start);
             }
@@ -525,7 +518,6 @@ class GifResizer
         foreach ($this->parsedFiles as $img) {
             $src = imagecreatefromgif($img);
             $sprite = imagecreatetruecolor($nw, $nh);
-            $trans = imagecolortransparent($sprite);
             imagealphablending($sprite, false);
             imagesavealpha($sprite, true);
             imagepalettecopy($sprite, $src);

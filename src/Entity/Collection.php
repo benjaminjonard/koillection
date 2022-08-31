@@ -119,7 +119,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['collection:read'])]
-    private int $seenCounter;
+    private int $seenCounter = 0;
 
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
@@ -129,7 +129,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\Column(type: Types::STRING, length: 4)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $itemsDisplayMode;
+    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -147,12 +147,12 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
-    private ?string $itemsSortingDirection;
+    private ?string $itemsSortingDirection = Criteria::ASC;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['collection:read'])]
@@ -176,10 +176,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->children = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->data = new ArrayCollection();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
-        $this->itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
-        $this->seenCounter = 0;
-        $this->itemsSortingDirection = Criteria::ASC;
     }
 
     public function __toString(): string

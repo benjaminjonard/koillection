@@ -61,7 +61,7 @@ class CountersCache
 
     public function invalidateCurrentUser(): void
     {
-        if ($this->security->getUser()) {
+        if ($this->security->getUser() !== null) {
             $this->cache->invalidateTags([$this->security->getUser()->getId()]);
         }
     }

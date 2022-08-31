@@ -70,7 +70,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\Column(type: Types::INTEGER)]
     #[Assert\GreaterThan(0)]
     #[Groups(['item:read', 'item:write'])]
-    private int $quantity;
+    private int $quantity = 1;
 
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'items')]
     #[Assert\NotBlank]
@@ -134,12 +134,12 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['item:read'])]
-    private int $seenCounter;
+    private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['item:read', 'item:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['item:read'])]
@@ -162,13 +162,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->seenCounter = 0;
-        $this->quantity = 1;
         $this->tags = new ArrayCollection();
         $this->data = new ArrayCollection();
         $this->relatedItems = new ArrayCollection();
         $this->relatedTo = new ArrayCollection();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->loans = new ArrayCollection();
     }
 

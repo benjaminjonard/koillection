@@ -9,6 +9,7 @@ use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\Transform\Rector\Attribute\AttributeKeyToClassConstFetchRector;
 use Rector\Doctrine\Rector\Property\ImproveDoctrineCollectionDocTypeInEntityRector;
+use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
@@ -20,12 +21,16 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
 
     $rectorConfig->sets([
-        //\Rector\Set\ValueObject\SetList::CODE_QUALITY,
+        SetList::CODE_QUALITY,
+        SetList::DEAD_CODE,
+
         SymfonySetList::SYMFONY_60,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
+
         PHPUnitSetList::PHPUNIT_91,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+
         DoctrineSetList::DOCTRINE_CODE_QUALITY,
     ]);
 

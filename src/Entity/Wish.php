@@ -103,7 +103,7 @@ class Wish implements CacheableInterface, LoggableInterface
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wish:read', 'wish:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['wish:read'])]
@@ -124,7 +124,6 @@ class Wish implements CacheableInterface, LoggableInterface
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
     public function getId(): ?string

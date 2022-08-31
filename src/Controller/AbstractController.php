@@ -33,7 +33,7 @@ abstract class AbstractController extends SymfonyAbstractController
     public function denyAccessUnlessFeaturesEnabled(array $features): void
     {
         foreach ($features as $feature) {
-            if (false === $this->featureChecker->isFeatureEnabled($feature)) {
+            if (!$this->featureChecker->isFeatureEnabled($feature)) {
                 throw new AccessDeniedException();
             }
         }

@@ -102,12 +102,12 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['wishlist:read'])]
-    private int $seenCounter;
+    private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read', 'wishlist:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['wishlist:read'])]
@@ -130,8 +130,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         $this->id = Uuid::v4()->toRfc4122();
         $this->wishes = new ArrayCollection();
         $this->children = new ArrayCollection();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
-        $this->seenCounter = 0;
     }
 
     public function __toString(): string

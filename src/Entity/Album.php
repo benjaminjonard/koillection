@@ -102,17 +102,17 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['album:read'])]
-    private int $seenCounter;
+    private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::STRING, length: 4)]
     #[Groups(['tag:read', 'tag:write'])]
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $photosDisplayMode;
+    private string $photosDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['album:read', 'album:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['album:read'])]
@@ -133,11 +133,8 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->seenCounter = 0;
         $this->photos = new ArrayCollection();
         $this->children = new ArrayCollection();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
-        $this->photosDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
     }
 
     public function __toString(): string

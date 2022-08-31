@@ -48,7 +48,7 @@ class Log
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['log:read'])]
-    private bool $objectDeleted;
+    private bool $objectDeleted = false;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'logs')]
     #[Groups(['log:read'])]
@@ -57,7 +57,6 @@ class Log
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->objectDeleted = false;
     }
 
     public function getId(): ?string

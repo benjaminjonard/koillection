@@ -72,11 +72,7 @@ class ItemRepository extends ServiceEntityRepository
 
         if (0 === $current) {
             $previous = null;
-            if ($count > 1) {
-                $next = $results[($current + 1) % $count];
-            } else {
-                $next = null;
-            }
+            $next = $count > 1 ? $results[(1) % $count] : null;
         } elseif ($current === $count - 1) {
             $previous = $results[($count + $current - 1) % $count];
             $next = null;
