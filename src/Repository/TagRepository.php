@@ -100,7 +100,7 @@ class TagRepository extends ServiceEntityRepository
 
         try {
             return (int) $qb->getQuery()->getSingleScalarResult();
-        } catch (NoResultException $e) {
+        } catch (NoResultException $noResultException) {
             return 0;
         }
     }
@@ -202,7 +202,7 @@ class TagRepository extends ServiceEntityRepository
             ->getArrayResult()
         ;
 
-        $itemIds = array_map(function ($row) {
+        $itemIds = array_map(static function ($row) {
             return $row['id'];
         }, $results);
 

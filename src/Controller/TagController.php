@@ -124,6 +124,7 @@ class TagController extends AbstractController
             foreach ($unusedTags as $tag) {
                 $managerRegistry->getManager()->remove($tag);
             }
+
             $managerRegistry->getManager()->flush();
 
             $this->addFlash('notice', $translator->trans('message.unused_tags_deleted', ['%count%' => \count($unusedTags)]));

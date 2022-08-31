@@ -52,6 +52,7 @@ class ArraySorter
                 if (SortingDirectionEnum::DESCENDING == $direction) {
                     $array = array_reverse($array);
                 }
+
                 break;
         }
 

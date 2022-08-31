@@ -93,7 +93,7 @@ class RegenerateLogsCommand extends Command
             ->execute()
         ;
 
-        $ids = array_map(function ($result) {
+        $ids = array_map(static function ($result) {
             return $result['objectId'];
         }, $results);
 

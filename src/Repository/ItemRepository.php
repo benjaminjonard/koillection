@@ -255,15 +255,13 @@ class ItemRepository extends ServiceEntityRepository
 
             $results = $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
 
-            return array_map(function ($result) use ($asArray) {
+            return array_map(static function ($result) use ($asArray) {
                 $item = $result[0];
-
                 if ($asArray) {
                     $item['orderingValue'] = $result['orderingValue'];
                 } else {
                     $item->setOrderingValue($result['orderingValue']);
                 }
-
                 return $item;
             }, $results);
         }

@@ -26,7 +26,7 @@ class ChoiceListType extends AbstractType
                 'allow_delete' => true,
                 'label' => false,
                 // Calling setChoices ensures that submitted choices order is preserved
-                'setter' => function (&$choiceList, ?array $choices): void {
+                'setter' => static function (&$choiceList, ?array $choices) : void {
                     $choiceList->setChoices($choices);
                 },
             ])

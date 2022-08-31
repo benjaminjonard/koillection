@@ -10,7 +10,9 @@ use App\Entity\User;
 class BreadcrumbElement
 {
     public const TYPE_ROOT = 'root';
+
     public const TYPE_ENTITY = 'entity';
+
     public const TYPE_ACTION = 'action';
 
     private string $type;

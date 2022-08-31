@@ -79,6 +79,7 @@ class RegenerateThumbnailsCommand extends Command
                     } else {
                         $object->setFile($file);
                     }
+
                     ++$counter;
                 }
 

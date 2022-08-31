@@ -78,15 +78,13 @@ class AdminController extends AbstractController
     {
         $users = $userRepository->findAll();
 
-        return new StreamedResponse(function () use ($users, $kernelProjectDir) {
+        return new StreamedResponse(static function () use ($users, $kernelProjectDir) {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
-
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
-
             foreach ($users as $user) {
                 $path = $kernelProjectDir.'/public/uploads/'.$user->getId();
 
@@ -101,7 +99,6 @@ class AdminController extends AbstractController
                     }
                 }
             }
-
             $zip->finish();
         });
     }

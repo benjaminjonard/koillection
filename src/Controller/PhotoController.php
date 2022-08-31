@@ -28,7 +28,7 @@ class PhotoController extends AbstractController
             ]);
         }
 
-        if (!$album) {
+        if ($album === null) {
             throw $this->createNotFoundException();
         }
 

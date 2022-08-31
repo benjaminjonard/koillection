@@ -32,7 +32,7 @@ class WishController extends AbstractController
             ]);
         }
 
-        if (!$wishlist) {
+        if ($wishlist === null) {
             throw $this->createNotFoundException();
         }
 

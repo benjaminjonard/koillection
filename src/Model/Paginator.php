@@ -7,6 +7,7 @@ namespace App\Model;
 class Paginator
 {
     private int $numPages;
+
     private int $maxPagesToShow = 5;
 
     public function __construct(
@@ -144,6 +145,7 @@ class Paginator
             if ($slidingStart < 2) {
                 $slidingStart = 2;
             }
+
             $slidingEnd = $slidingStart + $this->maxPagesToShow - 3;
             if ($slidingEnd >= $this->numPages) {
                 $slidingEnd = $this->numPages - 1;

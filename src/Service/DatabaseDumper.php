@@ -53,6 +53,7 @@ class DatabaseDumper
                 $userIds[] = "'".$user->getId()."'";
             }
         }
+
         $userIds = implode(',', $userIds);
 
         $selects = [
@@ -123,7 +124,7 @@ class DatabaseDumper
     {
         $currentSchema = $connection->getSchemaManager()->createSchema();
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
-        $rows = array_map(function ($row) {
+        $rows = array_map(static function ($row) {
             return $row.';'.PHP_EOL;
         }, $schemaRows);
         $rows[] = PHP_EOL;
@@ -140,11 +141,11 @@ class DatabaseDumper
         if (null === $value) {
             $value = 'NULL';
         } else {
-            if ($metadata && 'boolean' === $metadata->getTypeOfField(array_search($property, $metadata->columnNames))) {
+            if ($metadata && 'boolean' === $metadata->getTypeOfField(array_search($property, $metadata->columnNames, true))) {
                 $value = true === $value ? 'true' : 'false';
             }
 
-            if (null === $metadata || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames)), [null, 'string', 'datetime', 'date', 'uuid', 'array', 'text'], true)) {
+            if (null === $metadata || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames, true)), [null, 'string', 'datetime', 'date', 'uuid', 'array', 'text'], true)) {
                 $value = "'".$value."'";
             }
         }

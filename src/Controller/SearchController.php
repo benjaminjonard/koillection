@@ -43,24 +43,28 @@ class SearchController extends AbstractController
                     $results['collections'] = $collections;
                 }
             }
+
             if ($search->getSearchInItems()) {
                 $items = $itemRepository->findForSearch($search);
                 if (!empty($items)) {
                     $results['items'] = $items;
                 }
             }
+
             if ($this->featureChecker->isFeatureEnabled('tags') && $search->getSearchInTags()) {
                 $tags = $tagRepository->findForSearch($search);
                 if (!empty($tags)) {
                     $results['tags'] = $tags;
                 }
             }
+
             if ($this->featureChecker->isFeatureEnabled('albums') && $search->getSearchInAlbums()) {
                 $albums = $albumRepository->findForSearch($search);
                 if (!empty($albums)) {
                     $results['albums'] = $albums;
                 }
             }
+
             if ($this->featureChecker->isFeatureEnabled('wishlists') && $search->getSearchInWishlists()) {
                 $wishlists = $wishlistRepository->findForSearch($search);
                 if (!empty($wishlists)) {

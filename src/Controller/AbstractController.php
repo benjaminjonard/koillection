@@ -44,7 +44,7 @@ abstract class AbstractController extends SymfonyAbstractController
         User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist|ChoiceList $entity = null
     ): FormInterface {
         $params = [];
-        if ($entity) {
+        if ($entity !== null) {
             $params['id'] = $entity->getId();
         }
 

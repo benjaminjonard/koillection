@@ -42,7 +42,7 @@ class ItemController extends AbstractController
             $collection = $collectionRepository->find($request->query->get('collection'));
         }
 
-        if (!$collection) {
+        if ($collection === null) {
             throw $this->createNotFoundException();
         }
 

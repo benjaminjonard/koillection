@@ -25,6 +25,7 @@ use Doctrine\ORM\UnitOfWork;
 class VisibilityListener
 {
     private UnitOfWork $uow;
+
     private EntityManagerInterface $em;
 
     public function prePersist(LifecycleEventArgs $args): void

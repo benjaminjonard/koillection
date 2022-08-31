@@ -101,7 +101,7 @@ class AppRuntime implements RuntimeExtensionInterface
         return preg_replace_callback(
             "/\b(".implode('|', $words).")\b/ui",
             function ($matches) use ($words) {
-                $id = array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words));
+                $id = array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words), true);
 
                 $route = $this->contextHandler->getRouteContext('app_tag_show');
                 $route = $this->router->generate($route, ['id' => $id]);
@@ -133,7 +133,8 @@ class AppRuntime implements RuntimeExtensionInterface
                 $texts = array_merge($texts, explode(',', $datum->getValue()));
             }
         }
-        $texts = array_map(function ($text) {
+
+        $texts = array_map(static function ($text) {
             return trim($text);
         }, $texts);
         $tags = $this->tagRepository->findBy(['label' => $texts]);

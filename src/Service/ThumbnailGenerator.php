@@ -93,6 +93,7 @@ class ThumbnailGenerator
         } else {
             $height = (int) ceil($height - ($height * abs($ratio - $maxWidth / $maxHeight)));
         }
+
         $newWidth = $maxWidth;
         $newHeight = $maxHeight;
 

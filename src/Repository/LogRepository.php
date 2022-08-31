@@ -19,7 +19,7 @@ class LogRepository extends ServiceEntityRepository
 
     public function findForSearch(SearchHistory $search): array
     {
-        $classes = array_map(function ($value) {
+        $classes = array_map(static function ($value) {
             return 'App\Entity\\'.ucfirst($value);
         }, $search->getClasses());
 
@@ -46,7 +46,7 @@ class LogRepository extends ServiceEntityRepository
 
     public function countForSearch(SearchHistory $search): int
     {
-        $classes = array_map(function ($value) {
+        $classes = array_map(static function ($value) {
             return 'App\Entity\\'.ucfirst($value);
         }, $search->getClasses());
 

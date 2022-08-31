@@ -27,9 +27,10 @@ class AppTestCase extends WebTestCase
     protected KernelBrowser $client;
 
     private ?User $user = null;
+
     private array $visibilities = VisibilityEnum::VISIBILITIES;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->client = self::createClient();
     }

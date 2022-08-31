@@ -27,6 +27,7 @@ class ItemNameGuesser
             if (!preg_match($pattern, $otherItem->getName(), $matches) || !isset($matches[1])) {
                 return null;
             }
+
             if ($matches[1] > $highestValue) {
                 $highestValue = $matches[1];
             }

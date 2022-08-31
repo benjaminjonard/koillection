@@ -31,12 +31,13 @@ class Base64ToImageTransformer implements DataTransformerInterface
             return null;
         }
 
-        preg_match('#data:(image/([\w]+));base64,(.*)#', $base64, $matches);
+        preg_match('/data:(image\/([\w]+));base64,(.*)/', $base64, $matches);
         $data = base64_decode($matches[3]);
         $name = uniqid('col_').'.'.$matches[2];
         if (!file_exists('tmp/') && !mkdir('tmp/', 0777, true)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
+
         $path = 'tmp/'.$name;
         file_put_contents($path, $data);
 

@@ -7,19 +7,29 @@ namespace App\Enum;
 class HistoryFilterEnum
 {
     public const FILTER_CLASS_COLLECTION = 'collection';
+
     public const FILTER_CLASS_ITEM = 'item';
+
     public const FILTER_CLASS_TEMPLATE = 'template';
+
     public const FILTER_CLASS_CHOICE_LIST = 'choiceList';
+
     public const FILTER_CLASS_INVENTORY = 'inventory';
 
     public const FILTER_CLASS_TAG = 'tag';
+
     public const FILTER_CLASS_TAG_CATEGORY = 'tagCategory';
+
     public const FILTER_CLASS_ALBUM = 'album';
+
     public const FILTER_CLASS_PHOTO = 'photo';
+
     public const FILTER_CLASS_WISHLIST = 'wishlist';
+
     public const FILTER_CLASS_WISH = 'wish';
 
     public const FILTER_TYPE_CREATE = LogTypeEnum::TYPE_CREATE;
+
     public const FILTER_TYPE_DELETE = LogTypeEnum::TYPE_DELETE;
 
     public const FILTERS_CLASS = [

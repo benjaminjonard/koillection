@@ -32,7 +32,7 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
             $breadcrumb[] = $rootElement;
         }
 
-        if ($entity) {
+        if ($entity !== null) {
             $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $parent));
         }
 

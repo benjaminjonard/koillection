@@ -38,6 +38,7 @@ class DateRuntime implements RuntimeExtensionInterface
                 unset($string[$k]);
             }
         }
+
         $string = \array_slice($string, 0, 1);
 
         return $string !== [] ?
@@ -67,6 +68,7 @@ class DateRuntime implements RuntimeExtensionInterface
                 unset($string[$k]);
             }
         }
+
         $string = \array_slice($string, 0, 1);
 
         return $string !== [] ? implode(', ', $string) : '';
@@ -94,6 +96,7 @@ class DateRuntime implements RuntimeExtensionInterface
                 unset($string[$k]);
             }
         }
+
         $string = \array_slice($string, 0, 1);
 
         return $string !== [] ?

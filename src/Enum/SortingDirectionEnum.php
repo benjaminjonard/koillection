@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Criteria;
 class SortingDirectionEnum
 {
     public const ASCENDING = Criteria::ASC;
+
     public const DESCENDING = Criteria::DESC;
 
     public const SORTING_DIRECTIONS = [

@@ -105,10 +105,10 @@ class DatumType extends AbstractType
                                 'required' => false,
                                 'choices' => $this->choiceListRepository->find($data['choiceList'])->getChoices(),
                                 'model_transformer' => new CallbackTransformer(
-                                    function ($string) {
+                                    static function ($string) {
                                         return null !== $string ? json_decode($string, true) : null;
                                     },
-                                    function ($array) {
+                                    static function ($array) {
                                         return \is_array($array) ? json_encode($array) : null;
                                     }
                                 ),

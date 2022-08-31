@@ -37,12 +37,15 @@ class Autocompleter
         if ($this->featureChecker->isFeatureEnabled('tags')) {
             $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag');
         }
+
         if ($this->featureChecker->isFeatureEnabled('albums')) {
             $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album');
         }
+
         if ($this->featureChecker->isFeatureEnabled('wishlists')) {
             $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist');
         }
+
         $sql = implode(' UNION ', $queryParts);
 
         $rsm = new ResultSetMapping();
@@ -52,6 +55,7 @@ class Autocompleter
         foreach ($this->params as $key => $value) {
             $query->setParameter($key + 1, $value);
         }
+
         $counter = $query->getSingleScalarResult();
 
         // Get the 5 most relevant results
@@ -67,6 +71,7 @@ class Autocompleter
         foreach ($this->params as $key => $value) {
             $query->setParameter($key + 1, $value);
         }
+
         $results = $query->getResult();
         $results = array_map(function ($result) {
             $route = $this->router->generate("app_{$result['type']}_show", ['id' => $result['id']]);

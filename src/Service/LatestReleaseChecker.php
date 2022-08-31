@@ -42,9 +42,10 @@ class LatestReleaseChecker
             if (200 !== $response->getStatusCode()) {
                 throw new \Exception();
             }
+
             $content = json_decode($response->getContent(), true);
             $this->latestReleaseData = $content[0];
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
         }
 
         return $this->latestReleaseData;

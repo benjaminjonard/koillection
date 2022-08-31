@@ -17,13 +17,18 @@ abstract class ApiTestCase extends ApiPlatformApiTestCase
     use RefreshDatabaseTrait;
 
     private ?string $token = null;
+
     protected ?User $user = null;
+
     protected ?User $otherUser = null;
+
     protected ?TranslatorInterface $translator = null;
+
     protected ?EntityManagerInterface $em = null;
+
     protected ?IriConverterInterface $iriConverter = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         self::bootKernel();
 

@@ -7,6 +7,7 @@ namespace App\Enum;
 class DisplayModeEnum
 {
     public const DISPLAY_MODE_GRID = 'grid';
+
     public const DISPLAY_MODE_LIST = 'list';
 
     public const DISPLAY_MODES = [
