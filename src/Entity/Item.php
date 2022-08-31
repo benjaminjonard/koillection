@@ -143,7 +143,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['item:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['item:read'])]
@@ -155,7 +155,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['item:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     private ?string $orderingValue = null;
 

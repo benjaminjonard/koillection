@@ -142,7 +142,7 @@ class Datum implements \Stringable
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['datum:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {

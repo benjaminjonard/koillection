@@ -20,7 +20,10 @@ use Rector\Php80\Rector\Identical\StrEndsWithRector;
 use Rector\Php80\Rector\Identical\StrStartsWithRector;
 use Rector\Php80\Rector\Class_\StringableForToStringRector;
 use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
-use \Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
+use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
+use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
+use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddReturnTypeDeclarationRector;
 
 
 return static function (RectorConfig $rectorConfig): void {
@@ -30,13 +33,14 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/tests'
     ]);
 
-    $rectorConfig->ruleWithConfiguration(ConsistentPregDelimiterRector::class, [
-        ConsistentPregDelimiterRector::DELIMITER => '/',
-    ]);
-
     $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
 
     $rectorConfig->rules([
+        // PHP 7.4
+        RestoreDefaultNullToNullableTypePropertyRector::class,
+        NullCoalescingOperatorRector::class,
+        AddReturnTypeDeclarationRector::class,
+
         // PHP 8.0
         ChangeSwitchToMatchRector::class,
         ClassOnObjectRector::class,
@@ -49,7 +53,13 @@ return static function (RectorConfig $rectorConfig): void {
         ReadOnlyPropertyRector::class
     ]);
 
+    $rectorConfig->ruleWithConfiguration(ConsistentPregDelimiterRector::class, [
+        ConsistentPregDelimiterRector::DELIMITER => '/',
+    ]);
+
+
     $rectorConfig->sets([
+        //SetList::PHP_74,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,

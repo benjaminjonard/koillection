@@ -46,7 +46,7 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['inventory:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     private array $contentAsArray = [];
 

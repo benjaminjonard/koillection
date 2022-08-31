@@ -71,13 +71,13 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
     #[Groups(['wish:read', 'wish:write'])]
     #[Assert\Currency]
-    private ?string $currency;
+    private ?string $currency = null;
 
     #[ORM\ManyToOne(targetEntity: Wishlist::class, inversedBy: 'wishes')]
     #[Assert\NotBlank]
     #[Groups(['wish:read', 'wish:write'])]
     #[ApiSubresource(maxDepth: 1)]
-    private ?Wishlist $wishlist;
+    private ?Wishlist $wishlist = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['wish:read'])]
@@ -107,7 +107,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['wish:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wish:read'])]
@@ -119,7 +119,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['wish:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {

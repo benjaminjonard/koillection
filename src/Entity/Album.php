@@ -116,7 +116,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['album:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['album:read'])]

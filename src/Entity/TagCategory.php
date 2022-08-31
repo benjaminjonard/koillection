@@ -57,7 +57,7 @@ class TagCategory implements BreadcrumbableInterface, LoggableInterface, \String
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['tagCategory:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {

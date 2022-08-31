@@ -44,7 +44,7 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface, \Stringa
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['choiceList:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {

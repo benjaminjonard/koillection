@@ -53,7 +53,7 @@ class Template implements BreadcrumbableInterface, LoggableInterface, \Stringabl
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['template:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {

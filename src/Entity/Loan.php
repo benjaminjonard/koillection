@@ -30,7 +30,7 @@ class Loan
     #[Groups(['loan:read', 'loan:write'])]
     #[Assert\NotBlank]
     #[ApiSubresource(maxDepth: 1)]
-    private ?Item $item;
+    private ?Item $item = null;
 
     #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
@@ -44,7 +44,7 @@ class Loan
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['loan:read', 'loan:write'])]
-    private ?\DateTimeImmutable $returnedAt;
+    private ?\DateTimeImmutable $returnedAt = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['loan:read'])]

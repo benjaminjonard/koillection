@@ -17,8 +17,8 @@ class PaginatorFactory
 
     public function generate(int $totalItems, string $url = null, array $params = null, $queryParam = 'page'): Paginator
     {
-        $url = $url ?? $this->requestStack->getMainRequest()->getPathInfo();
-        $params = $params ?? $this->requestStack->getMainRequest()->query->all();
+        $url ??= $this->requestStack->getMainRequest()->getPathInfo();
+        $params ??= $this->requestStack->getMainRequest()->query->all();
         $page = $params[$queryParam] ?? 1;
 
         unset($params[$queryParam]);

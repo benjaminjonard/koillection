@@ -137,12 +137,12 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingProperty;
+    private ?string $itemsSortingProperty = null;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
     #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingType;
+    private ?string $itemsSortingType = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -156,7 +156,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['collection:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read'])]

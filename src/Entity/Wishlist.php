@@ -111,7 +111,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['wishlist:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read'])]

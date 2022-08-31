@@ -55,7 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private ?string $email = null;
 
     #[ORM\Column(type: Types::STRING)]
-    private ?string $password;
+    private ?string $password = null;
 
     #[Assert\Regex(pattern: "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message: 'error.password.incorrect')]
     #[Groups(['user:read', 'user:write'])]
@@ -143,7 +143,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read', 'user:write'])]
-    private ?\DateTimeImmutable $automaticDarkModeEndAt;
+    private ?\DateTimeImmutable $automaticDarkModeEndAt = null;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
@@ -183,7 +183,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read'])]
-    private ?DateTimeImmutable $updatedAt;
+    private ?DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
