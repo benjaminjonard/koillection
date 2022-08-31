@@ -45,11 +45,11 @@ class CollectionRepository extends ServiceEntityRepository
         $sql = "
             WITH RECURSIVE children AS (
                 SELECT c1.id, c1.parent_id
-                FROM $table c1     
-                WHERE c1.id = $id
+                FROM {$table} c1     
+                WHERE c1.id = {$id}
                 UNION
                 SELECT c2.id, c2.parent_id
-                FROM $table c2
+                FROM {$table} c2
                 INNER JOIN children ch1 ON ch1.id = c2.parent_id
             ) SELECT id FROM children ch2
         ";

@@ -125,7 +125,7 @@ class ItemRepository extends ServiceEntityRepository
                 WITH RECURSIVE children AS (
                     SELECT c1.id, c1.parent_id, c1.visibility
                     FROM koi_collection c1
-                    WHERE c1.id = $id
+                    WHERE c1.id = {$id}
                     UNION
                     SELECT c2.id, c2.parent_id, c2.visibility
                     FROM koi_collection c2
@@ -233,7 +233,7 @@ class ItemRepository extends ServiceEntityRepository
 
             $qb = $this
                 ->createQueryBuilder('item')
-                ->addSelect("($subQuery) AS orderingValue, data")
+                ->addSelect("({$subQuery}) AS orderingValue, data")
                 ->where('item.collection = :collection')
                 ->setParameter('collection', $collection->getId())
                 ->setParameter('label', $collection->getItemsSortingProperty())
@@ -262,6 +262,7 @@ class ItemRepository extends ServiceEntityRepository
                 } else {
                     $item->setOrderingValue($result['orderingValue']);
                 }
+
                 return $item;
             }, $results);
         }

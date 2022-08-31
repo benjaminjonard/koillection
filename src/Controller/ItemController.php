@@ -161,6 +161,7 @@ class ItemController extends AbstractController
 
         $loan = new Loan();
         $loan->setItem($item);
+
         $form = $this->createForm(LoanType::class, $loan);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

@@ -157,6 +157,7 @@ class CollectionType extends AbstractType
                     break;
                 }
             }
+
             if (!$found) {
                 $collection->setItemsSortingType(null);
             }
@@ -171,6 +172,7 @@ class CollectionType extends AbstractType
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($labels) {
             $data = $event->getData();
             $data->setitemsDisplayModeListColumns($this->preSubmitItemsDisplayModeListColumns);
+
             $event->setData($data);
         });
     }

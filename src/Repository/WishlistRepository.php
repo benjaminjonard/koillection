@@ -45,11 +45,11 @@ class WishlistRepository extends ServiceEntityRepository
         $sql = "
             WITH RECURSIVE children AS (
                 SELECT w1.id, w1.parent_id
-                FROM $table w1     
-                WHERE w1.id = $id
+                FROM {$table} w1     
+                WHERE w1.id = {$id}
                 UNION
                 SELECT w2.id, w2.parent_id
-                FROM $table w2
+                FROM {$table} w2
                 INNER JOIN children ch1 ON ch1.id = w2.parent_id
             ) SELECT id FROM children ch2
         ";

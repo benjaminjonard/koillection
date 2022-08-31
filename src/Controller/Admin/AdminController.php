@@ -83,6 +83,7 @@ class AdminController extends AbstractController
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
+
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
             foreach ($users as $user) {
@@ -99,6 +100,7 @@ class AdminController extends AbstractController
                     }
                 }
             }
+
             $zip->finish();
         });
     }

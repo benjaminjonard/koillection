@@ -33,7 +33,7 @@ class DateRuntime implements RuntimeExtensionInterface
         ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
+                $v = $this->translator->trans("global.time.{$v}", ['%count%' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }
@@ -63,7 +63,7 @@ class DateRuntime implements RuntimeExtensionInterface
         ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
+                $v = $this->translator->trans("global.time.{$v}", ['%count%' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }
@@ -91,7 +91,7 @@ class DateRuntime implements RuntimeExtensionInterface
 
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->trans("global.time.$v", ['%count%' => $diff->$k]);
+                $v = $this->translator->trans("global.time.{$v}", ['%count%' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }

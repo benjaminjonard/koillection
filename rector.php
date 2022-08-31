@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
-use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
-use Rector\CodingStyle\Rector\ClassMethod\NewlineBeforeNewAssignSetRector;
 use Rector\CodingStyle\Rector\ClassConst\VarConstantCommentRector;
 use Rector\Config\RectorConfig;
 use Rector\Doctrine\Rector\Property\ImproveDoctrineCollectionDocTypeInEntityRector;
@@ -50,8 +48,6 @@ return static function (RectorConfig $rectorConfig): void {
         AttributeKeyToClassConstFetchRector::class,
         ImproveDoctrineCollectionDocTypeInEntityRector::class,
         EncapsedStringsToSprintfRector::class,
-        WrapEncapsedVariableInCurlyBracesRector::class,
-        NewlineBeforeNewAssignSetRector::class,
         VarConstantCommentRector::class
     ]);
 };

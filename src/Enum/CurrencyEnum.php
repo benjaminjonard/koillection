@@ -14,7 +14,7 @@ class CurrencyEnum
         foreach (Currencies::getNames() as $code => $name) {
             if (!strpos($name, '(')) {
                 $symbol = Currencies::getSymbol($code);
-                $currencies[$code] = $symbol === $code ? ucwords($name)." ($code)" : ucwords($name)." $symbol ($code)";
+                $currencies[$code] = $symbol === $code ? ucwords($name)." ({$code})" : ucwords($name)." {$symbol} ({$code})";
             }
         }
 

@@ -156,6 +156,7 @@ class CollectionController extends AbstractController
 
         $batchTagger = new BatchTagger();
         $batchTagger->setCollection($collection);
+
         $form = $this->createForm(BatchTaggerType::class, $batchTagger);
 
         $form->handleRequest($request);

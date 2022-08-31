@@ -49,6 +49,7 @@ class FieldType extends AbstractType
                 if (DatumTypeEnum::TYPE_LIST !== $data['type']) {
                     $data['choiceList'] = null;
                 }
+
                 $event->setData($data);
             }
         );

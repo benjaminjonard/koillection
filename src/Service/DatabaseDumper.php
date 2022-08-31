@@ -58,22 +58,22 @@ class DatabaseDumper
 
         $selects = [
             'SELECT * FROM doctrine_migration_version',
-            "SELECT * FROM koi_album WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_collection WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_datum WHERE owner_id IN ($userIds)",
-            "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id IN ($userIds)",
-            "SELECT * FROM koi_inventory WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_item WHERE owner_id IN ($userIds)",
-            "SELECT it.* FROM koi_item_tag it LEFT JOIN koi_item i ON it.item_id = i.id WHERE i.owner_id IN ($userIds)",
-            "SELECT * FROM koi_loan WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_log WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_photo WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_tag WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_tag_category WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_template WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_user WHERE id IN ($userIds)",
-            "SELECT * FROM koi_wish WHERE owner_id IN ($userIds)",
-            "SELECT * FROM koi_wishlist WHERE owner_id IN ($userIds)",
+            "SELECT * FROM koi_album WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_collection WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_datum WHERE owner_id IN ({$userIds})",
+            "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id IN ({$userIds})",
+            "SELECT * FROM koi_inventory WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_item WHERE owner_id IN ({$userIds})",
+            "SELECT it.* FROM koi_item_tag it LEFT JOIN koi_item i ON it.item_id = i.id WHERE i.owner_id IN ({$userIds})",
+            "SELECT * FROM koi_loan WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_log WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_photo WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_tag WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_tag_category WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_template WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_user WHERE id IN ({$userIds})",
+            "SELECT * FROM koi_wish WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_wishlist WHERE owner_id IN ({$userIds})",
         ];
 
         foreach ($selects as $select) {
@@ -89,12 +89,12 @@ class DatabaseDumper
             $entityName = ucfirst(substr($tableName, 4));
 
             $metadata = null;
-            if (class_exists("App\Entity\\$entityName")) {
-                $metadata = $this->managerRegistry->getManager()->getClassMetadata("App\Entity\\$entityName");
+            if (class_exists("App\Entity\\{$entityName}")) {
+                $metadata = $this->managerRegistry->getManager()->getClassMetadata("App\Entity\\{$entityName}");
             }
 
             $headers = implode(',', array_keys($results[0]));
-            $rows[] = "INSERT INTO $tableName ($headers) VALUES ".PHP_EOL;
+            $rows[] = "INSERT INTO {$tableName} ({$headers}) VALUES ".PHP_EOL;
 
             $count = \count($results);
             foreach ($results as $key => $result) {

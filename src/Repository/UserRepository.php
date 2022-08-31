@@ -42,7 +42,7 @@ class UserRepository extends ServiceEntityRepository
         $tagsSubQuery = 'SELECT COUNT(*) FROM koi_tag WHERE owner_id = ?';
         $signsSubQuery = 'SELECT COUNT(*) FROM koi_datum d LEFT JOIN koi_item i ON i.id = d.item_id WHERE i.owner_id = ? AND d.type = ?';
 
-        $sql = "SELECT ($collectionsSubQuery) AS collections, ($itemsSubQuery) AS items, ($tagsSubQuery) AS tags, ($signsSubQuery) AS signs";
+        $sql = "SELECT ({$collectionsSubQuery}) AS collections, ({$itemsSubQuery}) AS items, ({$tagsSubQuery}) AS tags, ({$signsSubQuery}) AS signs";
         $sql .= ' FROM koi_user u';
         $sql .= ' WHERE u.id = ?';
 

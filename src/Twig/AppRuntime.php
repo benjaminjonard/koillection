@@ -106,7 +106,7 @@ class AppRuntime implements RuntimeExtensionInterface
                 $route = $this->contextHandler->getRouteContext('app_tag_show');
                 $route = $this->router->generate($route, ['id' => $id]);
 
-                return "<a href='$route'>$matches[1]</a>";
+                return "<a href='{$route}'>$matches[1]</a>";
             },
             $text
         );

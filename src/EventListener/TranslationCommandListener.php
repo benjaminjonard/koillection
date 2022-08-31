@@ -43,7 +43,7 @@ final class TranslationCommandListener
         $fileContent = implode('-', $contentChunks);
 
         // Import translator in the file
-        $fileContent = "import Translator from '$translatorPath'".PHP_EOL.PHP_EOL.$fileContent;
+        $fileContent = "import Translator from '{$translatorPath}'".PHP_EOL.PHP_EOL.$fileContent;
 
         file_put_contents($path, $fileContent);
     }

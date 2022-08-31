@@ -50,6 +50,7 @@ class Autocompleter
 
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('counter', 'counter');
+
         $counterSql = "SELECT COUNT(*) AS counter FROM ({$sql}) AS x";
         $query = $this->managerRegistry->getManager()->createNativeQuery($counterSql, $rsm);
         foreach ($this->params as $key => $value) {

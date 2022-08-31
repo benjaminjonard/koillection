@@ -211,6 +211,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('label', trim($value)));
+
         $tag = $this->tags->matching($criteria)->first();
 
         return $tag instanceof Tag ? $tag : null;
