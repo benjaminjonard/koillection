@@ -84,7 +84,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'items', cascade: ['persist'])]
     #[ORM\JoinTable(name: 'koi_item_tag')]
-    #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'item_id')]
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
     #[ORM\OrderBy(['label' => Criteria::ASC])]
     #[Groups(['item:write'])]
@@ -93,7 +93,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\ManyToMany(targetEntity: Item::class, inversedBy: 'relatedTo')]
     #[ORM\JoinTable(name: 'koi_item_related_item')]
-    #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'item_id')]
     #[ORM\InverseJoinColumn(name: 'related_item_id', referencedColumnName: 'id')]
     #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[Groups(['item:write'])]
@@ -167,6 +167,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         $this->tags = new ArrayCollection();
         $this->data = new ArrayCollection();
         $this->relatedItems = new ArrayCollection();
+        $this->relatedTo = new ArrayCollection();
         $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
         $this->loans = new ArrayCollection();
     }

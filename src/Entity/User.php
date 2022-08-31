@@ -13,6 +13,7 @@ use App\Enum\RoleEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -186,6 +187,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function __construct()
     {
+        $this->collections = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->tagCategories = new ArrayCollection();
+        $this->wishlists = new ArrayCollection();
+        $this->templates = new ArrayCollection();
+        $this->logs = new ArrayCollection();
+        $this->albums = new ArrayCollection();
+        $this->inventories = new ArrayCollection();
         $this->id = Uuid::v4()->toRfc4122();
         $this->roles = ['ROLE_USER'];
         $this->diskSpaceAllowed = 536870912;
