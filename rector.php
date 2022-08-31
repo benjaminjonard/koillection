@@ -24,6 +24,7 @@ use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
 use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
 use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddReturnTypeDeclarationRector;
+use Rector\Php71\Rector\List_\ListToArrayDestructRector;
 
 
 return static function (RectorConfig $rectorConfig): void {
@@ -36,6 +37,9 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
 
     $rectorConfig->rules([
+        // PHP 7.1
+        ListToArrayDestructRector::class,
+
         // PHP 7.4
         RestoreDefaultNullToNullableTypePropertyRector::class,
         NullCoalescingOperatorRector::class,
@@ -48,6 +52,7 @@ return static function (RectorConfig $rectorConfig): void {
         StrEndsWithRector::class,
         StrStartsWithRector::class,
         StringableForToStringRector::class,
+
         // PHP 8.1
         NewInInitializerRector::class,
         ReadOnlyPropertyRector::class
@@ -57,9 +62,8 @@ return static function (RectorConfig $rectorConfig): void {
         ConsistentPregDelimiterRector::DELIMITER => '/',
     ]);
 
-
     $rectorConfig->sets([
-        //SetList::PHP_74,
+        //SetList::PHP_71,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,

@@ -219,11 +219,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function __unserialize($serialized)
     {
-        list(
-            $this->id,
-            $this->username,
-            $this->password
-        ) = $serialized;
+        [$this->id, $this->username, $this->password] = $serialized;
     }
 
     public function isAdmin(): bool
