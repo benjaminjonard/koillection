@@ -24,6 +24,7 @@ return static function (RectorConfig $rectorConfig): void {
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
         PHPUnitSetList::PHPUNIT_91,
+        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         DoctrineSetList::DOCTRINE_CODE_QUALITY,
     ]);
 
