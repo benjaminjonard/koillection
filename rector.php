@@ -5,6 +5,10 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Symfony\Rector\Class_\EventListenerToEventSubscriberRector;
 use Rector\Symfony\Set\SymfonySetList;
+use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Doctrine\Set\DoctrineSetList;
+use Rector\Transform\Rector\Attribute\AttributeKeyToClassConstFetchRector;
+use Rector\Doctrine\Rector\Property\ImproveDoctrineCollectionDocTypeInEntityRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
@@ -19,9 +23,13 @@ return static function (RectorConfig $rectorConfig): void {
         SymfonySetList::SYMFONY_60,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
+        PHPUnitSetList::PHPUNIT_91,
+        DoctrineSetList::DOCTRINE_CODE_QUALITY,
     ]);
 
     $rectorConfig->skip([
-        EventListenerToEventSubscriberRector::class
+        EventListenerToEventSubscriberRector::class,
+        AttributeKeyToClassConstFetchRector::class,
+        ImproveDoctrineCollectionDocTypeInEntityRector::class
     ]);
 };

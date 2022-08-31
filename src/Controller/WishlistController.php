@@ -8,6 +8,7 @@ use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class WishlistController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
-        $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => 'ASC']);
+        $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => Criteria::ASC]);
 
         return $this->render('App/Wishlist/index.html.twig', [
             'wishlists' => $wishlists,

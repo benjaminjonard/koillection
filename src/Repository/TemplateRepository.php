@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Entity\Template;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 class TemplateRepository extends ServiceEntityRepository
@@ -19,7 +20,7 @@ class TemplateRepository extends ServiceEntityRepository
     {
         return $this
             ->createQueryBuilder('t')
-            ->orderBy('t.name', 'ASC')
+            ->orderBy('t.name', Criteria::ASC)
             ->getQuery()
             ->getResult()
         ;
@@ -34,7 +35,7 @@ class TemplateRepository extends ServiceEntityRepository
             ->from(Template::class, 't')
             ->leftJoin('t.fields', 'f')
             ->groupBy('t.id')
-            ->orderBy('t.name', 'ASC')
+            ->orderBy('t.name', Criteria::ASC)
             ->getQuery()
             ->getResult()
         ;

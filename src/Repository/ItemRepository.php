@@ -14,6 +14,7 @@ use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
 use App\Service\ArraySorter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -94,7 +95,7 @@ class ItemRepository extends ServiceEntityRepository
     {
         $qb = $this
             ->createQueryBuilder('i')
-            ->orderBy('i.name', 'ASC')
+            ->orderBy('i.name', Criteria::ASC)
         ;
 
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
@@ -182,8 +183,8 @@ class ItemRepository extends ServiceEntityRepository
             ->createQueryBuilder('i')
             ->addSelect('(CASE WHEN LOWER(i.name) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(i.name) LIKE LOWER(:name)')
-            ->orderBy('startWithOrder', 'ASC') // Order items starting with the search term first
-            ->addOrderBy('LOWER(i.name)', 'ASC') // Then order other matching items alphabetically
+            ->orderBy('startWithOrder', Criteria::ASC) // Order items starting with the search term first
+            ->addOrderBy('LOWER(i.name)', Criteria::ASC) // Then order other matching items alphabetically
             ->setParameter('name', '%'.$string.'%')
             ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
@@ -199,7 +200,7 @@ class ItemRepository extends ServiceEntityRepository
             ->leftJoin('i.data', 'd')
             ->addSelect('d')
             ->andWhere('d.type = :type')
-            ->orderBy('i.name', 'ASC')
+            ->orderBy('i.name', Criteria::ASC)
             ->setParameter('type', DatumTypeEnum::TYPE_SIGN)
             ->getQuery()
             ->getResult()

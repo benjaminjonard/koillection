@@ -17,6 +17,7 @@ use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('App/Admin/User/index.html.twig', [
-            'users' => $userRepository->findBy([], ['lastDateOfActivity' => 'DESC']),
+            'users' => $userRepository->findBy([], ['lastDateOfActivity' => Criteria::DESC]),
         ]);
     }
 

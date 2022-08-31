@@ -37,7 +37,7 @@ class Template implements BreadcrumbableInterface, LoggableInterface
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Field::class, mappedBy: 'template', cascade: ['all'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $fields;

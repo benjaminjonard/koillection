@@ -8,6 +8,7 @@ use App\Entity\Album;
 use App\Form\Type\Entity\AlbumType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class AlbumController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
-        $albums = $albumRepository->findBy(['parent' => null], ['title' => 'ASC']);
+        $albums = $albumRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
         $photosCounter = 0;
         foreach ($albums as $album) {
             $photosCounter += \count($album->getPhotos());

@@ -12,6 +12,7 @@ use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class CollectionController extends AbstractController
     #[Route(path: '/user/{username}', name: 'app_shared_homepage', methods: ['GET'])]
     public function index(CollectionRepository $collectionRepository): Response
     {
-        $collections = $collectionRepository->findBy(['parent' => null], ['title' => 'ASC']);
+        $collections = $collectionRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
 
         return $this->render('App/Collection/index.html.twig', [
             'collections' => $collections,

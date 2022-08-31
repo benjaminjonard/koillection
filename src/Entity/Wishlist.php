@@ -16,6 +16,7 @@ use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -69,7 +70,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Wish::class, mappedBy: 'wishlist', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $wishes;
 
@@ -78,7 +79,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private ?string $color = null;
 
     #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'parent', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;

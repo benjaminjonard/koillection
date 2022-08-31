@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Album;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,7 +48,7 @@ class AlbumRepository extends ServiceEntityRepository
 
         return $this
             ->createQueryBuilder('a')
-            ->orderBy('a.title', 'ASC')
+            ->orderBy('a.title', Criteria::ASC)
             ->where('a NOT IN  (:excluded)')
             ->setParameter('excluded', $excluded)
             ->getQuery()
@@ -59,7 +60,7 @@ class AlbumRepository extends ServiceEntityRepository
     {
         $qb = $this
             ->createQueryBuilder('a')
-            ->orderBy('a.title', 'ASC')
+            ->orderBy('a.title', Criteria::ASC)
         ;
 
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {

@@ -86,7 +86,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinTable(name: 'koi_item_tag')]
     #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
-    #[ORM\OrderBy(['label' => 'ASC'])]
+    #[ORM\OrderBy(['label' => Criteria::ASC])]
     #[Groups(['item:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
@@ -95,18 +95,18 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinTable(name: 'koi_item_related_item')]
     #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'related_item_id', referencedColumnName: 'id')]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[Groups(['item:write'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $relatedItems;
 
     #[ORM\ManyToMany(targetEntity: Item::class, mappedBy: 'relatedItems')]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     private DoctrineCollection $relatedTo;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'item', cascade: ['persist'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
