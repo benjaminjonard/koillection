@@ -124,7 +124,7 @@ class DatabaseDumper
     {
         $currentSchema = $connection->getSchemaManager()->createSchema();
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
-        $rows = array_map(static function ($row) {
+        $rows = array_map(static function ($row): string {
             return $row.';'.PHP_EOL;
         }, $schemaRows);
         $rows[] = PHP_EOL;

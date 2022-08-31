@@ -147,7 +147,7 @@ class CollectionType extends AbstractType
             ]);
         }
 
-        $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($labels) {
+        $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($labels): void {
             $collection = $event->getData();
             $found = false;
             foreach ($labels as $label) {
@@ -163,13 +163,13 @@ class CollectionType extends AbstractType
             }
         });
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($labels) {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($labels): void {
             if (isset($event->getData()['itemsDisplayModeListColumns'])) {
                 $this->preSubmitItemsDisplayModeListColumns = $event->getData()['itemsDisplayModeListColumns'];
             }
         });
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($labels) {
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($labels): void {
             $data = $event->getData();
             $data->setitemsDisplayModeListColumns($this->preSubmitItemsDisplayModeListColumns);
 

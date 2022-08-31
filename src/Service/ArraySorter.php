@@ -25,7 +25,7 @@ class ArraySorter
     ): array {
         $array = \is_array($array) ? $array : $array->toArray();
 
-        usort($array, function ($a, $b) {
+        usort($array, function ($a, $b): bool|int {
             return $this->compare($this->getName($a), $this->getName($b));
         });
 
@@ -35,13 +35,13 @@ class ArraySorter
             case DatumTypeEnum::TYPE_LIST:
             case DatumTypeEnum::TYPE_TEXT:
             case DatumTypeEnum::TYPE_DATE:
-                usort($array, function ($a, $b) use ($direction) {
+                usort($array, function ($a, $b) use ($direction): bool|int {
                     return $this->compare((string) $this->getOrderingValue($a), (string) $this->getOrderingValue($b), $direction);
                 });
                 break;
             case DatumTypeEnum::TYPE_COUNTRY:
                 $countries = Countries::getNames();
-                usort($array, function ($a, $b) use ($direction, $countries) {
+                usort($array, function ($a, $b) use ($direction, $countries): bool|int {
                     $a = $countries[$this->getOrderingValue($a)] ?? '';
                     $b = $countries[$this->getOrderingValue($b)] ?? '';
 

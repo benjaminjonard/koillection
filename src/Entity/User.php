@@ -217,7 +217,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         ];
     }
 
-    public function __unserialize($serialized)
+    public function __unserialize($serialized): void
     {
         [$this->id, $this->username, $this->password] = $serialized;
     }

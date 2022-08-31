@@ -11,7 +11,7 @@ class AdminSmokeFunctionalTest extends AppTestCase
     /**
      * @dataProvider isSuccessfulUrlProvider
      */
-    public function testPageIsSuccessful(string $url)
+    public function testPageIsSuccessful(string $url): void
     {
         $this->login('admin@koillection.com');
 

@@ -78,7 +78,7 @@ class AdminController extends AbstractController
     {
         $users = $userRepository->findAll();
 
-        return new StreamedResponse(static function () use ($users, $kernelProjectDir) {
+        return new StreamedResponse(static function () use ($users, $kernelProjectDir): void {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);

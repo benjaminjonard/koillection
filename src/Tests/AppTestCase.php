@@ -35,7 +35,7 @@ class AppTestCase extends WebTestCase
         $this->client = self::createClient();
     }
 
-    public function login(string $email)
+    public function login(string $email): void
     {
         $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);
         $this->user = $user;
@@ -43,12 +43,12 @@ class AppTestCase extends WebTestCase
         $this->client->loginUser($user);
     }
 
-    public function setUser(string $email)
+    public function setUser(string $email): void
     {
         $this->user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneBy(['email' => $email]);
     }
 
-    public function setVisibilities(array $visibilities)
+    public function setVisibilities(array $visibilities): void
     {
         $this->visibilities = $visibilities;
     }

@@ -44,7 +44,7 @@ class FieldType extends AbstractType
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT,
-            static function (FormEvent $event) {
+            static function (FormEvent $event): void {
                 $data = $event->getData();
                 if (DatumTypeEnum::TYPE_LIST !== $data['type']) {
                     $data['choiceList'] = null;

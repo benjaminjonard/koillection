@@ -53,7 +53,7 @@ class DatumType extends AbstractType
 
         $builder->addEventListener(
             FormEvents::PRE_SUBMIT,
-            function (FormEvent $event) {
+            function (FormEvent $event): void {
                 $form = $event->getForm();
                 $data = $event->getData();
 
@@ -73,14 +73,14 @@ class DatumType extends AbstractType
                             ->add('value', TextType::class, [
                                 'required' => false,
                                 'model_transformer' => new CallbackTransformer(
-                                    function ($string) {
+                                    function ($string): ?string {
                                         if (!empty($string)) {
                                             return \DateTimeImmutable::createFromFormat('Y-m-d', $string)->format($this->security->getUser()->getDateFormat());
                                         }
 
                                         return null;
                                     },
-                                    function ($date) {
+                                    function ($date): ?string {
                                         if (!empty($date)) {
                                             return \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date)->format('Y-m-d');
                                         }

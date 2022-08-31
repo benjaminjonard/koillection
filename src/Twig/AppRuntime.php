@@ -134,7 +134,7 @@ class AppRuntime implements RuntimeExtensionInterface
             }
         }
 
-        $texts = array_map(static function ($text) {
+        $texts = array_map(static function ($text): string {
             return trim($text);
         }, $texts);
         $tags = $this->tagRepository->findBy(['label' => $texts]);

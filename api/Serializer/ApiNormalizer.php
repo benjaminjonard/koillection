@@ -53,10 +53,7 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
         return $this->decorated->denormalize($data, $class, $format, $context);
     }
 
-    /**
-     * @return void
-     */
-    public function setSerializer(SerializerInterface $serializer)
+    public function setSerializer(SerializerInterface $serializer): void
     {
         if ($this->decorated instanceof SerializerAwareInterface) {
             $this->decorated->setSerializer($serializer);

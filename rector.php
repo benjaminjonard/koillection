@@ -25,6 +25,8 @@ use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
 use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddReturnTypeDeclarationRector;
 use Rector\Php71\Rector\List_\ListToArrayDestructRector;
+use Rector\TypeDeclaration\Rector\Closure\AddClosureReturnTypeRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 
 
 return static function (RectorConfig $rectorConfig): void {
@@ -55,7 +57,11 @@ return static function (RectorConfig $rectorConfig): void {
 
         // PHP 8.1
         NewInInitializerRector::class,
-        ReadOnlyPropertyRector::class
+        ReadOnlyPropertyRector::class,
+
+        //Type declaration
+        AddClosureReturnTypeRector::class,
+        AddVoidReturnTypeWhereNoReturnRector::class,
     ]);
 
     $rectorConfig->ruleWithConfiguration(ConsistentPregDelimiterRector::class, [
@@ -63,7 +69,6 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        //SetList::PHP_71,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,

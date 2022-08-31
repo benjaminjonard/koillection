@@ -60,7 +60,7 @@ class ToolsController extends AbstractController
     #[Route(path: '/tools/export/images', name: 'app_tools_export_images', methods: ['GET'])]
     public function exportImages(string $kernelProjectDir): StreamedResponse
     {
-        return new StreamedResponse(function () use ($kernelProjectDir) {
+        return new StreamedResponse(function () use ($kernelProjectDir): void {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);

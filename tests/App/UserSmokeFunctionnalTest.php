@@ -11,7 +11,7 @@ class UserSmokeFunctionnalTest extends AppTestCase
     /**
      * @dataProvider isSuccessfulUrlProvider
      */
-    public function testPageIsSuccessful(string $url)
+    public function testPageIsSuccessful(string $url): void
     {
         $this->login('user@koillection.com');
         $this->client->request('GET', $this->replaceUrlParameters($url));
@@ -21,7 +21,7 @@ class UserSmokeFunctionnalTest extends AppTestCase
     /**
      * @dataProvider isNotFoundUrlProvider
      */
-    public function testPageIsNotFound(string $url)
+    public function testPageIsNotFound(string $url): void
     {
         $this->login('user@koillection.com');
         $this->client->request('GET', $this->replaceUrlParameters($url));
