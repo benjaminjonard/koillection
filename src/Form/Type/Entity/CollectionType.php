@@ -50,15 +50,15 @@ class CollectionType extends AbstractType
             $itemsSortingChoices[$label['label']] = $label['label'];
         }
 
-        //Extract possible columns for a collection based on items
+        // Extract possible columns for a collection based on items
         $itemsDisplayModeListColumnsChoices = [];
         $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
         foreach ($labels as $label) {
             $itemsDisplayModeListColumnsChoices[$label['label']] = $label['label'];
         }
 
-        //Move already selected columns to the top of the array
-        $alreadySelectedColumns  =  array_reverse($entity->getItemsDisplayModeListColumns());
+        // Move already selected columns to the top of the array
+        $alreadySelectedColumns = array_reverse($entity->getItemsDisplayModeListColumns());
         foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
             unset($itemsDisplayModeListColumnsChoices[$alreadySelectedColumn]);
             array_unshift($itemsDisplayModeListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);
@@ -163,13 +163,13 @@ class CollectionType extends AbstractType
             }
         });
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($labels): void {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             if (isset($event->getData()['itemsDisplayModeListColumns'])) {
                 $this->preSubmitItemsDisplayModeListColumns = $event->getData()['itemsDisplayModeListColumns'];
             }
         });
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($labels): void {
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
             $data->setitemsDisplayModeListColumns($this->preSubmitItemsDisplayModeListColumns);
 

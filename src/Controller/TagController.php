@@ -147,7 +147,7 @@ class TagController extends AbstractController
         return new JsonResponse($data);
     }
 
-    #[Route(path: '/tags/{tagId}/items/{itemId}',  name: 'app_tag_item_show', methods: ['GET'])]
+    #[Route(path: '/tags/{tagId}/items/{itemId}', name: 'app_tag_item_show', methods: ['GET'])]
     #[Route(path: '/user/{username}/tags/{tagId}/items/{itemId}', name: 'app_shared_tag_item_show', methods: ['GET'])]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]

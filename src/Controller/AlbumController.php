@@ -91,7 +91,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route( path: '/albums/{id}/delete', name: 'app_album_delete', methods: ['POST'])]
+    #[Route(path: '/albums/{id}/delete', name: 'app_album_delete', methods: ['POST'])]
     public function delete(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);

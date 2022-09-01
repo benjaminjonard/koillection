@@ -12,13 +12,13 @@ class IntlExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getCountriesList', static function () : array {
+            new TwigFunction('getCountriesList', static function (): array {
                 return (new IntlRuntime())->getCountriesList();
             }),
-            new TwigFunction('getCountryName', static function (string $code) : string {
+            new TwigFunction('getCountryName', static function (string $code): string {
                 return (new IntlRuntime())->getCountryName($code);
             }),
-            new TwigFunction('getCountryFlag', static function (string $code) : string {
+            new TwigFunction('getCountryFlag', static function (string $code): string {
                 return (new IntlRuntime())->getCountryFlag($code);
             }),
         ];
