@@ -136,19 +136,13 @@
     <unit id="AghNVUV" name="statistics.items_added">
       <segment state="translated">
         <source>statistics.items_added</source>
-        <target>{count, plural, zero {# items added} one {# item added} other {# items added}}</target>
-      </segment>
-    </unit>
-    <unit id="0DU28lZ" name="statistics.users">
-      <segment state="translated">
-        <source>statistics.users</source>
-        <target>{count, plural, zero {# users} one {# user} other {# users}}</target>
+        <target>{count, plural, one {# item added} other {# items added}}</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
       <segment state="translated">
         <source>statistics.items</source>
-        <target>{count, plural, zero {# items} one {# item} other {# items}}</target>
+        <target>{count, plural, one {# item} other {# items}}</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">

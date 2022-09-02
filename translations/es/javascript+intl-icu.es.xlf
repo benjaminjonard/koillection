@@ -1,202 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="es">
   <file id="javascript.en">
     <unit id="s2RK8Ci" name="global.months.january">
       <segment state="translated">
         <source>global.months.january</source>
-        <target>Janvier</target>
+        <target>Enero</target>
       </segment>
     </unit>
     <unit id="u5P6LMj" name="global.months.february">
       <segment state="translated">
         <source>global.months.february</source>
-        <target>Février</target>
+        <target>Febrero</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
       <segment state="translated">
         <source>global.months.march</source>
-        <target>Mars</target>
+        <target>Marzo</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
       <segment state="translated">
         <source>global.months.april</source>
-        <target>Avril</target>
+        <target>Abril</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
       <segment state="translated">
         <source>global.months.may</source>
-        <target>Mai</target>
+        <target>Mayo</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
       <segment state="translated">
         <source>global.months.june</source>
-        <target>Juin</target>
+        <target>Junio</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
       <segment state="translated">
         <source>global.months.july</source>
-        <target>Juillet</target>
+        <target>Julio</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
       <segment state="translated">
         <source>global.months.august</source>
-        <target>Août</target>
+        <target>Agosto</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
       <segment state="translated">
         <source>global.months.september</source>
-        <target>Septembre</target>
+        <target>Septiembre</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
       <segment state="translated">
         <source>global.months.october</source>
-        <target>Octobre</target>
+        <target>Octubre</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
       <segment state="translated">
         <source>global.months.november</source>
-        <target>Novembre</target>
+        <target>Noviembre</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
       <segment state="translated">
         <source>global.months.december</source>
-        <target>Décembre</target>
+        <target>Diciembre</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
       <segment state="translated">
         <source>global.days.monday</source>
-        <target>Lundi</target>
+        <target>Lunes</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
       <segment state="translated">
         <source>global.days.tuesday</source>
-        <target>Mardi</target>
+        <target>Martes</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
       <segment state="translated">
         <source>global.days.wednesday</source>
-        <target>Mercredi</target>
+        <target>Miércoles</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
       <segment state="translated">
         <source>global.days.thursday</source>
-        <target>Jeudi</target>
+        <target>Jueves</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
       <segment state="translated">
         <source>global.days.friday</source>
-        <target>Vendredi</target>
+        <target>Viernes</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
       <segment state="translated">
         <source>global.days.saturday</source>
-        <target>Samedi</target>
+        <target>Sábado</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
       <segment state="translated">
         <source>global.days.sunday</source>
-        <target>Dimanche</target>
+        <target>Domingo</target>
       </segment>
     </unit>
     <unit id="mdcgZEB" name="global.today">
       <segment state="translated">
         <source>global.today</source>
-        <target>Aujourd'hui</target>
+        <target>Hoy</target>
       </segment>
     </unit>
     <unit id="exiimju" name="btn.clear">
       <segment state="translated">
         <source>btn.clear</source>
-        <target>Effacer</target>
+        <target>Limpiar</target>
       </segment>
     </unit>
     <unit id="Jd_qITE" name="btn.close">
       <segment state="translated">
         <source>btn.close</source>
-        <target>Fermer</target>
+        <target>Cerrar</target>
       </segment>
     </unit>
     <unit id="AghNVUV" name="statistics.items_added">
       <segment state="translated">
         <source>statistics.items_added</source>
-        <target>[0,1] {count} objet ajouté| ]1,Inf[ {count} objets ajoutés</target>
-      </segment>
-    </unit>
-    <unit id="0DU28lZ" name="statistics.users">
-      <segment state="translated">
-        <source>statistics.users</source>
-        <target>[0,1] {count} utilisateur| ]1,Inf[ {count} utilisateurs</target>
+        <target>{count, plural, one {# elemento añadido} other {# elementos añadidos}}</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
       <segment state="translated">
         <source>statistics.items</source>
-        <target>[0,1] {count} objet| ]1,Inf[ {count} objets</target>
+        <target>{count, plural, one {# elemento} other {# elementos}}</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">
       <segment state="translated">
         <source>select2.no_results</source>
-        <target>Aucun résultat trouvé</target>
+        <target>No hay resultados</target>
       </segment>
     </unit>
     <unit id="vX0eXJK" name="select2.searching">
       <segment state="translated">
         <source>select2.searching</source>
-        <target>Recherche en cours...</target>
+        <target>Buscando...</target>
       </segment>
     </unit>
     <unit id="VWNWjeJ" name="select2.none">
       <segment state="translated">
         <source>select2.none</source>
-        <target>Aucun(e)</target>
+        <target>Ninguno</target>
       </segment>
     </unit>
     <unit id="Em6KHMM" name="global.search.more_results">
       <segment state="translated">
         <source>global.search.more_results</source>
-        <target>{1} + {count} résultat| ]1,Inf[ + {count} résultats</target>
+        <target>{count, plural, one { + # resultado más} other { + # resultados más}}</target>
       </segment>
     </unit>
     <unit id="nfDV3tB" name="global.search.no_results">
       <segment state="translated">
         <source>global.search.no_results</source>
-        <target>Pas de résultats</target>
+        <target>Sin resultados</target>
       </segment>
     </unit>
     <unit id="V4dRe88" name="global.visibilities.internal.description">
       <segment state="translated">
         <source>global.visibilities.internal.description</source>
-        <target>Seul les utilisateurs connectés peuvent voir cette page</target>
+        <target>Solo usuarios conectados pueden ver esta página</target>
       </segment>
     </unit>
     <unit id="RU9kBPV" name="global.visibilities.public.description">
       <segment state="translated">
         <source>global.visibilities.public.description</source>
-        <target>Tout le monde peut voir cette page</target>
+        <target>Cualquiera puede ver esta página</target>
       </segment>
     </unit>
     <unit id="GA2PrMk" name="global.visibilities.private.description">
       <segment state="translated">
         <source>global.visibilities.private.description</source>
-        <target>Seulement moi peux voir cette page</target>
+        <target>Solo yo puedo ver esta página</target>
       </segment>
     </unit>
   </file>

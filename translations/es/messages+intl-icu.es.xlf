@@ -4,19 +4,19 @@
     <unit id="xGPqLcT" name="message.files_deleted">
       <segment state="translated">
         <source>message.files_deleted</source>
-        <target>{0} {count} archivos eleiminados| {1} {count} archivo eliminado| ]1,Inf[ {count} archivos eleiminados</target>
+        <target>{count, plural, one {# archivo eliminado} other {# archivos eleiminados}}</target>
       </segment>
     </unit>
     <unit id=".512qhB" name="message.logs_generated">
       <segment state="translated">
         <source>message.logs_generated</source>
-        <target>{0} {count} registros generados| {1} {count} registro generado| ]1,Inf[ {count} registros generados</target>
+        <target>{count, plural, one {# registro generado} other {# registros generados}}</target>
       </segment>
     </unit>
     <unit id="OswwPau" name="message.thumbnails_regenerated">
       <segment state="translated">
         <source>message.thumbnails_regenerated</source>
-        <target>{0} {count} miniaturas generadas| {1} {count} miniatura generada| ]1,Inf[ {count} miniaturas generadas</target>
+        <target>{count, plural, one {# miniatura generada} other {# miniaturas generadas}}</target>
       </segment>
     </unit>
     <unit id="X_Pm9um" name="message.user_added">
@@ -100,7 +100,7 @@
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment state="translated">
         <source>message.items_tagged</source>
-        <target>{0} {count} elementos etiquetados| {1} {count} elemento etiquetado| ]1,Inf[ {count} elementos etiquetados</target>
+        <target>{count, plural, one {# elemento etiquetado} other {# elementos etiquetados}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
@@ -214,7 +214,7 @@
     <unit id="QPUEgMd" name="message.unused_tags_deleted">
       <segment state="translated">
         <source>message.unused_tags_deleted</source>
-        <target>{0} {count} etiquetas borradas| {1} {count} etiqueta borrada| ]1,Inf[ {count} etiquetas borradas</target>
+        <target>{count, plural, one {# etiqueta borrada} other {# etiquetas borradas}}</target>
       </segment>
     </unit>
     <unit id="xM.mW1R" name="message.template_added">
@@ -514,55 +514,55 @@
     <unit id="FIesMhl" name="counter.without_number.users">
       <segment state="translated">
         <source>counter.without_number.users</source>
-        <target>{0} usuarios| {1} usuario| ]1,Inf[ usuarios</target>
+        <target>{count, plural, one {# usuario} other {# usuarios}}</target>
       </segment>
     </unit>
     <unit id="uVNjha9" name="counter.without_number.collections">
       <segment state="translated">
         <source>counter.without_number.collections</source>
-        <target>{0} colecciones| {1} colección| ]1,Inf[ colecciones</target>
+        <target>{count, plural, one {# colección} other {# colecciones}}</target>
       </segment>
     </unit>
     <unit id="VrJk8jp" name="counter.without_number.items">
       <segment state="translated">
         <source>counter.without_number.items</source>
-        <target>{0} elementos| {1} elemento| ]1,Inf[ elementos</target>
+        <target>{count, plural, one {# elemento} other {# elementos}}</target>
       </segment>
     </unit>
     <unit id="hjM7hgU" name="counter.without_number.tags">
       <segment state="translated">
         <source>counter.without_number.tags</source>
-        <target>{0} etiquetas| {1} etiqueta| ]1,Inf[ etiquetas</target>
+        <target>{count, plural, one {# etiqueta} other {# etiquetas}}</target>
       </segment>
     </unit>
     <unit id="cw0nkO5" name="counter.without_number.wishlists">
       <segment state="translated">
         <source>counter.without_number.wishlists</source>
-        <target>{0} listas de deseos| {1} lista de deseos| ]1,Inf[ listas de deseos</target>
+        <target>{count, plural, one {# lista de deseos} other {# listas de deseos}}</target>
       </segment>
     </unit>
     <unit id="zzagaMI" name="counter.without_number.wishes">
       <segment state="translated">
         <source>counter.without_number.wishes</source>
-        <target>{0} deseados| {1} deseado| ]1,Inf[ deseados</target>
+        <target>{count, plural, one {# deseado} other {# deseados}}</target>
       </segment>
     </unit>
     <unit id="QJMsz.z" name="counter.without_number.albums">
       <segment state="translated">
         <source>counter.without_number.albums</source>
-        <target>{0} álbums| {1} álbum| ]1,Inf[álbums</target>
+        <target>{count, plural, one {# álbum} other {# álbums}}</target>
       </segment>
     </unit>
     <unit id="YKRNql5" name="counter.without_number.photos">
       <segment state="translated">
         <source>counter.without_number.photos</source>
-        <target>{0} fotos| {1} foto| ]1,Inf[ fotos</target>
+        <target>{count, plural, one {# foto} other {# fotos}}</target>
       </segment>
     </unit>
     <unit id="aCCqbt1" name="counter.without_number.signs">
       <segment state="translated">
         <source>counter.without_number.signs</source>
-        <target>{0} firmas| {1} firma| ]1,Inf[ firmas</target>
+        <target>{count, plural, one {# firma} other {# firmas}}</target>
       </segment>
     </unit>
     <unit id="jNAS_YE" name="label.space_used_by_koillection">
@@ -748,7 +748,7 @@
     <unit id="1NZRNj4" name="counter.photo">
       <segment state="translated">
         <source>counter.photo</source>
-        <target>{0} {count} fotos| {1} {count} foto| ]1,Inf[ {count} fotos</target>
+        <target>{count, plural, one {# foto} other {# fotos}}</target>
       </segment>
     </unit>
     <unit id="rd2X72s" name="message.delete.photo">
@@ -796,7 +796,7 @@
     <unit id="9N4x.TV" name="counter.album">
       <segment state="translated">
         <source>counter.album</source>
-        <target>{0} {count} álbums| {1} {count} álbum| ]1,Inf[ {count} álbums</target>
+        <target>{count, plural, one {# álbum} other {# álbums}}</target>
       </segment>
     </unit>
     <unit id="NOenNu3" name="tooltip.add_album">
@@ -868,7 +868,7 @@
     <unit id="SMPEMjp" name="counter.choice_lists">
       <segment state="translated">
         <source>counter.choice_lists</source>
-        <target>{0} {count} listas de opciones| {1} {count} lista de opciones| ]1,Inf[ {count} listas de opciones</target>
+        <target>{count, plural, one {# lista de opciones} other {# listas de opciones}}</target>
       </segment>
     </unit>
     <unit id="3yuF9Sl" name="tooltip.add_choice_list">
@@ -952,7 +952,7 @@
     <unit id=".eH3OZY" name="counter.item">
       <segment state="translated">
         <source>counter.item</source>
-        <target>{0} {count} elementos| {1} {count} elemento| ]1,Inf[ {count} elementos</target>
+        <target>{count, plural, one {# elemento} other {# elementos}}</target>
       </segment>
     </unit>
     <unit id="AiXAfVP" name="title.add_collection">
@@ -982,7 +982,7 @@
     <unit id="Ttj5ZLt" name="counter.collection">
       <segment state="translated">
         <source>counter.collection</source>
-        <target>{0} {count} colleciones| {1} {count} colección| ]1,Inf[ {count} collecciones</target>
+        <target>{count, plural, one {# colección} other {# collecciones}}</target>
       </segment>
     </unit>
     <unit id="0Vhz2n." name="tooltip.add_collection">
@@ -1072,13 +1072,13 @@
     <unit id="IxgpiDC" name="counter.total_items">
       <segment state="translated">
         <source>counter.total_items</source>
-        <target>{0} {count} elementos| {1} {count} elemento| ]1,Inf[ {count} elementos</target>
+        <target>{count, plural, one {# elemento} other {# elementos}}</target>
       </segment>
     </unit>
     <unit id="EZsGAxN" name="counter.checked_items">
       <segment state="translated">
         <source>counter.checked_items</source>
-        <target>{0} {count} elementos marcados| {1} {count} elemento marcado| ]1,Inf[ {count} elementos marcados</target>
+        <target>{count, plural, one {# elemento marcado} other {# elementos marcados}}</target>
       </segment>
     </unit>
     <unit id="gVjxaJZ" name="label.completion_rate">
@@ -1228,13 +1228,13 @@
     <unit id="nlD7D9j" name="counter.loan">
       <segment state="translated">
         <source>counter.loan</source>
-        <target>{0} {count} prestados| {1} {count} prestado| ]1,Inf[ {count} prestados</target>
+        <target>{count, plural, one {# prestado} other {# prestados}}</target>
       </segment>
     </unit>
     <unit id="0Nr1G8_" name="counter.returned">
       <segment state="translated">
         <source>counter.returned</source>
-        <target>{0} {count} devueltos| {1} {count} devuelto| ]1,Inf[ {count} devueltos</target>
+        <target>{count, plural, one {# devuelto} other {# devueltos}}</target>
       </segment>
     </unit>
     <unit id="1Jpq5QX" name="tab.loans">
@@ -1462,7 +1462,7 @@
     <unit id="e9psgbF" name="counter.signs">
       <segment state="translated">
         <source>counter.signs</source>
-        <target>{0} {count} firmas| {1} {count} firma| ]1,Inf[ {count} firmas</target>
+        <target>{count, plural, one {# firma} other {# firmas}}</target>
       </segment>
     </unit>
     <unit id="Bhx8Fvg" name="menu.statistics">
@@ -1474,13 +1474,13 @@
     <unit id="If3y3hC" name="counter.tag">
       <segment state="translated">
         <source>counter.tag</source>
-        <target>{0} {count} etiquetas| {1} {count} etiqueta| ]1,Inf[ {count} etiquetas</target>
+        <target>{count, plural, one {# etiqueta} other {# etiquetas}}</target>
       </segment>
     </unit>
     <unit id="Ul2mR7j" name="counter.sign">
       <segment state="translated">
         <source>counter.sign</source>
-        <target>{0} {count} firmados| {1} {count} firmado| ]1,Inf[ {count} firmados</target>
+        <target>{count, plural, one {# firmado} other {# firmados}}</target>
       </segment>
     </unit>
     <unit id="ssT2wiw" name="title.activity">
@@ -1600,7 +1600,7 @@
     <unit id="NSHmU0h" name="counter.tag_categories">
       <segment state="translated">
         <source>counter.tag_categories</source>
-        <target>{0} {count} categorías de etiquetas| {1} {count} categoría de etiqueta| ]1,Inf[ {count} categorías de etiquetas</target>
+        <target>{count, plural, one {# categoría de etiqueta} other {# categorías de etiquetas}}</target>
       </segment>
     </unit>
     <unit id="d3LXAOu" name="tooltip.add_tag_category">
@@ -1648,7 +1648,7 @@
     <unit id="hIdqfHr" name="counter.template">
       <segment state="translated">
         <source>counter.template</source>
-        <target>{0} {count} plantillas| {1} {count} plantilla| ]1,Inf[ {count} plantillas</target>
+        <target>{count, plural, one {# plantilla} other {# plantillas}}</target>
       </segment>
     </unit>
     <unit id=".pBdt4A" name="tooltip.add_template">
@@ -1666,7 +1666,7 @@
     <unit id="1MYrutS" name="counter.field">
       <segment state="translated">
         <source>counter.field</source>
-        <target>{0} {count} campos| {1} {count} campo| ]1,Inf[ {count} campos</target>
+        <target>{count, plural, one {# campo} other {# campos}}</target>
       </segment>
     </unit>
     <unit id="pnGDFmf" name="label.type">
@@ -1756,7 +1756,7 @@
     <unit id="XjUwmT9" name="counter.wish">
       <segment state="translated">
         <source>counter.wish</source>
-        <target>{0} {count} deseados| {1} {count} deseado| ]1,Inf[ {count} deseados</target>
+        <target>{count, plural, one {# deseado} other {# deseados}}</target>
       </segment>
     </unit>
     <unit id="aCKOxah" name="title.new_wishlist">
@@ -1780,7 +1780,7 @@
     <unit id="Joxd_.h" name="counter.wishlist">
       <segment state="translated">
         <source>counter.wishlist</source>
-        <target>{0} {count} listas de deseos| {1} {count} lista de deseos| ]1,Inf[ {count} listas de deseos</target>
+        <target>{count, plural, one {# lista de deseos} other {# listas de deseos}}</target>
       </segment>
     </unit>
     <unit id="U27QnHb" name="tooltip.add_wishlist">
@@ -2104,43 +2104,43 @@
     <unit id="S3BSG8X" name="global.time.year">
       <segment state="translated">
         <source>global.time.year</source>
-        <target>{0} {count} años| {1} {count} año| ]1,Inf[ {count} años</target>
+        <target>{count, plural, one {# año} other {# años}}</target>
       </segment>
     </unit>
     <unit id="I6EoiYa" name="global.time.month">
       <segment state="translated">
         <source>global.time.month</source>
-        <target>{0} {count} meses| {1} {count} mes| ]1,Inf[ {count} meses</target>
+        <target>{count, plural, one {# mes} other {# meses}}</target>
       </segment>
     </unit>
     <unit id="BXLOUij" name="global.time.week">
       <segment state="translated">
         <source>global.time.week</source>
-        <target>{0} {count} semanas| {1} {count} semana| ]1,Inf[ {count} semanas</target>
+        <target>{count, plural, one {# semana} other {# semanas}}</target>
       </segment>
     </unit>
     <unit id="r1RqqRg" name="global.time.day">
       <segment state="translated">
         <source>global.time.day</source>
-        <target>{0} {count} días| {1} {count} día| ]1,Inf[ {count} días</target>
+        <target>{count, plural, one {# día} other {# días}}</target>
       </segment>
     </unit>
     <unit id="QeraM7P" name="global.time.hour">
       <segment state="translated">
         <source>global.time.hour</source>
-        <target>{0} {count} horas| {1} {count} hora| ]1,Inf[ {count} horas</target>
+        <target>{count, plural, one {# hora} other {# horas}}</target>
       </segment>
     </unit>
     <unit id="UN2onP4" name="global.time.minute">
       <segment state="translated">
         <source>global.time.minute</source>
-        <target>{0} {count} minutos| {1} {count} minuto| ]1,Inf[ {count} minutos</target>
+        <target>{count, plural, one {# minuto} other {# minutos}}</target>
       </segment>
     </unit>
     <unit id="JQSurmk" name="global.time.second">
       <segment state="translated">
         <source>global.time.second</source>
-        <target>{0} {count} segundos| {1} {count} segundo| ]1,Inf[ {count} segundos</target>
+        <target>{count, plural, one {# segundo} other {# segundos}}</target>
       </segment>
     </unit>
     <unit id="fSiEIlQ" name="global.visibilities.public">
@@ -2404,31 +2404,31 @@
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment state="translated">
         <source>global.seen_counter.album</source>
-        <target>{0} Álbum consultado {count} veces| {1} Álbum consultado {count} vez| ]1,Inf[ Álbum consultado {count} veces</target>
+        <target>{count, plural, one { Álbum consultado # vez} other { Álbum consultado # veces}}</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment state="translated">
         <source>global.seen_counter.collection</source>
-        <target>{0} Colección consultada {count} veces| {1} Colección consultada {count} vez| ]1,Inf[ Colección consultada {count} veces</target>
+        <target>{count, plural, one { Colección consultada # vez} other { Colección consultada # veces}}</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment state="translated">
         <source>global.seen_counter.item</source>
-        <target>{0} Elemento consultado {count} veces| {1} Elemento consultado {count} vez| ]1,Inf[ Elemento consultado {count} veces</target>
+        <target>{count, plural, one { Elemento consultado # vez} other { Elemento consultado # veces}}</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment state="translated">
         <source>global.seen_counter.tag</source>
-        <target>{0} Etiquta consultada {count} veces| {1} Etiqueta consultada {count} vez| ]1,Inf[ Etiqueta consultada {count} veces</target>
+        <target>{count, plural, one { Etiqueta consultada # vez} other { Etiqueta consultada # veces}}</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment state="translated">
         <source>global.seen_counter.wishlist</source>
-        <target>{0} lista de deseos consultada {count} veces| {1} lista de deseos consultada {count} vez| ]1,Inf[ lista de deseos consultada {count} veces</target>
+        <target>{count, plural, one { lista de deseos consultada # vez} other { lista de deseos consultada # veces}}</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
