@@ -87,18 +87,12 @@
       </segment>
     </unit>
     <unit id="_d89Gke" name="error.search.empty">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment state="translated">
         <source>error.search.empty</source>
         <target>Merci de remplir au moins un des champs</target>
       </segment>
     </unit>
     <unit id="DVztPk_" name="error.label.must_be_unique">
-      <notes>
-        <note category="state" priority="1">obsolete</note>
-      </notes>
       <segment state="translated">
         <source>error.label.must_be_unique</source>
         <target>Le label "{{ label }}" est utilisé plusieurs fois, les labels doivent être uniques</target>
