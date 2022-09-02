@@ -1,7 +1,3 @@
 files:
   - source: /translations/en/*.en.xlf
     translation: /translations/%two_letters_code%/%original_file_name%
-  - source: /translations/es/*.es.xlf
-    translation: /translations/%two_letters_code%/%original_file_name%
-  - source: /translations/fr/*.fr.xlf
-    translation: /translations/%two_letters_code%/%original_file_name%
