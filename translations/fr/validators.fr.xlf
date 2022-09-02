@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
-  <file id="validators.fr">
+  <file id="validators.en">
     <unit id="m_gMJbR" name="error.parent.same_as_current_object">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/Album.php:0</note>
         <note category="file-source" priority="1">koillection/src/Entity/Collection.php:0</note>
         <note category="file-source" priority="1">koillection/src/Entity/Wishlist.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.parent.same_as_current_object</source>
         <target>Le parent ne peut pas être identique à l'objet courant</target>
       </segment>
@@ -16,7 +16,7 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.datum.cant_be_used_by_both_collections_and_items</source>
         <target>Un objet Datum ne peut être utilisé par un objet et une collection en même temps</target>
       </segment>
@@ -25,7 +25,7 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.datum.must_provide_collection_or_item</source>
         <target>Une collection ou un item doit être renseigné</target>
       </segment>
@@ -34,7 +34,7 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.email.not_unique</source>
         <target>Adresse email déjà utilisée</target>
       </segment>
@@ -43,7 +43,7 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.username.not_unique</source>
         <target>Ce nom d'utilisateur est déjà pris</target>
       </segment>
@@ -52,7 +52,7 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.username.incorrect</source>
         <target>Le nom d'utilisateur doit comprendre entre 2 et 32 caractères (seules les lettres, les nombres et les underscores sont autorisés)</target>
       </segment>
@@ -61,7 +61,7 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.password.incorrect</source>
         <target>Le mot de passe doit contenir au moins 8 caractères (dont 1 lettre et 1 chiffre)</target>
       </segment>
@@ -72,7 +72,7 @@
         <note category="file-source" priority="1">koillection/src/Form/Type/Model/ProfileType.php:34</note>
         <note category="file-source" priority="1">koillection/src/Form/Type/Security/UserType.php:32</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.password.not_matching</source>
         <target>Les deux mots de passe ne sont pas identiques</target>
       </segment>
@@ -81,7 +81,7 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Model/Search/Search.php:0</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.search.too_short</source>
         <target>Vous devez entrer au moins 2 caractères</target>
       </segment>
@@ -90,7 +90,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.search.empty</source>
         <target>Merci de remplir au moins un des champs</target>
       </segment>
@@ -99,7 +99,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>error.label.must_be_unique</source>
         <target>Le label "{{ label }}" est utilisé plusieurs fois, les labels doivent être uniques</target>
       </segment>
