@@ -136,14 +136,13 @@
     <unit id="AghNVUV" name="statistics.items_added">
       <segment state="translated">
         <source>statistics.items_added</source>
-        <target>[0,1] {count} objet ajouté| ]1,Inf[ {count} objets ajoutés</target>
+        <target>{count, plural, one {# objet ajouté} other {# objets ajoutés}}</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
       <segment state="translated">
         <source>statistics.items</source>
         <target>{count, plural, zero {# items} one {# item} other {# items}}</target>
-        <target>[0,1] {count} objet| ]1,Inf[ {count} objets</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">
