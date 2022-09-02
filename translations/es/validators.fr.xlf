@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="es">
+  <file id="validators.fr">
+    <unit id="YW21SPH">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/Album.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Collection.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Item.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Photo.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Tag.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Wish.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Wishlist.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.</source>
+        <target>The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.</target>
+      </segment>
+    </unit>
+    <unit id="m_gMJbR" name="error.parent.same_as_current_object">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/Album.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Collection.php:0</note>
+        <note category="file-source" priority="1">koillection/src/Entity/Wishlist.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.parent.same_as_current_object</source>
+        <target>error.parent.same_as_current_object</target>
+      </segment>
+    </unit>
+    <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.datum.cant_be_used_by_both_collections_and_items</source>
+        <target>error.datum.cant_be_used_by_both_collections_and_items</target>
+      </segment>
+    </unit>
+    <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.datum.must_provide_collection_or_item</source>
+        <target>error.datum.must_provide_collection_or_item</target>
+      </segment>
+    </unit>
+    <unit id="7OcgSlg" name="error.email.not_unique">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.email.not_unique</source>
+        <target>error.email.not_unique</target>
+      </segment>
+    </unit>
+    <unit id="qoRxC7z" name="error.username.not_unique">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.username.not_unique</source>
+        <target>error.username.not_unique</target>
+      </segment>
+    </unit>
+    <unit id="PjAj0XF" name="error.username.incorrect">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.username.incorrect</source>
+        <target>error.username.incorrect</target>
+      </segment>
+    </unit>
+    <unit id="4Bdfyy1" name="error.password.incorrect">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.password.incorrect</source>
+        <target>error.password.incorrect</target>
+      </segment>
+    </unit>
+    <unit id="4m1Sgo3" name="error.password.not_matching">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Form/Type/Entity/Admin/UserType.php:31</note>
+        <note category="file-source" priority="1">koillection/src/Form/Type/Model/ProfileType.php:34</note>
+        <note category="file-source" priority="1">koillection/src/Form/Type/Security/UserType.php:32</note>
+      </notes>
+      <segment state="initial">
+        <source>error.password.not_matching</source>
+        <target>error.password.not_matching</target>
+      </segment>
+    </unit>
+    <unit id=".OeR.gK" name="error.search.too_short">
+      <notes>
+        <note category="file-source" priority="1">koillection/src/Model/Search/Search.php:0</note>
+      </notes>
+      <segment state="initial">
+        <source>error.search.too_short</source>
+        <target>error.search.too_short</target>
+      </segment>
+    </unit>
+    <unit id="_d89Gke" name="error.search.empty">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>error.search.empty</source>
+        <target>error.search.empty</target>
+      </segment>
+    </unit>
+    <unit id="DVztPk_" name="error.label.must_be_unique">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>error.label.must_be_unique</source>
+        <target>error.label.must_be_unique</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
