@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
   <file id="validators.en">
-    <unit id="YW21SPH">
-      <notes>
-        <note category="file-source" priority="1">koillection/src/Entity/Album.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/Collection.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/Item.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/Photo.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/Tag.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/Wish.php:0</note>
-        <note category="file-source" priority="1">koillection/src/Entity/Wishlist.php:0</note>
-      </notes>
-      <segment state="translated">
-        <source>The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.</source>
-        <target>&lt;target/&gt;</target>
-      </segment>
-    </unit>
     <unit id="m_gMJbR" name="error.parent.same_as_current_object">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/Album.php:0</note>
