@@ -5,7 +5,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.january</source>
         <target>Enero</target>
       </segment>
@@ -14,7 +14,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.february</source>
         <target>Febrero</target>
       </segment>
@@ -23,7 +23,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.march</source>
         <target>Marzo</target>
       </segment>
@@ -32,7 +32,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.april</source>
         <target>Abril</target>
       </segment>
@@ -41,7 +41,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.may</source>
         <target>Mayo</target>
       </segment>
@@ -50,7 +50,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.june</source>
         <target>Junio</target>
       </segment>
@@ -59,7 +59,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.july</source>
         <target>Julio</target>
       </segment>
@@ -68,7 +68,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.august</source>
         <target>Agosto</target>
       </segment>
@@ -77,7 +77,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.september</source>
         <target>Septiembre</target>
       </segment>
@@ -86,7 +86,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.october</source>
         <target>Octubre</target>
       </segment>
@@ -95,7 +95,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.november</source>
         <target>Noviembre</target>
       </segment>
@@ -104,7 +104,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.months.december</source>
         <target>Diciembre</target>
       </segment>
@@ -113,7 +113,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.days.monday</source>
         <target>Lunes</target>
       </segment>
@@ -122,7 +122,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.days.tuesday</source>
         <target>Martes</target>
       </segment>
@@ -131,7 +131,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.days.wednesday</source>
         <target>Miércoles</target>
       </segment>
@@ -140,7 +140,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.days.thursday</source>
         <target>Jueves</target>
       </segment>
@@ -149,7 +149,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.days.friday</source>
         <target>Viernes</target>
       </segment>
@@ -158,7 +158,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.days.saturday</source>
         <target>Sábado</target>
       </segment>
@@ -167,7 +167,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.days.sunday</source>
         <target>Domingo</target>
       </segment>
@@ -176,7 +176,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.today</source>
         <target>Hoy</target>
       </segment>
@@ -185,7 +185,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>btn.clear</source>
         <target>Limpiar</target>
       </segment>
@@ -194,7 +194,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>btn.close</source>
         <target>Cerrar</target>
       </segment>
@@ -203,7 +203,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>statistics.items_added</source>
         <target>{0} %count% elementos añadidos| {1} %count% elemento añadido| ]1,Inf[ %count% elementos añadidos</target>
       </segment>
@@ -212,7 +212,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>statistics.users</source>
         <target>{0} %count% usuarios| {1} %count% usuario| ]1,Inf[ %count% usuarios</target>
       </segment>
@@ -221,7 +221,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>statistics.items</source>
         <target>{0} %count% elementos| {1} %count% elemento| ]1,Inf[ %count% elementos</target>
       </segment>
@@ -230,7 +230,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>select2.no_results</source>
         <target>No hay resultados</target>
       </segment>
@@ -239,7 +239,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>select2.searching</source>
         <target>Buscando...</target>
       </segment>
@@ -248,7 +248,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>select2.none</source>
         <target>Ninguno</target>
       </segment>
@@ -257,7 +257,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.search.more_results</source>
         <target>{1} + %count% resultado más| ]1,Inf[ + %count% resultados más</target>
       </segment>
@@ -266,7 +266,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.search.no_results</source>
         <target>Sin resultados</target>
       </segment>
@@ -275,7 +275,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.visibilities.internal.description</source>
         <target>Solo usuarios conectados pueden ver esta página</target>
       </segment>
@@ -284,7 +284,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.visibilities.public.description</source>
         <target>Cualquiera puede ver esta página</target>
       </segment>
@@ -293,7 +293,7 @@
       <notes>
         <note category="state" priority="1">obsolete</note>
       </notes>
-      <segment>
+      <segment state="translated">
         <source>global.visibilities.private.description</source>
         <target>Solo yo puedo ver esta página</target>
       </segment>
