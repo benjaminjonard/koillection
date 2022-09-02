@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+  <file id="javascript.en">
+    <unit id="s2RK8Ci" name="global.months.january">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.january</source>
+        <target>global.months.january</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.february</source>
+        <target>global.months.february</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.march</source>
+        <target>global.months.march</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.april</source>
+        <target>global.months.april</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.may</source>
+        <target>global.months.may</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.june</source>
+        <target>global.months.june</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.july</source>
+        <target>global.months.july</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.august</source>
+        <target>global.months.august</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.september</source>
+        <target>global.months.september</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.october</source>
+        <target>global.months.october</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.november</source>
+        <target>global.months.november</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.months.december</source>
+        <target>global.months.december</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.days.monday</source>
+        <target>global.days.monday</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.days.tuesday</source>
+        <target>global.days.tuesday</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.days.wednesday</source>
+        <target>global.days.wednesday</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.days.thursday</source>
+        <target>global.days.thursday</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.days.friday</source>
+        <target>global.days.friday</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.days.saturday</source>
+        <target>global.days.saturday</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.days.sunday</source>
+        <target>global.days.sunday</target>
+      </segment>
+    </unit>
+    <unit id="mdcgZEB" name="global.today">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.today</source>
+        <target>global.today</target>
+      </segment>
+    </unit>
+    <unit id="exiimju" name="btn.clear">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>btn.clear</source>
+        <target>btn.clear</target>
+      </segment>
+    </unit>
+    <unit id="Jd_qITE" name="btn.close">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>btn.close</source>
+        <target>btn.close</target>
+      </segment>
+    </unit>
+    <unit id="AghNVUV" name="statistics.items_added">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>statistics.items_added</source>
+        <target>statistics.items_added</target>
+      </segment>
+    </unit>
+    <unit id="0DU28lZ" name="statistics.users">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>statistics.users</source>
+        <target>statistics.users</target>
+      </segment>
+    </unit>
+    <unit id="cEDaX3_" name="statistics.items">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>statistics.items</source>
+        <target>statistics.items</target>
+      </segment>
+    </unit>
+    <unit id="w0J8w0G" name="select2.no_results">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>select2.no_results</source>
+        <target>select2.no_results</target>
+      </segment>
+    </unit>
+    <unit id="vX0eXJK" name="select2.searching">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>select2.searching</source>
+        <target>select2.searching</target>
+      </segment>
+    </unit>
+    <unit id="VWNWjeJ" name="select2.none">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>select2.none</source>
+        <target>select2.none</target>
+      </segment>
+    </unit>
+    <unit id="Em6KHMM" name="global.search.more_results">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.search.more_results</source>
+        <target>global.search.more_results</target>
+      </segment>
+    </unit>
+    <unit id="nfDV3tB" name="global.search.no_results">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.search.no_results</source>
+        <target>global.search.no_results</target>
+      </segment>
+    </unit>
+    <unit id="V4dRe88" name="global.visibilities.internal.description">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.visibilities.internal.description</source>
+        <target>global.visibilities.internal.description</target>
+      </segment>
+    </unit>
+    <unit id="RU9kBPV" name="global.visibilities.public.description">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.visibilities.public.description</source>
+        <target>global.visibilities.public.description</target>
+      </segment>
+    </unit>
+    <unit id="GA2PrMk" name="global.visibilities.private.description">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment state="initial">
+        <source>global.visibilities.private.description</source>
+        <target>global.visibilities.private.description</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
