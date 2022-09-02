@@ -3,5 +3,5 @@ files:
     translation: /translations/%two_letters_code%/messages.%two_letters_code%.%file_extension%
   - source: /translations/en/javascript.en.xlf
     translation: /translations/%two_letters_code%/javascript.%two_letters_code%.%file_extension%
-  - source: /translations/en/validators.en.xlf
+  - source: /translations/*/validators.*.xlf
     translation: /translations/%two_letters_code%/validators.%two_letters_code%.%file_extension%
