@@ -66,7 +66,6 @@
         "friendsofphp/php-cs-fixer": "^3.8",
         "hautelook/alice-bundle": "^2.11",
         "justinrainbow/json-schema": "^5.2",
-        "php-translation/symfony-bundle": "^0.12.6",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "^0.14.0",
         "symfony/browser-kit": "^6.1",
