@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5abf346a529040644428171435c6cd87",
+    "content-hash": "6318ce94e89abbc1b695ce0d5ac921c6",
     "packages": [
         {
             "name": "api-platform/core",
@@ -8253,16 +8253,16 @@
         },
         {
             "name": "willdurand/js-translation-bundle",
-            "version": "5.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/willdurand/BazingaJsTranslationBundle.git",
-                "reference": "811fff5e9cf16471d350d8d3d0d09127bfe31b1e"
+                "url": "https://github.com/benjaminjonard/BazingaJsTranslationBundle.git",
+                "reference": "8818342df5fbffc1ea4312d051c68a6ccdc04ac1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/811fff5e9cf16471d350d8d3d0d09127bfe31b1e",
-                "reference": "811fff5e9cf16471d350d8d3d0d09127bfe31b1e",
+                "url": "https://api.github.com/repos/benjaminjonard/BazingaJsTranslationBundle/zipball/8818342df5fbffc1ea4312d051c68a6ccdc04ac1",
+                "reference": "8818342df5fbffc1ea4312d051c68a6ccdc04ac1",
                 "shasum": ""
             },
             "require": {
@@ -8286,6 +8286,7 @@
                 "symfony/twig-bundle": "~4.4|~5.0|~6.0",
                 "symfony/yaml": "~4.4|~5.0|~6.0"
             },
+            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -8297,7 +8298,6 @@
                     "Bazinga\\Bundle\\JsTranslationBundle\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -8314,10 +8314,9 @@
                 "translation"
             ],
             "support": {
-                "issues": "https://github.com/willdurand/BazingaJsTranslationBundle/issues",
-                "source": "https://github.com/willdurand/BazingaJsTranslationBundle/tree/5.0.0"
+                "source": "https://github.com/benjaminjonard/BazingaJsTranslationBundle/tree/master"
             },
-            "time": "2021-12-02T07:27:01+00:00"
+            "time": "2022-09-02T19:30:46+00:00"
         },
         {
             "name": "willdurand/negotiation",
@@ -11526,7 +11525,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "willdurand/js-translation-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -11539,5 +11540,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }

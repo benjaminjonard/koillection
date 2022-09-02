@@ -14,7 +14,7 @@
     {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.wishlists_shared'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.wishlists_shared'|trans({'username':  app.request.get('username')}),
             'image': wishlist.image
         }) }}
     {% else %}
@@ -36,8 +36,8 @@
                 <div class="right">
                     <h1>{{ wishlist.name }}</h1>
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.wish'|trans({'%count%': getCounters(wishlist).items}) }}</li>
-                        <li>{{ 'counter.wishlist'|trans({'%count%': getCounters(wishlist).children}) }}</li>
+                        <li>{{ 'counter.wish'|trans({'count': getCounters(wishlist).items}) }}</li>
+                        <li>{{ 'counter.wishlist'|trans({'count': getCounters(wishlist).children}) }}</li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>

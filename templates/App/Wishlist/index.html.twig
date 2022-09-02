@@ -14,7 +14,7 @@
     {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.wishlists_shared'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.wishlists_shared'|trans({'username':  app.request.get('username')}),
         }) }}
     {% else %}
         {{ parent() }}
@@ -28,8 +28,8 @@
             <div class="title-block">
                 <h1>{{ 'menu.wishlists'|trans }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.wish'|trans({'%count%':  getCounters('wishlists').items}) }}</li>
-                    <li>{{ 'counter.wishlist'|trans({'%count%': getCounters('wishlists').children}) }}</li>
+                    <li>{{ 'counter.wish'|trans({'count':  getCounters('wishlists').items}) }}</li>
+                    <li>{{ 'counter.wishlist'|trans({'count': getCounters('wishlists').children}) }}</li>
                 </ul>
             </div>
 

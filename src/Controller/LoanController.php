@@ -37,7 +37,7 @@ class LoanController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($loan);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.loan_canceled', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.loan_canceled', ['item' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_loan_index');
@@ -51,7 +51,7 @@ class LoanController extends AbstractController
 
         $loan->setReturnedAt(new \DateTimeImmutable());
         $managerRegistry->getManager()->flush();
-        $this->addFlash('notice', $translator->trans('message.item_returned', ['%item%' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
+        $this->addFlash('notice', $translator->trans('message.item_returned', ['item' => '&nbsp;<strong>'.$loan->getItem()->getName().'</strong>&nbsp;']));
 
         return $this->redirectToRoute('app_loan_index');
     }

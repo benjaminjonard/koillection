@@ -14,7 +14,7 @@
     {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.collections_shared'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.collections_shared'|trans({'username':  app.request.get('username')}),
             'image': collection.image
         }) }}
     {% else %}
@@ -39,8 +39,8 @@
                     </h1>
 
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.item'|trans({'%count%': getCounters(collection).items}) }}</li>
-                        <li>{{ 'counter.collection'|trans({'%count%': getCounters(collection).children}) }}</li>
+                        <li>{{ 'counter.item'|trans({'count': getCounters(collection).items}) }}</li>
+                        <li>{{ 'counter.collection'|trans({'count': getCounters(collection).children}) }}</li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>

@@ -28,7 +28,7 @@ class InventoryController extends AbstractController
             $managerRegistry->getManager()->persist($inventory);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.inventory_added', ['%inventory%' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.inventory_added', ['inventory' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_inventory_show', ['id' => $inventory->getId()]);
         }
@@ -48,7 +48,7 @@ class InventoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($inventory);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.inventory_deleted', ['%inventory%' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.inventory_deleted', ['inventory' => '&nbsp;<strong>'.$inventory->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_tools_index');

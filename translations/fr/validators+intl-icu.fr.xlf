@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
   <file id="validators.en">
     <unit id="m_gMJbR" name="error.parent.same_as_current_object">
       <segment state="translated">
         <source>error.parent.same_as_current_object</source>
-        <target>The parent can't be the same as the current item</target>
+        <target>Le parent ne peut pas être identique à l'objet courant</target>
       </segment>
     </unit>
     <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
       <segment state="translated">
         <source>error.datum.cant_be_used_by_both_collections_and_items</source>
-        <target>A datum cannot be used with both item and collection</target>
+        <target>Un objet Datum ne peut être utilisé par un objet et une collection en même temps</target>
       </segment>
     </unit>
     <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
       <segment state="translated">
         <source>error.datum.must_provide_collection_or_item</source>
-        <target>A collection or an item must be provided</target>
+        <target>Une collection ou un item doit être renseigné</target>
       </segment>
     </unit>
     <unit id="7OcgSlg" name="error.email.not_unique">
       <segment state="translated">
         <source>error.email.not_unique</source>
-        <target>Email address already used</target>
+        <target>Adresse email déjà utilisée</target>
       </segment>
     </unit>
     <unit id="qoRxC7z" name="error.username.not_unique">
       <segment state="translated">
         <source>error.username.not_unique</source>
-        <target>Username already used</target>
+        <target>Ce nom d'utilisateur est déjà pris</target>
       </segment>
     </unit>
     <unit id="PjAj0XF" name="error.username.incorrect">
       <segment state="translated">
         <source>error.username.incorrect</source>
-        <target>Username must have between 2 and 32 characters (only letters, numbers and underscores are allowed)</target>
+        <target>Le nom d'utilisateur doit comprendre entre 2 et 32 caractères (seules les lettres, les nombres et les underscores sont autorisés)</target>
       </segment>
     </unit>
     <unit id="4Bdfyy1" name="error.password.incorrect">
       <segment state="translated">
         <source>error.password.incorrect</source>
-        <target>Your password must contain at least 8 characters (with at least 1 letter and 1 number)</target>
+        <target>Le mot de passe doit contenir au moins 8 caractères (dont 1 lettre et 1 chiffre)</target>
       </segment>
     </unit>
     <unit id="4m1Sgo3" name="error.password.not_matching">
       <segment state="translated">
         <source>error.password.not_matching</source>
-        <target>The two passwords are not identical</target>
+        <target>Les deux mots de passe ne sont pas identiques</target>
       </segment>
     </unit>
     <unit id=".OeR.gK" name="error.search.too_short">
       <segment state="translated">
         <source>error.search.too_short</source>
-        <target>You must enter at least 2 characters</target>
+        <target>Vous devez entrer au moins 2 caractères</target>
       </segment>
     </unit>
     <unit id="_d89Gke" name="error.search.empty">
       <segment state="translated">
         <source>error.search.empty</source>
-        <target>Please fill at least one of the fields</target>
+        <target>Merci de remplir au moins un des champs</target>
       </segment>
     </unit>
     <unit id="DVztPk_" name="error.label.must_be_unique">
       <segment state="translated">
         <source>error.label.must_be_unique</source>
-        <target>"%label%" label is used multiple times, all labels must be unique</target>
+        <target>Le label "{label}" est utilisé plusieurs fois, les labels doivent être uniques</target>
       </segment>
     </unit>
   </file>

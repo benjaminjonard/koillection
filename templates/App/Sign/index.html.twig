@@ -13,7 +13,7 @@
     {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.signs_shared'|trans({'%username%':  app.request.get('username')})
+            'description': 'menu.signs_shared'|trans({'username':  app.request.get('username')})
         }) }}
     {% else %}
         {{ parent() }}
@@ -24,7 +24,7 @@
     <div class="title-block">
         <h1>{{ 'menu.signs'|trans() }}</h1>
         <ul class="nav nav-pills">
-            <li>{{ 'counter.signs'|trans({'%count%': signs|length}) }}</li>
+            <li>{{ 'counter.signs'|trans({'count': signs|length}) }}</li>
         </ul>
     </div>
 

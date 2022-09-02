@@ -91,7 +91,7 @@ class RegenerateThumbnailsCommand extends Command
             $this->managerRegistry->getManager()->flush();
         }
 
-        $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['%count%' => $counter]));
+        $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['count' => $counter]));
 
         return Command::SUCCESS;
     }

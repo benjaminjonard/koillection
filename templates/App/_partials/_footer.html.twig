@@ -1,10 +1,10 @@
 <div class="spacer"></div>
 
 <footer>
-    {{ 'global.created_at'|trans({'%date%': object.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC'))}) }}
+    {{ 'global.created_at'|trans({'date': object.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC'))}) }}
     {% if object.updatedAt %}
-        · {{ 'global.updated_at'|trans({'%date%': object.updatedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }) }}
+        · {{ 'global.updated_at'|trans({'date': object.updatedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }) }}
     {% endif %}
 
-    · {{ ('global.seen_counter.' ~ class)|trans({'%count%': object.seenCounter + 1}) }}
+    · {{ ('global.seen_counter.' ~ class)|trans({'count': object.seenCounter + 1}) }}
 </footer>

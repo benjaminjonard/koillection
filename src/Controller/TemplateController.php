@@ -40,7 +40,7 @@ class TemplateController extends AbstractController
             $managerRegistry->getManager()->persist($template);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.template_added', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.template_added', ['template' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_template_show', ['id' => $template->getId()]);
         }
@@ -60,7 +60,7 @@ class TemplateController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.template_edited', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.template_edited', ['template' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_template_show', ['id' => $template->getId()]);
         }
@@ -93,7 +93,7 @@ class TemplateController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($template);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.template_deleted', ['%template%' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.template_deleted', ['template' => '&nbsp;<strong>'.$template->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_template_index');

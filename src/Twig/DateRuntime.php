@@ -33,7 +33,7 @@ class DateRuntime implements RuntimeExtensionInterface
         ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->trans("global.time.{$v}", ['%count%' => $diff->$k]);
+                $v = $this->translator->trans("global.time.{$v}", ['count' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }
@@ -42,7 +42,7 @@ class DateRuntime implements RuntimeExtensionInterface
         $string = \array_slice($string, 0, 1);
 
         return $string !== [] ?
-            $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
+            $this->translator->trans('global.time.ago', ['time' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
     public function timeDiff(\DateTimeImmutable $start, \DateTimeImmutable $end): string
@@ -63,7 +63,7 @@ class DateRuntime implements RuntimeExtensionInterface
         ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->trans("global.time.{$v}", ['%count%' => $diff->$k]);
+                $v = $this->translator->trans("global.time.{$v}", ['count' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }
@@ -91,7 +91,7 @@ class DateRuntime implements RuntimeExtensionInterface
 
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $this->translator->trans("global.time.{$v}", ['%count%' => $diff->$k]);
+                $v = $this->translator->trans("global.time.{$v}", ['count' => $diff->$k]);
             } else {
                 unset($string[$k]);
             }
@@ -100,6 +100,6 @@ class DateRuntime implements RuntimeExtensionInterface
         $string = \array_slice($string, 0, 1);
 
         return $string !== [] ?
-            $this->translator->trans('global.time.ago', ['%time%' => implode(', ', $string)]) : $this->translator->trans('global.time.today');
+            $this->translator->trans('global.time.ago', ['time' => implode(', ', $string)]) : $this->translator->trans('global.time.today');
     }
 }

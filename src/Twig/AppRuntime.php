@@ -43,7 +43,7 @@ class AppRuntime implements RuntimeExtensionInterface
         $element = array_shift($breadcrumb);
 
         if ($element instanceof BreadcrumbElement && isset($element->getParams()['username'])) {
-            return $this->translator->trans($element->getLabel(), ['%username%' => $element->getParams()['username']]);
+            return $this->translator->trans($element->getLabel(), ['username' => $element->getParams()['username']]);
         }
 
         $element = [] === $breadcrumb ? $element : array_pop($breadcrumb);
@@ -74,7 +74,7 @@ class AppRuntime implements RuntimeExtensionInterface
 
             if ('root' === $element->getType()) {
                 if ('shared' === $this->contextHandler->getContext()) {
-                    return $this->translator->trans($element->getLabel().'_shared', ['%username%' => $this->contextHandler->getUsername()]);
+                    return $this->translator->trans($element->getLabel().'_shared', ['username' => $this->contextHandler->getUsername()]);
                 }
 
                 return $this->translator->trans($element->getLabel());

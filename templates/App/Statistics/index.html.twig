@@ -14,7 +14,7 @@
     {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.statistics_shared'|trans({'%username%':  app.request.get('username')})
+            'description': 'menu.statistics_shared'|trans({'username':  app.request.get('username')})
         }) }}
     {% else %}
         {{ parent() }}
@@ -25,10 +25,10 @@
     <div class="title-block">
         <h1>{{ 'menu.statistics'|trans }}</h1>
         <ul class="nav nav-pills">
-            <li>{{ 'counter.collection'|trans({'%count%': counters.collections}) }}</li>
-            <li>{{ 'counter.item'|trans({'%count%': counters.items}) }}</li>
-            <li>{{ 'counter.tag'|trans({'%count%': counters.tags}) }}</li>
-            <li>{{ 'counter.sign'|trans({'%count%': counters.signs}) }}</li>
+            <li>{{ 'counter.collection'|trans({'count': counters.collections}) }}</li>
+            <li>{{ 'counter.item'|trans({'count': counters.items}) }}</li>
+            <li>{{ 'counter.tag'|trans({'count': counters.tags}) }}</li>
+            <li>{{ 'counter.sign'|trans({'count': counters.signs}) }}</li>
         </ul>
     </div>
 

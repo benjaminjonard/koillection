@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import Translator from "../../js/translator.min";
+import Translator from "bazinga-translator";
 import * as echarts from 'echarts/lib/echarts'
 import { GridComponent, DataZoomComponent, TooltipComponent } from 'echarts/components';
 import { LineChart } from 'echarts/charts';
@@ -21,7 +21,7 @@ export default class extends Controller {
                     return [params[0], '10%'];
                 },
                 formatter: function (params) {
-                    return params[0].axisValue + ': ' + Translator.transChoice('statistics.items', params[0].data);
+                    return params[0].axisValue + ': ' + Translator.trans('statistics.items', {'count': params[0].data});
                 }
             },
             color: [this.isDarkMode ? '#00ce99' : '#009688'],

@@ -136,19 +136,13 @@
     <unit id="AghNVUV" name="statistics.items_added">
       <segment state="translated">
         <source>statistics.items_added</source>
-        <target>[0,1] %count% objet ajouté| ]1,Inf[ %count% objets ajoutés</target>
-      </segment>
-    </unit>
-    <unit id="0DU28lZ" name="statistics.users">
-      <segment state="translated">
-        <source>statistics.users</source>
-        <target>[0,1] %count% utilisateur| ]1,Inf[ %count% utilisateurs</target>
+        <target>{count, plural, one {# objet ajouté} other {# objets ajoutés}}</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
       <segment state="translated">
         <source>statistics.items</source>
-        <target>[0,1] %count% objet| ]1,Inf[ %count% objets</target>
+        <target>{count, plural, zero {# items} one {# item} other {# items}}</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">
@@ -172,7 +166,7 @@
     <unit id="Em6KHMM" name="global.search.more_results">
       <segment state="translated">
         <source>global.search.more_results</source>
-        <target>{1} + %count% résultat| ]1,Inf[ + %count% résultats</target>
+        <target>{count, plural, one { + # résultat} other { + # résultats}}</target>
       </segment>
     </unit>
     <unit id="nfDV3tB" name="global.search.no_results">
