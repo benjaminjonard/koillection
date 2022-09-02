@@ -14,7 +14,7 @@
     {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.tags_shared'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.tags_shared'|trans({'username':  app.request.get('username')}),
             'image': tag.imageSmallThumbnail
         }) }}
     {% else %}
@@ -34,7 +34,7 @@
                     {% endif %}
                 </h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|trans({'%count%': tag.items|length}) }}</li>
+                    <li>{{ 'counter.item'|trans({'count': tag.items|length}) }}</li>
                 </ul>
             </div>
 
@@ -103,7 +103,7 @@
                             <li class="show-more-btn-holder">
                                 {% if relatedTags|length > 10 %}
                                     <a href="#" data-action="show-more#showMore"
-                                       data-show-more-target="showMoreButton">{{ 'btn.show_more'|trans({'%count%': relatedTags|length - 10}) }}</a>
+                                       data-show-more-target="showMoreButton">{{ 'btn.show_more'|trans({'count': relatedTags|length - 10}) }}</a>
                                     <a href="#" data-action="show-more#showLess" data-show-more-target="showLessButton"
                                        class="hidden">{{ 'btn.show_less'|trans }}</a>
                                 {% endif %}

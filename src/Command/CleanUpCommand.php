@@ -88,7 +88,7 @@ class CleanUpCommand extends Command
             }
         }
 
-        $output->writeln($this->translator->trans('message.files_deleted', ['%count%' => \count($diff)]));
+        $output->writeln($this->translator->trans('message.files_deleted', ['count' => \count($diff)]));
 
         return Command::SUCCESS;
     }

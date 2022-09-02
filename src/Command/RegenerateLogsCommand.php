@@ -81,7 +81,7 @@ class RegenerateLogsCommand extends Command
             $this->managerRegistry->getManager()->clear();
         }
 
-        $output->writeln($this->translator->trans('message.logs_generated', ['%count%' => $counter]));
+        $output->writeln($this->translator->trans('message.logs_generated', ['count' => $counter]));
 
         $results = $this->managerRegistry->getManager()->createQueryBuilder()
             ->select('l.objectId')

@@ -47,11 +47,11 @@ class LogRuntime implements RuntimeExtensionInterface
                     $label = "<strong><a href='{$route}'>{$objectLabel}</a></strong>";
                 }
 
-                $messages[] = $this->translator->trans('log.'.$class.'.created', ['%label%' => $label]);
+                $messages[] = $this->translator->trans('log.'.$class.'.created', ['label' => $label]);
                 break;
             case LogTypeEnum::TYPE_DELETE:
                 $label = "<strong class='deleted'>{$objectLabel}</strong>";
-                $messages[] = $this->translator->trans('log.'.$class.'.deleted', ['%label%' => $label]);
+                $messages[] = $this->translator->trans('log.'.$class.'.deleted', ['label' => $label]);
                 break;
             default:
                 break;

@@ -136,19 +136,19 @@
     <unit id="AghNVUV" name="statistics.items_added">
       <segment state="translated">
         <source>statistics.items_added</source>
-        <target>{0} %count% elementos añadidos| {1} %count% elemento añadido| ]1,Inf[ %count% elementos añadidos</target>
+        <target>{0} {count} elementos añadidos| {1} {count} elemento añadido| ]1,Inf[ {count} elementos añadidos</target>
       </segment>
     </unit>
     <unit id="0DU28lZ" name="statistics.users">
       <segment state="translated">
         <source>statistics.users</source>
-        <target>{0} %count% usuarios| {1} %count% usuario| ]1,Inf[ %count% usuarios</target>
+        <target>{0} {count} usuarios| {1} {count} usuario| ]1,Inf[ {count} usuarios</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
       <segment state="translated">
         <source>statistics.items</source>
-        <target>{0} %count% elementos| {1} %count% elemento| ]1,Inf[ %count% elementos</target>
+        <target>{0} {count} elementos| {1} {count} elemento| ]1,Inf[ {count} elementos</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">
@@ -172,7 +172,7 @@
     <unit id="Em6KHMM" name="global.search.more_results">
       <segment state="translated">
         <source>global.search.more_results</source>
-        <target>{1} + %count% resultado más| ]1,Inf[ + %count% resultados más</target>
+        <target>{1} + {count} resultado más| ]1,Inf[ + {count} resultados más</target>
       </segment>
     </unit>
     <unit id="nfDV3tB" name="global.search.no_results">

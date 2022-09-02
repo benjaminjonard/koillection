@@ -14,7 +14,7 @@
     {% if context == 'shared' %}
         {{ include('App/_partials/_meta.html.twig', {
             'title': renderTitle(breadcrumb),
-            'description': 'menu.albums_shared'|trans({'%username%':  app.request.get('username')}),
+            'description': 'menu.albums_shared'|trans({'username':  app.request.get('username')}),
             'image': album.image
         }) }}
     {% else %}
@@ -36,8 +36,8 @@
                 <div class="right">
                     <h1>{{ album.title }}</h1>
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.photo'|trans({'%count%': getCounters(album).items}) }}</li>
-                        <li>{{ 'counter.album'|trans({'%count%': getCounters(album).children}) }}</li>
+                        <li>{{ 'counter.photo'|trans({'count': getCounters(album).items}) }}</li>
+                        <li>{{ 'counter.album'|trans({'count': getCounters(album).children}) }}</li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>

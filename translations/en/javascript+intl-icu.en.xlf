@@ -136,19 +136,19 @@
     <unit id="AghNVUV" name="statistics.items_added">
       <segment state="translated">
         <source>statistics.items_added</source>
-        <target>{0} %count% items added| {1} %count% item added| ]1,Inf[ %count% items added</target>
+        <target>{count, plural, zero {# items added} one {# item added} other {# items added}}</target>
       </segment>
     </unit>
     <unit id="0DU28lZ" name="statistics.users">
       <segment state="translated">
         <source>statistics.users</source>
-        <target>{0} %count% users| {1} %count% user| ]1,Inf[ %count% users</target>
+        <target>{count, plural, zero {# users} one {# user} other {# users}}</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
       <segment state="translated">
         <source>statistics.items</source>
-        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
+        <target>{count, plural, zero {# items} one {# item} other {# items}}</target>
       </segment>
     </unit>
     <unit id="w0J8w0G" name="select2.no_results">
@@ -172,7 +172,7 @@
     <unit id="Em6KHMM" name="global.search.more_results">
       <segment state="translated">
         <source>global.search.more_results</source>
-        <target>{1} + %count% more result| ]1,Inf[ + %count% more results</target>
+        <target>{count, plural, one { + # more result} other { + # more results}}</target>
       </segment>
     </unit>
     <unit id="nfDV3tB" name="global.search.no_results">

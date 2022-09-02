@@ -33,7 +33,7 @@ class ChoiceListController extends AbstractController
             $managerRegistry->getManager()->persist($choiceList);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.choice_list_added', ['%list%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.choice_list_added', ['list' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_choice_list_index');
         }
@@ -50,7 +50,7 @@ class ChoiceListController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.choice_list_edited', ['%list%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.choice_list_edited', ['list' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_choice_list_index');
         }
@@ -70,7 +70,7 @@ class ChoiceListController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($choiceList);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.choice_list_deleted', ['%list%' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.choice_list_deleted', ['list' => '&nbsp;<strong>'.$choiceList->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_choice_list_index');

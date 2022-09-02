@@ -79,7 +79,7 @@ class ItemController extends AbstractController
             $managerRegistry->getManager()->persist($item);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.item_added', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.item_added', ['item' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
             if ($request->request->has('save_and_add_another')) {
                 return $this->redirectToRoute('app_item_add', ['collection' => $item->getCollection()->getId()]);
@@ -124,7 +124,7 @@ class ItemController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.item_edited', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.item_edited', ['item' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_item_show', ['id' => $item->getId()]);
         }
@@ -148,7 +148,7 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($item);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.item_deleted', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.item_deleted', ['item' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
@@ -168,7 +168,7 @@ class ItemController extends AbstractController
             $managerRegistry->getManager()->persist($loan);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.loan', ['%item%' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.loan', ['item' => '&nbsp;<strong>'.$item->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_item_show', ['id' => $item->getId()]);
         }

@@ -4,31 +4,31 @@
     <unit id="xGPqLcT" name="message.files_deleted">
       <segment state="translated">
         <source>message.files_deleted</source>
-        <target>{0} %count% files deleted| {1} %count% file deleted| ]1,Inf[ %count% files deleted</target>
+        <target>{count, plural, zero {# files deleted} one {# file deleted} other {# files deleted}}</target>
       </segment>
     </unit>
     <unit id=".512qhB" name="message.logs_generated">
       <segment state="translated">
         <source>message.logs_generated</source>
-        <target>{0} %count% logs generated| {1} %count% log generated| ]1,Inf[ %count% logs regenerated</target>
+        <target>{count, plural, zero {# logs generated} one {# log generated} other {# logs regenerated}}</target>
       </segment>
     </unit>
     <unit id="OswwPau" name="message.thumbnails_regenerated">
       <segment state="translated">
         <source>message.thumbnails_regenerated</source>
-        <target>{0} %count% thumbnails regenerated| {1} %count% thumbnail regenerated| ]1,Inf[ %count% thumbnails regenerated</target>
+        <target>{count, plural, zero {# thumbnails regenerated} one {# thumbnail regenerated} other {# thumbnails regenerated}}</target>
       </segment>
     </unit>
     <unit id="X_Pm9um" name="message.user_added">
       <segment state="translated">
         <source>message.user_added</source>
-        <target>User %user% added</target>
+        <target>User {user} added</target>
       </segment>
     </unit>
     <unit id="Fcb_tkO" name="message.user_edited">
       <segment state="translated">
         <source>message.user_edited</source>
-        <target>User %user% has been updated</target>
+        <target>User {user} has been updated</target>
       </segment>
     </unit>
     <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
@@ -40,133 +40,133 @@
     <unit id="2a_RIum" name="message.user_deleted">
       <segment state="translated">
         <source>message.user_deleted</source>
-        <target>User %user% was deleted</target>
+        <target>User {user} was deleted</target>
       </segment>
     </unit>
     <unit id="ls5sYo8" name="message.album_added">
       <segment state="translated">
         <source>message.album_added</source>
-        <target>Album %album% has been added</target>
+        <target>Album {album} has been added</target>
       </segment>
     </unit>
     <unit id="0lwPpH7" name="message.album_edited">
       <segment state="translated">
         <source>message.album_edited</source>
-        <target>Album %album% has been updated</target>
+        <target>Album {album} has been updated</target>
       </segment>
     </unit>
     <unit id="oawVfJJ" name="message.album_deleted">
       <segment state="translated">
         <source>message.album_deleted</source>
-        <target>Album %album% has been deleted</target>
+        <target>Album {album} has been deleted</target>
       </segment>
     </unit>
     <unit id="s.nX0z8" name="message.choice_list_added">
       <segment state="translated">
         <source>message.choice_list_added</source>
-        <target>Choice list %list% has been added</target>
+        <target>Choice list {list} has been added</target>
       </segment>
     </unit>
     <unit id="wWQwqjC" name="message.choice_list_edited">
       <segment state="translated">
         <source>message.choice_list_edited</source>
-        <target>Choice list %list% has been updated</target>
+        <target>Choice list {list} has been updated</target>
       </segment>
     </unit>
     <unit id="aXwmQFu" name="message.choice_list_deleted">
       <segment state="translated">
         <source>message.choice_list_deleted</source>
-        <target>Choice list %list% has been deleted</target>
+        <target>Choice list {list} has been deleted</target>
       </segment>
     </unit>
     <unit id="_sN4yvV" name="message.collection_added">
       <segment state="translated">
         <source>message.collection_added</source>
-        <target>Collection %collection% has been added</target>
+        <target>Collection {collection} has been added</target>
       </segment>
     </unit>
     <unit id="p.bp_UN" name="message.collection_edited">
       <segment state="translated">
         <source>message.collection_edited</source>
-        <target>Collection %collection% has been updated</target>
+        <target>Collection {collection} has been updated</target>
       </segment>
     </unit>
     <unit id="m3B26dq" name="message.collection_deleted">
       <segment state="translated">
         <source>message.collection_deleted</source>
-        <target>Collection %collection% has been deleted</target>
+        <target>Collection {collection} has been deleted</target>
       </segment>
     </unit>
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment state="translated">
         <source>message.items_tagged</source>
-        <target>{0} %count% items tagged| {1} %count% item tagged| ]1,Inf[ %count% items tagged</target>
+        <target>{count, plural, zero {# items tagged} one {# item tagged} other {# items tagged}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
       <segment state="translated">
         <source>message.inventory_added</source>
-        <target>Inventory %inventory% has been created</target>
+        <target>Inventory {inventory} has been created</target>
       </segment>
     </unit>
     <unit id="EYnSw0A" name="message.inventory_deleted">
       <segment state="translated">
         <source>message.inventory_deleted</source>
-        <target>Inventory %inventory% was deleted</target>
+        <target>Inventory {inventory} was deleted</target>
       </segment>
     </unit>
     <unit id="TMGiC1d" name="message.item_added">
       <segment state="translated">
         <source>message.item_added</source>
-        <target>Item %item% has been added</target>
+        <target>Item {item} has been added</target>
       </segment>
     </unit>
     <unit id="UGVMo0W" name="message.item_edited">
       <segment state="translated">
         <source>message.item_edited</source>
-        <target>Item %item% has been updated</target>
+        <target>Item {item} has been updated</target>
       </segment>
     </unit>
     <unit id="HgYxNo9" name="message.item_deleted">
       <segment state="translated">
         <source>message.item_deleted</source>
-        <target>Item %item% has been deleted</target>
+        <target>Item {item} has been deleted</target>
       </segment>
     </unit>
     <unit id="AT9p7pU" name="message.loan">
       <segment state="translated">
         <source>message.loan</source>
-        <target>Item %item% is now marked as loaned</target>
+        <target>Item {item} is now marked as loaned</target>
       </segment>
     </unit>
     <unit id="FlBhKyx" name="message.loan_canceled">
       <segment state="translated">
         <source>message.loan_canceled</source>
-        <target>Item %item% loan has been canceled</target>
+        <target>Item {item} loan has been canceled</target>
       </segment>
     </unit>
     <unit id="zkp2rxS" name="message.item_returned">
       <segment state="translated">
         <source>message.item_returned</source>
-        <target>Item %item% is now mark as returned</target>
+        <target>Item {item} is now mark as returned</target>
       </segment>
     </unit>
     <unit id="n5rS9vY" name="message.photo_added">
       <segment state="translated">
         <source>message.photo_added</source>
-        <target>Photo %photo% has been added</target>
+        <target>Photo {photo} has been added</target>
       </segment>
     </unit>
     <unit id="hIxqW3m" name="message.photo_edited">
       <segment state="translated">
         <source>message.photo_edited</source>
-        <target>Photo %photo% has been updated</target>
+        <target>Photo {photo} has been updated</target>
       </segment>
     </unit>
     <unit id="p5Rmjm9" name="message.photo_deleted">
       <segment state="translated">
         <source>message.photo_deleted</source>
-        <target>Photo %photo% has been deleted</target>
+        <target>Photo {photo} has been deleted</target>
       </segment>
     </unit>
     <unit id="rVN8d.E" name="message.profile_updated">
@@ -184,97 +184,97 @@
     <unit id="Ail0qPJ" name="message.tag_category_added">
       <segment state="translated">
         <source>message.tag_category_added</source>
-        <target>Tag category %category% has been added</target>
+        <target>Tag category {category} has been added</target>
       </segment>
     </unit>
     <unit id="vg07kkR" name="message.tag_category_edited">
       <segment state="translated">
         <source>message.tag_category_edited</source>
-        <target>Tag category %category% has been updated</target>
+        <target>Tag category {category} has been updated</target>
       </segment>
     </unit>
     <unit id="XlwsvOZ" name="message.tag_category_deleted">
       <segment state="translated">
         <source>message.tag_category_deleted</source>
-        <target>Tag category %category% was deleted</target>
+        <target>Tag category {category} was deleted</target>
       </segment>
     </unit>
     <unit id="3EE._Y4" name="message.tag_edited">
       <segment state="translated">
         <source>message.tag_edited</source>
-        <target>Tag %tag% has been updated</target>
+        <target>Tag {tag} has been updated</target>
       </segment>
     </unit>
     <unit id="_PrKtDW" name="message.tag_deleted">
       <segment state="translated">
         <source>message.tag_deleted</source>
-        <target>Tag %tag% has been deleted</target>
+        <target>Tag {tag} has been deleted</target>
       </segment>
     </unit>
     <unit id="QPUEgMd" name="message.unused_tags_deleted">
       <segment state="translated">
         <source>message.unused_tags_deleted</source>
-        <target>{0} %count% tags deleted| {1} %count% tag deleted| ]1,Inf[ %count% tags deleted</target>
+        <target>{count, plural, zero {# tags deleted} one {# tag deleted} other {# tags deleted}}</target>
       </segment>
     </unit>
     <unit id="xM.mW1R" name="message.template_added">
       <segment state="translated">
         <source>message.template_added</source>
-        <target>Template %template% has been added</target>
+        <target>Template {template} has been added</target>
       </segment>
     </unit>
     <unit id="5d2N5Ar" name="message.template_edited">
       <segment state="translated">
         <source>message.template_edited</source>
-        <target>Template %template% has been updated</target>
+        <target>Template {template} has been updated</target>
       </segment>
     </unit>
     <unit id="ZMxcm6L" name="message.template_deleted">
       <segment state="translated">
         <source>message.template_deleted</source>
-        <target>Template %template% has been deleted</target>
+        <target>Template {template} has been deleted</target>
       </segment>
     </unit>
     <unit id="9RoxCzk" name="message.wish_added">
       <segment state="translated">
         <source>message.wish_added</source>
-        <target>Wish %wish% has been added</target>
+        <target>Wish {wish} has been added</target>
       </segment>
     </unit>
     <unit id="XoB_zRK" name="message.wish_edited">
       <segment state="translated">
         <source>message.wish_edited</source>
-        <target>Wish %wish% has been updated</target>
+        <target>Wish {wish} has been updated</target>
       </segment>
     </unit>
     <unit id="akgCJp9" name="message.wish_deleted">
       <segment state="translated">
         <source>message.wish_deleted</source>
-        <target>Wish %wish% has been deleted</target>
+        <target>Wish {wish} has been deleted</target>
       </segment>
     </unit>
     <unit id="mAYxq3X" name="message.wish_transfered">
       <segment state="translated">
         <source>message.wish_transfered</source>
-        <target>Wish %wish% was transfered to the collection %collection%</target>
+        <target>Wish {wish} was transfered to the collection {collection}</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
       <segment state="translated">
         <source>message.wishlist_added</source>
-        <target>Wishlist %wishlist% has been added</target>
+        <target>Wishlist {wishlist} has been added</target>
       </segment>
     </unit>
     <unit id="NfYGrwC" name="message.wishlist_edited">
       <segment state="translated">
         <source>message.wishlist_edited</source>
-        <target>Wishlist %wishlist% has been updated</target>
+        <target>Wishlist {wishlist} has been updated</target>
       </segment>
     </unit>
     <unit id="8ujnJmR" name="message.wishlist_deleted">
       <segment state="translated">
         <source>message.wishlist_deleted</source>
-        <target>Wishlist %wishlist% has been deleted</target>
+        <target>Wishlist {wishlist} has been deleted</target>
       </segment>
     </unit>
     <unit id="zfOqV80" name="form.item_sorting.default_value">
@@ -424,7 +424,7 @@
     <unit id="bKzhzsy" name="global.time.ago">
       <segment state="translated">
         <source>global.time.ago</source>
-        <target>%time% ago</target>
+        <target>{time} ago</target>
       </segment>
     </unit>
     <unit id="kBJEdcf" name="global.time.just_now">
@@ -502,67 +502,67 @@
     <unit id="4fDIeO4" name="label.space_used">
       <segment state="translated">
         <source>label.space_used</source>
-        <target>%used% / %total% used</target>
+        <target>{used} / {total} used</target>
       </segment>
     </unit>
     <unit id="ZzykrnK" name="label.space_free">
       <segment state="translated">
         <source>label.space_free</source>
-        <target>%free% free</target>
+        <target>{free} free</target>
       </segment>
     </unit>
     <unit id="FIesMhl" name="counter.without_number.users">
       <segment state="translated">
         <source>counter.without_number.users</source>
-        <target>{0} users| {1} user| ]1,Inf[ users</target>
+        <target>{count, plural, zero {# users} one {# user} other {# users}}</target>
       </segment>
     </unit>
     <unit id="uVNjha9" name="counter.without_number.collections">
       <segment state="translated">
         <source>counter.without_number.collections</source>
-        <target>{0} collections| {1} collection| ]1,Inf[ collections</target>
+        <target>{count, plural, zero {# collections} one {# collection} other {# collections}}</target>
       </segment>
     </unit>
     <unit id="VrJk8jp" name="counter.without_number.items">
       <segment state="translated">
         <source>counter.without_number.items</source>
-        <target>{0} items| {1} item| ]1,Inf[ items</target>
+        <target>{count, plural, zero {# items} one {# item} other {# items}}</target>
       </segment>
     </unit>
     <unit id="hjM7hgU" name="counter.without_number.tags">
       <segment state="translated">
         <source>counter.without_number.tags</source>
-        <target>{0} tags| {1} tag| ]1,Inf[ tags</target>
+        <target>{count, plural, zero {# tags} one {# tag} other {# tags}}</target>
       </segment>
     </unit>
     <unit id="cw0nkO5" name="counter.without_number.wishlists">
       <segment state="translated">
         <source>counter.without_number.wishlists</source>
-        <target>{0} whishlists| {1} wishlist| ]1,Inf[ wishlists</target>
+        <target>{count, plural, zero {# wishlists} one {# wishlist} other {# wishlists}}</target>
       </segment>
     </unit>
     <unit id="zzagaMI" name="counter.without_number.wishes">
       <segment state="translated">
         <source>counter.without_number.wishes</source>
-        <target>{0} wishes| {1} wish| ]1,Inf[ wishes</target>
+        <target>{count, plural, zero {# wishes} one {# wish} other {# wishes}}</target>
       </segment>
     </unit>
     <unit id="QJMsz.z" name="counter.without_number.albums">
       <segment state="translated">
         <source>counter.without_number.albums</source>
-        <target>{0} albums| {1} album| ]1,Inf[ albums</target>
+        <target>{count, plural, zero {# albums} one {# album} other {# albums}}</target>
       </segment>
     </unit>
     <unit id="YKRNql5" name="counter.without_number.photos">
       <segment state="translated">
         <source>counter.without_number.photos</source>
-        <target>{0} photos| {1} photo| ]1,Inf[ photos</target>
+        <target>{count, plural, zero {# photos} one {# photo} other {# photos}}</target>
       </segment>
     </unit>
     <unit id="aCCqbt1" name="counter.without_number.signs">
       <segment state="translated">
         <source>counter.without_number.signs</source>
-        <target>{0} signatures| {1} signature| ]1,Inf[ signatures</target>
+        <target>{count, plural, zero {# signatures} one {# signature} other {# signatures}}</target>
       </segment>
     </unit>
     <unit id="jNAS_YE" name="label.space_used_by_koillection">
@@ -586,13 +586,13 @@
     <unit id="eqnKfFG" name="label.outdated_release">
       <segment state="translated">
         <source>label.outdated_release</source>
-        <target>Version %release% is available</target>
+        <target>Version {release} is available</target>
       </segment>
     </unit>
     <unit id="EvNVLVb" name="label.required_php_version">
       <segment state="translated">
         <source>label.required_php_version</source>
-        <target>PHP %version% is required</target>
+        <target>PHP {version} is required</target>
       </segment>
     </unit>
     <unit id="J1HjVfO" name="label.up_to_date_release">
@@ -664,7 +664,7 @@
     <unit id="1sstKF9" name="title.edit_user">
       <segment state="translated">
         <source>title.edit_user</source>
-        <target>Edit user %user%</target>
+        <target>Edit user {user}</target>
       </segment>
     </unit>
     <unit id="fKgc.kW" name="title.users">
@@ -748,7 +748,7 @@
     <unit id="1NZRNj4" name="counter.photo">
       <segment state="translated">
         <source>counter.photo</source>
-        <target>{0} %count% photos| {1} %count% photo| ]1,Inf[ %count% photos</target>
+        <target>{count, plural, zero {# photos} one {# photo} other {# photos}}</target>
       </segment>
     </unit>
     <unit id="rd2X72s" name="message.delete.photo">
@@ -778,13 +778,13 @@
     <unit id="domeXiF" name="title.edit_album">
       <segment state="translated">
         <source>title.edit_album</source>
-        <target>Edit album %title%</target>
+        <target>Edit album {title}</target>
       </segment>
     </unit>
     <unit id="nQDmBI4" name="menu.collections_shared">
       <segment state="translated">
         <source>menu.collections_shared</source>
-        <target>%username%'s collection</target>
+        <target>{username}'s collection</target>
       </segment>
     </unit>
     <unit id="5hMk7ux" name="menu.albums">
@@ -796,7 +796,7 @@
     <unit id="9N4x.TV" name="counter.album">
       <segment state="translated">
         <source>counter.album</source>
-        <target>{0} %count% albums| {1} %count% album| ]1,Inf[ %count% albums</target>
+        <target>{count, plural, zero {# albums} one {# album} other {# albums}}</target>
       </segment>
     </unit>
     <unit id="NOenNu3" name="tooltip.add_album">
@@ -856,7 +856,7 @@
     <unit id="60Mvg7w" name="title.edit_choice_list">
       <segment state="translated">
         <source>title.edit_choice_list</source>
-        <target>Edit choice list %list%</target>
+        <target>Edit choice list {list}</target>
       </segment>
     </unit>
     <unit id="em8w1x." name="menu.choice_lists">
@@ -868,7 +868,7 @@
     <unit id="SMPEMjp" name="counter.choice_lists">
       <segment state="translated">
         <source>counter.choice_lists</source>
-        <target>{0} %count% choice lists| {1} %count% choice list| ]1,Inf[ %count% choice lists</target>
+        <target>{count, plural, zero {# choice lists} one {# choice list} other {# choice lists}}</target>
       </segment>
     </unit>
     <unit id="3yuF9Sl" name="tooltip.add_choice_list">
@@ -952,7 +952,7 @@
     <unit id=".eH3OZY" name="counter.item">
       <segment state="translated">
         <source>counter.item</source>
-        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
+        <target>{count, plural, zero {# items} one {# item} other {# items}}</target>
       </segment>
     </unit>
     <unit id="AiXAfVP" name="title.add_collection">
@@ -964,13 +964,13 @@
     <unit id="8yVQg94" name="title.tag_collection">
       <segment state="translated">
         <source>title.tag_collection</source>
-        <target>Batch tagging %collection%</target>
+        <target>Batch tagging {collection}</target>
       </segment>
     </unit>
     <unit id="KlxVsBD" name="title.edit_collection">
       <segment state="translated">
         <source>title.edit_collection</source>
-        <target>Edit collection %collection%</target>
+        <target>Edit collection {collection}</target>
       </segment>
     </unit>
     <unit id="MW4FPxn" name="menu.collections">
@@ -982,7 +982,7 @@
     <unit id="Ttj5ZLt" name="counter.collection">
       <segment state="translated">
         <source>counter.collection</source>
-        <target>{0} %count% collections| {1} %count% collection| ]1,Inf[ %count% collections</target>
+        <target>{count, plural, zero {# collections} one {# collection} other {# collections}}</target>
       </segment>
     </unit>
     <unit id="0Vhz2n." name="tooltip.add_collection">
@@ -1072,19 +1072,19 @@
     <unit id="IxgpiDC" name="counter.total_items">
       <segment state="translated">
         <source>counter.total_items</source>
-        <target>{0} %count% items| {1} %count% item| ]1,Inf[ %count% items</target>
+        <target>{count, plural, zero {# items} one {# item} other {# items}}</target>
       </segment>
     </unit>
     <unit id="EZsGAxN" name="counter.checked_items">
       <segment state="translated">
         <source>counter.checked_items</source>
-        <target>{0} %count% checked items| {1} %count% checked item| ]1,Inf[ %count% checked items</target>
+        <target>{count, plural, zero {# checked items} one {# checked item} other {# checked items}}</target>
       </segment>
     </unit>
     <unit id="gVjxaJZ" name="label.completion_rate">
       <segment state="translated">
         <source>label.completion_rate</source>
-        <target>%rate%% completed</target>
+        <target>{rate}% completed</target>
       </segment>
     </unit>
     <unit id="i9VapGy" name="title.add_inventory">
@@ -1204,19 +1204,19 @@
     <unit id="0w7FrTh" name="title.edit_item">
       <segment state="translated">
         <source>title.edit_item</source>
-        <target>Edit item %item%</target>
+        <target>Edit item {item}</target>
       </segment>
     </unit>
     <unit id="U4lp2Ma" name="global.created_at">
       <segment state="translated">
         <source>global.created_at</source>
-        <target>Creation : %date%</target>
+        <target>Creation : {date}</target>
       </segment>
     </unit>
     <unit id="ylc8ODN" name="global.updated_at">
       <segment state="translated">
         <source>global.updated_at</source>
-        <target>Last update : %date%</target>
+        <target>Last update : {date}</target>
       </segment>
     </unit>
     <unit id="VFvXW.m" name="menu.loans">
@@ -1228,13 +1228,13 @@
     <unit id="nlD7D9j" name="counter.loan">
       <segment state="translated">
         <source>counter.loan</source>
-        <target>{0} %count% loans| {1} %count% loan| ]1,Inf[ %count% loans</target>
+        <target>{count, plural, zero {# loans} one {# loan} other {# loans}}</target>
       </segment>
     </unit>
     <unit id="0Nr1G8_" name="counter.returned">
       <segment state="translated">
         <source>counter.returned</source>
-        <target>{0} %count% loans returned| {1} %count% loan returned| ]1,Inf[ %count% loans returned</target>
+        <target>{count, plural, zero {# loans returned} one {# loan returned} other {# loans returned}}</target>
       </segment>
     </unit>
     <unit id="1Jpq5QX" name="tab.loans">
@@ -1288,19 +1288,19 @@
     <unit id="bmt.5SD" name="title.loan_item">
       <segment state="translated">
         <source>title.loan_item</source>
-        <target>Loan item %item%</target>
+        <target>Loan item {item}</target>
       </segment>
     </unit>
     <unit id="tpcX1HE" name="title.add_album_photo">
       <segment state="translated">
         <source>title.add_album_photo</source>
-        <target>Add a new photo to the album %album%</target>
+        <target>Add a new photo to the album {album}</target>
       </segment>
     </unit>
     <unit id="yXxCCBI" name="title.edit_album_photo">
       <segment state="translated">
         <source>title.edit_album_photo</source>
-        <target>Edit photo %photo%</target>
+        <target>Edit photo {photo}</target>
       </segment>
     </unit>
     <unit id="XSS5BT8" name="menu.profile">
@@ -1462,7 +1462,7 @@
     <unit id="e9psgbF" name="counter.signs">
       <segment state="translated">
         <source>counter.signs</source>
-        <target>{0} %count% signatures| {1} %count% signature| ]1,Inf[ %count% signatures</target>
+        <target>{count, plural, zero {# signatures} one {# signature} other {# signatures}}</target>
       </segment>
     </unit>
     <unit id="Bhx8Fvg" name="menu.statistics">
@@ -1474,13 +1474,13 @@
     <unit id="If3y3hC" name="counter.tag">
       <segment state="translated">
         <source>counter.tag</source>
-        <target>{0} %count% tags| {1} %count% tag| ]1,Inf[ %count% tags</target>
+        <target>{count, plural, zero {# tags} one {# tag} other {# tags}}</target>
       </segment>
     </unit>
     <unit id="Ul2mR7j" name="counter.sign">
       <segment state="translated">
         <source>counter.sign</source>
-        <target>{0} %count% signatures| {1} %count% signature| ]1,Inf[ %count% signatures</target>
+        <target>{count, plural, zero {# signatures} one {# signature} other {# signatures}}</target>
       </segment>
     </unit>
     <unit id="ssT2wiw" name="title.activity">
@@ -1534,7 +1534,7 @@
     <unit id="p4z8GI6" name="title.edit_tag">
       <segment state="translated">
         <source>title.edit_tag</source>
-        <target>Edit tag %tag%</target>
+        <target>Edit tag {tag}</target>
       </segment>
     </unit>
     <unit id="yo4f8Kh" name="menu.tags">
@@ -1570,7 +1570,7 @@
     <unit id="YklQlf8" name="btn.show_more">
       <segment state="translated">
         <source>btn.show_more</source>
-        <target>Show more (%count%)</target>
+        <target>Show more ({count})</target>
       </segment>
     </unit>
     <unit id="zOA0UTD" name="btn.show_less">
@@ -1588,7 +1588,7 @@
     <unit id="4z_wk_J" name="title.edit_tag_category">
       <segment state="translated">
         <source>title.edit_tag_category</source>
-        <target>Edit tag category %category%</target>
+        <target>Edit tag category {category}</target>
       </segment>
     </unit>
     <unit id="MDaq3GB" name="menu.tag_categories">
@@ -1600,7 +1600,7 @@
     <unit id="NSHmU0h" name="counter.tag_categories">
       <segment state="translated">
         <source>counter.tag_categories</source>
-        <target>{0} %count% categories| {1} %count% category| ]1,Inf[ %count% categories</target>
+        <target>{count, plural, zero {# categories} one {# category} other {# categories}}</target>
       </segment>
     </unit>
     <unit id="d3LXAOu" name="tooltip.add_tag_category">
@@ -1636,7 +1636,7 @@
     <unit id="w4I3.hu" name="title.edit_template">
       <segment state="translated">
         <source>title.edit_template</source>
-        <target>Edit template %template%</target>
+        <target>Edit template {template}</target>
       </segment>
     </unit>
     <unit id="kXYXu7R" name="menu.templates">
@@ -1648,7 +1648,7 @@
     <unit id="hIdqfHr" name="counter.template">
       <segment state="translated">
         <source>counter.template</source>
-        <target>{0} %count% templates| {1} %count% template| ]1,Inf[ %count% templates</target>
+        <target>{count, plural, zero {# templates} one {# template} other {# templates}}</target>
       </segment>
     </unit>
     <unit id=".pBdt4A" name="tooltip.add_template">
@@ -1666,7 +1666,7 @@
     <unit id="1MYrutS" name="counter.field">
       <segment state="translated">
         <source>counter.field</source>
-        <target>{0} %count% fields| {1} %count% field| ]1,Inf[ %count% fields</target>
+        <target>{count, plural, zero {# fields} one {# field} other {# fields}}</target>
       </segment>
     </unit>
     <unit id="pnGDFmf" name="label.type">
@@ -1738,13 +1738,13 @@
     <unit id="H0D7KGB" name="title.add_wishlist_item">
       <segment state="translated">
         <source>title.add_wishlist_item</source>
-        <target>Add a new item to the wishlist %wishlist%</target>
+        <target>Add a new item to the wishlist {wishlist}</target>
       </segment>
     </unit>
     <unit id="9dYc4WP" name="title.edit_wishlist_item">
       <segment state="translated">
         <source>title.edit_wishlist_item</source>
-        <target>Edit wish %name%</target>
+        <target>Edit wish {name}</target>
       </segment>
     </unit>
     <unit id="50TT5tp" name="title.transfer_wish">
@@ -1756,7 +1756,7 @@
     <unit id="XjUwmT9" name="counter.wish">
       <segment state="translated">
         <source>counter.wish</source>
-        <target>{0} %count% wishes| {1} %count% wish| ]1,Inf[ %count% wishes</target>
+        <target>{count, plural, zero {# wishes} one {# wish} other {# wishes}}</target>
       </segment>
     </unit>
     <unit id="aCKOxah" name="title.new_wishlist">
@@ -1768,7 +1768,7 @@
     <unit id="1Uc4qIA" name="title.edit_wishlist">
       <segment state="translated">
         <source>title.edit_wishlist</source>
-        <target>Edit wishlist %wishlist%</target>
+        <target>Edit wishlist {wishlist}</target>
       </segment>
     </unit>
     <unit id="iaYlgE1" name="menu.wishlists">
@@ -1780,7 +1780,7 @@
     <unit id="Joxd_.h" name="counter.wishlist">
       <segment state="translated">
         <source>counter.wishlist</source>
-        <target>{0} %count% wishlists| {1} %count% wishlist| ]1,Inf[ %count% wishlists</target>
+        <target>{count, plural, zero {# wishlists} one {# wishlist} other {# wishlists}}</target>
       </segment>
     </unit>
     <unit id="U27QnHb" name="tooltip.add_wishlist">
@@ -2104,43 +2104,43 @@
     <unit id="S3BSG8X" name="global.time.year">
       <segment state="translated">
         <source>global.time.year</source>
-        <target>{0} %count% years| {1} %count% year| ]1,Inf[ %count% years</target>
+        <target>{count, plural, zero {# years} one {# year} other {# years}}</target>
       </segment>
     </unit>
     <unit id="I6EoiYa" name="global.time.month">
       <segment state="translated">
         <source>global.time.month</source>
-        <target>{0} %count% months| {1} %count% month| ]1,Inf[ %count% months</target>
+        <target>{count, plural, zero {# months} one {# month} other {# months}}</target>
       </segment>
     </unit>
     <unit id="BXLOUij" name="global.time.week">
       <segment state="translated">
         <source>global.time.week</source>
-        <target>{0} %count% weeks| {1} %count% week| ]1,Inf[ %count% weeks</target>
+        <target>{count, plural, zero {# weeks} one {# week} other {# weeks}}</target>
       </segment>
     </unit>
     <unit id="r1RqqRg" name="global.time.day">
       <segment state="translated">
         <source>global.time.day</source>
-        <target>{0} %count% days| {1} %count% day| ]1,Inf[ %count% days</target>
+        <target>{count, plural, zero {# days} one {# day} other {# days}}</target>
       </segment>
     </unit>
     <unit id="QeraM7P" name="global.time.hour">
       <segment state="translated">
         <source>global.time.hour</source>
-        <target>{0} %count% hours| {1} %count% hour| ]1,Inf[ %count% hours</target>
+        <target>{count, plural, zero {# hours} one {# hour} other {# hours}}</target>
       </segment>
     </unit>
     <unit id="UN2onP4" name="global.time.minute">
       <segment state="translated">
         <source>global.time.minute</source>
-        <target>{0} %count% minutes| {1} %count% minute| ]1,Inf[ %count% minutes</target>
+        <target>{count, plural, zero {# minutes} one {# minute} other {# minutes}}</target>
       </segment>
     </unit>
     <unit id="JQSurmk" name="global.time.second">
       <segment state="translated">
         <source>global.time.second</source>
-        <target>{0} %count% seconds| {1} %count% second| ]1,Inf[ %count% seconds</target>
+        <target>{count, plural, zero {# seconds} one {# second} other {# seconds}}</target>
       </segment>
     </unit>
     <unit id="fSiEIlQ" name="global.visibilities.public">
@@ -2284,37 +2284,37 @@
     <unit id="oq5I4KJ" name="log.collection.created">
       <segment state="translated">
         <source>log.collection.created</source>
-        <target>Collection %label% was created</target>
+        <target>Collection {label} was created</target>
       </segment>
     </unit>
     <unit id="kJVARQs" name="log.collection.deleted">
       <segment state="translated">
         <source>log.collection.deleted</source>
-        <target>Collection %label% was deleted</target>
+        <target>Collection {label} was deleted</target>
       </segment>
     </unit>
     <unit id="CQhzBXW" name="log.item.created">
       <segment state="translated">
         <source>log.item.created</source>
-        <target>Item %label% was created</target>
+        <target>Item {label} was created</target>
       </segment>
     </unit>
     <unit id="rV1McBT" name="log.item.deleted">
       <segment state="translated">
         <source>log.item.deleted</source>
-        <target>Item %label% was deleted</target>
+        <target>Item {label} was deleted</target>
       </segment>
     </unit>
     <unit id="rZbNjjk" name="log.tag.created">
       <segment state="translated">
         <source>log.tag.created</source>
-        <target>Tag %label% was created</target>
+        <target>Tag {label} was created</target>
       </segment>
     </unit>
     <unit id="C6hJE7c" name="log.tag.deleted">
       <segment state="translated">
         <source>log.tag.deleted</source>
-        <target>Tag %label% was deleted</target>
+        <target>Tag {label} was deleted</target>
       </segment>
     </unit>
     <unit id="NLlL04M" name="help.recursive">
@@ -2404,31 +2404,31 @@
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment state="translated">
         <source>global.seen_counter.album</source>
-        <target>{0} Album consulted %count% times| {1} Album consulted %count% time| ]1,Inf[ Album consulted %count% times</target>
+        <target>{count, plural, zero {Album consulted # times} one {Album consulted # time} other {Album consulted # times}}</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment state="translated">
         <source>global.seen_counter.collection</source>
-        <target>{0} Collection consulted %count% times| {1} Collection consulted %count% time| ]1,Inf[ Collection consulted %count% times</target>
+        <target>{count, plural, zero {Collection consulted # times} one {Collection consulted # time} other {Collection consulted # times}}</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment state="translated">
         <source>global.seen_counter.item</source>
-        <target>{0} Item consulted %count% times| {1} Item consulted %count% time| ]1,Inf[ Item consulted %count% times</target>
+        <target>{count, plural, zero {Item consulted # times} one {Item consulted # time} other {Item consulted # times}}</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment state="translated">
         <source>global.seen_counter.tag</source>
-        <target>{0} Tag consulted %count% times| {1} Tag consulted %count% time| ]1,Inf[ Tag consulted %count% times</target>
+        <target>{count, plural, zero {Tag consulted # times} one {Tag consulted # time} other {Tag consulted # times}}</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment state="translated">
         <source>global.seen_counter.wishlist</source>
-        <target>{0} Wishlist consulted %count% times| {1} Wishlist consulted %count% time| ]1,Inf[ Wishlist consulted %count% times</target>
+        <target>{count, plural, zero {Wishlist consulted # times} one {Wishlist consulted # time} other {Wishlist consulted # times}}</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
@@ -2608,7 +2608,7 @@
     <unit id="v31H5lC" name="log.album.created">
       <segment state="translated">
         <source>log.album.created</source>
-        <target>Album %label% was created</target>
+        <target>Album {label} was created</target>
       </segment>
     </unit>
     <unit id="tCaXH8D" name="enum.history_filter_class.album">
@@ -2626,13 +2626,13 @@
     <unit id="SBtfHBi" name="log.album.deleted">
       <segment state="translated">
         <source>log.album.deleted</source>
-        <target>Album %label% was deleted</target>
+        <target>Album {label} was deleted</target>
       </segment>
     </unit>
     <unit id="su92SFL" name="log.wishlist.deleted">
       <segment state="translated">
         <source>log.wishlist.deleted</source>
-        <target>Wishlist %label% was deleted</target>
+        <target>Wishlist {label} was deleted</target>
       </segment>
     </unit>
     <unit id="HJFRPmK" name="breadcrumb.history_wishlist">
@@ -2644,7 +2644,7 @@
     <unit id="GBK.flU" name="log.wishlist.created">
       <segment state="translated">
         <source>log.wishlist.created</source>
-        <target>Wishlist %label% was created</target>
+        <target>Wishlist {label} was created</target>
       </segment>
     </unit>
     <unit id="GXrTvzK" name="label.albums">
@@ -2890,73 +2890,73 @@
     <unit id="qbaO3DI" name="log.photo.created">
       <segment state="translated">
         <source>log.photo.created</source>
-        <target>Photo %label% was created</target>
+        <target>Photo {label} was created</target>
       </segment>
     </unit>
     <unit id="LFxS4N." name="log.photo.deleted">
       <segment state="translated">
         <source>log.photo.deleted</source>
-        <target>Photo %label% was deleted</target>
+        <target>Photo {label} was deleted</target>
       </segment>
     </unit>
     <unit id="FetHbDe" name="log.tag_category.created">
       <segment state="translated">
         <source>log.tag_category.created</source>
-        <target>Tag category %label% was created</target>
+        <target>Tag category {label} was created</target>
       </segment>
     </unit>
     <unit id="fQ0vpBr" name="log.tag_category.deleted">
       <segment state="translated">
         <source>log.tag_category.deleted</source>
-        <target>Tag category %label% was deleted</target>
+        <target>Tag category {label} was deleted</target>
       </segment>
     </unit>
     <unit id="NXWixPs" name="log.template.created">
       <segment state="translated">
         <source>log.template.created</source>
-        <target>Template %label% was created</target>
+        <target>Template {label} was created</target>
       </segment>
     </unit>
     <unit id="ewUDkTE" name="log.template.deleted">
       <segment state="translated">
         <source>log.template.deleted</source>
-        <target>Template %label% was deleted</target>
+        <target>Template {label} was deleted</target>
       </segment>
     </unit>
     <unit id="_eUCsYY" name="log.inventory.created">
       <segment state="translated">
         <source>log.inventory.created</source>
-        <target>Inventory %label% was created</target>
+        <target>Inventory {label} was created</target>
       </segment>
     </unit>
     <unit id="poWDB.l" name="log.inventory.deleted">
       <segment state="translated">
         <source>log.inventory.deleted</source>
-        <target>Inventory %label% was deleted</target>
+        <target>Inventory {label} was deleted</target>
       </segment>
     </unit>
     <unit id="mtFIeHM" name="log.choice_list.created">
       <segment state="translated">
         <source>log.choice_list.created</source>
-        <target>Choice list %label% was created</target>
+        <target>Choice list {label} was created</target>
       </segment>
     </unit>
     <unit id="rlvIomT" name="log.choice_list.deleted">
       <segment state="translated">
         <source>log.choice_list.deleted</source>
-        <target>Choice list %label% was deleted</target>
+        <target>Choice list {label} was deleted</target>
       </segment>
     </unit>
     <unit id="upWFjf_" name="log.wish.created">
       <segment state="translated">
         <source>log.wish.created</source>
-        <target>Wish %label% was created</target>
+        <target>Wish {label} was created</target>
       </segment>
     </unit>
     <unit id="7la3BTO" name="log.wish.deleted">
       <segment state="translated">
         <source>log.wish.deleted</source>
-        <target>Wish %label% was deleted</target>
+        <target>Wish {label} was deleted</target>
       </segment>
     </unit>
     <unit id="o.z2uRm" name="label.list">
@@ -2980,31 +2980,31 @@
     <unit id="ltgwfbq" name="menu.signs_shared">
       <segment state="translated">
         <source>menu.signs_shared</source>
-        <target>%username%'s signatures</target>
+        <target>{username}'s signatures</target>
       </segment>
     </unit>
     <unit id="tk6udpx" name="menu.statistics_shared">
       <segment state="translated">
         <source>menu.statistics_shared</source>
-        <target>%username%'s statistics</target>
+        <target>{username}'s statistics</target>
       </segment>
     </unit>
     <unit id="xLcWFGm" name="menu.tags_shared">
       <segment state="translated">
         <source>menu.tags_shared</source>
-        <target>%username%'s tags</target>
+        <target>{username}'s tags</target>
       </segment>
     </unit>
     <unit id="vd.6dAz" name="menu.wishlists_shared">
       <segment state="translated">
         <source>menu.wishlists_shared</source>
-        <target>%username%'s wishlists</target>
+        <target>{username}'s wishlists</target>
       </segment>
     </unit>
     <unit id="Nl_I6SL" name="menu.albums_shared">
       <segment state="translated">
         <source>menu.albums_shared</source>
-        <target>%username%'s albums</target>
+        <target>{username}'s albums</target>
       </segment>
     </unit>
   </file>

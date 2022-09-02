@@ -46,7 +46,7 @@ class TagCategoryController extends AbstractController
             $managerRegistry->getManager()->persist($category);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.tag_category_added', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.tag_category_added', ['category' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_tag_category_index');
         }
@@ -77,7 +77,7 @@ class TagCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.tag_category_edited', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.tag_category_edited', ['category' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_tag_category_show', ['id' => $category->getId()]);
         }
@@ -99,7 +99,7 @@ class TagCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($category);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.tag_category_deleted', ['%category%' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.tag_category_deleted', ['category' => '&nbsp;<strong>'.$category->getLabel().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_tag_category_index');

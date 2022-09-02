@@ -55,7 +55,7 @@ class WishlistController extends AbstractController
             $managerRegistry->getManager()->persist($wishlist);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.wishlist_added', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.wishlist_added', ['wishlist' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wishlist->getId()]);
         }
@@ -88,7 +88,7 @@ class WishlistController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.wishlist_edited', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.wishlist_edited', ['wishlist' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wishlist->getId()]);
         }
@@ -110,7 +110,7 @@ class WishlistController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($wishlist);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['wishlist' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_wishlist_index');

@@ -16,7 +16,7 @@
             <div class="title-block">
                 <h1>{{ 'menu.templates'|trans }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.template'|trans({'%count%': results|length}) }}</li>
+                    <li>{{ 'counter.template'|trans({'count': results|length}) }}</li>
                 </ul>
             </div>
 
@@ -53,7 +53,7 @@
                                     <strong>{{ result.template.name }}</strong>
                                 </a>
                             </td>
-                            <td>{{ 'counter.field'|trans({'%count%': result.fieldsCounter}) }}</td>
+                            <td>{{ 'counter.field'|trans({'count': result.fieldsCounter}) }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

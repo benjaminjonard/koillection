@@ -46,7 +46,7 @@ class PhotoController extends AbstractController
             $managerRegistry->getManager()->persist($photo);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.photo_added', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.photo_added', ['photo' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
         }
@@ -66,7 +66,7 @@ class PhotoController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.photo_edited', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.photo_edited', ['photo' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
         }
@@ -88,7 +88,7 @@ class PhotoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($photo);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.photo_deleted', ['%photo%' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.photo_deleted', ['photo' => '&nbsp;<strong>'.$photo->getTitle().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_album_show', ['id' => $photo->getAlbum()->getId()]);
