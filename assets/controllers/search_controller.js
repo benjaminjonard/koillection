@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import Translator from "../js/translator.min";
+import Translator from "bazinga-translator";
 import {useClickOutside} from "stimulus-use";
 
 export default class extends Controller {
@@ -51,13 +51,13 @@ export default class extends Controller {
 
                     if (data.totalResultsCounter > 5) {
                         let url = "/search?search[term]=" + value + "&search[searchInWishlists]&search[searchInAlbums]=&search[searchInCollections]=&search[searchInItems]=&search[searchInTags]=";
-                        let label = Translator.transChoice('global.search.more_results', data.totalResultsCounter - 5);
+                        let label = Translator.trans('global.search.more_results', {'count' : data.totalResultsCounter - 5});
                         self.resultsWrapperTarget.appendChild(self.autocompleteResultFactory(label, url));
                     }
 
                     if (data.totalResultsCounter == 0) {
                         let url = null;
-                        let label = Translator.transChoice('global.search.no_results');
+                        let label = Translator.trans('global.search.no_results');
                         self.resultsWrapperTarget.appendChild(self.autocompleteResultFactory(label, url));
                     }
                 })

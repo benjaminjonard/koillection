@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import Translator from "../../js/translator.min";
+import Translator from "bazinga-translator";
 import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
 
 /* stimulusFetch: 'lazy' */

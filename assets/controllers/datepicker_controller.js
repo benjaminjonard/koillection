@@ -1,6 +1,6 @@
 import { Controller } from 'stimulus';
 import { Datepicker } from '@materializecss/materialize';
-import Translator from "../js/translator.min";
+import Translator from "bazinga-translator";
 
 export default class extends Controller {
     connect() {

@@ -60,7 +60,7 @@
         "twig/intl-extra": "^3.4",
         "twig/string-extra": "^3.4",
         "twig/twig": "^3.4",
-        "willdurand/js-translation-bundle": "^5.0"
+        "willdurand/js-translation-bundle": "dev-master"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.8",
@@ -76,6 +76,12 @@
         "symfony/var-dumper": "^6.1",
         "symfony/web-profiler-bundle": "^6.1"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/benjaminjonard/BazingaJsTranslationBundle"
+        }
+    ],
     "config": {
         "preferred-install": {
             "*": "dist"
