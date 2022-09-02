@@ -7,63 +7,63 @@
         <note category="file-source" priority="1">koillection/src/Entity/Collection.php:0</note>
         <note category="file-source" priority="1">koillection/src/Entity/Wishlist.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.parent.same_as_current_object</source>
-        <target>error.parent.same_as_current_object</target>
+        <target>Le parent ne peut pas être identique à l'objet courant</target>
       </segment>
     </unit>
     <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.datum.cant_be_used_by_both_collections_and_items</source>
-        <target>error.datum.cant_be_used_by_both_collections_and_items</target>
+        <target>Un objet Datum ne peut être utilisé par un objet et une collection en même temps</target>
       </segment>
     </unit>
     <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/Datum.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.datum.must_provide_collection_or_item</source>
-        <target>error.datum.must_provide_collection_or_item</target>
+        <target>Une collection ou un item doit être renseigné</target>
       </segment>
     </unit>
     <unit id="7OcgSlg" name="error.email.not_unique">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.email.not_unique</source>
-        <target>error.email.not_unique</target>
+        <target>Adresse email déjà utilisée</target>
       </segment>
     </unit>
     <unit id="qoRxC7z" name="error.username.not_unique">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.username.not_unique</source>
-        <target>error.username.not_unique</target>
+        <target>Ce nom d'utilisateur est déjà pris</target>
       </segment>
     </unit>
     <unit id="PjAj0XF" name="error.username.incorrect">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.username.incorrect</source>
-        <target>error.username.incorrect</target>
+        <target>Le nom d'utilisateur doit comprendre entre 2 et 32 caractères (seules les lettres, les nombres et les underscores sont autorisés)</target>
       </segment>
     </unit>
     <unit id="4Bdfyy1" name="error.password.incorrect">
       <notes>
         <note category="file-source" priority="1">koillection/src/Entity/User.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.password.incorrect</source>
-        <target>error.password.incorrect</target>
+        <target>Le mot de passe doit contenir au moins 8 caractères (dont 1 lettre et 1 chiffre)</target>
       </segment>
     </unit>
     <unit id="4m1Sgo3" name="error.password.not_matching">
@@ -72,30 +72,30 @@
         <note category="file-source" priority="1">koillection/src/Form/Type/Model/ProfileType.php:34</note>
         <note category="file-source" priority="1">koillection/src/Form/Type/Security/UserType.php:32</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.password.not_matching</source>
-        <target>error.password.not_matching</target>
+        <target>Les deux mots de passe ne sont pas identiques</target>
       </segment>
     </unit>
     <unit id=".OeR.gK" name="error.search.too_short">
       <notes>
         <note category="file-source" priority="1">koillection/src/Model/Search/Search.php:0</note>
       </notes>
-      <segment state="initial">
+      <segment state="translated">
         <source>error.search.too_short</source>
-        <target>error.search.too_short</target>
+        <target>Vous devez entrer au moins 2 caractères</target>
       </segment>
     </unit>
     <unit id="_d89Gke" name="error.search.empty">
-      <segment state="initial">
+      <segment state="translated">
         <source>error.search.empty</source>
-        <target>error.search.empty</target>
+        <target>Merci de remplir au moins un des champs</target>
       </segment>
     </unit>
     <unit id="DVztPk_" name="error.label.must_be_unique">
-      <segment state="initial">
+      <segment state="translated">
         <source>error.label.must_be_unique</source>
-        <target>error.label.must_be_unique</target>
+        <target>Le label "{{ label }}" est utilisé plusieurs fois, les labels doivent être uniques</target>
       </segment>
     </unit>
   </file>
