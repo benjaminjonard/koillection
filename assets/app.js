@@ -8,6 +8,6 @@ import './bootstrap';
 import './js/loader'
 import './js/translations/config'
 import './js/translations/javascript+intl-icu/en'
-import './js/translations/javascript/fr'
-import './js/translations/javascript/es'
+import './js/translations/javascript+intl-icu/fr'
+import './js/translations/javascript+intl-icu/es'
 
