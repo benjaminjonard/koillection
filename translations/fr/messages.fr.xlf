@@ -2,9 +2,9 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
   <file id="messages.en">
     <unit id="xGPqLcT" name="message.files_deleted">
-      <segment state="translated">
+      <segment state="final">
         <source>message.files_deleted</source>
-        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichier supprimés</target>
+        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichiers supprimés</target>
       </segment>
     </unit>
     <unit id=".512qhB" name="message.logs_generated">
