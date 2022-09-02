@@ -4,7 +4,7 @@
     <unit id="xGPqLcT" name="message.files_deleted">
       <segment state="translated">
         <source>message.files_deleted</source>
-        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichiers supprimés</target>
+        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichier supprimés</target>
       </segment>
     </unit>
     <unit id=".512qhB" name="message.logs_generated">
