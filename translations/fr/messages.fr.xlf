@@ -5,9 +5,9 @@
       <notes>
         <note category="file-source" priority="1">koillection/src/Command/CleanUpCommand.php:91</note>
       </notes>
-      <segment state="translated">
+      <segment state="final">
         <source>message.files_deleted</source>
-        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichier supprimés test</target>
+        <target>[0,1] %count% fichier supprimé| ]1,Inf[ %count% fichier supprimés</target>
       </segment>
     </unit>
     <unit id=".512qhB" name="message.logs_generated">
