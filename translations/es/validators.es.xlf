@@ -64,7 +64,7 @@
     <unit id="DVztPk_" name="error.label.must_be_unique">
       <segment state="translated">
         <source>error.label.must_be_unique</source>
-        <target>La etiqueta "{{ label }}" se ha usado muchas veces, las etiquetas deben ser únicas</target>
+        <target>La etiqueta "%label%" se ha usado muchas veces, las etiquetas deben ser únicas</target>
       </segment>
     </unit>
   </file>
