@@ -256,7 +256,7 @@
     <unit id="mAYxq3X" name="message.wish_transfered">
       <segment state="translated">
         <source>message.wish_transfered</source>
-        <target>Wish {wish} was transfered to the collection {collection}</target>
+        <target>Wish {wish} was transferred to the collection {collection}</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
@@ -304,7 +304,7 @@
     <unit id="qHOKUl8" name="global.days.tuesday">
       <segment state="translated">
         <source>global.days.tuesday</source>
-        <target>Thuesday</target>
+        <target>Tuesday</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
