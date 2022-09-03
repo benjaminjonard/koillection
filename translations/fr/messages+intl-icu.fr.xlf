@@ -100,7 +100,7 @@
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment state="translated">
         <source>message.items_tagged</source>
-        <target>{count, plural, one {# objet taggué} other {# objets taggués}}</target>
+        <target>{count, plural, one {# objet tagué} other {# objets tagués}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
@@ -256,7 +256,7 @@
     <unit id="mAYxq3X" name="message.wish_transfered">
       <segment state="translated">
         <source>message.wish_transfered</source>
-        <target>Le souhait {wish} a été tranféré dans la collection {collection}</target>
+        <target>Le souhait {wish} a été transféré dans la collection {collection}</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
@@ -412,7 +412,7 @@
     <unit id="BNjUIYA" name="label.search">
       <segment state="translated">
         <source>label.search</source>
-        <target>Search</target>
+        <target>Rechercher</target>
       </segment>
     </unit>
     <unit id="GV09tqG" name="global.koillection">
@@ -442,7 +442,7 @@
     <unit id="eggtiPQ" name="global.visibilities.reason.user_public">
       <segment state="translated">
         <source>global.visibilities.reason.user_public</source>
-        <target>Publique - Raison : votre profil est publique</target>
+        <target>Publique - Raison : votre profil est public</target>
       </segment>
     </unit>
     <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
@@ -910,7 +910,7 @@
     <unit id="ixrxzme" name="label.add_field">
       <segment state="translated">
         <source>label.add_field</source>
-        <target>Ajouter un champs :</target>
+        <target>Ajouter un champ :</target>
       </segment>
     </unit>
     <unit id="5l_KSLb" name="btn.add_text">
@@ -964,7 +964,7 @@
     <unit id="8yVQg94" name="title.tag_collection">
       <segment state="translated">
         <source>title.tag_collection</source>
-        <target>Tagguer en masse {collection}</target>
+        <target>Taguer en masse {collection}</target>
       </segment>
     </unit>
     <unit id="KlxVsBD" name="title.edit_collection">
@@ -1132,7 +1132,7 @@
     <unit id="DCLoAZA" name="title.additional_fields">
       <segment state="translated">
         <source>title.additional_fields</source>
-        <target>Champs additionels</target>
+        <target>Champs additionnels</target>
       </segment>
     </unit>
     <unit id="uAfIh0u" name="btn.apply_common_fields">
@@ -1438,7 +1438,7 @@
     <unit id="RjUO3kd" name="message.visibility_per_item">
       <segment state="translated">
         <source>message.visibility_per_item</source>
-        <target>Vous pouvez aussi choisir la visibilité de chaque objet ou collection. Pour cela, rendez vous dans la page d'édition de l'élément concerné.</target>
+        <target>Vous pouvez aussi choisir la visibilité de chaque objet ou collection. Pour cela, rendez-vous dans la page d'édition de l'élément concerné.</target>
       </segment>
     </unit>
     <unit id="JA.9t2S" name="title.update_dark_mode">
@@ -1750,7 +1750,7 @@
     <unit id="50TT5tp" name="title.transfer_wish">
       <segment state="translated">
         <source>title.transfer_wish</source>
-        <target>Tranférer un souhait dans une collection</target>
+        <target>Transférer un souhait dans une collection</target>
       </segment>
     </unit>
     <unit id="XjUwmT9" name="counter.wish">
@@ -1864,7 +1864,7 @@
     <unit id="XVATSGt" name="modal.title.delete">
       <segment state="translated">
         <source>modal.title.delete</source>
-        <target>Confirmation de la supression</target>
+        <target>Confirmation de la suppression</target>
       </segment>
     </unit>
     <unit id="eMPgFR5" name="message.user_is_private">
@@ -1906,7 +1906,7 @@
     <unit id="lSRJ.UY" name="error.default">
       <segment state="translated">
         <source>error.default</source>
-        <target>Oups, quelquechose s'est mal passé :(</target>
+        <target>Oups, quelque chose s'est mal passé :(</target>
       </segment>
     </unit>
     <unit id="l9GnTBr" name="error.404">
@@ -1924,7 +1924,7 @@
     <unit id="o7VW0kO" name="message.return_to_homepage">
       <segment state="translated">
         <source>message.return_to_homepage</source>
-        <target>Retourner à la page d'acceuil</target>
+        <target>Retourner à la page d'accueil</target>
       </segment>
     </unit>
     <unit id="ZS8DP_P" name="breadcrumb.add_album">
@@ -1948,7 +1948,7 @@
     <unit id="HN3MXIl" name="breadcrumb.add_photo">
       <segment state="translated">
         <source>breadcrumb.add_photo</source>
-        <target>Add a new photo</target>
+        <target>Ajouter une nouvelle photo</target>
       </segment>
     </unit>
     <unit id="TsOMFfZ" name="breadcrumb.add_template">
@@ -1972,7 +1972,7 @@
     <unit id="wsZg2PB" name="breadcrumb.batch_tagging">
       <segment state="translated">
         <source>breadcrumb.batch_tagging</source>
-        <target>Tagguer en masse</target>
+        <target>Taguer en masse</target>
       </segment>
     </unit>
     <unit id="FBXvLM8" name="breadcrumb.edit_album">
@@ -2230,7 +2230,7 @@
     <unit id="HVZAEc7" name="label.recursive">
       <segment state="translated">
         <source>label.recursive</source>
-        <target>Recursif</target>
+        <target>Récursif</target>
       </segment>
     </unit>
     <unit id="rU9cSfq" name="label.repeat_password">
@@ -2326,7 +2326,7 @@
     <unit id="cQsMebl" name="breadcrumb.transfer_wish">
       <segment state="translated">
         <source>breadcrumb.transfer_wish</source>
-        <target>Tranférer un souhait dans une collection</target>
+        <target>Transférer un souhait dans une collection</target>
       </segment>
     </unit>
     <unit id="Dpg9wp." name="role.user">

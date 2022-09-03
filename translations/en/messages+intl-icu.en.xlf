@@ -256,7 +256,7 @@
     <unit id="mAYxq3X" name="message.wish_transfered">
       <segment state="translated">
         <source>message.wish_transfered</source>
-        <target>Wish {wish} was transfered to the collection {collection}</target>
+        <target>Wish {wish} was transferred to the collection {collection}</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
@@ -304,7 +304,7 @@
     <unit id="qHOKUl8" name="global.days.tuesday">
       <segment state="translated">
         <source>global.days.tuesday</source>
-        <target>Thuesday</target>
+        <target>Tuesday</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
@@ -1918,7 +1918,7 @@
     <unit id="nIFzees" name="error.500">
       <segment state="translated">
         <source>error.500</source>
-        <target>Oops, a critical error occured :(</target>
+        <target>Oops, a critical error occurred :(</target>
       </segment>
     </unit>
     <unit id="o7VW0kO" name="message.return_to_homepage">
@@ -2320,7 +2320,7 @@
     <unit id="NLlL04M" name="help.recursive">
       <segment state="translated">
         <source>message.recursive</source>
-        <target>If checked, tags will be applied to all sub-collections aswell</target>
+        <target>If checked, tags will be applied to all sub-collections as well</target>
       </segment>
     </unit>
     <unit id="cQsMebl" name="breadcrumb.transfer_wish">
@@ -2344,7 +2344,7 @@
     <unit id="7o9hj19" name="first_connection.user">
       <segment state="translated">
         <source>first_connection.user</source>
-        <target>User informations</target>
+        <target>User information</target>
       </segment>
     </unit>
     <unit id="dmtPdwq" name="label.timezone">
