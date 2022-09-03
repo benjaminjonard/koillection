@@ -20,21 +20,19 @@ class BreadcrumbRuntime implements RuntimeExtensionInterface
     {
         $breadcrumb = [];
 
-        if (!empty($root)) {
-            foreach ($root as $element) {
-                $rootElement = new BreadcrumbElement();
-                $rootElement
-                    ->setType(BreadcrumbElement::TYPE_ROOT)
-                    ->setRoute($element['route'])
-                    ->setLabel($element['trans'])
-                    ->setParams([])
-                ;
+        foreach ($root as $element) {
+            $rootElement = new BreadcrumbElement();
+            $rootElement
+                ->setType(BreadcrumbElement::TYPE_ROOT)
+                ->setRoute($element['route'])
+                ->setLabel($element['trans'])
+                ->setParams([])
+            ;
 
-                $breadcrumb[] = $rootElement;
-            }
+            $breadcrumb[] = $rootElement;
         }
 
-        if ($entity) {
+        if ($entity !== null) {
             $breadcrumb = array_merge($breadcrumb, $this->breadcrumbBuilder->build($entity, $parent));
         }
 

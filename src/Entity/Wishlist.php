@@ -16,6 +16,7 @@ use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -52,7 +53,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ]
     ]
 )]
-class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface
+class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -69,7 +70,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Wish::class, mappedBy: 'wishlist', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $wishes;
 
@@ -78,7 +79,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private ?string $color = null;
 
     #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'parent', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
@@ -101,16 +102,16 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['wishlist:read'])]
-    private int $seenCounter;
+    private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read', 'wishlist:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['wishlist:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read'])]
@@ -129,8 +130,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         $this->id = Uuid::v4()->toRfc4122();
         $this->wishes = new ArrayCollection();
         $this->children = new ArrayCollection();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
-        $this->seenCounter = 0;
     }
 
     public function __toString(): string

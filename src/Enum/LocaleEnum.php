@@ -7,7 +7,9 @@ namespace App\Enum;
 class LocaleEnum
 {
     public const LOCALE_EN = 'en';
+
     public const LOCALE_FR = 'fr';
+
     public const LOCALE_ES = 'es';
 
     public const LOCALES = [

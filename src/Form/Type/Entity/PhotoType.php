@@ -22,8 +22,8 @@ use Symfony\Component\Security\Core\Security;
 class PhotoType extends AbstractType
 {
     public function __construct(
-        private AlbumRepository $albumRepository,
-        private Security $security
+        private readonly AlbumRepository $albumRepository,
+        private readonly Security $security
     ) {
     }
 

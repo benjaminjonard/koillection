@@ -18,10 +18,12 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Service\FeatureChecker;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
+abstract class AbstractController extends SymfonyAbstractController
 {
     public function __construct(
         protected FeatureChecker $featureChecker
@@ -31,7 +33,7 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
     public function denyAccessUnlessFeaturesEnabled(array $features): void
     {
         foreach ($features as $feature) {
-            if (false === $this->featureChecker->isFeatureEnabled($feature)) {
+            if (!$this->featureChecker->isFeatureEnabled($feature)) {
                 throw new AccessDeniedException();
             }
         }
@@ -42,13 +44,13 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist|ChoiceList $entity = null
     ): FormInterface {
         $params = [];
-        if ($entity) {
+        if ($entity !== null) {
             $params['id'] = $entity->getId();
         }
 
         return $this->createFormBuilder()
             ->setAction($this->generateUrl($url, $params))
-            ->setMethod('POST')
+            ->setMethod(Request::METHOD_POST)
             ->getForm()
         ;
     }

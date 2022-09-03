@@ -15,7 +15,7 @@
         "composer/semver": "^3.3",
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.12",
+        "doctrine/orm": "^2.13",
         "doctrine/persistence": "^3.0",
         "lexik/jwt-authentication-bundle": "^2.16",
         "maennchen/zipstream-php": "^2.2",
@@ -60,31 +60,37 @@
         "twig/intl-extra": "^3.4",
         "twig/string-extra": "^3.4",
         "twig/twig": "^3.4",
-        "willdurand/js-translation-bundle": "^5.0"
+        "willdurand/js-translation-bundle": "dev-master"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.8",
         "hautelook/alice-bundle": "^2.11",
         "justinrainbow/json-schema": "^5.2",
-        "php-translation/symfony-bundle": "^0.12.6",
         "phpunit/phpunit": "^9.5",
-        "psalm/plugin-phpunit": "^0.17",
-        "psalm/plugin-symfony": "^3.1",
+        "rector/rector": "^0.14.0",
         "symfony/browser-kit": "^6.1",
         "symfony/css-selector": "^6.1",
         "symfony/maker-bundle": "^1.43",
         "symfony/phpunit-bridge": "^6.1",
         "symfony/stopwatch": "^6.1",
         "symfony/var-dumper": "^6.1",
-        "symfony/web-profiler-bundle": "^6.1",
-        "vimeo/psalm": "^4.24",
-        "weirdan/doctrine-psalm-plugin": "^2.3"
+        "symfony/web-profiler-bundle": "^6.1"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/benjaminjonard/BazingaJsTranslationBundle"
+        }
+    ],
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
     },
     "autoload": {
         "psr-4": {

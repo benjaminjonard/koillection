@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraint;
 class UniqueDatumLabel extends Constraint
 {
     public string $message = 'error.label.must_be_unique';
+
     public string $mode = 'strict';
 
     public function validatedBy(): string

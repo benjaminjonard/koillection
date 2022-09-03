@@ -58,9 +58,9 @@ class ToolsController extends AbstractController
     }
 
     #[Route(path: '/tools/export/images', name: 'app_tools_export_images', methods: ['GET'])]
-    public function exportImages(): StreamedResponse
+    public function exportImages(string $kernelProjectDir): StreamedResponse
     {
-        return new StreamedResponse(function () {
+        return new StreamedResponse(function () use ($kernelProjectDir): void {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
@@ -69,14 +69,14 @@ class ToolsController extends AbstractController
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
 
-            $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$this->getUser()->getId();
+            $path = $kernelProjectDir.'/public/uploads/'.$this->getUser()->getId();
 
             if (!is_dir($path)) {
                 $zip->finish();
             }
 
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
-            foreach ($files as $name => $file) {
+            foreach ($files as $file) {
                 if (!$file->isDir()) {
                     $zip->addFileFromStream($file->getFilename(), fopen($file->getRealPath(), 'r'));
                 }

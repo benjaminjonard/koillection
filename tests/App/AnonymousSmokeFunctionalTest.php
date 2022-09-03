@@ -11,7 +11,7 @@ class AnonymousSmokeFunctionalTest extends AppTestCase
     /**
      * @dataProvider isSuccessfulUrlProvider
      */
-    public function testPageIsSuccessful(string $url)
+    public function testPageIsSuccessful(string $url): void
     {
         $this->client->request('GET', $this->replaceUrlParameters($url));
         $this->assertTrue($this->client->getResponse()->isSuccessful());

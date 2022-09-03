@@ -77,8 +77,9 @@ There are a few things you can do to support Koillection :
     
 * If you like Koillection please consider leaving a ⭐, it gives additional motivation to continue working on the project
 * Report any bug or error you see
-* English is not my first language, it would be a huge help if you could report any mistakes in both Koillection or the wiki
-    
+* English is not my first language, it would be a huge help if you could report any mistakes in both Koillection or the wiki.
+
+You can contribute and edit translations here: https://crowdin.com/project/koillection. If you wish to contribute to a new language, please open a discussion on github and I'll gladly add it. 
     
 ## Licensing
 Koillection is an Open Source software, released under the MIT License. 

@@ -30,5 +30,9 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production --progress"
+  },
+  "dependencies": {
+    "bazinga-translator": "^5.0.0",
+    "intl-messageformat": "^10.1.4"
   }
 }

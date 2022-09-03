@@ -29,6 +29,5 @@ Then
 ###### PHP CS fixer
 - `./vendor/bin/php-cs-fixer fix`
 
-###### Psalm
-- `./vendor/bin/psalm`
-- `./vendor/bin/psalm --alter --issues=MissingReturnType,MissingParamType --dry-run`
+###### Rector
+- `./vendor/bin/rector --dry-run`

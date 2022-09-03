@@ -15,7 +15,7 @@ class UserCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertSame(1, $data['hydra:totalItems']);
         $this->assertCount(1, $data['hydra:member']);
         // $this->assertMatchesResourceCollectionJsonSchema(User::class); Bug in validation because of bigint type ?
     }

@@ -27,6 +27,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType
 {
+    private array $preSubmitItemsDisplayModeListColumns = [];
+
     public function __construct(
         private readonly Base64ToImageTransformer $base64ToImageTransformer,
         private readonly FeatureChecker $featureChecker,
@@ -48,10 +50,18 @@ class CollectionType extends AbstractType
             $itemsSortingChoices[$label['label']] = $label['label'];
         }
 
+        // Extract possible columns for a collection based on items
         $itemsDisplayModeListColumnsChoices = [];
         $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
         foreach ($labels as $label) {
             $itemsDisplayModeListColumnsChoices[$label['label']] = $label['label'];
+        }
+
+        // Move already selected columns to the top of the array
+        $alreadySelectedColumns = array_reverse($entity->getItemsDisplayModeListColumns());
+        foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
+            unset($itemsDisplayModeListColumnsChoices[$alreadySelectedColumn]);
+            array_unshift($itemsDisplayModeListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);
         }
 
         $builder
@@ -137,9 +147,8 @@ class CollectionType extends AbstractType
             ]);
         }
 
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($labels) {
+        $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($labels): void {
             $collection = $event->getData();
-
             $found = false;
             foreach ($labels as $label) {
                 if ($label['label'] === $collection->getItemsSortingProperty()) {
@@ -149,9 +158,22 @@ class CollectionType extends AbstractType
                 }
             }
 
-            if (false === $found) {
+            if (!$found) {
                 $collection->setItemsSortingType(null);
             }
+        });
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+            if (isset($event->getData()['itemsDisplayModeListColumns'])) {
+                $this->preSubmitItemsDisplayModeListColumns = $event->getData()['itemsDisplayModeListColumns'];
+            }
+        });
+
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
+            $data = $event->getData();
+            $data->setitemsDisplayModeListColumns($this->preSubmitItemsDisplayModeListColumns);
+
+            $event->setData($data);
         });
     }
 

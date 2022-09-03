@@ -12,6 +12,8 @@ return (new PhpCsFixer\Config())
         '@Symfony' => true,
         'native_function_invocation' => true,
         'declare_strict_types' => true,
+        'yoda_style' => false,
+        'trailing_comma_in_multiline' => false
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder)

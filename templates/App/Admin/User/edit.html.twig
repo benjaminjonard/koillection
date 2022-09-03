@@ -24,28 +24,28 @@
             <h2 class="header">{{ 'title.overview'|trans }}</h2>
             <div class="row statistics">
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'%count%': counters.collections}) }}
+                    <div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'count': counters.collections}) }}
                 </div>
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'%count%': counters.items}) }}
+                    <div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'count': counters.items}) }}
                 </div>
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'%count%': counters.tags}) }}
+                    <div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'count': counters.tags}) }}
                 </div>
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'%count%': counters.wishlists}) }}
+                    <div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'count': counters.wishlists}) }}
                 </div>
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'%count%': counters.wishes}) }}
+                    <div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'count': counters.wishes}) }}
                 </div>
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'%count%': counters.albums}) }}
+                    <div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'count': counters.albums}) }}
                 </div>
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'%count%': counters.photos}) }}
+                    <div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'count': counters.photos}) }}
                 </div>
                 <div class="col s12 m4 xl2">
-                    <div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'%count%': counters.signs}) }}
+                    <div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'count': counters.signs}) }}
                 </div>
                 <div class="col s12 m4 xl2">
                     <div class="counter">{{ getSpaceUsedByUser(user)|bytes }}</div>{{ 'label.space_used_by_user'|trans }}
@@ -53,7 +53,7 @@
             </div>
 
             <div class="row">
-                <h2 class="header">{{ 'title.edit_user'|trans({'%user%': user.username}) }}</h2>
+                <h2 class="header">{{ 'title.edit_user'|trans({'user': user.username}) }}</h2>
                 <div class="form">
                     {{ form_start(form) }}
                     {{ form_errors(form) }}

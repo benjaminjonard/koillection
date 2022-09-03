@@ -22,9 +22,7 @@ class InventoryHandler
             }
         }
 
-        $content = $this->computeCheckedValues($content);
-
-        return $content;
+        return $this->computeCheckedValues($content);
     }
 
     public function buildCollection(Collection $collection, array $collectionIdsToAddInInventory): array|null
@@ -65,7 +63,7 @@ class InventoryHandler
                     ];
                 }
 
-                $element['totalItems'] = $element['totalItems'] + $childElement['totalItems'];
+                $element['totalItems'] += $childElement['totalItems'];
                 $element['children'][] = $childElement;
             }
         }
@@ -79,6 +77,7 @@ class InventoryHandler
         $content = preg_replace('/([^.]*{"id":"'.$id.'","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
 
         $content = $this->computeCheckedValues(json_decode($content, true));
+
         $inventory->setContent(json_encode($content));
 
         return $inventory;

@@ -14,7 +14,7 @@ class BreadcrumbBuilder
 {
     public function build(BreadcrumbableInterface $entity, $parent = null): array
     {
-        $explodedNamespace = explode('\\', \get_class($entity));
+        $explodedNamespace = explode('\\', $entity::class);
         $class = array_pop($explodedNamespace);
         $pieces = preg_split('/(?=[A-Z])/', lcfirst($class));
         $class = implode('_', $pieces);
@@ -37,7 +37,7 @@ class BreadcrumbBuilder
         if ($entity instanceof Item) {
             if ($parent instanceof Tag) {
                 $breadcrumb = array_merge($this->build($parent), $breadcrumb);
-            } elseif ($entity->getCollection()) {
+            } elseif ($entity->getCollection() !== null) {
                 $breadcrumb = array_merge($this->build($entity->getCollection()), $breadcrumb);
             }
         }

@@ -781,6 +781,10 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
     display: none;
 }
 
+.visibility-none {
+    visibility: hidden;
+}
+
 .item-wrapper {
     margin-left: auto;
     margin-right: auto;
@@ -1103,6 +1107,13 @@ button.align-with-inputs {
 .handle {
     cursor: move;
     font-size: 20px;
+}
+
+.column .handle {
+    margin-right: 25px;
+    padding-top: -3px;
+    position: relative;
+    top: 2px;
 }
 
 /* Cropper */

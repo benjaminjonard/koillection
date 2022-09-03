@@ -17,7 +17,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(10, $data['hydra:totalItems']);
+        $this->assertSame(10, $data['hydra:totalItems']);
         $this->assertCount(10, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(TagCategory::class);
     }
@@ -44,7 +44,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertSame(1, $data['hydra:totalItems']);
         $this->assertCount(1, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Tag::class);
     }

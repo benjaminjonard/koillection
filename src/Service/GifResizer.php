@@ -7,19 +7,33 @@ namespace App\Service;
 class GifResizer
 {
     public string $tempDir;
+
     private int $pointer = 0;
+
     private int $index = 0;
+
     private array $globalData = [];
+
     private array $imageData = [];
+
     private array $imageInfo = [];
-    private $handle = null;
+
+    private $handle;
+
     private array $orgVars = [];
+
     private array $encData = [];
+
     private array $parsedFiles = [];
+
     private int $originalWidth = 0;
+
     private int $originalHeight = 0;
+
     private float $wr;
+
     private float $hr;
+
     private bool $decoding = false;
 
     public function __construct(string $publicPath)
@@ -59,6 +73,7 @@ class GifResizer
             $this->getGraphicsExtension(2);
             $this->getimageBlock(2);
         }
+
         $this->writeFrames(time());
         $this->closeFile();
         $this->decoding = false;
@@ -86,16 +101,12 @@ class GifResizer
             $this->getimageBlock(0);
 
             // get transparent color index and color
-            if (isset($this->encData[$this->index - 1])) {
-                $gxData = $this->encData[$this->index - 1]['graphicsextension'];
-            } else {
-                $gxData = null;
-            }
+            $gxData = isset($this->encData[$this->index - 1]) ? $this->encData[$this->index - 1]['graphicsextension'] : null;
 
             $ghData = $this->imageInfo['gifheader'];
             $trColor = '';
 
-            $hasTransparency = $gxData ? (bool) $gxData[3] : false;
+            $hasTransparency = $gxData && (bool) $gxData[3];
 
             if ($hasTransparency) {
                 $trcx = \ord($gxData[6]);
@@ -137,6 +148,7 @@ class GifResizer
             if ($hasTransparency) {
                 $imageData[6] = \chr($this->orgVars[$this->index - 1]['transparent_color_index']);
             }
+
             $imageData[3] = \chr(\ord($imageData[3]) | $hasTransparency);
 
             // apply calculated left and top offset
@@ -149,13 +161,16 @@ class GifResizer
                 if (!isset($this->imageInfo['applicationdata']) || !$this->imageInfo['applicationdata']) {
                     $this->imageInfo['applicationdata'] = \chr(0x21).\chr(0xFF).\chr(0x0B).'NETSCAPE2.0'.\chr(0x03).\chr(0x01).\chr(0x00).\chr(0x00).\chr(0x00);
                 }
+
                 if (!isset($this->imageInfo['commentdata']) || !$this->imageInfo['commentdata']) {
                     $this->imageInfo['commentdata'] = \chr(0x21).\chr(0xFE).\chr(0x10).'PHPGIFRESIZER1.0'.\chr(0);
                 }
+
                 $string .= $this->orgVars['gifheader'].$this->imageInfo['applicationdata'].$this->imageInfo['commentdata'];
                 if (isset($this->orgVars['hasgx_type_0']) && $this->orgVars['hasgx_type_0']) {
                     $string .= $this->globalData['graphicsextension_0'];
                 }
+
                 if (isset($this->orgVars['hasgx_type_1']) && $this->orgVars['hasgx_type_1']) {
                     $string .= $this->globalData['graphicsextension'];
                 }
@@ -209,7 +224,7 @@ class GifResizer
      */
     private function writeFrames(int $prepend): void
     {
-        $size = \sizeof($this->imageData);
+        $size = \count($this->imageData);
 
         for ($i = 0; $i < $size; ++$i) {
             file_put_contents($this->tempDir.'/frame_'.$prepend.'_'.str_pad((string) $i, 2, '0', STR_PAD_LEFT).'.gif', $this->imageInfo['gifheader'].$this->imageData[$i]['graphicsextension'].$this->imageData[$i]['imageData'].\chr(0x3B));
@@ -234,9 +249,6 @@ class GifResizer
             if ((\ord($dst[9]) & 128) == 128) {
                 // Image data contains color table. skip.
             } else {
-                // Image data needs a color table.
-                // get last color table length so we can truncate the dummy color table
-                $idctl = pow(2, $this->readBits(\ord($dst[9]), 5, 3) + 1) * 3;
                 // set color table flag and length
                 $dst[9] = \chr(\ord($dst[9]) | (0x80 | (log($ghctl / 3, 2) - 1)));
                 // inject color table
@@ -304,9 +316,9 @@ class GifResizer
             } elseif (1 == $type) {
                 $this->orgVars['hasgx_type_1'] = 1;
                 $this->globalData['graphicsextension'] = $this->dataPart($start, $this->pointer - $start);
-            } elseif (0 == $type && false === $this->decoding) {
+            } elseif (0 == $type && !$this->decoding) {
                 $this->encData[$this->index]['graphicsextension'] = $this->dataPart($start, $this->pointer - $start);
-            } elseif (0 == $type && true === $this->decoding) {
+            } elseif (0 == $type && $this->decoding) {
                 $this->orgVars['hasgx_type_0'] = 1;
                 $this->globalData['graphicsextension_0'] = $this->dataPart($start, $this->pointer - $start);
             }
@@ -323,6 +335,7 @@ class GifResizer
             if (1 == $this->readBits($mybyte = $this->readByteInt(), 0, 1)) {
                 $this->pForward(pow(2, $this->readBits($mybyte, 5, 3) + 1) * 3);
             }
+
             $this->pForward(1);
             $this->readDataStream($this->readByteInt());
             $this->imageData[$this->index]['imageData'] = $this->dataPart($start, $this->pointer - $start);
@@ -334,6 +347,7 @@ class GifResizer
                 } else {
                     $this->imageData[$this->index]['graphicsextension'] = null;
                 }
+
                 unset($this->globalData['graphicsextension_0']);
             } elseif (1 == $type) {
                 if (isset($this->orgVars['hasgx_type_1']) && 1 == $this->orgVars['hasgx_type_1']) {
@@ -525,7 +539,6 @@ class GifResizer
         foreach ($this->parsedFiles as $img) {
             $src = imagecreatefromgif($img);
             $sprite = imagecreatetruecolor($nw, $nh);
-            $trans = imagecolortransparent($sprite);
             imagealphablending($sprite, false);
             imagesavealpha($sprite, true);
             imagepalettecopy($sprite, $src);

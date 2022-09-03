@@ -48,7 +48,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ]
     ]
 )]
-class Photo implements CacheableInterface, LoggableInterface
+class Photo implements CacheableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -72,7 +72,7 @@ class Photo implements CacheableInterface, LoggableInterface
     #[Assert\NotBlank]
     #[Groups(['photo:read', 'photo:write'])]
     #[ApiSubresource(maxDepth: 1)]
-    private ?Album $album;
+    private ?Album $album = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['photo:read'])]
@@ -98,11 +98,11 @@ class Photo implements CacheableInterface, LoggableInterface
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['photo:read', 'photo:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['photo:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['photo:read'])]
@@ -114,12 +114,11 @@ class Photo implements CacheableInterface, LoggableInterface
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['photo:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
     }
 
     public function getId(): ?string

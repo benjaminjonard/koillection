@@ -81,7 +81,7 @@ class RegenerateLogsCommand extends Command
             $this->managerRegistry->getManager()->clear();
         }
 
-        $output->writeln($this->translator->trans('message.logs_generated', ['%count%' => $counter]));
+        $output->writeln($this->translator->trans('message.logs_generated', ['count' => $counter]));
 
         $results = $this->managerRegistry->getManager()->createQueryBuilder()
             ->select('l.objectId')
@@ -93,7 +93,7 @@ class RegenerateLogsCommand extends Command
             ->execute()
         ;
 
-        $ids = array_map(function ($result) {
+        $ids = array_map(static function ($result) {
             return $result['objectId'];
         }, $results);
 

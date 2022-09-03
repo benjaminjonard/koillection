@@ -30,6 +30,7 @@ class ChartBuilder
 
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
+
         $result = $query->getArrayResult();
 
         $data = [];
@@ -59,6 +60,7 @@ class ChartBuilder
 
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
+
         $result = $query->getArrayResult();
 
         $data = [];
@@ -88,6 +90,7 @@ class ChartBuilder
 
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
+
         $result = $query->getArrayResult();
 
         $days = [
@@ -126,6 +129,7 @@ class ChartBuilder
 
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
+
         $result = $query->getArrayResult();
 
         $months = [
@@ -176,6 +180,7 @@ class ChartBuilder
         $query->setParameter(1, $user->getId());
         $query->setParameter(2, Item::class);
         $query->setParameter(3, [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE]);
+
         $result = $query->getArrayResult();
 
         $timezone = new \DateTimeZone($user->getTimezone());

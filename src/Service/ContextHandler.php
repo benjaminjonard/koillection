@@ -35,11 +35,7 @@ class ContextHandler
         preg_match("/^\/(\w+)/", $request->getRequestUri(), $matches);
 
         if (isset($matches[1]) && \in_array($matches[1], ['user', 'admin'])) {
-            if ('user' === $matches[1]) {
-                $this->context = 'shared';
-            } else {
-                $this->context = 'admin';
-            }
+            $this->context = 'user' === $matches[1] ? 'shared' : 'admin';
         } else {
             $this->context = 'default';
         }

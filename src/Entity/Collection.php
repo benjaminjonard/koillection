@@ -20,6 +20,7 @@ use App\Repository\CollectionRepository;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -56,7 +57,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ]
     ]
 )]
-class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface
+class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -77,7 +78,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?string $itemsTitle = null;
 
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'parent', cascade: ['all'])]
-    #[ORM\OrderBy(['title' => 'ASC'])]
+    #[ORM\OrderBy(['title' => Criteria::ASC])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
@@ -98,7 +99,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private DoctrineCollection $items;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
@@ -118,7 +119,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['collection:read'])]
-    private int $seenCounter;
+    private int $seenCounter = 0;
 
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
@@ -128,7 +129,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\Column(type: Types::STRING, length: 4)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $itemsDisplayMode;
+    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -136,26 +137,26 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingProperty;
+    private ?string $itemsSortingProperty = null;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
     #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingType;
+    private ?string $itemsSortingType = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
-    private ?string $itemsSortingDirection;
+    private ?string $itemsSortingDirection = Criteria::ASC;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['collection:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read'])]
@@ -175,10 +176,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->children = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->data = new ArrayCollection();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
-        $this->itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
-        $this->seenCounter = 0;
-        $this->itemsSortingDirection = 'asc';
     }
 
     public function __toString(): string
@@ -189,7 +186,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function getNaturallySortedItems(): array
     {
         $array = $this->items->toArray();
-        usort($array, function (Item $a, Item $b) {
+        usort($array, static function (Item $a, Item $b): int {
             return strnatcmp($a->getName(), $b->getName());
         });
 

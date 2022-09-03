@@ -57,14 +57,15 @@ class CounterCalculator
     {
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('children', 'children');
+
         $alias = $this->qng->generateJoinAlias('c');
         $ownerId = $this->contextHandler->getContextUser()->getId();
         $results = [];
 
         $sql = "
             SELECT COUNT(DISTINCT id) as children
-            FROM $table $alias
-            WHERE $alias.owner_id = '$ownerId'
+            FROM {$table} {$alias}
+            WHERE {$alias}.owner_id = '{$ownerId}'
         ";
 
         $this->addVisibilityCondition($sql, $alias, 'AND');
@@ -72,12 +73,13 @@ class CounterCalculator
 
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('items', 'items');
+
         $alias = $this->qng->generateJoinAlias('i');
 
         $sql = "
             SELECT COUNT(DISTINCT id) as items
-            FROM $itemTable $alias
-            WHERE $alias.owner_id = '$ownerId'
+            FROM {$itemTable} {$alias}
+            WHERE {$alias}.owner_id = '{$ownerId}'
         ";
 
         $this->addVisibilityCondition($sql, $alias, 'AND');
@@ -96,15 +98,16 @@ class CounterCalculator
         $rsm = new ResultSetMapping();
         $rsm->addIndexByScalar('id');
         $rsm->addScalarResult('counters', 'counters');
+
         $alias = $this->qng->generateJoinAlias('c');
         $ownerId = $this->contextHandler->getContextUser()->getId();
 
         // Counters per objects
         $sqlCounters = $this->getSQLForCounters($alias, $table, $itemTable, $parentProperty);
         $sql = "
-            SELECT $alias.id as id, ($sqlCounters) as counters
-            FROM $table $alias
-            WHERE $alias.owner_id = '$ownerId'
+            SELECT {$alias}.id as id, ({$sqlCounters}) as counters
+            FROM {$table} {$alias}
+            WHERE {$alias}.owner_id = '{$ownerId}'
         ";
 
         $this->addVisibilityCondition($sql, $alias, 'AND');
@@ -137,16 +140,16 @@ class CounterCalculator
 
         $sql = "
             WITH RECURSIVE counters AS (
-                SELECT $c1.id, $c1.parent_id, $c1.final_visibility, $i1.id AS item_id
-                FROM $table $c1
-                LEFT JOIN $itemTable $i1 ON $i1.$parentProperty = $c1.id $visibilityCondition
-                WHERE $c1.id = $alias.id
+                SELECT {$c1}.id, {$c1}.parent_id, {$c1}.final_visibility, {$i1}.id AS item_id
+                FROM {$table} {$c1}
+                LEFT JOIN {$itemTable} {$i1} ON {$i1}.{$parentProperty} = {$c1}.id {$visibilityCondition}
+                WHERE {$c1}.id = {$alias}.id
                 UNION
-                SELECT $c2.id, $c2.parent_id, $c2.final_visibility, $i2.id AS item_id 
-                FROM $table $c2
-                LEFT JOIN $itemTable $i2 ON $i2.$parentProperty = $c2.id
-                INNER JOIN counters $ch1 ON $ch1.id = $c2.parent_id
-            ) SELECT CONCAT(COUNT(DISTINCT id) - 1, '-' , COUNT(DISTINCT item_id)) FROM counters $ch2
+                SELECT {$c2}.id, {$c2}.parent_id, {$c2}.final_visibility, {$i2}.id AS item_id 
+                FROM {$table} {$c2}
+                LEFT JOIN {$itemTable} {$i2} ON {$i2}.{$parentProperty} = {$c2}.id
+                INNER JOIN counters {$ch1} ON {$ch1}.id = {$c2}.parent_id
+            ) SELECT CONCAT(COUNT(DISTINCT id) - 1, '-' , COUNT(DISTINCT item_id)) FROM counters {$ch2}
         ";
 
         $this->addVisibilityCondition($sql, $ch2, 'WHERE');
@@ -158,10 +161,10 @@ class CounterCalculator
     {
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             if ("''" === $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getParameter('user')) {
-                $sql .= sprintf("$condition %s.final_visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
+                $sql .= sprintf("{$condition} %s.final_visibility = '%s'", $alias, VisibilityEnum::VISIBILITY_PUBLIC);
             } else {
                 $sql .= sprintf(
-                    "$condition %s.final_visibility IN ('%s', '%s')",
+                    "{$condition} %s.final_visibility IN ('%s', '%s')",
                     $alias,
                     VisibilityEnum::VISIBILITY_PUBLIC,
                     VisibilityEnum::VISIBILITY_INTERNAL

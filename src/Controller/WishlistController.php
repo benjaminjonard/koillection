@@ -8,6 +8,7 @@ use App\Entity\Wishlist;
 use App\Form\Type\Entity\WishlistType;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class WishlistController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
-        $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => 'ASC']);
+        $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => Criteria::ASC]);
 
         return $this->render('App/Wishlist/index.html.twig', [
             'wishlists' => $wishlists,
@@ -54,7 +55,7 @@ class WishlistController extends AbstractController
             $managerRegistry->getManager()->persist($wishlist);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.wishlist_added', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.wishlist_added', ['wishlist' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wishlist->getId()]);
         }
@@ -87,7 +88,7 @@ class WishlistController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.wishlist_edited', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.wishlist_edited', ['wishlist' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_wishlist_show', ['id' => $wishlist->getId()]);
         }
@@ -109,7 +110,7 @@ class WishlistController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($wishlist);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['%wishlist%' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.wishlist_deleted', ['wishlist' => '&nbsp;<strong>'.$wishlist->getName().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_wishlist_index');

@@ -73,11 +73,11 @@ class AdminController extends AbstractController
     }
 
     #[Route(path: '/admin/export/images', name: 'app_admin_export_images', methods: ['GET'])]
-    public function exportImages(DatabaseDumper $databaseDumper, UserRepository $userRepository): StreamedResponse
+    public function exportImages(UserRepository $userRepository, string $kernelProjectDir): StreamedResponse
     {
         $users = $userRepository->findAll();
 
-        return new StreamedResponse(function () use ($users) {
+        return new StreamedResponse(static function () use ($users, $kernelProjectDir): void {
             $options = new Archive();
             $options->setContentType('text/event-stream');
             $options->setFlushOutput(true);
@@ -85,16 +85,15 @@ class AdminController extends AbstractController
 
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream($zipFilename, $options);
-
             foreach ($users as $user) {
-                $path = $this->getParameter('kernel.project_dir').'/public/uploads/'.$user->getId();
+                $path = $kernelProjectDir.'/public/uploads/'.$user->getId();
 
                 if (!is_dir($path)) {
                     continue;
                 }
 
                 $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
-                foreach ($files as $name => $file) {
+                foreach ($files as $file) {
                     if (!$file->isDir()) {
                         $zip->addFileFromStream($user->getId().'/'.$file->getFilename(), fopen($file->getRealPath(), 'r'));
                     }

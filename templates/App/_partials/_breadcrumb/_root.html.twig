@@ -1,4 +1,4 @@
-{% set label = element.label|applyContextTrans|trans(app.request.get('username') is not null ? {'%username%' : app.request.get('username')} : {}) %}
+{% set label = element.label|applyContextTrans|trans(app.request.get('username') is not null ? {'username': app.request.get('username')} : {}) %}
 <a class="{{ element.class|default('') }}" href="{{ path(element.route|applyContext, element.params) }}">
     {{ label }}
 </a>

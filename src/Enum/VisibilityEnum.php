@@ -7,7 +7,9 @@ namespace App\Enum;
 class VisibilityEnum
 {
     public const VISIBILITY_PUBLIC = 'public';
+
     public const VISIBILITY_INTERNAL = 'internal';
+
     public const VISIBILITY_PRIVATE = 'private';
 
     public const VISIBILITIES = [

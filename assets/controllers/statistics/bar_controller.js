@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import Translator from "../../js/translator.min";
+import Translator from "bazinga-translator";
 import * as echarts from 'echarts/lib/echarts'
 import { TooltipComponent } from 'echarts/components';
 import { BarChart } from 'echarts/charts';
@@ -17,7 +17,7 @@ export default class extends Controller {
         this.chart.setOption({
             tooltip: {
                 formatter: function (params) {
-                    return Translator.transChoice('statistics.items_added', params.value);
+                    return Translator.trans('statistics.items_added', params.value);
                 }
             },
             color: [this.isDarkMode ? '#00ce99' : '#009688'],

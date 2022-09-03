@@ -21,20 +21,20 @@ final class TranslationCommandListener
         if ('bazinga:js-translation:dump' === $event->getCommand()->getName()) {
             // Config file
             $configFilePath = $this->assetsPath.'/js/translations/config.js';
-            $this->updateContent($configFilePath, '../translator.min.js');
+            $this->updateContent($configFilePath);
 
             // Locale files (en.js, fr.js...)
-            $path = $this->assetsPath.'/js/translations/javascript';
+            $path = $this->assetsPath.'/js/translations/javascript+intl-icu';
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
-            foreach ($files as $name => $file) {
+            foreach ($files as $file) {
                 if (!$file->isDir() && 'js' == $file->getExtension()) {
-                    $this->updateContent($file->getPathname(), '../../translator.min.js');
+                    $this->updateContent($file->getPathname());
                 }
             }
         }
     }
 
-    private function updateContent(string $path, string $translatorPath): void
+    private function updateContent(string $path): void
     {
         $fileContent = file_get_contents($path);
 
@@ -43,7 +43,7 @@ final class TranslationCommandListener
         $fileContent = implode('-', $contentChunks);
 
         // Import translator in the file
-        $fileContent = "import Translator from '$translatorPath'".PHP_EOL.PHP_EOL.$fileContent;
+        $fileContent = "import Translator from 'bazinga-translator'".PHP_EOL.PHP_EOL.$fileContent;
 
         file_put_contents($path, $fileContent);
     }

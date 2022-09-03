@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class InventoryType extends AbstractType
 {
     public function __construct(
-        private StringToInventoryContentTransformer $stringToInventoryContentTransformer
+        private readonly StringToInventoryContentTransformer $stringToInventoryContentTransformer
     ) {
     }
 

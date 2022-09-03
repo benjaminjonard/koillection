@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['tagCategory:read']],
     denormalizationContext: ['groups' => ['tagCategory:write']],
 )]
-class TagCategory implements BreadcrumbableInterface, LoggableInterface
+class TagCategory implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -57,7 +57,7 @@ class TagCategory implements BreadcrumbableInterface, LoggableInterface
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['tagCategory:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {

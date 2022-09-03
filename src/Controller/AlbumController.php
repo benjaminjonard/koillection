@@ -8,6 +8,7 @@ use App\Entity\Album;
 use App\Form\Type\Entity\AlbumType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class AlbumController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 
-        $albums = $albumRepository->findBy(['parent' => null], ['title' => 'ASC']);
+        $albums = $albumRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
         $photosCounter = 0;
         foreach ($albums as $album) {
             $photosCounter += \count($album->getPhotos());
@@ -59,7 +60,7 @@ class AlbumController extends AbstractController
             $managerRegistry->getManager()->persist($album);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.album_added', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.album_added', ['album' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_album_show', ['id' => $album->getId()]);
         }
@@ -79,7 +80,7 @@ class AlbumController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.album_edited', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.album_edited', ['album' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_album_show', ['id' => $album->getId()]);
         }
@@ -90,7 +91,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route( path: '/albums/{id}/delete', name: 'app_album_delete', methods: ['POST'])]
+    #[Route(path: '/albums/{id}/delete', name: 'app_album_delete', methods: ['POST'])]
     public function delete(Request $request, Album $album, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
@@ -101,7 +102,7 @@ class AlbumController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($album);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.album_deleted', ['%album%' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.album_deleted', ['album' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_album_index');

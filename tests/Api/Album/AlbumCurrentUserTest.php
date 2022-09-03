@@ -18,7 +18,7 @@ class AlbumCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(10, $data['hydra:totalItems']);
+        $this->assertSame(10, $data['hydra:totalItems']);
         $this->assertCount(10, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Album::class);
     }
@@ -49,7 +49,7 @@ class AlbumCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertSame(1, $data['hydra:totalItems']);
         $this->assertCount(1, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Album::class);
     }
@@ -78,14 +78,14 @@ class AlbumCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(5, $data['hydra:totalItems']);
+        $this->assertSame(5, $data['hydra:totalItems']);
         $this->assertCount(5, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Photo::class);
     }
 
     public function testPostAlbum(): void
     {
-        $this->createClientWithCredentials()->request('POST', '/api/albums', [ 'json' => [
+        $this->createClientWithCredentials()->request('POST', '/api/albums', ['json' => [
                 'title' => 'New album',
             ],
         ]);

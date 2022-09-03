@@ -18,8 +18,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class WishlistType extends AbstractType
 {
     public function __construct(
-        private Base64ToImageTransformer $base64ToImageTransformer,
-        private WishlistRepository $wishlistRepository
+        private readonly Base64ToImageTransformer $base64ToImageTransformer,
+        private readonly WishlistRepository $wishlistRepository
     ) {
     }
 

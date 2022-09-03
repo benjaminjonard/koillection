@@ -83,7 +83,7 @@ class TagController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.tag_edited', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.tag_edited', ['tag' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_tag_show', ['id' => $tag->getId()]);
         }
@@ -105,7 +105,7 @@ class TagController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($tag);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.tag_deleted', ['%tag%' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.tag_deleted', ['tag' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_tag_index');
@@ -124,9 +124,10 @@ class TagController extends AbstractController
             foreach ($unusedTags as $tag) {
                 $managerRegistry->getManager()->remove($tag);
             }
+
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.unused_tags_deleted', ['%count%' => \count($unusedTags)]));
+            $this->addFlash('notice', $translator->trans('message.unused_tags_deleted', ['count' => \count($unusedTags)]));
         }
 
         return $this->redirectToRoute('app_tag_index');
@@ -146,7 +147,7 @@ class TagController extends AbstractController
         return new JsonResponse($data);
     }
 
-    #[Route(path: '/tags/{tagId}/items/{itemId}',  name: 'app_tag_item_show', methods: ['GET'])]
+    #[Route(path: '/tags/{tagId}/items/{itemId}', name: 'app_tag_item_show', methods: ['GET'])]
     #[Route(path: '/user/{username}/tags/{tagId}/items/{itemId}', name: 'app_shared_tag_item_show', methods: ['GET'])]
     #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
     #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]

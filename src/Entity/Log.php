@@ -28,7 +28,7 @@ class Log
 
     #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
     #[Groups(['log:read'])]
-    private ?string $type;
+    private ?string $type = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['log:read'])]
@@ -48,16 +48,15 @@ class Log
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['log:read'])]
-    private bool $objectDeleted;
+    private bool $objectDeleted = false;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'logs')]
     #[Groups(['log:read'])]
-    private ?User $owner;
+    private ?User $owner = null;
 
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->objectDeleted = false;
     }
 
     public function getId(): ?string

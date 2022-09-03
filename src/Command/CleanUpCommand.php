@@ -67,7 +67,7 @@ class CleanUpCommand extends Command
         $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
 
-        $dbPaths = array_map(function ($row) {
+        $dbPaths = array_map(static function ($row) {
             return $row['image'];
         }, $result->fetchAllAssociative());
 
@@ -88,7 +88,7 @@ class CleanUpCommand extends Command
             }
         }
 
-        $output->writeln($this->translator->trans('message.files_deleted', ['%count%' => \count($diff)]));
+        $output->writeln($this->translator->trans('message.files_deleted', ['count' => \count($diff)]));
 
         return Command::SUCCESS;
     }

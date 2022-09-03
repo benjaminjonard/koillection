@@ -38,6 +38,7 @@ class FilterListener
         } elseif ($filters->isEnabled('visibility')) {
             $filters->disable('visibility');
         }
+
         $this->setContextUser();
 
         // Ownership filter
@@ -55,7 +56,7 @@ class FilterListener
         $user = null;
         if ('shared' === $this->contextHandler->getContext()) {
             $user = $this->userRepository->findOneBy(['username' => $this->contextHandler->getUsername()]);
-            if (!$user) {
+            if ($user === null) {
                 throw new NotFoundHttpException();
             }
         } elseif ($this->security->getUser() instanceof User) {

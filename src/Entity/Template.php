@@ -12,6 +12,7 @@ use App\Repository\TemplateRepository;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -24,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['template:read']],
     denormalizationContext: ['groups' => ['template:write']],
 )]
-class Template implements BreadcrumbableInterface, LoggableInterface
+class Template implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -37,7 +38,7 @@ class Template implements BreadcrumbableInterface, LoggableInterface
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Field::class, mappedBy: 'template', cascade: ['all'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $fields;
@@ -52,7 +53,7 @@ class Template implements BreadcrumbableInterface, LoggableInterface
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['template:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {

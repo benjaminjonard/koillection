@@ -19,7 +19,7 @@ use Symfony\Component\Uid\Uuid;
     normalizationContext: ['groups' => ['choiceList:read']],
     denormalizationContext: ['groups' => ['choiceList:write']],
 )]
-class ChoiceList implements BreadcrumbableInterface, LoggableInterface
+class ChoiceList implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -32,7 +32,7 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface
 
     #[ORM\Column(type: Types::ARRAY)]
     #[Groups(['choiceList:read', 'choiceList:write'])]
-    private array $choices;
+    private array $choices = [];
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['choiceList:read'])]
@@ -44,12 +44,11 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['choiceList:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->choices = [];
     }
 
     public function __toString(): string
@@ -70,18 +69,6 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface
     public function setName(string $name): ChoiceList
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): ChoiceList
-    {
-        $this->type = $type;
 
         return $this;
     }

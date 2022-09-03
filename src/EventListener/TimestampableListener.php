@@ -11,11 +11,11 @@ final class TimestampableListener
     public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
-        if (true === property_exists($entity, 'createdAt')) {
+        if (property_exists($entity, 'createdAt')) {
             $entity->setCreatedAt(new \DateTimeImmutable());
         }
 
-        if (true === property_exists($entity, 'loggedAt') && null === $entity->getLoggedAt()) {
+        if (property_exists($entity, 'loggedAt') && null === $entity->getLoggedAt()) {
             $entity->setLoggedAt(new \DateTimeImmutable());
         }
     }
@@ -23,7 +23,7 @@ final class TimestampableListener
     public function preUpdate(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
-        if (true === property_exists($entity, 'updatedAt')) {
+        if (property_exists($entity, 'updatedAt')) {
             $entity->setUpdatedAt(new \DateTimeImmutable());
         }
     }

@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Collection;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,7 +22,7 @@ class CollectionRepository extends ServiceEntityRepository
     {
         return $this
             ->createQueryBuilder('c')
-            ->orderBy('c.title', 'ASC')
+            ->orderBy('c.title', Criteria::ASC)
             ->getQuery()
             ->getResult()
         ;
@@ -44,11 +45,11 @@ class CollectionRepository extends ServiceEntityRepository
         $sql = "
             WITH RECURSIVE children AS (
                 SELECT c1.id, c1.parent_id
-                FROM $table c1     
-                WHERE c1.id = $id
+                FROM {$table} c1     
+                WHERE c1.id = {$id}
                 UNION
                 SELECT c2.id, c2.parent_id
-                FROM $table c2
+                FROM {$table} c2
                 INNER JOIN children ch1 ON ch1.id = c2.parent_id
             ) SELECT id FROM children ch2
         ";
@@ -57,7 +58,7 @@ class CollectionRepository extends ServiceEntityRepository
 
         return $this
             ->createQueryBuilder('c')
-            ->orderBy('c.title', 'ASC')
+            ->orderBy('c.title', Criteria::ASC)
             ->where('c NOT IN  (:excluded)')
             ->setParameter('excluded', $excluded)
             ->getQuery()
@@ -73,7 +74,7 @@ class CollectionRepository extends ServiceEntityRepository
             ->addSelect('i')
             ->leftJoin('c.children', 'ch')
             ->addSelect('ch')
-            ->orderBy('c.title', 'ASC')
+            ->orderBy('c.title', Criteria::ASC)
             ->getQuery()
             ->getResult()
         ;
@@ -85,7 +86,7 @@ class CollectionRepository extends ServiceEntityRepository
             ->createQueryBuilder('c')
             ->leftJoin('c.children', 'ch')
             ->addSelect('ch')
-            ->orderBy('c.title', 'ASC')
+            ->orderBy('c.title', Criteria::ASC)
             ->getQuery()
             ->getResult()
         ;
@@ -109,7 +110,7 @@ class CollectionRepository extends ServiceEntityRepository
     {
         $qb = $this
             ->createQueryBuilder('c')
-            ->orderBy('c.title', 'ASC')
+            ->orderBy('c.title', Criteria::ASC)
         ;
 
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {

@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import Translator from "../../js/translator.min";
+import Translator from "bazinga-translator";
 import * as echarts from 'echarts/lib/echarts'
 import { TooltipComponent, CalendarComponent, VisualMapComponent } from 'echarts/components';
 import { HeatmapChart } from 'echarts/charts';
@@ -38,7 +38,7 @@ export default class extends Controller {
         this.chart.setOption({
             tooltip: {
                 formatter: function (params) {
-                    return Translator.transChoice('statistics.items_added', params.value[1]);
+                    return Translator.trans('statistics.items_added', {count: params.value[1]});
                 }
             },
             visualMap: {

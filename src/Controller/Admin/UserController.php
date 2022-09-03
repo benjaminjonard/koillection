@@ -17,6 +17,7 @@ use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('App/Admin/User/index.html.twig', [
-            'users' => $userRepository->findBy([], ['lastDateOfActivity' => 'DESC']),
+            'users' => $userRepository->findBy([], ['lastDateOfActivity' => Criteria::DESC]),
         ]);
     }
 
@@ -45,7 +46,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->persist($user);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.user_added', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.user_added', ['user' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
         }
@@ -75,7 +76,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.user_edited', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.user_edited', ['user' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
         }
@@ -112,7 +113,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($user);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.user_deleted', ['%user%' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.user_deleted', ['user' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
         }
 
         return $this->redirectToRoute('app_admin_user_index');

@@ -79,10 +79,11 @@ class RegenerateThumbnailsCommand extends Command
                     } else {
                         $object->setFile($file);
                     }
+
                     ++$counter;
                 }
 
-                if ($counter % 100) {
+                if ($counter % 100 !== 0) {
                     $this->managerRegistry->getManager()->flush();
                 }
             }
@@ -90,7 +91,7 @@ class RegenerateThumbnailsCommand extends Command
             $this->managerRegistry->getManager()->flush();
         }
 
-        $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['%count%' => $counter]));
+        $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['count' => $counter]));
 
         return Command::SUCCESS;
     }

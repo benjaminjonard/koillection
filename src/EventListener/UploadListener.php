@@ -33,7 +33,7 @@ final class UploadListener
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
             foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
                 $this->handler->upload($entity, $property, $attribute);
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(\get_class($entity)), $entity);
+                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata($entity::class), $entity);
             }
         }
     }

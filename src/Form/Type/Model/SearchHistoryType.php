@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SearchHistoryType extends AbstractType
 {
     public function __construct(
-        private FeatureChecker $featureChecker
+        private readonly FeatureChecker $featureChecker
     ) {
     }
 
@@ -30,10 +30,12 @@ class SearchHistoryType extends AbstractType
             $types[HistoryFilterEnum::FILTER_CLASS_TAG] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_TAG);
             $types[HistoryFilterEnum::FILTER_CLASS_TAG_CATEGORY] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_TAG_CATEGORY);
         }
+
         if ($this->featureChecker->isFeatureEnabled('albums')) {
             $types[HistoryFilterEnum::FILTER_CLASS_ALBUM] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_ALBUM);
             $types[HistoryFilterEnum::FILTER_CLASS_PHOTO] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_PHOTO);
         }
+
         if ($this->featureChecker->isFeatureEnabled('wishlists')) {
             $types[HistoryFilterEnum::FILTER_CLASS_WISHLIST] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_WISHLIST);
             $types[HistoryFilterEnum::FILTER_CLASS_WISH] = HistoryFilterEnum::getLabel(HistoryFilterEnum::FILTER_CLASS_WISH);

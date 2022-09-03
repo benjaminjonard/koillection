@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Log;
 use App\Model\Search\SearchHistory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 class LogRepository extends ServiceEntityRepository
@@ -18,7 +19,7 @@ class LogRepository extends ServiceEntityRepository
 
     public function findForSearch(SearchHistory $search): array
     {
-        $classes = array_map(function ($value) {
+        $classes = array_map(static function ($value): string {
             return 'App\Entity\\'.ucfirst($value);
         }, $search->getClasses());
 
@@ -26,7 +27,7 @@ class LogRepository extends ServiceEntityRepository
             ->createQueryBuilder('l')
             ->where('l.type in (:types)')
             ->andWhere('l.objectClass in (:classes)')
-            ->orderBy('l.loggedAt', 'DESC')
+            ->orderBy('l.loggedAt', Criteria::DESC)
             ->setFirstResult(($search->getPage() - 1) * $search->getItemsPerPage())
             ->setMaxResults($search->getItemsPerPage())
             ->setParameter('types', $search->getTypes())
@@ -45,7 +46,7 @@ class LogRepository extends ServiceEntityRepository
 
     public function countForSearch(SearchHistory $search): int
     {
-        $classes = array_map(function ($value) {
+        $classes = array_map(static function ($value): string {
             return 'App\Entity\\'.ucfirst($value);
         }, $search->getClasses());
 

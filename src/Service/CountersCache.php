@@ -12,7 +12,7 @@ use Symfony\Contracts\Cache\ItemInterface;
 
 class CountersCache
 {
-    private TagAwareAdapter $cache;
+    private readonly TagAwareAdapter $cache;
 
     public function __construct(
         private readonly CounterCalculator $calculator,
@@ -34,7 +34,7 @@ class CountersCache
             $cacheKey .= $this->security->getUser() instanceof User ? '_authenticated' : '_anonymous';
         }
 
-        $counters = $this->cache->get($cacheKey, function (ItemInterface $item) use ($key, $contextUserId) {
+        $counters = $this->cache->get($cacheKey, function (ItemInterface $item) use ($key, $contextUserId): array {
             $counters = [];
             foreach ($this->calculator->computeCounters() as $id => $counter) {
                 $counters[$key.$id] = $counter;
@@ -61,7 +61,7 @@ class CountersCache
 
     public function invalidateCurrentUser(): void
     {
-        if ($this->security->getUser()) {
+        if ($this->security->getUser() !== null) {
             $this->cache->invalidateTags([$this->security->getUser()->getId()]);
         }
     }

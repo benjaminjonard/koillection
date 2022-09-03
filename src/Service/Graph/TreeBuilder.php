@@ -19,7 +19,7 @@ class TreeBuilder
         $collections = $this->collectionRepository->findAllWithChildren();
         $tree = $this->createLeaf();
 
-        $children = array_filter($collections, function (Collection $element) {
+        $children = array_filter($collections, static function (Collection $element): bool {
             return null === $element->getParent();
         });
 
@@ -50,7 +50,7 @@ class TreeBuilder
         }
 
         return [
-            'id' => $collection ? $collection->getId() : '',
+            'id' => $collection !== null ? $collection->getId() : '',
             'name' => $name,
             'children' => [], ];
     }

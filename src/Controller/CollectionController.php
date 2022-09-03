@@ -12,6 +12,7 @@ use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class CollectionController extends AbstractController
     #[Route(path: '/user/{username}', name: 'app_shared_homepage', methods: ['GET'])]
     public function index(CollectionRepository $collectionRepository): Response
     {
-        $collections = $collectionRepository->findBy(['parent' => null], ['title' => 'ASC']);
+        $collections = $collectionRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
 
         return $this->render('App/Collection/index.html.twig', [
             'collections' => $collections,
@@ -63,7 +64,7 @@ class CollectionController extends AbstractController
             $managerRegistry->getManager()->persist($collection);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.collection_added', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.collection_added', ['collection' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }
@@ -115,7 +116,7 @@ class CollectionController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.collection_edited', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.collection_edited', ['collection' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
 
             return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }
@@ -138,7 +139,7 @@ class CollectionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($collection);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.collection_deleted', ['%collection%' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.collection_deleted', ['collection' => '&nbsp;<strong>'.$collection->getTitle().'</strong>&nbsp;']));
         }
 
         if (null === $collection->getParent()) {
@@ -155,13 +156,14 @@ class CollectionController extends AbstractController
 
         $batchTagger = new BatchTagger();
         $batchTagger->setCollection($collection);
+
         $form = $this->createForm(BatchTaggerType::class, $batchTagger);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $itemsTaggedCount = $batchTagger->applyBatch();
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.items_tagged', ['%count%' => $itemsTaggedCount]));
+            $this->addFlash('notice', $translator->trans('message.items_tagged', ['count' => $itemsTaggedCount]));
 
             return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
         }

@@ -75,6 +75,7 @@ class DatumController extends AbstractController
                             break;
                         }
                     }
+
                     if (null === $existing) {
                         unset($commonFields[$cfKey]);
                     } elseif (isset($datum) && $datum->getValue() !== $commonField['datum']->getValue()) {

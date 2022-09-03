@@ -55,7 +55,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ]
     ]
 )]
-class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface
+class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -70,7 +70,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\Column(type: Types::INTEGER)]
     #[Assert\GreaterThan(0)]
     #[Groups(['item:read', 'item:write'])]
-    private int $quantity;
+    private int $quantity = 1;
 
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'items')]
     #[Assert\NotBlank]
@@ -84,29 +84,29 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'items', cascade: ['persist'])]
     #[ORM\JoinTable(name: 'koi_item_tag')]
-    #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'item_id')]
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
-    #[ORM\OrderBy(['label' => 'ASC'])]
+    #[ORM\OrderBy(['label' => Criteria::ASC])]
     #[Groups(['item:write'])]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
     #[ORM\ManyToMany(targetEntity: Item::class, inversedBy: 'relatedTo')]
     #[ORM\JoinTable(name: 'koi_item_related_item')]
-    #[ORM\JoinColumn(name: 'item_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'item_id')]
     #[ORM\InverseJoinColumn(name: 'related_item_id', referencedColumnName: 'id')]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[Groups(['item:write'])]
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $relatedItems;
 
     #[ORM\ManyToMany(targetEntity: Item::class, mappedBy: 'relatedItems')]
-    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[ORM\OrderBy(['name' => Criteria::ASC])]
     private DoctrineCollection $relatedTo;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'item', cascade: ['persist'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
@@ -134,16 +134,16 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['item:read'])]
-    private int $seenCounter;
+    private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['item:read', 'item:write'])]
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
-    private string $visibility;
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
     #[Groups(['item:read'])]
-    private ?string $parentVisibility;
+    private ?string $parentVisibility = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['item:read'])]
@@ -155,19 +155,17 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['item:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     private ?string $orderingValue = null;
 
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
-        $this->seenCounter = 0;
-        $this->quantity = 1;
         $this->tags = new ArrayCollection();
         $this->data = new ArrayCollection();
         $this->relatedItems = new ArrayCollection();
-        $this->visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->relatedTo = new ArrayCollection();
         $this->loans = new ArrayCollection();
     }
 
@@ -213,6 +211,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->eq('label', trim($value)));
+
         $tag = $this->tags->matching($criteria)->first();
 
         return $tag instanceof Tag ? $tag : null;

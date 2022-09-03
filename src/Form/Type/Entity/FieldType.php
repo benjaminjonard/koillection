@@ -7,7 +7,6 @@ namespace App\Form\Type\Entity;
 use App\Entity\ChoiceList;
 use App\Entity\Field;
 use App\Enum\DatumTypeEnum;
-use App\Repository\ChoiceListRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -20,11 +19,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FieldType extends AbstractType
 {
-    public function __construct(
-        private readonly ChoiceListRepository $choiceListRepository
-    ) {
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $types = array_flip(DatumTypeEnum::getTypesLabels());
@@ -50,9 +44,8 @@ class FieldType extends AbstractType
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT,
-            function (FormEvent $event) {
+            static function (FormEvent $event): void {
                 $data = $event->getData();
-
                 if (DatumTypeEnum::TYPE_LIST !== $data['type']) {
                     $data['choiceList'] = null;
                 }

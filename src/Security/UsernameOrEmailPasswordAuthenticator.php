@@ -37,7 +37,7 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractLoginFormAuthenticato
         $request->getSession()->set(Security::LAST_USERNAME, $login);
 
         return new Passport(
-            new UserBadge($login, function ($userIdentifier) {
+            new UserBadge($login, function ($userIdentifier): ?\App\Entity\User {
                 $user = $this->userRepository->findOneByUsernameOrEmail($userIdentifier);
 
                 if (false === $user->isEnabled()) {

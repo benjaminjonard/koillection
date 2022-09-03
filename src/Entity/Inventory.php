@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['inventory:read']],
     denormalizationContext: ['groups' => ['inventory:write']],
 )]
-class Inventory implements BreadcrumbableInterface, LoggableInterface
+class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -46,7 +46,7 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['inventory:read'])]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     private array $contentAsArray = [];
 

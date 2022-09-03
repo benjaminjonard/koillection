@@ -14,6 +14,7 @@ use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
 use App\Service\ArraySorter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -71,11 +72,7 @@ class ItemRepository extends ServiceEntityRepository
 
         if (0 === $current) {
             $previous = null;
-            if ($count > 1) {
-                $next = $results[($current + 1) % $count];
-            } else {
-                $next = null;
-            }
+            $next = $count > 1 ? $results[1 % $count] : null;
         } elseif ($current === $count - 1) {
             $previous = $results[($count + $current - 1) % $count];
             $next = null;
@@ -94,7 +91,7 @@ class ItemRepository extends ServiceEntityRepository
     {
         $qb = $this
             ->createQueryBuilder('i')
-            ->orderBy('i.name', 'ASC')
+            ->orderBy('i.name', Criteria::ASC)
         ;
 
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
@@ -128,7 +125,7 @@ class ItemRepository extends ServiceEntityRepository
                 WITH RECURSIVE children AS (
                     SELECT c1.id, c1.parent_id, c1.visibility
                     FROM koi_collection c1
-                    WHERE c1.id = $id
+                    WHERE c1.id = {$id}
                     UNION
                     SELECT c2.id, c2.parent_id, c2.visibility
                     FROM koi_collection c2
@@ -182,8 +179,8 @@ class ItemRepository extends ServiceEntityRepository
             ->createQueryBuilder('i')
             ->addSelect('(CASE WHEN LOWER(i.name) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(i.name) LIKE LOWER(:name)')
-            ->orderBy('startWithOrder', 'ASC') // Order items starting with the search term first
-            ->addOrderBy('LOWER(i.name)', 'ASC') // Then order other matching items alphabetically
+            ->orderBy('startWithOrder', Criteria::ASC) // Order items starting with the search term first
+            ->addOrderBy('LOWER(i.name)', Criteria::ASC) // Then order other matching items alphabetically
             ->setParameter('name', '%'.$string.'%')
             ->setParameter('startWith', $string.'%')
             ->setMaxResults(5)
@@ -199,7 +196,7 @@ class ItemRepository extends ServiceEntityRepository
             ->leftJoin('i.data', 'd')
             ->addSelect('d')
             ->andWhere('d.type = :type')
-            ->orderBy('i.name', 'ASC')
+            ->orderBy('i.name', Criteria::ASC)
             ->setParameter('type', DatumTypeEnum::TYPE_SIGN)
             ->getQuery()
             ->getResult()
@@ -236,7 +233,7 @@ class ItemRepository extends ServiceEntityRepository
 
             $qb = $this
                 ->createQueryBuilder('item')
-                ->addSelect("($subQuery) AS orderingValue, data")
+                ->addSelect("({$subQuery}) AS orderingValue, data")
                 ->where('item.collection = :collection')
                 ->setParameter('collection', $collection->getId())
                 ->setParameter('label', $collection->getItemsSortingProperty())
@@ -258,9 +255,8 @@ class ItemRepository extends ServiceEntityRepository
 
             $results = $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
 
-            return array_map(function ($result) use ($asArray) {
+            return array_map(static function ($result) use ($asArray) {
                 $item = $result[0];
-
                 if ($asArray) {
                     $item['orderingValue'] = $result['orderingValue'];
                 } else {

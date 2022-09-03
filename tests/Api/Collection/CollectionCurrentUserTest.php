@@ -19,7 +19,7 @@ class CollectionCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(10, $data['hydra:totalItems']);
+        $this->assertSame(10, $data['hydra:totalItems']);
         $this->assertCount(10, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Collection::class);
     }
@@ -50,7 +50,7 @@ class CollectionCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(1, $data['hydra:totalItems']);
+        $this->assertSame(1, $data['hydra:totalItems']);
         $this->assertCount(1, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Collection::class);
     }
@@ -79,7 +79,7 @@ class CollectionCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(5, $data['hydra:totalItems']);
+        $this->assertSame(5, $data['hydra:totalItems']);
         $this->assertCount(5, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Item::class);
     }
@@ -93,7 +93,7 @@ class CollectionCurrentUserTest extends ApiTestCase
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
-        $this->assertEquals(10, $data['hydra:totalItems']);
+        $this->assertSame(10, $data['hydra:totalItems']);
         $this->assertCount(10, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
