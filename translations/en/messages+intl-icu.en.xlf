@@ -1250,15 +1250,15 @@
       </segment>
     </unit>
     <unit id="lYyKRwZ" name="label.loaned_to">
-      <segment state="translated">
+      <segment state="final">
         <source>label.loaned_to</source>
-        <target>To</target>
+        <target>Borrower</target>
       </segment>
     </unit>
     <unit id="2ZgbVvL" name="label.loaned_at">
       <segment state="translated">
         <source>label.loaned_at</source>
-        <target>Date</target>
+        <target>Lent on</target>
       </segment>
     </unit>
     <unit id="EWnP8ZQ" name="label.loaned_ago">
