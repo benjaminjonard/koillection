@@ -58,7 +58,10 @@ class CollectionType extends AbstractType
         }
 
         // Move already selected columns to the top of the array
-        $alreadySelectedColumns = array_reverse($entity->getItemsDisplayModeListColumns());
+        $alreadySelectedColumns = [];
+        if ($entity->getItemsDisplayModeListColumns()) {
+            $alreadySelectedColumns = array_reverse($entity->getItemsDisplayModeListColumns());
+        }
         foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
             unset($itemsDisplayModeListColumnsChoices[$alreadySelectedColumn]);
             array_unshift($itemsDisplayModeListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);
