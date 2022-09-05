@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractLoginFormAuthenticato
         $request->getSession()->set(Security::LAST_USERNAME, $login);
 
         return new Passport(
-            new UserBadge($login, function ($userIdentifier): ?\App\Entity\User {
+            new UserBadge($login, function ($userIdentifier): ?User {
                 $user = $this->userRepository->findOneByUsernameOrEmail($userIdentifier);
 
                 if (false === $user->isEnabled()) {
