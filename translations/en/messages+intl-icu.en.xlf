@@ -1264,7 +1264,7 @@
     <unit id="EWnP8ZQ" name="label.loaned_ago">
       <segment state="translated">
         <source>label.loaned_ago</source>
-        <target>Loan duration</target>
+        <target>Ago</target>
       </segment>
     </unit>
     <unit id="uFEIsab" name="tooltip.returned">
