@@ -217,7 +217,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findForOrdering(Collection $collection, bool $asArray = false)
+    public function findForOrdering(Collection $collection, bool $asArray = false): array
     {
         if ($collection->getItemsSortingProperty()) {
             // Get ordering value

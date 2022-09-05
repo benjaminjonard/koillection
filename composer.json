@@ -67,6 +67,8 @@
         "hautelook/alice-bundle": "^2.11",
         "justinrainbow/json-schema": "^5.2",
         "phpunit/phpunit": "^9.5",
+        "psalm/plugin-phpunit": "^0.17",
+        "psalm/plugin-symfony": "^3.1",
         "rector/rector": "^0.14.0",
         "symfony/browser-kit": "^6.1",
         "symfony/css-selector": "^6.1",
@@ -74,7 +76,9 @@
         "symfony/phpunit-bridge": "^6.1",
         "symfony/stopwatch": "^6.1",
         "symfony/var-dumper": "^6.1",
-        "symfony/web-profiler-bundle": "^6.1"
+        "symfony/web-profiler-bundle": "^6.1",
+        "vimeo/psalm": "^4.24",
+        "weirdan/doctrine-psalm-plugin": "^2.3"
     },
     "repositories": [
         {
