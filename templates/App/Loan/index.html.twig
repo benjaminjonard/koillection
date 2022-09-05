@@ -37,6 +37,7 @@
             <table class="striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>{{ 'label.name'|trans }}</th>
                         <th>{{ 'label.loaned_to'|trans }}</th>
                         <th>{{ 'label.loaned_at'|trans }}</th>
@@ -47,6 +48,13 @@
                 <tbody>
                     {% for loan in loans %}
                         <tr class="list-element resize-element">
+                            <td>
+                                {% if loan.item.imageSmallThumbnail %}
+                                    <div class="image-wrapper placeholder" data-controller="lazy-loading">
+                                        <img data-src="{{ asset(loan.item.imageSmallThumbnail) }}" data-lazy-loading-target="image">
+                                    </div>
+                                {% endif %}
+                            </td>
                             <td>
                                 <a href="{{ path('app_item_show', {'id': loan.item.id}) }}">{{ loan.item.name }}</a>
                             </td>
@@ -73,6 +81,7 @@
             <table class="striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>{{ 'label.name'|trans }}</th>
                         <th>{{ 'label.loaned_to'|trans }}</th>
                         <th class="hide-on-small-only">{{ 'label.loaned_at'|trans }}</th>
@@ -84,6 +93,13 @@
                 <tbody>
                     {% for returnedItem in returnedItems %}
                         <tr class="list-element resize-element">
+                            <td>
+                                {% if returnedItem.item.imageSmallThumbnail %}
+                                    <div class="image-wrapper placeholder" data-controller="lazy-loading">
+                                        <img data-src="{{ asset(returnedItem.item.imageSmallThumbnail) }}" data-lazy-loading-target="image">
+                                    </div>
+                                {% endif %}
+                            </td>
                             <td>
                                 <a href="{{ path('app_item_show', {'id': returnedItem.item.id}) }}">{{ returnedItem.item.name }}</a>
                             </td>
