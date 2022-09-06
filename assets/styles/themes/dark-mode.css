@@ -158,6 +158,7 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 .select2-container--default .select2-results__option[aria-selected="true"],
 .select2-dropdown, .autocomplete-content,
 header #search_term, .sidebar-wrapper .header-logo,
+thead th,
 .nav-wrapper #search_term, body {
     background-color: #2a2a2a;
 }
