@@ -2846,9 +2846,9 @@
       </segment>
     </unit>
     <unit id="0ZXz2Ap" name="label.items_list_columns">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items_list_columns</source>
-        <target>label.items_list_columns</target>
+        <target>List columns</target>
       </segment>
     </unit>
     <unit id="RI32F3o" name="enum.history_filter_class.template">
@@ -3008,15 +3008,15 @@
       </segment>
     </unit>
     <unit id="aTQXfVF" name="label.items_list_show_visibility">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items_list_show_visibility</source>
-        <target>label.items_list_show_visibility</target>
+        <target>Show visibility column</target>
       </segment>
     </unit>
     <unit id="tq3yBdM" name="label.items_list_show_actions">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items_list_show_actions</source>
-        <target>label.items_list_show_actions</target>
+        <target>Show actions column</target>
       </segment>
     </unit>
   </file>
