@@ -37,30 +37,46 @@
         </div>
     </div>
 
-    <div class="row" data-controller="items-display-mode-list-columns">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {
-                'data-controller': 'select--display-mode',
-                'data-action': 'change->items-display-mode-list-columns#displayChoices'
-            }} ) }}
-        </div>
-        <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
-             data-controller="columns-list"
-             data-items-display-mode-list-columns-target="list"
-        >
-            <div>{{ form_label(form.itemsDisplayModeListColumns, 'label.items_display_mode_list_columns') }}</div>
+    <div data-controller="list-properties">
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {
+                    'data-controller': 'select--display-mode',
+                    'data-action': 'change->list-properties#displayProperties'
+                }} ) }}
+            </div>
+            <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
+                 data-controller="columns-list"
+                 data-list-properties-target="property"
+            >
+                <div>{{ form_label(form.itemsListColumns, 'label.items_list_columns') }}</div>
 
-            <div>
-                <div data-columns-list-target="checkedHolder">
-                    {% for child in form.itemsDisplayModeListColumns.children|filter(child => child.vars.data == true) %}
-                        {{ form_row(child) }}
-                    {% endfor %}
+                <div>
+                    <div data-columns-list-target="checkedHolder">
+                        {% for child in form.itemsListColumns.children|filter(child => child.vars.data == true) %}
+                            {{ form_row(child) }}
+                        {% endfor %}
+                    </div>
+                    <div data-columns-list-target="uncheckedHolder">
+                        {% for child in form.itemsListColumns.children|filter(child => child.vars.data == false) %}
+                            {{ form_row(child) }}
+                        {% endfor %}
+                    </div>
                 </div>
-                <div data-columns-list-target="uncheckedHolder">
-                    {% for child in form.itemsDisplayModeListColumns.children|filter(child => child.vars.data == false) %}
-                        {{ form_row(child) }}
-                    {% endfor %}
-                </div>
+                {% do form.itemsListColumns.setRendered %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
+                 data-list-properties-target="property"
+            >
+                {{ form_row(form.itemsListShowVisibility, {'label' : 'label.items_list_show_visibility'}) }}
+            </div>
+            <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
+                 data-list-properties-target="property"
+            >
+                {{ form_row(form.itemsListShowActions, {'label' : 'label.items_list_show_actions'}) }}
             </div>
         </div>
     </div>

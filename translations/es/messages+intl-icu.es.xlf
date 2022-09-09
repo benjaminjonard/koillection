@@ -2845,9 +2845,9 @@
         <target>Área de texto</target>
       </segment>
     </unit>
-    <unit id="0ZXz2Ap" name="label.items_display_mode_list_columns">
+    <unit id="0ZXz2Ap" name="label.items_list_columns">
       <segment state="translated">
-        <source>label.items_display_mode_list_columns</source>
+        <source>label.items_list_columns</source>
         <target>Muestra de lista por columnas</target>
       </segment>
     </unit>

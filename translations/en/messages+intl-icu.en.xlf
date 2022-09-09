@@ -2845,10 +2845,10 @@
         <target>Long text</target>
       </segment>
     </unit>
-    <unit id="0ZXz2Ap" name="label.items_display_mode_list_columns">
+    <unit id="0ZXz2Ap" name="label.items_list_columns">
       <segment state="translated">
-        <source>label.items_display_mode_list_columns</source>
-        <target>List display mode columns</target>
+        <source>label.items_list_columns</source>
+        <target>List columns</target>
       </segment>
     </unit>
     <unit id="RI32F3o" name="enum.history_filter_class.template">
@@ -3005,6 +3005,18 @@
       <segment state="translated">
         <source>menu.albums_shared</source>
         <target>{username}'s albums</target>
+      </segment>
+    </unit>
+    <unit id="aTQXfVF" name="label.items_list_show_visibility">
+      <segment>
+        <source>label.items_list_show_visibility</source>
+        <target>Show visibility column</target>
+      </segment>
+    </unit>
+    <unit id="tq3yBdM" name="label.items_list_show_actions">
+      <segment>
+        <source>label.items_list_show_actions</source>
+        <target>Show actions column</target>
       </segment>
     </unit>
   </file>

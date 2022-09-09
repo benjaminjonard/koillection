@@ -126,15 +126,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ApiSubresource(maxDepth: 1)]
     private ?Template $itemsDefaultTemplate = null;
 
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
-
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?array $itemsDisplayModeListColumns = [];
-
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
     private ?string $itemsSortingProperty = null;
@@ -148,6 +139,23 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read', 'collection:write'])]
     #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
     private ?string $itemsSortingDirection = Criteria::ASC;
+
+    #[ORM\Column(type: Types::STRING, length: 4)]
+    #[Groups(['collection:read', 'collection:write'])]
+    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
+    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?array $itemsListColumns = [];
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['collection:read', 'collection:write'])]
+    private bool $itemsListShowVisibility = true;
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['collection:read', 'collection:write'])]
+    private bool $itemsListShowActions = true;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -514,14 +522,38 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function getItemsDisplayModeListColumns(): ?array
+    public function getItemsListColumns(): ?array
     {
-        return $this->itemsDisplayModeListColumns;
+        return $this->itemsListColumns;
     }
 
-    public function setItemsDisplayModeListColumns(?array $itemsDisplayModeListColumns): Collection
+    public function setItemsListColumns(?array $itemsListColumns): Collection
     {
-        $this->itemsDisplayModeListColumns = $itemsDisplayModeListColumns;
+        $this->itemsListColumns = $itemsListColumns;
+
+        return $this;
+    }
+
+    public function getItemsListShowVisibility(): bool
+    {
+        return $this->itemsListShowVisibility;
+    }
+
+    public function setItemsListShowVisibility(bool $itemsListShowVisibility): Collection
+    {
+        $this->itemsListShowVisibility = $itemsListShowVisibility;
+
+        return $this;
+    }
+
+    public function getItemsListShowActions(): bool
+    {
+        return $this->itemsListShowActions;
+    }
+
+    public function setItemsListShowActions(bool $itemsListShowActions): Collection
+    {
+        $this->itemsListShowActions = $itemsListShowActions;
 
         return $this;
     }
