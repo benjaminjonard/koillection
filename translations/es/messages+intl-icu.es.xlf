@@ -2846,9 +2846,9 @@
       </segment>
     </unit>
     <unit id="0ZXz2Ap" name="label.items_list_columns">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items_list_columns</source>
-        <target>label.items_list_columns</target>
+        <target>Muestra de lista por columnas</target>
       </segment>
     </unit>
     <unit id="RI32F3o" name="enum.history_filter_class.template">
