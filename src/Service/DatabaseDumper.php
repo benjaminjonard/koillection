@@ -30,22 +30,23 @@ class DatabaseDumper
         $platformName = $this->managerRegistry->getManager()->getConnection()->getDatabasePlatform()->getName();
         $disableForeignKeysCheck = null;
         $enableForeignKeysCheck = null;
-        if ('postgresql' === $platformName) {
-            $disableForeignKeysCheck = 'SET session_replication_role = replica;'.PHP_EOL.PHP_EOL;
-            $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;'.PHP_EOL;
-        } elseif ('mysql' === $platformName) {
-            $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL.PHP_EOL;
-            $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;
-        }
 
         $rows[] = 'BEGIN;'.PHP_EOL;
+
+        if ('postgresql' === $platformName) {
+            $disableForeignKeysCheck = 'SET session_replication_role = replica;'.PHP_EOL;
+            $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;'.PHP_EOL;
+        } elseif ('mysql' === $platformName) {
+            $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL;
+            $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;
+        }
 
         if (null !== $disableForeignKeysCheck) {
             $rows[] = $disableForeignKeysCheck;
         }
 
         // Schema
-        $rows += $this->dumpSchema($connection);
+        $rows = array_merge($rows, $this->dumpSchema($connection));
 
         // Data
         $userIds = [];
@@ -130,8 +131,10 @@ class DatabaseDumper
         $currentSchema = $connection->getSchemaManager()->createSchema();
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
         $rows = array_map(static function ($row): string {
+            $row = str_replace('CREATE SCHEMA', 'CREATE SCHEMA IF NOT EXISTS', $row);
             return $row.';'.PHP_EOL;
         }, $schemaRows);
+
         $rows[] = PHP_EOL;
 
         return $rows;
