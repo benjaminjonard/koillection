@@ -153,7 +153,7 @@ class ItemRepository extends ServiceEntityRepository
             $qb
                 ->leftJoin('i.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
                 ->addSelect('partial data.{id, label, type, value}')
-                ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                ->setParameter('labels', $collection->getItemsListColumns())
             ;
         }
 
@@ -244,7 +244,7 @@ class ItemRepository extends ServiceEntityRepository
             if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayMode()) {
                 $qb
                     ->leftJoin('item.data', 'data', 'WITH', 'data.label = :label OR data.label IN (:labels) OR data IS NULL')
-                    ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                    ->setParameter('labels', $collection->getItemsListColumns())
                 ;
             } else {
                 // Else only preload datum used for ordering
@@ -277,7 +277,7 @@ class ItemRepository extends ServiceEntityRepository
             $qb
                 ->addSelect('data')
                 ->leftJoin('item.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
-                ->setParameter('labels', $collection->getItemsDisplayModeListColumns())
+                ->setParameter('labels', $collection->getItemsListColumns())
             ;
         }
 

@@ -17,6 +17,7 @@ use App\Repository\TemplateRepository;
 use App\Service\FeatureChecker;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,7 +28,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType
 {
-    private array $preSubmitItemsDisplayModeListColumns = [];
+    private array $preSubmitItemsListColumns = [];
 
     public function __construct(
         private readonly Base64ToImageTransformer $base64ToImageTransformer,
@@ -51,17 +52,20 @@ class CollectionType extends AbstractType
         }
 
         // Extract possible columns for a collection based on items
-        $itemsDisplayModeListColumnsChoices = [];
+        $itemsListColumnsChoices = [];
         $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
         foreach ($labels as $label) {
-            $itemsDisplayModeListColumnsChoices[$label['label']] = $label['label'];
+            $itemsListColumnsChoices[$label['label']] = $label['label'];
         }
 
         // Move already selected columns to the top of the array
-        $alreadySelectedColumns = array_reverse($entity->getItemsDisplayModeListColumns());
+        $alreadySelectedColumns = [];
+        if ($entity->getItemsListColumns()) {
+            $alreadySelectedColumns = array_reverse($entity->getItemsListColumns());
+        }
         foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
-            unset($itemsDisplayModeListColumnsChoices[$alreadySelectedColumn]);
-            array_unshift($itemsDisplayModeListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);
+            unset($itemsListColumnsChoices[$alreadySelectedColumn]);
+            array_unshift($itemsListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);
         }
 
         $builder
@@ -98,10 +102,16 @@ class CollectionType extends AbstractType
                 'choices' => $itemsSortingChoices,
                 'required' => true,
             ])
-            ->add('itemsDisplayModeListColumns', ChoiceType::class, [
-                'choices' => $itemsDisplayModeListColumnsChoices,
+            ->add('itemsListColumns', ChoiceType::class, [
+                'choices' => $itemsListColumnsChoices,
                 'multiple' => true,
                 'expanded' => true,
+                'required' => false,
+            ])
+            ->add('itemsListShowVisibility', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('itemsListShowActions', CheckboxType::class, [
                 'required' => false,
             ])
             ->add('itemsSortingDirection', ChoiceType::class, [
@@ -164,14 +174,14 @@ class CollectionType extends AbstractType
         });
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
-            if (isset($event->getData()['itemsDisplayModeListColumns'])) {
-                $this->preSubmitItemsDisplayModeListColumns = $event->getData()['itemsDisplayModeListColumns'];
+            if (isset($event->getData()['itemsListColumns'])) {
+                $this->preSubmitItemsListColumns = $event->getData()['itemsListColumns'];
             }
         });
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
-            $data->setitemsDisplayModeListColumns($this->preSubmitItemsDisplayModeListColumns);
+            $data->setItemsListColumns($this->preSubmitItemsListColumns);
 
             $event->setData($data);
         });

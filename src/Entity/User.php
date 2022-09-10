@@ -63,7 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[Upload(path: 'avatar', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
-    #[Groups(['user:write'])]
+    #[Groups(['user:write', 'user:image'])]
     private ?File $file = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]

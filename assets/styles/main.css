@@ -9,6 +9,13 @@ html {
     height: 100%;
 }
 
+thead th {
+    position: sticky;
+    top: 74px;
+    z-index: 1;
+    background-color: #fff;
+}
+
 body:not(.error) {
     margin-left: 230px;
     outline: none;
@@ -2247,7 +2254,7 @@ input[type="text"]:not(.browser-default).password-input {
     top: -41px;
 }
 
-.items-table td, .items-table th {
+.items-table td {
     padding: 10px 5px;
 }
 
