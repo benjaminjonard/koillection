@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Symfony\Component\Security\Core\Security;
 
 class DatabaseDumper
@@ -36,6 +37,8 @@ class DatabaseDumper
             $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL.PHP_EOL;
             $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;
         }
+
+        $rows[] = 'BEGIN;'.PHP_EOL;
 
         if (null !== $disableForeignKeysCheck) {
             $rows[] = $disableForeignKeysCheck;
@@ -117,6 +120,8 @@ class DatabaseDumper
             $rows[] = $enableForeignKeysCheck;
         }
 
+        $rows[] = 'COMMIT;'.PHP_EOL;
+
         return $rows;
     }
 
@@ -132,20 +137,21 @@ class DatabaseDumper
         return $rows;
     }
 
-    private function formatValue($value, string $property, \Doctrine\Persistence\Mapping\ClassMetadata|null $metadata)
+    private function formatValue($value, string $property, ClassMetadata|null $metadata)
     {
-        if (\is_string($value)) {
+        $type = $metadata?->getTypeOfField(array_search($property, $metadata->columnNames, true));
+        if (\is_string($value) && $type !== 'json') {
             $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
         }
 
         if (null === $value) {
             $value = 'NULL';
         } else {
-            if ($metadata && 'boolean' === $metadata->getTypeOfField(array_search($property, $metadata->columnNames, true))) {
+            if ($metadata && 'boolean' === $type) {
                 $value = true === $value ? 'true' : 'false';
             }
 
-            if (null === $metadata || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames, true)), [null, 'string', 'datetime', 'datetime_immutable', 'date', 'date_immutable', 'uuid', 'array', 'text'], true)) {
+            if (null === $metadata || \in_array($type, [null, 'string', 'datetime', 'datetime_immutable', 'date', 'date_immutable', 'time', 'time_immutable', 'uuid', 'array', 'text', 'json'], true)) {
                 $value = "'".$value."'";
             }
         }
