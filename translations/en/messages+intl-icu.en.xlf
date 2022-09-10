@@ -3008,13 +3008,13 @@
       </segment>
     </unit>
     <unit id="aTQXfVF" name="label.items_list_show_visibility">
-      <segment>
+      <segment state="translated">
         <source>label.items_list_show_visibility</source>
         <target>Show visibility column</target>
       </segment>
     </unit>
     <unit id="tq3yBdM" name="label.items_list_show_actions">
-      <segment>
+      <segment state="translated">
         <source>label.items_list_show_actions</source>
         <target>Show actions column</target>
       </segment>
