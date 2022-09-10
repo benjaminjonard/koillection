@@ -3007,5 +3007,17 @@
         <target>Albums de {username}</target>
       </segment>
     </unit>
+    <unit id="aTQXfVF" name="label.items_list_show_visibility">
+      <segment state="translated">
+        <source>label.items_list_show_visibility</source>
+        <target>Afficher la visibilité dans la liste</target>
+      </segment>
+    </unit>
+    <unit id="tq3yBdM" name="label.items_list_show_actions">
+      <segment state="translated">
+        <source>label.items_list_show_actions</source>
+        <target>Afficher les actions dans la liste</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
