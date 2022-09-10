@@ -145,7 +145,7 @@ class DatabaseDumper
                 $value = true === $value ? 'true' : 'false';
             }
 
-            if (null === $metadata || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames, true)), [null, 'string', 'datetime', 'date', 'uuid', 'array', 'text'], true)) {
+            if (null === $metadata || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames, true)), [null, 'string', 'datetime', 'datetime_immutable', 'date', 'date_immutable', 'uuid', 'array', 'text'], true)) {
                 $value = "'".$value."'";
             }
         }
