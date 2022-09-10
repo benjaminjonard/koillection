@@ -140,8 +140,12 @@ class DatabaseDumper
     private function formatValue($value, string $property, ClassMetadata|null $metadata)
     {
         $type = $metadata?->getTypeOfField(array_search($property, $metadata->columnNames, true));
-        if (\is_string($value) && $type !== 'json') {
-            $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
+        if (\is_string($value)) {
+            if ($type !== 'json') {
+                $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
+            } else {
+                $value = str_replace("'", "\'", $value);
+            }
         }
 
         if (null === $value) {
