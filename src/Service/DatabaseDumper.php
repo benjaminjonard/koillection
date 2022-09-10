@@ -144,7 +144,7 @@ class DatabaseDumper
             if ($type !== 'json') {
                 $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
             } else {
-                $value = str_replace("'", "\'", $value);
+                $value = str_replace("'", "''", $value);
             }
         }
 
