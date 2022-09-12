@@ -2845,9 +2845,9 @@
         <target>Texte long</target>
       </segment>
     </unit>
-    <unit id="0ZXz2Ap" name="label.items_display_mode_list_columns">
+    <unit id="0ZXz2Ap" name="label.items_list_columns">
       <segment state="translated">
-        <source>label.items_display_mode_list_columns</source>
+        <source>label.items_list_columns</source>
         <target>Colonnes de la liste</target>
       </segment>
     </unit>
@@ -3005,6 +3005,18 @@
       <segment state="translated">
         <source>menu.albums_shared</source>
         <target>Albums de {username}</target>
+      </segment>
+    </unit>
+    <unit id="aTQXfVF" name="label.items_list_show_visibility">
+      <segment state="translated">
+        <source>label.items_list_show_visibility</source>
+        <target>Afficher la visibilité dans la liste</target>
+      </segment>
+    </unit>
+    <unit id="tq3yBdM" name="label.items_list_show_actions">
+      <segment state="translated">
+        <source>label.items_list_show_actions</source>
+        <target>Afficher les actions dans la liste</target>
       </segment>
     </unit>
   </file>

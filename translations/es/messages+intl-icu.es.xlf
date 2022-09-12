@@ -2845,9 +2845,9 @@
         <target>Área de texto</target>
       </segment>
     </unit>
-    <unit id="0ZXz2Ap" name="label.items_display_mode_list_columns">
+    <unit id="0ZXz2Ap" name="label.items_list_columns">
       <segment state="translated">
-        <source>label.items_display_mode_list_columns</source>
+        <source>label.items_list_columns</source>
         <target>Muestra de lista por columnas</target>
       </segment>
     </unit>
@@ -3005,6 +3005,18 @@
       <segment state="translated">
         <source>menu.albums_shared</source>
         <target>Álbums de {username}</target>
+      </segment>
+    </unit>
+    <unit id="aTQXfVF" name="label.items_list_show_visibility">
+      <segment state="initial">
+        <source>label.items_list_show_visibility</source>
+        <target>label.items_list_show_visibility</target>
+      </segment>
+    </unit>
+    <unit id="tq3yBdM" name="label.items_list_show_actions">
+      <segment state="initial">
+        <source>label.items_list_show_actions</source>
+        <target>label.items_list_show_actions</target>
       </segment>
     </unit>
   </file>

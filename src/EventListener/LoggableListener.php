@@ -32,7 +32,7 @@ class LoggableListener
         }
     }
 
-    private function persistLog(EntityManagerInterface $em, UnitOfWork $uow, $entity, string $type): void
+    private function persistLog(EntityManagerInterface $em, UnitOfWork $uow, LoggableInterface $entity, string $type): void
     {
         $log = (new Log())
             ->setType($type)

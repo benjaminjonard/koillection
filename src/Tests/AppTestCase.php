@@ -53,7 +53,7 @@ class AppTestCase extends WebTestCase
         $this->visibilities = $visibilities;
     }
 
-    public function replaceUrlParameters(string $url)
+    public function replaceUrlParameters(string $url): string
     {
         preg_match_all('/{{[a-zA-Z]+}}/', $url, $matches, PREG_SET_ORDER, 0);
 
@@ -97,7 +97,7 @@ class AppTestCase extends WebTestCase
         return $url;
     }
 
-    private function getRelationFirstElement($class)
+    private function getRelationFirstElement(string $class)
     {
         $params = ['owner' => $this->user->getId()];
         if (property_exists($class, 'finalVisibility')) {
