@@ -63,6 +63,7 @@ class CollectionType extends AbstractType
         if ($entity->getItemsListColumns()) {
             $alreadySelectedColumns = array_reverse($entity->getItemsListColumns());
         }
+
         foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
             unset($itemsListColumnsChoices[$alreadySelectedColumn]);
             array_unshift($itemsListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);
@@ -93,6 +94,10 @@ class CollectionType extends AbstractType
                 'choice_name' => null,
                 'empty_data' => '',
                 'required' => false,
+            ])
+            ->add('childrenDisplayMode', ChoiceType::class, [
+                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
+                'required' => true,
             ])
             ->add('itemsDisplayMode', ChoiceType::class, [
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),

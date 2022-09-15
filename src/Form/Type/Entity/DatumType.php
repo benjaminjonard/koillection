@@ -57,76 +57,61 @@ class DatumType extends AbstractType
                 $form = $event->getForm();
                 $data = $event->getData();
 
-                switch ($data['type']) {
-                    case DatumTypeEnum::TYPE_RATING:
-                        $form
-                            ->add('value', ChoiceType::class, [
-                                'choices' => array_combine(range(1, 10), range(1, 10)),
-                                'expanded' => true,
-                                'multiple' => false,
-                                'required' => false,
-                            ])
-                        ;
-                        break;
-                    case DatumTypeEnum::TYPE_DATE:
-                        $form
-                            ->add('value', TextType::class, [
-                                'required' => false,
-                                'model_transformer' => new CallbackTransformer(
-                                    function ($string): ?string {
-                                        if (!empty($string)) {
-                                            return \DateTimeImmutable::createFromFormat('Y-m-d', $string)->format($this->security->getUser()->getDateFormat());
-                                        }
-
-                                        return null;
-                                    },
-                                    function ($date): ?string {
-                                        if (!empty($date)) {
-                                            return \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date)->format('Y-m-d');
-                                        }
-
-                                        return null;
+                match ($data['type']) {
+                    DatumTypeEnum::TYPE_RATING => $form
+                        ->add('value', ChoiceType::class, [
+                            'choices' => array_combine(range(1, 10), range(1, 10)),
+                            'expanded' => true,
+                            'multiple' => false,
+                            'required' => false,
+                        ]),
+                    DatumTypeEnum::TYPE_DATE => $form
+                        ->add('value', TextType::class, [
+                            'required' => false,
+                            'model_transformer' => new CallbackTransformer(
+                                function ($string): ?string {
+                                    if (!empty($string)) {
+                                        return \DateTimeImmutable::createFromFormat('Y-m-d', $string)->format($this->security->getUser()->getDateFormat());
                                     }
-                                ),
-                            ])
-                        ;
-                        break;
-                    case DatumTypeEnum::TYPE_LINK:
-                        $form
-                            ->add('value', UrlType::class, [
-                                'required' => false,
-                            ])
-                        ;
-                        break;
-                    case DatumTypeEnum::TYPE_LIST:
-                        $form
-                            ->add('value', ChoiceType::class, [
-                                'multiple' => true,
-                                'required' => false,
-                                'choices' => $this->choiceListRepository->find($data['choiceList'])->getChoices(),
-                                'model_transformer' => new CallbackTransformer(
-                                    static function ($string) {
-                                        return null !== $string ? json_decode($string, true) : null;
-                                    },
-                                    static function ($array) {
-                                        return \is_array($array) ? json_encode($array) : null;
+
+                                    return null;
+                                },
+                                function ($date): ?string {
+                                    if (!empty($date)) {
+                                        return \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date)->format('Y-m-d');
                                     }
-                                ),
-                            ])
-                            ->add('choiceList', EntityType::class, [
-                                'class' => ChoiceList::class,
-                                'required' => true,
-                            ])
-                        ;
-                        break;
-                    default:
-                        $form
-                            ->add('value', TextType::class, [
-                                'required' => false,
-                            ])
-                        ;
-                        break;
-                }
+
+                                    return null;
+                                }
+                            ),
+                        ]),
+                    DatumTypeEnum::TYPE_LINK => $form
+                        ->add('value', UrlType::class, [
+                            'required' => false,
+                        ]),
+                    DatumTypeEnum::TYPE_LIST => $form
+                        ->add('value', ChoiceType::class, [
+                            'multiple' => true,
+                            'required' => false,
+                            'choices' => $this->choiceListRepository->find($data['choiceList'])->getChoices(),
+                            'model_transformer' => new CallbackTransformer(
+                                static function ($string) {
+                                    return null !== $string ? json_decode($string, true) : null;
+                                },
+                                static function ($array) {
+                                    return \is_array($array) ? json_encode($array) : null;
+                                }
+                            ),
+                        ])
+                        ->add('choiceList', EntityType::class, [
+                            'class' => ChoiceList::class,
+                            'required' => true,
+                        ]),
+                    default => $form
+                        ->add('value', TextType::class, [
+                            'required' => false,
+                        ]),
+                };
             }
         );
     }

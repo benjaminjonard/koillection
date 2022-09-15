@@ -110,9 +110,7 @@
             {% if children is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h2>
-                    <div class="collections grid-container-collections">
-                        {{ include('App/Collection/_list.html.twig', {'collections': children|naturalSorting}) }}
-                    </div>
+                    {{ include('App/Collection/_collections_' ~ collection.childrenDisplayMode ~ '.html.twig', {'collections': children}) }}
                 </div>
             {% endif %}
 

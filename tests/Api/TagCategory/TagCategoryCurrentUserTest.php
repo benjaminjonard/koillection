@@ -25,7 +25,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
     public function testGetTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -38,7 +38,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
     public function testGetTagCategoryTags(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/tags');
         $data = $response->toArray();
@@ -66,7 +66,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
     public function testPutTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'label' => 'updated label with PUT',
@@ -82,7 +82,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
     public function testPatchTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -101,7 +101,7 @@ class TagCategoryCurrentUserTest extends ApiTestCase
     public function testDeleteTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

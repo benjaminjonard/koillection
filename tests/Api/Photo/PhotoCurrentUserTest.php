@@ -25,7 +25,7 @@ class PhotoCurrentUserTest extends ApiTestCase
     public function testGetPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -38,7 +38,7 @@ class PhotoCurrentUserTest extends ApiTestCase
     public function testGetPhotoAlbum(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/album');
 
@@ -49,7 +49,7 @@ class PhotoCurrentUserTest extends ApiTestCase
     public function testPostPhoto(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $albumIri = $this->iriConverter->getIriFromItem($album);
+        $albumIri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('POST', '/api/photos', ['json' => [
                 'title' => 'New photo',
@@ -66,7 +66,7 @@ class PhotoCurrentUserTest extends ApiTestCase
     public function testPutPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'title' => 'updated title with PUT',
@@ -82,7 +82,7 @@ class PhotoCurrentUserTest extends ApiTestCase
     public function testPatchPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -101,7 +101,7 @@ class PhotoCurrentUserTest extends ApiTestCase
     public function testDeletePhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
@@ -31,30 +37,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_item')]
 #[ORM\Index(name: 'idx_item_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['item:read']],
-    denormalizationContext: ['groups' => ['item:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data'],
-        ]],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/items/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['item:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Item image.'])
     ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/items/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['item:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Item image.']
-        ]
-    ]
+    denormalizationContext: ['groups' => ['item:write']],
+    normalizationContext: ['groups' => ['item:read']]
 )]
+#[ApiResource(uriTemplate: '/collections/{id}/items', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'items')], normalizationContext: ['groups' => ['item:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/data/{id}/item', uriVariables: ['id' => new Link(fromClass: Datum::class, fromProperty: 'item')], normalizationContext: ['groups' => ['item:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/items/{id}/related_items', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'relatedItems')], normalizationContext: ['groups' => ['item:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/loans/{id}/item', uriVariables: ['id' => new Link(fromClass: Loan::class, fromProperty: 'item')], normalizationContext: ['groups' => ['item:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/tags/{id}/items', uriVariables: ['id' => new Link(fromClass: Tag::class, fromProperty: 'items', toProperty: 'tags')], normalizationContext: ['groups' => ['item:read']], operations: [new GetCollection()])]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
 {
     #[ORM\Id]
@@ -75,7 +74,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'items')]
     #[Assert\NotBlank]
     #[Groups(['item:read', 'item:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
@@ -88,17 +86,15 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
     #[ORM\OrderBy(['label' => Criteria::ASC])]
     #[Groups(['item:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\ManyToMany(targetEntity: Item::class, inversedBy: 'relatedTo')]
     #[ORM\JoinTable(name: 'koi_item_related_item')]
     #[ORM\JoinColumn(name: 'item_id')]
     #[ORM\InverseJoinColumn(name: 'related_item_id', referencedColumnName: 'id')]
     #[ORM\OrderBy(['name' => Criteria::ASC])]
     #[Groups(['item:write'])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $relatedItems;
 
     #[ORM\ManyToMany(targetEntity: Item::class, mappedBy: 'relatedItems')]
@@ -107,12 +103,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'item', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
-    #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 
     #[ORM\OneToMany(targetEntity: Loan::class, mappedBy: 'item', cascade: ['remove'])]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $loans;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
@@ -188,10 +182,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function getDataImages(): ArrayCollection
     {
         $criteria = Criteria::create();
-        $criteria
-            ->where(Criteria::expr()->in('type', DatumTypeEnum::IMAGE_TYPES))
-            ->orderBy(['position' => Criteria::ASC])
-        ;
+        $criteria->where(Criteria::expr()->in('type', DatumTypeEnum::IMAGE_TYPES))->orderBy(['position' => Criteria::ASC]);
 
         return $this->data->matching($criteria);
     }
@@ -199,10 +190,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function getDataTexts(): DoctrineCollection
     {
         $criteria = Criteria::create();
-        $criteria
-            ->where(Criteria::expr()->in('type', DatumTypeEnum::TEXT_TYPES))
-            ->orderBy(['position' => Criteria::ASC])
-        ;
+        $criteria->where(Criteria::expr()->in('type', DatumTypeEnum::TEXT_TYPES))->orderBy(['position' => Criteria::ASC]);
 
         return $this->data->matching($criteria);
     }
@@ -440,7 +428,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setFile(?File $file): self
     {
         $this->file = $file;
-
         // Force Doctrine to trigger an update
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTimeImmutable());

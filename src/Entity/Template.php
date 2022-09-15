@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Link;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\TemplateRepository;
@@ -22,9 +23,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: TemplateRepository::class)]
 #[ORM\Table(name: 'koi_template')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['template:read']],
     denormalizationContext: ['groups' => ['template:write']],
+    normalizationContext: ['groups' => ['template:read']]
 )]
+#[ApiResource(uriTemplate: '/collections/{id}/items_default_template', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'itemsDefaultTemplate')], normalizationContext: ['groups' => ['template:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/fields/{id}/template', uriVariables: ['id' => new Link(fromClass: Field::class, fromProperty: 'template')], normalizationContext: ['groups' => ['template:read']], operations: [new Get()])]
 class Template implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
@@ -39,7 +42,6 @@ class Template implements BreadcrumbableInterface, LoggableInterface, \Stringabl
 
     #[ORM\OneToMany(targetEntity: Field::class, mappedBy: 'template', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
-    #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $fields;
 

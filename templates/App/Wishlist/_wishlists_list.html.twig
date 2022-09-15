@@ -1,0 +1,49 @@
+<table class="highlight items-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{ 'label.name'|trans }}</th>
+            {% if context == 'default' %}
+                <th class="center">{{ 'label.visibility'|trans }}</th>
+                <th class="center">{{ 'label.actions'|trans }}</th>
+            {% endif %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for wishlist in wishlists|naturalSorting %}
+            {% set link = path('app_wishlist_show'|applyContext, {'id': wishlist.id}) %}
+            <tr class="list-element resize-element" data-title="{{ wishlist.name }}" data-filter-target="element">
+                <td>
+                    <a class="table-link" href="{{ link }}"></a>
+                    {% if wishlist.image %}
+                        <div class="image-wrapper placeholder placeholder--circle" data-controller="lazy-loading">
+                            <img data-src="{{ asset(wishlist.image) }}"
+                                 data-lazy-loading-target="image"
+                            >
+                        </div>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="table-link" href="{{ link }}"></a>
+                    {{ wishlist.name|u.truncate(50, '...') }}
+                </td>
+                {% if context == 'default' %}
+                    <td class="center">
+                        {% include 'App/_partials/_visibility.html.twig' with {'visibility': wishlist.finalVisibility} only %}
+                    </td>
+
+                    <td class="table-actions center">
+                        <a href="{{ path('app_wishlist_edit', {id: wishlist.id}) }}" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        {% include 'App/_partials/_icon/_delete.html.twig' with {
+                            path: path('app_wishlist_delete', {id: wishlist.id}),
+                            message: 'message.delete.wishlist'
+                        } only %}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

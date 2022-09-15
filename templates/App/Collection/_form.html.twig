@@ -87,6 +87,11 @@
         <div class="col s12 l5 offset-l1 xl3 offset-xl3">
             {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
         </div>
+        <div class="col s12 l5 xl3">
+            {{ form_row(form.childrenDisplayMode, {'label' : 'label.sub_collections_display_mode', 'attr': {
+                'data-controller': 'select--display-mode',
+            }} ) }}
+        </div>
     </div>
 
     <div class="row" data-controller="additional-data" data-entity="collection">

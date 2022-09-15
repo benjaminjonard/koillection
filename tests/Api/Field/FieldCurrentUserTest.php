@@ -26,7 +26,7 @@ class FieldCurrentUserTest extends ApiTestCase
     public function testGetField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -39,7 +39,7 @@ class FieldCurrentUserTest extends ApiTestCase
     public function testGetFieldTemplate(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/template');
 
@@ -50,7 +50,7 @@ class FieldCurrentUserTest extends ApiTestCase
     public function testPostField(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $templateIri = $this->iriConverter->getIriFromItem($template);
+        $templateIri = $this->iriConverter->getIriFromResource($template);
 
         $this->createClientWithCredentials()->request('POST', '/api/fields', [
             'json' => [
@@ -70,7 +70,7 @@ class FieldCurrentUserTest extends ApiTestCase
     public function testPutField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -86,7 +86,7 @@ class FieldCurrentUserTest extends ApiTestCase
     public function testPatchField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -105,7 +105,7 @@ class FieldCurrentUserTest extends ApiTestCase
     public function testDeleteField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

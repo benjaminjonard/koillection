@@ -16,7 +16,7 @@ class CollectionOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserCollection(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -29,9 +29,9 @@ class CollectionOtherUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
         ;
         $collection = $this->em->getRepository(Collection::class)->matching($criteria)[0]->getParent();
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/children');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -47,7 +47,7 @@ class CollectionOtherUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
         ;
         $collection = $this->em->getRepository(Collection::class)->matching($criteria)[0];
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/parent');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -56,7 +56,7 @@ class CollectionOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserCollectionItems(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/items');
         $data = $response->toArray();
@@ -70,7 +70,7 @@ class CollectionOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserCollectionData(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/data');
         $data = $response->toArray();
@@ -84,7 +84,7 @@ class CollectionOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserCollection(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'title' => 'updated title with PUT',
@@ -96,7 +96,7 @@ class CollectionOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserCollection(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -111,7 +111,7 @@ class CollectionOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserCollection(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($collection);
+        $iri = $this->iriConverter->getIriFromResource($collection);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

@@ -13,6 +13,11 @@
     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
         {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}}) }}
     </div>
+    <div class="col s12 l5 xl3">
+        {{ form_row(form.childrenDisplayMode, {'label' : 'label.sub_wishlists_display_mode', 'attr': {
+            'data-controller': 'select--display-mode',
+        }} ) }}
+    </div>
 </div>
 
 <div class="row center-align form-btn-holder">

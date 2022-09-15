@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use App\Repository\LoanRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,9 +17,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: LoanRepository::class)]
 #[ORM\Table(name: 'koi_loan')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['loan:read']],
     denormalizationContext: ['groups' => ['loan:write']],
+    normalizationContext: ['groups' => ['loan:read']]
 )]
+#[ApiResource(uriTemplate: '/items/{id}/loans', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'loans')], normalizationContext: ['groups' => ['loan:read']], operations: [new GetCollection()])]
 class Loan
 {
     #[ORM\Id]
@@ -29,7 +31,6 @@ class Loan
     #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'loans')]
     #[Groups(['loan:read', 'loan:write'])]
     #[Assert\NotBlank]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
     #[ORM\Column(type: Types::STRING)]

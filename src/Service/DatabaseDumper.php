@@ -132,6 +132,7 @@ class DatabaseDumper
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
         $rows = array_map(static function ($row): string {
             $row = str_replace('CREATE SCHEMA', 'CREATE SCHEMA IF NOT EXISTS', $row);
+
             return $row.';'.PHP_EOL;
         }, $schemaRows);
 
@@ -144,11 +145,7 @@ class DatabaseDumper
     {
         $type = $metadata?->getTypeOfField(array_search($property, $metadata->columnNames, true));
         if (\is_string($value)) {
-            if ($type !== 'json') {
-                $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
-            } else {
-                $value = str_replace("'", "''", $value);
-            }
+            $value = $type !== 'json' ? str_replace(['\\', "'"], ['\\\\', "''"], $value) : str_replace("'", "''", $value);
         }
 
         if (null === $value) {

@@ -22,7 +22,7 @@ class UserCurrentUserTest extends ApiTestCase
 
     public function testGetUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->user);
+        $iri = $this->iriConverter->getIriFromResource($this->user);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -41,7 +41,7 @@ class UserCurrentUserTest extends ApiTestCase
 
     public function testPutUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->user);
+        $iri = $this->iriConverter->getIriFromResource($this->user);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'username' => 'username_put',
@@ -56,7 +56,7 @@ class UserCurrentUserTest extends ApiTestCase
 
     public function testPatchUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->user);
+        $iri = $this->iriConverter->getIriFromResource($this->user);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -74,7 +74,7 @@ class UserCurrentUserTest extends ApiTestCase
 
     public function testDeleteUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->user);
+        $iri = $this->iriConverter->getIriFromResource($this->user);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

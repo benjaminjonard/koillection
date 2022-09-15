@@ -26,7 +26,7 @@ class TagCurrentUserTest extends ApiTestCase
     public function testGetTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -39,7 +39,7 @@ class TagCurrentUserTest extends ApiTestCase
     public function testGetTagTagCategory(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/category');
 
@@ -50,7 +50,7 @@ class TagCurrentUserTest extends ApiTestCase
     public function testGetTagItems(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/items');
         $data = $response->toArray();
@@ -77,7 +77,7 @@ class TagCurrentUserTest extends ApiTestCase
     public function testPutTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'label' => 'updated label with PUT',
@@ -93,7 +93,7 @@ class TagCurrentUserTest extends ApiTestCase
     public function testPatchTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -112,7 +112,7 @@ class TagCurrentUserTest extends ApiTestCase
     public function testDeleteTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
