@@ -82,9 +82,7 @@
             {% if children is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.album_children'|trans }}</h2>
-                    <div class="collections grid-container-collections">
-                        {{ include('App/Album/_list.html.twig', {'albums': children|naturalSorting}) }}
-                    </div>
+                    {{ include('App/Album/_albums_' ~ album.childrenDisplayMode ~ '.html.twig', {'albums': children}) }}
                 </div>
             {% endif %}
 

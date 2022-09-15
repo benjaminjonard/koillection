@@ -95,6 +95,10 @@ class CollectionType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
             ])
+            ->add('childrenDisplayMode', ChoiceType::class, [
+                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
+                'required' => true,
+            ])
             ->add('itemsDisplayMode', ChoiceType::class, [
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
                 'required' => true,

@@ -1,0 +1,19 @@
+<div class="collections grid-container-collections">
+    {% for album in albums %}
+        <div class="collection-element element" data-title="{{ album.title }}" data-filter-target="element">
+            <a class="collection-circle-thumbnail" href="{{ path('app_album_show'|applyContext, {'id': album.id}) }}">
+                {% if album.image != null %}
+                    <div class="image-wrapper placeholder placeholder--circle" data-controller="lazy-loading">
+                        <img data-src="{{ asset(album.image) }}" data-lazy-loading-target="image">
+                    </div>
+                {% else %}
+                    <span class="color-avatar circle avatar color-{{ album.color }}">{{ album.title|first|upper }}</span>
+                {% endif %}
+            </a>
+            <span class="collection-title">{{ album.title }}</span>
+            <p class="collection-stats">
+                {{ 'counter.photo'|trans({'count': getCounters(album).items}) }}
+            </p>
+        </div>
+    {% endfor %}
+</div>

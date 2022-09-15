@@ -18,6 +18,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -97,6 +98,11 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['wishlist:read'])]
     private int $seenCounter = 0;
+
+    #[ORM\Column(type: Types::STRING, length: 4)]
+    #[Groups(['wishlist:read', 'wishlist:write'])]
+    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
+    private string $childrenDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read', 'wishlist:write'])]
@@ -336,6 +342,18 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     public function setFinalVisibility(string $finalVisibility): self
     {
         $this->finalVisibility = $finalVisibility;
+
+        return $this;
+    }
+
+    public function getChildrenDisplayMode(): string
+    {
+        return $this->childrenDisplayMode;
+    }
+
+    public function setChildrenDisplayMode(string $childrenDisplayMode): Wishlist
+    {
+        $this->childrenDisplayMode = $childrenDisplayMode;
 
         return $this;
     }

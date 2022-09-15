@@ -115,6 +115,11 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private int $seenCounter = 0;
 
+    #[ORM\Column(type: Types::STRING, length: 4)]
+    #[Groups(['collection:read', 'collection:write'])]
+    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
+    private string $childrenDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
     private ?Template $itemsDefaultTemplate = null;
@@ -415,6 +420,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
                 $data->setCollection(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getChildrenDisplayMode(): string
+    {
+        return $this->childrenDisplayMode;
+    }
+
+    public function setChildrenDisplayMode(string $childrenDisplayMode): Collection
+    {
+        $this->childrenDisplayMode = $childrenDisplayMode;
 
         return $this;
     }

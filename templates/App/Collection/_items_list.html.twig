@@ -60,8 +60,7 @@
                     {% if collection.itemsListShowActions %}
                         <td class="table-actions center">
                             <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}">
-                                <i
-                                        class="fa fa-pencil fa-fw"></i>
+                                <i class="fa fa-pencil fa-fw"></i>
                             </a>
                             {% include 'App/_partials/_icon/_delete.html.twig' with {
                                 path: path('app_item_delete', {id: item.id}),

@@ -99,7 +99,12 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['tag:read', 'tag:write'])]
+    #[Groups(['album:read', 'album:write'])]
+    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
+    private string $childrenDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+
+    #[ORM\Column(type: Types::STRING, length: 4)]
+    #[Groups(['album:read', 'album:write'])]
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
     private string $photosDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
@@ -353,6 +358,18 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     public function setPhotosDisplayMode(string $photosDisplayMode): Album
     {
         $this->photosDisplayMode = $photosDisplayMode;
+
+        return $this;
+    }
+
+    public function getChildrenDisplayMode(): string
+    {
+        return $this->childrenDisplayMode;
+    }
+
+    public function setChildrenDisplayMode(string $childrenDisplayMode): Album
+    {
+        $this->childrenDisplayMode = $childrenDisplayMode;
 
         return $this;
     }

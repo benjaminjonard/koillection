@@ -820,7 +820,7 @@
     <unit id="ryRhoHH" name="title.album_children">
       <segment state="translated">
         <source>title.album_children</source>
-        <target>Sub-album</target>
+        <target>Sub-albums</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -3017,6 +3017,24 @@
       <segment state="translated">
         <source>label.items_list_show_actions</source>
         <target>Show actions column</target>
+      </segment>
+    </unit>
+    <unit id="MWCAWm0" name="label.sub_collections_display_mode">
+      <segment>
+        <source>label.sub_collections_display_mode</source>
+        <target>Display sub-collections as a</target>
+      </segment>
+    </unit>
+    <unit id="UKwQt9f" name="label.sub_albums_display_mode">
+      <segment>
+        <source>label.sub_albums_display_mode</source>
+        <target>Display sub-albums as a</target>
+      </segment>
+    </unit>
+    <unit id="UKwQt9f" name="label.sub_wishlists_display_mode">
+      <segment>
+        <source>label.sub_wishlists_display_mode</source>
+        <target>Display sub-wishlists as a</target>
       </segment>
     </unit>
   </file>

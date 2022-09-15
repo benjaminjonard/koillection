@@ -53,9 +53,7 @@
         </div>
 
         <div class="content-block">
-            <div class="collections grid-container-collections">
-                {{ include('App/Album/_list.html.twig', {'albums': albums}) }}
-            </div>
+            {{ include('App/Album/_albums_grid.html.twig', {'albums': albums}) }}
         </div>
     </div>
 {% endblock %}
