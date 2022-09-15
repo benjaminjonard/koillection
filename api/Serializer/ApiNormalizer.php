@@ -26,12 +26,12 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
         $this->decorated = $decorated;
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
-        return $this->decorated->supportsNormalization($data, $format);
+        return $this->decorated->supportsNormalization($data, $format, $context);
     }
 
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize(mixed $object, $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $data = $this->decorated->normalize($object, $format, $context);
         if (\is_array($data) && \in_array($object::class, [Album::class, Collection::class, Wishlist::class])) {
@@ -43,12 +43,12 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
         return $data;
     }
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
-        return $this->decorated->supportsDenormalization($data, $type, $format);
+        return $this->decorated->supportsDenormalization($data, $type, $format, $context);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize(mixed $data, string $class, string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         return $this->decorated->denormalize($data, $class, $format, $context);
     }

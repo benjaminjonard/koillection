@@ -16,7 +16,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -25,7 +25,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserItemCollection(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/collection');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -34,7 +34,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserItemData(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/data');
         $data = $response->toArray();
@@ -48,7 +48,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserItemLoans(): void
     {
         $item = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->otherUser], [], 1)[0]->getItem();
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/loans');
         $data = $response->toArray();
@@ -62,7 +62,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserItemRelatedItems(): void
     {
         $item = $this->em->getRepository(Item::class)->findOneWithRelatedItemsByUser($this->otherUser);
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/related_items');
         $data = $response->toArray();
@@ -76,7 +76,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserItemTags(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/tags');
         $data = $response->toArray();
@@ -90,7 +90,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -102,7 +102,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -117,7 +117,7 @@ class ItemOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

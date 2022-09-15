@@ -26,7 +26,7 @@ class AlbumCurrentUserTest extends ApiTestCase
     public function testGetAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -43,7 +43,7 @@ class AlbumCurrentUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->user))
         ;
         $album = $this->em->getRepository(Album::class)->matching($criteria)[0]->getParent();
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
         $data = $response->toArray();
@@ -61,7 +61,7 @@ class AlbumCurrentUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->user))
         ;
         $album = $this->em->getRepository(Album::class)->matching($criteria)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/parent');
 
@@ -72,7 +72,7 @@ class AlbumCurrentUserTest extends ApiTestCase
     public function testGetAlbumPhotos(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/photos');
         $data = $response->toArray();
@@ -99,7 +99,7 @@ class AlbumCurrentUserTest extends ApiTestCase
     public function testPutAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'title' => 'updated title with PUT',
@@ -115,7 +115,7 @@ class AlbumCurrentUserTest extends ApiTestCase
     public function testPatchAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -134,7 +134,7 @@ class AlbumCurrentUserTest extends ApiTestCase
     public function testDeleteAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

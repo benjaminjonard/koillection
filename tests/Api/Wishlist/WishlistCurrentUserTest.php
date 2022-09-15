@@ -26,7 +26,7 @@ class WishlistCurrentUserTest extends ApiTestCase
     public function testGetWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -43,7 +43,7 @@ class WishlistCurrentUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->user))
         ;
         $wishlist = $this->em->getRepository(Wishlist::class)->matching($criteria)[0]->getParent();
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
         $data = $response->toArray();
@@ -61,7 +61,7 @@ class WishlistCurrentUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->user))
         ;
         $wishlist = $this->em->getRepository(Wishlist::class)->matching($criteria)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/parent');
 
@@ -72,7 +72,7 @@ class WishlistCurrentUserTest extends ApiTestCase
     public function testGetWishlistWishes(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/wishes');
         $data = $response->toArray();
@@ -99,7 +99,7 @@ class WishlistCurrentUserTest extends ApiTestCase
     public function testPutWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -115,7 +115,7 @@ class WishlistCurrentUserTest extends ApiTestCase
     public function testPatchWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -134,7 +134,7 @@ class WishlistCurrentUserTest extends ApiTestCase
     public function testDeleteWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

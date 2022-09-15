@@ -24,7 +24,7 @@ class InventoryCurrentUserTest extends ApiTestCase
     public function testGetInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -52,7 +52,7 @@ class InventoryCurrentUserTest extends ApiTestCase
     public function testPutInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -68,7 +68,7 @@ class InventoryCurrentUserTest extends ApiTestCase
     public function testPatchInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -87,7 +87,7 @@ class InventoryCurrentUserTest extends ApiTestCase
     public function testDeleteInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

@@ -1,4 +1,5 @@
 api_platform:
+    metadata_backward_compatibility_layer: false
     show_webby: false
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
