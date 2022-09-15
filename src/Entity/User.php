@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
@@ -32,10 +36,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'], message: 'error.email.not_unique')]
 #[UniqueEntity(fields: ['username'], message: 'error.username.not_unique')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['user:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Patch(),
+        new GetCollection()
+    ],
     denormalizationContext: ['groups' => ['user:write']],
-    collectionOperations: ['get'],
-    itemOperations: ['get', 'put', 'patch']
+    normalizationContext: ['groups' => ['user:read']]
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, BreadcrumbableInterface, \Stringable
 {
@@ -45,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private string $id;
 
     #[ORM\Column(type: Types::STRING, length: 32, unique: true)]
-    #[Assert\Regex(pattern: "/^[a-z\d_]{2,32}$/i", message: 'error.username.incorrect')]
+    #[Assert\Regex(pattern: '/^[a-z\\d_]{2,32}$/i', message: 'error.username.incorrect')]
     #[Groups(['user:read', 'user:write'])]
     private ?string $username = null;
 
@@ -57,7 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\Column(type: Types::STRING)]
     private ?string $password = null;
 
-    #[Assert\Regex(pattern: "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Za-z]).*$/", message: 'error.password.incorrect')]
+    #[Assert\Regex(pattern: "/(?=^.{8,}\$)((?=.*\\d)|(?=.*\\W+))(?![.\n])(?=.*[A-Za-z]).*\$/", message: 'error.password.incorrect')]
     #[Groups(['user:read', 'user:write'])]
     private ?string $plainPassword = null;
 
@@ -210,11 +218,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function __serialize()
     {
-        return [
-            $this->id,
-            $this->username,
-            $this->password,
-        ];
+        return [$this->id, $this->username, $this->password];
     }
 
     public function __unserialize($serialized): void
@@ -239,20 +243,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
             $currentTime = strtotime((new \DateTimeImmutable())->setTimezone($timezone)->format('H:i'));
             $startTime = strtotime($this->getAutomaticDarkModeStartAt()->format('H:i'));
             $endTime = strtotime($this->getAutomaticDarkModeEndAt()->format('H:i'));
-
-            if (
-                (
-                    $startTime < $endTime &&
-                    $currentTime >= $startTime &&
-                    $currentTime <= $endTime
-                ) ||
-                (
-                    $startTime > $endTime && (
-                        $currentTime >= $startTime ||
-                        $currentTime <= $endTime
-                    )
-                )
-            ) {
+            if ($startTime < $endTime && $currentTime >= $startTime && $currentTime <= $endTime || $startTime > $endTime && ($currentTime >= $startTime || $currentTime <= $endTime)) {
                 return true;
             }
         }
@@ -346,7 +337,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function removeRole(string $role): self
     {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+        if (false !== ($key = array_search(strtoupper($role), $this->roles, true))) {
             unset($this->roles[$key]);
             $this->roles = array_values($this->roles);
         }

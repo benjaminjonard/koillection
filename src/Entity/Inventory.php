@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use Doctrine\DBAL\Types\Types;
@@ -16,8 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 #[ORM\Table(name: 'koi_inventory')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['inventory:read']],
     denormalizationContext: ['groups' => ['inventory:write']],
+    normalizationContext: ['groups' => ['inventory:read']]
 )]
 class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
@@ -75,7 +75,6 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
     {
         $content = $this->getContentAsArray();
         $checkedItems = 0;
-
         foreach ($content as $rootCollection) {
             $checkedItems += $rootCollection['totalCheckedItems'];
         }
@@ -87,7 +86,6 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
     {
         $content = $this->getContentAsArray();
         $totalItems = 0;
-
         foreach ($content as $rootCollection) {
             $totalItems += $rootCollection['totalItems'];
         }

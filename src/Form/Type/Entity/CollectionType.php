@@ -63,6 +63,7 @@ class CollectionType extends AbstractType
         if ($entity->getItemsListColumns()) {
             $alreadySelectedColumns = array_reverse($entity->getItemsListColumns());
         }
+
         foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
             unset($itemsListColumnsChoices[$alreadySelectedColumn]);
             array_unshift($itemsListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);

@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
@@ -30,30 +36,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_album')]
 #[ORM\Index(name: 'idx_album_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['album:read']],
     denormalizationContext: ['groups' => ['album:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data'],
-        ]],
-    ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/albums/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['album:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Album image.']
-        ]
+    normalizationContext: ['groups' => ['album:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/albums/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Album image.']),
     ]
 )]
+#[ApiResource(uriTemplate: '/albums/{id}/children', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'children')], normalizationContext: ['groups' => ['album:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/albums/{id}/parent', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['album:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/photos/{id}/album', uriVariables: ['id' => new Link(fromClass: Photo::class, fromProperty: 'album')], normalizationContext: ['groups' => ['album:read']], operations: [new Get()])]
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
 {
     #[ORM\Id]
@@ -84,19 +81,16 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Photo::class, mappedBy: 'album', cascade: ['all'])]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $photos;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Album::class, mappedBy: 'parent', cascade: ['all'])]
     #[ORM\OrderBy(['title' => Criteria::ASC])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'children')]
     #[Groups(['album:read', 'album:write'])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Album $parent = null;
 

@@ -46,7 +46,7 @@ class CollectionCurrentUserTest extends ApiTestCase
         $collection = $this->em->getRepository(Collection::class)->matching($criteria)[0]->getParent();
         $iri = $this->iriConverter->getIriFromResource($collection);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/children');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();

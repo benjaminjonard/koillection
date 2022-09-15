@@ -45,7 +45,7 @@ class WishlistCurrentUserTest extends ApiTestCase
         $wishlist = $this->em->getRepository(Wishlist::class)->matching($criteria)[0]->getParent();
         $iri = $this->iriConverter->getIriFromResource($wishlist);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/children');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();

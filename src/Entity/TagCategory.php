@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Link;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\TagCategoryRepository;
@@ -20,9 +21,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: TagCategoryRepository::class)]
 #[ORM\Table(name: 'koi_tag_category')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['tagCategory:read']],
     denormalizationContext: ['groups' => ['tagCategory:write']],
+    normalizationContext: ['groups' => ['tagCategory:read']]
 )]
+#[ApiResource(uriTemplate: '/tags/{id}/category', uriVariables: ['id' => new Link(fromClass: Tag::class, fromProperty: 'category')], normalizationContext: ['groups' => ['tagCategory:read']], operations: [new Get()])]
 class TagCategory implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
@@ -48,7 +50,6 @@ class TagCategory implements BreadcrumbableInterface, LoggableInterface, \String
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Tag::class, mappedBy: 'category')]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $tags;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]

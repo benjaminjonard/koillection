@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
@@ -33,30 +39,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_collection')]
 #[ORM\Index(name: 'idx_collection_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['collection:read']],
     denormalizationContext: ['groups' => ['collection:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data']]
-        ],
-    ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/collections/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['collection:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Collection image.']
-        ]
+    normalizationContext: ['groups' => ['collection:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/collections/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['collection:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Collection image.'])
     ]
 )]
+#[ApiResource(uriTemplate: '/collections/{id}/children', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'children')], normalizationContext: ['groups' => ['collection:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/collections/{id}/parent', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/data/{id}/collection', uriVariables: ['id' => new Link(fromClass: Datum::class, fromProperty: 'collection')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/items/{id}/collection', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'collection')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
 class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface, \Stringable
 {
     #[ORM\Id]
@@ -77,16 +75,14 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read', 'collection:write'])]
     private ?string $itemsTitle = null;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'parent', cascade: ['all'])]
     #[ORM\OrderBy(['title' => Criteria::ASC])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'children')]
     #[Groups(['collection:read', 'collection:write'])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Collection $parent = null;
 
@@ -95,12 +91,10 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'collection', cascade: ['all'])]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
-    #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 
@@ -123,7 +117,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Template $itemsDefaultTemplate = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]

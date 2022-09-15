@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use App\Enum\DatumTypeEnum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,9 +17,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 #[ORM\Table(name: 'koi_field')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['field:read']],
     denormalizationContext: ['groups' => ['field:write']],
+    normalizationContext: ['groups' => ['field:read']]
 )]
+#[ApiResource(uriTemplate: '/templates/{id}/fields', uriVariables: ['id' => new Link(fromClass: Template::class, fromProperty: 'fields')], normalizationContext: ['groups' => ['field:read']], operations: [new GetCollection()])]
 class Field
 {
     #[ORM\Id]
@@ -49,7 +51,6 @@ class Field
     #[ORM\ManyToOne(targetEntity: Template::class, inversedBy: 'fields')]
     #[Assert\NotBlank]
     #[Groups(['field:read', 'field:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Template $template = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]

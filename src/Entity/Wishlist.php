@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
@@ -29,30 +35,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_wishlist')]
 #[ORM\Index(name: 'idx_wishlist_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['wishlist:read']],
-    denormalizationContext: ['groups' => ['wishlist:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data']
-        ]],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/wishlists/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['wishlist:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Wishlist image.']),
     ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/wishlists/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['wishlist:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Wishlist image.']
-        ]
-    ]
+    denormalizationContext: ['groups' => ['wishlist:write']],
+    normalizationContext: ['groups' => ['wishlist:read']]
 )]
+#[ApiResource(uriTemplate: '/wishes/{id}/wishlist', uriVariables: ['id' => new Link(fromClass: Wish::class, fromProperty: 'wishlist')], normalizationContext: ['groups' => ['wishlist:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/wishlists/{id}/children', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'children')], normalizationContext: ['groups' => ['wishlist:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/wishlists/{id}/parent', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['wishlist:read']], operations: [new Get()])]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
@@ -71,23 +68,20 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[ORM\OneToMany(targetEntity: Wish::class, mappedBy: 'wishlist', cascade: ['all'])]
     #[ORM\OrderBy(['name' => Criteria::ASC])]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $wishes;
 
     #[ORM\Column(type: Types::STRING, length: 6)]
     #[Groups(['wishlist:read'])]
     private ?string $color = null;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'parent', cascade: ['all'])]
     #[ORM\OrderBy(['name' => Criteria::ASC])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\ManyToOne(targetEntity: Wishlist::class, inversedBy: 'children')]
     #[Groups(['wishlist:read', 'wishlist:write'])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Wishlist $parent = null;
 

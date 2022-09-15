@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Api\Tests;
 
 use ApiPlatform\Api\IriConverterInterface;
-use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase as ApiPlatformApiTestCase;
-use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
+use ApiPlatform\Symfony\Bundle\Test\Client;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-abstract class ApiTestCase extends ApiPlatformApiTestCase
+abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
 {
     use RefreshDatabaseTrait;
 
