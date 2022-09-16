@@ -3007,13 +3007,13 @@
         <target>{username}'s albums</target>
       </segment>
     </unit>
-    <unit id="aTQXfVF" name="label.items_list_show_visibility">
+    <unit id="aTQXfVF" name="label.list_show_visibility">
       <segment state="translated">
         <source>label.items_list_show_visibility</source>
         <target>Show visibility column</target>
       </segment>
     </unit>
-    <unit id="tq3yBdM" name="label.items_list_show_actions">
+    <unit id="tq3yBdM" name="label.list_show_actions">
       <segment state="translated">
         <source>label.items_list_show_actions</source>
         <target>Show actions column</target>
@@ -3035,6 +3035,30 @@
       <segment>
         <source>label.sub_wishlists_display_mode</source>
         <target>Display sub-wishlists as a</target>
+      </segment>
+    </unit>
+    <unit id="x6kN4XJ" name="label.list_show_number_of_children">
+      <segment>
+        <source>label.list_show_number_of_children</source>
+        <target>Show number of children</target>
+      </segment>
+    </unit>
+    <unit id="HtDGsd0" name="label.list_show_number_of_items">
+      <segment>
+        <source>label.list_show_number_of_items</source>
+        <target>Show number of items</target>
+      </segment>
+    </unit>
+    <unit id="8LEwIMR" name="label.wishes">
+      <segment>
+        <source>label.wishes</source>
+        <target>Wishes</target>
+      </segment>
+    </unit>
+    <unit id="rsBlJD0" name="label.photos">
+      <segment>
+        <source>label.photos</source>
+        <target>Photos</target>
       </segment>
     </unit>
   </file>

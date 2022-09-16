@@ -4,21 +4,31 @@
             <th></th>
             <th>{{ 'label.name'|trans }}</th>
             {% if context == 'default' %}
-                <th class="center">{{ 'label.visibility'|trans }}</th>
-                <th class="center">{{ 'label.actions'|trans }}</th>
+                {% if collection.childrenListShowNumberOfChildren %}
+                    <th class="center">{{ 'label.collections'|trans }}</th>
+                {% endif %}
+                {% if collection.childrenListShowNumberOfItems %}
+                    <th class="center">{{ 'label.items'|trans }}</th>
+                {% endif %}
+                {% if collection.childrenListShowVisibility %}
+                    <th class="center">{{ 'label.visibility'|trans }}</th>
+                {% endif %}
+                {% if collection.childrenListShowActions %}
+                    <th class="center">{{ 'label.actions'|trans }}</th>
+                {% endif %}
             {% endif %}
         </tr>
     </thead>
 
     <tbody>
-        {% for collection in collections|naturalSorting %}
-            {% set link = path('app_collection_show'|applyContext, {'id': collection.id}) %}
-            <tr class="list-element resize-element" data-title="{{ collection.title }}" data-filter-target="element">
+        {% for child in collections|naturalSorting %}
+            {% set link = path('app_collection_show'|applyContext, {'id': child.id}) %}
+            <tr class="list-element resize-element" data-title="{{ child.title }}" data-filter-target="element">
                 <td>
                     <a class="table-link" href="{{ link }}"></a>
-                    {% if collection.image %}
+                    {% if child.image %}
                         <div class="image-wrapper placeholder placeholder--circle" data-controller="lazy-loading">
-                            <img data-src="{{ asset(collection.image) }}"
+                            <img data-src="{{ asset(child.image) }}"
                                  data-lazy-loading-target="image"
                             >
                         </div>
@@ -26,22 +36,40 @@
                 </td>
                 <td>
                     <a class="table-link" href="{{ link }}"></a>
-                    {{ collection.title|u.truncate(50, '...') }}
+                    {{ child.title|u.truncate(50, '...') }}
                 </td>
                 {% if context == 'default' %}
-                    <td class="center">
-                        {% include 'App/_partials/_visibility.html.twig' with {'visibility': collection.finalVisibility} only %}
-                    </td>
+                    {% if collection.childrenListShowNumberOfChildren %}
+                        <td class="center">
+                            <a class="table-link" href="{{ link }}"></a>
+                            {{ getCounters(child).children }}
+                        </td>
+                    {% endif %}
 
-                    <td class="table-actions center">
-                        <a href="{{ path('app_collection_edit', {id: collection.id}) }}" title="{{ 'tooltip.edit'|trans }}">
-                            <i class="fa fa-pencil fa-fw"></i>
-                        </a>
-                        {% include 'App/_partials/_icon/_delete.html.twig' with {
-                            path: path('app_collection_delete', {id: collection.id}),
-                            message: 'message.delete.collection'
-                        } only %}
-                    </td>
+                    {% if collection.childrenListShowNumberOfItems %}
+                        <td class="center">
+                            <a class="table-link" href="{{ link }}"></a>
+                            {{ getCounters(child).items }}
+                        </td>
+                    {% endif %}
+
+                    {% if collection.childrenListShowVisibility %}
+                        <td class="center">
+                            {% include 'App/_partials/_visibility.html.twig' with {'visibility': child.finalVisibility} only %}
+                        </td>
+                    {% endif %}
+
+                    {% if collection.childrenListShowActions %}
+                        <td class="table-actions center">
+                            <a href="{{ path('app_collection_edit', {id: child.id}) }}" title="{{ 'tooltip.edit'|trans }}">
+                                <i class="fa fa-pencil fa-fw"></i>
+                            </a>
+                            {% include 'App/_partials/_icon/_delete.html.twig' with {
+                                path: path('app_collection_delete', {id: child.id}),
+                                message: 'message.delete.collection'
+                            } only %}
+                        </td>
+                    {% endif %}
                 {% endif %}
             </tr>
         {% endfor %}

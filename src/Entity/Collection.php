@@ -120,6 +120,36 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
     private string $childrenDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['collection:read', 'collection:write'])]
+    private bool $childrenListShowVisibility = true;
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['collection:read', 'collection:write'])]
+    private bool $childrenListShowActions = true;
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['collection:read', 'collection:write'])]
+    private bool $childrenListShowNumberOfChildren = true;
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['collection:read', 'collection:write'])]
+    private bool $childrenListShowNumberOfItems = true;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?string $childrenSortingProperty = null;
+
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
+    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
+    #[Groups(['collection:read', 'collection:write'])]
+    private ?string $childrenSortingType = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Groups(['collection:read', 'collection:write'])]
+    #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
+    private ?string $childrenSortingDirection = Criteria::ASC;
+
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
     private ?Template $itemsDefaultTemplate = null;
@@ -564,6 +594,90 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setItemsListShowActions(bool $itemsListShowActions): Collection
     {
         $this->itemsListShowActions = $itemsListShowActions;
+
+        return $this;
+    }
+
+    public function isChildrenListShowVisibility(): bool
+    {
+        return $this->childrenListShowVisibility;
+    }
+
+    public function setChildrenListShowVisibility(bool $childrenListShowVisibility): Collection
+    {
+        $this->childrenListShowVisibility = $childrenListShowVisibility;
+
+        return $this;
+    }
+
+    public function isChildrenListShowActions(): bool
+    {
+        return $this->childrenListShowActions;
+    }
+
+    public function setChildrenListShowActions(bool $childrenListShowActions): Collection
+    {
+        $this->childrenListShowActions = $childrenListShowActions;
+
+        return $this;
+    }
+
+    public function getChildrenSortingProperty(): ?string
+    {
+        return $this->childrenSortingProperty;
+    }
+
+    public function setChildrenSortingProperty(?string $childrenSortingProperty): Collection
+    {
+        $this->childrenSortingProperty = $childrenSortingProperty;
+
+        return $this;
+    }
+
+    public function getChildrenSortingType(): ?string
+    {
+        return $this->childrenSortingType;
+    }
+
+    public function setChildrenSortingType(?string $childrenSortingType): Collection
+    {
+        $this->childrenSortingType = $childrenSortingType;
+
+        return $this;
+    }
+
+    public function getChildrenSortingDirection(): ?string
+    {
+        return $this->childrenSortingDirection;
+    }
+
+    public function setChildrenSortingDirection(?string $childrenSortingDirection): Collection
+    {
+        $this->childrenSortingDirection = $childrenSortingDirection;
+
+        return $this;
+    }
+
+    public function isChildrenListShowNumberOfChildren(): bool
+    {
+        return $this->childrenListShowNumberOfChildren;
+    }
+
+    public function setChildrenListShowNumberOfChildren(bool $childrenListShowNumberOfChildren): Collection
+    {
+        $this->childrenListShowNumberOfChildren = $childrenListShowNumberOfChildren;
+
+        return $this;
+    }
+
+    public function isChildrenListShowNumberOfItems(): bool
+    {
+        return $this->childrenListShowNumberOfItems;
+    }
+
+    public function setChildrenListShowNumberOfItems(bool $childrenListShowNumberOfItems): Collection
+    {
+        $this->childrenListShowNumberOfItems = $childrenListShowNumberOfItems;
 
         return $this;
     }
