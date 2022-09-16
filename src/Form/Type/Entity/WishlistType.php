@@ -46,9 +46,8 @@ class WishlistType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
             ])
-            ->add('childrenDisplayMode', ChoiceType::class, [
-                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
-                'required' => true,
+            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
+                'class' => Wishlist::class
             ])
             ->add(
                 $builder->create('file', TextType::class, [

@@ -4,16 +4,16 @@
             <th></th>
             <th>{{ 'label.name'|trans }}</th>
             {% if context == 'default' %}
-                {% if collection.childrenListShowNumberOfChildren %}
+                {% if collection.childrenDisplayConfiguration.showNumberOfChildren %}
                     <th class="center">{{ 'label.collections'|trans }}</th>
                 {% endif %}
-                {% if collection.childrenListShowNumberOfItems %}
+                {% if collection.childrenDisplayConfiguration.showNumberOfItems %}
                     <th class="center">{{ 'label.items'|trans }}</th>
                 {% endif %}
-                {% if collection.childrenListShowVisibility %}
+                {% if collection.childrenDisplayConfiguration.showVisibility %}
                     <th class="center">{{ 'label.visibility'|trans }}</th>
                 {% endif %}
-                {% if collection.childrenListShowActions %}
+                {% if collection.childrenDisplayConfiguration.showActions %}
                     <th class="center">{{ 'label.actions'|trans }}</th>
                 {% endif %}
             {% endif %}
@@ -39,27 +39,27 @@
                     {{ child.title|u.truncate(50, '...') }}
                 </td>
                 {% if context == 'default' %}
-                    {% if collection.childrenListShowNumberOfChildren %}
+                    {% if collection.childrenDisplayConfiguration.showNumberOfChildren %}
                         <td class="center">
                             <a class="table-link" href="{{ link }}"></a>
                             {{ getCounters(child).children }}
                         </td>
                     {% endif %}
 
-                    {% if collection.childrenListShowNumberOfItems %}
+                    {% if collection.childrenDisplayConfiguration.showNumberOfItems %}
                         <td class="center">
                             <a class="table-link" href="{{ link }}"></a>
                             {{ getCounters(child).items }}
                         </td>
                     {% endif %}
 
-                    {% if collection.childrenListShowVisibility %}
+                    {% if collection.childrenDisplayConfiguration.showVisibility %}
                         <td class="center">
                             {% include 'App/_partials/_visibility.html.twig' with {'visibility': child.finalVisibility} only %}
                         </td>
                     {% endif %}
 
-                    {% if collection.childrenListShowActions %}
+                    {% if collection.childrenDisplayConfiguration.showActions %}
                         <td class="table-actions center">
                             <a href="{{ path('app_collection_edit', {id: child.id}) }}" title="{{ 'tooltip.edit'|trans }}">
                                 <i class="fa fa-pencil fa-fw"></i>

@@ -109,8 +109,8 @@
             <!-- Child collections -->
             {% if children is not empty %}
                 <div class="block-element">
-                    <h2 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h2>
-                    {{ include('App/Collection/_collections_' ~ collection.childrenDisplayMode ~ '.html.twig', {'collections': children}) }}
+                    <h2 class="header">{{ collection.childrenDisplayConfiguration.title|default('title.children'|trans) }}</h2>
+                    {{ include('App/Collection/_collections_' ~ collection.childrenDisplayConfiguration.displayMode ~ '.html.twig', {'collections': children}) }}
                 </div>
             {% endif %}
 

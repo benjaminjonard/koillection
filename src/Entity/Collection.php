@@ -69,16 +69,16 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['collection:read', 'collection:write'])]
-    private ?string $childrenTitle = null;
-
-    #[ORM\Column(type: Types::STRING, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
     private ?string $itemsTitle = null;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'parent', cascade: ['all'])]
     #[ORM\OrderBy(['title' => Criteria::ASC])]
     private DoctrineCollection $children;
+
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $childrenDisplayConfiguration;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'children')]
@@ -114,41 +114,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['collection:read'])]
     private int $seenCounter = 0;
-
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $childrenDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $childrenListShowVisibility = true;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $childrenListShowActions = true;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $childrenListShowNumberOfChildren = true;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $childrenListShowNumberOfItems = true;
-
-    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $childrenSortingProperty = null;
-
-    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
-    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $childrenSortingType = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
-    private ?string $childrenSortingDirection = Criteria::ASC;
 
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
@@ -212,6 +177,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->children = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->data = new ArrayCollection();
+        $this->childrenDisplayConfiguration = new DisplayConfiguration();
     }
 
     public function __toString(): string
@@ -242,18 +208,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getChildrenTitle(): ?string
-    {
-        return $this->childrenTitle;
-    }
-
-    public function setChildrenTitle(?string $childrenTitle): self
-    {
-        $this->childrenTitle = $childrenTitle;
 
         return $this;
     }
@@ -454,18 +408,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function getChildrenDisplayMode(): string
-    {
-        return $this->childrenDisplayMode;
-    }
-
-    public function setChildrenDisplayMode(string $childrenDisplayMode): Collection
-    {
-        $this->childrenDisplayMode = $childrenDisplayMode;
-
-        return $this;
-    }
-
     public function getItemsDefaultTemplate(): ?Template
     {
         return $this->itemsDefaultTemplate;
@@ -598,86 +540,14 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function isChildrenListShowVisibility(): bool
+    public function getChildrenDisplayConfiguration(): DisplayConfiguration
     {
-        return $this->childrenListShowVisibility;
+        return $this->childrenDisplayConfiguration;
     }
 
-    public function setChildrenListShowVisibility(bool $childrenListShowVisibility): Collection
+    public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Collection
     {
-        $this->childrenListShowVisibility = $childrenListShowVisibility;
-
-        return $this;
-    }
-
-    public function isChildrenListShowActions(): bool
-    {
-        return $this->childrenListShowActions;
-    }
-
-    public function setChildrenListShowActions(bool $childrenListShowActions): Collection
-    {
-        $this->childrenListShowActions = $childrenListShowActions;
-
-        return $this;
-    }
-
-    public function getChildrenSortingProperty(): ?string
-    {
-        return $this->childrenSortingProperty;
-    }
-
-    public function setChildrenSortingProperty(?string $childrenSortingProperty): Collection
-    {
-        $this->childrenSortingProperty = $childrenSortingProperty;
-
-        return $this;
-    }
-
-    public function getChildrenSortingType(): ?string
-    {
-        return $this->childrenSortingType;
-    }
-
-    public function setChildrenSortingType(?string $childrenSortingType): Collection
-    {
-        $this->childrenSortingType = $childrenSortingType;
-
-        return $this;
-    }
-
-    public function getChildrenSortingDirection(): ?string
-    {
-        return $this->childrenSortingDirection;
-    }
-
-    public function setChildrenSortingDirection(?string $childrenSortingDirection): Collection
-    {
-        $this->childrenSortingDirection = $childrenSortingDirection;
-
-        return $this;
-    }
-
-    public function isChildrenListShowNumberOfChildren(): bool
-    {
-        return $this->childrenListShowNumberOfChildren;
-    }
-
-    public function setChildrenListShowNumberOfChildren(bool $childrenListShowNumberOfChildren): Collection
-    {
-        $this->childrenListShowNumberOfChildren = $childrenListShowNumberOfChildren;
-
-        return $this;
-    }
-
-    public function isChildrenListShowNumberOfItems(): bool
-    {
-        return $this->childrenListShowNumberOfItems;
-    }
-
-    public function setChildrenListShowNumberOfItems(bool $childrenListShowNumberOfItems): Collection
-    {
-        $this->childrenListShowNumberOfItems = $childrenListShowNumberOfItems;
+        $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
 
         return $this;
     }

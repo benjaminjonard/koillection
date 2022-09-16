@@ -85,14 +85,14 @@
 
     <div class="row">
         <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.childrenTitle, {'label' : 'label.children_title', 'suggestions': suggestedChildrenTitles|default}) }}
+            {{ form_row(form.childrenDisplayConfiguration.label, {'label' : 'label.children_title', 'suggestions': suggestedChildrenLabels|default}) }}
         </div>
     </div>
 
     <div data-controller="list-properties">
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.childrenDisplayMode, {'label' : 'label.sub_collections_display_mode', 'attr': {
+                {{ form_row(form.childrenDisplayConfiguration.displayMode, {'label' : 'label.sub_collections_display_mode', 'attr': {
                     'data-controller': 'select--display-mode',
                     'data-action': 'change->list-properties#displayProperties'
                 }} ) }}
@@ -100,28 +100,28 @@
         </div>
 
         <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if collection.childrenDisplayMode != 'list' %}hidden{% endif %}"
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                  data-list-properties-target="property"
             >
-                {{ form_row(form.childrenListShowVisibility, {'label' : 'label.list_show_visibility'}) }}
+                {{ form_row(form.childrenDisplayConfiguration.showVisibility, {'label' : 'label.list_show_visibility'}) }}
             </div>
-            <div class="col s12 l5 xl3 {% if collection.childrenDisplayMode != 'list' %}hidden{% endif %}"
+            <div class="col s12 l5 xl3 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                  data-list-properties-target="property"
             >
-                {{ form_row(form.childrenListShowActions, {'label' : 'label.list_show_actions'}) }}
+                {{ form_row(form.childrenDisplayConfiguration.showActions, {'label' : 'label.list_show_actions'}) }}
             </div>
         </div>
 
         <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if collection.childrenDisplayMode != 'list' %}hidden{% endif %}"
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                  data-list-properties-target="property"
             >
-                {{ form_row(form.childrenListShowNumberOfChildren, {'label' : 'label.list_show_number_of_children'}) }}
+                {{ form_row(form.childrenDisplayConfiguration.showNumberOfChildren, {'label' : 'label.list_show_number_of_children'}) }}
             </div>
-            <div class="col s12 l5 xl3 {% if collection.childrenDisplayMode != 'list' %}hidden{% endif %}"
+            <div class="col s12 l5 xl3 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                  data-list-properties-target="property"
             >
-                {{ form_row(form.childrenListShowNumberOfItems, {'label' : 'label.list_show_number_of_items'}) }}
+                {{ form_row(form.childrenDisplayConfiguration.showNumberOfItems, {'label' : 'label.list_show_number_of_items'}) }}
             </div>
         </div>
 

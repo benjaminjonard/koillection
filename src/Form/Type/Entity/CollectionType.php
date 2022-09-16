@@ -74,10 +74,6 @@ class CollectionType extends AbstractType
                 'attr' => ['length' => 255],
                 'required' => true,
             ])
-            ->add('childrenTitle', TextType::class, [
-                'attr' => ['length' => 255],
-                'required' => false,
-            ])
             ->add('itemsTitle', TextType::class, [
                 'attr' => ['length' => 255],
                 'required' => false,
@@ -95,21 +91,8 @@ class CollectionType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
             ])
-            ->add('childrenDisplayMode', ChoiceType::class, [
-                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
-                'required' => true,
-            ])
-            ->add('childrenListShowVisibility', CheckboxType::class, [
-                'required' => false,
-            ])
-            ->add('childrenListShowActions', CheckboxType::class, [
-                'required' => false,
-            ])
-            ->add('childrenListShowNumberOfChildren', CheckboxType::class, [
-                'required' => false,
-            ])
-            ->add('childrenListShowNumberOfItems', CheckboxType::class, [
-                'required' => false,
+            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
+                'class' => Collection::class
             ])
             ->add('itemsDisplayMode', ChoiceType::class, [
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),

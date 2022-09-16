@@ -99,10 +99,9 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Groups(['wishlist:read'])]
     private int $seenCounter = 0;
 
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['wishlist:read', 'wishlist:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $childrenDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $childrenDisplayConfiguration;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read', 'wishlist:write'])]
@@ -130,6 +129,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         $this->id = Uuid::v4()->toRfc4122();
         $this->wishes = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->childrenDisplayConfiguration = new DisplayConfiguration();
     }
 
     public function __toString(): string
@@ -346,14 +346,14 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this;
     }
 
-    public function getChildrenDisplayMode(): string
+    public function getChildrenDisplayConfiguration(): DisplayConfiguration
     {
-        return $this->childrenDisplayMode;
+        return $this->childrenDisplayConfiguration;
     }
 
-    public function setChildrenDisplayMode(string $childrenDisplayMode): Wishlist
+    public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Wishlist
     {
-        $this->childrenDisplayMode = $childrenDisplayMode;
+        $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
 
         return $this;
     }

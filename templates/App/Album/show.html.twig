@@ -82,7 +82,7 @@
             {% if children is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.album_children'|trans }}</h2>
-                    {{ include('App/Album/_albums_' ~ album.childrenDisplayMode ~ '.html.twig', {'albums': children}) }}
+                    {{ include('App/Album/_albums_' ~ album.childrenDisplayConfiguration.displayMode ~ '.html.twig', {'albums': children}) }}
                 </div>
             {% endif %}
 

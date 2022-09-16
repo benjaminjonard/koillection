@@ -41,9 +41,8 @@ class AlbumType extends AbstractType
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
                 'required' => true,
             ])
-            ->add('childrenDisplayMode', ChoiceType::class, [
-                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
-                'required' => true,
+            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
+                'class' => Album::class
             ])
             ->add('parent', EntityType::class, [
                 'class' => Album::class,

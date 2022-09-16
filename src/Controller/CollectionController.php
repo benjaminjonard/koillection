@@ -73,7 +73,7 @@ class CollectionController extends AbstractController
             'collection' => $collection,
             'form' => $form->createView(),
             'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
+            'suggestedChildrenLabels' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }
@@ -125,7 +125,7 @@ class CollectionController extends AbstractController
             'form' => $form->createView(),
             'collection' => $collection,
             'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
+            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }

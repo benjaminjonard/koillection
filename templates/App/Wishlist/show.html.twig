@@ -81,7 +81,7 @@
             {% if children is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.wishlist_children'|trans }}</h2>
-                    {{ include('App/Wishlist/_wishlists_' ~ wishlist.childrenDisplayMode ~ '.html.twig', {'wishlists': children}) }}
+                    {{ include('App/Wishlist/_wishlists_' ~ wishlist.childrenDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': children}) }}
                 </div>
             {% endif %}
 
