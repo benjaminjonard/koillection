@@ -3,6 +3,7 @@ App\Entity\Album:
     title: "<word(2)>"
     visibility: "public"
     finalVisibility: "public"
+    childrenDisplayConfiguration: "@display_configuration_album_admin_<($current)>"
     owner: "@admin"
 
   album_admin_{6..10}:
@@ -10,12 +11,14 @@ App\Entity\Album:
     visibility: "public"
     finalVisibility: "public"
     parent: "@album_admin_<($current - 5)>"
+    childrenDisplayConfiguration: "@display_configuration_album_admin_<($current)>"
     owner: "@admin"
 
   album_user_{1..5}:
     title: "<word(2)>"
     visibility: "public"
     finalVisibility: "public"
+    childrenDisplayConfiguration: "@display_configuration_album_user_<($current)>"
     owner: "@user"
 
   album_user_{6..10}:
@@ -23,4 +26,5 @@ App\Entity\Album:
     visibility: "public"
     finalVisibility: "public"
     parent: "@album_user_<($current - 5)>"
+    childrenDisplayConfiguration: "@display_configuration_album_user_<($current)>"
     owner: "@user"
