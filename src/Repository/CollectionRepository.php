@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Collection;
+use App\Entity\Datum;
+use App\Enum\DatumTypeEnum;
+use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
@@ -174,5 +177,72 @@ class CollectionRepository extends ServiceEntityRepository
         }
 
         return array_column($qb->getQuery()->getArrayResult(), 'label');
+    }
+
+    public function findForOrdering(Collection $collection, bool $asArray = false): array
+    {
+        if ($collection->getItemsDisplayConfiguration()->getSortingProperty()) {
+            // Get ordering value
+            $subQuery = $this->_em
+                ->createQueryBuilder()
+                ->select('datum.value')
+                ->from(Datum::class, 'datum')
+                ->where('datum.collection = child')
+                ->andWhere('datum.label = :label')
+                ->andWhere('datum.type IN (:types)')
+                ->setMaxResults(1)
+            ;
+
+            $qb = $this
+                ->createQueryBuilder('child')
+                ->addSelect("({$subQuery}) AS orderingValue, data")
+                ->where('child.parent = :parent')
+                ->setParameter('parent', $collection->getId())
+                ->setParameter('label', $collection->getItemsDisplayConfiguration()->getSortingProperty())
+                ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
+            ;
+
+            // If list, preload datum used for ordering and in columns
+            if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getChildrenDisplayConfiguration()->getDisplayMode()) {
+                $qb
+                    ->leftJoin('child.data', 'data', 'WITH', 'data.label = :label OR data.label IN (:labels) OR data IS NULL')
+                    ->setParameter('labels', $collection->getItemsDisplayConfiguration()->getColumns())
+                ;
+            } else {
+                // Else only preload datum used for ordering
+                $qb
+                    ->leftJoin('child.data', 'data', 'WITH', 'data.label = :label OR data IS NULL')
+                ;
+            }
+
+            $results = $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
+
+            return array_map(static function ($result) use ($asArray) {
+                $child = $result[0];
+                if ($asArray) {
+                    $child['orderingValue'] = $result['orderingValue'];
+                } else {
+                    $child->setOrderingValue($result['orderingValue']);
+                }
+
+                return $child;
+            }, $results);
+        }
+
+        $qb = $this
+            ->createQueryBuilder('child')
+            ->where('child.parent = :parent')
+            ->setParameter('parent', $collection->getId())
+        ;
+
+        if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getChildrenDisplayConfiguration()->getDisplayMode()) {
+            $qb
+                ->addSelect('data')
+                ->leftJoin('child.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
+                ->setParameter('labels', $collection->getChildrenDisplayConfiguration()->getColumns())
+            ;
+        }
+
+        return $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
     }
 }

@@ -152,6 +152,17 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->getTitle() ?? '';
     }
 
+    public function getDatumByLabel(string $label): ?Datum
+    {
+        foreach ($this->getData() as $datum) {
+            if ($datum->getLabel() === $label) {
+                return $datum;
+            }
+        }
+
+        return null;
+    }
+
     public function getNaturallySortedItems(): array
     {
         $array = $this->items->toArray();

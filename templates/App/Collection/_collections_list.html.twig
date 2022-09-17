@@ -3,6 +3,9 @@
         <tr>
             <th></th>
             <th>{{ 'label.name'|trans }}</th>
+            {% for column in collection.childrenDisplayConfiguration.columns %}
+                <th class="center hide-on-small-and-down">{{ column }}</th>
+            {% endfor %}
             {% if context == 'default' %}
                 {% if collection.childrenDisplayConfiguration.showNumberOfChildren %}
                     <th class="center">{{ 'label.collections'|trans }}</th>
@@ -21,7 +24,7 @@
     </thead>
 
     <tbody>
-        {% for child in collections|naturalSorting %}
+    {% for child in collections|naturalSorting(collection.childrenDisplayConfiguration.sortingDirection|default(null), collection.childrenDisplayConfiguration.sortingType|default(null)) %}
             {% set link = path('app_collection_show'|applyContext, {'id': child.id}) %}
             <tr class="list-element resize-element" data-title="{{ child.title }}" data-filter-target="element">
                 <td>
@@ -38,6 +41,22 @@
                     <a class="table-link" href="{{ link }}"></a>
                     {{ child.title|u.truncate(50, '...') }}
                 </td>
+                {% for column in collection.childrenDisplayConfiguration.columns %}
+                    <td class="center hide-on-small-and-down">
+                        {% set datum = child.getDatumByLabel(column) %}
+
+                        {% if datum is not null %}
+                            {% if datum.type != 'link' %}
+                                <a class="table-link" href="{{ link }}"></a>
+                            {% endif %}
+
+                            {% include 'App/Datum/_display_value/_' ~ datum.type ~ '.html.twig' with {'datum': datum} only %}
+                        {% else %}
+                            <a class="table-link" href="{{ link }}"></a>
+                            -
+                        {% endif %}
+                    </td>
+                {% endfor %}
                 {% if context == 'default' %}
                     {% if collection.childrenDisplayConfiguration.showNumberOfChildren %}
                         <td class="center">

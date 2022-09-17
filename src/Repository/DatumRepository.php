@@ -16,7 +16,7 @@ class DatumRepository extends ServiceEntityRepository
         parent::__construct($registry, Datum::class);
     }
 
-    public function findAllLabelsInCollection(Collection $collection, array $types = []): array
+    public function findAllItemsLabelsInCollection(Collection $collection, array $types = []): array
     {
         return $this
             ->createQueryBuilder('datum')
@@ -26,6 +26,22 @@ class DatumRepository extends ServiceEntityRepository
             ->where('item.collection = :collection')
             ->andWhere('datum.type IN (:types)')
             ->setParameter('collection', $collection->getId())
+            ->setParameter('types', $types)
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
+    public function findAllChildrenLabelsInCollection(Collection $collection, array $types = []): array
+    {
+        return $this
+            ->createQueryBuilder('datum')
+            ->leftJoin('datum.collection', 'collection')
+            ->select('datum.label, datum.type')
+            ->distinct()
+            ->where('collection.parent = :parent')
+            ->andWhere('datum.type IN (:types)')
+            ->setParameter('parent', $collection->getId())
             ->setParameter('types', $types)
             ->getQuery()
             ->getArrayResult()

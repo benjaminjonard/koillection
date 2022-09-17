@@ -67,26 +67,39 @@ class DisplayConfigurationType extends AbstractType
             ;
         }
 
-        if ($options['class'] === Item::class) {
-            $sortingProperties = [
-                'form.item_sorting.default_value' => null,
-            ];
-            $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING);
-            foreach ($labels as $label) {
+        if ($options['class'] === Item::class || $options['class'] == Collection::class) {
+            if ($options['class'] === Item::class) {
+                $sortingProperties = [
+                    'form.item_sorting.default_value' => null,
+                ];
+
+                $displayConfiguration = $entity->getItemsDisplayConfiguration();
+                $labelsAvailableForOrdering = $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING);
+                $labelsAvailableForColumns = $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
+            } else {
+                $sortingProperties = [
+                    'form.item_sorting.default_value' => null,
+                ];
+
+                $displayConfiguration = $entity->getChildrenDisplayConfiguration();
+                $labelsAvailableForOrdering = $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING);
+                $labelsAvailableForColumns = $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
+            }
+
+            foreach ($labelsAvailableForOrdering as $label) {
                 $sortingProperties[$label['label']] = $label['label'];
             }
 
             // Extract possible columns for a collection based on items
             $columns = [];
-            $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
-            foreach ($labels as $label) {
+            foreach ($labelsAvailableForColumns as $label) {
                 $columns[$label['label']] = $label['label'];
             }
 
             // Move already selected columns to the top of the array
             $alreadySelectedColumns = [];
-            if ($entity->getItemsDisplayConfiguration()->getColumns()) {
-                $alreadySelectedColumns = array_reverse($entity->getItemsDisplayConfiguration()->getColumns());
+            if ($displayConfiguration->getColumns()) {
+                $alreadySelectedColumns = array_reverse($displayConfiguration->getColumns());
             }
 
             foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
@@ -111,10 +124,10 @@ class DisplayConfigurationType extends AbstractType
                 ])
             ;
 
-            $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($labels): void {
+            $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($labelsAvailableForColumns): void {
                 $displayConfiguration = $event->getData();
                 $found = false;
-                foreach ($labels as $label) {
+                foreach ($labelsAvailableForColumns as $label) {
                     if ($label['label'] === $displayConfiguration->getSortingProperty()) {
                         $displayConfiguration->setSortingType($label['type']);
                         $found = true;

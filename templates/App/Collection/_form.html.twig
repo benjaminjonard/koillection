@@ -89,6 +89,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            {{ form_row(form.childrenDisplayConfiguration.sortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
+        </div>
+        <div class="col s12 l5 xl3">
+            {{ form_row(form.childrenDisplayConfiguration.sortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
+        </div>
+    </div>
+
     <div data-controller="list-properties">
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
@@ -96,6 +105,26 @@
                     'data-controller': 'select--display-mode',
                     'data-action': 'change->list-properties#displayProperties'
                 }} ) }}
+            </div>
+            <div class="col s12 l5 xl3 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                 data-controller="columns-list"
+                 data-list-properties-target="property"
+            >
+                <div>{{ form_label(form.childrenDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
+
+                <div>
+                    <div data-columns-list-target="checkedHolder">
+                        {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
+                            {{ form_row(child) }}
+                        {% endfor %}
+                    </div>
+                    <div data-columns-list-target="uncheckedHolder">
+                        {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
+                            {{ form_row(child) }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% do form.childrenDisplayConfiguration.columns.setRendered %}
             </div>
         </div>
 
