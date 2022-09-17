@@ -72,7 +72,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/add.html.twig', [
             'collection' => $collection,
             'form' => $form->createView(),
-            'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
+            'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenLabels' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll(),
         ]);
@@ -124,7 +124,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/edit.html.twig', [
             'form' => $form->createView(),
             'collection' => $collection,
-            'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
+            'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenTitles' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll(),
         ]);

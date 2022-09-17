@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Album;
+use App\Entity\Photo;
 use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
@@ -37,12 +38,13 @@ class AlbumType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
-            ->add('photosDisplayMode', ChoiceType::class, [
-                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
-                'required' => true,
-            ])
             ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
-                'class' => Album::class
+                'class' => Album::class,
+                'parentEntity' => $entity
+            ])
+            ->add('photosDisplayConfiguration', DisplayConfigurationType::class, [
+                'class' => Photo::class,
+                'parentEntity' => $entity
             ])
             ->add('parent', EntityType::class, [
                 'class' => Album::class,

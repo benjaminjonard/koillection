@@ -132,25 +132,26 @@ class CollectionRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function suggestItemsTitles(Collection $collection): array
+    public function suggestItemsLabels(Collection $collection): array
     {
         $qb = $this
             ->createQueryBuilder('c')
-            ->select('c.itemsTitle')
+            ->select('config.label')
             ->distinct()
+            ->leftJoin('c.itemsDisplayConfiguration', 'config')
             ->where('c.parent = :parent')
-            ->andWhere('c.itemsTitle IS NOT NULL')
+            ->andWhere('config.label IS NOT NULL')
             ->setParameter('parent', $collection->getParent())
         ;
 
-        if (null !== $collection->getItemsTitle()) {
+        if (null !== $collection->getItemsDisplayConfiguration()->getLabel()) {
             $qb
-                ->andWhere('c.itemsTitle != :itemsTitle')
-                ->setParameter('itemsTitle', $collection->getItemsTitle())
+                ->andWhere('config.label != :label')
+                ->setParameter('label', $collection->getItemsDisplayConfiguration()->getLabel())
             ;
         }
 
-        return array_column($qb->getQuery()->getArrayResult(), 'itemsTitle');
+        return array_column($qb->getQuery()->getArrayResult(), 'label');
     }
 
     public function suggestChildrenLabels(Collection $collection): array

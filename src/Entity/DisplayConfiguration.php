@@ -11,6 +11,7 @@ use App\Repository\DisplayConfigurationRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -54,6 +55,9 @@ class DisplayConfiguration
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     private bool $showNumberOfItems = true;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $columns = [];
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $createdAt = null;
@@ -187,6 +191,18 @@ class DisplayConfiguration
     public function setShowNumberOfItems(bool $showNumberOfItems): DisplayConfiguration
     {
         $this->showNumberOfItems = $showNumberOfItems;
+
+        return $this;
+    }
+
+    public function getColumns(): ?array
+    {
+        return $this->columns;
+    }
+
+    public function setColumns(?array $columns): DisplayConfiguration
+    {
+        $this->columns = $columns;
 
         return $this;
     }

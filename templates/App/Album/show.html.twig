@@ -89,7 +89,7 @@
             {% if photos is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.photos'|trans }}</h2>
-                    {{ include('App/Album/_photos_' ~ album.photosDisplayMode ~ '.html.twig', {'photos': photos}) }}
+                    {{ include('App/Album/_photos_' ~ album.photosDisplayConfiguration.displayMode ~ '.html.twig', {'photos': photos}) }}
                 </div>
             {% endif %}
         </div>

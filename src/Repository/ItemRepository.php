@@ -219,7 +219,7 @@ class ItemRepository extends ServiceEntityRepository
 
     public function findForOrdering(Collection $collection, bool $asArray = false): array
     {
-        if ($collection->getItemsSortingProperty()) {
+        if ($collection->getItemsDisplayConfiguration()->getSortingProperty()) {
             // Get ordering value
             $subQuery = $this->_em
                 ->createQueryBuilder()
@@ -236,15 +236,15 @@ class ItemRepository extends ServiceEntityRepository
                 ->addSelect("({$subQuery}) AS orderingValue, data")
                 ->where('item.collection = :collection')
                 ->setParameter('collection', $collection->getId())
-                ->setParameter('label', $collection->getItemsSortingProperty())
+                ->setParameter('label', $collection->getItemsDisplayConfiguration()->getSortingProperty())
                 ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ;
 
             // If list, preload datum used for ordering and in columns
-            if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayMode()) {
+            if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayConfiguration()->getDisplayMode()) {
                 $qb
                     ->leftJoin('item.data', 'data', 'WITH', 'data.label = :label OR data.label IN (:labels) OR data IS NULL')
-                    ->setParameter('labels', $collection->getItemsListColumns())
+                    ->setParameter('labels', $collection->getItemsDisplayConfiguration()->getColumns())
                 ;
             } else {
                 // Else only preload datum used for ordering
@@ -273,11 +273,11 @@ class ItemRepository extends ServiceEntityRepository
             ->setParameter('collection', $collection->getId())
         ;
 
-        if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayMode()) {
+        if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayConfiguration()->getDisplayMode()) {
             $qb
                 ->addSelect('data')
                 ->leftJoin('item.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
-                ->setParameter('labels', $collection->getItemsListColumns())
+                ->setParameter('labels', $collection->getItemsDisplayConfiguration()->getColumns())
             ;
         }
 

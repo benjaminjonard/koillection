@@ -18,9 +18,6 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\DatumTypeEnum;
-use App\Enum\DisplayModeEnum;
-use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
 use App\Validator as AppAssert;
@@ -67,10 +64,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read', 'collection:write'])]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::STRING, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsTitle = null;
-
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'parent', cascade: ['all'])]
     #[ORM\OrderBy(['title' => Criteria::ASC])]
@@ -92,6 +85,10 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'collection', cascade: ['all'])]
     private DoctrineCollection $items;
+
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $itemsDisplayConfiguration;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
@@ -118,37 +115,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
     private ?Template $itemsDefaultTemplate = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingProperty = null;
-
-    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
-    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingType = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
-    private ?string $itemsSortingDirection = Criteria::ASC;
-
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
-
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?array $itemsListColumns = [];
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $itemsListShowVisibility = true;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $itemsListShowActions = true;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -178,6 +144,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->items = new ArrayCollection();
         $this->data = new ArrayCollection();
         $this->childrenDisplayConfiguration = new DisplayConfiguration();
+        $this->itemsDisplayConfiguration = new DisplayConfiguration();
     }
 
     public function __toString(): string
@@ -208,18 +175,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getItemsTitle(): ?string
-    {
-        return $this->itemsTitle;
-    }
-
-    public function setItemsTitle(?string $itemsTitle): self
-    {
-        $this->itemsTitle = $itemsTitle;
 
         return $this;
     }
@@ -420,54 +375,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function getItemsDisplayMode(): string
-    {
-        return $this->itemsDisplayMode;
-    }
-
-    public function setItemsDisplayMode(string $itemsDisplayMode): Collection
-    {
-        $this->itemsDisplayMode = $itemsDisplayMode;
-
-        return $this;
-    }
-
-    public function getItemsSortingProperty(): ?string
-    {
-        return $this->itemsSortingProperty;
-    }
-
-    public function setItemsSortingProperty(?string $itemsSortingProperty): Collection
-    {
-        $this->itemsSortingProperty = $itemsSortingProperty;
-
-        return $this;
-    }
-
-    public function getItemsSortingDirection(): ?string
-    {
-        return $this->itemsSortingDirection;
-    }
-
-    public function getItemsSortingType(): ?string
-    {
-        return $this->itemsSortingType;
-    }
-
-    public function setItemsSortingType(?string $itemsSortingType): Collection
-    {
-        $this->itemsSortingType = $itemsSortingType;
-
-        return $this;
-    }
-
-    public function setItemsSortingDirection(?string $itemsSortingDirection): Collection
-    {
-        $this->itemsSortingDirection = $itemsSortingDirection;
-
-        return $this;
-    }
-
     public function getVisibility(): ?string
     {
         return $this->visibility;
@@ -504,42 +411,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function getItemsListColumns(): ?array
-    {
-        return $this->itemsListColumns;
-    }
-
-    public function setItemsListColumns(?array $itemsListColumns): Collection
-    {
-        $this->itemsListColumns = $itemsListColumns;
-
-        return $this;
-    }
-
-    public function getItemsListShowVisibility(): bool
-    {
-        return $this->itemsListShowVisibility;
-    }
-
-    public function setItemsListShowVisibility(bool $itemsListShowVisibility): Collection
-    {
-        $this->itemsListShowVisibility = $itemsListShowVisibility;
-
-        return $this;
-    }
-
-    public function getItemsListShowActions(): bool
-    {
-        return $this->itemsListShowActions;
-    }
-
-    public function setItemsListShowActions(bool $itemsListShowActions): Collection
-    {
-        $this->itemsListShowActions = $itemsListShowActions;
-
-        return $this;
-    }
-
     public function getChildrenDisplayConfiguration(): DisplayConfiguration
     {
         return $this->childrenDisplayConfiguration;
@@ -548,6 +419,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Collection
     {
         $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
+
+        return $this;
+    }
+
+    public function getItemsDisplayConfiguration(): DisplayConfiguration
+    {
+        return $this->itemsDisplayConfiguration;
+    }
+
+    public function setItemsDisplayConfiguration(DisplayConfiguration $itemsDisplayConfiguration): Collection
+    {
+        $this->itemsDisplayConfiguration = $itemsDisplayConfiguration;
 
         return $this;
     }

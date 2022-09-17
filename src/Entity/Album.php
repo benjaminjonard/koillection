@@ -102,10 +102,9 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
     private DisplayConfiguration $childrenDisplayConfiguration;
 
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['album:read', 'album:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $photosDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $photosDisplayConfiguration;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['album:read', 'album:write'])]
@@ -134,6 +133,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         $this->photos = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->childrenDisplayConfiguration = new DisplayConfiguration();
+        $this->photosDisplayConfiguration = new DisplayConfiguration();
     }
 
     public function __toString(): string
@@ -350,14 +350,14 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this;
     }
 
-    public function getPhotosDisplayMode(): string
+    public function getPhotosDisplayConfiguration(): DisplayConfiguration
     {
-        return $this->photosDisplayMode;
+        return $this->photosDisplayConfiguration;
     }
 
-    public function setPhotosDisplayMode(string $photosDisplayMode): Album
+    public function setPhotosDisplayConfiguration(DisplayConfiguration $photosDisplayConfiguration): Album
     {
-        $this->photosDisplayMode = $photosDisplayMode;
+        $this->photosDisplayConfiguration = $photosDisplayConfiguration;
 
         return $this;
     }

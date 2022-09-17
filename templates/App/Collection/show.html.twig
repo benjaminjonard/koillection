@@ -117,8 +117,8 @@
             <!-- Collection's items -->
             {% if items is not empty %}
                 <div class="block-element">
-                    <h2 class="header">{{ collection.itemsTitle|default('title.items'|trans) }}</h2>
-                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayMode ~ '.html.twig', {'items': items}) }}
+                    <h2 class="header">{{ collection.itemsDisplayConfiguration.title|default('title.items'|trans) }}</h2>
+                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayConfiguration.displayMode ~ '.html.twig', {'items': items}) }}
                 </div>
             {% endif %}
         </div>

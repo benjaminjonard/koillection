@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.itemsTitle, {'label' : 'label.items_title', 'suggestions': suggestedItemsTitles|default} ) }}
+            {{ form_row(form.itemsDisplayConfiguration.label, {'label' : 'label.items_title', 'suggestions': suggestedItemsLabels|default} ) }}
         </div>
         <div class="col s12 l5 xl3">
             {{ form_row(form.itemsDefaultTemplate, {'label' : 'label.items_default_template', 'attr': {'data-controller': 'select--default'}} ) }}
@@ -30,53 +30,53 @@
 
     <div class="row">
         <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-            {{ form_row(form.itemsSortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
+            {{ form_row(form.itemsDisplayConfiguration.sortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
         </div>
         <div class="col s12 l5 xl3">
-            {{ form_row(form.itemsSortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
+            {{ form_row(form.itemsDisplayConfiguration.sortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
         </div>
     </div>
 
     <div data-controller="list-properties">
         <div class="row">
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.itemsDisplayMode, {'label' : 'label.items_display_mode', 'attr': {
+                {{ form_row(form.itemsDisplayConfiguration.displayMode, {'label' : 'label.items_display_mode', 'attr': {
                     'data-controller': 'select--display-mode',
                     'data-action': 'change->list-properties#displayProperties'
                 }} ) }}
             </div>
-            <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
+            <div class="col s12 l5 xl3 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                  data-controller="columns-list"
                  data-list-properties-target="property"
             >
-                <div>{{ form_label(form.itemsListColumns, 'label.items_list_columns') }}</div>
+                <div>{{ form_label(form.itemsDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
 
                 <div>
                     <div data-columns-list-target="checkedHolder">
-                        {% for child in form.itemsListColumns.children|filter(child => child.vars.data == true) %}
+                        {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
                             {{ form_row(child) }}
                         {% endfor %}
                     </div>
                     <div data-columns-list-target="uncheckedHolder">
-                        {% for child in form.itemsListColumns.children|filter(child => child.vars.data == false) %}
+                        {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
                             {{ form_row(child) }}
                         {% endfor %}
                     </div>
                 </div>
-                {% do form.itemsListColumns.setRendered %}
+                {% do form.itemsDisplayConfiguration.columns.setRendered %}
             </div>
         </div>
 
         <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
+            <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                  data-list-properties-target="property"
             >
-                {{ form_row(form.itemsListShowVisibility, {'label' : 'label.list_show_visibility'}) }}
+                {{ form_row(form.itemsDisplayConfiguration.showVisibility, {'label' : 'label.list_show_visibility'}) }}
             </div>
-            <div class="col s12 l5 xl3 {% if collection.itemsDisplayMode != 'list' %}hidden{% endif %}"
+            <div class="col s12 l5 xl3 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                  data-list-properties-target="property"
             >
-                {{ form_row(form.itemsListShowActions, {'label' : 'label.list_show_actions'}) }}
+                {{ form_row(form.itemsDisplayConfiguration.showActions, {'label' : 'label.list_show_actions'}) }}
             </div>
         </div>
     </div>
