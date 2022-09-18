@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -92,10 +93,9 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     #[Groups(['tag:read'])]
     private int $seenCounter = 0;
 
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['tag:read', 'tag:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $itemsDisplayConfiguration;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['tag:read', 'tag:write'])]
@@ -291,14 +291,14 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
         return $this;
     }
 
-    public function getItemsDisplayMode(): string
+    public function getItemsDisplayConfiguration(): DisplayConfiguration
     {
-        return $this->itemsDisplayMode;
+        return $this->itemsDisplayConfiguration;
     }
 
-    public function setItemsDisplayMode(string $itemsDisplayMode): Tag
+    public function setItemsDisplayConfiguration(DisplayConfiguration $itemsDisplayConfiguration): Tag
     {
-        $this->itemsDisplayMode = $itemsDisplayMode;
+        $this->itemsDisplayConfiguration = $itemsDisplayConfiguration;
 
         return $this;
     }

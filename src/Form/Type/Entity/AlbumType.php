@@ -39,11 +39,9 @@ class AlbumType extends AbstractType
                 'required' => true,
             ])
             ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
-                'class' => Album::class,
                 'parentEntity' => $entity
             ])
             ->add('photosDisplayConfiguration', DisplayConfigurationType::class, [
-                'class' => Photo::class,
                 'parentEntity' => $entity
             ])
             ->add('parent', EntityType::class, [

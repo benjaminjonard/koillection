@@ -33,7 +33,8 @@ class CollectionType extends AbstractType
         private readonly Base64ToImageTransformer $base64ToImageTransformer,
         private readonly FeatureChecker $featureChecker,
         private readonly CollectionRepository $collectionRepository,
-        private readonly TemplateRepository $templateRepository
+        private readonly TemplateRepository $templateRepository,
+        private readonly DatumRepository $datumRepository
     ) {
     }
 
@@ -60,11 +61,31 @@ class CollectionType extends AbstractType
                 'required' => false,
             ])
             ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
-                'class' => Collection::class,
+                'hasLabel' => true,
+                'hasShowVisibility' => true,
+                'hasShowActions' => true,
+                'hasShowNumberOfChildren' => true,
+                'hasShowNumberOfItems' => true,
+                'sorting' => array_merge([
+                    'form.item_sorting.default_value' => null,
+                ], $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING)),
+                'columns' => [
+                    'availableColumnLabels' => $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
+                    'selectedColumnsLabels' => $entity->getChildrenDisplayConfiguration()->getColumns()
+                ],
                 'parentEntity' => $entity
             ])
             ->add('itemsDisplayConfiguration', DisplayConfigurationType::class, [
-                'class' => Item::class,
+                'hasLabel' => true,
+                'hasShowVisibility' => true,
+                'hasShowActions' => true,
+                'sorting' => array_merge([
+                    'form.item_sorting.default_value' => null,
+                ], $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING)),
+                'columns' => [
+                    'availableColumnLabels' => $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
+                    'selectedColumnsLabels' => $entity->getItemsDisplayConfiguration()->getColumns()
+                ],
                 'parentEntity' => $entity
             ])
             ->add('parent', EntityType::class, [

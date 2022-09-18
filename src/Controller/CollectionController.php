@@ -54,7 +54,7 @@ class CollectionController extends AbstractController
                 ->setVisibility($parent->getVisibility())
                 ->setParentVisibility($parent->getVisibility())
                 ->setFinalVisibility($parent->getFinalVisibility())
-                ->setItemsDisplayMode($parent->getItemsDisplayMode())
+                ->getItemsDisplayConfiguration()->setDisplayMode($parent->getItemsDisplayConfiguration()->getDisplayMode())
             ;
         }
 

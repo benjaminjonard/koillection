@@ -47,7 +47,6 @@ class WishlistType extends AbstractType
                 'required' => false,
             ])
             ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
-                'class' => Wishlist::class,
                 'parentEntity' => $entity
             ])
             ->add(

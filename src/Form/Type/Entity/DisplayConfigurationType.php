@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
-use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\DisplayConfiguration;
 use App\Entity\Item;
-use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
@@ -32,8 +30,6 @@ class DisplayConfigurationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $entity = $options['parentEntity'];
-
         $builder
             ->add('displayMode', ChoiceType::class, [
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
@@ -41,70 +37,45 @@ class DisplayConfigurationType extends AbstractType
             ])
         ;
 
-        if (in_array($options['class'], [Collection::class, Item::class])) {
-            $builder
-                ->add('label', TextType::class, [
-                    'attr' => ['length' => 255],
-                    'required' => false,
-                ])
-                ->add('showVisibility', CheckboxType::class, [
-                    'required' => false,
-                ])
-                ->add('showActions', CheckboxType::class, [
-                    'required' => false,
-                ])
-            ;
+        if ($options['hasLabel']) {
+            $builder->add('label', TextType::class, [
+                'attr' => ['length' => 255],
+                'required' => false,
+            ]);
         }
 
-        if ($options['class'] == Collection::class) {
-            $builder
-                ->add('showNumberOfChildren', CheckboxType::class, [
-                    'required' => false,
-                ])
-                ->add('showNumberOfItems', CheckboxType::class, [
-                    'required' => false,
-                ])
-            ;
+        if ($options['hasShowVisibility']) {
+            $builder->add('showVisibility', CheckboxType::class, [
+                'required' => false,
+            ]);
         }
 
-        if ($options['class'] === Item::class || $options['class'] == Collection::class) {
-            if ($options['class'] === Item::class) {
-                $sortingProperties = [
-                    'form.item_sorting.default_value' => null,
-                ];
+        if ($options['hasShowActions']) {
+            $builder->add('showActions', CheckboxType::class, [
+                'required' => false,
+            ]);
+        }
 
-                $displayConfiguration = $entity->getItemsDisplayConfiguration();
-                $labelsAvailableForOrdering = $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING);
-                $labelsAvailableForColumns = $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
-            } else {
-                $sortingProperties = [
-                    'form.item_sorting.default_value' => null,
-                ];
+        if ($options['hasShowNumberOfChildren']) {
+            $builder->add('showNumberOfChildren', CheckboxType::class, [
+                'required' => false,
+            ]);
+        }
 
-                $displayConfiguration = $entity->getChildrenDisplayConfiguration();
-                $labelsAvailableForOrdering = $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING);
-                $labelsAvailableForColumns = $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
-            }
+        if ($options['hasShowNumberOfItems']) {
+            $builder->add('showNumberOfItems', CheckboxType::class, [
+                'required' => false,
+            ]);
+        }
 
-            foreach ($labelsAvailableForOrdering as $label) {
-                $sortingProperties[$label['label']] = $label['label'];
-            }
-
-            // Extract possible columns for a collection based on items
-            $columns = [];
-            foreach ($labelsAvailableForColumns as $label) {
-                $columns[$label['label']] = $label['label'];
-            }
-
-            // Move already selected columns to the top of the array
-            $alreadySelectedColumns = [];
-            if ($displayConfiguration->getColumns()) {
-                $alreadySelectedColumns = array_reverse($displayConfiguration->getColumns());
-            }
-
-            foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
-                unset($columns[$alreadySelectedColumn]);
-                array_unshift($columns, [$alreadySelectedColumn => $alreadySelectedColumn]);
+        if (!empty($options['sorting'])) {
+            $sortingProperties = [];
+            foreach ($options['sorting'] as $key => $label) {
+                if (is_array($label)) {
+                    $sortingProperties[$label['label']] = $label['label'];
+                } else {
+                    $sortingProperties[$key] = $label;
+                }
             }
 
             $builder
@@ -116,6 +87,29 @@ class DisplayConfigurationType extends AbstractType
                     'choices' => array_flip(SortingDirectionEnum::getSortingDirectionLabels()),
                     'required' => true,
                 ])
+            ;
+        }
+
+        $availableColumnLabels = $options['columns']['availableColumnLabels'];
+        if (!empty($availableColumnLabels)) {
+            // Extract possible columns for a collection based on items
+            $columns = [];
+            foreach ($availableColumnLabels as $label) {
+                $columns[$label['label']] = $label['label'];
+            }
+
+            // Move already selected columns to the top of the array
+            $alreadySelectedColumns = [];
+            if ($options['columns']['selectedColumnsLabels']) {
+                $alreadySelectedColumns = array_reverse($options['columns']['selectedColumnsLabels']);
+            }
+
+            foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
+                unset($columns[$alreadySelectedColumn]);
+                array_unshift($columns, [$alreadySelectedColumn => $alreadySelectedColumn]);
+            }
+
+            $builder
                 ->add('columns', ChoiceType::class, [
                     'choices' => $columns,
                     'multiple' => true,
@@ -124,10 +118,10 @@ class DisplayConfigurationType extends AbstractType
                 ])
             ;
 
-            $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($labelsAvailableForColumns): void {
+            $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($availableColumnLabels): void {
                 $displayConfiguration = $event->getData();
                 $found = false;
-                foreach ($labelsAvailableForColumns as $label) {
+                foreach ($availableColumnLabels as $label) {
                     if ($label['label'] === $displayConfiguration->getSortingProperty()) {
                         $displayConfiguration->setSortingType($label['type']);
                         $found = true;
@@ -159,10 +153,20 @@ class DisplayConfigurationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => DisplayConfiguration::class,
+            'hasLabel' => false,
+            'hasShowVisibility' => false,
+            'hasShowActions' => false,
+            'hasShowNumberOfChildren' => false,
+            'hasShowNumberOfItems' => false,
+            'sorting' => [],
+            'columns' => [
+                'hasColumns' => true,
+                'availableColumnLabels' => [],
+                'selectedColumnsLabels' => []
+            ],
         ]);
 
         $resolver->setRequired([
-            'class',
             'parentEntity'
         ]);
     }

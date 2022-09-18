@@ -57,8 +57,8 @@ class ItemRepository extends ServiceEntityRepository
             ;
         }
 
-        $sortDirection = $parent instanceof Collection ? $parent->getItemsSortingDirection() : null;
-        $sortType = $parent instanceof Collection ? $parent->getItemsSortingType() : null;
+        $sortDirection = $parent instanceof Collection ? $parent->getItemsDisplayConfiguration()->getSortingDirection() : null;
+        $sortType = $parent instanceof Collection ? $parent->getItemsDisplayConfiguration()->getSortingType() : null;
         $results = $this->arraySorter->sort($results, $sortDirection, $sortType);
 
         $count = \count($results);
@@ -149,11 +149,11 @@ class ItemRepository extends ServiceEntityRepository
             ->setParameter('ids', $ids)
         ;
 
-        if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayMode()) {
+        if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayConfiguration()->getDisplayMode()) {
             $qb
                 ->leftJoin('i.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
                 ->addSelect('partial data.{id, label, type, value}')
-                ->setParameter('labels', $collection->getItemsListColumns())
+                ->setParameter('labels', $collection->getItemsDisplayConfiguration()->getColumns())
             ;
         }
 

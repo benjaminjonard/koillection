@@ -49,21 +49,23 @@
                  data-controller="columns-list"
                  data-list-properties-target="property"
             >
-                <div>{{ form_label(form.itemsDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
+                {% if form.itemsDisplayConfiguration.columns is defined %}
+                    <div>{{ form_label(form.itemsDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
 
-                <div>
-                    <div data-columns-list-target="checkedHolder">
-                        {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
-                            {{ form_row(child) }}
-                        {% endfor %}
+                    <div>
+                        <div data-columns-list-target="checkedHolder">
+                            {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
+                                {{ form_row(child) }}
+                            {% endfor %}
+                        </div>
+                        <div data-columns-list-target="uncheckedHolder">
+                            {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
+                                {{ form_row(child) }}
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div data-columns-list-target="uncheckedHolder">
-                        {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
-                            {{ form_row(child) }}
-                        {% endfor %}
-                    </div>
-                </div>
-                {% do form.itemsDisplayConfiguration.columns.setRendered %}
+                    {% do form.itemsDisplayConfiguration.columns.setRendered %}
+                {% endif %}
             </div>
         </div>
 
@@ -110,21 +112,23 @@
                  data-controller="columns-list"
                  data-list-properties-target="property"
             >
-                <div>{{ form_label(form.childrenDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
+                {% if form.childrenDisplayConfiguration.columns is defined %}
+                    <div>{{ form_label(form.childrenDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
 
-                <div>
-                    <div data-columns-list-target="checkedHolder">
-                        {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
-                            {{ form_row(child) }}
-                        {% endfor %}
+                    <div>
+                        <div data-columns-list-target="checkedHolder">
+                            {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
+                                {{ form_row(child) }}
+                            {% endfor %}
+                        </div>
+                        <div data-columns-list-target="uncheckedHolder">
+                            {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
+                                {{ form_row(child) }}
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div data-columns-list-target="uncheckedHolder">
-                        {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
-                            {{ form_row(child) }}
-                        {% endfor %}
-                    </div>
-                </div>
-                {% do form.childrenDisplayConfiguration.columns.setRendered %}
+                    {% do form.childrenDisplayConfiguration.columns.setRendered %}
+                {% endif %}
             </div>
         </div>
 

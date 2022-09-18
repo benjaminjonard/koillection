@@ -4,6 +4,7 @@ App\Entity\Collection:
     visibility: "public"
     finalVisibility: "public"
     childrenDisplayConfiguration: "@display_configuration_collection_admin_<($current)>"
+    itemsDisplayConfiguration: "@display_configuration_item_admin_<($current)>"
     owner: "@admin"
 
   collection_admin_{6..10}:
@@ -12,6 +13,7 @@ App\Entity\Collection:
     finalVisibility: "public"
     parent: "@collection_admin_<($current - 5)>"
     childrenDisplayConfiguration: "@display_configuration_collection_admin_<($current)>"
+    itemsDisplayConfiguration: "@display_configuration_item_admin_<($current)>"
     owner: "@admin"
 
   collection_user_{1..5}:
@@ -19,6 +21,7 @@ App\Entity\Collection:
     visibility: "public"
     finalVisibility: "public"
     childrenDisplayConfiguration: "@display_configuration_collection_user_<($current)>"
+    itemsDisplayConfiguration: "@display_configuration_item_user_<($current)>"
     owner: "@user"
 
   collection_user_{6..10}:
@@ -27,4 +30,5 @@ App\Entity\Collection:
     finalVisibility: "public"
     parent: "@collection_user_<($current - 5)>"
     childrenDisplayConfiguration: "@display_configuration_collection_user_<($current)>"
+    itemsDisplayConfiguration: "@display_configuration_item_user_<($current)>"
     owner: "@user"
