@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -113,6 +114,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
     private string $visibility = VisibilityEnum::VISIBILITY_PRIVATE;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private ?DisplayConfiguration $collectionsDisplayConfiguration = null;
+
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private ?DisplayConfiguration $wishlistsDisplayConfiguration = null;
+
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private ?DisplayConfiguration $albumsDisplayConfiguration = null;
+
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $collections;
 
@@ -203,6 +216,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->logs = new ArrayCollection();
         $this->albums = new ArrayCollection();
         $this->inventories = new ArrayCollection();
+        $this->collectionsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
+        $this->albumsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
+        $this->wishlistsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
         $this->id = Uuid::v4()->toRfc4122();
     }
 
@@ -645,6 +661,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setAutomaticDarkModeEndAt(?DateTimeImmutable $automaticDarkModeEndAt): User
     {
         $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;
+
+        return $this;
+    }
+
+    public function getCollectionsDisplayConfiguration(): ?DisplayConfiguration
+    {
+        return $this->collectionsDisplayConfiguration;
+    }
+
+    public function setCollectionsDisplayConfiguration(DisplayConfiguration $collectionsDisplayConfiguration): User
+    {
+        $this->collectionsDisplayConfiguration = $collectionsDisplayConfiguration;
+
+        return $this;
+    }
+
+    public function getWishlistsDisplayConfiguration(): ?DisplayConfiguration
+    {
+        return $this->wishlistsDisplayConfiguration;
+    }
+
+    public function setWishlistsDisplayConfiguration(DisplayConfiguration $wishlistsDisplayConfiguration): User
+    {
+        $this->wishlistsDisplayConfiguration = $wishlistsDisplayConfiguration;
+
+        return $this;
+    }
+
+    public function getAlbumsDisplayConfiguration(): ?DisplayConfiguration
+    {
+        return $this->albumsDisplayConfiguration;
+    }
+
+    public function setAlbumsDisplayConfiguration(DisplayConfiguration $albumsDisplayConfiguration): User
+    {
+        $this->albumsDisplayConfiguration = $albumsDisplayConfiguration;
 
         return $this;
     }

@@ -46,9 +46,7 @@ class WishlistType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
             ])
-            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
-                'parentEntity' => $entity
-            ])
+            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class)
             ->add(
                 $builder->create('file', TextType::class, [
                     'required' => false,

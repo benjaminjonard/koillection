@@ -43,9 +43,7 @@ class TagType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
-            ->add('itemsDisplayConfiguration', DisplayConfigurationType::class, [
-                'parentEntity' => $entity
-            ])
+            ->add('itemsDisplayConfiguration', DisplayConfigurationType::class)
             ->add('category', EntityType::class, [
                 'class' => TagCategory::class,
                 'choice_label' => 'label',

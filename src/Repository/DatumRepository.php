@@ -32,19 +32,26 @@ class DatumRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllChildrenLabelsInCollection(Collection $collection, array $types = []): array
+    public function findAllChildrenLabelsInCollection(?Collection $collection, array $types = []): array
     {
-        return $this
+        $qb = $this
             ->createQueryBuilder('datum')
             ->leftJoin('datum.collection', 'collection')
             ->select('datum.label, datum.type')
             ->distinct()
-            ->where('collection.parent = :parent')
-            ->andWhere('datum.type IN (:types)')
-            ->setParameter('parent', $collection->getId())
+            ->where('datum.type IN (:types)')
             ->setParameter('types', $types)
-            ->getQuery()
-            ->getArrayResult()
         ;
+
+        if ($collection instanceof Collection) {
+            $qb
+                ->andWhere('collection.parent = :parent')
+                ->setParameter('parent', $collection->getId())
+            ;
+        } else {
+            $qb->andWhere('collection.parent IS NULL');
+        }
+
+        return $qb->getQuery()->getArrayResult();
     }
 }

@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
-use App\Entity\Collection;
 use App\Entity\DisplayConfiguration;
-use App\Entity\Item;
-use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
-use App\Repository\DatumRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,10 +19,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class DisplayConfigurationType extends AbstractType
 {
     private array $preSubmitColumns = [];
-
-    public function __construct(private readonly DatumRepository $datumRepository)
-    {
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -164,10 +156,6 @@ class DisplayConfigurationType extends AbstractType
                 'availableColumnLabels' => [],
                 'selectedColumnsLabels' => []
             ],
-        ]);
-
-        $resolver->setRequired([
-            'parentEntity'
         ]);
     }
 }

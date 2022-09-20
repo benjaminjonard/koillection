@@ -3,20 +3,20 @@
         <tr>
             <th></th>
             <th>{{ 'label.name'|trans }}</th>
-            {% for column in collection.childrenDisplayConfiguration.columns %}
+            {% for column in displayConfiguration.columns %}
                 <th class="center hide-on-small-and-down">{{ column }}</th>
             {% endfor %}
             {% if context == 'default' %}
-                {% if collection.childrenDisplayConfiguration.showNumberOfChildren %}
+                {% if displayConfiguration.showNumberOfChildren %}
                     <th class="center">{{ 'label.collections'|trans }}</th>
                 {% endif %}
-                {% if collection.childrenDisplayConfiguration.showNumberOfItems %}
+                {% if displayConfiguration.showNumberOfItems %}
                     <th class="center">{{ 'label.items'|trans }}</th>
                 {% endif %}
-                {% if collection.childrenDisplayConfiguration.showVisibility %}
+                {% if displayConfiguration.showVisibility %}
                     <th class="center">{{ 'label.visibility'|trans }}</th>
                 {% endif %}
-                {% if collection.childrenDisplayConfiguration.showActions %}
+                {% if displayConfiguration.showActions %}
                     <th class="center">{{ 'label.actions'|trans }}</th>
                 {% endif %}
             {% endif %}
@@ -24,7 +24,7 @@
     </thead>
 
     <tbody>
-    {% for child in collections|naturalSorting(collection.childrenDisplayConfiguration.sortingDirection|default(null), collection.childrenDisplayConfiguration.sortingType|default(null)) %}
+    {% for child in collections|naturalSorting(displayConfiguration.sortingDirection|default(null),displayConfiguration.sortingType|default(null)) %}
             {% set link = path('app_collection_show'|applyContext, {'id': child.id}) %}
             <tr class="list-element resize-element" data-title="{{ child.title }}" data-filter-target="element">
                 <td>
@@ -41,7 +41,7 @@
                     <a class="table-link" href="{{ link }}"></a>
                     {{ child.title|u.truncate(50, '...') }}
                 </td>
-                {% for column in collection.childrenDisplayConfiguration.columns %}
+                {% for column in displayConfiguration.columns %}
                     <td class="center hide-on-small-and-down">
                         {% set datum = child.getDatumByLabel(column) %}
 
@@ -58,27 +58,27 @@
                     </td>
                 {% endfor %}
                 {% if context == 'default' %}
-                    {% if collection.childrenDisplayConfiguration.showNumberOfChildren %}
+                    {% if displayConfiguration.showNumberOfChildren %}
                         <td class="center">
                             <a class="table-link" href="{{ link }}"></a>
                             {{ getCounters(child).children }}
                         </td>
                     {% endif %}
 
-                    {% if collection.childrenDisplayConfiguration.showNumberOfItems %}
+                    {% if displayConfiguration.showNumberOfItems %}
                         <td class="center">
                             <a class="table-link" href="{{ link }}"></a>
                             {{ getCounters(child).items }}
                         </td>
                     {% endif %}
 
-                    {% if collection.childrenDisplayConfiguration.showVisibility %}
+                    {% if displayConfiguration.showVisibility %}
                         <td class="center">
                             {% include 'App/_partials/_visibility.html.twig' with {'visibility': child.finalVisibility} only %}
                         </td>
                     {% endif %}
 
-                    {% if collection.childrenDisplayConfiguration.showActions %}
+                    {% if displayConfiguration.showActions %}
                         <td class="table-actions center">
                             <a href="{{ path('app_collection_edit', {id: child.id}) }}" title="{{ 'tooltip.edit'|trans }}">
                                 <i class="fa fa-pencil fa-fw"></i>

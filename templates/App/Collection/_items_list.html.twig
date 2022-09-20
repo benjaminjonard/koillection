@@ -3,14 +3,14 @@
         <tr>
             <th></th>
             <th>{{ 'label.name'|trans }}</th>
-            {% for column in collection.itemsDisplayConfiguration.columns %}
+            {% for column in displayConfiguration.columns %}
                 <th class="center hide-on-small-and-down">{{ column }}</th>
             {% endfor %}
             {% if context == 'default' %}
-                {% if collection.itemsDisplayConfiguration.showVisibility %}
+                {% if displayConfiguration.showVisibility %}
                     <th class="center">{{ 'label.visibility'|trans }}</th>
                 {% endif %}
-                {% if collection.itemsDisplayConfiguration.showActions %}
+                {% if displayConfiguration.showActions %}
                     <th class="center">{{ 'label.actions'|trans }}</th>
                 {% endif %}
             {% endif %}
@@ -18,7 +18,7 @@
     </thead>
 
     <tbody>
-        {% for item in items|naturalSorting(collection.itemsDisplayConfiguration.sortingDirection|default(null), collection.itemsDisplayConfiguration.sortingType|default(null)) %}
+        {% for item in items|naturalSorting(displayConfiguration.sortingDirection|default(null), displayConfiguration.sortingType|default(null)) %}
             {% set link = path('app_item_show'|applyContext, {'id': item.id}) %}
             <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
                 <td>
@@ -35,7 +35,7 @@
                     <a class="table-link" href="{{ link }}"></a>
                     {{ item.name|u.truncate(50, '...') }}
                 </td>
-                {% for column in collection.itemsDisplayConfiguration.columns %}
+                {% for column in displayConfiguration.columns %}
                     <td class="center hide-on-small-and-down">
                         {% set datum = item.getDatumByLabel(column) %}
 
@@ -52,12 +52,12 @@
                     </td>
                 {% endfor %}
                 {% if context == 'default' %}
-                    {% if collection.itemsDisplayConfiguration.showVisibility %}
+                    {% if displayConfiguration.showVisibility %}
                         <td class="center">
                             {% include 'App/_partials/_visibility.html.twig' with {'visibility': item.finalVisibility} only %}
                         </td>
                     {% endif %}
-                    {% if collection.itemsDisplayConfiguration.showActions %}
+                    {% if displayConfiguration.showActions %}
                         <td class="table-actions center">
                             <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}">
                                 <i class="fa fa-pencil fa-fw"></i>

@@ -6,6 +6,7 @@ namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class ContextExtension extends AbstractExtension
 {
@@ -14,6 +15,13 @@ class ContextExtension extends AbstractExtension
         return [
             new TwigFilter('applyContext', [ContextRuntime::class, 'applyContext']),
             new TwigFilter('applyContextTrans', [ContextRuntime::class, 'applyContextTrans']),
+        ];
+    }
+
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('getContextUser', [ContextRuntime::class, 'getContextUser'])
         ];
     }
 }

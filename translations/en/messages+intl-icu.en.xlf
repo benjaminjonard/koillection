@@ -3061,5 +3061,59 @@
         <target>Photos</target>
       </segment>
     </unit>
+    <unit id="sQ83en6" name="label.wishlists_display_mode">
+      <segment>
+        <source>label.wishlists_display_mode</source>
+        <target>Display wishlists as a</target>
+      </segment>
+    </unit>
+    <unit id="paiZ6qs" name="label.collections_display_mode">
+      <segment>
+        <source>label.collections_display_mode</source>
+        <target>Display collections as a</target>
+      </segment>
+    </unit>
+    <unit id="kHAvmu7" name="label.albums_display_mode">
+      <segment>
+        <source>label.albums_display_mode</source>
+        <target>Display albums as a</target>
+      </segment>
+    </unit>
+    <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
+      <segment>
+        <source>breadcrumb.edit_collections_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="FGS9ySo" name="title.edit_collections_index">
+      <segment>
+        <source>title.edit_collections_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
+      <segment>
+        <source>breadcrumb.edit_albums_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="DomzBkb" name="title.edit_albums_index">
+      <segment>
+        <source>title.edit_albums_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
+      <segment>
+        <source>breadcrumb.edit_wishlists_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="WEd3Zlc" name="title.edit_wishlists_index">
+      <segment>
+        <source>title.edit_wishlists_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

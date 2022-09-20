@@ -42,6 +42,9 @@
                            title="{{ 'tooltip.add_wishlist'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
                         </a>
+                        <a href="{{ path('app_wishlist_edit_index') }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_wishlist_index'}) }}
                         {{ include('App/_partials/_visibility.html.twig') }}
                     {% endif %}
@@ -55,7 +58,7 @@
         </div>
 
         <div class="content-block">
-            {{ include('App/Wishlist/_wishlists_grid.html.twig', {'wishlists': wishlists}) }}
+            {{ include('App/Wishlist/_wishlists_' ~ getContextUser().wishlistsDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': wishlists}) }}
         </div>
     </div>
 {% endblock %}

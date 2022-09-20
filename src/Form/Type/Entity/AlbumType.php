@@ -38,12 +38,8 @@ class AlbumType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
-            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
-                'parentEntity' => $entity
-            ])
-            ->add('photosDisplayConfiguration', DisplayConfigurationType::class, [
-                'parentEntity' => $entity
-            ])
+            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class)
+            ->add('photosDisplayConfiguration', DisplayConfigurationType::class)
             ->add('parent', EntityType::class, [
                 'class' => Album::class,
                 'choice_label' => 'title',

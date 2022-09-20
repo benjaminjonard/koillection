@@ -55,6 +55,26 @@
     {% endapply %}
 {% endblock file_widget %}
 
+{% block _display_configuration_columns_entry_row %}
+    {% apply spaceless %}
+        <div class="column">
+            <p>
+                <span class="handle {{ form.vars.data == false ? 'visibility-none' }}">
+                    <i class="fa fa-arrows-v fa-fw"></i>
+                </span>
+                <label>
+                    <input type="checkbox"
+                           value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }}
+                           data-action="change->columns-list#check"
+                    />
+                    <span>{{ form.vars.value }}</span>
+                </label>
+            </p>
+            {{- form_errors(form) -}}
+        </div>
+    {% endapply %}
+{% endblock _display_configuration_columns_entry_row %}
+
 {% block _collection_itemsDisplayConfiguration_columns_entry_row %}
     {% apply spaceless %}
         <div class="column">

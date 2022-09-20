@@ -72,8 +72,7 @@ class CollectionType extends AbstractType
                 'columns' => [
                     'availableColumnLabels' => $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
                     'selectedColumnsLabels' => $entity->getChildrenDisplayConfiguration()->getColumns()
-                ],
-                'parentEntity' => $entity
+                ]
             ])
             ->add('itemsDisplayConfiguration', DisplayConfigurationType::class, [
                 'hasLabel' => true,
@@ -85,8 +84,7 @@ class CollectionType extends AbstractType
                 'columns' => [
                     'availableColumnLabels' => $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
                     'selectedColumnsLabels' => $entity->getItemsDisplayConfiguration()->getColumns()
-                ],
-                'parentEntity' => $entity
+                ]
             ])
             ->add('parent', EntityType::class, [
                 'class' => Collection::class,

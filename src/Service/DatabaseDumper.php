@@ -65,6 +65,7 @@ class DatabaseDumper
             "SELECT * FROM koi_album WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_collection WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_datum WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_display_configuration WHERE owner_id IN ({$userIds})",
             "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id IN ({$userIds})",
             "SELECT * FROM koi_inventory WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_item WHERE owner_id IN ({$userIds})",
