@@ -88,7 +88,6 @@ class CollectionController extends AbstractController
         DatumRepository $datumRepository
     ): Response {
         $displayConfiguration = $this->getUser()->getCollectionsDisplayConfiguration();
-
         $form = $this->createForm(DisplayConfigurationType::class, $displayConfiguration, [
             'hasShowVisibility' => true,
             'hasShowActions' => true,

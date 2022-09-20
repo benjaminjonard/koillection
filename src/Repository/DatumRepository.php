@@ -36,7 +36,6 @@ class DatumRepository extends ServiceEntityRepository
     {
         $qb = $this
             ->createQueryBuilder('datum')
-            ->leftJoin('datum.collection', 'collection')
             ->select('datum.label, datum.type')
             ->distinct()
             ->where('datum.type IN (:types)')
@@ -45,11 +44,13 @@ class DatumRepository extends ServiceEntityRepository
 
         if ($collection instanceof Collection) {
             $qb
-                ->andWhere('collection.parent = :parent')
+                ->join('datum.collection', 'collection', 'WITH', 'collection.parent = :parent')
                 ->setParameter('parent', $collection->getId())
             ;
         } else {
-            $qb->andWhere('collection.parent IS NULL');
+            $qb
+                ->join('datum.collection', 'collection', 'WITH', 'collection.parent IS NULL')
+            ;
         }
 
         return $qb->getQuery()->getArrayResult();
