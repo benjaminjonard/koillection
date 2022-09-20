@@ -34,5 +34,5 @@ jobs:
           context: .
           push: true
           build-args: GITHUB_RELEASE=1.3
-          tags: '${{ secrets.REGISTRY_URL }}/koillection/koillection:latest'
+          tags: koillection/koillection:latest
           platforms: linux/amd64,linux/arm64
