@@ -34,7 +34,7 @@
     <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
       <segment state="translated">
         <source>error.cannot_delete_admin_user</source>
-        <target>No puedes borrar el usuaurio administrador</target>
+        <target>No puedes borrar el usuario administrador</target>
       </segment>
     </unit>
     <unit id="2a_RIum" name="message.user_deleted">
@@ -658,7 +658,7 @@
     <unit id="wZpNYOE" name="label.space_used_by_user">
       <segment state="translated">
         <source>label.space_used_by_user</source>
-        <target>Espacio total usado por ususario</target>
+        <target>Espacio total usado por usuario</target>
       </segment>
     </unit>
     <unit id="1sstKF9" name="title.edit_user">
@@ -676,7 +676,7 @@
     <unit id="ZouqthR" name="btn.add_user">
       <segment state="translated">
         <source>btn.add_user</source>
-        <target>Aañadir usuario</target>
+        <target>Añadir usuario</target>
       </segment>
     </unit>
     <unit id="txRonia" name="label.id">
@@ -1360,7 +1360,7 @@
     <unit id="dFDOuk." name="label.percent_of_items">
       <segment state="translated">
         <source>label.percent_of_items</source>
-        <target>Porfentaje de elementos</target>
+        <target>Porcentaje de elementos</target>
       </segment>
     </unit>
     <unit id="xw23vtl" name="message.search_empty">
@@ -1432,7 +1432,7 @@
     <unit id="eG38lKI" name="message.visibility">
       <segment state="translated">
         <source>message.visibility</source>
-        <target>Si configuras la visibilidad a pública, tu colección será aacesible por cualquiera a través del enlace:</target>
+        <target>Si configuras la visibilidad a pública, tu colección será accesible por cualquiera a través del enlace:</target>
       </segment>
     </unit>
     <unit id="RjUO3kd" name="message.visibility_per_item">
@@ -1858,7 +1858,7 @@
     <unit id="zNdHjVZ" name="meta.description">
       <segment state="translated">
         <source>meta.description</source>
-        <target>A single place to manage all your collections.</target>
+        <target>Un único lugar para gestionar todas tus colecciones.</target>
       </segment>
     </unit>
     <unit id="XVATSGt" name="modal.title.delete">
@@ -1876,7 +1876,7 @@
     <unit id="J0RnHHK" name="message.share_link">
       <segment state="translated">
         <source>message.share_link</source>
-        <target>Puedes compartir este enlace para que otras personas puedan ver esta página (private items will be hidden) :</target>
+        <target>Puedes compartir este enlace para que otras personas puedan ver esta página (los elementos privados se ocultarán) :</target>
       </segment>
     </unit>
     <unit id="9Vg2S6n" name="modal.title.share">
@@ -2284,7 +2284,7 @@
     <unit id="oq5I4KJ" name="log.collection.created">
       <segment state="translated">
         <source>log.collection.created</source>
-        <target>La coleccion {label} fue creada</target>
+        <target>La colección {label} fue creada</target>
       </segment>
     </unit>
     <unit id="kJVARQs" name="log.collection.deleted">
@@ -2368,7 +2368,7 @@
     <unit id="zHvuaSF" name="message.delete.album">
       <segment state="translated">
         <source>message.delete.album</source>
-        <target>¿Estás seguro que quieres eliminar este álbum? Todas las fotos que conteinen se borrarán. Esta acción no se puede deshacer.</target>
+        <target>¿Estás seguro que quieres eliminar este álbum? Todas las fotos que contienen se borrarán. Esta acción no se puede deshacer.</target>
       </segment>
     </unit>
     <unit id="F5mLnYt" name="message.delete.template">
@@ -2392,7 +2392,7 @@
     <unit id="5Z0Lnp." name="message.delete.collection">
       <segment state="translated">
         <source>message.delete.collection</source>
-        <target>¿Estás seguro que queires eliminar esta colección? Todos los elementos que contiene, se borrarán. Esta acción no se puede deshacer.</target>
+        <target>¿Estás seguro que quieres eliminar esta colección? Todos los elementos que contiene, se borrarán. Esta acción no se puede deshacer.</target>
       </segment>
     </unit>
     <unit id="_HekiQE" name="message.delete.loan">
@@ -2776,7 +2776,7 @@
     <unit id="uG3LLvE" name="label.repeat_new_password">
       <segment state="translated">
         <source>label.repeat_new_password</source>
-        <target>Respite tu nueva contraseña</target>
+        <target>Repite tu nueva contraseña</target>
       </segment>
     </unit>
     <unit id="jbdcgnz" name="label.link">
@@ -3008,15 +3008,15 @@
       </segment>
     </unit>
     <unit id="aTQXfVF" name="label.list_show_visibility">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items_list_show_visibility</source>
-        <target>label.items_list_show_visibility</target>
+        <target>Mostrar visibilidad</target>
       </segment>
     </unit>
     <unit id="tq3yBdM" name="label.list_show_actions">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items_list_show_actions</source>
-        <target>label.items_list_show_actions</target>
+        <target>Mostrar acciones</target>
       </segment>
     </unit>
     <unit id="MWCAWm0" name="label.sub_collections_display_mode">
@@ -3080,39 +3080,39 @@
       </segment>
     </unit>
     <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>breadcrumb.edit_collections_index</source>
-        <target>breadcrumb.edit_collections_index</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="FGS9ySo" name="title.edit_collections_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.edit_collections_index</source>
-        <target>title.edit_collections_index</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>breadcrumb.edit_albums_index</source>
-        <target>breadcrumb.edit_albums_index</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="DomzBkb" name="title.edit_albums_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.edit_albums_index</source>
-        <target>title.edit_albums_index</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>breadcrumb.edit_wishlists_index</source>
-        <target>breadcrumb.edit_wishlists_index</target>
+        <target>Editar</target>
       </segment>
     </unit>
     <unit id="WEd3Zlc" name="title.edit_wishlists_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.edit_wishlists_index</source>
-        <target>title.edit_wishlists_index</target>
+        <target>Editar</target>
       </segment>
     </unit>
   </file>
