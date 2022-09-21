@@ -820,7 +820,7 @@
     <unit id="ryRhoHH" name="title.album_children">
       <segment state="translated">
         <source>title.album_children</source>
-        <target>Sub-album</target>
+        <target>Sub-albums</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
