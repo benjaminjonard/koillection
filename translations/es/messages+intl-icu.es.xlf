@@ -3007,16 +3007,112 @@
         <target>Álbums de {username}</target>
       </segment>
     </unit>
-    <unit id="aTQXfVF" name="label.items_list_show_visibility">
+    <unit id="aTQXfVF" name="label.list_show_visibility">
       <segment state="initial">
         <source>label.items_list_show_visibility</source>
         <target>label.items_list_show_visibility</target>
       </segment>
     </unit>
-    <unit id="tq3yBdM" name="label.items_list_show_actions">
+    <unit id="tq3yBdM" name="label.list_show_actions">
       <segment state="initial">
         <source>label.items_list_show_actions</source>
         <target>label.items_list_show_actions</target>
+      </segment>
+    </unit>
+    <unit id="MWCAWm0" name="label.sub_collections_display_mode">
+      <segment state="initial">
+        <source>label.sub_collections_display_mode</source>
+        <target>label.sub_collections_display_mode</target>
+      </segment>
+    </unit>
+    <unit id="UKwQt9f" name="label.sub_albums_display_mode">
+      <segment state="initial">
+        <source>label.sub_albums_display_mode</source>
+        <target>label.sub_albums_display_mode</target>
+      </segment>
+    </unit>
+    <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
+      <segment state="initial">
+        <source>label.sub_wishlists_display_mode</source>
+        <target>label.sub_wishlists_display_mode</target>
+      </segment>
+    </unit>
+    <unit id="x6kN4XJ" name="label.list_show_number_of_children">
+      <segment state="initial">
+        <source>label.list_show_number_of_children</source>
+        <target>label.list_show_number_of_children</target>
+      </segment>
+    </unit>
+    <unit id="HtDGsd0" name="label.list_show_number_of_items">
+      <segment state="initial">
+        <source>label.list_show_number_of_items</source>
+        <target>label.list_show_number_of_items</target>
+      </segment>
+    </unit>
+    <unit id="8LEwIMR" name="label.wishes">
+      <segment state="initial">
+        <source>label.wishes</source>
+        <target>label.wishes</target>
+      </segment>
+    </unit>
+    <unit id="rsBlJD0" name="label.photos">
+      <segment state="initial">
+        <source>label.photos</source>
+        <target>label.photos</target>
+      </segment>
+    </unit>
+    <unit id="sQ83en6" name="label.wishlists_display_mode">
+      <segment state="initial">
+        <source>label.wishlists_display_mode</source>
+        <target>label.wishlists_display_mode</target>
+      </segment>
+    </unit>
+    <unit id="paiZ6qs" name="label.collections_display_mode">
+      <segment state="initial">
+        <source>label.collections_display_mode</source>
+        <target>label.collections_display_mode</target>
+      </segment>
+    </unit>
+    <unit id="kHAvmu7" name="label.albums_display_mode">
+      <segment state="initial">
+        <source>label.albums_display_mode</source>
+        <target>label.albums_display_mode</target>
+      </segment>
+    </unit>
+    <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
+      <segment state="initial">
+        <source>breadcrumb.edit_collections_index</source>
+        <target>breadcrumb.edit_collections_index</target>
+      </segment>
+    </unit>
+    <unit id="FGS9ySo" name="title.edit_collections_index">
+      <segment state="initial">
+        <source>title.edit_collections_index</source>
+        <target>title.edit_collections_index</target>
+      </segment>
+    </unit>
+    <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
+      <segment state="initial">
+        <source>breadcrumb.edit_albums_index</source>
+        <target>breadcrumb.edit_albums_index</target>
+      </segment>
+    </unit>
+    <unit id="DomzBkb" name="title.edit_albums_index">
+      <segment state="initial">
+        <source>title.edit_albums_index</source>
+        <target>title.edit_albums_index</target>
+      </segment>
+    </unit>
+    <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
+      <segment state="initial">
+        <source>breadcrumb.edit_wishlists_index</source>
+        <target>breadcrumb.edit_wishlists_index</target>
+      </segment>
+    </unit>
+    <unit id="WEd3Zlc" name="title.edit_wishlists_index">
+      <segment state="initial">
+        <source>title.edit_wishlists_index</source>
+        <target>title.edit_wishlists_index</target>
       </segment>
     </unit>
   </file>
