@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
+use App\Entity\Item;
 use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
@@ -28,14 +29,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType
 {
-    private array $preSubmitItemsListColumns = [];
-
     public function __construct(
         private readonly Base64ToImageTransformer $base64ToImageTransformer,
         private readonly FeatureChecker $featureChecker,
         private readonly CollectionRepository $collectionRepository,
         private readonly TemplateRepository $templateRepository,
-        private readonly DatumRepository $datumRepository,
+        private readonly DatumRepository $datumRepository
     ) {
     }
 
@@ -43,43 +42,10 @@ class CollectionType extends AbstractType
     {
         $entity = $builder->getData();
 
-        $itemsSortingChoices = [
-            'form.item_sorting.default_value' => null,
-        ];
-        $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING);
-        foreach ($labels as $label) {
-            $itemsSortingChoices[$label['label']] = $label['label'];
-        }
-
-        // Extract possible columns for a collection based on items
-        $itemsListColumnsChoices = [];
-        $labels = $this->datumRepository->findAllLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES);
-        foreach ($labels as $label) {
-            $itemsListColumnsChoices[$label['label']] = $label['label'];
-        }
-
-        // Move already selected columns to the top of the array
-        $alreadySelectedColumns = [];
-        if ($entity->getItemsListColumns()) {
-            $alreadySelectedColumns = array_reverse($entity->getItemsListColumns());
-        }
-        foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
-            unset($itemsListColumnsChoices[$alreadySelectedColumn]);
-            array_unshift($itemsListColumnsChoices, [$alreadySelectedColumn => $alreadySelectedColumn]);
-        }
-
         $builder
             ->add('title', TextType::class, [
                 'attr' => ['length' => 255],
                 'required' => true,
-            ])
-            ->add('childrenTitle', TextType::class, [
-                'attr' => ['length' => 255],
-                'required' => false,
-            ])
-            ->add('itemsTitle', TextType::class, [
-                'attr' => ['length' => 255],
-                'required' => false,
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
@@ -94,29 +60,31 @@ class CollectionType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
             ])
-            ->add('itemsDisplayMode', ChoiceType::class, [
-                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
-                'required' => true,
+            ->add('childrenDisplayConfiguration', DisplayConfigurationType::class, [
+                'hasLabel' => true,
+                'hasShowVisibility' => true,
+                'hasShowActions' => true,
+                'hasShowNumberOfChildren' => true,
+                'hasShowNumberOfItems' => true,
+                'sorting' => array_merge([
+                    'form.item_sorting.default_value' => null,
+                ], $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING)),
+                'columns' => [
+                    'availableColumnLabels' => $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
+                    'selectedColumnsLabels' => $entity->getChildrenDisplayConfiguration()->getColumns()
+                ]
             ])
-            ->add('itemsSortingProperty', ChoiceType::class, [
-                'choices' => $itemsSortingChoices,
-                'required' => true,
-            ])
-            ->add('itemsListColumns', ChoiceType::class, [
-                'choices' => $itemsListColumnsChoices,
-                'multiple' => true,
-                'expanded' => true,
-                'required' => false,
-            ])
-            ->add('itemsListShowVisibility', CheckboxType::class, [
-                'required' => false,
-            ])
-            ->add('itemsListShowActions', CheckboxType::class, [
-                'required' => false,
-            ])
-            ->add('itemsSortingDirection', ChoiceType::class, [
-                'choices' => array_flip(SortingDirectionEnum::getSortingDirectionLabels()),
-                'required' => true,
+            ->add('itemsDisplayConfiguration', DisplayConfigurationType::class, [
+                'hasLabel' => true,
+                'hasShowVisibility' => true,
+                'hasShowActions' => true,
+                'sorting' => array_merge([
+                    'form.item_sorting.default_value' => null,
+                ], $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::AVAILABLE_FOR_ORDERING)),
+                'columns' => [
+                    'availableColumnLabels' => $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
+                    'selectedColumnsLabels' => $entity->getItemsDisplayConfiguration()->getColumns()
+                ]
             ])
             ->add('parent', EntityType::class, [
                 'class' => Collection::class,
@@ -156,35 +124,6 @@ class CollectionType extends AbstractType
                 'mapped' => false,
             ]);
         }
-
-        $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event) use ($labels): void {
-            $collection = $event->getData();
-            $found = false;
-            foreach ($labels as $label) {
-                if ($label['label'] === $collection->getItemsSortingProperty()) {
-                    $collection->setItemsSortingType($label['type']);
-                    $found = true;
-                    break;
-                }
-            }
-
-            if (!$found) {
-                $collection->setItemsSortingType(null);
-            }
-        });
-
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
-            if (isset($event->getData()['itemsListColumns'])) {
-                $this->preSubmitItemsListColumns = $event->getData()['itemsListColumns'];
-            }
-        });
-
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
-            $data = $event->getData();
-            $data->setItemsListColumns($this->preSubmitItemsListColumns);
-
-            $event->setData($data);
-        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

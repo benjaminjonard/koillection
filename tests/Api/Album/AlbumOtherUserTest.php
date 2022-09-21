@@ -15,7 +15,7 @@ class AlbumOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -28,9 +28,9 @@ class AlbumOtherUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
         ;
         $album = $this->em->getRepository(Album::class)->matching($criteria)[0]->getParent();
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/children');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -46,7 +46,7 @@ class AlbumOtherUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
         ;
         $album = $this->em->getRepository(Album::class)->matching($criteria)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/parent');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -55,7 +55,7 @@ class AlbumOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserAlbumPhotos(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/photos');
         $data = $response->toArray();
@@ -69,7 +69,7 @@ class AlbumOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'title' => 'updated title with PUT',
@@ -81,7 +81,7 @@ class AlbumOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -96,7 +96,7 @@ class AlbumOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserAlbum(): void
     {
         $album = $this->em->getRepository(Album::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($album);
+        $iri = $this->iriConverter->getIriFromResource($album);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

@@ -13,7 +13,7 @@ class InventoryOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -22,7 +22,7 @@ class InventoryOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -34,7 +34,7 @@ class InventoryOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -49,7 +49,7 @@ class InventoryOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserInventory(): void
     {
         $inventory = $this->em->getRepository(Inventory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($inventory);
+        $iri = $this->iriConverter->getIriFromResource($inventory);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

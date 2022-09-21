@@ -5,8 +5,14 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Enum\DatumTypeEnum;
 use App\Repository\DatumRepository;
@@ -21,47 +27,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DatumRepository::class)]
 #[ORM\Table(name: 'koi_datum')]
 #[ORM\Index(name: 'idx_datum_label', columns: ['label'])]
+#[Assert\Expression('this.getItem() == null or this.getCollection() == null', message: 'error.datum.cant_be_used_by_both_collections_and_items')]
+#[Assert\Expression('this.getItem() != null or this.getCollection() != null', message: 'error.datum.must_provide_collection_or_item')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['datum:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/data/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['datum:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum image.']),
+        new Post(uriTemplate: '/data/{id}/file', controller: UploadController::class, denormalizationContext: ['groups' => ['datum:file']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum file.'])],
     denormalizationContext: ['groups' => ['datum:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data']
-        ]],
-    ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/data/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['datum:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Datum image.']
-        ],
-        'file' => [
-            'method' => 'POST',
-            'path' => '/data/{id}/file',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['datum:file']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Datum file.']
-        ]
-    ]
+    normalizationContext: ['groups' => ['datum:read']]
 )]
-#[Assert\Expression(
-    'this.getItem() == null or this.getCollection() == null',
-    message: 'error.datum.cant_be_used_by_both_collections_and_items',
-)]
-#[Assert\Expression(
-    'this.getItem() != null or this.getCollection() != null',
-    message: 'error.datum.must_provide_collection_or_item',
-)]
+#[ApiResource(uriTemplate: '/collections/{id}/data', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'data')], normalizationContext: ['groups' => ['datum:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/items/{id}/data', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'data')], normalizationContext: ['groups' => ['datum:read']], operations: [new GetCollection()])]
 class Datum implements \Stringable
 {
     #[ORM\Id]
@@ -71,12 +53,10 @@ class Datum implements \Stringable
 
     #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data')]
     #[Groups(['datum:read', 'datum:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Item $item = null;
 
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'data')]
     #[Groups(['datum:read', 'datum:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Collection $collection = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
@@ -158,7 +138,6 @@ class Datum implements \Stringable
     {
         $selectedChoices = json_decode($this->value, true);
         $orderedSelectedChoices = [];
-
         foreach ($this->getChoiceList()->getChoices() as $availableChoice) {
             if (\in_array($availableChoice, $selectedChoices)) {
                 $orderedSelectedChoices[] = $availableChoice;

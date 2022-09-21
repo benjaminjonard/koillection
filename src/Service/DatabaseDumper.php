@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Symfony\Component\Security\Core\Security;
 
 class DatabaseDumper
@@ -29,11 +30,14 @@ class DatabaseDumper
         $platformName = $this->managerRegistry->getManager()->getConnection()->getDatabasePlatform()->getName();
         $disableForeignKeysCheck = null;
         $enableForeignKeysCheck = null;
+
+        $rows[] = 'BEGIN;'.PHP_EOL;
+
         if ('postgresql' === $platformName) {
-            $disableForeignKeysCheck = 'SET session_replication_role = replica;'.PHP_EOL.PHP_EOL;
+            $disableForeignKeysCheck = 'SET session_replication_role = replica;'.PHP_EOL;
             $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;'.PHP_EOL;
         } elseif ('mysql' === $platformName) {
-            $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL.PHP_EOL;
+            $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;'.PHP_EOL;
             $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;'.PHP_EOL;
         }
 
@@ -42,7 +46,7 @@ class DatabaseDumper
         }
 
         // Schema
-        $rows += $this->dumpSchema($connection);
+        $rows = array_merge($rows, $this->dumpSchema($connection));
 
         // Data
         $userIds = [];
@@ -61,6 +65,7 @@ class DatabaseDumper
             "SELECT * FROM koi_album WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_collection WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_datum WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_display_configuration WHERE owner_id IN ({$userIds})",
             "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id IN ({$userIds})",
             "SELECT * FROM koi_inventory WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_item WHERE owner_id IN ({$userIds})",
@@ -117,6 +122,8 @@ class DatabaseDumper
             $rows[] = $enableForeignKeysCheck;
         }
 
+        $rows[] = 'COMMIT;'.PHP_EOL;
+
         return $rows;
     }
 
@@ -125,27 +132,31 @@ class DatabaseDumper
         $currentSchema = $connection->getSchemaManager()->createSchema();
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
         $rows = array_map(static function ($row): string {
+            $row = str_replace('CREATE SCHEMA', 'CREATE SCHEMA IF NOT EXISTS', $row);
+
             return $row.';'.PHP_EOL;
         }, $schemaRows);
+
         $rows[] = PHP_EOL;
 
         return $rows;
     }
 
-    private function formatValue($value, string $property, \Doctrine\Persistence\Mapping\ClassMetadata|null $metadata)
+    private function formatValue($value, string $property, ClassMetadata|null $metadata)
     {
+        $type = $metadata?->getTypeOfField(array_search($property, $metadata->columnNames, true));
         if (\is_string($value)) {
-            $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
+            $value = $type !== 'json' ? str_replace(['\\', "'"], ['\\\\', "''"], $value) : str_replace("'", "''", $value);
         }
 
         if (null === $value) {
             $value = 'NULL';
         } else {
-            if ($metadata && 'boolean' === $metadata->getTypeOfField(array_search($property, $metadata->columnNames, true))) {
+            if ($metadata && 'boolean' === $type) {
                 $value = true === $value ? 'true' : 'false';
             }
 
-            if (null === $metadata || \in_array($metadata->getTypeOfField(array_search($property, $metadata->columnNames, true)), [null, 'string', 'datetime', 'datetime_immutable', 'date', 'date_immutable', 'uuid', 'array', 'text'], true)) {
+            if (null === $metadata || \in_array($type, [null, 'string', 'datetime', 'datetime_immutable', 'date', 'date_immutable', 'time', 'time_immutable', 'uuid', 'array', 'text', 'json'], true)) {
                 $value = "'".$value."'";
             }
         }

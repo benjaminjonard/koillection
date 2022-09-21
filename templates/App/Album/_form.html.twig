@@ -11,10 +11,16 @@
 
 <div class="row">
     <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-        {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+        {{ form_row(form.photosDisplayConfiguration.displayMode, {'label' : 'label.photos_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
     </div>
     <div class="col s12 l5 xl3">
-        {{ form_row(form.photosDisplayMode, {'label' : 'label.photos_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
+        {{ form_row(form.childrenDisplayConfiguration.displayMode, {'label' : 'label.sub_albums_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
     </div>
 </div>
 

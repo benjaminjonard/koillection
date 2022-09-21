@@ -9,9 +9,11 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
     "@materializecss/materialize": "1.1.0",
     "@symfony/stimulus-bridge": "^3.0.0",
-    "@symfony/webpack-encore": "^3.0.0",
+    "@symfony/webpack-encore": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.0.0",
     "croppie": "^2.6.4",
@@ -22,7 +24,9 @@
     "stimulus-lightbox": "^3.0.0",
     "stimulus-use": "^0.50.0",
     "ts-select2": "^0.2.0",
+    "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.10.0",
     "webpack-notifier": "^1.15.0"
   },
   "scripts": {

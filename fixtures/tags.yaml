@@ -4,9 +4,11 @@ App\Entity\Tag:
     visibility: "public"
     category: "@tag_category_admin_<current()>"
     owner: "@admin"
+    itemsDisplayConfiguration: "@display_configuration_tag_admin_<($current)>"
 
   tag_user_{1..10}:
     label: "<word(2)>"
     visibility: "public"
     category: "@tag_category_user_<current()>"
     owner: "@user"
+    itemsDisplayConfiguration: "@display_configuration_tag_user_<($current)>"

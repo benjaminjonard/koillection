@@ -13,7 +13,7 @@ class FieldOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -22,7 +22,7 @@ class FieldOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserFieldTemplate(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/template');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -31,7 +31,7 @@ class FieldOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -43,7 +43,7 @@ class FieldOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -58,7 +58,7 @@ class FieldOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserField(): void
     {
         $field = $this->em->getRepository(Field::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($field);
+        $iri = $this->iriConverter->getIriFromResource($field);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

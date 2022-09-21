@@ -820,7 +820,7 @@
     <unit id="ryRhoHH" name="title.album_children">
       <segment state="translated">
         <source>title.album_children</source>
-        <target>Sub-album</target>
+        <target>Sub-albums</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -3038,7 +3038,7 @@
       </segment>
     </unit>
     <unit id="x6kN4XJ" name="label.list_show_number_of_children">
-      <segment state="translated">
+      <segment>
         <source>label.list_show_number_of_children</source>
         <target>Show number of children</target>
       </segment>
@@ -3056,7 +3056,7 @@
       </segment>
     </unit>
     <unit id="rsBlJD0" name="label.photos">
-      <segment state="translated">
+      <segment>
         <source>label.photos</source>
         <target>Photos</target>
       </segment>

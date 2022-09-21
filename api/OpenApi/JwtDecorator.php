@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Api\OpenApi;
 
-use ApiPlatform\Core\OpenApi\Factory\OpenApiFactoryInterface;
-use ApiPlatform\Core\OpenApi\Model;
-use ApiPlatform\Core\OpenApi\OpenApi;
+use ApiPlatform\OpenApi\Factory\OpenApiFactoryInterface;
+use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\PathItem;
+use ApiPlatform\OpenApi\Model\RequestBody;
+use ApiPlatform\OpenApi\OpenApi;
 
 final class JwtDecorator implements OpenApiFactoryInterface
 {
@@ -43,9 +45,9 @@ final class JwtDecorator implements OpenApiFactoryInterface
             ],
         ]);
 
-        $pathItem = new Model\PathItem(
+        $pathItem = new PathItem(
             ref: 'JWT Token',
-            post: new Model\Operation(
+            post: new Operation(
                 operationId: 'postCredentialsItem',
                 tags: ['Token'],
                 responses: [
@@ -61,7 +63,7 @@ final class JwtDecorator implements OpenApiFactoryInterface
                     ],
                 ],
                 summary: 'Get JWT token to login.',
-                requestBody: new Model\RequestBody(
+                requestBody: new RequestBody(
                     description: 'Generate new JWT Token',
                     content: new \ArrayObject([
                         'application/json' => [

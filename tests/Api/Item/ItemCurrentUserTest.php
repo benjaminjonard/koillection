@@ -28,7 +28,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testGetItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -41,7 +41,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testGetItemCollection(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/collection');
 
@@ -52,7 +52,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testGetItemData(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/data');
         $data = $response->toArray();
@@ -66,7 +66,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testGetItemLoans(): void
     {
         $item = $this->em->getRepository(Loan::class)->findBy(['owner' => $this->user], [], 1)[0]->getItem();
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/loans');
         $data = $response->toArray();
@@ -80,7 +80,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testGetItemRelatedItems(): void
     {
         $item = $this->em->getRepository(Item::class)->findOneWithRelatedItemsByUser($this->user);
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/related_items');
         $data = $response->toArray();
@@ -94,7 +94,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testGetItemTags(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/tags');
         $data = $response->toArray();
@@ -108,7 +108,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testPostItem(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $collectionIri = $this->iriConverter->getIriFromItem($collection);
+        $collectionIri = $this->iriConverter->getIriFromResource($collection);
 
         $this->createClientWithCredentials()->request('POST', '/api/items', ['json' => [
                 'name' => 'New item',
@@ -125,7 +125,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testPutItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -141,7 +141,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testPatchItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -160,7 +160,7 @@ class ItemCurrentUserTest extends ApiTestCase
     public function testDeleteItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($item);
+        $iri = $this->iriConverter->getIriFromResource($item);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

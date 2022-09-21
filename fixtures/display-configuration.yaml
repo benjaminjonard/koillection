@@ -1,0 +1,52 @@
+App\Entity\DisplayConfiguration:
+  display_configuration_collection_admin_{1..10}:
+    label: "<word(2)>"
+    displayMode: "grid"
+    owner: "@admin"
+
+  display_configuration_item_admin_{1..10}:
+    label: "<word(2)>"
+    displayMode: "grid"
+    owner: "@admin"
+
+  display_configuration_album_admin_{1..10}:
+    displayMode: "grid"
+    owner: "@admin"
+
+  display_configuration_photo_admin_{1..10}:
+    displayMode: "grid"
+    owner: "@admin"
+
+  display_configuration_wishlist_admin_{1..10}:
+    displayMode: "grid"
+    owner: "@admin"
+
+  display_configuration_tag_admin_{1..10}:
+    displayMode: "grid"
+    owner: "@admin"
+
+  display_configuration_collection_user_{1..10}:
+    label: "<word(2)>"
+    displayMode: "grid"
+    owner: "@user"
+
+  display_configuration_item_user_{1..10}:
+    label: "<word(2)>"
+    displayMode: "grid"
+    owner: "@user"
+
+  display_configuration_album_user_{1..10}:
+    displayMode: "grid"
+    owner: "@user"
+
+  display_configuration_photo_user_{1..10}:
+    displayMode: "grid"
+    owner: "@user"
+
+  display_configuration_wishlist_user_{1..10}:
+    displayMode: "grid"
+    owner: "@user"
+
+  display_configuration_tag_user_{1..10}:
+    displayMode: "grid"
+    owner: "@user"

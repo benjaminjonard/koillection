@@ -116,7 +116,7 @@
             {% if tag.items is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.items'|trans }}</h2>
-                    {{ include('App/Collection/_items_' ~ tag.itemsDisplayMode ~ '.html.twig', {'items': tag.items, tag: tag}) }}
+                    {{ include('App/Tag/_items_' ~ tag.itemsDisplayConfiguration.displayMode ~ '.html.twig', {'items': tag.items, tag: tag}) }}
                 </div>
             {% endif %}
         </div>

@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\DatumTypeEnum;
-use App\Enum\DisplayModeEnum;
-use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
 use App\Validator as AppAssert;
@@ -33,30 +36,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_collection')]
 #[ORM\Index(name: 'idx_collection_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['collection:read']],
     denormalizationContext: ['groups' => ['collection:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data']]
-        ],
-    ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/collections/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['collection:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Collection image.']
-        ]
+    normalizationContext: ['groups' => ['collection:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/collections/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['collection:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Collection image.'])
     ]
 )]
+#[ApiResource(uriTemplate: '/collections/{id}/children', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'children')], normalizationContext: ['groups' => ['collection:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/collections/{id}/parent', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/data/{id}/collection', uriVariables: ['id' => new Link(fromClass: Datum::class, fromProperty: 'collection')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
+#[ApiResource(uriTemplate: '/items/{id}/collection', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'collection')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
 class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface, \Stringable
 {
     #[ORM\Id]
@@ -69,24 +64,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read', 'collection:write'])]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::STRING, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $childrenTitle = null;
-
-    #[ORM\Column(type: Types::STRING, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsTitle = null;
-
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'parent', cascade: ['all'])]
     #[ORM\OrderBy(['title' => Criteria::ASC])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $children;
 
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $childrenDisplayConfiguration;
+
+    #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'children')]
     #[Groups(['collection:read', 'collection:write'])]
-    #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ApiSubresource(maxDepth: 1)]
     #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Collection $parent = null;
 
@@ -95,12 +84,14 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'collection', cascade: ['all'])]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
+
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $itemsDisplayConfiguration;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
-    #[ApiSubresource(maxDepth: 1)]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 
@@ -123,39 +114,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Template $itemsDefaultTemplate = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingProperty = null;
-
-    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
-    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?string $itemsSortingType = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
-    private ?string $itemsSortingDirection = Criteria::ASC;
-
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
-
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    #[Groups(['collection:read', 'collection:write'])]
-    private ?array $itemsListColumns = [];
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $itemsListShowVisibility = true;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
-    #[Groups(['collection:read', 'collection:write'])]
-    private bool $itemsListShowActions = true;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read', 'collection:write'])]
@@ -184,11 +143,24 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         $this->children = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->data = new ArrayCollection();
+        $this->childrenDisplayConfiguration = new DisplayConfiguration();
+        $this->itemsDisplayConfiguration = new DisplayConfiguration();
     }
 
     public function __toString(): string
     {
         return $this->getTitle() ?? '';
+    }
+
+    public function getDatumByLabel(string $label): ?Datum
+    {
+        foreach ($this->getData() as $datum) {
+            if ($datum->getLabel() === $label) {
+                return $datum;
+            }
+        }
+
+        return null;
     }
 
     public function getNaturallySortedItems(): array
@@ -214,30 +186,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getChildrenTitle(): ?string
-    {
-        return $this->childrenTitle;
-    }
-
-    public function setChildrenTitle(?string $childrenTitle): self
-    {
-        $this->childrenTitle = $childrenTitle;
-
-        return $this;
-    }
-
-    public function getItemsTitle(): ?string
-    {
-        return $this->itemsTitle;
-    }
-
-    public function setItemsTitle(?string $itemsTitle): self
-    {
-        $this->itemsTitle = $itemsTitle;
 
         return $this;
     }
@@ -438,54 +386,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function getItemsDisplayMode(): string
-    {
-        return $this->itemsDisplayMode;
-    }
-
-    public function setItemsDisplayMode(string $itemsDisplayMode): Collection
-    {
-        $this->itemsDisplayMode = $itemsDisplayMode;
-
-        return $this;
-    }
-
-    public function getItemsSortingProperty(): ?string
-    {
-        return $this->itemsSortingProperty;
-    }
-
-    public function setItemsSortingProperty(?string $itemsSortingProperty): Collection
-    {
-        $this->itemsSortingProperty = $itemsSortingProperty;
-
-        return $this;
-    }
-
-    public function getItemsSortingDirection(): ?string
-    {
-        return $this->itemsSortingDirection;
-    }
-
-    public function getItemsSortingType(): ?string
-    {
-        return $this->itemsSortingType;
-    }
-
-    public function setItemsSortingType(?string $itemsSortingType): Collection
-    {
-        $this->itemsSortingType = $itemsSortingType;
-
-        return $this;
-    }
-
-    public function setItemsSortingDirection(?string $itemsSortingDirection): Collection
-    {
-        $this->itemsSortingDirection = $itemsSortingDirection;
-
-        return $this;
-    }
-
     public function getVisibility(): ?string
     {
         return $this->visibility;
@@ -522,38 +422,26 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function getItemsListColumns(): ?array
+    public function getChildrenDisplayConfiguration(): DisplayConfiguration
     {
-        return $this->itemsListColumns;
+        return $this->childrenDisplayConfiguration;
     }
 
-    public function setItemsListColumns(?array $itemsListColumns): Collection
+    public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Collection
     {
-        $this->itemsListColumns = $itemsListColumns;
+        $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
 
         return $this;
     }
 
-    public function getItemsListShowVisibility(): bool
+    public function getItemsDisplayConfiguration(): DisplayConfiguration
     {
-        return $this->itemsListShowVisibility;
+        return $this->itemsDisplayConfiguration;
     }
 
-    public function setItemsListShowVisibility(bool $itemsListShowVisibility): Collection
+    public function setItemsDisplayConfiguration(DisplayConfiguration $itemsDisplayConfiguration): Collection
     {
-        $this->itemsListShowVisibility = $itemsListShowVisibility;
-
-        return $this;
-    }
-
-    public function getItemsListShowActions(): bool
-    {
-        return $this->itemsListShowActions;
-    }
-
-    public function setItemsListShowActions(bool $itemsListShowActions): Collection
-    {
-        $this->itemsListShowActions = $itemsListShowActions;
+        $this->itemsDisplayConfiguration = $itemsDisplayConfiguration;
 
         return $this;
     }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\LogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,10 +16,12 @@ use Symfony\Component\Uid\Uuid;
 #[ORM\Entity(repositoryClass: LogRepository::class)]
 #[ORM\Table(name: 'koi_log')]
 #[ApiResource(
-    normalizationContext: ['groups' => ['log:read']],
+    operations: [
+        new Get(),
+        new GetCollection()
+    ],
     denormalizationContext: ['groups' => ['log:write']],
-    collectionOperations: ['get'],
-    itemOperations: ['get']
+    normalizationContext: ['groups' => ['log:read']]
 )]
 class Log
 {

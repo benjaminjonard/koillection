@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\ChoiceListRepository;
@@ -15,10 +15,7 @@ use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ChoiceListRepository::class)]
 #[ORM\Table(name: 'koi_choice_list')]
-#[ApiResource(
-    normalizationContext: ['groups' => ['choiceList:read']],
-    denormalizationContext: ['groups' => ['choiceList:write']],
-)]
+#[ApiResource(denormalizationContext: ['groups' => ['choiceList:write']], normalizationContext: ['groups' => ['choiceList:read']])]
 class ChoiceList implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]

@@ -5,8 +5,14 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
@@ -24,30 +30,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_photo')]
 #[ORM\Index(name: 'idx_photo_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['photo:read']],
-    denormalizationContext: ['groups' => ['photo:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data']
-        ]],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/photos/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['photo:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Photo image.']),
     ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/photos/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['photo:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Photo image.']
-        ]
-    ]
+    denormalizationContext: ['groups' => ['photo:write']],
+    normalizationContext: ['groups' => ['photo:read']]
 )]
+#[ApiResource(uriTemplate: '/albums/{id}/photos', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'photos')], normalizationContext: ['groups' => ['photo:read']], operations: [new GetCollection()])]
 class Photo implements CacheableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
@@ -71,7 +66,6 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
     #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'photos')]
     #[Assert\NotBlank]
     #[Groups(['photo:read', 'photo:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Album $album = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]

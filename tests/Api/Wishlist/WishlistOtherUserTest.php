@@ -15,7 +15,7 @@ class WishlistOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -28,9 +28,9 @@ class WishlistOtherUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
         ;
         $wishlist = $this->em->getRepository(Wishlist::class)->matching($criteria)[0]->getParent();
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/childrens');
+        $response = $this->createClientWithCredentials()->request('GET', $iri.'/children');
         $data = $response->toArray();
 
         $this->assertResponseIsSuccessful();
@@ -46,7 +46,7 @@ class WishlistOtherUserTest extends ApiTestCase
             ->andWhere(Criteria::expr()->eq('owner', $this->otherUser))
         ;
         $wishlist = $this->em->getRepository(Wishlist::class)->matching($criteria)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/parent');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -55,7 +55,7 @@ class WishlistOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserWishlistWishes(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/wishes');
         $data = $response->toArray();
@@ -69,7 +69,7 @@ class WishlistOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -81,7 +81,7 @@ class WishlistOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -96,7 +96,7 @@ class WishlistOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserWishlist(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wishlist);
+        $iri = $this->iriConverter->getIriFromResource($wishlist);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

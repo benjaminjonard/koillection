@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Album;
 use App\Form\Type\Entity\AlbumType;
+use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
 use Doctrine\Common\Collections\Criteria;
@@ -32,6 +33,26 @@ class AlbumController extends AbstractController
         return $this->render('App/Album/index.html.twig', [
             'albums' => $albums,
             'photosCounter' => $photosCounter,
+        ]);
+    }
+
+    #[Route(path: '/albums/edit', name: 'app_album_edit_index', methods: ['GET', 'POST'])]
+    public function editIndex(
+        Request $request,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry
+    ): Response {
+        $form = $this->createForm(DisplayConfigurationType::class, $this->getUser()->getAlbumsDisplayConfiguration());
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $managerRegistry->getManager()->flush();
+            $this->addFlash('notice', $translator->trans('message.album_index_edited'));
+
+            return $this->redirectToRoute('app_album_index');
+        }
+
+        return $this->render('App/Album/edit_index.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 

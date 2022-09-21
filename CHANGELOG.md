@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.13] / 2022-09-12
+### Features
+- Add possibility to order columns in list display mode (benjaminjonard)
+- Add possibility to hide actions and visibility in list display mode (benjaminjonard)
+
+### Fixes
+- Fix sql export in admin panel (benjaminjonard)
+- Fix error on collection edit (benjaminjonard)
+
+### Miscellaneous
+- Make table headers sticky (benjaminjonard)
+
 ## [1.3.12] / 2022-08-29
 ### Fixes
 - Fix empty logs in production environment (benjaminjonard)

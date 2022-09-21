@@ -25,7 +25,7 @@ class TemplateCurrentUserTest extends ApiTestCase
     public function testGetTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -38,7 +38,7 @@ class TemplateCurrentUserTest extends ApiTestCase
     public function testGetTemplateFields(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/fields');
         $data = $response->toArray();
@@ -66,7 +66,7 @@ class TemplateCurrentUserTest extends ApiTestCase
     public function testPutTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -82,7 +82,7 @@ class TemplateCurrentUserTest extends ApiTestCase
     public function testPatchTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -101,7 +101,7 @@ class TemplateCurrentUserTest extends ApiTestCase
     public function testDeleteTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
