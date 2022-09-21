@@ -40,7 +40,7 @@
     <unit id="4Bdfyy1" name="error.password.incorrect">
       <segment state="translated">
         <source>error.password.incorrect</source>
-        <target>Tu contrasña debe tener al menos 8 caracteres (con al menos una ltra y un número)</target>
+        <target>Tu contraseña debe tener al menos 8 caracteres (con al menos una ltra y un número)</target>
       </segment>
     </unit>
     <unit id="4m1Sgo3" name="error.password.not_matching">
