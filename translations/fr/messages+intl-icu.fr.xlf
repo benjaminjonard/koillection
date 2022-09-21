@@ -3020,99 +3020,99 @@
       </segment>
     </unit>
     <unit id="MWCAWm0" name="label.sub_collections_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.sub_collections_display_mode</source>
-        <target>label.sub_collections_display_mode</target>
+        <target>Mode d'affichage des sous-collections</target>
       </segment>
     </unit>
     <unit id="UKwQt9f" name="label.sub_albums_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.sub_albums_display_mode</source>
-        <target>label.sub_albums_display_mode</target>
+        <target>Mode d'affichage des sous-albums</target>
       </segment>
     </unit>
     <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.sub_wishlists_display_mode</source>
-        <target>label.sub_wishlists_display_mode</target>
+        <target>Mode d'affichage des sous-listes de souhaits</target>
       </segment>
     </unit>
     <unit id="x6kN4XJ" name="label.list_show_number_of_children">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.list_show_number_of_children</source>
-        <target>label.list_show_number_of_children</target>
+        <target>Afficher le nombre d'enfants</target>
       </segment>
     </unit>
     <unit id="HtDGsd0" name="label.list_show_number_of_items">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.list_show_number_of_items</source>
-        <target>label.list_show_number_of_items</target>
+        <target>Afficher le nombre d'objets</target>
       </segment>
     </unit>
     <unit id="8LEwIMR" name="label.wishes">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.wishes</source>
-        <target>label.wishes</target>
+        <target>Souhaits</target>
       </segment>
     </unit>
     <unit id="rsBlJD0" name="label.photos">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.photos</source>
-        <target>label.photos</target>
+        <target>Photos</target>
       </segment>
     </unit>
     <unit id="sQ83en6" name="label.wishlists_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.wishlists_display_mode</source>
-        <target>label.wishlists_display_mode</target>
+        <target>Mode d'affichage des listes de souhaits</target>
       </segment>
     </unit>
     <unit id="paiZ6qs" name="label.collections_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.collections_display_mode</source>
-        <target>label.collections_display_mode</target>
+        <target>Mode d'affichage des collections</target>
       </segment>
     </unit>
     <unit id="kHAvmu7" name="label.albums_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.albums_display_mode</source>
-        <target>label.albums_display_mode</target>
+        <target>Mode d'affichage des albums</target>
       </segment>
     </unit>
     <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>breadcrumb.edit_collections_index</source>
-        <target>breadcrumb.edit_collections_index</target>
+        <target>Éditer</target>
       </segment>
     </unit>
     <unit id="FGS9ySo" name="title.edit_collections_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.edit_collections_index</source>
-        <target>title.edit_collections_index</target>
+        <target>Éditer</target>
       </segment>
     </unit>
     <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>breadcrumb.edit_albums_index</source>
-        <target>breadcrumb.edit_albums_index</target>
+        <target>Éditer</target>
       </segment>
     </unit>
     <unit id="DomzBkb" name="title.edit_albums_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.edit_albums_index</source>
-        <target>title.edit_albums_index</target>
+        <target>Éditer</target>
       </segment>
     </unit>
     <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>breadcrumb.edit_wishlists_index</source>
-        <target>breadcrumb.edit_wishlists_index</target>
+        <target>Éditer</target>
       </segment>
     </unit>
     <unit id="WEd3Zlc" name="title.edit_wishlists_index">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.edit_wishlists_index</source>
-        <target>title.edit_wishlists_index</target>
+        <target>Éditer</target>
       </segment>
     </unit>
   </file>
