@@ -3031,7 +3031,7 @@
         <target>Display sub-albums as a</target>
       </segment>
     </unit>
-    <unit id="UKwQt9f" name="label.sub_wishlists_display_mode">
+    <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
       <segment>
         <source>label.sub_wishlists_display_mode</source>
         <target>Display sub-wishlists as a</target>
