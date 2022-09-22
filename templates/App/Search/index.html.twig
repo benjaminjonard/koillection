@@ -82,9 +82,10 @@
             {% if results.collections is defined and results.collections|length > 0 %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.collections'|trans }}</h2>
-                    <div class="collections grid-container-collections">
-                        {{ include('App/Collection/_list.html.twig', {'collections': results.collections|naturalSorting}) }}
-                    </div>
+                    {{ include('App/Collection/_collections_' ~ getContextUser().collectionsDisplayConfiguration.displayMode ~ '.html.twig', {
+                        'collections': results.collections,
+                        'displayConfiguration': getContextUser().collectionsDisplayConfiguration
+                    }) }}
                 </div>
             {% endif %}
 
@@ -92,7 +93,7 @@
                 <div class="block-element">
                     <h2 class="header">{{ 'title.wishlists'|trans }}</h2>
                     <div class="collections grid-container-collections">
-                        {{ include('App/Wishlist/_list.html.twig', {'wishlists': results.wishlists|naturalSorting}) }}
+                        {{ include('App/Wishlist/_wishlists_' ~ getContextUser().wishlistsDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': results.wishlists}) }}
                     </div>
                 </div>
             {% endif %}
@@ -100,9 +101,7 @@
             {% if results.albums is defined and results.albums|length > 0 %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.albums'|trans }}</h2>
-                    <div class="collections grid-container-collections">
-                        {{ include('App/Album/_list.html.twig', {'albums': results.albums|naturalSorting}) }}
-                    </div>
+                    {{ include('App/Album/_albums_' ~ getContextUser().albumsDisplayConfiguration.displayMode ~ '.html.twig', {'albums': results.albums}) }}
                 </div>
             {% endif %}
 

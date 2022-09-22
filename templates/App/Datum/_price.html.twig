@@ -1,0 +1,9 @@
+<div class="input-field col col s4">
+    <input type="number" id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]" step="0.01"
+           {% if datum is defined %}value="{{ datum.value }}"{% endif %}>
+    <label for="data_{{ iteration }}_value"
+           class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
+</div>
+<div class="input-field col col s1 currency-input">
+    <div class="">{{ getCurrencySymbol(app.user.currency) }}</div>
+</div>

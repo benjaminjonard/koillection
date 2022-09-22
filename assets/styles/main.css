@@ -2277,3 +2277,8 @@ input[type="text"]:not(.browser-default).password-input {
 .datum-btn a {
     margin-bottom: 10px;
 }
+
+.currency-input {
+    top: 8px;
+    font-size: 18px;
+}

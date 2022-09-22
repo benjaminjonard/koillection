@@ -9,6 +9,7 @@ use App\Form\Type\Entity\AlbumType;
 use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
+use App\Service\PriceCalculator;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ class AlbumController extends AbstractController
 {
     #[Route(path: '/albums', name: 'app_album_index', methods: ['GET'])]
     #[Route(path: '/user/{username}/albums', name: 'app_shared_album_index', methods: ['GET'])]
-    public function index(AlbumRepository $albumRepository): Response
+    public function index(AlbumRepository $albumRepository, PriceCalculator $priceCalculator): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
 

@@ -137,6 +137,8 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    private ?string $orderingValue = null;
+
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
@@ -442,6 +444,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setItemsDisplayConfiguration(DisplayConfiguration $itemsDisplayConfiguration): Collection
     {
         $this->itemsDisplayConfiguration = $itemsDisplayConfiguration;
+
+        return $this;
+    }
+
+    public function getOrderingValue(): ?string
+    {
+        return $this->orderingValue;
+    }
+
+    public function setOrderingValue(?string $orderingValue): Collection
+    {
+        $this->orderingValue = $orderingValue;
 
         return $this;
     }

@@ -91,17 +91,27 @@
 
         <div class="content-block">
             <!-- Additional data -->
-            {% if collection.data is not empty %}
+            {% if collection.data is not empty or prices is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.infos'|trans }}</h2>
                     <div class="row">
-                        {% set underlinedTags = getUnderlinedTags(collection.data) %}
-                        {% for datum in collection.data %}
-                            <div class="datum-row col s12 l5 xl3">
-                                <span class="label">{{ datum.label }} :</span>
-                                {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
-                            </div>
-                        {% endfor %}
+                        {% if collection.data is not empty %}
+                            {% set underlinedTags = getUnderlinedTags(collection.data) %}
+                            {% for datum in collection.data %}
+                                <div class="datum-row col s12 l5 xl3">
+                                    <span class="label">{{ datum.label }} :</span>
+                                    {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        {% if prices is not empty %}
+                            {% for price in prices %}
+                                <div class="datum-row col s12 l5 xl3">
+                                    <span class="label">{{ price.label }} :</span>
+                                    {{ price.price|format_currency(getContextUser().currency) }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
