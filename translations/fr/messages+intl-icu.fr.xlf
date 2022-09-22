@@ -3115,5 +3115,11 @@
         <target>Éditer</target>
       </segment>
     </unit>
+    <unit id="TnuDaOl" name="btn.add_price">
+      <segment state="initial">
+        <source>btn.add_price</source>
+        <target>btn.add_price</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
