@@ -76,7 +76,7 @@ class CollectionController extends AbstractController
             'form' => $form->createView(),
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenLabels' => $collectionRepository->suggestChildrenLabels($collection),
-            'choiceLists' => $choiceListRepository->findAll(),
+            'choiceLists' => $choiceListRepository->findAll()
         ]);
     }
 
@@ -122,12 +122,12 @@ class CollectionController extends AbstractController
         Collection $collection,
         CollectionRepository $collectionRepository,
         ItemRepository $itemRepository,
-        DatumRepository $datumRepository
     ): Response {
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findForOrdering($collection),
             'items' => $itemRepository->findForOrdering($collection),
+            'prices' => $collectionRepository->computePrices($collection),
         ]);
     }
 
