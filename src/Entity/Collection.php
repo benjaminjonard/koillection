@@ -112,6 +112,10 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private int $seenCounter = 0;
 
+    #[ORM\Column(type: Types::JSON, options: ['default' => '{}'])]
+    #[Groups(['collection:read'])]
+    private ?array $cachedValues = [];
+
     #[ORM\ManyToOne(targetEntity: Template::class)]
     #[Groups(['item:read', 'item:write'])]
     private ?Template $itemsDefaultTemplate = null;
@@ -456,6 +460,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setOrderingValue(?string $orderingValue): Collection
     {
         $this->orderingValue = $orderingValue;
+
+        return $this;
+    }
+
+    public function getCachedValues(): array
+    {
+        return $this->cachedValues;
+    }
+
+    public function setCachedValues(array $cachedValues): Collection
+    {
+        $this->cachedValues = $cachedValues;
 
         return $this;
     }

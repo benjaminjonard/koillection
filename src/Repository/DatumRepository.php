@@ -6,7 +6,9 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Datum;
+use App\Enum\DatumTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class DatumRepository extends ServiceEntityRepository
@@ -54,5 +56,33 @@ class DatumRepository extends ServiceEntityRepository
         }
 
         return $qb->getQuery()->getArrayResult();
+    }
+
+    public function computePricesForCollection(Collection $collection)
+    {
+        $id = $collection->getId();
+        $type = DatumTypeEnum::TYPE_PRICE;
+        $cast = match ($this->_em->getConnection()->getDatabasePlatform()->getName()) {
+            'postgresql' => 'DOUBLE PRECISION',
+            'mysql' => 'DECIMAL(12, 2)',
+        };
+
+        $rsm = new ResultSetMapping();
+        $rsm->addIndexByScalar('label');
+        $rsm->addScalarResult('value', 'value');
+
+        $sql = "
+            SELECT datum.label AS label, SUM(CAST(datum.value AS $cast)) AS value
+            FROM koi_datum datum
+            JOIN koi_item item ON datum.item_id = item.id AND item.collection_id = '$id'
+            WHERE datum.type = '$type'
+            GROUP BY datum.label
+        ";
+
+        $result = $this->_em->createNativeQuery($sql, $rsm)->getArrayResult();
+
+        return array_map(function($price) {
+            return $price['value'];
+        }, $result);
     }
 }

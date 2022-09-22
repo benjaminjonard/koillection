@@ -245,40 +245,4 @@ class CollectionRepository extends ServiceEntityRepository
 
         return $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
     }
-
-    public function computePrices(Collection $collection): array
-    {
-        $cast = match ($this->_em->getConnection()->getDatabasePlatform()->getName()) {
-            'postgresql' => 'DOUBLE PRECISION',
-            'mysql' => 'DECIMAL(12, 2)',
-        };
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('label', 'label');
-        $rsm->addScalarResult('price', 'price');
-
-        $id = $collection->getId();
-
-        $sql = "
-            WITH RECURSIVE prices AS (
-                SELECT c1.id, c1.parent_id, c1.final_visibility, d1.label AS dLabel, d1.value AS dValue
-                FROM koi_collection c1
-                JOIN koi_item i1 ON i1.collection_id = c1.id               
-                JOIN koi_datum d1 ON d1.item_id = i1.id AND d1.type = 'price'
-                WHERE c1.id = '$id'
-                
-                UNION
-                
-                SELECT c2.id, c2.parent_id, c2.final_visibility, d2.label AS dLabel, d2.value AS dValue
-                FROM koi_collection c2
-                JOIN koi_item i2 ON i2.collection_id = c2.id
-                JOIN koi_datum d2 ON d2.item_id = i2.id AND d2.type = 'price'
-                INNER JOIN prices p1 ON p1.id = c2.parent_id
-                
-            ) SELECT dLabel AS \"label\", SUM(CAST(dValue AS $cast)) AS price FROM prices p2
-            GROUP BY dLabel
-        ";
-
-        return $this->_em->createNativeQuery($sql, $rsm)->getArrayResult();
-    }
 }

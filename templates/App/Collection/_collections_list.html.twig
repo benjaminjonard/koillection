@@ -61,14 +61,14 @@
                     {% if displayConfiguration.showNumberOfChildren %}
                         <td class="center">
                             <a class="table-link" href="{{ link }}"></a>
-                            {{ getCounters(child).children }}
+                            {{ child.cachedValues.counters.children }}
                         </td>
                     {% endif %}
 
                     {% if displayConfiguration.showNumberOfItems %}
                         <td class="center">
                             <a class="table-link" href="{{ link }}"></a>
-                            {{ getCounters(child).items }}
+                            {{ child.cachedValues.counters.items }}
                         </td>
                     {% endif %}
 

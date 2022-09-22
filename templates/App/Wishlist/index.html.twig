@@ -28,8 +28,8 @@
             <div class="title-block">
                 <h1>{{ 'menu.wishlists'|trans }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.wish'|trans({'count':  getCounters('wishlists').items}) }}</li>
-                    <li>{{ 'counter.wishlist'|trans({'count': getCounters('wishlists').children}) }}</li>
+                    <li>{{ 'counter.wish'|trans({'count': wishesCounter}) }}</li>
+                    <li>{{ 'counter.wishlist'|trans({'count': wishlistsCounter}) }}</li>
                 </ul>
             </div>
 
