@@ -99,6 +99,10 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Groups(['wishlist:read'])]
     private int $seenCounter = 0;
 
+    #[ORM\Column(type: Types::JSON, options: ['default' => '{}'])]
+    #[Groups(['wishlist:read'])]
+    private ?array $cachedValues = [];
+
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
     private DisplayConfiguration $childrenDisplayConfiguration;
@@ -354,6 +358,18 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Wishlist
     {
         $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
+
+        return $this;
+    }
+
+    public function getCachedValues(): array
+    {
+        return $this->cachedValues;
+    }
+
+    public function setCachedValues(array $cachedValues): Wishlist
+    {
+        $this->cachedValues = $cachedValues;
 
         return $this;
     }

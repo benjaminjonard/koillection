@@ -31,8 +31,17 @@ class CollectionController extends AbstractController
     {
         $collections = $collectionRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
 
+        $collectionsCounter = \count($collections);
+        $itemsCounter = 0;
+        foreach ($collections as $collection) {
+            $collectionsCounter += $collection->getCachedValues()['counters']['children'] ?? 0;
+            $itemsCounter += $collection->getCachedValues()['counters']['items'] ?? 0;
+        }
+
         return $this->render('App/Collection/index.html.twig', [
             'collections' => $collections,
+            'collectionsCounter' => $collectionsCounter,
+            'itemsCounter' => $itemsCounter
         ]);
     }
 
@@ -126,8 +135,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findForOrdering($collection),
-            'items' => $itemRepository->findForOrdering($collection),
-            'prices' => $collectionRepository->computePrices($collection),
+            'items' => $itemRepository->findForOrdering($collection)
         ]);
     }
 

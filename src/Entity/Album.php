@@ -98,6 +98,10 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Groups(['album:read'])]
     private int $seenCounter = 0;
 
+    #[ORM\Column(type: Types::JSON, options: ['default' => '{}'])]
+    #[Groups(['album:read'])]
+    private ?array $cachedValues = [];
+
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
     private DisplayConfiguration $childrenDisplayConfiguration;
@@ -370,6 +374,18 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Album
     {
         $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
+
+        return $this;
+    }
+
+    public function getCachedValues(): array
+    {
+        return $this->cachedValues;
+    }
+
+    public function setCachedValues(array $cachedValues): Album
+    {
+        $this->cachedValues = $cachedValues;
 
         return $this;
     }

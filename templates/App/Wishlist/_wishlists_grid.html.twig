@@ -12,7 +12,7 @@
             </a>
             <span class="collection-title">{{ wishlist.name }}</span>
             <p class="collection-stats">
-                {{ 'counter.wish'|trans({'count': getCounters(wishlist).items}) }}
+                {{ 'counter.wish'|trans({'count': wishlist.cachedValues.counters.wishes|default(0)}) }}
             </p>
         </div>
     {% endfor %}

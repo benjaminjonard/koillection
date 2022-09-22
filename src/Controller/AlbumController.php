@@ -9,7 +9,6 @@ use App\Form\Type\Entity\AlbumType;
 use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
-use App\Service\PriceCalculator;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,18 +20,21 @@ class AlbumController extends AbstractController
 {
     #[Route(path: '/albums', name: 'app_album_index', methods: ['GET'])]
     #[Route(path: '/user/{username}/albums', name: 'app_shared_album_index', methods: ['GET'])]
-    public function index(AlbumRepository $albumRepository, PriceCalculator $priceCalculator): Response
+    public function index(AlbumRepository $albumRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
-
         $albums = $albumRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
+
+        $albumsCounter = \count($albums);
         $photosCounter = 0;
         foreach ($albums as $album) {
-            $photosCounter += \count($album->getPhotos());
+            $albumsCounter += $album->getCachedValues()['counters']['children'] ?? 0;
+            $photosCounter += $album->getCachedValues()['counters']['photos'] ?? 0;
         }
 
         return $this->render('App/Album/index.html.twig', [
             'albums' => $albums,
+            'albumsCounter' => $albumsCounter,
             'photosCounter' => $photosCounter,
         ]);
     }
