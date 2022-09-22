@@ -146,6 +146,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/items.html.twig', [
             'collection' => $collection,
             'items' => $itemRepository->findAllByCollection($collection),
+            'displayConfiguration' => $collection->getItemsDisplayConfiguration()
         ]);
     }
 
