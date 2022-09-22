@@ -2800,13 +2800,13 @@
     <unit id="qcUvWAj" name="label.items_display_mode">
       <segment state="translated">
         <source>label.items_display_mode</source>
-        <target>Display items as a</target>
+        <target>Display items in a</target>
       </segment>
     </unit>
     <unit id="maYJbRz" name="label.photos_display_mode">
       <segment state="translated">
         <source>label.photos_display_mode</source>
-        <target>Display photos as a</target>
+        <target>Display photos in a</target>
       </segment>
     </unit>
     <unit id="Eqd5CcJ" name="label.items_sorting_property">
@@ -3022,19 +3022,19 @@
     <unit id="MWCAWm0" name="label.sub_collections_display_mode">
       <segment state="translated">
         <source>label.sub_collections_display_mode</source>
-        <target>Display sub-collections as a</target>
+        <target>Display sub-collections in a</target>
       </segment>
     </unit>
     <unit id="UKwQt9f" name="label.sub_albums_display_mode">
       <segment state="translated">
         <source>label.sub_albums_display_mode</source>
-        <target>Display sub-albums as a</target>
+        <target>Display sub-albums in a</target>
       </segment>
     </unit>
     <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
       <segment state="translated">
         <source>label.sub_wishlists_display_mode</source>
-        <target>Display sub-wishlists as a</target>
+        <target>Display sub-wishlists in a</target>
       </segment>
     </unit>
     <unit id="x6kN4XJ" name="label.list_show_number_of_children">
@@ -3064,19 +3064,19 @@
     <unit id="sQ83en6" name="label.wishlists_display_mode">
       <segment state="translated">
         <source>label.wishlists_display_mode</source>
-        <target>Display wishlists as a</target>
+        <target>Display wishlists in a</target>
       </segment>
     </unit>
     <unit id="paiZ6qs" name="label.collections_display_mode">
       <segment state="translated">
         <source>label.collections_display_mode</source>
-        <target>Display collections as a</target>
+        <target>Display collections in a</target>
       </segment>
     </unit>
     <unit id="kHAvmu7" name="label.albums_display_mode">
       <segment state="translated">
         <source>label.albums_display_mode</source>
-        <target>Display albums as a</target>
+        <target>Display albums in a</target>
       </segment>
     </unit>
     <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
