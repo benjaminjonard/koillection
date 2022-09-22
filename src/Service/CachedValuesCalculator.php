@@ -14,6 +14,7 @@ use App\Repository\ItemRepository;
 use App\Repository\PhotoRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 class CachedValuesCalculator
 {
@@ -25,10 +26,28 @@ class CachedValuesCalculator
         private readonly WishRepository $wishRepository,
         private readonly AlbumRepository $albumRepository,
         private readonly PhotoRepository $photoRepository,
+        private readonly ManagerRegistry $managerRegistry,
     ) {
     }
 
-    public function computeForCollection(Collection $collection)
+    public function refreshAllCaches(): void
+    {
+        foreach ($this->collectionRepository->findBy(['parent' => null]) as $rootCollection) {
+            $this->computeForCollection($rootCollection);
+        }
+
+        foreach ($this->wishlistRepository->findBy(['parent' => null]) as $rootWishlist) {
+            $this->computeForWishlist($rootWishlist);
+        }
+
+        foreach ($this->albumRepository->findBy(['parent' => null]) as $rootAlbum) {
+            $this->computeForAlbum($rootAlbum);
+        }
+
+        $this->managerRegistry->getManager()->flush();
+    }
+
+    public function computeForCollection(Collection $collection): array
     {
         $values = [
             'counters' => [
@@ -56,7 +75,7 @@ class CachedValuesCalculator
         return $values;
     }
 
-    public function computeForWishlist(Wishlist $wishlist)
+    public function computeForWishlist(Wishlist $wishlist): array
     {
         $values = [
             'counters' => [
@@ -76,7 +95,7 @@ class CachedValuesCalculator
         return $values;
     }
 
-    public function computeForAlbum(Album $album)
+    public function computeForAlbum(Album $album): array
     {
         $values = [
             'counters' => [
