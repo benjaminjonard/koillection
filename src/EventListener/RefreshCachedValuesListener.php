@@ -6,10 +6,12 @@ namespace App\EventListener;
 
 use App\Entity\Album;
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Photo;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
+use App\Enum\DatumTypeEnum;
 use App\Service\RefreshCachedValuesQueue;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
@@ -34,6 +36,8 @@ class RefreshCachedValuesListener
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getAlbum()));
             } elseif ($entity instanceof Wish) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getWishlist()));
+            } elseif ($entity instanceof Datum && $entity->getItem() !== null && $entity->getType() === DatumTypeEnum::TYPE_PRICE) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getItem()->getCollection()));
             }
         }
 
@@ -63,6 +67,11 @@ class RefreshCachedValuesListener
                     $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][0]));
                     $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][1]));
                 }
+            } elseif ($entity instanceof Datum && $entity->getItem() !== null && $entity->getType() === DatumTypeEnum::TYPE_PRICE) {
+                $changeset = $uow->getEntityChangeSet($entity);
+                if (isset($changeset['value']) || isset($changeset['label'])) {
+                    $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getItem()->getCollection()));
+                }
             }
         }
 
@@ -75,6 +84,8 @@ class RefreshCachedValuesListener
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getAlbum()));
             } elseif ($entity instanceof Wish) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getWishlist()));
+            } elseif ($entity instanceof Datum && $entity->getItem() !== null && $entity->getType() === DatumTypeEnum::TYPE_PRICE) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getItem()->getCollection()));
             }
         }
     }
