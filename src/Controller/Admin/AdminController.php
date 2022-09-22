@@ -16,6 +16,7 @@ use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use App\Service\CachedValuesCalculator;
 use App\Service\DatabaseDumper;
 use App\Service\LatestReleaseChecker;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -23,6 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
@@ -102,5 +104,15 @@ class AdminController extends AbstractController
 
             $zip->finish();
         });
+    }
+
+    #[Route(path: '/admin/refresh-caches', name: 'app_admin_refresh_caches', methods: ['GET'])]
+    public function refreshCaches(CachedValuesCalculator $cachedValuesCalculator, TranslatorInterface $translator): Response
+    {
+        $cachedValuesCalculator->refreshAllCaches();
+        $this->addFlash('notice', $translator->trans('message.caches_refreshed'));
+
+
+        return $this->redirectToRoute('app_admin_index');
     }
 }

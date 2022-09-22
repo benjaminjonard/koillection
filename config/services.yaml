@@ -57,17 +57,18 @@ services:
     App\EventListener\SeenListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response}
+    App\EventListener\RefreshCachedValuesQueueListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, priority: 5 }
 
     App\EventListener\AccessDeniedListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, lazy: true }
 
     #Doctrine listeners
-    App\EventListener\CounterCacheListener:
+    App\EventListener\RefreshCachedValuesListener:
         tags:
-            - { name: doctrine.event_listener, event: postPersist, lazy: true }
-            - { name: doctrine.event_listener, event: postUpdate, lazy: true }
-            - { name: doctrine.event_listener, event: postRemove, lazy: true }
+            - { name: doctrine.event_listener, event: onFlush, lazy: true }
 
     App\EventListener\TimestampableListener:
         tags:
@@ -120,8 +121,6 @@ services:
     Api\Encoder\MultipartDecoder:
         tags:
             - { name: serializer.encoder }
-    Api\Serializer\ApiNormalizer:
-        decorates: 'api_platform.jsonld.normalizer.item'
     Api\Serializer\UploadedFileDenormalizer:
         tags:
             - { name: serializer.normalizer }

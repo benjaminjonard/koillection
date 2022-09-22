@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.fa-refresh:before {
+  content: "\f021";
+}
 .fa-file-image-o:before {
   content: "\f1c5";
 }
