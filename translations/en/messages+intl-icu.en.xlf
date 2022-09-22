@@ -3115,5 +3115,11 @@
         <target>Edit</target>
       </segment>
     </unit>
+    <unit id="TnuDaOl" name="btn.add_price">
+        <segment state="translated">
+          <source>btn.add_price</source>
+          <target>Price</target>
+        </segment>
+      </unit>
   </file>
 </xliff>
