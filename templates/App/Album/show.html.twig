@@ -36,8 +36,8 @@
                 <div class="right">
                     <h1>{{ album.title }}</h1>
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.photo'|trans({'count': album.cachedValues.counters.photos}) }}</li>
-                        <li>{{ 'counter.album'|trans({'count': album.cachedValues.counters.children}) }}</li>
+                        <li>{{ 'counter.photo'|trans({'count': album.cachedValues.counters.photos|default(0)}) }}</li>
+                        <li>{{ 'counter.album'|trans({'count': album.cachedValues.counters.children|default(0)}) }}</li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>

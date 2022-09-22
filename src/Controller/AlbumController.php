@@ -28,8 +28,8 @@ class AlbumController extends AbstractController
         $albumsCounter = \count($albums);
         $photosCounter = 0;
         foreach ($albums as $album) {
-            $albumsCounter += $album->getCachedValues()['counters']['children'];
-            $photosCounter += $album->getCachedValues()['counters']['photos'];
+            $albumsCounter += $album->getCachedValues()['counters']['children'] ?? 0;
+            $photosCounter += $album->getCachedValues()['counters']['photos'] ?? 0;
         }
 
         return $this->render('App/Album/index.html.twig', [

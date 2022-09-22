@@ -33,12 +33,12 @@
                 {% if context == 'default' %}
                     <td class="center">
                         <a class="table-link" href="{{ link }}"></a>
-                        {{ child.cachedValues.counters.children }}
+                        {{ child.cachedValues.counters.children|default(0) }}
                     </td>
 
                     <td class="center">
                         <a class="table-link" href="{{ link }}"></a>
-                        {{ child.cachedValues.counters.photos }}
+                        {{ child.cachedValues.counters.photos|default(0) }}
                     </td>
 
                     <td class="center">

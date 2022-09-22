@@ -34,8 +34,8 @@ class CollectionController extends AbstractController
         $collectionsCounter = \count($collections);
         $itemsCounter = 0;
         foreach ($collections as $collection) {
-            $collectionsCounter += $collection->getCachedValues()['counters']['children'];
-            $itemsCounter += $collection->getCachedValues()['counters']['items'];
+            $collectionsCounter += $collection->getCachedValues()['counters']['children'] ?? 0;
+            $itemsCounter += $collection->getCachedValues()['counters']['items'] ?? 0;
         }
 
         return $this->render('App/Collection/index.html.twig', [

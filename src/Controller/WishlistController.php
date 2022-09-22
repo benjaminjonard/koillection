@@ -29,8 +29,8 @@ class WishlistController extends AbstractController
         $wishlistsCounter = \count($wishlists);
         $wishesCounter = 0;
         foreach ($wishlists as $wishlist) {
-            $wishlistsCounter += $wishlist->getCachedValues()['counters']['children'];
-            $wishesCounter += $wishlist->getCachedValues()['counters']['wishes'];
+            $wishlistsCounter += $wishlist->getCachedValues()['counters']['children']  ?? 0;
+            $wishesCounter += $wishlist->getCachedValues()['counters']['wishes'] ?? 0;
         }
 
         return $this->render('App/Wishlist/index.html.twig', [

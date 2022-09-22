@@ -39,8 +39,8 @@
                     </h1>
 
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.item'|trans({'count': collection.cachedValues.counters.items}) }}</li>
-                        <li>{{ 'counter.collection'|trans({'count': collection.cachedValues.counters.children}) }}</li>
+                        <li>{{ 'counter.item'|trans({'count': collection.cachedValues.counters.items|default(0) }) }}</li>
+                        <li>{{ 'counter.collection'|trans({'count': collection.cachedValues.counters.children|default(0) }) }}</li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -91,7 +91,7 @@
 
         <div class="content-block">
             <!-- Additional data -->
-            {% if collection.data is not empty or collection.cachedValues.prices is not empty %}
+            {% if collection.data is not empty or collection.cachedValues.prices|default(null) is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.infos'|trans }}</h2>
                     <div class="row">
@@ -104,7 +104,7 @@
                                 </div>
                             {% endfor %}
                         {% endif %}
-                        {% if collection.cachedValues.prices is not empty %}
+                        {% if collection.cachedValues.prices|default(null) is not empty %}
                             {% for label, value in collection.cachedValues.prices %}
                                 <div class="datum-row col s12 l5 xl3">
                                     <span class="label">{{ label }} :</span>
