@@ -3116,21 +3116,21 @@
       </segment>
     </unit>
     <unit id="TnuDaOl" name="btn.add_price">
-      <segment state="initial">
+      <segment state="translated">
         <source>btn.add_price</source>
-        <target>btn.add_price</target>
+        <target>Prix</target>
       </segment>
     </unit>
     <unit id="dYObaVv" name="message.caches_refreshed">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.caches_refreshed</source>
-        <target>message.caches_refreshed</target>
+        <target>Caches rafraîchis avec succès</target>
       </segment>
     </unit>
     <unit id="NPKaPRX" name="btn.refresh_caches">
-      <segment state="initial">
+      <segment state="translated">
         <source>btn.refresh_caches</source>
-        <target>btn.refresh_caches</target>
+        <target>Rafraîchir les caches</target>
       </segment>
     </unit>
   </file>
