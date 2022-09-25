@@ -32,6 +32,7 @@ class ArraySorter
         switch ($type) {
             case DatumTypeEnum::TYPE_RATING:
             case DatumTypeEnum::TYPE_NUMBER:
+            case DatumTypeEnum::TYPE_PRICE:
             case DatumTypeEnum::TYPE_LIST:
             case DatumTypeEnum::TYPE_TEXT:
             case DatumTypeEnum::TYPE_DATE:
