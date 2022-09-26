@@ -24,7 +24,7 @@
     </thead>
 
     <tbody>
-    {% for child in collections|naturalSorting(displayConfiguration.sortingDirection|default(null),displayConfiguration.sortingType|default(null)) %}
+    {% for child in collections|naturalSorting(displayConfiguration) %}
             {% set link = path('app_collection_show'|applyContext, {'id': child.id}) %}
             <tr class="list-element resize-element" data-title="{{ child.title }}" data-filter-target="element">
                 <td>

@@ -1,5 +1,5 @@
 <div class="collections grid-container-collections">
-    {% for collection in collections|naturalSorting %}
+    {% for collection in collections|naturalSorting(displayConfiguration) %}
         <div class="collection-element element" data-title="{{ collection.title }}" data-filter-target="element">
             <a class="collection-circle-thumbnail"
                href="{{ path('app_collection_show'|applyContext, {'id': collection.id}) }}">

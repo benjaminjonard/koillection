@@ -3133,5 +3133,17 @@
         <target>Refresh caches</target>
       </segment>
     </unit>
+    <unit id="DsMeFhY" name="form.item_sorting.number_of_children">
+      <segment state="translated">
+        <source>form.item_sorting.number_of_children</source>
+        <target>Number of children</target>
+      </segment>
+    </unit>
+    <unit id="O6Z2J6m" name="form.item_sorting.number_of_items">
+      <segment state="translated">
+        <source>form.item_sorting.number_of_items</source>
+        <target>Number of items</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
