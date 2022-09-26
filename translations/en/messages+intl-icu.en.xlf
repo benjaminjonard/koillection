@@ -3134,15 +3134,15 @@
       </segment>
     </unit>
     <unit id="DsMeFhY" name="form.item_sorting.number_of_children">
-      <segment state="translated">
+      <segment state="initial">
         <source>form.item_sorting.number_of_children</source>
-        <target>Number of children</target>
+        <target>form.item_sorting.number_of_children</target>
       </segment>
     </unit>
     <unit id="O6Z2J6m" name="form.item_sorting.number_of_items">
-      <segment state="translated">
+      <segment state="initial">
         <source>form.item_sorting.number_of_items</source>
-        <target>Number of items</target>
+        <target>form.item_sorting.number_of_items</target>
       </segment>
     </unit>
   </file>
