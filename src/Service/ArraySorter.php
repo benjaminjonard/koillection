@@ -35,8 +35,6 @@ class ArraySorter
             return $this->compare($this->getName($a), $this->getName($b));
         });
 
-        dump([$direction, $type, $property]);
-
         switch ($type) {
             case DatumTypeEnum::TYPE_RATING:
             case DatumTypeEnum::TYPE_NUMBER:

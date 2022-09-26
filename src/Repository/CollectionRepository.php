@@ -181,7 +181,7 @@ class CollectionRepository extends ServiceEntityRepository
 
     public function findForOrdering(Collection $collection, bool $asArray = false): array
     {
-        if ($collection->getItemsDisplayConfiguration()->getSortingProperty()) {
+        if ($collection->getChildrenDisplayConfiguration()->getSortingProperty()) {
             // Get ordering value
             $subQuery = $this->_em
                 ->createQueryBuilder()
@@ -198,7 +198,7 @@ class CollectionRepository extends ServiceEntityRepository
                 ->addSelect("({$subQuery}) AS orderingValue, data")
                 ->where('child.parent = :parent')
                 ->setParameter('parent', $collection->getId())
-                ->setParameter('label', $collection->getItemsDisplayConfiguration()->getSortingProperty())
+                ->setParameter('label', $collection->getChildrenDisplayConfiguration()->getSortingProperty())
                 ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
             ;
 
@@ -206,7 +206,7 @@ class CollectionRepository extends ServiceEntityRepository
             if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getChildrenDisplayConfiguration()->getDisplayMode()) {
                 $qb
                     ->leftJoin('child.data', 'data', 'WITH', 'data.label = :label OR data.label IN (:labels) OR data IS NULL')
-                    ->setParameter('labels', $collection->getItemsDisplayConfiguration()->getColumns())
+                    ->setParameter('labels', $collection->getChildrenDisplayConfiguration()->getColumns())
                 ;
             } else {
                 // Else only preload datum used for ordering
