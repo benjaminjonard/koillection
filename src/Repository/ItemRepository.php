@@ -56,10 +56,8 @@ class ItemRepository extends ServiceEntityRepository
                 ->getQuery()->getArrayResult()
             ;
         }
-
-        $sortDirection = $parent instanceof Collection ? $parent->getItemsDisplayConfiguration()->getSortingDirection() : null;
-        $sortType = $parent instanceof Collection ? $parent->getItemsDisplayConfiguration()->getSortingType() : null;
-        $results = $this->arraySorter->sort($results, $sortDirection, $sortType);
+        
+        $results = $this->arraySorter->sort($results, $parent->getItemsDisplayConfiguration());
 
         $count = \count($results);
         $current = null;
