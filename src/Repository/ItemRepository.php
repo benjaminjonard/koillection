@@ -56,7 +56,7 @@ class ItemRepository extends ServiceEntityRepository
                 ->getQuery()->getArrayResult()
             ;
         }
-        
+
         $results = $this->arraySorter->sort($results, $parent->getItemsDisplayConfiguration());
 
         $count = \count($results);

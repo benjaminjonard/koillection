@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Collection;
 use App\Enum\DatumTypeEnum;
+use App\Enum\ReservedLabelEnum;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Form\Type\Model\BatchTaggerType;
@@ -104,6 +105,8 @@ class CollectionController extends AbstractController
             'hasShowNumberOfItems' => true,
             'sorting' => array_merge([
                 'form.item_sorting.default_value' => null,
+                'form.item_sorting.number_of_children' => ReservedLabelEnum::NUMBER_OF_CHILDREN,
+                'form.item_sorting.number_of_items' => ReservedLabelEnum::NUMBER_OF_ITEMS,
             ], $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::AVAILABLE_FOR_ORDERING)),
             'columns' => [
                 'availableColumnLabels' => $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::TEXT_TYPES),
