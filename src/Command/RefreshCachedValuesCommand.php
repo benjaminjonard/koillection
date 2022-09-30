@@ -11,10 +11,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-    name: 'app:regenerate-cached-values',
-    description: 'Regenerate cached values such has counters and prices',
+    name: 'app:refresh-cached-values',
+    description: 'Refresh cached values such has counters and prices',
 )]
-class RegeneratedCachedValuesCommand extends Command
+class RefreshCachedValuesCommand extends Command
 {
     public function __construct(
         private readonly CachedValuesCalculator $cachedValuesCalculator
