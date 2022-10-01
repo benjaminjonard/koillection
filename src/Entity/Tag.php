@@ -5,8 +5,15 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
@@ -27,30 +34,20 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_tag')]
 #[ORM\Index(name: 'idx_tag_visibility', columns: ['visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['tag:read']],
-    denormalizationContext: ['groups' => ['tag:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data']
-        ]],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/tags/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['tag:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Tag image.']),
     ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/tags/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['tag:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Tag image.']
-        ]
-    ]
+    denormalizationContext: ['groups' => ['tag:write']],
+    normalizationContext: ['groups' => ['tag:read']]
 )]
+#[ApiResource(uriTemplate: '/items/{id}/tags', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'tags')], normalizationContext: ['groups' => ['tag:read']], operations: [new GetCollection()])]
+#[ApiResource(uriTemplate: '/tag_categories/{id}/tags', uriVariables: ['id' => new Link(fromClass: TagCategory::class, fromProperty: 'tags')], normalizationContext: ['groups' => ['tag:read']], operations: [new GetCollection()])]
 class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
@@ -87,21 +84,18 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     #[ORM\ManyToOne(targetEntity: TagCategory::class, inversedBy: 'tags', fetch: 'EAGER', cascade: ['persist'])]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
     #[Groups(['tag:read', 'tag:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?TagCategory $category = null;
 
     #[ORM\ManyToMany(targetEntity: Item::class, mappedBy: 'tags')]
-    #[ApiSubresource(maxDepth: 1)]
     private DoctrineCollection $items;
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['tag:read'])]
     private int $seenCounter = 0;
 
-    #[ORM\Column(type: Types::STRING, length: 4)]
-    #[Groups(['tag:read', 'tag:write'])]
-    #[Assert\Choice(choices: DisplayModeEnum::DISPLAY_MODES)]
-    private string $itemsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+    #[ApiProperty(readableLink: false, writableLink: false)]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    private DisplayConfiguration $itemsDisplayConfiguration;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['tag:read', 'tag:write'])]
@@ -297,14 +291,14 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
         return $this;
     }
 
-    public function getItemsDisplayMode(): string
+    public function getItemsDisplayConfiguration(): DisplayConfiguration
     {
-        return $this->itemsDisplayMode;
+        return $this->itemsDisplayConfiguration;
     }
 
-    public function setItemsDisplayMode(string $itemsDisplayMode): Tag
+    public function setItemsDisplayConfiguration(DisplayConfiguration $itemsDisplayConfiguration): Tag
     {
-        $this->itemsDisplayMode = $itemsDisplayMode;
+        $this->itemsDisplayConfiguration = $itemsDisplayConfiguration;
 
         return $this;
     }

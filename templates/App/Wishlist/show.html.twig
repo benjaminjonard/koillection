@@ -36,8 +36,8 @@
                 <div class="right">
                     <h1>{{ wishlist.name }}</h1>
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.wish'|trans({'count': getCounters(wishlist).items}) }}</li>
-                        <li>{{ 'counter.wishlist'|trans({'count': getCounters(wishlist).children}) }}</li>
+                        <li>{{ 'counter.wish'|trans({'count': wishlist.cachedValues.counters.wishes|default(0)}) }}</li>
+                        <li>{{ 'counter.wishlist'|trans({'count': wishlist.cachedValues.counters.children|default(0)}) }}</li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -81,9 +81,7 @@
             {% if children is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.wishlist_children'|trans }}</h2>
-                    <div class="collections grid-container-collections">
-                        {{ include('App/Wishlist/_list.html.twig', {'wishlists': children}) }}
-                    </div>
+                    {{ include('App/Wishlist/_wishlists_' ~ wishlist.childrenDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': children}) }}
                 </div>
             {% endif %}
 

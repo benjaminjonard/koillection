@@ -18,6 +18,8 @@ class DatumTypeEnum
 
     public const TYPE_NUMBER = 'number';
 
+    public const TYPE_PRICE = 'price';
+
     public const TYPE_LINK = 'link';
 
     public const TYPE_LIST = 'list';
@@ -49,6 +51,7 @@ class DatumTypeEnum
         self::TYPE_DATE,
         self::TYPE_RATING,
         self::TYPE_NUMBER,
+        self::TYPE_PRICE,
         self::TYPE_LINK,
         self::TYPE_FILE,
         self::TYPE_LIST,
@@ -64,6 +67,7 @@ class DatumTypeEnum
         self::TYPE_LIST,
         self::TYPE_DATE,
         self::TYPE_NUMBER,
+        self::TYPE_PRICE,
         self::TYPE_RATING,
         self::TYPE_COUNTRY,
     ];
@@ -78,6 +82,7 @@ class DatumTypeEnum
         self::TYPE_DATE => 'label.date',
         self::TYPE_RATING => 'label.rating',
         self::TYPE_NUMBER => 'label.number',
+        self::TYPE_PRICE => 'label.price',
         self::TYPE_LINK => 'label.link',
         self::TYPE_LIST => 'label.list',
     ];

@@ -1,0 +1,20 @@
+<div class="collections grid-container-collections">
+    {% for collection in collections|naturalSorting(displayConfiguration) %}
+        <div class="collection-element element" data-title="{{ collection.title }}" data-filter-target="element">
+            <a class="collection-circle-thumbnail"
+               href="{{ path('app_collection_show'|applyContext, {'id': collection.id}) }}">
+                {% if collection.image != null %}
+                    <div class="image-wrapper placeholder placeholder--circle" data-controller="lazy-loading">
+                        <img data-src="{{ asset(collection.image) }}" data-lazy-loading-target="image">
+                    </div>
+                {% else %}
+                    <span class="color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
+                {% endif %}
+            </a>
+            <span class="collection-title">{{ collection.title }}</span>
+            <p class="collection-stats">
+                {{ 'counter.item'|trans({'count': collection.cachedValues.counters.items|default(0)}) }}
+            </p>
+        </div>
+    {% endfor %}
+</div>

@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Collection;
+use App\Enum\DatumTypeEnum;
+use App\Enum\ReservedLabelEnum;
 use App\Form\Type\Entity\CollectionType;
+use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Form\Type\Model\BatchTaggerType;
 use App\Model\BatchTagger;
 use App\Repository\ChoiceListRepository;
@@ -29,8 +32,17 @@ class CollectionController extends AbstractController
     {
         $collections = $collectionRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
 
+        $collectionsCounter = \count($collections);
+        $itemsCounter = 0;
+        foreach ($collections as $collection) {
+            $collectionsCounter += $collection->getCachedValues()['counters']['children'] ?? 0;
+            $itemsCounter += $collection->getCachedValues()['counters']['items'] ?? 0;
+        }
+
         return $this->render('App/Collection/index.html.twig', [
             'collections' => $collections,
+            'collectionsCounter' => $collectionsCounter,
+            'itemsCounter' => $itemsCounter
         ]);
     }
 
@@ -54,7 +66,7 @@ class CollectionController extends AbstractController
                 ->setVisibility($parent->getVisibility())
                 ->setParentVisibility($parent->getVisibility())
                 ->setFinalVisibility($parent->getFinalVisibility())
-                ->setItemsDisplayMode($parent->getItemsDisplayMode())
+                ->getItemsDisplayConfiguration()->setDisplayMode($parent->getItemsDisplayConfiguration()->getDisplayMode())
             ;
         }
 
@@ -72,9 +84,47 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/add.html.twig', [
             'collection' => $collection,
             'form' => $form->createView(),
-            'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
-            'choiceLists' => $choiceListRepository->findAll(),
+            'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
+            'suggestedChildrenLabels' => $collectionRepository->suggestChildrenLabels($collection),
+            'choiceLists' => $choiceListRepository->findAll()
+        ]);
+    }
+
+    #[Route(path: '/collections/edit', name: 'app_collection_edit_index', methods: ['GET', 'POST'])]
+    public function editIndex(
+        Request $request,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry,
+        DatumRepository $datumRepository
+    ): Response {
+        $displayConfiguration = $this->getUser()->getCollectionsDisplayConfiguration();
+        $form = $this->createForm(DisplayConfigurationType::class, $displayConfiguration, [
+            'hasShowVisibility' => true,
+            'hasShowActions' => true,
+            'hasShowNumberOfChildren' => true,
+            'hasShowNumberOfItems' => true,
+            'sorting' => array_merge([
+                'form.item_sorting.default_value' => null,
+                'form.item_sorting.number_of_children' => ReservedLabelEnum::NUMBER_OF_CHILDREN,
+                'form.item_sorting.number_of_items' => ReservedLabelEnum::NUMBER_OF_ITEMS,
+            ], $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::AVAILABLE_FOR_ORDERING)),
+            'columns' => [
+                'availableColumnLabels' => $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::TEXT_TYPES),
+                'selectedColumnsLabels' => $displayConfiguration->getColumns()
+            ]
+        ]);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $managerRegistry->getManager()->flush();
+            $this->addFlash('notice', $translator->trans('message.collection_index_edited'));
+
+            return $this->redirectToRoute('app_collection_index');
+        }
+
+        return $this->render('App/Collection/edit_index.html.twig', [
+            'form' => $form->createView(),
+            'displayConfiguration' => $displayConfiguration
         ]);
     }
 
@@ -84,12 +134,11 @@ class CollectionController extends AbstractController
         Collection $collection,
         CollectionRepository $collectionRepository,
         ItemRepository $itemRepository,
-        DatumRepository $datumRepository
     ): Response {
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
-            'children' => $collectionRepository->findBy(['parent' => $collection]),
-            'items' => $itemRepository->findForOrdering($collection),
+            'children' => $collectionRepository->findForOrdering($collection),
+            'items' => $itemRepository->findForOrdering($collection)
         ]);
     }
 
@@ -100,6 +149,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/items.html.twig', [
             'collection' => $collection,
             'items' => $itemRepository->findAllByCollection($collection),
+            'displayConfiguration' => $collection->getItemsDisplayConfiguration()
         ]);
     }
 
@@ -124,8 +174,8 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/edit.html.twig', [
             'form' => $form->createView(),
             'collection' => $collection,
-            'suggestedItemsTitles' => $collectionRepository->suggestItemsTitles($collection),
-            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenTitles($collection),
+            'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
+            'suggestedChildrenTitles' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll(),
         ]);
     }

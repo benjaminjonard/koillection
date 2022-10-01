@@ -820,7 +820,7 @@
     <unit id="ryRhoHH" name="title.album_children">
       <segment state="translated">
         <source>title.album_children</source>
-        <target>Sub-album</target>
+        <target>Sub-albums</target>
       </segment>
     </unit>
     <unit id="wP6FDOU" name="title.photos">
@@ -2800,13 +2800,13 @@
     <unit id="qcUvWAj" name="label.items_display_mode">
       <segment state="translated">
         <source>label.items_display_mode</source>
-        <target>Display items as a</target>
+        <target>Display items in a</target>
       </segment>
     </unit>
     <unit id="maYJbRz" name="label.photos_display_mode">
       <segment state="translated">
         <source>label.photos_display_mode</source>
-        <target>Display photos as a</target>
+        <target>Display photos in a</target>
       </segment>
     </unit>
     <unit id="Eqd5CcJ" name="label.items_sorting_property">
@@ -3007,16 +3007,142 @@
         <target>{username}'s albums</target>
       </segment>
     </unit>
-    <unit id="aTQXfVF" name="label.items_list_show_visibility">
+    <unit id="aTQXfVF" name="label.list_show_visibility">
       <segment state="translated">
         <source>label.items_list_show_visibility</source>
         <target>Show visibility column</target>
       </segment>
     </unit>
-    <unit id="tq3yBdM" name="label.items_list_show_actions">
+    <unit id="tq3yBdM" name="label.list_show_actions">
       <segment state="translated">
         <source>label.items_list_show_actions</source>
         <target>Show actions column</target>
+      </segment>
+    </unit>
+    <unit id="MWCAWm0" name="label.sub_collections_display_mode">
+      <segment state="translated">
+        <source>label.sub_collections_display_mode</source>
+        <target>Display sub-collections in a</target>
+      </segment>
+    </unit>
+    <unit id="UKwQt9f" name="label.sub_albums_display_mode">
+      <segment state="translated">
+        <source>label.sub_albums_display_mode</source>
+        <target>Display sub-albums in a</target>
+      </segment>
+    </unit>
+    <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
+      <segment state="translated">
+        <source>label.sub_wishlists_display_mode</source>
+        <target>Display sub-wishlists in a</target>
+      </segment>
+    </unit>
+    <unit id="x6kN4XJ" name="label.list_show_number_of_children">
+      <segment state="translated">
+        <source>label.list_show_number_of_children</source>
+        <target>Show number of children</target>
+      </segment>
+    </unit>
+    <unit id="HtDGsd0" name="label.list_show_number_of_items">
+      <segment state="translated">
+        <source>label.list_show_number_of_items</source>
+        <target>Show number of items</target>
+      </segment>
+    </unit>
+    <unit id="8LEwIMR" name="label.wishes">
+      <segment state="translated">
+        <source>label.wishes</source>
+        <target>Wishes</target>
+      </segment>
+    </unit>
+    <unit id="rsBlJD0" name="label.photos">
+      <segment state="translated">
+        <source>label.photos</source>
+        <target>Photos</target>
+      </segment>
+    </unit>
+    <unit id="sQ83en6" name="label.wishlists_display_mode">
+      <segment state="translated">
+        <source>label.wishlists_display_mode</source>
+        <target>Display wishlists in a</target>
+      </segment>
+    </unit>
+    <unit id="paiZ6qs" name="label.collections_display_mode">
+      <segment state="translated">
+        <source>label.collections_display_mode</source>
+        <target>Display collections in a</target>
+      </segment>
+    </unit>
+    <unit id="kHAvmu7" name="label.albums_display_mode">
+      <segment state="translated">
+        <source>label.albums_display_mode</source>
+        <target>Display albums in a</target>
+      </segment>
+    </unit>
+    <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
+      <segment state="translated">
+        <source>breadcrumb.edit_collections_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="FGS9ySo" name="title.edit_collections_index">
+      <segment state="translated">
+        <source>title.edit_collections_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
+      <segment state="translated">
+        <source>breadcrumb.edit_albums_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="DomzBkb" name="title.edit_albums_index">
+      <segment state="translated">
+        <source>title.edit_albums_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
+      <segment state="translated">
+        <source>breadcrumb.edit_wishlists_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="WEd3Zlc" name="title.edit_wishlists_index">
+      <segment state="translated">
+        <source>title.edit_wishlists_index</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="TnuDaOl" name="btn.add_price">
+      <segment state="translated">
+        <source>btn.add_price</source>
+        <target>Price</target>
+      </segment>
+    </unit>
+    <unit id="dYObaVv" name="message.caches_refreshed">
+      <segment state="translated">
+        <source>message.caches_refreshed</source>
+        <target>Caches successfully refreshed</target>
+      </segment>
+    </unit>
+    <unit id="NPKaPRX" name="btn.refresh_caches">
+      <segment state="translated">
+        <source>btn.refresh_caches</source>
+        <target>Refresh caches</target>
+      </segment>
+    </unit>
+    <unit id="DsMeFhY" name="form.item_sorting.number_of_children">
+      <segment state="translated">
+        <source>form.item_sorting.number_of_children</source>
+        <target>Number of children</target>
+      </segment>
+    </unit>
+    <unit id="O6Z2J6m" name="form.item_sorting.number_of_items">
+      <segment state="translated">
+        <source>form.item_sorting.number_of_items</source>
+        <target>Number of items</target>
       </segment>
     </unit>
   </file>

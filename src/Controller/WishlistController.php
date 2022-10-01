@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Wishlist;
+use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Form\Type\Entity\WishlistType;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
@@ -25,8 +26,37 @@ class WishlistController extends AbstractController
 
         $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => Criteria::ASC]);
 
+        $wishlistsCounter = \count($wishlists);
+        $wishesCounter = 0;
+        foreach ($wishlists as $wishlist) {
+            $wishlistsCounter += $wishlist->getCachedValues()['counters']['children']  ?? 0;
+            $wishesCounter += $wishlist->getCachedValues()['counters']['wishes'] ?? 0;
+        }
+
         return $this->render('App/Wishlist/index.html.twig', [
             'wishlists' => $wishlists,
+            'wishlistsCounter' => $wishlistsCounter,
+            'wishesCounter' => $wishesCounter,
+        ]);
+    }
+
+    #[Route(path: '/wishlists/edit', name: 'app_wishlist_edit_index', methods: ['GET', 'POST'])]
+    public function editIndex(
+        Request $request,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry
+    ): Response {
+        $form = $this->createForm(DisplayConfigurationType::class, $this->getUser()->getWishlistsDisplayConfiguration());
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $managerRegistry->getManager()->flush();
+            $this->addFlash('notice', $translator->trans('message.wishlist_index_edited'));
+
+            return $this->redirectToRoute('app_wishlist_index');
+        }
+
+        return $this->render('App/Wishlist/edit_index.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 

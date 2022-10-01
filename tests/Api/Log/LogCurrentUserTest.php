@@ -24,7 +24,7 @@ class LogCurrentUserTest extends ApiTestCase
     public function testGetLog(): void
     {
         $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
+        $iri = $this->iriConverter->getIriFromResource($log);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -37,7 +37,7 @@ class LogCurrentUserTest extends ApiTestCase
     public function testPutLog(): void
     {
         $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
+        $iri = $this->iriConverter->getIriFromResource($log);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => []]);
 
@@ -54,7 +54,7 @@ class LogCurrentUserTest extends ApiTestCase
     public function testPatchLog(): void
     {
         $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
+        $iri = $this->iriConverter->getIriFromResource($log);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -66,7 +66,7 @@ class LogCurrentUserTest extends ApiTestCase
     public function testDeleteLog(): void
     {
         $log = $this->em->getRepository(Log::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($log);
+        $iri = $this->iriConverter->getIriFromResource($log);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

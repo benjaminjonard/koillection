@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Album;
 use App\Form\Type\Entity\AlbumType;
+use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
 use Doctrine\Common\Collections\Criteria;
@@ -22,16 +23,39 @@ class AlbumController extends AbstractController
     public function index(AlbumRepository $albumRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
-
         $albums = $albumRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
+
+        $albumsCounter = \count($albums);
         $photosCounter = 0;
         foreach ($albums as $album) {
-            $photosCounter += \count($album->getPhotos());
+            $albumsCounter += $album->getCachedValues()['counters']['children'] ?? 0;
+            $photosCounter += $album->getCachedValues()['counters']['photos'] ?? 0;
         }
 
         return $this->render('App/Album/index.html.twig', [
             'albums' => $albums,
+            'albumsCounter' => $albumsCounter,
             'photosCounter' => $photosCounter,
+        ]);
+    }
+
+    #[Route(path: '/albums/edit', name: 'app_album_edit_index', methods: ['GET', 'POST'])]
+    public function editIndex(
+        Request $request,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry
+    ): Response {
+        $form = $this->createForm(DisplayConfigurationType::class, $this->getUser()->getAlbumsDisplayConfiguration());
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $managerRegistry->getManager()->flush();
+            $this->addFlash('notice', $translator->trans('message.album_index_edited'));
+
+            return $this->redirectToRoute('app_album_index');
+        }
+
+        return $this->render('App/Album/edit_index.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 

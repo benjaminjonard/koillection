@@ -25,7 +25,7 @@ class WishCurrentUserTest extends ApiTestCase
     public function testGetWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -38,7 +38,7 @@ class WishCurrentUserTest extends ApiTestCase
     public function testGetWishWishlist(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/wishlist');
 
@@ -49,7 +49,7 @@ class WishCurrentUserTest extends ApiTestCase
     public function testPostWish(): void
     {
         $wishlist = $this->em->getRepository(Wishlist::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $wishlistIri = $this->iriConverter->getIriFromItem($wishlist);
+        $wishlistIri = $this->iriConverter->getIriFromResource($wishlist);
 
         $this->createClientWithCredentials()->request('POST', '/api/wishes', ['json' => [
                 'name' => 'New wish',
@@ -66,7 +66,7 @@ class WishCurrentUserTest extends ApiTestCase
     public function testPutWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -82,7 +82,7 @@ class WishCurrentUserTest extends ApiTestCase
     public function testPatchWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -101,7 +101,7 @@ class WishCurrentUserTest extends ApiTestCase
     public function testDeleteWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

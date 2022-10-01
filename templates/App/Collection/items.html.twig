@@ -64,7 +64,7 @@
             {% if items is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.items'|trans }}</h2>
-                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayMode ~ '.html.twig', {'items': items}) }}
+                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayConfiguration.displayMode ~ '.html.twig', {'items': items}) }}
                 </div>
             {% endif %}
         </div>

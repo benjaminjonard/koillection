@@ -11,7 +11,7 @@ class UserOtherUserTest extends ApiTestCase
 {
     public function testCantGetAnotherUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
+        $iri = $this->iriConverter->getIriFromResource($this->otherUser);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -19,7 +19,7 @@ class UserOtherUserTest extends ApiTestCase
 
     public function testCantPutAnotherUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
+        $iri = $this->iriConverter->getIriFromResource($this->otherUser);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'username' => 'username_put',
@@ -30,7 +30,7 @@ class UserOtherUserTest extends ApiTestCase
 
     public function testCantPatchAnotherUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
+        $iri = $this->iriConverter->getIriFromResource($this->otherUser);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -44,7 +44,7 @@ class UserOtherUserTest extends ApiTestCase
 
     public function testCantDeleteAnotherUser(): void
     {
-        $iri = $this->iriConverter->getIriFromItem($this->otherUser);
+        $iri = $this->iriConverter->getIriFromResource($this->otherUser);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

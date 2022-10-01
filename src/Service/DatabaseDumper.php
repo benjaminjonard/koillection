@@ -65,6 +65,7 @@ class DatabaseDumper
             "SELECT * FROM koi_album WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_collection WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_datum WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_display_configuration WHERE owner_id IN ({$userIds})",
             "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id IN ({$userIds})",
             "SELECT * FROM koi_inventory WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_item WHERE owner_id IN ({$userIds})",
@@ -132,6 +133,7 @@ class DatabaseDumper
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
         $rows = array_map(static function ($row): string {
             $row = str_replace('CREATE SCHEMA', 'CREATE SCHEMA IF NOT EXISTS', $row);
+
             return $row.';'.PHP_EOL;
         }, $schemaRows);
 
@@ -144,11 +146,7 @@ class DatabaseDumper
     {
         $type = $metadata?->getTypeOfField(array_search($property, $metadata->columnNames, true));
         if (\is_string($value)) {
-            if ($type !== 'json') {
-                $value = str_replace(['\\', "'"], ['\\\\', "''"], $value);
-            } else {
-                $value = str_replace("'", "''", $value);
-            }
+            $value = $type !== 'json' ? str_replace(['\\', "'"], ['\\\\', "''"], $value) : str_replace("'", "''", $value);
         }
 
         if (null === $value) {

@@ -1,0 +1,96 @@
+<table class="highlight items-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{ 'label.name'|trans }}</th>
+            {% for column in displayConfiguration.columns %}
+                <th class="center hide-on-small-and-down">{{ column }}</th>
+            {% endfor %}
+            {% if context == 'default' %}
+                {% if displayConfiguration.showNumberOfChildren %}
+                    <th class="center">{{ 'label.collections'|trans }}</th>
+                {% endif %}
+                {% if displayConfiguration.showNumberOfItems %}
+                    <th class="center">{{ 'label.items'|trans }}</th>
+                {% endif %}
+                {% if displayConfiguration.showVisibility %}
+                    <th class="center">{{ 'label.visibility'|trans }}</th>
+                {% endif %}
+                {% if displayConfiguration.showActions %}
+                    <th class="center">{{ 'label.actions'|trans }}</th>
+                {% endif %}
+            {% endif %}
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for child in collections|naturalSorting(displayConfiguration) %}
+            {% set link = path('app_collection_show'|applyContext, {'id': child.id}) %}
+            <tr class="list-element resize-element" data-title="{{ child.title }}" data-filter-target="element">
+                <td>
+                    <a class="table-link" href="{{ link }}"></a>
+                    {% if child.image %}
+                        <div class="image-wrapper placeholder placeholder--circle" data-controller="lazy-loading">
+                            <img data-src="{{ asset(child.image) }}"
+                                 data-lazy-loading-target="image"
+                            >
+                        </div>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="table-link" href="{{ link }}"></a>
+                    {{ child.title|u.truncate(50, '...') }}
+                </td>
+                {% for column in displayConfiguration.columns %}
+                    <td class="center hide-on-small-and-down">
+                        {% set datum = child.getDatumByLabel(column) %}
+
+                        {% if datum is not null %}
+                            {% if datum.type != 'link' %}
+                                <a class="table-link" href="{{ link }}"></a>
+                            {% endif %}
+
+                            {% include 'App/Datum/_display_value/_' ~ datum.type ~ '.html.twig' with {'datum': datum} only %}
+                        {% else %}
+                            <a class="table-link" href="{{ link }}"></a>
+                            -
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                {% if context == 'default' %}
+                    {% if displayConfiguration.showNumberOfChildren %}
+                        <td class="center">
+                            <a class="table-link" href="{{ link }}"></a>
+                            {{ child.cachedValues.counters.children|default(0) }}
+                        </td>
+                    {% endif %}
+
+                    {% if displayConfiguration.showNumberOfItems %}
+                        <td class="center">
+                            <a class="table-link" href="{{ link }}"></a>
+                            {{ child.cachedValues.counters.items|default(0) }}
+                        </td>
+                    {% endif %}
+
+                    {% if displayConfiguration.showVisibility %}
+                        <td class="center">
+                            {% include 'App/_partials/_visibility.html.twig' with {'visibility': child.finalVisibility} only %}
+                        </td>
+                    {% endif %}
+
+                    {% if displayConfiguration.showActions %}
+                        <td class="table-actions center">
+                            <a href="{{ path('app_collection_edit', {id: child.id}) }}" title="{{ 'tooltip.edit'|trans }}">
+                                <i class="fa fa-pencil fa-fw"></i>
+                            </a>
+                            {% include 'App/_partials/_icon/_delete.html.twig' with {
+                                path: path('app_collection_delete', {id: child.id}),
+                                message: 'message.delete.collection'
+                            } only %}
+                        </td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

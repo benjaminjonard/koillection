@@ -5,8 +5,14 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Api\Controller\UploadController;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
@@ -24,30 +30,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_wish')]
 #[ORM\Index(name: 'idx_wish_final_visibility', columns: ['final_visibility'])]
 #[ApiResource(
-    normalizationContext: ['groups' => ['wish:read']],
-    denormalizationContext: ['groups' => ['wish:write']],
-    collectionOperations: [
-        'get',
-        'post' => ['input_formats' => [
-            'json' => ['application/json', 'application/ld+json'],
-            'multipart' => ['multipart/form-data']
-        ]],
-    ],
-    itemOperations: [
-        'get',
-        'put',
-        'delete',
-        'patch',
-        'image' => [
-            'method' => 'POST',
-            'path' => '/wishes/{id}/image',
-            'controller' => UploadController::class,
-            'denormalization_context' => ['groups' => ['wish:image']],
-            'input_formats' => ['multipart' => ['multipart/form-data']],
-            'openapi_context' => ['summary' => 'Upload the Wish image.']
-        ]
-    ]
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(uriTemplate: '/wishes/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['wish:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Wish image.']),
+    ], denormalizationContext: ['groups' => ['wish:write']],
+    normalizationContext: ['groups' => ['wish:read']]
 )]
+#[ApiResource(uriTemplate: '/wishlists/{id}/wishes', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'wishes')], normalizationContext: ['groups' => ['wish:read']], operations: [new GetCollection()])]
 class Wish implements CacheableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]
@@ -76,7 +70,6 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     #[ORM\ManyToOne(targetEntity: Wishlist::class, inversedBy: 'wishes')]
     #[Assert\NotBlank]
     #[Groups(['wish:read', 'wish:write'])]
-    #[ApiSubresource(maxDepth: 1)]
     private ?Wishlist $wishlist = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]

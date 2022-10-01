@@ -6,7 +6,9 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Datum;
+use App\Enum\DatumTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class DatumRepository extends ServiceEntityRepository
@@ -16,7 +18,7 @@ class DatumRepository extends ServiceEntityRepository
         parent::__construct($registry, Datum::class);
     }
 
-    public function findAllLabelsInCollection(Collection $collection, array $types = []): array
+    public function findAllItemsLabelsInCollection(Collection $collection, array $types = []): array
     {
         return $this
             ->createQueryBuilder('datum')
@@ -30,5 +32,57 @@ class DatumRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult()
         ;
+    }
+
+    public function findAllChildrenLabelsInCollection(?Collection $collection, array $types = []): array
+    {
+        $qb = $this
+            ->createQueryBuilder('datum')
+            ->select('datum.label, datum.type')
+            ->distinct()
+            ->where('datum.type IN (:types)')
+            ->setParameter('types', $types)
+        ;
+
+        if ($collection instanceof Collection) {
+            $qb
+                ->join('datum.collection', 'collection', 'WITH', 'collection.parent = :parent')
+                ->setParameter('parent', $collection->getId())
+            ;
+        } else {
+            $qb
+                ->join('datum.collection', 'collection', 'WITH', 'collection.parent IS NULL')
+            ;
+        }
+
+        return $qb->getQuery()->getArrayResult();
+    }
+
+    public function computePricesForCollection(Collection $collection)
+    {
+        $id = $collection->getId();
+        $type = DatumTypeEnum::TYPE_PRICE;
+        $cast = match ($this->_em->getConnection()->getDatabasePlatform()->getName()) {
+            'postgresql' => 'DOUBLE PRECISION',
+            'mysql' => 'DECIMAL(12, 2)',
+        };
+
+        $rsm = new ResultSetMapping();
+        $rsm->addIndexByScalar('label');
+        $rsm->addScalarResult('value', 'value');
+
+        $sql = "
+            SELECT datum.label AS label, SUM(CAST(datum.value AS $cast)) AS value
+            FROM koi_datum datum
+            JOIN koi_item item ON datum.item_id = item.id AND item.collection_id = '$id'
+            WHERE datum.type = '$type'
+            GROUP BY datum.label
+        ";
+
+        $result = $this->_em->createNativeQuery($sql, $rsm)->getArrayResult();
+
+        return array_map(function($price) {
+            return $price['value'];
+        }, $result);
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Entity\DisplayConfiguration;
 use App\Enum\SortingDirectionEnum;
 use App\Service\ArraySorter;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -16,10 +17,8 @@ class ArrayRuntime implements RuntimeExtensionInterface
     }
 
     public function naturalSorting(
-        iterable $array,
-        ?string $direction = SortingDirectionEnum::ASCENDING,
-        ?string $type = null
+        iterable $array, ?DisplayConfiguration $displayConfiguration = null
     ): array {
-        return $this->arraySorter->sort($array, $direction, $type);
+        return $this->arraySorter->sort($array, $displayConfiguration);
     }
 }

@@ -14,7 +14,7 @@ class TagOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -23,7 +23,7 @@ class TagOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserTagTagCategory(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/category');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -32,7 +32,7 @@ class TagOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserTagItems(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/items');
         $data = $response->toArray();
@@ -46,7 +46,7 @@ class TagOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'label' => 'updated label with PUT',
@@ -58,7 +58,7 @@ class TagOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -73,7 +73,7 @@ class TagOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserTag(): void
     {
         $tag = $this->em->getRepository(Tag::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tag);
+        $iri = $this->iriConverter->getIriFromResource($tag);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

@@ -13,7 +13,7 @@ class PhotoOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -22,7 +22,7 @@ class PhotoOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'title' => 'updated title with PUT',
@@ -34,7 +34,7 @@ class PhotoOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserPhotoAlbum(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/album');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -43,7 +43,7 @@ class PhotoOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -58,7 +58,7 @@ class PhotoOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserPhoto(): void
     {
         $photo = $this->em->getRepository(Photo::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($photo);
+        $iri = $this->iriConverter->getIriFromResource($photo);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

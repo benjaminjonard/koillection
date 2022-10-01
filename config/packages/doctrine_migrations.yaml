@@ -7,3 +7,4 @@ doctrine_migrations:
             table_name: doctrine_migration_version
     check_database_platform: true
     enable_profiler: '%kernel.debug%'
+    transactional: true

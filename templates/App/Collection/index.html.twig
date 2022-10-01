@@ -27,8 +27,8 @@
             <div class="title-block">
                 <h1>{{ 'menu.collections'|trans }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|trans({'count': getCounters('collections').items}) }}</li>
-                    <li>{{ 'counter.collection'|trans({'count': getCounters('collections').children}) }}</li>
+                    <li>{{ 'counter.item'|trans({'count': itemsCounter}) }}</li>
+                    <li>{{ 'counter.collection'|trans({'count': collectionsCounter}) }}</li>
                 </ul>
             </div>
 
@@ -40,6 +40,9 @@
                         <a href="{{ path('app_collection_add') }}" class="button"
                            title="{{ 'tooltip.add_collection'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_collection_edit_index') }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_index'}) }}
                         {{ include('App/_partials/_visibility.html.twig') }}
@@ -54,9 +57,10 @@
         </div>
 
         <div class="content-block">
-            <div class="collections grid-container-collections">
-                {{ include('App/Collection/_list.html.twig', {'collections': collections}) }}
-            </div>
+            {{ include('App/Collection/_collections_' ~ getContextUser().collectionsDisplayConfiguration.displayMode ~ '.html.twig', {
+                'collections': collections,
+                'displayConfiguration': getContextUser().collectionsDisplayConfiguration
+            }) }}
         </div>
     </div>
 {% endblock %}

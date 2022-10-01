@@ -28,8 +28,8 @@
             <div class="title-block">
                 <h1>{{ 'menu.wishlists'|trans }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.wish'|trans({'count':  getCounters('wishlists').items}) }}</li>
-                    <li>{{ 'counter.wishlist'|trans({'count': getCounters('wishlists').children}) }}</li>
+                    <li>{{ 'counter.wish'|trans({'count': wishesCounter}) }}</li>
+                    <li>{{ 'counter.wishlist'|trans({'count': wishlistsCounter}) }}</li>
                 </ul>
             </div>
 
@@ -41,6 +41,9 @@
                         <a href="{{ path('app_wishlist_add') }}" class="button"
                            title="{{ 'tooltip.add_wishlist'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_wishlist_edit_index') }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
                         </a>
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_wishlist_index'}) }}
                         {{ include('App/_partials/_visibility.html.twig') }}
@@ -55,9 +58,7 @@
         </div>
 
         <div class="content-block">
-            <div class="collections grid-container-collections">
-                {{ include('App/Wishlist/_list.html.twig', {'wishlists': wishlists}) }}
-            </div>
+            {{ include('App/Wishlist/_wishlists_' ~ getContextUser().wishlistsDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': wishlists}) }}
         </div>
     </div>
 {% endblock %}

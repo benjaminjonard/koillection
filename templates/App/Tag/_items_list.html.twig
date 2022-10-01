@@ -1,0 +1,30 @@
+<table class="highlight items-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{ 'label.name'|trans }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in items|naturalSorting %}
+            {% set link = path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) %}
+            <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
+                <td>
+                    <a class="table-link" href="{{ link }}"></a>
+                    {% if item.imageSmallThumbnail %}
+                        <div class="image-wrapper placeholder" data-controller="lazy-loading">
+                            <img data-src="{{ asset(item.imageSmallThumbnail) }}"
+                                 data-lazy-loading-target="image"
+                            >
+                        </div>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="table-link" href="{{ link }}"></a>
+                    {{ item.name|u.truncate(50, '...') }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

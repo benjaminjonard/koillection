@@ -27,7 +27,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testGetDatum(): void
     {
         $datum = $this->em->getRepository(Datum::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($datum);
+        $iri = $this->iriConverter->getIriFromResource($datum);
 
         $this->createClientWithCredentials()->request('GET', $iri);
 
@@ -40,7 +40,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testGetDatumItem(): void
     {
         $datum = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0]->getData()[0];
-        $iri = $this->iriConverter->getIriFromItem($datum);
+        $iri = $this->iriConverter->getIriFromResource($datum);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/item');
 
@@ -51,7 +51,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testGetDatumCollection(): void
     {
         $datum = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0]->getData()[0];
-        $iri = $this->iriConverter->getIriFromItem($datum);
+        $iri = $this->iriConverter->getIriFromResource($datum);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/collection');
 
@@ -62,7 +62,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testPostDatumWithCollection(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $collectionIri = $this->iriConverter->getIriFromItem($collection);
+        $collectionIri = $this->iriConverter->getIriFromResource($collection);
 
         $this->createClientWithCredentials()->request('POST', '/api/data', ['json' => [
                 'label' => 'New datum with collection',
@@ -80,7 +80,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testPostDatumWithItem(): void
     {
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $itemIri = $this->iriConverter->getIriFromItem($item);
+        $itemIri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('POST', '/api/data', ['json' => [
                 'label' => 'New datum with item',
@@ -98,10 +98,10 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testPostDatumWithCollectionAndItem(): void
     {
         $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $collectionIri = $this->iriConverter->getIriFromItem($collection);
+        $collectionIri = $this->iriConverter->getIriFromResource($collection);
 
         $item = $this->em->getRepository(Item::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $itemIri = $this->iriConverter->getIriFromItem($item);
+        $itemIri = $this->iriConverter->getIriFromResource($item);
 
         $this->createClientWithCredentials()->request('POST', '/api/data', ['json' => [
                 'label' => 'New datum with item',
@@ -134,7 +134,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testPutDatum(): void
     {
         $datum = $this->em->getRepository(Datum::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($datum);
+        $iri = $this->iriConverter->getIriFromResource($datum);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'label' => 'updated label with PUT',
@@ -150,7 +150,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testPatchDatum(): void
     {
         $datum = $this->em->getRepository(Datum::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($datum);
+        $iri = $this->iriConverter->getIriFromResource($datum);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -169,7 +169,7 @@ class DatumCurrentUserTest extends ApiTestCase
     public function testDeleteDatum(): void
     {
         $datum = $this->em->getRepository(Datum::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($datum);
+        $iri = $this->iriConverter->getIriFromResource($datum);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

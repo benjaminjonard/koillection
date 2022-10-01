@@ -14,7 +14,7 @@ class TemplateOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -23,7 +23,7 @@ class TemplateOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserTemplateFields(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/fields');
         $data = $response->toArray();
@@ -37,7 +37,7 @@ class TemplateOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -49,7 +49,7 @@ class TemplateOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -64,7 +64,7 @@ class TemplateOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserTemplate(): void
     {
         $template = $this->em->getRepository(Template::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($template);
+        $iri = $this->iriConverter->getIriFromResource($template);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

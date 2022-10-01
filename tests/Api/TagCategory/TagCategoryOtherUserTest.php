@@ -14,7 +14,7 @@ class TagCategoryOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -23,7 +23,7 @@ class TagCategoryOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserTagCategoryTags(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $response = $this->createClientWithCredentials()->request('GET', $iri.'/tags');
         $data = $response->toArray();
@@ -37,7 +37,7 @@ class TagCategoryOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'label' => 'updated label with PUT',
@@ -49,7 +49,7 @@ class TagCategoryOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -64,7 +64,7 @@ class TagCategoryOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserTagCategory(): void
     {
         $tagCategory = $this->em->getRepository(TagCategory::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($tagCategory);
+        $iri = $this->iriConverter->getIriFromResource($tagCategory);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

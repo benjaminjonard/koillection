@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Entity\User;
 use App\Service\ContextHandler;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -12,6 +13,11 @@ class ContextRuntime implements RuntimeExtensionInterface
     public function __construct(
         private readonly ContextHandler $contextHandler
     ) {
+    }
+
+    public function getContextUser(): User
+    {
+        return $this->contextHandler->getContextUser();
     }
 
     public function applyContext(string $route): string

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
 use App\Enum\DisplayModeEnum;
@@ -27,6 +28,8 @@ class TagType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $entity = $builder->getData();
+
         $builder
             ->add('label', TextType::class, [
                 'required' => true,
@@ -40,10 +43,7 @@ class TagType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
-            ->add('itemsDisplayMode', ChoiceType::class, [
-                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
-                'required' => true,
-            ])
+            ->add('itemsDisplayConfiguration', DisplayConfigurationType::class)
             ->add('category', EntityType::class, [
                 'class' => TagCategory::class,
                 'choice_label' => 'label',

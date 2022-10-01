@@ -13,7 +13,7 @@ class WishOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUserWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('GET', $iri);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -22,7 +22,7 @@ class WishOtherUserTest extends ApiTestCase
     public function testCantGetAnotherUseWishWishlist(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('GET', $iri.'/wishlist');
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -31,7 +31,7 @@ class WishOtherUserTest extends ApiTestCase
     public function testCantPutAnotherUserWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
             'name' => 'updated name with PUT',
@@ -43,7 +43,7 @@ class WishOtherUserTest extends ApiTestCase
     public function testCantPatchAnotherUserWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
 
         $this->createClientWithCredentials()->request('PATCH', $iri, [
             'headers' => ['Content-Type: application/merge-patch+json'],
@@ -58,7 +58,7 @@ class WishOtherUserTest extends ApiTestCase
     public function testCantDeleteAnotherUserWish(): void
     {
         $wish = $this->em->getRepository(Wish::class)->findBy(['owner' => $this->otherUser], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromItem($wish);
+        $iri = $this->iriConverter->getIriFromResource($wish);
         $this->createClientWithCredentials()->request('DELETE', $iri);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

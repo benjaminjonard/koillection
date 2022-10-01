@@ -39,8 +39,8 @@
                     </h1>
 
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.item'|trans({'count': getCounters(collection).items}) }}</li>
-                        <li>{{ 'counter.collection'|trans({'count': getCounters(collection).children}) }}</li>
+                        <li>{{ 'counter.item'|trans({'count': collection.cachedValues.counters.items|default(0) }) }}</li>
+                        <li>{{ 'counter.collection'|trans({'count': collection.cachedValues.counters.children|default(0) }) }}</li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -91,17 +91,27 @@
 
         <div class="content-block">
             <!-- Additional data -->
-            {% if collection.data is not empty %}
+            {% if collection.data is not empty or collection.cachedValues.prices|default(null) is not empty %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.infos'|trans }}</h2>
                     <div class="row">
-                        {% set underlinedTags = getUnderlinedTags(collection.data) %}
-                        {% for datum in collection.data %}
-                            <div class="datum-row col s12 l5 xl3">
-                                <span class="label">{{ datum.label }} :</span>
-                                {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
-                            </div>
-                        {% endfor %}
+                        {% if collection.data is not empty %}
+                            {% set underlinedTags = getUnderlinedTags(collection.data) %}
+                            {% for datum in collection.data %}
+                                <div class="datum-row col s12 l5 xl3">
+                                    <span class="label">{{ datum.label }} :</span>
+                                    {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        {% if collection.cachedValues.prices|default(null) is not empty %}
+                            {% for label, value in collection.cachedValues.prices %}
+                                <div class="datum-row col s12 l5 xl3">
+                                    <span class="label">{{ label }} :</span>
+                                    {{ value|format_currency(getContextUser().currency) }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
@@ -109,18 +119,22 @@
             <!-- Child collections -->
             {% if children is not empty %}
                 <div class="block-element">
-                    <h2 class="header">{{ collection.childrenTitle|default('title.children'|trans) }}</h2>
-                    <div class="collections grid-container-collections">
-                        {{ include('App/Collection/_list.html.twig', {'collections': children|naturalSorting}) }}
-                    </div>
+                    <h2 class="header">{{ collection.childrenDisplayConfiguration.title|default('title.children'|trans) }}</h2>
+                    {{ include('App/Collection/_collections_' ~ collection.childrenDisplayConfiguration.displayMode ~ '.html.twig', {
+                        'collections': children,
+                        'displayConfiguration': collection.childrenDisplayConfiguration
+                    }) }}
                 </div>
             {% endif %}
 
             <!-- Collection's items -->
             {% if items is not empty %}
                 <div class="block-element">
-                    <h2 class="header">{{ collection.itemsTitle|default('title.items'|trans) }}</h2>
-                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayMode ~ '.html.twig', {'items': items}) }}
+                    <h2 class="header">{{ collection.itemsDisplayConfiguration.title|default('title.items'|trans) }}</h2>
+                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayConfiguration.displayMode ~ '.html.twig', {
+                        'items': items,
+                        'displayConfiguration': collection.itemsDisplayConfiguration
+                    }) }}
                 </div>
             {% endif %}
         </div>

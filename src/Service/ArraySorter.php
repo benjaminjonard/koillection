@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\DisplayConfiguration;
 use App\Enum\DatumTypeEnum;
+use App\Enum\ReservedLabelEnum;
 use App\Enum\SortingDirectionEnum;
 use Symfony\Component\Intl\Countries;
 
@@ -20,11 +22,15 @@ class ArraySorter
 
     public function sort(
         iterable $array,
-        ?string $direction = SortingDirectionEnum::ASCENDING,
-        ?string $type = null
+        ?DisplayConfiguration $displayConfiguration = null
     ): array {
+        $direction = $displayConfiguration ? $displayConfiguration->getSortingDirection() : SortingDirectionEnum::ASCENDING;
+        $type = $displayConfiguration?->getSortingType();
+        $property = $displayConfiguration?->getSortingProperty();
+
         $array = \is_array($array) ? $array : $array->toArray();
 
+        // Sort on name first
         usort($array, function ($a, $b): bool|int {
             return $this->compare($this->getName($a), $this->getName($b));
         });
@@ -32,6 +38,7 @@ class ArraySorter
         switch ($type) {
             case DatumTypeEnum::TYPE_RATING:
             case DatumTypeEnum::TYPE_NUMBER:
+            case DatumTypeEnum::TYPE_PRICE:
             case DatumTypeEnum::TYPE_LIST:
             case DatumTypeEnum::TYPE_TEXT:
             case DatumTypeEnum::TYPE_DATE:
@@ -53,6 +60,21 @@ class ArraySorter
                     $array = array_reverse($array);
                 }
 
+                break;
+        }
+
+        switch ($property) {
+            case ReservedLabelEnum::NUMBER_OF_ITEMS:
+                usort($array, function ($a, $b) use ($direction): bool|int {
+                    return $this->compare((string) $a->getCachedValues()['counters']['items'], (string) $b->getCachedValues()['counters']['items'], $direction);
+                });
+                break;
+            case ReservedLabelEnum::NUMBER_OF_CHILDREN:
+                usort($array, function ($a, $b) use ($direction): bool|int {
+                    return $this->compare((string) $a->getCachedValues()['counters']['children'], (string) $b->getCachedValues()['counters']['children'], $direction);
+                });
+                break;
+            default:
                 break;
         }
 
