@@ -5,78 +5,48 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "/icons/round/16.png",
-      "sizes": "16x16",
+      "src": "/icons/square/48.png",
+      "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "/icons/round/32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/round/72.png",
+      "src": "/icons/square/72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/icons/round/114.png",
-      "sizes": "114x114",
+      "src": "/icons/square/96.png",
+      "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/icons/round/128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/round/144.png",
+      "src": "/icons/square/144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/icons/round/152.png",
-      "sizes": "152x152",
+      "src": "/icons/square/168.png",
+      "sizes": "168x168",
       "type": "image/png"
     },
     {
-      "src": "/icons/round/160.png",
-      "sizes": "160x160",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/round/167.png",
-      "sizes": "167x167",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/round/180.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/round/192.png",
+      "src": "/icons/square/192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/round/196.png",
-      "sizes": "196x196",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/round/256.png",
+      "src": "/icons/square/256.png",
       "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/round/400.png",
-      "sizes": "400x400",
       "type": "image/png"
     },
     {
       "src": "/icons/square/512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/square/1024.png",
+      "sizes": "1024x1024",
       "type": "image/png"
     },
     {

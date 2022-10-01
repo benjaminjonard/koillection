@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.14] / 2022-01-01
+If after this update you have incoherent collections/items counters, head to the Administration page and click on "Refresh caches" 
+
+### Features
+- Add children (sub-collections) list display mode (benjaminjonard)
+- Add list display mode for collections, albums and wishlists index pages (benjaminjonard)
+- Add option to display or hide actions, visibility, number of items and number of children columns in list display mode (benjaminjonard)
+- Add sorting on number of items and number of children for list display mode (benjaminjonard)
+- Add Price field type. Price fields with the same label will be added up and displayed on collection page (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix CVE-2022-39261 (benjaminjonard)
+- Upgrade to API Platform 3 (benjaminjonard)
+- Rework cached counters (benjaminjonard)
+- Externalize translation process on https://crowdin.com/project/koillection (benjaminjonard)
+    
 ## [1.3.13] / 2022-09-12
 ### Features
 - Add possibility to order columns in list display mode (benjaminjonard)
