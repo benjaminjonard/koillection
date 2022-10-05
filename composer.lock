@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0aed7f6e3f0b6f03f27ff0ad82ee117",
+    "content-hash": "46445db0d3a62ea93212e2c26ca55d5e",
     "packages": [
         {
             "name": "api-platform/core",
@@ -9350,16 +9350,16 @@
         },
         {
             "name": "nelmio/alice",
-            "version": "v3.11.0",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/alice.git",
-                "reference": "bb4ed6255bf95c5fc23d1d63d7ea92306d48fcca"
+                "reference": "0297bae4c4a6cc580c7949656a8d1334ce65e690"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/alice/zipball/bb4ed6255bf95c5fc23d1d63d7ea92306d48fcca",
-                "reference": "bb4ed6255bf95c5fc23d1d63d7ea92306d48fcca",
+                "url": "https://api.github.com/repos/nelmio/alice/zipball/0297bae4c4a6cc580c7949656a8d1334ce65e690",
+                "reference": "0297bae4c4a6cc580c7949656a8d1334ce65e690",
                 "shasum": ""
             },
             "require": {
@@ -9432,7 +9432,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nelmio/alice/issues",
-                "source": "https://github.com/nelmio/alice/tree/v3.11.0"
+                "source": "https://github.com/nelmio/alice/tree/3.12.0"
             },
             "funding": [
                 {
@@ -9440,7 +9440,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-03T12:27:05+00:00"
+            "time": "2022-10-02T12:48:07+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -9875,16 +9875,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.8.6",
+            "version": "1.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c386ab2741e64cc9e21729f891b28b2b10fe6618"
+                "reference": "536ff0ed719b5679e9f09c17aeaee9b31969cb8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c386ab2741e64cc9e21729f891b28b2b10fe6618",
-                "reference": "c386ab2741e64cc9e21729f891b28b2b10fe6618",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/536ff0ed719b5679e9f09c17aeaee9b31969cb8e",
+                "reference": "536ff0ed719b5679e9f09c17aeaee9b31969cb8e",
                 "shasum": ""
             },
             "require": {
@@ -9914,7 +9914,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.8.6"
+                "source": "https://github.com/phpstan/phpstan/tree/1.8.7"
             },
             "funding": [
                 {
@@ -9930,7 +9930,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-23T09:54:39+00:00"
+            "time": "2022-10-04T14:09:33+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
