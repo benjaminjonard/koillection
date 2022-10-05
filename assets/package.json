@@ -9,25 +9,25 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
+    "@babel/core": "7.19.3",
+    "@babel/preset-env": "7.19.3",
     "@materializecss/materialize": "1.1.0",
-    "@symfony/stimulus-bridge": "^3.0.0",
-    "@symfony/webpack-encore": "^4.0.0",
-    "copy-webpack-plugin": "^11.0.0",
-    "core-js": "^3.0.0",
-    "croppie": "^2.6.4",
-    "echarts": "^5.3.0",
-    "regenerator-runtime": "^0.13.9",
-    "sortablejs": "^1.15.0",
+    "@symfony/stimulus-bridge": "3.2.1",
+    "@symfony/webpack-encore": "4.0.0",
+    "copy-webpack-plugin": "11.0.0",
+    "core-js": "3.25.3",
+    "croppie": "2.6.5",
+    "echarts": "5.4.0",
+    "regenerator-runtime": "0.13.9",
+    "sortablejs": "1.15.0",
     "stimulus": "3.0.1",
-    "stimulus-lightbox": "^3.0.0",
-    "stimulus-use": "^0.50.0",
-    "ts-select2": "^0.2.0",
-    "webpack": "^5.74.0",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-notifier": "^1.15.0"
+    "stimulus-lightbox": "3.0.0",
+    "stimulus-use": "0.50.0",
+    "ts-select2": "0.2.1",
+    "webpack": "5.74.0",
+    "webpack-bundle-analyzer": "4.6.1",
+    "webpack-cli": "4.10.0",
+    "webpack-notifier": "1.15.0"
   },
   "scripts": {
     "dev-server": "encore dev-server",
@@ -36,7 +36,7 @@
     "build": "encore production --progress"
   },
   "dependencies": {
-    "bazinga-translator": "^5.0.0",
-    "intl-messageformat": "^10.1.4"
+    "bazinga-translator": "5.0.0",
+    "intl-messageformat": "10.1.5"
   }
 }
