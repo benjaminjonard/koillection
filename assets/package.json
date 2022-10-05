@@ -20,7 +20,7 @@
     "echarts": "5.4.0",
     "regenerator-runtime": "0.13.9",
     "sortablejs": "1.15.0",
-    "stimulus": "3.0.1",
+    "stimulus": "3.1.0",
     "stimulus-lightbox": "3.0.0",
     "stimulus-use": "0.50.0",
     "ts-select2": "0.2.1",
