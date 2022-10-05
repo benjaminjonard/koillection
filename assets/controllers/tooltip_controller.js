@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import { Tooltip } from '@materializecss/materialize';
 
 export default class extends Controller {

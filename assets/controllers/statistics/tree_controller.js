@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import * as echarts from 'echarts/lib/echarts'
 import { TooltipComponent } from 'echarts/components';
 import { TreeChart } from 'echarts/charts';

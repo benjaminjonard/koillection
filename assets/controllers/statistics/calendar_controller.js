@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import Translator from "bazinga-translator";
 import * as echarts from 'echarts/lib/echarts'
 import { TooltipComponent, CalendarComponent, VisualMapComponent } from 'echarts/components';
