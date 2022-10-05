@@ -32,6 +32,6 @@ jobs:
         with:
           context: .
           push: true
-          build-args: GITHUB_RELEASE=main
+          build-args: GITHUB_RELEASE=1.3
           tags: docker.io/koillection/koillection:dev
           platforms: linux/amd64
