@@ -2,8 +2,8 @@ name: Koillection CI
 on:
   workflow_dispatch:
   pull_request:
-    branches:
-      - "1.3"
+  push:
+  release:
 
 jobs:
   security_checker:
