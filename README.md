@@ -9,15 +9,16 @@
     <img src="https://img.shields.io/scrutinizer/g/koillection/koillection" />    
 </p>
 <p align="center">
-    <img src="https://img.shields.io/packagist/php-v/koillection/koillection" />    
+    <img src="https://img.shields.io/packagist/php-v/koillection/koillection" />
+    <img src="https://img.shields.io/badge/postgresql-^10.0-blue" />            
+    <img src="https://img.shields.io/badge/mariadb-^10.0-blue" />
     <img src="https://img.shields.io/badge/mysql-^8.0-blue" />
-    <img src="https://img.shields.io/badge/postgresql-^10.0-blue" />    
 <p>
 
 # Koillection
 
 Koillection is a self-hosted collection manager created to keep track of physical (mostly) collections of any kind like books, DVDs, stamps, games... 
-As Koillection is meant to be used for any kind of collections, it doesn't support automatic download of metadata. But it offer the possibility to add your own metadata freely.
+As Koillection is meant to be used for any kind of collections, it doesn't support automatic download of metadata. But it offers the possibility to add your own metadata freely.
     
 You can find detailled informations in the <a href="https://github.com/koillection/koillection/wiki">wiki</a> (under construction)
 
