@@ -1,11 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.3.15] / 2022-01-07
+## [1.3.15] / 2022-10-07
 ### Features
 - Support for MariaDB (benjaminjonard)
 
-## [1.3.14] / 2022-01-01
+## [1.3.14] / 2022-10-01
 :warning: If after this update you have incoherent collections/items counters, head to the Administration page and click on "Refresh caches" 
 
 ### Features
