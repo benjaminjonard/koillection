@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import { Modal } from '@materializecss/materialize';
 import '../../styles/modal.css'
 

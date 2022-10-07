@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import Translator from "bazinga-translator";
 import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
 

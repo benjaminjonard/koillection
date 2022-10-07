@@ -2,8 +2,8 @@ name: Koillection CI
 on:
   workflow_dispatch:
   pull_request:
-    branches:
-      - "main"
+  push:
+  release:
 
 jobs:
   security_checker:
@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: cache-db
         with:
           path: ~/.symfony/cache
           key: db
-      - uses: symfonycorp/security-checker-action@v3
+      - uses: symfonycorp/security-checker-action@v4
 
   doctrine_schema_validator:
     name: Doctrine schema validator
@@ -79,7 +79,7 @@ jobs:
       - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env"
 
       # Setup yarn
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
       - uses: actions/cache@v3
@@ -206,7 +206,7 @@ jobs:
       - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
       - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.postgres }}|i" ".env"
       # Setup yarn
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
       - uses: actions/cache@v3

@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import Croppie from 'croppie'
 import '../node_modules/croppie/croppie.css';
 
