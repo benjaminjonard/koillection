@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14dfab25a8bdb2363c844de5639564a4",
+    "content-hash": "2e07c6805c410c57e4294946c34fde1d",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "b1351c69da2ab2e45aca61d9ea6f94222bc61a01"
+                "reference": "66d30970ad3449e673b824dfbe37d062599022f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/b1351c69da2ab2e45aca61d9ea6f94222bc61a01",
-                "reference": "b1351c69da2ab2e45aca61d9ea6f94222bc61a01",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/66d30970ad3449e673b824dfbe37d062599022f9",
+                "reference": "66d30970ad3449e673b824dfbe37d062599022f9",
                 "shasum": ""
             },
             "require": {
@@ -162,7 +162,7 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v3.0.1"
+                "source": "https://github.com/api-platform/core/tree/v3.0.2"
             },
             "funding": [
                 {
@@ -170,7 +170,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-29T14:02:53+00:00"
+            "time": "2022-10-07T11:34:55+00:00"
         },
         {
             "name": "composer/semver",
