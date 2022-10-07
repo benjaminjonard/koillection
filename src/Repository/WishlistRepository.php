@@ -30,37 +30,15 @@ class WishlistRepository extends ServiceEntityRepository
 
     public function findAllExcludingItself(Wishlist $wishlist): array
     {
-        $id = $wishlist->getId();
         if (null === $wishlist->getCreatedAt()) {
             return $this->findAll();
         }
 
-        $id = "'".$id."'";
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('id', 'id');
-
-        $table = $this->_em->getClassMetadata(Wishlist::class)->getTableName();
-
-        $sql = "
-            WITH RECURSIVE children AS (
-                SELECT w1.id, w1.parent_id
-                FROM {$table} w1     
-                WHERE w1.id = {$id}
-                UNION
-                SELECT w2.id, w2.parent_id
-                FROM {$table} w2
-                INNER JOIN children ch1 ON ch1.id = w2.parent_id
-            ) SELECT id FROM children ch2
-        ";
-
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), 'id');
-
         return $this
             ->createQueryBuilder('w')
             ->orderBy('w.name', Criteria::ASC)
-            ->where('w NOT IN  (:excluded)')
-            ->setParameter('excluded', $excluded)
+            ->where('w != :wishlist')
+            ->setParameter('wishlist', $wishlist)
             ->getQuery()
             ->getResult()
         ;

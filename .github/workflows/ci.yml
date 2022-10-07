@@ -101,6 +101,70 @@ jobs:
       ## Run tests
       - run: php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit
 
+  phpunit_mariadb:
+    name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mariadb: [ 10 ]
+    services:
+      mysql:
+        image: mariadb:${{ matrix.mariadb }}
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+    steps:
+      -   uses: actions/checkout@v3
+
+      # Setup php env and install dependencies
+      -   uses: shivammathur/setup-php@v2
+          with:
+            php-version: 8.1
+            extensions: ctype, fileinfo, gd, iconv, intl, json
+      -   uses: actions/cache@v3
+          id: cache-composer
+          with:
+            path: vendor
+            key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+            restore-keys: |
+              ${{ runner.os }}-php-
+      -   run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      # Setup environment variables
+      -   run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
+      -   run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env"
+      -   run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
+      -   run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
+      -   run: sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env"
+      -   run: sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
+      -   run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
+      -   run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mariadb }}|i" ".env"
+
+      # Setup yarn
+      -   uses: actions/setup-node@v2
+          with:
+            node-version: 14
+      -   uses: actions/cache@v3
+          id: cache-node-modules
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
+            restore-keys: |
+              ${{ runner.os }}-yarn-
+      -   run: bin/console bazinga:js-translation:dump assets/js --format=js
+      -   run: (cd assets && yarn install)
+      -   run: (cd assets && yarn dev)
+
+      # Setup test environment
+      -   run: bin/console lexik:jwt:generate-keypair --env=test
+      -   run: bin/console doctrine:database:create --env=test
+      -   run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
+
+      ## Run tests
+      -   run: php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit
+
   phpunit_postgres:
     name: PHPUnit tests with Postgres ${{ matrix.postgres }}
     runs-on: ubuntu-latest

@@ -33,37 +33,15 @@ class CollectionRepository extends ServiceEntityRepository
 
     public function findAllExcludingItself(Collection $collection): array
     {
-        $id = $collection->getId();
         if (null === $collection->getCreatedAt()) {
             return $this->findAll();
         }
 
-        $id = "'".$id."'";
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('id', 'id');
-
-        $table = $this->_em->getClassMetadata(Collection::class)->getTableName();
-
-        $sql = "
-            WITH RECURSIVE children AS (
-                SELECT c1.id, c1.parent_id
-                FROM {$table} c1     
-                WHERE c1.id = {$id}
-                UNION
-                SELECT c2.id, c2.parent_id
-                FROM {$table} c2
-                INNER JOIN children ch1 ON ch1.id = c2.parent_id
-            ) SELECT id FROM children ch2
-        ";
-
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), 'id');
-
         return $this
             ->createQueryBuilder('c')
             ->orderBy('c.title', Criteria::ASC)
-            ->where('c NOT IN  (:excluded)')
-            ->setParameter('excluded', $excluded)
+            ->where('c != :collection')
+            ->setParameter('collection', $collection)
             ->getQuery()
             ->getResult()
         ;

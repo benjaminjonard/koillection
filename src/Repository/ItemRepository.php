@@ -114,37 +114,30 @@ class ItemRepository extends ServiceEntityRepository
 
     public function findAllByCollection(Collection $collection): array
     {
-        // First we query all items id recursvely
-        $id = "'".$collection->getId()."'";
-        $sqlRecursive = "
-            SELECT i.id as id
-            FROM koi_item i
-            WHERE collection_id in (
-                WITH RECURSIVE children AS (
-                    SELECT c1.id, c1.parent_id, c1.visibility
-                    FROM koi_collection c1
-                    WHERE c1.id = {$id}
-                    UNION
-                    SELECT c2.id, c2.parent_id, c2.visibility
-                    FROM koi_collection c2
-                    INNER JOIN children ch1 ON ch1.id = c2.parent_id
-              ) SELECT id FROM children ch2
-            )
-        ";
+        $collectionsIds[] = $collection->getId();
+        $parentIds[] = $collection;
 
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('id', 'id');
-
-        $ids = [];
-        foreach ($this->getEntityManager()->createNativeQuery($sqlRecursive, $rsm)->getResult() as $result) {
-            $ids[] = $result['id'];
+        while ($parentIds) {
+            $results = $this->_em
+                ->createQueryBuilder()
+                ->select('c.id')
+                ->from(Collection::class, 'c')
+                ->where('c.parent in (:parentsIds)')
+                ->setParameter('parentsIds', $parentIds)
+                ->getQuery()
+                ->getArrayResult()
+            ;
+            $parentIds = array_map(function (array $result) {
+                return $result['id'];
+            }, $results);
+            $collectionsIds = array_merge($collectionsIds, $parentIds);
         }
 
         $qb = $this
             ->createQueryBuilder('i')
             ->select('partial i.{id, name, image, imageSmallThumbnail, finalVisibility}')
-            ->where('i.id IN (:ids)')
-            ->setParameter('ids', $ids)
+            ->where('i.collection IN (:collectionsIds)')
+            ->setParameter('collectionsIds', $collectionsIds)
         ;
 
         if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayConfiguration()->getDisplayMode()) {
@@ -154,17 +147,6 @@ class ItemRepository extends ServiceEntityRepository
                 ->setParameter('labels', $collection->getItemsDisplayConfiguration()->getColumns())
             ;
         }
-
-        return $qb->getQuery()->getResult();
-    }
-
-    public function findItemsByCollectionId(string $id): iterable
-    {
-        $qb = $this
-            ->createQueryBuilder('i')
-            ->where('i.collection = :id')
-            ->setParameter('id', $id)
-        ;
 
         return $qb->getQuery()->getResult();
     }

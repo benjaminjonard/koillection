@@ -20,37 +20,15 @@ class AlbumRepository extends ServiceEntityRepository
 
     public function findAllExcludingItself(Album $album): array
     {
-        $id = $album->getId();
         if (null === $album->getCreatedAt()) {
             return $this->findAll();
         }
 
-        $id = "'".$id."'";
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('id', 'id');
-
-        $table = $this->_em->getClassMetadata(Album::class)->getTableName();
-
-        $sql = "
-            WITH RECURSIVE children AS (
-                SELECT a1.id, a1.parent_id
-                FROM {$table} a1     
-                WHERE a1.id = {$id}
-                UNION
-                SELECT a2.id, a2.parent_id
-                FROM {$table} a2
-                INNER JOIN children ch1 ON ch1.id = a2.parent_id
-            ) SELECT id FROM children ch2
-        ";
-
-        $excluded = array_column($this->_em->createNativeQuery($sql, $rsm)->getResult(), 'id');
-
         return $this
             ->createQueryBuilder('a')
             ->orderBy('a.title', Criteria::ASC)
-            ->where('a NOT IN  (:excluded)')
-            ->setParameter('excluded', $excluded)
+            ->where('a != :album')
+            ->setParameter('album', $album)
             ->getQuery()
             ->getResult()
         ;
