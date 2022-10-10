@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "213c71c8d08ece84e28a5d6d3f608ee5",
+    "content-hash": "e7787d1e59c6e8c1d9b754965b58aaac",
     "packages": [
         {
             "name": "api-platform/core",
@@ -9874,6 +9874,50 @@
             "time": "2022-03-15T21:29:03+00:00"
         },
         {
+            "name": "phpstan/phpdoc-parser",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpdoc-parser.git",
+                "reference": "981cc368a216c988e862a75e526b6076987d1b50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/981cc368a216c988e862a75e526b6076987d1b50",
+                "reference": "981cc368a216c988e862a75e526b6076987d1b50",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^1.5",
+                "phpstan/phpstan-strict-rules": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "symfony/process": "^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\PhpDocParser\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPDoc parser with support for nullable, intersection and generic types",
+            "support": {
+                "issues": "https://github.com/phpstan/phpdoc-parser/issues",
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.5.1"
+            },
+            "time": "2022-05-05T11:32:40+00:00"
+        },
+        {
             "name": "phpstan/phpstan",
             "version": "1.8.7",
             "source": {
@@ -12401,32 +12445,33 @@
         },
         {
             "name": "weirdan/doctrine-psalm-plugin",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-doctrine.git",
-                "reference": "93fa799fa43923302481a08d588fdb80689f5d69"
+                "reference": "74c5deefff93b51c14ce1611479f60651433fb02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-doctrine/zipball/93fa799fa43923302481a08d588fdb80689f5d69",
-                "reference": "93fa799fa43923302481a08d588fdb80689f5d69",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-doctrine/zipball/74c5deefff93b51c14ce1611479f60651433fb02",
+                "reference": "74c5deefff93b51c14ce1611479f60651433fb02",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^1.4 || ^2.0 || ^3.0",
                 "php": "^7.2 || ^8",
-                "vimeo/psalm": "^4.9"
+                "phpstan/phpdoc-parser": "~1.5.0",
+                "vimeo/psalm": "^4.28"
             },
             "conflict": {
-                "doctrine/collections": "<1.6",
+                "doctrine/collections": "<1.8",
                 "doctrine/orm": "<2.6",
                 "doctrine/persistence": "<2.0"
             },
             "require-dev": {
                 "codeception/codeception": "^4.0",
                 "doctrine/coding-standard": "^9.0",
-                "doctrine/collections": "^1.0",
+                "doctrine/collections": "^1.8 || ^2.0",
                 "doctrine/doctrine-bundle": "^1.11 || ^2.0",
                 "doctrine/orm": "^2.6",
                 "doctrine/persistence": "^2.0",
@@ -12473,9 +12518,9 @@
             ],
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-doctrine/issues",
-                "source": "https://github.com/psalm/psalm-plugin-doctrine/tree/v2.3.0"
+                "source": "https://github.com/psalm/psalm-plugin-doctrine/tree/v2.4.0"
             },
-            "time": "2022-03-03T17:56:04+00:00"
+            "time": "2022-10-09T21:07:49+00:00"
         }
     ],
     "aliases": [],
