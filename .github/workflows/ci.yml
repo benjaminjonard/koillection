@@ -143,7 +143,7 @@ jobs:
       -   run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mariadb }}|i" ".env"
 
       # Setup yarn
-      -   uses: actions/setup-node@v2
+      -   uses: actions/setup-node@v3
           with:
             node-version: 14
       -   uses: actions/cache@v3
