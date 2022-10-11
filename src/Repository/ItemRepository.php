@@ -183,7 +183,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findOneWithRelatedItemsByUser(User $user)
+    public function findOneWithRelatedItemsByUser(User $user): ?Item
     {
         return $this
             ->createQueryBuilder('i')
