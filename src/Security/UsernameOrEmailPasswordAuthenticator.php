@@ -31,9 +31,9 @@ class UsernameOrEmailPasswordAuthenticator extends AbstractLoginFormAuthenticato
 
     public function authenticate(Request $request): Passport
     {
-        $login = $request->request->get('_login');
-        $password = $request->request->get('_password');
-        $csrfToken = $request->request->get('_csrf_token');
+        $login = $request->request->get('_login', '');
+        $password = $request->request->get('_password', '');
+        $csrfToken = $request->request->get('_csrf_token', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $login);
 
