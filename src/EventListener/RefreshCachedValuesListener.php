@@ -52,7 +52,7 @@ class RefreshCachedValuesListener
             }
         }
 
-        foreach ($uow->getScheduledEntityInsertions() as $entity) {
+        foreach ($uow->getScheduledEntityDeletions() as $entity) {
             $this->refreshParentEntities($entity);
         }
     }

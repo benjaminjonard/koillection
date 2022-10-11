@@ -21,6 +21,7 @@ use App\Service\FeatureChecker;
 use App\Service\RefreshCachedValuesQueue;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -61,14 +62,14 @@ abstract class AbstractController extends SymfonyAbstractController
     protected function render(string $view, array $parameters = [], Response $response = null): Response
     {
         $this->refreshCachedValuesQueue->process();
-        $content = $this->renderView($view, $parameters);
 
-        if (null === $response) {
-            $response = new Response();
-        }
+        return parent::render($view, $parameters, $response);
+    }
 
-        $response->setContent($content);
+    protected function redirectToRoute(string $route, array $parameters = [], int $status = 302): RedirectResponse
+    {
+        $this->refreshCachedValuesQueue->process();
 
-        return $response;
+        return parent::redirectToRoute($route, $parameters, $status);
     }
 }
