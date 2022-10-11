@@ -187,7 +187,7 @@
         {% set cancelUrl = path('app_collection_show', {id: collection.id}) %}
     {% endif %}
 
-    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+    <button name="submit" type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
     <a href="{{ cancelUrl }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
 </div>
 {{ form_end(form) }}

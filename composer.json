@@ -63,6 +63,8 @@
         "willdurand/js-translation-bundle": "dev-master"
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^7.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "3.11.0",
         "hautelook/alice-bundle": "2.11.0",
         "justinrainbow/json-schema": "5.2.12",
@@ -78,7 +80,8 @@
         "symfony/var-dumper": "6.1.5",
         "symfony/web-profiler-bundle": "6.1.5",
         "vimeo/psalm": "4.28.0",
-        "weirdan/doctrine-psalm-plugin": "2.4.0"
+        "weirdan/doctrine-psalm-plugin": "2.4.0",
+        "zenstruck/foundry": "^1.22"
     },
     "repositories": [
         {

@@ -48,7 +48,7 @@ class UserController extends AbstractController
             $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.user_added', ['user' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
 
-            return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
+            return $this->redirectToRoute('app_admin_user_index');
         }
 
         return $this->render('App/Admin/User/add.html.twig', [

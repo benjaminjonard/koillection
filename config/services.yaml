@@ -57,9 +57,6 @@ services:
     App\EventListener\SeenListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response}
-    App\EventListener\RefreshCachedValuesQueueListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.response, priority: 5 }
 
     App\EventListener\AccessDeniedListener:
         tags:
