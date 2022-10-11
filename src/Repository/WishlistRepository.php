@@ -38,7 +38,7 @@ class WishlistRepository extends ServiceEntityRepository
             ->createQueryBuilder('w')
             ->orderBy('w.name', Criteria::ASC)
             ->where('w != :wishlist')
-            ->setParameter('wishlist', $wishlist)
+            ->setParameter('wishlist', $wishlist->getId())
             ->getQuery()
             ->getResult()
         ;

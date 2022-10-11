@@ -8,6 +8,7 @@ use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -65,6 +66,7 @@ class DatumRepository extends ServiceEntityRepository
         $cast = match ($this->_em->getConnection()->getDatabasePlatform()->getName()) {
             'postgresql' => 'DOUBLE PRECISION',
             'mysql' => 'DECIMAL(12, 2)',
+            default => throw new Exception(),
         };
 
         $rsm = new ResultSetMapping();

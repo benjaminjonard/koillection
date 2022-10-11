@@ -41,7 +41,7 @@ class CollectionRepository extends ServiceEntityRepository
             ->createQueryBuilder('c')
             ->orderBy('c.title', Criteria::ASC)
             ->where('c != :collection')
-            ->setParameter('collection', $collection)
+            ->setParameter('collection', $collection->getId())
             ->getQuery()
             ->getResult()
         ;

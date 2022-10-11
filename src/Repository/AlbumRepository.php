@@ -28,7 +28,7 @@ class AlbumRepository extends ServiceEntityRepository
             ->createQueryBuilder('a')
             ->orderBy('a.title', Criteria::ASC)
             ->where('a != :album')
-            ->setParameter('album', $album)
+            ->setParameter('album', $album->getId())
             ->getQuery()
             ->getResult()
         ;
