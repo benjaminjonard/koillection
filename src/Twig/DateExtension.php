@@ -14,7 +14,6 @@ class DateExtension extends AbstractExtension
         return [
             new TwigFilter('timeAgo', [DateRuntime::class, 'timeAgo']),
             new TwigFilter('timeDiff', [DateRuntime::class, 'timeDiff']),
-            new TwigFilter('dateAgo', [DateRuntime::class, 'dateAgo']),
         ];
     }
 }
