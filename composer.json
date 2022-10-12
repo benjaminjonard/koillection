@@ -66,7 +66,6 @@
         "dama/doctrine-test-bundle": "^7.1",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "3.11.0",
-        "hautelook/alice-bundle": "2.11.0",
         "justinrainbow/json-schema": "5.2.12",
         "phpunit/phpunit": "9.5.25",
         "psalm/plugin-phpunit": "0.17.0",

@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Datum;
+use App\Enum\DatumTypeEnum;
 use App\Repository\DatumRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -29,28 +30,18 @@ use Zenstruck\Foundry\Proxy;
  */
 final class DatumFactory extends ModelFactory
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
-    }
-
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'type' => self::faker()->text(),
+            'label' => self::faker()->word(),
+            'type' => self::faker()->randomElement(DatumTypeEnum::TYPES),
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }
 
     protected function initialize(): self
     {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-            // ->afterInstantiate(function(Datum $datum): void {})
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

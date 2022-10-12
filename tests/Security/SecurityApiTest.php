@@ -8,6 +8,7 @@ use Api\Tests\ApiTestCase;
 use App\Entity\Collection;
 use App\Factory\CollectionFactory;
 use App\Factory\UserFactory;
+use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 
 class SecurityApiTest extends ApiTestCase
@@ -52,6 +53,6 @@ class SecurityApiTest extends ApiTestCase
         ]]);
 
         // Assert
-        $this->assertEquals($response->getStatusCode(), 401);
+        $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
     }
 }

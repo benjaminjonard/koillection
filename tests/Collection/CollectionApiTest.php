@@ -6,8 +6,13 @@ namespace App\Tests\Collection;
 
 use Api\Tests\ApiTestCase;
 use App\Entity\Collection;
+use App\Entity\Datum;
+use App\Entity\Item;
 use App\Factory\CollectionFactory;
+use App\Factory\DatumFactory;
+use App\Factory\ItemFactory;
 use App\Factory\UserFactory;
+use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 
 class CollectionApiTest extends ApiTestCase
@@ -31,134 +36,162 @@ class CollectionApiTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Collection::class);
     }
 
-    /*public function testGetCollection(): void
+    public function test_get_collection(): void
     {
-        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromResource($collection);
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
 
-        $this->createClientWithCredentials()->request('GET', $iri);
+        // Act
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId());
 
+        // Assert
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri,
+            'id' => $collection->getId()
         ]);
     }
 
-    public function testGetCollectionChildren(): void
+    public function test_get_collection_children(): void
     {
-        $criteria = (new Criteria())
-            ->where(Criteria::expr()->neq('parent', null))
-            ->andWhere(Criteria::expr()->eq('owner', $this->user))
-        ;
-        $collection = $this->em->getRepository(Collection::class)->matching($criteria)[0]->getParent();
-        $iri = $this->iriConverter->getIriFromResource($collection);
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        CollectionFactory::createMany(3, ['parent' => $collection, 'owner' => $user]);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/children');
+        // Act
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/children');
         $data = $response->toArray();
 
+        // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame(1, $data['hydra:totalItems']);
-        $this->assertCount(1, $data['hydra:member']);
+        $this->assertSame(3, $data['hydra:totalItems']);
+        $this->assertCount(3, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Collection::class);
     }
 
-    public function testGetCollectionParent(): void
+    public function test_get_collection_parent(): void
     {
-        $criteria = (new Criteria())
-            ->where(Criteria::expr()->neq('parent', null))
-            ->andWhere(Criteria::expr()->eq('owner', $this->user))
-        ;
-        $collection = $this->em->getRepository(Collection::class)->matching($criteria)[0];
-        $iri = $this->iriConverter->getIriFromResource($collection);
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $parentCollection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['parent' => $parentCollection, 'owner' => $user]);
 
-        $this->createClientWithCredentials()->request('GET', $iri.'/parent');
+        // Act
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/parent');
 
+        // Assert
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Collection::class);
+        $this->assertJsonContains([
+            'id' => $parentCollection->getId()
+        ]);
     }
 
-    public function testGetCollectionItems(): void
+    public function test_get_collection_items(): void
     {
-        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromResource($collection);
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/items');
+        // Act
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/items');
         $data = $response->toArray();
 
+        // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame(5, $data['hydra:totalItems']);
-        $this->assertCount(5, $data['hydra:member']);
+        $this->assertSame(3, $data['hydra:totalItems']);
+        $this->assertCount(3, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Item::class);
     }
 
-    public function testGetCollectionData(): void
+    public function test_get_collection_data(): void
     {
-        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromResource($collection);
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        DatumFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
-        $response = $this->createClientWithCredentials()->request('GET', $iri.'/data');
+        // Act
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/data');
         $data = $response->toArray();
 
+        // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame(10, $data['hydra:totalItems']);
-        $this->assertCount(10, $data['hydra:member']);
+        $this->assertSame(3, $data['hydra:totalItems']);
+        $this->assertCount(3, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
 
-    public function testPostCollection(): void
+    public function test_post_collection(): void
     {
-        $this->createClientWithCredentials()->request('POST', '/api/collections', ['json' => [
-            'title' => 'New collection',
-        ],
-        ]);
+        // Arrange
+        $user = UserFactory::createOne()->object();
 
-        $this->assertResponseIsSuccessful();
-        $this->assertJsonContains([
-            'title' => 'New collection',
-        ]);
-    }
-
-    public function testPutCollection(): void
-    {
-        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromResource($collection);
-
-        $this->createClientWithCredentials()->request('PUT', $iri, ['json' => [
-            'title' => 'updated title with PUT',
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/collections', ['json' => [
+            'title' => 'Frieren',
         ]]);
 
+        // Assert
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri,
-            'title' => 'updated title with PUT',
+            'title' => 'Frieren',
         ]);
     }
 
-    public function testPatchCollection(): void
+    public function test_put_collection(): void
     {
-        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromResource($collection);
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => null, 'owner' => $user]);
 
-        $this->createClientWithCredentials()->request('PATCH', $iri, [
+        // Act
+        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
+            'title' => 'Berserk',
+        ]]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            'id' => $collection->getId(),
+            'title' => 'Berserk',
+        ]);
+    }
+
+    public function test_patch_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => null, 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/collections/'.$collection->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
-                'title' => 'updated title with PATCH',
+                'title' => 'Berserk',
             ],
         ]);
 
+        // Assert
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => $iri,
-            'title' => 'updated title with PATCH',
+            'id' => $collection->getId(),
+            'title' => 'Berserk',
         ]);
     }
 
-    public function testDeleteCollection(): void
+    public function test_delete_collection(): void
     {
-        $collection = $this->em->getRepository(Collection::class)->findBy(['owner' => $this->user], [], 1)[0];
-        $iri = $this->iriConverter->getIriFromResource($collection);
-        $this->createClientWithCredentials()->request('DELETE', $iri);
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => null, 'owner' => $user]);
 
+        // Act
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/collections/'.$collection->getId());
+
+        // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
-    }*/
+    }
 }

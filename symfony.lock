@@ -143,19 +143,6 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
-    "hautelook/alice-bundle": {
-        "version": "2.10",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "2.2",
-            "ref": "c84e4f2b9d7f436d7d52e8369230b393367607ec"
-        },
-        "files": [
-            "config/packages/hautelook_alice.yaml",
-            "fixtures/.gitignore"
-        ]
-    },
     "justinrainbow/json-schema": {
         "version": "5.2.11"
     },
@@ -197,18 +184,6 @@
     },
     "namshi/jose": {
         "version": "7.2.3"
-    },
-    "nelmio/alice": {
-        "version": "3.10",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "3.3",
-            "ref": "42b52d2065dc3fde27912d502c18ca1926e35ae2"
-        },
-        "files": [
-            "config/packages/nelmio_alice.yaml"
-        ]
     },
     "nelmio/cors-bundle": {
         "version": "2.2",
@@ -634,15 +609,6 @@
     },
     "symfony/yaml": {
         "version": "v5.0.2"
-    },
-    "theofidry/alice-data-fixtures": {
-        "version": "1.5",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
-        }
     },
     "twig/extra-bundle": {
         "version": "v3.0.3"

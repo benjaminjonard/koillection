@@ -17,8 +17,6 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
 
     protected ?EntityManagerInterface $em = null;
 
-    protected ?IriConverterInterface $iriConverter = null;
-
     protected function setUp(): void
     {
         self::bootKernel();
