@@ -66,6 +66,9 @@ services:
     App\EventListener\RefreshCachedValuesListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush, lazy: true }
+    App\EventListener\RefreshCachedValuesQueueListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, priority: 5 }
 
     App\EventListener\TimestampableListener:
         tags:
