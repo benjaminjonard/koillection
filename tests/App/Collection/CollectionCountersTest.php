@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Collection;
+namespace App\Tests\App\Collection;
 
 use App\Enum\RoleEnum;
 use App\Factory\CollectionFactory;
@@ -29,7 +29,7 @@ class CollectionCountersTest extends WebTestCase
     public function test_add_child_collection(): void
     {
         // Arrange
-        $collectionLevel1 = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user]);
+        $collectionLevel1 = CollectionFactory::createOne(['owner' => $this->user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $this->user]);
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $this->user]);
 
@@ -62,7 +62,7 @@ class CollectionCountersTest extends WebTestCase
         ItemFactory::createMany(3, ['collection' => $collectionLevel4, 'owner' => $this->user]);
 
         // Act
-        $newParentCollection = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user]);
+        $newParentCollection = CollectionFactory::createOne(['owner' => $this->user]);
         $collectionLevel3->setParent($newParentCollection->object());
         $collectionLevel3->save();
         $this->refreshCachedValuesQueue->process();
@@ -92,7 +92,7 @@ class CollectionCountersTest extends WebTestCase
     public function test_delete_child_collection(): void
     {
         // Arrange
-        $collectionLevel1 = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user]);
+        $collectionLevel1 = CollectionFactory::createOne(['owner' => $this->user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel1, 'owner' => $this->user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $this->user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel2, 'owner' => $this->user]);

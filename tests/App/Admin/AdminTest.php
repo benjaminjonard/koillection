@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Admin;
+namespace App\Tests\App\Admin;
 
 use App\Enum\RoleEnum;
 use App\Factory\UserFactory;

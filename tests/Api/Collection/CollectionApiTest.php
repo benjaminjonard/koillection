@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Collection;
+namespace App\Tests\Api\Collection;
 
 use Api\Tests\ApiTestCase;
 use App\Entity\Collection;
@@ -23,7 +23,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        CollectionFactory::createMany(10, ['parent' => null, 'owner' => $user]);
+        CollectionFactory::createMany(3, ['owner' => $user]);
 
         // Act
         $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections');
@@ -31,8 +31,8 @@ class CollectionApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame(10, $data['hydra:totalItems']);
-        $this->assertCount(10, $data['hydra:member']);
+        $this->assertSame(3, $data['hydra:totalItems']);
+        $this->assertCount(3, $data['hydra:member']);
         $this->assertMatchesResourceCollectionJsonSchema(Collection::class);
     }
 
@@ -40,13 +40,14 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
         $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Collection::class);
         $this->assertJsonContains([
             'id' => $collection->getId()
         ]);
@@ -56,7 +57,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
         CollectionFactory::createMany(3, ['parent' => $collection, 'owner' => $user]);
 
         // Act
@@ -74,7 +75,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $parentCollection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        $parentCollection = CollectionFactory::createOne(['owner' => $user]);
         $collection = CollectionFactory::createOne(['parent' => $parentCollection, 'owner' => $user]);
 
         // Act
@@ -92,7 +93,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
         // Act
@@ -110,7 +111,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
         DatumFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
         // Act
@@ -136,6 +137,7 @@ class CollectionApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Collection::class);
         $this->assertJsonContains([
             'title' => 'Frieren',
         ]);
@@ -145,7 +147,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
         $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
@@ -154,6 +156,7 @@ class CollectionApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Collection::class);
         $this->assertJsonContains([
             'id' => $collection->getId(),
             'title' => 'Berserk',
@@ -164,7 +167,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
         $this->createClientWithCredentials($user)->request('PATCH', '/api/collections/'.$collection->getId(), [
@@ -176,6 +179,7 @@ class CollectionApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Collection::class);
         $this->assertJsonContains([
             'id' => $collection->getId(),
             'title' => 'Berserk',
@@ -186,7 +190,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => null, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
         $this->createClientWithCredentials($user)->request('DELETE', '/api/collections/'.$collection->getId());

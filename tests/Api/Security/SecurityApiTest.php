@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Security;
+namespace App\Tests\Api\Security;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Collection;
-use App\Factory\CollectionFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;

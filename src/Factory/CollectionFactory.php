@@ -33,6 +33,7 @@ final class CollectionFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
+            'parent' => null,
             'title' => self::faker()->word(),
             'seenCounter' => self::faker()->randomNumber(),
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,

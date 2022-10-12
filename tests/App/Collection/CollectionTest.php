@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Collection;
+namespace App\Tests\App\Collection;
 
 use App\Enum\RoleEnum;
 use App\Enum\VisibilityEnum;
@@ -28,7 +28,7 @@ class CollectionTest extends WebTestCase
     {
         // Arrange
         $this->client->loginUser($this->user1);
-        CollectionFactory::createMany(3, ['parent' => null, 'owner' => $this->user1]);
+        CollectionFactory::createMany(3, ['owner' => $this->user1]);
 
         // Act
         $crawler = $this->client->request('GET', '/collections');
@@ -43,7 +43,7 @@ class CollectionTest extends WebTestCase
     {
         // Arrange
         $this->client->loginUser($this->user1);
-        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user1]);
+        $collection = CollectionFactory::createOne(['owner' => $this->user1]);
 
         // Act
         $crawler = $this->client->request('GET', '/collections/' . $collection->getId());
@@ -73,7 +73,7 @@ class CollectionTest extends WebTestCase
     {
         // Arrange
         $this->client->loginUser($this->user1);
-        $collection = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user1]);
+        $collection = CollectionFactory::createOne(['owner' => $this->user1]);
 
         // Act
         $this->client->request('GET', '/collections/' . $collection->getId() . '/edit');

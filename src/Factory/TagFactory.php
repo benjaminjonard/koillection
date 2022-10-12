@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Tag;
+use App\Enum\VisibilityEnum;
 use App\Repository\TagRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -42,7 +43,7 @@ final class TagFactory extends ModelFactory
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'label' => self::faker()->text(),
             'seenCounter' => self::faker()->randomNumber(),
-            'visibility' => self::faker()->text(),
+            'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }

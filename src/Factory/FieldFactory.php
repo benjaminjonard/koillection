@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Field;
+use App\Enum\DatumTypeEnum;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 
@@ -26,29 +27,18 @@ use Zenstruck\Foundry\Proxy;
  */
 final class FieldFactory extends ModelFactory
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
-    }
-
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'name' => self::faker()->text(),
+            'type' => self::faker()->randomElement(DatumTypeEnum::TYPES),
             'position' => self::faker()->randomNumber(),
-            'type' => self::faker()->text(),
         ];
     }
 
     protected function initialize(): self
     {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-            // ->afterInstantiate(function(Field $field): void {})
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

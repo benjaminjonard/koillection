@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Photo;
+use App\Enum\VisibilityEnum;
 use App\Repository\PhotoRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -29,30 +30,19 @@ use Zenstruck\Foundry\Proxy;
  */
 final class PhotoFactory extends ModelFactory
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
-    }
-
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'title' => self::faker()->text(),
-            'visibility' => self::faker()->text(),
-            'finalVisibility' => self::faker()->text(),
+            'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
+            'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }
 
     protected function initialize(): self
     {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-            // ->afterInstantiate(function(Photo $photo): void {})
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

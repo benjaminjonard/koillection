@@ -35,7 +35,7 @@ final class AlbumFactory extends ModelFactory
         return [
             'title' => self::faker()->word(),
             'seenCounter' => self::faker()->randomNumber(),
-            'visibility' => self::faker()->randomElement(VisibilityEnum::VISIBILITIES),
+            'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }
