@@ -58,18 +58,4 @@ abstract class AbstractController extends SymfonyAbstractController
             ->getForm()
         ;
     }
-
-    protected function render(string $view, array $parameters = [], Response $response = null): Response
-    {
-        $this->refreshCachedValuesQueue->process();
-
-        return parent::render($view, $parameters, $response);
-    }
-
-    protected function redirectToRoute(string $route, array $parameters = [], int $status = 302): RedirectResponse
-    {
-        $this->refreshCachedValuesQueue->process();
-
-        return parent::redirectToRoute($route, $parameters, $status);
-    }
 }

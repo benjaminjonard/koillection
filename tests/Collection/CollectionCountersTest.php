@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App;
+namespace App\Tests\Collection;
 
 use App\Enum\RoleEnum;
-use App\Enum\VisibilityEnum;
 use App\Factory\CollectionFactory;
 use App\Factory\ItemFactory;
 use App\Factory\UserFactory;
+use App\Service\RefreshCachedValuesQueue;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
 
@@ -18,11 +18,9 @@ class CollectionCountersTest extends WebTestCase
 
     protected function setUp(): void
     {
-        $this->client = static::createClient();
-        $this->client->followRedirects();
+        $this->refreshCachedValuesQueue = $this->getContainer()->get(RefreshCachedValuesQueue::class);
 
         $this->user = UserFactory::createOne(['username' => 'user', 'email' => 'user@test.com', 'roles' => [RoleEnum::ROLE_USER]])->object();
-        $this->user2 = UserFactory::createOne(['username' => 'user2', 'email' => 'user2@test.com','roles' => [RoleEnum::ROLE_USER]])->object();
     }
 
     /*
@@ -30,20 +28,18 @@ class CollectionCountersTest extends WebTestCase
      */
     public function test_add_child_collection(): void
     {
-        $this->client->loginUser($this->user);
-
+        // Arrange
         $collectionLevel1 = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $this->user]);
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $this->user]);
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel1->getId());
-        $this->assertEquals('2 collections', $crawler->filter('.nav-pills li')->eq(1)->text());
+        // Act
+        $this->refreshCachedValuesQueue->process();
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel2->getId());
-        $this->assertEquals('1 collection', $crawler->filter('.nav-pills li')->eq(1)->text());
-
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel3->getId());
-        $this->assertEquals('0 collections', $crawler->filter('.nav-pills li')->eq(1)->text());
+        // Assert
+        $this->assertEquals(2, $collectionLevel1->getCachedValues()['counters']['children']);
+        $this->assertEquals(1, $collectionLevel2->getCachedValues()['counters']['children']);
+        $this->assertEquals(0, $collectionLevel3->getCachedValues()['counters']['children']);
     }
 
     /*
@@ -55,9 +51,7 @@ class CollectionCountersTest extends WebTestCase
      */
     public function test_move_child_collection(): void
     {
-        $this->client->loginUser($this->user);
-
-        // Create a 4 level collection nesting, with 3 items in each collection
+        // Arrange
         $collectionLevel1 = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel1, 'owner' => $this->user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $this->user]);
@@ -67,29 +61,27 @@ class CollectionCountersTest extends WebTestCase
         $collectionLevel4 = CollectionFactory::createOne(['parent' => $collectionLevel3, 'owner' => $this->user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel4, 'owner' => $this->user]);
 
-        // We move $collectionLevel3, which contains 1 collection (+ itself) and 6 items
+        // Act
         $newParentCollection = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user]);
         $collectionLevel3->setParent($newParentCollection->object());
+        $collectionLevel3->save();
+        $this->refreshCachedValuesQueue->process();
 
-        $crawler = $this->client->request('GET', '/collections/' . $newParentCollection->getId());
-        $this->assertEquals('6 items', $crawler->filter('.nav-pills li')->eq(0)->text());
-        $this->assertEquals('2 collections', $crawler->filter('.nav-pills li')->eq(1)->text());
+        // Assert
+        $this->assertEquals(6, $newParentCollection->getCachedValues()['counters']['items']);
+        $this->assertEquals(2, $newParentCollection->getCachedValues()['counters']['children']);
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel1->getId());
-        $this->assertEquals('6 items', $crawler->filter('.nav-pills li')->eq(0)->text());
-        $this->assertEquals('1 collection', $crawler->filter('.nav-pills li')->eq(1)->text());
+        $this->assertEquals(6, $collectionLevel1->getCachedValues()['counters']['items']);
+        $this->assertEquals(1, $collectionLevel1->getCachedValues()['counters']['children']);
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel2->getId());
-        $this->assertEquals('3 items', $crawler->filter('.nav-pills li')->eq(0)->text());
-        $this->assertEquals('0 collections', $crawler->filter('.nav-pills li')->eq(1)->text());
+        $this->assertEquals(3, $collectionLevel2->getCachedValues()['counters']['items']);
+        $this->assertEquals(0, $collectionLevel2->getCachedValues()['counters']['children']);
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel3->getId());
-        $this->assertEquals('6 items', $crawler->filter('.nav-pills li')->eq(0)->text());
-        $this->assertEquals('1 collection', $crawler->filter('.nav-pills li')->eq(1)->text());
+        $this->assertEquals(6, $collectionLevel3->getCachedValues()['counters']['items']);
+        $this->assertEquals(1, $collectionLevel3->getCachedValues()['counters']['children']);
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel4->getId());
-        $this->assertEquals('3 items', $crawler->filter('.nav-pills li')->eq(0)->text());
-        $this->assertEquals('0 collections', $crawler->filter('.nav-pills li')->eq(1)->text());
+        $this->assertEquals(3, $collectionLevel4->getCachedValues()['counters']['items']);
+        $this->assertEquals(0, $collectionLevel4->getCachedValues()['counters']['children']);
     }
 
     /*
@@ -99,9 +91,7 @@ class CollectionCountersTest extends WebTestCase
    */
     public function test_delete_child_collection(): void
     {
-        $this->client->loginUser($this->user);
-        
-        // Create a 4 level collection nesting, with 3 items in each collection
+        // Arrange
         $collectionLevel1 = CollectionFactory::createOne(['parent' => null, 'owner' => $this->user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel1, 'owner' => $this->user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $this->user]);
@@ -110,14 +100,16 @@ class CollectionCountersTest extends WebTestCase
         ItemFactory::createMany(3, ['collection' => $collectionLevel3, 'owner' => $this->user]);
         $collectionLevel4 = CollectionFactory::createOne(['parent' => $collectionLevel3, 'owner' => $this->user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel4, 'owner' => $this->user]);
+
+        // Act
         $collectionLevel3->remove();
+        $this->refreshCachedValuesQueue->process();
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel1->getId());
-        $this->assertEquals('6 items', $crawler->filter('.nav-pills li')->eq(0)->text());
-        $this->assertEquals('1 collection', $crawler->filter('.nav-pills li')->eq(1)->text());
+        // Assert
+        $this->assertEquals(6, $collectionLevel1->getCachedValues()['counters']['items']);
+        $this->assertEquals(1, $collectionLevel1->getCachedValues()['counters']['children']);
 
-        $crawler = $this->client->request('GET', '/collections/' . $collectionLevel2->getId());
-        $this->assertEquals('3 items', $crawler->filter('.nav-pills li')->eq(0)->text());
-        $this->assertEquals('0 collections', $crawler->filter('.nav-pills li')->eq(1)->text());
+        $this->assertEquals(3, $collectionLevel2->getCachedValues()['counters']['items']);
+        $this->assertEquals(0, $collectionLevel2->getCachedValues()['counters']['children']);
     }
 }
