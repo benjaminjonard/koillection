@@ -16,90 +16,41 @@ class DateRuntime implements RuntimeExtensionInterface
 
     public function timeAgo(\DateTimeImmutable $ago): string
     {
-        $now = new \DateTimeImmutable();
-        $diff = $now->diff($ago);
+        $parts = $this->getIntervalParts(new \DateTimeImmutable(), $ago);
+        $key = array_key_first($parts);
 
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
+        if ($key) {
+            $time = $this->translator->trans("global.time.{$key}", ['count' => $parts[$key]]);
 
-        $string = [
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-            'h' => 'hour',
-            'i' => 'minute',
-            's' => 'second',
-        ];
-        foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $this->translator->trans("global.time.{$v}", ['count' => $diff->$k]);
-            } else {
-                unset($string[$k]);
-            }
+            return $this->translator->trans('global.time.ago', ['time' => $time]);
+        } else {
+            return $this->translator->trans('global.time.just_now');
         }
-
-        $string = \array_slice($string, 0, 1);
-
-        return $string !== [] ?
-            $this->translator->trans('global.time.ago', ['time' => implode(', ', $string)]) : $this->translator->trans('global.time.just_now');
     }
 
     public function timeDiff(\DateTimeImmutable $start, \DateTimeImmutable $end): string
     {
-        $diff = $start->diff($end);
+        $parts = $this->getIntervalParts($start, $end);
+        $key = array_key_first($parts);
 
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
-
-        $string = [
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-            'h' => 'hour',
-            'i' => 'minute',
-            's' => 'second',
-        ];
-        foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $this->translator->trans("global.time.{$v}", ['count' => $diff->$k]);
-            } else {
-                unset($string[$k]);
-            }
-        }
-
-        $string = \array_slice($string, 0, 1);
-
-        return $string !== [] ? implode(', ', $string) : '';
+        return $this->translator->trans("global.time.{$key}", ['count' => $parts[$key]]);
     }
 
-    public function dateAgo(\DateTimeImmutable $ago): string
+    private function getIntervalParts(\DateTimeImmutable $start, \DateTimeImmutable $end): array
     {
-        $now = new \DateTimeImmutable();
-        $diff = $now->diff($ago);
+        $diff = $start->diff($end);
 
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
+        $week = (int) floor($diff->d / 7);
+        $day = $diff->d - $week * 7;
 
-        $string = [
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-        ];
-
-        foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $this->translator->trans("global.time.{$v}", ['count' => $diff->$k]);
-            } else {
-                unset($string[$k]);
-            }
-        }
-
-        $string = \array_slice($string, 0, 1);
-
-        return $string !== [] ?
-            $this->translator->trans('global.time.ago', ['time' => implode(', ', $string)]) : $this->translator->trans('global.time.today');
+        return array_filter([
+            'year' => $diff->y,
+            'month' => $diff->m,
+            'week' => $week,
+            'day' => $day,
+            'hour' => $diff->h,
+            'minute' => $diff->m,
+            'second' => $diff->s,
+        ]);
     }
 }

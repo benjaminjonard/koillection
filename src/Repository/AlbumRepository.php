@@ -8,7 +8,6 @@ use App\Entity\Album;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class AlbumRepository extends ServiceEntityRepository
@@ -28,7 +27,7 @@ class AlbumRepository extends ServiceEntityRepository
             ->createQueryBuilder('a')
             ->orderBy('a.title', Criteria::ASC)
             ->where('a != :album')
-            ->setParameter('album', $album)
+            ->setParameter('album', $album->getId())
             ->getQuery()
             ->getResult()
         ;

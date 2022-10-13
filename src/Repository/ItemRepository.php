@@ -15,7 +15,6 @@ use App\Model\Search\Search;
 use App\Service\ArraySorter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ItemRepository extends ServiceEntityRepository
@@ -127,7 +126,7 @@ class ItemRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getArrayResult()
             ;
-            $parentIds = array_map(function (array $result) {
+            $parentIds = array_map(static function (array $result) {
                 return $result['id'];
             }, $results);
             $collectionsIds = array_merge($collectionsIds, $parentIds);
@@ -183,7 +182,7 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findOneWithRelatedItemsByUser(User $user)
+    public function findOneWithRelatedItemsByUser(User $user): ?Item
     {
         return $this
             ->createQueryBuilder('i')

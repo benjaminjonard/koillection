@@ -21,7 +21,7 @@
 
 <div class="row center-align datum-btn">
     <label>{{ 'label.add_field'|trans }}</label>
-    <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey"
+    <a id="btn-add-field-text" data-action="additional-data#add" class="waves-effect waves-light btn-small grey"
        data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_TEXT') }}">{{ 'btn.add_text'|trans }}</a>
     <a data-action="additional-data#add" class="waves-effect waves-light btn-small grey"
        data-type="{{ constant('App\\Enum\\DatumTypeEnum::TYPE_NUMBER') }}">{{ 'btn.add_number'|trans }}</a>

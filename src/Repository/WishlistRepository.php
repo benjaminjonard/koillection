@@ -8,7 +8,6 @@ use App\Entity\Wishlist;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class WishlistRepository extends ServiceEntityRepository
@@ -38,7 +37,7 @@ class WishlistRepository extends ServiceEntityRepository
             ->createQueryBuilder('w')
             ->orderBy('w.name', Criteria::ASC)
             ->where('w != :wishlist')
-            ->setParameter('wishlist', $wishlist)
+            ->setParameter('wishlist', $wishlist->getId())
             ->getQuery()
             ->getResult()
         ;

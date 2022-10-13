@@ -57,7 +57,7 @@ class InventoryController extends AbstractController
     #[Route(path: '/inventories/{id}/check', name: 'app_inventory_check', methods: ['POST'])]
     public function check(Request $request, Inventory $inventory, InventoryHandler $inventoryHandler, ManagerRegistry $managerRegistry): Response
     {
-        $inventoryHandler->setCheckedValue($inventory, $request->request->get('id'), $request->request->get('checked'));
+        $inventoryHandler->setCheckedValue($inventory, (string) $request->request->get('id'), (string) $request->request->get('checked'));
         $managerRegistry->getManager()->flush();
 
         return new JsonResponse([

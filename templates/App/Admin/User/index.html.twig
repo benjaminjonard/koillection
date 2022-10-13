@@ -55,7 +55,7 @@
                             <td>{{ getSpaceUsedByUser(user)|bytes }}</td>
                             <td>{{ user.diskSpaceAllowed|bytes }}</td>
                             <td class="hide-on-small-and-down"
-                                title="{{ user.lastDateOfActivity|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}">{{ user.lastDateOfActivity ? user.lastDateOfActivity|dateAgo : '-' }}</td>
+                                title="{{ user.lastDateOfActivity|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}">{{ user.lastDateOfActivity ? user.lastDateOfActivity|timeAgo : '-' }}</td>
                             <td class="table-actions">
                                 <a title="{{ 'tooltip.edit'|trans }}"
                                    href="{{ path('app_admin_user_edit', {id : user.id}) }}">

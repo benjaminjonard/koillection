@@ -64,7 +64,7 @@ final class Version20220916220210 extends AbstractMigration
             $albumId = $album['id'];
             $ownerId = $album['owner_id'];
             $displayMode = !empty($album['photos_display_mode']) ? "'".$album['photos_display_mode']."'" : 'NULL';
-            $sortingDirection =  "'".SortingDirectionEnum::ASCENDING."'";
+            $sortingDirection = "'".SortingDirectionEnum::ASCENDING."'";
 
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, display_mode, sorting_direction, created_at) VALUES ('$id', '$ownerId', $displayMode, $sortingDirection, NOW())");
             $this->addSql("UPDATE koi_album SET photos_display_configuration_id = '$id' WHERE id = '$albumId'");

@@ -24,7 +24,7 @@ class ArraySorter
         iterable $array,
         ?DisplayConfiguration $displayConfiguration = null
     ): array {
-        $direction = $displayConfiguration ? $displayConfiguration->getSortingDirection() : SortingDirectionEnum::ASCENDING;
+        $direction = $displayConfiguration !== null ? $displayConfiguration->getSortingDirection() : SortingDirectionEnum::ASCENDING;
         $type = $displayConfiguration?->getSortingType();
         $property = $displayConfiguration?->getSortingProperty();
 

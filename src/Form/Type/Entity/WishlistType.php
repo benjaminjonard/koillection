@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Wishlist;
-use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use App\Repository\WishlistRepository;

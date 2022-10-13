@@ -11,7 +11,6 @@ use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class CollectionRepository extends ServiceEntityRepository
@@ -41,7 +40,7 @@ class CollectionRepository extends ServiceEntityRepository
             ->createQueryBuilder('c')
             ->orderBy('c.title', Criteria::ASC)
             ->where('c != :collection')
-            ->setParameter('collection', $collection)
+            ->setParameter('collection', $collection->getId())
             ->getQuery()
             ->getResult()
         ;

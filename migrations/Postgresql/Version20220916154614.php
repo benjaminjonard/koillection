@@ -44,7 +44,7 @@ final class Version20220916154614 extends AbstractMigration
             $id = Uuid::v4()->toRfc4122();
             $collectionId = $collection['id'];
             $ownerId = $collection['owner_id'];
-            $label = !empty($collection['children_title']) ? "'".$collection['children_title']."'" : 'NULL' ;
+            $label = !empty($collection['children_title']) ? "'".$collection['children_title']."'" : 'NULL';
 
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, label, display_mode, sorting_direction, created_at) VALUES ('$id', '$ownerId', $label, '$displayMode', '$sortingDirection', NOW())");
             $this->addSql("UPDATE koi_collection SET children_display_configuration_id = '$id' WHERE id = '$collectionId'");
