@@ -117,7 +117,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?array $cachedValues = [];
 
     #[ORM\ManyToOne(targetEntity: Template::class)]
-    #[Groups(['item:read', 'item:write'])]
+    #[Groups(['collection:read', 'collection:write'])]
     private ?Template $itemsDefaultTemplate = null;
 
     #[ORM\Column(type: Types::STRING, length: 10)]

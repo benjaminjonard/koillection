@@ -40,7 +40,7 @@ class DiskUsageCalculator
 
     public function hasEnoughSpaceForUpload(User $user, File $file): void
     {
-        if ($user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize()) {
+        if ((float) $user->getDiskSpaceAllowed() - (float) $this->getSpaceUsedByUser($user) < $file->getSize()) {
             throw new \Exception($this->translator->trans('error.not_enough_space'));
         }
     }

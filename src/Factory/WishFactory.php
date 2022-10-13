@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Wish;
+use App\Enum\VisibilityEnum;
 use App\Repository\WishRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -29,30 +30,20 @@ use Zenstruck\Foundry\Proxy;
  */
 final class WishFactory extends ModelFactory
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
-    }
-
     protected function getDefaults(): array
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'name' => self::faker()->text(),
-            'visibility' => self::faker()->text(),
-            'finalVisibility' => self::faker()->text(),
+            'name' => self::faker()->word(),
+            'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
+            'parentVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
+            'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }
 
     protected function initialize(): self
     {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-            // ->afterInstantiate(function(Wish $wish): void {})
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

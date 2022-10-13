@@ -169,6 +169,7 @@ class ItemApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertJsonContains([
+            'collection' => '/api/collections/' . $collection->getId(),
             'name' => 'Frieren #1',
         ]);
     }

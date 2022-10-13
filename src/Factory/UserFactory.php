@@ -45,7 +45,7 @@ final class UserFactory extends ModelFactory
             'locale' => LocaleEnum::LOCALE_EN,
             'timezone' => self::faker()->timezone(),
             'dateFormat' => self::faker()->randomElement(DateFormatEnum::FORMATS),
-            'diskSpaceAllowed' => self::faker()->randomNumber(),
+            'diskSpaceAllowed' => 536870912,
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'darkModeEnabled' => self::faker()->boolean(),
             'wishlistsFeatureEnabled' => self::faker()->boolean(),

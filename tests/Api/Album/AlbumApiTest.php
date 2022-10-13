@@ -170,7 +170,7 @@ class AlbumApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
+        $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
         $this->createClientWithCredentials($user)->request('DELETE', '/api/albums/'.$album->getId());

@@ -39,8 +39,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     operations: [
         new Get(),
-        new Put(),
-        new Patch(),
         new GetCollection()
     ],
     denormalizationContext: ['groups' => ['user:write']],
@@ -105,9 +103,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Assert\Choice(choices: DateFormatEnum::FORMATS)]
     private string $dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
 
-    #[ORM\Column(type: Types::BIGINT, options: ['default' => 268435456])]
+    #[ORM\Column(type: Types::BIGINT, options: ['default' => 536870912])]
     #[Groups(['user:read'])]
-    private int $diskSpaceAllowed = 536870912;
+    private string $diskSpaceAllowed = '536870912';
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['user:read', 'user:write'])]
@@ -445,12 +443,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getDiskSpaceAllowed(): ?int
+    public function getDiskSpaceAllowed(): ?string
     {
         return $this->diskSpaceAllowed;
     }
 
-    public function setDiskSpaceAllowed(int $diskSpaceAllowed): self
+    public function setDiskSpaceAllowed(string $diskSpaceAllowed): self
     {
         $this->diskSpaceAllowed = $diskSpaceAllowed;
 

@@ -32,7 +32,7 @@ final class TemplateFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'name' => self::faker()->text(),
+            'name' => self::faker()->word(),
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }

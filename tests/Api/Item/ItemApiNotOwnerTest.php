@@ -92,7 +92,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Loan::class);
     }
 
-    public function testCantGetAnotherUserItemRelatedItems(): void
+    public function test_cant_get_another_user_item_related_items(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
@@ -216,7 +216,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $this->createClientWithCredentials($user)->request('PATCH', '/api/items/'.$item->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
-                'title' => 'Berserk',
+                'name' => 'Berserk',
             ],
         ]);
 

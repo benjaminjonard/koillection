@@ -45,7 +45,7 @@ class SecurityApiTest extends ApiTestCase
         $client = static::createClient();
 
         // Act
-        $response = $client->request('POST', '/api/authentication_token', ['json' => [
+        $client->request('POST', '/api/authentication_token', ['json' => [
             'username' => 'user',
             'password' => 'password'
         ]]);
