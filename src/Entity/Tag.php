@@ -95,7 +95,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
 
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
-    private DisplayConfiguration $itemsDisplayConfiguration;
+    private ?DisplayConfiguration $itemsDisplayConfiguration;
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['tag:read', 'tag:write'])]
@@ -114,6 +114,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     {
         $this->id = Uuid::v4()->toRfc4122();
         $this->items = new ArrayCollection();
+        $this->itemsDisplayConfiguration = new DisplayConfiguration();
     }
 
     public function __toString(): string
@@ -291,7 +292,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
         return $this;
     }
 
-    public function getItemsDisplayConfiguration(): DisplayConfiguration
+    public function getItemsDisplayConfiguration(): ?DisplayConfiguration
     {
         return $this->itemsDisplayConfiguration;
     }
