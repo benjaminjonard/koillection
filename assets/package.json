@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "bazinga-translator": "5.0.0",
-    "intl-messageformat": "10.1.5"
+    "intl-messageformat": "10.2.0"
   }
 }
