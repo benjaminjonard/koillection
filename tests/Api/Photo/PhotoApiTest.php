@@ -43,7 +43,7 @@ class PhotoApiTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/photos/' . $photo->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/photos/'.$photo->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -79,7 +79,7 @@ class PhotoApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/photos', ['json' => [
-            'album' => '/api/albums/' . $album->getId(),
+            'album' => '/api/albums/'.$album->getId(),
             'title' => 'Home collection',
         ]]);
 
@@ -87,7 +87,7 @@ class PhotoApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Photo::class);
         $this->assertJsonContains([
-            'album' => '/api/albums/' . $album->getId(),
+            'album' => '/api/albums/'.$album->getId(),
             'title' => 'Home collection',
         ]);
     }

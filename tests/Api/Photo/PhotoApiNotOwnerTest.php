@@ -24,7 +24,7 @@ class PhotoApiNotOwnerTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/photos/' . $photo->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/photos/'.$photo->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

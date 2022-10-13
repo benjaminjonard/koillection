@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Entity\DisplayConfiguration;
-use App\Enum\SortingDirectionEnum;
 use App\Service\ArraySorter;
 use Twig\Extension\RuntimeExtensionInterface;
 

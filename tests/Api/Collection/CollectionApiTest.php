@@ -43,7 +43,7 @@ class CollectionApiTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

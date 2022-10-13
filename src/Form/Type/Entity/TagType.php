@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
-use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
-use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\TagCategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

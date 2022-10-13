@@ -39,7 +39,7 @@ class ChoiceListApiTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/' . $choiceList->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/'.$choiceList->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

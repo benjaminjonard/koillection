@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Api\Tests;
 
-use ApiPlatform\Api\IriConverterInterface;
 use ApiPlatform\Symfony\Bundle\Test\Client;
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -30,6 +28,6 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
             'roles' => $user->getRoles()
         ];
 
-        return static::createClient([], ['headers' => ['Authorization' => 'Bearer ' . $encoder->encode($payload)]]);
+        return static::createClient([], ['headers' => ['Authorization' => 'Bearer '.$encoder->encode($payload)]]);
     }
 }

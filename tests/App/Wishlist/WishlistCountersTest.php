@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Wishlist;
 
-use App\Entity\User;
-use App\Enum\RoleEnum;
-use App\Factory\WishlistFactory;
-use App\Factory\WishFactory;
 use App\Factory\UserFactory;
+use App\Factory\WishFactory;
+use App\Factory\WishlistFactory;
 use App\Service\RefreshCachedValuesQueue;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

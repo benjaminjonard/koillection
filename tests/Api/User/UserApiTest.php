@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Api\User;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Log;
 use App\Entity\User;
-use App\Enum\RoleEnum;
-use App\Factory\LogFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
@@ -23,7 +20,7 @@ class UserApiTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/users/' . $user->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/users/'.$user->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -40,7 +37,7 @@ class UserApiTest extends ApiTestCase
         $otherUser = UserFactory::createOne()->object();
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/users/' . $otherUser->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/users/'.$otherUser->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

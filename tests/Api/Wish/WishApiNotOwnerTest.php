@@ -26,7 +26,7 @@ class WishApiNotOwnerTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/' . $wish->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/'.$wish->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

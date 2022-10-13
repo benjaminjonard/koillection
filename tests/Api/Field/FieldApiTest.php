@@ -44,7 +44,7 @@ class FieldApiTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/fields/' . $field->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/fields/'.$field->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -80,7 +80,7 @@ class FieldApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/fields', ['json' => [
-            'template' => '/api/templates/' . $template->getId(),
+            'template' => '/api/templates/'.$template->getId(),
             'name' => 'Title',
             'position' => 1,
             'type' => DatumTypeEnum::TYPE_TEXT,
@@ -103,7 +103,7 @@ class FieldApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('PUT', '/api/fields/'.$field->getId(), ['json' => [
-            'template' => '/api/templates/' . $template->getId(),
+            'template' => '/api/templates/'.$template->getId(),
             'name' => 'Author',
         ]]);
 

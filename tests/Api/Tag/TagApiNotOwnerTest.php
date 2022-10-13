@@ -6,9 +6,6 @@ namespace App\Tests\Api\Tag;
 
 use Api\Tests\ApiTestCase;
 use App\Entity\Item;
-use App\Entity\Tag;
-use App\Entity\TagCategory;
-use App\Factory\ChoiceListFactory;
 use App\Factory\CollectionFactory;
 use App\Factory\ItemFactory;
 use App\Factory\TagCategoryFactory;
@@ -29,7 +26,7 @@ class TagApiNotOwnerTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -59,7 +56,7 @@ class TagApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/tags/', ['json' => [
-            'category' => '/api/tag_categories/' . $category->getId()
+            'category' => '/api/tag_categories/'.$category->getId()
         ]]);
 
         // Assert

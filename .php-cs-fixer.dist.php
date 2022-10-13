@@ -13,7 +13,8 @@ return (new PhpCsFixer\Config())
         'native_function_invocation' => true,
         'declare_strict_types' => true,
         'yoda_style' => false,
-        'trailing_comma_in_multiline' => false
+        'trailing_comma_in_multiline' => false,
+        'php_unit_method_casing' => ['case' => 'snake_case']
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder)

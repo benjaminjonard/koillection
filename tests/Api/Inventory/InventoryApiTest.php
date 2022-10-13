@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Api\Inventory;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Album;
 use App\Entity\Inventory;
-use App\Entity\Photo;
-use App\Factory\AlbumFactory;
 use App\Factory\InventoryFactory;
-use App\Factory\PhotoFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
@@ -43,7 +39,7 @@ class InventoryApiTest extends ApiTestCase
         $inventory = InventoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/inventories/' . $inventory->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/inventories/'.$inventory->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

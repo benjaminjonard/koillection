@@ -44,7 +44,7 @@ class DatumApiTest extends ApiTestCase
         $datum = DatumFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

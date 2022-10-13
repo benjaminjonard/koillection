@@ -49,7 +49,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -161,7 +161,7 @@ class ItemApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/items', ['json' => [
-            'collection' => '/api/collections/' . $collection->getId(),
+            'collection' => '/api/collections/'.$collection->getId(),
             'name' => 'Frieren #1',
         ]]);
 
@@ -169,7 +169,7 @@ class ItemApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertJsonContains([
-            'collection' => '/api/collections/' . $collection->getId(),
+            'collection' => '/api/collections/'.$collection->getId(),
             'name' => 'Frieren #1',
         ]);
     }

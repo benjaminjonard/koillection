@@ -39,7 +39,7 @@ class LogApiTest extends ApiTestCase
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/logs/' . $log->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/logs/'.$log->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Item;
 use App\Factory\CollectionFactory;
 use App\Factory\DatumFactory;
 use App\Factory\ItemFactory;
@@ -26,7 +25,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

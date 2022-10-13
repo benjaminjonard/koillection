@@ -41,7 +41,7 @@ class AlbumApiTest extends ApiTestCase
         $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

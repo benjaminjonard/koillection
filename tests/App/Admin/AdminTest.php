@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Admin;
 
-use App\Entity\User;
 use App\Enum\RoleEnum;
 use App\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -78,7 +77,7 @@ class AdminTest extends WebTestCase
         $this->client->loginUser($admin);
 
         // Act
-        $this->client->request('GET', '/admin/users/' . $admin->getId() . '/edit');
+        $this->client->request('GET', '/admin/users/'.$admin->getId().'/edit');
         $this->client->submitForm('submit', [
             'user[username]' => 'admin',
             'user[email]' => 'admin-new-email@test.com',

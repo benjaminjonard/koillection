@@ -14,7 +14,6 @@ use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Service\RefreshCachedValuesQueue;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use function PHPUnit\Framework\matches;
 
 class RefreshCachedValuesListener
 {
@@ -59,7 +58,7 @@ class RefreshCachedValuesListener
 
     private function refreshParentEntities(object $entity): void
     {
-        $toRefresh = match(true) {
+        $toRefresh = match (true) {
             $entity instanceof Album, $entity instanceof Collection, $entity instanceof Wishlist => $entity,
             $entity instanceof Item => $entity->getCollection(),
             $entity instanceof Photo => $entity->getAlbum(),

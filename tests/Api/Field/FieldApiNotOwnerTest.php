@@ -24,7 +24,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/fields/' . $field->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/fields/'.$field->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -54,7 +54,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/fields/', ['json' => [
-            'template' => '/api/templates/' . $template->getId()
+            'template' => '/api/templates/'.$template->getId()
         ]]);
 
         // Assert

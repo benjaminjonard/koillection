@@ -63,7 +63,7 @@ class DisplayConfigurationType extends AbstractType
         if (!empty($options['sorting'])) {
             $sortingProperties = [];
             foreach ($options['sorting'] as $key => $label) {
-                if (is_array($label)) {
+                if (\is_array($label)) {
                     $sortingProperties[$label['label']] = $label['label'];
                 } else {
                     $sortingProperties[$key] = $label;

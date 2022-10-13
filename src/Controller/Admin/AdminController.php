@@ -112,7 +112,6 @@ class AdminController extends AbstractController
         $cachedValuesCalculator->refreshAllCaches();
         $this->addFlash('notice', $translator->trans('message.caches_refreshed'));
 
-
         return $this->redirectToRoute('app_admin_index');
     }
 }

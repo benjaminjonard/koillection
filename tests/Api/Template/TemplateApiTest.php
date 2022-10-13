@@ -5,18 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\Api\Template;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\ChoiceList;
 use App\Entity\Field;
-use App\Entity\Item;
-use App\Entity\Tag;
-use App\Entity\TagCategory;
 use App\Entity\Template;
-use App\Factory\ChoiceListFactory;
-use App\Factory\CollectionFactory;
 use App\Factory\FieldFactory;
-use App\Factory\ItemFactory;
-use App\Factory\TagCategoryFactory;
-use App\Factory\TagFactory;
 use App\Factory\TemplateFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +41,7 @@ class TemplateApiTest extends ApiTestCase
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/templates/' . $template->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/templates/'.$template->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

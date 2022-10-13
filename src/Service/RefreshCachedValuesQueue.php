@@ -38,7 +38,7 @@ class RefreshCachedValuesQueue
 
     public function addEntity(Album|Collection|Wishlist|null $entity): void
     {
-        if ($entity !== null && !in_array($entity, $this->entities)) {
+        if ($entity !== null && !\in_array($entity, $this->entities)) {
             $this->entities[] = $entity;
         }
     }

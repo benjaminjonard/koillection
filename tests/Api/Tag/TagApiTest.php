@@ -44,7 +44,7 @@ class TagApiTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

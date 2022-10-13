@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
-use App\Entity\Item;
 use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
-use App\Enum\DisplayModeEnum;
 use App\Enum\ReservedLabelEnum;
-use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use App\Repository\CollectionRepository;
@@ -19,13 +16,10 @@ use App\Repository\TemplateRepository;
 use App\Service\FeatureChecker;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionType extends AbstractType

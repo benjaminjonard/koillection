@@ -46,7 +46,7 @@ class LoanApiTest extends ApiTestCase
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/loans/' . $loan->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/loans/'.$loan->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -86,7 +86,7 @@ class LoanApiTest extends ApiTestCase
         $this->createClientWithCredentials($user)->request('POST', '/api/loans', ['json' => [
             'lentTo' => 'Someone',
             'lentAt' => '2022-10-01T12:00:00+02:00',
-            'item' => '/api/items/' . $item->getId(),
+            'item' => '/api/items/'.$item->getId(),
         ]]);
 
         // Assert
@@ -95,7 +95,7 @@ class LoanApiTest extends ApiTestCase
         $this->assertJsonContains([
             'lentTo' => 'Someone',
             'lentAt' => '2022-10-01T12:00:00+02:00',
-            'item' => '/api/items/' . $item->getId(),
+            'item' => '/api/items/'.$item->getId(),
         ]);
     }
 
@@ -110,7 +110,7 @@ class LoanApiTest extends ApiTestCase
         // Act
         $this->createClientWithCredentials($user)->request('PUT', '/api/loans/'.$loan->getId(), ['json' => [
             'lentTo' => 'Someone else',
-            'item' => '/api/items/' . $item->getId(),
+            'item' => '/api/items/'.$item->getId(),
         ]]);
 
         // Assert
@@ -119,7 +119,7 @@ class LoanApiTest extends ApiTestCase
         $this->assertJsonContains([
             'id' => $loan->getId(),
             'lentTo' => 'Someone else',
-            'item' => '/api/items/' . $item->getId(),
+            'item' => '/api/items/'.$item->getId(),
         ]);
     }
 
@@ -144,7 +144,7 @@ class LoanApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Loan::class);
         $this->assertJsonContains([
             'id' => $loan->getId(),
-            'item' => '/api/items/' . $item->getId(),
+            'item' => '/api/items/'.$item->getId(),
             'lentTo' => 'Someone else',
         ]);
     }

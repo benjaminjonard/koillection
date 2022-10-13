@@ -21,9 +21,7 @@ use App\Service\FeatureChecker;
 use App\Service\RefreshCachedValuesQueue;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 abstract class AbstractController extends SymfonyAbstractController

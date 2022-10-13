@@ -5,15 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\Api\Loan;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Datum;
-use App\Entity\Item;
-use App\Entity\Loan;
-use App\Entity\Tag;
 use App\Factory\CollectionFactory;
-use App\Factory\DatumFactory;
 use App\Factory\ItemFactory;
 use App\Factory\LoanFactory;
-use App\Factory\TagFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
@@ -32,7 +26,7 @@ class LoanApiNotOwnerTest extends ApiTestCase
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/loans/' . $loan->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/loans/'.$loan->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -50,7 +44,7 @@ class LoanApiNotOwnerTest extends ApiTestCase
         $this->createClientWithCredentials($user)->request('POST', '/api/loans/', ['json' => [
             'lentTo' => 'Someone',
             'lentAt' => '2022-10-01T12:00:00+02:00',
-            'item' => '/api/items/' . $item->getId()
+            'item' => '/api/items/'.$item->getId()
         ]]);
 
         // Assert

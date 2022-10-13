@@ -21,6 +21,7 @@ class DateRuntime implements RuntimeExtensionInterface
 
         if ($key) {
             $time = $this->translator->trans("global.time.{$key}", ['count' => $parts[$key]]);
+
             return $this->translator->trans('global.time.ago', ['time' => $time]);
         } else {
             return $this->translator->trans('global.time.just_now');

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Api\ChoiceList;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\ChoiceList;
 use App\Factory\ChoiceListFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +22,7 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/' . $choiceList->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/'.$choiceList->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

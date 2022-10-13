@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Album;
 
-use App\Entity\User;
-use App\Enum\RoleEnum;
 use App\Factory\AlbumFactory;
 use App\Factory\PhotoFactory;
 use App\Factory\UserFactory;
@@ -31,7 +29,7 @@ class AlbumCountersTest extends WebTestCase
     public function test_add_child_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();        
+        $user = UserFactory::createOne()->object();
         $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
         $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);

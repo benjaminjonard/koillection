@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Api\Wishlist;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Album;
-use App\Entity\Photo;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
-use App\Factory\AlbumFactory;
-use App\Factory\PhotoFactory;
 use App\Factory\UserFactory;
 use App\Factory\WishFactory;
 use App\Factory\WishlistFactory;
@@ -29,7 +25,7 @@ class WishlistApiNotOwnerTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/' . $wishlist->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/'.$wishlist->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -97,7 +93,7 @@ class WishlistApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/wishlists/', ['json' => [
-            'parent' => '/api/wishlist/' . $wishlist->getId()
+            'parent' => '/api/wishlist/'.$wishlist->getId()
         ]]);
 
         // Assert

@@ -27,7 +27,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

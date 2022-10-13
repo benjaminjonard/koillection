@@ -15,7 +15,6 @@ use App\Model\Search\Search;
 use App\Service\ArraySorter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ItemRepository extends ServiceEntityRepository

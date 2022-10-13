@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Api\Log;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Log;
 use App\Factory\LogFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +22,7 @@ class LogApiNotOwnerTest extends ApiTestCase
         $log = LogFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/logs/' . $log->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/logs/'.$log->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

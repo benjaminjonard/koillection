@@ -31,7 +31,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -99,7 +99,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $owner = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $owner]);
         $relatedItems = ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $owner]);
-        $item = ItemFactory::createOne(['collection' => $collection, 'relatedItems' => $relatedItems,'owner' => $owner]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'relatedItems' => $relatedItems, 'owner' => $owner]);
 
         // Act
         $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/related_items');
@@ -119,7 +119,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $owner = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $owner]);
         $tags = TagFactory::createMany(3, ['owner' => $owner]);
-        $item = ItemFactory::createOne(['collection' => $collection, 'tags' => $tags,'owner' => $owner]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'tags' => $tags, 'owner' => $owner]);
 
         // Act
         $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/tags');

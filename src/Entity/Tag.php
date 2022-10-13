@@ -17,7 +17,6 @@ use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;

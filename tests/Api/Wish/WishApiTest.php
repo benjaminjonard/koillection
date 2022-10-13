@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Api\Wish;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Photo;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Factory\UserFactory;
@@ -44,7 +43,7 @@ class WishApiTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/' . $wish->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/'.$wish->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -80,7 +79,7 @@ class WishApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/wishes', ['json' => [
-            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
+            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
             'name' => 'Frieren vol. 1',
         ]]);
 
@@ -88,7 +87,7 @@ class WishApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Wish::class);
         $this->assertJsonContains([
-            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
+            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
             'name' => 'Frieren vol. 1',
         ]);
     }
@@ -102,7 +101,7 @@ class WishApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('PUT', '/api/wishes/'.$wish->getId(), ['json' => [
-            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
+            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
             'name' => 'Frieren vol. 2',
         ]]);
 
@@ -111,7 +110,7 @@ class WishApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Wish::class);
         $this->assertJsonContains([
             'id' => $wish->getId(),
-            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
+            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
             'name' => 'Frieren vol. 2',
         ]);
     }

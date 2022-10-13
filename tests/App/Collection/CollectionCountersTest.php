@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Collection;
 
-use App\Entity\User;
-use App\Enum\RoleEnum;
 use App\Factory\CollectionFactory;
 use App\Factory\ItemFactory;
 use App\Factory\UserFactory;

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Admin;
 
-use App\Entity\User;
-use App\Enum\RoleEnum;
 use App\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -81,7 +79,7 @@ class RegularUserTest extends WebTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/admin/users/' . $user->getId() . '/edit');
+        $this->client->request('GET', '/admin/users/'.$user->getId().'/edit');
 
         // Assert
         $this->assertTrue($this->client->getResponse()->isNotFound());
@@ -94,7 +92,7 @@ class RegularUserTest extends WebTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('POST', '/admin/users/' . $user->getId() . '/edit');
+        $this->client->request('POST', '/admin/users/'.$user->getId().'/edit');
 
         // Assert
         $this->assertTrue($this->client->getResponse()->isNotFound());

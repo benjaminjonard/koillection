@@ -25,7 +25,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         $album = AlbumFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -93,7 +93,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/albums/', ['json' => [
-            'parent' => '/api/albums/' . $album->getId()
+            'parent' => '/api/albums/'.$album->getId()
         ]]);
 
         // Assert

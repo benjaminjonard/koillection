@@ -41,7 +41,7 @@ class WishlistApiTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/' . $wishlist->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/'.$wishlist->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Collection;
 
-use App\Entity\User;
-use App\Enum\RoleEnum;
 use App\Enum\VisibilityEnum;
 use App\Factory\CollectionFactory;
 use App\Factory\UserFactory;
@@ -35,7 +33,7 @@ class CollectionTest extends WebTestCase
         // Act
         $crawler = $this->client->request('GET', '/collections');
 
-        //Assert
+        // Assert
         $this->assertResponseIsSuccessful();
         $this->assertSame('Collections', $crawler->filter('h1')->text());
         $this->assertCount(3, $crawler->filter('.collection-element'));
@@ -49,7 +47,7 @@ class CollectionTest extends WebTestCase
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/collections/' . $collection->getId());
+        $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -82,7 +80,7 @@ class CollectionTest extends WebTestCase
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/collections/' . $collection->getId() . '/edit');
+        $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
         $crawler = $this->client->submitForm('submit', [
             'collection[title]' => 'Berserk',
             'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
