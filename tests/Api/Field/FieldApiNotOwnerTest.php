@@ -5,11 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Api\Field;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Album;
-use App\Entity\Photo;
-use App\Factory\AlbumFactory;
 use App\Factory\FieldFactory;
-use App\Factory\PhotoFactory;
 use App\Factory\TemplateFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +40,22 @@ class FieldApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('GET', '/api/fields/'.$field->getId().'/template');
+
+        // Assert
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function test_cant_post_field_in_another_user_template(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $owner = UserFactory::createOne()->object();
+        $template = TemplateFactory::createOne(['owner' => $owner]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/fields/', ['json' => [
+            'template' => '/api/templates/' . $template->getId()
+        ]]);
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

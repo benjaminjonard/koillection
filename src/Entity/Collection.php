@@ -131,7 +131,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read'])]
-    private string $finalVisibility;
+    private ?string $finalVisibility = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['collection:read'])]
@@ -416,7 +416,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function getFinalVisibility(): string
+    public function getFinalVisibility(): ?string
     {
         return $this->finalVisibility;
     }

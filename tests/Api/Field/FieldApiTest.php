@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Api\Field;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Album;
 use App\Entity\Field;
-use App\Entity\Photo;
 use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
-use App\Factory\AlbumFactory;
 use App\Factory\FieldFactory;
-use App\Factory\PhotoFactory;
 use App\Factory\TemplateFactory;
 use App\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;

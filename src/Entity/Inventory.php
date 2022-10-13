@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use Doctrine\DBAL\Types\Types;
@@ -16,6 +19,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 #[ORM\Table(name: 'koi_inventory')]
 #[ApiResource(
+    operations: [
+        new Get(),
+        new Delete(),
+        new GetCollection(),
+    ],
     denormalizationContext: ['groups' => ['inventory:write']],
     normalizationContext: ['groups' => ['inventory:read']]
 )]

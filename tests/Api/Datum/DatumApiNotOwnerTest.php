@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Api\Datum;
 
 use Api\Tests\ApiTestCase;
-use App\Entity\Collection;
-use App\Entity\Datum;
 use App\Entity\Item;
 use App\Factory\CollectionFactory;
 use App\Factory\DatumFactory;
@@ -60,6 +58,39 @@ class DatumApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId().'/collection');
+
+        // Assert
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function test_cant_post_datum_with_another_user_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $owner = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $owner]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/datum/', ['json' => [
+            'collection' => '/api/collections/'.$collection->getId()
+        ]]);
+
+        // Assert
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function test_cant_post_datum_with_another_user_item(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $owner = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $owner]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $owner]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/datum/', ['json' => [
+            'item' => '/api/items/'.$item->getId()
+        ]]);
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

@@ -84,6 +84,22 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Photo::class);
     }
 
+    public function test_cant_post_album_in_another_user_album(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $owner = UserFactory::createOne()->object();
+        $album = AlbumFactory::createOne(['owner' => $owner]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/albums/', ['json' => [
+            'parent' => '/api/albums/' . $album->getId()
+        ]]);
+
+        // Assert
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function test_cant_put_another_user_album(): void
     {
         // Arrange

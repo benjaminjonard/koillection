@@ -105,6 +105,41 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
 
+    public function test_cant_post_collection_in_another_user_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $owner = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $owner]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/collections/', ['json' => [
+            'parent' => '/api/collections/'.$collection,
+            'name' => 'Berserk',
+        ]]);
+
+        // Assert
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    public function test_cant_post_collection_with_another_user_datum(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $owner = UserFactory::createOne()->object();
+        $datum = DatumFactory::createOne(['owner' => $owner]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/collections/', ['json' => [
+            'name' => 'Berserk',
+            'data' => [$datum]
+        ]]);
+
+        // Assert
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function test_cant_put_another_user_collection(): void
     {
         // Arrange

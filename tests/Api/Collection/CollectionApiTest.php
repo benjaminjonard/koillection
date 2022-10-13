@@ -190,7 +190,7 @@ class CollectionApiTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
         $this->createClientWithCredentials($user)->request('DELETE', '/api/collections/'.$collection->getId());
