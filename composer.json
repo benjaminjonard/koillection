@@ -79,7 +79,7 @@
         "symfony/stopwatch": "6.1.5",
         "symfony/var-dumper": "6.1.5",
         "symfony/web-profiler-bundle": "6.1.5",
-        "vimeo/psalm": "4.28.0",
+        "vimeo/psalm": "4.29.0",
         "weirdan/doctrine-psalm-plugin": "2.4.0",
         "zenstruck/foundry": "^1.22"
     },
