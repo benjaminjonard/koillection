@@ -64,15 +64,15 @@ class WishlistCountersTest extends WebTestCase
         WishFactory::createMany(3, ['wishlist' => $wishlistLevel4, 'owner' => $user]);
 
         // Act
-        $newParentAlbum = WishlistFactory::createOne(['owner' => $user]);
-        $wishlistLevel3->setParent($newParentAlbum->object());
+        $newParentWishlist = WishlistFactory::createOne(['owner' => $user]);
+        $wishlistLevel3->setParent($newParentWishlist->object());
         $wishlistLevel3->save();
 
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $newParentAlbum->getCachedValues()['counters']['wishes']);
-        $this->assertSame(2, $newParentAlbum->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $newParentWishlist->getCachedValues()['counters']['wishes']);
+        $this->assertSame(2, $newParentWishlist->getCachedValues()['counters']['children']);
 
         $this->assertSame(6, $wishlistLevel1->getCachedValues()['counters']['wishes']);
         $this->assertSame(1, $wishlistLevel1->getCachedValues()['counters']['children']);
@@ -115,5 +115,74 @@ class WishlistCountersTest extends WebTestCase
 
         $this->assertSame(3, $wishlistLevel2->getCachedValues()['counters']['wishes']);
         $this->assertSame(0, $wishlistLevel2->getCachedValues()['counters']['children']);
+    }
+
+    /*
+     * When adding a new wish, all parent counters must be increased by 1
+     */
+    public function test_add_wish(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $wishlistLevel1 = WishlistFactory::createOne(['owner' => $user]);
+        $wishlistLevel2 = WishlistFactory::createOne(['parent' => $wishlistLevel1, 'owner' => $user]);
+        $wishlistLevel3 = WishlistFactory::createOne(['parent' => $wishlistLevel2, 'owner' => $user]);
+        WishFactory::createOne(['wishlist' => $wishlistLevel3, 'owner' => $user]);
+
+        // Act
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(1, $wishlistLevel1->getCachedValues()['counters']['wishes']);
+        $this->assertSame(1, $wishlistLevel2->getCachedValues()['counters']['wishes']);
+        $this->assertSame(1, $wishlistLevel3->getCachedValues()['counters']['wishes']);
+    }
+
+    /*
+     * When moving a wish, all parent new counters must be increased by 1 and old parent counters decreased by 1
+     */
+    public function test_move_wish(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $wishlistLevel1 = WishlistFactory::createOne(['owner' => $user]);
+        $wishlistLevel2 = WishlistFactory::createOne(['parent' => $wishlistLevel1, 'owner' => $user]);
+        $wishlistLevel3 = WishlistFactory::createOne(['parent' => $wishlistLevel2, 'owner' => $user]);
+        $wish = WishFactory::createOne(['wishlist' => $wishlistLevel3, 'owner' => $user]);
+
+        // Act
+        $newWishlist = WishlistFactory::createOne(['owner' => $user]);
+        $wish->setWishlist($newWishlist->object());
+        $wish->save();
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(1, $newWishlist->getCachedValues()['counters']['wishes']);
+        $this->assertSame(0, $wishlistLevel1->getCachedValues()['counters']['wishes']);
+        $this->assertSame(0, $wishlistLevel2->getCachedValues()['counters']['wishes']);
+        $this->assertSame(0, $wishlistLevel3->getCachedValues()['counters']['wishes']);
+    }
+
+    /*
+     * When deleting a wish decrease all old parents wishlists counters by one
+     */
+    public function test_delete_wish(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $wishlistLevel1 = WishlistFactory::createOne(['owner' => $user]);
+        $wishlistLevel2 = WishlistFactory::createOne(['parent' => $wishlistLevel1, 'owner' => $user]);
+        $wishlistLevel3 = WishlistFactory::createOne(['parent' => $wishlistLevel2, 'owner' => $user]);
+        $wish = WishFactory::createOne(['wishlist' => $wishlistLevel3, 'owner' => $user]);
+
+        // Act
+        $wish->remove();
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(0, $wishlistLevel1->getCachedValues()['counters']['wishes']);
+        $this->assertSame(0, $wishlistLevel2->getCachedValues()['counters']['wishes']);
+        $this->assertSame(0, $wishlistLevel3->getCachedValues()['counters']['wishes']);
     }
 }

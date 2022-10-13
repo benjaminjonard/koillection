@@ -117,4 +117,73 @@ class AlbumCountersTest extends WebTestCase
         $this->assertSame(3, $albumLevel2->getCachedValues()['counters']['photos']);
         $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['children']);
     }
+    
+    /*
+     * When adding a new photo, all parent counters must be increased by 1
+     */
+    public function test_add_photo(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
+        $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
+        $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);
+        PhotoFactory::createOne(['album' => $albumLevel3, 'owner' => $user]);
+
+        // Act
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(1, $albumLevel1->getCachedValues()['counters']['photos']);
+        $this->assertSame(1, $albumLevel2->getCachedValues()['counters']['photos']);
+        $this->assertSame(1, $albumLevel3->getCachedValues()['counters']['photos']);
+    }
+
+    /*
+     * When moving a photo, all parent new counters must be increased by 1 and old parent counters decreased by 1
+     */
+    public function test_move_photo(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
+        $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
+        $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);
+        $photo = PhotoFactory::createOne(['album' => $albumLevel3, 'owner' => $user]);
+
+        // Act
+        $newAlbum = AlbumFactory::createOne(['owner' => $user]);
+        $photo->setAlbum($newAlbum->object());
+        $photo->save();
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(1, $newAlbum->getCachedValues()['counters']['photos']);
+        $this->assertSame(0, $albumLevel1->getCachedValues()['counters']['photos']);
+        $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['photos']);
+        $this->assertSame(0, $albumLevel3->getCachedValues()['counters']['photos']);
+    }
+
+    /*
+     * When deleting an photo decrease all old parents albums counters by one
+     */
+    public function test_delete_photo(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
+        $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
+        $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);
+        $photo = PhotoFactory::createOne(['album' => $albumLevel3, 'owner' => $user]);
+
+        // Act
+        $photo->remove();
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(0, $albumLevel1->getCachedValues()['counters']['photos']);
+        $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['photos']);
+        $this->assertSame(0, $albumLevel3->getCachedValues()['counters']['photos']);
+    }
 }
