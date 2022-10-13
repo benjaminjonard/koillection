@@ -80,7 +80,7 @@
         "symfony/var-dumper": "6.1.6",
         "symfony/web-profiler-bundle": "6.1.6",
         "vimeo/psalm": "4.29.0",
-        "weirdan/doctrine-psalm-plugin": "2.4.0",
+        "weirdan/doctrine-psalm-plugin": "2.5.0",
         "zenstruck/foundry": "^1.22"
     },
     "repositories": [
