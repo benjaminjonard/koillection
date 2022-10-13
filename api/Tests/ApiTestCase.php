@@ -15,15 +15,11 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
 {
     protected ?TranslatorInterface $translator = null;
 
-    protected ?EntityManagerInterface $em = null;
-
     protected function setUp(): void
     {
         self::bootKernel();
 
         $this->translator = $this->getContainer()->get('translator');
-        $this->em = $this->getContainer()->get('doctrine')->getManager();
-        $this->iriConverter = $this->getContainer()->get('api_platform.iri_converter');
     }
 
     protected function createClientWithCredentials(User $user): Client

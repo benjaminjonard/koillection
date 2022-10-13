@@ -127,7 +127,7 @@ class ItemRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getArrayResult()
             ;
-            $parentIds = array_map(function (array $result) {
+            $parentIds = array_map(static function (array $result) {
                 return $result['id'];
             }, $results);
             $collectionsIds = array_merge($collectionsIds, $parentIds);

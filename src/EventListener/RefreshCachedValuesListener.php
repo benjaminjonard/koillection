@@ -68,7 +68,7 @@ class RefreshCachedValuesListener
             default => null
         };
 
-        if ($toRefresh) {
+        if ($toRefresh !== null) {
             $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($toRefresh));
         }
     }

@@ -32,6 +32,7 @@ class UserApiTest extends ApiTestCase
             'id' => $user->getId()
         ]);
     }
+
     public function test_user_cant_see_other_user(): void
     {
         // Arrange

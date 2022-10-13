@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Admin;
 
+use App\Entity\User;
 use App\Enum\RoleEnum;
 use App\Factory\UserFactory;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
 
@@ -13,18 +15,19 @@ class AdminTest extends WebTestCase
 {
     use Factories;
 
+    private KernelBrowser $client;
+
     protected function setUp(): void
     {
         $this->client = static::createClient();
         $this->client->followRedirects();
-
-        $this->admin = UserFactory::createOne(['username' => 'admin', 'email' => 'admin@test.com', 'roles' => [RoleEnum::ROLE_ADMIN]])->object();
     }
 
     public function test_admin_can_access_dashboard(): void
     {
         // Arrange
-        $this->client->loginUser($this->admin);
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $this->client->loginUser($admin);
 
         // Act
         $this->client->request('GET', '/admin');
@@ -36,7 +39,8 @@ class AdminTest extends WebTestCase
     public function test_admin_can_access_users_list(): void
     {
         // Arrange
-        $this->client->loginUser($this->admin);
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $this->client->loginUser($admin);
 
         // Act
         $this->client->request('GET', '/admin/users');
@@ -48,7 +52,8 @@ class AdminTest extends WebTestCase
     public function test_admin_can_post_a_user(): void
     {
         // Arrange
-        $this->client->loginUser($this->admin);
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $this->client->loginUser($admin);
 
         // Act
         $this->client->request('GET', '/admin/users/add');
@@ -69,10 +74,11 @@ class AdminTest extends WebTestCase
     public function test_admin_can_edit_a_user(): void
     {
         // Arrange
-        $this->client->loginUser($this->admin);
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $this->client->loginUser($admin);
 
         // Act
-        $this->client->request('GET', '/admin/users/' . $this->admin->getId() . '/edit');
+        $this->client->request('GET', '/admin/users/' . $admin->getId() . '/edit');
         $this->client->submitForm('submit', [
             'user[username]' => 'admin',
             'user[email]' => 'admin-new-email@test.com',

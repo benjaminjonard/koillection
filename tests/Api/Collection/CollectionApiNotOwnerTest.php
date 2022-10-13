@@ -126,7 +126,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
     {
         // Arrange
         $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['owner' => $user]);
+        CollectionFactory::createOne(['owner' => $user]);
         $owner = UserFactory::createOne()->object();
         $datum = DatumFactory::createOne(['owner' => $owner]);
 

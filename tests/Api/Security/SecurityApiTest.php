@@ -16,7 +16,7 @@ class SecurityApiTest extends ApiTestCase
     public function test_successful_login(): void
     {
         // Arrange
-        $user = UserFactory::createOne([
+        UserFactory::createOne([
             'username' => 'user',
             'email' => 'user@test.com',
             'plainPassword' => 'koillection'
