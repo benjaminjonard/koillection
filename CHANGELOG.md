@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.16] / 2022-10-14
+### Fixes
+- Fix bug in counters when deleting an item from a collection (benjaminjonard)
+- Fix new tags being created without display mode settings (benjaminjonard)
+
+### Miscellaneous
+- Rewrite all functional tests to make them easier to maintain (benjaminjonard)
+
 ## [1.3.15] / 2022-10-07
 ### Features
 - Support for MariaDB (benjaminjonard)
