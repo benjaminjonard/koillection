@@ -47,7 +47,12 @@ final class CollectionFactory extends ModelFactory
 
     protected function initialize(): self
     {
-        return $this;
+        return $this
+            ->afterInstantiate(function(Collection $collection): void {
+                $collection->getChildrenDisplayConfiguration()->setOwner($collection->getOwner());
+                $collection->getItemsDisplayConfiguration()->setOwner($collection->getOwner());
+            })
+        ;
     }
 
     protected static function getClass(): string
