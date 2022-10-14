@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Item;
 
-use Api\Tests\ApiTestCase;
 use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Loan;
@@ -15,6 +14,7 @@ use App\Factory\ItemFactory;
 use App\Factory\LoanFactory;
 use App\Factory\TagFactory;
 use App\Factory\UserFactory;
+use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 

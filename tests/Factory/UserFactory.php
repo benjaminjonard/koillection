@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Factory;
+namespace App\Tests\Factory;
 
 use App\Entity\User;
 use App\Enum\DateFormatEnum;
@@ -41,7 +41,7 @@ final class UserFactory extends ModelFactory
             'username' => self::faker()->unique()->word(),
             'email' => self::faker()->unique()->email(),
             'plainPassword' => self::faker()->password(),
-            'enabled' => true,
+            'enabled' => self::faker()->boolean(),
             'roles' => [RoleEnum::ROLE_USER],
             'currency' => self::faker()->currencyCode(),
             'locale' => LocaleEnum::LOCALE_EN,
@@ -49,22 +49,28 @@ final class UserFactory extends ModelFactory
             'dateFormat' => self::faker()->randomElement(DateFormatEnum::FORMATS),
             'diskSpaceAllowed' => 536870912,
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
-            'darkModeEnabled' => true,
-            'wishlistsFeatureEnabled' => true,
-            'tagsFeatureEnabled' => true,
-            'signsFeatureEnabled' => true,
-            'albumsFeatureEnabled' => true,
-            'loansFeatureEnabled' => true,
-            'templatesFeatureEnabled' => true,
-            'historyFeatureEnabled' => true,
-            'statisticsFeatureEnabled' => true,
+            'darkModeEnabled' => self::faker()->boolean(),
+            'wishlistsFeatureEnabled' => self::faker()->boolean(),
+            'tagsFeatureEnabled' => self::faker()->boolean(),
+            'signsFeatureEnabled' => self::faker()->boolean(),
+            'albumsFeatureEnabled' => self::faker()->boolean(),
+            'loansFeatureEnabled' => self::faker()->boolean(),
+            'templatesFeatureEnabled' => self::faker()->boolean(),
+            'historyFeatureEnabled' => self::faker()->boolean(),
+            'statisticsFeatureEnabled' => self::faker()->boolean(),
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }
 
     protected function initialize(): self
     {
-        return $this;
+        return $this
+            ->afterInstantiate(function(User $user): void {
+                $user->getAlbumsDisplayConfiguration()->setOwner($user->getOwner());
+                $user->getCollectionsDisplayConfiguration()->setOwner($user->getOwner());
+                $user->getWishlistsDisplayConfiguration()->setOwner($user->getOwner());
+            })
+        ;
     }
 
     protected static function getClass(): string

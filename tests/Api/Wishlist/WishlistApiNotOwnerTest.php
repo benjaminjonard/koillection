@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Wishlist;
 
-use Api\Tests\ApiTestCase;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Factory\UserFactory;
 use App\Factory\WishFactory;
 use App\Factory\WishlistFactory;
+use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 

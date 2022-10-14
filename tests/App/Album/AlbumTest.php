@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App\Collection;
+namespace App\Tests\App\Album;
 
 use App\Enum\VisibilityEnum;
-use App\Factory\CollectionFactory;
 use App\Factory\UserFactory;
+use App\Tests\Factory\AlbumFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
 
-class CollectionTest extends WebTestCase
+class AlbumTest extends WebTestCase
 {
     use Factories;
 
@@ -23,70 +23,70 @@ class CollectionTest extends WebTestCase
         $this->client->followRedirects();
     }
 
-    public function test_can_get_collection_list(): void
+    public function test_can_get_album_list(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        CollectionFactory::createMany(3, ['owner' => $user]);
+        AlbumFactory::createMany(3, ['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/collections');
+        $crawler = $this->client->request('GET', '/albums');
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame('Collections', $crawler->filter('h1')->text());
+        $this->assertSame('Albums', $crawler->filter('h1')->text());
         $this->assertCount(3, $crawler->filter('.collection-element'));
     }
 
-    public function test_can_get_collection(): void
+    public function test_can_get_album(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
+        $crawler = $this->client->request('GET', '/albums/'.$album->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertEquals($collection->getTitle(), $crawler->filter('h1')->text());
+        $this->assertEquals($album->getTitle(), $crawler->filter('h1')->text());
     }
 
-    public function test_can_post_collection(): void
+    public function test_can_post_album(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/collections/add');
+        $this->client->request('GET', '/albums/add');
 
         $crawler = $this->client->submitForm('Submit', [
-            'collection[title]' => 'Frieren',
-            'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
+            'album[title]' => 'Home album',
+            'album[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
         ]);
 
         // Assert
-        $this->assertSame('Frieren', $crawler->filter('h1')->text());
+        $this->assertSame('Home album', $crawler->filter('h1')->text());
     }
 
-    public function test_can_edit_collection(): void
+    public function test_can_edit_album(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
+        $this->client->request('GET', '/albums/'.$album->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
-            'collection[title]' => 'Berserk',
-            'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
+            'album[title]' => 'Other album',
+            'album[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
         ]);
 
         // Assert
-        $this->assertSame('Berserk', $crawler->filter('h1')->text());
+        $this->assertSame('Other album', $crawler->filter('h1')->text());
     }
 }

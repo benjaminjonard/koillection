@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Template;
 
-use Api\Tests\ApiTestCase;
 use App\Entity\Field;
 use App\Factory\FieldFactory;
 use App\Factory\TemplateFactory;
 use App\Factory\UserFactory;
+use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Datum;
 
-use Api\Tests\ApiTestCase;
 use App\Factory\CollectionFactory;
 use App\Factory\DatumFactory;
 use App\Factory\ItemFactory;
 use App\Factory\UserFactory;
+use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 

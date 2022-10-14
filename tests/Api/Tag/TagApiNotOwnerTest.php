@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Tag;
 
-use Api\Tests\ApiTestCase;
 use App\Entity\Item;
 use App\Factory\CollectionFactory;
 use App\Factory\ItemFactory;
 use App\Factory\TagCategoryFactory;
 use App\Factory\TagFactory;
 use App\Factory\UserFactory;
+use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 

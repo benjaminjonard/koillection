@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Api\Tests;
+namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\Client;
 use App\Entity\User;
