@@ -85,7 +85,7 @@ class LoanApiTest extends ApiTestCase
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/loans', ['json' => [
             'lentTo' => 'Someone',
-            'lentAt' => '2022-10-01T12:00:00+00:00',
+            'lentAt' => '2022-10-01 00:00:00',
             'item' => '/api/items/'.$item->getId(),
         ]]);
 
@@ -94,7 +94,6 @@ class LoanApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Loan::class);
         $this->assertJsonContains([
             'lentTo' => 'Someone',
-            'lentAt' => '2022-10-01T12:00:00+00:00',
             'item' => '/api/items/'.$item->getId(),
         ]);
     }
