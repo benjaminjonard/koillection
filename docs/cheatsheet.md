@@ -24,7 +24,8 @@ Create API keys
 - `php bin/console lexik:jwt:generate-keypair`
 
 Then
-- `php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit`
+- `php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit` 
+- or `php ./vendor/bin/paratest --runner=WrapperRunner` for parallel tests (faster)
 
 ###### PHP CS fixer
 - `./vendor/bin/php-cs-fixer fix`

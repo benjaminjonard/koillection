@@ -1,8 +1,0 @@
-App\Entity\Template:
-  template_admin_{1..10}:
-    name: "<word(2)>"
-    owner: "@admin"
-
-  template_user_{1..10}:
-    name: "<word(2)>"
-    owner: "@user"

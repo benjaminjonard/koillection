@@ -17,7 +17,8 @@ class RefreshCachedValuesQueueListener
         private readonly RefreshCachedValuesQueue $refreshCachedValuesQueue,
         private readonly CachedValuesCalculator $cachedValuesCalculator,
         private readonly ManagerRegistry $managerRegistry
-    ) {}
+    ) {
+    }
 
     /**
      *   As we are on a kernel response event, this code is triggered at every response.

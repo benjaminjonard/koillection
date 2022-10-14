@@ -18,6 +18,7 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Service\FeatureChecker;
+use App\Service\RefreshCachedValuesQueue;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 abstract class AbstractController extends SymfonyAbstractController
 {
     public function __construct(
-        protected FeatureChecker $featureChecker
+        protected FeatureChecker $featureChecker,
+        protected RefreshCachedValuesQueue $refreshCachedValuesQueue
     ) {
     }
 

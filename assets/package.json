@@ -19,11 +19,11 @@
     "core-js": "3.25.5",
     "croppie": "2.6.5",
     "echarts": "5.4.0",
-    "regenerator-runtime": "0.13.9",
+    "regenerator-runtime": "0.13.10",
     "sortablejs": "1.15.0",
     "stimulus-lightbox": "3.0.0",
     "stimulus-use": "0.50.0",
-    "ts-select2": "0.2.1",
+    "ts-select2": "0.2.2",
     "webpack": "5.74.0",
     "webpack-bundle-analyzer": "4.6.1",
     "webpack-cli": "4.10.0",
@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "bazinga-translator": "5.0.0",
-    "intl-messageformat": "10.1.5"
+    "intl-messageformat": "10.2.0"
   }
 }

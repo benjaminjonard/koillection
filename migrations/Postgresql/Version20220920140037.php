@@ -35,8 +35,8 @@ final class Version20220920140037 extends AbstractMigration
         foreach ($users as $user) {
             $id = Uuid::v4()->toRfc4122();
             $userId = $user['id'];
-            $displayMode =  "'".DisplayModeEnum::DISPLAY_MODE_GRID."'";
-            $sortingDirection =  "'".SortingDirectionEnum::ASCENDING."'";
+            $displayMode = "'".DisplayModeEnum::DISPLAY_MODE_GRID."'";
+            $sortingDirection = "'".SortingDirectionEnum::ASCENDING."'";
 
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, display_mode, sorting_direction, created_at) VALUES ('$id', '$userId', $displayMode, $sortingDirection, NOW())");
             $this->addSql("UPDATE koi_user SET collections_display_configuration_id = '$id' WHERE id = '$userId'");

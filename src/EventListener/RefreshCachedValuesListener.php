@@ -14,7 +14,6 @@ use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Service\RefreshCachedValuesQueue;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use function PHPUnit\Framework\matches;
 
 class RefreshCachedValuesListener
 {
@@ -52,14 +51,14 @@ class RefreshCachedValuesListener
             }
         }
 
-        foreach ($uow->getScheduledEntityInsertions() as $entity) {
+        foreach ($uow->getScheduledEntityDeletions() as $entity) {
             $this->refreshParentEntities($entity);
         }
     }
 
     private function refreshParentEntities(object $entity): void
     {
-        $toRefresh = match(true) {
+        $toRefresh = match (true) {
             $entity instanceof Album, $entity instanceof Collection, $entity instanceof Wishlist => $entity,
             $entity instanceof Item => $entity->getCollection(),
             $entity instanceof Photo => $entity->getAlbum(),
@@ -68,7 +67,7 @@ class RefreshCachedValuesListener
             default => null
         };
 
-        if ($toRefresh) {
+        if ($toRefresh !== null) {
             $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($toRefresh));
         }
     }

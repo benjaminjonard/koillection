@@ -18,7 +18,6 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
-use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
