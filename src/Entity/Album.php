@@ -97,7 +97,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Groups(['album:read'])]
     private int $seenCounter = 0;
 
-    #[ORM\Column(type: Types::JSON, options: ['default' => '{}'])]
+    #[ORM\Column(type: Types::JSON)]
     #[Groups(['album:read'])]
     private ?array $cachedValues = [];
 
