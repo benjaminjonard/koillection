@@ -2,7 +2,6 @@ webpack_encore:
     output_path: '%kernel.project_dir%/public/build'
     script_attributes:
         defer: true
-    strict_mode: false
 
 framework:
     assets:
