@@ -99,7 +99,7 @@ jobs:
       - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
-      - run: php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit
+      - run: php ./vendor/bin/paratest --runner=WrapperRunner
 
   phpunit_mariadb:
     name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
@@ -163,7 +163,7 @@ jobs:
       -   run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
-      -   run: php -d memory_limit=512M ./vendor/phpunit/phpunit/phpunit
+      -   run: php ./vendor/bin/paratest --runner=WrapperRunner
 
   phpunit_postgres:
     name: PHPUnit tests with Postgres ${{ matrix.postgres }}

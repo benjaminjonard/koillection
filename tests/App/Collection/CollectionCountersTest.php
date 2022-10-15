@@ -11,10 +11,11 @@ use App\Service\RefreshCachedValuesQueue;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
+use Zenstruck\Foundry\Test\ResetDatabase;
 
 class CollectionCountersTest extends WebTestCase
 {
-    use Factories;
+    use Factories, ResetDatabase;
 
     private KernelBrowser $client;
 

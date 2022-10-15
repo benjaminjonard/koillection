@@ -15,10 +15,11 @@ use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
+use Zenstruck\Foundry\Test\ResetDatabase;
 
 class TagApiTest extends ApiTestCase
 {
-    use Factories;
+    use Factories, ResetDatabase;
 
     public function test_get_tags(): void
     {

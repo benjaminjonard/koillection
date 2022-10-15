@@ -12,10 +12,11 @@ use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
+use Zenstruck\Foundry\Test\ResetDatabase;
 
 class AlbumApiNotOwnerTest extends ApiTestCase
 {
-    use Factories;
+    use Factories, ResetDatabase;
 
     public function test_cant_get_another_user_album(): void
     {
