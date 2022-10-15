@@ -1,10 +1,10 @@
 doctrine_migrations:
     migrations_paths:
-        'App\Migrations\Mysql': '%kernel.project_dir%/migrations/Mysql'
-        'App\Migrations\Postgresql': '%kernel.project_dir%/migrations/Postgresql'
+        'DoctrineMysqlMigrations': '%kernel.project_dir%/migrations/Mysql'
+        'DoctrinePostgresqlMigrations': '%kernel.project_dir%/migrations/Postgresql'
     storage:
         table_storage:
             table_name: doctrine_migration_version
     check_database_platform: true
-    enable_profiler: '%kernel.debug%'
+    enable_profiler: false
     transactional: true
