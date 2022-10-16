@@ -157,7 +157,7 @@ class DatumApiTest extends ApiTestCase
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertJsonContains([
-            'hydra:description' => $this->translator->trans('error.datum.cant_be_used_by_both_collections_and_items', [], 'validators'),
+            'hydra:description' => 'A datum cannot be used with both item and collection'
         ]);
     }
 
@@ -176,7 +176,7 @@ class DatumApiTest extends ApiTestCase
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertJsonContains([
-            'hydra:description' => $this->translator->trans('error.datum.must_provide_collection_or_item', [], 'validators'),
+            'hydra:description' => 'A collection or an item must be provided',
         ]);
     }
 

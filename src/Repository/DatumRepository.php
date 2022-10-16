@@ -84,7 +84,7 @@ class DatumRepository extends ServiceEntityRepository
         $result = $this->_em->createNativeQuery($sql, $rsm)->getArrayResult();
 
         return array_map(static function ($price) {
-            return $price['value'];
+            return (float) $price['value'];
         }, $result);
     }
 }

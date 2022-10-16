@@ -58,17 +58,17 @@ class AdminTest extends WebTestCase
         // Act
         $this->client->request('GET', '/admin/users/add');
         $this->client->submitForm('submit', [
-            'user[username]' => 'test',
-            'user[email]' => 'test@test.com',
+            'user[username]' => 'Stitch',
+            'user[email]' => 'stitch@koillection.com',
             'user[plainPassword][first]' => 'password1234',
             'user[plainPassword][second]' => 'password1234',
             'user[diskSpaceAllowed]' => 536870912,
-            'user[timezone]' => 'Europe/Paris'
+            'user[timezone]' => 'Pacific/Honolulu',
         ]);
 
         // Assert
         $this->assertResponseIsSuccessful();
-        UserFactory::assert()->exists(['username' => 'test', 'email' => 'test@test.com']);
+        UserFactory::assert()->exists(['username' => 'Stitch', 'email' => 'stitch@koillection.com']);
     }
 
     public function test_admin_can_edit_a_user(): void

@@ -22,21 +22,24 @@ class FirstConnectionTest extends WebTestCase
         $this->client->followRedirects();
     }
 
-    /*public function test_can_complete_first_connection(): void
+    public function test_can_complete_first_connection(): void
     {
         // Arrange
-        UserFactory::createOne()->object();
 
         // Act
         $this->client->request('GET', '/first-connection');
-        $crawler = $this->client->submitForm('Sign in', [
-            '_login' => $user->getUsername(),
-            '_password' => $user->getPlainPassword()
+        $this->client->submitForm('Submit', [
+            'user[username]' => 'Stitch',
+            'user[email]' => 'stitch@koillection.com',
+            'user[plainPassword][first]' => 'password1234',
+            'user[plainPassword][second]' => 'password1234',
+            'user[timezone]' => 'Pacific/Honolulu',
+            'user[dateFormat]' => 'd/m/Y',
         ]);
 
         // Assert
-        $this->assertRouteSame('app_security_login');
-    }*/
+        $this->assertRouteSame('app_collection_index');
+    }
 
     public function test_cant_redo_first_connection(): void
     {

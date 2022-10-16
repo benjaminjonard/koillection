@@ -7,6 +7,7 @@ namespace App\Tests\App\Collection;
 use App\Enum\VisibilityEnum;
 use App\Factory\CollectionFactory;
 use App\Factory\UserFactory;
+use App\Tests\Factory\ItemFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -63,7 +64,6 @@ class CollectionTest extends WebTestCase
 
         // Act
         $this->client->request('GET', '/collections/add');
-
         $crawler = $this->client->submitForm('Submit', [
             'collection[title]' => 'Frieren',
             'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
@@ -89,5 +89,24 @@ class CollectionTest extends WebTestCase
 
         // Assert
         $this->assertSame('Berserk', $crawler->filter('h1')->text());
+    }
+
+    public function test_can_get_collection_items_list(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $childCollection = CollectionFactory::createOne(['parent' => $collection, 'owner' => $user]);
+        ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
+        ItemFactory::createMany(3, ['collection' => $childCollection, 'owner' => $user]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/collections/'.$collection->getId().'/items');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame($collection->getTitle(), $crawler->filter('h1')->text());
+        $this->assertCount(6, $crawler->filter('.collection-item'));
     }
 }

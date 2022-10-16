@@ -11,15 +11,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
 {
-    protected ?TranslatorInterface $translator = null;
-
-    protected function setUp(): void
-    {
-        self::bootKernel();
-
-        $this->translator = $this->getContainer()->get('translator');
-    }
-
     protected function createClientWithCredentials(User $user): Client
     {
         $encoder = $this->getContainer()->get(JWTEncoderInterface::class);
