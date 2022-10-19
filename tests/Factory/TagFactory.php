@@ -36,6 +36,7 @@ final class TagFactory extends ModelFactory
     {
         return [
             'label' => self::faker()->word(),
+            'description' => self::faker()->text(),
             'seenCounter' => self::faker()->randomNumber(),
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),

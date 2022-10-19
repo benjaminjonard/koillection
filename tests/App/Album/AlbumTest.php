@@ -63,13 +63,13 @@ class AlbumTest extends WebTestCase
 
         // Act
         $this->client->request('GET', '/albums/add');
-
         $crawler = $this->client->submitForm('Submit', [
             'album[title]' => 'Home album',
             'album[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
         ]);
 
         // Assert
+        $this->assertResponseIsSuccessful();
         $this->assertSame('Home album', $crawler->filter('h1')->text());
     }
 
