@@ -7,17 +7,18 @@ namespace App\Tests\Api\Field;
 use App\Entity\Field;
 use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
-use App\Factory\FieldFactory;
-use App\Factory\TemplateFactory;
-use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\FieldFactory;
+use App\Tests\Factory\TemplateFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class FieldApiTest extends ApiTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     public function test_get_fields(): void
     {

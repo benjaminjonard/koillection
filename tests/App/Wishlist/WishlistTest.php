@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\App\Wishlist;
 
 use App\Enum\VisibilityEnum;
-use App\Factory\UserFactory;
+use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -14,7 +14,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class WishlistTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 

@@ -6,11 +6,11 @@ namespace App\Tests\App\Visibility;
 
 use App\Entity\User;
 use App\Enum\VisibilityEnum;
-use App\Factory\UserFactory;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\TagFactory;
+use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -20,7 +20,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class VisibilityProfileTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 
@@ -130,7 +131,7 @@ class VisibilityProfileTest extends WebTestCase
         $itemId = ItemFactory::createOne(['collection' => $collection, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->getId();
         $albumId = AlbumFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->getId();
         $wishlistId = WishlistFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->getId();
-        $tagId = TagFactory ::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->getId();
+        $tagId = TagFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->getId();
 
         return [
             "/user/$username",

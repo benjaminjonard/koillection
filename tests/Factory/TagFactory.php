@@ -45,11 +45,7 @@ final class TagFactory extends ModelFactory
 
     protected function initialize(): self
     {
-        return $this
-            ->afterInstantiate(function(Tag $tag): void {
-                $tag->getItemsDisplayConfiguration()->setOwner($tag->getOwner());
-            })
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

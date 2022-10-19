@@ -44,12 +44,7 @@ final class AlbumFactory extends ModelFactory
 
     protected function initialize(): self
     {
-        return $this
-            ->afterInstantiate(function(Album $album): void {
-                $album->getChildrenDisplayConfiguration()->setOwner($album->getOwner());
-                $album->getPhotosDisplayConfiguration()->setOwner($album->getOwner());
-            })
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

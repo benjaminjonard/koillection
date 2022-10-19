@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\App\Collection;
 
 use App\Enum\DatumTypeEnum;
-use App\Factory\CollectionFactory;
-use App\Factory\ItemFactory;
-use App\Factory\UserFactory;
 use App\Service\RefreshCachedValuesQueue;
+use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
+use App\Tests\Factory\ItemFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -17,7 +17,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class CollectionPricesTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 
@@ -151,7 +152,7 @@ class CollectionPricesTest extends WebTestCase
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $user]);
         $itemToMove = ItemFactory::createOne(['collection' => $collectionLevel3, 'owner' => $user]);
         DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Original price', 'value' => '100', 'item' => $itemToMove, 'owner' => $user]);
-        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Current price', 'value' => '1000', 'item' => $itemToMove, 'owner' => $user]);;
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Current price', 'value' => '1000', 'item' => $itemToMove, 'owner' => $user]);
 
         // Act
         $newCollection = CollectionFactory::createOne(['owner' => $user]);

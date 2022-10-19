@@ -22,7 +22,6 @@ services:
             - '../src/Entity/'
             - '../src/Model/'
             - '../src/Kernel.php'
-            - '../src/Tests/'
 
     App\Controller\:
         resource: '../src/Controller'
@@ -31,6 +30,7 @@ services:
     Api\Controller\:
         resource: '../api/Controller'
         tags: [ 'controller.service_arguments' ]
+
 
     #Kernel listeners
     App\EventListener\TranslationCommandListener:
@@ -124,3 +124,8 @@ services:
     Api\Serializer\UploadedFileDenormalizer:
         tags:
             - { name: serializer.normalizer }
+
+when@test:
+    services:
+        App\Tests\Factory\:
+            resource: '../tests/Factory'

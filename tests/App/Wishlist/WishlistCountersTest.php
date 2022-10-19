@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Wishlist;
 
-use App\Factory\UserFactory;
-use App\Factory\WishFactory;
-use App\Factory\WishlistFactory;
 use App\Service\RefreshCachedValuesQueue;
+use App\Tests\Factory\UserFactory;
+use App\Tests\Factory\WishFactory;
+use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -15,7 +15,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class WishlistCountersTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 

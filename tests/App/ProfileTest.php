@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
-use App\Enum\VisibilityEnum;
-use App\Factory\UserFactory;
-use App\Tests\Factory\WishlistFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -14,7 +12,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class ProfileTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 

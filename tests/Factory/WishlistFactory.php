@@ -47,11 +47,7 @@ final class WishlistFactory extends ModelFactory
 
     protected function initialize(): self
     {
-        return $this
-            ->afterInstantiate(function(Wishlist $wishlist): void {
-                $wishlist->getChildrenDisplayConfiguration()->setOwner($wishlist->getOwner());
-            })
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

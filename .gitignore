@@ -43,4 +43,5 @@ docker-compose.yml
 
 ###> phpunit/phpunit ###
 .phpunit.result.cache
+output/
 ###< phpunit/phpunit ###

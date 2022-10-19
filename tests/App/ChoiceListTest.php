@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
-use App\Factory\UserFactory;
 use App\Tests\Factory\ChoiceListFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -13,7 +13,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class ChoiceListTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 
@@ -59,10 +60,10 @@ class ChoiceListTest extends WebTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/choice-lists/'.$choiceList->getId(). '/edit');
+        $crawler = $this->client->request('GET', '/choice-lists/'.$choiceList->getId().'/edit');
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame('Edit choice list ' . $choiceList->getName(), $crawler->filter('h1')->text());
+        $this->assertSame('Edit choice list '.$choiceList->getName(), $crawler->filter('h1')->text());
     }
 }

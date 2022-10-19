@@ -1,0 +1,12 @@
+api_platform:
+  title: 'Koillection API'
+
+  formats:
+    html:
+      mime_types: [ 'text/html' ]
+
+    jsonld:
+      mime_types: [ 'application/ld+json' ]
+
+    json:
+      mime_types: [ 'application/json' ]

@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace App\Tests\Api\ChoiceList;
 
 use App\Entity\ChoiceList;
-use App\Factory\ChoiceListFactory;
-use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\ChoiceListFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class ChoiceListApiTest extends ApiTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     public function test_get_choice_lists(): void
     {

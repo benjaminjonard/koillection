@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Tests\Api\Log;
 
-use App\Factory\LogFactory;
-use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\LogFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class LogApiNotOwnerTest extends ApiTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     public function test_cant_get_another_user_log(): void
     {

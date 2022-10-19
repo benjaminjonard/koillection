@@ -6,17 +6,18 @@ namespace App\Tests\Api\Wish;
 
 use App\Entity\Wish;
 use App\Entity\Wishlist;
-use App\Factory\UserFactory;
-use App\Factory\WishFactory;
-use App\Factory\WishlistFactory;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\UserFactory;
+use App\Tests\Factory\WishFactory;
+use App\Tests\Factory\WishlistFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class WishApiTest extends ApiTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     public function test_get_wishes(): void
     {

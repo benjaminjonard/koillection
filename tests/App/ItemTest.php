@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
-use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
-use App\Factory\UserFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\TagFactory;
-use App\Tests\Factory\WishlistFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -21,7 +19,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class ItemTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 
@@ -86,7 +85,7 @@ class ItemTest extends WebTestCase
         $this->assertSame('Rating :', $crawler->filter('.datum-row .label')->eq(6)->text());
         $this->assertCount(5, $crawler->filter('.datum-row')->eq(6)->filter('.fa-star.colored'));
         $this->assertSame('Wiki page :', $crawler->filter('.datum-row .label')->eq(7)->text());
-        $this->assertSame(substr('https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3', 0, 47) . '...', $crawler->filter('.datum-row')->eq(7)->filter('a')->text());
+        $this->assertSame(substr('https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3', 0, 47).'...', $crawler->filter('.datum-row')->eq(7)->filter('a')->text());
 
         $this->assertCount(1, $crawler->filter('.related-items a'));
         $this->assertSame('Calendar Frieren 2023', $crawler->filter('.related-items a')->eq(0)->text());

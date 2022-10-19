@@ -6,17 +6,18 @@ namespace App\Tests\Api\Template;
 
 use App\Entity\Field;
 use App\Entity\Template;
-use App\Factory\FieldFactory;
-use App\Factory\TemplateFactory;
-use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\FieldFactory;
+use App\Tests\Factory\TemplateFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class TemplateApiTest extends ApiTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     public function test_get_templates(): void
     {

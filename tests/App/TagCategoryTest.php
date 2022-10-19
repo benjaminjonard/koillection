@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
-use App\Factory\UserFactory;
 use App\Tests\Factory\TagCategoryFactory;
 use App\Tests\Factory\TagFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -14,7 +14,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class TagCategoryTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 
@@ -87,13 +88,12 @@ class TagCategoryTest extends WebTestCase
         $tagCategory = TagCategoryFactory::createOne(['owner' => $user])->object();
 
         // Act
-        $this->client->request('GET', '/tag-categories/'.$tagCategory->getId(). '/edit');
+        $this->client->request('GET', '/tag-categories/'.$tagCategory->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
             'tag_category[label]' => 'Company',
             'tag_category[color]' => '009688',
             'tag_category[description]' => 'Description'
         ]);
-
 
         // Assert
         $this->assertResponseIsSuccessful();

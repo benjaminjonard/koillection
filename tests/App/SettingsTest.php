@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
-use App\Enum\DatumTypeEnum;
-use App\Factory\UserFactory;
-use App\Tests\Factory\CollectionFactory;
-use App\Tests\Factory\DatumFactory;
-use App\Tests\Factory\ItemFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -16,7 +12,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class SettingsTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 

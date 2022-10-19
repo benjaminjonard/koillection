@@ -8,10 +8,10 @@ use App\Enum\DateFormatEnum;
 use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
-use App\Factory\CollectionFactory;
-use App\Factory\UserFactory;
+use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -19,7 +19,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class CollectionTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 
@@ -107,7 +108,6 @@ class CollectionTest extends WebTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item2, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author']);
         $item3 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item3, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author']);
-
 
         // Act
         $crawler = $this->client->request('GET', '/collections/'.$collection->getId());

@@ -7,19 +7,20 @@ namespace App\Tests\Api\Tag;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
-use App\Factory\CollectionFactory;
-use App\Factory\ItemFactory;
-use App\Factory\TagCategoryFactory;
-use App\Factory\TagFactory;
-use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\CollectionFactory;
+use App\Tests\Factory\ItemFactory;
+use App\Tests\Factory\TagCategoryFactory;
+use App\Tests\Factory\TagFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class TagApiTest extends ApiTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     public function test_get_tags(): void
     {

@@ -7,7 +7,6 @@ namespace App\Tests;
 use ApiPlatform\Symfony\Bundle\Test\Client;
 use App\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
 {

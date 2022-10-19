@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Album;
 
-use App\Factory\AlbumFactory;
-use App\Factory\PhotoFactory;
-use App\Factory\UserFactory;
 use App\Service\RefreshCachedValuesQueue;
+use App\Tests\Factory\AlbumFactory;
+use App\Tests\Factory\PhotoFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -15,7 +15,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class AlbumCountersTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 
@@ -118,7 +119,7 @@ class AlbumCountersTest extends WebTestCase
         $this->assertSame(3, $albumLevel2->getCachedValues()['counters']['photos']);
         $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['children']);
     }
-    
+
     /*
      * When adding a new photo, all parent counters must be increased by 1
      */

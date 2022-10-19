@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\App\Album;
 
 use App\Enum\VisibilityEnum;
-use App\Factory\UserFactory;
 use App\Tests\Factory\AlbumFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
@@ -14,7 +14,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class AlbumTest extends WebTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     private KernelBrowser $client;
 

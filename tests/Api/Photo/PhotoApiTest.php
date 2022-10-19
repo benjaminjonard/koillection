@@ -6,17 +6,18 @@ namespace App\Tests\Api\Photo;
 
 use App\Entity\Album;
 use App\Entity\Photo;
-use App\Factory\AlbumFactory;
-use App\Factory\PhotoFactory;
-use App\Factory\UserFactory;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\AlbumFactory;
+use App\Tests\Factory\PhotoFactory;
+use App\Tests\Factory\UserFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class PhotoApiTest extends ApiTestCase
 {
-    use Factories, ResetDatabase;
+    use Factories;
+    use ResetDatabase;
 
     public function test_get_photos(): void
     {
