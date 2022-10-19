@@ -129,7 +129,7 @@ class CollectionController extends AbstractController
     }
 
     #[Route(path: '/collections/{id}', name: 'app_collection_show', methods: ['GET'])]
-    #[Route(path: '/user/{username}/{id}', name: 'app_shared_collection_show', methods: ['GET'])]
+    #[Route(path: '/user/{username}/collections/{id}', name: 'app_shared_collection_show', methods: ['GET'])]
     public function show(
         Collection $collection,
         CollectionRepository $collectionRepository,
@@ -143,7 +143,7 @@ class CollectionController extends AbstractController
     }
 
     #[Route(path: '/collections/{id}/items', name: 'app_collection_items', methods: ['GET'])]
-    #[Route(path: '/user/{username}/{id}/items', name: 'app_shared_collection_items', methods: ['GET'])]
+    #[Route(path: '/user/{username}/collections/{id}/items', name: 'app_shared_collection_items', methods: ['GET'])]
     public function items(Collection $collection, ItemRepository $itemRepository): Response
     {
         return $this->render('App/Collection/items.html.twig', [
