@@ -2272,15 +2272,12 @@ input[type="text"]:not(.browser-default).password-input {
     top: -41px;
 }
 
-.items-table td {
+.items-table td, .children-table td  {
     padding: 10px 5px;
-}
-
-.items-table td {
     position: relative
 }
 
-.items-table td .table-link {
+.items-table td .table-link, .children-table .table-link  {
     bottom: 0;
     left: 0;
     position: absolute;
@@ -2288,7 +2285,7 @@ input[type="text"]:not(.browser-default).password-input {
     top: 0;
 }
 
-.items-table .visibility {
+.items-table .visibility, .children-table .visibility {
     position: inherit;
 }
 
