@@ -18,6 +18,8 @@ class ChoiceListController extends AbstractController
     #[Route(path: '/choice-lists', name: 'app_choice_list_index', methods: ['GET'])]
     public function index(ChoiceListRepository $choiceListRepository): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         return $this->render('App/ChoiceList/index.html.twig', [
             'choiceLists' => $choiceListRepository->findAll(),
         ]);
@@ -26,6 +28,8 @@ class ChoiceListController extends AbstractController
     #[Route(path: '/choice-lists/add', name: 'app_choice_list_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         $choiceList = new ChoiceList();
         $form = $this->createForm(ChoiceListType::class, $choiceList);
         $form->handleRequest($request);
@@ -46,6 +50,8 @@ class ChoiceListController extends AbstractController
     #[Route(path: '/choice-lists/{id}/edit', name: 'app_choice_list_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ChoiceList $choiceList, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         $form = $this->createForm(ChoiceListType::class, $choiceList);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,6 +70,8 @@ class ChoiceListController extends AbstractController
     #[Route(path: '/choice-lists/{id}/delete', name: 'app_choice_list_delete', methods: ['POST'])]
     public function delete(Request $request, ChoiceList $choiceList, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['templates']);
+
         $form = $this->createDeleteForm('app_choice_list_delete', $choiceList);
         $form->handleRequest($request);
 

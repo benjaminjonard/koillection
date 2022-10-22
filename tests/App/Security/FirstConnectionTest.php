@@ -35,7 +35,6 @@ class FirstConnectionTest extends WebTestCase
             'user[plainPassword][first]' => 'password1234',
             'user[plainPassword][second]' => 'password1234',
             'user[timezone]' => 'Pacific/Honolulu',
-            'user[dateFormat]' => 'd/m/Y',
         ]);
 
         // Assert
