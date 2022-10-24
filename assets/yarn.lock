@@ -1156,10 +1156,10 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-"@symfony/webpack-encore@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-4.1.0.tgz#84827a922ddb91d362a74005d4ca47e2101bce19"
-  integrity sha512-t4nydbIisnP/Onmq12+swb40wmeCOowu67Hs4BTCPpN+DMKclemv6dNQKJdFLBnl2mfduEzM8+9g6XOCq+NnYA==
+"@symfony/webpack-encore@4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-4.1.1.tgz#6cf86d5438378f076136ddedbae132e3d82a0280"
+  integrity sha512-uZRXej1prTvYG/QJWR/DzKcZtBKEXDkGtK9qlQtO43ip8t8NIZmM+w8qeb4eiS7aoULWmpG7GpQOLWPhsccUDA==
   dependencies:
     "@nuxt/friendly-errors-webpack-plugin" "^2.5.1"
     assets-webpack-plugin "7.0.*"
