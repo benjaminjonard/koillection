@@ -10,6 +10,8 @@ use App\Tests\ApiTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -150,5 +152,32 @@ class PhotoApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+    }
+
+    public function test_post_photo_image(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $user = UserFactory::createOne()->object();
+        $album = AlbumFactory::createOne(['owner' => $user]);
+        $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
+
+        // Act
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/$uniqId.png");
+        $uploadedFile = new UploadedFile("/tmp/$uniqId.png", "$uniqId.png");
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/photos/'.$photo->getId().'/image', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'file' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Photo::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
     }
 }

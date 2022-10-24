@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Api\Controller\UploadController;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -37,8 +36,8 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
-        new Post(uriTemplate: '/data/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['datum:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum image.']),
-        new Post(uriTemplate: '/data/{id}/file', controller: UploadController::class, denormalizationContext: ['groups' => ['datum:file']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum file.'])],
+        new Post(uriTemplate: '/data/{id}/image', denormalizationContext: ['groups' => ['datum:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum image.']),
+        new Post(uriTemplate: '/data/{id}/file', denormalizationContext: ['groups' => ['datum:file']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum file.'])],
     denormalizationContext: ['groups' => ['datum:write']],
     normalizationContext: ['groups' => ['datum:read']]
 )]
@@ -79,7 +78,7 @@ class Datum implements \Stringable
     private ?int $position = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'], groups: ['datum:image'])]
     #[Groups(['datum:write', 'datum:image'])]
     private ?File $fileImage = null;
 
@@ -96,7 +95,7 @@ class Datum implements \Stringable
     private ?string $imageLargeThumbnail = null;
 
     #[Upload(path: 'file', originalFilenamePath: 'originalFilename')]
-    #[Assert\File]
+    #[Assert\File(groups: ['datum:image'])]
     #[Groups(['datum:write', 'datum:file'])]
     private ?File $fileFile = null;
 

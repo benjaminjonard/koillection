@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Api\Controller\UploadController;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -44,7 +43,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
-        new Post(uriTemplate: '/albums/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Album image.']),
+        new Post(uriTemplate: '/albums/{id}/image', denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Album image.']),
     ]
 )]
 #[ApiResource(uriTemplate: '/albums/{id}/children', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'children')], normalizationContext: ['groups' => ['album:read']], operations: [new GetCollection()])]
@@ -67,7 +66,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private ?string $color = null;
 
     #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'], groups: ['album:image'])]
     #[Groups(['album:write', 'album:image'])]
     private ?File $file = null;
 

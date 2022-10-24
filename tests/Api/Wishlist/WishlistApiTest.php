@@ -10,6 +10,8 @@ use App\Tests\ApiTestCase;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -179,5 +181,31 @@ class WishlistApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+    }
+
+    public function test_post_wishlist_image(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $user = UserFactory::createOne()->object();
+        $wishlist = WishlistFactory::createOne(['owner' => $user]);
+
+        // Act
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/$uniqId.png");
+        $uploadedFile = new UploadedFile("/tmp/$uniqId.png", "$uniqId.png");
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/wishlists/'.$wishlist->getId().'/image', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'file' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Wishlist::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
     }
 }

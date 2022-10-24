@@ -16,6 +16,8 @@ use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\LoanFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -232,5 +234,32 @@ class ItemApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+    }
+
+    public function test_post_item_image(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/$uniqId.png");
+        $uploadedFile = new UploadedFile("/tmp/$uniqId.png", "$uniqId.png");
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'file' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Item::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
     }
 }

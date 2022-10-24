@@ -21,7 +21,7 @@ class DocumentationTest extends WebTestCase
         // Arrange
 
         // Act
-        $this->client->request('GET', '/api');
+        $this->client->request('GET', '/api/index.html');
 
         // Assert
         $this->assertResponseIsSuccessful();

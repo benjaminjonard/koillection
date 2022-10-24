@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Api\Controller\UploadController;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -37,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
-        new Post(uriTemplate: '/photos/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['photo:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Photo image.']),
+        new Post(uriTemplate: '/photos/{id}/image', denormalizationContext: ['groups' => ['photo:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Photo image.']),
     ],
     denormalizationContext: ['groups' => ['photo:write']],
     normalizationContext: ['groups' => ['photo:read']]
@@ -73,7 +72,7 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
     private ?User $owner = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'], groups: ['photo:image'])]
     #[Groups(['photo:write', 'photo:image'])]
     private ?File $file = null;
 

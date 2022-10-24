@@ -13,6 +13,8 @@ use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -237,5 +239,59 @@ class DatumApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+    }
+
+    public function test_post_datum_image(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/$uniqId.png");
+        $uploadedFile = new UploadedFile("/tmp/$uniqId.png", "$uniqId.png");
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/'.$datum->getId().'/image', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'fileImage' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Datum::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+    }
+
+    public function test_post_datum_file(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/$uniqId.png");
+        $uploadedFile = new UploadedFile("/tmp/$uniqId.png", "$uniqId.png");
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/'.$datum->getId().'/file', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'fileFile' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Datum::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['file']);
     }
 }

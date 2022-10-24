@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Api\Controller\UploadController;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -40,7 +39,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
-        new Post(uriTemplate: '/tags/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['tag:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Tag image.']),
+        new Post(uriTemplate: '/tags/{id}/image', denormalizationContext: ['groups' => ['tag:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Tag image.']),
     ],
     denormalizationContext: ['groups' => ['tag:write']],
     normalizationContext: ['groups' => ['tag:read']]
@@ -64,7 +63,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     private ?string $description = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'], groups: ['tag:image'])]
     #[Groups(['tag:write', 'tag:image'])]
     private ?File $file = null;
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Api\Controller\UploadController;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -37,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
-        new Post(uriTemplate: '/wishes/{id}/image', controller: UploadController::class, denormalizationContext: ['groups' => ['wish:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Wish image.']),
+        new Post(uriTemplate: '/wishes/{id}/image', denormalizationContext: ['groups' => ['wish:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Wish image.']),
     ], denormalizationContext: ['groups' => ['wish:write']],
     normalizationContext: ['groups' => ['wish:read']]
 )]
@@ -81,7 +80,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     private ?string $comment = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'], groups: ['wish:image'])]
     #[Groups(['wish:write', 'wish:image'])]
     private ?File $file = null;
 
