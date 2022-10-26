@@ -29,31 +29,14 @@ class Paginator
         return $this->maxPagesToShow;
     }
 
-    public function setCurrentPage(int $currentPage): void
-    {
-        $this->currentPage = $currentPage;
-    }
-
     public function getCurrentPage(): int
     {
         return $this->currentPage;
     }
 
-    public function setItemsPerPage(int $itemsPerPage): void
-    {
-        $this->itemsPerPage = $itemsPerPage;
-        $this->updateNumPages();
-    }
-
     public function getItemsPerPage(): int
     {
         return $this->itemsPerPage;
-    }
-
-    public function setTotalItems($totalItems): void
-    {
-        $this->totalItems = $totalItems;
-        $this->updateNumPages();
     }
 
     public function getTotalItems(): int
@@ -187,30 +170,5 @@ class Paginator
             'url' => null,
             'isCurrent' => false,
         ];
-    }
-
-    public function getCurrentPageFirstItem(): ?int
-    {
-        $first = ($this->currentPage - 1) * $this->itemsPerPage + 1;
-        if ($first > $this->totalItems) {
-            return null;
-        }
-
-        return $first;
-    }
-
-    public function getCurrentPageLastItem(): ?int
-    {
-        $first = $this->getCurrentPageFirstItem();
-        if (null === $first) {
-            return null;
-        }
-
-        $last = $first + $this->itemsPerPage - 1;
-        if ($last > $this->totalItems) {
-            return $this->totalItems;
-        }
-
-        return $last;
     }
 }
