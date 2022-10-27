@@ -47,13 +47,14 @@ class ItemTest extends WebTestCase
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
             'quantity' => 2,
         ]);
-        $item->addTag(TagFactory::createOne(['owner' => $user, 'label' => 'Manga'])->object());
-        $item->addTag(TagFactory::createOne(['owner' => $user, 'label' => 'Frieren'])->object());
+        $tag = TagFactory::createOne(['owner' => $user, 'label' => 'Abe Tsukasa'])->object();
+        $item->addTag($tag);
+        $item->addTag(TagFactory::createOne(['owner' => $user, 'label' => 'Yamada Kanehito'])->object());
         $item->addRelatedItem($relatedItem);
         $item->save();
 
         // @TODO File, Image, Signature
-        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Japanese title', 'value' => '葬送のフリーレン']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Authors', 'value' => 'Abe Tsukasa, Yamada Kanehito']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_TEXTAREA, 'label' => 'Description', 'value' => 'Frieren est un shōnen manga écrit par Yamada Kanehito et dessiné par Abe Tsukasa.']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 3, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volume', 'value' => '1']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 4, 'type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Price', 'value' => '7.95']);
@@ -72,11 +73,15 @@ class ItemTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.collection-header .visibility .fa-lock'));
 
         $this->assertCount(2, $crawler->filter('.tag'));
-        $this->assertSame('Frieren', $crawler->filter('.tag')->eq(0)->text());
-        $this->assertSame('Manga', $crawler->filter('.tag')->eq(1)->text());
+        $this->assertSame('Abe Tsukasa', $crawler->filter('.tag')->eq(0)->text());
+        $this->assertSame('Yamada Kanehito', $crawler->filter('.tag')->eq(1)->text());
 
         $this->assertCount(8, $crawler->filter('.datum-row'));
-        $this->assertSame('Japanese title : 葬送のフリーレン', $crawler->filter('.datum-row')->eq(0)->text());
+        $this->assertSame('Authors : Abe Tsukasa, Yamada Kanehito', $crawler->filter('.datum-row')->eq(0)->text());
+        $this->assertCount(2, $crawler->filter('.datum-row')->eq(0)->filter('a'));
+        $this->assertSame('Abe Tsukasa', $crawler->filter('.datum-row')->eq(0)->filter('a')->eq(0)->text());
+        $this->assertSame('/tags/'.$tag->getId(), $crawler->filter('.datum-row')->eq(0)->filter('a')->eq(0)->attr('href'));
+
         $this->assertSame('Description : Frieren est un shōnen manga écrit par Yamada Kanehito et dessiné par Abe Tsukasa.', $crawler->filter('.datum-row')->eq(1)->text());
         $this->assertSame('Volume : 1', $crawler->filter('.datum-row')->eq(2)->text());
         $this->assertSame('Price : €7.95', $crawler->filter('.datum-row')->eq(3)->text());
