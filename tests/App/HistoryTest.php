@@ -71,24 +71,24 @@ class HistoryTest extends WebTestCase
         $this->assertSame('History', $crawler->filter('h1')->text());
         $this->assertCount(13, $crawler->filter('tbody tr'));
 
-        $this->assertSame('Collection Frieren was created', $crawler->filter('tbody tr')->eq(12)->filter('td')->eq(1)->text());
-        $this->assertSame('Item Frieren #1 was created', $crawler->filter('tbody tr')->eq(11)->filter('td')->eq(1)->text());
+        $this->assertStringContainsString('Collection Frieren was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Item Frieren #1 was created', $crawler->filter('tbody')->text());
 
-        $this->assertSame('Tag category Trip was created', $crawler->filter('tbody tr')->eq(10)->filter('td')->eq(1)->text());
-        $this->assertSame('Tag Trip to Japan was created', $crawler->filter('tbody tr')->eq(9)->filter('td')->eq(1)->text());
+        $this->assertStringContainsString('Tag category Trip was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Tag Trip to Japan was created', $crawler->filter('tbody')->text());
 
-        $this->assertSame('Album Home was created', $crawler->filter('tbody tr')->eq(8)->filter('td')->eq(1)->text());
-        $this->assertSame('Photo Main shelf was created', $crawler->filter('tbody tr')->eq(7)->filter('td')->eq(1)->text());
+        $this->assertStringContainsString('Album Home was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Photo Main shelf was created', $crawler->filter('tbody')->text());
 
-        $this->assertSame('Wishlist Books was created', $crawler->filter('tbody tr')->eq(6)->filter('td')->eq(1)->text());
-        $this->assertSame('Wish Frieren #2 was created', $crawler->filter('tbody tr')->eq(5)->filter('td')->eq(1)->text());
+        $this->assertStringContainsString('Wishlist Books was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Wish Frieren #2 was created', $crawler->filter('tbody')->text());
 
-        $this->assertSame('Template Books was created', $crawler->filter('tbody tr')->eq(4)->filter('td')->eq(1)->text());
-        $this->assertSame('Choice list Status was created', $crawler->filter('tbody tr')->eq(3)->filter('td')->eq(1)->text());
-        $this->assertSame('Inventory Collection was created', $crawler->filter('tbody tr')->eq(2)->filter('td')->eq(1)->text());
+        $this->assertStringContainsString('Template Books was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Choice list Status was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Inventory Collection was created', $crawler->filter('tbody')->text());
 
-        $this->assertSame('Item Frieren #1 was deleted', $crawler->filter('tbody tr')->eq(1)->filter('td')->eq(1)->text());
-        $this->assertSame('Collection Frieren was deleted', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(1)->text());
+        $this->assertStringContainsString('Item Frieren #1 was deleted', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Collection Frieren was deleted', $crawler->filter('tbody')->text());
 
     }
 
