@@ -8,8 +8,10 @@ use App\Enum\DateFormatEnum;
 use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
+use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
+use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -46,6 +48,25 @@ class CollectionTest extends WebTestCase
         $this->assertCount(3, $crawler->filter('.collection-element'));
     }
 
+    public function test_can_edit_collection_index(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        CollectionFactory::createMany(3, ['owner' => $user]);
+
+        // Act
+        $this->client->request('GET', '/collections/edit');
+        $crawler = $this->client->submitForm('Submit', [
+            'display_configuration[displayMode]' => DisplayModeEnum::DISPLAY_MODE_LIST,
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Collections', $crawler->filter('h1')->text());
+        $this->assertCount(3, $crawler->filter('.list-element'));
+    }
+
     public function test_can_get_collection(): void
     {
         // Arrange
@@ -54,12 +75,14 @@ class CollectionTest extends WebTestCase
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
         CollectionFactory::createMany(3, ['parent' => $collection, 'owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
+        $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['In progress', 'Done', 'Abandoned'], 'owner' => $user]);
 
         // @TODO File
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Japanese title', 'value' => '葬送のフリーレン']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 2, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volumes', 'value' => '12']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 3, 'type' => DatumTypeEnum::TYPE_COUNTRY, 'label' => 'Country', 'value' => 'JP']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 4, 'type' => DatumTypeEnum::TYPE_DATE, 'label' => 'Release date', 'value' => '2022-03-03']);
+        DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 5, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Progress', 'value' => json_encode(['In progress']), 'choiceList' => $choiceList]);
 
         // Act
         $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
@@ -71,11 +94,12 @@ class CollectionTest extends WebTestCase
         $this->assertCount(3, $crawler->filter('.collection-element'));
         $this->assertCount(3, $crawler->filter('.collection-item'));
 
-        $this->assertCount(4, $crawler->filter('.datum-row'));
+        $this->assertCount(5, $crawler->filter('.datum-row'));
         $this->assertSame('Japanese title : 葬送のフリーレン', $crawler->filter('.datum-row')->eq(0)->text());
         $this->assertSame('Volumes : 12', $crawler->filter('.datum-row')->eq(1)->text());
         $this->assertSame('Country : 🇯🇵 (Japan)', $crawler->filter('.datum-row')->eq(2)->text());
         $this->assertSame('Release date : 03/03/2022', $crawler->filter('.datum-row')->eq(3)->text());
+        $this->assertSame('Progress : In progress', $crawler->filter('.datum-row')->eq(4)->text());
     }
 
     public function test_can_get_collection_with_list_view(): void
@@ -140,9 +164,10 @@ class CollectionTest extends WebTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
+        $parent = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/collections/add');
+        $this->client->request('GET', '/collections/add?parent='.$parent->getId());
         $crawler = $this->client->submitForm('Submit', [
             'collection[title]' => 'Frieren',
             'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
@@ -187,5 +212,73 @@ class CollectionTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSame($collection->getTitle(), $crawler->filter('h1')->text());
         $this->assertCount(6, $crawler->filter('.collection-item'));
+    }
+
+    public function test_can_delete_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/collections/'.$collection->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertRouteSame('app_collection_index');
+        CollectionFactory::assert()->count(0);
+        ItemFactory::assert()->count(0);
+    }
+
+    public function test_can_delete_child_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $childCollection = CollectionFactory::createOne(['parent' => $collection, 'owner' => $user]);
+        $otherCollection = CollectionFactory::createOne(['owner' => $user]);
+        ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
+        ItemFactory::createMany(3, ['collection' => $childCollection, 'owner' => $user]);
+        ItemFactory::createMany(3, ['collection' => $otherCollection, 'owner' => $user]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/collections/'.$childCollection->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertRouteSame('app_collection_show', ['id' => $collection->getId()]);
+        CollectionFactory::assert()->count(2);
+        ItemFactory::assert()->count(6);
+    }
+
+    public function test_can_batch_tag_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $childCollection = CollectionFactory::createOne(['parent' => $collection, 'owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $childItem = ItemFactory::createOne(['collection' => $childCollection, 'owner' => $user]);
+        $tag = TagFactory::createOne(['label' => 'Frieren', 'owner' => $user])->object();
+
+        // Act
+        $this->client->request('GET', '/collections/'.$collection->getId().'/batch-tagging');
+        $this->client->submitForm('Submit', [
+            'batch_tagger[tags]' => json_encode(['Frieren']),
+            'batch_tagger[recursive]' => true
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame($item->getTags()->first()->getId(), $tag->getId());
+        $this->assertSame($childItem->getTags()->first()->getId(), $tag->getId());
     }
 }

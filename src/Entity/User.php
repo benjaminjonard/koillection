@@ -111,15 +111,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private string $visibility = VisibilityEnum::VISIBILITY_PRIVATE;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'], orphanRemoval: true)]
     private ?DisplayConfiguration $collectionsDisplayConfiguration = null;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'], orphanRemoval: true)]
     private ?DisplayConfiguration $wishlistsDisplayConfiguration = null;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
-    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
+    #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'], orphanRemoval: true)]
     private ?DisplayConfiguration $albumsDisplayConfiguration = null;
 
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'owner', cascade: ['remove'])]
@@ -666,7 +666,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this->collectionsDisplayConfiguration;
     }
 
-    public function setCollectionsDisplayConfiguration(DisplayConfiguration $collectionsDisplayConfiguration): User
+    public function setCollectionsDisplayConfiguration(?DisplayConfiguration $collectionsDisplayConfiguration): User
     {
         $this->collectionsDisplayConfiguration = $collectionsDisplayConfiguration;
 
@@ -678,7 +678,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this->wishlistsDisplayConfiguration;
     }
 
-    public function setWishlistsDisplayConfiguration(DisplayConfiguration $wishlistsDisplayConfiguration): User
+    public function setWishlistsDisplayConfiguration(?DisplayConfiguration $wishlistsDisplayConfiguration): User
     {
         $this->wishlistsDisplayConfiguration = $wishlistsDisplayConfiguration;
 
@@ -690,7 +690,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this->albumsDisplayConfiguration;
     }
 
-    public function setAlbumsDisplayConfiguration(DisplayConfiguration $albumsDisplayConfiguration): User
+    public function setAlbumsDisplayConfiguration(?DisplayConfiguration $albumsDisplayConfiguration): User
     {
         $this->albumsDisplayConfiguration = $albumsDisplayConfiguration;
 

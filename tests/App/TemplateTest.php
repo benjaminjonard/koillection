@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Tests\Factory\FieldFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -80,5 +81,24 @@ class TemplateTest extends WebTestCase
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertSame('Edit template '.$template->getName(), $crawler->filter('h1')->text());
+    }
+
+    public function test_can_delete_template(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $template = TemplateFactory::createOne(['owner' => $user]);
+        FieldFactory::createMany(3, ['template' => $template, 'owner' => $user]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/templates/'.$template->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/templates/'.$template->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        TemplateFactory::assert()->count(0);
+        FieldFactory::assert()->count(0);
     }
 }

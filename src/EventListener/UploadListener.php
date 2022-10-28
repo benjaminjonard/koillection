@@ -19,7 +19,7 @@ final class UploadListener
 
     public function prePersist(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
         foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
             $this->handler->upload($entity, $property, $attribute);
         }
@@ -27,7 +27,7 @@ final class UploadListener
 
     public function onFlush(OnFlushEventArgs $args): void
     {
-        $em = $args->getEntityManager();
+        $em = $args->getObjectManager();
         $uow = $em->getUnitOfWork();
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
@@ -40,7 +40,7 @@ final class UploadListener
 
     public function postLoad(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
         foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
             $this->handler->setFileFromFilename($entity, $property, $attribute);
         }
@@ -48,7 +48,7 @@ final class UploadListener
 
     public function postRemove(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
         foreach ($this->reader->getUploadFields($entity) as $attribute) {
             $this->handler->removeOldFile($entity, $attribute);
         }

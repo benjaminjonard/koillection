@@ -93,4 +93,37 @@ class AdminTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         UserFactory::assert()->exists(['username' => 'admin', 'email' => 'admin-new-email@test.com']);
     }
+
+    public function test_admin_can_delete_a_user(): void
+    {
+        // Arrange
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $this->client->loginUser($admin);
+        $user = UserFactory::createOne(['roles' => [RoleEnum::ROLE_USER]])->object();
+        $userId = $user->getId();
+
+        // Act
+        $crawler = $this->client->request('GET', '/admin/users');
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/'.$user->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        UserFactory::assert()->notExists(['id' => $userId]);
+    }
+
+    public function test_cant_delete_admin(): void
+    {
+        // Arrange
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $this->client->loginUser($admin);
+
+        // Act
+        $crawler = $this->client->request('GET', '/admin/users');
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/'.$admin->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        UserFactory::assert()->exists(['id' => $admin->getId()]);
+    }
 }

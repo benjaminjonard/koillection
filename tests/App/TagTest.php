@@ -74,4 +74,21 @@ class TagTest extends WebTestCase
         $this->assertSame('Items', $crawler->filter('h2')->eq(2)->text());
         $this->assertCount(3, $crawler->filter('.collection-item'));
     }
+
+    public function test_can_delete_tag(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $tag = TagFactory::createOne(['owner' => $user]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/tags/'.$tag->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tags/'.$tag->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        TagFactory::assert()->count(0);
+    }
 }

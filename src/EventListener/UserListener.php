@@ -17,7 +17,7 @@ class UserListener
 
     public function prePersist(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
         if ($entity instanceof User) {
             $this->passwordUpdater->hashPassword($entity);
         }
@@ -25,9 +25,20 @@ class UserListener
 
     public function preUpdate(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
         if ($entity instanceof User) {
             $this->passwordUpdater->hashPassword($entity);
+        }
+    }
+
+    public function preRemove(LifecycleEventArgs $args): void
+    {
+        $entity = $args->getObject();
+        if ($entity instanceof User) {
+            $entity->setWishlistsDisplayConfiguration(null);
+            $entity->setCollectionsDisplayConfiguration(null);
+            $entity->setAlbumsDisplayConfiguration(null);
+            $args->getObjectManager()->flush();
         }
     }
 }

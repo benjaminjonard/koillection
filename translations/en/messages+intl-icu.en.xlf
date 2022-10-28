@@ -3145,5 +3145,11 @@
         <target>Number of items</target>
       </segment>
     </unit>
+    <unit id="0vnK4DY" name="menu.users">
+      <segment state="translated">
+        <source>menu.users</source>
+        <target>Users</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

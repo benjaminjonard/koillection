@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Wishlist;
 
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\Factory\UserFactory;
+use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -41,6 +43,25 @@ class WishlistTest extends WebTestCase
         $this->assertCount(3, $crawler->filter('.collection-element'));
     }
 
+    public function test_can_edit_wishlist_index(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        WishlistFactory::createMany(3, ['owner' => $user]);
+
+        // Act
+        $this->client->request('GET', '/wishlists/edit');
+        $crawler = $this->client->submitForm('Submit', [
+            'display_configuration[displayMode]' => DisplayModeEnum::DISPLAY_MODE_LIST,
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Wishlists', $crawler->filter('h1')->text());
+        $this->assertCount(3, $crawler->filter('.list-element'));
+    }
+
     public function test_can_get_wishlist(): void
     {
         // Arrange
@@ -61,9 +82,10 @@ class WishlistTest extends WebTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
+        $parent = WishlistFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/wishlists/add');
+        $this->client->request('GET', '/wishlists/add?parent='.$parent->getId());
 
         $crawler = $this->client->submitForm('Submit', [
             'wishlist[name]' => 'Books',
@@ -90,5 +112,28 @@ class WishlistTest extends WebTestCase
 
         // Assert
         $this->assertSame('Video games', $crawler->filter('h1')->text());
+    }
+
+    public function test_can_delete_wishlist(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $wishlist = WishlistFactory::createOne(['owner' => $user]);
+        $childWishlist = WishlistFactory::createOne(['parent' => $wishlist, 'owner' => $user]);
+        $otherWishlist = WishlistFactory::createOne(['owner' => $user]);
+        WishFactory::createMany(3, ['wishlist' => $wishlist, 'owner' => $user]);
+        WishFactory::createMany(3, ['wishlist' => $childWishlist, 'owner' => $user]);
+        WishFactory::createMany(3, ['wishlist' => $otherWishlist, 'owner' => $user]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/wishlists/'.$wishlist->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/wishlists/'.$wishlist->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        WishlistFactory::assert()->count(1);
+        WishFactory::assert()->count(3);
     }
 }

@@ -95,7 +95,7 @@
         </div>
     </div>
 
-    {% if context == 'default' %}
+    {% if context == 'default' or context == 'admin' %}
         {{ include('App/_partials/_modal/_delete.html.twig') }}
         {{ include('App/_partials/_modal/_share.html.twig') }}
     {% endif %}

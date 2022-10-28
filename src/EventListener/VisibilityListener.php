@@ -30,7 +30,7 @@ class VisibilityListener
 
     public function prePersist(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
         if ($entity instanceof Album || $entity instanceof Collection || $entity instanceof Wishlist) {
             $entity->setParentVisibility($entity->getParent()?->getFinalVisibility());
             $entity->setFinalVisibility($this->computeFinalVisibility($entity->getVisibility(), $entity->getParentVisibility()));

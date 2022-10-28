@@ -132,12 +132,15 @@
         ],
         "test:coverage": [
             "@putenv XDEBUG_MODE=coverage",
+            "Composer\\Config::disableProcessTimeout",
             "./vendor/phpunit/phpunit/phpunit --color=always --coverage-html=\"output/code-coverage\""
         ],
         "test:phpunit": [
+            "Composer\\Config::disableProcessTimeout",
             "./vendor/phpunit/phpunit/phpunit"
         ],
         "test:paratest": [
+            "Composer\\Config::disableProcessTimeout",
             "./vendor/bin/paratest --runner=WrapperRunner"
         ]
     },

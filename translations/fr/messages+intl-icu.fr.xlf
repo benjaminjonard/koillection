@@ -3145,5 +3145,11 @@
         <target>Nombre d'objets</target>
       </segment>
     </unit>
+    <unit id="0vnK4DY" name="menu.users">
+      <segment state="translated">
+        <source>menu.users</source>
+        <target>Utilisateurs</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

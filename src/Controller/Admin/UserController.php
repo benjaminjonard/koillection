@@ -101,10 +101,9 @@ class UserController extends AbstractController
     public function delete(Request $request, User $user, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         if ($user->isAdmin()) {
-            return $this->render('App/Admin/User/delete.html.twig', [
-                'user' => $user,
-                'error' => $translator->trans('error.cannot_delete_admin_user'),
-            ]);
+            $this->addFlash('notice', $translator->trans('error.cannot_delete_admin_user'));
+
+            return $this->redirectToRoute('app_admin_user_index');
         }
 
         $form = $this->createDeleteForm('app_admin_user_delete', $user);

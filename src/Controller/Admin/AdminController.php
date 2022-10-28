@@ -81,7 +81,8 @@ class AdminController extends AbstractController
 
         return new StreamedResponse(static function () use ($users, $kernelProjectDir): void {
             $options = new Archive();
-            $options->setContentType('text/event-stream');
+            $options->setContentType('application/octet-stream');
+            $options->setZeroHeader(true);
             $options->setFlushOutput(true);
             $options->setSendHttpHeaders(true);
 

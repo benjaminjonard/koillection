@@ -99,4 +99,23 @@ class TagCategoryTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSame('Company', $crawler->filter('h1')->text());
     }
+
+    public function test_can_delete_tag_category(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $tagCategory = TagCategoryFactory::createOne(['owner' => $user]);
+        $tag = TagFactory::createOne(['category' => $tagCategory, 'owner' => $user]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/tag-categories/'.$tagCategory->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tag-categories/'.$tagCategory->getId().'/delete');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        TagCategoryFactory::assert()->count(0);
+        TagFactory::assert()->count(1);
+    }
 }

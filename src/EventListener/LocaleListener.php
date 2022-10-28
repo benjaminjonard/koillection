@@ -48,7 +48,7 @@ class LocaleListener
 
     public function postUpdate(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if ($entity instanceof User && $this->requestStack->getMainRequest()) {
             $this->requestStack->getSession()->set('_locale', $entity->getLocale());

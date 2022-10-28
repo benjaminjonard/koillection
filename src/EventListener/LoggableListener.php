@@ -16,7 +16,7 @@ class LoggableListener
 {
     public function onFlush(OnFlushEventArgs $eventArgs): void
     {
-        $em = $eventArgs->getEntityManager();
+        $em = $eventArgs->getObjectManager();
         $uow = $em->getUnitOfWork();
 
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
@@ -49,10 +49,10 @@ class LoggableListener
 
     public function postRemove(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if ($entity instanceof LoggableInterface) {
-            $args->getEntityManager()->createQueryBuilder()
+            $args->getObjectManager()->createQueryBuilder()
                 ->update(Log::class, 'l')
                 ->set('l.objectDeleted', '?1')
                 ->where('l.objectId = ?2')

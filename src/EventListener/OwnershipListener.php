@@ -16,7 +16,7 @@ final class OwnershipListener
 
     public function prePersist(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if (property_exists($entity, 'owner') && null === $entity->getOwner()) {
             $entity->setOwner($this->security->getUser());
