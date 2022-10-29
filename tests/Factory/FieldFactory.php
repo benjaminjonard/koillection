@@ -33,7 +33,7 @@ final class FieldFactory extends ModelFactory
     {
         return [
             'name' => self::faker()->text(),
-            'type' => self::faker()->randomElement(DatumTypeEnum::TYPES),
+            'type' => DatumTypeEnum::TYPE_TEXT,
             'position' => self::faker()->randomNumber(),
         ];
     }

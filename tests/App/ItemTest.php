@@ -10,8 +10,11 @@ use App\Enum\VisibilityEnum;
 use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
+use App\Tests\Factory\FieldFactory;
 use App\Tests\Factory\ItemFactory;
+use App\Tests\Factory\LoanFactory;
 use App\Tests\Factory\TagFactory;
+use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -134,6 +137,63 @@ class ItemTest extends WebTestCase
         TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user]);
     }
 
+    public function test_can_create_item_then_create_another(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user])->object();
+
+        // Act
+        $this->client->request('GET', '/items/add?collection='.$collection->getId());
+        $crawler = $this->client->submitForm('Submit and add another item', [
+            'item[name]' => 'Frieren #1',
+            'item[collection]' => $collection->getId(),
+            'item[quantity]' => 1,
+            'item[visibility]' => VisibilityEnum::VISIBILITY_PRIVATE,
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Add a new item', $crawler->filter('h1')->innerText());
+        ItemFactory::assert()->exists([
+            'name' => 'Frieren #1',
+            'collection' => $collection->getId(),
+            'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
+            'owner' => $user
+        ]);
+    }
+
+    public function test_cant_create_item_without_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+
+        // Act
+        $this->client->request('GET', '/items/add');
+
+        // Assert
+        $this->assertTrue($this->client->getResponse()->isNotFound());
+    }
+
+    public function test_can_load_item_form_with_default_template(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $template = TemplateFactory::createOne(['owner' => $user]);
+        FieldFactory::createMany(3, ['template' => $template, 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['itemsDefaultTemplate' => $template, 'owner' => $user])->object();
+
+        // Act
+        $crawler = $this->client->request('GET', '/items/add?collection='.$collection->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(3, $crawler->filter('.datum'));
+    }
+
     public function test_can_edit_item(): void
     {
         // Arrange
@@ -177,5 +237,65 @@ class ItemTest extends WebTestCase
         CollectionFactory::assert()->count(1);
         ItemFactory::assert()->notExists(0);
         DatumFactory::assert()->count(0);
+    }
+
+    public function test_can_loan_item(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $this->client->request('GET', '/items/'.$item->getId().'/loan');
+        $crawler = $this->client->submitForm('Submit', [
+            'loan[lentAt]' => '2022-10-28',
+            'loan[lentTo]' => 'Someone'
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        LoanFactory::assert()->exists([
+            'item' => $item->getId()
+        ]);
+    }
+
+    public function test_can_autocomplete_related_item(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        ItemFactory::createOne(['name' => 'Berserk #1', 'collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $this->client->request('GET', '/items/autocomplete/fri');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('Content-Type', 'application/json');
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertCount(1, $content);
+        $this->assertSame('Frieren #1', $content[0]['name']);
+    }
+
+    public function test_cant_have_multiple_data_with_same_label(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user])->object();
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        DatumFactory::createOne(['label' => 'Author', 'item' => $item, 'owner' => $user]);
+        DatumFactory::createOne(['label' => 'Author', 'item' => $item, 'owner' => $user]);
+
+        // Act
+        $errors = $this->getContainer()->get('validator')->validate($item->object());
+
+        // Assert
+        $this->assertCount(1, $errors);
+        $this->assertSame('"Author" label is used multiple times, all labels must be unique', $errors[0]->getMessage());
     }
 }

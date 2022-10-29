@@ -20,7 +20,8 @@ class ImageHandler
         private readonly ThumbnailGenerator $thumbnailGenerator,
         private readonly Security $security,
         private readonly DiskUsageCalculator $diskUsageCalculator,
-        private readonly string $publicPath
+        private readonly string $publicPath,
+        private readonly string $env
     ) {
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
@@ -32,6 +33,9 @@ class ImageHandler
         if ($file instanceof UploadedFile) {
             $user = $this->security->getUser();
             $relativePath = 'uploads/'.$user->getId().'/';
+            if ($this->env === 'test') {
+                $relativePath = 'uploads/tests/';
+            }
             $absolutePath = $this->publicPath.'/'.$relativePath;
 
             $generatedName = $this->randomStringGenerator->generate(20);

@@ -15,6 +15,7 @@ services:
             $assetsPath: '%kernel.project_dir%/assets'
             $koillectionRelease: '%release%'
             $kernelProjectDir: '%kernel.project_dir%'
+            $env: '%kernel.environment%'
 
     App\:
         resource: '../src/*'

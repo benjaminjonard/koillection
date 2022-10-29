@@ -46,7 +46,7 @@ final class UserFactory extends ModelFactory
             'currency' => self::faker()->currencyCode(),
             'locale' => LocaleEnum::LOCALE_EN,
             'timezone' => self::faker()->timezone(),
-            'dateFormat' => self::faker()->randomElement(DateFormatEnum::FORMATS),
+            'dateFormat' => DateFormatEnum::FORMAT_HYPHEN_YMD,
             'diskSpaceAllowed' => 536870912,
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'darkModeEnabled' => true,
