@@ -36,6 +36,7 @@ class SearchController extends AbstractController
         ]);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             if ($search->getSearchInCollections()) {
                 $collections = $collectionRepository->findForSearch($search);

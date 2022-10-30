@@ -23,6 +23,17 @@ class FirstConnectionTest extends WebTestCase
         $this->client->followRedirects();
     }
 
+    public function test_redirected_to_first_connection_if_no_user(): void
+    {
+        // Arrange
+
+        // Act
+        $this->client->request('GET', '');
+
+        // Assert
+        $this->assertRouteSame('app_security_first_connection');
+    }
+
     public function test_can_complete_first_connection(): void
     {
         // Arrange

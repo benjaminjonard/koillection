@@ -249,7 +249,7 @@ class ItemTest extends WebTestCase
 
         // Act
         $this->client->request('GET', '/items/'.$item->getId().'/loan');
-        $crawler = $this->client->submitForm('Submit', [
+        $this->client->submitForm('Submit', [
             'loan[lentAt]' => '2022-10-28',
             'loan[lentTo]' => 'Someone'
         ]);

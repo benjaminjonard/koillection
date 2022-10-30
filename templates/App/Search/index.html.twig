@@ -89,11 +89,33 @@
                 </div>
             {% endif %}
 
-            {% if results.wishlists is defined and results.wishlists|length > 0 %}
+            {% if results.tags is defined and results.tags|length > 0 %}
                 <div class="block-element">
-                    <h2 class="header">{{ 'title.wishlists'|trans }}</h2>
-                    <div class="collections grid-container-collections">
-                        {{ include('App/Wishlist/_wishlists_' ~ getContextUser().wishlistsDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': results.wishlists}) }}
+                    <h2 class="header">{{ 'title.tags'|trans }}</h2>
+                    <div>
+                        <table class="centered striped">
+                            <thead>
+                            <tr>
+                                <th>{{ 'label.name'|trans }}</th>
+                                <th>{{ 'label.description'|trans }}</th>
+                                <th>{{ 'label.number_of_items'|trans }}</th>
+                                <th>{{ 'label.percent_of_items'|trans }}</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for result in results.tags %}
+                                <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
+                                    <td>
+                                        <a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a>
+                                    </td>
+                                    <td>{{ result.tag.description|u.truncate(50) }}</td>
+                                    <td>{{ result.itemCount }}</td>
+                                    <td>{{ result.percent|round(2, 'common') }} %</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             {% endif %}
@@ -105,34 +127,11 @@
                 </div>
             {% endif %}
 
-
-            {% if results.tags is defined and results.tags|length > 0 %}
+            {% if results.wishlists is defined and results.wishlists|length > 0 %}
                 <div class="block-element">
-                    <h2 class="header">{{ 'title.tags'|trans }}</h2>
-                    <div>
-                        <table class="centered striped">
-                            <thead>
-                                <tr>
-                                    <th>{{ 'label.name'|trans }}</th>
-                                    <th>{{ 'label.description'|trans }}</th>
-                                    <th>{{ 'label.number_of_items'|trans }}</th>
-                                    <th>{{ 'label.percent_of_items'|trans }}</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {% for result in results.tags %}
-                                    <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
-                                        <td>
-                                            <a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a>
-                                        </td>
-                                        <td>{{ result.tag.description|u.truncate(50) }}</td>
-                                        <td>{{ result.itemCount }}</td>
-                                        <td>{{ result.percent|round(2, 'common') }} %</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                    <h2 class="header">{{ 'title.wishlists'|trans }}</h2>
+                    <div class="collections grid-container-collections">
+                        {{ include('App/Wishlist/_wishlists_' ~ getContextUser().wishlistsDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': results.wishlists}) }}
                     </div>
                 </div>
             {% endif %}
