@@ -168,16 +168,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return null;
     }
 
-    public function getNaturallySortedItems(): array
-    {
-        $array = $this->items->toArray();
-        usort($array, static function (Item $a, Item $b): int {
-            return strnatcmp($a->getName(), $b->getName());
-        });
-
-        return $array;
-    }
-
     public function getId(): ?string
     {
         return $this->id;

@@ -194,16 +194,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->data->matching($criteria);
     }
 
-    public function getTagWithValue(string $value): ?Tag
-    {
-        $criteria = Criteria::create();
-        $criteria->where(Criteria::expr()->eq('label', trim($value)));
-
-        $tag = $this->tags->matching($criteria)->first();
-
-        return $tag instanceof Tag ? $tag : null;
-    }
-
     public function hasTag(Tag $tag): bool
     {
         return $this->tags->contains($tag);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
@@ -43,6 +44,21 @@ class TagTest extends WebTestCase
         $this->assertCount(3, $crawler->filter('.list-element'));
     }
 
+    public function test_ajax_tag_list(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        TagFactory::createMany(3, ['owner' => $user]);
+
+        // Act
+        $crawler = $this->client->xmlHttpRequest('GET', '/tags');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(3, $crawler->filter('.list-element'));
+    }
+
     public function test_can_see_tag(): void
     {
         // Arrange
@@ -75,6 +91,28 @@ class TagTest extends WebTestCase
         $this->assertCount(3, $crawler->filter('.collection-item'));
     }
 
+    public function test_can_edit_tag(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $tag = TagFactory::createOne(['owner' => $user]);
+
+        // Act
+        $this->client->request('GET', '/tags/'.$tag->getId().'/edit');
+        $crawler = $this->client->submitForm('Submit', [
+            'tag[label]' => 'Frieren',
+            'tag[category]' => '',
+            'tag[description]' => 'Description',
+            'tag[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC,
+            'tag[itemsDisplayConfiguration][displayMode]' => DisplayModeEnum::DISPLAY_MODE_GRID
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Frieren', $crawler->filter('h1')->text());
+    }
+
     public function test_can_delete_tag(): void
     {
         // Arrange
@@ -90,5 +128,68 @@ class TagTest extends WebTestCase
         // Assert
         $this->assertResponseIsSuccessful();
         TagFactory::assert()->count(0);
+    }
+
+    public function test_can_delete_unused_tag(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $tag = TagFactory::createOne(['owner' => $user])->object();
+        TagFactory::createOne(['owner' => $user]);
+        TagFactory::createOne(['owner' => $user]);
+        $collection = CollectionFactory::createOne(['owner' => $user])->object();
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $item->addTag($tag);
+        $item->save();
+
+        // Act
+        $crawler = $this->client->request('GET', '/tags');
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tags/delete-unused-tags');
+        $this->client->submitForm('Agree');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        TagFactory::assert()->count(1);
+    }
+
+    public function test_can_use_tag_autocomplete(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        TagFactory::createOne(['label' => 'Frieren', 'owner' => $user]);
+        TagFactory::createOne(['label' => 'Berserk', 'owner' => $user]);
+        TagFactory::createOne(['label' => 'Manga', 'owner' => $user]);
+
+        // Act
+        $this->client->request('GET', '/tags/autocomplete/fri');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('Content-Type', 'application/json');
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertCount(1, $content);
+        $this->assertSame('Frieren', $content[0]);
+    }
+
+    public function test_can_show_item_from_tag(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $tag = TagFactory::createOne(['label' => 'Frieren', 'owner' => $user])->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        $item->addTag($tag);
+        $item->save();
+
+        // Act
+        $crawler= $this->client->request('GET', '/tags/'.$tag->getId().'/items/'.$item->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Frieren #1', $crawler->filter('h1')->text());
+        $this->assertSame('From collection : Frieren', $crawler->filter('.title-block div')->text());
     }
 }

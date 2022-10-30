@@ -133,7 +133,7 @@ class WishController extends AbstractController
                 'collection' => '&nbsp;<strong>'.$item->getCollection()->getTitle().'</strong>&nbsp;',
             ]));
 
-            return $this->redirectToRoute('app_wishlist_show', ['id' => $wish->getWishlist()->getId()]);
+            return $this->redirectToRoute('app_item_show', ['id' => $item->getId()]);
         }
 
         return $this->render('App/Wish/transfer_to_collection.html.twig', [
