@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c60f53cbb3359331342b19868f8a118",
+    "content-hash": "6101f8ed66991d38c11ab54ad840ed54",
     "packages": [
         {
             "name": "api-platform/core",
@@ -10548,21 +10548,21 @@
         },
         {
             "name": "psalm/plugin-symfony",
-            "version": "v3.1.10",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-symfony.git",
-                "reference": "5dca17839a6d48766ac760b8aa6d1f6d12759b28"
+                "reference": "40589bcc366b46a80754f874e83d430089a8cbfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-symfony/zipball/5dca17839a6d48766ac760b8aa6d1f6d12759b28",
-                "reference": "5dca17839a6d48766ac760b8aa6d1f6d12759b28",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-symfony/zipball/40589bcc366b46a80754f874e83d430089a8cbfe",
+                "reference": "40589bcc366b46a80754f874e83d430089a8cbfe",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
-                "php": "^7.1 || ^8.0",
+                "php": "^7.4 || ^8.0",
                 "symfony/framework-bundle": "^4.0 || ^5.0 || ^6.0",
                 "vimeo/psalm": "^4.12"
             },
@@ -10578,7 +10578,7 @@
                 "symfony/serializer": "^4.0 || ^5.0 || ^6.0",
                 "symfony/validator": "*",
                 "twig/twig": "^2.10 || ^3.0",
-                "weirdan/codeception-psalm-module": "^0.13.1"
+                "weirdan/codeception-psalm-module": "dev-master"
             },
             "suggest": {
                 "weirdan/doctrine-psalm-plugin": "If Doctrine is used, it is recommended install this plugin"
@@ -10607,9 +10607,9 @@
             "description": "Psalm Plugin for Symfony",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-symfony/issues",
-                "source": "https://github.com/psalm/psalm-plugin-symfony/tree/v3.1.10"
+                "source": "https://github.com/psalm/psalm-plugin-symfony/tree/v4.0.0"
             },
-            "time": "2022-10-22T13:09:05+00:00"
+            "time": "2022-10-29T15:24:33+00:00"
         },
         {
             "name": "rector/rector",
