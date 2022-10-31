@@ -294,11 +294,4 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     {
         return $this->itemsDisplayConfiguration;
     }
-
-    public function setItemsDisplayConfiguration(DisplayConfiguration $itemsDisplayConfiguration): Tag
-    {
-        $this->itemsDisplayConfiguration = $itemsDisplayConfiguration;
-
-        return $this;
-    }
 }

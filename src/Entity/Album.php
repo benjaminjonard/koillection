@@ -357,23 +357,9 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this->photosDisplayConfiguration;
     }
 
-    public function setPhotosDisplayConfiguration(DisplayConfiguration $photosDisplayConfiguration): Album
-    {
-        $this->photosDisplayConfiguration = $photosDisplayConfiguration;
-
-        return $this;
-    }
-
     public function getChildrenDisplayConfiguration(): DisplayConfiguration
     {
         return $this->childrenDisplayConfiguration;
-    }
-
-    public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Album
-    {
-        $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
-
-        return $this;
     }
 
     public function getCachedValues(): array

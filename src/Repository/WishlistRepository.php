@@ -43,17 +43,6 @@ class WishlistRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findChildrenByWishlistId(string $id): iterable
-    {
-        $qb = $this
-            ->createQueryBuilder('w')
-            ->where('w.parent = :id')
-            ->setParameter('id', $id)
-        ;
-
-        return $qb->getQuery()->getResult();
-    }
-
     public function findForSearch(Search $search): array
     {
         $qb = $this

@@ -11,6 +11,8 @@ use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -63,6 +65,7 @@ class CommandTest extends KernelTestCase
         ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->object();
         ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->object();
         ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->object();
+        LogFactory::truncate();
 
         // Act
         $commandTester->execute([]);
@@ -83,9 +86,14 @@ class CommandTest extends KernelTestCase
 
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->object();
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+
+        $filesystem = new Filesystem();
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/$uniqId.png");
+        $uploadedFile = new UploadedFile("/tmp/$uniqId.png", "$uniqId.png", null, null, true);
+        $item->object()->setFile($uploadedFile);
+        $item->save();
 
         // Act
         $commandTester->execute([]);

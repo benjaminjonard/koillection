@@ -422,23 +422,9 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->childrenDisplayConfiguration;
     }
 
-    public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Collection
-    {
-        $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
-
-        return $this;
-    }
-
     public function getItemsDisplayConfiguration(): DisplayConfiguration
     {
         return $this->itemsDisplayConfiguration;
-    }
-
-    public function setItemsDisplayConfiguration(DisplayConfiguration $itemsDisplayConfiguration): Collection
-    {
-        $this->itemsDisplayConfiguration = $itemsDisplayConfiguration;
-
-        return $this;
     }
 
     public function getOrderingValue(): ?string

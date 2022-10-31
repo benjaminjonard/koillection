@@ -32,10 +32,12 @@ class ImageHandler
 
         if ($file instanceof UploadedFile) {
             $user = $this->security->getUser();
-            $relativePath = 'uploads/'.$user->getId().'/';
             if ($this->env === 'test') {
                 $relativePath = 'uploads/tests/';
+            } else {
+                $relativePath = 'uploads/'.$user->getId().'/';
             }
+
             $absolutePath = $this->publicPath.'/'.$relativePath;
 
             $generatedName = $this->randomStringGenerator->generate(20);
@@ -67,6 +69,8 @@ class ImageHandler
             if (null !== $attribute->getOriginalFilenamePath()) {
                 $this->accessor->setValue($entity, $attribute->getOriginalFilenamePath(), $file->getClientOriginalName());
             }
+
+            $this->accessor->setValue($entity, $property, null);
         }
     }
 

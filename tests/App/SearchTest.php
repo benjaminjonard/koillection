@@ -34,22 +34,24 @@ class SearchTest extends WebTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $collectionFrieren = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user]);
-        TagFactory::createOne(['label' => 'Frieren', 'owner' => $user]);
-        WishlistFactory::createOne(['name' => 'Wishlist Frieren', 'owner' => $user]);
-        AlbumFactory::createOne(['title' => 'Frieren collection', 'owner' => $user]);
+        $now = new \DateTimeImmutable();
+        $collectionFrieren = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user, 'createdAt' => $now])->object();
+        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        TagFactory::createOne(['label' => 'Frieren', 'owner' => $user, 'createdAt' => $now]);
+        WishlistFactory::createOne(['name' => 'Wishlist Frieren', 'owner' => $user, 'createdAt' => $now]);
+        AlbumFactory::createOne(['title' => 'Frieren collection', 'owner' => $user, 'createdAt' => $now]);
 
-        $collectionBerserk = CollectionFactory::createOne(['title' => 'Berserk', 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Berserk #1', 'collection' => $collectionBerserk, 'owner' => $user]);
-        TagFactory::createOne(['label' => 'Berserk', 'owner' => $user]);
-        WishlistFactory::createOne(['name' => 'Wishlist Berserk', 'owner' => $user]);
-        AlbumFactory::createOne(['title' => 'Berserk collection', 'owner' => $user]);
+        $collectionBerserk = CollectionFactory::createOne(['title' => 'Berserk', 'owner' => $user, 'createdAt' => $now])->object();
+        ItemFactory::createOne(['name' => 'Berserk #1', 'collection' => $collectionBerserk, 'owner' => $user, 'createdAt' => $now]);
+        TagFactory::createOne(['label' => 'Berserk', 'owner' => $user, 'createdAt' => $now]);
+        WishlistFactory::createOne(['name' => 'Wishlist Berserk', 'owner' => $user, 'createdAt' => $now]);
+        AlbumFactory::createOne(['title' => 'Berserk collection', 'owner' => $user, 'createdAt' => $now]);
 
         // Act
         $this->client->request('GET', '/search');
         $crawler = $this->client->submitForm('Submit', [
             'search[term]' => 'frie',
+            'search[createdAt]' => $now->format('Y-m-d'),
             'search[searchInCollections]' => 1,
             'search[searchInItems]' => 1,
             'search[searchInTags]' => 1,

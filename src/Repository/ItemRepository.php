@@ -182,20 +182,6 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findOneWithRelatedItemsByUser(User $user): ?Item
-    {
-        return $this
-            ->createQueryBuilder('i')
-            ->join('i.relatedItems', 'r')
-            ->addSelect('r')
-            ->where('i.owner = :user')
-            ->setParameter('user', $user->getId())
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-
     public function findForOrdering(Collection $collection, bool $asArray = false): array
     {
         if ($collection->getItemsDisplayConfiguration()->getSortingProperty()) {

@@ -353,13 +353,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this->childrenDisplayConfiguration;
     }
 
-    public function setChildrenDisplayConfiguration(DisplayConfiguration $childrenDisplayConfiguration): Wishlist
-    {
-        $this->childrenDisplayConfiguration = $childrenDisplayConfiguration;
-
-        return $this;
-    }
-
     public function getCachedValues(): array
     {
         return $this->cachedValues;
