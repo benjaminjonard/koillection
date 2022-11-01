@@ -69,6 +69,7 @@ class TagCategoryTest extends WebTestCase
 
         // Act
         $this->client->request('GET', '/tag-categories/add');
+
         $crawler = $this->client->submitForm('Submit', [
             'tag_category[label]' => 'Person',
             'tag_category[color]' => '009688',
@@ -106,7 +107,7 @@ class TagCategoryTest extends WebTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $tagCategory = TagCategoryFactory::createOne(['owner' => $user]);
-        $tag = TagFactory::createOne(['category' => $tagCategory, 'owner' => $user]);
+        TagFactory::createOne(['category' => $tagCategory, 'owner' => $user]);
 
         // Act
         $crawler = $this->client->request('GET', '/tag-categories/'.$tagCategory->getId());

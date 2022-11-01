@@ -90,8 +90,8 @@ class CommandTest extends KernelTestCase
 
         $filesystem = new Filesystem();
         $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/$uniqId.png");
-        $uploadedFile = new UploadedFile("/tmp/$uniqId.png", "$uniqId.png", null, null, true);
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png", null, null, true);
         $item->object()->setFile($uploadedFile);
         $item->save();
 

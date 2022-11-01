@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
-use App\Entity\Wishlist;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
-use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\TagFactory;
+use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -96,10 +95,10 @@ class SearchTest extends WebTestCase
         $this->assertResponseHeaderSame('Content-Type', 'application/json');
         $content = json_decode($this->client->getResponse()->getContent(), true);
         $this->assertSame(5, $content['totalResultsCounter']);
-        $this->assertContains(["label" => "Frieren", "type" => "collection", "url" => "/collections/".$collection->getId()], $content['results']);
-        $this->assertContains(["label" => "Frieren #1", "type" => "item", "url" => "/items/".$item->getId()], $content['results']);
-        $this->assertContains(["label" => "Frieren", "type" => "tag", "url" => "/tags/".$tag->getId()], $content['results']);
-        $this->assertContains(["label" => "Wishlist Frieren", "type" => "wishlist", "url" => "/wishlists/".$wishlist->getId()], $content['results']);
-        $this->assertContains(["label" => "Frieren collection", "type" => "album", "url" => "/albums/".$album->getId()], $content['results']);
+        $this->assertContains(['label' => 'Frieren', 'type' => 'collection', 'url' => '/collections/'.$collection->getId()], $content['results']);
+        $this->assertContains(['label' => 'Frieren #1', 'type' => 'item', 'url' => '/items/'.$item->getId()], $content['results']);
+        $this->assertContains(['label' => 'Frieren', 'type' => 'tag', 'url' => '/tags/'.$tag->getId()], $content['results']);
+        $this->assertContains(['label' => 'Wishlist Frieren', 'type' => 'wishlist', 'url' => '/wishlists/'.$wishlist->getId()], $content['results']);
+        $this->assertContains(['label' => 'Frieren collection', 'type' => 'album', 'url' => '/albums/'.$album->getId()], $content['results']);
     }
 }

@@ -8,7 +8,6 @@ use App\Service\RefreshCachedValuesQueue;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -18,7 +17,7 @@ class WishlistCountersTest extends WebTestCase
     use Factories;
     use ResetDatabase;
 
-    private KernelBrowser $client;
+    public ?RefreshCachedValuesQueue $refreshCachedValuesQueue;
 
     protected function setUp(): void
     {
@@ -180,6 +179,7 @@ class WishlistCountersTest extends WebTestCase
 
         // Act
         $wish->remove();
+
         $this->refreshCachedValuesQueue->process();
 
         // Assert

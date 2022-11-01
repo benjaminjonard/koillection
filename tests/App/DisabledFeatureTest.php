@@ -61,7 +61,7 @@ class DisabledFeatureTest extends WebTestCase
         $this->assertStringNotContainsString('Statistics', $crawler->filter('.nav-sidebar')->text());
     }
 
-    public function test_owner_cant_access_disabled_features()
+    public function test_owner_cant_access_disabled_features(): void
     {
         // Arrange
         $user = UserFactory::createOne([
@@ -93,22 +93,21 @@ class DisabledFeatureTest extends WebTestCase
         $templateId = TemplateFactory::createOne(['owner' => $owner])->getId();
         $choiceListId = ChoiceListFactory::createOne(['owner' => $owner])->getId();
 
-
         return [
-            "/albums",
-            "/albums/$albumId",
-            "/wishlists",
-            "/wishlists/$wishlistId",
-            "/tags",
-            "/tags/$tagId",
-            "/templates",
-            "/templates/$templateId",
-            "/choice-lists",
-            "/choice-lists/$choiceListId",
-            "/loans",
-            "/signatures",
-            "/statistics",
-            "/signatures",
+            '/albums',
+            "/albums/{$albumId}",
+            '/wishlists',
+            "/wishlists/{$wishlistId}",
+            '/tags',
+            "/tags/{$tagId}",
+            '/templates',
+            "/templates/{$templateId}",
+            '/choice-lists',
+            "/choice-lists/{$choiceListId}",
+            '/loans',
+            '/signatures',
+            '/statistics',
+            '/signatures',
         ];
     }
 }

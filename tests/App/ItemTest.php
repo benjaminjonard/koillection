@@ -98,7 +98,6 @@ class ItemTest extends WebTestCase
         $this->assertSame(substr('https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3', 0, 47).'...', $crawler->filter('.datum-row')->eq(7)->filter('a')->text());
         $this->assertSame('Edition : Collector', $crawler->filter('.datum-row')->eq(8)->text());
 
-
         $this->assertCount(1, $crawler->filter('.related-items a'));
         $this->assertSame('Calendar Frieren 2023', $crawler->filter('.related-items a')->eq(0)->text());
 

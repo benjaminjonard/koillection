@@ -46,6 +46,7 @@ class ChoiceListTest extends WebTestCase
 
         // Act
         $this->client->request('GET', '/choice-lists/add');
+
         $crawler = $this->client->submitForm('Submit', [
             'choice_list[name]' => 'Progress'
         ]);
@@ -60,7 +61,7 @@ class ChoiceListTest extends WebTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $choiceList = ChoiceListFactory::createOne(['owner' => $user, 'choices' => ['New', 'Test' , 'Done']]);
+        $choiceList = ChoiceListFactory::createOne(['owner' => $user, 'choices' => ['New', 'Test', 'Done']]);
 
         // Act
         $this->client->request('GET', '/choice-lists/'.$choiceList->getId().'/edit');

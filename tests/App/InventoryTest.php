@@ -94,7 +94,6 @@ class InventoryTest extends WebTestCase
 
         // Act
         $this->client->request('POST', '/inventories/'.$inventory->getId().'/check?id='.$item->getId());
-        $content = json_decode($this->client->getResponse()->getContent(), true);
 
         // Assert
         $this->assertResponseIsSuccessful();

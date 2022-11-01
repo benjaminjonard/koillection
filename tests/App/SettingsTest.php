@@ -34,6 +34,7 @@ class SettingsTest extends WebTestCase
 
         // Act
         $this->client->request('GET', '/settings');
+
         $crawler = $this->client->submitForm('Submit', [
             'settings[locale]' => LocaleEnum::LOCALE_FR,
             'settings[currency]' => 'EUR',

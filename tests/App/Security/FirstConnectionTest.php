@@ -58,7 +58,7 @@ class FirstConnectionTest extends WebTestCase
         UserFactory::createOne()->object();
 
         // Act
-        $crawler = $this->client->request('GET', '/first-connection');
+        $this->client->request('GET', '/first-connection');
 
         // Assert
         $this->assertRouteSame('app_security_login');

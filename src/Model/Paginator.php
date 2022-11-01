@@ -11,9 +11,9 @@ class Paginator
     private int $maxPagesToShow = 5;
 
     public function __construct(
-        private int $totalItems,
-        private int $itemsPerPage,
-        private int $currentPage,
+        private readonly int $totalItems,
+        private readonly int $itemsPerPage,
+        private readonly int $currentPage,
         private readonly string $url
     ) {
         $this->updateNumPages();

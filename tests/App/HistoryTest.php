@@ -8,11 +8,11 @@ use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\InventoryFactory;
-use App\Tests\Factory\LogFactory;
-use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\ItemFactory;
+use App\Tests\Factory\LogFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\TagCategoryFactory;
+use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
@@ -89,7 +89,6 @@ class HistoryTest extends WebTestCase
 
         $this->assertStringContainsString('Item Frieren #1 was deleted', $crawler->filter('tbody')->text());
         $this->assertStringContainsString('Collection Frieren was deleted', $crawler->filter('tbody')->text());
-
     }
 
     public function test_ajax_history(): void

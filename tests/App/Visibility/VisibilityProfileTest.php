@@ -134,19 +134,19 @@ class VisibilityProfileTest extends WebTestCase
         $tagId = TagFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->getId();
 
         return [
-            "/user/$username",
-            "/user/$username/collections",
-            "/user/$username/collections/$collectionId",
-            "/user/$username/collections/$collectionId/items",
-            "/user/$username/items/$itemId",
-            "/user/$username/albums",
-            "/user/$username/albums/$albumId",
-            "/user/$username/wishlists",
-            "/user/$username/wishlists/$wishlistId",
-            "/user/$username/tags",
-            "/user/$username/tags/$tagId",
-            "/user/$username/statistics",
-            "/user/$username/signatures",
+            "/user/{$username}",
+            "/user/{$username}/collections",
+            "/user/{$username}/collections/{$collectionId}",
+            "/user/{$username}/collections/{$collectionId}/items",
+            "/user/{$username}/items/{$itemId}",
+            "/user/{$username}/albums",
+            "/user/{$username}/albums/{$albumId}",
+            "/user/{$username}/wishlists",
+            "/user/{$username}/wishlists/{$wishlistId}",
+            "/user/{$username}/tags",
+            "/user/{$username}/tags/{$tagId}",
+            "/user/{$username}/statistics",
+            "/user/{$username}/signatures",
         ];
     }
 }

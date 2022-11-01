@@ -185,7 +185,7 @@ class TagTest extends WebTestCase
         $item->save();
 
         // Act
-        $crawler= $this->client->request('GET', '/tags/'.$tag->getId().'/items/'.$item->getId());
+        $crawler = $this->client->request('GET', '/tags/'.$tag->getId().'/items/'.$item->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

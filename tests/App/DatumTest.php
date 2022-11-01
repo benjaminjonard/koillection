@@ -65,11 +65,10 @@ class DatumTest extends WebTestCase
     /**
      * Authors will be kept with its value because all items have it AND share the same value
      * Volumes will be kept but not its value because all items have it BUT they have different values
-     * Comment won't be kept, because not all items have it
+     * Comment won't be kept, because not all items have it.
      */
     public function test_can_get_common_fields(): void
     {
-
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);

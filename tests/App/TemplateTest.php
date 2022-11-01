@@ -63,6 +63,7 @@ class TemplateTest extends WebTestCase
 
         // Act
         $this->client->request('GET', '/templates/add');
+
         $crawler = $this->client->submitForm('Submit', [
             'template[name]' => 'Book'
         ]);

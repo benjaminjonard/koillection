@@ -8,7 +8,6 @@ use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Tag;
-use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;

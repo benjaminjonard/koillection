@@ -15,7 +15,6 @@ use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\UserRepository;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\DBAL\Types\Types;
@@ -148,7 +147,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     #[Groups(['user:read'])]
-    private ?DateTimeImmutable $lastDateOfActivity = null;
+    private ?\DateTimeImmutable $lastDateOfActivity = null;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['user:read', 'user:write'])]
@@ -196,11 +195,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['user:read'])]
-    private DateTimeImmutable $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     #[Groups(['user:read'])]
-    private ?DateTimeImmutable $updatedAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
@@ -465,36 +464,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getLastDateOfActivity(): ?DateTimeImmutable
+    public function getLastDateOfActivity(): ?\DateTimeImmutable
     {
         return $this->lastDateOfActivity;
     }
 
-    public function setLastDateOfActivity(?DateTimeImmutable $lastDateOfActivity): self
+    public function setLastDateOfActivity(?\DateTimeImmutable $lastDateOfActivity): self
     {
         $this->lastDateOfActivity = $lastDateOfActivity;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -637,24 +636,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function getAutomaticDarkModeStartAt(): ?DateTimeImmutable
+    public function getAutomaticDarkModeStartAt(): ?\DateTimeImmutable
     {
         return $this->automaticDarkModeStartAt;
     }
 
-    public function setAutomaticDarkModeStartAt(?DateTimeImmutable $automaticDarkModeStartAt): User
+    public function setAutomaticDarkModeStartAt(?\DateTimeImmutable $automaticDarkModeStartAt): User
     {
         $this->automaticDarkModeStartAt = $automaticDarkModeStartAt;
 
         return $this;
     }
 
-    public function getAutomaticDarkModeEndAt(): ?DateTimeImmutable
+    public function getAutomaticDarkModeEndAt(): ?\DateTimeImmutable
     {
         return $this->automaticDarkModeEndAt;
     }
 
-    public function setAutomaticDarkModeEndAt(?DateTimeImmutable $automaticDarkModeEndAt): User
+    public function setAutomaticDarkModeEndAt(?\DateTimeImmutable $automaticDarkModeEndAt): User
     {
         $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;
 

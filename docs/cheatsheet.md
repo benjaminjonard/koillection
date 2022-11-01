@@ -33,7 +33,3 @@ Then
 
 ###### Rector
 - `./vendor/bin/rector --dry-run`
-
-###### Psalm
-- `./vendor/bin/psalm`
-- `./vendor/bin/psalm --alter --issues=MissingReturnType,MissingParamType --dry-run`
