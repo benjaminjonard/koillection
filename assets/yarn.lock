@@ -3096,10 +3096,10 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-lightgallery@^2.3.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-2.6.1.tgz#b6ace61cc7b5f0567c1d0b002beeb69b2df01ae9"
-  integrity sha512-Lwcr4uEqzTBP3u7FurJo+kBT2BuNMXgFpP1iCwbS+5uSXHyzApolUwAm9TmQ7lLpTMVPIti5a5wwQNplw769ZQ==
+lightgallery@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-2.7.0.tgz#faa1ff6c7338557f39a29a63228b77793afad95d"
+  integrity sha512-iozIJNxKl3wPWcspCmRdaSYpYy3PjloC8BN0PDwaDOoTA1hsu1IhZdWQWI5cGgMJvnksP94/smElMwn2HS5d3Q==
 
 lilconfig@^2.0.3:
   version "2.0.6"
@@ -4267,12 +4267,12 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
 
-stimulus-lightbox@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/stimulus-lightbox/-/stimulus-lightbox-3.0.0.tgz#acd2ae81422f1416e38cd0d1aa54300ac88c72a8"
-  integrity sha512-GDzUDMxSxNvO2UmA/WFLoNLiNl0xcCFt92+SKvL2Zt3uflGIBhQpvdykrTkgiLxCaXxhVW4ba/PwEmliDvcQBg==
+stimulus-lightbox@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/stimulus-lightbox/-/stimulus-lightbox-3.1.0.tgz#91282213b2a5465d26804be3cae7c6b40de57b9d"
+  integrity sha512-FEw+zHkHCFvExmLa0lVOLrR8/zXZqeDLhvRzgtfm0KuL0hMbpNMMH+BexT/FYFoD+mHCRauLNNkQzEmRVjorZQ==
   dependencies:
-    lightgallery "^2.3.0"
+    lightgallery "^2.7.0"
 
 stimulus-use@0.51.0:
   version "0.51.0"
