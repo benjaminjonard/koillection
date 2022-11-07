@@ -20,7 +20,7 @@
         "lexik/jwt-authentication-bundle": "2.16.0",
         "maennchen/zipstream-php": "2.2.1",
         "nelmio/cors-bundle": "2.2.0",
-        "sensio/framework-extra-bundle": "6.2.8",
+        "sensio/framework-extra-bundle": "6.2.9",
         "symfony/asset": "6.1.5",
         "symfony/cache": "6.1.7",
         "symfony/console": "6.1.7",
