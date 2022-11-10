@@ -1,7 +1,7 @@
 /* Lightest */
 .progress,
 .picker__today:focus, .picker__clear:focus, .picker__close:focus,
-.select2-container--default .select2-results__option[aria-selected="true"],
+.select2-container--default .select2-results__option[aria-selected="true"]
 {
     background-color: #777;
 }
@@ -157,7 +157,7 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 .input-field input[type="search"]:focus:not(.browser-default),
 .select2-container--default .select2-results__option[aria-selected="true"],
 .select2-dropdown, .autocomplete-content,
-header #search_term, .sidebar-wrapper .header-logo,
+header #search_term, .sidebar-wrapper .header-logo, .tabs,
 thead th,
 .nav-wrapper #search_term, body {
     background-color: #2a2a2a;
