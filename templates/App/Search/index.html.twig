@@ -36,19 +36,19 @@
             <div class="tabs-block col s12">
                 <ul class="tabs">
                     <li class="tab col s12 l2 offset-l1 current" data-tabs-target="tab" data-action="click->tabs#display" data-for="items">
-                        {{ 'label.items'|trans }} ({{ results.items|length|default(0) }})
+                        {{ 'label.items'|trans }} ({{ results.items is defined ? results.items|length : 0 }})
                     </li>
                     <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="collections">
-                        {{ 'label.collections'|trans }} ({{ results.collections|length|default(0) }})
+                        {{ 'label.collections'|trans }} ({{ results.collections is defined ? results.collections|length : 0 }})
                     </li>
                     <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="tags">
-                        {{ 'label.tags'|trans }} ({{ results.tags|length|default(0) }})
+                        {{ 'label.tags'|trans }} ({{ results.tags is defined ? results.tags|length : 0 }})
                     </li>
                     <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="wishlists">
-                        {{ 'label.wishlists'|trans }} ({{ results.wishlists|length|default(0) }})
+                        {{ 'label.wishlists'|trans }} ({{ results.wishlists is defined ? results.wishlists|length : 0 }})
                     </li>
                     <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="albums">
-                        {{ 'label.albums'|trans }} ({{ results.albums|length|default(0) }})
+                        {{ 'label.albums'|trans }} ({{ results.albums is defined ? results.albums|length : 0 }})
                     </li>
                 </ul>
             </div>

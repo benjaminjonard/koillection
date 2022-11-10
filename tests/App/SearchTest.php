@@ -48,32 +48,27 @@ class SearchTest extends WebTestCase
         AlbumFactory::createOne(['title' => 'Berserk collection', 'owner' => $user, 'createdAt' => $now]);
 
         // Act
-        $this->client->request('GET', '/search');
+        $crawler = $this->client->request('GET', '/search');
         $crawler = $this->client->submitForm('Submit', [
             'search[term]' => 'frie',
             'search[createdAt]' => $now->format('Y-m-d'),
-            'search[searchInCollections]' => 1,
-            'search[searchInItems]' => 1,
-            'search[searchInTags]' => 1,
-            'search[searchInWishlists]' => 1,
-            'search[searchInAlbums]' => 1,
         ], 'GET');
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame('Items', $crawler->filter('h2')->eq(0)->text());
+        $this->assertSame('Items (1)', $crawler->filter('.tab')->eq(0)->text());
         $this->assertCount(1, $crawler->filter('.collection-item'));
 
-        $this->assertSame('Collections', $crawler->filter('h2')->eq(1)->text());
+        $this->assertSame('Collections (1)', $crawler->filter('.tab')->eq(1)->text());
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(0)->filter('.collection-element'));
 
-        $this->assertSame('Tags', $crawler->filter('h2')->eq(2)->text());
+        $this->assertSame('Tags (1)', $crawler->filter('.tab')->eq(2)->text());
         $this->assertCount(1, $crawler->filter('.list-element'));
 
-        $this->assertSame('Albums', $crawler->filter('h2')->eq(3)->text());
+        $this->assertSame('Wishlists (1)', $crawler->filter('.tab')->eq(3)->text());
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(1)->filter('.collection-element'));
 
-        $this->assertSame('Wishlists', $crawler->filter('h2')->eq(4)->text());
+        $this->assertSame('Albums (1)', $crawler->filter('.tab')->eq(4)->text());
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(2)->filter('.collection-element'));
     }
 
@@ -91,28 +86,24 @@ class SearchTest extends WebTestCase
         $this->client->request('GET', '/user/'.$user->getUsername().'/search');
         $crawler = $this->client->submitForm('Submit', [
             'search[term]' => 'fri',
-            'search[searchInCollections]' => 1,
-            'search[searchInItems]' => 1,
-            'search[searchInTags]' => 1,
-            'search[searchInWishlists]' => 1,
-            'search[searchInAlbums]' => 1,
         ], 'GET');
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame('Items', $crawler->filter('h2')->eq(0)->text());
+
+        $this->assertSame('Items (1)', $crawler->filter('.tab')->eq(0)->text());
         $this->assertCount(1, $crawler->filter('.collection-item'));
 
-        $this->assertSame('Collections', $crawler->filter('h2')->eq(1)->text());
+        $this->assertSame('Collections (1)', $crawler->filter('.tab')->eq(1)->text());
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(0)->filter('.collection-element'));
 
-        $this->assertSame('Tags', $crawler->filter('h2')->eq(2)->text());
+        $this->assertSame('Tags (1)', $crawler->filter('.tab')->eq(2)->text());
         $this->assertCount(1, $crawler->filter('.list-element'));
 
-        $this->assertSame('Albums', $crawler->filter('h2')->eq(3)->text());
+        $this->assertSame('Wishlists (1)', $crawler->filter('.tab')->eq(3)->text());
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(1)->filter('.collection-element'));
 
-        $this->assertSame('Wishlists', $crawler->filter('h2')->eq(4)->text());
+        $this->assertSame('Albums (1)', $crawler->filter('.tab')->eq(4)->text());
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(2)->filter('.collection-element'));
     }
 
@@ -130,16 +121,15 @@ class SearchTest extends WebTestCase
         $this->client->request('GET', '/user/'.$user->getUsername().'/search');
         $crawler = $this->client->submitForm('Submit', [
             'search[term]' => 'fri',
-            'search[searchInCollections]' => 1,
-            'search[searchInItems]' => 1,
-            'search[searchInTags]' => 1,
-            'search[searchInWishlists]' => 1,
-            'search[searchInAlbums]' => 1,
         ], 'GET');
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame('No results', $crawler->filter('.main .content-block')->eq(1)->text());
+        $this->assertSame('Items (0)', $crawler->filter('.tab')->eq(0)->text());
+        $this->assertSame('Collections (0)', $crawler->filter('.tab')->eq(1)->text());
+        $this->assertSame('Tags (0)', $crawler->filter('.tab')->eq(2)->text());
+        $this->assertSame('Wishlists (0)', $crawler->filter('.tab')->eq(3)->text());
+        $this->assertSame('Albums (0)', $crawler->filter('.tab')->eq(4)->text());
     }
 
     public function test_anonymous_user_private(): void
