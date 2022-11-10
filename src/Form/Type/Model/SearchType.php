@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Model;
 
+use App\Enum\DateFormatEnum;
 use App\Model\Search\Search;
 use App\Service\FeatureChecker;
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +19,6 @@ class SearchType extends AbstractType
 {
     public function __construct(
         private readonly Security $security,
-        private readonly FeatureChecker $featureChecker
     ) {
     }
 
@@ -35,38 +35,9 @@ class SearchType extends AbstractType
                 'required' => false,
                 'html5' => false,
                 'widget' => 'single_text',
-                'format' => $this->security->getUser()->getDateFormatForForm(),
-            ])
-            ->add('searchInItems', CheckboxType::class, [
-                'label' => false,
-                'required' => false,
-            ])
-            ->add('searchInCollections', CheckboxType::class, [
-                'label' => false,
-                'required' => false,
+                'format' => $this->security->getUser()?->getDateFormatForForm() ?: DateFormatEnum::FORMAT_HYPHEN_YMD,
             ])
         ;
-
-        if ($this->featureChecker->isFeatureEnabled('tags')) {
-            $builder->add('searchInTags', CheckboxType::class, [
-                'label' => false,
-                'required' => false,
-            ]);
-        }
-
-        if ($this->featureChecker->isFeatureEnabled('albums')) {
-            $builder->add('searchInAlbums', CheckboxType::class, [
-                'label' => false,
-                'required' => false,
-            ]);
-        }
-
-        if ($this->featureChecker->isFeatureEnabled('wishlists')) {
-            $builder->add('searchInWishlists', CheckboxType::class, [
-                'label' => false,
-                'required' => false,
-            ]);
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

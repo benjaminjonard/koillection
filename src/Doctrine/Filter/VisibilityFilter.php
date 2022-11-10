@@ -10,6 +10,13 @@ use Doctrine\ORM\Query\Filter\SQLFilter;
 
 class VisibilityFilter extends SQLFilter
 {
+    private array $visibilities = [];
+
+    public function getVisibilities(): array
+    {
+        return $this->visibilities;
+    }
+
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias): string
     {
         $filter = '';
@@ -27,10 +34,13 @@ class VisibilityFilter extends SQLFilter
     {
         // If user not authenticated, only show public
         if ("''" === $this->getParameter('user')) {
+            $this->visibilities[] = VisibilityEnum::VISIBILITY_PUBLIC;
             return sprintf("%s.%s = '%s'", $targetTableAlias, $property, VisibilityEnum::VISIBILITY_PUBLIC);
         }
 
         // If authenticated, show public and internal
+        $this->visibilities[] = VisibilityEnum::VISIBILITY_PUBLIC;
+        $this->visibilities[] = VisibilityEnum::VISIBILITY_INTERNAL;
         return sprintf(
             "%s.%s IN ('%s', '%s')",
             $targetTableAlias,

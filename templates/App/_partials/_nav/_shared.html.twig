@@ -1,3 +1,19 @@
+<li>
+    <form class="search" name="search" method="get" data-autocomplete-url="/user/{{ getContextUser().getUsername() }}/search/autocomplete/" action="{{ path('app_shared_search_index') }}" data-controller="search">
+        <div>
+            <input id="search_term"
+                   data-action="keyup->search#search click->search#open"
+                   name="search[term]"
+                   type="search"
+                   class="search-input placeholder"
+                   placeholder="{{ 'menu.search'|trans }}"
+                   autocomplete="off"
+            >
+        </div>
+        <ul class="autocomplete-results hidden" data-search-target="resultsWrapper"></ul>
+    </form>
+</li>
+
 <li class="{{ 'app_shared_collection' in route or 'app_shared_item' in route ? 'current' }} sidebar-element">
     <a
             href="{{ path('app_shared_collection_index') }}">

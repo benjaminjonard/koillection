@@ -11,7 +11,6 @@ use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
-use App\Enum\VisibilityEnum;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\RouterInterface;
@@ -112,8 +111,8 @@ class Autocompleter
         $this->params[] = '%'.$term.'%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            $sql .= ' AND visibility = ?';
-            $this->params[] = VisibilityEnum::VISIBILITY_PUBLIC;
+            $sql .= ' AND visibility IN (?)';
+            $this->params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 
         return $sql;
@@ -152,8 +151,8 @@ class Autocompleter
         $this->params[] = '%'.$term.'%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            $sql .= ' AND visibility = ?';
-            $this->params[] = VisibilityEnum::VISIBILITY_PUBLIC;
+            $sql .= ' AND visibility IN (?)';
+            $this->params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 
         return $sql;

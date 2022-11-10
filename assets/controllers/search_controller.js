@@ -37,7 +37,7 @@ export default class extends Controller {
                 return;
             }
 
-            fetch('/search/autocomplete/' + encodeURIComponent(value), {
+            fetch(self.element.dataset.autocompleteUrl + encodeURIComponent(value), {
                 method: 'GET'
             })
                 .then(response => response.json())

@@ -759,6 +759,10 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
     margin-top: 20px;
 }
 
+.btn-valigned {
+    margin-top: 20px;
+}
+
 .resize-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -1996,10 +2000,6 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
     left: 5px;
     position: relative;
     top: -3px;
-}
-
-.row.search-checkbox-row {
-    margin-bottom: 25px;
 }
 
 .btn-cancel {

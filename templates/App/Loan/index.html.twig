@@ -21,12 +21,12 @@
 
     <div class="content-block" data-controller="tabs">
         <div class="row">
-            <div class="tabs-block col s12 l10 offset-l1 xl6 offset-xl3">
-                <ul class="nav nav-pills">
-                    <li class="tab current" data-tabs-target="tab" data-action="click->tabs#display" data-for="active">
+            <div class="tabs-block col s12">
+                <ul class="tabs">
+                    <li class="tab col s12 l2 offset-l4 current" data-tabs-target="tab" data-action="click->tabs#display" data-for="active">
                         {{ 'tab.loans'|trans }}
                     </li>
-                    <li class="tab" data-tabs-target="tab" data-action="click->tabs#display" data-for="returned">
+                    <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="returned">
                         {{ 'tab.returned_items'|trans }}
                     </li>
                 </ul>

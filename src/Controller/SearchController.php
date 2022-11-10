@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     #[Route(path: '/search', name: 'app_search_index', methods: ['GET', 'POST'])]
+    #[Route(path: '/user/{username}/search', name: 'app_shared_search_index', methods: ['GET'])]
     public function index(
         Request $request,
         CollectionRepository $collectionRepository,
@@ -36,39 +37,19 @@ class SearchController extends AbstractController
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($search->getSearchInCollections()) {
-                $collections = $collectionRepository->findForSearch($search);
-                if (!empty($collections)) {
-                    $results['collections'] = $collections;
-                }
+            $results['collections'] = $collectionRepository->findForSearch($search);
+            $results['items'] = $itemRepository->findForSearch($search);
+
+            if ($this->featureChecker->isFeatureEnabled('tags')) {
+                $results['tags'] = $tagRepository->findForSearch($search);
             }
 
-            if ($search->getSearchInItems()) {
-                $items = $itemRepository->findForSearch($search);
-                if (!empty($items)) {
-                    $results['items'] = $items;
-                }
+            if ($this->featureChecker->isFeatureEnabled('albums')) {
+                $results['albums'] = $albumRepository->findForSearch($search);
             }
 
-            if ($this->featureChecker->isFeatureEnabled('tags') && $search->getSearchInTags()) {
-                $tags = $tagRepository->findForSearch($search);
-                if (!empty($tags)) {
-                    $results['tags'] = $tags;
-                }
-            }
-
-            if ($this->featureChecker->isFeatureEnabled('albums') && $search->getSearchInAlbums()) {
-                $albums = $albumRepository->findForSearch($search);
-                if (!empty($albums)) {
-                    $results['albums'] = $albums;
-                }
-            }
-
-            if ($this->featureChecker->isFeatureEnabled('wishlists') && $search->getSearchInWishlists()) {
-                $wishlists = $wishlistRepository->findForSearch($search);
-                if (!empty($wishlists)) {
-                    $results['wishlists'] = $wishlists;
-                }
+            if ($this->featureChecker->isFeatureEnabled('wishlists')) {
+                $results['wishlists'] = $wishlistRepository->findForSearch($search);
             }
         }
 
@@ -81,6 +62,7 @@ class SearchController extends AbstractController
     }
 
     #[Route(path: '/search/autocomplete/{term}', name: 'app_search_autocomplete', methods: ['GET', 'POST'])]
+    #[Route(path: '/user/{username}/search/autocomplete/{term}', name: 'app_shared_search_autocomplete', methods: ['GET'])]
     public function autocomplete(Autocompleter $autocompleter, string $term): Response
     {
         $results = $autocompleter->findForAutocomplete($term);

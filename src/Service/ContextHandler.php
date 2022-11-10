@@ -75,11 +75,6 @@ class ContextHandler
         return $this->context;
     }
 
-    public function isAuthorized(): string
-    {
-        return $this->isAuthorized();
-    }
-
     public function getUsername(): ?string
     {
         return $this->username;

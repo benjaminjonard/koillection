@@ -18,51 +18,45 @@
     <div class="content-block">
         {{ form_start(form, {'method': 'GET'}) }}
         <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+            <div class="col s12 l4 offset-l1 xl3 offset-xl3">
                 {{ form_row(form.term, {'label' : 'label.search'}) }}
             </div>
-            <div class="col s12 l5 xl3">
+            <div class="col s12 l4 xl2">
                 {{ form_row(form.createdAt, {'label' : 'label.added_at', 'attr': {'data-controller' : 'datepicker' } }) }}
             </div>
-        </div>
-
-        <div class="row search-checkbox-row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                <div class="col s4">
-                    {{ form_row(form.searchInCollections, {'label': 'label.collections'}) }}
-                </div>
-                <div class="col s4">
-                    {{ form_row(form.searchInItems, {'label': 'label.items'}) }}
-                </div>
-                {% if isFeatureEnabled('tags') %}
-                    <div class="col s4">
-                        {{ form_row(form.searchInTags, {'label': 'label.tags'}) }}
-                    </div>
-                {% endif %}
-                {% if isFeatureEnabled('albums') %}
-                    <div class="col s4">
-                        {{ form_row(form.searchInAlbums, {'label': 'label.albums'}) }}
-                    </div>
-                {% endif %}
-                {% if isFeatureEnabled('wishlists') %}
-                    <div class="col s4">
-                        {{ form_row(form.searchInWishlists, {'label': 'label.wishlists'}) }}
-                    </div>
-                {% endif %}
+            <div class="col s12 l2 xl1 center btn-valigned">
+                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
             </div>
-        </div>
-
-        <div class="row center-align form-btn-holder">
-            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
         </div>
         {{ form_end(form) }}
     </div>
 
-    <div class="content-block">
-        {% if results|length > 0 %}
+    <div class="content-block" data-controller="tabs">
+        <div class="row">
+            <div class="tabs-block col s12">
+                <ul class="tabs">
+                    <li class="tab col s12 l2 offset-l1 current" data-tabs-target="tab" data-action="click->tabs#display" data-for="items">
+                        {{ 'label.items'|trans }} ({{ results.items|length|default(0) }})
+                    </li>
+                    <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="collections">
+                        {{ 'label.collections'|trans }} ({{ results.collections|length|default(0) }})
+                    </li>
+                    <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="tags">
+                        {{ 'label.tags'|trans }} ({{ results.tags|length|default(0) }})
+                    </li>
+                    <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="wishlists">
+                        {{ 'label.wishlists'|trans }} ({{ results.wishlists|length|default(0) }})
+                    </li>
+                    <li class="tab col s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="albums">
+                        {{ 'label.albums'|trans }} ({{ results.albums|length|default(0) }})
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel current" data-tabs-target="panel" data-name="items">
             {% if results.items is defined and results.items|length > 0 %}
                 <div class="block-element">
-                    <h2 class="header">{{ 'title.items'|trans }}</h2>
                     <div id="collection-items" class="grid-container-items">
                         {% for item in results.items|naturalSorting %}
                             <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
@@ -78,65 +72,65 @@
                     </div>
                 </div>
             {% endif %}
+        </div>
 
+        <div class="panel" data-tabs-target="panel" data-name="collections">
             {% if results.collections is defined and results.collections|length > 0 %}
                 <div class="block-element">
-                    <h2 class="header">{{ 'title.collections'|trans }}</h2>
                     {{ include('App/Collection/_collections_' ~ getContextUser().collectionsDisplayConfiguration.displayMode ~ '.html.twig', {
                         'collections': results.collections,
                         'displayConfiguration': getContextUser().collectionsDisplayConfiguration
                     }) }}
                 </div>
             {% endif %}
+        </div>
 
+        <div class="panel" data-tabs-target="panel" data-name="tags">
             {% if results.tags is defined and results.tags|length > 0 %}
                 <div class="block-element">
-                    <h2 class="header">{{ 'title.tags'|trans }}</h2>
-                    <div>
-                        <table class="centered striped">
-                            <thead>
-                            <tr>
-                                <th>{{ 'label.name'|trans }}</th>
-                                <th>{{ 'label.description'|trans }}</th>
-                                <th>{{ 'label.number_of_items'|trans }}</th>
-                                <th>{{ 'label.percent_of_items'|trans }}</th>
+                    <table class="centered striped">
+                        <thead>
+                        <tr>
+                            <th>{{ 'label.name'|trans }}</th>
+                            <th>{{ 'label.description'|trans }}</th>
+                            <th>{{ 'label.number_of_items'|trans }}</th>
+                            <th>{{ 'label.percent_of_items'|trans }}</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for result in results.tags %}
+                            <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
+                                <td>
+                                    <a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a>
+                                </td>
+                                <td>{{ result.tag.description|u.truncate(50) }}</td>
+                                <td>{{ result.itemCount }}</td>
+                                <td>{{ result.percent|round(2, 'common') }} %</td>
                             </tr>
-                            </thead>
-
-                            <tbody>
-                            {% for result in results.tags %}
-                                <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
-                                    <td>
-                                        <a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a>
-                                    </td>
-                                    <td>{{ result.tag.description|u.truncate(50) }}</td>
-                                    <td>{{ result.itemCount }}</td>
-                                    <td>{{ result.percent|round(2, 'common') }} %</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             {% endif %}
+        </div>
 
-            {% if results.albums is defined and results.albums|length > 0 %}
-                <div class="block-element">
-                    <h2 class="header">{{ 'title.albums'|trans }}</h2>
-                    {{ include('App/Album/_albums_' ~ getContextUser().albumsDisplayConfiguration.displayMode ~ '.html.twig', {'albums': results.albums}) }}
-                </div>
-            {% endif %}
-
+        <div class="panel" data-tabs-target="panel" data-name="wishlists">
             {% if results.wishlists is defined and results.wishlists|length > 0 %}
                 <div class="block-element">
-                    <h2 class="header">{{ 'title.wishlists'|trans }}</h2>
                     <div class="collections grid-container-collections">
                         {{ include('App/Wishlist/_wishlists_' ~ getContextUser().wishlistsDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': results.wishlists}) }}
                     </div>
                 </div>
             {% endif %}
-        {% else %}
-            {{ 'message.search_empty'|trans }}
-        {% endif %}
+        </div>
+
+        <div class="panel" data-tabs-target="panel" data-name="albums">
+            {% if results.albums is defined and results.albums|length > 0 %}
+                <div class="block-element">
+                    {{ include('App/Album/_albums_' ~ getContextUser().albumsDisplayConfiguration.displayMode ~ '.html.twig', {'albums': results.albums}) }}
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

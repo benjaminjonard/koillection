@@ -1,5 +1,5 @@
 <li>
-    <form class="search" name="search" method="get" action="{{ path('app_search_index') }}" data-controller="search">
+    <form class="search" name="search" method="get" data-autocomplete-url="/search/autocomplete/" action="{{ path('app_search_index') }}" data-controller="search">
         <div>
             <input id="search_term"
                    data-action="keyup->search#search click->search#open"
@@ -9,9 +9,6 @@
                    placeholder="{{ 'menu.search'|trans }}"
                    autocomplete="off"
             >
-            <input id="search_searchInCollections" name="search[searchInCollections]" type="hidden">
-            <input id="search_searchInItems" name="search[searchInItems]" type="hidden">
-            <input id="search_searchInTags" name="search[searchInTags]" type="hidden">
         </div>
         <ul class="autocomplete-results hidden" data-search-target="resultsWrapper"></ul>
     </form>
