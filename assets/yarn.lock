@@ -4435,10 +4435,10 @@ totalist@^1.0.0:
   resolved "https://registry.yarnpkg.com/totalist/-/totalist-1.1.0.tgz#a4d65a3e546517701e3e5c37a47a70ac97fe56df"
   integrity sha512-gduQwd1rOdDMGxFG1gEvhV88Oirdo2p+KjoYFU7k2g+i7n6AFFbDQ5kMPUsW0pNbfQsB/cwXvT1i4Bue0s9g5g==
 
-ts-select2@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/ts-select2/-/ts-select2-0.2.3.tgz#96da76ca11818bad12d04879696e255806784756"
-  integrity sha512-LOLDtBrLPQ45t/oHm6UAkFB84e3QfGozIlHYhG2Fo70OuKaUoQQ0LzFQrb5vd1lGD5KvigXIpfhSu4iLJFCDzA==
+ts-select2@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/ts-select2/-/ts-select2-0.2.4.tgz#752872445feb67680f5320873306f7844c2d06d6"
+  integrity sha512-iAOQ751qiFz5P2XPa+BX5TFHIVat8FYP/ZrzAnS1cThLrmUTluUVo/g1EijR4WJ9Bayk24nziOHckoDeJ9thDw==
 
 tslib@2.3.0:
   version "2.3.0"
