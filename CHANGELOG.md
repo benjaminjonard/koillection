@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.17] / 2022-11-18
+### Features
+- Search now available on shared pages (benjaminjonard)
+- Rework search page, now results are split into tabs (benjaminjonard)
+
+### Miscellaneous
+- Finish catching up with writing functionnal/unit tests (benjaminjonard)
+- Upgrade PHP and JS dependencies, fix CVE-2022-37601 (benjaminjonard)
+
 ## [1.3.16] / 2022-10-14
 ### Fixes
 - Fix bug in counters when deleting an item from a collection (benjaminjonard)
