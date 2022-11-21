@@ -11,7 +11,7 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
-        "api-platform/core": "3.0.3",
+        "api-platform/core": "3.0.4",
         "composer/semver": "3.3.2",
         "doctrine/doctrine-bundle": "2.7.1",
         "doctrine/doctrine-migrations-bundle": "3.2.2",

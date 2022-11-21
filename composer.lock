@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "497139440560427f9d9c27a2f959daae",
+    "content-hash": "e45a4e5d8f40373c565887374afd954e",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "6771f53f87b25bf62dbdc7819e69bdf389810b7e"
+                "reference": "c62f66cecdad50efcf277c2206e2d9222a031c72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/6771f53f87b25bf62dbdc7819e69bdf389810b7e",
-                "reference": "6771f53f87b25bf62dbdc7819e69bdf389810b7e",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/c62f66cecdad50efcf277c2206e2d9222a031c72",
+                "reference": "c62f66cecdad50efcf277c2206e2d9222a031c72",
                 "shasum": ""
             },
             "require": {
@@ -25,6 +25,7 @@
                 "php": ">=8.1",
                 "psr/cache": "^1.0 || ^2.0 || ^3.0",
                 "psr/container": "^1.0 || ^2.0",
+                "symfony/deprecation-contracts": "^3.1",
                 "symfony/http-foundation": "^6.1",
                 "symfony/http-kernel": "^6.1",
                 "symfony/property-access": "^6.1",
@@ -162,7 +163,7 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v3.0.3"
+                "source": "https://github.com/api-platform/core/tree/v3.0.4"
             },
             "funding": [
                 {
@@ -170,7 +171,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-04T19:08:27+00:00"
+            "time": "2022-11-15T14:46:46+00:00"
         },
         {
             "name": "composer/semver",
