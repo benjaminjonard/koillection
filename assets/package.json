@@ -19,7 +19,7 @@
     "core-js": "3.26.1",
     "croppie": "2.6.5",
     "echarts": "5.4.0",
-    "regenerator-runtime": "0.13.10",
+    "regenerator-runtime": "0.13.11",
     "sortablejs": "1.15.0",
     "stimulus-lightbox": "3.1.0",
     "stimulus-use": "0.51.0",
