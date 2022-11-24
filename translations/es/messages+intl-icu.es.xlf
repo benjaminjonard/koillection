@@ -3026,57 +3026,57 @@
       </segment>
     </unit>
     <unit id="UKwQt9f" name="label.sub_albums_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.sub_albums_display_mode</source>
-        <target>label.sub_albums_display_mode</target>
+        <target>Mostrar sub-álbumes en una</target>
       </segment>
     </unit>
     <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.sub_wishlists_display_mode</source>
-        <target>label.sub_wishlists_display_mode</target>
+        <target>Mostrar sub-listas de deseos en una</target>
       </segment>
     </unit>
     <unit id="x6kN4XJ" name="label.list_show_number_of_children">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.list_show_number_of_children</source>
-        <target>label.list_show_number_of_children</target>
+        <target>Mostrar el número de niños</target>
       </segment>
     </unit>
     <unit id="HtDGsd0" name="label.list_show_number_of_items">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.list_show_number_of_items</source>
-        <target>label.list_show_number_of_items</target>
+        <target>Mostrar el número de elementos</target>
       </segment>
     </unit>
     <unit id="8LEwIMR" name="label.wishes">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.wishes</source>
-        <target>label.wishes</target>
+        <target>Deseos</target>
       </segment>
     </unit>
     <unit id="rsBlJD0" name="label.photos">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.photos</source>
-        <target>label.photos</target>
+        <target>Fotos</target>
       </segment>
     </unit>
     <unit id="sQ83en6" name="label.wishlists_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.wishlists_display_mode</source>
-        <target>label.wishlists_display_mode</target>
+        <target>Mostrar las listas de deseos en una</target>
       </segment>
     </unit>
     <unit id="paiZ6qs" name="label.collections_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.collections_display_mode</source>
-        <target>label.collections_display_mode</target>
+        <target>Mostrar las colecciones en una</target>
       </segment>
     </unit>
     <unit id="kHAvmu7" name="label.albums_display_mode">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.albums_display_mode</source>
-        <target>label.albums_display_mode</target>
+        <target>Mostrar álbumes en una</target>
       </segment>
     </unit>
     <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
@@ -3116,39 +3116,39 @@
       </segment>
     </unit>
     <unit id="TnuDaOl" name="btn.add_price">
-      <segment state="initial">
+      <segment state="translated">
         <source>btn.add_price</source>
-        <target>btn.add_price</target>
+        <target>Precio</target>
       </segment>
     </unit>
     <unit id="dYObaVv" name="message.caches_refreshed">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.caches_refreshed</source>
-        <target>message.caches_refreshed</target>
+        <target>Cachés actualizados con éxito</target>
       </segment>
     </unit>
     <unit id="NPKaPRX" name="btn.refresh_caches">
-      <segment state="initial">
+      <segment state="translated">
         <source>btn.refresh_caches</source>
-        <target>btn.refresh_caches</target>
+        <target>Actualizar cachés</target>
       </segment>
     </unit>
     <unit id="DsMeFhY" name="form.item_sorting.number_of_children">
-      <segment state="initial">
+      <segment state="translated">
         <source>form.item_sorting.number_of_children</source>
-        <target>form.item_sorting.number_of_children</target>
+        <target>Número de niños</target>
       </segment>
     </unit>
     <unit id="O6Z2J6m" name="form.item_sorting.number_of_items">
-      <segment state="initial">
+      <segment state="translated">
         <source>form.item_sorting.number_of_items</source>
-        <target>form.item_sorting.number_of_items</target>
+        <target>Número de elementos</target>
       </segment>
     </unit>
     <unit id="0vnK4DY" name="menu.users">
-      <segment state="initial">
+      <segment state="translated">
         <source>menu.users</source>
-        <target>menu.users</target>
+        <target>Usuarios</target>
       </segment>
     </unit>
   </file>
