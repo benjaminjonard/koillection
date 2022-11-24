@@ -71,24 +71,25 @@ class HistoryTest extends WebTestCase
         $this->assertSame('History', $crawler->filter('h1')->text());
         $this->assertCount(13, $crawler->filter('tbody tr'));
 
-        $this->assertStringContainsString('Collection Frieren was created', $crawler->filter('tbody')->text());
-        $this->assertStringContainsString('Item Frieren #1 was created', $crawler->filter('tbody')->text());
+        $logs = $crawler->filter('tbody')->text();
+        $this->assertStringContainsString('Collection Frieren was created', $logs);
+        $this->assertStringContainsString('Item Frieren #1 was created', $logs);
 
-        $this->assertStringContainsString('Tag category Trip was created', $crawler->filter('tbody')->text());
-        $this->assertStringContainsString('Tag Trip to Japan was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Tag category Trip was created', $logs);
+        $this->assertStringContainsString('Tag Trip to Japan was created', $logs);
 
-        $this->assertStringContainsString('Album Home was created', $crawler->filter('tbody')->text());
-        $this->assertStringContainsString('Photo Main shelf was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Album Home was created', $logs);
+        $this->assertStringContainsString('Photo Main shelf was created', $logs);
 
-        $this->assertStringContainsString('Wishlist Books was created', $crawler->filter('tbody')->text());
-        $this->assertStringContainsString('Wish Frieren #2 was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Wishlist Books was created', $logs);
+        $this->assertStringContainsString('Wish Frieren #2 was created', $logs);
 
-        $this->assertStringContainsString('Template Books was created', $crawler->filter('tbody')->text());
-        $this->assertStringContainsString('Choice list Status was created', $crawler->filter('tbody')->text());
-        $this->assertStringContainsString('Inventory Collection was created', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Template Books was created', $logs);
+        $this->assertStringContainsString('Choice list Status was created', $logs);
+        $this->assertStringContainsString('Inventory Collection was created', $logs);
 
-        $this->assertStringContainsString('Item Frieren #1 was deleted', $crawler->filter('tbody')->text());
-        $this->assertStringContainsString('Collection Frieren was deleted', $crawler->filter('tbody')->text());
+        $this->assertStringContainsString('Item Frieren #1 was deleted', $logs);
+        $this->assertStringContainsString('Collection Frieren was deleted', $logs);
     }
 
     public function test_ajax_history(): void
