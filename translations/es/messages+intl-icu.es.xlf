@@ -3020,21 +3020,21 @@
       </segment>
     </unit>
     <unit id="MWCAWm0" name="label.sub_collections_display_mode">
-      <segment state="initial">
+      <segment state="final">
         <source>label.sub_collections_display_mode</source>
-        <target>label.sub_collections_display_mode</target>
+        <target>Mostrar sub-colecciones como</target>
       </segment>
     </unit>
     <unit id="UKwQt9f" name="label.sub_albums_display_mode">
       <segment state="translated">
         <source>label.sub_albums_display_mode</source>
-        <target>Mostrar sub-álbumes en una</target>
+        <target>Mostrar sub-álbumes como</target>
       </segment>
     </unit>
     <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
       <segment state="translated">
         <source>label.sub_wishlists_display_mode</source>
-        <target>Mostrar sub-listas de deseos en una</target>
+        <target>Mostrar sub-listas de deseos como</target>
       </segment>
     </unit>
     <unit id="x6kN4XJ" name="label.list_show_number_of_children">
@@ -3064,19 +3064,19 @@
     <unit id="sQ83en6" name="label.wishlists_display_mode">
       <segment state="translated">
         <source>label.wishlists_display_mode</source>
-        <target>Mostrar las listas de deseos en una</target>
+        <target>Mostrar las listas de deseos como</target>
       </segment>
     </unit>
     <unit id="paiZ6qs" name="label.collections_display_mode">
       <segment state="translated">
         <source>label.collections_display_mode</source>
-        <target>Mostrar las colecciones en una</target>
+        <target>Mostrar las colecciones como</target>
       </segment>
     </unit>
     <unit id="kHAvmu7" name="label.albums_display_mode">
       <segment state="translated">
         <source>label.albums_display_mode</source>
-        <target>Mostrar álbumes en una</target>
+        <target>Mostrar álbumes como</target>
       </segment>
     </unit>
     <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
