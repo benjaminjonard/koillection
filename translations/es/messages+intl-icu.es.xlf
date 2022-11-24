@@ -898,7 +898,7 @@
     <unit id="7Y63wwX" name="collection.children_settings">
       <segment state="translated">
         <source>collection.children_settings</source>
-        <target>Opciones de subcolecciones</target>
+        <target>Opciones de sub-colecciones</target>
       </segment>
     </unit>
     <unit id="uJUJ6Ir" name="title.data">
@@ -1024,7 +1024,7 @@
     <unit id="5_Yv1gK" name="title.children">
       <segment state="translated">
         <source>title.children</source>
-        <target>Subcoleciones</target>
+        <target>Sub-coleciones</target>
       </segment>
     </unit>
     <unit id="szWUC0C" name="label.value">
@@ -2176,7 +2176,7 @@
     <unit id="YQjIBl7" name="label.children_title">
       <segment state="translated">
         <source>label.children_title</source>
-        <target>Etiqueta de Subcolección</target>
+        <target>Etiqueta de Sub-colección</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
@@ -2320,7 +2320,7 @@
     <unit id="NLlL04M" name="help.recursive">
       <segment state="translated">
         <source>message.recursive</source>
-        <target>Si se marca, las etiquetas se aplicarán a las subcolecciones también</target>
+        <target>Si se marca, las etiquetas se aplicarán a las sub-colecciones también</target>
       </segment>
     </unit>
     <unit id="cQsMebl" name="breadcrumb.transfer_wish">
