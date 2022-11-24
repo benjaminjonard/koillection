@@ -3146,9 +3146,9 @@
       </segment>
     </unit>
     <unit id="0vnK4DY" name="menu.users">
-      <segment state="initial">
+      <segment state="translated">
         <source>menu.users</source>
-        <target>menu.users</target>
+        <target>Users</target>
       </segment>
     </unit>
   </file>
