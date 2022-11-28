@@ -16,7 +16,7 @@ jobs:
         with:
           path: ~/.symfony/cache
           key: db
-      - uses: symfonycorp/security-checker-action@v4
+      - uses: symfonycorp/security-checker-action@v5
 
   doctrine_schema_validator:
     name: Doctrine schema validator
