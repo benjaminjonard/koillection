@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d0e3c5408ece0de8448234fbe6f05e9",
+    "content-hash": "42663a733d26bc700497db083a274ebd",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "c62f66cecdad50efcf277c2206e2d9222a031c72"
+                "reference": "08e532c6503d62d2d7e47f3e81daf8895bbbfbea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/c62f66cecdad50efcf277c2206e2d9222a031c72",
-                "reference": "c62f66cecdad50efcf277c2206e2d9222a031c72",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/08e532c6503d62d2d7e47f3e81daf8895bbbfbea",
+                "reference": "08e532c6503d62d2d7e47f3e81daf8895bbbfbea",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,6 @@
             "require-dev": {
                 "behat/behat": "^3.1",
                 "behat/mink": "^1.9@dev",
-                "behatch/contexts": "dev-patch-1",
                 "doctrine/cache": "^1.11 || ^2.1",
                 "doctrine/common": "^2.11 || ^3.0",
                 "doctrine/data-fixtures": "^1.2.2",
@@ -72,6 +71,7 @@
                 "ramsey/uuid": "^3.7 || ^4.0",
                 "ramsey/uuid-doctrine": "^1.4",
                 "rector/rector": "^0.13.9",
+                "soyuka/contexts": "dev-main",
                 "soyuka/stubs-mongodb": "^1.0",
                 "symfony/asset": "^6.1",
                 "symfony/browser-kit": "^6.1",
@@ -163,7 +163,7 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v3.0.4"
+                "source": "https://github.com/api-platform/core/tree/v3.0.5"
             },
             "funding": [
                 {
@@ -171,7 +171,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-15T14:46:46+00:00"
+            "time": "2022-11-25T08:39:48+00:00"
         },
         {
             "name": "composer/semver",
