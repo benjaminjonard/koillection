@@ -22,7 +22,7 @@
     "regenerator-runtime": "0.13.11",
     "sortablejs": "1.15.0",
     "stimulus-lightbox": "3.1.0",
-    "stimulus-use": "0.51.0",
+    "stimulus-use": "0.51.1",
     "ts-select2": "0.2.4",
     "webpack": "5.75.0",
     "webpack-bundle-analyzer": "4.7.0",
