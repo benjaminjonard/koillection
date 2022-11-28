@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42663a733d26bc700497db083a274ebd",
+    "content-hash": "ccaa0366f77cf6534a207640fa6d466b",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1374,16 +1374,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.13.3",
+            "version": "2.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "e750360bd52b080c4cbaaee1b48b80f7dc873b36"
+                "reference": "a5a6cc6630ce497290396d5f206887227820a634"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/e750360bd52b080c4cbaaee1b48b80f7dc873b36",
-                "reference": "e750360bd52b080c4cbaaee1b48b80f7dc873b36",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/a5a6cc6630ce497290396d5f206887227820a634",
+                "reference": "a5a6cc6630ce497290396d5f206887227820a634",
                 "shasum": ""
             },
             "require": {
@@ -1412,13 +1412,13 @@
                 "doctrine/annotations": "^1.13",
                 "doctrine/coding-standard": "^9.0.2 || ^10.0",
                 "phpbench/phpbench": "^0.16.10 || ^1.0",
-                "phpstan/phpstan": "~1.4.10 || 1.8.5",
+                "phpstan/phpstan": "~1.4.10 || 1.9.2",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
                 "psr/log": "^1 || ^2 || ^3",
                 "squizlabs/php_codesniffer": "3.7.1",
                 "symfony/cache": "^4.4 || ^5.4 || ^6.0",
                 "symfony/yaml": "^3.4 || ^4.0 || ^5.0 || ^6.0",
-                "vimeo/psalm": "4.27.0"
+                "vimeo/psalm": "4.30.0"
             },
             "suggest": {
                 "ext-dom": "Provides support for XSD validation for XML mapping files",
@@ -1468,9 +1468,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/2.13.3"
+                "source": "https://github.com/doctrine/orm/tree/2.13.4"
             },
-            "time": "2022-10-07T06:37:17+00:00"
+            "time": "2022-11-20T18:53:31+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -5569,16 +5569,16 @@
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.26.0",
+            "version": "v1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "bf44a9fd41feaac72b074de600314a93e2ae78e2"
+                "reference": "869329b1e9894268a8a61dabb69153029b7a8c97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/bf44a9fd41feaac72b074de600314a93e2ae78e2",
-                "reference": "bf44a9fd41feaac72b074de600314a93e2ae78e2",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/869329b1e9894268a8a61dabb69153029b7a8c97",
+                "reference": "869329b1e9894268a8a61dabb69153029b7a8c97",
                 "shasum": ""
             },
             "require": {
@@ -5587,7 +5587,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.26-dev"
+                    "dev-main": "1.27-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5625,7 +5625,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php72/tree/v1.26.0"
+                "source": "https://github.com/symfony/polyfill-php72/tree/v1.27.0"
             },
             "funding": [
                 {
@@ -5641,7 +5641,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-24T11:49:31+00:00"
+            "time": "2022-11-03T14:55:06+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
