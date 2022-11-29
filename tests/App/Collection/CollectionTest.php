@@ -191,9 +191,24 @@ class CollectionTest extends WebTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
+        $collection->getChildrenDisplayConfiguration()
+            ->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST)
+            ->setColumns(['Publisher'])
+            ->setSortingProperty('Publisher')
+            ->setSortingType(DatumTypeEnum::TYPE_TEXT)
+            ->setSortingDirection(SortingDirectionEnum::DESCENDING)
+        ;
+        $collection->save();
+
+        $item1 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Publisher']);
+        $item2 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item2, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Publisher']);
 
         // Act
-        $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
+        $crawler = $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
             'collection[title]' => 'Berserk',
             'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
