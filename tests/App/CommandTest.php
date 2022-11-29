@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Enum\DatumTypeEnum;
 use App\Tests\Factory\CollectionFactory;
+use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\LogFactory;
 use App\Tests\Factory\UserFactory;
@@ -87,13 +89,20 @@ class CommandTest extends KernelTestCase
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        $datum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Japanese title', 'value' => '葬送のフリーレン']);
 
         $filesystem = new Filesystem();
         $uniqId = uniqid();
+
         $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
         $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png", null, null, true);
         $item->object()->setFile($uploadedFile);
         $item->save();
+
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png", null, null, true);
+        $datum->object()->setFileImage($uploadedFile);
+        $datum->save();
 
         // Act
         $commandTester->execute([]);

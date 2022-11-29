@@ -102,7 +102,7 @@ class HistoryTest extends WebTestCase
         ItemFactory::createOne(['collection' => $collection, 'name' => 'Frieren #1', 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->xmlHttpRequest('GET', '/history?search_history[classes][]=collection&search_history[classes][]=item&search_history[classes][]=tag&search_history[classes][]=tagCategory&search_history[classes][]=album&search_history[classes][]=photo&search_history[classes][]=wishlist&search_history[classes][]=wish&search_history[classes][]=template&search_history[classes][]=choiceList&search_history[classes][]=inventory&search_history[types][]=create&search_history[types][]=delete');
+        $crawler = $this->client->xmlHttpRequest('GET', '/history?search_history[term]=Frieren&search_history[classes][]=collection&search_history[classes][]=item&search_history[classes][]=tag&search_history[classes][]=tagCategory&search_history[classes][]=album&search_history[classes][]=photo&search_history[classes][]=wishlist&search_history[classes][]=wish&search_history[classes][]=template&search_history[classes][]=choiceList&search_history[classes][]=inventory&search_history[types][]=create&search_history[types][]=delete');
 
         // Assert
         $this->assertResponseIsSuccessful();

@@ -14,11 +14,6 @@ class BatchTagger
 
     private bool $recursive = false;
 
-    public function getCollection(): Collection
-    {
-        return $this->collection;
-    }
-
     public function setCollection(Collection $collection): BatchTagger
     {
         $this->collection = $collection;

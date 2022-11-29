@@ -225,55 +225,9 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this->photos;
     }
 
-    public function addPhoto(Photo $photo): self
-    {
-        if (!$this->photos->contains($photo)) {
-            $this->photos[] = $photo;
-            $photo->setAlbum($this);
-        }
-
-        return $this;
-    }
-
-    public function removePhoto(Photo $photo): self
-    {
-        if ($this->photos->contains($photo)) {
-            $this->photos->removeElement($photo);
-            // set the owning side to null (unless already changed)
-            if ($photo->getAlbum() === $this) {
-                $photo->setAlbum(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getChildren(): DoctrineCollection
     {
         return $this->children;
-    }
-
-    public function addChild(Album $child): self
-    {
-        if (!$this->children->contains($child)) {
-            $this->children[] = $child;
-            $child->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChild(Album $child): self
-    {
-        if ($this->children->contains($child)) {
-            $this->children->removeElement($child);
-            // set the owning side to null (unless already changed)
-            if ($child->getParent() === $this) {
-                $child->setParent(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getParent(): ?self

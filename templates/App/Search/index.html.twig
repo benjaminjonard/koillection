@@ -17,7 +17,11 @@
 
     <div class="content-block">
         {{ form_start(form, {'method': 'GET'}) }}
+
         <div class="row">
+            <div class="error-helper">
+                {{ form_errors(form) }}
+            </div>
             <div class="col s12 l4 offset-l1 xl3 offset-xl3">
                 {{ form_row(form.term, {'label' : 'label.search'}) }}
             </div>

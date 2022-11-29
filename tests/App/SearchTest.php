@@ -72,6 +72,22 @@ class SearchTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(2)->filter('.collection-element'));
     }
 
+    public function test_search_need_at_least_one_field(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+
+        // Act
+        $this->client->request('GET', '/search');
+        $crawler = $this->client->submitForm('Submit', [
+        ], 'GET');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Please fill at least one of the fields', $crawler->filter('.error-helper li')->eq(0)->text());
+    }
+
     public function test_anonymous_user_search_public(): void
     {
         // Arrange

@@ -238,29 +238,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->children;
     }
 
-    public function addChild(Collection $child): self
-    {
-        if (!$this->children->contains($child)) {
-            $this->children[] = $child;
-            $child->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChild(Collection $child): self
-    {
-        if ($this->children->contains($child)) {
-            $this->children->removeElement($child);
-            // set the owning side to null (unless already changed)
-            if ($child->getParent() === $this) {
-                $child->setParent(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getParent(): ?self
     {
         return $this->parent;
@@ -288,29 +265,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function getItems(): DoctrineCollection
     {
         return $this->items;
-    }
-
-    public function addItem(Item $item): self
-    {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->setCollection($this);
-        }
-
-        return $this;
-    }
-
-    public function removeItem(Item $item): self
-    {
-        if ($this->items->contains($item)) {
-            $this->items->removeElement($item);
-            // set the owning side to null (unless already changed)
-            if ($item->getCollection() === $this) {
-                $item->setCollection(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getImage(): ?string

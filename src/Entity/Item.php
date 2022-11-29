@@ -386,29 +386,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->loans;
     }
 
-    public function addLoan(Loan $loan): self
-    {
-        if (!$this->loans->contains($loan)) {
-            $this->loans[] = $loan;
-            $loan->setItem($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLoan(Loan $loan): self
-    {
-        if ($this->loans->contains($loan)) {
-            $this->loans->removeElement($loan);
-            // set the owning side to null (unless already changed)
-            if ($loan->getItem() === $this) {
-                $loan->setItem(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getFile(): ?File
     {
         return $this->file;

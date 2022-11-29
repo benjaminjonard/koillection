@@ -35,23 +35,9 @@ class SearchHistory
         return $this->page;
     }
 
-    public function setPage(int $page): SearchHistory
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
     public function getItemsPerPage(): ?int
     {
         return $this->itemsPerPage;
-    }
-
-    public function setItemsPerPage(int $itemsPerPage): SearchHistory
-    {
-        $this->itemsPerPage = $itemsPerPage;
-
-        return $this;
     }
 
     public function getClasses(): ?array

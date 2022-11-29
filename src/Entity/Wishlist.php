@@ -221,55 +221,9 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this->wishes;
     }
 
-    public function addWish(Wish $wish): self
-    {
-        if (!$this->wishes->contains($wish)) {
-            $this->wishes[] = $wish;
-            $wish->setWishlist($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWish(Wish $wish): self
-    {
-        if ($this->wishes->contains($wish)) {
-            $this->wishes->removeElement($wish);
-            // set the owning side to null (unless already changed)
-            if ($wish->getWishlist() === $this) {
-                $wish->setWishlist(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getChildren(): DoctrineCollection
     {
         return $this->children;
-    }
-
-    public function addChild(Wishlist $child): self
-    {
-        if (!$this->children->contains($child)) {
-            $this->children[] = $child;
-            $child->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChild(Wishlist $child): self
-    {
-        if ($this->children->contains($child)) {
-            $this->children->removeElement($child);
-            // set the owning side to null (unless already changed)
-            if ($child->getParent() === $this) {
-                $child->setParent(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getParent(): ?self

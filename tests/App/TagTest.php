@@ -49,10 +49,11 @@ class TagTest extends WebTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        TagFactory::createMany(3, ['owner' => $user]);
+        TagFactory::createMany(7, ['owner' => $user, 'label' => 'tests']);
+        TagFactory::createMany(3, ['owner' => $user, 'label' => 'Manga']);
 
         // Act
-        $crawler = $this->client->xmlHttpRequest('GET', '/tags');
+        $crawler = $this->client->xmlHttpRequest('GET', '/tags?search_tag[term]=man');
 
         // Assert
         $this->assertResponseIsSuccessful();

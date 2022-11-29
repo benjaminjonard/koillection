@@ -21,9 +21,11 @@
         </div>
     {% else %}
         <div class="input-field">
-            {{- form_errors(form) -}}
             {{- form_widget(form) -}}
             {{- form_label(form) -}}
+            {%- for error in errors -%}
+                <span class="helper-text" data-error="wrong">{{ error.message }}</span>
+            {%- endfor -%}
             {{- form_help(form) -}}
         </div>
     {% endif %}

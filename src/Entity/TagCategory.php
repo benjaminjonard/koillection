@@ -152,27 +152,4 @@ class TagCategory implements BreadcrumbableInterface, LoggableInterface, \String
     {
         return $this->tags;
     }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-            $tag->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-            // set the owning side to null (unless already changed)
-            if ($tag->getCategory() === $this) {
-                $tag->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
 }

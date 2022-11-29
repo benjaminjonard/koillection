@@ -14,16 +14,6 @@ class Search
 
     private ?\DateTimeImmutable $createdAt = null;
 
-    private bool $searchInItems = true;
-
-    private bool $searchInCollections = true;
-
-    private bool $searchInTags = true;
-
-    private bool $searchInAlbums = true;
-
-    private bool $searchInWishlists = true;
-
     public function getTerm(): ?string
     {
         return $this->term;
@@ -48,72 +38,14 @@ class Search
         return $this;
     }
 
-    public function getSearchInItems(): bool
-    {
-        return $this->searchInItems;
-    }
-
-    public function setSearchInItems(bool $searchInItems): Search
-    {
-        $this->searchInItems = $searchInItems;
-
-        return $this;
-    }
-
-    public function getSearchInCollections(): bool
-    {
-        return $this->searchInCollections;
-    }
-
-    public function setSearchInCollections(bool $searchInCollections): Search
-    {
-        $this->searchInCollections = $searchInCollections;
-
-        return $this;
-    }
-
-    public function getSearchInTags(): bool
-    {
-        return $this->searchInTags;
-    }
-
-    public function setSearchInTags(bool $searchInTags): Search
-    {
-        $this->searchInTags = $searchInTags;
-
-        return $this;
-    }
-
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context): void
     {
         if (null === $this->getTerm() && null === $this->getCreatedAt()) {
-            $context->buildViolation('error.search.empty')
-                ->addViolation();
+            $context
+                ->buildViolation('error.search.empty')
+                ->addViolation()
+            ;
         }
-    }
-
-    public function getSearchInAlbums(): bool
-    {
-        return $this->searchInAlbums;
-    }
-
-    public function setSearchInAlbums(bool $searchInAlbums): Search
-    {
-        $this->searchInAlbums = $searchInAlbums;
-
-        return $this;
-    }
-
-    public function getSearchInWishlists(): bool
-    {
-        return $this->searchInWishlists;
-    }
-
-    public function setSearchInWishlists(bool $searchInWishlists): Search
-    {
-        $this->searchInWishlists = $searchInWishlists;
-
-        return $this;
     }
 }

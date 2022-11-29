@@ -200,12 +200,33 @@ class ItemTest extends WebTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user])->object();
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->object();
+        $choiceList = ChoiceListFactory::createOne(['name' => 'Edition', 'choices' => ['Normal', 'Collector'], 'owner' => $user]);
+
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Authors', 'value' => 'Abe Tsukasa, Yamada Kanehito']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_TEXTAREA, 'label' => 'Description', 'value' => 'Frieren est un shōnen manga écrit par Yamada Kanehito et dessiné par Abe Tsukasa.']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 3, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volume', 'value' => '1']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 4, 'type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Price', 'value' => '7.95']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 5, 'type' => DatumTypeEnum::TYPE_COUNTRY, 'label' => 'Country', 'value' => 'JP']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 6, 'type' => DatumTypeEnum::TYPE_DATE, 'label' => 'Release date', 'value' => '2022-03-03']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 7, 'type' => DatumTypeEnum::TYPE_RATING, 'label' => 'Rating', 'value' => '10']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 8, 'type' => DatumTypeEnum::TYPE_LINK, 'label' => 'Wiki page', 'value' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Edition', 'value' => json_encode(['Collector']), 'choiceList' => $choiceList]);
 
         // Act
-        $this->client->request('GET', '/items/'.$item->getId().'/edit');
+        $crawler = $this->client->request('GET', '/items/'.$item->getId().'/edit');
+
         $this->client->submitForm('Submit', [
             'item[name]' => 'Berserk #1',
-            'item[collection]' => $collection->getId()
+            'item[collection]' => $collection->getId(),
+            'item[data][0][position]' => 1, 'item[data][0][type]' => DatumTypeEnum::TYPE_TEXT, 'item[data][0][label]' => 'Authors', 'item[data][0][value]' => 'Abe Tsukasa, Yamada Kanehito',
+            'item[data][1][position]' => 2, 'item[data][1][type]' => DatumTypeEnum::TYPE_TEXTAREA, 'item[data][1][label]' => 'Description', 'item[data][1][value]' => 'Frieren est un shōnen manga écrit par Yamada Kanehito et dessiné par Abe Tsukasa.',
+            'item[data][2][position]' => 3, 'item[data][2][type]' => DatumTypeEnum::TYPE_NUMBER, 'item[data][2][label]' => 'Volume', 'item[data][2][value]' => '1',
+            'item[data][3][position]' => 4, 'item[data][3][type]' => DatumTypeEnum::TYPE_PRICE, 'item[data][3][label]' => 'Price', 'item[data][3][value]' => '7.95',
+            'item[data][4][position]' => 5, 'item[data][4][type]' => DatumTypeEnum::TYPE_COUNTRY, 'item[data][4][label]' => 'Country', 'item[data][4][value]' => 'JP',
+            'item[data][5][position]' => 6, 'item[data][5][type]' => DatumTypeEnum::TYPE_DATE, 'item[data][5][label]' => 'Release date', 'item[data][5][value]' => '2022-03-03',
+            'item[data][6][position]' => 7, 'item[data][6][type]' => DatumTypeEnum::TYPE_RATING, 'item[data][6][label]' => 'Rating', 'item[data][6][value]' => '10',
+            'item[data][7][position]' => 8, 'item[data][7][type]' => DatumTypeEnum::TYPE_LINK, 'item[data][7][label]' => 'Wiki page', 'item[data][7][value]' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3',
+            'item[data][8][position]' => 9, 'item[data][8][type]' => DatumTypeEnum::TYPE_LIST, 'item[data][8][label]' => 'Edition', 'item[data][8][value]' => 'Collector'
         ]);
 
         // Assert

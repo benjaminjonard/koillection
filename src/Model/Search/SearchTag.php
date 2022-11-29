@@ -31,22 +31,8 @@ class SearchTag
         return $this->page;
     }
 
-    public function setPage(int $page): SearchTag
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
     public function getItemsPerPage(): ?int
     {
         return $this->itemsPerPage;
-    }
-
-    public function setItemsPerPage(int $itemsPerPage): SearchTag
-    {
-        $this->itemsPerPage = $itemsPerPage;
-
-        return $this;
     }
 }
