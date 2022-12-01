@@ -96,7 +96,7 @@
 
 {% if isFeatureEnabled('history') %}
     <li class="{{ 'app_history' in route ? 'current' }} sidebar-element">
-        <a href="{{ path('app_history_index', {'search_history[classes]': ['collection', 'item', isFeatureEnabled('tags') ? 'tag', isFeatureEnabled('albums') ? 'album', isFeatureEnabled('wishlists') ? 'wishlist'], 'search_history[types]': ['create', 'delete']}) }}">
+        <a href="{{ path('app_history_index', {'search_history[classes]': ['item'], 'search_history[types]': ['create', 'delete']}) }}">
             <i class="fa fa-history fa-fw"></i>
             <span>{{ 'menu.history'|trans }}</span>
         </a>
