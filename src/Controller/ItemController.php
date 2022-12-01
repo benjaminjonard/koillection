@@ -18,6 +18,7 @@ use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -99,8 +100,10 @@ class ItemController extends AbstractController
 
     #[Route(path: '/items/{id}', name: 'app_item_show', methods: ['GET'])]
     #[Route(path: '/user/{username}/items/{id}', name: 'app_shared_item_show', methods: ['GET'])]
-    #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
-    public function show(Item $item, ItemRepository $itemRepository): Response
+    public function show(
+        #[MapEntity(expr: 'repository.findById(id)')] Item $item,
+        ItemRepository $itemRepository
+    ): Response
     {
         $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $item->getCollection());
 
@@ -112,10 +115,9 @@ class ItemController extends AbstractController
     }
 
     #[Route(path: '/items/{id}/edit', name: 'app_item_edit', methods: ['GET', 'POST'])]
-    #[Entity('item', expr: 'repository.findById(id)', class: Item::class)]
     public function edit(
         Request $request,
-        Item $item,
+        #[MapEntity(expr: 'repository.findById(id)')] Item $item,
         TranslatorInterface $translator,
         ManagerRegistry $managerRegistry,
         ChoiceListRepository $choiceListRepository

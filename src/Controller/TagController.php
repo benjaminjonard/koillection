@@ -15,6 +15,7 @@ use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,8 +63,10 @@ class TagController extends AbstractController
 
     #[Route(path: '/tags/{id}', name: 'app_tag_show', methods: ['GET'])]
     #[Route(path: '/user/{username}/tags/{id}', name: 'app_shared_tag_show', methods: ['GET'])]
-    #[Entity('tag', expr: 'repository.findWithItems(id)', class: Tag::class)]
-    public function show(Tag $tag, TagRepository $tagRepository): Response
+    public function show(
+        #[MapEntity(expr: 'repository.findWithItems(id)')] Tag $tag,
+        TagRepository $tagRepository
+    ): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -149,9 +152,11 @@ class TagController extends AbstractController
 
     #[Route(path: '/tags/{tagId}/items/{itemId}', name: 'app_tag_item_show', methods: ['GET'])]
     #[Route(path: '/user/{username}/tags/{tagId}/items/{itemId}', name: 'app_shared_tag_item_show', methods: ['GET'])]
-    #[Entity('item', expr: 'repository.findById(itemId)', class: Item::class)]
-    #[Entity('tag', expr: 'repository.find(tagId)', class: Tag::class)]
-    public function item(Item $item, Tag $tag, ItemRepository $itemRepository): Response
+    public function item(
+        #[MapEntity(expr: 'repository.findById(itemId)')] Item $item,
+        #[MapEntity(expr: 'repository.find(tagId)')] Tag $tag,
+        ItemRepository $itemRepository
+    ): Response
     {
         $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $tag);
 

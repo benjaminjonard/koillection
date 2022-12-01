@@ -8,6 +8,7 @@ use App\Entity\Loan;
 use App\Repository\LoanRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,8 +45,11 @@ class LoanController extends AbstractController
     }
 
     #[Route(path: '/loans/{id}/returned', name: 'app_loan_returned', methods: ['GET'])]
-    #[Entity('loan', expr: 'repository.findByIdWithItem(id)', class: Loan::class)]
-    public function returned(Loan $loan, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
+    public function returned(
+        #[MapEntity(expr: 'repository.findByIdWithItem(id)')] Loan $loan,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry
+    ): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 

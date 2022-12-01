@@ -10,6 +10,7 @@ use App\Form\Type\Entity\TemplateType;
 use App\Repository\TemplateRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,8 +52,12 @@ class TemplateController extends AbstractController
     }
 
     #[Route(path: '/templates/{id}/edit', name: 'app_template_edit', methods: ['GET', 'POST'])]
-    #[Entity('template', expr: 'repository.findById(id)', class: Template::class)]
-    public function edit(Request $request, Template $template, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
+    public function edit(
+        Request $request,
+        #[MapEntity(expr: 'repository.findById(id)')] Template $template,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry
+    ): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
@@ -72,8 +77,9 @@ class TemplateController extends AbstractController
     }
 
     #[Route(path: '/templates/{id}', name: 'app_template_show', methods: ['GET'])]
-    #[Entity('template', expr: 'repository.findWithItems(id)', class: Template::class)]
-    public function show(Template $template): Response
+    public function show(
+        #[MapEntity(expr: 'repository.findWithItems(id)')] Template $template
+    ): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
