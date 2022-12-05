@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db1408d59ae2942ca33d7daf37a317ee",
+    "content-hash": "053f02a9baff3d5d41992ba646d4b502",
     "packages": [
         {
             "name": "api-platform/core",
@@ -11648,16 +11648,16 @@
         },
         {
             "name": "zenstruck/foundry",
-            "version": "v1.24.0",
+            "version": "v1.24.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "1711ddf0957870a688472dd2569b3825a5a16ea2"
+                "reference": "ddf9b01f3c98f7d2d359a96f014bda8eeb678760"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/1711ddf0957870a688472dd2569b3825a5a16ea2",
-                "reference": "1711ddf0957870a688472dd2569b3825a5a16ea2",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/ddf9b01f3c98f7d2d359a96f014bda8eeb678760",
+                "reference": "ddf9b01f3c98f7d2d359a96f014bda8eeb678760",
                 "shasum": ""
             },
             "require": {
@@ -11666,7 +11666,7 @@
                 "php": ">=8.0",
                 "symfony/deprecation-contracts": "^2.2|^3.0",
                 "symfony/property-access": "^3.4|^4.4|^5.0|^6.0",
-                "symfony/string": "^6.0",
+                "symfony/string": "^5.4|^6.0",
                 "zenstruck/assert": "^1.0",
                 "zenstruck/callback": "^1.1"
             },
@@ -11681,7 +11681,7 @@
                 "symfony/framework-bundle": "^4.4|^5.0|^6.0",
                 "symfony/maker-bundle": "^1.30",
                 "symfony/phpunit-bridge": "^6.0",
-                "symfony/translation-contracts": "^3.0"
+                "symfony/translation-contracts": "^2.5|^3.0"
             },
             "type": "library",
             "extra": {
@@ -11721,7 +11721,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v1.24.0"
+                "source": "https://github.com/zenstruck/foundry/tree/v1.24.1"
             },
             "funding": [
                 {
@@ -11729,7 +11729,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-25T16:03:04+00:00"
+            "time": "2022-11-29T18:37:09+00:00"
         }
     ],
     "aliases": [],
