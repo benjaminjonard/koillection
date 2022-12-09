@@ -94,8 +94,18 @@ class CollectionRepository extends ServiceEntityRepository
         ;
 
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+            $whereClause = 'LOWER(c.title) LIKE LOWER(:term)';
+
+            if ($search->getSearchInData() === true) {
+                $whereClause = 'LOWER(c.title) LIKE LOWER(:term) OR LOWER(d.value) LIKE LOWER(:term)';
+                $qb
+                    ->leftJoin('c.data', 'd', 'WITH', 'd.type = :type')
+                    ->setParameter('type', DatumTypeEnum::TYPE_TEXT)
+                ;
+            }
+
             $qb
-                ->andWhere('LOWER(c.title) LIKE LOWER(:term)')
+                ->andWhere($whereClause)
                 ->setParameter('term', '%'.$search->getTerm().'%')
             ;
         }

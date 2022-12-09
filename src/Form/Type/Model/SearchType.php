@@ -37,6 +37,10 @@ class SearchType extends AbstractType
                 'widget' => 'single_text',
                 'format' => $this->security->getUser()?->getDateFormatForForm() ?: DateFormatEnum::FORMAT_HYPHEN_YMD,
             ])
+            ->add('searchInData', CheckboxType::class, [
+                'label' => false,
+                'required' => false,
+            ])
         ;
     }
 

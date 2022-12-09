@@ -14,6 +14,8 @@ class Search
 
     private ?\DateTimeImmutable $createdAt = null;
 
+    private bool $searchInData = false;
+
     public function getTerm(): ?string
     {
         return $this->term;
@@ -34,6 +36,18 @@ class Search
     public function setCreatedAt(?\DateTimeImmutable $createdAt): Search
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getSearchInData(): bool
+    {
+        return $this->searchInData;
+    }
+
+    public function setSearchInData(bool $searchInData): Search
+    {
+        $this->searchInData = $searchInData;
 
         return $this;
     }

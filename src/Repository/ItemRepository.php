@@ -91,11 +91,20 @@ class ItemRepository extends ServiceEntityRepository
         ;
 
         if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+            $whereClause = 'LOWER(i.name) LIKE LOWER(:term)';
+
+            if ($search->getSearchInData() === true) {
+                $whereClause = 'LOWER(i.name) LIKE LOWER(:term) OR LOWER(d.value) LIKE LOWER(:term)';
+                $qb
+                    ->leftJoin('i.data', 'd', 'WITH', 'd.type = :type')
+                    ->setParameter('type', DatumTypeEnum::TYPE_TEXT)
+                ;
+            }
+
             $qb
-                ->leftJoin('i.data', 'd', 'WITH', 'd.type = :type')
-                ->andWhere('LOWER(i.name) LIKE LOWER(:term) OR LOWER(d.value) LIKE LOWER(:term)')
-                ->setParameter('type', DatumTypeEnum::TYPE_TEXT)
-                ->setParameter('term', '%'.$search->getTerm().'%');
+                ->andWhere($whereClause)
+                ->setParameter('term', '%'.$search->getTerm().'%')
+            ;
         }
 
         if ($search->getCreatedAt() instanceof \DateTimeImmutable) {

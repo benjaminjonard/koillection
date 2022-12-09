@@ -32,6 +32,11 @@
                 <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
             </div>
         </div>
+        <div class="row">
+            <div class="col s12 l4 offset-l1 xl3 offset-xl3">
+                {{ form_row(form.searchInData, {'label' : 'label.search_in_data'}) }}
+            </div>
+        </div>
         {{ form_end(form) }}
     </div>
 
