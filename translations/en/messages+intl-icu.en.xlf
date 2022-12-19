@@ -3152,9 +3152,9 @@
       </segment>
     </unit>
     <unit id="TfMejxQ" name="label.search_in_data">
-      <segment>
+      <segment state="initial">
         <source>label.search_in_data</source>
-        <target>Search in data (for items and collections)</target>
+        <target>label.search_in_data</target>
       </segment>
     </unit>
   </file>
