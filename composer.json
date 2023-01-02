@@ -57,7 +57,7 @@
         "symfony/yaml": "6.2.2",
         "twig/extra-bundle": "3.5.0",
         "twig/intl-extra": "3.5.0",
-        "twig/string-extra": "3.4.0",
+        "twig/string-extra": "3.5.0",
         "twig/twig": "3.5.0",
         "willdurand/js-translation-bundle": "dev-master"
     },
