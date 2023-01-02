@@ -77,7 +77,7 @@
         "symfony/stopwatch": "6.2.0",
         "symfony/var-dumper": "6.2.3",
         "symfony/web-profiler-bundle": "6.2.4",
-        "zenstruck/foundry": "1.24.1"
+        "zenstruck/foundry": "1.26.0"
     },
     "repositories": [
         {
