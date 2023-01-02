@@ -1205,10 +1205,10 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@materializecss/materialize@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@materializecss/materialize/-/materialize-1.1.0.tgz#22096b7ab908bc7c6e00fe10c2c0295c0c9dcca6"
-  integrity sha512-W2MrDC8mzpMWyP2OpS0RWTWGcLiRRBz7kn2E9TsbardPyVNFdoNvXq5sLy3NcEfAlACc1+L7Q95+pBuUX44dRg==
+"@materializecss/materialize@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@materializecss/materialize/-/materialize-1.2.1.tgz#0a4fe54702dabf7fdee6d73234cfb5ca92338568"
+  integrity sha512-/PsNu1OaMp+XdymdeM49/OynB5uE1gCNcuRCPjtei1BVrj9eJ1ZYxotbPiejSCB2zFr9BIAuxcvaT+8rupJfxA==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -2117,10 +2117,10 @@ core-js-compat@^3.25.1:
   dependencies:
     browserslist "^4.21.4"
 
-core-js@3.26.1:
-  version "3.26.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.26.1.tgz#7a9816dabd9ee846c1c0fe0e8fcad68f3709134e"
-  integrity sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA==
+core-js@3.27.1:
+  version "3.27.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.27.1.tgz#23cc909b315a6bb4e418bf40a52758af2103ba46"
+  integrity sha512-GutwJLBChfGCpwwhbYoqfv03LAfmiz7e7D/BNxzeMxwQf10GRSzqiOjx7AmtEk+heiD/JWmBuyBPgFtx0Sg1ww==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -4311,10 +4311,10 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
 
-stimulus-lightbox@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/stimulus-lightbox/-/stimulus-lightbox-3.1.0.tgz#91282213b2a5465d26804be3cae7c6b40de57b9d"
-  integrity sha512-FEw+zHkHCFvExmLa0lVOLrR8/zXZqeDLhvRzgtfm0KuL0hMbpNMMH+BexT/FYFoD+mHCRauLNNkQzEmRVjorZQ==
+stimulus-lightbox@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/stimulus-lightbox/-/stimulus-lightbox-3.2.0.tgz#fffd35864e287ee15fcb1aa193a859abc66b06cf"
+  integrity sha512-bbT2oCSPxloWjLpU0K7YLObOBefOMDL+w0C14hYnz6fLTGfF7kny0ji3n8MH41npXdZxf6GMAoJpE6e2ORximw==
   dependencies:
     lightgallery "^2.7.0"
 
