@@ -58,7 +58,7 @@
         "twig/extra-bundle": "3.5.0",
         "twig/intl-extra": "3.4.2",
         "twig/string-extra": "3.4.0",
-        "twig/twig": "3.4.3",
+        "twig/twig": "3.5.0",
         "willdurand/js-translation-bundle": "dev-master"
     },
     "require-dev": {
