@@ -135,6 +135,10 @@ class Datum implements \Stringable
 
     public function getOrderedListChoices(): array
     {
+        if ($this->value === null) {
+            return [];
+        }
+
         $selectedChoices = json_decode($this->value, true);
         $orderedSelectedChoices = [];
         foreach ($this->getChoiceList()->getChoices() as $availableChoice) {
