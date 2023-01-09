@@ -4,565 +4,565 @@
     <unit id="xGPqLcT" name="message.files_deleted">
       <segment state="translated">
         <source>message.files_deleted</source>
-        <target>Daten gelöscht</target>
+        <target>{count, plural, one {# Datei gelöscht} other {# Dateien gelöscht}}</target>
       </segment>
     </unit>
     <unit id=".512qhB" name="message.logs_generated">
       <segment state="translated">
         <source>message.logs_generated</source>
-        <target>Logs generiert</target>
+        <target>{count, plural, one {# Log generiert} other {# Logs generiert}}</target>
       </segment>
     </unit>
     <unit id="OswwPau" name="message.thumbnails_regenerated">
       <segment state="translated">
         <source>message.thumbnails_regenerated</source>
-        <target>Thumbnails generiert</target>
+        <target>{count, plural, one {# Thumbnail erneuert} other {# Thumbnails erneuert}</target>
       </segment>
     </unit>
     <unit id="X_Pm9um" name="message.user_added">
       <segment state="translated">
         <source>message.user_added</source>
-        <target>Benutzer*in hinzugefügt</target>
+        <target>User {user} hinzugefügt</target>
       </segment>
     </unit>
     <unit id="Fcb_tkO" name="message.user_edited">
       <segment state="translated">
         <source>message.user_edited</source>
-        <target>Benutzer*in geändert</target>
+        <target>User {user} wurde aktualisiert</target>
       </segment>
     </unit>
     <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
-      <segment state="initial">
+      <segment state="translated">
         <source>error.cannot_delete_admin_user</source>
-        <target>error.cannot_delete_admin_user</target>
+        <target>Der Admin-User kann nicht gelöscht werden.</target>
       </segment>
     </unit>
     <unit id="2a_RIum" name="message.user_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.user_deleted</source>
-        <target>message.user_deleted</target>
+        <target>User {user} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="ls5sYo8" name="message.album_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.album_added</source>
-        <target>message.album_added</target>
+        <target>Album {album} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="0lwPpH7" name="message.album_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.album_edited</source>
-        <target>message.album_edited</target>
+        <target>Album {album} geändert</target>
       </segment>
     </unit>
     <unit id="oawVfJJ" name="message.album_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.album_deleted</source>
-        <target>message.album_deleted</target>
+        <target>Album {album} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="s.nX0z8" name="message.choice_list_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.choice_list_added</source>
-        <target>message.choice_list_added</target>
+        <target>Auswahlliste {list} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="wWQwqjC" name="message.choice_list_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.choice_list_edited</source>
-        <target>message.choice_list_edited</target>
+        <target>Auswahlliste {list} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="aXwmQFu" name="message.choice_list_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.choice_list_deleted</source>
-        <target>message.choice_list_deleted</target>
+        <target>Auswahlliste {list} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="_sN4yvV" name="message.collection_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.collection_added</source>
-        <target>message.collection_added</target>
+        <target>Sammlung {collection} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="p.bp_UN" name="message.collection_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.collection_edited</source>
-        <target>message.collection_edited</target>
+        <target>Sammlung {collection} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="m3B26dq" name="message.collection_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.collection_deleted</source>
-        <target>message.collection_deleted</target>
+        <target>Sammlung {collection} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="ehI_Ih2" name="message.items_tagged">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.items_tagged</source>
-        <target>message.items_tagged</target>
+        <target>{count, plural, one {# Eintrag markiert} other {# Einträge markiert}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.inventory_added</source>
-        <target>message.inventory_added</target>
+        <target>Bestand {inventory} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="EYnSw0A" name="message.inventory_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.inventory_deleted</source>
-        <target>message.inventory_deleted</target>
+        <target>Bestand {inventory} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="TMGiC1d" name="message.item_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.item_added</source>
-        <target>message.item_added</target>
+        <target>Eintrag {item} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="UGVMo0W" name="message.item_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.item_edited</source>
-        <target>message.item_edited</target>
+        <target>Eintrag {item} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="HgYxNo9" name="message.item_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.item_deleted</source>
-        <target>message.item_deleted</target>
+        <target>Eintrag {item} gelöscht</target>
       </segment>
     </unit>
     <unit id="AT9p7pU" name="message.loan">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.loan</source>
-        <target>message.loan</target>
+        <target>Eintrag {item} wurde als ausgeliehen markiert</target>
       </segment>
     </unit>
     <unit id="FlBhKyx" name="message.loan_canceled">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.loan_canceled</source>
-        <target>message.loan_canceled</target>
+        <target>Ausleihe von Eintrag {item} wurde abgebrochen</target>
       </segment>
     </unit>
     <unit id="zkp2rxS" name="message.item_returned">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.item_returned</source>
-        <target>message.item_returned</target>
+        <target>Eintrag {item} wurde als zurückgegeben markiert</target>
       </segment>
     </unit>
     <unit id="n5rS9vY" name="message.photo_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.photo_added</source>
-        <target>message.photo_added</target>
+        <target>Foto {photo} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="hIxqW3m" name="message.photo_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.photo_edited</source>
-        <target>message.photo_edited</target>
+        <target>Foto {photo} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="p5Rmjm9" name="message.photo_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.photo_deleted</source>
-        <target>message.photo_deleted</target>
+        <target>Foto {photo} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="rVN8d.E" name="message.profile_updated">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.profile_updated</source>
-        <target>message.profile_updated</target>
+        <target>Profil wurde aktualisiert</target>
       </segment>
     </unit>
     <unit id="nNziKQf" name="message.settings_updated">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.settings_updated</source>
-        <target>message.settings_updated</target>
+        <target>Einstellungen wurde erfolgreich aktualisiert</target>
       </segment>
     </unit>
     <unit id="Ail0qPJ" name="message.tag_category_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.tag_category_added</source>
-        <target>message.tag_category_added</target>
+        <target>Schlagwortkategorie {category} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="vg07kkR" name="message.tag_category_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.tag_category_edited</source>
-        <target>message.tag_category_edited</target>
+        <target>Schlagwortkategorie {category} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="XlwsvOZ" name="message.tag_category_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.tag_category_deleted</source>
-        <target>message.tag_category_deleted</target>
+        <target>Schlagwortkategorie {category} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="3EE._Y4" name="message.tag_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.tag_edited</source>
-        <target>message.tag_edited</target>
+        <target>Schlagwort {tag} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="_PrKtDW" name="message.tag_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.tag_deleted</source>
-        <target>message.tag_deleted</target>
+        <target>Schlagwort {tag} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="QPUEgMd" name="message.unused_tags_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.unused_tags_deleted</source>
-        <target>message.unused_tags_deleted</target>
+        <target>{count, plural, one {# Schlagwort gelöscht} other {# Schlagwörter gelöscht}}</target>
       </segment>
     </unit>
     <unit id="xM.mW1R" name="message.template_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.template_added</source>
-        <target>message.template_added</target>
+        <target>Vorlage {template} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="5d2N5Ar" name="message.template_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.template_edited</source>
-        <target>message.template_edited</target>
+        <target>Vorlage {template} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="ZMxcm6L" name="message.template_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.template_deleted</source>
-        <target>message.template_deleted</target>
+        <target>Vorlage {template} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="9RoxCzk" name="message.wish_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.wish_added</source>
-        <target>message.wish_added</target>
+        <target>Wunsch {wish} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="XoB_zRK" name="message.wish_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.wish_edited</source>
-        <target>message.wish_edited</target>
+        <target>Wunsch {wish} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="akgCJp9" name="message.wish_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.wish_deleted</source>
-        <target>message.wish_deleted</target>
+        <target>Wunsch {wish} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="mAYxq3X" name="message.wish_transfered">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.wish_transfered</source>
-        <target>message.wish_transfered</target>
+        <target>Wunsch {wish} wurde in die Sammlung {collection} übertragen</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.wishlist_added</source>
-        <target>message.wishlist_added</target>
+        <target>Wunschliste {wishlist} wurde hinzugefügt</target>
       </segment>
     </unit>
     <unit id="NfYGrwC" name="message.wishlist_edited">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.wishlist_edited</source>
-        <target>message.wishlist_edited</target>
+        <target>Wunschliste {wishlist} wurde bearbeitet</target>
       </segment>
     </unit>
     <unit id="8ujnJmR" name="message.wishlist_deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.wishlist_deleted</source>
-        <target>message.wishlist_deleted</target>
+        <target>Wunschliste {wishlist} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="zfOqV80" name="form.item_sorting.default_value">
-      <segment state="initial">
+      <segment state="translated">
         <source>form.item_sorting.default_value</source>
-        <target>form.item_sorting.default_value</target>
+        <target>Name (Standardwert)</target>
       </segment>
     </unit>
     <unit id="tg4uV16" name="error.not_enough_space">
-      <segment state="initial">
+      <segment state="translated">
         <source>error.not_enough_space</source>
-        <target>error.not_enough_space</target>
+        <target>Auf Ihrem Account ist nicht mehr genug Platz, um diese Aktion auszuführen :(</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.days.sunday</source>
-        <target>global.days.sunday</target>
+        <target>Sonntag</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.days.monday</source>
-        <target>global.days.monday</target>
+        <target>Montag</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.days.tuesday</source>
-        <target>global.days.tuesday</target>
+        <target>Dienstag</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.days.wednesday</source>
-        <target>global.days.wednesday</target>
+        <target>Mittwoch</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.days.thursday</source>
-        <target>global.days.thursday</target>
+        <target>Donnerstag</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.days.friday</source>
-        <target>global.days.friday</target>
+        <target>Freitag</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.days.saturday</source>
-        <target>global.days.saturday</target>
+        <target>Samstag</target>
       </segment>
     </unit>
     <unit id="s2RK8Ci" name="global.months.january">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.january</source>
-        <target>global.months.january</target>
+        <target>Januar</target>
       </segment>
     </unit>
     <unit id="u5P6LMj" name="global.months.february">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.february</source>
-        <target>global.months.february</target>
+        <target>Februar</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.march</source>
-        <target>global.months.march</target>
+        <target>März</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.april</source>
-        <target>global.months.april</target>
+        <target>April</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.may</source>
-        <target>global.months.may</target>
+        <target>Mai</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.june</source>
-        <target>global.months.june</target>
+        <target>Juni</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.july</source>
-        <target>global.months.july</target>
+        <target>Juli</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.august</source>
-        <target>global.months.august</target>
+        <target>August</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.september</source>
-        <target>global.months.september</target>
+        <target>September</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.october</source>
-        <target>global.months.october</target>
+        <target>Oktober</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.november</source>
-        <target>global.months.november</target>
+        <target>November</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.months.december</source>
-        <target>global.months.december</target>
+        <target>Dezember</target>
       </segment>
     </unit>
     <unit id="jsUGqKL" name="global.byte_abbreviation">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.byte_abbreviation</source>
-        <target>global.byte_abbreviation</target>
+        <target>Abkürzung</target>
       </segment>
     </unit>
     <unit id="BNjUIYA" name="label.search">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.search</source>
-        <target>label.search</target>
+        <target>Suche</target>
       </segment>
     </unit>
     <unit id="GV09tqG" name="global.koillection">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.koillection</source>
-        <target>global.koillection</target>
+        <target>Koillection</target>
       </segment>
     </unit>
     <unit id="bKzhzsy" name="global.time.ago">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.time.ago</source>
-        <target>global.time.ago</target>
+        <target>vor {time}</target>
       </segment>
     </unit>
     <unit id="kBJEdcf" name="global.time.just_now">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.time.just_now</source>
-        <target>global.time.just_now</target>
+        <target>Gerade eben</target>
       </segment>
     </unit>
     <unit id="4wvJrqA" name="global.time.today">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.time.today</source>
-        <target>global.time.today</target>
+        <target>Heute</target>
       </segment>
     </unit>
     <unit id="eggtiPQ" name="global.visibilities.reason.user_public">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.user_public</source>
-        <target>global.visibilities.reason.user_public</target>
+        <target>Öffentlich - Grund: Ihr Profil ist öffentlich</target>
       </segment>
     </unit>
     <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.both_public</source>
-        <target>global.visibilities.reason.both_public</target>
+        <target>Öffentlich - Grund: Ihr Profil und diese Seite sind öffentlich</target>
       </segment>
     </unit>
     <unit id="bk8nfAS" name="global.visibilities.reason.both_private">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.both_private</source>
-        <target>global.visibilities.reason.both_private</target>
+        <target>Privat - Grund: Ihr Profil und diese Seite sind privat</target>
       </segment>
     </unit>
     <unit id="ixVg6T0" name="global.visibilities.reason.user_private">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.user_private</source>
-        <target>global.visibilities.reason.user_private</target>
+        <target>Privat - Grund: Ihr Profil ist privat</target>
       </segment>
     </unit>
     <unit id="9OU9mZT" name="global.visibilities.reason.object_private">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.object_private</source>
-        <target>global.visibilities.reason.object_private</target>
+        <target>Privat - Grund: Diese Seite ist privat</target>
       </segment>
     </unit>
     <unit id="k5.Efwd" name="global.visibilities.reason.both_internal">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.both_internal</source>
-        <target>global.visibilities.reason.both_internal</target>
+        <target>Intern - Grund: Ihr Profil und diese Seite sind intern sichtbar</target>
       </segment>
     </unit>
     <unit id="KHNt07x" name="global.visibilities.reason.user_internal">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.user_internal</source>
-        <target>global.visibilities.reason.user_internal</target>
+        <target>Intern - Grund: Ihr Profil ist intern sichtbar</target>
       </segment>
     </unit>
     <unit id="0fTIld1" name="global.visibilities.reason.object_internal">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.visibilities.reason.object_internal</source>
-        <target>global.visibilities.reason.object_internal</target>
+        <target>Intern - Grund: Diese Seite ist intern sichtbar</target>
       </segment>
     </unit>
     <unit id="wvvYSw_" name="menu.admin">
-      <segment state="initial">
+      <segment state="translated">
         <source>menu.admin</source>
-        <target>menu.admin</target>
+        <target>Administration</target>
       </segment>
     </unit>
     <unit id="I4vwwju" name="title.overview">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.overview</source>
-        <target>title.overview</target>
+        <target>Übersicht</target>
       </segment>
     </unit>
     <unit id="4fDIeO4" name="label.space_used">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.space_used</source>
-        <target>label.space_used</target>
+        <target>{used} / {total} verwendet</target>
       </segment>
     </unit>
     <unit id="ZzykrnK" name="label.space_free">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.space_free</source>
-        <target>label.space_free</target>
+        <target>{free} frei</target>
       </segment>
     </unit>
     <unit id="FIesMhl" name="counter.without_number.users">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.users</source>
-        <target>counter.without_number.users</target>
+        <target>{count, plural, one {# User} other {# User}}</target>
       </segment>
     </unit>
     <unit id="uVNjha9" name="counter.without_number.collections">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.collections</source>
-        <target>counter.without_number.collections</target>
+        <target>{count, plural, one {# Sammlung} other {# Sammlungen}}</target>
       </segment>
     </unit>
     <unit id="VrJk8jp" name="counter.without_number.items">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.items</source>
-        <target>counter.without_number.items</target>
+        <target>{count, plural, one {# Eintrag} other {# Einträge}}</target>
       </segment>
     </unit>
     <unit id="hjM7hgU" name="counter.without_number.tags">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.tags</source>
-        <target>counter.without_number.tags</target>
+        <target>{count, plural, one {# Schlagwort} other {# Schlagwörter}}</target>
       </segment>
     </unit>
     <unit id="cw0nkO5" name="counter.without_number.wishlists">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.wishlists</source>
-        <target>counter.without_number.wishlists</target>
+        <target>{count, plural, one {# Wunschliste} other {# Wunschlisten}}</target>
       </segment>
     </unit>
     <unit id="zzagaMI" name="counter.without_number.wishes">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.wishes</source>
-        <target>counter.without_number.wishes</target>
+        <target>{count, plural, one {# Wunsch} other {# Wünsche}}</target>
       </segment>
     </unit>
     <unit id="QJMsz.z" name="counter.without_number.albums">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.albums</source>
-        <target>counter.without_number.albums</target>
+        <target>{count, plural, one {# Album} other {# Alben}}</target>
       </segment>
     </unit>
     <unit id="YKRNql5" name="counter.without_number.photos">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.photos</source>
-        <target>counter.without_number.photos</target>
+        <target>{count, plural, one {# Foto} other {# Fotos}}</target>
       </segment>
     </unit>
     <unit id="aCCqbt1" name="counter.without_number.signs">
-      <segment state="initial">
+      <segment state="translated">
         <source>counter.without_number.signs</source>
-        <target>counter.without_number.signs</target>
+        <target>{count, plural, one {# Signatur} other {# Signaturen}}</target>
       </segment>
     </unit>
     <unit id="jNAS_YE" name="label.space_used_by_koillection">
