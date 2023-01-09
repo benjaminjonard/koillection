@@ -2168,129 +2168,129 @@
       </segment>
     </unit>
     <unit id="OMwE8EU" name="label.apply_template">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.apply_template</source>
-        <target>label.apply_template</target>
+        <target>Vorlage anwenden</target>
       </segment>
     </unit>
     <unit id="YQjIBl7" name="label.children_title">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.children_title</source>
-        <target>label.children_title</target>
+        <target>Unter-Sammlung Abschnittsbezeichnung</target>
       </segment>
     </unit>
     <unit id="fWI8IQm" name="label.collection">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.collection</source>
-        <target>label.collection</target>
+        <target>Sammlung</target>
       </segment>
     </unit>
     <unit id="Jjqrud5" name="label.collections">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.collections</source>
-        <target>label.collections</target>
+        <target>Sammlungen</target>
       </segment>
     </unit>
     <unit id="otd2FZd" name="label.currency">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.currency</source>
-        <target>label.currency</target>
+        <target>Währung</target>
       </segment>
     </unit>
     <unit id="zfmgf2l" name="label.items">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items</source>
-        <target>label.items</target>
+        <target>Einträge</target>
       </segment>
     </unit>
     <unit id="frik1CZ" name="label.items_title">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.items_title</source>
-        <target>label.items_title</target>
+        <target>Einträge Abschnittbezeichnung</target>
       </segment>
     </unit>
     <unit id="NGzz2k3" name="label.parent">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.parent</source>
-        <target>label.parent</target>
+        <target>Elternteil</target>
       </segment>
     </unit>
     <unit id="2.APxMI" name="label.place">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.place</source>
-        <target>label.place</target>
+        <target>Ort</target>
       </segment>
     </unit>
     <unit id="ymgENEq" name="label.quantity">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.quantity</source>
-        <target>label.quantity</target>
+        <target>Anzahl</target>
       </segment>
     </unit>
     <unit id="HVZAEc7" name="label.recursive">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.recursive</source>
-        <target>label.recursive</target>
+        <target>Rekursiv</target>
       </segment>
     </unit>
     <unit id="rU9cSfq" name="label.repeat_password">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.repeat_password</source>
-        <target>label.repeat_password</target>
+        <target>Passwort wiederholen</target>
       </segment>
     </unit>
     <unit id="w5u.bJo" name="label.sign">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.sign</source>
-        <target>label.sign</target>
+        <target>Signatur</target>
       </segment>
     </unit>
     <unit id="vpeY2jo" name="label.taken_at">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.taken_at</source>
-        <target>label.taken_at</target>
+        <target>Hat genommen</target>
       </segment>
     </unit>
     <unit id="ijQyGRo" name="label.tags">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.tags</source>
-        <target>label.tags</target>
+        <target>Schlagwörter</target>
       </segment>
     </unit>
     <unit id="UQI8T0S" name="label.text">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.text</source>
-        <target>label.text</target>
+        <target>Text</target>
       </segment>
     </unit>
     <unit id="UJDm2vF" name="label.url">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.url</source>
-        <target>label.url</target>
+        <target>Url</target>
       </segment>
     </unit>
     <unit id="hmlddlA" name="label.wishlist">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.wishlist</source>
-        <target>label.wishlist</target>
+        <target>Wunschliste</target>
       </segment>
     </unit>
     <unit id="vVTVy9_" name="label.wishlists">
-      <segment state="initial">
+      <segment state="translated">
         <source>label.wishlists</source>
-        <target>label.wishlists</target>
+        <target>Wunschlisten</target>
       </segment>
     </unit>
     <unit id="oq5I4KJ" name="log.collection.created">
-      <segment state="initial">
+      <segment state="translated">
         <source>log.collection.created</source>
-        <target>log.collection.created</target>
+        <target>Sammlung {label} wurde erstellt</target>
       </segment>
     </unit>
     <unit id="kJVARQs" name="log.collection.deleted">
-      <segment state="initial">
+      <segment state="translated">
         <source>log.collection.deleted</source>
-        <target>log.collection.deleted</target>
+        <target>Sammlunge {label} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="CQhzBXW" name="log.item.created">
