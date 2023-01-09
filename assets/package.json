@@ -9,7 +9,7 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.20.7",
+    "@babel/core": "7.20.12",
     "@babel/preset-env": "7.20.2",
     "@materializecss/materialize": "1.2.1",
     "@symfony/stimulus-bridge": "3.2.1",
