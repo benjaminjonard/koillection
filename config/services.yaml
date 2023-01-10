@@ -1,6 +1,6 @@
 parameters:
     release: '1.3.17'
-    available_locales: ['en', 'fr', 'es']
+    available_locales: ['en', 'fr', 'es', 'de']
     default_locale: 'en'
     container.dumper.inline_factories: true
 
