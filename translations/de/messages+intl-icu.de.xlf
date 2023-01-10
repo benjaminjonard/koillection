@@ -1412,27 +1412,27 @@
       </segment>
     </unit>
     <unit id="4UTsL.X" name="menu.settings">
-      <segment state="initial">
+      <segment state="translated">
         <source>menu.settings</source>
-        <target>menu.settings</target>
+        <target>Einstellungen</target>
       </segment>
     </unit>
     <unit id="RDD2bMy" name="title.update_settings">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.update_settings</source>
-        <target>title.update_settings</target>
+        <target>Einstellungen bearbeiten</target>
       </segment>
     </unit>
     <unit id="9dYyUYD" name="title.update_visibility">
-      <segment state="initial">
+      <segment state="translated">
         <source>title.update_visibility</source>
-        <target>title.update_visibility</target>
+        <target>Sichtbarkeit bearbeiten</target>
       </segment>
     </unit>
     <unit id="eG38lKI" name="message.visibility">
-      <segment state="initial">
+      <segment state="translated">
         <source>message.visibility</source>
-        <target>message.visibility</target>
+        <target>Wenn Sie die Sichtbarkeit auf Öffentlich stellen, ist Ihre Sammlungen jedem/jeder zugänglich unter folgendem Link:</target>
       </segment>
     </unit>
     <unit id="RjUO3kd" name="message.visibility_per_item">
