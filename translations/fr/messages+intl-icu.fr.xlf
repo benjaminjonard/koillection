@@ -688,7 +688,7 @@
     <unit id="LDhDPrF" name="label.username">
       <segment state="translated">
         <source>label.username</source>
-        <target>Pseudo</target>
+        <target>Nom d'utilisateur</target>
       </segment>
     </unit>
     <unit id="O59lP5d" name="label.role">
