@@ -80,7 +80,9 @@ There are a few things you can do to support Koillection :
 * Report any bug or error you see
 * English is not my first language, it would be a huge help if you could report any mistakes in both Koillection or the wiki.
 
-You can contribute and edit translations here: https://crowdin.com/project/koillection. If you wish to contribute to a new language, please open a discussion on github or crowin and I'll gladly add it. 
+You can contribute and edit translations here: https://crowdin.com/project/koillection. 
+If you wish to contribute to a new language, please open a discussion on github or crowin and I'll gladly add it. 
+You are also welcome if you want to proofread existing translations.
     
 ## Licensing
 Koillection is an Open Source software, released under the MIT License. 
