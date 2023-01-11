@@ -3157,5 +3157,11 @@
         <target>Suche in Daten (nach Einträgen und Sammlungen)</target>
       </segment>
     </unit>
+    <unit id="8oCe4ni" name="global.locale.de">
+      <segment state="translated">
+        <source>global.locale.de</source>
+        <target>Deutsch</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
