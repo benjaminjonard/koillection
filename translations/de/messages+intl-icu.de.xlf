@@ -3158,9 +3158,9 @@
       </segment>
     </unit>
     <unit id="8oCe4ni" name="global.locale.de">
-      <segment state="initial">
+      <segment state="translated">
         <source>global.locale.de</source>
-        <target>global.locale.de</target>
+        <target>Deutsch</target>
       </segment>
     </unit>
   </file>
