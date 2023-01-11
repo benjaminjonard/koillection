@@ -3157,5 +3157,11 @@
         <target>Rechercher dans les données (pour les objets et les collections)</target>
       </segment>
     </unit>
+    <unit id="8oCe4ni" name="global.locale.de">
+      <segment state="initial">
+        <source>global.locale.de</source>
+        <target>global.locale.de</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
