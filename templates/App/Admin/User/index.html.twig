@@ -25,6 +25,12 @@
                 {{ 'title.users'|trans }}
             </h2>
 
+            <div class="row btn-holder">
+                <a href="{{ path('app_admin_user_add') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_user'|trans }}
+                </a>
+            </div>
+
             {% if error is defined and error is not null %}
                 <div class="error-helper">
                     <i class="fa fa-warning fa-fw"></i>
