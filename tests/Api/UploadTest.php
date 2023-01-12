@@ -83,8 +83,8 @@ class UploadTest extends ApiTestCase
 
         // Act
         $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.webp', "/tmp/{$uniqId}.webp'");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.webp'", "{$uniqId}.webp'");
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.webp', "/tmp/{$uniqId}.webp");
+        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.webp", "{$uniqId}.webp");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
