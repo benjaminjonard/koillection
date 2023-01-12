@@ -9,7 +9,7 @@ export default class extends Controller {
     items = [];
 
     connect() {
-        let App\Tests\Factory; = this;
+        let self = this;
 
         this.autocompleteElement = M.Autocomplete.init(this.inputTarget, {
             onAutocomplete: function (item) {

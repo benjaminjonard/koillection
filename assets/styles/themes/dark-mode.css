@@ -129,6 +129,7 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 .sidebar-element a i,
 .autocomplete-result a,
 .datepicker-day-button,
+.input-field .helper-text,
 .input-field input[type="search"]:focus:not(.browser-default) {
     color: #cccccc;
 }

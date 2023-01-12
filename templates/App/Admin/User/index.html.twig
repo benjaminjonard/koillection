@@ -57,7 +57,7 @@
                         <tr>
                             <td class="hide-on-small-and-down">{{ user.id }}</td>
                             <td>{{ user.username }}</td>
-                            <td>{{ getRoleLabel(user.roles[0])|trans }}</td>
+                            <td>{{ user.isAdmin ? 'role.admin'|trans : 'role.user'|trans }}</td>
                             <td class="hide-on-med-and-down">{{ user.email }}</td>
                             <td>{{ getSpaceUsedByUser(user)|bytes }}</td>
                             <td>{{ user.diskSpaceAllowed|bytes }}</td>
