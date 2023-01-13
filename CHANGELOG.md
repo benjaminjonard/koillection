@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.18] / 2023-01-13
+### Features
+- Add option search in metadata for items and collections (benjaminjonard)
+- Add German translation (derfuttich)
+
+### Fixes
+- Fix error on list view if no columns are selected (benjaminjonard)
+- Restore 'Add user' button (benjaminjonard)
+- Properly display user role in admin page (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, update to Symfony 6.2, fix CVE-2022-46175 (benjaminjonard)
+
 ## [1.3.17] / 2022-11-18
 ### Features
 - Search now available on shared pages (benjaminjonard)
