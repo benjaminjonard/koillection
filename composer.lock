@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25b06180491c5c196eb4f1d7e26c5e0b",
+    "content-hash": "3919cbca106c16f781f5d97816061240",
     "packages": [
         {
             "name": "api-platform/core",
@@ -9447,16 +9447,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.9.8",
+            "version": "1.9.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "45411d15bf85a33b4a8ee9b75a6e82998c9adb97"
+                "reference": "60f3d68481eef216199eae7a2603cd5fe124d464"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/45411d15bf85a33b4a8ee9b75a6e82998c9adb97",
-                "reference": "45411d15bf85a33b4a8ee9b75a6e82998c9adb97",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/60f3d68481eef216199eae7a2603cd5fe124d464",
+                "reference": "60f3d68481eef216199eae7a2603cd5fe124d464",
                 "shasum": ""
             },
             "require": {
@@ -9486,7 +9486,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.9.8"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.11"
             },
             "funding": [
                 {
@@ -9502,7 +9502,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-08T21:26:18+00:00"
+            "time": "2023-01-12T14:04:13+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -9926,16 +9926,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.15.3",
+            "version": "0.15.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "3f15e3a2412d3dd4803905bdad35fbee84a2953c"
+                "reference": "a43370e1f4c47aaa96c0f85bf9db73db1be7552f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/3f15e3a2412d3dd4803905bdad35fbee84a2953c",
-                "reference": "3f15e3a2412d3dd4803905bdad35fbee84a2953c",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/a43370e1f4c47aaa96c0f85bf9db73db1be7552f",
+                "reference": "a43370e1f4c47aaa96c0f85bf9db73db1be7552f",
                 "shasum": ""
             },
             "require": {
@@ -9970,7 +9970,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.15.3"
+                "source": "https://github.com/rectorphp/rector/tree/0.15.7"
             },
             "funding": [
                 {
@@ -9978,7 +9978,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-08T16:14:58+00:00"
+            "time": "2023-01-13T21:14:19+00:00"
         },
         {
             "name": "sebastian/cli-parser",
