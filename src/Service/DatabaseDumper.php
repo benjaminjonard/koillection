@@ -64,6 +64,7 @@ class DatabaseDumper
             'SELECT * FROM doctrine_migration_version',
             "SELECT * FROM koi_album WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_collection WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_choice_list WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_datum WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_display_configuration WHERE owner_id IN ({$userIds})",
             "SELECT f.* FROM koi_field f LEFT JOIN koi_template t ON f.template_id = t.id WHERE t.owner_id IN ({$userIds})",
@@ -78,7 +79,7 @@ class DatabaseDumper
             "SELECT * FROM koi_template WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_user WHERE id IN ({$userIds})",
             "SELECT * FROM koi_wish WHERE owner_id IN ({$userIds})",
-            "SELECT * FROM koi_wishlist WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_wishlist WHERE owner_id IN ({$userIds})"
         ];
 
         foreach ($selects as $select) {
