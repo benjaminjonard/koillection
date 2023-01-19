@@ -66,7 +66,8 @@ Please do back up your database.
 ## Versions
 
 | Koillection | PHP version | Maintained                |
-|-------------| ----------- | ---------                 |
+|-------------|-------------| ---------                 |
+| 1.4.x       | 8.2         | :heavy_check_mark:        | 
 | 1.3.x       | 8.1         | :heavy_check_mark:        | 
 | 1.2.x       | 8.0         | :x:                       |
 | 1.1.x       | 7.4         | :x:                       |
