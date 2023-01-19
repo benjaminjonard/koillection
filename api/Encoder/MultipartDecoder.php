@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
-final class MultipartDecoder implements DecoderInterface
+final readonly class MultipartDecoder implements DecoderInterface
 {
     public const FORMAT = 'multipart';
 

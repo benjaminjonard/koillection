@@ -13,8 +13,8 @@ class SearchHistory
     private array $types = [];
 
     public function __construct(
-        private int $page = 1,
-        private int $itemsPerPage = 10
+        private readonly int $page = 1,
+        private readonly int $itemsPerPage = 10
     ) {
     }
 

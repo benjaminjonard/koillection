@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
 use Rector\CodingStyle\Rector\ClassConst\VarConstantCommentRector;
@@ -21,12 +22,15 @@ use Rector\Php80\Rector\Identical\StrStartsWithRector;
 use Rector\Php80\Rector\Class_\StringableForToStringRector;
 use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
 use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
+use Rector\Php82\Rector\Class_\ReadOnlyClassRector;
 use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
 use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddReturnTypeDeclarationRector;
 use Rector\Php71\Rector\List_\ListToArrayDestructRector;
 use Rector\TypeDeclaration\Rector\Closure\AddClosureReturnTypeRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
+use Rector\Renaming\Rector\Name\RenameClassRector;
+use Rector\Renaming\Rector\ClassConstFetch\RenameClassConstFetchRector;
 
 
 return static function (RectorConfig $rectorConfig): void {
@@ -59,6 +63,9 @@ return static function (RectorConfig $rectorConfig): void {
         NewInInitializerRector::class,
         ReadOnlyPropertyRector::class,
 
+        // PHP 8.2
+        ReadOnlyClassRector::class,
+
         //Type declaration
         AddClosureReturnTypeRector::class,
         AddVoidReturnTypeWhereNoReturnRector::class,
@@ -73,7 +80,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,
 
-        SymfonySetList::SYMFONY_60,
+        SymfonySetList::SYMFONY_62,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
 
@@ -88,6 +95,9 @@ return static function (RectorConfig $rectorConfig): void {
         AttributeKeyToClassConstFetchRector::class,
         ImproveDoctrineCollectionDocTypeInEntityRector::class,
         EncapsedStringsToSprintfRector::class,
-        VarConstantCommentRector::class
+        VarConstantCommentRector::class,
+        ExplicitBoolCompareRector::class,
+        RenameClassRector::class,
+        RenameClassConstFetchRector::class
     ]);
 };

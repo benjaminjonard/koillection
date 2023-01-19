@@ -90,7 +90,7 @@ class ItemController extends AbstractController
         }
 
         return $this->render('App/Item/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'item' => $item,
             'collection' => $collection,
             'suggestedNames' => $suggestedNames,
@@ -132,7 +132,7 @@ class ItemController extends AbstractController
         }
 
         return $this->render('App/Item/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'item' => $item,
             'collection' => $item->getCollection(),
             'choiceLists' => $choiceListRepository->findAll(),
@@ -177,7 +177,7 @@ class ItemController extends AbstractController
 
         return $this->render('App/Loan/loan.html.twig', [
             'item' => $item,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

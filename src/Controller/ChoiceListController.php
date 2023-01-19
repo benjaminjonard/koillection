@@ -43,7 +43,7 @@ class ChoiceListController extends AbstractController
         }
 
         return $this->render('App/ChoiceList/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -62,7 +62,7 @@ class ChoiceListController extends AbstractController
         }
 
         return $this->render('App/ChoiceList/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'choiceList' => $choiceList,
         ]);
     }

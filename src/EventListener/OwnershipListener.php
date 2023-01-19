@@ -7,7 +7,7 @@ namespace App\EventListener;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Security;
 
-final class OwnershipListener
+final readonly class OwnershipListener
 {
     public function __construct(
         private readonly Security $security

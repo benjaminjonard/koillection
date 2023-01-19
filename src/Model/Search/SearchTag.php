@@ -9,8 +9,8 @@ class SearchTag
     private ?string $term = null;
 
     public function __construct(
-        private int $page = 1,
-        private int $itemsPerPage = 10
+        private readonly int $page = 1,
+        private readonly int $itemsPerPage = 10
     ) {
     }
 

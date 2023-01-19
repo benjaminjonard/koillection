@@ -23,7 +23,7 @@ class PaginatorFactory
 
         unset($params[$queryParam]);
 
-        if (!empty($params)) {
+        if ($params !== []) {
             $url .= '?'.http_build_query($params);
         }
 

@@ -34,7 +34,7 @@ class InventoryController extends AbstractController
         }
 
         return $this->render('App/Inventory/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'collections' => $collectionRepository->findAll(),
         ]);
     }

@@ -9,7 +9,7 @@ use Symfony\Component\Console\Event\ConsoleTerminateEvent;
 /**
  * Add JS imports in translations files after dump command is executed.
  */
-final class TranslationCommandListener
+final readonly class TranslationCommandListener
 {
     public function __construct(
         private readonly string $assetsPath

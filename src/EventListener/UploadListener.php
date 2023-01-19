@@ -9,7 +9,7 @@ use App\Service\ImageHandler;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-final class UploadListener
+final readonly class UploadListener
 {
     public function __construct(
         private readonly UploadAnnotationReader $reader,

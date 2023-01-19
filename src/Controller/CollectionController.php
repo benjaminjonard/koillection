@@ -83,7 +83,7 @@ class CollectionController extends AbstractController
 
         return $this->render('App/Collection/add.html.twig', [
             'collection' => $collection,
-            'form' => $form->createView(),
+            'form' => $form,
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenLabels' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll()
@@ -123,7 +123,7 @@ class CollectionController extends AbstractController
         }
 
         return $this->render('App/Collection/edit_index.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'displayConfiguration' => $displayConfiguration
         ]);
     }
@@ -172,7 +172,7 @@ class CollectionController extends AbstractController
         }
 
         return $this->render('App/Collection/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'collection' => $collection,
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenTitles' => $collectionRepository->suggestChildrenLabels($collection),
@@ -219,7 +219,7 @@ class CollectionController extends AbstractController
         }
 
         return $this->render('App/Collection/batch_tagging.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'collection' => $collection,
         ]);
     }

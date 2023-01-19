@@ -70,7 +70,7 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
 
     public function getContentAsArray(): array
     {
-        if (!empty($this->contentAsArray)) {
+        if ($this->contentAsArray !== []) {
             return $this->contentAsArray;
         }
 

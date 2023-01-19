@@ -36,7 +36,7 @@ class HistoryController extends AbstractController
         }
 
         return $this->render('App/History/index.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'logs' => $logs,
             'paginator' => $paginatorFactory->generate($count),
         ]);

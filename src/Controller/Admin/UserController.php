@@ -52,7 +52,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('App/Admin/User/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -83,7 +83,7 @@ class UserController extends AbstractController
 
         return $this->render('App/Admin/User/edit.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
+            'form' => $form,
             'counters' => [
                 'collections' => $collectionRepository->count(['owner' => $user]),
                 'items' => $itemRepository->count(['owner' => $user]),
