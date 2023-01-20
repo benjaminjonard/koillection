@@ -3,6 +3,9 @@ name: Crowdin Action
 on:
   push:
     branches: [ 1.4 ]
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
 
 jobs:
   synchronize-with-crowdin:
@@ -14,6 +17,7 @@ jobs:
       - name: crowdin action
         uses: crowdin/github-action@1.5.3
         with:
+          config: '.github/crowdin.yml'
           upload_translations: true
           download_translations: true
         env:
