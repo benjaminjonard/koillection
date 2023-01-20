@@ -8,8 +8,8 @@ use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
 use App\Enum\LogTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PostRemoveEventArgs;
 use Doctrine\ORM\UnitOfWork;
 
 class LoggableListener
@@ -47,7 +47,7 @@ class LoggableListener
         $uow->computeChangeSet($classMetadata, $log);
     }
 
-    public function postRemove(LifecycleEventArgs $args): void
+    public function postRemove(PostRemoveEventArgs $args): void
     {
         $entity = $args->getObject();
 

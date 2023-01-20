@@ -6,8 +6,10 @@ namespace App\EventListener;
 
 use App\Attribute\UploadAnnotationReader;
 use App\Service\ImageHandler;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PostLoadEventArgs;
+use Doctrine\ORM\Event\PostRemoveEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
 
 final readonly class UploadListener
 {
@@ -17,7 +19,7 @@ final readonly class UploadListener
     ) {
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function prePersist(PrePersistEventArgs $args): void
     {
         $entity = $args->getObject();
         foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
@@ -38,7 +40,7 @@ final readonly class UploadListener
         }
     }
 
-    public function postLoad(LifecycleEventArgs $args): void
+    public function postLoad(PostLoadEventArgs $args): void
     {
         $entity = $args->getObject();
         foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
@@ -46,7 +48,7 @@ final readonly class UploadListener
         }
     }
 
-    public function postRemove(LifecycleEventArgs $args): void
+    public function postRemove(PostRemoveEventArgs $args): void
     {
         $entity = $args->getObject();
         foreach ($this->reader->getUploadFields($entity) as $attribute) {

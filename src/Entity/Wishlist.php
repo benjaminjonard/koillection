@@ -40,7 +40,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Delete(),
         new Patch(),
         new GetCollection(),
-        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(),
         new Post(uriTemplate: '/wishlists/{id}/image', denormalizationContext: ['groups' => ['wishlist:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Wishlist image.']),
     ],
     denormalizationContext: ['groups' => ['wishlist:write']],

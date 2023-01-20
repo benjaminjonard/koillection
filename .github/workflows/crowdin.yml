@@ -1,5 +1,4 @@
-name: Crowdin Action
-
+name: Sync Crowdin translations
 on:
   push:
     branches: [ 1.4 ]

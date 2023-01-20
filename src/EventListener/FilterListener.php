@@ -10,7 +10,7 @@ use App\Service\ContextHandler;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class FilterListener
 {

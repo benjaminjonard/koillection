@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Symfony\Bundle\SecurityBundle\Security;
 
 final readonly class OwnershipListener
 {
@@ -14,7 +14,7 @@ final readonly class OwnershipListener
     ) {
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function prePersist(PrePersistEventArgs $args): void
     {
         $entity = $args->getObject();
 

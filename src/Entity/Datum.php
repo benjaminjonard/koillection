@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Delete(),
         new Patch(),
         new GetCollection(),
-        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(),
         new Post(uriTemplate: '/data/{id}/image', denormalizationContext: ['groups' => ['datum:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum image.']),
         new Post(uriTemplate: '/data/{id}/file', denormalizationContext: ['groups' => ['datum:file']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum file.'])],
     denormalizationContext: ['groups' => ['datum:write']],

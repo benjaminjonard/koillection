@@ -42,7 +42,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Delete(),
         new Patch(),
         new GetCollection(),
-        new Post(inputFormats: ['json' => ['application/json', 'application/ld+json'], 'multipart' => ['multipart/form-data']]),
+        new Post(),
         new Post(uriTemplate: '/albums/{id}/image', denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Album image.']),
     ]
 )]

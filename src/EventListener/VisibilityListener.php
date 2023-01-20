@@ -12,8 +12,8 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\UnitOfWork;
 
 /**
@@ -28,7 +28,7 @@ class VisibilityListener
 
     private EntityManagerInterface $em;
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function prePersist(PrePersistEventArgs $args): void
     {
         $entity = $args->getObject();
         if ($entity instanceof Album || $entity instanceof Collection || $entity instanceof Wishlist) {
