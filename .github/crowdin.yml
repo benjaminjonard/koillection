@@ -1,10 +1,10 @@
 files:
-  - source: /../translations/en/messages+intl-icu.en.xlf
-    translation: /../translations/%two_letters_code%/messages+intl-icu.%two_letters_code%.%file_extension%
-  - source: /../translations/en/javascript+intl-icu.en.xlf
-    translation: /../translations/%two_letters_code%/javascript+intl-icu.%two_letters_code%.%file_extension%
-  - source: /../translations/en/validators+intl-icu.en.xlf
-    translation: /../translations/%two_letters_code%/validators+intl-icu.%two_letters_code%.%file_extension%
+  - source: /**/translations/en/messages+intl-icu.en.xlf
+    translation: /**/translations/%two_letters_code%/messages+intl-icu.%two_letters_code%.%file_extension%
+  - source: /**/translations/en/javascript+intl-icu.en.xlf
+    translation: /**/translations/%two_letters_code%/javascript+intl-icu.%two_letters_code%.%file_extension%
+  - source: /**/en/validators+intl-icu.en.xlf
+    translation: /**/translations/%two_letters_code%/validators+intl-icu.%two_letters_code%.%file_extension%
 
 project_id_env: CROWDIN_PROJECT_ID
 api_token_env: CROWDIN_PERSONAL_TOKEN
