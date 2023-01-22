@@ -72,8 +72,12 @@ class RefreshCachedValuesListener
         }
     }
 
-    private function getRootEntity(Album|Collection|Wishlist $entity): Album|Collection|Wishlist|null
+    private function getRootEntity(Album|Collection|Wishlist|null $entity): Album|Collection|Wishlist|null
     {
+        if ($entity === null) {
+            return null;
+        }
+
         while ($entity->getParent() != null) {
             $entity = $entity->getParent();
         }
