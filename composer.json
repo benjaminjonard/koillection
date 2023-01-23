@@ -62,7 +62,7 @@
         "willdurand/js-translation-bundle": "dev-master"
     },
     "require-dev": {
-        "brianium/paratest": "6.8.0",
+        "brianium/paratest": "6.8.1",
         "dama/doctrine-test-bundle": "7.1.1",
         "doctrine/doctrine-fixtures-bundle": "3.4.2",
         "friendsofphp/php-cs-fixer": "3.13.2",
