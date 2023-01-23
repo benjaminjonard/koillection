@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f55baaa08da8774abd7de23a40e9a63",
+    "content-hash": "fc0d1332fa0b7448d4d60f17cd8e64a0",
     "packages": [
         {
             "name": "api-platform/core",
@@ -8271,16 +8271,16 @@
     "packages-dev": [
         {
             "name": "brianium/paratest",
-            "version": "v6.8.0",
+            "version": "v6.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "4b70abf4c2ffa08c64e2e89c7b5b7e43cdf26d52"
+                "reference": "168c1cfdf79e5b19b57cb03060fc9a6a79c5f582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/4b70abf4c2ffa08c64e2e89c7b5b7e43cdf26d52",
-                "reference": "4b70abf4c2ffa08c64e2e89c7b5b7e43cdf26d52",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/168c1cfdf79e5b19b57cb03060fc9a6a79c5f582",
+                "reference": "168c1cfdf79e5b19b57cb03060fc9a6a79c5f582",
                 "shasum": ""
             },
             "require": {
@@ -8294,7 +8294,7 @@
                 "phpunit/php-code-coverage": "^9.2.23",
                 "phpunit/php-file-iterator": "^3.0.6",
                 "phpunit/php-timer": "^5.0.3",
-                "phpunit/phpunit": "^9.5.27",
+                "phpunit/phpunit": "^9.5.28",
                 "sebastian/environment": "^5.1.4",
                 "symfony/console": "^5.4.16 || ^6.2.3",
                 "symfony/process": "^5.4.11 || ^6.2"
@@ -8347,7 +8347,7 @@
             ],
             "support": {
                 "issues": "https://github.com/paratestphp/paratest/issues",
-                "source": "https://github.com/paratestphp/paratest/tree/v6.8.0"
+                "source": "https://github.com/paratestphp/paratest/tree/v6.8.1"
             },
             "funding": [
                 {
@@ -8359,7 +8359,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2022-12-29T09:42:35+00:00"
+            "time": "2023-01-17T10:08:49+00:00"
         },
         {
             "name": "composer/pcre",
@@ -11824,7 +11824,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
