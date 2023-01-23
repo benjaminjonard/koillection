@@ -16,7 +16,7 @@
     "@symfony/webpack-encore": "4.2.0",
     "@hotwired/stimulus": "3.2.1",
     "copy-webpack-plugin": "11.0.0",
-    "core-js": "3.27.1",
+    "core-js": "3.27.2",
     "croppie": "2.6.5",
     "echarts": "5.4.1",
     "regenerator-runtime": "0.13.11",
