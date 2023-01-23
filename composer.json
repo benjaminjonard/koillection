@@ -53,7 +53,7 @@
         "symfony/uid": "6.2.0",
         "symfony/validator": "6.2.3",
         "symfony/web-link": "6.2.0",
-        "symfony/webpack-encore-bundle": "1.16.0",
+        "symfony/webpack-encore-bundle": "1.16.1",
         "symfony/yaml": "6.2.2",
         "twig/extra-bundle": "3.5.0",
         "twig/intl-extra": "3.5.0",
