@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] / 2023-01-23
+### Fixes
+- Add missing table koi_choice_list to SQL export (benjaminjonard)
+- Fix error when refreshing cached values if parent is null (benjaminjonard)
+
+### Miscellaneaous
+- Update to PHP 8.2 (benjaminjonard)
+- Remove support for multipart/form-data in API POST endpoints, please use dedicated upload endpoints instead (benjaminjonard)
+
 ## [1.3.18] / 2023-01-13
 ### Features
 - Add option search in metadata for items and collections (benjaminjonard)
