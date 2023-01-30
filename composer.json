@@ -65,7 +65,7 @@
         "brianium/paratest": "6.8.1",
         "dama/doctrine-test-bundle": "7.1.1",
         "doctrine/doctrine-fixtures-bundle": "3.4.2",
-        "friendsofphp/php-cs-fixer": "3.13.2",
+        "friendsofphp/php-cs-fixer": "3.14.3",
         "justinrainbow/json-schema": "5.2.12",
         "phpunit/php-code-coverage": "9.2.24",
         "phpunit/phpunit": "9.5.28",
