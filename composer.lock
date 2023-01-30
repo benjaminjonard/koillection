@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b92fa0e07a70405d0c6c00e20da43ac",
+    "content-hash": "8d26630870e98a35a3f68e5ee2f7a80b",
     "packages": [
         {
             "name": "api-platform/core",
@@ -11330,85 +11330,6 @@
             "time": "2023-01-01T08:38:09+00:00"
         },
         {
-            "name": "symfony/polyfill-php73",
-            "version": "v1.27.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
-                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.27-dev"
-                },
-                "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ],
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.27.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-11-03T14:55:06+00:00"
-        },
-        {
             "name": "symfony/polyfill-php81",
             "version": "v1.27.0",
             "source": {
@@ -11617,27 +11538,27 @@
         },
         {
             "name": "zenstruck/assert",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/assert.git",
-                "reference": "a1c6501c975339ded3bcf8092a17277f6e21ac82"
+                "reference": "cd7a0e91eaf2287855a327b0c50c81a7e17b5936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/assert/zipball/a1c6501c975339ded3bcf8092a17277f6e21ac82",
-                "reference": "a1c6501c975339ded3bcf8092a17277f6e21ac82",
+                "url": "https://api.github.com/repos/zenstruck/assert/zipball/cd7a0e91eaf2287855a327b0c50c81a7e17b5936",
+                "reference": "cd7a0e91eaf2287855a327b0c50c81a7e17b5936",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
-                "symfony/polyfill-php73": "^1.8",
-                "symfony/polyfill-php80": "^1.15",
-                "symfony/polyfill-php81": "^1.23"
+                "php": ">=8.0",
+                "symfony/polyfill-php81": "^1.23",
+                "symfony/var-exporter": "^5.4|^6.0"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.4",
-                "symfony/phpunit-bridge": "^5.3"
+                "phpunit/phpunit": "^9.5",
+                "symfony/phpunit-bridge": "^6.2"
             },
             "type": "library",
             "autoload": {
@@ -11664,7 +11585,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/assert/issues",
-                "source": "https://github.com/zenstruck/assert/tree/v1.2.0"
+                "source": "https://github.com/zenstruck/assert/tree/v1.3.0"
             },
             "funding": [
                 {
@@ -11672,7 +11593,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-12T12:30:27+00:00"
+            "time": "2023-01-23T19:13:52+00:00"
         },
         {
             "name": "zenstruck/callback",
@@ -11732,16 +11653,16 @@
         },
         {
             "name": "zenstruck/foundry",
-            "version": "v1.27.0",
+            "version": "v1.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "65799bfe27ca81821be24f6dfec824ac4942a892"
+                "reference": "0506413be16dd8590f0c96fda05e0ed724daa191"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/65799bfe27ca81821be24f6dfec824ac4942a892",
-                "reference": "65799bfe27ca81821be24f6dfec824ac4942a892",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/0506413be16dd8590f0c96fda05e0ed724daa191",
+                "reference": "0506413be16dd8590f0c96fda05e0ed724daa191",
                 "shasum": ""
             },
             "require": {
@@ -11749,22 +11670,23 @@
                 "fakerphp/faker": "^1.5",
                 "php": ">=8.0",
                 "symfony/deprecation-contracts": "^2.2|^3.0",
-                "symfony/property-access": "^4.4|^5.0|^6.0",
+                "symfony/property-access": "^5.4|^6.0",
                 "symfony/string": "^5.4|^6.0",
                 "zenstruck/assert": "^1.0",
                 "zenstruck/callback": "^1.1"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.4",
-                "dama/doctrine-test-bundle": "^6.0|^7.0",
-                "doctrine/doctrine-bundle": "^2.0",
+                "dama/doctrine-test-bundle": "^7.0",
+                "doctrine/doctrine-bundle": "^2.5",
                 "doctrine/doctrine-migrations-bundle": "^2.2|^3.0",
-                "doctrine/mongodb-odm-bundle": "^3.1|^4.2",
-                "doctrine/orm": "^2.7",
+                "doctrine/mongodb-odm": "^2.0",
+                "doctrine/mongodb-odm-bundle": "^4.4.0",
+                "doctrine/orm": "^2.9",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-                "symfony/framework-bundle": "^4.4|^5.0|^6.0",
+                "symfony/framework-bundle": "^5.4|^6.0",
                 "symfony/maker-bundle": "^1.30",
-                "symfony/phpunit-bridge": "^6.0",
+                "symfony/phpunit-bridge": "^5.4|^6.0",
                 "symfony/translation-contracts": "^2.5|^3.0"
             },
             "type": "library",
@@ -11805,7 +11727,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v1.27.0"
+                "source": "https://github.com/zenstruck/foundry/tree/v1.28.0"
             },
             "funding": [
                 {
@@ -11813,7 +11735,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-09T14:40:55+00:00"
+            "time": "2023-01-24T10:44:17+00:00"
         }
     ],
     "aliases": [],
