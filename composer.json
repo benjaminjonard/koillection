@@ -33,7 +33,7 @@
         "symfony/framework-bundle": "6.2.5",
         "symfony/http-client": "6.2.5",
         "symfony/http-foundation": "6.2.5",
-        "symfony/http-kernel": "6.2.5",
+        "symfony/http-kernel": "6.2.6",
         "symfony/intl": "6.2.5",
         "symfony/mime": "6.2.5",
         "symfony/monolog-bundle": "3.8.0",
