@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\Collection;
 use App\Entity\Item;
+use function PHPUnit\Framework\stringStartsWith;
 
 class ItemNameGuesser
 {
     public function guess(Item &$item): ?array
     {
         $collection = $item->getCollection();
-        if (!$collection instanceof \App\Entity\Collection || $collection->getItems()->count() < 1) {
+        if (!$collection instanceof Collection || $collection->getItems()->count() < 1) {
             return null;
         }
 
@@ -19,17 +21,18 @@ class ItemNameGuesser
         if (empty($patternParts) || \count($patternParts) > 2) {
             return null;
         }
-
-        $pattern = '/'.implode('(\d+)', $patternParts).'/';
+        $pattern = implode('', $patternParts);
 
         $highestValue = 0;
         foreach ($collection->getItems() as $otherItem) {
-            if (!preg_match($pattern, $otherItem->getName(), $matches) || !isset($matches[1])) {
+            $value = mb_substr($otherItem->getName(), mb_strlen($pattern));
+
+            if (!is_numeric($value)) {
                 return null;
             }
 
-            if ($matches[1] > $highestValue) {
-                $highestValue = $matches[1];
+            if ($value > $highestValue) {
+                $highestValue = $value;
             }
         }
 
