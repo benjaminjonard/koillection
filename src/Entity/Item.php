@@ -372,10 +372,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     {
         if ($this->data->contains($data)) {
             $this->data->removeElement($data);
-            // set the owning side to null (unless already changed)
-            if ($data->getItem() === $this) {
-                $data->setItem(null);
-            }
         }
 
         return $this;
