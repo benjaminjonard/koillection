@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] / 2023-02-04
+### Fixes
+- Fix item name suggestion when using special characters (benjaminjonard)
+- Fix error when removing a Price field (benjaminjonard)
+
+### Miscellaneaous
+- Upgrade PHP and JS dependencies, fix CVE-2022-24894 and CVE-2022-24895 (benjaminjonard)
+
 ## [1.4.0] / 2023-01-23
 ### Fixes
 - Add missing table koi_choice_list to SQL export (benjaminjonard)
