@@ -246,9 +246,6 @@
     "sebastian/recursion-context": {
         "version": "4.0.4"
     },
-    "stella-maris/clock": {
-        "version": "0.1.4"
-    },
     "symfony/asset": {
         "version": "v5.0.2"
     },
