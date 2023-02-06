@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d540790a23b4f9d511e66c9bb592cb0d",
+    "content-hash": "b3b1c416296bc69252c2d96c7ff536e1",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "9fb9b0addcdec84f257505863e6ae7073df15a60"
+                "reference": "95478c5b2221255f99f92a6f86557306ec366a4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/9fb9b0addcdec84f257505863e6ae7073df15a60",
-                "reference": "9fb9b0addcdec84f257505863e6ae7073df15a60",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/95478c5b2221255f99f92a6f86557306ec366a4a",
+                "reference": "95478c5b2221255f99f92a6f86557306ec366a4a",
                 "shasum": ""
             },
             "require": {
@@ -106,7 +106,7 @@
                 "symfony/web-profiler-bundle": "^6.1",
                 "symfony/yaml": "^6.1",
                 "twig/twig": "^1.42.3 || ^2.12 || ^3.0",
-                "webonyx/graphql-php": "^14.0"
+                "webonyx/graphql-php": "^14.0 || ^15.0"
             },
             "suggest": {
                 "doctrine/mongodb-odm-bundle": "To support MongoDB. Only versions 4.0 and later are supported.",
@@ -166,7 +166,7 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v3.1.1"
+                "source": "https://github.com/api-platform/core/tree/v3.1.2"
             },
             "funding": [
                 {
@@ -174,7 +174,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-27T10:41:37+00:00"
+            "time": "2023-02-03T10:10:54+00:00"
         },
         {
             "name": "composer/semver",
