@@ -3,6 +3,7 @@
   "extends": [
     "config:base"
   ],
+  "rebaseWhen": "conflicted",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
