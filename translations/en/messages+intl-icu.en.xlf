@@ -3163,5 +3163,11 @@
         <target>Deutsch</target>
       </segment>
     </unit>
+    <unit id="hnKIpTQ" name="label.apiplatform_version">
+      <segment state="translated">
+        <source>label.apiplatform_version</source>
+        <target>API Platform version</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

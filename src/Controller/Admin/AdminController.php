@@ -19,6 +19,7 @@ use App\Repository\WishRepository;
 use App\Service\CachedValuesCalculator;
 use App\Service\DatabaseDumper;
 use App\Service\LatestReleaseChecker;
+use Composer\InstalledVersions;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Kernel;
@@ -63,6 +64,7 @@ class AdminController extends AbstractController
             'requiredPhpVersionForLatestRelease' => $latestVersionChecker->getRequiredPhpVersionForLatestRelease(),
             'isRequiredPhpVersionForLatestReleaseOk' => $latestVersionChecker->isRequiredPhpVersionForLatestReleaseOk(),
             'symfonyVersion' => Kernel::VERSION,
+            'apiPlatformVersion' => str_replace('v', '', InstalledVersions::getPrettyVersion('api-platform/core')),
             'phpVersion' => phpversion(),
             'isOpcacheAvailable' => \function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled'],
         ]);
