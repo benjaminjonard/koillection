@@ -63,7 +63,7 @@
     },
     "require-dev": {
         "brianium/paratest": "7.0.5",
-        "dama/doctrine-test-bundle": "7.2.0",
+        "dama/doctrine-test-bundle": "7.2.1",
         "doctrine/doctrine-fixtures-bundle": "3.4.2",
         "friendsofphp/php-cs-fixer": "3.14.4",
         "justinrainbow/json-schema": "5.2.12",
