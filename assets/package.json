@@ -25,7 +25,7 @@
     "stimulus-use": "0.51.3",
     "ts-select2": "0.2.5",
     "webpack": "5.75.0",
-    "webpack-bundle-analyzer": "4.7.0",
+    "webpack-bundle-analyzer": "4.8.0",
     "webpack-cli": "5.0.1",
     "webpack-notifier": "1.15.0"
   },
