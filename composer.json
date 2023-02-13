@@ -55,7 +55,7 @@
         "symfony/web-link": "6.2.5",
         "symfony/webpack-encore-bundle": "1.16.1",
         "symfony/yaml": "6.2.5",
-        "twig/extra-bundle": "3.5.0",
+        "twig/extra-bundle": "3.5.1",
         "twig/intl-extra": "3.5.0",
         "twig/string-extra": "3.5.0",
         "twig/twig": "3.5.0",
