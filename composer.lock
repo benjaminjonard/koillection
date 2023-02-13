@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80d84a5715961561ad47fde6eb7619fc",
+    "content-hash": "601f1778dc925e71f8c29811a9c3baea",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1850,16 +1850,16 @@
         },
         {
             "name": "lexik/jwt-authentication-bundle",
-            "version": "v2.17.0",
+            "version": "v2.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lexik/LexikJWTAuthenticationBundle.git",
-                "reference": "6a6f1988451663181ca68df1a56bac6b005bfbec"
+                "reference": "8f23254b280bb854c53b97bc1f9f570163ff4b80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lexik/LexikJWTAuthenticationBundle/zipball/6a6f1988451663181ca68df1a56bac6b005bfbec",
-                "reference": "6a6f1988451663181ca68df1a56bac6b005bfbec",
+                "url": "https://api.github.com/repos/lexik/LexikJWTAuthenticationBundle/zipball/8f23254b280bb854c53b97bc1f9f570163ff4b80",
+                "reference": "8f23254b280bb854c53b97bc1f9f570163ff4b80",
                 "shasum": ""
             },
             "require": {
@@ -1952,7 +1952,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lexik/LexikJWTAuthenticationBundle/issues",
-                "source": "https://github.com/lexik/LexikJWTAuthenticationBundle/tree/v2.17.0"
+                "source": "https://github.com/lexik/LexikJWTAuthenticationBundle/tree/v2.18.0"
             },
             "funding": [
                 {
@@ -1964,7 +1964,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-03T15:12:45+00:00"
+            "time": "2023-02-08T15:24:59+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
