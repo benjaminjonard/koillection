@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a7e51c9bca89fb14a8c2b78a28fc7a6",
+    "content-hash": "785137caf6a50c917ff3b1b63a0edab9",
     "packages": [
         {
             "name": "api-platform/core",
@@ -9776,16 +9776,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.0.10",
+            "version": "10.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fdfb75f4e7985d3db6c874f206b3281c1eb5e3eb"
+                "reference": "d18a18b07e7a9ad52d994b1785f9e301fc84b616"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fdfb75f4e7985d3db6c874f206b3281c1eb5e3eb",
-                "reference": "fdfb75f4e7985d3db6c874f206b3281c1eb5e3eb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d18a18b07e7a9ad52d994b1785f9e301fc84b616",
+                "reference": "d18a18b07e7a9ad52d994b1785f9e301fc84b616",
                 "shasum": ""
             },
             "require": {
@@ -9856,7 +9856,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.0.10"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.0.11"
             },
             "funding": [
                 {
@@ -9872,7 +9872,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-20T11:50:41+00:00"
+            "time": "2023-02-20T16:39:36+00:00"
         },
         {
             "name": "rector/rector",
