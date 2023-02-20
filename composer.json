@@ -68,7 +68,7 @@
         "friendsofphp/php-cs-fixer": "3.14.4",
         "justinrainbow/json-schema": "5.2.12",
         "phpunit/php-code-coverage": "10.0.0",
-        "phpunit/phpunit": "10.0.9",
+        "phpunit/phpunit": "10.0.10",
         "rector/rector": "0.15.17",
         "symfony/browser-kit": "6.2.5",
         "symfony/css-selector": "6.2.5",
