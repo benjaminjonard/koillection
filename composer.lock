@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9e2b4aa65f72c41caf636681f0c2e6f",
+    "content-hash": "b36ef2a22964c7e236e34cdb7cc32fb3",
     "packages": [
         {
             "name": "api-platform/core",
@@ -8103,16 +8103,16 @@
     "packages-dev": [
         {
             "name": "brianium/paratest",
-            "version": "v7.0.6",
+            "version": "v7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "86ea5b223810d89294bc08de2c699dc34534e159"
+                "reference": "429bf1d657b794f62fe06fe186d55ee67496f684"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/86ea5b223810d89294bc08de2c699dc34534e159",
-                "reference": "86ea5b223810d89294bc08de2c699dc34534e159",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/429bf1d657b794f62fe06fe186d55ee67496f684",
+                "reference": "429bf1d657b794f62fe06fe186d55ee67496f684",
                 "shasum": ""
             },
             "require": {
@@ -8182,7 +8182,7 @@
             ],
             "support": {
                 "issues": "https://github.com/paratestphp/paratest/issues",
-                "source": "https://github.com/paratestphp/paratest/tree/v7.0.6"
+                "source": "https://github.com/paratestphp/paratest/tree/v7.1.0"
             },
             "funding": [
                 {
@@ -8194,7 +8194,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2023-02-13T09:41:18+00:00"
+            "time": "2023-02-28T14:51:17+00:00"
         },
         {
             "name": "composer/pcre",
