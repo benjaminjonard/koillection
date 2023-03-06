@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33d2974e3bd965d55ea4c369485ba5f3",
+    "content-hash": "c9e2b4aa65f72c41caf636681f0c2e6f",
     "packages": [
         {
             "name": "api-platform/core",
@@ -9763,16 +9763,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.15.20",
+            "version": "0.15.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "c3c4fb38255a671c4854846dce08a059c76f358a"
+                "reference": "1cee8cc5d6d836e1bf9a3006d7b062adde3a6022"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/c3c4fb38255a671c4854846dce08a059c76f358a",
-                "reference": "c3c4fb38255a671c4854846dce08a059c76f358a",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/1cee8cc5d6d836e1bf9a3006d7b062adde3a6022",
+                "reference": "1cee8cc5d6d836e1bf9a3006d7b062adde3a6022",
                 "shasum": ""
             },
             "require": {
@@ -9812,7 +9812,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.15.20"
+                "source": "https://github.com/rectorphp/rector/tree/0.15.21"
             },
             "funding": [
                 {
@@ -9820,7 +9820,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-05T11:25:23+00:00"
+            "time": "2023-03-06T11:44:29+00:00"
         },
         {
             "name": "sebastian/cli-parser",
