@@ -178,9 +178,6 @@
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
-    "myclabs/php-enum": {
-        "version": "1.7.2"
-    },
     "namshi/jose": {
         "version": "7.2.3"
     },
@@ -224,9 +221,6 @@
     },
     "psr/event-dispatcher": {
         "version": "1.0.0"
-    },
-    "psr/http-message": {
-        "version": "1.0.1"
     },
     "psr/link": {
         "version": "1.0.0"
