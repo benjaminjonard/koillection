@@ -7,8 +7,10 @@ namespace App\EventListener;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
-class ActivityListener
+#[AsEventListener(event: 'kernel.request')]
+final class ActivityListener
 {
     public function __construct(
         private readonly Security $security,

@@ -6,8 +6,11 @@ namespace App\EventListener;
 
 use App\Service\ColorPicker;
 use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
+use Doctrine\ORM\Events;
 
-class ColorListener
+#[AsDoctrineListener(event: Events::prePersist)]
+final class ColorListener
 {
     public function __construct(
         private readonly ColorPicker $colorPicker

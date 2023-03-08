@@ -8,11 +8,13 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Service\ContextHandler;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\SecurityBundle\Security;
 
-class FilterListener
+#[AsEventListener(event: 'kernel.request')]
+final class FilterListener
 {
     public function __construct(
         private readonly ManagerRegistry $managerRegistry,

@@ -10,8 +10,10 @@ use App\Entity\Wishlist;
 use App\Service\CachedValuesCalculator;
 use App\Service\RefreshCachedValuesQueue;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
-class RefreshCachedValuesQueueListener
+#[AsEventListener(event: 'kernel.response', priority: 5)]
+final class RefreshCachedValuesQueueListener
 {
     public function __construct(
         private readonly RefreshCachedValuesQueue $refreshCachedValuesQueue,

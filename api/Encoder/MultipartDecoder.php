@@ -16,9 +16,6 @@ final readonly class MultipartDecoder implements DecoderInterface
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function decode(string $data, string $format, array $context = []): ?array
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -36,9 +33,6 @@ final readonly class MultipartDecoder implements DecoderInterface
         }, $request->request->all()) + $request->files->all() + $content;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function supportsDecoding(string $format): bool
     {
         return self::FORMAT === $format;

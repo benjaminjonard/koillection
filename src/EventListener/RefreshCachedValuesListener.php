@@ -13,9 +13,12 @@ use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use App\Service\RefreshCachedValuesQueue;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Events;
 
-class RefreshCachedValuesListener
+#[AsDoctrineListener(event: Events::onFlush)]
+final class RefreshCachedValuesListener
 {
     public function __construct(
         private readonly RefreshCachedValuesQueue $refreshCachedValuesQueue

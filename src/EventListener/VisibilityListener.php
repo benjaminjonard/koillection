@@ -11,9 +11,11 @@ use App\Entity\Photo;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Events;
 use Doctrine\ORM\UnitOfWork;
 
 /**
@@ -22,7 +24,9 @@ use Doctrine\ORM\UnitOfWork;
  * parentVisibility -> the visibility of the object owning the current one
  * finalVisibility -> the visibility used to display or not the object, computed from the 2 previous properties.
  */
-class VisibilityListener
+#[AsDoctrineListener(event: Events::prePersist)]
+#[AsDoctrineListener(event: Events::onFlush)]
+final class VisibilityListener
 {
     private UnitOfWork $uow;
 
@@ -50,7 +54,7 @@ class VisibilityListener
 
     public function onFlush(OnFlushEventArgs $args): void
     {
-        $this->em = $args->getEntityManager();
+        $this->em = $args->getObjectManager();
         $this->uow = $this->em->getUnitOfWork();
 
         foreach ($this->uow->getScheduledEntityUpdates() as $entity) {

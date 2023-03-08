@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
-/**
- * Add JS imports in translations files after dump command is executed.
- */
-final readonly class TranslationCommandListener
+#[AsEventListener(event: 'console.terminate')]
+final class TranslationCommandListener
 {
     public function __construct(
         private readonly string $assetsPath

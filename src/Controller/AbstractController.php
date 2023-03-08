@@ -22,7 +22,7 @@ use App\Service\RefreshCachedValuesQueue;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 abstract class AbstractController extends SymfonyAbstractController
 {
@@ -36,7 +36,7 @@ abstract class AbstractController extends SymfonyAbstractController
     {
         foreach ($features as $feature) {
             if (!$this->featureChecker->isFeatureEnabled($feature)) {
-                throw new AccessDeniedException();
+                throw new AccessDeniedHttpException();
             }
         }
     }

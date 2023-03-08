@@ -6,13 +6,18 @@ namespace App\EventListener;
 
 use App\Entity\Interfaces\LoggableInterface;
 use App\Entity\Log;
+use App\Entity\User;
 use App\Enum\LogTypeEnum;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PostRemoveEventArgs;
+use Doctrine\ORM\Events;
 use Doctrine\ORM\UnitOfWork;
 
-class LoggableListener
+#[AsDoctrineListener(event: Events::onFlush, priority: -5)]
+#[AsDoctrineListener(event: Events::postRemove, priority: -5)]
+final class LoggableListener
 {
     public function onFlush(OnFlushEventArgs $eventArgs): void
     {
@@ -32,21 +37,6 @@ class LoggableListener
         }
     }
 
-    private function persistLog(EntityManagerInterface $em, UnitOfWork $uow, LoggableInterface $entity, string $type): void
-    {
-        $log = (new Log())
-            ->setType($type)
-            ->setObjectId($entity->getId())
-            ->setObjectLabel($entity->__toString())
-            ->setObjectClass($entity::class)
-            ->setOwner($entity->getOwner())
-        ;
-
-        $em->persist($log);
-        $classMetadata = $em->getClassMetadata(Log::class);
-        $uow->computeChangeSet($classMetadata, $log);
-    }
-
     public function postRemove(PostRemoveEventArgs $args): void
     {
         $entity = $args->getObject();
@@ -62,5 +52,20 @@ class LoggableListener
                 ->execute()
             ;
         }
+    }
+
+    private function persistLog(EntityManagerInterface $em, UnitOfWork $uow, LoggableInterface $entity, string $type): void
+    {
+        $log = (new Log())
+            ->setType($type)
+            ->setObjectId($entity->getId())
+            ->setObjectLabel($entity->__toString())
+            ->setObjectClass($entity::class)
+            ->setOwner($entity->getOwner())
+        ;
+
+        $em->persist($log);
+        $classMetadata = $em->getClassMetadata(Log::class);
+        $uow->computeChangeSet($classMetadata, $log);
     }
 }

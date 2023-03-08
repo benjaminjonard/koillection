@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-class SeenListener
+#[AsEventListener(event: 'kernel.response')]
+final class SeenListener
 {
     public function __construct(
         private readonly ManagerRegistry $managerRegistry

@@ -32,7 +32,7 @@ class RegularUserTest extends WebTestCase
         $this->client->request('GET', '/admin');
 
         // Assert
-        $this->assertTrue($this->client->getResponse()->isNotFound());
+        $this->assertTrue($this->client->getResponse()->isForbidden());
     }
 
     public function test_regular_user_cant_access_users_list(): void
@@ -45,7 +45,7 @@ class RegularUserTest extends WebTestCase
         $this->client->request('GET', '/admin/users');
 
         // Assert
-        $this->assertTrue($this->client->getResponse()->isNotFound());
+        $this->assertTrue($this->client->getResponse()->isForbidden());
     }
 
     public function test_regular_user_cant_access_add_user(): void
@@ -55,10 +55,10 @@ class RegularUserTest extends WebTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/admin/add');
+        $this->client->request('GET', '/admin/users/add');
 
         // Assert
-        $this->assertTrue($this->client->getResponse()->isNotFound());
+        $this->assertTrue($this->client->getResponse()->isForbidden());
     }
 
     public function test_regular_user_cant_post_user(): void
@@ -68,10 +68,10 @@ class RegularUserTest extends WebTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('POST', '/admin/add');
+        $this->client->request('POST', '/admin/users/add');
 
         // Assert
-        $this->assertTrue($this->client->getResponse()->isNotFound());
+        $this->assertTrue($this->client->getResponse()->isForbidden());
     }
 
     public function test_regular_user_cant_access_edit_user(): void
@@ -84,7 +84,7 @@ class RegularUserTest extends WebTestCase
         $this->client->request('GET', '/admin/users/'.$user->getId().'/edit');
 
         // Assert
-        $this->assertTrue($this->client->getResponse()->isNotFound());
+        $this->assertTrue($this->client->getResponse()->isForbidden());
     }
 
     public function test_regular_user_cant_edit_user(): void
@@ -97,6 +97,19 @@ class RegularUserTest extends WebTestCase
         $this->client->request('POST', '/admin/users/'.$user->getId().'/edit');
 
         // Assert
-        $this->assertTrue($this->client->getResponse()->isNotFound());
+        $this->assertTrue($this->client->getResponse()->isForbidden());
+    }
+
+    public function test_regular_user_cant_delete_user(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+
+        // Act
+        $this->client->request('POST', '/admin/users/'.$user->getId().'/delete');
+
+        // Assert
+        $this->assertTrue($this->client->getResponse()->isForbidden());
     }
 }

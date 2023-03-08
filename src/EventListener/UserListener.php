@@ -6,41 +6,39 @@ namespace App\EventListener;
 
 use App\Entity\User;
 use App\Service\PasswordUpdater;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreRemoveEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Events;
 
-class UserListener
+#[AsEntityListener(event: Events::prePersist, entity: User::class, lazy: true)]
+#[AsEntityListener(event: Events::preUpdate, entity: User::class, lazy: true)]
+#[AsEntityListener(event: Events::preRemove, entity: User::class, lazy: true)]
+final class UserListener
 {
     public function __construct(
         private readonly PasswordUpdater $passwordUpdater
     ) {
     }
 
-    public function prePersist(PrePersistEventArgs $args): void
+    public function prePersist(User $user): void
     {
-        $entity = $args->getObject();
-        if ($entity instanceof User) {
-            $this->passwordUpdater->hashPassword($entity);
-        }
+        $this->passwordUpdater->hashPassword($user);
     }
 
-    public function preUpdate(PreUpdateEventArgs $args): void
+    public function preUpdate(User $user): void
     {
-        $entity = $args->getObject();
-        if ($entity instanceof User) {
-            $this->passwordUpdater->hashPassword($entity);
-        }
+        $this->passwordUpdater->hashPassword($user);
     }
 
-    public function preRemove(PreRemoveEventArgs $args): void
+    public function preRemove(User $user, PreRemoveEventArgs $args): void
     {
-        $entity = $args->getObject();
-        if ($entity instanceof User) {
-            $entity->setWishlistsDisplayConfiguration(null);
-            $entity->setCollectionsDisplayConfiguration(null);
-            $entity->setAlbumsDisplayConfiguration(null);
-            $args->getObjectManager()->flush();
-        }
+        $user->setWishlistsDisplayConfiguration(null);
+        $user->setCollectionsDisplayConfiguration(null);
+        $user->setAlbumsDisplayConfiguration(null);
+        $args->getObjectManager()->flush();
     }
 }
