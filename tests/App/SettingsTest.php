@@ -56,7 +56,7 @@ class SettingsTest extends WebTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
-        //$this->assertSame('Paramètres', $crawler->filter('h1')->text());
+        // $this->assertSame('Paramètres', $crawler->filter('h1')->text());
         UserFactory::assert()->exists([
             'id' => $user->getId(),
             'locale' => LocaleEnum::LOCALE_FR,

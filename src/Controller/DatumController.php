@@ -8,7 +8,6 @@ use App\Entity\ChoiceList;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,8 +49,7 @@ class DatumController extends AbstractController
     #[Route(path: '/datum/load-common-fields/{id}', name: 'app_datum_load_common_fields', methods: ['GET'])]
     public function loadCommonFields(
         #[MapEntity(expr: 'repository.findWithItemsAndData(id)')] Collection $collection
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $commonFields = [];
 
         $first = $collection->getItems()->first();
@@ -110,8 +108,7 @@ class DatumController extends AbstractController
     #[Route(path: '/datum/load-collection-fields/{id}', name: 'app_datum_load_collection_fields', methods: ['GET'])]
     public function loadCollectionFields(
         #[MapEntity(expr: 'repository.findWithItemsAndData(id)')] Collection $collection
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $fields = [];
         foreach ($collection->getData() as $key => $datum) {
             $fields[$key][] = \in_array($datum->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';

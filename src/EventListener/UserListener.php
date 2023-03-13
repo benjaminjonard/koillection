@@ -6,12 +6,8 @@ namespace App\EventListener;
 
 use App\Entity\User;
 use App\Service\PasswordUpdater;
-use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreRemoveEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 
 #[AsEntityListener(event: Events::prePersist, entity: User::class, lazy: true)]

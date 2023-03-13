@@ -6,7 +6,6 @@ namespace App\Service;
 
 use App\Entity\Collection;
 use App\Entity\Item;
-use function PHPUnit\Framework\stringStartsWith;
 
 class ItemNameGuesser
 {

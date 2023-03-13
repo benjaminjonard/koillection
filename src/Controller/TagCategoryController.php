@@ -9,7 +9,6 @@ use App\Form\Type\Entity\TagCategoryType;
 use App\Repository\TagCategoryRepository;
 use App\Service\PaginatorFactory;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,8 +59,7 @@ class TagCategoryController extends AbstractController
     #[Route(path: '/tag-categories/{id}', name: 'app_tag_category_show', methods: ['GET'])]
     public function show(
         #[MapEntity(expr: 'repository.findOneWithTags(id)')] TagCategory $category
-    ): Response
-    {
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         return $this->render('App/TagCategory/show.html.twig', [

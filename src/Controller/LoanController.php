@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\Loan;
 use App\Repository\LoanRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,8 +48,7 @@ class LoanController extends AbstractController
         #[MapEntity(expr: 'repository.findByIdWithItem(id)')] Loan $loan,
         TranslatorInterface $translator,
         ManagerRegistry $managerRegistry
-    ): Response
-    {
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['loans']);
 
         $loan->setReturnedAt(new \DateTimeImmutable());

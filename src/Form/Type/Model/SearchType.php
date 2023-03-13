@@ -6,14 +6,13 @@ namespace App\Form\Type\Model;
 
 use App\Enum\DateFormatEnum;
 use App\Model\Search\Search;
-use App\Service\FeatureChecker;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bundle\SecurityBundle\Security;
 
 class SearchType extends AbstractType
 {

@@ -17,7 +17,6 @@ use App\Repository\TagRepository;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -103,8 +102,7 @@ class ItemController extends AbstractController
     public function show(
         #[MapEntity(expr: 'repository.findById(id)')] Item $item,
         ItemRepository $itemRepository
-    ): Response
-    {
+    ): Response {
         $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $item->getCollection());
 
         return $this->render('App/Item/show.html.twig', [

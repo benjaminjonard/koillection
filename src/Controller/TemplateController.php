@@ -9,7 +9,6 @@ use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\TemplateType;
 use App\Repository\TemplateRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,8 +56,7 @@ class TemplateController extends AbstractController
         #[MapEntity(expr: 'repository.findById(id)')] Template $template,
         TranslatorInterface $translator,
         ManagerRegistry $managerRegistry
-    ): Response
-    {
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
         $form = $this->createForm(TemplateType::class, $template);
@@ -79,8 +77,7 @@ class TemplateController extends AbstractController
     #[Route(path: '/templates/{id}', name: 'app_template_show', methods: ['GET'])]
     public function show(
         #[MapEntity(expr: 'repository.findWithItems(id)')] Template $template
-    ): Response
-    {
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
         return $this->render('App/Template/show.html.twig', [

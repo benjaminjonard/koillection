@@ -14,7 +14,6 @@ use App\Repository\TagRepository;
 use App\Service\ContextHandler;
 use App\Service\PaginatorFactory;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -66,8 +65,7 @@ class TagController extends AbstractController
     public function show(
         #[MapEntity(expr: 'repository.findWithItems(id)')] Tag $tag,
         TagRepository $tagRepository
-    ): Response
-    {
+    ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
         return $this->render('App/Tag/show.html.twig', [
@@ -156,8 +154,7 @@ class TagController extends AbstractController
         #[MapEntity(expr: 'repository.findById(itemId)')] Item $item,
         #[MapEntity(expr: 'repository.find(tagId)')] Tag $tag,
         ItemRepository $itemRepository
-    ): Response
-    {
+    ): Response {
         $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $tag);
 
         return $this->render('App/Tag/item.html.twig', [
