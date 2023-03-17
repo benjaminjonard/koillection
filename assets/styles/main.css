@@ -1498,21 +1498,12 @@ html.loading:before {
     }
 }
 
-.unauthorized {
-    background-color: #99a3a8;
-}
-
-.box {
-    margin: 100px auto 0 auto;
-    max-width: 360px;
-}
-
 .box h1 {
     background-color: #009688;
     color: #f0f2f5;
     font-size: 28px;
     margin: 0;
-    padding: 40px 20px;
+    padding: 30px 20px 40px 20px;
     position: relative;
     text-align: center;
     word-break: normal;
@@ -1551,7 +1542,8 @@ html.loading:before {
 
 .box .locales-dropdown {
     float: right;
-    padding: 10px 10px 0 0;
+    position: relative;
+    top: -15px;
 }
 
 .box .submit {
@@ -1560,6 +1552,8 @@ html.loading:before {
 
 .box .body {
     padding: 30px 50px 50px;
+    max-width: 500px;
+    margin: auto;
 }
 
 .error .box .body {
@@ -2127,12 +2121,16 @@ i.btn input {
     top: 2px;
 }
 
+.box {
+    min-height: 100vh;
+}
+
 .box .input-field.input-checkbox {
     margin-bottom: 75px;
 }
 
 .box h2 {
-    padding: 10px 0 !important;
+    padding: 30px 0 !important;
 }
 
 .autocomplete-result a, .dropdown-content li > span {

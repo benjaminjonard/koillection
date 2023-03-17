@@ -9,10 +9,9 @@
             </h1>
 
             <div class="content">
-                {{ include('App/Security/_locales_dropdown.html.twig') }}
-
                 <div class="body">
                     {{ form_start(form) }}
+                    {{ include('App/Security/_locales_dropdown.html.twig') }}
                     <h2 class="header">{{ 'title.first_connection.user'|trans }}</h2>
                     {{ form_errors(form) }}
                     {{ form_row(form.username, {'label' : 'label.username'} ) }}

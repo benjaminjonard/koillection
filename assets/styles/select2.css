@@ -88,6 +88,10 @@
     margin-left: 230px;
 }
 
+.box .select2-dropdown {
+    margin-left: 0px;
+}
+
 @media (max-width: 749px) {
     .select2-dropdown {
         margin-left: 0px;
