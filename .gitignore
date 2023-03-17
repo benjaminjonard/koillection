@@ -9,7 +9,7 @@
 ###< symfony/framework-bundle ###
 .php_cs.cache
 
-/docker/*
+/docker/volumes/
 docker-compose.yml
 
 ###> symfony/webpack-encore-bundle ###
