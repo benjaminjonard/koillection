@@ -11,8 +11,8 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
         with:
-          repository: koillection/koillection-docker
-          ref: php8.2
+          repository: koillection/koillection
+          ref: 1.4
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up QEMU
@@ -30,8 +30,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: .
+          file: Dockerfile
           push: true
-          build-args: GITHUB_RELEASE=1.4
           tags: ${{ secrets.BETA_REPO_URL }}:koillection
           platforms: linux/amd64,linux/arm64
