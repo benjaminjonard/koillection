@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
+use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\UserRepository;
 use Zenstruck\Foundry\ModelFactory;
@@ -49,7 +50,7 @@ final class UserFactory extends ModelFactory
             'dateFormat' => DateFormatEnum::FORMAT_HYPHEN_YMD,
             'diskSpaceAllowed' => 536870912,
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
-            'darkModeEnabled' => true,
+            'theme' => ThemeEnum::THEME_BROWSER,
             'wishlistsFeatureEnabled' => true,
             'tagsFeatureEnabled' => true,
             'signsFeatureEnabled' => true,

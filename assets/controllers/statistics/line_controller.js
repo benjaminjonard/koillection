@@ -8,10 +8,14 @@ echarts.use([GridComponent, DataZoomComponent, TooltipComponent, LineChart]);
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
     chart = null;
-    isDarkMode =  document.getElementById('settings').dataset.theme === 'dark';
 
     connect() {
         let data = JSON.parse(this.element.dataset.json);
+
+        let theme = document.getElementById('settings').dataset.theme;
+        if (theme == 'browser') {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
 
         this.chart = echarts.init(this.element);
         this.chart.setOption({
@@ -24,38 +28,38 @@ export default class extends Controller {
                     return params[0].axisValue + ': ' + Translator.trans('statistics.items', {'count': params[0].data});
                 }
             },
-            color: [this.isDarkMode ? '#00ce99' : '#009688'],
+            color: [theme == 'dark' ? '#00ce99' : '#009688'],
             xAxis: {
                 type: 'category',
                 data: Object.keys(data),
                 axisLabel: {
-                    color: this.isDarkMode ? '#f0f0f0': '#323233'
+                    color: theme == 'dark' ? '#f0f0f0': '#323233'
                 },
                 axisTick: {
                     alignWithLabel: true,
                     lineStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
+                        color: theme == 'dark' ? '#f0f0f0': '#323233'
                     }
                 },
                 axisLine: {
                     lineStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
+                        color: theme == 'dark' ? '#f0f0f0': '#323233'
                     }
                 }
             },
             yAxis: {
                 type: 'value',
                 axisLabel: {
-                    color: this.isDarkMode ? '#f0f0f0': '#323233'
+                    color: theme == 'dark' ? '#f0f0f0': '#323233'
                 },
                 axisTick: {
                     lineStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
+                        color: theme == 'dark' ? '#f0f0f0': '#323233'
                     }
                 },
                 axisLine: {
                     lineStyle: {
-                        color: this.isDarkMode ? '#f0f0f0': '#323233'
+                        color: theme == 'dark' ? '#f0f0f0': '#323233'
                     }
                 }
             },
@@ -77,7 +81,7 @@ export default class extends Controller {
                 symbol: 'none',
                 sampling: 'average',
                 areaStyle: {
-                    color: this.isDarkMode ? '#00ce99' : '#009688'
+                    color: theme == 'dark' ? '#00ce99' : '#009688'
                 }
             }]
         });

@@ -1441,12 +1441,6 @@
         <target>You can then set visibility per item or collection. To do so, please go on the element edition page.</target>
       </segment>
     </unit>
-    <unit id="JA.9t2S" name="title.update_dark_mode">
-      <segment state="translated">
-        <source>title.update_dark_mode</source>
-        <target>Edit dark mode</target>
-      </segment>
-    </unit>
     <unit id="fQNztng" name="title.update_features">
       <segment state="translated">
         <source>title.update_features</source>
@@ -2701,24 +2695,6 @@
         <target>Statistics</target>
       </segment>
     </unit>
-    <unit id="I0M_1B7" name="label.dark_mode_enabled">
-      <segment state="translated">
-        <source>label.dark_mode_enabled</source>
-        <target>Permanent dark mode</target>
-      </segment>
-    </unit>
-    <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
-      <segment state="translated">
-        <source>label.automatic_dark_mode_start_at</source>
-        <target>Automatic dark mode start time</target>
-      </segment>
-    </unit>
-    <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
-      <segment state="translated">
-        <source>label.automatic_dark_mode_end_at</source>
-        <target>Automatic dark mode end time</target>
-      </segment>
-    </unit>
     <unit id="H1qEi4d" name="label.date">
       <segment state="translated">
         <source>label.date</source>
@@ -3167,6 +3143,30 @@
       <segment state="translated">
         <source>label.apiplatform_version</source>
         <target>API Platform version</target>
+      </segment>
+    </unit>
+    <unit id="gx6LCyR" name="global.themes.browser">
+      <segment state="translated">
+        <source>global.themes.browser</source>
+        <target>Default browser theme</target>
+      </segment>
+    </unit>
+    <unit id="Vug3DkG" name="global.themes.light">
+      <segment state="translated">
+        <source>global.themes.light</source>
+        <target>Light</target>
+      </segment>
+    </unit>
+    <unit id="8e9LycZ" name="global.themes.dark">
+      <segment state="translated">
+        <source>global.themes.dark</source>
+        <target>Dark</target>
+      </segment>
+    </unit>
+    <unit id="TWYZ00L" name="label.theme">
+      <segment state="translated">
+        <source>label.theme</source>
+        <target>Theme</target>
       </segment>
     </unit>
   </file>

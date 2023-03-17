@@ -1441,12 +1441,6 @@
         <target>Sie können darüber hinaus auch die Sichtbarkeit pro Eintrag oder pro Sammlung einstellen. Um das zu tun, gehen Sie zur Elementeinstellungsseite.</target>
       </segment>
     </unit>
-    <unit id="JA.9t2S" name="title.update_dark_mode">
-      <segment state="translated">
-        <source>title.update_dark_mode</source>
-        <target>Bearbeite Dunkelmodus</target>
-      </segment>
-    </unit>
     <unit id="fQNztng" name="title.update_features">
       <segment state="translated">
         <source>title.update_features</source>
@@ -2699,24 +2693,6 @@
       <segment state="translated">
         <source>label.statistics_feature_enabled</source>
         <target>Statistiken</target>
-      </segment>
-    </unit>
-    <unit id="I0M_1B7" name="label.dark_mode_enabled">
-      <segment state="translated">
-        <source>label.dark_mode_enabled</source>
-        <target>Permanenter Dunkelmodus</target>
-      </segment>
-    </unit>
-    <unit id="_LFZnyU" name="label.automatic_dark_mode_start_at">
-      <segment state="translated">
-        <source>label.automatic_dark_mode_start_at</source>
-        <target>Startzeit für automatischen Dunkelmodus</target>
-      </segment>
-    </unit>
-    <unit id="f0bYUw." name="label.automatic_dark_mode_end_at">
-      <segment state="translated">
-        <source>label.automatic_dark_mode_end_at</source>
-        <target>Endzeit für automatischen Dunkelmodus</target>
       </segment>
     </unit>
     <unit id="H1qEi4d" name="label.date">

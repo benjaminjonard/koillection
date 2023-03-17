@@ -8,7 +8,6 @@ echarts.use([TooltipComponent, CalendarComponent, VisualMapComponent, HeatmapCha
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
     chart = null;
-    isDarkMode =  document.getElementById('settings').dataset.theme === 'dark';
 
     monthsLabel = [
         Translator.trans('global.months.january'),
@@ -30,6 +29,11 @@ export default class extends Controller {
         let year = this.element.dataset.year;
         let data = [];
 
+        let theme = document.getElementById('settings').dataset.theme;
+        if (theme == 'browser') {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
         Object.entries(json).forEach(([index, value]) => {
             data.push([value[0], value[1]]);
         });
@@ -47,14 +51,14 @@ export default class extends Controller {
                 right: 215,
                 bottom: 'bottom',
                 pieces: [
-                    {min: 31, color: this.isDarkMode ? '#007C5C' : '#006355'},
-                    {min: 16, max: 30, color: this.isDarkMode ? '#00ce99' : '#009688'},
-                    {min: 6, max: 15, color: this.isDarkMode ? '#4DDDB8' : '#1ab0a2'},
-                    {min: 1, max: 5, color: this.isDarkMode ? '#b3f0e0' : '#80cbc4'},
+                    {min: 31, color: theme == 'dark' ? '#007C5C' : '#006355'},
+                    {min: 16, max: 30, color: theme == 'dark' ? '#00ce99' : '#009688'},
+                    {min: 6, max: 15, color: theme == 'dark' ? '#4DDDB8' : '#1ab0a2'},
+                    {min: 1, max: 5, color: theme == 'dark' ? '#b3f0e0' : '#80cbc4'},
                     {min: 0, max: 0, color: '#ededed'}
                 ],
                 textStyle: {
-                    color: this.isDarkMode ? '#f0f0f0': '#323233'
+                    color: theme == 'dark' ? '#f0f0f0': '#323233'
                 }
             },
             calendar: {
@@ -68,8 +72,8 @@ export default class extends Controller {
                 yearLabel: {show: false},
                 itemStyle: {
                     borderWidth: 2,
-                    borderColor: this.isDarkMode ? '#36393e' : '#ffffff',
-                    color: this.isDarkMode ? '#7d7f82' : '#ededed'
+                    borderColor: theme == 'dark' ? '#36393e' : '#ffffff',
+                    color: theme == 'dark' ? '#7d7f82' : '#ededed'
                 },
                 dayLabel: {
                     show: false
@@ -77,7 +81,7 @@ export default class extends Controller {
                 monthLabel: {
                     show: true,
                     nameMap: this.monthsLabel,
-                    color: this.isDarkMode ? '#f0f0f0': '#323233'
+                    color: theme == 'dark' ? '#f0f0f0': '#323233'
                 }
             },
             series: [

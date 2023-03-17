@@ -8,11 +8,11 @@ use App\Entity\User;
 use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
+use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -41,20 +41,9 @@ class SettingsType extends AbstractType
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
             ])
-            ->add('darkModeEnabled', CheckboxType::class, [
-                'required' => false,
-            ])
-            ->add('automaticDarkModeStartAt', TimeType::class, [
-                'input' => 'datetime_immutable',
-                'required' => false,
-                'widget' => 'single_text',
-                'html5' => false,
-            ])
-            ->add('automaticDarkModeEndAt', TimeType::class, [
-                'input' => 'datetime_immutable',
-                'required' => false,
-                'widget' => 'single_text',
-                'html5' => false,
+            ->add('theme', ChoiceType::class, [
+                'choices' => array_flip(ThemeEnum::getThemesLabels()),
+                'required' => true,
             ])
             ->add('wishlistsFeatureEnabled', CheckboxType::class, [
                 'required' => false,

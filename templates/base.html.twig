@@ -43,7 +43,14 @@
 
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-            {{ encore_entry_link_tags(app.user and app.user.isInDarkMode ? 'dark-mode' : 'light-mode') }}
+
+            {% if app.user is null or app.user.theme == 'browser' %}
+                {{ encore_entry_link_tags("light", null, '_default', {media: '(prefers-color-scheme: light)'}) }}
+                {{ encore_entry_link_tags("dark", null, '_default', {media: '(prefers-color-scheme: dark)'}) }}
+            {% else %}
+                {{ encore_entry_link_tags(app.user.theme) }}
+            {% endif %}
+
         {% endblock %}
 
         {% block javascripts %}
@@ -58,7 +65,7 @@
 
         {% block body %}{% endblock %}
         <div id="settings"
-             data-theme="{{ app.user and app.user.isInDarkMode ? 'dark' : 'light' }}"
+             data-theme="{{ app.user.theme|default('browser')  }}"
              data-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"
         ></div>
         <div id="offline-message"

@@ -24,8 +24,8 @@ Encore
     .addEntry('app', './app.js')
 
     .addStyleEntry('export', './styles/export.css')
-    .addStyleEntry('dark-mode', './styles/themes/dark-mode.css')
-    .addStyleEntry('light-mode', './styles/themes/light-mode.css')
+    .addStyleEntry('dark', './styles/themes/dark.css')
+    .addStyleEntry('light', './styles/themes/light.css')
 
     .addPlugin(new CopyPlugin({
         patterns: [

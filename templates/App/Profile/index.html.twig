@@ -39,29 +39,29 @@
             </div>
 
             {{ form_start(form) }}
-            {{ form_row(form.file) }}
+                {{ form_row(form.file) }}
 
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.username, {'label' : 'label.username'}) }}
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                        {{ form_row(form.username, {'label' : 'label.username'}) }}
+                    </div>
+                    <div class="col s12 l5 xl3">
+                        {{ form_row(form.email, {'label' : 'label.email'} ) }}
+                    </div>
                 </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(form.email, {'label' : 'label.email'} ) }}
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                    {{ form_row(form.plainPassword.first, {'label' : 'label.new_password', 'attr': {'autocomplete' : 'new-password'}} ) }}
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                        {{ form_row(form.plainPassword.first, {'label' : 'label.new_password', 'attr': {'autocomplete' : 'new-password'}} ) }}
+                    </div>
+                    <div class="col s12 l5 xl3">
+                        {{ form_row(form.plainPassword.second, {'label' : 'label.repeat_new_password'} ) }}
+                    </div>
                 </div>
-                <div class="col s12 l5 xl3">
-                    {{ form_row(form.plainPassword.second, {'label' : 'label.repeat_new_password'} ) }}
-                </div>
-            </div>
 
-            <div class="row center-align form-btn-holder">
-                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-            </div>
+                <div class="row center-align form-btn-holder">
+                    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+                </div>
             {{ form_end(form) }}
         </div>
     </div>

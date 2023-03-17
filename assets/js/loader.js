@@ -1,5 +1,5 @@
 window.onload = window.onpageshow = function() {
-    document.documentElement.className = '';
+    document.documentElement.classList.remove('loading');
 };
 
 //Service Worker
@@ -10,13 +10,13 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js', { scope: "/" });
     navigator.serviceWorker.addEventListener('message', function (event) {
         if (event.data === LOADING) {
-            document.documentElement.className = 'loading';
+            document.documentElement.classList.add('loading');
         }
         if (event.data === LOADED) {
-            document.documentElement.className = '';
+            document.documentElement.classList.remove('loading');
         }
         if (event.data === FAILED) {
-            document.documentElement.classList = '';
+            document.documentElement.classList.remove('loading');
         }
     });
 }
@@ -40,9 +40,9 @@ window.fetch = function(){
 };
 
 document.addEventListener('fetchStart', function() {
-    document.documentElement.className = 'loading';
+    document.documentElement.classList.add('loading');
 });
 
 document.addEventListener('fetchEnd', function() {
-    document.documentElement.className = '';
+    document.documentElement.classList.remove('loading');
 });

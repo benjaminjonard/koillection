@@ -6,6 +6,7 @@ namespace App\Tests\App;
 
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
+use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -41,9 +42,7 @@ class SettingsTest extends WebTestCase
             'settings[timezone]' => 'Europe/Paris',
             'settings[dateFormat]' => DateFormatEnum::FORMAT_SLASH_DMY,
             'settings[visibility]' => VisibilityEnum::VISIBILITY_INTERNAL,
-            'settings[darkModeEnabled]' => 1,
-            'settings[automaticDarkModeStartAt]' => '00:00',
-            'settings[automaticDarkModeEndAt]' => '23:59',
+            'settings[theme]' => ThemeEnum::THEME_BROWSER,
             'settings[wishlistsFeatureEnabled]' => 1,
             'settings[tagsFeatureEnabled]' => 1,
             'settings[signsFeatureEnabled]' => 1,
@@ -64,7 +63,6 @@ class SettingsTest extends WebTestCase
             'timezone' => 'Europe/Paris',
             'dateFormat' => DateFormatEnum::FORMAT_SLASH_DMY,
             'visibility' => VisibilityEnum::VISIBILITY_INTERNAL,
-            'darkModeEnabled' => true,
             'wishlistsFeatureEnabled' => true,
             'tagsFeatureEnabled' => true,
             'signsFeatureEnabled' => true,

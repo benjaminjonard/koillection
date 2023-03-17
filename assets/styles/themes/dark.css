@@ -130,6 +130,7 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 .autocomplete-result a,
 .datepicker-day-button,
 .input-field .helper-text,
+.box h2.header,
 .input-field input[type="search"]:focus:not(.browser-default) {
     color: #cccccc;
 }
@@ -160,6 +161,7 @@ body, .btn-dark-grey, input, select, textarea, .setting-input label, h2.statisti
 .select2-dropdown, .autocomplete-content,
 header #search_term, .sidebar-wrapper .header-logo, .tabs,
 thead th,
+.box .content,
 .nav-wrapper #search_term, body {
     background-color: #2a2a2a;
 }

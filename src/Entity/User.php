@@ -13,6 +13,7 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
 use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
+use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -149,17 +150,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:read'])]
     private ?\DateTimeImmutable $lastDateOfActivity = null;
 
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
-    #[Groups(['user:read', 'user:write'])]
-    private bool $darkModeEnabled = false;
-
-    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
-    #[Groups(['user:read', 'user:write'])]
-    private ?\DateTimeImmutable $automaticDarkModeStartAt = null;
-
-    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
-    #[Groups(['user:read', 'user:write'])]
-    private ?\DateTimeImmutable $automaticDarkModeEndAt = null;
+    #[ORM\Column(type: Types::STRING, options: ['default' => ThemeEnum::THEME_BROWSER])]
+    #[Assert\Choice(choices: ThemeEnum::THEMES)]
+    private string $theme = ThemeEnum::THEME_BROWSER;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
@@ -240,26 +233,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function isAdmin(): bool
     {
         return \in_array(RoleEnum::ROLE_ADMIN, $this->roles, true);
-    }
-
-    public function isInDarkMode(): bool
-    {
-        if ($this->isDarkModeEnabled()) {
-            return true;
-        }
-
-        if ($this->getAutomaticDarkModeStartAt() && $this->getAutomaticDarkModeEndAt()) {
-            // Apply timezone to get current time for the user
-            $timezone = new \DateTimeZone('Europe/Paris');
-            $currentTime = strtotime((new \DateTimeImmutable())->setTimezone($timezone)->format('H:i'));
-            $startTime = strtotime($this->getAutomaticDarkModeStartAt()->format('H:i'));
-            $endTime = strtotime($this->getAutomaticDarkModeEndAt()->format('H:i'));
-            if ($startTime < $endTime && $currentTime >= $startTime && $currentTime <= $endTime || $startTime > $endTime && ($currentTime >= $startTime || $currentTime <= $endTime)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public function getDateFormatWithTime(): string
@@ -624,42 +597,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         return $this;
     }
 
-    public function isDarkModeEnabled(): bool
-    {
-        return $this->darkModeEnabled;
-    }
-
-    public function setDarkModeEnabled(bool $darkModeEnabled): User
-    {
-        $this->darkModeEnabled = $darkModeEnabled;
-
-        return $this;
-    }
-
-    public function getAutomaticDarkModeStartAt(): ?\DateTimeImmutable
-    {
-        return $this->automaticDarkModeStartAt;
-    }
-
-    public function setAutomaticDarkModeStartAt(?\DateTimeImmutable $automaticDarkModeStartAt): User
-    {
-        $this->automaticDarkModeStartAt = $automaticDarkModeStartAt;
-
-        return $this;
-    }
-
-    public function getAutomaticDarkModeEndAt(): ?\DateTimeImmutable
-    {
-        return $this->automaticDarkModeEndAt;
-    }
-
-    public function setAutomaticDarkModeEndAt(?\DateTimeImmutable $automaticDarkModeEndAt): User
-    {
-        $this->automaticDarkModeEndAt = $automaticDarkModeEndAt;
-
-        return $this;
-    }
-
     public function getCollectionsDisplayConfiguration(): ?DisplayConfiguration
     {
         return $this->collectionsDisplayConfiguration;
@@ -692,6 +629,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setAlbumsDisplayConfiguration(?DisplayConfiguration $albumsDisplayConfiguration): User
     {
         $this->albumsDisplayConfiguration = $albumsDisplayConfiguration;
+
+        return $this;
+    }
+
+    public function getTheme(): string
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(string $theme): User
+    {
+        $this->theme = $theme;
 
         return $this;
     }
