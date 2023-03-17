@@ -88,7 +88,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - run: bin/console bazinga:js-translation:dump assets/js --format=js
+      - run: bin/console app:translations:dump
       - run: (cd assets && yarn install)
       - run: (cd assets && yarn dev)
 
@@ -152,7 +152,7 @@ jobs:
             key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
             restore-keys: |
               ${{ runner.os }}-yarn-
-      -   run: bin/console bazinga:js-translation:dump assets/js --format=js
+      -   run: bin/console app:translations:dump
       -   run: (cd assets && yarn install)
       -   run: (cd assets && yarn dev)
 
@@ -215,7 +215,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - run: bin/console bazinga:js-translation:dump assets/js --format=js
+      - run: bin/console app:translations:dump
       - run: (cd assets && yarn install)
       - run: (cd assets && yarn dev)
 
