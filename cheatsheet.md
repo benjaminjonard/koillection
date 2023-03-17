@@ -2,7 +2,7 @@
 
 ## Symfony
 ###### Update javascript translations
-- `php bin/console bazinga:js-translation:dump assets/js --format=js`
+- `php bin/console app:translations:dump`
 
 
 ## Assets

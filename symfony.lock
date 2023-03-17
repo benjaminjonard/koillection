@@ -597,18 +597,6 @@
     "twig/twig": {
         "version": "v2.12.3"
     },
-    "willdurand/js-translation-bundle": {
-        "version": "2.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.0",
-            "ref": "02b720a49f6d36b44d557e0b18e48bf09e0a8e07"
-        },
-        "files": [
-            "config/routes/js_translation.yaml"
-        ]
-    },
     "willdurand/negotiation": {
         "version": "3.1.0"
     },

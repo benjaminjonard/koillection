@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d529812570f78af9aaa976a8f9056e4",
+    "content-hash": "06b04c723e5c61a258ab0a89f0aec165",
     "packages": [
         {
             "name": "api-platform/core",
@@ -7977,73 +7977,6 @@
             "time": "2023-02-08T07:49:20+00:00"
         },
         {
-            "name": "willdurand/js-translation-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/benjaminjonard/BazingaJsTranslationBundle.git",
-                "reference": "8818342df5fbffc1ea4312d051c68a6ccdc04ac1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/benjaminjonard/BazingaJsTranslationBundle/zipball/8818342df5fbffc1ea4312d051c68a6ccdc04ac1",
-                "reference": "8818342df5fbffc1ea4312d051c68a6ccdc04ac1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.5",
-                "symfony/console": "~4.4|~5.0|~6.0",
-                "symfony/finder": "~4.4|~5.0|~6.0",
-                "symfony/framework-bundle": "~4.4|~5.0|~6.0",
-                "symfony/intl": "~4.4|~5.0|~6.0",
-                "symfony/translation": "~4.4|~5.0|~6.0",
-                "symfony/twig-bundle": "~4.4|~5.0|~6.0"
-            },
-            "replace": {
-                "willdurand/expose-translation-bundle": "2.5.*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8|~5.7|~6.5|~8",
-                "symfony/asset": "~4.4|~5.0|~6.0",
-                "symfony/browser-kit": "~4.4|~5.0|~6.0",
-                "symfony/filesystem": "~4.4|~5.0|~6.0",
-                "symfony/phpunit-bridge": "^5.0|^6.0",
-                "symfony/twig-bundle": "~4.4|~5.0|~6.0",
-                "symfony/yaml": "~4.4|~5.0|~6.0"
-            },
-            "default-branch": true,
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Bazinga\\Bundle\\JsTranslationBundle\\": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "William Durand",
-                    "email": "will+git@drnd.me"
-                }
-            ],
-            "description": "A pretty nice way to expose your translation messages to your JavaScript.",
-            "keywords": [
-                "javascript",
-                "symfony",
-                "translation"
-            ],
-            "support": {
-                "source": "https://github.com/benjaminjonard/BazingaJsTranslationBundle/tree/master"
-            },
-            "time": "2022-09-02T19:30:46+00:00"
-        },
-        {
             "name": "willdurand/negotiation",
             "version": "3.1.0",
             "source": {
@@ -9292,16 +9225,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.6",
+            "version": "1.10.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "50d089a3e0904b0fe7e2cf2d4fd37d427d64235a"
+                "reference": "b10ceb526d9607903c5b2673f1fc8775dbe48975"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/50d089a3e0904b0fe7e2cf2d4fd37d427d64235a",
-                "reference": "50d089a3e0904b0fe7e2cf2d4fd37d427d64235a",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/b10ceb526d9607903c5b2673f1fc8775dbe48975",
+                "reference": "b10ceb526d9607903c5b2673f1fc8775dbe48975",
                 "shasum": ""
             },
             "require": {
@@ -9330,8 +9263,11 @@
                 "static analysis"
             ],
             "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.10.6"
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
             },
             "funding": [
                 {
@@ -9347,7 +9283,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-09T16:55:12+00:00"
+            "time": "2023-03-16T15:24:20+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -11529,9 +11465,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "willdurand/js-translation-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -34,5 +34,5 @@ jobs:
           context: .
           push: true
           build-args: GITHUB_RELEASE=1.4
-          tags: ${{ secrets.REGISTRY_URL }}/koillection/koillection:beta
+          tags: ${{ secrets.BETA_REPO_URL }}:koillection
           platforms: linux/amd64,linux/arm64
