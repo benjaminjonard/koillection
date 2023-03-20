@@ -51,7 +51,7 @@ class WishTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         WishFactory::assert()->exists([
             'name' => 'Frieren #1',
-            'wishlist' => $wishlist->getId(),
+            'wishlist' => $wishlist,
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
             'owner' => $user,
             'url' => 'https://fr.wikipedia.org/wiki/Frieren',
@@ -98,7 +98,7 @@ class WishTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         WishFactory::assert()->exists([
             'name' => 'New name',
-            'wishlist' => $wishlist->getId(),
+            'wishlist' => $wishlist,
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
             'owner' => $user,
             'url' => 'https://fr.wikipedia.org/wiki/Frieren',
