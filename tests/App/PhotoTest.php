@@ -50,7 +50,7 @@ class PhotoTest extends WebTestCase
             'title' => 'Bedroom',
             'album' => $album->getId(),
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
-            'owner' => $user
+            'owner' => $user->getId()
         ]);
     }
 
@@ -92,7 +92,7 @@ class PhotoTest extends WebTestCase
             'title' => 'New title',
             'album' => $album->getId(),
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
-            'owner' => $user
+            'owner' => $user->getId()
         ]);
     }
 
