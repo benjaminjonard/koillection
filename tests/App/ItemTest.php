@@ -130,10 +130,10 @@ class ItemTest extends WebTestCase
             'name' => 'Frieren #1',
             'collection' => $collection->getId(),
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
-            'owner' => $user
+            'owner' => $user->getId()
         ]);
-        TagFactory::assert()->exists(['label' => 'Manga', 'owner' => $user]);
-        TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user]);
+        TagFactory::assert()->exists(['label' => 'Manga', 'owner' => $user->getId()]);
+        TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user->getId()]);
     }
 
     public function test_can_create_item_then_create_another(): void
@@ -159,7 +159,7 @@ class ItemTest extends WebTestCase
             'name' => 'Frieren #1',
             'collection' => $collection->getId(),
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
-            'owner' => $user
+            'owner' => $user->getId()
         ]);
     }
 
@@ -234,7 +234,7 @@ class ItemTest extends WebTestCase
         ItemFactory::assert()->exists([
             'name' => 'Berserk #1',
             'collection' => $collection->getId(),
-            'owner' => $user
+            'owner' => $user->getId()
         ]);
     }
 
