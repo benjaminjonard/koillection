@@ -132,8 +132,8 @@ class ItemTest extends WebTestCase
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
             'owner' => $user->getId()
         ]);
-        TagFactory::assert()->exists(['label' => 'Manga', 'owner' => $user]);
-        TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user]);
+        TagFactory::assert()->exists(['label' => 'Manga', 'owner' => $user->getId()]);
+        TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user->getId()]);
     }
 
     public function test_can_create_item_then_create_another(): void
