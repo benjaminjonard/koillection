@@ -3145,5 +3145,29 @@
         <target>Version d'ApiPlatform</target>
       </segment>
     </unit>
+    <unit id="gx6LCyR" name="global.themes.browser">
+      <segment state="translated">
+        <source>global.themes.browser</source>
+        <target>Thème par défaut du navigateur</target>
+      </segment>
+    </unit>
+    <unit id="Vug3DkG" name="global.themes.light">
+      <segment state="translated">
+        <source>global.themes.light</source>
+        <target>Clair</target>
+      </segment>
+    </unit>
+    <unit id="8e9LycZ" name="global.themes.dark">
+      <segment state="translated">
+        <source>global.themes.dark</source>
+        <target>Sombre</target>
+      </segment>
+    </unit>
+    <unit id="TWYZ00L" name="label.theme">
+      <segment state="translated">
+        <source>label.theme</source>
+        <target>Thème</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
