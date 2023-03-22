@@ -165,4 +165,9 @@ class AppRuntime implements RuntimeExtensionInterface
     {
         return $this->featureChecker->isFeatureEnabled($feature);
     }
+
+    public function fileSize(string $path): int
+    {
+        return filesize($path);
+    }
 }

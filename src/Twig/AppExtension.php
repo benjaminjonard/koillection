@@ -26,6 +26,7 @@ class AppExtension extends AbstractExtension
             new TwigFunction('renderTitle', [AppRuntime::class, 'renderTitle']),
             new TwigFunction('getUnderlinedTags', [AppRuntime::class, 'getUnderlinedTags'], ['is_safe' => ['html']]),
             new TwigFunction('isFeatureEnabled', [AppRuntime::class, 'isFeatureEnabled']),
+            new TwigFunction('fileSize', [AppRuntime::class, 'fileSize']),
         ];
     }
 }

@@ -1,4 +1,7 @@
 {% if datum.file is not empty %}
-    <a href="{{ asset(datum.file) }}" class="file" target="_blank"
-       download="{{ datum.originalFilename }}">{{ datum.originalFilename }}</a>
+    <a href="{{ asset(datum.file) }}"
+       class="file"
+       target="_blank"
+       download="{{ datum.originalFilename }}">{{ datum.originalFilename }}
+    </a>&nbsp;({{ fileSize(datum.file)|bytes }})
 {% endif %}
