@@ -26,7 +26,6 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
 #[IsGranted('ROLE_ADMIN')]
@@ -82,14 +81,9 @@ class AdminController extends AbstractController
         $users = $userRepository->findAll();
 
         return new StreamedResponse(static function () use ($users, $kernelProjectDir): void {
-            $options = new Archive();
-            $options->setContentType('application/octet-stream');
-            $options->setZeroHeader(true);
-            $options->setFlushOutput(true);
-            $options->setSendHttpHeaders(true);
-
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
-            $zip = new ZipStream($zipFilename, $options);
+            $zip = new ZipStream(outputName: $zipFilename, sendHttpHeaders: true, defaultEnableZeroHeader: true, flushOutput: true);
+
             foreach ($users as $user) {
                 $path = $kernelProjectDir.'/public/uploads/'.$user->getId();
 

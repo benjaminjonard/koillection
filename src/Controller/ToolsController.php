@@ -12,7 +12,6 @@ use App\Service\DatabaseDumper;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
 class ToolsController extends AbstractController
@@ -61,16 +60,10 @@ class ToolsController extends AbstractController
     public function exportImages(string $kernelProjectDir): StreamedResponse
     {
         return new StreamedResponse(function () use ($kernelProjectDir): void {
-            $options = new Archive();
-            $options->setContentType('text/event-stream');
-            $options->setFlushOutput(true);
-            $options->setSendHttpHeaders(true);
-
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
-            $zip = new ZipStream($zipFilename, $options);
+            $zip = new ZipStream(outputName: $zipFilename, sendHttpHeaders: true, defaultEnableZeroHeader: true, flushOutput: true);
 
             $path = $kernelProjectDir.'/public/uploads/'.$this->getUser()->getId();
-
             if (!is_dir($path)) {
                 $zip->finish();
             }
