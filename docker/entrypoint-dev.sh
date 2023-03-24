@@ -14,6 +14,10 @@ echo "JWT_SECRET_KEY=${JWT_SECRET_KEY:-%kernel.project_dir%/config/jwt/private.p
 echo "JWT_PUBLIC_KEY=${JWT_PUBLIC_KEY:-%kernel.project_dir%/config/jwt/public.pem}" >> "/var/www/koillection/.env.local"
 echo "JWT_PASSPHRASE=${JWT_PASSPHRASE:-$(openssl rand -base64 21)}" >> "/var/www/koillection/.env.local"
 
+echo "JWT_SECRET_KEY=${JWT_SECRET_KEY:-%kernel.project_dir%/config/jwt/private.pem}" >> "/var/www/koillection/.env.local"
+echo "JWT_PUBLIC_KEY=${JWT_PUBLIC_KEY:-%kernel.project_dir%/config/jwt/public.pem}" >> "/var/www/koillection/.env.local"
+echo "JWT_PASSPHRASE=${JWT_PASSPHRASE:-$(openssl rand -base64 21)}" >> "/var/www/koillection/.env.local"
+
 echo "DB_DRIVER=${DB_DRIVER:-}" >> "/var/www/koillection/.env.local"
 echo "DB_NAME=${DB_NAME:-}" >> "/var/www/koillection/.env.local"
 echo "DB_HOST=${DB_HOST:-}" >> "/var/www/koillection/.env.local"
@@ -36,6 +40,10 @@ echo "**** Migrate the database ****"
 cd /var/www/koillection && \
 composer install
 php bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=prod
+
+echo "**** Create API keys ****"
+cd /var/www/koillection && \
+php bin/console lexik:jwt:generate-keypair --overwrite --env=prod
 
 echo "**** Create nginx log files ****"
 mkdir -p /logs/nginx
