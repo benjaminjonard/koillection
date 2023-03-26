@@ -7,27 +7,17 @@ namespace App\Enum;
 class DatumTypeEnum
 {
     public const TYPE_TEXT = 'text';
-
     public const TYPE_TEXTAREA = 'textarea';
-
     public const TYPE_COUNTRY = 'country';
-
     public const TYPE_DATE = 'date';
-
     public const TYPE_RATING = 'rating';
-
     public const TYPE_NUMBER = 'number';
-
     public const TYPE_PRICE = 'price';
-
     public const TYPE_LINK = 'link';
-
     public const TYPE_LIST = 'list';
-
+    public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_IMAGE = 'image';
-
     public const TYPE_FILE = 'file';
-
     public const TYPE_SIGN = 'sign';
 
     public const TYPES = [
@@ -39,6 +29,7 @@ class DatumTypeEnum
         self::TYPE_NUMBER,
         self::TYPE_LINK,
         self::TYPE_LIST,
+        self::TYPE_CHECKBOX,
         self::TYPE_IMAGE,
         self::TYPE_FILE,
         self::TYPE_SIGN,
@@ -55,6 +46,7 @@ class DatumTypeEnum
         self::TYPE_LINK,
         self::TYPE_FILE,
         self::TYPE_LIST,
+        self::TYPE_CHECKBOX,
     ];
 
     public const IMAGE_TYPES = [
@@ -85,6 +77,7 @@ class DatumTypeEnum
         self::TYPE_PRICE => 'label.price',
         self::TYPE_LINK => 'label.link',
         self::TYPE_LIST => 'label.list',
+        self::TYPE_CHECKBOX => 'label.checkbox'
     ];
 
     public static function getTypesLabels(): array

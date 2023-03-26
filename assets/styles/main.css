@@ -2295,3 +2295,8 @@ input[type="text"]:not(.browser-default).password-input {
     top: 8px;
     font-size: 18px;
 }
+
+.checkbox-value {
+    top: 3px;
+    position: relative;
+}
