@@ -168,6 +168,6 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function fileSize(string $path): int
     {
-        return filesize($path);
+        return is_file($path) ? filesize($path) : 0;
     }
 }

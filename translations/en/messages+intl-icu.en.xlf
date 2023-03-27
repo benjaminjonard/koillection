@@ -3169,5 +3169,11 @@
         <target>Theme</target>
       </segment>
     </unit>
+    <unit id="m4zbXKM" name="btn.add_checkbox">
+      <segment state="translated">
+        <source>btn.add_checkbox</source>
+        <target>Checkbox</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
