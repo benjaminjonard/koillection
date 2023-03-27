@@ -21,6 +21,21 @@
     <div class="content-block">
         {{ include('/App/Admin/tabs.html.twig', {current: 'overview'}) }}
         <div class="block-element">
+            <h2 class="header">{{ 'title.tools'|trans }}</h2>
+            <div class="row btn-holder">
+                <a href="{{ path('app_admin_export_sql') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-database fa-fw"></i>{{ 'btn.export_sql'|trans }}
+                </a>
+                <a href="{{ path('app_admin_export_images') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.export_images'|trans }}
+                </a>
+                <a href="{{ path('app_admin_refresh_caches') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-refresh fa-fw"></i>{{ 'btn.refresh_caches'|trans }}
+                </a>
+            </div>
+        </div>
+
+        <div class="block-element">
             <h2 class="header">{{ 'title.overview'|trans }}</h2>
             <div class="row statistics">
                 <div class="col s12 m4 xl2">
@@ -76,6 +91,7 @@
             <h2 class="header">{{ 'title.config'|trans }}</h2>
             <div class="row statistics">
                 <div class="col s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/koillection.png') }}" alt="Koillection logo">
                     <div class="counter">{{ currentRelease }}</div>
                     {{ 'label.release'|trans }}
 
@@ -91,31 +107,18 @@
                     {% endif %}
                 </div>
                 <div class="col s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/php.png') }}" alt="PHP logo">
                     <div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
                 <div class="col s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/symfony.png') }}" alt="Symfony logo">
                     <div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}</div>
                 <div class="col s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/api-platform.png') }}" alt="Api Platform logo">
                     <div class="counter">{{ apiPlatformVersion }}</div>{{ 'label.apiplatform_version'|trans }}</div>
                 <div class="col s12 m4 xl2">
                     <div class="counter">
-                        <i
-                                class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
+                        <i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
                     </div>{{ 'label.is_opcache_available'|trans }}</div>
-            </div>
-        </div>
-
-        <div class="block-element">
-            <h2 class="header">{{ 'title.tools'|trans }}</h2>
-            <div class="row btn-holder">
-                <a href="{{ path('app_admin_export_sql') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-database fa-fw"></i>{{ 'btn.export_sql'|trans }}
-                </a>
-                <a href="{{ path('app_admin_export_images') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.export_images'|trans }}
-                </a>
-                <a href="{{ path('app_admin_refresh_caches') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-refresh fa-fw"></i>{{ 'btn.refresh_caches'|trans }}
-                </a>
             </div>
         </div>
     </div>

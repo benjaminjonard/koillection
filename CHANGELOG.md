@@ -1,12 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.2] / 2023-03-28
+### Features
+- Add checkbox field type (benjaminjonard)
+- Add UPLOAD_MAX_FILESIZE and PHP_MEMORY_LIMIT env variables (benjaminjonard)
+
+### Miscellaneous
+- Display datum file size (benjaminjonard)
+- Rework dark theme (benjaminjonard)
+- Use default browser theme when necessary (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Move Docker files from koillection/koillection-docker (benjaminjonard)
+
 ## [1.4.1] / 2023-02-04
 ### Fixes
 - Fix item name suggestion when using special characters (benjaminjonard)
 - Fix error when removing a Price field (benjaminjonard)
 
-### Miscellaneaous
+### Miscellaneous
 - Upgrade PHP and JS dependencies, fix CVE-2022-24894 and CVE-2022-24895 (benjaminjonard)
 
 ## [1.4.0] / 2023-01-23
@@ -14,7 +26,7 @@ All notable changes to this project will be documented in this file.
 - Add missing table koi_choice_list to SQL export (benjaminjonard)
 - Fix error when refreshing cached values if parent is null (benjaminjonard)
 
-### Miscellaneaous
+### Miscellaneous
 - Update to PHP 8.2 (benjaminjonard)
 - Remove support for multipart/form-data in API POST endpoints, please use dedicated upload endpoints instead (benjaminjonard)
 
