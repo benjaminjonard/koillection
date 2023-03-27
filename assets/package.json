@@ -18,13 +18,13 @@
     "copy-webpack-plugin": "11.0.0",
     "core-js": "3.29.1",
     "croppie": "2.6.5",
-    "echarts": "5.4.1",
+    "echarts": "5.4.2",
     "regenerator-runtime": "0.13.11",
     "sortablejs": "1.15.0",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.0",
     "ts-select2": "0.2.5",
-    "webpack": "5.76.2",
+    "webpack": "5.76.3",
     "webpack-bundle-analyzer": "4.8.0",
     "webpack-cli": "5.0.1",
     "webpack-notifier": "1.15.0"
@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "bazinga-translator": "5.0.0",
-    "intl-messageformat": "10.3.2"
+    "intl-messageformat": "10.3.3"
   }
 }
