@@ -4,10 +4,17 @@ ARG GITHUB_RELEASE
 
 # Environment variables
 ENV APP_ENV='prod'
+ENV PUID='1000'
+ENV PGID='1000'
+ENV USER='koillection'
+
 COPY ./ /var/www/koillection
 
+# Add User and Group
+RUN addgroup --gid "$PGID" "$USER" && \
+    adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # Install some basics dependencies
-RUN apt-get update && \
+    apt-get update && \
     apt-get install -y curl wget lsb-release && \
 # PHP
     wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
@@ -61,6 +68,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /usr/local/bin/composer && \
 # Set permissions
+    chown -R "$USER":"$USER" /var/www/koillection && \
     chmod +x /var/www/koillection/docker/entrypoint.sh && \
     mkdir /run/php && \
 # Add nginx and PHP config files
