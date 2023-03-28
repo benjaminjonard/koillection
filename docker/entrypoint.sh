@@ -2,17 +2,17 @@
 
 set -e
 
-echo "**** 1/11 - Make sure /uploads folders exist ****"
+echo "**** 1/10 - Make sure /uploads folders exist ****"
 [ ! -f /uploads ] && \
 	mkdir -p /uploads
 
-echo "**** 2/11 - Create the symbolic link for the /uploads folder ****"
+echo "**** 2/10 - Create the symbolic link for the /uploads folder ****"
 [ ! -L /var/www/koillection/public/uploads ] && \
 	cp -r /var/www/koillection/public/uploads/. /uploads && \
 	rm -r /var/www/koillection/public/uploads && \
 	ln -s /uploads /var/www/koillection/public/uploads
 
-echo "**** 3/11 - Setting env variables ****"
+echo "**** 3/10 - Setting env variables ****"
 rm -rf /var/www/koillection/.env.local
 touch /var/www/koillection/.env.local
 
@@ -42,38 +42,26 @@ echo "upload_max_filesize=${UPLOAD_MAX_FILESIZE:-'20M'}" >> /etc/php/8.2/fpm/con
 echo "post_max_size=${UPLOAD_MAX_FILESIZE:-'100M'}" >> /etc/php/8.2/fpm/conf.d/php.ini
 sed -i "s/client_max_body_size 100M;/client_max_body_size ${UPLOAD_MAX_FILESIZE:-'100M'};/g" /etc/nginx/nginx.conf
 
-echo "**** 4/11 - Migrate the database ****"
+echo "**** 4/10 - Migrate the database ****"
 cd /var/www/koillection && \
 php bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=prod
 
-echo "**** 5/11 - Refresh cached values ****"
+echo "**** 5/10 - Refresh cached values ****"
 cd /var/www/koillection && \
 php bin/console app:refresh-cached-values --env=prod
 
-echo "**** 6/11 - Create API keys ****"
+echo "**** 6/10 - Create API keys ****"
 cd /var/www/koillection && \
 php bin/console lexik:jwt:generate-keypair --overwrite --env=prod
 
-echo "**** 7/11 - Create user and use PUID/PGID ****"
-PUID=${PUID:-1000}
-PGID=${PGID:-1000}
-if [ ! "$(id -u "$USER")" -eq "$PUID" ]; then usermod -o -u "$PUID" "$USER" ; fi
-if [ ! "$(id -g "$USER")" -eq "$PGID" ]; then groupmod -o -g "$PGID" "$USER" ; fi
-echo -e " \tUser UID :\t$(id -u "$USER")"
-echo -e " \tUser GID :\t$(id -g "$USER")"
+echo "**** 7/10 - Set Permissions ****" && \
+chown -R www-data:www-data /logs/nginx
 
-echo "**** 8/11 - Set Permissions ****" && \
-find /uploads -type d \( ! -user "$USER" -o ! -group "$USER" \) -exec chown -R "$USER":"$USER" \{\} \;
-find /uploads \( ! -user "$USER" -o ! -group "$USER" \) -exec chown "$USER":"$USER" \{\} \;
-usermod -a -G "$USER" www-data
-find /uploads -type d \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod -R ug+w,ugo+rX \{\} \;
-find /uploads \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod ug+w,ugo+rX \{\} \;
-
-echo "**** 9/11 - Create nginx log files ****" && \
+echo "**** 8/10 - Create nginx log files ****" && \
 mkdir -p /logs/nginx
 chown -R "$USER":"$USER" /logs/nginx
 
-echo "**** 10/11 - Create symfony log files ****" && \
+echo "**** 9/10 - Create symfony log files ****" && \
 [ ! -f /var/www/koillection/var/log ] && \
 	mkdir -p /var/www/koillection/var/log
 
@@ -82,7 +70,7 @@ echo "**** 10/11 - Create symfony log files ****" && \
 
 chown -R www-data:www-data /var/www/koillection/var
 
-echo "**** 11/11 - Setup complete, starting the server. ****"
+echo "**** 10/10 - Setup complete, starting the server. ****"
 php-fpm8.2
 exec $@
 
