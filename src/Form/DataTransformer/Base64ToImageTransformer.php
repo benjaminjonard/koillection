@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Base64ToImageTransformer implements DataTransformerInterface
 {
+    public function __construct(private readonly string $kernelProjectDir)
+    {
+    }
+
     private ?string $originalBase64 = null;
 
     public function transform($file): ?string
@@ -34,11 +38,13 @@ class Base64ToImageTransformer implements DataTransformerInterface
         preg_match('/data:(image\/([\w]+));base64,(.*)/', $base64, $matches);
         $data = base64_decode($matches[3]);
         $name = uniqid('col_').'.'.$matches[2];
-        if (!file_exists('tmp/') && !mkdir('tmp/', 0777, true)) {
+
+        $tmpPath = $this->kernelProjectDir . '/tmp';
+        if (!file_exists($tmpPath) && !mkdir($tmpPath, 0777, true)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
-
-        $path = 'tmp/'.$name;
+       
+        $path = $tmpPath . '/' . $name;
         file_put_contents($path, $data);
 
         return new UploadedFile($path, $name, $matches[1], null, true);
