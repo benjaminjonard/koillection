@@ -55,7 +55,7 @@ cd /var/www/koillection && \
 php bin/console lexik:jwt:generate-keypair --overwrite --env=prod
 
 echo "**** 7/10 - Set Permissions ****" && \
-chown -R www-data:www-data /logs/nginx
+chown -R www-data:www-data /var/www/koillection
 
 echo "**** 8/10 - Create nginx log files ****" && \
 mkdir -p /logs/nginx
