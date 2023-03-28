@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Base64ToImageTransformer implements DataTransformerInterface
 {
-    public function __construct(private readonly string $kernelProjectDir)
+    public function __construct(private readonly string $publicPath)
     {
     }
 
@@ -39,11 +39,11 @@ class Base64ToImageTransformer implements DataTransformerInterface
         $data = base64_decode($matches[3]);
         $name = uniqid('col_').'.'.$matches[2];
 
-        $tmpPath = $this->kernelProjectDir . '/tmp';
+        $tmpPath = $this->publicPath . '/uploads/tmp';
         if (!file_exists($tmpPath) && !mkdir($tmpPath, 0777, true)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
-       
+
         $path = $tmpPath . '/' . $name;
         file_put_contents($path, $data);
 
