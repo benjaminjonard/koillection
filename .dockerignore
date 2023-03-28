@@ -6,10 +6,9 @@ assets/node_modules
 docker/volumes
 vendor
 var
-tmp
 
 public/build
 public/uploads
-public/tmp
+!public/uploads/.gitkeep
 public/bundles
 public/manifest.json
