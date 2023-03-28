@@ -55,23 +55,12 @@ cd /var/www/koillection && \
 php bin/console lexik:jwt:generate-keypair --overwrite --env=prod
 
 echo "**** 7/11 - Create user and use PUID/PGID ****"
-PUID=${PUID:-1000}
-PGID=${PGID:-1000}
-if [ ! "$(id -u "$USER")" -eq "$PUID" ]; then usermod -o -u "$PUID" "$USER" ; fi
-if [ ! "$(id -g "$USER")" -eq "$PGID" ]; then groupmod -o -g "$PGID" "$USER" ; fi
-echo -e " \tUser UID :\t$(id -u "$USER")"
-echo -e " \tUser GID :\t$(id -g "$USER")"
 
 echo "**** 8/11 - Set Permissions ****" && \
-find /uploads -type d \( ! -user "$USER" -o ! -group "$USER" \) -exec chown -R "$USER":"$USER" \{\} \;
-find /uploads \( ! -user "$USER" -o ! -group "$USER" \) -exec chown "$USER":"$USER" \{\} \;
-usermod -a -G "$USER" www-data
-find /uploads -type d \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod -R ug+w,ugo+rX \{\} \;
-find /uploads \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod ug+w,ugo+rX \{\} \;
 
 echo "**** 9/11 - Create nginx log files ****" && \
 mkdir -p /logs/nginx
-chown -R "$USER":"$USER" /logs/nginx
+chown -R www-data:www-data /logs/nginx
 
 echo "**** 10/11 - Create symfony log files ****" && \
 [ ! -f /var/www/koillection/var/log ] && \
@@ -80,7 +69,7 @@ echo "**** 10/11 - Create symfony log files ****" && \
 [ ! -f /var/www/koillection/var/log/prod.log ] && \
 	touch /var/www/koillection/var/log/prod.log
 
-chown -R www-data:www-data /var/www/koillection/var
+chown -R www-data:www-data /var/www/koillection
 
 echo "**** 11/11 - Setup complete, starting the server. ****"
 php-fpm8.2

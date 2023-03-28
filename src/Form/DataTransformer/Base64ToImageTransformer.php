@@ -39,12 +39,12 @@ class Base64ToImageTransformer implements DataTransformerInterface
         $data = base64_decode($matches[3]);
         $name = uniqid('col_').'.'.$matches[2];
 
-        $tmpPath = $this->publicPath . '/uploads/tmp';
-        if (!file_exists($tmpPath) && !mkdir($tmpPath, 0777, true)) {
+        $tmpPath = $this->publicPath . '/uploads/tmp/';
+        if (!file_exists($tmpPath) && !mkdir($tmpPath)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
 
-        $path = $tmpPath . '/' . $name;
+        $path = $tmpPath . $name;
         file_put_contents($path, $data);
 
         return new UploadedFile($path, $name, $matches[1], null, true);
