@@ -30,10 +30,6 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    Api\OpenApi\JwtDecorator:
-        decorates: 'api_platform.openapi.factory'
-        arguments: [ '@.inner' ]
-
 when@test:
     services:
         App\Tests\Factory\:
