@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.4.2] / 2023-03-28
+## [1.4.2] / 2023-03-29
 ### Features
 - Add checkbox field type (benjaminjonard)
 - Add UPLOAD_MAX_FILESIZE and PHP_MEMORY_LIMIT env variables (benjaminjonard)
