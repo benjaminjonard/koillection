@@ -3139,5 +3139,41 @@
         <target>Deutsch</target>
       </segment>
     </unit>
+    <unit id="hnKIpTQ" name="label.apiplatform_version">
+      <segment state="translated">
+        <source>label.apiplatform_version</source>
+        <target>API Platform Version</target>
+      </segment>
+    </unit>
+    <unit id="gx6LCyR" name="global.themes.browser">
+      <segment state="translated">
+        <source>global.themes.browser</source>
+        <target>Standard Browser Design</target>
+      </segment>
+    </unit>
+    <unit id="Vug3DkG" name="global.themes.light">
+      <segment state="translated">
+        <source>global.themes.light</source>
+        <target>Helles Browser Design</target>
+      </segment>
+    </unit>
+    <unit id="8e9LycZ" name="global.themes.dark">
+      <segment state="translated">
+        <source>global.themes.dark</source>
+        <target>Dunkles Browser Design</target>
+      </segment>
+    </unit>
+    <unit id="TWYZ00L" name="label.theme">
+      <segment state="translated">
+        <source>label.theme</source>
+        <target>Design</target>
+      </segment>
+    </unit>
+    <unit id="m4zbXKM" name="btn.add_checkbox">
+      <segment state="translated">
+        <source>btn.add_checkbox</source>
+        <target>Checkbox</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
