@@ -1,0 +1,25 @@
+name: Crowdin languages progress Action
+
+on:
+  push:
+    branches: [ 1.4 ]
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+jobs:
+  crowdin-languages-progress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Crowdin languages progress markdown
+        uses: benjaminjonard/crowdin-languages-progress-action
+        with:
+          languages_per_row: 10
+          minimum_completion_percent: 80
+          file: README.md
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
