@@ -10,6 +10,7 @@ services:
         public: false
         bind:
             $defaultLocale: '%default_locale%'
+            $enabledLocales: '%kernel.enabled_locales%'
             $publicPath: '%kernel.project_dir%/public'
             $assetsPath: '%kernel.project_dir%/assets'
             $koillectionRelease: '%release%'

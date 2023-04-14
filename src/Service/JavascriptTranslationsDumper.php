@@ -13,7 +13,8 @@ class JavascriptTranslationsDumper
         private readonly Environment $twig,
         private readonly Filesystem $filesystem,
         private readonly string $defaultLocale,
-        private readonly string $kernelProjectDir
+        private readonly string $kernelProjectDir,
+        private readonly array $enabledLocales
     ) {
 
     }
@@ -85,8 +86,9 @@ class JavascriptTranslationsDumper
 
     private function getTranslations(): array
     {
+        $enabledLocales = implode(',', $this->enabledLocales);
         $finder = new Finder();
-        $finder->files()->in($this->kernelProjectDir . '/translations')->name('javascript+intl-icu.*.xlf');
+        $finder->files()->in($this->kernelProjectDir . '/translations')->name("javascript+intl-icu.{{$enabledLocales}}.xlf");
 
         $translations = [];
 
