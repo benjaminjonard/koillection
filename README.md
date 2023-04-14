@@ -84,6 +84,9 @@ There are a few things you can do to support Koillection :
 You can contribute and edit translations here: https://crowdin.com/project/koillection. 
 If you wish to contribute to a new language, please open a discussion on Github or Crowdin and I'll gladly add it. 
 You are also welcome if you want to proofread existing translations.
+
+<!-- ACTION-CROWDIN-LANGUAGES-PROGRESS-START -->
+<!-- ACTION-CROWDIN-LANGUAGES-PROGRESS-END -->
     
 ## Licensing
 Koillection is an Open Source software, released under the MIT License. 
