@@ -1,4 +1,4 @@
-name: Crowdin languages progress
+name: Crowdin translations progress
 on:
   push:
     branches: [ 1.4 ]
@@ -13,8 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Generate Crowdin languages progress markdown
-        uses: benjaminjonard/crowdin-languages-progress-action@1.0.4
+      - name: Generate Crowdin translations progress markdown
+        uses: benjaminjonard/crowdin-translations-progress-action@1.0.4
         with:
           languages_per_row: 10
           minimum_completion_percent: 80
@@ -26,7 +26,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          title: Update Crowdin languages progress
-          body: Update Crowdin languages progress by [Crowdin languages progress](https://github.com/benjaminjonard/crowdin-languages-progress-action) GitHub action
-          commit-message: Update Crowdin languages progress
-          branch: crowdin-languages-progress-action
+          title: Update Crowdin translations progress
+          body: Update Crowdin translations progress by [Crowdin translations progress](https://github.com/benjaminjonard/crowdin-translations-progress-action) GitHub action
+          commit-message: Update Crowdin translations progress
+          branch: crowdin-translations-progress-action
