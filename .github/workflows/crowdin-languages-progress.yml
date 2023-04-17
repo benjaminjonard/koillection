@@ -29,4 +29,4 @@ jobs:
           title: New Crowdin languages progress
           body: New Crowdin languages progress by [Crowdin languages progress](https://github.com/benjaminjonard/crowdin-languages-progress-action) GitHub action
           commit-message: New Crowdin languages progress
-          branch: crowdin-languages-progress/patch
+          branch: crowdin-languages-progress-action
