@@ -1,4 +1,4 @@
-name: Crowdin languages progress action
+name: Crowdin languages progress
 on:
   push:
     branches: [ 1.4 ]
