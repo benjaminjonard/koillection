@@ -17,7 +17,7 @@ jobs:
         uses: crowdin/github-action@v1.7.1
         with:
           config: '.github/crowdin.yml'
-          upload_translations: true
+          upload_translations: false
           download_translations: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
