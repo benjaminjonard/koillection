@@ -200,6 +200,7 @@ class CollectionTest extends WebTestCase
         ;
         $collection->save();
 
+        $child2 = CollectionFactory::createOne(['parent' => $collection, 'owner' => $user]);
         $item1 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Publisher']);
@@ -211,11 +212,15 @@ class CollectionTest extends WebTestCase
         $crawler = $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
             'collection[title]' => 'Berserk',
-            'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
+            'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC,
+            'collection[itemsDisplayConfiguration][label]' => 'One-shots',
+            'collection[childrenDisplayConfiguration][label]' => 'Series',
         ]);
 
         // Assert
         $this->assertSame('Berserk', $crawler->filter('h1')->text());
+        $this->assertSame('Series', $crawler->filter('h2')->first()->text());
+        $this->assertSame('One-shots', $crawler->filter('h2')->eq(1)->text());
     }
 
     public function test_can_get_collection_items_list(): void

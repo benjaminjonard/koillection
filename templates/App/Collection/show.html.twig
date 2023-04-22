@@ -119,7 +119,7 @@
             <!-- Child collections -->
             {% if children is not empty %}
                 <div class="block-element">
-                    <h2 class="header">{{ collection.childrenDisplayConfiguration.title|default('title.children'|trans) }}</h2>
+                    <h2 class="header">{{ collection.childrenDisplayConfiguration.label|default('title.children'|trans) }}</h2>
                     {{ include('App/Collection/_collections_' ~ collection.childrenDisplayConfiguration.displayMode ~ '.html.twig', {
                         'collections': children,
                         'displayConfiguration': collection.childrenDisplayConfiguration
@@ -130,7 +130,7 @@
             <!-- Collection's items -->
             {% if items is not empty %}
                 <div class="block-element">
-                    <h2 class="header">{{ collection.itemsDisplayConfiguration.title|default('title.items'|trans) }}</h2>
+                    <h2 class="header">{{ collection.itemsDisplayConfiguration.label|default('title.items'|trans) }}</h2>
                     {{ include('App/Collection/_items_' ~ collection.itemsDisplayConfiguration.displayMode ~ '.html.twig', {
                         'items': items,
                         'displayConfiguration': collection.itemsDisplayConfiguration
