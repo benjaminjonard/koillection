@@ -5,6 +5,7 @@
 <p align="center">
 <img src="https://img.shields.io/github/license/koillection/koillection" />    
     <img src="https://img.shields.io/github/v/release/koillection/koillection" />
+    <img src="https://img.shields.io/github/actions/workflow/status/koillection/koillection/ci.yml" />
     <img src="https://img.shields.io/scrutinizer/g/koillection/koillection/1.4" />    
 </p>
 <p align="center">
