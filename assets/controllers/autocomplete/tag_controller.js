@@ -46,7 +46,7 @@ export default class extends Controller {
     autocomplete(event) {
         this.autocompleteElement.updateData({});
         clearTimeout(this.timeout);
-        let value = this.inputTarget.value;
+        let value = encodeURIComponent(this.inputTarget.value);
         let self = this;
 
         if (value) {
