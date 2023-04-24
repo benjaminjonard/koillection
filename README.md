@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/packagist/php-v/koillection/koillection" />
     <img src="https://img.shields.io/badge/postgresql->=10.0-blue" />            
     <img src="https://img.shields.io/badge/mariadb->=10.0-blue" />
-    <img src="https://img.shields.io/badge/mysql>=8.0-blue" />
+    <img src="https://img.shields.io/badge/mysql->=8.0-blue" />
 <p>
 
 # Koillection
