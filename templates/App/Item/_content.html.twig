@@ -106,16 +106,6 @@
 
 </div>
 
-{% if item.allRelatedItems is not empty %}
-    <div class="related-items">
-        <span>{{ 'label.list_related_items'|trans }} :</span>
-        {% for relatedItem in item.allRelatedItems|naturalSorting %}
-            <a
-            href="{{ path('app_item_show'|applyContext, {id: relatedItem.id}) }}">{{ relatedItem.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-    </div>
-{% endif %}
-
 {% if isFeatureEnabled('tags') and item.tags is not empty %}
     <div class="tags-block">
         <ul class="nav nav-tags">
@@ -128,6 +118,21 @@
                         <span class="tag-category-color" style="background-color: {{ tag.category.color }}"
                               title="{{ tag.category.label }}"></span>
                     {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% if item.allRelatedItems is not empty %}
+    <div class="related-items">
+        <span>{{ 'label.list_related_items'|trans }} :</span>
+        <ul>
+            {% for relatedItem in item.allRelatedItems|naturalSorting %}
+                <li>
+                    <a href="{{ path('app_item_show'|applyContext, {id: relatedItem.id}) }}">
+                        <img src="{{ preload(asset(relatedItem.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}">
+                    </a>
                 </li>
             {% endfor %}
         </ul>

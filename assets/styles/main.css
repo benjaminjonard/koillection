@@ -2158,6 +2158,16 @@ i.btn input {
     margin-bottom: 15px;
 }
 
+.related-items img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.related-items li {
+    display: inline-block;
+    padding: 0 5px;
+}
+
 
 /* STAR RATING */
 .rating-display span {
