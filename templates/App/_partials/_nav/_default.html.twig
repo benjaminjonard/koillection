@@ -1,14 +1,20 @@
 <li>
-    <form class="search" name="search" method="get" data-autocomplete-url="/search/autocomplete/" action="{{ path('app_search_index') }}" data-controller="search">
+    <form class="search"
+          name="search"
+          method="get"
+          data-autocomplete-url="/search/autocomplete/"
+          action="{{ path('app_search_index') }}"
+          data-controller="search"
+    >
         <div>
             <input id="search_term"
                    data-action="keyup->search#search click->search#open"
                    name="search[term]"
-                   type="search"
                    class="search-input placeholder"
                    placeholder="{{ 'menu.search'|trans }}"
                    autocomplete="off"
             >
+            <input id="search_searchInData" type="checkbox" value="1" name="search[searchInData]" {{ app.user.searchInDataByDefaultEnabled ? 'checked' }}>
         </div>
         <ul class="autocomplete-results hidden" data-search-target="resultsWrapper"></ul>
     </form>

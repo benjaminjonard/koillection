@@ -13,6 +13,7 @@ use App\Entity\Wishlist;
 use App\Enum\DatumTypeEnum;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\RouterInterface;
 
 class Autocompleter
@@ -23,7 +24,8 @@ class Autocompleter
         private readonly ContextHandler $contextHandler,
         private readonly ManagerRegistry $managerRegistry,
         private readonly RouterInterface $router,
-        private readonly FeatureChecker $featureChecker
+        private readonly FeatureChecker $featureChecker,
+        private readonly Security $security
     ) {
     }
 
@@ -32,7 +34,13 @@ class Autocompleter
         $this->params = [];
         $queryParts = [];
         $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection');
-        $queryParts[] = $this->buildRequestForItemTable($term);
+
+        if ($this->security->getUser()->isSearchInDataByDefaultEnabled()) {
+            $queryParts[] = $this->buildRequestForItemTableWithData($term);
+        } else {
+            $queryParts[] = $this->buildRequestForItemTableWithoutData($term);
+        }
+
         if ($this->featureChecker->isFeatureEnabled('tags')) {
             $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag');
         }
@@ -118,7 +126,7 @@ class Autocompleter
         return $sql;
     }
 
-    private function buildRequestForItemTable(string $term): string
+    private function buildRequestForItemTableWithData(string $term): string
     {
         $user = $this->contextHandler->getContextUser();
         $terms = explode(' ', $term);
@@ -148,6 +156,38 @@ class Autocompleter
         $this->params[] = DatumTypeEnum::TYPE_TEXT;
         $this->params[] = $user->getId();
         $this->params[] = '%'.$term.'%';
+        $this->params[] = '%'.$term.'%';
+
+        if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
+            $sql .= ' AND visibility IN (?)';
+            $this->params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
+        }
+
+        return $sql;
+    }
+
+    private function buildRequestForItemTableWithoutData(string $term): string
+    {
+        $user = $this->contextHandler->getContextUser();
+        $terms = explode(' ', $term);
+        $term = implode('%', $terms);
+        $itemTable = $this->managerRegistry->getManager()->getClassMetadata(Item::class)->getTableName();
+
+        $sql = "
+            SELECT i.id AS id, i.name AS label, 'item' AS type, i.seen_counter AS seenCounter,
+                (CASE 
+                     WHEN LOWER(i.name) = LOWER(?) THEN 2 -- item exact match
+                     WHEN LOWER(i.name) LIKE LOWER(?) THEN 1 -- item end with
+                     ELSE 0
+                END) AS relevance
+            FROM {$itemTable} i
+            WHERE i.owner_id = ?
+            AND LOWER(i.name) LIKE LOWER(?)
+        ";
+
+        $this->params[] = $term;
+        $this->params[] = '%'.$term.'%';
+        $this->params[] = $user->getId();
         $this->params[] = '%'.$term.'%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {

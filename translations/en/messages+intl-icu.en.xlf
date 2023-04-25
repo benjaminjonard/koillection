@@ -3175,5 +3175,11 @@
         <target>Checkbox</target>
       </segment>
     </unit>
+    <unit id="3XftsPN" name="label.search_in_data_by_default_enabled">
+      <segment>
+        <source>label.search_in_data_by_default_enabled</source>
+        <target>label.search_in_data_by_default_enabled</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

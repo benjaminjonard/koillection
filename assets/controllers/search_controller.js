@@ -50,7 +50,7 @@ export default class extends Controller {
                     });
 
                     if (data.totalResultsCounter > 5) {
-                        let url = "/search?search[term]=" + value + "&search[searchInWishlists]&search[searchInAlbums]=&search[searchInCollections]=&search[searchInItems]=&search[searchInTags]=";
+                        let url = "/search?search[term]=" + value;
                         let label = Translator.trans('global.search.more_results', {'count' : data.totalResultsCounter - 5});
                         self.resultsWrapperTarget.appendChild(self.autocompleteResultFactory(label, url));
                     }

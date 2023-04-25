@@ -37,6 +37,9 @@ class SettingsType extends AbstractType
                 'choices' => array_flip(LocaleEnum::getLocaleLabels()),
                 'required' => true,
             ])
+            ->add('searchInDataByDefaultEnabled', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,

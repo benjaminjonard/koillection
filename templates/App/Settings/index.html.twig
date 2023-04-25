@@ -42,6 +42,9 @@
             <div class="col s12 l5 offset-l1 xl3 offset-xl3">
                 {{ form_row(form.theme, {'label' : 'label.theme', 'attr': {'data-controller': 'select--default'}}) }}
             </div>
+            <div class="col s12 l5 xl3">
+                {{ form_row(form.searchInDataByDefaultEnabled, {'label' : 'label.search_in_data_by_default_enabled'}) }}
+            </div>
         </div>
 
         <h3 class="header">{{ 'title.update_visibility'|trans }}</h3>

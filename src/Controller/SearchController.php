@@ -35,6 +35,7 @@ class SearchController extends AbstractController
         $form = $this->createForm(SearchType::class, $search, [
             'method' => 'GET',
         ]);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $results['collections'] = $collectionRepository->findForSearch($search);
