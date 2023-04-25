@@ -131,7 +131,9 @@
             {% for relatedItem in item.allRelatedItems|naturalSorting %}
                 <li>
                     <a href="{{ path('app_item_show'|applyContext, {id: relatedItem.id}) }}">
-                        <img src="{{ preload(asset(relatedItem.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}">
+                        <img src="{{ preload(asset(relatedItem.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                             alt="{{ relatedItem.name }}"
+                        >
                     </a>
                 </li>
             {% endfor %}
