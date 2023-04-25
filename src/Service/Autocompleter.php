@@ -35,7 +35,7 @@ class Autocompleter
         $queryParts = [];
         $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection');
 
-        if ($this->security->getUser()->isSearchInDataByDefaultEnabled()) {
+        if ($this->security->getUser()?->isSearchInDataByDefaultEnabled()) {
             $queryParts[] = $this->buildRequestForItemTableWithData($term);
         } else {
             $queryParts[] = $this->buildRequestForItemTableWithoutData($term);
