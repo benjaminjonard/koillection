@@ -3176,9 +3176,9 @@
       </segment>
     </unit>
     <unit id="3XftsPN" name="label.search_in_data_by_default_enabled">
-      <segment>
+      <segment state="translated">
         <source>label.search_in_data_by_default_enabled</source>
-        <target>label.search_in_data_by_default_enabled</target>
+        <target>Search in data by default</target>
       </segment>
     </unit>
   </file>
