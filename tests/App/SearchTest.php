@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\CollectionFactory;
+use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
@@ -70,6 +72,55 @@ class SearchTest extends WebTestCase
 
         $this->assertSame('Albums (1)', $crawler->filter('.tab')->eq(4)->text());
         $this->assertCount(1, $crawler->filter('.grid-container-collections')->eq(2)->filter('.collection-element'));
+    }
+
+    public function test_can_use_search_without_data(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $now = new \DateTimeImmutable();
+        $collectionFrieren = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user, 'createdAt' => $now])->object();
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'ISBN', 'value' => '9791032710838']);
+        ItemFactory::createOne(['name' => 'Frieren 9791032710838', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+
+        // Act
+        $this->client->request('GET', '/search');
+        $crawler = $this->client->submitForm('Submit', [
+            'search[term]' => '9791032710838',
+            'search[createdAt]' => $now->format('Y-m-d'),
+        ], 'GET');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Items (1)', $crawler->filter('.tab')->eq(0)->text());
+        $this->assertCount(1, $crawler->filter('.collection-item'));
+    }
+
+    public function test_can_use_search_with_data(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $now = new \DateTimeImmutable();
+        $collectionFrieren = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user, 'createdAt' => $now])->object();
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'ISBN', 'value' => '9791032710838']);
+        ItemFactory::createOne(['name' => 'Frieren 9791032710838', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+
+        // Act
+        $this->client->request('GET', '/search');
+        $crawler = $this->client->submitForm('Submit', [
+            'search[term]' => '9791032710838',
+            'search[createdAt]' => $now->format('Y-m-d'),
+            'search[searchInData]' => 1,
+        ], 'GET');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Items (2)', $crawler->filter('.tab')->eq(0)->text());
+        $this->assertCount(2, $crawler->filter('.collection-item'));
     }
 
     public function test_search_need_at_least_one_field(): void
@@ -186,6 +237,51 @@ class SearchTest extends WebTestCase
         $this->assertContains(['label' => 'Frieren collection', 'type' => 'album', 'url' => '/albums/'.$album->getId()], $content['results']);
     }
 
+    public function test_can_use_search_autocomplete_without_data(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne(['searchInDataByDefaultEnabled' => 0])->object();
+        $this->client->loginUser($user);
+        $now = new \DateTimeImmutable();
+        $collectionFrieren = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user, 'createdAt' => $now])->object();
+        $item1 = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'ISBN', 'value' => '9791032710838']);
+        $item2 = ItemFactory::createOne(['name' => 'Frieren 9791032710838', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+
+        // Act
+        $this->client->request('GET', '/search/autocomplete/9791032710838');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('Content-Type', 'application/json');
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertSame(1, $content['totalResultsCounter']);
+        $this->assertContains(['label' => 'Frieren 9791032710838', 'type' => 'item', 'url' => '/items/'.$item2->getId()], $content['results']);
+    }
+
+    public function test_can_use_search_autocomplete_with_data(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne(['searchInDataByDefaultEnabled' => 1])->object();
+        $this->client->loginUser($user);
+        $now = new \DateTimeImmutable();
+        $collectionFrieren = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user, 'createdAt' => $now])->object();
+        $item1 = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'ISBN', 'value' => '9791032710838']);
+        $item2 = ItemFactory::createOne(['name' => 'Frieren 9791032710838', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+
+        // Act
+        $this->client->request('GET', '/search/autocomplete/9791032710838');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('Content-Type', 'application/json');
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertSame(2, $content['totalResultsCounter']);
+        $this->assertContains(['label' => 'Frieren #1', 'type' => 'item', 'url' => '/items/'.$item1->getId()], $content['results']);
+        $this->assertContains(['label' => 'Frieren 9791032710838', 'type' => 'item', 'url' => '/items/'.$item2->getId()], $content['results']);
+    }
+
     public function test_anonymous_search_autocomplete_entities_public(): void
     {
         // Arrange
@@ -214,12 +310,13 @@ class SearchTest extends WebTestCase
     public function test_anonymous_search_autocomplete_entities_private(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne(['searchInDataByDefaultEnabled' => 1])->object();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE])->object();
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
-        $tag = TagFactory::createOne(['label' => 'Frieren', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
-        $wishlist = WishlistFactory::createOne(['name' => 'Wishlist Frieren', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
-        $album = AlbumFactory::createOne(['title' => 'Frieren collection', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Origin', 'value' => 'Frieren']);
+        TagFactory::createOne(['label' => 'Frieren', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        WishlistFactory::createOne(['name' => 'Wishlist Frieren', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        AlbumFactory::createOne(['title' => 'Frieren collection', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
         // Act
         $this->client->request('GET', '/user/'.$user->getUsername().'/search/autocomplete/fri');

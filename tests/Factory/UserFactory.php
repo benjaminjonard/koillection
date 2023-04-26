@@ -59,6 +59,7 @@ final class UserFactory extends ModelFactory
             'templatesFeatureEnabled' => true,
             'historyFeatureEnabled' => true,
             'statisticsFeatureEnabled' => true,
+            'searchInDataByDefaultEnabled' => false,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }
