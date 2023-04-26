@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.3] / 2023-04-26
+### Features
+- Add a setting to enable search in data by default (benjaminjonard)
+
+### Fixes
+- Fix collection's custom labels for items and sub-collections (benjaminjonard)
+- Fix autocomplete errors when using special characters (benjaminjonard)
+
+### Miscellaneous
+- Display related items using the thumbnail (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+
 ## [1.4.2] / 2023-03-29
 ### Features
 - Add checkbox field type (benjaminjonard)
