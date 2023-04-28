@@ -1,6 +1,7 @@
 project_id_env: CROWDIN_PROJECT_ID
 api_token_env: CROWDIN_PERSONAL_TOKEN
 base_path: ".."
+update_option: update_as_unapproved
 
 files:
   - source: translations/en/messages+intl-icu.en.xlf
