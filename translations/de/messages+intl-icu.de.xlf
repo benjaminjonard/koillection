@@ -16,7 +16,7 @@
     <unit id="OswwPau" name="message.thumbnails_regenerated">
       <segment state="translated">
         <source>{count, plural, one {# thumbnail regenerated} other {# thumbnails regenerated}}</source>
-        <target>{count, plural, one {# Thumbnail erneuert} other {# Thumbnails erneuert}</target>
+        <target>{count, plural, one {# Thumbnail erneuert} other {# Thumbnails erneuert}}</target>
       </segment>
     </unit>
     <unit id="X_Pm9um" name="message.user_added">
@@ -2296,7 +2296,7 @@
     <unit id="rV1McBT" name="log.item.deleted">
       <segment state="translated">
         <source>Item {label} was deleted</source>
-        <target>Eintrag {label] wurde gelöscht</target>
+        <target>Eintrag {label} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="rZbNjjk" name="log.tag.created">
@@ -2308,7 +2308,7 @@
     <unit id="C6hJE7c" name="log.tag.deleted">
       <segment state="translated">
         <source>Tag {label} was deleted</source>
-        <target>Schlagwort {tag} wurde gelöscht</target>
+        <target>Schlagwort {label} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="NLlL04M" name="help.recursive">
@@ -2398,31 +2398,31 @@
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment state="translated">
         <source>{count, plural, one {Album consulted # time} other {Album consulted # times}}</source>
-        <target>Album {count} Mal besucht</target>
+        <target>{count, plural, other {Album # Mal besucht}}</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment state="translated">
         <source>{count, plural, one {Collection consulted # time} other {Collection consulted # times}}</source>
-        <target>Sammlung {count} Mal besucht</target>
+        <target>{count, plural, other {Sammlung # Mal besucht}}</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment state="translated">
         <source>{count, plural, one {Item consulted # time} other {Item consulted # times}}</source>
-        <target>Eintrag {count} Mal besucht</target>
+        <target>{count, plural, other {Eintrag # Mal besucht}}</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment state="translated">
         <source>{count, plural, one {Tag consulted # time} other {Tag consulted # times}}</source>
-        <target>Schlagwort {count} Mal besucht</target>
+        <target>{count, plural, other {Schlagwort # Mal besucht}}</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment state="translated">
         <source>{count, plural, one {Wishlist consulted # time} other {Wishlist consulted # times}}</source>
-        <target>Wunschliste {count} Mal besucht</target>
+        <target>{count, plural, other {Wunschliste # Mal besucht}}</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
