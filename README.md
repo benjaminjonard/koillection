@@ -85,7 +85,7 @@ You are also welcome if you want to proofread existing translations.
 
 #### In progress
 
-<table><tr><td align="center" valign="top"><img width="30px" height="30px" src="https://d2gma3rgtloi6d.cloudfront.net/16abbf59/images/flags/small/it.png"></div><div align="center" valign="top">6%</td><td align="center" valign="top"><img width="30px" height="30px" src="https://d2gma3rgtloi6d.cloudfront.net/16abbf59/images/flags/small/pl.png"></div><div align="center" valign="top">0%</td></tr></table>
+<table><tr><td align="center" valign="top"><img width="30px" height="30px" src="https://d2gma3rgtloi6d.cloudfront.net/16abbf59/images/flags/small/it.png"></div><div align="center" valign="top">3%</td><td align="center" valign="top"><img width="30px" height="30px" src="https://d2gma3rgtloi6d.cloudfront.net/16abbf59/images/flags/small/pl.png"></div><div align="center" valign="top">0%</td></tr></table>
 <!-- CROWDIN-TRANSLATIONS-PROGRESS-ACTION-END -->
 
 ## Licensing
