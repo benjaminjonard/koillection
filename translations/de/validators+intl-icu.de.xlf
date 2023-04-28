@@ -3,67 +3,67 @@
   <file id="validators.en">
     <unit id="m_gMJbR" name="error.parent.same_as_current_object">
       <segment state="translated">
-        <source>error.parent.same_as_current_object</source>
+        <source>The parent can't be the same as the current item</source>
         <target>Der Elterneintrag darf nicht mit dem derzeitigem Eintrag identisch sein</target>
       </segment>
     </unit>
     <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
       <segment state="translated">
-        <source>error.datum.cant_be_used_by_both_collections_and_items</source>
+        <source>A datum cannot be used with both item and collection</source>
         <target>Ein Datum kann nicht sowohl für einen Artikel als auch für eine Sammlung verwendet werden.</target>
       </segment>
     </unit>
     <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
       <segment state="translated">
-        <source>error.datum.must_provide_collection_or_item</source>
+        <source>A collection or an item must be provided</source>
         <target>Es muss eine Sammlung oder ein Eintrag muss angegeben werden</target>
       </segment>
     </unit>
     <unit id="7OcgSlg" name="error.email.not_unique">
       <segment state="translated">
-        <source>error.email.not_unique</source>
+        <source>Email address already used</source>
         <target>E-Mail-Adresse wird bereits genutzt</target>
       </segment>
     </unit>
     <unit id="qoRxC7z" name="error.username.not_unique">
       <segment state="translated">
-        <source>error.username.not_unique</source>
+        <source>Username already used</source>
         <target>Username wird bereits verwendet</target>
       </segment>
     </unit>
     <unit id="PjAj0XF" name="error.username.incorrect">
       <segment state="translated">
-        <source>error.username.incorrect</source>
+        <source>Username must have between 2 and 32 characters (only letters, numbers and underscores are allowed)</source>
         <target>Der Username muss zwischen 2 und 32 Zeichen haben (nur Buchstaben, Zahlen und Unterstriche sind erlaubt)</target>
       </segment>
     </unit>
     <unit id="4Bdfyy1" name="error.password.incorrect">
       <segment state="translated">
-        <source>error.password.incorrect</source>
+        <source>Your password must contain at least 8 characters (with at least 1 letter and 1 number)</source>
         <target>Ihr Passwort muss mindestens 8 Zeichen lang sein (mindestens 1 Buchstabe und 1 Zahl)</target>
       </segment>
     </unit>
     <unit id="4m1Sgo3" name="error.password.not_matching">
       <segment state="translated">
-        <source>error.password.not_matching</source>
+        <source>The two passwords are not identical</source>
         <target>Die Passwörter stimmen nicht überein</target>
       </segment>
     </unit>
     <unit id=".OeR.gK" name="error.search.too_short">
       <segment state="translated">
-        <source>error.search.too_short</source>
+        <source>You must enter at least 2 characters</source>
         <target>Sie müssen mindestens 2 Zeichen eingeben</target>
       </segment>
     </unit>
     <unit id="_d89Gke" name="error.search.empty">
       <segment state="translated">
-        <source>error.search.empty</source>
+        <source>Please fill at least one of the fields</source>
         <target>Bitte füllen mindestens eines der Felder aus</target>
       </segment>
     </unit>
     <unit id="DVztPk_" name="error.label.must_be_unique">
       <segment state="translated">
-        <source>error.label.must_be_unique</source>
+        <source>"{label}" label is used multiple times, all labels must be unique</source>
         <target>Die Bezeichnung "{label}" wird mehrmals verwendet, alle Bezeichnungen müssen eindeutig sein</target>
       </segment>
     </unit>
