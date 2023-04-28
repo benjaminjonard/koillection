@@ -1,197 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
   <file id="javascript.en">
-    <unit id="s2RK8Ci" name="global.months.january">
-      <segment state="translated">
-        <source>global.months.january</source>
-        <target>January</target>
-      </segment>
-    </unit>
-    <unit id="u5P6LMj" name="global.months.february">
-      <segment state="translated">
-        <source>global.months.february</source>
-        <target>February</target>
-      </segment>
-    </unit>
-    <unit id="53MzqTM" name="global.months.march">
-      <segment state="translated">
-        <source>global.months.march</source>
-        <target>March</target>
-      </segment>
-    </unit>
-    <unit id="qIE4zZc" name="global.months.april">
-      <segment state="translated">
-        <source>global.months.april</source>
-        <target>April</target>
-      </segment>
-    </unit>
-    <unit id="urcskKu" name="global.months.may">
-      <segment state="translated">
-        <source>global.months.may</source>
-        <target>May</target>
-      </segment>
-    </unit>
-    <unit id="muWiae3" name="global.months.june">
-      <segment state="translated">
-        <source>global.months.june</source>
-        <target>June</target>
-      </segment>
-    </unit>
-    <unit id="thsSPXR" name="global.months.july">
-      <segment state="translated">
-        <source>global.months.july</source>
-        <target>July</target>
-      </segment>
-    </unit>
-    <unit id="t8.lqrr" name="global.months.august">
-      <segment state="translated">
-        <source>global.months.august</source>
-        <target>August</target>
-      </segment>
-    </unit>
-    <unit id="eNAAloo" name="global.months.september">
-      <segment state="translated">
-        <source>global.months.september</source>
-        <target>September</target>
-      </segment>
-    </unit>
-    <unit id="G.Rp2Ak" name="global.months.october">
-      <segment state="translated">
-        <source>global.months.october</source>
-        <target>October</target>
-      </segment>
-    </unit>
-    <unit id="aiK2KRz" name="global.months.november">
-      <segment state="translated">
-        <source>global.months.november</source>
-        <target>November</target>
-      </segment>
-    </unit>
-    <unit id="_rddsFf" name="global.months.december">
-      <segment state="translated">
-        <source>global.months.december</source>
-        <target>December</target>
-      </segment>
-    </unit>
-    <unit id="JnMu4pF" name="global.days.monday">
-      <segment state="translated">
-        <source>global.days.monday</source>
-        <target>Monday</target>
-      </segment>
-    </unit>
-    <unit id="qHOKUl8" name="global.days.tuesday">
-      <segment state="translated">
-        <source>global.days.tuesday</source>
-        <target>Tuesday</target>
-      </segment>
-    </unit>
-    <unit id="z6ZbHnu" name="global.days.wednesday">
-      <segment state="translated">
-        <source>global.days.wednesday</source>
-        <target>Wednesday</target>
-      </segment>
-    </unit>
-    <unit id="9Tk.uyh" name="global.days.thursday">
-      <segment state="translated">
-        <source>global.days.thursday</source>
-        <target>Thursday</target>
-      </segment>
-    </unit>
-    <unit id="BQKd5g0" name="global.days.friday">
-      <segment state="translated">
-        <source>global.days.friday</source>
-        <target>Friday</target>
-      </segment>
-    </unit>
-    <unit id="2AVITxE" name="global.days.saturday">
-      <segment state="translated">
-        <source>global.days.saturday</source>
-        <target>Saturday</target>
-      </segment>
-    </unit>
-    <unit id="L3auT0N" name="global.days.sunday">
-      <segment state="translated">
-        <source>global.days.sunday</source>
-        <target>Sunday</target>
-      </segment>
-    </unit>
-    <unit id="mdcgZEB" name="global.today">
-      <segment state="translated">
-        <source>global.today</source>
-        <target>Today</target>
-      </segment>
-    </unit>
-    <unit id="exiimju" name="btn.clear">
-      <segment state="translated">
-        <source>btn.clear</source>
-        <target>Clear</target>
-      </segment>
-    </unit>
-    <unit id="Jd_qITE" name="btn.close">
-      <segment state="translated">
-        <source>btn.close</source>
-        <target>Close</target>
-      </segment>
-    </unit>
-    <unit id="AghNVUV" name="statistics.items_added">
-      <segment state="translated">
-        <source>statistics.items_added</source>
-        <target>{count, plural, one {# item added} other {# items added}}</target>
-      </segment>
-    </unit>
-    <unit id="cEDaX3_" name="statistics.items">
-      <segment state="translated">
-        <source>statistics.items</source>
-        <target>{count, plural, one {# item} other {# items}}</target>
-      </segment>
-    </unit>
-    <unit id="w0J8w0G" name="select2.no_results">
-      <segment state="translated">
-        <source>select2.no_results</source>
-        <target>No results found</target>
-      </segment>
-    </unit>
-    <unit id="vX0eXJK" name="select2.searching">
-      <segment state="translated">
-        <source>select2.searching</source>
-        <target>Searching...</target>
-      </segment>
-    </unit>
-    <unit id="VWNWjeJ" name="select2.none">
-      <segment state="translated">
-        <source>select2.none</source>
-        <target>None</target>
-      </segment>
-    </unit>
-    <unit id="Em6KHMM" name="global.search.more_results">
-      <segment state="translated">
-        <source>global.search.more_results</source>
-        <target>{count, plural, one { + # more result} other { + # more results}}</target>
-      </segment>
-    </unit>
-    <unit id="nfDV3tB" name="global.search.no_results">
-      <segment state="translated">
-        <source>global.search.no_results</source>
-        <target>No results</target>
-      </segment>
-    </unit>
-    <unit id="V4dRe88" name="global.visibilities.internal.description">
-      <segment state="translated">
-        <source>global.visibilities.internal.description</source>
-        <target>Only authenticated users can see this page</target>
-      </segment>
-    </unit>
-    <unit id="RU9kBPV" name="global.visibilities.public.description">
-      <segment state="translated">
-        <source>global.visibilities.public.description</source>
-        <target>Anyone can see this page</target>
-      </segment>
-    </unit>
-    <unit id="GA2PrMk" name="global.visibilities.private.description">
-      <segment state="translated">
-        <source>global.visibilities.private.description</source>
-        <target>Only I can see this page</target>
-      </segment>
-    </unit>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </file>
 </xliff>
