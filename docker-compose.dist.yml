@@ -11,17 +11,17 @@ services:
         ports:
             - 81:80
         environment:
-            - APP_ENV=dev
-            - APP_DEBUG=1
+            - APP_ENV=prod
+            - APP_DEBUG=0
             - DB_DRIVER=pdo_pgsql
             - DB_NAME=koillection
             - DB_HOST=postgresql
             - DB_PORT=5432
             - DB_USER=postgres
             - DB_PASSWORD=password
-            - DB_VERSION=14
+            - DB_VERSION=15
             - PHP_TZ=Europe/Paris
-            - HTTPS_ENABLED=0
+            - HTTPS_ENABLED=1
         depends_on:
             - mysql
             - postgresql
