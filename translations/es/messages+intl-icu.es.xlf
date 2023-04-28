@@ -4,7 +4,7 @@
     <unit id="xGPqLcT" name="message.files_deleted">
       <segment state="translated">
         <source>{count, plural, one {# file deleted} other {# files deleted}}</source>
-        <target>{count, plural, one {# archivo eliminado} other {# archivos eleiminados}}</target>
+        <target>{count, plural, one {# archivo eliminado} other {# archivos eliminados}}</target>
       </segment>
     </unit>
     <unit id=".512qhB" name="message.logs_generated">
@@ -2398,31 +2398,31 @@
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment state="translated">
         <source>{count, plural, one {Album consulted # time} other {Album consulted # times}}</source>
-        <target>{count, plural, one { Álbum consultado # vez} other { Álbum consultado # veces}}</target>
+        <target>{count, plural, one {Álbum consultado # vez} other {Álbum consultado # veces}}</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment state="translated">
         <source>{count, plural, one {Collection consulted # time} other {Collection consulted # times}}</source>
-        <target>{count, plural, one { Colección consultada # vez} other { Colección consultada # veces}}</target>
+        <target>{count, plural, one {Colección consultada # vez} other {Colección consultada # veces}}</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment state="translated">
         <source>{count, plural, one {Item consulted # time} other {Item consulted # times}}</source>
-        <target>{count, plural, one { Elemento consultado # vez} other { Elemento consultado # veces}}</target>
+        <target>{count, plural, one {Elemento consultado # vez} other {Elemento consultado # veces}}</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment state="translated">
         <source>{count, plural, one {Tag consulted # time} other {Tag consulted # times}}</source>
-        <target>{count, plural, one { Etiqueta consultada # vez} other { Etiqueta consultada # veces}}</target>
+        <target>{count, plural, one {Etiqueta consultada # vez} other {Etiqueta consultada # veces}}</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment state="translated">
         <source>{count, plural, one {Wishlist consulted # time} other {Wishlist consulted # times}}</source>
-        <target>{count, plural, one { lista de deseos consultada # vez} other { lista de deseos consultada # veces}}</target>
+        <target>{count, plural, one {lista de deseos consultada # vez} other {lista de deseos consultada # veces}}</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
@@ -3149,6 +3149,48 @@
       <segment state="translated">
         <source>Deutsch</source>
         <target>Deutsch</target>
+      </segment>
+    </unit>
+    <unit id="hnKIpTQ" name="label.apiplatform_version">
+      <segment state="translated">
+        <source>API Platform version</source>
+        <target>Versión de plataforma API</target>
+      </segment>
+    </unit>
+    <unit id="gx6LCyR" name="global.themes.browser">
+      <segment state="translated">
+        <source>Default browser theme</source>
+        <target>Tema por defecto del navegador</target>
+      </segment>
+    </unit>
+    <unit id="Vug3DkG" name="global.themes.light">
+      <segment state="translated">
+        <source>Light</source>
+        <target>Claro</target>
+      </segment>
+    </unit>
+    <unit id="8e9LycZ" name="global.themes.dark">
+      <segment state="translated">
+        <source>Dark</source>
+        <target>Oscuro</target>
+      </segment>
+    </unit>
+    <unit id="TWYZ00L" name="label.theme">
+      <segment state="translated">
+        <source>Theme</source>
+        <target>Tema</target>
+      </segment>
+    </unit>
+    <unit id="m4zbXKM" name="btn.add_checkbox">
+      <segment state="translated">
+        <source>Checkbox</source>
+        <target>Casilla de selección</target>
+      </segment>
+    </unit>
+    <unit id="3XftsPN" name="label.search_in_data_by_default_enabled">
+      <segment state="translated">
+        <source>Search in data by default</source>
+        <target>Buscar información por defecto</target>
       </segment>
     </unit>
   </file>

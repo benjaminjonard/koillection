@@ -2308,7 +2308,7 @@
     <unit id="C6hJE7c" name="log.tag.deleted">
       <segment state="translated">
         <source>Tag {label} was deleted</source>
-        <target>Le tag {tag} a été supprimé</target>
+        <target>Le tag {label} a été supprimé</target>
       </segment>
     </unit>
     <unit id="NLlL04M" name="help.recursive">
@@ -2398,31 +2398,31 @@
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment state="translated">
         <source>{count, plural, one {Album consulted # time} other {Album consulted # times}}</source>
-        <target>Album consulté {count} fois</target>
+        <target>{count, plural, other {Album consulté # fois}}</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment state="translated">
         <source>{count, plural, one {Collection consulted # time} other {Collection consulted # times}}</source>
-        <target>Collection consultée {count} fois</target>
+        <target>{count, plural, other {Collection consultée # fois}}</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment state="translated">
         <source>{count, plural, one {Item consulted # time} other {Item consulted # times}}</source>
-        <target>Objet consulté {count} fois</target>
+        <target>{count, plural, other {Objet consulté # fois}}</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment state="translated">
         <source>{count, plural, one {Tag consulted # time} other {Tag consulted # times}}</source>
-        <target>Tag consulté {count} fois</target>
+        <target>{count, plural, other {Tag consulté # fois}}</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment state="translated">
         <source>{count, plural, one {Wishlist consulted # time} other {Wishlist consulted # times}}</source>
-        <target>Liste de souhait consultée {count} fois</target>
+        <target>{count, plural, other {Liste de souhait consultée # fois}}</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
