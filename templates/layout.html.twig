@@ -77,6 +77,13 @@
                                 </li>
                             {% endif %}
                             <li>
+                                <a href="{{ path('api_entrypoint') }}">
+                                    <i
+                                            class="fa fa-file-code-o fa-fw"></i>
+                                    <span>{{ 'menu.api_documation'|trans }}</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ path('app_security_logout') }}">
                                     <i
                                             class="fa fa-power-off fa-fw"></i>
