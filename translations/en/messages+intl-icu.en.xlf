@@ -3193,7 +3193,7 @@
         <target>Search in data by default</target>
       </segment>
     </unit>
-    <unit id="JL3jH0w" name="menu.api_documation">
+    <unit id="JL3jH0w" name="menu.api_documention">
       <segment state="translated">
         <source>API documentation</source>
         <target>API documentation</target>
