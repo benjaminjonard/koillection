@@ -3193,5 +3193,11 @@
         <target>Rechercher dans les données par défaut</target>
       </segment>
     </unit>
+    <unit id="JL3jH0w" name="menu.api_documention">
+      <segment state="translated">
+        <source>API documentation</source>
+        <target>Documentation de l'API</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
