@@ -13,7 +13,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
         with:
-          repository: koillection/koillection
+          repository: benjaminjonard/koillection
           ref: 1.4.3
           token: ${{ secrets.GITHUB_TOKEN }}
 
