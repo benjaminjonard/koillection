@@ -27,6 +27,7 @@ final class SeenListener
             'app_tag_show', 'app_shared_tag_show' => ['tag', $event->getRequest()->get('id')],
             'app_album_show', 'app_shared_album_show' => ['album', $event->getRequest()->get('id')],
             'app_wishlist_show', 'app_shared_wishlist_show' => ['wishlist', $event->getRequest()->get('id')],
+            default => null
         };
 
         if ($type !== null) {
