@@ -21,15 +21,15 @@ final class SeenListener
         $route = $event->getRequest()->get('_route');
 
         $type = null;
-        if (\in_array($route, ['app_item_show', 'app_user_item_show'])) {
+        if (\in_array($route, ['app_item_show', 'app_shared_item_show', 'app_tag_item_show', 'app_shared_tag_item_show'])) {
             $type = 'item';
-        } elseif (\in_array($route, ['app_collection_show', 'app_user_collection_show'])) {
+        } elseif (\in_array($route, ['app_collection_show', 'app_shared_collection_show'])) {
             $type = 'collection';
-        } elseif (\in_array($route, ['app_tag_show', 'app_user_tag_show'])) {
+        } elseif (\in_array($route, ['app_tag_show', 'app_shared_tag_show'])) {
             $type = 'tag';
-        } elseif (\in_array($route, ['app_album_show', 'app_user_album_show'])) {
+        } elseif (\in_array($route, ['app_album_show', 'app_shared_album_show'])) {
             $type = 'album';
-        } elseif (\in_array($route, ['app_wishlist_show', 'app_user_wishlist_show'])) {
+        } elseif (\in_array($route, ['app_wishlist_show', 'app_shared_wishlist_show'])) {
             $type = 'wishlist';
         }
 
