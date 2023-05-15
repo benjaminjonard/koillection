@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b00eb9e432130e106b753de63005ed9",
+    "content-hash": "75a232192f668d33dff93c6aa1e45f39",
     "packages": [
         {
             "name": "api-platform/core",
@@ -9431,16 +9431,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.1.2",
+            "version": "10.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6f0cd95be71add539f8fd2be25b2a4a29789000b"
+                "reference": "2379ebafc1737e71cdc84f402acb6b7f04198b9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f0cd95be71add539f8fd2be25b2a4a29789000b",
-                "reference": "6f0cd95be71add539f8fd2be25b2a4a29789000b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2379ebafc1737e71cdc84f402acb6b7f04198b9d",
+                "reference": "2379ebafc1737e71cdc84f402acb6b7f04198b9d",
                 "shasum": ""
             },
             "require": {
@@ -9512,7 +9512,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.1.2"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.1.3"
             },
             "funding": [
                 {
@@ -9528,7 +9528,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-22T07:38:19+00:00"
+            "time": "2023-05-11T05:16:22+00:00"
         },
         {
             "name": "rector/rector",
@@ -9893,16 +9893,16 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "5.0.1",
+            "version": "5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "aae9a0a43bff37bd5d8d0311426c87bf36153f02"
+                "reference": "912dc2fbe3e3c1e7873313cc801b100b6c68c87b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/aae9a0a43bff37bd5d8d0311426c87bf36153f02",
-                "reference": "aae9a0a43bff37bd5d8d0311426c87bf36153f02",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/912dc2fbe3e3c1e7873313cc801b100b6c68c87b",
+                "reference": "912dc2fbe3e3c1e7873313cc801b100b6c68c87b",
                 "shasum": ""
             },
             "require": {
@@ -9948,7 +9948,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/diff/issues",
                 "security": "https://github.com/sebastianbergmann/diff/security/policy",
-                "source": "https://github.com/sebastianbergmann/diff/tree/5.0.1"
+                "source": "https://github.com/sebastianbergmann/diff/tree/5.0.3"
             },
             "funding": [
                 {
@@ -9956,7 +9956,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-23T05:12:41+00:00"
+            "time": "2023-05-01T07:48:21+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -11092,16 +11092,16 @@
         },
         {
             "name": "zenstruck/assert",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/assert.git",
-                "reference": "cd7a0e91eaf2287855a327b0c50c81a7e17b5936"
+                "reference": "8fdd1f1b23f3c8612176d78616b52aa60df1be7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/assert/zipball/cd7a0e91eaf2287855a327b0c50c81a7e17b5936",
-                "reference": "cd7a0e91eaf2287855a327b0c50c81a7e17b5936",
+                "url": "https://api.github.com/repos/zenstruck/assert/zipball/8fdd1f1b23f3c8612176d78616b52aa60df1be7f",
+                "reference": "8fdd1f1b23f3c8612176d78616b52aa60df1be7f",
                 "shasum": ""
             },
             "require": {
@@ -11139,7 +11139,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/assert/issues",
-                "source": "https://github.com/zenstruck/assert/tree/v1.3.0"
+                "source": "https://github.com/zenstruck/assert/tree/v1.4.0"
             },
             "funding": [
                 {
@@ -11147,7 +11147,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-23T19:13:52+00:00"
+            "time": "2023-04-17T15:45:16+00:00"
         },
         {
             "name": "zenstruck/callback",
@@ -11207,16 +11207,16 @@
         },
         {
             "name": "zenstruck/foundry",
-            "version": "v1.31.0",
+            "version": "v1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "5a7e390e16f34ebb4f1a3609005d577d90686e42"
+                "reference": "f28383551d551bfa62cdf09c34bfbe232fd45029"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/5a7e390e16f34ebb4f1a3609005d577d90686e42",
-                "reference": "5a7e390e16f34ebb4f1a3609005d577d90686e42",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/f28383551d551bfa62cdf09c34bfbe232fd45029",
+                "reference": "f28383551d551bfa62cdf09c34bfbe232fd45029",
                 "shasum": ""
             },
             "require": {
@@ -11284,7 +11284,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v1.31.0"
+                "source": "https://github.com/zenstruck/foundry/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -11292,7 +11292,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-27T23:25:08+00:00"
+            "time": "2023-05-11T07:28:34+00:00"
         }
     ],
     "aliases": [],
