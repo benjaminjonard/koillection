@@ -3187,5 +3187,11 @@
         <target>Checkbox</target>
       </segment>
     </unit>
+    <unit id="3XftsPN" name="label.search_in_data_by_default_enabled">
+      <segment state="translated">
+        <source>Search in data by default</source>
+        <target>Standardmäßig in Daten suchen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
