@@ -41,13 +41,14 @@ class ThumbnailGenerator
                 IMAGETYPE_JPEG, IMAGETYPE_JPEG2000 => imagecreatefromjpeg($path),
                 IMAGETYPE_PNG => imagecreatefrompng($path),
                 IMAGETYPE_WEBP => imagecreatefromwebp($path),
+                IMAGETYPE_AVIF => imagecreatefromavif($path),
                 default => throw new \Exception('Your image cannot be processed, please use another one.'),
             };
 
             $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
             // Transparency
-            if (IMAGETYPE_PNG === $mime || IMAGETYPE_WEBP === $mime) {
+            if (in_array($mime, [IMAGETYPE_PNG, IMAGETYPE_WEBP, IMAGETYPE_AVIF])) {
                 imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
                 imagealphablending($thumbnail, false);
                 imagesavealpha($thumbnail, true);
@@ -60,13 +61,16 @@ class ThumbnailGenerator
             switch ($mime) {
                 case IMAGETYPE_JPEG:
                 case IMAGETYPE_JPEG2000:
-                    imagejpeg($thumbnail, $thumbnailPath, 100);
+                    imagejpeg($thumbnail, $thumbnailPath);
                     break;
                 case IMAGETYPE_PNG:
                     imagepng($thumbnail, $thumbnailPath);
                     break;
                 case IMAGETYPE_WEBP:
-                    imagewebp($thumbnail, $thumbnailPath, 100);
+                    imagewebp($thumbnail, $thumbnailPath);
+                    break;
+                case IMAGETYPE_AVIF:
+                    imageavif($thumbnail, $thumbnailPath);
                     break;
                 default:
                     break;
@@ -101,13 +105,14 @@ class ThumbnailGenerator
             IMAGETYPE_JPEG, IMAGETYPE_JPEG2000 => imagecreatefromjpeg($path),
             IMAGETYPE_PNG => imagecreatefrompng($path),
             IMAGETYPE_WEBP => imagecreatefromwebp($path),
+            IMAGETYPE_AVIF => imagecreatefromavif($path),
             default => throw new \Exception('Your image cannot be processed, please use another one.'),
         };
 
         $resized = imagecreatetruecolor($newWidth, $newHeight);
 
         // Transparency
-        if (IMAGETYPE_PNG === $mime || IMAGETYPE_WEBP === $mime) {
+        if (in_array($mime, [IMAGETYPE_PNG, IMAGETYPE_WEBP, IMAGETYPE_AVIF])) {
             imagecolortransparent($resized, imagecolorallocate($resized, 0, 0, 0));
             imagealphablending($resized, false);
             imagesavealpha($resized, true);
@@ -121,13 +126,16 @@ class ThumbnailGenerator
         switch ($mime) {
             case IMAGETYPE_JPEG:
             case IMAGETYPE_JPEG2000:
-                imagejpeg($resized, $path, 100);
+                imagejpeg($resized, $path);
                 break;
             case IMAGETYPE_PNG:
                 imagepng($resized, $path);
                 break;
             case IMAGETYPE_WEBP:
-                imagewebp($resized, $path, 100);
+                imagewebp($resized, $path);
+                break;
+            case IMAGETYPE_AVIF:
+                imageavif($resized, $path);
                 break;
             default:
                 break;

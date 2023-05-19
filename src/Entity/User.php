@@ -67,7 +67,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     private ?string $plainPassword = null;
 
     #[Upload(path: 'avatar', maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'])]
     #[Groups(['user:write', 'user:image'])]
     private ?File $file = null;
 

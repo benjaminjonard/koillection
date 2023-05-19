@@ -85,7 +85,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private ?Wishlist $parent = null;
 
     #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'], groups: ['wishlist:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['wishlist:image'])]
     #[Groups(['wishlist:write', 'wishlist:image'])]
     private ?File $file = null;
 

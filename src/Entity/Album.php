@@ -66,7 +66,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     private ?string $color = null;
 
     #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp'], groups: ['album:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['album:image'])]
     #[Groups(['album:write', 'album:image'])]
     private ?File $file = null;
 

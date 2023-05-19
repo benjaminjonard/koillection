@@ -78,7 +78,7 @@ class Datum implements \Stringable
     private ?int $position = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'], groups: ['datum:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/avif'], groups: ['datum:image'])]
     #[Groups(['datum:write', 'datum:image'])]
     private ?File $fileImage = null;
 

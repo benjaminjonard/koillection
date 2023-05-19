@@ -63,7 +63,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     private ?string $description = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'], groups: ['tag:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/avif'], groups: ['tag:image'])]
     #[Groups(['tag:write', 'tag:image'])]
     private ?File $file = null;
 

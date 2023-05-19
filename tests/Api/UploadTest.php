@@ -126,4 +126,31 @@ class UploadTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
     }
+
+    public function test_upload_avif(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.avif', "/tmp/{$uniqId}.avif");
+        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.avif", "{$uniqId}.avif");
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'file' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Item::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+    }
 }
