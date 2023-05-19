@@ -15,6 +15,7 @@ use App\Repository\PhotoRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class CachedValuesCalculator
 {
@@ -30,16 +31,19 @@ class CachedValuesCalculator
     ) {
     }
 
-    public function refreshAllCaches(): void
+    public function refreshAllCaches(?OutputInterface $output = null): void
     {
+        $output?->writeln('Refreshing cached values for collections...');
         foreach ($this->collectionRepository->findBy(['parent' => null]) as $rootCollection) {
             $this->computeForCollection($rootCollection);
         }
 
+        $output?->writeln('Refreshing cached values for wishlists...');
         foreach ($this->wishlistRepository->findBy(['parent' => null]) as $rootWishlist) {
             $this->computeForWishlist($rootWishlist);
         }
 
+        $output?->writeln('Refreshing cached values for albums...');
         foreach ($this->albumRepository->findBy(['parent' => null]) as $rootAlbum) {
             $this->computeForAlbum($rootAlbum);
         }

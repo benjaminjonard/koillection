@@ -13,13 +13,13 @@ use App\Entity\Wish;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[AsCommand(
     name: 'app:regenerate-thumbnails',
@@ -29,7 +29,6 @@ class RegenerateThumbnailsCommand extends Command
 {
     public function __construct(
         private readonly ManagerRegistry $managerRegistry,
-        private readonly TranslatorInterface $translator,
         private readonly TokenStorageInterface $tokenStorage,
         private readonly string $publicPath
     ) {
@@ -47,10 +46,12 @@ class RegenerateThumbnailsCommand extends Command
 
         $counter = 0;
         $classes = [Item::class, Datum::class, Wish::class, Photo::class, Tag::class];
-        $objects = [];
         $users = $this->managerRegistry->getRepository(User::class)->findAll();
 
         foreach ($users as $user) {
+            $objects = [];
+            $output->writeln("Regenerating thumbnails for user $user...");
+            
             // Login user, needed for uploads
             $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
             $this->tokenStorage->setToken($token);
@@ -65,7 +66,12 @@ class RegenerateThumbnailsCommand extends Command
 
                 $objects = array_merge($objects, $result);
             }
+            
+            if (\count($objects) === 0) {
+                continue;
+            }
 
+            $progressBar = new ProgressBar($output, \count($objects));
             foreach ($objects as $object) {
                 $imagePath = $this->publicPath.'/'.$object->getImage();
 
@@ -86,12 +92,16 @@ class RegenerateThumbnailsCommand extends Command
                 if ($counter % 100 !== 0) {
                     $this->managerRegistry->getManager()->flush();
                 }
+
+                $progressBar->advance();
             }
 
             $this->managerRegistry->getManager()->flush();
+            $output->writeln("");
         }
 
-        $output->writeln($this->translator->trans('message.thumbnails_regenerated', ['count' => $counter]));
+        $output->writeln("$counter thumbnails regenerated.");
+        $output->writeln('Done!');
 
         return Command::SUCCESS;
     }

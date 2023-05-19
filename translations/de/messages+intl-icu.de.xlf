@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
   <file id="messages.en">
-    <unit id="xGPqLcT" name="message.files_deleted">
-      <segment state="translated">
-        <source>{count, plural, one {# file deleted} other {# files deleted}}</source>
-        <target>{count, plural, one {# Datei gelöscht} other {# Dateien gelöscht}}</target>
-      </segment>
-    </unit>
-    <unit id=".512qhB" name="message.logs_generated">
-      <segment state="translated">
-        <source>{count, plural, one {# log generated} other {# logs regenerated}}</source>
-        <target>{count, plural, one {# Log generiert} other {# Logs generiert}}</target>
-      </segment>
-    </unit>
-    <unit id="OswwPau" name="message.thumbnails_regenerated">
-      <segment state="translated">
-        <source>{count, plural, one {# thumbnail regenerated} other {# thumbnails regenerated}}</source>
-        <target>{count, plural, one {# Thumbnail erneuert} other {# Thumbnails erneuert}}</target>
-      </segment>
-    </unit>
     <unit id="X_Pm9um" name="message.user_added">
       <segment state="translated">
         <source>User {user} added</source>

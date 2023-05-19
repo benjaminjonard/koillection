@@ -7,10 +7,10 @@ namespace App\Command;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[AsCommand(
     name: 'app:clean-up',
@@ -20,7 +20,6 @@ class CleanUpCommand extends Command
 {
     public function __construct(
         private readonly ManagerRegistry $managerRegistry,
-        private readonly TranslatorInterface $translator,
         private readonly string $publicPath
     ) {
         parent::__construct();
@@ -34,8 +33,8 @@ class CleanUpCommand extends Command
         if (!$helper->ask($input, $output, $question)) {
             return Command::SUCCESS;
         }
-
-        // Get all paths in database (images + thumbnails)
+        
+        $output->writeln('Getting all files paths from database...');
         $sql = '
             SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
 
@@ -71,7 +70,7 @@ class CleanUpCommand extends Command
             return $row['image'];
         }, $result->fetchAllAssociative());
 
-        // Get all paths on disk
+        $output->writeln('Getting all files paths from /uploads...');
         $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath.'/uploads'));
         $diskPaths = [];
         foreach ($rii as $file) {
@@ -81,14 +80,22 @@ class CleanUpCommand extends Command
         }
 
         // Compute the diff and delete the diff
+        $output->writeln('Computing diff and delete unused files...');
         $diff = array_diff($diskPaths, $dbPaths);
-        foreach ($diff as $path) {
-            if (file_exists($this->publicPath.'/'.$path)) {
-                unlink($this->publicPath.'/'.$path);
+
+        if (\count($diff) > 0) {
+            $progressBar = new ProgressBar($output, \count($diff));
+            foreach ($diff as $path) {
+                $progressBar->advance();
+                if (file_exists($this->publicPath.'/'.$path)) {
+                    unlink($this->publicPath.'/'.$path);
+                }
             }
+            $output->writeln('');
         }
 
-        $output->writeln($this->translator->trans('message.files_deleted', ['count' => \count($diff)]));
+        $output->writeln(\count($diff).' files deleted.');
+        $output->writeln('Done!');
 
         return Command::SUCCESS;
     }

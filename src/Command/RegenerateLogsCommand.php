@@ -20,9 +20,9 @@ use App\Enum\LogTypeEnum;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[AsCommand(
     name: 'app:regenerate-logs',
@@ -31,8 +31,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegenerateLogsCommand extends Command
 {
     public function __construct(
-        private readonly ManagerRegistry $managerRegistry,
-        private readonly TranslatorInterface $translator
+        private readonly ManagerRegistry $managerRegistry
     ) {
         parent::__construct();
     }
@@ -50,13 +49,19 @@ class RegenerateLogsCommand extends Command
         ];
 
         foreach ($classes as $class) {
+            $output->writeln("Checking logs for $class...");
             $results = $this->managerRegistry
                 ->getRepository($class)
                 ->createQueryBuilder('o')
                 ->getQuery()
                 ->toIterable()
             ;
+            $count = $this->managerRegistry->getRepository($class)->createQueryBuilder('o')->select('COUNT (o.id)')->getQuery()->getSingleScalarResult();
+            if ($count === 0) {
+                continue;
+            }
 
+            $progressBar = new ProgressBar($output, $count);
             foreach ($results as $result) {
                 $log = $this->managerRegistry->getRepository(Log::class)->findOneBy([
                     'type' => LogTypeEnum::TYPE_CREATE,
@@ -75,14 +80,17 @@ class RegenerateLogsCommand extends Command
                     $this->managerRegistry->getManager()->persist($log);
                     ++$counter;
                 }
+                $progressBar->advance();
             }
 
             $this->managerRegistry->getManager()->flush();
             $this->managerRegistry->getManager()->clear();
+            $output->writeln("");
         }
 
-        $output->writeln($this->translator->trans('message.logs_generated', ['count' => $counter]));
+        $output->writeln($counter . ' logs generated.');
 
+        $output->writeln("Updating 'delete' logs...");
         $results = $this->managerRegistry->getManager()->createQueryBuilder()
             ->select('l.objectId')
             ->distinct()
@@ -106,6 +114,8 @@ class RegenerateLogsCommand extends Command
             ->getQuery()
             ->execute()
         ;
+
+        $output->writeln('Done!');
 
         return Command::SUCCESS;
     }

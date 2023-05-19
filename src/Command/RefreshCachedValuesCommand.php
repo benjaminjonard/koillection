@@ -24,7 +24,8 @@ class RefreshCachedValuesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->cachedValuesCalculator->refreshAllCaches();
+        $this->cachedValuesCalculator->refreshAllCaches($output);
+        $output->writeln('Done!');
 
         return Command::SUCCESS;
     }
