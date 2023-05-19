@@ -35,7 +35,7 @@ class ThumbnailGenerator
         if (!is_dir($dir) && !mkdir($dir) && !is_dir($dir)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
-        
+
         if ('image/gif' === $mime) {
             $this->gifResizer->resize($path, $thumbnailPath, $thumbnailWidth, $thumbnailHeight);
         } else {
