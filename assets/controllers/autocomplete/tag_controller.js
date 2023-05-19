@@ -67,7 +67,7 @@ export default class extends Controller {
         }
 
         if (value && event.which === 13) {
-            this.onAutocomplete(value);
+            this.onAutocomplete(this.inputTarget.value);
         }
     }
 
