@@ -17,7 +17,9 @@ class ThumbnailGenerator
             return false;
         }
 
-        [$width, $height, $mime] = getimagesize($path);
+        [$width, $height] = getimagesize($path);
+        $mime = mime_content_type($path);
+
         $originalSize = filesize($path);
         $thumbnailHeight = (int) floor($height * ($thumbnailWidth / $width));
 
@@ -33,22 +35,22 @@ class ThumbnailGenerator
         if (!is_dir($dir) && !mkdir($dir) && !is_dir($dir)) {
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
-
-        if (IMAGETYPE_GIF === $mime) {
+        
+        if ('image/gif' === $mime) {
             $this->gifResizer->resize($path, $thumbnailPath, $thumbnailWidth, $thumbnailHeight);
         } else {
             $image = match ($mime) {
-                IMAGETYPE_JPEG, IMAGETYPE_JPEG2000 => imagecreatefromjpeg($path),
-                IMAGETYPE_PNG => imagecreatefrompng($path),
-                IMAGETYPE_WEBP => imagecreatefromwebp($path),
-                IMAGETYPE_AVIF => imagecreatefromavif($path),
+                'image/jpeg' => imagecreatefromjpeg($path),
+                'image/png' => imagecreatefrompng($path),
+                'image/webp' => imagecreatefromwebp($path),
+                'image/avif' => imagecreatefromavif($path),
                 default => throw new \Exception('Your image cannot be processed, please use another one.'),
             };
 
             $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
             // Transparency
-            if (in_array($mime, [IMAGETYPE_PNG, IMAGETYPE_WEBP, IMAGETYPE_AVIF])) {
+            if (in_array($mime, ['image/png', 'image/webp', 'image/avif'])) {
                 imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
                 imagealphablending($thumbnail, false);
                 imagesavealpha($thumbnail, true);
@@ -58,23 +60,12 @@ class ThumbnailGenerator
             $deg = $this->guessRotation($path);
             $thumbnail = imagerotate($thumbnail, $deg, 0);
 
-            switch ($mime) {
-                case IMAGETYPE_JPEG:
-                case IMAGETYPE_JPEG2000:
-                    imagejpeg($thumbnail, $thumbnailPath);
-                    break;
-                case IMAGETYPE_PNG:
-                    imagepng($thumbnail, $thumbnailPath);
-                    break;
-                case IMAGETYPE_WEBP:
-                    imagewebp($thumbnail, $thumbnailPath);
-                    break;
-                case IMAGETYPE_AVIF:
-                    imageavif($thumbnail, $thumbnailPath);
-                    break;
-                default:
-                    break;
-            }
+            match ($mime) {
+                'image/jpeg' => imagejpeg($thumbnail, $thumbnailPath),
+                'image/png' => imagepng($thumbnail, $thumbnailPath),
+                'image/webp' => imagewebp($thumbnail, $thumbnailPath),
+                'image/avif' => imageavif($thumbnail, $thumbnailPath)
+            };
         }
 
         $thumbnailSize = filesize($thumbnailPath);
@@ -89,7 +80,8 @@ class ThumbnailGenerator
 
     public function crop(string $path, int $maxWidth, int $maxHeight): void
     {
-        [$width, $height, $mime] = getimagesize($path);
+        [$width, $height] = getimagesize($path);
+        $mime = mime_content_type($path);
         $ratio = $width / $height;
 
         if ($width > $height) {
@@ -102,10 +94,10 @@ class ThumbnailGenerator
         $newHeight = $maxHeight;
 
         $image = match ($mime) {
-            IMAGETYPE_JPEG, IMAGETYPE_JPEG2000 => imagecreatefromjpeg($path),
-            IMAGETYPE_PNG => imagecreatefrompng($path),
-            IMAGETYPE_WEBP => imagecreatefromwebp($path),
-            IMAGETYPE_AVIF => imagecreatefromavif($path),
+            'image/jpeg' => imagecreatefromjpeg($path),
+            'image/png' => imagecreatefrompng($path),
+            'image/webp' => imagecreatefromwebp($path),
+            'image/avif' => imagecreatefromavif($path),
             default => throw new \Exception('Your image cannot be processed, please use another one.'),
         };
 
@@ -123,23 +115,12 @@ class ThumbnailGenerator
         $deg = $this->guessRotation($path);
         imagerotate($resized, $deg, 0);
 
-        switch ($mime) {
-            case IMAGETYPE_JPEG:
-            case IMAGETYPE_JPEG2000:
-                imagejpeg($resized, $path);
-                break;
-            case IMAGETYPE_PNG:
-                imagepng($resized, $path);
-                break;
-            case IMAGETYPE_WEBP:
-                imagewebp($resized, $path);
-                break;
-            case IMAGETYPE_AVIF:
-                imageavif($resized, $path);
-                break;
-            default:
-                break;
-        }
+        match ($mime) {
+            'image/jpeg' => imagejpeg($resized, $path),
+            'image/png' => imagepng($resized, $path),
+            'image/webp' => imagewebp($resized, $path),
+            'image/avif' => imageavif($resized, $path)
+        };
     }
 
     public function guessRotation(string $path): int
