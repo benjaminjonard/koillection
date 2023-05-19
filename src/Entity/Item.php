@@ -109,7 +109,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private DoctrineCollection $loans;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/avif'], groups: ['item:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['item:image'])]
     #[Groups(['item:write', 'item:image'])]
     private ?File $file = null;
 

@@ -19,6 +19,33 @@ class UploadTest extends ApiTestCase
     use Factories;
     use ResetDatabase;
 
+    public function test_upload_avif(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.avif', "/tmp/{$uniqId}.avif");
+        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.avif", "{$uniqId}.avif");
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'file' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Item::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+    }
+
     public function test_upload_png(): void
     {
         // Arrange
@@ -46,7 +73,7 @@ class UploadTest extends ApiTestCase
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
     }
 
-    public function test_upload_jpg(): void
+    public function test_upload_jpeg(): void
     {
         // Arrange
         $filesystem = new Filesystem();
@@ -56,8 +83,8 @@ class UploadTest extends ApiTestCase
 
         // Act
         $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.jpg', "/tmp/{$uniqId}.jpg");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.jpg", "{$uniqId}.jpg");
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.jpeg', "/tmp/{$uniqId}.jpeg");
+        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.jpeg", "{$uniqId}.jpeg");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
@@ -85,60 +112,6 @@ class UploadTest extends ApiTestCase
         $uniqId = uniqid();
         $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.webp', "/tmp/{$uniqId}.webp");
         $uploadedFile = new UploadedFile("/tmp/{$uniqId}.webp", "{$uniqId}.webp");
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'extra' => [
-                'files' => [
-                    'file' => $uploadedFile,
-                ],
-            ],
-        ]);
-
-        // Assert
-        $this->assertResponseIsSuccessful();
-        $this->assertMatchesResourceItemJsonSchema(Item::class);
-        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
-    }
-
-    public function test_upload_gif(): void
-    {
-        // Arrange
-        $filesystem = new Filesystem();
-        $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['owner' => $user]);
-        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
-
-        // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.gif', "/tmp/{$uniqId}.gif");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.gif", "{$uniqId}.gif");
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
-            'headers' => ['Content-Type: multipart/form-data'],
-            'extra' => [
-                'files' => [
-                    'file' => $uploadedFile,
-                ],
-            ],
-        ]);
-
-        // Assert
-        $this->assertResponseIsSuccessful();
-        $this->assertMatchesResourceItemJsonSchema(Item::class);
-        $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
-    }
-
-    public function test_upload_avif(): void
-    {
-        // Arrange
-        $filesystem = new Filesystem();
-        $user = UserFactory::createOne()->object();
-        $collection = CollectionFactory::createOne(['owner' => $user]);
-        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
-
-        // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.avif', "/tmp/{$uniqId}.avif");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.avif", "{$uniqId}.avif");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [

@@ -112,4 +112,17 @@ class RegularUserTest extends WebTestCase
         // Assert
         $this->assertTrue($this->client->getResponse()->isForbidden());
     }
+
+    public function test_regular_user_cant_access_config(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+
+        // Act
+        $this->client->request('POST', '/admin/configuration');
+
+        // Assert
+        $this->assertTrue($this->client->getResponse()->isForbidden());
+    }
 }

@@ -3181,5 +3181,65 @@
         <target>API documentation</target>
       </segment>
     </unit>
+    <unit id="wcFJTRH" name="tab.configuration">
+      <segment>
+        <source>Configuration</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="l4xWhN8" name="menu.configuration">
+      <segment>
+        <source>Configuration</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="4Q5t9Zu" name="title.edit_configuration">
+      <segment>
+        <source>Configuration</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="ACW22BU" name="global.configuration.thumbnails_format.keep_original">
+      <segment>
+        <source>Keep original</source>
+        <target>Keep original</target>
+      </segment>
+    </unit>
+    <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
+      <segment>
+        <source>JPEG</source>
+        <target>JPEG</target>
+      </segment>
+    </unit>
+    <unit id="ILesFNS" name="global.configuration.thumbnails_format.png">
+      <segment>
+        <source>PNG</source>
+        <target>PNG</target>
+      </segment>
+    </unit>
+    <unit id="FNiUGVN" name="global.configuration.thumbnails_format.webp">
+      <segment>
+        <source>WEBP</source>
+        <target>WEBP</target>
+      </segment>
+    </unit>
+    <unit id="Ttjm83x" name="global.configuration.thumbnails_format.avif">
+      <segment>
+        <source>AVIF</source>
+        <target>AVIF</target>
+      </segment>
+    </unit>
+    <unit id="btvfChU" name="label.thumbnails_format">
+      <segment>
+        <source>Thumbnails format</source>
+        <target>Thumbnails format</target>
+      </segment>
+    </unit>
+    <unit id="r58OOnk" name="message.configuration_updated">
+      <segment>
+        <source>Configuration updated</source>
+        <target>Configuration updated</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

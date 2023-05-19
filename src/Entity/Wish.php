@@ -80,7 +80,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     private ?string $comment = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/avif'], groups: ['wish:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['wish:image'])]
     #[Groups(['wish:write', 'wish:image'])]
     private ?File $file = null;
 

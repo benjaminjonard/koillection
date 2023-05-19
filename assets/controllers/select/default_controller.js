@@ -9,14 +9,14 @@ export default class extends Controller {
 
         new TsSelect2(this.element, {
             templateSelection: function (element) {
-                if (!element.id) {
+                if (!element.text) {
                     return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
                 }
 
                 return element.text;
             },
             templateResult: function (element) {
-                if (!element.id && !element.children) {
+                if (!element.text && !element.children) {
                     return self.htmlToElement('<div><span class="select-placeholder">' + Translator.trans('select2.none') + '</span></div>');
                 }
 

@@ -10,6 +10,11 @@
                 <span>{{ 'tab.users'|trans }}</span>
             </a>
         </li>
+        <li class="tab {{ current == "configuration" ? 'current' }}">
+            <a href="{{ path('app_admin_configuration_index') }}">
+                <span>{{ 'tab.configuration'|trans }}</span>
+            </a>
+        </li>
     </ul>
 </div>
 

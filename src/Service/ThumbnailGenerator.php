@@ -6,12 +6,7 @@ namespace App\Service;
 
 class ThumbnailGenerator
 {
-    public function __construct(
-        private readonly GifResizer $gifResizer
-    ) {
-    }
-
-    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth): bool
+    public function generate(string $path, string $thumbnailPath, int $thumbnailWidth, string $thumbnailFormat): bool
     {
         if (!is_file($path)) {
             return false;
@@ -36,37 +31,33 @@ class ThumbnailGenerator
             throw new \Exception('There was a problem while uploading the image. Please try again!');
         }
 
-        if ('image/gif' === $mime) {
-            $this->gifResizer->resize($path, $thumbnailPath, $thumbnailWidth, $thumbnailHeight);
-        } else {
-            $image = match ($mime) {
-                'image/jpeg' => imagecreatefromjpeg($path),
-                'image/png' => imagecreatefrompng($path),
-                'image/webp' => imagecreatefromwebp($path),
-                'image/avif' => imagecreatefromavif($path),
-                default => throw new \Exception('Your image cannot be processed, please use another one.'),
-            };
+        $image = match ($mime) {
+            'image/jpeg' => imagecreatefromjpeg($path),
+            'image/png' => imagecreatefrompng($path),
+            'image/webp' => imagecreatefromwebp($path),
+            'image/avif' => imagecreatefromavif($path),
+            default => throw new \Exception("Mime type $mime isn't supported"),
+        };
 
-            $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
+        $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
-            // Transparency
-            if (in_array($mime, ['image/png', 'image/webp', 'image/avif'])) {
-                imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
-                imagealphablending($thumbnail, false);
-                imagesavealpha($thumbnail, true);
-            }
-
-            imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $width, $height);
-            $deg = $this->guessRotation($path);
-            $thumbnail = imagerotate($thumbnail, $deg, 0);
-
-            match ($mime) {
-                'image/jpeg' => imagejpeg($thumbnail, $thumbnailPath),
-                'image/png' => imagepng($thumbnail, $thumbnailPath),
-                'image/webp' => imagewebp($thumbnail, $thumbnailPath),
-                'image/avif' => imageavif($thumbnail, $thumbnailPath)
-            };
+        // Transparency
+        if (in_array($mime, ['image/png', 'image/webp', 'image/avif'])) {
+            imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
+            imagealphablending($thumbnail, false);
+            imagesavealpha($thumbnail, true);
         }
+
+        imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $width, $height);
+        $deg = $this->guessRotation($path);
+        $thumbnail = imagerotate($thumbnail, $deg, 0);
+
+        match ($thumbnailFormat) {
+            'jpeg' => imagejpeg($thumbnail, $thumbnailPath),
+            'png' => imagepng($thumbnail, $thumbnailPath),
+            'webp' => imagewebp($thumbnail, $thumbnailPath),
+            'avif' => imageavif($thumbnail, $thumbnailPath)
+        };
 
         $thumbnailSize = filesize($thumbnailPath);
         if ($thumbnailSize >= $originalSize) {

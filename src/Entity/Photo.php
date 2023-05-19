@@ -72,7 +72,7 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
     private ?User $owner = null;
 
     #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/avif'], groups: ['photo:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['photo:image'])]
     #[Groups(['photo:write', 'photo:image'])]
     private ?File $file = null;
 

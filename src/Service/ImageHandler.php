@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Attribute\Upload;
+use App\Enum\ConfigurationEnum;
+use App\Repository\ConfigurationRepository;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
+use function PHPUnit\Framework\matches;
 
 class ImageHandler
 {
@@ -20,6 +23,7 @@ class ImageHandler
         private readonly ThumbnailGenerator $thumbnailGenerator,
         private readonly Security $security,
         private readonly DiskUsageCalculator $diskUsageCalculator,
+        private readonly ConfigurationRepository $configurationRepository,
         private readonly string $publicPath,
         private readonly string $env
     ) {
@@ -41,7 +45,7 @@ class ImageHandler
             $absolutePath = $this->publicPath.'/'.$relativePath;
 
             $generatedName = $this->randomStringGenerator->generate(20);
-            $extension = $file->guessExtension();
+            $extension = str_replace('image/', '', mime_content_type($file->getRealPath()));
 
             $fileName = $generatedName.'_original.'.$extension;
             $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
@@ -54,15 +58,16 @@ class ImageHandler
                 $this->thumbnailGenerator->crop($absolutePath.'/'.$fileName, $attribute->getMaxWidth(), $attribute->getMaxHeight());
             }
 
+            $thumbnailFormat = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::THUMBNAILS_FORMAT])?->getValue() ?? $extension;
             if (null !== $attribute->getSmallThumbnailPath()) {
-                $smallThumbnailFileName = $generatedName.'_small.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 300);
+                $smallThumbnailFileName = $generatedName.'_small.'.$thumbnailFormat;
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 300, $thumbnailFormat);
                 $this->accessor->setValue($entity, $attribute->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
             }
 
             if (null !== $attribute->getLargeThumbnailPath()) {
-                $largeThumbnailFileName = $generatedName.'_large.'.$extension;
-                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$largeThumbnailFileName, 600);
+                $largeThumbnailFileName = $generatedName.'_large.'.$thumbnailFormat;
+                $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$largeThumbnailFileName, 600, $thumbnailFormat);
                 $this->accessor->setValue($entity, $attribute->getLargeThumbnailPath(), $result ? $relativePath.$largeThumbnailFileName : null);
             }
 
