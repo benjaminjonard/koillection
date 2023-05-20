@@ -3175,5 +3175,29 @@
         <target>Buscar información por defecto</target>
       </segment>
     </unit>
+    <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
+      <segment state="translated">
+        <source>JPEG</source>
+        <target>JPEG</target>
+      </segment>
+    </unit>
+    <unit id="ILesFNS" name="global.configuration.thumbnails_format.png">
+      <segment state="translated">
+        <source>PNG</source>
+        <target>PNG</target>
+      </segment>
+    </unit>
+    <unit id="FNiUGVN" name="global.configuration.thumbnails_format.webp">
+      <segment state="translated">
+        <source>WEBP</source>
+        <target>WEBP</target>
+      </segment>
+    </unit>
+    <unit id="Ttjm83x" name="global.configuration.thumbnails_format.avif">
+      <segment state="translated">
+        <source>AVIF</source>
+        <target>AVIF</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

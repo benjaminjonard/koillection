@@ -3181,5 +3181,65 @@
         <target>Documentation de l'API</target>
       </segment>
     </unit>
+    <unit id="wcFJTRH" name="tab.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="l4xWhN8" name="menu.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="4Q5t9Zu" name="title.edit_configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Configuration</target>
+      </segment>
+    </unit>
+    <unit id="ACW22BU" name="global.configuration.thumbnails_format.keep_original">
+      <segment state="translated">
+        <source>Keep original</source>
+        <target>Garder le format original</target>
+      </segment>
+    </unit>
+    <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
+      <segment state="translated">
+        <source>JPEG</source>
+        <target>JPEG</target>
+      </segment>
+    </unit>
+    <unit id="ILesFNS" name="global.configuration.thumbnails_format.png">
+      <segment state="translated">
+        <source>PNG</source>
+        <target>PNG</target>
+      </segment>
+    </unit>
+    <unit id="FNiUGVN" name="global.configuration.thumbnails_format.webp">
+      <segment state="translated">
+        <source>WEBP</source>
+        <target>WEBP</target>
+      </segment>
+    </unit>
+    <unit id="Ttjm83x" name="global.configuration.thumbnails_format.avif">
+      <segment state="translated">
+        <source>AVIF</source>
+        <target>AVIF</target>
+      </segment>
+    </unit>
+    <unit id="btvfChU" name="label.thumbnails_format">
+      <segment state="translated">
+        <source>Thumbnails format</source>
+        <target>Format des miniatures</target>
+      </segment>
+    </unit>
+    <unit id="r58OOnk" name="message.configuration_updated">
+      <segment state="translated">
+        <source>Configuration updated</source>
+        <target>Configuration mise à jour</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
