@@ -187,8 +187,8 @@ class ItemController extends AbstractController
         foreach ($items as $item) {
             $data[] = [
                 'id' => $item->getId(),
-                'name' => $item->getName(),
-                'thumbnail' => $item->getImageSmallThumbnail() ? $assetManager->getUrl($item->getImageSmallThumbnail()) : null,
+                'text' => $item->getName(),
+                'image' => $item->getImageSmallThumbnail() ? $assetManager->getUrl($item->getImageSmallThumbnail()) : null,
             ];
         }
 

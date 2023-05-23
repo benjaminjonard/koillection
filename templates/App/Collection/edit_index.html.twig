@@ -43,12 +43,12 @@
                                 <div>{{ form_label(form.columns, 'label.items_list_columns') }}</div>
 
                                 <div>
-                                    <div data-columns-list-target="checkedHolder">
+                                    <div data-columns-list-target="checkedHolder" class="property-list-holder">
                                         {% for child in form.columns.children|filter(child => child.vars.data == true) %}
                                             {{ form_row(child) }}
                                         {% endfor %}
                                     </div>
-                                    <div data-columns-list-target="uncheckedHolder">
+                                    <div data-columns-list-target="uncheckedHolder" class="property-list-holder">
                                         {% for child in form.columns.children|filter(child => child.vars.data == false) %}
                                             {{ form_row(child) }}
                                         {% endfor %}
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="row center-align form-btn-holder">
+            <div class="center-align form-btn-holder">
                 <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
                 <a href="{{ path('app_collection_index') }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
             </div>

@@ -1,8 +1,8 @@
 {% block form_row %}
     {% if suggestions is defined and suggestions is not empty %}
-        <div class="input-field" data-controller="suggestions">
+        <div class="input-field outlined" data-controller="suggestions">
             {{- form_errors(form) -}}
-            {{- form_widget(form, {attr: {'data-suggestions-target': 'input'}}) -}}
+            {{- form_widget(form, {attr: {'data-suggestions-target': 'input', 'placeholder': ' '}}) -}}
             {{- form_label(form, null, {label_attr: {'data-suggestions-target': 'label'}}) -}}
 
             <div class="suggestions">
@@ -20,8 +20,8 @@
             {{- form_help(form) -}}
         </div>
     {% else %}
-        <div class="input-field">
-            {{- form_widget(form) -}}
+        <div class="input-field outlined">
+            {{- form_widget(form, {attr: {'placeholder': ' '}}) -}}
             {{- form_label(form) -}}
             {%- for error in errors -%}
                 <span class="helper-text" data-error="wrong">{{ error.message }}</span>
@@ -125,7 +125,7 @@
                        value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
                 <span>{{ label|trans }}</span>
                 {% if help %}
-                    <span class="helper-text" data-error="wrong" data-success="right">{{ help|trans }}</span>
+                    <div class="helper-text" data-error="wrong" data-success="right">{{ help|trans }}</div>
                 {% endif %}
             </label>
         </p>
@@ -179,7 +179,11 @@
     {% if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) %}
         {% set required = false %}
     {% endif %}
-    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
+    <select {{ block('widget_attributes') }}
+            {% if multiple %} multiple="multiple"{% endif %}
+            {% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}
+            data-select-target="select"
+    >
         {% if placeholder is not none %}
             <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
         {% endif %}
@@ -197,3 +201,8 @@
     </select>
 {% endblock choice_widget_collapsed %}
 
+top: -8px;
+left: 16px;
+margin-left: -4px;
+padding: 0 4px;
+background-color: var(--background-color);

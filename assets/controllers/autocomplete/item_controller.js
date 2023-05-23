@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { Autocomplete } from '@materializecss/materialize';
+import { M } from '@materializecss/materialize';
 
 export default class extends Controller {
     static targets = ['input', 'formInput', 'result']
@@ -22,7 +22,7 @@ export default class extends Controller {
             let currentItems = [];
 
             for (const item of values) {
-                this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(item));
+                this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(item[0]));
                 currentItems.push(item.id);
             }
 
@@ -51,7 +51,7 @@ export default class extends Controller {
     }
 
     autocomplete(event) {
-        this.autocompleteElement.updateData({});
+        this.autocompleteElement.setMenuItems({});
         clearTimeout(this.timeout);
         let value = encodeURIComponent(this.inputTarget.value);
         let self = this;
@@ -63,12 +63,7 @@ export default class extends Controller {
                 })
                 .then(response => response.json())
                 .then(function(results) {
-                    self.items = results;
-                    let data = {};
-                    for (const result of results) {
-                        data[result.name] = result.thumbnail;
-                    }
-                    self.autocompleteElement.updateData(data);
+                    self.autocompleteElement.setMenuItems(results);
                     self.autocompleteElement.open();
                 })
             }, 500);
@@ -76,9 +71,16 @@ export default class extends Controller {
     }
 
     onAutocomplete(item) {
+        item = item[0] ? item[0] : null;
+
+
+        if (!item) {
+            return;
+        }
+
         let existingItems = JSON.parse(this.formInputTarget.value);
         for (const object of this.items) {
-            if (object.name === item) {
+            if (object.text === item) {
                 item = object;
             }
         }
@@ -94,10 +96,11 @@ export default class extends Controller {
     }
 
     getChip(item) {
-        const thumbnail = item.thumbnail ? item.thumbnail : '/build/images/default.png';
-        return '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.name + '">' +
+        console.log(item)
+        const thumbnail = item.image ? item.image : '/build/images/default.png';
+        return '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.text + '">' +
             '<td><img src="' + thumbnail + '"></td>' +
-            '<td>' + item.name + '</td>' +
+            '<td>' + item.text + '</td>' +
             '<td><i data-action="click->autocomplete--item#remove" class="fa fa-times close"></i></td>' +
         '</tr>';
     }

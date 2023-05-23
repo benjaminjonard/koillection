@@ -10,11 +10,11 @@
 
 <div class="row">
     <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-        {{ form_row(form.description, {'label' : 'label.description', 'attr' : {'class': 'materialize-textarea'}} ) }}
+        {{ form_row(form.description, {'label' : 'label.description', 'attr' : {'class': 'materialize-textarea', 'data-controller': 'textarea'}} ) }}
     </div>
 </div>
 
-<div class="row center-align form-btn-holder">
+<div class="center-align form-btn-holder">
     {% if app.request.get('_route') == 'app_tag_category_add' %}
         {% set cancelUrl = path('app_tag_category_index') %}
     {% else %}

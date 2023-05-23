@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { Dropdown } from '@materializecss/materialize';
+import { M } from '@materializecss/materialize';
 
 export default class extends Controller {
     connect() {

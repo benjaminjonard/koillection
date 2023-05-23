@@ -141,8 +141,8 @@ class TagController extends AbstractController
 
         $tags = $tagRepository->findLike($search);
         $data = [];
-        foreach ($tags as $tag) {
-            $data[] = $tag->getLabel();
+        foreach ($tags as $key => $tag) {
+            $data[] = ['id' => $key, 'text' => $tag->getLabel()];
         }
 
         return new JsonResponse($data);

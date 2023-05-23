@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="row center-align form-btn-holder">
+<div class="center-align form-btn-holder">
     {% if app.request.get('_route') == 'app_photo_add' %}
         {% set cancelUrl = path('app_album_show', {id: app.request.query.get('album')}) %}
     {% else %}

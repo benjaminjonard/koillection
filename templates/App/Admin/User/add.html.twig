@@ -22,46 +22,47 @@
         {{ include('/App/Admin/tabs.html.twig', {current: 'users'}) }}
         <div class="block-element">
             <h2 class="header">{{ 'title.add_user'|trans }}</h2>
-            <div class="row">
-                <div class="form">
-                    {{ form_start(form) }}
-                    {{ form_errors(form) }}
-                    <div class="row">
-                        <div class="col offset-s1 s10 m5 offset-m1">
-                            {{ form_row(form.username, {'label' : 'label.username'} ) }}
-                        </div>
-                        <div class="col offset-s1 s10 offset-m0 m5">
-                            {{ form_row(form.email, {'label' : 'label.email'} ) }}
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col offset-s1 s10 m5 offset-m1">
-                            {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
-                        </div>
-                        <div class="col offset-s1 s10 offset-m0 m5">
-                            {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
-                        </div>
+            <div class="form">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="row">
+                    <div class="col offset-s1 s10 m5 offset-m1">
+                        {{ form_row(form.username, {'label' : 'label.username'} ) }}
                     </div>
-
-                    <div class="row">
-                        <div class="col offset-s1 s10 m5 offset-m1">
-                            {{ form_row(form.diskSpaceAllowed, {'label': 'label.disk_space_allowed'}) }}
-                        </div>
-                        <div class="col offset-s1 s10 m5 offset-m0">
-                            {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
-                        </div>
+                    <div class="col offset-s1 s10 offset-m0 m5">
+                        {{ form_row(form.email, {'label' : 'label.email'} ) }}
                     </div>
-
-                    <div class="form-btn-holder">
-                        <button name="submit" type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-                        <a href="{{ path('app_admin_user_index') }}"
-                           class="waves-effect waves-light btn btn-cancel"> {{ 'btn.cancel'|trans }}</a>
-                    </div>
-                    <div class="clearfix"></div>
-                    {{ form_end(form) }}
                 </div>
+
+                <div class="row">
+                    <div class="col offset-s1 s10 m5 offset-m1">
+                        {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
+                    </div>
+                    <div class="col offset-s1 s10 offset-m0 m5">
+                        {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col offset-s1 s10 m5 offset-m1">
+                        {{ form_row(form.diskSpaceAllowed, {'label': 'label.disk_space_allowed'}) }}
+                    </div>
+                    <div class="col offset-s1 s10 m5 offset-m0">
+                        {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
+                    </div>
+                </div>
+
+                <div class="center-align form-btn-holder">
+                    <button name="submit" type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+                    <a href="{{ path('app_admin_user_index') }}"
+                       class="waves-effect waves-light btn btn-cancel"> {{ 'btn.cancel'|trans }}</a>
+                </div>
+
+                <div class="clearfix"></div>
+                {{ form_end(form) }}
             </div>
+
         </div>
     </div>
 {% endblock %}

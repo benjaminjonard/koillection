@@ -1381,10 +1381,12 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@materializecss/materialize@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@materializecss/materialize/-/materialize-1.2.2.tgz#3308e76806a8f6d14b7838656fbf24e0bf3496c8"
-  integrity sha512-+zp/myqWFywj/F64byUM+H3iiuDmVjKBHZ0lj3b07QiaLVaNoUBCcsS0nkdwB9YsebzFpZLWeASPkmolu3yA+Q==
+"@materializecss/materialize@2.0.1-alpha":
+  version "2.0.1-alpha"
+  resolved "https://registry.yarnpkg.com/@materializecss/materialize/-/materialize-2.0.1-alpha.tgz#08ad609ccf0f3741abfb49e4bfc9c139664f3156"
+  integrity sha512-8tsDbyhwzzNWufrYW0DRYLhppc/+C/EylG16HJbpngLWhZdefb5wkxxM1kdJRUeGCAACTiqXVMVlKax+yl+8Pw==
+  dependencies:
+    animejs "^3.2.1"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1869,6 +1871,11 @@ ajv@^8.0.0, ajv@^8.8.0:
     json-schema-traverse "^1.0.0"
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
+
+animejs@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/animejs/-/animejs-3.2.1.tgz#de9fe2e792f44a777a7fdf6ae160e26604b0cdda"
+  integrity sha512-sWno3ugFryK5nhiDm/2BKeFCpZv7vzerWUcUPyAZLDhMek3+S/p418ldZJbJXo5ZUOpfm2kP2XRO4NJcULMy9A==
 
 ansi-html-community@^0.0.8:
   version "0.0.8"
@@ -4692,7 +4699,7 @@ totalist@^1.0.0:
   resolved "https://registry.yarnpkg.com/totalist/-/totalist-1.1.0.tgz#a4d65a3e546517701e3e5c37a47a70ac97fe56df"
   integrity sha512-gduQwd1rOdDMGxFG1gEvhV88Oirdo2p+KjoYFU7k2g+i7n6AFFbDQ5kMPUsW0pNbfQsB/cwXvT1i4Bue0s9g5g==
 
-ts-select2@0.2.5:
+ts-select2@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/ts-select2/-/ts-select2-0.2.5.tgz#a76fa57654810708395e43fd3fcb35d48ace407b"
   integrity sha512-i5GA+5UJyh9PNi8uPNTT91QPqTUBj5jzhl/FCgEePaDhnU9TUDjgZXjM1J1nCa+VGDWlj9Oo0teCNrGHzP5IBA==

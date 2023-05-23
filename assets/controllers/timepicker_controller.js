@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { Timepicker } from '@materializecss/materialize';
+import { M } from '@materializecss/materialize';
 
 export default class extends Controller {
     connect() {

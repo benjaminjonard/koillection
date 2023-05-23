@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { Modal } from '@materializecss/materialize';
+import { M } from '@materializecss/materialize';
 import '../../styles/modal.css'
 
 export default class extends Controller {

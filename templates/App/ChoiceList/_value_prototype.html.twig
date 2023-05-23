@@ -2,12 +2,13 @@
     <div class="col s1 handle icon-holder">
         <i class="fa fa-arrows-v fa-fw"></i>
     </div>
-    <div class="input-field col s9">
+    <div class="input-field outlined col s9">
         <input data-choice-list-value-target="input"
                type="text"
                id="{{ form.vars.id }}"
                name="{{ form.vars.full_name }}"
                value="{{ form.vars.value }}"
+               placeholder=" "
                required
         >
         <label data-choice-list-value-target="label" for="{{ form.vars.full_name }}"

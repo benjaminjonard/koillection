@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { Datepicker } from '@materializecss/materialize';
+import { M } from '@materializecss/materialize';
 import Translator from "bazinga-translator";
 
 export default class extends Controller {

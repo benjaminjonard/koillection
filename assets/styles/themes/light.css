@@ -1,3 +1,7 @@
+:root{
+    --primary-color: #009688
+}
+
 /* Lightest */
 .progress,
 .picker__today:focus, .picker__clear:focus, .picker__close:focus,
@@ -137,4 +141,28 @@ html.loading:before,
 
 .visibility .fa-secondary, .select-icon.fa-secondary {
     text-shadow: -1px 0 #FFF, 0 1px #FFF, 1px 0 #FFF, 0 -1px #FFF;
+}
+
+.sidebar-element a i, .sidebar-element a span {
+    color: #f0f2f5;
+}
+
+.sidebar-element a {
+    color: #555555;
+}
+
+h2.header, h3.header, .autocomplete-result a, .dropdown-content li > span,
+.datum-row a, h2.statistics-title {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.header-logo a {
+    color: #f0f2f5;
+}
+
+.tabs-block li.tab.current a {
+    color: #000
+}
+.tabs-block li.tab.current {
+    color: #000;
 }

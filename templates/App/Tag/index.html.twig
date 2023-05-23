@@ -46,12 +46,16 @@
                 </div>
                 <div class="right">
                     {{ form_start(form, {attr: {"data-filter-ajax-target": "form"}}) }}
-                    {{ form_row(form.term, {'attr': {
-                        'class': 'filter-input',
-                        'data-action': 'keyup->filter-ajax#filter' ,
-                        'placeholder': 'filter.by_name'|trans,
-                        'autocomplete': 'off'
-                    }}) }}
+                        {% do form.term.setRendered %}
+                        <input type="text"
+                               id="search_tag_term"
+                               name="search_tag[term]"
+                               class="filter-input"
+                               data-action="keyup->filter-ajax#filter"
+                               placeholder="{{ 'filter.by_name'|trans }}"
+                               autocomplete="off"
+                               value="{{ form.term.vars.value }}"
+                        >
                     {{ form_end(form) }}
                 </div>
                 <div class="clearfix"></div>

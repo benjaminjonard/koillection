@@ -1,11 +1,15 @@
 {{ form_start(form, {attr: {"data-filter-ajax-target": "form"}}) }}
 <div class="btn-holder">
-    {{ form_row(form.term, {'attr': {
-        'class': 'filter-input',
-        'data-action': 'keyup->filter-ajax#filter' ,
-        'placeholder': 'filter.by_name'|trans,
-        'autocomplete': 'off'
-    }}) }}
+    {% do form.term.setRendered %}
+    <input type="text"
+           id="search_history_term"
+           name="search_history[term]"
+           class="filter-input"
+           data-action="keyup->filter-ajax#filter"
+           placeholder="{{ 'filter.by_name'|trans }}"
+           autocomplete="off"
+           value="{{ form.term.vars.value }}"
+    >
 </div>
 <div class="table-filter">
     <div class="filter-title">{{ 'filter.title.types'|trans }} :</div>

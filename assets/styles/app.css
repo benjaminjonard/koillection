@@ -2,5 +2,6 @@
 
 @import '../node_modules/@materializecss/materialize/dist/css/materialize.min.css';
 
-@import './main.css';
+
 @import './select2.css';
+@import './main.css';
