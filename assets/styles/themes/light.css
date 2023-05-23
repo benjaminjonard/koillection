@@ -1,168 +1,47 @@
 :root{
-    --primary-color: #009688
+    --surface-color: #FFFFFF;
+    --background-color: #FFFFFF;
+    --font-color-lighter: #F0F2F5;
+    --font-color-light: #9e9e9e;
+    --font-color-medium: #444;
+    --font-color-main: rgba(0,0,0,.87);
+    --primary-color: #009688;
+    --secondary-color: #e74646;
 }
 
-/* Lightest */
-.progress,
-.picker__today:focus, .picker__clear:focus, .picker__close:focus,
-.datepicker-day-button:focus {
-    background-color: #80cbc4;
-}
-
-.breadcrumb a {
-    color: #80cbc4;
-}
-
-/* Light */
-.sidebar-wrapper .header-logo,
-.btn:hover,
-.btn-large:hover,
-.picker__date-display {
-    background-color: #1ab0a2;
-}
-
-.sidebar-element.separate-item {
-    border-top: 1px solid #1ab0a2;
-}
-
-.sidebar-element.separate-item div {
-    border: 1px solid #1ab0a2;
-}
-
-/* Medium */
-.sidebar-wrapper,
-.sidebar-wrapper .header-logo:hover,
-.btn,
-.btn-large,
-.progress .determinate,
-.picker__weekday-display,
-.sidebar-element.separate-item div,
-.toast,
-.error .logo,
-.pagination li.active,
-.table-filter a.active,
-nav,
-.header-profile .down-background,
-.datepicker-date-display,
-.datepicker-table td.is-selected {
-    background-color: #009688;
-}
-
-progress[value]::-webkit-progress-value {
-    background-color: #009688;
-}
-
-progress[value]::-moz-progress-bar {
-    background-color: #009688;
-}
-
-progress[value]::-ms-fill {
-    background-color: #009688;
-}
-
-.breadcrumb .last,
-.secondary-content,
-input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label, input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label,
-input[type=date]:focus:not([readonly]) + label, input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label, input[type=search]:focus:not([readonly]) + label,
-textarea.materialize-textarea:focus:not([readonly]) + label,
-.dropdown-content li > a,
-.picker__day.picker__day--today, .picker__close, .picker__today,
-a, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today:not(.is-selected),
-.autocomplete-content li .highlight,
-.autocomplete-result a b {
-    color: #009688;
-}
-
-.content-header .filter-block #filter-by-name-input:focus,
-[type="radio"].with-gap:checked + span:before,
-.tabs-block .tab.current,
-.pie-wrapper .pie .half-circle {
-    border-color: #009688;
-}
-
-[type="radio"].with-gap:checked + span::after, [type="radio"]:checked + span::after {
-    background-color: #009688;
-    border-color: #009688;
-}
-
-[type="checkbox"]:checked + span:not(.lever)::before {
-    border-right: 2px solid #009688;
-    border-bottom: 2px solid #009688;
-}
-
-input[type=range]::-moz-range-thumb {
-    background: #009688;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    background: #009688;
-}
-
-input[type=range]::-ms-track {
-    background: #009688;
-}
-
-.modal-custom .modal-header {
-    background: #009688;
-}
-
-input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]),
-input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]),
-input.valid:not([type]), input.valid:focus:not([type]), input.valid[type="text"], input.valid[type="text"]:focus, input.valid[type="password"], input.valid[type="password"]:focus, input.valid[type="email"],
-input.valid[type="email"]:focus, input.valid[type="url"], input.valid[type="url"]:focus, input.valid[type="time"], input.valid[type="time"]:focus, input.valid[type="date"], input.valid[type="date"]:focus, input.valid[type="datetime-local"],
-input.valid[type="datetime-local"]:focus, input.valid[type="tel"], input.valid[type="tel"]:focus, input.valid[type="number"], input.valid[type="number"]:focus, input.valid[type="search"], input.valid[type="search"]:focus, textarea.materialize-textarea.valid, textarea.materialize-textarea.valid:focus {
-    border-bottom: 1px solid #009688;
-    box-shadow: 0 1px 0 0 #009688;
-}
-
-.tabs-block li.tab.current {
-    border-bottom: 3px solid #009688;
-}
-
-/* Dark */
-.sidebar-element a:hover, .sidebar-element.current a, .nav-bottom input:hover, .nav-bottom a:hover {
-    background-color: #006355;
-}
-
-/* Complementary */
-h2.header, h3.header, .btn-holder .button, .right-icon, .complementary-color {
-    color: #E74646;
-}
-
-html.loading:before,
-#offline-message {
-    background-color: #E74646;
-}
-
-/* Cancel */
-.btn-cancel {
-    background-color: #e53935 !important;
-}
-
+/** --surface-color **/
 .visibility .fa-secondary, .select-icon.fa-secondary {
-    text-shadow: -1px 0 #FFF, 0 1px #FFF, 1px 0 #FFF, 0 -1px #FFF;
+    text-shadow: -1px 0 var(--surface-color), 0 1px var(--surface-color), 1px 0 var(--surface-color), 0 -1px var(--surface-color);
 }
 
-.sidebar-element a i, .sidebar-element a span {
-    color: #f0f2f5;
+/** --primary-color **/
+a, .breadcrumb-item.active a, .profile-menu i, .autocomplete-content li .highlight, .autocomplete-result a b {
+    color: var(--primary-color);
 }
 
-.sidebar-element a {
-    color: #555555;
+/** --secondary-color **/
+.btn-holder .button, .btn-holder .button i, .locales-dropdown i, .navigation-block i, .table-actions i,
+.header {
+    color: var(--secondary-color);
 }
 
-h2.header, h3.header, .autocomplete-result a, .dropdown-content li > span,
-.datum-row a, h2.statistics-title {
-    color: rgba(0, 0, 0, 0.87);
+/** --font-color-light **/
+.autocomplete-results li span, .collections .collection-element .collection-stats,
+.input-field > label, .rating-form > label, .tab:not(.current), .tab:not(.current) a {
+    color: var(--font-color-light);
 }
 
-.header-logo a {
-    color: #f0f2f5;
+/** --font-color-lighter **/
+i, .sidebar-element span, .header-logo a {
+    color: var(--font-color-lighter);
 }
 
-.tabs-block li.tab.current a {
-    color: #000
+/** --font-color-main **/
+.visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a {
+    color: var(--font-color-main);
 }
-.tabs-block li.tab.current {
-    color: #000;
+
+/** --font-color-medium **/
+.select2-container--default .select2-selection--single .select2-selection__rendered, .select2 i, .select2-results__option i {
+    color: var(--font-color-medium);
 }

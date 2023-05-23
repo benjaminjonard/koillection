@@ -34,7 +34,7 @@
 {% block file_widget %}
     {% apply spaceless %}
         <div class="row row-file">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
+            <div class="col s12 l10 offset-l1 xl8 offset-xl2">
                 <div data-controller="preview">
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
@@ -119,7 +119,7 @@
 
 {% block checkbox_row %}
     {% apply spaceless %}
-        <p>
+        <p class="checkbox">
             <label>
                 <input type="checkbox"
                        value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />

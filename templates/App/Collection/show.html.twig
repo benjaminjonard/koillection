@@ -97,7 +97,7 @@
                         {% if collection.data is not empty %}
                             {% set underlinedTags = getUnderlinedTags(collection.data) %}
                             {% for datum in collection.data %}
-                                <div class="datum-row col s12 l5 xl3">
+                                <div class="datum-row col s12 l5 xl4">
                                     <span class="label">{{ datum.label }} :</span>
                                     {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
                                 </div>
@@ -105,7 +105,7 @@
                         {% endif %}
                         {% if collection.cachedValues.prices|default(null) is not empty %}
                             {% for label, value in collection.cachedValues.prices %}
-                                <div class="datum-row col s12 l5 xl3">
+                                <div class="datum-row col s12 l5 xl4">
                                     <span class="label">{{ label }} :</span>
                                     {{ value|format_currency(getContextUser().currency) }}
                                 </div>

@@ -18,7 +18,7 @@
     <div class="content-block">
         <div class="block-element">
             <div class="row">
-                <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.disk_usage'|trans }}</h2>
+                <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.disk_usage'|trans }}</h2>
             </div>
             <div class="pie-wrapper">
                 {% set percent = (getSpaceUsedByUser(app.user) * 100 / app.user.diskSpaceAllowed)|round(0, 'floor') %}
@@ -35,26 +35,26 @@
 
         <div class="block-element">
             <div class="row">
-                <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.update_profile'|trans }}</h2>
+                <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.update_profile'|trans }}</h2>
             </div>
 
             {{ form_start(form) }}
                 {{ form_row(form.file) }}
 
                 <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
                         {{ form_row(form.username, {'label' : 'label.username'}) }}
                     </div>
-                    <div class="col s12 l5 xl3">
+                    <div class="col s12 l5 xl4">
                         {{ form_row(form.email, {'label' : 'label.email'} ) }}
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
                         {{ form_row(form.plainPassword.first, {'label' : 'label.new_password', 'attr': {'autocomplete' : 'new-password'}} ) }}
                     </div>
-                    <div class="col s12 l5 xl3">
+                    <div class="col s12 l5 xl4">
                         {{ form_row(form.plainPassword.second, {'label' : 'label.repeat_new_password'} ) }}
                     </div>
                 </div>

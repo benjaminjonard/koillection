@@ -1,6 +1,6 @@
 {% block cropper %}
     <div class="row row-file" data-controller="croppie">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
             <div data-croppie-target="area"
                  data-action="mouseup->croppie#refreshImage mousewheel->croppie#refreshImage"></div>
             <label class="btn waves-effect waves-light">
@@ -13,7 +13,7 @@
                 >
             </label>
         </div>
-        <div class="col s12 l5 xl3 croppie-preview" data-croppie-target="preview">
+        <div class="col s12 l5 xl4 croppie-preview" data-croppie-target="preview">
             <img src="{{ form.vars.value|default(preload(asset('build/images/default-round.png'), {as: 'image'})) }}">
         </div>
         <input type="hidden" class="file-input" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>

@@ -728,7 +728,6 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 }
 
 .tabs-block li.tab {
-    color: #959494;
     cursor: pointer;
     font-size: 15px;
     line-height: 18px;
@@ -736,7 +735,6 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 }
 
 .tabs-block li.tab a {
-    color: #959494;
     padding: 16px;
 }
 
@@ -912,7 +910,6 @@ table .image-wrapper img {
 }
 
 .collections .collection-element .collection-stats {
-    color: #9e9e9e;
     margin: 0 0 10px 0;
     text-align: center;
 }
@@ -1793,7 +1790,7 @@ html.loading:before {
     max-width: 210px;
     padding: 0 15px 0 15px;
     width: auto;
-    height: 42px;
+    height: 50px;
 }
 
 .content-wrapper .btn-holder input[type=text] {
@@ -1954,14 +1951,8 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
     padding-left: 25px;
 }
 
-.inline-checkbox-wrapper {
-    display: inline-block;
-    margin: 0 60px;
-}
-
-.inline-checkbox-wrapper .input-checkbox {
-    left: 16px;
-    top: -78px;
+.checkbox {
+    margin-left: 15px;
 }
 
 .table-actions a {
@@ -2006,8 +1997,16 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
     background-color: #e53935;
 }
 
+.btn-cancel:hover {
+    background-color: #fe625f;
+}
+
 .croppie-container .cr-boundary {
     z-index: 0;
+}
+
+.croppie-container {
+    height: initial!important;
 }
 
 .pie-wrapper .shadow {
@@ -2107,10 +2106,6 @@ i.btn input {
     width: 100%;
 }
 
-.autocomplete-results li span {
-    color: #ccc;
-}
-
 .autocomplete-content li img {
     object-fit: cover;
 }
@@ -2174,7 +2169,7 @@ i.btn input {
 }
 
 .autocomplete-content li {
-    margin-left: 10px;
+    padding-left: 10px;
 }
 
 .ac-tags img {
@@ -2357,9 +2352,10 @@ input[type="text"]:not(.browser-default).password-input {
 }
 
 input[type="color"] {
-    width: 100px;
+    width: 100%;
     margin-top: 0;
     height: 56px;
+    padding-left: 60px;
 }
 
 tr {

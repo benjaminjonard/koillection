@@ -19,23 +19,23 @@
         {{ form_start(form) }}
             <div class="content-block">
                 <div class="row">
-                    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
                         {{ form_row(form.sortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
                     </div>
-                    <div class="col s12 l5 xl3">
+                    <div class="col s12 l5 xl4">
                         {{ form_row(form.sortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
                     </div>
                 </div>
 
                 <div data-controller="list-properties">
                     <div class="row">
-                        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
                             {{ form_row(form.displayMode, {'label' : 'label.collections_display_mode', 'attr': {
                                 'data-controller': 'select--display-mode',
                                 'data-action': 'change->list-properties#displayProperties'
                             }} ) }}
                         </div>
-                        <div class="col s12 l5 xl3 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                        <div class="col s12 l5 xl4 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                              data-controller="columns-list"
                              data-list-properties-target="property"
                         >
@@ -60,12 +60,12 @@
                     </div>
 
                     <div class="row">
-                        <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                        <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                              data-list-properties-target="property"
                         >
                             {{ form_row(form.showVisibility, {'label' : 'label.list_show_visibility'}) }}
                         </div>
-                        <div class="col s12 l5 xl3 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                        <div class="col s12 l5 xl4 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                              data-list-properties-target="property"
                         >
                             {{ form_row(form.showActions, {'label' : 'label.list_show_actions'}) }}
@@ -73,12 +73,12 @@
                     </div>
 
                     <div class="row">
-                        <div class="col s12 l5 offset-l1 xl3 offset-xl3 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                        <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                              data-list-properties-target="property"
                         >
                             {{ form_row(form.showNumberOfChildren, {'label' : 'label.list_show_number_of_children'}) }}
                         </div>
-                        <div class="col s12 l5 xl3 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                        <div class="col s12 l5 xl4 {% if displayConfiguration.displayMode != 'list' %}hidden{% endif %}"
                              data-list-properties-target="property"
                         >
                             {{ form_row(form.showNumberOfItems, {'label' : 'label.list_show_number_of_items'}) }}

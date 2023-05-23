@@ -50,14 +50,14 @@ input {
     border-color: var(--font-color-light);
 }
 
-.input-field > label {
+.input-field > label, .collections .collection-element .collection-stats {
     color: var(--font-color-light);
 }
 
 /** --font-color-main **/
 .autocomplete-results li span, .autocomplete-result a, .dropdown-content li > span,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
-.tabs-block li.tab.current, .tabs-block li.tab.current a
+.tabs-block li.tab.current, .tabs-block li.tab.current a, .autocomplete-results li span
 {
     color: var(--font-color-main);
 }

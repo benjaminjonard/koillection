@@ -2,30 +2,30 @@
     {% do form.data.setRendered %}
 <div class="content-block">
     <div class="row">
-        <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.infos'|trans }}</h2>
+        <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.infos'|trans }}</h2>
     </div>
     {{ form_row(form.file) }}
     <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
             {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default }) }}
         </div>
-        <div class="col s12 l5 xl3">
+        <div class="col s12 l5 xl4">
             {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select--default'}}) }}
         </div>
     </div>
 
     <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
             {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
         </div>
-        <div class="col s12 l5 xl3">
+        <div class="col s12 l5 xl4">
             {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
         </div>
     </div>
 
     {% if isFeatureEnabled('tags') %}
         <div class="row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocomplete--tag">
+            <div class="col s12 l10 offset-l1 xl8 offset-xl2" data-controller="autocomplete--tag">
                 <div class="input-field outlined">
                     <input type="text" data-autocomplete--tag-target="input" class="autocomplete"
                            data-action="keyup->autocomplete--tag#autocomplete keydown->autocomplete--tag#preventDefault"
@@ -41,11 +41,11 @@
 
 <div class="content-block" data-controller="additional-data" data-entity="item">
     <div class="row">
-        <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.additional_fields'|trans }}</h2>
+        <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.additional_fields'|trans }}</h2>
     </div>
 
     <div class="row">
-        <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
             {% if isFeatureEnabled('templates') %}
                 {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
                     'data-controller': 'select--default',
@@ -76,11 +76,11 @@
 
 <div class="content-block">
     <div class="row">
-        <h2 class="header col s12 l5 offset-l1 xl3 offset-xl3">{{ 'title.related_items'|trans }}</h2>
+        <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.related_items'|trans }}</h2>
     </div>
 
     <div class="row">
-        <div class="col s12 l10 offset-l1 xl6 offset-xl3" data-controller="autocomplete--item">
+        <div class="col s12 l10 offset-l1 xl8 offset-xl2" data-controller="autocomplete--item">
             <div class="ac-tags">
                 <table class="centered striped">
                     <tbody data-autocomplete--item-target="result">

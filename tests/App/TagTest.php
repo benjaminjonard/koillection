@@ -171,7 +171,7 @@ class TagTest extends WebTestCase
         $this->assertResponseHeaderSame('Content-Type', 'application/json');
         $content = json_decode($this->client->getResponse()->getContent(), true);
         $this->assertCount(1, $content);
-        $this->assertSame('Frieren', $content[0]);
+        $this->assertSame('Frieren', $content[0]['text']);
     }
 
     public function test_can_show_item_from_tag(): void
