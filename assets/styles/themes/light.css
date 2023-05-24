@@ -11,17 +11,23 @@
     --secondary-color: #e74646;
 }
 
-/** --surface-color **/
+
+
+/* SURFACE COLOR */
 .visibility .fa-secondary, .select-icon.fa-secondary {
     text-shadow: -1px 0 var(--surface-color), 0 1px var(--surface-color), 1px 0 var(--surface-color), 0 -1px var(--surface-color);
 }
 
-/** --background-color **/
+
+
+/** BACKGROUND COLOR **/
 thead th {
     background-color: var(--background-color);
 }
 
-/** --primary-color **/
+
+
+/** PRIMARY COLOR **/
 a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highlight, .autocomplete-result a b {
     color: var(--primary-color);
 }
@@ -30,27 +36,40 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highli
     border-color: var(--primary-color);
 }
 
-.sidebar-wrapper .sidebar-wrapper .header-logo:hover {
+.sidebar-wrapper .sidebar-wrapper .header-logo:hover, .sidebar-wrapper, .sidebar-element.separate-item div,
+.header-profile .down-background, .btn, .btn:focus {
     background-color: var(--primary-color);
 }
 
-/** --primary-color-dark **/
-.header-logo:hover {
+
+
+/** PRIMARY COLOR DARK **/
+.header-logo:hover, .sidebar-element a:hover, .sidebar-element.current a {
     background-color: var(--primary-color-dark);
 }
 
-/** --primary-color-light **/
-.header-logo {
+
+
+/** PRIMARY COLOR LIGHT **/
+.header-logo, .btn:hover {
     background-color: var(--primary-color-light);
 }
 
-/** --secondary-color **/
+.sidebar-element.separate-item div, .sidebar-element.separate-item {
+    border-color: var(--primary-color-light);
+}
+
+
+
+/** SECONDARY COLOR **/
 .btn-holder .button, .btn-holder .button i, .navigation-block i, .table-actions i,
 .header {
     color: var(--secondary-color);
 }
 
-/** --font-color-light **/
+
+
+/** FONT COLOR LIGHT **/
 .autocomplete-results li span, .collections .collection-element .collection-stats,
 .input-field > label, .rating-form > label, .tab:not(.current), .tab:not(.current) a,
 footer, .image-label, .datum-row span.country-name, .breadcrumb-item a {
@@ -61,17 +80,23 @@ footer, .image-label, .datum-row span.country-name, .breadcrumb-item a {
     border-color: var(--font-color-light);
 }
 
-/** --font-color-lighter **/
+
+
+/** FONT COLOR LIGHTER **/
 i, .sidebar-element span, .header-logo a, .toast {
     color: var(--font-color-lighter);
 }
 
-/** --font-color-main **/
+
+
+/** FONT COLOR MAIN **/
 .visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a, .locale-dropdown i {
     color: var(--font-color-main);
 }
 
-/** --font-color-medium **/
+
+
+/** FONT COLOR MEDIUM **/
 .select2-container--default .select2-selection--single .select2-selection__rendered, .select2 i, .select2-results__option i {
     color: var(--font-color-medium);
 }

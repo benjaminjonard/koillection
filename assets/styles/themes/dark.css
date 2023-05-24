@@ -14,7 +14,9 @@
     filter: brightness(80%);
 }
 
-/** --primary-color **/
+
+
+/** PRIMARY COLOR **/
 .breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a {
     color: var(--primary-color);
 }
@@ -30,19 +32,26 @@
     border-color: var(--primary-color);;
 }
 
-/** --secondary-color **/
+
+
+/** SECONDARY COLOR **/
 .btn-holder .button, .btn-holder .button i, .navigation-block i, .table-actions i, .dropdown-menu i,
 .header {
     color: var(--secondary-color);
 }
 
-/** --background-color **/
+
+
+/** BACKGROUND COLOR **/
 body, .main, .header-logo, .nav-wrapper #search_term, .sidebar-element.separate-item div,
 .box .content, .modal, .input-field input, .input-field textarea, .autocomplete-content, thead th,
 .select2-container--default .select2-selection--single, .select2-dropdown, .select2-search__field {
     background-color: var(--background-color);
 }
 
+
+
+/** FONT COLOR MEDIUM **/
 i, body, .sidebar-element span, .header-logo a, .toast {
     color: var(--font-color-medium);
 }
@@ -51,7 +60,9 @@ input {
     caret-color: var(--font-color-medium);
 }
 
-/** --font-color-light **/
+
+
+/** FONT COLOR LIGHT **/
 .sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li, .select2, .input-field.outlined input, .input-field.outlined textarea {
     border-color: var(--font-color-light);
 }
@@ -61,7 +72,9 @@ input {
     color: var(--font-color-light);
 }
 
-/** --font-color-main **/
+
+
+/** FONT COLOR MAIN **/
 .autocomplete-results li span, .autocomplete-result a,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
 .tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header
@@ -74,13 +87,16 @@ input {
 }
 
 
-/** --background-color-dark **/
+
+/** BACKGROUND COLOR DARK **/
 header, .sidebar-wrapper, .content-wrapper .btn-holder input[type="text"], .sidebar-element.separate-item div,
 table.striped > tbody > tr:nth-child(2n+1) {
     background-color: var(--background-color-dark);
 }
 
-/** --background-color-light **/
+
+
+/** BACKGROUND COLOR LIGHT **/
 .autocomplete-results li {
     background-color: var(--background-color-light);
 }

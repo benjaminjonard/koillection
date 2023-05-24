@@ -214,7 +214,6 @@ h2 {
 }
 
 .sidebar-wrapper {
-    background-color: #009688;
     bottom: 0;
     display: flex;
     flex-direction: column;
@@ -226,20 +225,10 @@ h2 {
     z-index: 99;
 }
 
-
-
 .sidebar-wrapper .nav-sidebar {
     list-style: none;
     margin: 0;
     width: 230px;
-}
-
-.sidebar-element a:hover, .sidebar-element.current a {
-    background-color: #006355;
-}
-
-.sidebar-wrapper .header-logo:hover {
-    background-color: #009688;
 }
 
 .sidebar-element a {
@@ -263,14 +252,13 @@ h2 {
 }
 
 .sidebar-element.separate-item {
-    border-top: 1px solid #1ab0a2;
+    border-top: 1px solid;
     margin-top: 10px;
     padding-top: 10px;
 }
 
 .sidebar-element.separate-item div {
-    background-color: #009688;
-    border: 1px solid #1ab0a2;
+    border: 1px solid;
     border-radius: 50%;
     height: 13px;
     margin: -17px 23px 0;
@@ -278,7 +266,6 @@ h2 {
 }
 
 nav {
-    background-color: #009688;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -1826,11 +1813,11 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 }
 
 .btn-cancel, .btn-cancel:focus {
-    background-color: #e53935;
+    background-color: #e53935!important;
 }
 
 .btn-cancel:hover {
-    background-color: #fe625f;
+    background-color: #fe625f!important;
 }
 
 .croppie-container .cr-boundary {
