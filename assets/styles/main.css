@@ -67,7 +67,7 @@ table img {
 
 .select2 {
     background-color: var(--background-color);
-    border: 1px solid var(--font-color-medium);
+    border: 1px solid var(--font-color-light);
     border-radius: 4px;
 }
 
@@ -1320,84 +1320,6 @@ html.loading:before {
     width: 100%;
 }
 
-/* Pie progress */
-.pie-wrapper {
-    font-size: 10em;
-    height: 1em;
-    margin: 15px auto;
-    position: relative;
-    width: 1em;
-}
-
-.pie-stat {
-    text-align: center;
-}
-
-.pie-wrapper .pie {
-    clip: rect(0, 1em, 1em, 0.5em);
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-.pie-wrapper .pie.above50 {
-    clip: rect(auto, auto, auto, auto);
-}
-
-.pie-wrapper .pie .right-side {
-    display: none;
-}
-
-.pie-wrapper .pie.above50 .right-side {
-    display: block;
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-
-.pie-wrapper .pie .half-circle {
-    border: 0.1em solid #009688;
-    border-radius: 50%;
-    clip: rect(0, 0.5em, 1em, 0);
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-.pie-wrapper .label {
-    background: none;
-    border-radius: 50%;
-    bottom: 0.4em;
-    color: #7f8c8d;
-    cursor: default;
-    display: block;
-    font-size: 0.25em;
-    left: 0.4em;
-    line-height: 2.6em;
-    padding-top: 5px;
-    position: absolute;
-    right: 0.4em;
-    text-align: center;
-    top: 0.4em;
-}
-
-.pie-wrapper .label .smaller {
-    color: #bdc3c7;
-    font-size: .45em;
-    padding-bottom: 20px;
-    vertical-align: super;
-}
-
-.pie-wrapper .shadow {
-    border: 0.1em solid #bdc3c7;
-    border-radius: 50%;
-    height: 100%;
-    width: 100%;
-}
-
 .unbreakable {
     white-space: nowrap;
 }
@@ -1457,12 +1379,6 @@ html.loading:before {
 .box h2.header {
     padding: 0 0 30px 0;
     text-align: center;
-}
-
-.box .locales-dropdown {
-    float: right;
-    position: relative;
-    top: -15px;
 }
 
 .box .submit {
@@ -1571,11 +1487,14 @@ html.loading:before {
     margin-left: 60px !important;
 }
 
-.profile-menu {
-    position: absolute;
+.header-profile .dropdown-menu {
     right: 18px;
-    text-align: left;
     top: 35px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    text-align: left;
     z-index: 1;
     overflow: hidden;
     border: 1px solid #e0e0e0;
@@ -1583,21 +1502,21 @@ html.loading:before {
     margin-top: 20px;
 }
 
-.profile-menu i {
+.dropdown-menu i {
     display: inline-block;
     margin-right: 10px;
     width: 16px;
 }
 
-.profile-menu li {
+.dropdown-menu li {
     background-color: #fff;
     border-bottom: 1px solid #e0e0e0;
     line-height: 1.5rem;
     margin: 0;
-    padding: 15px 20px 10px 20px;
+    padding: 15px 35px 10px 20px;
 }
 
-.profile-menu span {
+.dropdown-menu span {
     left: 5px;
     position: relative;
     top: -3px;
@@ -1905,12 +1824,6 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
     padding-left: 8px;
 }
 
-.profile-menu .collection-item span {
-    left: 5px;
-    position: relative;
-    top: -3px;
-}
-
 .btn-cancel {
     background-color: #e53935;
 }
@@ -2070,6 +1983,10 @@ i.btn input {
     font-size: 17px;
     margin: 0 5px;
     position: relative;
+    top: 2px;
+}
+
+.select-icon {
     top: 2px;
 }
 
@@ -2277,4 +2194,22 @@ input[type="color"] {
 
 tr {
     border-color: rgba(0,0,0,.12);
+}
+
+.locale-dropdown {
+    cursor: pointer;
+    float: right;
+    margin-top: -10px;
+    margin-right: 10px;
+}
+
+.locale-dropdown .flag {
+    font-size: 14.5px;
+}
+
+.locale-dropdown .current-locale {
+    margin-top: -3px;
+    top: -3px;
+    position: relative;
+    left: -7px;
 }

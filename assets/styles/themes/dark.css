@@ -14,7 +14,7 @@
 }
 
 /** --primary-color **/
-.btn-holder .button, .btn-holder .button i, .locales-dropdown i, .profile-menu i, .navigation-block i, .table-actions i,
+.btn-holder .button, .btn-holder .button i, .dropdown-menu i, .navigation-block i, .table-actions i,
 .breadcrumb .last, a, .header, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a {
     color: var(--primary-color);
 }
@@ -36,7 +36,7 @@ body, .main, .header-logo, .nav-wrapper #search_term, .sidebar-element.separate-
     background-color: var(--background-color);
 }
 
-i, body, .sidebar-element span, .header-logo a {
+i, body, .sidebar-element span, .header-logo a, .toast {
     color: var(--font-color-medium);
 }
 
@@ -45,20 +45,20 @@ input {
 }
 
 /** --font-color-light **/
-.sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li,
-.pie-wrapper .shadow {
+.sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li {
     border-color: var(--font-color-light);
 }
 
-.input-field > label, .collections .collection-element .collection-stats, footer, .image-label, .datum-row span.country-name,
-.breadcrumb-item a, .dropdown-content li > a {
+.collections .collection-element .collection-stats, footer, .image-label, .datum-row span.country-name,
+.breadcrumb-item a {
     color: var(--font-color-light);
 }
 
 /** --font-color-main **/
 .autocomplete-results li span, .autocomplete-result a,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
-.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header
+.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header,
+.input-field > label
 {
     color: var(--font-color-main);
 }
@@ -75,6 +75,6 @@ table.striped > tbody > tr:nth-child(2n+1) {
 }
 
 /** --background-color-light **/
-.autocomplete-results li, .dropdown-content li {
+.autocomplete-results li {
     background-color: var(--background-color-light);
 }

@@ -84,7 +84,7 @@ class AlbumController extends AbstractController
             $managerRegistry->getManager()->persist($album);
             $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.album_added', ['album' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.album_added', ['album' => $album->getTitle()]));
 
             return $this->redirectToRoute('app_album_show', ['id' => $album->getId()]);
         }
@@ -104,7 +104,7 @@ class AlbumController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.album_edited', ['album' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.album_edited', ['album' => $album->getTitle()]));
 
             return $this->redirectToRoute('app_album_show', ['id' => $album->getId()]);
         }
@@ -126,7 +126,7 @@ class AlbumController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($album);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.album_deleted', ['album' => '&nbsp;<strong>'.$album->getTitle().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.album_deleted', ['album' => $album->getTitle()]));
         }
 
         return $this->redirectToRoute('app_album_index');

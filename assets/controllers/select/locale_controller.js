@@ -14,7 +14,7 @@ export default class extends Controller {
                 }
 
                 return self.htmlToElement(
-                    '<div><span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span></div>'
+                    '<div><span class="select-icon">' + self.getFlagEmoji(locale.element.value) + '</span><span>' + locale.text + '</span></div>'
                 );
             },
             templateResult: function (locale) {
@@ -23,7 +23,7 @@ export default class extends Controller {
                 }
 
                 return self.htmlToElement(
-                    '<div><span class="flag-' + locale.element.value.toLowerCase() + '"></span><span class="flag-label">' + locale.text + '</span></div>'
+                    '<div><span class="select-icon">' + self.getFlagEmoji(locale.element.value) + '</span><span>' + locale.text + '</span></div>'
                 );
             },
             language: {
@@ -42,5 +42,19 @@ export default class extends Controller {
         html = html.trim();
         template.innerHTML = html;
         return template.content.firstChild;
+    }
+
+    getFlagEmoji(countryCode) {
+        if (countryCode === 'en') {
+            countryCode = 'us';
+        }
+
+        const codePoints = countryCode
+            .toUpperCase()
+            .slice(0, 2)
+            .split('')
+            .map(char =>  127397 + char.charCodeAt(0));
+
+        return String.fromCodePoint(...codePoints);
     }
 }

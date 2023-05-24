@@ -20,7 +20,7 @@ thead th {
 }
 
 /** --primary-color **/
-a, .breadcrumb-item.active a, .profile-menu i, .autocomplete-content li .highlight, .autocomplete-result a b {
+a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highlight, .autocomplete-result a b {
     color: var(--primary-color);
 }
 
@@ -29,7 +29,7 @@ a, .breadcrumb-item.active a, .profile-menu i, .autocomplete-content li .highlig
 }
 
 /** --secondary-color **/
-.btn-holder .button, .btn-holder .button i, .locales-dropdown i, .navigation-block i, .table-actions i,
+.btn-holder .button, .btn-holder .button i, .navigation-block i, .table-actions i,
 .header {
     color: var(--secondary-color);
 }
@@ -41,13 +41,17 @@ footer, .image-label, .datum-row span.country-name, .breadcrumb-item a {
     color: var(--font-color-light);
 }
 
+.input-field.outlined input, .input-field.outlined textarea {
+    border-color: var(--font-color-light);
+}
+
 /** --font-color-lighter **/
-i, .sidebar-element span, .header-logo a {
+i, .sidebar-element span, .header-logo a, .toast {
     color: var(--font-color-lighter);
 }
 
 /** --font-color-main **/
-.visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a {
+.visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a, .locale-dropdown i {
     color: var(--font-color-main);
 }
 
