@@ -45,20 +45,19 @@ input {
 }
 
 /** --font-color-light **/
-.sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li {
+.sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li, .select2, .input-field.outlined input, .input-field.outlined textarea {
     border-color: var(--font-color-light);
 }
 
 .collections .collection-element .collection-stats, footer, .image-label, .datum-row span.country-name,
-.breadcrumb-item a {
+.breadcrumb-item a, .input-field > label {
     color: var(--font-color-light);
 }
 
 /** --font-color-main **/
 .autocomplete-results li span, .autocomplete-result a,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
-.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header,
-.input-field > label
+.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header
 {
     color: var(--font-color-main);
 }

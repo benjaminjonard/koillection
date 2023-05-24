@@ -41,7 +41,7 @@ footer, .image-label, .datum-row span.country-name, .breadcrumb-item a {
     color: var(--font-color-light);
 }
 
-.input-field.outlined input, .input-field.outlined textarea {
+.select2, .input-field.outlined input, .input-field.outlined textarea {
     border-color: var(--font-color-light);
 }
 
