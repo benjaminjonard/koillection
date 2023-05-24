@@ -13,11 +13,15 @@ ul {
     padding-left: 0;
 }
 
+textarea.materialize-textarea {
+    min-height: 10rem;
+    padding: 16px!important;
+}
+
 thead th {
     position: sticky;
     top: 74px;
     z-index: 1;
-    background-color: #fff;
 }
 
 body:not(.error) {
@@ -30,7 +34,6 @@ body.unauthorized {
 }
 
 .app {
-    background-color: #fff;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -38,7 +41,6 @@ body.unauthorized {
 
 footer {
     bottom: 15px;
-    color: #7f8c8d;
     font-size: 12px;
     left: 0;
     margin: 0 15px;
@@ -401,12 +403,10 @@ h3.header {
 }
 
 .breadcrumb-item a {
-    color: #9e9e9e;
     margin-top: 0.35714em;
 }
 
 .breadcrumb-item.active {
-    color: #009688;
     padding: 0 2px;
 }
 
@@ -522,12 +522,6 @@ strong.ellipsis {
 }
 
 /* Blocks */
-.block {
-    background-color: #ffffff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.35);
-    margin-bottom: 12px;
-}
-
 .content-block {
     padding-top: 50px;
     text-align: left;
@@ -641,7 +635,6 @@ ul.nav-pills li {
 }
 
 .btn-holder .button {
-    color: rgba(0, 0, 0, 0.87);
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
@@ -690,33 +683,12 @@ table .visibility .fa-secondary {
     margin-left: -8px;
 }
 
-.content-wrapper .filter-block .filter-input {
-    background-color: #fff;
-    border: 1px solid #e7e9ed;
-    border-radius: 2px;
-    color: #54565b;
-    font-size: 15px;
-    height: 20px;
-    line-height: 1.42;
-    margin-top: 6px;
-    padding: 9px 16px;
-    width: 67%;
-}
-
-.content-wrapper .filter-block .filter-input:focus {
-    border-color: #009688;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(127, 143, 164, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(127, 143, 164, 0.6);
-    outline: 0;
-}
-
 input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-input {
     border-bottom: none;
     box-shadow: none;
 }
 
 .right-icon {
-    color: rgba(0, 0, 0, 0.87);
     display: inline-block;
     font-size: 20px;
     font-weight: normal;
@@ -739,12 +711,11 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 }
 
 .tabs-block li.tab.current {
-    border-bottom: 3px solid #009688;
+    border-bottom: 3px solid;
     font-weight: bold;
 }
 
 .tabs-block {
-    border-bottom: 1px solid #dce0e6;
     margin-bottom: 20px;
 }
 
@@ -866,10 +837,6 @@ li.list-element .list-actions {
     width: 20%;
 }
 
-li.list-element .list-actions a, .btn-dark-grey {
-    color: #313236
-}
-
 li.list-element .list-content {
     display: inline-block;
     width: 80%;
@@ -933,52 +900,12 @@ table .image-wrapper img {
 }
 
 /* Setting page */
-.setting-input {
-    float: left;
-}
-
-.setting-input label {
-    color: #000;
-}
-
 button.align-with-inputs {
     margin-top: 7px;
 }
 
 .datum .label {
     margin-top: 30px;
-}
-
-.ch-tooltip {
-    background: #222;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    color: #bbb;
-    display: none;
-    font-size: 12px;
-    line-height: 1.4;
-    padding: 10px;
-    position: absolute;
-    text-align: center;
-    width: 140px;
-    z-index: 99999;
-}
-
-.ch-tooltip::after {
-    border-color: transparent;
-    border-style: solid;
-    border-top-color: #222;
-    border-width: 6px 6px 0;
-    bottom: -6px;
-    content: "";
-    display: block;
-    height: 0;
-    left: 50%;
-    margin-left: -6px;
-    padding: 0;
-    position: absolute;
-    width: 0;
 }
 
 /* Bar chart */
@@ -1036,14 +963,6 @@ button.align-with-inputs {
 .separation {
     border-top: 1px solid #dce0e6;
     margin: 20px 0;
-}
-
-.locales a {
-    color: #000000;
-}
-
-.locales a.active {
-    font-weight: bold;
 }
 
 /* Image slider */
@@ -1235,7 +1154,6 @@ form:not(.login) .required:after {
 }
 
 .image-label {
-    color: #7f8c8d;
     display: block;
     font-size: 12px;
     min-height: 25px;
@@ -2144,7 +2062,6 @@ i.btn input {
 }
 
 .datum-row span.country-name {
-    color: #7f8c8d;
     font-size: 12px;
     font-weight: unset;
 }

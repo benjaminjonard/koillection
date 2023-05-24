@@ -1,7 +1,7 @@
 :root{
-    --surface-color: #FFFFFF;
-    --background-color: #FFFFFF;
-    --font-color-lighter: #F0F2F5;
+    --surface-color: #ffffff;
+    --background-color: #ffffff;
+    --font-color-lighter: #f0f2f5;
     --font-color-light: #9e9e9e;
     --font-color-medium: #444;
     --font-color-main: rgba(0,0,0,.87);
@@ -14,9 +14,18 @@
     text-shadow: -1px 0 var(--surface-color), 0 1px var(--surface-color), 1px 0 var(--surface-color), 0 -1px var(--surface-color);
 }
 
+/** --background-color **/
+thead th {
+    background-color: var(--background-color);
+}
+
 /** --primary-color **/
 a, .breadcrumb-item.active a, .profile-menu i, .autocomplete-content li .highlight, .autocomplete-result a b {
     color: var(--primary-color);
+}
+
+.tabs-block li.tab.current {
+    border-color: var(--primary-color);
 }
 
 /** --secondary-color **/
@@ -27,7 +36,8 @@ a, .breadcrumb-item.active a, .profile-menu i, .autocomplete-content li .highlig
 
 /** --font-color-light **/
 .autocomplete-results li span, .collections .collection-element .collection-stats,
-.input-field > label, .rating-form > label, .tab:not(.current), .tab:not(.current) a {
+.input-field > label, .rating-form > label, .tab:not(.current), .tab:not(.current) a,
+footer, .image-label, .datum-row span.country-name, .breadcrumb-item a {
     color: var(--font-color-light);
 }
 

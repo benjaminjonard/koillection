@@ -1,11 +1,11 @@
 :root{
-    --surface-color: #2A2A2A;
-    --background-color: #2A2A2A;
+    --surface-color: #2a2a2a;
+    --background-color: #2a2a2a;
     --background-color-dark: #222222;
     --background-color-light: #5e5e5e;
     --font-color-light: #7d7f82;
-    --font-color-medium: #CCCCCC;
-    --font-color-main: #CCCCCC;
+    --font-color-medium: #cccccc;
+    --font-color-main: #cccccc;
     --primary-color: #009688;
 }
 
@@ -15,7 +15,7 @@
 
 /** --primary-color **/
 .btn-holder .button, .btn-holder .button i, .locales-dropdown i, .profile-menu i, .navigation-block i, .table-actions i,
-.breadcrumb .last, a, .header, .autocomplete-content li .highlight, .autocomplete-result a b {
+.breadcrumb .last, a, .header, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a {
     color: var(--primary-color);
 }
 
@@ -25,7 +25,7 @@
     background-color: var(--primary-color);
 }
 
-.pie-wrapper .pie .half-circle {
+.pie-wrapper .pie .half-circle, .tabs-block li.tab.current {
     border-color: var(--primary-color);;
 }
 
@@ -50,14 +50,15 @@ input {
     border-color: var(--font-color-light);
 }
 
-.input-field > label, .collections .collection-element .collection-stats {
+.input-field > label, .collections .collection-element .collection-stats, footer, .image-label, .datum-row span.country-name,
+.breadcrumb-item a, .dropdown-content li > a {
     color: var(--font-color-light);
 }
 
 /** --font-color-main **/
-.autocomplete-results li span, .autocomplete-result a, .dropdown-content li > span,
+.autocomplete-results li span, .autocomplete-result a,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
-.tabs-block li.tab.current, .tabs-block li.tab.current a, .autocomplete-results li span
+.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header
 {
     color: var(--font-color-main);
 }
@@ -74,6 +75,6 @@ table.striped > tbody > tr:nth-child(2n+1) {
 }
 
 /** --background-color-light **/
-.autocomplete-results li {
+.autocomplete-results li, .dropdown-content li {
     background-color: var(--background-color-light);
 }
