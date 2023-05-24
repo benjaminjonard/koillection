@@ -176,7 +176,6 @@ h2 {
 
 /* Logo */
 .header-logo {
-    background-color: #1AB0A2;
     cursor: pointer;
     float: left;
     font-family: 'Cooper Hewitt', sans-serif;
@@ -227,9 +226,7 @@ h2 {
     z-index: 99;
 }
 
-.sidebar-wrapper .header-logo:hover {
-    background-color: #009688;
-}
+
 
 .sidebar-wrapper .nav-sidebar {
     list-style: none;
@@ -239,6 +236,10 @@ h2 {
 
 .sidebar-element a:hover, .sidebar-element.current a {
     background-color: #006355;
+}
+
+.sidebar-wrapper .header-logo:hover {
+    background-color: #009688;
 }
 
 .sidebar-element a {

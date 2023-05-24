@@ -6,6 +6,8 @@
     --font-color-medium: #444;
     --font-color-main: rgba(0,0,0,.87);
     --primary-color: #009688;
+    --primary-color-light: #1AB0A2;
+    --primary-color-dark: #006355;
     --secondary-color: #e74646;
 }
 
@@ -26,6 +28,20 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highli
 
 .tabs-block li.tab.current {
     border-color: var(--primary-color);
+}
+
+.sidebar-wrapper .sidebar-wrapper .header-logo:hover {
+    background-color: var(--primary-color);
+}
+
+/** --primary-color-dark **/
+.header-logo:hover {
+    background-color: var(--primary-color-dark);
+}
+
+/** --primary-color-light **/
+.header-logo {
+    background-color: var(--primary-color-light);
 }
 
 /** --secondary-color **/
