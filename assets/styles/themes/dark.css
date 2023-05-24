@@ -7,6 +7,7 @@
     --font-color-medium: #cccccc;
     --font-color-main: #cccccc;
     --primary-color: #009688;
+    --secondary-color: #009688;
 }
 
 .avatar.circle.color-avatar, .user-avatar.circle {
@@ -14,8 +15,7 @@
 }
 
 /** --primary-color **/
-.btn-holder .button, .btn-holder .button i, .dropdown-menu i, .navigation-block i, .table-actions i,
-.breadcrumb .last, a, .header, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a {
+.breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a {
     color: var(--primary-color);
 }
 
@@ -25,8 +25,14 @@
     background-color: var(--primary-color);
 }
 
-.pie-wrapper .pie .half-circle, .tabs-block li.tab.current {
+.tabs-block li.tab.current {
     border-color: var(--primary-color);;
+}
+
+/** --secondary-color **/
+.btn-holder .button, .btn-holder .button i, .navigation-block i, .table-actions i, .dropdown-menu i,
+.header {
+    color: var(--secondary-color);
 }
 
 /** --background-color **/
