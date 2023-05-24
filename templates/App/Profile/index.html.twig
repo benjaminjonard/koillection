@@ -27,7 +27,7 @@
                     <div class="counter">
                         <span class="label">{{ percent }}<span class="smaller">%</span></span>
                     </div>
-                    <div>{{ getSpaceUsedByUser(app.user)|bytes(0) }}/{{ app.user.diskSpaceAllowed|bytes(0) }}</div>
+                    <div>{{ getSpaceUsedByUser(app.user)|bytes }}/{{ app.user.diskSpaceAllowed|bytes }}</div>
                 </div>
             </div>
         </div>
