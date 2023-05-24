@@ -3241,5 +3241,17 @@
         <target>Configuration updated</target>
       </segment>
     </unit>
+    <unit id="YX0yhdx" name="tooltip.cancel_modifications">
+      <segment state="translated">
+        <source>Cancel modifications</source>
+        <target>Cancel modifications</target>
+      </segment>
+    </unit>
+    <unit id="oAD2Kex" name="tooltip.remove_thumbnail">
+      <segment state="translated">
+        <source>Remove thumbnail</source>
+        <target>Remove thumbnail</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

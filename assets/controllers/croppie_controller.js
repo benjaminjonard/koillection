@@ -4,11 +4,15 @@ import '../node_modules/croppie/croppie.css';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-    static targets = ['area', 'input', 'preview'];
+    static targets = ['area', 'input', 'emptyPreview', 'originalPreview', 'currentPreview', 'removeBtn', 'cancelBtn'];
 
     croppie = null;
 
     connect() {
+        this.initCroppie();
+    }
+
+    initCroppie() {
         let self = this;
 
         this.croppie = new Croppie(this.areaTarget, {
@@ -32,7 +36,7 @@ export default class extends Controller {
     }
 
     refreshImage(event) {
-        if (event.target.value === '') {
+        if (this.inputTarget.value === '') {
             return;
         }
 
@@ -44,7 +48,7 @@ export default class extends Controller {
         })
         .then(function(imgBase64) {
             form.value = imgBase64;
-            self.previewTarget.innerHTML = '<img src="' + imgBase64 + '">';
+            self.currentPreviewTarget.src = imgBase64;
         });
     }
 
@@ -61,5 +65,23 @@ export default class extends Controller {
             };
             reader.readAsDataURL(this.inputTarget.files[0]);
         }
+    }
+
+    remove() {
+        this.element.querySelector('.file-input').value = '';
+        this.inputTarget.value = '';
+
+        this.currentPreviewTarget.src = 'data:image/png;base64,' + this.emptyPreviewTarget.dataset.base64;
+        this.croppie.destroy();
+        this.initCroppie();
+    }
+
+    cancel() {
+        this.element.querySelector('.file-input').value = '';
+        this.inputTarget.value = '';
+
+        this.currentPreviewTarget.src = this.originalPreviewTarget.dataset.base64;
+        this.croppie.destroy();
+        this.initCroppie();
     }
 }

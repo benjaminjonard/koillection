@@ -1824,7 +1824,7 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
     padding-left: 8px;
 }
 
-.btn-cancel {
+.btn-cancel, .btn-cancel:focus {
     background-color: #e53935;
 }
 

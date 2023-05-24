@@ -20,7 +20,8 @@ class AppRuntime implements RuntimeExtensionInterface
         private readonly RouterInterface $router,
         private readonly TagRepository $tagRepository,
         private readonly ContextHandler $contextHandler,
-        private readonly FeatureChecker $featureChecker
+        private readonly FeatureChecker $featureChecker,
+        private readonly string $publicPath,
     ) {
     }
 
@@ -169,5 +170,10 @@ class AppRuntime implements RuntimeExtensionInterface
     public function fileSize(string $path): int
     {
         return is_file($path) ? filesize($path) : 0;
+    }
+
+    public function base64Encode(string $path): string
+    {
+        return base64_encode(file_get_contents($this->publicPath . '/' . $path));
     }
 }
