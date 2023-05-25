@@ -1,21 +1,28 @@
-:root{
-    --surface-color: #2a2a2a; /* Should be the same as --background-color */
+:root {
+    /* Should be the same as --background-color */
+    --surface-color: #2a2a2a;
     --background-color: #2a2a2a;
-    --background-color-dark: #222222; /* Mainly used for menu and header color */
     --background-color-light: #5e5e5e;
 
-    --font-color-lightest: #7d7f82;
-    --font-color-light: #7d7f82;
-    --font-color-medium: #cccccc;
-    --font-color-main: #cccccc;
+    /* Mainly used for menu and header color */
+    --background-color-dark: #222222;
 
-    --primary-color: #009688; /* Buttons, hovers */
+    --font-color-main: #cccccc;
+    --font-color-medium: #cccccc;
+    --font-color-light: #7d7f82;
+    --font-color-lightest: #7d7f82;
+
+    /* Buttons, hovers */
+    --primary-color: #009688;
     --primary-color-light: #1AB0A2;
     --primary-color-lightest: #80cbc4;
     --primary-color-dark: #006355;
 
-    --secondary-color: #009688; /* Mainly used for icons and titles */
-    --warning-color: #e53935; /* Cancel buttons and error messages */
+    /* Mainly used for icons and titles */
+    --secondary-color: #009688;
+
+    /* Cancel buttons and error messages */
+    --warning-color: #e53935;
 }
 
 .avatar.circle.color-avatar, .user-avatar.circle {
@@ -23,14 +30,15 @@
 }
 
 /** PRIMARY COLOR **/
-.breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a {
+.breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a, .navigation-block i {
     color: var(--primary-color);
 }
 
 .sidebar-element.current a, .sidebar-element a:hover,
 .select2-container--default .select2-results__option--highlighted[aria-selected],
 .select2-container--default .select2-results__option[aria-selected="true"],
-.sidebar-wrapper .header-logo:hover, .header-profile .down-background, .btn, .btn:focus, .btn:hover {
+.sidebar-wrapper .header-logo:hover, .header-profile .down-background, .btn, .btn:focus, .btn:hover,
+.modal-custom .modal-header {
     background-color: var(--primary-color);
 }
 
@@ -39,7 +47,7 @@
 }
 
 /** SECONDARY COLOR **/
-.btn-holder .button, .btn-holder .button i, .navigation-block i, .table-actions i, .dropdown-menu i,
+.btn-holder .button, .btn-holder .button i, .table-actions i, .dropdown-menu i,
 .header {
     color: var(--secondary-color);
 }

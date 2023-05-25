@@ -22,6 +22,7 @@ class AppRuntime implements RuntimeExtensionInterface
         private readonly ContextHandler $contextHandler,
         private readonly FeatureChecker $featureChecker,
         private readonly string $publicPath,
+        private readonly string $kernelProjectDir,
     ) {
     }
 
@@ -175,5 +176,23 @@ class AppRuntime implements RuntimeExtensionInterface
     public function base64Encode(string $path): string
     {
         return base64_encode(file_get_contents($this->publicPath . '/' . $path));
+    }
+
+    public function getDefaultLightThemeColors(): ?string
+    {
+        $path = $this->kernelProjectDir . '/assets/styles/themes/light.css';
+        $content = file_get_contents($path);
+        preg_match('/:root {(.*?)}/ms', $content, $matches);
+
+        return $matches[0];
+    }
+
+    public function getDefaultDarkThemeColors(): ?string
+    {
+        $path = $this->kernelProjectDir . '/assets/styles/themes/dark.css';
+        $content = file_get_contents($path);
+        preg_match('/:root {(.*?)}/ms', $content, $matches);
+
+        return $matches[0];
     }
 }

@@ -2177,3 +2177,8 @@ tr {
     position: relative;
     left: -7px;
 }
+
+.code-textarea {
+    font-family: monospace,monospace;
+    font-size: 1em;
+}

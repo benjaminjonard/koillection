@@ -28,6 +28,8 @@ class AppExtension extends AbstractExtension
             new TwigFunction('getUnderlinedTags', [AppRuntime::class, 'getUnderlinedTags'], ['is_safe' => ['html']]),
             new TwigFunction('isFeatureEnabled', [AppRuntime::class, 'isFeatureEnabled']),
             new TwigFunction('fileSize', [AppRuntime::class, 'fileSize']),
+            new TwigFunction('getDefaultLightThemeColors', [AppRuntime::class, 'getDefaultLightThemeColors']),
+            new TwigFunction('getDefaultDarkThemeColors', [AppRuntime::class, 'getDefaultDarkThemeColors']),
         ];
     }
 }
