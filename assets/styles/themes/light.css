@@ -36,7 +36,7 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highli
     border-color: var(--primary-color);
 }
 
-.sidebar-wrapper .sidebar-wrapper .header-logo:hover, .sidebar-wrapper, .sidebar-element.separate-item div,
+.header-logo:hover, .sidebar-wrapper, .sidebar-element.separate-item div,
 .header-profile .down-background, .btn, .btn:focus {
     background-color: var(--primary-color);
 }
@@ -44,7 +44,7 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highli
 
 
 /** PRIMARY COLOR DARK **/
-.header-logo:hover, .sidebar-element a:hover, .sidebar-element.current a {
+.sidebar-element a:hover, .sidebar-element.current a {
     background-color: var(--primary-color-dark);
 }
 
