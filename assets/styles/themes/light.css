@@ -2,14 +2,16 @@
     --surface-color: #ffffff; /* Should be the same as --background-color */
     --background-color: #ffffff;
 
-    --font-color-lighter: #f0f2f5;
+    --font-color-lightest: #f0f2f5;
     --font-color-light: #9e9e9e;
     --font-color-medium: #444;
     --font-color-main: rgba(0,0,0,.87);
 
     --primary-color: #009688; /* Main color, used for menu and buttons */
     --primary-color-light: #1AB0A2;
+    --primary-color-lightest: #80cbc4;
     --primary-color-dark: #006355;
+
     --secondary-color: #e74646; /* Mainly used for icons and titles */
     --warning-color: #e53935; /* Cancel buttons and error messages */
 }
@@ -24,8 +26,6 @@
 thead th {
     background-color: var(--background-color);
 }
-
-
 
 /** PRIMARY COLOR **/
 a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highlight, .autocomplete-result a b {
@@ -94,9 +94,9 @@ footer, .image-label, .datum-row span.country-name, .breadcrumb-item a {
 
 
 
-/** FONT COLOR LIGHTER **/
+/** FONT COLOR LIGHTEST **/
 i, .sidebar-element span, .header-logo a, .toast {
-    color: var(--font-color-lighter);
+    color: var(--font-color-lightest);
 }
 
 

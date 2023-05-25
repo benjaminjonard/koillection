@@ -11,10 +11,10 @@ export default class extends Controller {
     connect() {
         let data = JSON.parse(this.element.dataset.json);
 
-        let theme = document.getElementById('settings').dataset.theme;
-        if (theme == 'browser') {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
+        let primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+        let fontColor = getComputedStyle(document.documentElement).getPropertyValue('--font-color-main');
+        let fontColorLight = getComputedStyle(document.documentElement).getPropertyValue('--font-color-light');
+
 
         this.chart = echarts.init(this.element);
         this.chart.setOption({
@@ -32,13 +32,17 @@ export default class extends Controller {
                     initialTreeDepth: -1,
                     animationDurationUpdate: 750,
                     itemStyle: {
-                        borderColor: theme == 'dark' ? '#00ce99' : '#009688',
+                        borderColor: primaryColor,
+                        color: primaryColor
                     },
                     lineStyle: {
-                        color: theme == 'dark' ? '#4a4b4d' : '#ccc'
+                        color: fontColorLight
                     },
                     label: {
-                        color: theme == 'dark' ? '#a6a7a8' : '#555'
+                        color: fontColor
+                    },
+                    emphasis: {
+                        focus: 'descendant'
                     }
                 }
             ]

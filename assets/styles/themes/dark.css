@@ -4,11 +4,16 @@
     --background-color-dark: #222222; /* Mainly used for menu and header color */
     --background-color-light: #5e5e5e;
 
+    --font-color-lightest: #7d7f82;
     --font-color-light: #7d7f82;
     --font-color-medium: #cccccc;
     --font-color-main: #cccccc;
 
     --primary-color: #009688; /* Buttons, hovers */
+    --primary-color-light: #1AB0A2;
+    --primary-color-lightest: #80cbc4;
+    --primary-color-dark: #006355;
+
     --secondary-color: #009688; /* Mainly used for icons and titles */
     --warning-color: #e53935; /* Cancel buttons and error messages */
 }

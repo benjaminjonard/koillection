@@ -3253,5 +3253,23 @@
         <target>Remove thumbnail</target>
       </segment>
     </unit>
+    <unit id="8QwwFtM" name="title.custom_css">
+      <segment state="translated">
+        <source>Custom CSS</source>
+        <target>Custom CSS</target>
+      </segment>
+    </unit>
+    <unit id="OCFAuxO" name="label.custom_light_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for light theme</source>
+        <target>Custom CSS for light theme</target>
+      </segment>
+    </unit>
+    <unit id="iSj6Yq6" name="label.custom_dark_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for dark theme</source>
+        <target>Custom CSS for dark theme</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -29,14 +29,28 @@ export default class extends Controller {
         let year = this.element.dataset.year;
         let data = [];
 
-        let theme = document.getElementById('settings').dataset.theme;
-        if (theme == 'browser') {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
+        let primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+        let primaryDarkColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-dark');
+        let primaryLightColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-light');
+        let primaryLightestColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-lightest');
 
+        let backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color');
+
+        let fontColor = getComputedStyle(document.documentElement).getPropertyValue('--font-color-main');
+        let fontColorLightest = getComputedStyle(document.documentElement).getPropertyValue('--font-color-lightest');
+
+        let max = 0;
         Object.entries(json).forEach(([index, value]) => {
             data.push([value[0], value[1]]);
+            if (value[1] > max) {
+                max = value[1];
+            }
         });
+
+        let step = Math.floor(max/4);
+        if (step === 0) {
+            step = 1;
+        }
 
         this.chart = echarts.init(this.element);
         this.chart.setOption({
@@ -46,19 +60,19 @@ export default class extends Controller {
                 }
             },
             visualMap: {
+                pieces: [
+                    {min: (step*3) + 1, color: primaryDarkColor },
+                    {min: (step*2) + 1, max: (step*3), color: primaryColor },
+                    {min: (step*1) + 1, max: (step*2), color: primaryLightColor },
+                    {min: 1, max: step, color: primaryLightestColor },
+                    {min: 0, max: 0, color: fontColorLightest}
+                ],
                 type: 'piecewise',
                 orient: 'horizontal',
                 right: 215,
                 bottom: 'bottom',
-                pieces: [
-                    {min: 31, color: theme == 'dark' ? '#007C5C' : '#006355'},
-                    {min: 16, max: 30, color: theme == 'dark' ? '#00ce99' : '#009688'},
-                    {min: 6, max: 15, color: theme == 'dark' ? '#4DDDB8' : '#1ab0a2'},
-                    {min: 1, max: 5, color: theme == 'dark' ? '#b3f0e0' : '#80cbc4'},
-                    {min: 0, max: 0, color: '#ededed'}
-                ],
                 textStyle: {
-                    color: theme == 'dark' ? '#f0f0f0': '#323233'
+                    color: fontColor
                 }
             },
             calendar: {
@@ -71,9 +85,9 @@ export default class extends Controller {
                 cellSize: 20,
                 yearLabel: {show: false},
                 itemStyle: {
-                    borderWidth: 2,
-                    borderColor: theme == 'dark' ? '#36393e' : '#ffffff',
-                    color: theme == 'dark' ? '#7d7f82' : '#ededed'
+                    borderWidth: 3,
+                    borderColor: backgroundColor,
+                    color: fontColorLightest
                 },
                 dayLabel: {
                     show: false
@@ -81,7 +95,7 @@ export default class extends Controller {
                 monthLabel: {
                     show: true,
                     nameMap: this.monthsLabel,
-                    color: theme == 'dark' ? '#f0f0f0': '#323233'
+                    color: fontColor
                 }
             },
             series: [
