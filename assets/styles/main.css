@@ -1214,28 +1214,8 @@ progress, progress[value] {
     width: 100%;
 }
 
-progress[value]::-webkit-progress-value {
-    background-color: #009688;
-}
-
-progress[value]::-moz-progress-bar {
-    background-color: #009688;
-}
-
-progress[value]::-ms-fill {
-    background-color: #009688;
-}
-
-.progress-danger {
-    color: #d9534f
-}
-
-.progress-warning {
-    color: #f0ad4e
-}
-
-.progress-success {
-    color: #5cb85c
+.btn:hover {
+    filter: brightness(1.1);
 }
 
 .table-filter {
@@ -1264,7 +1244,6 @@ progress[value]::-ms-fill {
 }
 
 .error-helper {
-    color: #d9534f;
     padding-bottom: 15px;
     text-align: center;
 }
@@ -1279,7 +1258,6 @@ progress[value]::-ms-fill {
 
 html.loading:before {
     animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    background-color: #E74646;
     content: "";
     display: block;
     height: 4px;
@@ -1812,12 +1790,8 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
     padding-left: 8px;
 }
 
-.btn-cancel, .btn-cancel:focus {
-    background-color: #e53935!important;
-}
-
-.btn-cancel:hover {
-    background-color: #fe625f!important;
+.btn:hover {
+    filter: brightness(1.1);
 }
 
 .croppie-container .cr-boundary {

@@ -7,10 +7,11 @@
     --font-color-medium: #444;
     --font-color-main: rgba(0,0,0,.87);
 
-    --primary-color: #009688;
+    --primary-color: #009688; /* Main color, used for menu and buttons */
     --primary-color-light: #1AB0A2;
     --primary-color-dark: #006355;
     --secondary-color: #e74646; /* Mainly used for icons and titles */
+    --warning-color: #e53935; /* Cancel buttons and error messages */
 }
 
 
@@ -18,8 +19,6 @@
 .visibility .fa-secondary, .select-icon.fa-secondary {
     text-shadow: -1px 0 var(--surface-color), 0 1px var(--surface-color), 1px 0 var(--surface-color), 0 -1px var(--surface-color);
 }
-
-
 
 /** BACKGROUND COLOR **/
 thead th {
@@ -38,7 +37,7 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highli
 }
 
 .header-logo:hover, .sidebar-wrapper, .sidebar-element.separate-item div,
-.header-profile .down-background, .btn, .btn:focus {
+.header-profile .down-background, .btn, .btn:focus, .btn:hover {
     background-color: var(--primary-color);
 }
 
@@ -52,7 +51,7 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highli
 
 
 /** PRIMARY COLOR LIGHT **/
-.header-logo, .btn:hover {
+.header-logo {
     background-color: var(--primary-color-light);
 }
 
@@ -68,6 +67,18 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .autocomplete-content li .highli
     color: var(--secondary-color);
 }
 
+html.loading:before {
+    background-color: var(--secondary-color);
+}
+
+/** WARNING COLOR **/
+.btn-cancel, .btn-cancel:focus, .btn-cancel:hover {
+    background-color: var(--warning-color);
+}
+
+.error-helper {
+    color: var(--warning-color);
+}
 
 
 /** FONT COLOR LIGHT **/

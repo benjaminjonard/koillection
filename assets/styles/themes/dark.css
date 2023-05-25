@@ -1,22 +1,21 @@
 :root{
     --surface-color: #2a2a2a; /* Should be the same as --background-color */
     --background-color: #2a2a2a;
-    --background-color-dark: #222222;
+    --background-color-dark: #222222; /* Mainly used for menu and header color */
     --background-color-light: #5e5e5e;
 
     --font-color-light: #7d7f82;
     --font-color-medium: #cccccc;
     --font-color-main: #cccccc;
 
-    --primary-color: #009688;
+    --primary-color: #009688; /* Buttons, hovers */
     --secondary-color: #009688; /* Mainly used for icons and titles */
+    --warning-color: #e53935; /* Cancel buttons and error messages */
 }
 
 .avatar.circle.color-avatar, .user-avatar.circle {
     filter: brightness(80%);
 }
-
-
 
 /** PRIMARY COLOR **/
 .breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a {
@@ -26,7 +25,7 @@
 .sidebar-element.current a, .sidebar-element a:hover,
 .select2-container--default .select2-results__option--highlighted[aria-selected],
 .select2-container--default .select2-results__option[aria-selected="true"],
-.sidebar-wrapper .header-logo:hover {
+.sidebar-wrapper .header-logo:hover, .header-profile .down-background, .btn, .btn:focus, .btn:hover {
     background-color: var(--primary-color);
 }
 
@@ -34,17 +33,26 @@
     border-color: var(--primary-color);;
 }
 
-
-
 /** SECONDARY COLOR **/
 .btn-holder .button, .btn-holder .button i, .navigation-block i, .table-actions i, .dropdown-menu i,
 .header {
     color: var(--secondary-color);
 }
 
+html.loading:before {
+    background-color: var(--secondary-color);
+}
 
+/** WARNING COLOR **/
+.btn-cancel, .btn-cancel:focus, .btn-cancel:hover {
+    background-color: var(--warning-color);
+}
 
-/** BACKGROUND COLOR **/
+.error-helper {
+    color: var(--warning-color);
+}
+
+    /** BACKGROUND COLOR **/
 body, .main, .header-logo, .nav-wrapper #search_term, .sidebar-element.separate-item div,
 .box .content, .modal, .input-field input, .input-field textarea, .autocomplete-content, thead th,
 .select2-container--default .select2-selection--single, .select2-dropdown, .select2-search__field {
@@ -95,8 +103,6 @@ header, .sidebar-wrapper, .content-wrapper .btn-holder input[type="text"], .side
 table.striped > tbody > tr:nth-child(2n+1) {
     background-color: var(--background-color-dark);
 }
-
-
 
 /** BACKGROUND COLOR LIGHT **/
 .autocomplete-results li {
