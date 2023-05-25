@@ -13,6 +13,7 @@ use App\Enum\VisibilityEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -47,6 +48,12 @@ class SettingsType extends AbstractType
             ->add('theme', ChoiceType::class, [
                 'choices' => array_flip(ThemeEnum::getThemesLabels()),
                 'required' => true,
+            ])
+            ->add('customLightThemeCss', TextareaType::class, [
+                'required' => false,
+            ])
+            ->add('customDarkThemeCss', TextareaType::class, [
+                'required' => false,
             ])
             ->add('wishlistsFeatureEnabled', CheckboxType::class, [
                 'required' => false,

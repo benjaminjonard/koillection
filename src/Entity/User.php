@@ -154,6 +154,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Assert\Choice(choices: ThemeEnum::THEMES)]
     private string $theme = ThemeEnum::THEME_BROWSER;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $customLightThemeCss = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $customDarkThemeCss = null;
+
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $wishlistsFeatureEnabled = true;
@@ -645,6 +651,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setTheme(string $theme): User
     {
         $this->theme = $theme;
+
+        return $this;
+    }
+
+    public function getCustomLightThemeCss(): ?string
+    {
+        return $this->customLightThemeCss;
+    }
+
+    public function setCustomLightThemeCss(?string $customLightThemeCss): User
+    {
+        $this->customLightThemeCss = $customLightThemeCss;
+
+        return $this;
+    }
+
+    public function getCustomDarkThemeCss(): ?string
+    {
+        return $this->customDarkThemeCss;
+    }
+
+    public function setCustomDarkThemeCss(?string $customDarkThemeCss): User
+    {
+        $this->customDarkThemeCss = $customDarkThemeCss;
 
         return $this;
     }

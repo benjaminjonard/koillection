@@ -1,13 +1,15 @@
 :root{
-    --surface-color: #2a2a2a;
+    --surface-color: #2a2a2a; /* Should be the same as --background-color */
     --background-color: #2a2a2a;
     --background-color-dark: #222222;
     --background-color-light: #5e5e5e;
+
     --font-color-light: #7d7f82;
     --font-color-medium: #cccccc;
     --font-color-main: #cccccc;
+
     --primary-color: #009688;
-    --secondary-color: #009688;
+    --secondary-color: #009688; /* Mainly used for icons and titles */
 }
 
 .avatar.circle.color-avatar, .user-avatar.circle {

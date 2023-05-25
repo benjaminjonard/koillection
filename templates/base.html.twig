@@ -47,8 +47,17 @@
             {% if app.user is null or app.user.theme == 'browser' %}
                 {{ encore_entry_link_tags("light", null, '_default', {media: '(prefers-color-scheme: light)'}) }}
                 {{ encore_entry_link_tags("dark", null, '_default', {media: '(prefers-color-scheme: dark)'}) }}
+                {% if app.user %}
+                    <style media="(prefers-color-scheme: dark)">{{ app.user.customDarkThemeCss }}</style>
+                    <style media="(prefers-color-scheme: light)">{{ app.user.customLightThemeCss }}</style>
+                {% endif %}
             {% else %}
                 {{ encore_entry_link_tags(app.user.theme) }}
+                {% if app.user.theme == 'dark' %}
+                    <style>{{ app.user.customDarkThemeCss }}</style>
+                {% else %}
+                    <style>{{ app.user.customLightThemeCss }}</style>
+                {% endif %}
             {% endif %}
 
         {% endblock %}

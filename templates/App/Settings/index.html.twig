@@ -47,6 +47,18 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                {{ form_row(form.customLightThemeCss, {'label' : 'label.custom_light_theme_css', 'attr' : {'class': 'materialize-textarea'}} ) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                {{ form_row(form.customDarkThemeCss, {'label' : 'label.custom_dark_theme_css', 'attr' : {'class': 'materialize-textarea'}} ) }}
+            </div>
+        </div>
+
         <h3 class="header">{{ 'title.update_visibility'|trans }}</h3>
 
         <div class="row">
