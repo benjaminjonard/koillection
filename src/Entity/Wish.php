@@ -79,7 +79,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     #[Groups(['wish:read', 'wish:write'])]
     private ?string $comment = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['wish:image'])]
     #[Groups(['wish:write', 'wish:image'])]
     private ?File $file = null;
@@ -257,7 +257,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

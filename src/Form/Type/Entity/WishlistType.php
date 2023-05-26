@@ -10,6 +10,7 @@ use App\Form\DataTransformer\Base64ToImageTransformer;
 use App\Repository\WishlistRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,6 +54,10 @@ class WishlistType extends AbstractType
                     'model_transformer' => $this->base64ToImageTransformer,
                 ])
             )
+            ->add('deleteImage', CheckboxType::class, [
+                'label' => false,
+                'required' => false
+            ])
         ;
     }
 

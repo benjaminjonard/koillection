@@ -37,12 +37,12 @@ class ImageHandler
         if ($file instanceof UploadedFile) {
             $user = $this->security->getUser();
             if ($this->env === 'test') {
-                $relativePath = 'uploads/tests/';
+                $relativePath = '/tmp/';
+                $absolutePath = '/tmp/';
             } else {
                 $relativePath = 'uploads/'.$user->getId().'/';
+                $absolutePath = $this->publicPath.'/'.$relativePath;
             }
-
-            $absolutePath = $this->publicPath.'/'.$relativePath;
 
             $generatedName = $this->randomStringGenerator->generate(20);
             $extension = str_replace('image/', '', mime_content_type($file->getRealPath()));
@@ -51,28 +51,29 @@ class ImageHandler
             $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
             $file->move($absolutePath, $fileName);
 
+
             $this->removeOldFile($entity, $attribute);
-            $this->accessor->setValue($entity, $attribute->getPath(), $relativePath.$fileName);
+            $this->accessor->setValue($entity, $attribute->getPathProperty(), $relativePath.$fileName);
 
             if ($attribute->getMaxWidth() || $attribute->getMaxHeight()) {
                 $this->thumbnailGenerator->crop($absolutePath.'/'.$fileName, $attribute->getMaxWidth(), $attribute->getMaxHeight());
             }
 
             $thumbnailFormat = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::THUMBNAILS_FORMAT])?->getValue() ?? $extension;
-            if (null !== $attribute->getSmallThumbnailPath()) {
+            if (null !== $attribute->getSmallThumbnailPathProperty()) {
                 $smallThumbnailFileName = $generatedName.'_small.'.$thumbnailFormat;
                 $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$smallThumbnailFileName, 300, $thumbnailFormat);
-                $this->accessor->setValue($entity, $attribute->getSmallThumbnailPath(), $result ? $relativePath.$smallThumbnailFileName : null);
+                $this->accessor->setValue($entity, $attribute->getSmallThumbnailPathProperty(), $result ? $relativePath.$smallThumbnailFileName : null);
             }
 
-            if (null !== $attribute->getLargeThumbnailPath()) {
+            if (null !== $attribute->getLargeThumbnailPathProperty()) {
                 $largeThumbnailFileName = $generatedName.'_large.'.$thumbnailFormat;
                 $result = $this->thumbnailGenerator->generate($absolutePath.'/'.$fileName, $absolutePath.'/'.$largeThumbnailFileName, 600, $thumbnailFormat);
-                $this->accessor->setValue($entity, $attribute->getLargeThumbnailPath(), $result ? $relativePath.$largeThumbnailFileName : null);
+                $this->accessor->setValue($entity, $attribute->getLargeThumbnailPathProperty(), $result ? $relativePath.$largeThumbnailFileName : null);
             }
 
-            if (null !== $attribute->getOriginalFilenamePath()) {
-                $this->accessor->setValue($entity, $attribute->getOriginalFilenamePath(), $file->getClientOriginalName());
+            if (null !== $attribute->getOriginalFilenamePathProperty()) {
+                $this->accessor->setValue($entity, $attribute->getOriginalFilenamePathProperty(), $file->getClientOriginalName());
             }
 
             $this->accessor->setValue($entity, $property, null);
@@ -81,7 +82,7 @@ class ImageHandler
 
     public function setFileFromFilename(object $entity, string $property, Upload $attribute): void
     {
-        $path = $this->accessor->getValue($entity, $attribute->getPath());
+        $path = $this->accessor->getValue($entity, $attribute->getPathProperty());
 
         if (null !== $path) {
             $file = new File($this->publicPath.'/'.$path, false);
@@ -91,25 +92,28 @@ class ImageHandler
 
     public function removeOldFile(object $entity, Upload $attribute): void
     {
-        if (null !== $attribute->getPath()) {
-            $path = $this->accessor->getValue($entity, $attribute->getPath());
+        if (null !== $attribute->getPathProperty()) {
+            $path = $this->accessor->getValue($entity, $attribute->getPathProperty());
             if (null !== $path) {
-                @unlink($this->publicPath.'/'.$path);
+                @unlink(str_starts_with($path, '/tmp') ? $path : $this->publicPath.'/'.$path);
             }
+            $this->accessor->setValue($entity, $attribute->getPathProperty(), null);
         }
 
-        if (null !== $attribute->getSmallThumbnailPath()) {
-            $path = $this->accessor->getValue($entity, $attribute->getSmallThumbnailPath());
+        if (null !== $attribute->getSmallThumbnailPathProperty()) {
+            $path = $this->accessor->getValue($entity, $attribute->getSmallThumbnailPathProperty());
             if (null !== $path) {
-                @unlink($this->publicPath.'/'.$path);
+                @unlink(str_starts_with($path, '/tmp') ? $path : $this->publicPath.'/'.$path);
             }
+            $this->accessor->setValue($entity, $attribute->getSmallThumbnailPathProperty(), null);
         }
 
-        if (null !== $attribute->getLargeThumbnailPath()) {
-            $path = $this->accessor->getValue($entity, $attribute->getLargeThumbnailPath());
+        if (null !== $attribute->getLargeThumbnailPathProperty()) {
+            $path = $this->accessor->getValue($entity, $attribute->getLargeThumbnailPathProperty());
             if (null !== $path) {
-                @unlink($this->publicPath.'/'.$path);
+                @unlink(str_starts_with($path, '/tmp') ? $path : $this->publicPath.'/'.$path);
             }
+            $this->accessor->setValue($entity, $attribute->getLargeThumbnailPathProperty(), null);
         }
     }
 }

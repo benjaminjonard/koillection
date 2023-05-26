@@ -65,7 +65,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Groups(['album:read'])]
     private ?string $color = null;
 
-    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
+    #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['album:image'])]
     #[Groups(['album:write', 'album:image'])]
     private ?File $file = null;
@@ -73,6 +73,9 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['album:read'])]
     private ?string $image = null;
+
+    #[Groups(['album:write'])]
+    private ?bool $deleteImage = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'albums')]
     #[Groups(['album:read'])]
@@ -324,6 +327,19 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     public function setCachedValues(array $cachedValues): Album
     {
         $this->cachedValues = $cachedValues;
+
+        return $this;
+    }
+
+    public function getDeleteImage(): ?bool
+    {
+        return $this->deleteImage;
+    }
+
+    public function setDeleteImage(?bool $deleteImage): Album
+    {
+        $this->deleteImage = $deleteImage;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

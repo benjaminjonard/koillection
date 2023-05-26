@@ -108,7 +108,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\OneToMany(targetEntity: Loan::class, mappedBy: 'item', cascade: ['remove'])]
     private DoctrineCollection $loans;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail', largeThumbnailPathProperty: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['item:image'])]
     #[Groups(['item:write', 'item:image'])]
     private ?File $file = null;

@@ -15,6 +15,7 @@ use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
+use App\Service\ImageHandler;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -160,7 +161,7 @@ class CollectionController extends AbstractController
         TranslatorInterface $translator,
         CollectionRepository $collectionRepository,
         ChoiceListRepository $choiceListRepository,
-        ManagerRegistry $managerRegistry
+        ManagerRegistry $managerRegistry,
     ): Response {
         $form = $this->createForm(CollectionType::class, $collection);
         $form->handleRequest($request);

@@ -66,7 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:read', 'user:write'])]
     private ?string $plainPassword = null;
 
-    #[Upload(path: 'avatar', maxWidth: 200, maxHeight: 200)]
+    #[Upload(pathProperty: 'avatar', deleteProperty: 'deleteAvatar', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'])]
     #[Groups(['user:write', 'user:image'])]
     private ?File $file = null;
@@ -74,6 +74,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['user:read'])]
     private ?string $avatar = null;
+
+    #[Groups(['collection:write'])]
+    private ?bool $deleteAvatar = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $enabled = true;
@@ -657,6 +660,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setSearchInDataByDefaultEnabled(bool $searchInDataByDefaultEnabled): User
     {
         $this->searchInDataByDefaultEnabled = $searchInDataByDefaultEnabled;
+
+        return $this;
+    }
+
+    public function getDeleteAvatar(): ?bool
+    {
+        return $this->deleteAvatar;
+    }
+
+    public function setDeleteAvatar(?bool $deleteAvatar): User
+    {
+        $this->deleteAvatar = $deleteAvatar;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

@@ -266,6 +266,7 @@ class DatumApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Datum::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 
     public function test_post_datum_file(): void
@@ -293,5 +294,6 @@ class DatumApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Datum::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['file']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['file']);
     }
 }

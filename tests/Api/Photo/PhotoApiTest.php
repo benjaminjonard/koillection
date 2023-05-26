@@ -179,5 +179,6 @@ class PhotoApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Photo::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 }

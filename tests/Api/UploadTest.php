@@ -44,6 +44,7 @@ class UploadTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 
     public function test_upload_png(): void
@@ -71,6 +72,7 @@ class UploadTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 
     public function test_upload_jpeg(): void
@@ -98,6 +100,7 @@ class UploadTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 
     public function test_upload_webp(): void
@@ -125,5 +128,6 @@ class UploadTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 }

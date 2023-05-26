@@ -4,7 +4,7 @@ import '../node_modules/croppie/croppie.css';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-    static targets = ['area', 'input', 'emptyPreview', 'originalPreview', 'currentPreview', 'removeBtn', 'cancelBtn'];
+    static targets = ['area', 'input', 'emptyPreview', 'originalPreview', 'currentPreview', 'removeBtn', 'cancelBtn', 'deleteCheckbox'];
 
     croppie = null;
 
@@ -64,12 +64,14 @@ export default class extends Controller {
                 });
             };
             reader.readAsDataURL(this.inputTarget.files[0]);
+            this.deleteCheckboxTarget.checked = false;
         }
     }
 
     remove() {
         this.element.querySelector('.file-input').value = '';
         this.inputTarget.value = '';
+        this.deleteCheckboxTarget.checked = true;
 
         this.currentPreviewTarget.src = 'data:image/png;base64,' + this.emptyPreviewTarget.dataset.base64;
         this.croppie.destroy();
@@ -79,6 +81,7 @@ export default class extends Controller {
     cancel() {
         this.element.querySelector('.file-input').value = '';
         this.inputTarget.value = '';
+        this.deleteCheckboxTarget.checked = false;
 
         this.currentPreviewTarget.src = this.originalPreviewTarget.dataset.base64;
         this.croppie.destroy();

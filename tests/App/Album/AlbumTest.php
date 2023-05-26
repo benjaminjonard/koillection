@@ -11,6 +11,7 @@ use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -101,7 +102,12 @@ class AlbumTest extends WebTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $album = AlbumFactory::createOne(['owner' => $user]);
+
+        $filesystem = new Filesystem();
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+
+        $album = AlbumFactory::createOne(['owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
 
         // Act
         $this->client->request('GET', '/albums/'.$album->getId().'/edit');
@@ -112,6 +118,29 @@ class AlbumTest extends WebTestCase
 
         // Assert
         $this->assertSame('Other album', $crawler->filter('h1')->text());
+        $this->assertFileExists("/tmp/{$uniqId}.png");
+    }
+
+    public function test_can_delete_album_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+
+        $filesystem = new Filesystem();
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+        $album = AlbumFactory::createOne(['title' => 'Home', 'owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/albums/'.$album->getId().'/edit');
+        $crawler = $this->client->submitForm('Submit', [
+            'album[deleteImage]' => true,
+        ]);
+
+        // Assert
+        $this->assertSame('H', $crawler->filter('.collection-header')->filter('.thumbnail')->text());
+        $this->assertFileDoesNotExist("/tmp/{$uniqId}.png");
     }
 
     public function test_can_delete_album(): void

@@ -71,7 +71,7 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
     #[Groups(['photo:read'])]
     private ?User $owner = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['photo:image'])]
     #[Groups(['photo:write', 'photo:image'])]
     private ?File $file = null;
@@ -241,7 +241,7 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

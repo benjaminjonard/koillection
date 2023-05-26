@@ -98,7 +98,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private ?string $color = null;
 
-    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
+    #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['colletion:image'])]
     #[Groups(['collection:write', 'collection:image'])]
     private ?File $file = null;
@@ -106,6 +106,9 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['collection:read'])]
     private ?string $image = null;
+
+    #[Groups(['collection:write'])]
+    private ?bool $deleteImage = null;
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['collection:read'])]
@@ -401,6 +404,19 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setCachedValues(array $cachedValues): Collection
     {
         $this->cachedValues = $cachedValues;
+
+        return $this;
+    }
+
+    public function getDeleteImage(): ?bool
+    {
+        return $this->deleteImage;
+    }
+
+    public function setDeleteImage(?bool $deleteImage): Collection
+    {
+        $this->deleteImage = $deleteImage;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

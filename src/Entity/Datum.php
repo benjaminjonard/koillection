@@ -77,7 +77,7 @@ class Datum implements \Stringable
     #[Groups(['datum:read', 'datum:write'])]
     private ?int $position = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail', largeThumbnailPath: 'imageLargeThumbnail')]
+    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail', largeThumbnailPathProperty: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['datum:image'])]
     #[Groups(['datum:write', 'datum:image'])]
     private ?File $fileImage = null;
@@ -94,7 +94,7 @@ class Datum implements \Stringable
     #[Groups(['datum:read'])]
     private ?string $imageLargeThumbnail = null;
 
-    #[Upload(path: 'file', originalFilenamePath: 'originalFilename')]
+    #[Upload(pathProperty: 'file', originalFilenamePathProperty: 'originalFilename')]
     #[Assert\File(groups: ['datum:image'])]
     #[Groups(['datum:write', 'datum:file'])]
     private ?File $fileFile = null;

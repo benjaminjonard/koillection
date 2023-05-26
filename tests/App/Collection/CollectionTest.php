@@ -17,6 +17,7 @@ use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -190,7 +191,12 @@ class CollectionTest extends WebTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $filesystem = new Filesystem();
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+
+        $collection = CollectionFactory::createOne(['owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
         $collection->getChildrenDisplayConfiguration()
             ->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST)
             ->setColumns(['Publisher'])
@@ -200,7 +206,7 @@ class CollectionTest extends WebTestCase
         ;
         $collection->save();
 
-        $child2 = CollectionFactory::createOne(['parent' => $collection, 'owner' => $user]);
+        CollectionFactory::createOne(['parent' => $collection, 'owner' => $user]);
         $item1 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Publisher']);
@@ -209,7 +215,7 @@ class CollectionTest extends WebTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Publisher']);
 
         // Act
-        $crawler = $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
+        $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
             'collection[title]' => 'Berserk',
             'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC,
@@ -221,6 +227,30 @@ class CollectionTest extends WebTestCase
         $this->assertSame('Berserk', $crawler->filter('h1')->text());
         $this->assertSame('Series', $crawler->filter('h2')->first()->text());
         $this->assertSame('One-shots', $crawler->filter('h2')->eq(1)->text());
+        $this->assertSame("/tmp/{$uniqId}.png", $crawler->filter('img')->eq(1)->attr('src'));
+        $this->assertFileExists("/tmp/{$uniqId}.png");
+    }
+
+    public function test_can_delete_collection_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+
+        $filesystem = new Filesystem();
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+        $collection = CollectionFactory::createOne(['title' => 'Berserk', 'owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
+        $crawler = $this->client->submitForm('Submit', [
+            'collection[deleteImage]' => true,
+        ]);
+
+        // Assert
+        $this->assertSame('B', $crawler->filter('.collection-header')->filter('.thumbnail')->text());
+        $this->assertFileDoesNotExist("/tmp/{$uniqId}.png");
     }
 
     public function test_can_get_collection_items_list(): void

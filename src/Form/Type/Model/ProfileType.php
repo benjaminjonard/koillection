@@ -7,6 +7,7 @@ namespace App\Form\Type\Model;
 use App\Entity\User;
 use App\Form\DataTransformer\Base64ToImageTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType as SymfonyPasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -31,6 +32,10 @@ class ProfileType extends AbstractType
                     'model_transformer' => $this->base64ToImageTransformer,
                 ])
             )
+            ->add('deleteAvatar', CheckboxType::class, [
+                'label' => false,
+                'required' => false
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => SymfonyPasswordType::class,
                 'required' => false,

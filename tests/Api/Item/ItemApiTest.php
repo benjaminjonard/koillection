@@ -261,5 +261,6 @@ class ItemApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 }

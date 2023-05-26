@@ -227,5 +227,6 @@ class CollectionApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Collection::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
 }

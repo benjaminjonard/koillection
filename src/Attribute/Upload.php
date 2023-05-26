@@ -8,10 +8,11 @@ namespace App\Attribute;
 class Upload
 {
     public function __construct(
-        private readonly string $path,
-        private readonly ?string $smallThumbnailPath = null,
-        private readonly ?string $largeThumbnailPath = null,
-        private readonly ?string $originalFilenamePath = null,
+        private readonly string $pathProperty,
+        private readonly ?string $smallThumbnailPathProperty = null,
+        private readonly ?string $largeThumbnailPathProperty = null,
+        private readonly ?string $originalFilenamePathProperty = null,
+        private readonly ?string $deleteProperty = null,
         private readonly ?int $maxWidth = null,
         private readonly ?int $maxHeight = null,
     ) {
@@ -22,33 +23,39 @@ class Upload
         $arguments = $reflectionAttribute->getArguments();
 
         return new self(
-            $arguments['path'] ?? null,
-            $arguments['smallThumbnailPath'] ?? null,
-            $arguments['largeThumbnailPath'] ?? null,
-            $arguments['originalFilenamePath'] ?? null,
+            $arguments['pathProperty'] ?? null,
+            $arguments['smallThumbnailPathProperty'] ?? null,
+            $arguments['largeThumbnailPathProperty'] ?? null,
+            $arguments['originalFilenamePathProperty'] ?? null,
+            $arguments['deleteProperty'] ?? null,
             $arguments['maxWidth'] ?? null,
             $arguments['maxHeight'] ?? null
         );
     }
 
-    public function getPath(): ?string
+    public function getPathProperty(): ?string
     {
-        return $this->path;
+        return $this->pathProperty;
     }
 
-    public function getSmallThumbnailPath(): ?string
+    public function getSmallThumbnailPathProperty(): ?string
     {
-        return $this->smallThumbnailPath;
+        return $this->smallThumbnailPathProperty;
     }
 
-    public function getLargeThumbnailPath(): ?string
+    public function getLargeThumbnailPathProperty(): ?string
     {
-        return $this->largeThumbnailPath;
+        return $this->largeThumbnailPathProperty;
     }
 
-    public function getOriginalFilenamePath(): ?string
+    public function getOriginalFilenamePathProperty(): ?string
     {
-        return $this->originalFilenamePath;
+        return $this->originalFilenamePathProperty;
+    }
+
+    public function getDeleteProperty(): ?string
+    {
+        return $this->deleteProperty;
     }
 
     public function getMaxWidth(): ?int

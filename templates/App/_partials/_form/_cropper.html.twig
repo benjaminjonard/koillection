@@ -25,7 +25,7 @@
             <button type="button"
                     class="btn waves-effect waves-light btn-cancel"
                     data-croppie-target="removeBtn"
-                    data-action="click->croppie#remove"
+                    data-action="click->croppie#remove click->thumbnail#remove"
                     title="{{ 'tooltip.remove_thumbnail'|trans }}"
             >
                 <i class="fa fa-trash fa-fw"></i>
@@ -38,6 +38,14 @@
             <img src="{{ form.vars.value|default(preload(asset('build/images/default-round.png'), {as: 'image'})) }}" data-croppie-target="currentPreview">
         </div>
         <input type="hidden" class="file-input" value="{{ value|default('') }}" {{ block('widget_attributes') }}/>
+
+        {% if form.parent.deleteImage is defined %}
+            <span class="visibility-none">{{ form_row(form.parent.deleteImage, {'attr': {'data-croppie-target': 'deleteCheckbox'}}) }}</span>
+        {% endif %}
+
+        {% if form.parent.deleteAvatar is defined %}
+            <span class="visibility-none">{{ form_row(form.parent.deleteAvatar, {'attr': {'data-croppie-target': 'deleteCheckbox'}}) }}</span>
+        {% endif %}
     </div>
     {{- form_errors(form) -}}
 {% endblock cropper %}

@@ -7,6 +7,7 @@ namespace App\Tests\App;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -26,7 +27,11 @@ class ProfileTest extends WebTestCase
     public function test_can_edit_profile(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $filesystem = new Filesystem();
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+
+        $user = UserFactory::createOne(['avatar' => "/tmp/{$uniqId}.png"])->object();
         $this->client->loginUser($user);
 
         // Act
@@ -39,5 +44,26 @@ class ProfileTest extends WebTestCase
         // Assert
         $this->assertResponseIsSuccessful();
         UserFactory::assert()->exists(['username' => 'Stitch', 'email' => 'stitch@koillection.com']);
+        $this->assertFileExists("/tmp/{$uniqId}.png");
+    }
+
+    public function test_can_delete_avatar_image(): void
+    {
+        // Arrange
+        $filesystem = new Filesystem();
+        $uniqId = uniqid();
+        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
+        $user = UserFactory::createOne(['username' => 'Stitch', 'avatar' => "/tmp/{$uniqId}.png"])->object();
+        $this->client->loginUser($user);
+
+        // Act
+        $this->client->request('GET', '/profile');
+        $crawler = $this->client->submitForm('Submit', [
+            'profile[deleteAvatar]' => true,
+        ]);
+
+        // Assert
+        $this->assertSame('S', $crawler->filter('.user-avatar')->text());
+        $this->assertFileDoesNotExist("/tmp/{$uniqId}.png");
     }
 }

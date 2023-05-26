@@ -62,7 +62,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     #[Groups(['tag:read', 'tag:write'])]
     private ?string $description = null;
 
-    #[Upload(path: 'image', smallThumbnailPath: 'imageSmallThumbnail')]
+    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['tag:image'])]
     #[Groups(['tag:write', 'tag:image'])]
     private ?File $file = null;
@@ -218,7 +218,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

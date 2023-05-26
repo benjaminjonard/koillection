@@ -84,7 +84,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Wishlist $parent = null;
 
-    #[Upload(path: 'image', maxWidth: 200, maxHeight: 200)]
+    #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['wishlist:image'])]
     #[Groups(['wishlist:write', 'wishlist:image'])]
     private ?File $file = null;
@@ -92,6 +92,9 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['wishlist:read'])]
     private ?string $image = null;
+
+    #[Groups(['wishlist:write'])]
+    private ?bool $deleteImage = null;
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Groups(['wishlist:read'])]
@@ -315,6 +318,19 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     public function setCachedValues(array $cachedValues): Wishlist
     {
         $this->cachedValues = $cachedValues;
+
+        return $this;
+    }
+
+    public function getDeleteImage(): ?bool
+    {
+        return $this->deleteImage;
+    }
+
+    public function setDeleteImage(?bool $deleteImage): Wishlist
+    {
+        $this->deleteImage = $deleteImage;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }
