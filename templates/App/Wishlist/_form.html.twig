@@ -1,26 +1,26 @@
 {{ form_start(form) }}
     {{ form_row(form.file) }}
 <div class="row">
-    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
         {{ form_row(form.name, {'label' : 'label.name'}) }}
     </div>
-    <div class="col s12 l5 xl3">
+    <div class="col s12 l5 xl4">
         {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
     </div>
 </div>
 
 <div class="row">
-    <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
         {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}}) }}
     </div>
-    <div class="col s12 l5 xl3">
+    <div class="col s12 l5 xl4">
         {{ form_row(form.childrenDisplayConfiguration.displayMode, {'label' : 'label.sub_wishlists_display_mode', 'attr': {
             'data-controller': 'select--display-mode',
         }} ) }}
     </div>
 </div>
 
-<div class="row center-align form-btn-holder">
+<div class="center-align form-btn-holder">
     {% if app.request.get('_route') == 'app_wishlist_add' %}
         {% if app.request.query.has('parent') %}
             {% set cancelUrl = path('app_wishlist_show', {id: app.request.query.get('parent')}) %}

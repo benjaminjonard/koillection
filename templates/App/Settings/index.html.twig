@@ -18,96 +18,97 @@
 <div class="content-block">
     <div class="block-element">
         {{ form_start(form) }}
-        <h3 class="header">{{ 'title.update_settings'|trans }}</h3>
+            <h3 class="header">{{ 'title.update_settings'|trans }}</h3>
 
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.locale, {'label' : 'label.locale', 'attr': {'data-controller': 'select--locale'}} ) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.currency, {'label' : 'label.currency', 'attr': {'data-controller': 'select--default'}} ) }}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.timezone, {'label' : 'label.timezone', 'attr': {'data-controller': 'select--default'}} ) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.dateFormat, {'label' : 'label.date_format', 'attr': {'data-controller': 'select--default'}} ) }}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.theme, {'label' : 'label.theme', 'attr': {'data-controller': 'select--default'}}) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.searchInDataByDefaultEnabled, {'label' : 'label.search_in_data_by_default_enabled'}) }}
-            </div>
-        </div>
-
-        <h3 class="header">{{ 'title.update_visibility'|trans }}</h3>
-
-        <div class="row">
-            <div class="col s12 l10 offset-l1 xl6 offset-xl3">
-                <p>
-                    {{ 'message.visibility'|trans }}
-                    <strong>
-                        <a href="{{ url('app_shared_homepage', {username : app.user.username}) }}">{{ url('app_shared_homepage', {username : app.user.username}) }}</a>
-                    </strong>
-                </p>
-                <p>{{ 'message.visibility_per_item'|trans }}</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
-            </div>
-        </div>
-
-        <h3 class="header">{{ 'title.update_features'|trans }}</h3>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl3 offset-xl3">
-                {{ form_row(form.wishlistsFeatureEnabled, {'label' : 'label.wishlists_feature_enabled'}) }}
-            </div>
-            <div class="col s12 l5 xl3">
-                {{ form_row(form.tagsFeatureEnabled, {'label' : 'label.tags_feature_enabled'}) }}
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.locale, {'label' : 'label.locale', 'attr': {'data-controller': 'select--locale'}} ) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.currency, {'label' : 'label.currency', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
             </div>
 
             <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.timezone, {'label' : 'label.timezone', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.dateFormat, {'label' : 'label.date_format', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.theme, {'label' : 'label.theme', 'attr': {'data-controller': 'select--default'}}) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.searchInDataByDefaultEnabled, {'label' : 'label.search_in_data_by_default_enabled'}) }}
+                </div>
+            </div>
+
+            <h3 class="header">{{ 'title.update_visibility'|trans }}</h3>
+
+            <div class="row">
+                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                    <p>
+                        {{ 'message.visibility'|trans }}
+                        <strong>
+                            <a href="{{ url('app_shared_homepage', {username : app.user.username}) }}">{{ url('app_shared_homepage', {username : app.user.username}) }}</a>
+                        </strong>
+                    </p>
+                    <p>{{ 'message.visibility_per_item'|trans }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+                </div>
+            </div>
+
+            <h3 class="header">{{ 'title.update_features'|trans }}</h3>
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.wishlistsFeatureEnabled, {'label' : 'label.wishlists_feature_enabled'}) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.tagsFeatureEnabled, {'label' : 'label.tags_feature_enabled'}) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
                     {{ form_row(form.signsFeatureEnabled, {'label' : 'label.signs_feature_enabled'}) }}
                 </div>
-                <div class="col s12 l5 xl3">
+                <div class="col s12 l5 xl4">
                     {{ form_row(form.albumsFeatureEnabled, {'label' : 'label.albums_feature_enabled'}) }}
                 </div>
             </div>
 
             <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
                     {{ form_row(form.loansFeatureEnabled, {'label' : 'label.loans_feature_enabled'}) }}
                 </div>
-                <div class="col s12 l5 xl3">
+                <div class="col s12 l5 xl4">
                     {{ form_row(form.templatesFeatureEnabled, {'label' : 'label.templates_feature_enabled'}) }}
                 </div>
             </div>
 
             <div class="row">
-                <div class="col s12 l5 offset-l1 xl3 offset-xl3">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
                     {{ form_row(form.historyFeatureEnabled, {'label' : 'label.history_feature_enabled'}) }}
                 </div>
-                <div class="col s12 l5 xl3">
+                <div class="col s12 l5 xl4">
                     {{ form_row(form.statisticsFeatureEnabled, {'label' : 'label.statistics_feature_enabled'}) }}
                 </div>
             </div>
 
-            <div class="row center-align form-btn-holder">
+            <div class="center-align form-btn-holder">
                 <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
             </div>
-            {{ form_end(form) }}
-        </div>
+        {{ form_end(form) }}
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

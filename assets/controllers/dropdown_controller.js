@@ -1,8 +1,19 @@
 import { Controller } from '@hotwired/stimulus';
-import { Dropdown } from '@materializecss/materialize';
+import { useClickOutside } from 'stimulus-use'
 
 export default class extends Controller {
+    static targets = ['menu'];
+
     connect() {
-        M.Dropdown.init(this.element);
+        useClickOutside(this)
+    }
+
+    show(event) {
+        event.preventDefault();
+        this.menuTarget.classList.remove('hidden');
+    }
+
+    clickOutside() {
+        this.menuTarget.classList.add('hidden');
     }
 }

@@ -47,10 +47,18 @@
             {% if app.user is null or app.user.theme == 'browser' %}
                 {{ encore_entry_link_tags("light", null, '_default', {media: '(prefers-color-scheme: light)'}) }}
                 {{ encore_entry_link_tags("dark", null, '_default', {media: '(prefers-color-scheme: dark)'}) }}
+
+                <style media="(prefers-color-scheme: dark)">{{ getConfigurationValue('custom-dark-theme-css') }}</style>
+                <style media="(prefers-color-scheme: light)">{{ getConfigurationValue('custom-light-theme-css') }}</style>
             {% else %}
                 {{ encore_entry_link_tags(app.user.theme) }}
-            {% endif %}
 
+                {% if app.user.theme == 'dark' %}
+                    <style>{{ getConfigurationValue('custom-dark-theme-css') }}</style>
+                {% else %}
+                    <style>{{ getConfigurationValue('custom-light-theme-css') }}</style>
+                {% endif %}
+            {% endif %}
         {% endblock %}
 
         {% block javascripts %}
@@ -64,9 +72,7 @@
     ">
 
         {% block body %}{% endblock %}
-        <div id="settings"
-             data-theme="{{ app.user.theme|default('browser')  }}"
-             data-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"
+        <div id="settings" data-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"
         ></div>
         <div id="offline-message"
              data-controller="offline-message"

@@ -43,7 +43,7 @@
     <div class="content-block" data-controller="tabs">
         <div class="row">
             <div class="tabs-block col s12">
-                <ul class="tabs">
+                <ul class="tabs row">
                     <li class="tab col s12 l2 offset-l1 current" data-tabs-target="tab" data-action="click->tabs#display" data-for="items">
                         {{ 'label.items'|trans }} ({{ results.items is defined ? results.items|length : 0 }})
                     </li>

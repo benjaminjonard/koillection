@@ -18,6 +18,11 @@ class IntlRuntime implements RuntimeExtensionInterface
 
     public function getEmojiFlag(string $countryCode): string
     {
+        $countryCode = mb_strtoupper($countryCode);
+        if ($countryCode === 'EN') {
+            $countryCode = "US";
+        }
+
         $regionalOffset = 0x1F1A5;
 
         return mb_chr($regionalOffset + mb_ord($countryCode[0], 'UTF-8'), 'UTF-8')

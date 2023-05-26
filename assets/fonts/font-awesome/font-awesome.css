@@ -216,3 +216,6 @@
 .fa-file-code-o:before {
   content: "\f1c9";
 }
+.fa-language:before {
+  content: "\f1ab";
+}

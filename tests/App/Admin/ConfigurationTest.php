@@ -48,7 +48,7 @@ class ConfigurationTest extends WebTestCase
         // Act
         $this->client->request('GET', '/admin/configuration');
         $this->client->submitForm('submit', [
-            'configuration[thumbnailsFormat]' => ConfigurationEnum::THUMBNAILS_FORMAT_WEBP,
+            'configuration_admin[thumbnailsFormat][value]' => ConfigurationEnum::THUMBNAILS_FORMAT_WEBP,
         ]);
 
         // Assert

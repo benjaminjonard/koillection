@@ -298,7 +298,7 @@ class ItemTest extends WebTestCase
         $this->assertResponseHeaderSame('Content-Type', 'application/json');
         $content = json_decode($this->client->getResponse()->getContent(), true);
         $this->assertCount(1, $content);
-        $this->assertSame('Frieren #1', $content[0]['name']);
+        $this->assertSame('Frieren #1', $content[0]['text']);
     }
 
     public function test_cant_have_multiple_data_with_same_label(): void

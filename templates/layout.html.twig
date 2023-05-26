@@ -34,8 +34,8 @@
                 </div>
 
                 {% if app.user %}
-                    <div class="header-profile" data-controller="profile">
-                        <span data-action="click->profile#show">
+                    <div class="header-profile" data-controller="dropdown">
+                        <span data-action="click->dropdown#show">
                             {% if app.user.avatar != null %}
                                 <img class="user-avatar" src="{{ preload(asset(app.user.avatar), {as: 'image'}) }}">
                             {% else %}
@@ -45,7 +45,7 @@
                             <i class="fa fa-chevron-down fa-fw"></i>
                         </span>
 
-                        <ul class="profile-menu hidden" data-profile-target="menu">
+                        <ul class="dropdown-menu hidden" data-dropdown-target="menu">
                             <li>
                                 <a href="{{ path('app_profile_index') }}">
                                     <i

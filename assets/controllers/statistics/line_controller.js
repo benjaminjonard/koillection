@@ -12,10 +12,8 @@ export default class extends Controller {
     connect() {
         let data = JSON.parse(this.element.dataset.json);
 
-        let theme = document.getElementById('settings').dataset.theme;
-        if (theme == 'browser') {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
+        let primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+        let fontColor = getComputedStyle(document.documentElement).getPropertyValue('--font-color-main');
 
         this.chart = echarts.init(this.element);
         this.chart.setOption({
@@ -28,38 +26,38 @@ export default class extends Controller {
                     return params[0].axisValue + ': ' + Translator.trans('statistics.items', {'count': params[0].data});
                 }
             },
-            color: [theme == 'dark' ? '#00ce99' : '#009688'],
+            color: primaryColor,
             xAxis: {
                 type: 'category',
                 data: Object.keys(data),
                 axisLabel: {
-                    color: theme == 'dark' ? '#f0f0f0': '#323233'
+                    color: fontColor
                 },
                 axisTick: {
                     alignWithLabel: true,
                     lineStyle: {
-                        color: theme == 'dark' ? '#f0f0f0': '#323233'
+                        color: fontColor
                     }
                 },
                 axisLine: {
                     lineStyle: {
-                        color: theme == 'dark' ? '#f0f0f0': '#323233'
+                        color: fontColor
                     }
                 }
             },
             yAxis: {
                 type: 'value',
                 axisLabel: {
-                    color: theme == 'dark' ? '#f0f0f0': '#323233'
+                    color: fontColor
                 },
                 axisTick: {
                     lineStyle: {
-                        color: theme == 'dark' ? '#f0f0f0': '#323233'
+                        color: fontColor
                     }
                 },
                 axisLine: {
                     lineStyle: {
-                        color: theme == 'dark' ? '#f0f0f0': '#323233'
+                        color: fontColor
                     }
                 }
             },
@@ -81,7 +79,7 @@ export default class extends Controller {
                 symbol: 'none',
                 sampling: 'average',
                 areaStyle: {
-                    color: theme == 'dark' ? '#00ce99' : '#009688'
+                    color: primaryColor
                 }
             }]
         });

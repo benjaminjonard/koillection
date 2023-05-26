@@ -7,6 +7,7 @@ namespace App\Twig;
 use App\Entity\Tag;
 use App\Model\BreadcrumbElement;
 use App\Repository\TagRepository;
+use App\Service\ConfigurationHelper;
 use App\Service\ContextHandler;
 use App\Service\FeatureChecker;
 use Symfony\Component\Routing\RouterInterface;
@@ -20,7 +21,10 @@ class AppRuntime implements RuntimeExtensionInterface
         private readonly RouterInterface $router,
         private readonly TagRepository $tagRepository,
         private readonly ContextHandler $contextHandler,
-        private readonly FeatureChecker $featureChecker
+        private readonly FeatureChecker $featureChecker,
+        private readonly ConfigurationHelper $configurationHelper,
+        private readonly string $publicPath,
+        private readonly string $kernelProjectDir,
     ) {
     }
 
@@ -169,5 +173,33 @@ class AppRuntime implements RuntimeExtensionInterface
     public function fileSize(string $path): int
     {
         return is_file($path) ? filesize($path) : 0;
+    }
+
+    public function base64Encode(string $path): string
+    {
+        return base64_encode(file_get_contents($this->publicPath . '/' . $path));
+    }
+
+    public function getDefaultLightThemeColors(): ?string
+    {
+        $path = $this->kernelProjectDir . '/assets/styles/themes/light.css';
+        $content = file_get_contents($path);
+        preg_match('/:root {(.*?)}/ms', $content, $matches);
+
+        return $matches[0];
+    }
+
+    public function getDefaultDarkThemeColors(): ?string
+    {
+        $path = $this->kernelProjectDir . '/assets/styles/themes/dark.css';
+        $content = file_get_contents($path);
+        preg_match('/:root {(.*?)}/ms', $content, $matches);
+
+        return $matches[0];
+    }
+
+    public function getConfigurationValue(string $label): ?string
+    {
+        return $this->configurationHelper->getValue($label);
     }
 }

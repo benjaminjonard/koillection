@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { Autocomplete } from '@materializecss/materialize';
+import { M } from '@materializecss/materialize';
 
 export default class extends Controller {
     static targets = ['input', 'formInput', 'result']
@@ -13,7 +13,7 @@ export default class extends Controller {
         this.autocompleteElement = M.Autocomplete.init(this.inputTarget, {
             onAutocomplete: function (item) {
                 self.onAutocomplete(item)
-            }
+            },
         });
 
         if (this.formInputTarget.value.length > 0) {
@@ -44,7 +44,7 @@ export default class extends Controller {
     }
 
     autocomplete(event) {
-        this.autocompleteElement.updateData({});
+        this.autocompleteElement.setMenuItems({});
         clearTimeout(this.timeout);
         let value = encodeURIComponent(this.inputTarget.value);
         let self = this;
@@ -56,11 +56,7 @@ export default class extends Controller {
                 })
                 .then(response => response.json())
                 .then(function(results) {
-                    let data = {};
-                    for (const result of results) {
-                        data[result] = null;
-                    }
-                    self.autocompleteElement.updateData(data);
+                    self.autocompleteElement.setMenuItems(results);
                     self.autocompleteElement.open();
                 })
             }, 500);
@@ -72,11 +68,22 @@ export default class extends Controller {
     }
 
     onAutocomplete(item) {
+        let value;
+        if (Array.isArray(item)) {
+            value = item[0] ? item[0].text : null;
+        } else {
+            value = item;
+        }
+
+        if (!value) {
+            return;
+        }
+
         let existingElements = JSON.parse(this.formInputTarget.value);
-        let index = existingElements.indexOf(item);
+        let index = existingElements.indexOf(value);
         if (index === -1) {
-            existingElements.push(item);
-            this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(item));
+            existingElements.push(value);
+            this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(value));
         }
 
         this.formInputTarget.value = JSON.stringify(existingElements);

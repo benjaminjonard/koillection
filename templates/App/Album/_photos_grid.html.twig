@@ -4,11 +4,11 @@
         <a class="collection-item element valign-wrapper"
            href="{{ asset(photo.image|default('build/images/default.png')) }}"
            data-lightbox-target="image"
-                {% if context == 'default' %}
-                    data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
-                    data-delete-path="{{ path('app_photo_delete', {id: photo.id}) }}"
-                    data-delete-message="{{ 'message.delete.photo'|trans }}"
-                {% endif %}
+           {% if context == 'default' %}
+               data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
+               data-delete-path="{{ path('app_photo_delete', {id: photo.id}) }}"
+               data-delete-message="{{ 'message.delete.photo'|trans }}"
+           {% endif %}
            data-sub-html="{{ photoText }}"
            data-title="{{ photo.title }}"
            data-filter-target="element"

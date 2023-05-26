@@ -19,16 +19,16 @@
                 {% endif %}
 
                 <div>
-                    <div class="input-field">
+                    <div class="input-field outlined">
                         <input type="text" id="login" name="_login" value="{{ lastUsername }}" required="required"
-                               class="form-control"/>
+                               class="form-control" placeholder=" "/>
                         <label class="required" for="login">{{ 'label.login'|trans }}</label>
                     </div>
                 </div>
                 <div>
-                    <div class="input-field" data-controller="show-password">
+                    <div class="input-field outlined" data-controller="show-password">
                         <input data-show-password-target="input" type="password" id="password" name="_password"
-                               required="required" class="form-control password-input"/>
+                               required="required" class="form-control password-input" placeholder=" "/>
                         <label class="required" for="password">{{ 'label.password'|trans }}</label>
                         <i class="fa fa-eye fa-fw show-password" data-action="click->show-password#updateState"></i>
                     </div>

@@ -1,27 +1,37 @@
 {{ form_start(form, {attr: {"data-filter-ajax-target": "form"}}) }}
 <div class="btn-holder">
-    {{ form_row(form.term, {'attr': {
-        'class': 'filter-input',
-        'data-action': 'keyup->filter-ajax#filter' ,
-        'placeholder': 'filter.by_name'|trans,
-        'autocomplete': 'off'
-    }}) }}
+    {% do form.term.setRendered %}
+    <input type="text"
+           id="search_history_term"
+           name="search_history[term]"
+           class="filter-input"
+           data-action="keyup->filter-ajax#filter"
+           placeholder="{{ 'filter.by_name'|trans }}"
+           autocomplete="off"
+           value="{{ form.term.vars.value }}"
+    >
 </div>
 <div class="table-filter">
     <div class="filter-title">{{ 'filter.title.types'|trans }} :</div>
-    {% for child in form.classes.children %}
-        <div class="inline-checkbox-wrapper">
-            {{ form_row(child, {'attr': { 'data-action': 'change->filter-ajax#filter' }}) }}
-        </div>
-    {% endfor %}
+
+    <div class="row">
+        {% for child in form.classes.children %}
+            <div class="col s12 m4 l2">
+                {{ form_row(child, {'attr': { 'data-action': 'change->filter-ajax#filter' }}) }}
+            </div>
+        {% endfor %}
+    </div>
 </div>
 
 <div class="table-filter">
     <div class="filter-title">{{ 'filter.title.actions'|trans }} :</div>
-    {% for child in form.types.children %}
-        <div class="inline-checkbox-wrapper">
-            {{ form_row(child, {'attr': { 'data-action': 'change->filter-ajax#filter' }}) }}
-        </div>
-    {% endfor %}
+
+    <div class="row">
+        {% for child in form.types.children %}
+            <div class="col s12 m4 l2">
+                {{ form_row(child, {'attr': { 'data-action': 'change->filter-ajax#filter' }}) }}
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {{ form_end(form) }}

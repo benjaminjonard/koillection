@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
-use App\Enum\ConfigurationEnum;
-use App\Form\Type\Entity\Admin\ConfigurationType;
-use App\Repository\ConfigurationRepository;
+use App\Form\Type\Model\ConfigurationAdminType;
+use App\Service\ConfigurationHelper;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,15 +18,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ConfigurationController extends AbstractController
 {
     #[Route(path: '/admin/configuration', name: 'app_admin_configuration_index', methods: ['GET', 'POST'])]
-    public function index(Request $request, TranslatorInterface $translator, ConfigurationRepository $configurationRepository, ManagerRegistry $managerRegistry): Response
-    {
-        $thumbnailsFormat = $configurationRepository->findOneBy(['label' => ConfigurationEnum::THUMBNAILS_FORMAT]);
-        $form = $this->createForm(ConfigurationType::class, null, ['thumbnailsFormat' => $thumbnailsFormat->getValue()]);
+    public function index(
+        Request $request,
+        TranslatorInterface $translator,
+        ConfigurationHelper $configurationHelper,
+        ManagerRegistry $managerRegistry
+    ): Response {
+        $form = $this->createForm(ConfigurationAdminType::class, $configurationHelper->getAdminConfiguration());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $thumbnailsFormat->setValue($form->get('thumbnailsFormat')->getData());
             $managerRegistry->getManager()->flush();
+            $configurationHelper->clearCache();
 
             $this->addFlash('notice', $translator->trans('message.configuration_updated'));
 

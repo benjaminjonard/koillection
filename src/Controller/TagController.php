@@ -84,7 +84,7 @@ class TagController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.tag_edited', ['tag' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.tag_edited', ['tag' => $tag->getLabel()]));
 
             return $this->redirectToRoute('app_tag_show', ['id' => $tag->getId()]);
         }
@@ -106,7 +106,7 @@ class TagController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($tag);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.tag_deleted', ['tag' => '&nbsp;<strong>'.$tag->getLabel().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.tag_deleted', ['tag' => $tag->getLabel()]));
         }
 
         return $this->redirectToRoute('app_tag_index');
@@ -141,8 +141,8 @@ class TagController extends AbstractController
 
         $tags = $tagRepository->findLike($search);
         $data = [];
-        foreach ($tags as $tag) {
-            $data[] = $tag->getLabel();
+        foreach ($tags as $key => $tag) {
+            $data[] = ['id' => $key, 'text' => $tag->getLabel()];
         }
 
         return new JsonResponse($data);

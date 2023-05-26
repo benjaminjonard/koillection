@@ -46,7 +46,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->persist($user);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.user_added', ['user' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.user_added', ['user' => $user->getUsername()]));
 
             return $this->redirectToRoute('app_admin_user_index');
         }
@@ -76,7 +76,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.user_edited', ['user' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.user_edited', ['user' => $user->getUsername()]));
 
             return $this->redirectToRoute('app_admin_user_index', ['id' => $user->getId()]);
         }
@@ -112,7 +112,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->remove($user);
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.user_deleted', ['user' => '&nbsp;<strong>'.$user->getUsername().'</strong>&nbsp;']));
+            $this->addFlash('notice', $translator->trans('message.user_deleted', ['user' => $user->getUsername()]));
         }
 
         return $this->redirectToRoute('app_admin_user_index');

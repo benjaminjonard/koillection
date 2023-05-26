@@ -25,7 +25,7 @@
 {% block content %}
     {{ include('App/Item/_content.html.twig') }}
 
-    <div class="navigation-block row" data-controller="swipe">
+    <div class="navigation-block" data-controller="swipe">
         {% if previousItem is not null %}
             <a data-swipe-target="previous" href="{{ path('app_item_show'|applyContext, {id: previousItem.id}) }}">
                 <span class="unbreakable"><i

@@ -17,6 +17,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('bytes', [AppRuntime::class, 'bytes']),
             new TwigFilter('highlightTags', [AppRuntime::class, 'highlightTags'], ['is_safe' => ['html']]),
             new TwigFilter('jsonDecode', [AppRuntime::class, 'jsonDecode']),
+            new TwigFilter('base64Encode', [AppRuntime::class, 'base64Encode']),
         ];
     }
 
@@ -27,6 +28,9 @@ class AppExtension extends AbstractExtension
             new TwigFunction('getUnderlinedTags', [AppRuntime::class, 'getUnderlinedTags'], ['is_safe' => ['html']]),
             new TwigFunction('isFeatureEnabled', [AppRuntime::class, 'isFeatureEnabled']),
             new TwigFunction('fileSize', [AppRuntime::class, 'fileSize']),
+            new TwigFunction('getDefaultLightThemeColors', [AppRuntime::class, 'getDefaultLightThemeColors']),
+            new TwigFunction('getDefaultDarkThemeColors', [AppRuntime::class, 'getDefaultDarkThemeColors']),
+            new TwigFunction('getConfigurationValue', [AppRuntime::class, 'getConfigurationValue']),
         ];
     }
 }

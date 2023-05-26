@@ -3241,5 +3241,71 @@
         <target>Configuration updated</target>
       </segment>
     </unit>
+    <unit id="YX0yhdx" name="tooltip.cancel_modifications">
+      <segment state="translated">
+        <source>Cancel modifications</source>
+        <target>Cancel modifications</target>
+      </segment>
+    </unit>
+    <unit id="oAD2Kex" name="tooltip.remove_thumbnail">
+      <segment state="translated">
+        <source>Remove thumbnail</source>
+        <target>Remove thumbnail</target>
+      </segment>
+    </unit>
+    <unit id="8QwwFtM" name="title.custom_css">
+      <segment state="translated">
+        <source>Custom CSS</source>
+        <target>Custom CSS</target>
+      </segment>
+    </unit>
+    <unit id="OCFAuxO" name="label.custom_light_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for light theme</source>
+        <target>Custom CSS for light theme</target>
+      </segment>
+    </unit>
+    <unit id="iSj6Yq6" name="label.custom_dark_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for dark theme</source>
+        <target>Custom CSS for dark theme</target>
+      </segment>
+    </unit>
+    <unit id="tgAUZOn" name="message.custom_css_colors_help">
+      <segment state="translated">
+        <source>To change the theme colors, copy and paste the following code in the text area and update the colors as needed.</source>
+        <target>To change the theme colors, copy and paste the following code in the text area and update the colors as needed.</target>
+      </segment>
+    </unit>
+    <unit id="Odut9ks" name="message.custom_css_properties_help">
+      <segment state="translated">
+        <source>For more fine-grained modifications, you can also add custom CSS properties.</source>
+        <target>For more fine-grained modifications, you can also add custom CSS properties.</target>
+      </segment>
+    </unit>
+    <unit id="tQOO9SX" name="title.customize_light_theme">
+      <segment state="translated">
+        <source>Customize light theme</source>
+        <target>Customize light theme</target>
+      </segment>
+    </unit>
+    <unit id="VwEpz4c" name="title.customize_dark_theme">
+      <segment state="translated">
+        <source>Customize dark theme</source>
+        <target>Customize dark theme</target>
+      </segment>
+    </unit>
+    <unit id="UZ5psYq" name="message.show_help_for_light_theme">
+      <segment state="translated">
+        <source>Show help for light theme</source>
+        <target>Show help for light theme</target>
+      </segment>
+    </unit>
+    <unit id="LlfrKW3" name="message.show_help_for_dark_theme">
+      <segment state="translated">
+        <source>Show help for dark theme</source>
+        <target>Show help for dark theme</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

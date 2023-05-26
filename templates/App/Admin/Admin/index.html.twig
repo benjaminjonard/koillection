@@ -20,39 +20,18 @@
 
     <div class="content-block">
         {{ include('/App/Admin/tabs.html.twig', {current: 'overview'}) }}
-        <div class="block-element">
-            <h2 class="header">{{ 'title.tools'|trans }}</h2>
-            <div class="row btn-holder">
-                <a href="{{ path('app_admin_export_sql') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-database fa-fw"></i>{{ 'btn.export_sql'|trans }}
-                </a>
-                <a href="{{ path('app_admin_export_images') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.export_images'|trans }}
-                </a>
-                <a href="{{ path('app_admin_refresh_caches') }}" class="btn waves-effect waves-light">
-                    <i class="fa fa-refresh fa-fw"></i>{{ 'btn.refresh_caches'|trans }}
-                </a>
-            </div>
-        </div>
 
         <div class="block-element">
             <h2 class="header">{{ 'title.overview'|trans }}</h2>
+
             <div class="row statistics">
                 <div class="col s12 m4 xl2">
-                    <div class="pie-wrapper">
-                        {% set percent = ((totalSpace - freeSpace) * 100 / totalSpace)|round(0, 'floor') %}
+                    {% set percent = ((totalSpace - freeSpace) * 100 / totalSpace)|round(0, 'floor') %}
+                    <div class="counter">
                         <span class="label">{{ percent }}<span class="smaller">%</span></span>
-                        <div class="pie {{ percent > 50 ? 'above50' : '' }}">
-                            <div class="left-side half-circle"
-                                 style="-webkit-transform: rotate({{ percent*360/100 }}deg); transform: rotate({{ percent*360/100 }}deg);"></div>
-                            <div class="right-side half-circle"></div>
-                        </div>
-                        <div class="shadow"></div>
                     </div>
-                    <div class="pie-stat">
-                        <div>{{ 'label.space_used'|trans({'used': (totalSpace - freeSpace)|bytes, 'total': totalSpace|bytes}) }}</div>
-                        <div>{{ 'label.space_free'|trans({'free': freeSpace|bytes}) }}</div>
-                    </div>
+                    <div>{{ 'label.space_used'|trans({'used': (totalSpace - freeSpace)|bytes(0), 'total': totalSpace|bytes(0)}) }}</div>
+                    <div>{{ 'label.space_free'|trans({'free': freeSpace|bytes(0)}) }}</div>
                 </div>
                 <div class="col s12 m4 xl2">
                     <div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'count': counters.users}) }}
@@ -119,6 +98,21 @@
                     <div class="counter">
                         <i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
                     </div>{{ 'label.is_opcache_available'|trans }}</div>
+            </div>
+        </div>
+
+        <div class="block-element">
+            <h2 class="header">{{ 'title.tools'|trans }}</h2>
+            <div class="row btn-holder">
+                <a href="{{ path('app_admin_export_sql') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-database fa-fw"></i>{{ 'btn.export_sql'|trans }}
+                </a>
+                <a href="{{ path('app_admin_export_images') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.export_images'|trans }}
+                </a>
+                <a href="{{ path('app_admin_refresh_caches') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-refresh fa-fw"></i>{{ 'btn.refresh_caches'|trans }}
+                </a>
             </div>
         </div>
     </div>
