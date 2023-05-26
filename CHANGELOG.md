@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.4] / TBD
+### Features
+- Add "Remove" and "Cancel" buttons on thumbnail preview (benjaminjonard) 
+- Add option for admin to customize Light theme and Dark theme CSS (benjaminjonard)
+- Add option for admin to change the thumbnails format, requires to regenerate existing thumbnails by executing `php bin/console app:regenerate-thumbnails` in Koillection root directory. Backing up your uploads directory before regeneration is advised. (benjaminjonard)
+- Add support for AVIF image format (benjaminjonard)
+
+### Fixes
+- Fix broken special characters in autocompletes when pressing enter (benjaminjonard)
+
+### Miscellaneous
+- Update materialize library (follows Material Design 3), visual updates for forms (benjaminjonard)
+- Add more context to commands (benjaminjonard)
+- Move Docker base image from Debian to Ubuntu (benjaminjonard) 
+- Add a link to API documentations in right menu (benjaminjonard)
+- Rework translations files, should make translating easier (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+
 ## [1.4.3] / 2023-04-26
 ### Features
 - Add a setting to enable search in data by default (benjaminjonard)
