@@ -105,49 +105,6 @@
                 </div>
             </div>
 
-            <h3 class="header">{{ 'title.custom_css'|trans }}</h3>
-
-            <div class="row">
-                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
-                    {{ form_row(form.customLightThemeCss, {'label' : 'label.custom_light_theme_css', 'attr' : {'class': 'materialize-textarea code-textarea'}} ) }}
-                </div>
-
-                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
-                    {{ include('App/_partials/_modal/_custom_css_help.html.twig', {
-                        id: 'modal-light-theme',
-                        title: 'title.customize_light_theme'|trans,
-                        code: getDefaultLightThemeColors()
-                    }) }}
-
-                    <div class="btn-holder right">
-                        <a href="#modal-light-theme" class="modal-trigger">
-                            {{ 'message.show_help_for_light_theme'|trans }}
-                        </a>
-                    </div>
-                    <br><br>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
-                    {{ form_row(form.customDarkThemeCss, {'label' : 'label.custom_dark_theme_css', 'attr' : {'class': 'materialize-textarea code-textarea'}} ) }}
-                </div>
-
-                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
-                    {{ include('App/_partials/_modal/_custom_css_help.html.twig', {
-                        id: 'modal-dark-theme',
-                        title: 'title.customize_dark_theme'|trans,
-                        code: getDefaultDarkThemeColors()
-                    }) }}
-
-                    <div class="btn-holder right">
-                        <a href="#modal-dark-theme" class="modal-trigger">
-                            {{ 'message.show_help_for_dark_theme'|trans }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             <div class="center-align form-btn-holder">
                 <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
             </div>

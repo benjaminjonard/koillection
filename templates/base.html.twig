@@ -47,16 +47,16 @@
             {% if app.user is null or app.user.theme == 'browser' %}
                 {{ encore_entry_link_tags("light", null, '_default', {media: '(prefers-color-scheme: light)'}) }}
                 {{ encore_entry_link_tags("dark", null, '_default', {media: '(prefers-color-scheme: dark)'}) }}
-                {% if app.user %}
-                    <style media="(prefers-color-scheme: dark)">{{ app.user.customDarkThemeCss }}</style>
-                    <style media="(prefers-color-scheme: light)">{{ app.user.customLightThemeCss }}</style>
-                {% endif %}
+
+                <style media="(prefers-color-scheme: dark)">{{ getConfigurationValue('custom-dark-theme-css') }}</style>
+                <style media="(prefers-color-scheme: light)">{{ getConfigurationValue('custom-light-theme-css') }}</style>
             {% else %}
                 {{ encore_entry_link_tags(app.user.theme) }}
+
                 {% if app.user.theme == 'dark' %}
-                    <style>{{ app.user.customDarkThemeCss }}</style>
+                    <style>{{ getConfigurationValue('custom-dark-theme-css') }}</style>
                 {% else %}
-                    <style>{{ app.user.customLightThemeCss }}</style>
+                    <style>{{ getConfigurationValue('custom-light-theme-css') }}</style>
                 {% endif %}
             {% endif %}
         {% endblock %}

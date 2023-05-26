@@ -7,6 +7,8 @@ namespace App\Enum;
 class ConfigurationEnum
 {
     public const THUMBNAILS_FORMAT = 'thumbnails-format';
+    public const CUSTOM_LIGHT_THEME_CSS = 'custom-light-theme-css';
+    public const CUSTOM_DARK_THEME_CSS = 'custom-dark-theme-css';
 
     public const THUMBNAILS_FORMAT_KEEP_ORIGINAL = null;
     public const THUMBNAILS_FORMAT_JPEG = 'jpeg';
@@ -22,12 +24,12 @@ class ConfigurationEnum
         self::THUMBNAILS_FORMAT_AVIF,
     ];
 
-    public static function geThumbnailFormatsDefaultLabel(): string
+    public static function getThumbnailFormatsDefaultLabel(): string
     {
         return 'global.configuration.thumbnails_format.keep_original';
     }
 
-    public static function geThumbnailFormatsLabels(): array
+    public static function getThumbnailFormatsLabels(): array
     {
         return [
             self::THUMBNAILS_FORMAT_JPEG => 'global.configuration.thumbnails_format.jpeg',

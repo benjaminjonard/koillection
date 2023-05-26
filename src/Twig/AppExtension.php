@@ -30,6 +30,7 @@ class AppExtension extends AbstractExtension
             new TwigFunction('fileSize', [AppRuntime::class, 'fileSize']),
             new TwigFunction('getDefaultLightThemeColors', [AppRuntime::class, 'getDefaultLightThemeColors']),
             new TwigFunction('getDefaultDarkThemeColors', [AppRuntime::class, 'getDefaultDarkThemeColors']),
+            new TwigFunction('getConfigurationValue', [AppRuntime::class, 'getConfigurationValue']),
         ];
     }
 }

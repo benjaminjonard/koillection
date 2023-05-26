@@ -1306,8 +1306,6 @@ html.loading:before {
 }
 
 .box h1 {
-    background-color: #009688;
-    color: #f0f2f5;
     font-size: 28px;
     margin: 0;
     padding: 30px 20px 40px 20px;
@@ -1317,7 +1315,6 @@ html.loading:before {
 }
 
 .box .logo {
-    background-color: #009688;
     background-image: url('../img/logo.svg');
     background-position: center center;
     background-repeat: no-repeat;
@@ -1336,10 +1333,6 @@ html.loading:before {
 .error .box .logo {
     background-image: url('../img/error.png');
     background-size: 57px;
-}
-
-.box .content {
-    background-color: #fff;
 }
 
 .box h2.header {

@@ -45,18 +45,14 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .navigation-block i, .autocomple
 
 .header-logo:hover, .sidebar-wrapper, .sidebar-element.separate-item div,
 .header-profile .down-background, .btn, .btn:focus, .btn:hover,
-.modal-custom .modal-header {
+.modal-custom .modal-header, .box h1, .box .logo {
     background-color: var(--primary-color);
 }
-
-
 
 /** PRIMARY COLOR DARK **/
 .sidebar-element a:hover, .sidebar-element.current a {
     background-color: var(--primary-color-dark);
 }
-
-
 
 /** PRIMARY COLOR LIGHT **/
 .header-logo {
@@ -66,8 +62,6 @@ a, .breadcrumb-item.active a, .dropdown-menu i, .navigation-block i, .autocomple
 .sidebar-element.separate-item div, .sidebar-element.separate-item {
     border-color: var(--primary-color-light);
 }
-
-
 
 /** SECONDARY COLOR **/
 .btn-holder .button, .btn-holder .button i, .table-actions i,
@@ -84,10 +78,9 @@ html.loading:before {
     background-color: var(--warning-color);
 }
 
-.error-helper {
+.error-helper, .fa-warning:before {
     color: var(--warning-color);
 }
-
 
 /** FONT COLOR LIGHT **/
 .autocomplete-results li span, .collections .collection-element .collection-stats,
@@ -100,23 +93,13 @@ footer, .image-label, .datum-row span.country-name, .breadcrumb-item a {
     border-color: var(--font-color-light);
 }
 
-
-
 /** FONT COLOR LIGHTEST **/
-i, .sidebar-element span, .header-logo a, .toast {
+i, .sidebar-element span, .header-logo a, .toast, .box h1 {
     color: var(--font-color-lightest);
 }
 
-
-
 /** FONT COLOR MAIN **/
-.visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a, .locale-dropdown i {
-    color: var(--font-color-main);
-}
-
-
-
-/** FONT COLOR MEDIUM **/
+.visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a, .locale-dropdown i,
 .select2-container--default .select2-selection--single .select2-selection__rendered, .select2 i, .select2-results__option i {
-    color: var(--font-color-medium);
+    color: var(--font-color-main);
 }

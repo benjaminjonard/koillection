@@ -18,12 +18,11 @@ class Configuration
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     private string $id;
 
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, unique: true)]
     #[Assert\NotBlank]
     private string $label;
 
-    #[ORM\Column(type: Types::STRING, nullable: true)]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $value = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]

@@ -49,12 +49,6 @@ class SettingsType extends AbstractType
                 'choices' => array_flip(ThemeEnum::getThemesLabels()),
                 'required' => true,
             ])
-            ->add('customLightThemeCss', TextareaType::class, [
-                'required' => false,
-            ])
-            ->add('customDarkThemeCss', TextareaType::class, [
-                'required' => false,
-            ])
             ->add('wishlistsFeatureEnabled', CheckboxType::class, [
                 'required' => false,
             ])

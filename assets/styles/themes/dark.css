@@ -38,7 +38,7 @@
 .select2-container--default .select2-results__option--highlighted[aria-selected],
 .select2-container--default .select2-results__option[aria-selected="true"],
 .sidebar-wrapper .header-logo:hover, .header-profile .down-background, .btn, .btn:focus, .btn:hover,
-.modal-custom .modal-header {
+.modal-custom .modal-header, .box h1, .box .logo {
     background-color: var(--primary-color);
 }
 
@@ -61,18 +61,16 @@ html.loading:before {
     background-color: var(--warning-color);
 }
 
-.error-helper {
+.error-helper, .fa-warning:before {
     color: var(--warning-color);
 }
 
-    /** BACKGROUND COLOR **/
+/** BACKGROUND COLOR **/
 body, .main, .header-logo, .nav-wrapper #search_term, .sidebar-element.separate-item div,
 .box .content, .modal, .input-field input, .input-field textarea, .autocomplete-content, thead th,
 .select2-container--default .select2-selection--single, .select2-dropdown, .select2-search__field {
     background-color: var(--background-color);
 }
-
-
 
 /** FONT COLOR MEDIUM **/
 i, body, .sidebar-element span, .header-logo a, .toast {
@@ -82,8 +80,6 @@ i, body, .sidebar-element span, .header-logo a, .toast {
 input {
     caret-color: var(--font-color-medium);
 }
-
-
 
 /** FONT COLOR LIGHT **/
 .sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li, .select2, .input-field.outlined input, .input-field.outlined textarea {
@@ -95,12 +91,11 @@ input {
     color: var(--font-color-light);
 }
 
-
-
 /** FONT COLOR MAIN **/
 .autocomplete-results li span, .autocomplete-result a,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
-.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header
+.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header,
+.box h1
 {
     color: var(--font-color-main);
 }
@@ -108,7 +103,6 @@ input {
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-color: var(--font-color-main) transparent transparent;
 }
-
 
 
 /** BACKGROUND COLOR DARK **/
