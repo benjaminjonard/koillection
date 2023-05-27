@@ -18,6 +18,7 @@ use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Component\Uid\Uuid;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -227,7 +228,8 @@ class ItemTest extends AppTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user])->object();
-        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->object();
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user, 'file' => $this->createFile('png')]);
+        $oldImagePath = $item->getImage();
         $choiceList = ChoiceListFactory::createOne(['name' => 'Edition', 'choices' => ['Normal', 'Collector'], 'owner' => $user]);
 
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Authors', 'value' => 'Abe Tsukasa, Yamada Kanehito']);
@@ -239,13 +241,20 @@ class ItemTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 7, 'type' => DatumTypeEnum::TYPE_RATING, 'label' => 'Rating', 'value' => '10']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 8, 'type' => DatumTypeEnum::TYPE_LINK, 'label' => 'Wiki page', 'value' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Edition', 'value' => json_encode(['Collector']), 'choiceList' => $choiceList]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 10, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'New', 'value' => false]);
+        $fileDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 11, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $this->createFile('txt')]);
+        $oldFileDatumPath = $fileDatum->getFile();
+        $imageDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 12, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Image', 'fileImage' => $this->createFile('png')]);
+        $oldImageDatumPath = $imageDatum->getImage();
+        $signDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 13, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => $this->createFile('png')]);
+        $oldSignDatumPath = $signDatum->getImage();
 
         // Act
-        $crawler = $this->client->request('GET', '/items/'.$item->getId().'/edit');
-
+        $this->client->request('GET', '/items/'.$item->getId().'/edit');
         $this->client->submitForm('Submit', [
             'item[name]' => 'Berserk #1',
             'item[collection]' => $collection->getId(),
+            'item[file]' => $this->createFile('jpeg'),
             'item[data][0][position]' => 1, 'item[data][0][type]' => DatumTypeEnum::TYPE_TEXT, 'item[data][0][label]' => 'Authors', 'item[data][0][value]' => 'Abe Tsukasa, Yamada Kanehito',
             'item[data][1][position]' => 2, 'item[data][1][type]' => DatumTypeEnum::TYPE_TEXTAREA, 'item[data][1][label]' => 'Description', 'item[data][1][value]' => 'Frieren est un shōnen manga écrit par Yamada Kanehito et dessiné par Abe Tsukasa.',
             'item[data][2][position]' => 3, 'item[data][2][type]' => DatumTypeEnum::TYPE_NUMBER, 'item[data][2][label]' => 'Volume', 'item[data][2][value]' => '1',
@@ -254,7 +263,11 @@ class ItemTest extends AppTestCase
             'item[data][5][position]' => 6, 'item[data][5][type]' => DatumTypeEnum::TYPE_DATE, 'item[data][5][label]' => 'Release date', 'item[data][5][value]' => '2022-03-03',
             'item[data][6][position]' => 7, 'item[data][6][type]' => DatumTypeEnum::TYPE_RATING, 'item[data][6][label]' => 'Rating', 'item[data][6][value]' => '10',
             'item[data][7][position]' => 8, 'item[data][7][type]' => DatumTypeEnum::TYPE_LINK, 'item[data][7][label]' => 'Wiki page', 'item[data][7][value]' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3',
-            'item[data][8][position]' => 9, 'item[data][8][type]' => DatumTypeEnum::TYPE_LIST, 'item[data][8][label]' => 'Edition', 'item[data][8][value]' => 'Collector'
+            'item[data][8][position]' => 9, 'item[data][8][type]' => DatumTypeEnum::TYPE_LIST, 'item[data][8][label]' => 'Edition', 'item[data][8][value]' => 'Collector',
+            'item[data][9][position]' => 10, 'item[data][9][type]' => DatumTypeEnum::TYPE_CHECKBOX, 'item[data][9][label]' => 'New', 'item[data][9][value]' => true,
+            'item[data][10][position]' => 11, 'item[data][10][type]' => DatumTypeEnum::TYPE_FILE, 'item[data][10][label]' => 'File', 'item[data][10][fileFile]' => $this->createFile('txt'),
+            'item[data][11][position]' => 11, 'item[data][11][type]' => DatumTypeEnum::TYPE_IMAGE, 'item[data][11][label]' => 'Image', 'item[data][11][fileImage]' => $this->createFile('avif'),
+            'item[data][12][position]' => 11, 'item[data][12][type]' => DatumTypeEnum::TYPE_SIGN, 'item[data][12][label]' => 'Sign', 'item[data][12][fileImage]' => $this->createFile('webp')
         ]);
 
         // Assert
@@ -262,8 +275,18 @@ class ItemTest extends AppTestCase
         ItemFactory::assert()->exists([
             'name' => 'Berserk #1',
             'collection' => $collection->getId(),
-            'owner' => $user->getId()
+            'owner' => $user->getId(),
         ]);
+
+        $this->assertFileDoesNotExist($oldImagePath);
+        $this->assertFileDoesNotExist($oldFileDatumPath);
+        $this->assertFileDoesNotExist($oldImageDatumPath);
+        $this->assertFileDoesNotExist($oldSignDatumPath);
+
+        $this->assertFileExists($item->getImage());
+        $this->assertFileExists($fileDatum->getFile());
+        $this->assertFileExists($imageDatum->getImage());
+        $this->assertFileExists($signDatum->getImage());
     }
 
     public function test_can_delete_item(): void

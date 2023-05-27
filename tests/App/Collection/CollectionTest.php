@@ -204,11 +204,7 @@ class CollectionTest extends AppTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
 
-        $filesystem = new Filesystem();
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-
-        $collection = CollectionFactory::createOne(['owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
+        $collection = CollectionFactory::createOne(['owner' => $user, 'image' => $this->createFile('png')->getRealPath()]);
         $collection->getChildrenDisplayConfiguration()
             ->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST)
             ->setColumns(['Publisher'])
@@ -226,6 +222,9 @@ class CollectionTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item2, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Publisher']);
 
+        $fileDatum = DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 1, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $this->createFile('txt')]);
+        $oldFileDatumPath = $fileDatum->getFile();
+
         // Act
         $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
@@ -233,14 +232,18 @@ class CollectionTest extends AppTestCase
             'collection[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC,
             'collection[itemsDisplayConfiguration][label]' => 'One-shots',
             'collection[childrenDisplayConfiguration][label]' => 'Series',
+            'collection[data][0][position]' => 1, 'collection[data][0][type]' => DatumTypeEnum::TYPE_FILE, 'collection[data][0][label]' => 'File', 'collection[data][0][fileFile]' => $this->createFile('txt'),
         ]);
 
         // Assert
         $this->assertSame('Berserk', $crawler->filter('h1')->text());
-        $this->assertSame('Series', $crawler->filter('h2')->first()->text());
-        $this->assertSame('One-shots', $crawler->filter('h2')->eq(1)->text());
-        $this->assertSame("/tmp/{$uniqId}.png", $crawler->filter('img')->eq(1)->attr('src'));
-        $this->assertFileExists("/tmp/{$uniqId}.png");
+        $this->assertSame('Series', $crawler->filter('h2')->eq(1)->text());
+        $this->assertSame('One-shots', $crawler->filter('h2')->eq(2)->text());
+        $this->assertSame($collection->getImage(), $crawler->filter('img')->eq(1)->attr('src'));
+        $this->assertFileExists($collection->getImage());
+
+        $this->assertFileDoesNotExist($oldFileDatumPath);
+        $this->assertFileExists($fileDatum->getFile());
     }
 
     public function test_can_delete_collection_image(): void
