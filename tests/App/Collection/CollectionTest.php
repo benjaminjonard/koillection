@@ -17,7 +17,6 @@ use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use App\Tests\AppTestCase;
-use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -251,11 +250,8 @@ class CollectionTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-
-        $filesystem = new Filesystem();
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $collection = CollectionFactory::createOne(['title' => 'Berserk', 'owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
+        $collection = CollectionFactory::createOne(['title' => 'Berserk', 'owner' => $user, 'image' => $this->createFile('png')->getRealPath()]);
+        $oldCollectionImagePath = $collection->getImage();
 
         // Act
         $crawler = $this->client->request('GET', '/collections/'.$collection->getId().'/edit');
@@ -265,7 +261,7 @@ class CollectionTest extends AppTestCase
 
         // Assert
         $this->assertSame('B', $crawler->filter('.collection-header')->filter('.thumbnail')->text());
-        $this->assertFileDoesNotExist("/tmp/{$uniqId}.png");
+        $this->assertFileDoesNotExist($oldCollectionImagePath);
     }
 
     public function test_can_get_collection_items_list(): void

@@ -11,7 +11,6 @@ use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use App\Tests\AppTestCase;
-use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -102,12 +101,8 @@ class WishlistTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-
-        $filesystem = new Filesystem();
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-
-        $wishlist = WishlistFactory::createOne(['owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
+        $wishlist = WishlistFactory::createOne(['owner' => $user, 'image' => $this->createFile('png')->getRealPath()]);
+        $imagePath = $wishlist->getImage();
 
         // Act
         $this->client->request('GET', '/wishlists/'.$wishlist->getId().'/edit');
@@ -118,7 +113,7 @@ class WishlistTest extends AppTestCase
 
         // Assert
         $this->assertSame('Video games', $crawler->filter('h1')->text());
-        $this->assertFileExists("/tmp/{$uniqId}.png");
+        $this->assertFileExists($imagePath);
     }
 
     public function test_can_delete_wishlist_image(): void
@@ -126,11 +121,8 @@ class WishlistTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-
-        $filesystem = new Filesystem();
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $album = WishlistFactory::createOne(['name' => 'Books', 'owner' => $user, 'image' => "/tmp/{$uniqId}.png"]);
+        $album = WishlistFactory::createOne(['name' => 'Books', 'owner' => $user, 'image' => $this->createFile('png')->getRealPath()]);
+        $oldImagePath = $album->getImage();
 
         // Act
         $this->client->request('GET', '/wishlists/'.$album->getId().'/edit');
@@ -140,7 +132,7 @@ class WishlistTest extends AppTestCase
 
         // Assert
         $this->assertSame('B', $crawler->filter('.collection-header')->filter('.thumbnail')->text());
-        $this->assertFileDoesNotExist("/tmp/{$uniqId}.png");
+        $this->assertFileDoesNotExist($oldImagePath);
     }
 
     public function test_can_delete_wishlist(): void

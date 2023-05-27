@@ -7,7 +7,6 @@ namespace App\Tests\App;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use App\Tests\AppTestCase;
-use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -27,12 +26,9 @@ class ProfileTest extends AppTestCase
     public function test_can_edit_profile(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-
-        $user = UserFactory::createOne(['avatar' => "/tmp/{$uniqId}.png"])->object();
+        $user = UserFactory::createOne(['avatar' => $this->createFile('png')->getRealPath()])->object();
         $this->client->loginUser($user);
+        $avatarPath = $user->getAvatar();
 
         // Act
         $this->client->request('GET', '/profile');
@@ -44,17 +40,15 @@ class ProfileTest extends AppTestCase
         // Assert
         $this->assertResponseIsSuccessful();
         UserFactory::assert()->exists(['username' => 'Stitch', 'email' => 'stitch@koillection.com']);
-        $this->assertFileExists("/tmp/{$uniqId}.png");
+        $this->assertFileExists($avatarPath);
     }
 
     public function test_can_delete_avatar_image(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $user = UserFactory::createOne(['username' => 'Stitch', 'avatar' => "/tmp/{$uniqId}.png"])->object();
+        $user = UserFactory::createOne(['username' => 'Stitch', 'avatar' => $this->createFile('png')->getRealPath()])->object();
         $this->client->loginUser($user);
+        $oldAvatarPath = $user->getAvatar();
 
         // Act
         $this->client->request('GET', '/profile');
@@ -64,6 +58,6 @@ class ProfileTest extends AppTestCase
 
         // Assert
         $this->assertSame('S', $crawler->filter('.user-avatar')->text());
-        $this->assertFileDoesNotExist("/tmp/{$uniqId}.png");
+        $this->assertFileDoesNotExist($oldAvatarPath);
     }
 }
