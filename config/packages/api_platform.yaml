@@ -1,3 +1,7 @@
 api_platform:
   title: 'Koillection API'
   show_webby: false
+
+  defaults:
+    normalization_context:
+      skip_null_values: false

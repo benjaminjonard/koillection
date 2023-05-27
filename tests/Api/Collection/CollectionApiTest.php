@@ -227,4 +227,25 @@ class CollectionApiTest extends ApiTestCase
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
         $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
     }
+
+    public function test_delete_collection_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $uploadedFile = $this->createFile('png');
+        $imagePath = $uploadedFile->getRealPath();
+        $album = CollectionFactory::createOne(['owner' => $user, 'image' => $imagePath]);
+
+
+        // Act
+        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$album->getId(), ['json' => [
+            'deleteImage' => true,
+        ]]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Collection::class);
+        $this->assertNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileDoesNotExist($imagePath);
+    }
 }

@@ -11,7 +11,6 @@ use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -206,5 +205,26 @@ class WishlistApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Wishlist::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
         $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
+    }
+
+    public function test_delete_wishlist_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $uploadedFile = $this->createFile('png');
+        $imagePath = $uploadedFile->getRealPath();
+        $album = WishlistFactory::createOne(['owner' => $user, 'image' => $imagePath]);
+
+
+        // Act
+        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/'.$album->getId(), ['json' => [
+            'deleteImage' => true,
+        ]]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Wishlist::class);
+        $this->assertNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileDoesNotExist($imagePath);
     }
 }

@@ -186,7 +186,6 @@ class AlbumApiTest extends ApiTestCase
     public function test_post_album_image(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $uploadedFile = $this->createFile('png');
@@ -206,5 +205,26 @@ class AlbumApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Album::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['image']);
         $this->assertFileExists(json_decode($crawler->getContent(), true)['image']);
+    }
+
+    public function test_delete_album_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $uploadedFile = $this->createFile('png');
+        $imagePath = $uploadedFile->getRealPath();
+        $album = AlbumFactory::createOne(['owner' => $user, 'image' => $imagePath]);
+
+
+        // Act
+        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
+            'deleteImage' => true,
+        ]]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Album::class);
+        $this->assertNull(json_decode($crawler->getContent(), true)['image']);
+        $this->assertFileDoesNotExist($imagePath);
     }
 }
