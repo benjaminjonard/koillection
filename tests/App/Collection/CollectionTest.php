@@ -78,13 +78,18 @@ class CollectionTest extends AppTestCase
         CollectionFactory::createMany(3, ['parent' => $collection, 'owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['In progress', 'Done', 'Abandoned'], 'owner' => $user]);
+        $file = $this->createFile('txt');
+        $filename = $file->getFilename();
 
-        // @TODO File
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Japanese title', 'value' => '葬送のフリーレン']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 2, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volumes', 'value' => '12']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 3, 'type' => DatumTypeEnum::TYPE_COUNTRY, 'label' => 'Country', 'value' => 'JP']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 4, 'type' => DatumTypeEnum::TYPE_DATE, 'label' => 'Release date', 'value' => '2022-03-03']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 5, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Progress', 'value' => json_encode(['In progress']), 'choiceList' => $choiceList]);
+        DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 6, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'New', 'value' => true]);
+        DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 7, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'Lent', 'value' => false]);
+        DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 8, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $file]);
+
 
         // Act
         $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
@@ -96,12 +101,19 @@ class CollectionTest extends AppTestCase
         $this->assertCount(3, $crawler->filter('.collection-element'));
         $this->assertCount(3, $crawler->filter('.collection-item'));
 
-        $this->assertCount(5, $crawler->filter('.datum-row'));
+        $this->assertCount(8, $crawler->filter('.datum-row'));
         $this->assertSame('Japanese title : 葬送のフリーレン', $crawler->filter('.datum-row')->eq(0)->text());
         $this->assertSame('Volumes : 12', $crawler->filter('.datum-row')->eq(1)->text());
         $this->assertSame('Country : 🇯🇵 (Japan)', $crawler->filter('.datum-row')->eq(2)->text());
         $this->assertSame('Release date : 03/03/2022', $crawler->filter('.datum-row')->eq(3)->text());
         $this->assertSame('Progress : In progress', $crawler->filter('.datum-row')->eq(4)->text());
+        $this->assertSame('New :', $crawler->filter('.datum-row')->eq(5)->text());
+        $this->assertCount(1, $crawler->filter('.datum-row')->eq(5)->filter('.fa-check.font-green'));
+        $this->assertSame('Lent :', $crawler->filter('.datum-row')->eq(6)->text());
+        $this->assertCount(1, $crawler->filter('.datum-row')->eq(6)->filter('.fa-close.font-red'));
+
+        $this->assertSame("File : $filename (104 B)", $crawler->filter('.datum-row')->eq(7)->text());
+        $this->assertFileExists($crawler->filter('.datum-row')->eq(7)->filter('a')->attr('href'));
     }
 
     public function test_can_get_collection_with_list_view(): void

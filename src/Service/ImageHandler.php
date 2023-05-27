@@ -45,12 +45,11 @@ class ImageHandler
             }
 
             $generatedName = $this->randomStringGenerator->generate(20);
-            $extension = str_replace('image/', '', mime_content_type($file->getRealPath()));
+            $extension = $file->guessExtension();
+            $fileName = $generatedName.'.'.$extension;
 
-            $fileName = $generatedName.'_original.'.$extension;
             $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
             $file->move($absolutePath, $fileName);
-
 
             $this->removeOldFile($entity, $attribute);
             $this->accessor->setValue($entity, $attribute->getPathProperty(), $relativePath.$fileName);

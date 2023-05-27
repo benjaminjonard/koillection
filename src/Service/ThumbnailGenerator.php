@@ -53,7 +53,7 @@ class ThumbnailGenerator
         $thumbnail = imagerotate($thumbnail, $deg, 0);
 
         match ($thumbnailFormat) {
-            'jpeg' => imagejpeg($thumbnail, $thumbnailPath),
+            'jpeg', 'jpg' => imagejpeg($thumbnail, $thumbnailPath),
             'png' => imagepng($thumbnail, $thumbnailPath),
             'webp' => imagewebp($thumbnail, $thumbnailPath),
             'avif' => imageavif($thumbnail, $thumbnailPath)

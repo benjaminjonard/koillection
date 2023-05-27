@@ -47,6 +47,7 @@ class ItemTest extends AppTestCase
 
         $item = ItemFactory::createOne([
             'name' => 'Frieren #5',
+            'image' => $this->createFile('png'),
             'collection' => $collection,
             'owner' => $user,
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
@@ -57,8 +58,9 @@ class ItemTest extends AppTestCase
         $item->addTag(TagFactory::createOne(['owner' => $user, 'label' => 'Yamada Kanehito'])->object());
         $item->addRelatedItem($relatedItem);
         $item->save();
+        $file = $this->createFile('txt');
+        $filename = $file->getFilename();
 
-        // @TODO File, Image, Signature
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Authors', 'value' => 'Abe Tsukasa, Yamada Kanehito']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_TEXTAREA, 'label' => 'Description', 'value' => 'Frieren est un shōnen manga écrit par Yamada Kanehito et dessiné par Abe Tsukasa.']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 3, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volume', 'value' => '1']);
@@ -68,6 +70,13 @@ class ItemTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 7, 'type' => DatumTypeEnum::TYPE_RATING, 'label' => 'Rating', 'value' => '10']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 8, 'type' => DatumTypeEnum::TYPE_LINK, 'label' => 'Wiki page', 'value' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Edition', 'value' => json_encode(['Collector']), 'choiceList' => $choiceList]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 10, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'New', 'value' => true]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 11, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'Lent', 'value' => false]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 12, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $file]);
+
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => $this->createFile('png')]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Image', 'fileImage' => $this->createFile('png')]);
+
 
         // Act
         $crawler = $this->client->request('GET', '/items/'.$item->getId());
@@ -78,11 +87,18 @@ class ItemTest extends AppTestCase
         $this->assertSame('(x2)', $crawler->filter('h1 .quantity')->innerText());
         $this->assertCount(1, $crawler->filter('.collection-header .visibility .fa-lock'));
 
+        $this->assertCount(3, $crawler->filter('.slider-frame a'));
+        $this->assertFileExists($crawler->filter('.slider-frame a')->eq(0)->filter('img')->attr('src'));
+        $this->assertFileExists($crawler->filter('.slider-frame a')->eq(1)->filter('img')->attr('src'));
+        $this->assertSame('Sign', $crawler->filter('.slider-frame a')->eq(1)->filter('.image-label')->text());
+        $this->assertFileExists($crawler->filter('.slider-frame a')->eq(2)->filter('img')->attr('src'));
+        $this->assertSame('Image', $crawler->filter('.slider-frame a')->eq(2)->filter('.image-label')->text());
+
         $this->assertCount(2, $crawler->filter('.tag'));
         $this->assertSame('Abe Tsukasa', $crawler->filter('.tag')->eq(0)->text());
         $this->assertSame('Yamada Kanehito', $crawler->filter('.tag')->eq(1)->text());
 
-        $this->assertCount(9, $crawler->filter('.datum-row'));
+        $this->assertCount(12, $crawler->filter('.datum-row'));
         $this->assertSame('Authors : Abe Tsukasa, Yamada Kanehito', $crawler->filter('.datum-row')->eq(0)->text());
         $this->assertCount(2, $crawler->filter('.datum-row')->eq(0)->filter('a'));
         $this->assertSame('Abe Tsukasa', $crawler->filter('.datum-row')->eq(0)->filter('a')->eq(0)->text());
@@ -97,6 +113,14 @@ class ItemTest extends AppTestCase
         $this->assertSame('Wiki page :', $crawler->filter('.datum-row .label')->eq(7)->text());
         $this->assertSame(substr('https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3', 0, 47).'...', $crawler->filter('.datum-row')->eq(7)->filter('a')->text());
         $this->assertSame('Edition : Collector', $crawler->filter('.datum-row')->eq(8)->text());
+
+        $this->assertSame('New :', $crawler->filter('.datum-row')->eq(9)->text());
+        $this->assertCount(1, $crawler->filter('.datum-row')->eq(9)->filter('.fa-check.font-green'));
+        $this->assertSame('Lent :', $crawler->filter('.datum-row')->eq(10)->text());
+        $this->assertCount(1, $crawler->filter('.datum-row')->eq(10)->filter('.fa-close.font-red'));
+
+        $this->assertSame("File : $filename (104 B)", $crawler->filter('.datum-row')->eq(11)->text());
+        $this->assertFileExists($crawler->filter('.datum-row')->eq(11)->filter('a')->attr('href'));
 
         $this->assertCount(1, $crawler->filter('.related-items img'));
         $this->assertSame('Calendar Frieren 2023', $crawler->filter('.related-items img')->eq(0)->attr('alt'));
