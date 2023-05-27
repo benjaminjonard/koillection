@@ -8,11 +8,11 @@ use App\Tests\Factory\TagCategoryFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class TagCategoryTest extends WebTestCase
+class TagCategoryTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

@@ -9,11 +9,11 @@ use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class PhotoTest extends WebTestCase
+class PhotoTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

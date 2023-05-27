@@ -8,11 +8,11 @@ use App\Service\RefreshCachedValuesQueue;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class AlbumCountersTest extends WebTestCase
+class AlbumCountersTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

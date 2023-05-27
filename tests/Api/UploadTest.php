@@ -26,11 +26,9 @@ class UploadTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $uploadedFile = $this->createFile('avif');
 
         // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.avif', "/tmp/{$uniqId}.avif");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.avif", "{$uniqId}.avif");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
@@ -54,11 +52,9 @@ class UploadTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $uploadedFile = $this->createFile('png');
 
         // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
@@ -82,11 +78,9 @@ class UploadTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $uploadedFile = $this->createFile('jpeg');
 
         // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.jpeg', "/tmp/{$uniqId}.jpeg");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.jpeg", "{$uniqId}.jpeg");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
@@ -110,11 +104,9 @@ class UploadTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $uploadedFile = $this->createFile('webp');
 
         // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../assets/fixtures/nyancat.webp', "/tmp/{$uniqId}.webp");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.webp", "{$uniqId}.webp");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [

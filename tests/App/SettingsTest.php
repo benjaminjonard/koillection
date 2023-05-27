@@ -10,11 +10,11 @@ use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class SettingsTest extends WebTestCase
+class SettingsTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

@@ -7,6 +7,7 @@ namespace App\Tests\App;
 use App\Enum\DateFormatEnum;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
@@ -17,11 +18,10 @@ use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class ItemTest extends WebTestCase
+class ItemTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;
@@ -113,11 +113,13 @@ class ItemTest extends WebTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user])->object();
+        $uploadedFile = $this->createFile('png');
 
         // Act
         $this->client->request('GET', '/items/add?collection='.$collection->getId());
-        $this->client->submitForm('Submit', [
+        $crawler = $this->client->submitForm('Submit', [
             'item[name]' => 'Frieren #1',
+            'item[file]' => $uploadedFile,
             'item[collection]' => $collection->getId(),
             'item[quantity]' => 1,
             'item[visibility]' => VisibilityEnum::VISIBILITY_PRIVATE,
@@ -132,6 +134,8 @@ class ItemTest extends WebTestCase
             'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
             'owner' => $user->getId()
         ]);
+
+        $this->assertFileExists(ItemFactory::first()->getImage());
         TagFactory::assert()->exists(['label' => 'Manga', 'owner' => $user->getId()]);
         TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user->getId()]);
     }

@@ -10,12 +10,12 @@ use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class AlbumTest extends WebTestCase
+class AlbumTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

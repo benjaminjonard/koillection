@@ -10,11 +10,11 @@ use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class SignatureTest extends WebTestCase
+class SignatureTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

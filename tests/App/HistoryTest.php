@@ -18,11 +18,11 @@ use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class HistoryTest extends WebTestCase
+class HistoryTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

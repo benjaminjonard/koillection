@@ -12,12 +12,12 @@ use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class DisabledFeatureTest extends WebTestCase
+class DisabledFeatureTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

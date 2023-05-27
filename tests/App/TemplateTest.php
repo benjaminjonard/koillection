@@ -9,11 +9,11 @@ use App\Tests\Factory\FieldFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class TemplateTest extends WebTestCase
+class TemplateTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

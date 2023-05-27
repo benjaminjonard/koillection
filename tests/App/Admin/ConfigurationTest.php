@@ -6,14 +6,14 @@ namespace App\Tests\App\Admin;
 
 use App\Enum\ConfigurationEnum;
 use App\Enum\RoleEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\ConfigurationFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class ConfigurationTest extends WebTestCase
+class ConfigurationTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

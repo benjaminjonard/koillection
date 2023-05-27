@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Model\Paginator;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 
-class PaginatorTest extends WebTestCase
+class PaginatorTest extends AppTestCase
 {
     public function test_paginator_middle_page(): void
     {

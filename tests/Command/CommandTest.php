@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App;
+namespace App\Tests\Command;
 
 use App\Enum\DatumTypeEnum;
 use App\Tests\Factory\CollectionFactory;

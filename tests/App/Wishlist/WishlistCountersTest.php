@@ -8,11 +8,11 @@ use App\Service\RefreshCachedValuesQueue;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class WishlistCountersTest extends WebTestCase
+class WishlistCountersTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

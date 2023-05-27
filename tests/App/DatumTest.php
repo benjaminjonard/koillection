@@ -11,12 +11,12 @@ use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class DatumTest extends WebTestCase
+class DatumTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

@@ -161,11 +161,9 @@ class PhotoApiTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
+        $uploadedFile = $this->createFile('png');
 
         // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/photos/'.$photo->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [

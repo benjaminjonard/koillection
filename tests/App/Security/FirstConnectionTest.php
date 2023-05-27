@@ -6,11 +6,11 @@ namespace App\Tests\App\Security;
 
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class FirstConnectionTest extends WebTestCase
+class FirstConnectionTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

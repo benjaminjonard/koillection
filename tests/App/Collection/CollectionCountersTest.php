@@ -8,11 +8,11 @@ use App\Service\RefreshCachedValuesQueue;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class CollectionCountersTest extends WebTestCase
+class CollectionCountersTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

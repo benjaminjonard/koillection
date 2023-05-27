@@ -175,11 +175,9 @@ class TagApiTest extends ApiTestCase
         $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $tag = TagFactory::createOne(['owner' => $user]);
+        $uploadedFile = $this->createFile('png');
 
         // Act
-        $uniqId = uniqid();
-        $filesystem->copy(__DIR__.'/../../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png");
         $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/tags/'.$tag->getId().'/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [

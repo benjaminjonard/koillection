@@ -7,11 +7,11 @@ namespace App\Tests\App;
 use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class ChoiceListTest extends WebTestCase
+class ChoiceListTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;
