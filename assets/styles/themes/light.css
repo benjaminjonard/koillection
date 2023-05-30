@@ -99,7 +99,7 @@ i, .sidebar-element span, .header-logo a, .toast, .box h1 {
 }
 
 /** FONT COLOR MAIN **/
-.visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a, .locale-dropdown i,
+.visibility i, .datum i, .related-item i, .autocomplete-result a,  .tab.current a, .locale-dropdown i, .handle i,
 .select2-container--default .select2-selection--single .select2-selection__rendered, .select2 i, .select2-results__option i {
     color: var(--font-color-main);
 }
