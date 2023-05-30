@@ -9,8 +9,8 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.8",
-    "@babel/preset-env": "7.21.5",
+    "@babel/core": "7.22.1",
+    "@babel/preset-env": "7.22.4",
     "@hotwired/stimulus": "3.2.1",
     "@materializecss/materialize": "2.0.1-alpha",
     "@symfony/stimulus-bridge": "3.2.2",
@@ -23,7 +23,7 @@
     "sortablejs": "1.15.0",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.0",
-    "webpack": "5.83.1",
+    "webpack": "5.84.1",
     "webpack-bundle-analyzer": "4.8.0",
     "webpack-cli": "5.1.1",
     "webpack-notifier": "1.15.0"
