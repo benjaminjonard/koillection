@@ -13,14 +13,14 @@ export default class extends Controller {
                     return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
                 }
 
-                return element.text;
+                return self.htmlToElement('<div><span>' + element.text + '</span></div>');
             },
             templateResult: function (element) {
                 if (!element.text && !element.children) {
                     return self.htmlToElement('<div><span class="select-placeholder">' + Translator.trans('select2.none') + '</span></div>');
                 }
 
-                return element.text;
+                return self.htmlToElement('<div><span>' + element.text + '</span></div>');
             },
             language: {
                 noResults: function () {

@@ -22,7 +22,7 @@ export default class extends Controller {
             let currentItems = [];
 
             for (const item of values) {
-                this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(item[0]));
+                this.resultTarget.insertAdjacentHTML('beforeend', this.getChip(item));
                 currentItems.push(item.id);
             }
 
@@ -71,8 +71,9 @@ export default class extends Controller {
     }
 
     onAutocomplete(item) {
-        item = item[0] ? item[0] : null;
-
+        if (Array.isArray(item)) {
+            item = item[0] ? item[0] : null;
+        }
 
         if (!item) {
             return;
@@ -96,7 +97,7 @@ export default class extends Controller {
     }
 
     getChip(item) {
-        console.log(item)
+        console.log(item);
         const thumbnail = item.image ? item.image : '/build/images/default.png';
         return '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.text + '">' +
             '<td><img src="' + thumbnail + '"></td>' +

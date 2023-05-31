@@ -22,8 +22,8 @@ class JsonToItemTransformer implements DataTransformerInterface
         foreach ($items as $item) {
             $array[] = [
                 'id' => $item->getId(),
-                'name' => $item->getName(),
-                'thumbnail' => $item->getImageSmallThumbnail() ? $this->assetManager->getUrl($item->getImageSmallThumbnail()) : null,
+                'text' => $item->getName(),
+                'image' => $item->getImageSmallThumbnail() ? $this->assetManager->getUrl($item->getImageSmallThumbnail()) : null,
             ];
         }
 
