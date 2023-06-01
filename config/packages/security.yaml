@@ -18,7 +18,6 @@ security:
         api:
             pattern: ^/api
             lazy: true
-            stateless: true
             provider: app_provider
             json_login:
                 check_path: /api/authentication_token
