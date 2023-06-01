@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.5] / 2023-06-01
+### Fixes
+- Fix broken related items on item edit page (benjaminjonard)
+
+### Miscellaneous
+- Update to Symfony 6.3 (benjaminjonard)
+
 ## [1.4.4] / 2023-05-30
 ### Features
 - Add "Remove" and "Cancel" buttons on thumbnail preview (benjaminjonard) 
