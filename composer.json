@@ -139,7 +139,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "^6.3"
+            "require": "6.3.*"
         }
     }
 }
