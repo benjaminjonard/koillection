@@ -24,11 +24,7 @@
                 <td>
                     <a class="table-link" href="{{ link }}"></a>
                     {% if item.imageSmallThumbnail %}
-                        <div class="image-wrapper placeholder" data-controller="lazy-loading">
-                            <img data-src="{{ asset(item.imageSmallThumbnail) }}"
-                                 data-lazy-loading-target="image"
-                            >
-                        </div>
+                        <img src="{{ asset(item.imageSmallThumbnail) }}" loading="lazy">
                     {% endif %}
                 </td>
                 <td>

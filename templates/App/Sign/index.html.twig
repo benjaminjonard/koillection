@@ -46,11 +46,7 @@
                    data-sub-html="{{ sign.item.name }} - {{ sign.label }}"
                    data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
                 >
-                    <div class="image-wrapper placeholder" data-controller="lazy-loading">
-                        <img data-src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}"
-                             data-lazy-loading-target="image"
-                        >
-                    </div>
+                    <img src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
                 </a>
             {% endfor %}
         </div>

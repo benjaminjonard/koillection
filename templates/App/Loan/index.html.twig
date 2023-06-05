@@ -50,9 +50,7 @@
                         <tr class="list-element resize-element">
                             <td>
                                 {% if loan.item.imageSmallThumbnail %}
-                                    <div class="image-wrapper placeholder" data-controller="lazy-loading">
-                                        <img data-src="{{ asset(loan.item.imageSmallThumbnail) }}" data-lazy-loading-target="image">
-                                    </div>
+                                    <img src="{{ asset(loan.item.imageSmallThumbnail) }}" loading="lazy">
                                 {% endif %}
                             </td>
                             <td>
@@ -95,9 +93,7 @@
                         <tr class="list-element resize-element">
                             <td>
                                 {% if returnedItem.item.imageSmallThumbnail %}
-                                    <div class="image-wrapper placeholder" data-controller="lazy-loading">
-                                        <img data-src="{{ asset(returnedItem.item.imageSmallThumbnail) }}" data-lazy-loading-target="image">
-                                    </div>
+                                    <img src="{{ asset(returnedItem.item.imageSmallThumbnail) }}" loading="lazy">
                                 {% endif %}
                             </td>
                             <td>

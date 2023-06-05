@@ -4,9 +4,7 @@
             <a class="collection-circle-thumbnail"
                href="{{ path('app_collection_show'|applyContext, {'id': collection.id}) }}">
                 {% if collection.image != null %}
-                    <div class="image-wrapper placeholder placeholder--circle" data-controller="lazy-loading">
-                        <img data-src="{{ asset(collection.image) }}" data-lazy-loading-target="image">
-                    </div>
+                    <img src="{{ asset(collection.image) }}" loading="lazy">
                 {% else %}
                     <span class="color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
                 {% endif %}

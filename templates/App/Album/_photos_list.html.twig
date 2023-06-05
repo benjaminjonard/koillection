@@ -29,11 +29,7 @@
                        data-title="{{ photo.title }}"
                        data-filter-target="element"
                     >
-                        <div class="image-wrapper placeholder" data-controller="lazy-loading">
-                            <img data-src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}"
-                                 data-lazy-loading-target="image"
-                            >
-                        </div>
+                        <img src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
                     </a>
                 </td>
                 <td>

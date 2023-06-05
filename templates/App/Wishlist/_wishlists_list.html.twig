@@ -19,11 +19,7 @@
                 <td>
                     <a class="table-link" href="{{ link }}"></a>
                     {% if child.image %}
-                        <div class="image-wrapper placeholder placeholder--circle" data-controller="lazy-loading">
-                            <img data-src="{{ asset(child.image) }}"
-                                 data-lazy-loading-target="image"
-                            >
-                        </div>
+                        <img src="{{ asset(child.image) }}" loading="lazy">
                     {% endif %}
                 </td>
                 <td>
