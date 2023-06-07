@@ -25,18 +25,20 @@
 {% block content %}
     {{ include('App/Item/_content.html.twig') }}
 
-    <div class="navigation-block" data-controller="swipe">
+    <div class="navigation-block" data-controller="swipe keyboard-navigation">
         {% if previousItem is not null %}
-            <a data-swipe-target="previous" href="{{ path('app_item_show'|applyContext, {id: previousItem.id}) }}">
-                <span class="unbreakable"><i
-                            class="fa fa-angle-left fa-fw"></i>{{ previousItem.name|u.truncate(30, '...') }}</span>
+            <a data-swipe-target="previous" data-keyboard-navigation-target="previous" href="{{ path('app_item_show'|applyContext, {id: previousItem.id}) }}">
+                <span class="unbreakable">
+                    <i class="fa fa-angle-left fa-fw"></i>{{ previousItem.name|u.truncate(30, '...') }}
+                </span>
             </a>
         {% endif %}
         {% if previousItem is not null and previousItem is not null %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
         {% if nextItem is not null %}
-            <a data-swipe-target="next" href="{{ path('app_item_show'|applyContext, {id: nextItem.id}) }}">
-                <span class="unbreakable">{{ nextItem.name|u.truncate(30, '...') }}<i
-                            class="fa fa-angle-right fa-fw"></i></span>
+            <a data-swipe-target="next" data-keyboard-navigation-target="next" href="{{ path('app_item_show'|applyContext, {id: nextItem.id}) }}">
+                <span class="unbreakable">
+                    {{ nextItem.name|u.truncate(30, '...') }}<i class="fa fa-angle-right fa-fw"></i>
+                </span>
             </a>
         {% endif %}
     </div>
