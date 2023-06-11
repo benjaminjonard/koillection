@@ -5,7 +5,8 @@ services:
     #FPM image
     koillection:
         container_name: koillection
-        image: koillection/koillection
+        build:
+            dockerfile: Dockerfile.dev
         restart: always
         ports:
             - 81:80
