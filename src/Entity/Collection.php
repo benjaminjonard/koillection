@@ -119,6 +119,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?array $cachedValues = [];
 
     #[ORM\ManyToOne(targetEntity: Template::class)]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
     #[Groups(['collection:read', 'collection:write'])]
     private ?Template $itemsDefaultTemplate = null;
 

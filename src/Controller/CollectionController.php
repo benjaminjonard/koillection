@@ -165,6 +165,7 @@ class CollectionController extends AbstractController
     ): Response {
         $form = $this->createForm(CollectionType::class, $collection);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.collection_edited', ['collection' => $collection->getTitle()]));

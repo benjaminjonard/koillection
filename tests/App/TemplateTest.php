@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Enum\DatumTypeEnum;
+use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\FieldFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
@@ -102,6 +103,7 @@ class TemplateTest extends AppTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $template = TemplateFactory::createOne(['owner' => $user]);
+        CollectionFactory::createOne(['owner' => $user, 'itemsDefaultTemplate' => $template]);
         FieldFactory::createMany(3, ['template' => $template, 'owner' => $user]);
 
         // Act
