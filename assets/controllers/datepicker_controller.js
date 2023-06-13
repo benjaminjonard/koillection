@@ -4,7 +4,7 @@ import Translator from "bazinga-translator";
 
 export default class extends Controller {
     connect() {
-        M.Datepicker.init(this.element, {
+        let datepicker = M.Datepicker.init(this.element, {
             months: [Translator.trans('global.months.january'), Translator.trans('global.months.february'),
                 Translator.trans('global.months.march'), Translator.trans('global.months.april'), Translator.trans('global.months.may'),
                 Translator.trans('global.months.june'), Translator.trans('global.months.july'), Translator.trans('global.months.august'),
@@ -24,6 +24,15 @@ export default class extends Controller {
             today: Translator.trans('global.today').substring(0, 3)+'.',
             format: document.getElementById('settings').dataset.dateFormat,
             container: '.main',
+            yearRange: [1, new Date().getFullYear() + 10],
         });
+
+        let initialValue = this.element.dataset.initialValue;
+
+
+        if (initialValue !== '') {
+            console.log(new Date(initialValue));
+            datepicker.setDate(new Date(initialValue));
+        }
     }
 }

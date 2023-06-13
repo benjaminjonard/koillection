@@ -2162,3 +2162,11 @@ tr {
     max-height: 60px;
     max-width: 60px;
 }
+
+.datepicker-controls .select-year input {
+    width: 75px;
+}
+
+.datepicker-controls .select-month input {
+    width: 110px;
+}

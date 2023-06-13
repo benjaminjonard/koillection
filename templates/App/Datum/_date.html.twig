@@ -6,6 +6,7 @@
            maxlength="255"
            {% if datum is defined %}value="{{ datum.value ? datum.value|date(app.user.dateFormat|default('Y-m-d')) : '' }}"{% endif %}
            placeholder=" "
+           data-initial-value="{{ datum.value|default('') }}"
     >
     <label for="data_{{ iteration }}_value" class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
 </div>
