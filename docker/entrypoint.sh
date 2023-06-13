@@ -80,6 +80,9 @@ echo "**** 10/11 - Create symfony log files ****"
 [ ! -f /var/www/koillection/var/log/prod.log ] && \
 	touch /var/www/koillection/var/log/prod.log
 
+chown -R "$USER":"$USER" /var/www/koillection/var/log
+chown -R "$USER":"$USER" /var/www/koillection/var/log/prod.log
+
 echo "**** 11/11 - Setup complete, starting the server. ****"
 php-fpm8.2
 exec $@
