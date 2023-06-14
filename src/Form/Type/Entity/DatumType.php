@@ -71,16 +71,25 @@ class DatumType extends AbstractType
                             'model_transformer' => new CallbackTransformer(
                                 function ($string): ?string {
                                     if (!empty($string)) {
-                                        return \DateTimeImmutable::createFromFormat('Y-m-d', $string)->format($this->security->getUser()->getDateFormat());
+										$stringParsed = \DateTimeImmutable::createFromFormat('Y-m-d', $string)->format($this->security->getUser()->getDateFormat());
+										if(!$stringParsed)
+										{
+											return null;
+										}
+										return $stringParsed;
                                     }
 
                                     return null;
                                 },
                                 function ($date): ?string {
                                     if (!empty($date)) {
-                                        return \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date)->format('Y-m-d');
+										$dateParsed = \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date)->format('Y-m-d');
+										if(!$dateParsed)
+										{
+											return null;
+										}
+										return $dateParsed;
                                     }
-
                                     return null;
                                 }
                             ),
