@@ -2,21 +2,18 @@
 
 <div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-additional-data-target="datum">
     <div class="col s12 l10 offset-l1 xl8 offset-xl2 row">
+        <input type="hidden"
+               id="data_{{ iteration }}_type"
+               name="{{ entity }}[data][{{ iteration }}][type]"
+               maxlength="255"
+               value="{{ type }}"
+        >
+
         <div class="col s1 handle icon-holder handle">
             <i class="fa fa-arrows-v fa-fw"></i>
         </div>
 
-        <div class="input-field outlined col s1 label hide-on-med-and-down hidden">
-            <span class="complementary-color">{{ ('label.' ~ type)|trans }}</span>
-            <input type="hidden"
-                   id="data_{{ iteration }}_type"
-                   name="{{ entity }}[data][{{ iteration }}][type]"
-                   maxlength="255"
-                   value="{{ type }}"
-            >
-        </div>
-
-        <div class="input-field outlined col s5 item-label">
+        <div class="input-field outlined col s10 m5 item-label">
             <input
                     type="text"
                     id="data_{{ iteration }}_label"

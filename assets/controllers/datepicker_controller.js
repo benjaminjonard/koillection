@@ -3,8 +3,11 @@ import { M } from '@materializecss/materialize';
 import Translator from "bazinga-translator";
 
 export default class extends Controller {
-    connect() {
-        let datepicker = M.Datepicker.init(this.element, {
+    static targets = ['input'];
+
+    open() {
+        let self = this;
+        let datepicker = M.Datepicker.init(this.inputTarget, {
             months: [Translator.trans('global.months.january'), Translator.trans('global.months.february'),
                 Translator.trans('global.months.march'), Translator.trans('global.months.april'), Translator.trans('global.months.may'),
                 Translator.trans('global.months.june'), Translator.trans('global.months.july'), Translator.trans('global.months.august'),
@@ -25,14 +28,18 @@ export default class extends Controller {
             format: document.getElementById('settings').dataset.dateFormat,
             container: '.main',
             yearRange: [1, new Date().getFullYear() + 10],
+            onClose: function () { this.destroy(); },
+            onSelect: function (date) {
+                self.inputTarget.dataset.initialValue = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+            },
         });
 
-        let initialValue = this.element.dataset.initialValue;
+        let currentValue = this.inputTarget.dataset.initialValue;
 
-
-        if (initialValue !== '') {
-            console.log(new Date(initialValue));
-            datepicker.setDate(new Date(initialValue));
+        if (currentValue !== '') {
+            datepicker.setDate(new Date(currentValue));
         }
+
+        datepicker.open()
     }
 }

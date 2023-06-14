@@ -2182,3 +2182,14 @@ tr {
 .selects-container .input-field {
     margin: 0;
 }
+
+.input-field .fa-calendar {
+    cursor: pointer;
+}
+
+.input-field .fa-calendar:before {
+    position: relative;
+    top: -38px;
+    float: right;
+    right: 17px;
+}

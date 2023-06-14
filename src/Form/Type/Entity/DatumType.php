@@ -70,27 +70,28 @@ class DatumType extends AbstractType
                             'required' => false,
                             'model_transformer' => new CallbackTransformer(
                                 function ($string): ?string {
-                                    if (!empty($string)) {
-										$stringParsed = \DateTimeImmutable::createFromFormat('Y-m-d', $string)->format($this->security->getUser()->getDateFormat());
-										if(!$stringParsed)
-										{
-											return null;
-										}
-										return $stringParsed;
+                                    if (empty($string)) {
+                                        return null;
                                     }
 
-                                    return null;
+                                    $date = \DateTimeImmutable::createFromFormat('Y-m-d', $string);
+                                    if (!$date) {
+                                        return null;
+                                    }
+
+                                    return $date->format($this->security->getUser()->getDateFormat()) ?: null;
                                 },
                                 function ($date): ?string {
-                                    if (!empty($date)) {
-										$dateParsed = \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date)->format('Y-m-d');
-										if(!$dateParsed)
-										{
-											return null;
-										}
-										return $dateParsed;
+                                    if (empty($date)) {
+                                        return null;
                                     }
-                                    return null;
+
+                                    $date = \DateTimeImmutable::createFromFormat($this->security->getUser()->getDateFormat(), $date);
+                                    if (!$date) {
+                                        return null;
+                                    }
+
+                                    return $date->format('Y-m-d') ?: null;
                                 }
                             ),
                         ]),

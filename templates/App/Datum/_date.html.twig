@@ -1,12 +1,13 @@
-<div class="input-field outlined col s5">
+<div class="input-field outlined col s10 offset-s1 m5" data-controller="datepicker">
     <input type="text"
-           data-controller="datepicker"
            id="data_{{ iteration }}_value"
            name="{{ entity }}[data][{{ iteration }}][value]"
            maxlength="255"
            {% if datum is defined %}value="{{ datum.value ? datum.value|date(app.user.dateFormat|default('Y-m-d')) : '' }}"{% endif %}
            placeholder=" "
            data-initial-value="{{ datum.value|default('') }}"
+           data-datepicker-target="input"
     >
-    <label for="data_{{ iteration }}_value" class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
+    <label for="data_{{ iteration }}_value" class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }} ({{ app.user.dateFormatForJs }})</label>
+    <i class="fa fa-calendar fa-fw" data-action="click->datepicker#open"></i>
 </div>
