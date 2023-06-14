@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.6] / 2023-06-14
+### Features
+- Add keyboard navigation (left and right arrows) on item pages (benjaminjonard)
+
+### Fixes
+- Fix access rights to prod logs with docker (benjaminjonard)
+- Fix error when trying to delete a template linked to a collection (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Increase date picker year range + small UI fixes (benjaminjonard)
+- Rely on HTML lazy loading for images instead of JS (benjaminjonard)
+
 ## [1.4.5] / 2023-06-01
 ### Fixes
 - Fix broken related items on item edit page (benjaminjonard)
