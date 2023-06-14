@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Upgrade PHP and JS dependencies (benjaminjonard)
 - Increase date picker year range + small UI fixes (benjaminjonard)
 - Rely on HTML lazy loading for images instead of JS (benjaminjonard)
+- Fix docker compose file for dev environment (punfil)
 
 ## [1.4.5] / 2023-06-01
 ### Fixes
