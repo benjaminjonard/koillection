@@ -2170,3 +2170,15 @@ tr {
 .datepicker-controls .select-month input {
     width: 110px;
 }
+
+.datepicker-controls .month-prev, .datepicker-controls .month-next {
+    margin-top: 20px;
+}
+
+.datepicker-controls .selects-container {
+    margin: auto;
+}
+
+.selects-container .input-field {
+    margin: 0;
+}
