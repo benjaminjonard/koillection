@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Enum\DateFormatEnum;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -52,5 +53,10 @@ class DateRuntime implements RuntimeExtensionInterface
             'minute' => $diff->m,
             'second' => $diff->s,
         ]);
+    }
+
+    public function getValidationRegexForDateFormat(string $dateFormat) : string
+    {
+        return DateFormatEnum::getValidationRegex($dateFormat);
     }
 }

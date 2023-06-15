@@ -6,6 +6,7 @@ namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class DateExtension extends AbstractExtension
 {
@@ -14,6 +15,13 @@ class DateExtension extends AbstractExtension
         return [
             new TwigFilter('timeAgo', [DateRuntime::class, 'timeAgo']),
             new TwigFilter('timeDiff', [DateRuntime::class, 'timeDiff']),
+        ];
+    }
+
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('getValidationRegexForDateFormat', [DateRuntime::class, 'getValidationRegexForDateFormat'])
         ];
     }
 }

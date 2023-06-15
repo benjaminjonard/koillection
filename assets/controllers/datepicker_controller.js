@@ -1,5 +1,5 @@
-import { Controller } from '@hotwired/stimulus';
-import { M } from '@materializecss/materialize';
+import {Controller} from '@hotwired/stimulus';
+import {M} from '@materializecss/materialize';
 import Translator from "bazinga-translator";
 
 export default class extends Controller {
@@ -24,11 +24,13 @@ export default class extends Controller {
                 Translator.trans('global.days.saturday').substring(0, 1)],
             clear: Translator.trans('btn.clear'),
             close: Translator.trans('btn.close'),
-            today: Translator.trans('global.today').substring(0, 3)+'.',
+            today: Translator.trans('global.today').substring(0, 3) + '.',
             format: document.getElementById('settings').dataset.dateFormat,
             container: '.main',
             yearRange: [1, new Date().getFullYear() + 10],
-            onClose: function () { this.destroy(); },
+            onClose: function () {
+                this.destroy();
+            },
             onSelect: function (date) {
                 self.inputTarget.dataset.initialValue = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
             },
