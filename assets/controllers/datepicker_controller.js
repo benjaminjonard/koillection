@@ -27,12 +27,15 @@ export default class extends Controller {
             today: Translator.trans('global.today').substring(0, 3) + '.',
             format: document.getElementById('settings').dataset.dateFormat,
             container: '.main',
-            yearRange: [1, new Date().getFullYear() + 10],
+            yearRange: [1900, new Date().getFullYear() + 10],
             onClose: function () {
+                let year = ("000" + this.date.getFullYear()).slice(-4);
+                let month = ("0" + (this.date.getMonth() + 1)).slice(-2);
+                let day = ("0" + this.date.getDate()).slice(-2);
+
+                self.inputTarget.dataset.initialValue =  year + '-' + month + '-' + day
+
                 this.destroy();
-            },
-            onSelect: function (date) {
-                self.inputTarget.dataset.initialValue = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
             },
         });
 

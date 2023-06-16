@@ -60,14 +60,14 @@ class DateFormatEnum
             self::FORMAT_HYPHEN_DMY, self::FORMAT_HYPHEN_MDY, self::FORMAT_HYPHEN_YMD => '-',
         };
 
-        $dayRegex = "(?:(?:31($separator)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)($separator)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})";
-        $monthRegex = "(?:29($separator)0?2\\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))";
-        $yearRegex = "(?:0?[1-9]|1\d|2[0-8])($separator)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\d)?\d{2})";
+        $dayRegex = "(0[1-9]|[12][0-9]|3[01])";
+        $monthRegex = "(0[1-9]|1[012])";
+        $yearRegex = "\d{4}";
 
         return match ($format) {
-            self::FORMAT_SLASH_DMY, self::FORMAT_HYPHEN_DMY => "^$dayRegex$|^$monthRegex$|^$yearRegex$",
-            self::FORMAT_SLASH_MDY, self::FORMAT_HYPHEN_MDY => "^$monthRegex$|^$dayRegex$|^$yearRegex$",
-            self::FORMAT_SLASH_YMD, self::FORMAT_HYPHEN_YMD => "^$yearRegex$|^$monthRegex$|^$dayRegex$",
+            self::FORMAT_SLASH_DMY, self::FORMAT_HYPHEN_DMY => "^{$dayRegex}[{$separator}]{$monthRegex}[{$separator}]{$yearRegex}$",
+            self::FORMAT_SLASH_MDY, self::FORMAT_HYPHEN_MDY => "^{$monthRegex}[{$separator}]{$dayRegex}[{$separator}]{$yearRegex}$",
+            self::FORMAT_SLASH_YMD, self::FORMAT_HYPHEN_YMD => "^{$yearRegex}[{$separator}]{$monthRegex}[{$separator}]{$dayRegex}$",
         };
     }
 }
