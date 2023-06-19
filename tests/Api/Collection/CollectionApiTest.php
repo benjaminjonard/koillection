@@ -12,8 +12,6 @@ use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -206,7 +204,6 @@ class CollectionApiTest extends ApiTestCase
     public function test_post_collection_image(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $uploadedFile = $this->createFile('png');

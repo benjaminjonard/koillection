@@ -10,8 +10,6 @@ use App\Tests\ApiTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -157,7 +155,6 @@ class PhotoApiTest extends ApiTestCase
     public function test_post_photo_image(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);

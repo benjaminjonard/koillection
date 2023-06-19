@@ -13,8 +13,6 @@ use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\TagCategoryFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -172,7 +170,6 @@ class TagApiTest extends ApiTestCase
     public function test_post_tag_image(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $tag = TagFactory::createOne(['owner' => $user]);
         $uploadedFile = $this->createFile('png');

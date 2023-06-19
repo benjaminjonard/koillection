@@ -9,8 +9,6 @@ use App\Tests\ApiTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -22,7 +20,6 @@ class UploadTest extends ApiTestCase
     public function test_upload_avif(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
@@ -48,7 +45,6 @@ class UploadTest extends ApiTestCase
     public function test_upload_png(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
@@ -74,7 +70,6 @@ class UploadTest extends ApiTestCase
     public function test_upload_jpeg(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
@@ -100,7 +95,6 @@ class UploadTest extends ApiTestCase
     public function test_upload_webp(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);

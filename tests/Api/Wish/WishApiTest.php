@@ -10,8 +10,6 @@ use App\Tests\ApiTestCase;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -159,7 +157,6 @@ class WishApiTest extends ApiTestCase
     public function test_post_wish_image(): void
     {
         // Arrange
-        $filesystem = new Filesystem();
         $user = UserFactory::createOne()->object();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
