@@ -3175,6 +3175,18 @@
         <target>Standardmäßig in Daten suchen</target>
       </segment>
     </unit>
+    <unit id="JL3jH0w" name="menu.api_documention">
+      <segment state="translated">
+        <source>API documentation</source>
+        <target>API Dokumentation</target>
+      </segment>
+    </unit>
+    <unit id="wcFJTRH" name="tab.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Konfiguration</target>
+      </segment>
+    </unit>
     <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
       <segment state="translated">
         <source>JPEG</source>
