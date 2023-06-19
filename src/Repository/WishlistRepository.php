@@ -29,7 +29,7 @@ class WishlistRepository extends ServiceEntityRepository
 
     public function findAllExcludingItself(Wishlist $wishlist): array
     {
-        if (null === $wishlist->getCreatedAt()) {
+        if (!$wishlist->getCreatedAt() instanceof \DateTimeImmutable) {
             return $this->findAll();
         }
 
@@ -50,7 +50,7 @@ class WishlistRepository extends ServiceEntityRepository
             ->orderBy('w.name', Criteria::ASC)
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(w.name) LIKE LOWER(:term)')
                 ->setParameter('term', '%'.$search->getTerm().'%')

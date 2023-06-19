@@ -20,7 +20,7 @@ class TreeBuilder
         $tree = $this->createLeaf();
 
         $children = array_filter($collections, static function (Collection $element): bool {
-            return null === $element->getParent();
+            return !$element->getParent() instanceof Collection;
         });
 
         foreach ($children as $child) {
@@ -50,7 +50,7 @@ class TreeBuilder
         }
 
         return [
-            'id' => $collection !== null ? $collection->getId() : '',
+            'id' => $collection instanceof Collection ? $collection->getId() : '',
             'name' => $name,
             'children' => [], ];
     }

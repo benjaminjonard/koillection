@@ -59,6 +59,7 @@ class ItemTest extends AppTestCase
         $item->addTag(TagFactory::createOne(['owner' => $user, 'label' => 'Yamada Kanehito'])->object());
         $item->addRelatedItem($relatedItem);
         $item->save();
+
         $file = $this->createFile('txt');
         $filename = $file->getFilename();
 
@@ -120,7 +121,7 @@ class ItemTest extends AppTestCase
         $this->assertSame('Lent :', $crawler->filter('.datum-row')->eq(10)->text());
         $this->assertCount(1, $crawler->filter('.datum-row')->eq(10)->filter('.fa-close.font-red'));
 
-        $this->assertSame("File : $filename (104 B)", $crawler->filter('.datum-row')->eq(11)->text());
+        $this->assertSame("File : {$filename} (104 B)", $crawler->filter('.datum-row')->eq(11)->text());
         $this->assertFileExists($crawler->filter('.datum-row')->eq(11)->filter('a')->attr('href'));
 
         $this->assertCount(1, $crawler->filter('.related-items img'));
@@ -142,7 +143,7 @@ class ItemTest extends AppTestCase
 
         // Act
         $this->client->request('GET', '/items/add?collection='.$collection->getId());
-        $crawler = $this->client->submitForm('Submit', [
+        $this->client->submitForm('Submit', [
             'item[name]' => 'Frieren #1',
             'item[file]' => $uploadedFile,
             'item[collection]' => $collection->getId(),

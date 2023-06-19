@@ -34,7 +34,7 @@ class LogRepository extends ServiceEntityRepository
             ->setParameter('classes', $classes)
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(l.objectLabel) LIKE LOWER(:term)')
                 ->setParameter('term', '%'.trim($search->getTerm()).'%')
@@ -60,7 +60,7 @@ class LogRepository extends ServiceEntityRepository
             ->from(Log::class, 'l')
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(l.objectLabel) LIKE LOWER(:term)')
                 ->setParameter('term', '%'.trim($search->getTerm()).'%')

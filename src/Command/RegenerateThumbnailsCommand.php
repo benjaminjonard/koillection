@@ -50,7 +50,7 @@ class RegenerateThumbnailsCommand extends Command
 
         foreach ($users as $user) {
             $objects = [];
-            $output->writeln("Regenerating thumbnails for user $user...");
+            $output->writeln("Regenerating thumbnails for user {$user}...");
             
             // Login user, needed for uploads
             $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
@@ -67,7 +67,7 @@ class RegenerateThumbnailsCommand extends Command
                 $objects = array_merge($objects, $result);
             }
             
-            if (\count($objects) === 0) {
+            if ($objects === []) {
                 continue;
             }
 
@@ -100,7 +100,7 @@ class RegenerateThumbnailsCommand extends Command
             $output->writeln("");
         }
 
-        $output->writeln("$counter thumbnails regenerated.");
+        $output->writeln("{$counter} thumbnails regenerated.");
         $output->writeln('Done!');
 
         return Command::SUCCESS;

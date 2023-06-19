@@ -90,7 +90,7 @@ class ItemRepository extends ServiceEntityRepository
             ->orderBy('i.name', Criteria::ASC)
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $whereClause = 'LOWER(i.name) LIKE LOWER(:term)';
 
             if ($search->getSearchInData()) {

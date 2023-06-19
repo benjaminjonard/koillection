@@ -36,7 +36,7 @@ class ThumbnailGenerator
             'image/png' => imagecreatefrompng($path),
             'image/webp' => imagecreatefromwebp($path),
             'image/avif' => imagecreatefromavif($path),
-            default => throw new \Exception("Mime type $mime isn't supported"),
+            default => throw new \Exception("Mime type {$mime} isn't supported"),
         };
 
         $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);

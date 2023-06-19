@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\Collection;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Item;
 use App\Entity\Tag;
@@ -37,7 +38,7 @@ class BreadcrumbBuilder
         if ($entity instanceof Item) {
             if ($parent instanceof Tag) {
                 $breadcrumb = array_merge($this->build($parent), $breadcrumb);
-            } elseif ($entity->getCollection() !== null) {
+            } elseif ($entity->getCollection() instanceof Collection) {
                 $breadcrumb = array_merge($this->build($entity->getCollection()), $breadcrumb);
             }
         }

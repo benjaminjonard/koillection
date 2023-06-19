@@ -52,7 +52,7 @@ class PhotoController extends AbstractController
         }
 
         return $this->render('App/Photo/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'album' => $album,
         ]);
     }
@@ -72,7 +72,7 @@ class PhotoController extends AbstractController
         }
 
         return $this->render('App/Photo/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'photo' => $photo,
         ]);
     }

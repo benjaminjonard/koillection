@@ -8,11 +8,11 @@ use App\Entity\Configuration;
 
 class ConfigurationAdmin
 {
-    private Configuration $thumbnailsFormat;
+    private readonly Configuration $thumbnailsFormat;
 
-    private Configuration $customLightThemeCss;
+    private readonly Configuration $customLightThemeCss;
 
-    private Configuration $customDarkThemeCss;
+    private readonly Configuration $customDarkThemeCss;
 
     public function __construct(Configuration $thumbnailsFormat, Configuration $customLightThemeCss, Configuration $customDarkThemeCss)
     {
@@ -25,6 +25,7 @@ class ConfigurationAdmin
     {
         return $this->thumbnailsFormat;
     }
+
     public function getCustomLightThemeCss(): Configuration
     {
         return $this->customLightThemeCss;

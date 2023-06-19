@@ -13,12 +13,12 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[AsEventListener(event: 'kernel.response', priority: 5)]
-final class RefreshCachedValuesQueueListener
+final readonly class RefreshCachedValuesQueueListener
 {
     public function __construct(
-        private readonly RefreshCachedValuesQueue $refreshCachedValuesQueue,
-        private readonly CachedValuesCalculator $cachedValuesCalculator,
-        private readonly ManagerRegistry $managerRegistry
+        private RefreshCachedValuesQueue $refreshCachedValuesQueue,
+        private CachedValuesCalculator $cachedValuesCalculator,
+        private ManagerRegistry $managerRegistry
     ) {
     }
 

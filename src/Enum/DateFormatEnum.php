@@ -7,15 +7,21 @@ namespace App\Enum;
 class DateFormatEnum
 {
     public const FORMAT_SLASH_DMY = 'd/m/Y';
+
     public const FORMAT_SLASH_MDY = 'm/d/Y';
+
     public const FORMAT_SLASH_YMD = 'Y/m/d';
 
     public const FORMAT_HYPHEN_DMY = 'd-m-Y';
+
     public const FORMAT_HYPHEN_MDY = 'm-d-Y';
+
     public const FORMAT_HYPHEN_YMD = 'Y-m-d';
 
     public const CONTEXT_FORM = 'form';
+
     public const CONTEXT_TWIG = 'twig';
+
     public const CONTEXT_JS = 'js';
 
     public const FORMATS = [

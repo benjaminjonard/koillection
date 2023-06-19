@@ -194,7 +194,7 @@ class CollectionController extends AbstractController
             $this->addFlash('notice', $translator->trans('message.collection_deleted', ['collection' => $collection->getTitle()]));
         }
 
-        if (null === $collection->getParent()) {
+        if (!$collection->getParent() instanceof Collection) {
             return $this->redirectToRoute('app_collection_index');
         }
 

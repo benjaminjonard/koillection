@@ -56,7 +56,7 @@ class TagController extends AbstractController
             'search' => $search,
             'tagsCount' => $tagsCount,
             'paginator' => $paginatorFactory->generate($tagsCount),
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -90,7 +90,7 @@ class TagController extends AbstractController
         }
 
         return $this->render('App/Tag/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'tag' => $tag,
         ]);
     }

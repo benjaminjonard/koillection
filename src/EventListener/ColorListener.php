@@ -10,10 +10,10 @@ use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
 
 #[AsDoctrineListener(event: Events::prePersist)]
-final class ColorListener
+final readonly class ColorListener
 {
     public function __construct(
-        private readonly ColorPicker $colorPicker
+        private ColorPicker $colorPicker
     ) {
     }
 

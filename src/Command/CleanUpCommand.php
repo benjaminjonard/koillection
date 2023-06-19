@@ -83,7 +83,7 @@ class CleanUpCommand extends Command
         $output->writeln('Computing diff and delete unused files...');
         $diff = array_diff($diskPaths, $dbPaths);
 
-        if (\count($diff) > 0) {
+        if ($diff !== []) {
             $progressBar = new ProgressBar($output, \count($diff));
             foreach ($diff as $path) {
                 $progressBar->advance();
@@ -91,6 +91,7 @@ class CleanUpCommand extends Command
                     unlink($this->publicPath.'/'.$path);
                 }
             }
+
             $output->writeln('');
         }
 

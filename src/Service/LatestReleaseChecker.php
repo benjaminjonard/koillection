@@ -29,7 +29,7 @@ class LatestReleaseChecker
 
     public function getLatestReleaseData(): ?array
     {
-        if (!empty($this->latestReleaseData)) {
+        if ($this->latestReleaseData !== null && $this->latestReleaseData !== []) {
             return $this->latestReleaseData;
         }
 
@@ -59,7 +59,7 @@ class LatestReleaseChecker
     public function getLatestRelease(): ?string
     {
         $latestReleaseData = $this->getLatestReleaseData();
-        if (empty($latestReleaseData)) {
+        if ($latestReleaseData === null || $latestReleaseData === []) {
             return null;
         }
 

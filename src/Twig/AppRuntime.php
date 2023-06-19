@@ -118,7 +118,7 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function jsonDecode(?string $string): array
     {
-        if (empty($string)) {
+        if ($string === null || $string === '') {
             return [];
         }
 

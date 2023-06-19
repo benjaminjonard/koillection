@@ -49,7 +49,7 @@ class RegenerateLogsCommand extends Command
         ];
 
         foreach ($classes as $class) {
-            $output->writeln("Checking logs for $class...");
+            $output->writeln("Checking logs for {$class}...");
             $results = $this->managerRegistry
                 ->getRepository($class)
                 ->createQueryBuilder('o')
@@ -80,6 +80,7 @@ class RegenerateLogsCommand extends Command
                     $this->managerRegistry->getManager()->persist($log);
                     ++$counter;
                 }
+
                 $progressBar->advance();
             }
 
@@ -91,6 +92,7 @@ class RegenerateLogsCommand extends Command
         $output->writeln($counter . ' logs generated.');
 
         $output->writeln("Updating 'delete' logs...");
+
         $results = $this->managerRegistry->getManager()->createQueryBuilder()
             ->select('l.objectId')
             ->distinct()

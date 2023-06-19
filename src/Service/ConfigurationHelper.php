@@ -14,7 +14,7 @@ class ConfigurationHelper
 {
     private const PREFIX = 'configuration_';
 
-    private ApcuAdapter $cache;
+    private readonly ApcuAdapter $cache;
 
     public function __construct(private readonly ConfigurationRepository $configurationRepository)
     {
@@ -34,9 +34,8 @@ class ConfigurationHelper
     {
         $configurationRepository = $this->configurationRepository;
 
-        return $this->cache->get(self::PREFIX . $label, function (ItemInterface $item)  use ($configurationRepository, $label) {
+        return $this->cache->get(self::PREFIX . $label, static function (ItemInterface $item) use ($configurationRepository, $label) {
             $configuration = $configurationRepository->findOneBy(['label' => $label]);
-
             return $configuration?->getValue();
         });
     }

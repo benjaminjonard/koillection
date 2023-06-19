@@ -14,13 +14,13 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[AsEventListener(event: 'kernel.request')]
-final class FilterListener
+final readonly class FilterListener
 {
     public function __construct(
-        private readonly ManagerRegistry $managerRegistry,
-        private readonly ContextHandler $contextHandler,
-        private readonly Security $security,
-        private readonly UserRepository $userRepository
+        private ManagerRegistry $managerRegistry,
+        private ContextHandler $contextHandler,
+        private Security $security,
+        private UserRepository $userRepository
     ) {
     }
 

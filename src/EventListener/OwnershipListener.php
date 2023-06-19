@@ -10,10 +10,10 @@ use Doctrine\ORM\Events;
 use Symfony\Bundle\SecurityBundle\Security;
 
 #[AsDoctrineListener(event: Events::prePersist)]
-final class OwnershipListener
+final readonly class OwnershipListener
 {
     public function __construct(
-        private readonly Security $security
+        private Security $security
     ) {
     }
 

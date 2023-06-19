@@ -15,6 +15,7 @@ use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use App\Tests\AppTestCase;
+use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -131,11 +132,12 @@ class SearchTest extends AppTestCase
 
         // Act
         $this->client->request('GET', '/search');
+
         $crawler = $this->client->submitForm('Submit', [
         ], 'GET');
 
         // Assert
-        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertSame('Please fill at least one of the fields', $crawler->filter('.error-helper li')->eq(0)->text());
     }
 

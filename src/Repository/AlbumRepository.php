@@ -19,7 +19,7 @@ class AlbumRepository extends ServiceEntityRepository
 
     public function findAllExcludingItself(Album $album): array
     {
-        if (null === $album->getCreatedAt()) {
+        if (!$album->getCreatedAt() instanceof \DateTimeImmutable) {
             return $this->findAll();
         }
 
@@ -40,7 +40,7 @@ class AlbumRepository extends ServiceEntityRepository
             ->orderBy('a.title', Criteria::ASC)
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(a.title) LIKE LOWER(:term)')
                 ->setParameter('term', '%'.$search->getTerm().'%')

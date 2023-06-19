@@ -7,7 +7,9 @@ namespace App\Enum;
 class ThemeEnum
 {
     public const THEME_BROWSER = 'browser';
+
     public const THEME_LIGHT = 'light';
+
     public const THEME_DARK = 'dark';
 
     public const THEMES = [

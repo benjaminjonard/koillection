@@ -46,7 +46,7 @@ class TemplateController extends AbstractController
         }
 
         return $this->render('App/Template/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -69,7 +69,7 @@ class TemplateController extends AbstractController
         }
 
         return $this->render('App/Template/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'template' => $template,
         ]);
     }

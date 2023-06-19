@@ -52,7 +52,7 @@ class TagCategoryController extends AbstractController
         }
 
         return $this->render('App/TagCategory/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -83,7 +83,7 @@ class TagCategoryController extends AbstractController
         }
 
         return $this->render('App/TagCategory/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'category' => $category,
         ]);
     }

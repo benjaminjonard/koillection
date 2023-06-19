@@ -7,17 +7,29 @@ namespace App\Enum;
 class DatumTypeEnum
 {
     public const TYPE_TEXT = 'text';
+
     public const TYPE_TEXTAREA = 'textarea';
+
     public const TYPE_COUNTRY = 'country';
+
     public const TYPE_DATE = 'date';
+
     public const TYPE_RATING = 'rating';
+
     public const TYPE_NUMBER = 'number';
+
     public const TYPE_PRICE = 'price';
+
     public const TYPE_LINK = 'link';
+
     public const TYPE_LIST = 'list';
+
     public const TYPE_CHECKBOX = 'checkbox';
+
     public const TYPE_IMAGE = 'image';
+
     public const TYPE_FILE = 'file';
+
     public const TYPE_SIGN = 'sign';
 
     public const TYPES = [

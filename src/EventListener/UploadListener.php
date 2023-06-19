@@ -19,13 +19,13 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 #[AsDoctrineListener(event: Events::onFlush)]
 #[AsDoctrineListener(event: Events::postRemove)]
 #[AsDoctrineListener(event: Events::postLoad)]
-final class UploadListener
+final readonly class UploadListener
 {
-    private readonly PropertyAccessor $accessor;
+    private PropertyAccessor $accessor;
 
     public function __construct(
-        private readonly UploadAnnotationReader $reader,
-        private readonly ImageHandler $handler
+        private UploadAnnotationReader $reader,
+        private ImageHandler $handler
     ) {
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }

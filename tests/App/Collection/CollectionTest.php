@@ -111,7 +111,7 @@ class CollectionTest extends AppTestCase
         $this->assertSame('Lent :', $crawler->filter('.datum-row')->eq(6)->text());
         $this->assertCount(1, $crawler->filter('.datum-row')->eq(6)->filter('.fa-close.font-red'));
 
-        $this->assertSame("File : $filename (104 B)", $crawler->filter('.datum-row')->eq(7)->text());
+        $this->assertSame("File : {$filename} (104 B)", $crawler->filter('.datum-row')->eq(7)->text());
         $this->assertFileExists($crawler->filter('.datum-row')->eq(7)->filter('a')->attr('href'));
     }
 

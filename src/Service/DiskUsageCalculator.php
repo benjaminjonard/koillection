@@ -40,7 +40,7 @@ class DiskUsageCalculator
 
     public function hasEnoughSpaceForUpload(?User $user, File $file): void
     {
-        if ($user === null) {
+        if (!$user instanceof User) {
             return;
         }
 

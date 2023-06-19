@@ -10,11 +10,11 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[AsEventListener(event: 'kernel.request')]
-final class ActivityListener
+final readonly class ActivityListener
 {
     public function __construct(
-        private readonly Security $security,
-        private readonly ManagerRegistry $managerRegistry
+        private Security $security,
+        private ManagerRegistry $managerRegistry
     ) {
     }
 

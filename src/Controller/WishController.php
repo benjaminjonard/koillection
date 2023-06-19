@@ -58,7 +58,7 @@ class WishController extends AbstractController
         }
 
         return $this->render('App/Wish/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'wishlist' => $wishlist,
         ]);
     }
@@ -78,7 +78,7 @@ class WishController extends AbstractController
         }
 
         return $this->render('App/Wish/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'wish' => $wish,
         ]);
     }
@@ -137,7 +137,7 @@ class WishController extends AbstractController
         }
 
         return $this->render('App/Wish/transfer_to_collection.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'item' => $item,
             'wish' => $wish,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),

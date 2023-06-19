@@ -36,7 +36,7 @@ class SettingsTest extends AppTestCase
         // Act
         $this->client->request('GET', '/settings');
 
-        $crawler = $this->client->submitForm('Submit', [
+        $this->client->submitForm('Submit', [
             'settings[locale]' => LocaleEnum::LOCALE_FR,
             'settings[currency]' => 'EUR',
             'settings[timezone]' => 'Europe/Paris',

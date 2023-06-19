@@ -9,10 +9,10 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 #[AsEventListener(event: 'kernel.request')]
-final class ContextListener
+final readonly class ContextListener
 {
     public function __construct(
-        private readonly ContextHandler $contextHandler
+        private ContextHandler $contextHandler
     ) {
     }
 

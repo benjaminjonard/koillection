@@ -17,9 +17,10 @@ class ItemNameGuesser
         }
 
         $patternParts = preg_split('/\d+/', $collection->getItems()->first()->getName());
-        if (empty($patternParts) || \count($patternParts) > 2) {
+        if ($patternParts === [] || $patternParts === false || \count($patternParts) > 2) {
             return null;
         }
+
         $pattern = implode('', $patternParts);
 
         $highestValue = 0;

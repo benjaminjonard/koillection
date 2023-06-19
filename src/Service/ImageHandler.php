@@ -96,6 +96,7 @@ class ImageHandler
             if (null !== $path) {
                 @unlink(str_starts_with($path, '/tmp') ? $path : $this->publicPath.'/'.$path);
             }
+
             $this->accessor->setValue($entity, $attribute->getPathProperty(), null);
         }
 
@@ -104,6 +105,7 @@ class ImageHandler
             if (null !== $path) {
                 @unlink(str_starts_with($path, '/tmp') ? $path : $this->publicPath.'/'.$path);
             }
+
             $this->accessor->setValue($entity, $attribute->getSmallThumbnailPathProperty(), null);
         }
 
@@ -112,6 +114,7 @@ class ImageHandler
             if (null !== $path) {
                 @unlink(str_starts_with($path, '/tmp') ? $path : $this->publicPath.'/'.$path);
             }
+
             $this->accessor->setValue($entity, $attribute->getLargeThumbnailPathProperty(), null);
         }
     }

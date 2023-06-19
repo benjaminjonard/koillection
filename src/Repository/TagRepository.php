@@ -66,7 +66,7 @@ class TagRepository extends ServiceEntityRepository
             $qb->having('count(i.id) > 0');
         }
 
-        if (!empty($search->getTerm())) {
+        if ($search->getTerm() !== null && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
                 ->setParameter('search', '%'.trim($search->getTerm()).'%')
@@ -91,7 +91,7 @@ class TagRepository extends ServiceEntityRepository
             ;
         }
 
-        if (!empty($search->getTerm())) {
+        if ($search->getTerm() !== null && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
                 ->setParameter('search', '%'.trim($search->getTerm()).'%')
@@ -158,7 +158,7 @@ class TagRepository extends ServiceEntityRepository
             ->setParameter('totalItems', $itemsCount)
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:term)')
                 ->setParameter('term', '%'.$search->getTerm().'%')

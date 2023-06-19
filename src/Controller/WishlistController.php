@@ -56,7 +56,7 @@ class WishlistController extends AbstractController
         }
 
         return $this->render('App/Wishlist/edit_index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form
         ]);
     }
 
@@ -91,7 +91,7 @@ class WishlistController extends AbstractController
         }
 
         return $this->render('App/Wishlist/add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -124,7 +124,7 @@ class WishlistController extends AbstractController
         }
 
         return $this->render('App/Wishlist/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'wishlist' => $wishlist,
         ]);
     }

@@ -32,7 +32,7 @@ class CollectionRepository extends ServiceEntityRepository
 
     public function findAllExcludingItself(Collection $collection): array
     {
-        if (null === $collection->getCreatedAt()) {
+        if (!$collection->getCreatedAt() instanceof \DateTimeImmutable) {
             return $this->findAll();
         }
 
@@ -93,7 +93,7 @@ class CollectionRepository extends ServiceEntityRepository
             ->orderBy('c.title', Criteria::ASC)
         ;
 
-        if (\is_string($search->getTerm()) && !empty($search->getTerm())) {
+        if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $whereClause = 'LOWER(c.title) LIKE LOWER(:term)';
 
             if ($search->getSearchInData()) {

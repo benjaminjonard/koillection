@@ -11,11 +11,11 @@ use Twig\Environment;
 use Twig\Extension\CoreExtension;
 
 #[AsEventListener(event: 'kernel.request')]
-final class TimezoneListener
+final readonly class TimezoneListener
 {
     public function __construct(
-        private readonly Security $security,
-        private readonly Environment $twig
+        private Security $security,
+        private Environment $twig
     ) {
     }
 

@@ -9,6 +9,7 @@ use App\Enum\LocaleEnum;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -16,11 +17,11 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 #[AsEventListener(event: 'kernel.request', priority: 15)]
 #[AsEventListener(event: 'security.interactive_login')]
 #[AsEntityListener(event: Events::postUpdate, entity: User::class, lazy: true)]
-final class LocaleListener
+final readonly class LocaleListener
 {
     public function __construct(
-        private readonly RequestStack $requestStack,
-        private readonly string $defaultLocale
+        private RequestStack $requestStack,
+        private string $defaultLocale
     ) {
     }
 
@@ -53,7 +54,7 @@ final class LocaleListener
 
     public function postUpdate(User $user): void
     {
-        if ($this->requestStack->getMainRequest()) {
+        if ($this->requestStack->getMainRequest() instanceof Request) {
             $this->requestStack->getSession()->set('_locale', $user->getLocale());
         }
     }

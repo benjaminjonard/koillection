@@ -55,7 +55,7 @@ class Search
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context): void
     {
-        if (null === $this->getTerm() && null === $this->getCreatedAt()) {
+        if (null === $this->getTerm() && !$this->getCreatedAt() instanceof \DateTimeImmutable) {
             $context
                 ->buildViolation('error.search.empty')
                 ->addViolation()

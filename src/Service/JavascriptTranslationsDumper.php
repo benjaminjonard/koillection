@@ -94,7 +94,7 @@ class JavascriptTranslationsDumper
 
         foreach ($finder as $file) {
             $filename = $file->getPathname();
-            list($extension, $locale, $domain) = explode('.', basename($filename), 3);
+            [$extension, $locale, $domain] = explode('.', basename($filename), 3);
 
             if (!isset($translations[$locale])) {
                 $translations[$locale] = [];

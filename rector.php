@@ -49,7 +49,6 @@ return static function (RectorConfig $rectorConfig): void {
         // PHP 7.4
         RestoreDefaultNullToNullableTypePropertyRector::class,
         NullCoalescingOperatorRector::class,
-        AddReturnTypeDeclarationRector::class,
 
         // PHP 8.0
         ChangeSwitchToMatchRector::class,
@@ -69,10 +68,6 @@ return static function (RectorConfig $rectorConfig): void {
         //Type declaration
         AddClosureReturnTypeRector::class,
         AddVoidReturnTypeWhereNoReturnRector::class,
-    ]);
-
-    $rectorConfig->ruleWithConfiguration(ConsistentPregDelimiterRector::class, [
-        ConsistentPregDelimiterRector::DELIMITER => '/',
     ]);
 
     $rectorConfig->sets([

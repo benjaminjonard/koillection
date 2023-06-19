@@ -18,10 +18,10 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
 
 #[AsDoctrineListener(event: Events::onFlush)]
-final class RefreshCachedValuesListener
+final readonly class RefreshCachedValuesListener
 {
     public function __construct(
-        private readonly RefreshCachedValuesQueue $refreshCachedValuesQueue
+        private RefreshCachedValuesQueue $refreshCachedValuesQueue
     ) {
     }
 
@@ -48,7 +48,7 @@ final class RefreshCachedValuesListener
             } elseif ($entity instanceof Wish && isset($changeset['wishlist'])) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][0]));
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][1]));
-            } elseif ($entity instanceof Datum && $entity->getItem() !== null && $entity->getType() === DatumTypeEnum::TYPE_PRICE &&
+            } elseif ($entity instanceof Datum && $entity->getItem() instanceof Item && $entity->getType() === DatumTypeEnum::TYPE_PRICE &&
                       (isset($changeset['value']) || isset($changeset['label']))) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getItem()->getCollection()));
             }

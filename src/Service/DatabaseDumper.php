@@ -157,7 +157,7 @@ class DatabaseDumper
                 $value = true === $value ? 'true' : 'false';
             }
 
-            if (null === $metadata || \in_array($type, [null, 'string', 'datetime', 'datetime_immutable', 'date', 'date_immutable', 'time', 'time_immutable', 'uuid', 'array', 'text', 'json'], true)) {
+            if (!$metadata instanceof ClassMetadata || \in_array($type, [null, 'string', 'datetime', 'datetime_immutable', 'date', 'date_immutable', 'time', 'time_immutable', 'uuid', 'array', 'text', 'json'], true)) {
                 $value = "'".$value."'";
             }
         }
