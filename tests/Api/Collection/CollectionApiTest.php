@@ -165,6 +165,38 @@ class CollectionApiTest extends ApiTestCase
         ]);
     }
 
+    public function test_cant_assign_collection_as_its_own_parent(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
+            'parent' => '/api/collections/'.$collection->getId(),
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
+    }
+
+    public function test_cant_assign_child_as_parent_collection(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
+        $child = CollectionFactory::createOne(['parent' => $collection, 'title' => 'Ex-libris', 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
+            'parent' => '/api/collections/'.$child->getId(),
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
+    }
+
+
     public function test_patch_collection(): void
     {
         // Arrange

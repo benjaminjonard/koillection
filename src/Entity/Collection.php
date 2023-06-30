@@ -28,6 +28,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -75,7 +76,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'children')]
     #[Groups(['collection:read', 'collection:write'])]
-    #[Assert\Expression('not (value == this)', message: 'error.parent.same_as_current_object')]
     private ?Collection $parent = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'collections')]
@@ -145,6 +145,12 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?\DateTimeImmutable $updatedAt = null;
 
     private ?string $orderingValue = null;
+
+    #[Assert\IsFalse(message: 'error.parent.same_as_current_object')]
+    private bool $hasParentEqualToItself = false;
+
+    #[Assert\IsFalse(message: 'error.parent.is_child_of_current_object')]
+    private bool $hasParentEqualToOneOfItsChildren = false;
 
     public function __construct()
     {
@@ -261,6 +267,19 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     public function setParent(?self $parent): self
     {
+        // Protections against infinite loops
+        if ($parent === $this) {
+            $this->hasParentEqualToItself = true;
+
+            return $this;
+        }
+
+        if (in_array($parent, $this->getChildrenRecursively())) {
+            $this->hasParentEqualToOneOfItsChildren = true;
+
+            return $this;
+        }
+
         $this->parent = $parent;
 
         return $this;

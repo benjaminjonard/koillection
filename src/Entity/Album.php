@@ -132,6 +132,12 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Groups(['album:read'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[Assert\IsFalse(message: 'error.parent.same_as_current_object')]
+    private bool $hasParentEqualToItself = false;
+
+    #[Assert\IsFalse(message: 'error.parent.is_child_of_current_object')]
+    private bool $hasParentEqualToOneOfItsChildren = false;
+
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
@@ -247,11 +253,29 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     public function getParent(): ?self
     {
+        // Protection against infinite loops
+        if ($this->parent === $this) {
+            return null;
+        }
+
         return $this->parent;
     }
 
     public function setParent(?self $parent): self
     {
+        // Protections against infinite loops
+        if ($parent === $this) {
+            $this->hasParentEqualToItself = true;
+
+            return $this;
+        }
+
+        if (in_array($parent, $this->getChildrenRecursively())) {
+            $this->hasParentEqualToOneOfItsChildren = true;
+
+            return $this;
+        }
+
         $this->parent = $parent;
 
         return $this;

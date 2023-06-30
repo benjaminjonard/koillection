@@ -145,6 +145,37 @@ class WishlistApiTest extends ApiTestCase
         ]);
     }
 
+    public function test_cant_assign_wishlist_as_its_own_parent(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $wishlist = WishlistFactory::createOne(['name' => 'Books', 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/'.$wishlist->getId(), ['json' => [
+            'parent' => '/api/wishlists/'.$wishlist->getId(),
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
+    }
+
+    public function test_cant_assign_child_as_parent_wishlist(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $wishlist = WishlistFactory::createOne(['name' => 'Frieren', 'owner' => $user]);
+        $child = WishlistFactory::createOne(['parent' => $wishlist, 'name' => 'Ex-libris', 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/'.$wishlist->getId(), ['json' => [
+            'parent' => '/api/wishlists/'.$child->getId(),
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
+    }
+
     public function test_patch_wishlist(): void
     {
         // Arrange

@@ -147,6 +147,37 @@ class AlbumApiTest extends ApiTestCase
         ]);
     }
 
+    public function test_cant_assign_album_as_its_own_parent(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
+            'parent' => '/api/albums/'.$album->getId(),
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
+    }
+
+    public function test_cant_assign_child_as_parent_album(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
+        $child = AlbumFactory::createOne(['parent' => $album, 'title' => 'Ex-libris', 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
+            'parent' => '/api/albums/'.$child->getId(),
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
+    }
+
     public function test_patch_album(): void
     {
         // Arrange
