@@ -17,17 +17,20 @@ class AlbumRepository extends ServiceEntityRepository
         parent::__construct($registry, Album::class);
     }
 
-    public function findAllExcludingItself(Album $album): array
+    public function findAllExcludingItselfAndChildren(Album $album): array
     {
         if (!$album->getCreatedAt() instanceof \DateTimeImmutable) {
             return $this->findAll();
         }
 
+        $excludedAlbums = $album->getChildrenRecursively();
+        $excludedAlbums[] = $album->getId();
+
         return $this
             ->createQueryBuilder('a')
             ->orderBy('a.title', Criteria::ASC)
-            ->where('a != :album')
-            ->setParameter('album', $album->getId())
+            ->where('a NOT IN (:excludedAlbums)')
+            ->setParameter('excludedAlbums', $excludedAlbums)
             ->getQuery()
             ->getResult()
         ;

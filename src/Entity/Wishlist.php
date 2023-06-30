@@ -229,6 +229,18 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this->children;
     }
 
+    public function getChildrenRecursively(): array
+    {
+        $children = [];
+
+        foreach ($this->children as $child) {
+            $children[] = $child;
+            $children = array_merge($children, $child->getChildrenRecursively());
+        }
+
+        return $children;
+    }
+
     public function getParent(): ?self
     {
         return $this->parent;

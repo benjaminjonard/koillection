@@ -27,17 +27,20 @@ class WishlistRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllExcludingItself(Wishlist $wishlist): array
+    public function findAllExcludingItselfAndChildren(Wishlist $wishlist): array
     {
         if (!$wishlist->getCreatedAt() instanceof \DateTimeImmutable) {
             return $this->findAll();
         }
 
+        $excludedWishlists = $wishlist->getChildrenRecursively();
+        $excludedWishlists[] = $wishlist->getId();
+
         return $this
             ->createQueryBuilder('w')
             ->orderBy('w.name', Criteria::ASC)
-            ->where('w != :wishlist')
-            ->setParameter('wishlist', $wishlist->getId())
+            ->where('w NOT IN (:excludedWishlists)')
+            ->setParameter('excludedWishlists', $excludedWishlists)
             ->getQuery()
             ->getResult()
         ;

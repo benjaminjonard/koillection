@@ -42,7 +42,7 @@ class AlbumType extends AbstractType
             ->add('parent', EntityType::class, [
                 'class' => Album::class,
                 'choice_label' => 'title',
-                'choices' => $this->albumRepository->findAllExcludingItself($entity),
+                'choices' => $this->albumRepository->findAllExcludingItselfAndChildren($entity),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

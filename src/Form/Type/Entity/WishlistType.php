@@ -39,7 +39,7 @@ class WishlistType extends AbstractType
             ->add('parent', EntityType::class, [
                 'class' => Wishlist::class,
                 'choice_label' => 'name',
-                'choices' => $this->wishlistRepository->findAllExcludingItself($entity),
+                'choices' => $this->wishlistRepository->findAllExcludingItselfAndChildren($entity),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

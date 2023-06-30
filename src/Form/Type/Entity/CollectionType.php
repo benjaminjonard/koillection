@@ -87,7 +87,7 @@ class CollectionType extends AbstractType
             ->add('parent', EntityType::class, [
                 'class' => Collection::class,
                 'choice_label' => 'title',
-                'choices' => $this->collectionRepository->findAllExcludingItself($entity),
+                'choices' => $this->collectionRepository->findAllExcludingItselfAndChildren($entity),
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,

@@ -30,17 +30,20 @@ class CollectionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllExcludingItself(Collection $collection): array
+    public function findAllExcludingItselfAndChildren(Collection $collection): array
     {
         if (!$collection->getCreatedAt() instanceof \DateTimeImmutable) {
             return $this->findAll();
         }
 
+        $excludedCollections = $collection->getChildrenRecursively();
+        $excludedCollections[] = $collection->getId();
+
         return $this
             ->createQueryBuilder('c')
             ->orderBy('c.title', Criteria::ASC)
-            ->where('c != :collection')
-            ->setParameter('collection', $collection->getId())
+            ->where('c NOT IN (:excludedCollections)')
+            ->setParameter('excludedCollections', $excludedCollections)
             ->getQuery()
             ->getResult()
         ;
