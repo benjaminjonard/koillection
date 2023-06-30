@@ -38,7 +38,7 @@
 .select2-container--default .select2-results__option--highlighted[aria-selected],
 .select2-container--default .select2-results__option[aria-selected="true"],
 .sidebar-wrapper .header-logo:hover, .header-profile .down-background, .btn, .btn:focus, .btn:hover,
-.modal-custom .modal-header, .box h1, .box .logo {
+.modal-custom .modal-header, .box h1, .box .logo, .dropdown-menu li:hover {
     background-color: var(--primary-color);
 }
 
@@ -47,7 +47,7 @@
 }
 
 /** SECONDARY COLOR **/
-.btn-holder .button, .btn-holder .button i, .table-actions i, .dropdown-menu i,
+.btn-holder .button, .btn-holder .button i, .table-actions i,
 .header {
     color: var(--secondary-color);
 }
@@ -82,7 +82,7 @@ input {
 }
 
 /** FONT COLOR LIGHT **/
-.sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li, .select2, .input-field.outlined input, .input-field.outlined textarea {
+.sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li, .select2, .input-field.outlined input, .input-field.outlined textarea, .dropdown-menu li, .dropdown-menu {
     border-color: var(--font-color-light);
 }
 
@@ -95,21 +95,21 @@ input {
 .autocomplete-results li span, .autocomplete-result a,
 .select2-container--default .select2-selection--single .select2-selection__rendered,
 .tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header,
-.box h1
+.box h1, .dropdown-menu a
 {
     color: var(--font-color-main);
 }
 
-.select2-container--default .select2-selection--single .select2-selection__arrow b {
+.select2-container--default .select2-selection--single .select2-selection__arrow b  {
     border-color: var(--font-color-main) transparent transparent;
 }
 
-
 /** BACKGROUND COLOR DARK **/
 header, .sidebar-wrapper, .content-wrapper .btn-holder input[type="text"], .sidebar-element.separate-item div,
-table.striped > tbody > tr:nth-child(2n+1) {
+table.striped > tbody > tr:nth-child(2n+1), .dropdown-menu li {
     background-color: var(--background-color-dark);
 }
+
 
 /** BACKGROUND COLOR LIGHT **/
 .autocomplete-results li {
