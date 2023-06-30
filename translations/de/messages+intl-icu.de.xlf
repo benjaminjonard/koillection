@@ -3187,6 +3187,24 @@
         <target>Konfiguration</target>
       </segment>
     </unit>
+    <unit id="l4xWhN8" name="menu.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Einstellungen</target>
+      </segment>
+    </unit>
+    <unit id="4Q5t9Zu" name="title.edit_configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Einstellungen</target>
+      </segment>
+    </unit>
+    <unit id="ACW22BU" name="global.configuration.thumbnails_format.keep_original">
+      <segment state="translated">
+        <source>Keep original</source>
+        <target>Original behalten</target>
+      </segment>
+    </unit>
     <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
       <segment state="translated">
         <source>JPEG</source>
@@ -3209,6 +3227,84 @@
       <segment state="translated">
         <source>AVIF</source>
         <target>AVIF</target>
+      </segment>
+    </unit>
+    <unit id="btvfChU" name="label.thumbnails_format">
+      <segment state="translated">
+        <source>Thumbnails format</source>
+        <target>Größe der Thumbnails</target>
+      </segment>
+    </unit>
+    <unit id="r58OOnk" name="message.configuration_updated">
+      <segment state="translated">
+        <source>Configuration updated</source>
+        <target>Einstellungen aktualisiert</target>
+      </segment>
+    </unit>
+    <unit id="YX0yhdx" name="tooltip.cancel_modifications">
+      <segment state="translated">
+        <source>Cancel modifications</source>
+        <target>Änderungen verwerfen</target>
+      </segment>
+    </unit>
+    <unit id="oAD2Kex" name="tooltip.remove_thumbnail">
+      <segment state="translated">
+        <source>Remove thumbnail</source>
+        <target>Thumbnail entfernen</target>
+      </segment>
+    </unit>
+    <unit id="8QwwFtM" name="title.custom_css">
+      <segment state="translated">
+        <source>Custom CSS</source>
+        <target>Benutzerdefiniertes CSS</target>
+      </segment>
+    </unit>
+    <unit id="OCFAuxO" name="label.custom_light_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for light theme</source>
+        <target>CSS-Anpassung für helles Theme</target>
+      </segment>
+    </unit>
+    <unit id="iSj6Yq6" name="label.custom_dark_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for dark theme</source>
+        <target>CSS-Anpassung für dunkles Theme</target>
+      </segment>
+    </unit>
+    <unit id="tgAUZOn" name="message.custom_css_colors_help">
+      <segment state="translated">
+        <source>To change the theme colors, copy and paste the following code in the text area and update the colors as needed.</source>
+        <target>Um die Farben des Themes zu ändern, kopiere den folgenden Code, füge ihn im Textfeld ein und ändere die Farben nach Belieben.</target>
+      </segment>
+    </unit>
+    <unit id="Odut9ks" name="message.custom_css_properties_help">
+      <segment state="translated">
+        <source>For more fine-grained modifications, you can also add custom CSS properties.</source>
+        <target>Für genauere Modifikationen können benutzerdefinierte CSS Eigenschaften hinzugefügt werden.</target>
+      </segment>
+    </unit>
+    <unit id="tQOO9SX" name="title.customize_light_theme">
+      <segment state="translated">
+        <source>Customize light theme</source>
+        <target>Helles Theme anpassen</target>
+      </segment>
+    </unit>
+    <unit id="VwEpz4c" name="title.customize_dark_theme">
+      <segment state="translated">
+        <source>Customize dark theme</source>
+        <target>Dunkles Theme anpassen</target>
+      </segment>
+    </unit>
+    <unit id="UZ5psYq" name="message.show_help_for_light_theme">
+      <segment state="translated">
+        <source>Show help for light theme</source>
+        <target>Zeige Hilfe für helles Theme</target>
+      </segment>
+    </unit>
+    <unit id="LlfrKW3" name="message.show_help_for_dark_theme">
+      <segment state="translated">
+        <source>Show help for dark theme</source>
+        <target>Zeige Hilfe für dunkles Theme</target>
       </segment>
     </unit>
   </file>
