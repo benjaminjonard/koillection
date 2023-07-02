@@ -1,16 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="it">
   <file id="validators.en">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <unit id="m_gMJbR" name="error.parent.same_as_current_object">
+      <segment state="translated">
+        <source>The parent can't be the same as the current item</source>
+        <target>Il genitore non può essere lo stesso dell'articolo corrente</target>
+      </segment>
+    </unit>
+    <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <segment state="translated">
+        <source>A datum cannot be used with both item and collection</source>
+        <target>Un dato non può essere usato sia con l'articolo che con la collezione</target>
+      </segment>
+    </unit>
+    <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
+      <segment state="translated">
+        <source>A collection or an item must be provided</source>
+        <target>Deve essere fornita una collezione o un articolo</target>
+      </segment>
+    </unit>
+    <unit id="7OcgSlg" name="error.email.not_unique">
+      <segment state="translated">
+        <source>Email address already used</source>
+        <target>Indirizzo email già in uso</target>
+      </segment>
+    </unit>
+    <unit id="qoRxC7z" name="error.username.not_unique">
+      <segment state="translated">
+        <source>Username already used</source>
+        <target>Nome utente già in uso</target>
+      </segment>
+    </unit>
+    <unit id="PjAj0XF" name="error.username.incorrect">
+      <segment state="translated">
+        <source>Username must have between 2 and 32 characters (only letters, numbers and underscores are allowed)</source>
+        <target>Il nome utente deve avere tra 2 e 32 caratteri (sono ammesse solo lettere, numeri e underscore)</target>
+      </segment>
+    </unit>
+    <unit id="4Bdfyy1" name="error.password.incorrect">
+      <segment state="translated">
+        <source>Your password must contain at least 8 characters (with at least 1 letter and 1 number)</source>
+        <target>La password deve contenere almeno 8 caratteri (con almeno 1 lettera e 1 numero)</target>
+      </segment>
+    </unit>
+    <unit id="4m1Sgo3" name="error.password.not_matching">
+      <segment state="translated">
+        <source>The two passwords are not identical</source>
+        <target>Le due password non sono identiche</target>
+      </segment>
+    </unit>
+    <unit id=".OeR.gK" name="error.search.too_short">
+      <segment state="translated">
+        <source>You must enter at least 2 characters</source>
+        <target>Devi inserire almeno 2 caratteri</target>
+      </segment>
+    </unit>
+    <unit id="_d89Gke" name="error.search.empty">
+      <segment state="translated">
+        <source>Please fill at least one of the fields</source>
+        <target>Per favore compila almeno uno dei campi</target>
+      </segment>
+    </unit>
+    <unit id="DVztPk_" name="error.label.must_be_unique">
+      <segment state="translated">
+        <source>"{label}" label is used multiple times, all labels must be unique</source>
+        <target>Etichetta "{label}" usata più volte, tutte le etichette devono essere uniche</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
