@@ -775,41 +775,5 @@
         <target>Ustawienia przedmiotów</target>
       </segment>
     </unit>
-    <unit id="Kg4E_mI" name="global.locale.es">
-      <notes>
-        <note>Do not translate, keep same as source string</note>
-      </notes>
-      <segment state="translated">
-        <source>Español</source>
-        <target>Español</target>
-      </segment>
-    </unit>
-    <unit id="TjepIwh" name="global.locale.en">
-      <notes>
-        <note>Do not translate, keep same as source string</note>
-      </notes>
-      <segment state="translated">
-        <source>English</source>
-        <target>English</target>
-      </segment>
-    </unit>
-    <unit id="Acw13X3" name="global.locale.fr">
-      <notes>
-        <note>Do not translate, keep same as source string</note>
-      </notes>
-      <segment state="translated">
-        <source>Français</source>
-        <target>Français</target>
-      </segment>
-    </unit>
-    <unit id="8oCe4ni" name="global.locale.de">
-      <notes>
-        <note>Do not translate, keep same as source string</note>
-      </notes>
-      <segment state="translated">
-        <source>Deutsch</source>
-        <target>Deutsch</target>
-      </segment>
-    </unit>
   </file>
 </xliff>

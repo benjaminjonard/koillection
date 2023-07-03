@@ -6,7 +6,6 @@ namespace App\Tests\Factory;
 
 use App\Entity\User;
 use App\Enum\DateFormatEnum;
-use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
@@ -45,7 +44,7 @@ final class UserFactory extends ModelFactory
             'enabled' => true,
             'roles' => [RoleEnum::ROLE_USER],
             'currency' => self::faker()->currencyCode(),
-            'locale' => LocaleEnum::LOCALE_EN,
+            'locale' => 'en',
             'timezone' => self::faker()->timezone(),
             'dateFormat' => DateFormatEnum::FORMAT_HYPHEN_YMD,
             'diskSpaceAllowed' => 536870912,

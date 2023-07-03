@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use App\Entity\User;
-use App\Enum\LocaleEnum;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
@@ -21,7 +20,8 @@ final readonly class LocaleListener
 {
     public function __construct(
         private RequestStack $requestStack,
-        private string $defaultLocale
+        private string $defaultLocale,
+        private array $enabledLocales
     ) {
     }
 
@@ -35,7 +35,7 @@ final readonly class LocaleListener
 
         $locale = $request->query->get('_locale');
 
-        if ($locale && \in_array($locale, LocaleEnum::LOCALES)) {
+        if ($locale && \in_array($locale, $this->enabledLocales)) {
             $request->getSession()->set('_locale', $locale);
             $request->setLocale($request->getSession()->get('_locale', $locale));
         } else {

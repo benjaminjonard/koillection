@@ -22,7 +22,7 @@ class SettingsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
-            $this->addFlash('notice', $translator->trans('message.settings_updated'));
+            $this->addFlash('notice', $translator->trans('message.settings_updated', locale: $user->getLocale()));
 
             return $this->redirectToRoute('app_settings_index');
         }

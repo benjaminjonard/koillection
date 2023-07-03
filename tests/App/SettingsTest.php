@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Enum\DateFormatEnum;
-use App\Enum\LocaleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\Factory\UserFactory;
@@ -37,7 +36,7 @@ class SettingsTest extends AppTestCase
         $this->client->request('GET', '/settings');
 
         $this->client->submitForm('Submit', [
-            'settings[locale]' => LocaleEnum::LOCALE_FR,
+            'settings[locale]' => 'fr',
             'settings[currency]' => 'EUR',
             'settings[timezone]' => 'Europe/Paris',
             'settings[dateFormat]' => DateFormatEnum::FORMAT_SLASH_DMY,
@@ -58,7 +57,7 @@ class SettingsTest extends AppTestCase
         // $this->assertSame('Paramètres', $crawler->filter('h1')->text());
         UserFactory::assert()->exists([
             'id' => $user->getId(),
-            'locale' => LocaleEnum::LOCALE_FR,
+            'locale' => 'fr',
             'currency' => 'EUR',
             'timezone' => 'Europe/Paris',
             'dateFormat' => DateFormatEnum::FORMAT_SLASH_DMY,

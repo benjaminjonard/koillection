@@ -11,11 +11,11 @@ use ApiPlatform\Metadata\GetCollection;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
-use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\UserRepository;
+use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\DBAL\Types\Types;
@@ -91,8 +91,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::STRING, length: 5)]
     #[Groups(['user:read', 'user:write'])]
-    #[Assert\Choice(choices: LocaleEnum::LOCALES)]
-    private string $locale = LocaleEnum::LOCALE_EN;
+    #[AppAssert\AvailableLocale]
+    private string $locale = 'en';
 
     #[ORM\Column(type: Types::STRING, length: 50)]
     #[Groups(['user:read', 'user:write'])]

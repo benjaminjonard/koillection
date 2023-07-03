@@ -14,17 +14,17 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class AppRuntime implements RuntimeExtensionInterface
+readonly class AppRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly RouterInterface $router,
-        private readonly TagRepository $tagRepository,
-        private readonly ContextHandler $contextHandler,
-        private readonly FeatureChecker $featureChecker,
-        private readonly ConfigurationHelper $configurationHelper,
-        private readonly string $publicPath,
-        private readonly string $kernelProjectDir,
+        private TranslatorInterface $translator,
+        private RouterInterface $router,
+        private TagRepository $tagRepository,
+        private ContextHandler $contextHandler,
+        private FeatureChecker $featureChecker,
+        private ConfigurationHelper $configurationHelper,
+        private string $publicPath,
+        private string $kernelProjectDir,
     ) {
     }
 

@@ -7,19 +7,22 @@ namespace App\Form\Type\Model;
 use App\Entity\User;
 use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
-use App\Enum\LocaleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
+use App\Service\LocaleHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SettingsType extends AbstractType
 {
+    public function __construct(
+        private LocaleHelper $localeHelper
+    ) {}
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -35,7 +38,7 @@ class SettingsType extends AbstractType
                 'required' => true,
             ])
             ->add('locale', ChoiceType::class, [
-                'choices' => array_flip(LocaleEnum::getLocaleLabels()),
+                'choices' => array_flip($this->localeHelper->getLocaleLabels()),
                 'required' => true,
             ])
             ->add('searchInDataByDefaultEnabled', CheckboxType::class, [

@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Enum\CurrencyEnum;
-use App\Enum\LocaleEnum;
 use App\Enum\RoleEnum;
+use App\Service\LocaleHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class EnumRuntime implements RuntimeExtensionInterface
+readonly class EnumRuntime implements RuntimeExtensionInterface
 {
+    public function __construct(
+        private LocaleHelper $localeHelper
+    ) {}
+
     public function getCurrencySymbol(string $code): ?string
     {
         return CurrencyEnum::getSymbolFromCode($code);
@@ -23,11 +27,11 @@ class EnumRuntime implements RuntimeExtensionInterface
 
     public function getLocales(): array
     {
-        return LocaleEnum::getLocaleLabels();
+        return $this->localeHelper->getLocaleLabels();
     }
 
     public function getLocaleLabel(string $code): string
     {
-        return LocaleEnum::getLocaleLabels()[$code] ?? LocaleEnum::getLocaleLabels()[LocaleEnum::LOCALE_EN];
+        return $this->localeHelper->getLocaleLabels()[$code] ?? $this->localeHelper->getLocaleLabels()[$this->localeHelper->getDefaultLocale()];
     }
 }
