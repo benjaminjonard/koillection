@@ -3097,15 +3097,6 @@
         <target>Búsqueda en datos (por elementos y colecciones)</target>
       </segment>
     </unit>
-    <unit id="8oCe4ni" name="global.locale.de">
-      <notes>
-        <note>Do not translate, keep same as source string</note>
-      </notes>
-      <segment state="translated">
-        <source>Deutsch</source>
-        <target>Deutsch</target>
-      </segment>
-    </unit>
     <unit id="hnKIpTQ" name="label.apiplatform_version">
       <segment state="translated">
         <source>API Platform version</source>
