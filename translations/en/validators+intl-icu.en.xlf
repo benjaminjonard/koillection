@@ -67,5 +67,11 @@
         <target>"{label}" label is used multiple times, all labels must be unique</target>
       </segment>
     </unit>
+    <unit id="IV3649l" name="error.parent.is_child_of_current_object">
+      <segment state="translated">
+        <source>The parent can't be one of the children</source>
+        <target>The parent can't be one of the children</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
