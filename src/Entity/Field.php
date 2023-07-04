@@ -45,7 +45,7 @@ class Field
     private ?string $type = null;
 
     #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
-    #[Groups(['datum:read'])]
+    #[Groups(['field:read'])]
     private ?ChoiceList $choiceList = null;
 
     #[ORM\ManyToOne(targetEntity: Template::class, inversedBy: 'fields')]
