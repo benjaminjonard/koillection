@@ -9,6 +9,7 @@ use App\Entity\Datum;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
@@ -287,5 +288,50 @@ class DatumApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Datum::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['file']);
         $this->assertFileExists(json_decode($crawler->getContent(), true)['file']);
+    }
+
+    public function test_post_datum_choice_list(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['New', 'In progress', 'Done'], 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
+            'item' => '/api/items/'.$item->getId(),
+            'label' => 'Progress',
+            'value' => 'New',
+            'type' => DatumTypeEnum::TYPE_LIST,
+            'choiceList' => '/api/choice_lists/'.$choiceList->getId()
+        ]]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Datum::class);
+        $this->assertJsonContains([
+            'item' => '/api/items/'.$item->getId(),
+            'choiceList' => '/api/choice_lists/'.$choiceList->getId(),
+        ]);
+    }
+
+    public function test_cant_post_datum_choice_list_without_choice_list(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
+            'item' => '/api/items/'.$item->getId(),
+            'label' => 'Progress',
+            'value' => 'New',
+            'type' => DatumTypeEnum::TYPE_LIST
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
     }
 }

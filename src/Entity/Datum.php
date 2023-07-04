@@ -109,6 +109,12 @@ class Datum implements \Stringable
 
     #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
     #[Groups(['datum:read', 'datum:write'])]
+    #[Assert\When(
+        expression: 'this.getType() == "list"',
+        constraints: [
+            new Assert\NotNull
+        ],
+    )]
     private ?ChoiceList $choiceList = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]

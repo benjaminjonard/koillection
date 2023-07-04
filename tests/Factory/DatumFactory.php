@@ -36,7 +36,7 @@ final class DatumFactory extends ModelFactory
     {
         return [
             'label' => self::faker()->word(),
-            'type' => self::faker()->randomElement(DatumTypeEnum::TYPES),
+            'type' => DatumTypeEnum::TYPE_TEXT,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }

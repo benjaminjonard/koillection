@@ -45,7 +45,13 @@ class Field
     private ?string $type = null;
 
     #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
-    #[Groups(['field:read'])]
+    #[Groups(['field:read', 'field:write'])]
+    #[Assert\When(
+        expression: 'this.getType() == "list"',
+        constraints: [
+            new Assert\NotNull
+        ],
+    )]
     private ?ChoiceList $choiceList = null;
 
     #[ORM\ManyToOne(targetEntity: Template::class, inversedBy: 'fields')]

@@ -8,6 +8,7 @@ use App\Entity\Field;
 use App\Entity\Template;
 use App\Enum\DatumTypeEnum;
 use App\Tests\ApiTestCase;
+use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\FieldFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
@@ -153,5 +154,48 @@ class FieldApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+    }
+
+    public function test_post_field_choice_list(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $template = TemplateFactory::createOne(['owner' => $user]);
+        $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['New', 'In progress', 'Done'], 'owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/fields', ['json' => [
+            'template' => '/api/templates/'.$template->getId(),
+            'name' => 'Progress',
+            'position' => 1,
+            'type' => DatumTypeEnum::TYPE_LIST,
+            'choiceList' => '/api/choice_lists/'.$choiceList->getId()
+        ]]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Field::class);
+        $this->assertJsonContains([
+            'template' => '/api/templates/'.$template->getId(),
+            'choiceList' => '/api/choice_lists/'.$choiceList->getId(),
+        ]);
+    }
+
+    public function test_cant_post_field_choice_list_without_choice_list(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $template = TemplateFactory::createOne(['owner' => $user]);
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/fields', ['json' => [
+            'template' => '/api/templates/'.$template->getId(),
+            'name' => 'Progress',
+            'position' => 1,
+            'type' => DatumTypeEnum::TYPE_LIST,
+        ]]);
+
+        // Assert
+        $this->assertResponseIsUnprocessable();
     }
 }
