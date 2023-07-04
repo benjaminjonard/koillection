@@ -108,7 +108,7 @@ class Datum implements \Stringable
     private ?string $originalFilename = null;
 
     #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
-    #[Groups(['datum:read'])]
+    #[Groups(['datum:read', 'datum:write'])]
     private ?ChoiceList $choiceList = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
