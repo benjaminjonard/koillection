@@ -68,7 +68,7 @@ html.loading:before {
 /** BACKGROUND COLOR **/
 body, .main, .header-logo, .nav-wrapper #search_term, .sidebar-element.separate-item div,
 .box .content, .modal, .input-field input, .input-field textarea, .autocomplete-content, thead th,
-.select2-container--default .select2-selection--single, .select2-dropdown, .select2-search__field {
+.select2-container--default .select2-selection--single, .select2-dropdown, .select2-search__field, .select2-container--default .select2-selection--multiple {
     background-color: var(--background-color);
 }
 
