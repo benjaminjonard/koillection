@@ -379,6 +379,12 @@
         <target>B</target>
       </segment>
     </unit>
+    <unit id="BNjUIYA" name="label.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Szukaj</target>
+      </segment>
+    </unit>
     <unit id="GV09tqG" name="global.koillection">
       <segment state="translated">
         <source>Koillection</source>
@@ -769,10 +775,520 @@
         <target>Dodaj nowy album</target>
       </segment>
     </unit>
+    <unit id="A5gFwZv" name="filter.by_name">
+      <segment state="translated">
+        <source>Filter by name</source>
+        <target>Filtruj wg nazwy</target>
+      </segment>
+    </unit>
+    <unit id="AHajX3P" name="tooltip.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>Dodaj nowe zdjęcie</target>
+      </segment>
+    </unit>
+    <unit id="wP6FDOU" name="title.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>Zdjęcia</target>
+      </segment>
+    </unit>
+    <unit id="w9FF849" name="title.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>Wybory</target>
+      </segment>
+    </unit>
+    <unit id="CYUJ8qZ" name="btn.add_choice">
+      <segment state="translated">
+        <source>Add a new choice</source>
+        <target>Dodaj nowy wybór</target>
+      </segment>
+    </unit>
+    <unit id="oOiO8Dn" name="label.choice">
+      <segment state="translated">
+        <source>Choice</source>
+        <target>Wybór</target>
+      </segment>
+    </unit>
+    <unit id="uLlCnaG" name="title.new_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>Dodaj nową listę wyboru</target>
+      </segment>
+    </unit>
+    <unit id="60Mvg7w" name="title.edit_choice_list">
+      <segment state="translated">
+        <source>Edit choice list {list}</source>
+        <target>Edytuj listę wyboru {list}</target>
+      </segment>
+    </unit>
+    <unit id="em8w1x." name="menu.choice_lists">
+      <segment state="translated">
+        <source>Choice lists</source>
+        <target>Listy wyboru</target>
+      </segment>
+    </unit>
+    <unit id="SMPEMjp" name="counter.choice_lists">
+      <segment state="translated">
+        <source>{count, plural, one {# choice list} other {# choice lists}}</source>
+        <target>{count, plural, one {# lista wyboru} few {# listy wyboru} other {# list wyboru}}</target>
+      </segment>
+    </unit>
+    <unit id="3yuF9Sl" name="tooltip.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice lists</source>
+        <target>Dodaj nową listę wyboru</target>
+      </segment>
+    </unit>
+    <unit id="ysOvPSq" name="label.name">
+      <segment state="translated">
+        <source>Name</source>
+        <target>Nazwa</target>
+      </segment>
+    </unit>
+    <unit id="Mr44cEu" name="label.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>Wybory</target>
+      </segment>
+    </unit>
     <unit id="I5NrvAz" name="collection.items_settings">
       <segment state="translated">
         <source>Items settings</source>
         <target>Ustawienia przedmiotów</target>
+      </segment>
+    </unit>
+    <unit id=".eH3OZY" name="counter.item">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# przedmiot} few {# przedmioty} other {# przedmiotów}}</target>
+      </segment>
+    </unit>
+    <unit id="AiXAfVP" name="title.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>Dodaj nową kolekcję</target>
+      </segment>
+    </unit>
+    <unit id="KlxVsBD" name="title.edit_collection">
+      <segment state="translated">
+        <source>Edit collection {collection}</source>
+        <target>Edytuj kolekcję: {collection}</target>
+      </segment>
+    </unit>
+    <unit id="MW4FPxn" name="menu.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>Kolekcje</target>
+      </segment>
+    </unit>
+    <unit id="Ttj5ZLt" name="counter.collection">
+      <segment state="translated">
+        <source>{count, plural, one {# collection} other {# collections}}</source>
+        <target>{count, plural, one {# kolekcja} few {# kolekcje} other {# kolekcji}}</target>
+      </segment>
+    </unit>
+    <unit id="0Vhz2n." name="tooltip.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>Dodaj nową kolekcję</target>
+      </segment>
+    </unit>
+    <unit id="YHlU3_1" name="title.items">
+      <segment state="translated">
+        <source>Items</source>
+        <target>Przedmioty</target>
+      </segment>
+    </unit>
+    <unit id="FTnVc5X" name="tooltip.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>Dodaj nowy przedmiot</target>
+      </segment>
+    </unit>
+    <unit id="6H1fBLk" name="tooltip.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="StAuTu9" name="title.infos">
+      <segment state="translated">
+        <source>Info</source>
+        <target>Info</target>
+      </segment>
+    </unit>
+    <unit id="szWUC0C" name="label.value">
+      <segment state="translated">
+        <source>Value</source>
+        <target>Wartość</target>
+      </segment>
+    </unit>
+    <unit id="Kp3d.qQ" name="label.label">
+      <segment state="translated">
+        <source>Label</source>
+        <target>Etykieta</target>
+      </segment>
+    </unit>
+    <unit id="yIfRfhZ" name="filter.title.types">
+      <segment state="translated">
+        <source>Types</source>
+        <target>Typy</target>
+      </segment>
+    </unit>
+    <unit id="F5Sk8YT" name="filter.title.actions">
+      <segment state="translated">
+        <source>Actions</source>
+        <target>Akcje</target>
+      </segment>
+    </unit>
+    <unit id="WwKLHxh" name="label.logged_at">
+      <segment state="translated">
+        <source>Date</source>
+        <target>Data</target>
+      </segment>
+    </unit>
+    <unit id="Q.3FoSC" name="menu.history">
+      <segment state="translated">
+        <source>History</source>
+        <target>Historia</target>
+      </segment>
+    </unit>
+    <unit id="IxgpiDC" name="counter.total_items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# przedmiot} few {# przedmioty} other {# przedmiotów}}</target>
+      </segment>
+    </unit>
+    <unit id="78xJTtJ" name="title.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>Kolekcje</target>
+      </segment>
+    </unit>
+    <unit id="bWfooH2" name="title.item_images">
+      <segment state="translated">
+        <source>Images</source>
+        <target>Obrazy</target>
+      </segment>
+    </unit>
+    <unit id="nXRtrJb" name="title.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>Dodaj nowy przedmiot</target>
+      </segment>
+    </unit>
+    <unit id="k6VxCsO" name="menu.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Szukaj</target>
+      </segment>
+    </unit>
+    <unit id="Gki98oO" name="title.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albumy</target>
+      </segment>
+    </unit>
+    <unit id="xw23vtl" name="message.search_empty">
+      <segment state="translated">
+        <source>No results</source>
+        <target>Brak wyników</target>
+      </segment>
+    </unit>
+    <unit id="11HETEc" name="global.welcome">
+      <segment state="translated">
+        <source>Welcome to Koillection</source>
+        <target>Witaj w Koillection</target>
+      </segment>
+    </unit>
+    <unit id="e9psgbF" name="counter.signs">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# podpis} few {# podpisy} other {# podpisów}}</target>
+      </segment>
+    </unit>
+    <unit id="If3y3hC" name="counter.tag">
+      <segment state="translated">
+        <source>{count, plural, one {# tag} other {# tags}}</source>
+        <target>{count, plural, one {# tag} few {# tagi} other {# tagów}}</target>
+      </segment>
+    </unit>
+    <unit id="Ul2mR7j" name="counter.sign">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# podpis} few {# podpisy} other {# podpisów}}</target>
+      </segment>
+    </unit>
+    <unit id="YklQlf8" name="btn.show_more">
+      <segment state="translated">
+        <source>Show more ({count})</source>
+        <target>Pokaż więcej ({count})</target>
+      </segment>
+    </unit>
+    <unit id="zOA0UTD" name="btn.show_less">
+      <segment state="translated">
+        <source>Show less</source>
+        <target>Pokaż mniej</target>
+      </segment>
+    </unit>
+    <unit id="W6Rvzmb" name="menu.tools">
+      <segment state="translated">
+        <source>Tools</source>
+        <target>Narzędzia</target>
+      </segment>
+    </unit>
+    <unit id="XjUwmT9" name="counter.wish">
+      <segment state="translated">
+        <source>{count, plural, one {# wish} other {# wishes}}</source>
+        <target>{count, plural, one {# życzenie} few {# życzenia} other {# życzeń}}</target>
+      </segment>
+    </unit>
+    <unit id="Joxd_.h" name="counter.wishlist">
+      <segment state="translated">
+        <source>{count, plural, one {# wishlist} other {# wishlists}}</source>
+        <target>{count, plural, one {# lista życzeń} few {# listy życzeń} other {# list życzeń}}</target>
+      </segment>
+    </unit>
+    <unit id="ZS8DP_P" name="breadcrumb.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>Dodaj nowy album</target>
+      </segment>
+    </unit>
+    <unit id="BgP_6X7" name="breadcrumb.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>Dodaj nową kolekcję</target>
+      </segment>
+    </unit>
+    <unit id="QP9HnQT" name="breadcrumb.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>Dodaj nowy przedmiot</target>
+      </segment>
+    </unit>
+    <unit id="HN3MXIl" name="breadcrumb.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>Dodaj nowe zdjęcie</target>
+      </segment>
+    </unit>
+    <unit id="FBXvLM8" name="breadcrumb.edit_album">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="4FXosb_" name="breadcrumb.edit_collection">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="dQjPnaL" name="breadcrumb.edit_template">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="wJbJaxc" name="breadcrumb.edit_item">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="sARt1zq" name="breadcrumb.edit_photo">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="YAIWLja" name="breadcrumb.edit_tag">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="MK15Ex5" name="breadcrumb.edit_wish">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="bzp39NU" name="breadcrumb.edit_wishlist">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="hNB8Xw0" name="breadcrumb.history_collection">
+      <segment state="translated">
+        <source>History</source>
+        <target>Historia</target>
+      </segment>
+    </unit>
+    <unit id="1ruRfsb" name="breadcrumb.history_item">
+      <segment state="translated">
+        <source>History</source>
+        <target>Historia</target>
+      </segment>
+    </unit>
+    <unit id="Pnd0n71" name="breadcrumb.history_tag">
+      <segment state="translated">
+        <source>History</source>
+        <target>Historia</target>
+      </segment>
+    </unit>
+    <unit id="eG2_sfn" name="breadcrumb.items_collection">
+      <segment state="translated">
+        <source>Items</source>
+        <target>Przedmioty</target>
+      </segment>
+    </unit>
+    <unit id="yt20IWO" name="global.entities.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="Jjqrud5" name="label.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>Kolekcje</target>
+      </segment>
+    </unit>
+    <unit id="zfmgf2l" name="label.items">
+      <segment state="translated">
+        <source>Items</source>
+        <target>Przedmioty</target>
+      </segment>
+    </unit>
+    <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="U8IBiON" name="menu.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Przegląd</target>
+      </segment>
+    </unit>
+    <unit id="Bbv77ja" name="enum.history_filter_class.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="2j7vQYy" name="breadcrumb.history_album">
+      <segment state="translated">
+        <source>History</source>
+        <target>Historia</target>
+      </segment>
+    </unit>
+    <unit id="HJFRPmK" name="breadcrumb.history_wishlist">
+      <segment state="translated">
+        <source>History</source>
+        <target>Historia</target>
+      </segment>
+    </unit>
+    <unit id="GXrTvzK" name="label.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albumy</target>
+      </segment>
+    </unit>
+    <unit id="VDd2HS6" name="label.albums_feature_enabled">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albumy</target>
+      </segment>
+    </unit>
+    <unit id="FfhJCxR" name="label.history_feature_enabled">
+      <segment state="translated">
+        <source>History</source>
+        <target>Historia</target>
+      </segment>
+    </unit>
+    <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>Dodaj nową listę wyboru</target>
+      </segment>
+    </unit>
+    <unit id="nMiYLFJ" name="breadcrumb.edit_choice_list">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="rsBlJD0" name="label.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>Zdjęcia</target>
+      </segment>
+    </unit>
+    <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="FGS9ySo" name="title.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="DomzBkb" name="title.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="WEd3Zlc" name="title.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edytuj</target>
+      </segment>
+    </unit>
+    <unit id="0vnK4DY" name="menu.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>Użytkownicy</target>
+      </segment>
+    </unit>
+    <unit id="wcFJTRH" name="tab.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Konfiguracja</target>
+      </segment>
+    </unit>
+    <unit id="l4xWhN8" name="menu.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Konfiguracja</target>
+      </segment>
+    </unit>
+    <unit id="4Q5t9Zu" name="title.edit_configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Konfiguracja</target>
       </segment>
     </unit>
   </file>

@@ -1,17 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="pl">
   <file id="validators.en">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <unit id="7OcgSlg" name="error.email.not_unique">
+      <segment state="translated">
+        <source>Email address already used</source>
+        <target>Adres e-mail został już wykorzystany</target>
+      </segment>
+    </unit>
+    <unit id="qoRxC7z" name="error.username.not_unique">
+      <segment state="translated">
+        <source>Username already used</source>
+        <target>Nazwa użytkownika jest już zajęta</target>
+      </segment>
+    </unit>
+    <unit id="PjAj0XF" name="error.username.incorrect">
+      <segment state="translated">
+        <source>Username must have between 2 and 32 characters (only letters, numbers and underscores are allowed)</source>
+        <target>Nazwa użytkownika musi mieć od 2 do 32 znaków (dozwolone są tylko litery, cyfry i znaki podkreślenia)</target>
+      </segment>
+    </unit>
+    <unit id="4Bdfyy1" name="error.password.incorrect">
+      <segment state="translated">
+        <source>Your password must contain at least 8 characters (with at least 1 letter and 1 number)</source>
+        <target>Twoje hasło musi składać się z co najmniej 8 znaków (w tym z co najmniej 1 litery i 1 cyfry)</target>
+      </segment>
+    </unit>
+    <unit id="4m1Sgo3" name="error.password.not_matching">
+      <segment state="translated">
+        <source>The two passwords are not identical</source>
+        <target>Hasła nie są takie same</target>
+      </segment>
+    </unit>
+    <unit id=".OeR.gK" name="error.search.too_short">
+      <segment state="translated">
+        <source>You must enter at least 2 characters</source>
+        <target>Wprowadź co najmniej 2 znaki</target>
+      </segment>
+    </unit>
+    <unit id="_d89Gke" name="error.search.empty">
+      <segment state="translated">
+        <source>Please fill at least one of the fields</source>
+        <target>Proszę wypełnić przynajmniej jedno pole</target>
+      </segment>
+    </unit>
+    <unit id="DVztPk_" name="error.label.must_be_unique">
+      <segment state="translated">
+        <source>"{label}" label is used multiple times, all labels must be unique</source>
+        <target>Etykieta "{label}" jest używana wielokrotnie. Wszystkie etykiety muszą być unikalne</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
