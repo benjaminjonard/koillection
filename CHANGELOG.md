@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.7] / 2023-07-07
+### Features
+- Add Italian translation (AlexKalopsia)
+
+### Fixes
+- Avoid crash with invalid date-time strings (leezer3)
+- Fix broken choicelist support in API (bendotli)
+- Fix endless loop when assigning a child element as its parent (benjaminjonard)
+
+### Miscellaneous
+- Update dark theme (benjaminjonard)
+- Improve metadata edition on smartphones, add an icon to open datepickers (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update spanish and german translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.4.6] / 2023-06-14
 ### Features
 - Add keyboard navigation (left and right arrows) on item pages (benjaminjonard)
