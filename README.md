@@ -85,7 +85,7 @@ You are also welcome if you want to proofread existing translations.
 
 #### In progress
 
-<table><tr><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/pl.png"></div><div align="center" valign="top">37%</td></tr></table>
+<table><tr><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/pl.png"></div><div align="center" valign="top">72%</td></tr></table>
 <!-- CROWDIN-TRANSLATIONS-PROGRESS-ACTION-END -->
 
 ## Licensing
