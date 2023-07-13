@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="pl">
   <file id="validators.en">
+    <unit id="m_gMJbR" name="error.parent.same_as_current_object">
+      <segment state="translated">
+        <source>The parent can't be the same as the current item</source>
+        <target>Rodzic nie może być taki sam jak bieżący element</target>
+      </segment>
+    </unit>
+    <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <segment state="translated">
+        <source>A datum cannot be used with both item and collection</source>
+        <target>Odniesienie nie może być użyte zarówno z elementem, jak i kolekcją</target>
+      </segment>
+    </unit>
+    <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
+      <segment state="translated">
+        <source>A collection or an item must be provided</source>
+        <target>Należy podać kolekcję lub element</target>
+      </segment>
+    </unit>
     <unit id="7OcgSlg" name="error.email.not_unique">
       <segment state="translated">
         <source>Email address already used</source>
@@ -47,6 +65,12 @@
       <segment state="translated">
         <source>"{label}" label is used multiple times, all labels must be unique</source>
         <target>Etykieta "{label}" jest używana wielokrotnie. Wszystkie etykiety muszą być unikalne</target>
+      </segment>
+    </unit>
+    <unit id="IV3649l" name="error.parent.is_child_of_current_object">
+      <segment state="translated">
+        <source>The parent can't be one of the children</source>
+        <target>Rodzic nie może być jednym z elementów podrzędnych</target>
       </segment>
     </unit>
   </file>

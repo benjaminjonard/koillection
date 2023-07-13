@@ -16,7 +16,7 @@
     <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
       <segment state="translated">
         <source>You can't delete the Admin user</source>
-        <target>Nie można usunąć użytkownika administratora</target>
+        <target>Nie można usunąć administratora</target>
       </segment>
     </unit>
     <unit id="2a_RIum" name="message.user_deleted">
@@ -799,6 +799,12 @@
         <target>Dodaj nowe zdjęcie</target>
       </segment>
     </unit>
+    <unit id="ryRhoHH" name="title.album_children">
+      <segment state="translated">
+        <source>Sub-albums</source>
+        <target>Podalbumy</target>
+      </segment>
+    </unit>
     <unit id="wP6FDOU" name="title.photos">
       <segment state="translated">
         <source>Photos</source>
@@ -869,6 +875,12 @@
       <segment state="translated">
         <source>Items settings</source>
         <target>Ustawienia przedmiotów</target>
+      </segment>
+    </unit>
+    <unit id="7Y63wwX" name="collection.children_settings">
+      <segment state="translated">
+        <source>Sub-collections settings</source>
+        <target>Ustawienia podkolekcji</target>
       </segment>
     </unit>
     <unit id="uJUJ6Ir" name="title.data">
@@ -991,6 +1003,12 @@
         <target>Info</target>
       </segment>
     </unit>
+    <unit id="5_Yv1gK" name="title.children">
+      <segment state="translated">
+        <source>Sub-collections</source>
+        <target>Podkolekcje</target>
+      </segment>
+    </unit>
     <unit id="szWUC0C" name="label.value">
       <segment state="translated">
         <source>Value</source>
@@ -1039,6 +1057,12 @@
         <target>{count, plural, one {# przedmiot} few {# przedmioty} other {# przedmiotów}}</target>
       </segment>
     </unit>
+    <unit id="EZsGAxN" name="counter.checked_items">
+      <segment state="translated">
+        <source>{count, plural, one {# checked item} other {# checked items}}</source>
+        <target>{count, plural, one {# wybrana pozycja} few {# wybrane pozycje} other {# wybranych pozycji}}</target>
+      </segment>
+    </unit>
     <unit id="gVjxaJZ" name="label.completion_rate">
       <segment state="translated">
         <source>{rate}% completed</source>
@@ -1067,6 +1091,12 @@
       <segment state="translated">
         <source>From collection :</source>
         <target>Z kolekcji:</target>
+      </segment>
+    </unit>
+    <unit id="4O6JaLx" name="tooltip.loan_item">
+      <segment state="translated">
+        <source>Loan this item</source>
+        <target>Wypożycz ten przedmiot</target>
       </segment>
     </unit>
     <unit id="HmUuNCa" name="label.main_image">
@@ -1171,10 +1201,76 @@
         <target>Ostatnia modyfikacja: {date}</target>
       </segment>
     </unit>
+    <unit id="VFvXW.m" name="menu.loans">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>Wypożyczenia</target>
+      </segment>
+    </unit>
+    <unit id="nlD7D9j" name="counter.loan">
+      <segment state="translated">
+        <source>{count, plural, one {# loan} other {# loans}}</source>
+        <target>{count, plural, one {# wypożyczenie} few {# wypożyczenia} other {# wypożyczeń}}</target>
+      </segment>
+    </unit>
+    <unit id="0Nr1G8_" name="counter.returned">
+      <segment state="translated">
+        <source>{count, plural, one {# loan returned} other {# loans returned}}</source>
+        <target>{count, plural, one {# zwrócone wypożyczenia} few {# zwrócone wypożyczenia} other {# zwróconych wypożyczeń}}</target>
+      </segment>
+    </unit>
+    <unit id="1Jpq5QX" name="tab.loans">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>Wypożyczenia</target>
+      </segment>
+    </unit>
+    <unit id="F60bUq_" name="tab.returned_items">
+      <segment state="translated">
+        <source>Returned</source>
+        <target>Zwrócone</target>
+      </segment>
+    </unit>
+    <unit id="lYyKRwZ" name="label.loaned_to">
+      <segment state="translated">
+        <source>Borrower</source>
+        <target>Wypożyczający</target>
+      </segment>
+    </unit>
+    <unit id="2ZgbVvL" name="label.loaned_at">
+      <segment state="translated">
+        <source>Lent on</source>
+        <target>Wypożyczone na</target>
+      </segment>
+    </unit>
     <unit id="EWnP8ZQ" name="label.loaned_ago">
       <segment state="translated">
         <source>Ago</source>
         <target>Temu</target>
+      </segment>
+    </unit>
+    <unit id="uFEIsab" name="tooltip.returned">
+      <segment state="translated">
+        <source>Returned</source>
+        <target>Zwrócone</target>
+      </segment>
+    </unit>
+    <unit id="R25XMb2" name="label.return_date">
+      <segment state="translated">
+        <source>Return date</source>
+        <target>Data zwrotu</target>
+      </segment>
+    </unit>
+    <unit id="Az510BV" name="label.loan_duration">
+      <segment state="translated">
+        <source>Loan duration</source>
+        <target>Czas trwania wypożyczenia</target>
+      </segment>
+    </unit>
+    <unit id="bmt.5SD" name="title.loan_item">
+      <segment state="translated">
+        <source>Loan item {item}</source>
+        <target>Wypożycz przedmiot {item}</target>
       </segment>
     </unit>
     <unit id="tpcX1HE" name="title.add_album_photo">
@@ -1243,6 +1339,12 @@
         <target>Liczba przedmiotów</target>
       </segment>
     </unit>
+    <unit id="dFDOuk." name="label.percent_of_items">
+      <segment state="translated">
+        <source>Percent of items</source>
+        <target>Procent przedmiotów</target>
+      </segment>
+    </unit>
     <unit id="xw23vtl" name="message.search_empty">
       <segment state="translated">
         <source>No results</source>
@@ -1309,6 +1411,24 @@
         <target>Edytuj widoczność</target>
       </segment>
     </unit>
+    <unit id="eG38lKI" name="message.visibility">
+      <segment state="translated">
+        <source>If you set visibility to public, your collection will be accessible by anyone using the following link :</source>
+        <target>Jeśli ustawisz widoczność publiczną, Twoja kolekcja będzie dostępna dla każdego, kto użyje następującego linku:</target>
+      </segment>
+    </unit>
+    <unit id="RjUO3kd" name="message.visibility_per_item">
+      <segment state="translated">
+        <source>You can then set visibility per item or collection. To do so, please go on the element edition page.</source>
+        <target>Następnie możesz ustawić widoczność dla każdego przedmiotu lub kolekcji. Aby to zrobić, przejdź na stronę edycji elementu.</target>
+      </segment>
+    </unit>
+    <unit id="fQNztng" name="title.update_features">
+      <segment state="translated">
+        <source>Edit active features</source>
+        <target>Edytuj aktywne funkcje</target>
+      </segment>
+    </unit>
     <unit id="HLevxj." name="menu.signs">
       <segment state="translated">
         <source>Signatures</source>
@@ -1345,6 +1465,42 @@
         <target>Aktywność</target>
       </segment>
     </unit>
+    <unit id="_tdjWIj" name="title.charts.month_days">
+      <segment state="translated">
+        <source>Items added per day of month</source>
+        <target>Przedmioty dodane na dzień w miesiącu</target>
+      </segment>
+    </unit>
+    <unit id="svM3vNY" name="title.charts.hours">
+      <segment state="translated">
+        <source>Items added per day hour</source>
+        <target>Przedmioty dodane na godzinę w dniu</target>
+      </segment>
+    </unit>
+    <unit id="jZqCZ_K" name="title.charts.months">
+      <segment state="translated">
+        <source>Items added per month</source>
+        <target>Przedmioty dodane na miesiąc</target>
+      </segment>
+    </unit>
+    <unit id="yfwVi.I" name="title.charts.week_days">
+      <segment state="translated">
+        <source>Items added per weekday</source>
+        <target>Przedmioty dodane na dzień tygodnia</target>
+      </segment>
+    </unit>
+    <unit id="9it4sqQ" name="title.charts.items_evolution">
+      <segment state="translated">
+        <source>Items evolution</source>
+        <target>Zmiany przedmiotów</target>
+      </segment>
+    </unit>
+    <unit id="Rb73VaV" name="title.charts.radial_tree">
+      <segment state="translated">
+        <source>Radial representation of your collection</source>
+        <target>Radialna reprezentacja Twojej kolekcji</target>
+      </segment>
+    </unit>
     <unit id=".ZHhONJ" name="label.tag_category">
       <segment state="translated">
         <source>Category</source>
@@ -1367,6 +1523,12 @@
       <segment state="translated">
         <source>Manage tag categories</source>
         <target>Zarządzaj kategoriami tagów</target>
+      </segment>
+    </unit>
+    <unit id="a_xpPl1" name="message.delete.unused_tag">
+      <segment state="translated">
+        <source>This will delete all tags with no items attached. Are you sure you want to delete those tags ? They will be permanently lost...</source>
+        <target>Spowoduje to usunięcie wszystkich tagów bez dołączonych przedmiotów. Czy na pewno chcesz usunąć te tagi? Zostaną one nieodwracalnie utracone...</target>
       </segment>
     </unit>
     <unit id="LgGHl1z" name="btn.delete_unused_tags">
@@ -1501,6 +1663,18 @@
         <target>Narzędzia</target>
       </segment>
     </unit>
+    <unit id="OTxNY59" name="title.exports">
+      <segment state="translated">
+        <source>Exports</source>
+        <target>Eksporty</target>
+      </segment>
+    </unit>
+    <unit id="e.bXzZd" name="btn.export_printable_list">
+      <segment state="translated">
+        <source>Printable list</source>
+        <target>Lista do druku</target>
+      </segment>
+    </unit>
     <unit id="IKVpbk5" name="btn.export_csv">
       <segment state="translated">
         <source>CSV</source>
@@ -1517,6 +1691,12 @@
       <segment state="translated">
         <source>New inventory</source>
         <target>Nowy ekwipunek</target>
+      </segment>
+    </unit>
+    <unit id="8iRfcsb" name="label.completion">
+      <segment state="translated">
+        <source>Completion</source>
+        <target>Zakończenie</target>
       </segment>
     </unit>
     <unit id="v5SWCuI" name="label.created_at">
@@ -1591,6 +1771,12 @@
         <target>Dodaj nowe życzenie</target>
       </segment>
     </unit>
+    <unit id="c9cNWH4" name="title.wishlist_children">
+      <segment state="translated">
+        <source>Sub-wishlists</source>
+        <target>Listy subżyczeń</target>
+      </segment>
+    </unit>
     <unit id="KhJnPFW" name="title.wishes">
       <segment state="translated">
         <source>Wishes</source>
@@ -1645,6 +1831,30 @@
         <target>Udostępnij</target>
       </segment>
     </unit>
+    <unit id="zNdHjVZ" name="meta.description">
+      <segment state="translated">
+        <source>A single place to manage all your collections.</source>
+        <target>Pojedyncze miejsce do zarządzania wszystkimi kolekcjami.</target>
+      </segment>
+    </unit>
+    <unit id="XVATSGt" name="modal.title.delete">
+      <segment state="translated">
+        <source>Delete confirmation</source>
+        <target>Usuń potwierdzenie</target>
+      </segment>
+    </unit>
+    <unit id="eMPgFR5" name="message.user_is_private">
+      <segment state="translated">
+        <source>Your profile is set to private, you can't share this page.</source>
+        <target>Twój profil jest ustawiony na prywatny, nie możesz udostępnić tej strony.</target>
+      </segment>
+    </unit>
+    <unit id="J0RnHHK" name="message.share_link">
+      <segment state="translated">
+        <source>You can share this link so people can see this page (private items will be hidden) :</source>
+        <target>Możesz udostępnić ten link, aby inni mogli zobaczyć tę stronę (prywatne przedmioty zostaną ukryte):</target>
+      </segment>
+    </unit>
     <unit id="9Vg2S6n" name="modal.title.share">
       <segment state="translated">
         <source>Share link</source>
@@ -1655,6 +1865,18 @@
       <segment state="translated">
         <source>Logout</source>
         <target>Wyloguj się</target>
+      </segment>
+    </unit>
+    <unit id="tezmizK" name="menu.return_to_user_collection">
+      <segment state="translated">
+        <source>Return to my collection</source>
+        <target>Wróć do mojej kolekcji</target>
+      </segment>
+    </unit>
+    <unit id="jEeQjDx" name="message.offline">
+      <segment state="translated">
+        <source>You are offline, please check your connection.</source>
+        <target>Jesteś w trybie offline, sprawdź swoje połączenie.</target>
       </segment>
     </unit>
     <unit id="lSRJ.UY" name="error.default">
@@ -1673,6 +1895,12 @@
       <segment state="translated">
         <source>Oops, a critical error occurred :(</source>
         <target>Ups, wystąpił błąd krytyczny :(</target>
+      </segment>
+    </unit>
+    <unit id="o7VW0kO" name="message.return_to_homepage">
+      <segment state="translated">
+        <source>Return to homepage</source>
+        <target>Wróć do strony głównej</target>
       </segment>
     </unit>
     <unit id="ZS8DP_P" name="breadcrumb.add_album">
@@ -1795,10 +2023,58 @@
         <target>Przedmioty</target>
       </segment>
     </unit>
+    <unit id="ERFTL0f" name="breadcrumb.lend_item">
+      <segment state="translated">
+        <source>Lend</source>
+        <target>Pożycz</target>
+      </segment>
+    </unit>
+    <unit id="T3BhL7X" name="global.entities.album">
+      <segment state="translated">
+        <source>Album</source>
+        <target>Album</target>
+      </segment>
+    </unit>
+    <unit id="YTxyJQJ" name="global.entities.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>Kolekcja</target>
+      </segment>
+    </unit>
+    <unit id="ecDv.KB" name="global.entities.item">
+      <segment state="translated">
+        <source>Item</source>
+        <target>Przedmiot</target>
+      </segment>
+    </unit>
     <unit id="yt20IWO" name="global.entities.tag">
       <segment state="translated">
         <source>Tag</source>
         <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="iFOTgZ3" name="global.entities.template">
+      <segment state="translated">
+        <source>Template</source>
+        <target>Szablon</target>
+      </segment>
+    </unit>
+    <unit id="JKLodag" name="global.entities.user">
+      <segment state="translated">
+        <source>User</source>
+        <target>Użytkownik</target>
+      </segment>
+    </unit>
+    <unit id="1MevJac" name="global.entities.wish">
+      <segment state="translated">
+        <source>Wish</source>
+        <target>Życzenie</target>
+      </segment>
+    </unit>
+    <unit id="nFTPCfN" name="global.entities.wishlist">
+      <segment state="translated">
+        <source>Wishlist</source>
+        <target>Lista życzeń</target>
       </segment>
     </unit>
     <unit id="S3BSG8X" name="global.time.year">
@@ -1843,10 +2119,46 @@
         <target>{count, plural, one {# sekunda} few {# sekundy} other {# sekund}}</target>
       </segment>
     </unit>
+    <unit id="fSiEIlQ" name="global.visibilities.public">
+      <segment state="translated">
+        <source>Public</source>
+        <target>Publiczny</target>
+      </segment>
+    </unit>
+    <unit id="ky9YEBY" name="global.visibilities.private">
+      <segment state="translated">
+        <source>Private</source>
+        <target>Prywatny</target>
+      </segment>
+    </unit>
+    <unit id="obhh9xq" name="label.added_at">
+      <segment state="translated">
+        <source>Added at</source>
+        <target>Dodano w</target>
+      </segment>
+    </unit>
+    <unit id="kfURNUL" name="label.album">
+      <segment state="translated">
+        <source>Album</source>
+        <target>Album</target>
+      </segment>
+    </unit>
     <unit id="OMwE8EU" name="label.apply_template">
       <segment state="translated">
         <source>Apply a template</source>
         <target>Zastosuj szablon</target>
+      </segment>
+    </unit>
+    <unit id="YQjIBl7" name="label.children_title">
+      <segment state="translated">
+        <source>Sub-collections section label</source>
+        <target>Etykieta sekcji podkolekcji:</target>
+      </segment>
+    </unit>
+    <unit id="fWI8IQm" name="label.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>Kolekcja</target>
       </segment>
     </unit>
     <unit id="Jjqrud5" name="label.collections">
@@ -1867,10 +2179,34 @@
         <target>Przedmioty</target>
       </segment>
     </unit>
+    <unit id="frik1CZ" name="label.items_title">
+      <segment state="translated">
+        <source>Items section label</source>
+        <target>Etykieta sekcji przedmiotów</target>
+      </segment>
+    </unit>
+    <unit id="NGzz2k3" name="label.parent">
+      <segment state="translated">
+        <source>Parent</source>
+        <target>Rodzic</target>
+      </segment>
+    </unit>
+    <unit id="2.APxMI" name="label.place">
+      <segment state="translated">
+        <source>Place</source>
+        <target>Miejsce</target>
+      </segment>
+    </unit>
     <unit id="ymgENEq" name="label.quantity">
       <segment state="translated">
         <source>Quantity</source>
         <target>Ilość</target>
+      </segment>
+    </unit>
+    <unit id="HVZAEc7" name="label.recursive">
+      <segment state="translated">
+        <source>Recursive</source>
+        <target>Rekursywnie</target>
       </segment>
     </unit>
     <unit id="rU9cSfq" name="label.repeat_password">
@@ -1883,6 +2219,12 @@
       <segment state="translated">
         <source>Signature</source>
         <target>Podpis</target>
+      </segment>
+    </unit>
+    <unit id="vpeY2jo" name="label.taken_at">
+      <segment state="translated">
+        <source>Taken the</source>
+        <target>Wykonano</target>
       </segment>
     </unit>
     <unit id="ijQyGRo" name="label.tags">
@@ -1901,6 +2243,12 @@
       <segment state="translated">
         <source>Url</source>
         <target>URL</target>
+      </segment>
+    </unit>
+    <unit id="hmlddlA" name="label.wishlist">
+      <segment state="translated">
+        <source>Wishlist</source>
+        <target>Lista życzeń</target>
       </segment>
     </unit>
     <unit id="vVTVy9_" name="label.wishlists">
@@ -1945,10 +2293,22 @@
         <target>Tag {label} został usunięty</target>
       </segment>
     </unit>
+    <unit id="NLlL04M" name="help.recursive">
+      <segment state="translated">
+        <source>If checked, tags will be applied to all sub-collections as well</source>
+        <target>Jeśli zaznaczone, tagi zostaną zastosowane również do wszystkich podkolekcji</target>
+      </segment>
+    </unit>
     <unit id="cQsMebl" name="breadcrumb.transfer_wish">
       <segment state="translated">
         <source>Transfer wish to a collection</source>
         <target>Przenieś życzenie do kolekcji</target>
+      </segment>
+    </unit>
+    <unit id="Dpg9wp." name="role.user">
+      <segment state="translated">
+        <source>User</source>
+        <target>Użytkownik</target>
       </segment>
     </unit>
     <unit id="tlZBAKL" name="role.admin">
@@ -2009,6 +2369,42 @@
       <segment state="translated">
         <source>Are you sure you want to delete this collection ? All items it contains will be permanently lost...</source>
         <target>Czy na pewno chcesz usunąć tę kolekcję? Wszystkie zawarte w niej przedmioty zostaną trwale usunięte. Nie można cofnąć tej akcji.</target>
+      </segment>
+    </unit>
+    <unit id="_HekiQE" name="message.delete.loan">
+      <segment state="translated">
+        <source>Are you sure you want to delete this loan ? It will be permanently lost...</source>
+        <target>Czy na pewno chcesz usunąć to wypożyczenie? Zostanie ono trwale utracone...</target>
+      </segment>
+    </unit>
+    <unit id="kAXzPyc" name="global.seen_counter.album">
+      <segment state="translated">
+        <source>{count, plural, one {Album consulted # time} other {Album consulted # times}}</source>
+        <target>{count, plural, one {Album skonsultowany # raz} few {Album skonsultowany # razy} other {Album skonsultowany # razy}}</target>
+      </segment>
+    </unit>
+    <unit id="HWAnnvq" name="global.seen_counter.collection">
+      <segment state="translated">
+        <source>{count, plural, one {Collection consulted # time} other {Collection consulted # times}}</source>
+        <target>{count, plural, one {Kolekcja skonsultowana # raz} few {Kolekcja skonsultowana # razy} other {Kolekcja skonsultowana # razy}}</target>
+      </segment>
+    </unit>
+    <unit id="hW.mDrh" name="global.seen_counter.item">
+      <segment state="translated">
+        <source>{count, plural, one {Item consulted # time} other {Item consulted # times}}</source>
+        <target>{count, plural, one {Przedmiot skonsultowany # raz} few {Przedmiot skonsultowany # razy} other {Przedmiot skonsultowany # razy}}</target>
+      </segment>
+    </unit>
+    <unit id="RXjwOtL" name="global.seen_counter.tag">
+      <segment state="translated">
+        <source>{count, plural, one {Tag consulted # time} other {Tag consulted # times}}</source>
+        <target>{count, plural, one {Tag skonsultowany # raz} few {Tag skonsultowany # razy} other {Tag skonsultowany # razy}}</target>
+      </segment>
+    </unit>
+    <unit id="_5ewjw9" name="global.seen_counter.wishlist">
+      <segment state="translated">
+        <source>{count, plural, one {Wishlist consulted # time} other {Wishlist consulted # times}}</source>
+        <target>{count, plural, one {Lista życzeń skonsultowana # raz} few {Lista życzeń skonsultowana # razy} other {Lista życzeń skonsultowana # razy}}</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
@@ -2131,6 +2527,18 @@
         <target>Język</target>
       </segment>
     </unit>
+    <unit id="FA5XLbh" name="enum.history_filter_class.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>Kolekcja</target>
+      </segment>
+    </unit>
+    <unit id=".s91X7z" name="enum.history_filter_class.item">
+      <segment state="translated">
+        <source>Item</source>
+        <target>Przedmiot</target>
+      </segment>
+    </unit>
     <unit id="Bbv77ja" name="enum.history_filter_class.tag">
       <segment state="translated">
         <source>Tag</source>
@@ -2159,6 +2567,18 @@
       <segment state="translated">
         <source>Album {label} was created</source>
         <target>Album {label} został utworzony</target>
+      </segment>
+    </unit>
+    <unit id="tCaXH8D" name="enum.history_filter_class.album">
+      <segment state="translated">
+        <source>Album</source>
+        <target>Album</target>
+      </segment>
+    </unit>
+    <unit id="CHK7Dzf" name="enum.history_filter_class.wishlist">
+      <segment state="translated">
+        <source>Wishlist</source>
+        <target>Lista życzeń</target>
       </segment>
     </unit>
     <unit id="SBtfHBi" name="log.album.deleted">
@@ -2215,6 +2635,12 @@
         <target>Albumy</target>
       </segment>
     </unit>
+    <unit id="hE9F5PK" name="label.loans_feature_enabled">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>Wypożyczenia</target>
+      </segment>
+    </unit>
     <unit id="_HAg.fc" name="label.templates_feature_enabled">
       <segment state="translated">
         <source>Templates</source>
@@ -2251,6 +2677,12 @@
         <target>Dodaj powiązany przedmiot</target>
       </segment>
     </unit>
+    <unit id="nXb.5Pm" name="error.user_not_enabled">
+      <segment state="translated">
+        <source>User not activated</source>
+        <target>Użytkownik nie został aktywowany</target>
+      </segment>
+    </unit>
     <unit id="zFu6NvC" name="message.delete.user">
       <segment state="translated">
         <source>Are you sure you want to delete this user ? It will be permanently lost...</source>
@@ -2269,6 +2701,12 @@
         <target>Liczba</target>
       </segment>
     </unit>
+    <unit id="6faiqOu" name="global.visibilities.internal">
+      <segment state="translated">
+        <source>Internal</source>
+        <target>Wewnętrzny</target>
+      </segment>
+    </unit>
     <unit id="iiWFLaI" name="label.new_password">
       <segment state="translated">
         <source>New password</source>
@@ -2285,6 +2723,30 @@
       <segment state="translated">
         <source>Link</source>
         <target>Link</target>
+      </segment>
+    </unit>
+    <unit id="vyczzVz" name="global.display_mode.grid">
+      <segment state="translated">
+        <source>Grid</source>
+        <target>Siatka</target>
+      </segment>
+    </unit>
+    <unit id="cWn8jLd" name="global.display_mode.list">
+      <segment state="translated">
+        <source>List</source>
+        <target>Lista</target>
+      </segment>
+    </unit>
+    <unit id="qcUvWAj" name="label.items_display_mode">
+      <segment state="translated">
+        <source>Display items in a</source>
+        <target>Wyświetl przedmioty w</target>
+      </segment>
+    </unit>
+    <unit id="maYJbRz" name="label.photos_display_mode">
+      <segment state="translated">
+        <source>Display photos in a</source>
+        <target>Wyświetl zdjęcia w</target>
       </segment>
     </unit>
     <unit id="Eqd5CcJ" name="label.items_sorting_property">
@@ -2311,10 +2773,28 @@
         <target>Malejąco</target>
       </segment>
     </unit>
+    <unit id="wPplZ1u" name="label.items_default_template">
+      <segment state="translated">
+        <source>Default template applied to items</source>
+        <target>Domyślny szablon zastosowany do przedmiotów</target>
+      </segment>
+    </unit>
     <unit id="M6VfIb7" name="label.textarea">
       <segment state="translated">
         <source>Long text</source>
         <target>Długi tekst</target>
+      </segment>
+    </unit>
+    <unit id="0ZXz2Ap" name="label.items_list_columns">
+      <segment state="translated">
+        <source>List columns</source>
+        <target>Wylistuj kolumny</target>
+      </segment>
+    </unit>
+    <unit id="RI32F3o" name="enum.history_filter_class.template">
+      <segment state="translated">
+        <source>Template</source>
+        <target>Szablon</target>
       </segment>
     </unit>
     <unit id="cmatIVa" name="enum.history_filter_class.choice_list">
@@ -2339,6 +2819,12 @@
       <segment state="translated">
         <source>Photo</source>
         <target>Zdjęcie</target>
+      </segment>
+    </unit>
+    <unit id="8EqSejP" name="enum.history_filter_class.wish">
+      <segment state="translated">
+        <source>Wish</source>
+        <target>Życzenie</target>
       </segment>
     </unit>
     <unit id="qbaO3DI" name="log.photo.created">
@@ -2413,6 +2899,12 @@
         <target>Życzenie {label} zostało usunięte</target>
       </segment>
     </unit>
+    <unit id="o.z2uRm" name="label.list">
+      <segment state="translated">
+        <source>List</source>
+        <target>Lista</target>
+      </segment>
+    </unit>
     <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
       <segment state="translated">
         <source>Add a new choice list</source>
@@ -2455,6 +2947,48 @@
         <target>Albumy użytkownika {username}</target>
       </segment>
     </unit>
+    <unit id="aTQXfVF" name="label.list_show_visibility">
+      <segment state="translated">
+        <source>Show visibility column</source>
+        <target>Pokaż kolumnę widoczności</target>
+      </segment>
+    </unit>
+    <unit id="tq3yBdM" name="label.list_show_actions">
+      <segment state="translated">
+        <source>Show actions column</source>
+        <target>Pokaż kolumnę akcji</target>
+      </segment>
+    </unit>
+    <unit id="MWCAWm0" name="label.sub_collections_display_mode">
+      <segment state="translated">
+        <source>Display sub-collections in a</source>
+        <target>Wyświetl podkolekcje w</target>
+      </segment>
+    </unit>
+    <unit id="UKwQt9f" name="label.sub_albums_display_mode">
+      <segment state="translated">
+        <source>Display sub-albums in a</source>
+        <target>Wyświetl podalbumy w</target>
+      </segment>
+    </unit>
+    <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
+      <segment state="translated">
+        <source>Display sub-wishlists in a</source>
+        <target>Wyświetl listy subżyczeń w</target>
+      </segment>
+    </unit>
+    <unit id="x6kN4XJ" name="label.list_show_number_of_children">
+      <segment state="translated">
+        <source>Show number of children</source>
+        <target>Pokaż liczbę elementów podrzędnych</target>
+      </segment>
+    </unit>
+    <unit id="HtDGsd0" name="label.list_show_number_of_items">
+      <segment state="translated">
+        <source>Show number of items</source>
+        <target>Pokaż liczbę przedmiotów</target>
+      </segment>
+    </unit>
     <unit id="8LEwIMR" name="label.wishes">
       <segment state="translated">
         <source>Wishes</source>
@@ -2465,6 +2999,24 @@
       <segment state="translated">
         <source>Photos</source>
         <target>Zdjęcia</target>
+      </segment>
+    </unit>
+    <unit id="sQ83en6" name="label.wishlists_display_mode">
+      <segment state="translated">
+        <source>Display wishlists in a</source>
+        <target>Wyświetl listy życzeń w</target>
+      </segment>
+    </unit>
+    <unit id="paiZ6qs" name="label.collections_display_mode">
+      <segment state="translated">
+        <source>Display collections in a</source>
+        <target>Wyświetl kolekcje w</target>
+      </segment>
+    </unit>
+    <unit id="kHAvmu7" name="label.albums_display_mode">
+      <segment state="translated">
+        <source>Display albums in a</source>
+        <target>Wyświetl albumy w</target>
       </segment>
     </unit>
     <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
@@ -2509,16 +3061,88 @@
         <target>Cena</target>
       </segment>
     </unit>
+    <unit id="dYObaVv" name="message.caches_refreshed">
+      <segment state="translated">
+        <source>Caches successfully refreshed</source>
+        <target>Pamięć podręczna odświeżona pomyślnie</target>
+      </segment>
+    </unit>
+    <unit id="NPKaPRX" name="btn.refresh_caches">
+      <segment state="translated">
+        <source>Refresh caches</source>
+        <target>Odśwież pamięć podręczną</target>
+      </segment>
+    </unit>
+    <unit id="DsMeFhY" name="form.item_sorting.number_of_children">
+      <segment state="translated">
+        <source>Number of children</source>
+        <target>Liczba elementów podrzędnych</target>
+      </segment>
+    </unit>
+    <unit id="O6Z2J6m" name="form.item_sorting.number_of_items">
+      <segment state="translated">
+        <source>Number of items</source>
+        <target>Liczba przedmiotów</target>
+      </segment>
+    </unit>
     <unit id="0vnK4DY" name="menu.users">
       <segment state="translated">
         <source>Users</source>
         <target>Użytkownicy</target>
       </segment>
     </unit>
+    <unit id="TfMejxQ" name="label.search_in_data">
+      <segment state="translated">
+        <source>Search in data (for items and collections)</source>
+        <target>Szukaj w danych (dla przedmiotów i kolekcji)</target>
+      </segment>
+    </unit>
     <unit id="hnKIpTQ" name="label.apiplatform_version">
       <segment state="translated">
         <source>API Platform version</source>
         <target>Wersja Platformy API</target>
+      </segment>
+    </unit>
+    <unit id="gx6LCyR" name="global.themes.browser">
+      <segment state="translated">
+        <source>Default browser theme</source>
+        <target>Domyślny motyw przeglądarki</target>
+      </segment>
+    </unit>
+    <unit id="Vug3DkG" name="global.themes.light">
+      <segment state="translated">
+        <source>Light</source>
+        <target>Jasny</target>
+      </segment>
+    </unit>
+    <unit id="8e9LycZ" name="global.themes.dark">
+      <segment state="translated">
+        <source>Dark</source>
+        <target>Ciemny</target>
+      </segment>
+    </unit>
+    <unit id="TWYZ00L" name="label.theme">
+      <segment state="translated">
+        <source>Theme</source>
+        <target>Motyw</target>
+      </segment>
+    </unit>
+    <unit id="m4zbXKM" name="btn.add_checkbox">
+      <segment state="translated">
+        <source>Checkbox</source>
+        <target>Pole wyboru</target>
+      </segment>
+    </unit>
+    <unit id="3XftsPN" name="label.search_in_data_by_default_enabled">
+      <segment state="translated">
+        <source>Search in data by default</source>
+        <target>Domyślnie szukaj w danych</target>
+      </segment>
+    </unit>
+    <unit id="JL3jH0w" name="menu.api_documention">
+      <segment state="translated">
+        <source>API documentation</source>
+        <target>Dokumentacja API</target>
       </segment>
     </unit>
     <unit id="wcFJTRH" name="tab.configuration">
@@ -2537,6 +3161,12 @@
       <segment state="translated">
         <source>Configuration</source>
         <target>Konfiguracja</target>
+      </segment>
+    </unit>
+    <unit id="ACW22BU" name="global.configuration.thumbnails_format.keep_original">
+      <segment state="translated">
+        <source>Keep original</source>
+        <target>Zachowaj oryginalny</target>
       </segment>
     </unit>
     <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
@@ -2567,6 +3197,78 @@
       <segment state="translated">
         <source>Thumbnails format</source>
         <target>Format miniaturek</target>
+      </segment>
+    </unit>
+    <unit id="r58OOnk" name="message.configuration_updated">
+      <segment state="translated">
+        <source>Configuration updated</source>
+        <target>Konfiguracja zaktualizowana</target>
+      </segment>
+    </unit>
+    <unit id="YX0yhdx" name="tooltip.cancel_modifications">
+      <segment state="translated">
+        <source>Cancel modifications</source>
+        <target>Anuluj zmiany</target>
+      </segment>
+    </unit>
+    <unit id="oAD2Kex" name="tooltip.remove_thumbnail">
+      <segment state="translated">
+        <source>Remove thumbnail</source>
+        <target>Usuń miniaturę</target>
+      </segment>
+    </unit>
+    <unit id="8QwwFtM" name="title.custom_css">
+      <segment state="translated">
+        <source>Custom CSS</source>
+        <target>Niestandardowy CSS</target>
+      </segment>
+    </unit>
+    <unit id="OCFAuxO" name="label.custom_light_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for light theme</source>
+        <target>Niestandardowy CSS dla jasnego motywu</target>
+      </segment>
+    </unit>
+    <unit id="iSj6Yq6" name="label.custom_dark_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for dark theme</source>
+        <target>Własny CSS dla ciemnego motywu</target>
+      </segment>
+    </unit>
+    <unit id="tgAUZOn" name="message.custom_css_colors_help">
+      <segment state="translated">
+        <source>To change the theme colors, copy and paste the following code in the text area and update the colors as needed.</source>
+        <target>Aby zmienić kolory motywu, skopiuj i wklej następujący kod w obszarze tekstowym oraz zaktualizuj kolory w razie potrzeby.</target>
+      </segment>
+    </unit>
+    <unit id="Odut9ks" name="message.custom_css_properties_help">
+      <segment state="translated">
+        <source>For more fine-grained modifications, you can also add custom CSS properties.</source>
+        <target>Aby uzyskać bardziej precyzyjne zmiany, możesz również dodać niestandardowe właściwości CSS.</target>
+      </segment>
+    </unit>
+    <unit id="tQOO9SX" name="title.customize_light_theme">
+      <segment state="translated">
+        <source>Customize light theme</source>
+        <target>Dostosuj jasny motyw</target>
+      </segment>
+    </unit>
+    <unit id="VwEpz4c" name="title.customize_dark_theme">
+      <segment state="translated">
+        <source>Customize dark theme</source>
+        <target>Dostosuj ciemny motyw</target>
+      </segment>
+    </unit>
+    <unit id="UZ5psYq" name="message.show_help_for_light_theme">
+      <segment state="translated">
+        <source>Show help for light theme</source>
+        <target>Pokaż pomoc dla jasnego motywu</target>
+      </segment>
+    </unit>
+    <unit id="LlfrKW3" name="message.show_help_for_dark_theme">
+      <segment state="translated">
+        <source>Show help for dark theme</source>
+        <target>Pokaż pomoc dla ciemnego motywu</target>
       </segment>
     </unit>
   </file>
