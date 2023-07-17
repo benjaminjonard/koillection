@@ -150,8 +150,6 @@ You are also welcome if you want to proofread existing translations.
       <br />
       <sub><b>32 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/thies00"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15259590/medium/7cb9924d3ea1c7ad97df0942df985732.jpeg" />
         <br />
@@ -159,6 +157,8 @@ You are also welcome if you want to proofread existing translations.
       <br />
       <sub><b>5 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/skrollme"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13327606/medium/c5f7199fbb4e8b735ba310cdbf5a9090_default.png" />
         <br />
