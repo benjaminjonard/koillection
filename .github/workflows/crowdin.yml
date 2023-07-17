@@ -47,28 +47,3 @@ jobs:
           body: Update Crowdin translations progress by [Crowdin translations progress](https://github.com/benjaminjonard/crowdin-translations-progress-action) GitHub action
           commit-message: Update Crowdin translations progress
           branch: crowdin-translations-progress-action
-
-  crowdin-contributors:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Generate Crowdin Contributors table
-        uses: andrii-bodnar/action-crowdin-contributors@v1
-        with:
-          contributors_per_line: 9
-          max_contributors: 32
-          image_size: 64
-          min_words_contributed: 2
-        env:
-          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          title: Update Crowdin Contributors table
-          body: Update Crowdin Contributors table by [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
-          commit-message: Update Crowdin Contributors table
-          branch: crowdin-contributors-table-action
