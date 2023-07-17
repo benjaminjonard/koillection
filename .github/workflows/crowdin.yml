@@ -1,4 +1,4 @@
-name: Crowdin sync translations
+name: Crowdin sync
 on:
   push:
     branches: [ 1.4 ]
@@ -60,7 +60,15 @@ jobs:
           contributors_per_line: 8
           max_contributors: 32
           image_size: 64
-          min_words_contributed: 1
+          min_words_contributed: 2
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Update Crowdin Contributors table
+          body: Update Crowdin Contributors table by [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
+          commit-message: Update Crowdin Contributors table
+          branch: crowdin-contributors-table-action
