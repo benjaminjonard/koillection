@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  synchronize-with-crowdin:
+  crowdin-update-translations:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,5 +21,46 @@ jobs:
           download_translations: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+  crowdin-languages-progress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Crowdin translations progress markdown
+        uses: benjaminjonard/crowdin-translations-progress-action@1.0.5
+        with:
+          languages_per_row: 10
+          minimum_completion_percent: 80
+          file: README.md
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Update Crowdin translations progress
+          body: Update Crowdin translations progress by [Crowdin translations progress](https://github.com/benjaminjonard/crowdin-translations-progress-action) GitHub action
+          commit-message: Update Crowdin translations progress
+          branch: crowdin-translations-progress-action
+
+  crowdin-contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Crowdin Contributors table
+        uses: andrii-bodnar/action-crowdin-contributors@v1
+        with:
+          contributors_per_line: 8
+          max_contributors: 32
+          image_size: 64
+          min_words_contributed: 1
+        env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

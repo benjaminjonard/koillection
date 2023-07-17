@@ -84,5 +84,8 @@ You are also welcome if you want to proofread existing translations.
 <table><tr><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/pl.png"></div><div align="center" valign="top">100%</td><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/fr.png"></div><div align="center" valign="top">100%</td><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/en.png"></div><div align="center" valign="top">100%</td><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/it.png"></div><div align="center" valign="top">99%</td><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/es-ES.png"></div><div align="center" valign="top">99%</td><td align="center" valign="top"><img width="30px" height="30px" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/de.png"></div><div align="center" valign="top">99%</td></tr></table>
 <!-- CROWDIN-TRANSLATIONS-PROGRESS-ACTION-END -->
 
+<!-- CROWDIN-CONTRIBUTORS-START -->
+<!-- CROWDIN-CONTRIBUTORS-END -->
+
 ## Licensing
 Koillection is an Open Source software, released under the MIT License. 
