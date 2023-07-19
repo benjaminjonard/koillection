@@ -64,11 +64,11 @@
     "require-dev": {
         "brianium/paratest": "7.2.2",
         "dama/doctrine-test-bundle": "7.2.1",
-        "friendsofphp/php-cs-fixer": "3.21.1",
+        "friendsofphp/php-cs-fixer": "3.22.0",
         "justinrainbow/json-schema": "5.2.12",
         "phpunit/php-code-coverage": "10.1.2",
-        "phpunit/phpunit": "10.2.4",
-        "rector/rector": "0.17.3",
+        "phpunit/phpunit": "10.2.6",
+        "rector/rector": "0.17.6",
         "symfony/browser-kit": "6.3.0",
         "symfony/css-selector": "6.3.0",
         "symfony/maker-bundle": "1.50.0",
@@ -76,7 +76,7 @@
         "symfony/stopwatch": "6.3.0",
         "symfony/var-dumper": "6.3.1",
         "symfony/web-profiler-bundle": "6.3.1",
-        "zenstruck/foundry": "1.33.0"
+        "zenstruck/foundry": "1.34.0"
     },
     "config": {
         "preferred-install": {
