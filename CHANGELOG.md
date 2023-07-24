@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.8] / 2023-07-24
+### Features
+- Add Polish translation (bartoszLesniewski and Lenetis)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix CVE-2022-25883 (benjaminjonard)
+
 ## [1.4.7] / 2023-07-07
 ### Features
 - Add Italian translation (AlexKalopsia)
