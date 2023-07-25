@@ -6,18 +6,14 @@ on:
     - cron: "0 */12 * * *"
   workflow_dispatch:
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
-  crowdin-update-translations-and-progress:
+  crowdin-update-translations:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Update Crowdin translations
+      - name: crowdin action
         uses: crowdin/github-action@v1.12.0
         with:
           config: '.github/crowdin.yml'
@@ -28,6 +24,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+  crowdin-languages-progress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Generate Crowdin translations progress markdown
         uses: benjaminjonard/crowdin-translations-progress-action@1.0.5
@@ -46,4 +48,3 @@ jobs:
           body: Update Crowdin translations and progress
           commit-message: Update Crowdin translations and progress
           branch: crowdin-action
-
