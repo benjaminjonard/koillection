@@ -6,6 +6,10 @@ on:
     - cron: "0 */12 * * *"
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   crowdin-update-translations-and-progress:
     runs-on: ubuntu-latest
@@ -41,5 +45,5 @@ jobs:
           title: Update Crowdin translations and progress
           body: Update Crowdin translations and progress
           commit-message: Update Crowdin translations and progress
-          branch: crowdin-translations-progress-action
+          branch: crowdin-action
 
