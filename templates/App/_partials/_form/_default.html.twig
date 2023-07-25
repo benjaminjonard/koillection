@@ -39,10 +39,14 @@
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
                             <img data-preview-target="image" class="preview-image"
-                                 src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"/>
+                                 src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"
+                                 data-scrapping-target="imagePreview"
+                            />
                         {% else %}
                             <img data-preview-target="image" class="preview-image"
-                                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"/>
+                                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
+                                 data-scrapping-target="imagePreview"
+                            />
                         {% endif %}
                         <input {{ block('widget_attributes') }}
                                 data-action="change->preview#load"
@@ -154,6 +158,20 @@
 {% endblock %}
 
 {% block _template_fields_row %}
+    {% apply spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
+{% endblock %}
+
+{% block _scrapper_dataPaths_entry_row %}
+    {% apply spaceless %}
+        {{ include('App/Scrapper/_data_path_prototype.html.twig', { 'form': form }) }}
+    {% endapply %}
+{% endblock %}
+
+{% block _scrapper_dataPaths_row %}
     {% apply spaceless %}
         {% for child in form %}
             {{ form_row(child) }}

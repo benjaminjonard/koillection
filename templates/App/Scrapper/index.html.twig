@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_scrapper_index', 'trans': 'menu.scrappers'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="filter">
+        <div class="collection-header">
+            <div class="title-block">
+                <h1>{{ 'menu.scrappers'|trans }}</h1>
+                <ul class="nav nav-pills">
+                    <li>{{ 'counter.scrappers'|trans({'count': scrappers|length}) }}</li>
+                </ul>
+            </div>
+
+            <div></div>
+
+            <div class="btn-holder">
+                <div class="left">
+                    <a href="{{ path('app_scrapper_add') }}" class="button" title="{{ 'tooltip.add_scrapper'|trans }}">
+                        <i class="fa fa-plus fa-fw"></i>
+                    </a>
+                </div>
+                <div class="right">
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>{{ 'label.name'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for scrapper in scrappers %}
+                    <tr class="list-element resize-element" data-title="{{ scrapper.name }}"
+                        data-filter-target="element">
+                        <td>
+                            <a href="{{ path('app_scrapper_show', {'id' : scrapper.id}) }}">
+                                <strong>{{ scrapper.name }}</strong>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

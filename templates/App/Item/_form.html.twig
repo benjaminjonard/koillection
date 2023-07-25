@@ -1,121 +1,164 @@
-{{ form_start(form) }}
-    {% do form.data.setRendered %}
-<div class="content-block">
-    <div class="row">
-        <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.infos'|trans }}</h2>
-    </div>
-    {{ form_row(form.file) }}
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default }) }}
-        </div>
-        <div class="col s12 l5 xl4">
-            {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select--default'}}) }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
-        </div>
-        <div class="col s12 l5 xl4">
-            {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
-        </div>
-    </div>
-
-    {% if isFeatureEnabled('tags') %}
-        <div class="row">
-            <div class="col s12 l10 offset-l1 xl8 offset-xl2" data-controller="autocomplete--tag">
-                <div class="input-field outlined">
-                    <input type="text" data-autocomplete--tag-target="input" class="autocomplete"
-                           data-action="keyup->autocomplete--tag#autocomplete keydown->autocomplete--tag#preventDefault"
-                           autocomplete="off">
-                    {{ form_label(form.tags, 'label.tags') }}
-                    <div data-autocomplete--tag-target="result" class="ac-tags"></div>
-                </div>
-                {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden', 'data-autocomplete--tag-target': 'formInput'}}) }}
+<span data-controller="scrapping">
+    {{ form_start(form) }}
+        {% do form.data.setRendered %}
+        <div class="content-block">
+            <div class="row">
+                <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.infos'|trans }}</h2>
             </div>
-        </div>
-    {% endif %}
-</div>
+            {{ form_row(form.file) }}
+            {{ form_row(form.fileUrl, {'attr': {'data-scrapping-target': 'imageInput'}}) }}
 
-<div class="content-block" data-controller="additional-data" data-entity="item">
-    <div class="row">
-        <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.additional_fields'|trans }}</h2>
-    </div>
+            <div class="row">
+                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                    <div class="btn-holder right">
+                        <a href="#scrap" class="modal-trigger btn">
+                            {{ 'message.scrap'|trans }}
+                        </a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {% if isFeatureEnabled('templates') %}
-                {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
-                    'data-controller': 'select--default',
-                    'data-action': 'change->additional-data#loadTemplateFields'
-                }}) }}
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default, 'attr': {'data-scrapping-target': 'nameInput'} }) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select--default'}}) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.quantity, {'label' : 'label.quantity'} ) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+                </div>
+            </div>
+
+            {% if isFeatureEnabled('tags') %}
+                <div class="row">
+                    <div class="col s12 l10 offset-l1 xl8 offset-xl2" data-controller="autocomplete--tag">
+                        <div class="input-field outlined">
+                            <input type="text" data-autocomplete--tag-target="input" class="autocomplete"
+                                   data-action="keyup->autocomplete--tag#autocomplete keydown->autocomplete--tag#preventDefault"
+                                   autocomplete="off">
+                            {{ form_label(form.tags, 'label.tags') }}
+                            <div data-autocomplete--tag-target="result" class="ac-tags"></div>
+                        </div>
+                        {{ form_widget(form.tags, {'label' : 'label.tags', 'attr': {'class' : 'hidden', 'data-autocomplete--tag-target': 'formInput'}}) }}
+                    </div>
+                </div>
             {% endif %}
         </div>
-        <div class="col s12 l3 xl2 center-align">
-            <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey"
-                    data-collection-id="{{ collection is defined ? collection.id }}"
-                    data-action="additional-data#loadCommonFields"
-            >
-                {{ 'btn.apply_common_fields'|trans }}
-            </button>
-        </div>
-        <div class="col s12 l3 xl2 center-align">
-            <button class="btn waves-effect waves-light align-with-inputs js-btn-collection-fields grey"
-                    data-collection-id="{{ collection is defined ? collection.id }}"
-                    data-action="additional-data#loadCollectionFields"
-            >
-                {{ 'btn.apply_collection_fields'|trans }}
-            </button>
-        </div>
-    </div>
 
-    {{ include('App/Item/_form_data_block.html.twig', {data: item.data}) }}
-</div>
-
-<div class="content-block">
-    <div class="row">
-        <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.related_items'|trans }}</h2>
-    </div>
-
-    <div class="row">
-        <div class="col s12 l10 offset-l1 xl8 offset-xl2" data-controller="autocomplete--item">
-            <div class="ac-tags">
-                <table class="centered striped">
-                    <tbody data-autocomplete--item-target="result">
-                    </tbody>
-                </table>
+        <div class="content-block" data-controller="additional-data" data-entity="item" data-action="scrapping:newScrappedData@window->additional-data#injectNewScrappedData">
+            <div class="row">
+                <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.additional_fields'|trans }}</h2>
             </div>
 
-            <div class="input-field outlined">
-                {{ form_label(form.relatedItems, 'label.related_items') }}
-                <input type="text" data-autocomplete--item-target="input"
-                       data-action="keyup->autocomplete--item#autocomplete keydown->autocomplete--item#preventDefault"
-                       autocomplete="off"
-                       placeholder=" "
-                >
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {% if isFeatureEnabled('templates') %}
+                        {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
+                            'data-controller': 'select--default',
+                            'data-action': 'change->additional-data#loadTemplateFields'
+                        }}) }}
+                    {% endif %}
+                </div>
+                <div class="col s12 l3 xl2 center-align">
+                    <button class="btn waves-effect waves-light align-with-inputs js-btn-common-fields grey"
+                            data-collection-id="{{ collection is defined ? collection.id }}"
+                            data-action="additional-data#loadCommonFields"
+                    >
+                        {{ 'btn.apply_common_fields'|trans }}
+                    </button>
+                </div>
+                <div class="col s12 l3 xl2 center-align">
+                    <button class="btn waves-effect waves-light align-with-inputs js-btn-collection-fields grey"
+                            data-collection-id="{{ collection is defined ? collection.id }}"
+                            data-action="additional-data#loadCollectionFields"
+                    >
+                        {{ 'btn.apply_collection_fields'|trans }}
+                    </button>
+                </div>
             </div>
-            {{ form_widget(form.relatedItems, {'label' : 'label.related_items', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--item-target': 'formInput'}}) }}
+
+            {{ include('App/Item/_form_data_block.html.twig', {data: item.data}) }}
+        </div>
+
+        <div class="content-block">
+            <div class="row">
+                <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.related_items'|trans }}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col s12 l10 offset-l1 xl8 offset-xl2" data-controller="autocomplete--item">
+                    <div class="ac-tags">
+                        <table class="centered striped">
+                            <tbody data-autocomplete--item-target="result">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="input-field outlined">
+                        {{ form_label(form.relatedItems, 'label.related_items') }}
+                        <input type="text" data-autocomplete--item-target="input"
+                               data-action="keyup->autocomplete--item#autocomplete keydown->autocomplete--item#preventDefault"
+                               autocomplete="off"
+                               placeholder=" "
+                        >
+                    </div>
+                    {{ form_widget(form.relatedItems, {'label' : 'label.related_items', 'attr': {'autocomplete': 'off', 'class' : 'hidden', 'data-autocomplete--item-target': 'formInput'}}) }}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="center-align form-btn-holder">
+            {% if app.request.get('_route') == 'app_item_add' %}
+                {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('collection')}) %}
+            {% elseif app.request.get('_route') == 'app_wish_transfer_to_collection' %}
+                {% set cancelUrl = path('app_wishlist_show', {id: wish.wishlist.id}) %}
+            {% else %}
+                {% set cancelUrl = path('app_collection_show', {id: item.collection.id}) %}
+            {% endif %}
+
+            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            {% if app.request.get('_route') == 'app_item_add' %}
+                <button type="submit" name="save_and_add_another"
+                        class="btn waves-effect waves-light">{{ 'btn.submit_and_add_another'|trans }}</button>
+            {% endif %}
+            <a href="{{ cancelUrl }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+        </div>
+    {{ form_end(form) }}
+
+    <div id="scrap" data-controller="modal--default" class="modal modal-custom" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title"></span>{{ 'title.scrap'|trans }}
+                </div>
+                {{ form_start(scrappingForm, {'attr': { 'data-action': 'submit->scrapping#scrap'} }) }}
+                    <div class="modal-body">
+                        {{ form_row(scrappingForm.url, {'label' : 'label.url'}) }}
+
+                        {{ form_row(scrappingForm.scrapper, {'label' : 'label.scrapper', 'attr' : {
+                            'data-controller': 'select--default'
+                        }}) }}
+
+                        <div class="error-helper" data-scrapping-target="modalError"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="right">
+                            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.scrap'|trans }}</button>
+                            <a data-scrapping-target="modalCloseButton" class="modal-close waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+                        </div>
+                    </div>
+                {{ form_end(scrappingForm) }}
+            </div>
         </div>
     </div>
-
-</div>
-
-<div class="center-align form-btn-holder">
-    {% if app.request.get('_route') == 'app_item_add' %}
-        {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('collection')}) %}
-    {% elseif app.request.get('_route') == 'app_wish_transfer_to_collection' %}
-        {% set cancelUrl = path('app_wishlist_show', {id: wish.wishlist.id}) %}
-    {% else %}
-        {% set cancelUrl = path('app_collection_show', {id: item.collection.id}) %}
-    {% endif %}
-
-    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-    {% if app.request.get('_route') == 'app_item_add' %}
-        <button type="submit" name="save_and_add_another"
-                class="btn waves-effect waves-light">{{ 'btn.submit_and_add_another'|trans }}</button>
-    {% endif %}
-    <a href="{{ cancelUrl }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
-</div>
-{{ form_end(form) }}
+</span>

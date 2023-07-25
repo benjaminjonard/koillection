@@ -11,6 +11,7 @@ use App\Entity\Inventory;
 use App\Entity\Item;
 use App\Entity\Loan;
 use App\Entity\Photo;
+use App\Entity\Scrapper;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
 use App\Entity\Template;
@@ -43,7 +44,7 @@ abstract class AbstractController extends SymfonyAbstractController
 
     public function createDeleteForm(
         string $url,
-        User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist|ChoiceList $entity = null
+        User|Album|Collection|Inventory|Item|Loan|Photo|TagCategory|Tag|Template|Wish|Wishlist|ChoiceList|Scrapper $entity = null
     ): FormInterface {
         $params = [];
         if ($entity !== null) {

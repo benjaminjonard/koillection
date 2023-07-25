@@ -1,0 +1,16 @@
+<div class="row dataPath" data-scrapper-data-path-target="dataPath">
+    <div class="col s1 handle icon-holder">
+        <i class="fa fa-arrows-v fa-fw"></i>
+    </div>
+
+    <div class="col s3">
+        {{ form_row(form.name, {'label':'label.name'}) }}
+    </div>
+    <div class="col s7">
+        {{ form_row(form.path, {'label':'label.path'}) }}
+    </div>
+
+    <div class="col s1 icon-holder">
+        <i class="fa fa-remove fa-fw removeDatum" data-action="click->scrapper-data-path#remove"></i>
+    </div>
+</div>
