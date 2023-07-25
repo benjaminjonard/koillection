@@ -41,5 +41,5 @@ jobs:
           title: Update Crowdin translations and progress
           body: Update Crowdin translations and progress
           commit-message: Update Crowdin translations and progress
-          branch: crowdin-action
+          branch: crowdin-translations-progress-action
 
