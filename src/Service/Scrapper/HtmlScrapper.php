@@ -9,6 +9,8 @@ use App\Entity\Scrapper;
 use App\Enum\DatumTypeEnum;
 use App\Service\ArrayTraverser;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\Intl\Countries;
+use Symfony\Component\Intl\Intl;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
@@ -67,7 +69,7 @@ readonly class HtmlScrapper
         ];
     }
 
-    private function extract(?string $template, string $type, Crawler $crawler): string
+    private function extract(?string $template, string $type, Crawler $crawler): ?string
     {
         if (!$template) {
             return '';
@@ -102,5 +104,19 @@ readonly class HtmlScrapper
         if ($type === DatumTypeEnum::TYPE_LIST) {
             return json_encode($values);
         }
+
+        if ($type === DatumTypeEnum::TYPE_COUNTRY) {
+            $value = array_shift($values);
+
+            // Try to match alpha2 code
+            if (strlen($value) === 2 && Countries::exists($value)) {
+                return $value;
+            }
+
+            // Else try to match the country name
+            return array_flip(Countries::getNames())[$value] ?? null;
+        }
+
+        return null;
     }
 }

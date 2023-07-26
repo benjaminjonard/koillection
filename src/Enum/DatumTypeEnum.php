@@ -82,7 +82,8 @@ class DatumTypeEnum
 
     public const AVAILABLE_FOR_SCRAPPING = [
         self::TYPE_TEXT,
-        self::TYPE_LIST
+        self::TYPE_LIST,
+        self::TYPE_COUNTRY,
     ];
 
     public const TYPES_TRANS_KEYS = [
