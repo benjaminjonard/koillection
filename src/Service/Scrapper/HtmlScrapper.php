@@ -11,7 +11,7 @@ use App\Service\ArrayTraverser;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
-readonly class JsonApiScrapper
+readonly class HtmlScrapper
 {
     public function __construct(
         private HttpClientInterface $client,
