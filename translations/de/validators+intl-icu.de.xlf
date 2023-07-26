@@ -67,5 +67,11 @@
         <target>Die Bezeichnung "{label}" wird mehrmals verwendet, alle Bezeichnungen müssen eindeutig sein</target>
       </segment>
     </unit>
+    <unit id="IV3649l" name="error.parent.is_child_of_current_object">
+      <segment state="translated">
+        <source>The parent can't be one of the children</source>
+        <target>Der Elternknoten darf nicht einer der Kinder sein</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
