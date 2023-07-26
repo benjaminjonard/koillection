@@ -149,6 +149,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $inventories;
 
+    #[ORM\OneToMany(targetEntity: Scraper::class, mappedBy: 'owner', cascade: ['remove'])]
+    private DoctrineCollection $scrapers;
+
     #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     #[Groups(['user:read'])]
     private ?\DateTimeImmutable $lastDateOfActivity = null;

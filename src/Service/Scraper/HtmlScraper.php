@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Scrapper;
+namespace App\Service\Scraper;
 
 use App\Entity\Datum;
-use App\Entity\Scrapper;
+use App\Entity\Scraper;
 use App\Enum\DatumTypeEnum;
 use App\Service\ArrayTraverser;
 use Symfony\Component\DomCrawler\Crawler;
@@ -14,7 +14,7 @@ use Symfony\Component\Intl\Intl;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
-readonly class HtmlScrapper
+readonly class HtmlScraper
 {
     public function __construct(
         private HttpClientInterface $client,
@@ -22,7 +22,7 @@ readonly class HtmlScrapper
     ) {
     }
 
-    public function scrap(Scrapper $scrapper, string $url, string $entityType): array
+    public function scrap(Scraper $scraper, string $url, string $entityType): array
     {
         $response = $this->client->request(
             'GET',
@@ -38,7 +38,7 @@ readonly class HtmlScrapper
         $crawler = new Crawler($content);
 
         $data = [];
-        foreach ($scrapper->getDataPaths() as $key => $dataPath) {
+        foreach ($scraper->getDataPaths() as $key => $dataPath) {
             $value = $this->extract($dataPath['path'], $dataPath['type'], $crawler);
 
             $datum = (new Datum())
@@ -63,8 +63,8 @@ readonly class HtmlScrapper
         }
 
         return [
-            'name' => $this->extract($scrapper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
-            'image' => $this->extract($scrapper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
+            'name' => $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
+            'image' => $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
             'data' => $data
         ];
     }

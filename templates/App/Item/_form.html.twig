@@ -1,4 +1,4 @@
-<span data-controller="scrapping">
+<span data-controller="scraping">
     {{ form_start(form) }}
         {% do form.data.setRendered %}
         <div class="content-block">
@@ -6,7 +6,7 @@
                 <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.infos'|trans }}</h2>
             </div>
             {{ form_row(form.file) }}
-            {{ form_row(form.fileUrl, {'attr': {'data-scrapping-target': 'imageInput'}}) }}
+            {{ form_row(form.fileUrl, {'attr': {'data-scraping-target': 'imageInput'}}) }}
 
             <div class="row">
                 <div class="col s12 l10 offset-l1 xl8 offset-xl2">
@@ -21,7 +21,7 @@
 
             <div class="row">
                 <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-                    {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default, 'attr': {'data-scrapping-target': 'nameInput'} }) }}
+                    {{ form_row(form.name, {'label' : 'label.name', 'suggestions': suggestedNames|default, 'attr': {'data-scraping-target': 'nameInput'} }) }}
                 </div>
                 <div class="col s12 l5 xl4">
                     {{ form_row(form.collection, {'label' : 'label.collection', 'attr': {'data-controller': 'select--default'}}) }}
@@ -53,7 +53,7 @@
             {% endif %}
         </div>
 
-        <div class="content-block" data-controller="additional-data" data-entity="item" data-action="scrapping:newScrappedData@window->additional-data#injectNewScrappedData">
+        <div class="content-block" data-controller="additional-data" data-entity="item" data-action="scraping:newScrapedData@window->additional-data#injectNewScrapedData">
             <div class="row">
                 <h2 class="header col s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.additional_fields'|trans }}</h2>
             </div>
@@ -134,5 +134,5 @@
         </div>
     {{ form_end(form) }}
 
-    {{ include('App/_partials/_modal/_scrapping.html.twig', {form: scrappingForm}) }}
+    {{ include('App/_partials/_modal/_scraping.html.twig', {form: scrapingForm}) }}
 </span>

@@ -4,34 +4,35 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
-use App\Entity\Scrapper;
+use App\Enum\DatumTypeEnum;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ScrapperType extends AbstractType
+class ScraperDatumType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $types = [];
+        foreach (DatumTypeEnum::AVAILABLE_FOR_SCRAPING as $type) {
+            $types[DatumTypeEnum::getTypeLabel($type)] = $type;
+        }
+
         $builder
             ->add('name', TextType::class, [
                 'attr' => ['length' => 255],
-                'required' => true
+                'required' => true,
             ])
-            ->add('namePath', TextType::class, [
-                'required' => false
+            ->add('path', TextType::class, [
+                'required' => true,
             ])
-            ->add('imagePath', TextType::class, [
-                'required' => false
-            ])
-            ->add('dataPaths', SymfonyCollectionType::class, [
-                'entry_type' => ScrapperDatumType::class,
+            ->add('type', ChoiceType::class, [
+                'choices' => $types,
+                'expanded' => false,
+                'multiple' => false,
                 'label' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
             ])
         ;
     }
@@ -39,7 +40,7 @@ class ScrapperType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Scrapper::class,
+            'data_class' => null,
         ]);
     }
 }

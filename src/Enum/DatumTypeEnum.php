@@ -80,7 +80,7 @@ class DatumTypeEnum
         self::TYPE_COUNTRY,
     ];
 
-    public const AVAILABLE_FOR_SCRAPPING = [
+    public const AVAILABLE_FOR_SCRAPING = [
         self::TYPE_TEXT,
         self::TYPE_LIST,
         self::TYPE_COUNTRY,

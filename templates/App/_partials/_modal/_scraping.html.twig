@@ -1,0 +1,27 @@
+<div id="scrap" data-controller="modal--default" class="modal modal-custom" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title"></span>{{ 'title.scrap'|trans }}
+            </div>
+            {{ form_start(scrapingForm, {'attr': { 'id': 'scraping', 'data-action': 'submit->scraping#scrap'} }) }}
+            <div class="modal-body">
+                {{ form_row(scrapingForm.url, {'label' : 'label.url'}) }}
+
+                {{ form_row(scrapingForm.scraper, {'label' : 'label.scraper', 'attr' : {
+                    'data-controller': 'select--default'
+                }}) }}
+
+                <div class="error-helper" data-scraping-target="modalError"></div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="right">
+                    <button type="submit" form="scraping" class="btn waves-effect waves-light">{{ 'btn.scrap'|trans }}</button>
+                    <a data-scraping-target="modalCloseButton" class="modal-close waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+                </div>
+            </div>
+            {{ form_end(scrapingForm) }}
+        </div>
+    </div>
+</div>

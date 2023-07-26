@@ -6,7 +6,7 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
 use App\Entity\Item;
-use App\Entity\Scrapper;
+use App\Entity\Scraper;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\JsonToItemTransformer;

@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_scrapper_index', 'trans': 'menu.scrappers'}]) %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_scraper_index', 'trans': 'menu.scrapers'}]) %}
 
 {% block title %}
     {{ renderTitle(breadcrumb) }}
@@ -14,9 +14,9 @@
     <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
-                <h1>{{ 'menu.scrappers'|trans }}</h1>
+                <h1>{{ 'menu.scrapers'|trans }}</h1>
                 <ul class="nav nav-pills">
-                    <li>{{ 'counter.scrappers'|trans({'count': scrappers|length}) }}</li>
+                    <li>{{ 'counter.scrapers'|trans({'count': scrapers|length}) }}</li>
                 </ul>
             </div>
 
@@ -24,7 +24,7 @@
 
             <div class="btn-holder">
                 <div class="left">
-                    <a href="{{ path('app_scrapper_add') }}" class="button" title="{{ 'tooltip.add_scrapper'|trans }}">
+                    <a href="{{ path('app_scraper_add') }}" class="button" title="{{ 'tooltip.add_scraper'|trans }}">
                         <i class="fa fa-plus fa-fw"></i>
                     </a>
                 </div>
@@ -44,12 +44,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for scrapper in scrappers %}
-                    <tr class="list-element resize-element" data-title="{{ scrapper.name }}"
+                {% for scraper in scrapers %}
+                    <tr class="list-element resize-element" data-title="{{ scraper.name }}"
                         data-filter-target="element">
                         <td>
-                            <a href="{{ path('app_scrapper_show', {'id' : scrapper.id}) }}">
-                                <strong>{{ scrapper.name }}</strong>
+                            <a href="{{ path('app_scraper_show', {'id' : scraper.id}) }}">
+                                <strong>{{ scraper.name }}</strong>
                             </a>
                         </td>
                     </tr>

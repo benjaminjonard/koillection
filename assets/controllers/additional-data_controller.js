@@ -132,7 +132,7 @@ export default class extends Controller {
         })
     }
 
-    injectNewScrappedData({ detail: { content } }) {
+    injectNewScrapedData({ detail: { content } }) {
         this.injectData(content)
     }
 

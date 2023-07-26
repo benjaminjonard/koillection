@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_scrapper_index', 'trans': 'menu.scrappers'}], null, 'breadcrumb.add_scrapper') %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_scraper_index', 'trans': 'menu.scrapers'}], null, 'breadcrumb.add_scraper') %}
 
 {% block title %}
     {{ renderTitle(breadcrumb) }}
@@ -12,10 +12,10 @@
 
 {% block content %}
     <div class="title-block">
-        <h1>{{ 'title.add_scrapper'|trans }}</h1>
+        <h1>{{ 'title.add_scraper'|trans }}</h1>
     </div>
 
     <div class="content-block">
-        {{ include('App/Scrapper/_form.html.twig') }}
+        {{ include('App/Scraper/_form.html.twig') }}
     </div>
 {% endblock %}

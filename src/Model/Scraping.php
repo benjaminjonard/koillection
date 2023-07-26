@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use App\Entity\Scrapper;
+use App\Entity\Scraper;
 
-class Scrapping
+class Scraping
 {
     private string $url;
 
     private string $entity;
 
-    private Scrapper $scrapper;
+    private Scraper $scraper;
 
     public function __construct(string $entity = null)
     {
@@ -24,21 +24,21 @@ class Scrapping
         return $this->url;
     }
 
-    public function setUrl(string $url): Scrapping
+    public function setUrl(string $url): Scraping
     {
         $this->url = $url;
 
         return $this;
     }
 
-    public function getScrapper(): Scrapper
+    public function getScraper(): Scraper
     {
-        return $this->scrapper;
+        return $this->scraper;
     }
 
-    public function setScrapper(Scrapper $scrapper): Scrapping
+    public function setScraper(Scraper $scraper): Scraping
     {
-        $this->scrapper = $scrapper;
+        $this->scraper = $scraper;
 
         return $this;
     }
@@ -48,7 +48,7 @@ class Scrapping
         return $this->entity;
     }
 
-    public function setEntity(?string $entity): Scrapping
+    public function setEntity(?string $entity): Scraping
     {
         if ($entity !== 'item' && $entity !== 'collection') {
             $entity = 'item';

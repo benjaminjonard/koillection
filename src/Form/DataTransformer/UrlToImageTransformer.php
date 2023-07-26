@@ -22,7 +22,7 @@ class UrlToImageTransformer implements DataTransformerInterface
         }
 
         $content = file_get_contents($url);
-        $name = 'scrapped'. uniqid();
+        $name = 'scraped'. uniqid();
 
         file_put_contents("/tmp/$name", $content);
         $mime = mime_content_type("/tmp/$name");

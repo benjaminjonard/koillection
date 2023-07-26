@@ -8,7 +8,7 @@ export default class extends Controller {
         event.preventDefault();
         let self = this;
 
-        fetch('/scrappers/scrap', {
+        fetch('/scrapers/scrap', {
             method: 'POST',
             body: new FormData(event.target)
         })
@@ -24,7 +24,7 @@ export default class extends Controller {
                         self.imageInputTarget.value = result.image;
                     }
 
-                    self.dispatch("newScrappedData", { detail: { content: result.data } })
+                    self.dispatch("newScrapedData", { detail: { content: result.data } })
                     self.modalCloseButtonTarget.click();
                 }
             })

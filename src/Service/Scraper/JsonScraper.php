@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Scrapper;
+namespace App\Service\Scraper;
 
 use App\Entity\Datum;
-use App\Entity\Scrapper;
+use App\Entity\Scraper;
 use App\Enum\DatumTypeEnum;
 use App\Service\ArrayTraverser;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
-readonly class JsonScrapper
+readonly class JsonScraper
 {
     public function __construct(
         private HttpClientInterface $client,
@@ -20,7 +20,7 @@ readonly class JsonScrapper
     ) {
     }
 
-    public function scrap(Scrapper $scrapper, string $url): array
+    public function scrap(Scraper $scraper, string $url): array
     {
         $response = $this->client->request(
             'GET',
@@ -35,7 +35,7 @@ readonly class JsonScrapper
         $content = json_decode($response->getContent(), true);
 
         $data = [];
-        foreach ($scrapper->getDataPaths() as $key => $dataPath) {
+        foreach ($scraper->getDataPaths() as $key => $dataPath) {
             $value = $this->extract($dataPath['path'], $content);
             $datum = (new Datum())
                 ->setValue($value)
@@ -59,8 +59,8 @@ readonly class JsonScrapper
         }
 
         return [
-            'name' => $this->extract($scrapper->getNamePath(), $content),
-            'image' => $this->extract($scrapper->getImagePath(), $content),
+            'name' => $this->extract($scraper->getNamePath(), $content),
+            'image' => $this->extract($scraper->getImagePath(), $content),
             'data' => $data
         ];
     }

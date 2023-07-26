@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
-use App\Repository\ScrapperRepository;
+use App\Repository\ScraperRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: ScrapperRepository::class)]
-#[ORM\Table(name: 'koi_scrapper')]
-class Scrapper implements BreadcrumbableInterface, \Stringable
+#[ORM\Entity(repositoryClass: ScraperRepository::class)]
+#[ORM\Table(name: 'koi_scraper')]
+class Scraper implements BreadcrumbableInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
@@ -32,7 +32,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
     #[ORM\Column(type: Types::JSON, nullable: true)]
     private ?array $dataPaths = [];
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'scrappers')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'scrapers')]
     private ?User $owner = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
@@ -61,7 +61,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
         return $this->name;
     }
 
-    public function setName(?string $name): Scrapper
+    public function setName(?string $name): Scraper
     {
         $this->name = $name;
 
@@ -73,7 +73,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
         return $this->namePath;
     }
 
-    public function setNamePath(?string $namePath): Scrapper
+    public function setNamePath(?string $namePath): Scraper
     {
         $this->namePath = $namePath;
 
@@ -85,7 +85,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
         return $this->imagePath;
     }
 
-    public function setImagePath(?string $imagePath): Scrapper
+    public function setImagePath(?string $imagePath): Scraper
     {
         $this->imagePath = $imagePath;
 
@@ -97,7 +97,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
         return $this->dataPaths;
     }
 
-    public function setDataPaths(?array $dataPaths): Scrapper
+    public function setDataPaths(?array $dataPaths): Scraper
     {
         $this->dataPaths = $dataPaths;
 
@@ -109,7 +109,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
         return $this->owner;
     }
 
-    public function setOwner(?User $owner): Scrapper
+    public function setOwner(?User $owner): Scraper
     {
         $this->owner = $owner;
 
@@ -121,7 +121,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): Scrapper
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): Scraper
     {
         $this->createdAt = $createdAt;
 
@@ -134,7 +134,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
     }
 
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): Scrapper
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): Scraper
     {
         $this->updatedAt = $updatedAt;
 

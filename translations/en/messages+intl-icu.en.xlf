@@ -3289,5 +3289,11 @@
         <target>Add list element</target>
       </segment>
     </unit>
+    <unit id="3UpvF8S" name="menu.scrapers">
+      <segment state="translated">
+        <source>Scrapers</source>
+        <target>Scrapers</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Model;
 
-use App\Entity\Scrapper;
-use App\Model\Scrapping;
+use App\Entity\Scraper;
+use App\Model\Scraping;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ScrappingType extends AbstractType
+class ScrapingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -24,8 +24,8 @@ class ScrappingType extends AbstractType
             ->add('entity', HiddenType::class, [
                 'required' => true,
             ])
-            ->add('scrapper', EntityType::class, [
-                'class' => Scrapper::class,
+            ->add('scraper', EntityType::class, [
+                'class' => Scraper::class,
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => false,
@@ -38,7 +38,7 @@ class ScrappingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Scrapping::class,
+            'data_class' => Scraping::class,
         ]);
     }
 }
