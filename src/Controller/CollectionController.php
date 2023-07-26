@@ -10,7 +10,9 @@ use App\Enum\ReservedLabelEnum;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Form\Type\Model\BatchTaggerType;
+use App\Form\Type\Model\ScrappingType;
 use App\Model\BatchTagger;
+use App\Model\Scrapping;
 use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
@@ -85,6 +87,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/add.html.twig', [
             'collection' => $collection,
             'form' => $form,
+            'scrappingForm' => $this->createForm(ScrappingType::class, new Scrapping('collection')),
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenLabels' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll()
@@ -175,6 +178,7 @@ class CollectionController extends AbstractController
 
         return $this->render('App/Collection/edit.html.twig', [
             'form' => $form,
+            'scrappingForm' => $this->createForm(ScrappingType::class, new Scrapping('collection')),
             'collection' => $collection,
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenTitles' => $collectionRepository->suggestChildrenLabels($collection),

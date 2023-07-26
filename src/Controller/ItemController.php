@@ -92,7 +92,7 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/add.html.twig', [
             'form' => $form,
-            'scrappingForm' => $this->createForm(ScrappingType::class, new Scrapping()),
+            'scrappingForm' => $this->createForm(ScrappingType::class, new Scrapping('item')),
             'item' => $item,
             'collection' => $collection,
             'suggestedNames' => $suggestedNames,
@@ -134,7 +134,7 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/edit.html.twig', [
             'form' => $form,
-            'scrappingForm' => $this->createForm(ScrappingType::class, new Scrapping()),
+            'scrappingForm' => $this->createForm(ScrappingType::class, new Scrapping('item')),
             'item' => $item,
             'collection' => $item->getCollection(),
             'choiceLists' => $choiceListRepository->findAll(),

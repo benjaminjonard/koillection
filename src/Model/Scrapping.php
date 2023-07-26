@@ -10,7 +10,14 @@ class Scrapping
 {
     private string $url;
 
+    private string $entity;
+
     private Scrapper $scrapper;
+
+    public function __construct(string $entity = null)
+    {
+        $this->setEntity($entity);
+    }
 
     public function getUrl(): string
     {
@@ -32,6 +39,22 @@ class Scrapping
     public function setScrapper(Scrapper $scrapper): Scrapping
     {
         $this->scrapper = $scrapper;
+
+        return $this;
+    }
+
+    public function getEntity(): string
+    {
+        return $this->entity;
+    }
+
+    public function setEntity(?string $entity): Scrapping
+    {
+        if ($entity !== 'item' && $entity !== 'collection') {
+            $entity = 'item';
+        }
+
+        $this->entity = $entity;
 
         return $this;
     }

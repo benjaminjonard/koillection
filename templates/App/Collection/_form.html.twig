@@ -1,197 +1,212 @@
-{{ form_start(form) }}
-    {% do form.data.setRendered %}
-<div class="content-block">
-    {{ form_row(form.file) }}
+<span data-controller="scrapping">
+    {{ form_start(form) }}
+        {% do form.data.setRendered %}
+        <div class="content-block">
+            {{ form_row(form.file) }}
 
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.title, {'label' : 'label.title'} ) }}
-        </div>
-        <div class="col s12 l5 xl4">
-            {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}} ) }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
-        </div>
-    </div>
-
-    <h3 class="header col s12">{{ 'collection.items_settings'|trans }}</h3>
-
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.itemsDisplayConfiguration.label, {'label' : 'label.items_title', 'suggestions': suggestedItemsLabels|default} ) }}
-        </div>
-        <div class="col s12 l5 xl4">
-            {{ form_row(form.itemsDefaultTemplate, {'label' : 'label.items_default_template', 'attr': {'data-controller': 'select--default'}} ) }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.itemsDisplayConfiguration.sortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
-        </div>
-        <div class="col s12 l5 xl4">
-            {{ form_row(form.itemsDisplayConfiguration.sortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
-        </div>
-    </div>
-
-    <div data-controller="list-properties">
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-                {{ form_row(form.itemsDisplayConfiguration.displayMode, {'label' : 'label.items_display_mode', 'attr': {
-                    'data-controller': 'select--display-mode',
-                    'data-action': 'change->list-properties#displayProperties'
-                }} ) }}
-            </div>
-            <div class="col s12 l5 xl4 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-controller="columns-list"
-                 data-list-properties-target="property"
-            >
-                {% if form.itemsDisplayConfiguration.columns is defined %}
-                    <div>{{ form_label(form.itemsDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
-
-                    <div>
-                        <div data-columns-list-target="checkedHolder" class="property-list-holder">
-                            {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
-                                {{ form_row(child) }}
-                            {% endfor %}
-                        </div>
-                        <div data-columns-list-target="uncheckedHolder" class="property-list-holder">
-                            {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
-                                {{ form_row(child) }}
-                            {% endfor %}
-                        </div>
+            <div class="row">
+                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                    <div class="btn-holder right">
+                        <a href="#scrap" class="modal-trigger btn">
+                            {{ 'message.scrap'|trans }}
+                        </a>
                     </div>
-                    {% do form.itemsDisplayConfiguration.columns.setRendered %}
-                {% endif %}
+                    <br><br>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-list-properties-target="property"
-            >
-                {{ form_row(form.itemsDisplayConfiguration.showVisibility, {'label' : 'label.list_show_visibility'}) }}
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.title, {'label' : 'label.title', 'attr': {'data-scrapping-target': 'nameInput'}} ) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
             </div>
-            <div class="col s12 l5 xl4 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-list-properties-target="property"
-            >
-                {{ form_row(form.itemsDisplayConfiguration.showActions, {'label' : 'label.list_show_actions'}) }}
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+                </div>
             </div>
-        </div>
-    </div>
 
-    <h3 class="header col s12">{{ 'collection.children_settings'|trans }}</h3>
+            <h3 class="header col s12">{{ 'collection.items_settings'|trans }}</h3>
 
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.childrenDisplayConfiguration.label, {'label' : 'label.children_title', 'suggestions': suggestedChildrenLabels|default}) }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-            {{ form_row(form.childrenDisplayConfiguration.sortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
-        </div>
-        <div class="col s12 l5 xl4">
-            {{ form_row(form.childrenDisplayConfiguration.sortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
-        </div>
-    </div>
-
-    <div data-controller="list-properties">
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-                {{ form_row(form.childrenDisplayConfiguration.displayMode, {'label' : 'label.sub_collections_display_mode', 'attr': {
-                    'data-controller': 'select--display-mode',
-                    'data-action': 'change->list-properties#displayProperties'
-                }} ) }}
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.itemsDisplayConfiguration.label, {'label' : 'label.items_title', 'suggestions': suggestedItemsLabels|default} ) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.itemsDefaultTemplate, {'label' : 'label.items_default_template', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
             </div>
-            <div class="col s12 l5 xl4 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-controller="columns-list"
-                 data-list-properties-target="property"
-            >
-                {% if form.childrenDisplayConfiguration.columns is defined %}
-                    <div>{{ form_label(form.childrenDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
 
-                    <div>
-                        <div data-columns-list-target="checkedHolder" class="property-list-holder">
-                            {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
-                                {{ form_row(child) }}
-                            {% endfor %}
-                        </div>
-                        <div data-columns-list-target="uncheckedHolder" class="property-list-holder">
-                            {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
-                                {{ form_row(child) }}
-                            {% endfor %}
-                        </div>
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.itemsDisplayConfiguration.sortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.itemsDisplayConfiguration.sortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+            </div>
+
+            <div data-controller="list-properties">
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                        {{ form_row(form.itemsDisplayConfiguration.displayMode, {'label' : 'label.items_display_mode', 'attr': {
+                            'data-controller': 'select--display-mode',
+                            'data-action': 'change->list-properties#displayProperties'
+                        }} ) }}
                     </div>
-                    {% do form.childrenDisplayConfiguration.columns.setRendered %}
+                    <div class="col s12 l5 xl4 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-controller="columns-list"
+                         data-list-properties-target="property"
+                    >
+                        {% if form.itemsDisplayConfiguration.columns is defined %}
+                            <div>{{ form_label(form.itemsDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
+
+                            <div>
+                                <div data-columns-list-target="checkedHolder" class="property-list-holder">
+                                    {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
+                                        {{ form_row(child) }}
+                                    {% endfor %}
+                                </div>
+                                <div data-columns-list-target="uncheckedHolder" class="property-list-holder">
+                                    {% for child in form.itemsDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
+                                        {{ form_row(child) }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% do form.itemsDisplayConfiguration.columns.setRendered %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-list-properties-target="property"
+                    >
+                        {{ form_row(form.itemsDisplayConfiguration.showVisibility, {'label' : 'label.list_show_visibility'}) }}
+                    </div>
+                    <div class="col s12 l5 xl4 {% if collection.itemsDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-list-properties-target="property"
+                    >
+                        {{ form_row(form.itemsDisplayConfiguration.showActions, {'label' : 'label.list_show_actions'}) }}
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="header col s12">{{ 'collection.children_settings'|trans }}</h3>
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.childrenDisplayConfiguration.label, {'label' : 'label.children_title', 'suggestions': suggestedChildrenLabels|default}) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    {{ form_row(form.childrenDisplayConfiguration.sortingProperty, {'label' : 'label.items_sorting_property', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+                <div class="col s12 l5 xl4">
+                    {{ form_row(form.childrenDisplayConfiguration.sortingDirection, {'label' : 'label.items_sorting_direction', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+            </div>
+
+            <div data-controller="list-properties">
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                        {{ form_row(form.childrenDisplayConfiguration.displayMode, {'label' : 'label.sub_collections_display_mode', 'attr': {
+                            'data-controller': 'select--display-mode',
+                            'data-action': 'change->list-properties#displayProperties'
+                        }} ) }}
+                    </div>
+                    <div class="col s12 l5 xl4 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-controller="columns-list"
+                         data-list-properties-target="property"
+                    >
+                        {% if form.childrenDisplayConfiguration.columns is defined %}
+                            <div>{{ form_label(form.childrenDisplayConfiguration.columns, 'label.items_list_columns') }}</div>
+
+                            <div>
+                                <div data-columns-list-target="checkedHolder" class="property-list-holder">
+                                    {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == true) %}
+                                        {{ form_row(child) }}
+                                    {% endfor %}
+                                </div>
+                                <div data-columns-list-target="uncheckedHolder" class="property-list-holder">
+                                    {% for child in form.childrenDisplayConfiguration.columns.children|filter(child => child.vars.data == false) %}
+                                        {{ form_row(child) }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% do form.childrenDisplayConfiguration.columns.setRendered %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-list-properties-target="property"
+                    >
+                        {{ form_row(form.childrenDisplayConfiguration.showVisibility, {'label' : 'label.list_show_visibility'}) }}
+                    </div>
+                    <div class="col s12 l5 xl4 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-list-properties-target="property"
+                    >
+                        {{ form_row(form.childrenDisplayConfiguration.showActions, {'label' : 'label.list_show_actions'}) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-list-properties-target="property"
+                    >
+                        {{ form_row(form.childrenDisplayConfiguration.showNumberOfChildren, {'label' : 'label.list_show_number_of_children'}) }}
+                    </div>
+                    <div class="col s12 l5 xl4 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
+                         data-list-properties-target="property"
+                    >
+                        {{ form_row(form.childrenDisplayConfiguration.showNumberOfItems, {'label' : 'label.list_show_number_of_items'}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block" data-controller="additional-data" data-entity="collection" data-action="scrapping:newScrappedData@window->additional-data#injectNewScrappedData">
+                <div class="row">
+                    <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                        {% if isFeatureEnabled('templates') %}
+                            {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
+                                'data-controller': 'select--default',
+                                'data-action': 'change->additional-data#loadTemplateFields'
+                            }}) }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}
+            </div>
+        </div>
+
+        <div class="center-align form-btn-holder">
+            {% if app.request.get('_route') == 'app_collection_add' %}
+                {% if app.request.query.has('parent') %}
+                    {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('parent')}) %}
+                {% else %}
+                    {% set cancelUrl = path('app_collection_index') %}
                 {% endif %}
-            </div>
+            {% else %}
+                {% set cancelUrl = path('app_collection_show', {id: collection.id}) %}
+            {% endif %}
+
+            <button name="submit" type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            <a href="{{ cancelUrl }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
         </div>
+    {{ form_end(form) }}
 
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-list-properties-target="property"
-            >
-                {{ form_row(form.childrenDisplayConfiguration.showVisibility, {'label' : 'label.list_show_visibility'}) }}
-            </div>
-            <div class="col s12 l5 xl4 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-list-properties-target="property"
-            >
-                {{ form_row(form.childrenDisplayConfiguration.showActions, {'label' : 'label.list_show_actions'}) }}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl4 offset-xl2 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-list-properties-target="property"
-            >
-                {{ form_row(form.childrenDisplayConfiguration.showNumberOfChildren, {'label' : 'label.list_show_number_of_children'}) }}
-            </div>
-            <div class="col s12 l5 xl4 {% if collection.childrenDisplayConfiguration.displayMode != 'list' %}hidden{% endif %}"
-                 data-list-properties-target="property"
-            >
-                {{ form_row(form.childrenDisplayConfiguration.showNumberOfItems, {'label' : 'label.list_show_number_of_items'}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="content-block" data-controller="additional-data" data-entity="collection">
-        <div class="row">
-            <h3 class="header col s12">{{ 'title.data'|trans }}</h3>
-        </div>
-
-        <div class="row">
-            <div class="col s12 l5 offset-l1 xl4 offset-xl2">
-                {% if isFeatureEnabled('templates') %}
-                    {{ form_row(form.template, {'label' : 'label.apply_template', 'attr' : {
-                        'data-controller': 'select--default',
-                        'data-action': 'change->additional-data#loadTemplateFields'
-                    }}) }}
-                {% endif %}
-            </div>
-        </div>
-
-        {{ include('App/Collection/_form_data_block.html.twig', {data: collection.data}) }}
-    </div>
-</div>
-
-<div class="center-align form-btn-holder">
-    {% if app.request.get('_route') == 'app_collection_add' %}
-        {% if app.request.query.has('parent') %}
-            {% set cancelUrl = path('app_collection_show', {id: app.request.query.get('parent')}) %}
-        {% else %}
-            {% set cancelUrl = path('app_collection_index') %}
-        {% endif %}
-    {% else %}
-        {% set cancelUrl = path('app_collection_show', {id: collection.id}) %}
-    {% endif %}
-
-    <button name="submit" type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-    <a href="{{ cancelUrl }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
-</div>
-{{ form_end(form) }}
+    {{ include('App/_partials/_modal/_scrapping.html.twig', {form: scrappingForm}) }}
+</span>

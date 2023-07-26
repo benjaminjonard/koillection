@@ -29,7 +29,7 @@ class ScrapperController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->json($htmlScrapper->scrap($scrapping->getScrapper(), $scrapping->getUrl()));
+                return $this->json($htmlScrapper->scrap($scrapping->getScrapper(), $scrapping->getUrl(), $scrapping->getEntity()));
             } catch (\Exception $e) {
                 return $this->json($e->getMessage(), 400);
             }

@@ -22,7 +22,7 @@ readonly class HtmlScrapper
     ) {
     }
 
-    public function scrap(Scrapper $scrapper, string $url): array
+    public function scrap(Scrapper $scrapper, string $url, string $entityType): array
     {
         $response = $this->client->request(
             'GET',
@@ -52,7 +52,7 @@ readonly class HtmlScrapper
                 $dataPath['type'],
                 $dataPath['name'],
                 $this->twig->render('App/Datum/_datum.html.twig', [
-                    'entity' => 'item',
+                    'entity' => $entityType,
                     'iteration' => '__placeholder__',
                     'type' => $dataPath['type'],
                     'datum' => $datum,

@@ -8,6 +8,7 @@ use App\Entity\Scrapper;
 use App\Model\Scrapping;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,9 @@ class ScrappingType extends AbstractType
     {
         $builder
             ->add('url', UrlType::class, [
+                'required' => true,
+            ])
+            ->add('entity', HiddenType::class, [
                 'required' => true,
             ])
             ->add('scrapper', EntityType::class, [

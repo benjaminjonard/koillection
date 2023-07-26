@@ -18,8 +18,12 @@ export default class extends Controller {
                     self.modalErrorTarget.innerHTML = result;
                 } else {
                     self.nameInputTarget.value = result.name;
-                    self.imagePreviewTarget.src = result.image;
-                    self.imageInputTarget.value = result.image;
+
+                    if (self.hasImagePreviewTarget) {
+                        self.imagePreviewTarget.src = result.image;
+                        self.imageInputTarget.value = result.image;
+                    }
+
                     self.dispatch("newScrappedData", { detail: { content: result.data } })
                     self.modalCloseButtonTarget.click();
                 }
