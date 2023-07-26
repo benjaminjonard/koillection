@@ -1,11 +1,10 @@
-{% set values = datum.value|jsonDecode %}
+{% set values = datum.getOrderedListChoices %}
 
 {% if values|length > 1 %}
     <ul class="datum-list">
         {% for value in values %}
             <li>{{ value }}</li>
         {% endfor %}
-    </ul>
 {% else %}
-   {{ values|first }}
+    {{ values|first }}
 {% endif %}

@@ -925,10 +925,10 @@
         <target>File</target>
       </segment>
     </unit>
-    <unit id="VUlGgVE" name="label.add_list">
+    <unit id="VUlGgVE" name="label.add_choice_list">
       <segment state="translated">
-        <source>Add list :</source>
-        <target>Add list :</target>
+        <source>Add choice list :</source>
+        <target>Add choice list :</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">
@@ -3269,6 +3269,24 @@
       <segment state="translated">
         <source>Show help for dark theme</source>
         <target>Show help for dark theme</target>
+      </segment>
+    </unit>
+    <unit id="VzBOkPf" name="label.checkbox">
+      <segment state="translated">
+        <source>Checkbox</source>
+        <target>Checkbox</target>
+      </segment>
+    </unit>
+    <unit id="TfoPMdx" name="btn.add_list">
+      <segment state="translated">
+        <source>List</source>
+        <target>List</target>
+      </segment>
+    </unit>
+    <unit id="hbMADfF" name="btn.add_list_element">
+      <segment state="translated">
+        <source>Add list element</source>
+        <target>Add list element</target>
       </segment>
     </unit>
   </file>

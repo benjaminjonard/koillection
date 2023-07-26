@@ -925,10 +925,10 @@
         <target>Fichier</target>
       </segment>
     </unit>
-    <unit id="VUlGgVE" name="label.add_list">
+    <unit id="VUlGgVE" name="label.add_choice_list">
       <segment state="translated">
         <source>Add list :</source>
-        <target>Ajouter une liste :</target>
+        <target>Ajouter une liste de choix :</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">

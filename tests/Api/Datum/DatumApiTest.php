@@ -303,7 +303,7 @@ class DatumApiTest extends ApiTestCase
             'item' => '/api/items/'.$item->getId(),
             'label' => 'Progress',
             'value' => 'New',
-            'type' => DatumTypeEnum::TYPE_LIST,
+            'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
             'choiceList' => '/api/choice_lists/'.$choiceList->getId()
         ]]);
 
@@ -328,7 +328,7 @@ class DatumApiTest extends ApiTestCase
             'item' => '/api/items/'.$item->getId(),
             'label' => 'Progress',
             'value' => 'New',
-            'type' => DatumTypeEnum::TYPE_LIST
+            'type' => DatumTypeEnum::TYPE_CHOICE_LIST
         ]]);
 
         // Assert

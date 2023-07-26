@@ -38,7 +38,7 @@ class Field
     #[Assert\NotBlank]
     private ?int $position = null;
 
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, length: 15)]
     #[Groups(['field:read', 'field:write'])]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     #[Assert\NotBlank]
@@ -47,7 +47,7 @@ class Field
     #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
     #[Groups(['field:read', 'field:write'])]
     #[Assert\When(
-        expression: 'this.getType() == "list"',
+        expression: 'this.getType() == "choice-list"',
         constraints: [
             new Assert\NotNull
         ],

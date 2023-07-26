@@ -36,7 +36,7 @@ class DatumController extends AbstractController
         $html = $this->render('App/Datum/_datum.html.twig', [
             'entity' => '__entity_placeholder__',
             'iteration' => '__placeholder__',
-            'type' => DatumTypeEnum::TYPE_LIST,
+            'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
             'choiceList' => $choiceList,
             'label' => $choiceList->getName(),
         ])->getContent();

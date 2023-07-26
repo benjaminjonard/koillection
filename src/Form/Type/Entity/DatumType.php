@@ -99,7 +99,7 @@ class DatumType extends AbstractType
                         ->add('value', UrlType::class, [
                             'required' => false,
                         ]),
-                    DatumTypeEnum::TYPE_LIST => $form
+                    DatumTypeEnum::TYPE_CHOICE_LIST => $form
                         ->add('value', ChoiceType::class, [
                             'multiple' => true,
                             'required' => false,

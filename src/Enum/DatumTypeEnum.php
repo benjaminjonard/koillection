@@ -24,6 +24,8 @@ class DatumTypeEnum
 
     public const TYPE_LIST = 'list';
 
+    public const TYPE_CHOICE_LIST = 'choice-list';
+
     public const TYPE_CHECKBOX = 'checkbox';
 
     public const TYPE_IMAGE = 'image';
@@ -41,6 +43,7 @@ class DatumTypeEnum
         self::TYPE_NUMBER,
         self::TYPE_LINK,
         self::TYPE_LIST,
+        self::TYPE_CHOICE_LIST,
         self::TYPE_CHECKBOX,
         self::TYPE_IMAGE,
         self::TYPE_FILE,
@@ -58,6 +61,7 @@ class DatumTypeEnum
         self::TYPE_LINK,
         self::TYPE_FILE,
         self::TYPE_LIST,
+        self::TYPE_CHOICE_LIST,
         self::TYPE_CHECKBOX,
     ];
 
@@ -68,7 +72,7 @@ class DatumTypeEnum
 
     public const AVAILABLE_FOR_ORDERING = [
         self::TYPE_TEXT,
-        self::TYPE_LIST,
+        self::TYPE_CHOICE_LIST,
         self::TYPE_DATE,
         self::TYPE_NUMBER,
         self::TYPE_PRICE,
@@ -89,6 +93,7 @@ class DatumTypeEnum
         self::TYPE_PRICE => 'label.price',
         self::TYPE_LINK => 'label.link',
         self::TYPE_LIST => 'label.list',
+        self::TYPE_CHOICE_LIST => 'label.choice_list',
         self::TYPE_CHECKBOX => 'label.checkbox'
     ];
 
