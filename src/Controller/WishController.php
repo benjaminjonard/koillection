@@ -9,6 +9,8 @@ use App\Entity\Wish;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
+use App\Form\Type\Model\ScrappingType;
+use App\Model\Scrapping;
 use App\Repository\ChoiceListRepository;
 use App\Repository\WishlistRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -138,6 +140,7 @@ class WishController extends AbstractController
 
         return $this->render('App/Wish/transfer_to_collection.html.twig', [
             'form' => $form,
+            'scrappingForm' => $this->createForm(ScrappingType::class, new Scrapping('item')),
             'item' => $item,
             'wish' => $wish,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
