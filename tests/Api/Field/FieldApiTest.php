@@ -168,7 +168,7 @@ class FieldApiTest extends ApiTestCase
             'template' => '/api/templates/'.$template->getId(),
             'name' => 'Progress',
             'position' => 1,
-            'type' => DatumTypeEnum::TYPE_LIST,
+            'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
             'choiceList' => '/api/choice_lists/'.$choiceList->getId()
         ]]);
 
@@ -192,7 +192,7 @@ class FieldApiTest extends ApiTestCase
             'template' => '/api/templates/'.$template->getId(),
             'name' => 'Progress',
             'position' => 1,
-            'type' => DatumTypeEnum::TYPE_LIST,
+            'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
         ]]);
 
         // Assert

@@ -36,7 +36,7 @@ class DatumTest extends AppTestCase
         $this->client->loginUser($user);
 
         foreach (DatumTypeEnum::TYPES as $type) {
-            if ($type !== DatumTypeEnum::TYPE_LIST) {
+            if ($type !== DatumTypeEnum::TYPE_CHOICE_LIST) {
                 // Act
                 $this->client->request('GET', '/datum/'.$type);
 

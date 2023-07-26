@@ -925,7 +925,7 @@
         <target>Datei</target>
       </segment>
     </unit>
-    <unit id="VUlGgVE" name="label.add_list">
+    <unit id="VUlGgVE" name="label.add_choice_list">
       <segment state="translated">
         <source>Add list :</source>
         <target>Liste hinzufügen:</target>

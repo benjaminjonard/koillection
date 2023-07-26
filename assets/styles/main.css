@@ -2187,9 +2187,37 @@ tr {
     cursor: pointer;
 }
 
-.input-field .fa-calendar:before {
+.input-field .fa-calendar:before, .datum-list-element .fa-remove:before {
     position: relative;
     top: -38px;
     float: right;
     right: 17px;
+}
+
+.datum-list-element .fa-arrows-v:before {
+    position: relative;
+    top: -38px;
+    float: right;
+    right: 60px;
+}
+
+.datum-list-element input {
+    padding-right: 80px;
+}
+
+.datum-list-element {
+    margin-bottom: 20px;
+}
+
+.datum-list-element .fa-remove {
+    cursor: pointer;
+}
+
+.datum-list {
+    margin: auto;
+}
+
+.datum-list li {
+    margin-left: 30px;
+    list-style-type: circle;
 }

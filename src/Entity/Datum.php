@@ -58,7 +58,7 @@ class Datum implements \Stringable
     #[Groups(['datum:read', 'datum:write'])]
     private ?Collection $collection = null;
 
-    #[ORM\Column(type: Types::STRING, length: 10)]
+    #[ORM\Column(type: Types::STRING, length: 15)]
     #[Groups(['datum:read', 'datum:write'])]
     #[Assert\NotBlank]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
@@ -110,7 +110,7 @@ class Datum implements \Stringable
     #[ORM\ManyToOne(targetEntity: ChoiceList::class)]
     #[Groups(['datum:read', 'datum:write'])]
     #[Assert\When(
-        expression: 'this.getType() == "list"',
+        expression: 'this.getType() == "choice-list"',
         constraints: [
             new Assert\NotNull
         ],

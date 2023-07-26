@@ -14,7 +14,7 @@ export default class extends Controller {
 
     displayChoiceList()
     {
-        if (this.typeInputTarget.value === 'list') {
+        if (this.typeInputTarget.value === 'choice-list') {
             this.choiceListTarget.classList.remove("hidden");
         } else {
             this.choiceListTarget.classList.add("hidden");

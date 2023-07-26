@@ -84,7 +84,7 @@ class CollectionTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 2, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volumes', 'value' => '12']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 3, 'type' => DatumTypeEnum::TYPE_COUNTRY, 'label' => 'Country', 'value' => 'JP']);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 4, 'type' => DatumTypeEnum::TYPE_DATE, 'label' => 'Release date', 'value' => '2022-03-03']);
-        DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 5, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Progress', 'value' => json_encode(['In progress']), 'choiceList' => $choiceList]);
+        DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 5, 'type' => DatumTypeEnum::TYPE_CHOICE_LIST, 'label' => 'Progress', 'value' => json_encode(['In progress']), 'choiceList' => $choiceList]);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 6, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'New', 'value' => true]);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 7, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'Lent', 'value' => false]);
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 8, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $file]);

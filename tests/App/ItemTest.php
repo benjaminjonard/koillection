@@ -71,10 +71,11 @@ class ItemTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 6, 'type' => DatumTypeEnum::TYPE_DATE, 'label' => 'Release date', 'value' => '2022-03-03']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 7, 'type' => DatumTypeEnum::TYPE_RATING, 'label' => 'Rating', 'value' => '10']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 8, 'type' => DatumTypeEnum::TYPE_LINK, 'label' => 'Wiki page', 'value' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3']);
-        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Edition', 'value' => json_encode(['Collector']), 'choiceList' => $choiceList]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_CHOICE_LIST, 'label' => 'Edition', 'value' => json_encode(['Collector']), 'choiceList' => $choiceList]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 10, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'New', 'value' => true]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 11, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'Lent', 'value' => false]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 12, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $file]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 13, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'List', 'value' => json_encode(["Test1", "Test2"])]);
 
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => $this->createFile('png')]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Image', 'fileImage' => $this->createFile('png')]);
@@ -100,7 +101,7 @@ class ItemTest extends AppTestCase
         $this->assertSame('Abe Tsukasa', $crawler->filter('.tag')->eq(0)->text());
         $this->assertSame('Yamada Kanehito', $crawler->filter('.tag')->eq(1)->text());
 
-        $this->assertCount(12, $crawler->filter('.datum-row'));
+        $this->assertCount(13, $crawler->filter('.datum-row'));
         $this->assertSame('Authors : Abe Tsukasa, Yamada Kanehito', $crawler->filter('.datum-row')->eq(0)->text());
         $this->assertCount(2, $crawler->filter('.datum-row')->eq(0)->filter('a'));
         $this->assertSame('Abe Tsukasa', $crawler->filter('.datum-row')->eq(0)->filter('a')->eq(0)->text());
@@ -123,6 +124,8 @@ class ItemTest extends AppTestCase
 
         $this->assertSame("File : {$filename} (104 B)", $crawler->filter('.datum-row')->eq(11)->text());
         $this->assertFileExists($crawler->filter('.datum-row')->eq(11)->filter('a')->attr('href'));
+
+        $this->assertSame('List : Test1 Test2', $crawler->filter('.datum-row')->eq(12)->text());
 
         $this->assertCount(1, $crawler->filter('.related-items img'));
         $this->assertSame('Calendar Frieren 2023', $crawler->filter('.related-items img')->eq(0)->attr('alt'));
@@ -241,13 +244,14 @@ class ItemTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 6, 'type' => DatumTypeEnum::TYPE_DATE, 'label' => 'Release date', 'value' => '2022-03-03']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 7, 'type' => DatumTypeEnum::TYPE_RATING, 'label' => 'Rating', 'value' => '10']);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 8, 'type' => DatumTypeEnum::TYPE_LINK, 'label' => 'Wiki page', 'value' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3']);
-        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Edition', 'value' => json_encode(['Collector']), 'choiceList' => $choiceList]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_CHOICE_LIST, 'label' => 'Edition', 'value' => json_encode(['Collector']), 'choiceList' => $choiceList]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 10, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'New', 'value' => false]);
-        $fileDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 11, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $this->createFile('txt')]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 11, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'List', 'value' => json_encode(["Test1", "Test2"])]);
+        $fileDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 12, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => $this->createFile('txt')]);
         $oldFileDatumPath = $fileDatum->getFile();
-        $imageDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 12, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Image', 'fileImage' => $this->createFile('png')]);
+        $imageDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 13, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Image', 'fileImage' => $this->createFile('png')]);
         $oldImageDatumPath = $imageDatum->getImage();
-        $signDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 13, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => $this->createFile('png')]);
+        $signDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 14, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => $this->createFile('png')]);
         $oldSignDatumPath = $signDatum->getImage();
 
         // Act
@@ -264,11 +268,12 @@ class ItemTest extends AppTestCase
             'item[data][5][position]' => 6, 'item[data][5][type]' => DatumTypeEnum::TYPE_DATE, 'item[data][5][label]' => 'Release date', 'item[data][5][value]' => '2022-03-03',
             'item[data][6][position]' => 7, 'item[data][6][type]' => DatumTypeEnum::TYPE_RATING, 'item[data][6][label]' => 'Rating', 'item[data][6][value]' => '10',
             'item[data][7][position]' => 8, 'item[data][7][type]' => DatumTypeEnum::TYPE_LINK, 'item[data][7][label]' => 'Wiki page', 'item[data][7][value]' => 'https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3',
-            'item[data][8][position]' => 9, 'item[data][8][type]' => DatumTypeEnum::TYPE_LIST, 'item[data][8][label]' => 'Edition', 'item[data][8][value]' => 'Collector',
+            'item[data][8][position]' => 9, 'item[data][8][type]' => DatumTypeEnum::TYPE_CHOICE_LIST, 'item[data][8][label]' => 'Edition', 'item[data][8][value]' => 'Collector',
             'item[data][9][position]' => 10, 'item[data][9][type]' => DatumTypeEnum::TYPE_CHECKBOX, 'item[data][9][label]' => 'New', 'item[data][9][value]' => true,
-            'item[data][10][position]' => 11, 'item[data][10][type]' => DatumTypeEnum::TYPE_FILE, 'item[data][10][label]' => 'File', 'item[data][10][fileFile]' => $this->createFile('txt'),
-            'item[data][11][position]' => 11, 'item[data][11][type]' => DatumTypeEnum::TYPE_IMAGE, 'item[data][11][label]' => 'Image', 'item[data][11][fileImage]' => $this->createFile('avif'),
-            'item[data][12][position]' => 11, 'item[data][12][type]' => DatumTypeEnum::TYPE_SIGN, 'item[data][12][label]' => 'Sign', 'item[data][12][fileImage]' => $this->createFile('webp')
+            'item[data][10][position]' => 11, 'item[data][10][type]' => DatumTypeEnum::TYPE_LIST, 'item[data][10][label]' => 'List', 'item[data][10][value]' => json_encode(["Test1", "Test2"]),
+            'item[data][11][position]' => 12, 'item[data][11][type]' => DatumTypeEnum::TYPE_FILE, 'item[data][11][label]' => 'File', 'item[data][11][fileFile]' => $this->createFile('txt'),
+            'item[data][12][position]' => 13, 'item[data][12][type]' => DatumTypeEnum::TYPE_IMAGE, 'item[data][12][label]' => 'Image', 'item[data][12][fileImage]' => $this->createFile('avif'),
+            'item[data][13][position]' => 14, 'item[data][13][type]' => DatumTypeEnum::TYPE_SIGN, 'item[data][13][label]' => 'Sign', 'item[data][13][fileImage]' => $this->createFile('webp')
         ]);
 
         // Assert

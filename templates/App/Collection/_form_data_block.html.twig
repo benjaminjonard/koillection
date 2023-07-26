@@ -36,8 +36,8 @@
 </div>
 
 {% if choiceLists is defined and choiceLists is not empty %}
-    <div class="row center-align datum-btn">
-        <label>{{ 'label.add_list'|trans }}</label>
+    <div class="center-align datum-btn">
+        <label>{{ 'label.add_choice_list'|trans }}</label>
         {% for choiceList in choiceLists %}
             <a data-action="additional-data#addChoiceList" class="waves-effect waves-light btn-small grey"
                data-id="{{ choiceList.id }}">{{ choiceList.name }}</a>

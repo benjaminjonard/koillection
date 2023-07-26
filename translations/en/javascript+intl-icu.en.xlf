@@ -193,5 +193,11 @@
         <target>Only I can see this page</target>
       </segment>
     </unit>
+    <unit id="a048xMx" name="label.list_element_value">
+      <segment state="translated">
+        <source>List element value</source>
+        <target>List element value</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
