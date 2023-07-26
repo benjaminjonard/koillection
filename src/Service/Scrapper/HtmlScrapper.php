@@ -90,6 +90,11 @@ readonly class HtmlScrapper
                     $values[$key] = str_replace("#$xPath#", $result, $template);
                 }
             }
+
+            // Remove xPath from result in case nothing was found
+            foreach ($values as &$value) {
+                $value = str_replace("#$xPath#", '', $value);
+            }
         }
 
         return $this->formatValues($values, $type);
