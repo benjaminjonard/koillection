@@ -23,8 +23,7 @@ class Scrapper implements BreadcrumbableInterface, \Stringable
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $namePath = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

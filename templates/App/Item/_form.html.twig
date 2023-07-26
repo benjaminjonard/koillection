@@ -140,7 +140,7 @@
                 <div class="modal-header">
                     <span class="modal-title"></span>{{ 'title.scrap'|trans }}
                 </div>
-                {{ form_start(scrappingForm, {'attr': { 'data-action': 'submit->scrapping#scrap'} }) }}
+                {{ form_start(scrappingForm, {'attr': { 'id': 'scrapping', 'data-action': 'submit->scrapping#scrap'} }) }}
                     <div class="modal-body">
                         {{ form_row(scrappingForm.url, {'label' : 'label.url'}) }}
 
@@ -153,7 +153,7 @@
 
                     <div class="modal-footer">
                         <div class="right">
-                            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.scrap'|trans }}</button>
+                            <button type="submit" form="scrapping" class="btn waves-effect waves-light">{{ 'btn.scrap'|trans }}</button>
                             <a data-scrapping-target="modalCloseButton" class="modal-close waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
                         </div>
                     </div>

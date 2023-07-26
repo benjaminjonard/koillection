@@ -6,7 +6,12 @@
     <div class="col s3">
         {{ form_row(form.name, {'label':'label.name'}) }}
     </div>
-    <div class="col s7">
+    <div class="col s2">
+        {{ form_row(form.type, {'label':'label.type', 'attr': {
+            'data-controller': 'select--default'
+        }}) }}
+    </div>
+    <div class="col s5">
         {{ form_row(form.path, {'label':'label.path'}) }}
     </div>
 

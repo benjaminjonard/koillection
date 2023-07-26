@@ -2221,3 +2221,7 @@ tr {
     margin-left: 30px;
     list-style-type: circle;
 }
+
+.navigation-block {
+    margin-top: 25px;
+}

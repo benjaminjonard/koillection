@@ -9,7 +9,8 @@ use App\Form\Type\Entity\ScrapperType;
 use App\Form\Type\Model\ScrappingType;
 use App\Model\Scrapping;
 use App\Repository\ScrapperRepository;
-use App\Service\Scrapper\JsonApiScrapper;
+use App\Service\Scrapper\HtmlScrapper;
+use App\Service\Scrapper\JsonScrapper;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,14 +22,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ScrapperController extends AbstractController
 {
     #[Route(path: '/scrappers/scrap', name: 'app_scrapper_scrap', methods: ['POST'])]
-    public function scrap(Request $request, JsonApiScrapper $jsonApiScrapper): JsonResponse
+    public function scrap(Request $request, JsonScrapper $jsonApiScrapper, HtmlScrapper $htmlScrapper): JsonResponse
     {
         $scrapping = new Scrapping();
         $form = $this->createForm(ScrappingType::class, $scrapping);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->json($jsonApiScrapper->scrap($scrapping->getScrapper(), $scrapping->getUrl()));
+                return $this->json($htmlScrapper->scrap($scrapping->getScrapper(), $scrapping->getUrl()));
             } catch (\Exception $e) {
                 return $this->json($e->getMessage(), 400);
             }

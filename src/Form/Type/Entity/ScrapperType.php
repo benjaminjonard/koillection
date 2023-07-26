@@ -21,7 +21,7 @@ class ScrapperType extends AbstractType
                 'required' => true
             ])
             ->add('namePath', TextType::class, [
-                'required' => true
+                'required' => false
             ])
             ->add('imagePath', TextType::class, [
                 'required' => false

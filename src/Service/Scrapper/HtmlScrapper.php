@@ -8,6 +8,7 @@ use App\Entity\Datum;
 use App\Entity\Scrapper;
 use App\Enum\DatumTypeEnum;
 use App\Service\ArrayTraverser;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
@@ -15,8 +16,7 @@ readonly class HtmlScrapper
 {
     public function __construct(
         private HttpClientInterface $client,
-        private Environment $twig,
-        private ArrayTraverser $arrayTraverser
+        private Environment $twig
     ) {
     }
 
@@ -32,25 +32,27 @@ readonly class HtmlScrapper
             throw new \Exception('Api error: ' . $response->getStatusCode() . ' - ' . $response->getContent());
         }
 
-        $content = json_decode($response->getContent(), true);
+        $content = $response->getContent();
+        $crawler = new Crawler($content);
 
         $data = [];
         foreach ($scrapper->getDataPaths() as $key => $dataPath) {
-            $value = $this->extract($dataPath['path'], $content);
+            $value = $this->extract($dataPath['path'], $dataPath['type'], $crawler);
+
             $datum = (new Datum())
                 ->setValue($value)
                 ->setLabel($dataPath['name'])
-                ->setType(DatumTypeEnum::TYPE_TEXT)
+                ->setType($dataPath['type'])
                 ->setPosition($key)
             ;
 
             $data[] = [
-                DatumTypeEnum::TYPE_TEXT,
+                $dataPath['type'],
                 $dataPath['name'],
                 $this->twig->render('App/Datum/_datum.html.twig', [
                     'entity' => 'item',
                     'iteration' => '__placeholder__',
-                    'type' => str_contains($value, PHP_EOL) ? DatumTypeEnum::TYPE_TEXTAREA : DatumTypeEnum::TYPE_TEXT,
+                    'type' => $dataPath['type'],
                     'datum' => $datum,
                     'label' => $datum->getLabel(),
                     'choiceList' => $datum->getChoiceList(),
@@ -59,66 +61,46 @@ readonly class HtmlScrapper
         }
 
         return [
-            'name' => $this->extract($scrapper->getNamePath(), $content),
-            'image' => $this->extract($scrapper->getImagePath(), $content),
+            'name' => $this->extract($scrapper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
+            'image' => $this->extract($scrapper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
             'data' => $data
         ];
     }
 
-    private function extract(?string $namePath, $content): string
+    private function extract(?string $template, string $type, Crawler $crawler): string
     {
-        if (!$namePath) {
+        if (!$template) {
             return '';
         }
 
-        $result = $namePath;
-        $results = [];
+        $values = [];
+        preg_match_all('/#(.*?)#/', $template, $matches);
 
-        preg_match_all('/#(.*?)#/', $namePath, $matches);
+        foreach ($matches[1] as $xPath) {
+            $results =  $crawler->filterXPath($xPath)->each(function (Crawler $node): string {
+                return $node->text();
+            });
 
-        foreach ($matches[1] as $path) {
-            $value = $this->arrayTraverser->get($content, $path);
-
-            if (is_array($value)) {
-                if ($results === []) {
-                    foreach ($value as $element) {
-                        $results[] = str_replace("#$path#", $element, $namePath);
-                    }
+            foreach ($results as $key => $result) {
+                if (isset($values[$key])) {
+                    $values[$key] = str_replace("#$xPath#", $result, $values[$key]);
                 } else {
-                    foreach ($value as $key => $element) {
-                        $results[$key] = str_replace("#$path#", $element,  $results[$key]);
-                    }
+                    $values[$key] = str_replace("#$xPath#", $result, $template);
                 }
-            } else {
-                $result = str_replace("#$path#", $value, $result);
             }
         }
 
-        return $results === [] ? $result : implode(PHP_EOL, $results);
+        return $this->formatValues($values, $type);
     }
 
-    /*private function handlePathElement(string $pathElement, $content, $path)
+    private function formatValues(?array $values, string $type): ?string
     {
-        if (is_array($content[$pathElement]) && isset($content[0][$pathElement])) {
-            $elements = [];
-            foreach ($content as $element) {
-                $elements[] = $element[$pathElement];
-            }
-            return implode(', ', $elements);
+        if ($type === DatumTypeEnum::TYPE_TEXT) {
+            return implode(', ', $values);
         }
 
-        if (is_array($content[$pathElement]) && isset($content[$pathElement][0])) {
-            $elements = [];
-            foreach ($content[$pathElement] as $element) {
-                $elements[] = $element;
-            }
-            return implode(', ', $elements);
+        if ($type === DatumTypeEnum::TYPE_LIST) {
+            return json_encode($values);
         }
-
-        if (isset($content[$pathElement])) {
-            return $content[$pathElement];
-        }
-
-        throw new \Exception("Scrapping error: <b>$path</b> not found in API response");
-    }*/
+    }
 }

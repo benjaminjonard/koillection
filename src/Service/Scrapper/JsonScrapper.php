@@ -11,7 +11,7 @@ use App\Service\ArrayTraverser;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
-readonly class JsonApiScrapper
+readonly class JsonScrapper
 {
     public function __construct(
         private HttpClientInterface $client,
@@ -96,29 +96,4 @@ readonly class JsonApiScrapper
 
         return $results === [] ? $result : implode(PHP_EOL, $results);
     }
-
-    /*private function handlePathElement(string $pathElement, $content, $path)
-    {
-        if (is_array($content[$pathElement]) && isset($content[0][$pathElement])) {
-            $elements = [];
-            foreach ($content as $element) {
-                $elements[] = $element[$pathElement];
-            }
-            return implode(', ', $elements);
-        }
-
-        if (is_array($content[$pathElement]) && isset($content[$pathElement][0])) {
-            $elements = [];
-            foreach ($content[$pathElement] as $element) {
-                $elements[] = $element;
-            }
-            return implode(', ', $elements);
-        }
-
-        if (isset($content[$pathElement])) {
-            return $content[$pathElement];
-        }
-
-        throw new \Exception("Scrapping error: <b>$path</b> not found in API response");
-    }*/
 }
