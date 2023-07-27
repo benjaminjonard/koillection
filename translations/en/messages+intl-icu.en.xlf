@@ -3295,5 +3295,101 @@
         <target>Scrapers</target>
       </segment>
     </unit>
+    <unit id="c8N1gqs" name="tooltip.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Add a new scraper</target>
+      </segment>
+    </unit>
+    <unit id="0Skvou0" name="breadcrumb.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Add a new scraper</target>
+      </segment>
+    </unit>
+    <unit id="orjuiFY" name="title.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Add a new scraper</target>
+      </segment>
+    </unit>
+    <unit id="OJ77gpR" name="counter.scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# scraper} other {# scrapers}}</source>
+        <target>{count, plural, one {# scraper} other {# scrapers}}</target>
+      </segment>
+    </unit>
+    <unit id="fCfS5h4" name="label.name_path">
+      <segment state="translated">
+        <source>Name path</source>
+        <target>Name path</target>
+      </segment>
+    </unit>
+    <unit id="TQZi6HZ" name="label.image_path">
+      <segment state="translated">
+        <source>Image path</source>
+        <target>Image path</target>
+      </segment>
+    </unit>
+    <unit id="j4zVta3" name="label.path">
+      <segment state="translated">
+        <source>Path</source>
+        <target>Path</target>
+      </segment>
+    </unit>
+    <unit id="UxUN4hz" name="btn.add_data_path">
+      <segment state="translated">
+        <source>Add data path</source>
+        <target>Add data path</target>
+      </segment>
+    </unit>
+    <unit id="WoECGqp" name="btn.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>Scrap</target>
+      </segment>
+    </unit>
+    <unit id="JJiTxDb" name="title.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>Scrap</target>
+      </segment>
+    </unit>
+    <unit id="YGKpgy8" name="label.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>Scraper</target>
+      </segment>
+    </unit>
+    <unit id="rfCyU5h" name="message.delete.scraper">
+      <segment state="translated">
+        <source>Are you sure you want to delete this scraper ? It will be permanently lost...</source>
+        <target>Are you sure you want to delete this scraper ? It will be permanently lost...</target>
+      </segment>
+    </unit>
+    <unit id="pVpG91b" name="global.entities.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>Scraper</target>
+      </segment>
+    </unit>
+    <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="PwaCRxg" name="title.edit_scraper">
+      <segment state="translated">
+        <source>Edit scraper {scraper}</source>
+        <target>Edit scraper {scraper}</target>
+      </segment>
+    </unit>
+    <unit id="pQMd2KQ" name="message.wiki.scrapper">
+      <segment state="translated">
+        <source>See wiki for help</source>
+        <target>See wiki for help</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

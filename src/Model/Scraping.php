@@ -12,7 +12,7 @@ class Scraping
 
     private string $entity;
 
-    private Scraper $scraper;
+    private ?Scraper $scraper = null;
 
     public function __construct(string $entity = null)
     {
@@ -31,12 +31,12 @@ class Scraping
         return $this;
     }
 
-    public function getScraper(): Scraper
+    public function getScraper(): ?Scraper
     {
         return $this->scraper;
     }
 
-    public function setScraper(Scraper $scraper): Scraping
+    public function setScraper(?Scraper $scraper): Scraping
     {
         $this->scraper = $scraper;
 
