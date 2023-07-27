@@ -7,6 +7,7 @@ namespace App\Tests\App;
 use App\Entity\User;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\ChoiceListFactory;
+use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
@@ -73,6 +74,7 @@ class DisabledFeatureTest extends AppTestCase
             'templatesFeatureEnabled' => false,
             'historyFeatureEnabled' => false,
             'statisticsFeatureEnabled' => false,
+            'scrapingFeatureEnabled' => false,
         ])->object();
         $this->client->loginUser($user);
 
@@ -92,6 +94,7 @@ class DisabledFeatureTest extends AppTestCase
         $tagId = TagFactory::createOne(['owner' => $owner])->getId();
         $templateId = TemplateFactory::createOne(['owner' => $owner])->getId();
         $choiceListId = ChoiceListFactory::createOne(['owner' => $owner])->getId();
+        $scraperId = ScraperFactory::createOne(['owner' => $owner])->getId();
 
         return [
             '/albums',
@@ -104,6 +107,8 @@ class DisabledFeatureTest extends AppTestCase
             "/templates/{$templateId}",
             '/choice-lists',
             "/choice-lists/{$choiceListId}",
+            "/scrapers",
+            "/scrapers/{$scraperId}",
             '/loans',
             '/signatures',
             '/statistics',
