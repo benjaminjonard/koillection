@@ -192,6 +192,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:read', 'user:write'])]
     private bool $statisticsFeatureEnabled = true;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
+    private bool $scrapingFeatureEnabled = true;
+
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['user:read', 'user:write'])]
     private bool $searchInDataByDefaultEnabled = false;
@@ -604,6 +608,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     {
         $this->statisticsFeatureEnabled = $statisticsFeatureEnabled;
 
+        return $this;
+    }
+
+    public function isScrapingFeatureEnabled(): bool
+    {
+        return $this->scrapingFeatureEnabled;
+    }
+
+    public function setScrapingFeatureEnabled(bool $scrapingFeatureEnabled): User
+    {
+        $this->scrapingFeatureEnabled = $scrapingFeatureEnabled;
         return $this;
     }
 

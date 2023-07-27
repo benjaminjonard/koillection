@@ -27,6 +27,10 @@
                     <a href="{{ path('app_scraper_add') }}" class="button" title="{{ 'tooltip.add_scraper'|trans }}">
                         <i class="fa fa-plus fa-fw"></i>
                     </a>
+                    <a href="#modal-scrapper-import" class="modal-trigger button"
+                       title="{{ 'tooltip.import'|trans }}">
+                        <i class="fa fa-import fa-fw"></i>
+                    </a>
                 </div>
                 <div class="right">
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
@@ -56,6 +60,44 @@
                 {% endfor %}
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div id="modal-scrapper-import" data-controller="modal--default" class="modal modal-custom" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title"></span>{{ 'title.import_scraper'|trans }}
+                </div>
+                {{ form_start(scraperImportForm, {'action': path('app_scraper_import') }) }}
+                    {% do scraperImportForm.file.setRendered %}
+                    <div class="modal-body">
+                        <div class="input-field file-data col s10 offset-s1 m5" data-controller="file-input">
+                            <div class="btn" data-action="click->file-input#openUpload">
+                                <i class="fa fa-upload fa-fw"></i>&nbsp;{{ 'btn.upload'|trans }}
+                            </div>
+
+                            <input type="file" id="scraper_importer_file"
+                                   name="scraper_importer[file]"
+                                   accept="application/json"
+                                   data-action="change->file-input#displayFilename"
+                                   data-file-input-target="input"
+                            >
+
+                            <div class="filename">&nbsp;&nbsp;&nbsp;<span data-file-input-target="filename"></span></div>
+                        </div>
+
+                        <div class="error-helper"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="right">
+                            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.import'|trans }}</button>
+                            <a data-scraping-target="modalCloseButton" class="modal-close waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+                        </div>
+                    </div>
+                {{ form_end(scraperImportForm) }}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -76,6 +76,9 @@ class SettingsType extends AbstractType
             ->add('statisticsFeatureEnabled', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('scrapingFeatureEnabled', CheckboxType::class, [
+                'required' => false,
+            ])
         ;
     }
 

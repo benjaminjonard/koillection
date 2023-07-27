@@ -1886,6 +1886,11 @@ i.btn input {
     white-space: nowrap;
 }
 
+.filename {
+    text-align: left;
+    padding-top: 12px;
+}
+
 .file-data input[type="file"] {
     bottom: 0;
     cursor: pointer;
@@ -1898,7 +1903,7 @@ i.btn input {
     position: absolute;
     right: 0;
     top: 0;
-    width: 48px;
+    width: 0;
 }
 
 .file-data .btn {

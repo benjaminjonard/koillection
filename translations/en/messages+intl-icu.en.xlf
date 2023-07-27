@@ -3391,5 +3391,65 @@
         <target>See wiki for help</target>
       </segment>
     </unit>
+    <unit id="2T801sa" name="tooltip.export">
+      <segment state="translated">
+        <source>Export</source>
+        <target>Export</target>
+      </segment>
+    </unit>
+    <unit id="0qbEAs0" name="tooltip.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="4q1Sf3P" name="btn.upload">
+      <segment state="translated">
+        <source>Upload</source>
+        <target>Upload</target>
+      </segment>
+    </unit>
+    <unit id="M7PzMIt" name="title.import_scraper">
+      <segment state="translated">
+        <source>Import scraper from JSON file</source>
+        <target>Import scraper from JSON file</target>
+      </segment>
+    </unit>
+    <unit id="Hklmnjp" name="btn.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="gGSqvwG" name="message.scraper_added">
+      <segment state="translated">
+        <source>Scraper {scraper} has been added</source>
+        <target>Scraper {scraper} has been added</target>
+      </segment>
+    </unit>
+    <unit id="r7aNcN4" name="message.scraper_edited">
+      <segment state="translated">
+        <source>Scraper {scraper} has been updated</source>
+        <target>Scraper {scraper} has been updated</target>
+      </segment>
+    </unit>
+    <unit id="rX55M3v" name="message.scraper_deleted">
+      <segment state="translated">
+        <source>Scraper {scraper} was deleted</source>
+        <target>Scraper {scraper} was deleted</target>
+      </segment>
+    </unit>
+    <unit id="DuFvrmE" name="message.scraper_imported">
+      <segment state="translated">
+        <source>Scraper {scraper} was imported</source>
+        <target>Scraper {scraper} was imported</target>
+      </segment>
+    </unit>
+    <unit id="k4Ssjg4" name="label.scraping_feature_enabled">
+      <segment state="translated">
+        <source>Scraping</source>
+        <target>Scraping</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

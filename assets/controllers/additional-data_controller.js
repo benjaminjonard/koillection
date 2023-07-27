@@ -87,10 +87,6 @@ export default class extends Controller {
         this.computePositions();
     }
 
-    displayFilename(event) {
-        event.target.nextElementSibling.innerHTML = event.target.files[0].name;
-    }
-
     loadCollectionFields(event) {
         event.preventDefault();
         this.injectFields('/datum/load-collection-fields/' + event.target.dataset.collectionId);

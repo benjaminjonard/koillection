@@ -4,16 +4,18 @@
         <div class="content-block">
             {{ form_row(form.file) }}
 
-            <div class="row">
-                <div class="col s12 l10 offset-l1 xl8 offset-xl2">
-                    <div class="btn-holder right">
-                        <a href="#scrap" class="modal-trigger btn">
-                            {{ 'btn.scrap'|trans }}
-                        </a>
+            {% if isFeatureEnabled('scraping') %}
+                <div class="row">
+                    <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                        <div class="btn-holder right">
+                            <a href="#scrap" class="modal-trigger btn">
+                                {{ 'btn.scrap'|trans }}
+                            </a>
+                        </div>
+                        <br><br>
                     </div>
-                    <br><br>
                 </div>
-            </div>
+            {% endif %}
 
             <div class="row">
                 <div class="col s12 l5 offset-l1 xl4 offset-xl2">
