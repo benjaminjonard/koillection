@@ -54,9 +54,13 @@ readonly class HtmlScraper
         preg_match_all('/#(.*?)#/', $template, $matches);
 
         foreach ($matches[1] as $xPath) {
-            $results =  $crawler->filterXPath($xPath)->each(function (Crawler $node): string {
-                return $node->text();
-            });
+            $results =  $crawler->evaluate($xPath);
+
+            if ($results instanceof Crawler) {
+                $results =  $results->each(function (Crawler $node): string {
+                    return $node->text();
+                });
+            }
 
             foreach ($results as $key => $result) {
                 if (isset($values[$key])) {
