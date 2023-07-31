@@ -22,6 +22,8 @@ class ScrapingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $entity = $builder->getData()->getEntity();
+
         $builder
             ->add('url', UrlType::class, [
                 'required' => true,
@@ -40,10 +42,14 @@ class ScrapingType extends AbstractType
             ->add('scrapName', CheckboxType::class, [
                 'required' => false,
             ])
-            ->add('scrapImage', CheckboxType::class, [
-                'required' => false,
-            ])
+
         ;
+
+        if ($entity === 'item') {
+            $builder->add('scrapImage', CheckboxType::class, [
+                'required' => false,
+            ]);
+        }
 
         $formModifier = function (FormInterface $form, Scraper $scraper = null): void {
             $choices = [];
