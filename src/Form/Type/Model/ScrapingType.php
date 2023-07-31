@@ -42,7 +42,6 @@ class ScrapingType extends AbstractType
             ->add('scrapName', CheckboxType::class, [
                 'required' => false,
             ])
-
         ;
 
         if ($entity === 'item') {

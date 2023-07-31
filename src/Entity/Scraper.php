@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Repository\ScraperRepository;
 use App\Validator as AppAssert;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
@@ -101,6 +102,7 @@ class Scraper implements BreadcrumbableInterface, \Stringable
 
     public function setDataPaths(?array $dataPaths): Scraper
     {
+        usort($dataPaths, fn($a, $b) => $a['position'] - $b['position']);
         $this->dataPaths = $dataPaths;
 
         return $this;
