@@ -9,7 +9,8 @@
                 {{ form_row(scrapingForm.url, {'label' : 'label.url'}) }}
 
                 {{ form_row(scrapingForm.scraper, {'label' : 'label.scraper', 'attr' : {
-                    'data-controller': 'select--default'
+                    'data-controller': 'select--default',
+                    'data-action': 'change->scraping#loadDataPathCheckboxes'
                 }}) }}
 
                 <div class="row">
@@ -19,8 +20,8 @@
                     <div class="col s12 l5 xl3">
                         {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image'}) }}
                     </div>
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(scrapingForm.scrapData, {'label' : 'label.scrap_data'}) }}
+                    <div class="col s12 l5 xl3" data-scraping-target="dataToScrapContainer">
+                        {{ form_row(scrapingForm.dataToScrap) }}
                     </div>
                 </div>
             </div>

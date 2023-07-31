@@ -40,7 +40,7 @@ readonly class HtmlScraper
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
             'image' => $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
-            'data' => $scraping->getScrapData() ? $this->scrapData($scraping, $crawler) : null
+            'data' => $this->scrapData($scraping, $crawler)
         ];
     }
 
@@ -78,7 +78,15 @@ readonly class HtmlScraper
     private function scrapData(Scraping $scraping, Crawler $crawler) : array
     {
         $data = [];
-        foreach ($scraping->getScraper()->getDataPaths() as $key => $dataPath) {
+
+        foreach ($scraping->getDataToScrap() as $key => $dataToScrap) {
+            $dataPath = null;
+            foreach ($scraping->getScraper()->getDataPaths() as $dataPath) {
+                if ($dataPath['name'] === $dataToScrap) {
+                    break;
+                }
+            }
+
             $value = $this->extract($dataPath['path'], $dataPath['type'], $crawler);
 
             $datum = (new Datum())

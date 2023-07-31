@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 import Sortable from "sortablejs";
 
 export default class extends Controller {
-    static targets = ['nameInput', 'imagePreview', 'imageInput', 'modalCloseButton', 'modalError']
+    static targets = ['nameInput', 'imagePreview', 'imageInput', 'modalCloseButton', 'modalError', 'dataToScrapContainer']
 
     scrap(event) {
         event.preventDefault();
@@ -31,6 +31,21 @@ export default class extends Controller {
                         self.modalCloseButtonTarget.click();
                     }
                 }
+            })
+    }
+
+    loadDataPathCheckboxes(event) {
+        let self = this;
+        const id = event.target.value;
+        self.dataToScrapContainerTarget.innerHTML = '';
+
+        fetch('/scrapers/' + id + '/data-paths-checkboxes', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(function(result) {
+                console.log(result.html);
+                self.dataToScrapContainerTarget.insertAdjacentHTML('beforeend', result.html);
             })
     }
 }

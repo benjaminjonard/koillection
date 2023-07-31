@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Validator;
 
+use App\Entity\Datum;
 use App\Entity\Field;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class UniqueDatumLabelValidator extends ConstraintValidator
 {
@@ -23,7 +25,12 @@ class UniqueDatumLabelValidator extends ConstraintValidator
 
         $labels = [];
         foreach ($value as $element) {
-            $label = $element instanceof Field ? $element->getName() : $element->getLabel();
+            $label = match (true) {
+                $element instanceof Field => $element->getName(),
+                $element instanceof Datum => $element->getLabel(),
+                is_array($element) && isset($element['name']) => $element['name'],
+                default => throw new UnexpectedValueException($element, 'Field|Datum|array'),
+            };
 
             if (\in_array($label, $labels)) {
                 $this->context->buildViolation($constraint->message)

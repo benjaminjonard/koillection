@@ -19,7 +19,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -33,15 +32,32 @@ class ScraperController extends AbstractController
         $scraping = new Scraping();
         $form = $this->createForm(ScrapingType::class, $scraping);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            try {
+            //try {
                 return $this->json($htmlScraper->scrap($scraping));
-            } catch (\Exception $e) {
-                return $this->json($e->getMessage(), 400);
-            }
+            //} catch (\Exception $e) {
+            //    return $this->json($e->getMessage(), 400);
+           // }
         }
 
         return $this->json([]);
+    }
+
+    #[Route(path: '/scrapers/{id}/data-paths-checkboxes', name: 'app_scraper_data_paths_checkboxes', methods: ['GET'])]
+    public function getDataPathsCheckboxes(Scraper $scraper): JsonResponse
+    {
+        $this->denyAccessUnlessFeaturesEnabled(['scraping']);
+
+        $scraping = new Scraping();
+        $scraping->setScraper($scraper);
+        $form = $this->createForm(ScrapingType::class, $scraping, ['choices' => $scraper->getDataPaths()]);
+
+        $html = $this->render('App/Scraper/_data-path-checkboxes.html.twig', [
+            'form' => $form
+        ])->getContent();
+
+        return new JsonResponse(['html' => $html]);
     }
 
     #[Route(path: '/scrapers', name: 'app_scraper_index', methods: ['GET'])]

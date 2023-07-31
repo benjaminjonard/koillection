@@ -121,6 +121,14 @@
     {% endapply %}
 {% endblock _collection_childrenDisplayConfiguration_columns_entry_row %}
 
+{% block _scraping_dataToScrap_row %}
+    {% apply spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
+{% endblock _scraping_dataToScrap_row %}
+
 {% block checkbox_row %}
     {% apply spaceless %}
         <p class="checkbox">

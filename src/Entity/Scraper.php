@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Repository\ScraperRepository;
+use App\Validator as AppAssert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
@@ -30,6 +31,7 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     private ?string $imagePath = null;
 
     #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[AppAssert\UniqueDatumLabel]
     private ?array $dataPaths = [];
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'scrapers')]

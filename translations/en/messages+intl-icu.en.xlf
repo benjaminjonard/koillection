@@ -3463,11 +3463,5 @@
         <target>Scrap image</target>
       </segment>
     </unit>
-    <unit id="O01YTOO" name="label.scrap_data">
-      <segment state="translated">
-        <source>Scrap data</source>
-        <target>Scrap data</target>
-      </segment>
-    </unit>
   </file>
 </xliff>

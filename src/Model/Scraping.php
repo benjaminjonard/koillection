@@ -18,7 +18,7 @@ class Scraping
 
     private bool $scrapImage = true;
 
-    private bool $scrapData = true;
+    private array $dataToScrap = [];
 
     public function __construct(string $entity = null, bool $isEdition = false)
     {
@@ -50,6 +50,10 @@ class Scraping
     public function setScraper(?Scraper $scraper): Scraping
     {
         $this->scraper = $scraper;
+
+        foreach ($scraper->getDataPaths() as $dataPath) {
+            $this->dataToScrap[$dataPath['name']] = $dataPath['name'];
+        }
 
         return $this;
     }
@@ -95,14 +99,14 @@ class Scraping
         return $this;
     }
 
-    public function getScrapData(): bool
+    public function getDataToScrap(): array
     {
-        return $this->scrapData;
+        return $this->dataToScrap;
     }
 
-    public function setScrapData(bool $scrapData): Scraping
+    public function setDataToScrap(array $dataToScrap): Scraping
     {
-        $this->scrapData = $scrapData;
+        $this->dataToScrap = $dataToScrap;
 
         return $this;
     }
