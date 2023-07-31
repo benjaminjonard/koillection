@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Service\Scraper;
 
 use App\Entity\Datum;
-use App\Entity\Scraper;
 use App\Enum\DatumTypeEnum;
-use App\Service\ArrayTraverser;
+use App\Model\Scraping;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Intl\Countries;
-use Symfony\Component\Intl\Intl;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
@@ -22,11 +20,13 @@ readonly class HtmlScraper
     ) {
     }
 
-    public function scrap(Scraper $scraper, string $url, string $entityType): array
+    public function scrap(Scraping $scraping): array
     {
+        $scraper = $scraping->getScraper();
+
         $response = $this->client->request(
             'GET',
-            $url,
+            $scraping->getUrl(),
             ['timeout' => 2.5, 'verify_peer' => false, 'verify_host' => false]
         );
 
@@ -37,35 +37,10 @@ readonly class HtmlScraper
         $content = $response->getContent();
         $crawler = new Crawler($content);
 
-        $data = [];
-        foreach ($scraper->getDataPaths() as $key => $dataPath) {
-            $value = $this->extract($dataPath['path'], $dataPath['type'], $crawler);
-
-            $datum = (new Datum())
-                ->setValue($value)
-                ->setLabel($dataPath['name'])
-                ->setType($dataPath['type'])
-                ->setPosition($key)
-            ;
-
-            $data[] = [
-                $dataPath['type'],
-                $dataPath['name'],
-                $this->twig->render('App/Datum/_datum.html.twig', [
-                    'entity' => $entityType,
-                    'iteration' => '__placeholder__',
-                    'type' => $dataPath['type'],
-                    'datum' => $datum,
-                    'label' => $datum->getLabel(),
-                    'choiceList' => $datum->getChoiceList(),
-                ])
-            ];
-        }
-
         return [
-            'name' => $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
-            'image' => $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler),
-            'data' => $data
+            'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
+            'image' => $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
+            'data' => $scraping->getScrapData() ? $this->scrapData($scraping, $crawler) : null
         ];
     }
 
@@ -98,6 +73,36 @@ readonly class HtmlScraper
         }
 
         return $this->formatValues($values, $type);
+    }
+
+    private function scrapData(Scraping $scraping, Crawler $crawler) : array
+    {
+        $data = [];
+        foreach ($scraping->getScraper()->getDataPaths() as $key => $dataPath) {
+            $value = $this->extract($dataPath['path'], $dataPath['type'], $crawler);
+
+            $datum = (new Datum())
+                ->setValue($value)
+                ->setLabel($dataPath['name'])
+                ->setType($dataPath['type'])
+                ->setPosition($key)
+            ;
+
+            $data[] = [
+                $dataPath['type'],
+                $dataPath['name'],
+                $this->twig->render('App/Datum/_datum.html.twig', [
+                    'entity' => $scraping->getEntity(),
+                    'iteration' => '__placeholder__',
+                    'type' => $dataPath['type'],
+                    'datum' => $datum,
+                    'label' => $datum->getLabel(),
+                    'choiceList' => $datum->getChoiceList(),
+                ])
+            ];
+        }
+
+        return $data;
     }
 
     private function formatValues(?array $values, string $type): ?string

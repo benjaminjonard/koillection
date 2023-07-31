@@ -17,15 +17,19 @@ export default class extends Controller {
                 if (typeof result === 'string') {
                     self.modalErrorTarget.innerHTML = result;
                 } else {
-                    self.nameInputTarget.value = result.name;
+                    if (result.name !== null) {
+                        self.nameInputTarget.value = result.name;
+                    }
 
-                    if (self.hasImagePreviewTarget) {
+                    if (self.hasImagePreviewTarget && result.image !== null) {
                         self.imagePreviewTarget.src = result.image;
                         self.imageInputTarget.value = result.image;
                     }
 
-                    self.dispatch("newScrapedData", { detail: { content: result.data } })
-                    self.modalCloseButtonTarget.click();
+                    if (result.data !== null) {
+                        self.dispatch("newScrapedData", { detail: { content: result.data } })
+                        self.modalCloseButtonTarget.click();
+                    }
                 }
             })
     }

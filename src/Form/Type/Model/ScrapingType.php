@@ -8,6 +8,7 @@ use App\Entity\Scraper;
 use App\Model\Scraping;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,6 +32,15 @@ class ScrapingType extends AbstractType
                 'multiple' => false,
                 'choice_name' => null,
                 'required' => true,
+            ])
+            ->add('scrapName', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('scrapImage', CheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('scrapData', CheckboxType::class, [
+                'required' => false,
             ])
         ;
     }

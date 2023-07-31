@@ -38,7 +38,8 @@ class ItemController extends AbstractController
         TranslatorInterface $translator,
         ItemNameGuesser $itemNameGuesser,
         ManagerRegistry $managerRegistry
-    ): Response {
+    ): Response
+    {
         $collection = null;
         if ($request->query->has('collection')) {
             $collection = $collectionRepository->find($request->query->get('collection'));
@@ -105,7 +106,8 @@ class ItemController extends AbstractController
     public function show(
         #[MapEntity(expr: 'repository.findById(id)')] Item $item,
         ItemRepository $itemRepository
-    ): Response {
+    ): Response
+    {
         $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $item->getCollection());
 
         return $this->render('App/Item/show.html.twig', [
@@ -122,9 +124,11 @@ class ItemController extends AbstractController
         TranslatorInterface $translator,
         ManagerRegistry $managerRegistry,
         ChoiceListRepository $choiceListRepository
-    ): Response {
+    ): Response
+    {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.item_edited', ['item' => $item->getName()]));
@@ -134,7 +138,7 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/edit.html.twig', [
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('item')),
+            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('item', true)),
             'item' => $item,
             'collection' => $item->getCollection(),
             'choiceLists' => $choiceListRepository->findAll(),

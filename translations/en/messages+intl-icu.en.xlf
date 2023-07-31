@@ -3451,5 +3451,23 @@
         <target>Scraping</target>
       </segment>
     </unit>
+    <unit id="zrNqfUb" name="label.scrap_name">
+      <segment state="translated">
+        <source>Scrap name</source>
+        <target>Scrap name</target>
+      </segment>
+    </unit>
+    <unit id="zrNqfUb" name="label.scrap_image">
+      <segment state="translated">
+        <source>Scrap image</source>
+        <target>Scrap image</target>
+      </segment>
+    </unit>
+    <unit id="O01YTOO" name="label.scrap_data">
+      <segment state="translated">
+        <source>Scrap data</source>
+        <target>Scrap data</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

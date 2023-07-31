@@ -19,6 +19,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ScraperController extends AbstractController
@@ -33,7 +35,7 @@ class ScraperController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->json($htmlScraper->scrap($scraping->getScraper(), $scraping->getUrl(), $scraping->getEntity()));
+                return $this->json($htmlScraper->scrap($scraping));
             } catch (\Exception $e) {
                 return $this->json($e->getMessage(), 400);
             }
@@ -141,7 +143,7 @@ class ScraperController extends AbstractController
     }
 
     #[Route(path: '/scrapers/{id}/export', name: 'app_scraper_export', methods: ['GET'])]
-    public function export(Scraper $scraper): FileResponse
+    public function export(Scraper $scraper, SluggerInterface $slugger): FileResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
@@ -159,7 +161,9 @@ class ScraperController extends AbstractController
             ];
         }
 
-        return new FileResponse([json_encode($data)], 'scrapper.json', headers: ['Content-Type' => 'application/json']);
+        $slug = $slugger->slug($scraper->getName())->lower();
+
+        return new FileResponse([json_encode($data)], "scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
     }
 
     #[Route(path: '/scrapers/{id}', name: 'app_scraper_show', methods: ['GET'])]

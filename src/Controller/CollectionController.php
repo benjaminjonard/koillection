@@ -177,7 +177,7 @@ class CollectionController extends AbstractController
 
         return $this->render('App/Collection/edit.html.twig', [
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('collection')),
+            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('collection', true)),
             'collection' => $collection,
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenTitles' => $collectionRepository->suggestChildrenLabels($collection),

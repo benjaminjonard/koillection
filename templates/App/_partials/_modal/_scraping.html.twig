@@ -12,7 +12,17 @@
                     'data-controller': 'select--default'
                 }}) }}
 
-                <div class="error-helper" data-scraping-target="modalError"></div>
+                <div class="row">
+                    <div class="col s12 l5 offset-l1 xl3 offset-xl1">
+                     {{ form_row(scrapingForm.scrapName, {'label' : 'label.scrap_name'}) }}
+                    </div>
+                    <div class="col s12 l5 xl3">
+                        {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image'}) }}
+                    </div>
+                    <div class="col s12 l5 xl3">
+                        {{ form_row(scrapingForm.scrapData, {'label' : 'label.scrap_data'}) }}
+                    </div>
+                </div>
             </div>
 
             <div class="modal-footer">
