@@ -10,15 +10,16 @@
 
                 {{ form_row(scrapingForm.scraper, {'label' : 'label.scraper', 'attr' : {
                     'data-controller': 'select--default',
-                    'data-action': 'change->scraping#loadDataPathCheckboxes'
+                    'data-action': 'change->scraping#loadDataPathCheckboxes',
+                    'autocomplete': 'off'
                 }}) }}
 
                 <div class="row">
                     <div class="col s12 l5 offset-l1 xl3 offset-xl1">
-                     {{ form_row(scrapingForm.scrapName, {'label' : 'label.scrap_name'}) }}
+                     {{ form_row(scrapingForm.scrapName, {'label' : 'label.scrap_name', 'attr': {'autocomplete': 'off'}}) }}
                     </div>
                     <div class="col s12 l5 xl3">
-                        {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image'}) }}
+                        {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image', 'attr': {'autocomplete': 'off'}}) }}
                     </div>
                     <div class="col s12 l5 xl3" data-scraping-target="dataToScrapContainer">
                         {{ form_row(scrapingForm.dataToScrap) }}
