@@ -3,6 +3,7 @@
         {% do form.data.setRendered %}
         <div class="content-block">
             {{ form_row(form.file) }}
+            {{ form_row(form.scrapedFromUrl, {'attr': {'data-scraping-target': 'scrapedUrlInput'}}) }}
 
             {% if isFeatureEnabled('scraping') %}
                 <div class="row">
@@ -210,5 +211,5 @@
         </div>
     {{ form_end(form) }}
 
-    {{ include('App/_partials/_modal/_scraping.html.twig', {form: scrapingForm}) }}
+    {{ include('App/_partials/_modal/_scraping.html.twig', {form: scrapingForm, scrapedFromUrl: collection.scrapedFromUrl}) }}
 </span>

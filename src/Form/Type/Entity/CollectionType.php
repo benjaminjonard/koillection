@@ -19,6 +19,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -111,6 +112,9 @@ class CollectionType extends AbstractType
             ->add('deleteImage', CheckboxType::class, [
                 'label' => false,
                 'required' => false
+            ])
+            ->add('scrapedFromUrl', HiddenType::class, [
+                'required' => false,
             ])
         ;
 

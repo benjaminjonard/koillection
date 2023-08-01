@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 import Sortable from "sortablejs";
 
 export default class extends Controller {
-    static targets = ['nameInput', 'imagePreview', 'imageInput', 'modalCloseButton', 'modalError', 'dataToScrapContainer']
+    static targets = ['scrapedUrlInput', 'nameInput', 'imagePreview', 'imageInput', 'modalCloseButton', 'modalError', 'dataToScrapContainer']
 
     scrap(event) {
         event.preventDefault();
@@ -30,6 +30,8 @@ export default class extends Controller {
                         self.dispatch("newScrapedData", { detail: { content: result.data } })
                         self.modalCloseButtonTarget.click();
                     }
+
+                    self.scrapedUrlInputTarget.value = result.scrapedUrl;
                 }
             })
     }

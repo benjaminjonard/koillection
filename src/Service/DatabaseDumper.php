@@ -79,7 +79,9 @@ class DatabaseDumper
             "SELECT * FROM koi_template WHERE owner_id IN ({$userIds})",
             "SELECT * FROM koi_user WHERE id IN ({$userIds})",
             "SELECT * FROM koi_wish WHERE owner_id IN ({$userIds})",
-            "SELECT * FROM koi_wishlist WHERE owner_id IN ({$userIds})"
+            "SELECT * FROM koi_wishlist WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_scraper WHERE owner_id IN ({$userIds})",
+            "SELECT * FROM koi_path WHERE owner_id IN ({$userIds})"
         ];
 
         foreach ($selects as $select) {

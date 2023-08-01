@@ -94,6 +94,9 @@ class ItemType extends AbstractType
                     'model_transformer' => $this->jsonToItemTransformer,
                 ])
             )
+            ->add('scrapedFromUrl', HiddenType::class, [
+                'required' => false,
+            ])
         ;
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {

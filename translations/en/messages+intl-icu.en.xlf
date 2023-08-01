@@ -3469,5 +3469,11 @@
         <target>Error while importing, incorrect file format</target>
       </segment>
     </unit>
+    <unit id="aQEHOsY" name="label.scraped_from_url">
+      <segment state="translated">
+        <source>Scraped from</source>
+        <target>Scraped from</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

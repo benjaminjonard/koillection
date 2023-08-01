@@ -40,7 +40,8 @@ readonly class HtmlScraper
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
             'image' => $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
-            'data' => $this->scrapData($scraping, $crawler)
+            'data' => $this->scrapData($scraping, $crawler),
+            'scrapedUrl' => $scraping->getUrl()
         ];
     }
 

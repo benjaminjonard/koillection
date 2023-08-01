@@ -142,6 +142,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[Groups(['item:read'])]
     private string $finalVisibility;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['item:read'])]
+    private ?string $scrapedFromUrl = null;
+
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['item:read'])]
     private \DateTimeImmutable $createdAt;
@@ -209,7 +213,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): Item
     {
         $this->name = $name;
 
@@ -221,7 +225,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): self
+    public function setQuantity(int $quantity): Item
     {
         $this->quantity = $quantity;
 
@@ -233,7 +237,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->seenCounter;
     }
 
-    public function setSeenCounter(int $seenCounter): self
+    public function setSeenCounter(int $seenCounter): Item
     {
         $this->seenCounter = $seenCounter;
 
@@ -245,7 +249,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): Item
     {
         $this->createdAt = $createdAt;
 
@@ -257,7 +261,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): Item
     {
         $this->updatedAt = $updatedAt;
 
@@ -269,7 +273,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->collection;
     }
 
-    public function setCollection(?Collection $collection): self
+    public function setCollection(?Collection $collection): Item
     {
         $this->collection = $collection;
 
@@ -281,14 +285,14 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->owner;
     }
 
-    public function setOwner(?User $owner): self
+    public function setOwner(?User $owner): Item
     {
         $this->owner = $owner;
 
         return $this;
     }
 
-    public function setTags(DoctrineCollection $tags): self
+    public function setTags(DoctrineCollection $tags): Item
     {
         $this->tags = $tags;
 
@@ -300,7 +304,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->tags;
     }
 
-    public function addTag(Tag $tag): self
+    public function addTag(Tag $tag): Item
     {
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
@@ -309,7 +313,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    public function removeTag(Tag $tag): self
+    public function removeTag(Tag $tag): Item
     {
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
@@ -318,7 +322,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    public function setRelatedItems(DoctrineCollection $relatedItems): self
+    public function setRelatedItems(DoctrineCollection $relatedItems): Item
     {
         $this->relatedItems = $relatedItems;
 
@@ -335,7 +339,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return new ArrayCollection(array_merge($this->relatedItems->toArray(), $this->relatedTo->toArray()));
     }
 
-    public function addRelatedItem(Item $relatedItem): self
+    public function addRelatedItem(Item $relatedItem): Item
     {
         if (!$this->relatedItems->contains($relatedItem)) {
             $this->relatedItems[] = $relatedItem;
@@ -344,7 +348,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    public function removeRelatedItem(Item $relatedItem): self
+    public function removeRelatedItem(Item $relatedItem): Item
     {
         if ($this->relatedItems->contains($relatedItem)) {
             $this->relatedItems->removeElement($relatedItem);
@@ -358,7 +362,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->data;
     }
 
-    public function addData(Datum $data): self
+    public function addData(Datum $data): Item
     {
         if (!$this->data->contains($data)) {
             $this->data[] = $data;
@@ -368,7 +372,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    public function removeData(Datum $data): self
+    public function removeData(Datum $data): Item
     {
         if ($this->data->contains($data)) {
             $this->data->removeElement($data);
@@ -387,7 +391,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->file;
     }
 
-    public function setFile(?File $file): self
+    public function setFile(?File $file): Item
     {
         $this->file = $file;
         // Force Doctrine to trigger an update
@@ -403,7 +407,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?string $image): Item
     {
         $this->image = $image;
 
@@ -423,7 +427,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->image;
     }
 
-    public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
+    public function setImageSmallThumbnail(?string $imageSmallThumbnail): Item
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
 
@@ -451,7 +455,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->visibility;
     }
 
-    public function setVisibility(string $visibility): self
+    public function setVisibility(string $visibility): Item
     {
         $this->visibility = $visibility;
 
@@ -463,7 +467,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->parentVisibility;
     }
 
-    public function setParentVisibility(?string $parentVisibility): self
+    public function setParentVisibility(?string $parentVisibility): Item
     {
         $this->parentVisibility = $parentVisibility;
 
@@ -475,7 +479,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this->finalVisibility;
     }
 
-    public function setFinalVisibility(string $finalVisibility): self
+    public function setFinalVisibility(string $finalVisibility): Item
     {
         $this->finalVisibility = $finalVisibility;
 
@@ -490,6 +494,18 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setOrderingValue(?string $orderingValue): Item
     {
         $this->orderingValue = $orderingValue;
+
+        return $this;
+    }
+
+    public function getScrapedFromUrl(): ?string
+    {
+        return $this->scrapedFromUrl;
+    }
+
+    public function setScrapedFromUrl(?string $scrapedFromUrl): Item
+    {
+        $this->scrapedFromUrl = $scrapedFromUrl;
 
         return $this;
     }
