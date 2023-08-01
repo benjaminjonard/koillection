@@ -27,7 +27,7 @@ class ScraperType extends AbstractType
                 'required' => false
             ])
             ->add('dataPaths', SymfonyCollectionType::class, [
-                'entry_type' => ScraperDatumType::class,
+                'entry_type' => PathType::class,
                 'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,

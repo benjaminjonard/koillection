@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Entity\Path;
 use App\Entity\Scraper;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -34,7 +35,16 @@ class ScraperImporter
         $scraper->setName($data['name'] ?? null);
         $scraper->setNamePath($data['namePath'] ?? null);
         $scraper->setImagePath($data['imagePath'] ?? null);
-        $scraper->setDataPaths($data['dataPaths'] ?? []);
+
+        foreach ($data['dataPaths'] as $key => $dataPath) {
+            $newPath = (new Path())
+                ->setName($dataPath['name'])
+                ->setType($dataPath['type'])
+                ->setPosition($dataPath['position'] ?? $key)
+                ->setPath($dataPath['path'])
+            ;
+            $scraper->addDataPath($newPath);
+        }
 
         return $scraper;
     }

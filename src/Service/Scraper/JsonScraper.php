@@ -36,17 +36,17 @@ readonly class JsonScraper
 
         $data = [];
         foreach ($scraper->getDataPaths() as $key => $dataPath) {
-            $value = $this->extract($dataPath['path'], $content);
+            $value = $this->extract($dataPath->getPath(), $content);
             $datum = (new Datum())
                 ->setValue($value)
-                ->setLabel($dataPath['name'])
+                ->setLabel($dataPath->getName())
                 ->setType(DatumTypeEnum::TYPE_TEXT)
                 ->setPosition($key)
             ;
 
             $data[] = [
                 DatumTypeEnum::TYPE_TEXT,
-                $dataPath['name'],
+                $dataPath->getName(),
                 $this->twig->render('App/Datum/_datum.html.twig', [
                     'entity' => 'item',
                     'iteration' => '__placeholder__',

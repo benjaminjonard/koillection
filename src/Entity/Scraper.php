@@ -7,6 +7,8 @@ namespace App\Entity;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Repository\ScraperRepository;
 use App\Validator as AppAssert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,9 +33,10 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $imagePath = null;
 
-    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[ORM\OneToMany(targetEntity: Path::class, mappedBy: 'scraper', cascade: ['all'], orphanRemoval: true)]
+    #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[AppAssert\UniqueDatumLabel]
-    private ?array $dataPaths = [];
+    private DoctrineCollection $dataPaths;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'scrapers')]
     private ?User $owner = null;
@@ -47,6 +50,7 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
+        $this->dataPaths = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -95,15 +99,30 @@ class Scraper implements BreadcrumbableInterface, \Stringable
         return $this;
     }
 
-    public function getDataPaths(): ?array
+    public function getDataPaths(): DoctrineCollection
     {
         return $this->dataPaths;
     }
 
-    public function setDataPaths(?array $dataPaths): Scraper
+    public function addDataPath(Path $path): self
     {
-        usort($dataPaths, fn($a, $b) => $a['position'] - $b['position']);
-        $this->dataPaths = $dataPaths;
+        if (!$this->dataPaths->contains($path)) {
+            $this->dataPaths[] = $path;
+            $path->setScraper($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDataPath(Path $path): self
+    {
+        if ($this->dataPaths->contains($path)) {
+            $this->dataPaths->removeElement($path);
+            // set the owning side to null (unless already changed)
+            if ($path->getScraper() === $this) {
+                $path->setScraper(null);
+            }
+        }
 
         return $this;
     }

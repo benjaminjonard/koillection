@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Enum\DatumTypeEnum;
+use App\Tests\Factory\PathFactory;
 use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -77,13 +78,8 @@ class ScraperTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['owner' => $user, 'dataPaths' => [
-            [
-                'name' => 'Test',
-                'type' => DatumTypeEnum::TYPE_TEXT,
-                'path' => 'Test',
-            ]
-        ]]);
+        $scraper = ScraperFactory::createOne(['owner' => $user]);
+        PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
         $this->client->request('GET', '/scrapers/'.$scraper->getId().'/edit');
@@ -107,13 +103,8 @@ class ScraperTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['owner' => $user, 'dataPaths' => [
-            [
-                'name' => 'Test',
-                'type' => DatumTypeEnum::TYPE_TEXT,
-                'path' => 'Test',
-            ]
-        ]]);
+        $scraper = ScraperFactory::createOne(['owner' => $user]);
+        PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
         $crawler = $this->client->request('GET', '/scrapers/'.$scraper->getId());
@@ -123,6 +114,7 @@ class ScraperTest extends AppTestCase
         // Assert
         $this->assertResponseIsSuccessful();
         ScraperFactory::assert()->count(0);
+        PathFactory::assert()->count(0);
     }
 
     public function test_can_export_scraper(): void
@@ -130,13 +122,8 @@ class ScraperTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['owner' => $user, 'dataPaths' => [
-            [
-                'name' => 'Test',
-                'type' => DatumTypeEnum::TYPE_TEXT,
-                'path' => '//h1/text()',
-            ]
-        ]]);
+        $scraper = ScraperFactory::createOne(['owner' => $user]);
+        PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
         $this->client->request('GET', '/scrapers/'.$scraper->getId() . '/export');

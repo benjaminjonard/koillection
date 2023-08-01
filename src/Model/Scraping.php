@@ -50,10 +50,7 @@ class Scraping
     public function setScraper(?Scraper $scraper): Scraping
     {
         $this->scraper = $scraper;
-
-        foreach ($scraper->getDataPaths() as $dataPath) {
-            $this->dataToScrap[$dataPath['name']] = $dataPath['name'];
-        }
+        $this->dataToScrap = $scraper->getDataPaths()->toArray();
 
         return $this;
     }

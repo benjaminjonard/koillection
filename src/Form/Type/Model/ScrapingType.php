@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Model;
 
+use App\Entity\Path;
 use App\Entity\Scraper;
 use App\Model\Scraping;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -51,18 +52,14 @@ class ScrapingType extends AbstractType
         }
 
         $formModifier = function (FormInterface $form, Scraper $scraper = null): void {
-            $choices = [];
-            if ($scraper) {
-                foreach ($scraper->getDataPaths() as $key => $choice) {
-                    $choices[$choice['name']] = $choice['name'];
-                }
-            }
-
-            $form->add('dataToScrap', ChoiceType::class, [
-                'choices' => $choices,
+            $form->add('dataToScrap', EntityType::class, [
+                'class' => Path::class,
+                'choice_label' => 'name',
+                'choices' => $scraper?->getDataPaths() ?: [],
                 'expanded' => true,
                 'multiple' => true,
                 'required' => false,
+                'empty_data' => '',
             ]);
         };
 

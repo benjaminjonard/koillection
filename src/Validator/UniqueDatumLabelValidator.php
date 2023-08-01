@@ -6,6 +6,7 @@ namespace App\Validator;
 
 use App\Entity\Datum;
 use App\Entity\Field;
+use App\Entity\Path;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -28,8 +29,8 @@ class UniqueDatumLabelValidator extends ConstraintValidator
             $label = match (true) {
                 $element instanceof Field => $element->getName(),
                 $element instanceof Datum => $element->getLabel(),
-                is_array($element) && isset($element['name']) => $element['name'],
-                default => throw new UnexpectedValueException($element, 'Field|Datum|array'),
+                $element instanceof Path => $element->getName(),
+                default => throw new UnexpectedValueException($element, 'Field|Datum|Path'),
             };
 
             if (\in_array($label, $labels)) {

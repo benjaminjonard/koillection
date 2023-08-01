@@ -34,11 +34,11 @@ class ScraperController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //try {
+            try {
                 return $this->json($htmlScraper->scrap($scraping));
-            //} catch (\Exception $e) {
-            //    return $this->json($e->getMessage(), 400);
-           // }
+            } catch (\Exception $e) {
+                return $this->json($e->getMessage(), 400);
+            }
         }
 
         return $this->json([]);
@@ -171,10 +171,10 @@ class ScraperController extends AbstractController
         $data["dataPaths"] = [];
         foreach ($scraper->getDataPaths() as $key => $dataPath) {
             $data["dataPaths"][] = [
-                "name" => $dataPath['name'] ?? null,
-                "path" => $dataPath['path'] ?? null,
-                "type" => $dataPath['type'] ?? null,
-                "position" => $dataPath['position'] ?? $key,
+                "name" => $dataPath->getName() ?? null,
+                "path" => $dataPath->getPath() ?? null,
+                "type" => $dataPath->getType() ?? null,
+                "position" => $dataPath->getPosition() ?? $key,
             ];
         }
 

@@ -84,29 +84,22 @@ readonly class HtmlScraper
         $data = [];
 
         foreach ($scraping->getDataToScrap() as $key => $dataToScrap) {
-            $dataPath = null;
-            foreach ($scraping->getScraper()->getDataPaths() as $dataPath) {
-                if ($dataPath['name'] === $dataToScrap) {
-                    break;
-                }
-            }
-
-            $value = $this->extract($dataPath['path'], $dataPath['type'], $crawler);
+            $value = $this->extract($dataToScrap->getPath(), $dataToScrap->getType(), $crawler);
 
             $datum = (new Datum())
                 ->setValue($value)
-                ->setLabel($dataPath['name'])
-                ->setType($dataPath['type'])
-                ->setPosition($key)
+                ->setLabel($dataToScrap->getName())
+                ->setType($dataToScrap->getType())
+                ->setPosition((int) $key)
             ;
 
             $data[] = [
-                $dataPath['type'],
-                $dataPath['name'],
+                $dataToScrap->getType(),
+                $dataToScrap->getName(),
                 $this->twig->render('App/Datum/_datum.html.twig', [
                     'entity' => $scraping->getEntity(),
                     'iteration' => '__placeholder__',
-                    'type' => $dataPath['type'],
+                    'type' => $dataToScrap->getType(),
                     'datum' => $datum,
                     'label' => $datum->getLabel(),
                     'choiceList' => $datum->getChoiceList(),
