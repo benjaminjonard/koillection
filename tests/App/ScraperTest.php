@@ -89,7 +89,8 @@ class ScraperTest extends AppTestCase
             'scraper[imagePath]' => '//h1/img/@src',
             'scraper[dataPaths][0][name]' => 'Author',
             'scraper[dataPaths][0][type]' => DatumTypeEnum::TYPE_TEXT,
-            'scraper[dataPaths][0][path]' => '//h2/text()'
+            'scraper[dataPaths][0][path]' => '//h2/text()',
+            'scraper[dataPaths][0][position]' => '1'
         ]);
 
         // Assert

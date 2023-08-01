@@ -36,8 +36,8 @@ class Scraper implements BreadcrumbableInterface, \Stringable
 
     #[ORM\OneToMany(targetEntity: Path::class, mappedBy: 'scraper', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
+    #[Assert\Valid]
     #[AppAssert\UniqueDatumLabel]
-    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_SCRAPING)]
     private DoctrineCollection $dataPaths;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'scrapers')]
