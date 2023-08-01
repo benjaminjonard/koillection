@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ScraperController extends AbstractController
@@ -97,7 +98,7 @@ class ScraperController extends AbstractController
     }
 
     #[Route(path: '/scrapers/import', name: 'app_scraper_import', methods: ['POST'])]
-    public function import(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
+    public function import(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry, ValidatorInterface $validator): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
@@ -107,15 +108,17 @@ class ScraperController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $scraper = $scraperImporter->toScrapper();
-            $managerRegistry->getManager()->persist($scraper);
-            $managerRegistry->getManager()->flush();
+            if ($validator->validate($scraper)->count() === 0) {
+                $managerRegistry->getManager()->persist($scraper);
+                $managerRegistry->getManager()->flush();
 
-            $this->addFlash('notice', $translator->trans('message.scraper_imported', ['scraper' => $scraper->getName()]));
+                $this->addFlash('notice', $translator->trans('message.scraper_imported', ['scraper' => $scraper->getName()]));
 
-            return $this->redirectToRoute('app_scraper_show', ['id' => $scraper->getId()]);
+                return $this->redirectToRoute('app_scraper_show', ['id' => $scraper->getId()]);
+            }
         }
 
-        $this->addFlash('notice', $translator->trans('message.scraper_import_error'));
+        $this->addFlash('error', $translator->trans('message.scraper_import_error'));
 
         return $this->redirectToRoute('app_scraper_index');
     }

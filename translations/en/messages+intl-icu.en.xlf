@@ -3463,5 +3463,11 @@
         <target>Scrap image</target>
       </segment>
     </unit>
+    <unit id="0rmld0o" name="message.scraper_import_error">
+      <segment state="translated">
+        <source>Error while importing, incorrect file format</source>
+        <target>Error while importing, incorrect file format</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

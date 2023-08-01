@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Enum\DatumTypeEnum;
 use App\Repository\ScraperRepository;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -36,6 +37,7 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     #[ORM\OneToMany(targetEntity: Path::class, mappedBy: 'scraper', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[AppAssert\UniqueDatumLabel]
+    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_SCRAPING)]
     private DoctrineCollection $dataPaths;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'scrapers')]
