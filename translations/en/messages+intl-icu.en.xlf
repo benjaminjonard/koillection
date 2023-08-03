@@ -3487,5 +3487,11 @@
         <target>Scrap URL</target>
       </segment>
     </unit>
+    <unit id="0ET5fPK" name="label.url_pattern">
+      <segment state="translated">
+        <source>Url pattern</source>
+        <target>Url pattern</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

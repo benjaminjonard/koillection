@@ -4,7 +4,7 @@ import Sortable from "sortablejs";
 export default class extends Controller {
     static targets = [
         'scrapedUrlInput', 'nameInput', 'urlInputContainer', 'fileInputContainer',
-        'imagePreview', 'imageInput',
+        'imagePreview', 'imageInput', 'scraperInput', 'urlInput',
         'modalCloseButton', 'modalError',
         'dataToScrapContainer', 'form'
     ]
@@ -74,5 +74,15 @@ export default class extends Controller {
         this.fileInputContainerTarget.querySelector('input').value = null;
 
         this.urlInputContainerTarget.classList.remove('hidden');
+    }
+
+    guessScraper(event) {
+        const url = this.urlInputTarget.value;
+        this.scraperInputTarget.querySelectorAll('option').forEach((option, index) => {
+            if (option.dataset.urlPattern !== '' && url.includes(option.dataset.urlPattern)) {
+                this.scraperInputTarget.value = option.value;
+                this.dispatch("update", { detail: { value: option.value } });
+            }
+        })
     }
 }

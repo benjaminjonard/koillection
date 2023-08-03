@@ -29,6 +29,9 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $urlPattern = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $namePath = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -137,6 +140,18 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     public function setOwner(?User $owner): Scraper
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getUrlPattern(): ?string
+    {
+        return $this->urlPattern;
+    }
+
+    public function setUrlPattern(?string $urlPattern): Scraper
+    {
+        $this->urlPattern = $urlPattern;
 
         return $this;
     }

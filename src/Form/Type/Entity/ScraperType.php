@@ -20,6 +20,9 @@ class ScraperType extends AbstractType
                 'attr' => ['length' => 255],
                 'required' => true
             ])
+            ->add('urlPattern', TextType::class, [
+                'required' => false
+            ])
             ->add('namePath', TextType::class, [
                 'required' => false
             ])

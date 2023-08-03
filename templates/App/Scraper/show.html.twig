@@ -15,7 +15,8 @@
         <h1>{{ scraper.name }}</h1>
     </div>
 
-    <div></div>
+    <div>
+    </div>
 
     <div class="btn-holder">
         <a href="{{ path('app_scraper_edit', {'id': scraper.id}) }}" class="button"
@@ -34,6 +35,8 @@
 
     <div class="content-block">
         <div class="block-element">
+            <b class="label">{{ 'label.url_pattern'|trans }} : </b>{{ scraper.urlPattern|default("-") }}
+
             <h2 class="header">{{ 'title.fields'|trans }}</h2>
 
             <table class="striped">
