@@ -46,7 +46,6 @@ export default class extends Controller {
         })
             .then(response => response.json())
             .then(function(result) {
-                console.log(result.html);
                 self.dataToScrapContainerTarget.insertAdjacentHTML('beforeend', result.html);
             })
     }

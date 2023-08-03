@@ -124,7 +124,9 @@
 {% block _scraping_dataToScrap_row %}
     {% apply spaceless %}
         {% for child in form %}
-            {{ form_row(child) }}
+            <div class="col s12 l5 xl3">
+                {{ form_row(child) }}
+            </div>
         {% endfor %}
     {% endapply %}
 {% endblock _scraping_dataToScrap_row %}
