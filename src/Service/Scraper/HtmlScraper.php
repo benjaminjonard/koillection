@@ -8,6 +8,7 @@ use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
 use App\Model\Scraping;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Intl\Countries;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
@@ -24,17 +25,22 @@ readonly class HtmlScraper
     {
         $scraper = $scraping->getScraper();
 
-        $response = $this->client->request(
-            'GET',
-            $scraping->getUrl(),
-            ['timeout' => 2.5, 'verify_peer' => false, 'verify_host' => false]
-        );
+        if ($scraping->getFile() instanceof UploadedFile) {
+            $content = $scraping->getFile()->getContent();
+        } else {
+            $response = $this->client->request(
+                'GET',
+                $scraping->getUrl(),
+                ['timeout' => 2.5, 'verify_peer' => false, 'verify_host' => false]
+            );
 
-        if (200 !== $response->getStatusCode()) {
-            throw new \Exception('Api error: ' . $response->getStatusCode() . ' - ' . $response->getContent());
+            if (200 !== $response->getStatusCode()) {
+                throw new \Exception('Api error: ' . $response->getStatusCode() . ' - ' . $response->getContent());
+            }
+
+            $content = $response->getContent();
         }
 
-        $content = $response->getContent();
         $crawler = new Crawler($content);
 
         return [
@@ -113,6 +119,10 @@ readonly class HtmlScraper
 
     private function formatValues(?array $values, string $type): ?string
     {
+        if ($values === null || $values === []) {
+            return null;
+        }
+
         if ($type === DatumTypeEnum::TYPE_TEXT) {
             return implode(', ', $values);
         }

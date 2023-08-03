@@ -4,57 +4,35 @@
             <div class="modal-header">
                 <span class="modal-title"></span>{{ 'title.scrap'|trans }}
             </div>
-            {{ form_start(scrapingForm, {'attr': { 'id': 'scraping', 'data-action': 'submit->scraping#scrap'} }) }}
-            <div class="modal-body">
-                {% if scrapedFromUrl is defined and scrapedFromUrl is not null %}
-                    <div class="row">
-                        <div class="col s12 scrapped-url">
-                            {{ 'label.scraped_from_url'|trans }} : <a target="_blank" href="{{ scrapedFromUrl }}">{{ scrapedFromUrl }}</a>
+            <div>
+                {{ form_start(scrapingForm, {'attr': { 'id': 'scraping', 'data-action': 'submit->scraping#scrap'} }) }}
+                <div class="modal-body">
+                    {% if scrapedFromUrl is defined and scrapedFromUrl is not null %}
+                        <div class="row">
+                            <div class="col s12 scrapped-url">
+                                {{ 'label.scraped_from_url'|trans }} : <a target="_blank" href="{{ scrapedFromUrl }}">{{ scrapedFromUrl }}</a>
+                            </div>
                         </div>
-                    </div>
-                    <br>
-                {% endif %}
-
-                <div class="row">
-                    <div class="col s12">
-                        {{ form_row(scrapingForm.url, {'label' : 'label.url'}) }}
-                    </div>
-
-                    <div class="col s12">
-                        {{ form_row(scrapingForm.scraper, {'label' : 'label.scraper', 'attr' : {
-                            'data-controller': 'select--default',
-                            'data-action': 'change->scraping#loadDataPathCheckboxes',
-                            'autocomplete': 'off'
-                        }}) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 error-helper" data-scraping-target="modalError"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l5 xl3">
-                        {{ form_row(scrapingForm.scrapName, {'label' : 'label.scrap_name', 'attr': {'autocomplete': 'off'}}) }}
-                    </div>
-                    {% if scrapingForm.scrapImage is defined %}
-                        <div class="col s12 l5 xl3">
-                            {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image', 'attr': {'autocomplete': 'off'}}) }}
-                        </div>
+                        <br>
                     {% endif %}
-                </div>
-                <div class="row" data-scraping-target="dataToScrapContainer">
-                    {{ form_row(scrapingForm.dataToScrap) }}
-                </div>
-            </div>
 
-            <div class="modal-footer">
-                <div class="right">
-                    <button type="submit" form="scraping" class="btn waves-effect waves-light">{{ 'btn.scrap'|trans }}</button>
-                    <a data-scraping-target="modalCloseButton" class="modal-close waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+                    <div data-scraping-target="form">
+                        {{ include('App/_partials/_modal/_scraping_form.html.twig') }}
+                    </div>
+
+                    <div class="row" data-scraping-target="dataToScrapContainer">
+                        {{ form_row(scrapingForm.dataToScrap) }}
+                    </div>
                 </div>
+
+                <div class="modal-footer">
+                    <div class="right">
+                        <button type="submit" form="scraping" class="btn waves-effect waves-light">{{ 'btn.scrap'|trans }}</button>
+                        <a data-scraping-target="modalCloseButton" class="modal-close waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+                    </div>
+                </div>
+                {{ form_end(scrapingForm) }}
             </div>
-            {{ form_end(scrapingForm) }}
         </div>
     </div>
 </div>

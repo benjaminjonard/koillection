@@ -5,13 +5,19 @@ declare(strict_types=1);
 namespace App\Model;
 
 use App\Entity\Scraper;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Scraping
 {
-    private string $url;
+    private ?string $url = null;
+
+    #[Assert\Image(mimeTypes: ['text/html'])]
+    private ?File $file = null;
 
     private string $entity;
 
+    #[Assert\NotNull]
     private ?Scraper $scraper = null;
 
     private bool $scrapName = true;
@@ -30,12 +36,12 @@ class Scraping
         }
     }
 
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
 
-    public function setUrl(string $url): Scraping
+    public function setUrl(?string $url): Scraping
     {
         $this->url = $url;
 
@@ -104,6 +110,18 @@ class Scraping
     public function setDataToScrap(array $dataToScrap): Scraping
     {
         $this->dataToScrap = $dataToScrap;
+
+        return $this;
+    }
+
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(?File $file): Scraping
+    {
+        $this->file = $file;
 
         return $this;
     }

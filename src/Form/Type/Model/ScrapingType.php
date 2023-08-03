@@ -10,7 +10,7 @@ use App\Model\Scraping;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +27,11 @@ class ScrapingType extends AbstractType
 
         $builder
             ->add('url', UrlType::class, [
-                'required' => true,
+                'required' => false,
+            ])
+            ->add('file', FileType::class, [
+                'required' => false,
+                'label' => false,
             ])
             ->add('entity', HiddenType::class, [
                 'required' => true,
@@ -38,7 +42,7 @@ class ScrapingType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'choice_name' => null,
-                'required' => false,
+                'required' => true,
             ])
             ->add('scrapName', CheckboxType::class, [
                 'required' => false,

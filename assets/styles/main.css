@@ -2234,3 +2234,15 @@ tr {
 .scrapped-url {
     margin-left: 10px;
 }
+
+.help {
+    margin-left: 10px;
+    top: -20px;
+    display: block;
+    position: relative;
+}
+
+.file-data + .help {
+    top: -10px;
+    margin-bottom: 10px;
+}

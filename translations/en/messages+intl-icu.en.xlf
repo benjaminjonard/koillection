@@ -3475,5 +3475,17 @@
         <target>Scraped from</target>
       </segment>
     </unit>
+    <unit id="EUgbudS" name="btn.scrap_html_file">
+      <segment state="translated">
+        <source>Scrap HTML file</source>
+        <target>Scrap HTML file</target>
+      </segment>
+    </unit>
+    <unit id="jy9YnDE" name="btn.scrap_url">
+      <segment state="translated">
+        <source>Scrap URL</source>
+        <target>Scrap URL</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

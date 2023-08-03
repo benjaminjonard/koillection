@@ -78,7 +78,7 @@ html.loading:before {
     background-color: var(--warning-color);
 }
 
-.error-helper, .fa-warning:before {
+.error-helper, .fa-warning:before, .helper-text-error {
     color: var(--warning-color);
 }
 

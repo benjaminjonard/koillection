@@ -4,7 +4,13 @@ export default class extends Controller {
     static targets = ['filename', 'input']
 
     displayFilename(event) {
-        this.filenameTarget.innerHTML = event.target.files[0].name;
+        let filename = event.target.files[0].name;
+
+        if (filename.length > 50) {
+            filename = filename.substring(0, 50) + '...';
+        }
+
+        this.filenameTarget.innerHTML = filename;
     }
 
     openUpload(event) {

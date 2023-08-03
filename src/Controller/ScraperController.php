@@ -42,7 +42,11 @@ class ScraperController extends AbstractController
             }
         }
 
-        return $this->json([]);
+        $formHtml = $this->render('App/_partials/_modal/_scraping_form.html.twig', [
+           'scrapingForm' => $form
+        ])->getContent();
+
+        return $this->json(['form' => $formHtml], 400);
     }
 
     #[Route(path: '/scrapers/{id}/data-paths-checkboxes', name: 'app_scraper_data_paths_checkboxes', methods: ['GET'])]
