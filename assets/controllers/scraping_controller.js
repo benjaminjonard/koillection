@@ -7,6 +7,7 @@ export default class extends Controller {
     scrap(event) {
         event.preventDefault();
         let self = this;
+        self.modalErrorTarget.innerHTML = "";
 
         fetch('/scrapers/scrap', {
             method: 'POST',
@@ -14,6 +15,7 @@ export default class extends Controller {
         })
             .then(response => response.json())
             .then(function(result) {
+                console.log(result);
                 if (typeof result === 'string') {
                     self.modalErrorTarget.innerHTML = result;
                 } else {
