@@ -2,7 +2,7 @@
     <div class="col s12">
         <div data-scraping-target="urlInputContainer">
             {{ form_row(scrapingForm.url, {'label' : 'label.url', 'attr' : {
-                'data-action': 'change->scraping#guessScraper',
+                'data-action': 'input->scraping#guessScraper',
                 'data-scraping-target': 'urlInput'
             }}) }}
             <a class="help" href="" data-action="click->scraping#showFileInput">{{ 'btn.scrap_html_file'|trans }}</a>
