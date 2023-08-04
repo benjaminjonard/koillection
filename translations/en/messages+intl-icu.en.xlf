@@ -3289,5 +3289,209 @@
         <target>Add list element</target>
       </segment>
     </unit>
+    <unit id="3UpvF8S" name="menu.scrapers">
+      <segment state="translated">
+        <source>Scrapers</source>
+        <target>Scrapers</target>
+      </segment>
+    </unit>
+    <unit id="c8N1gqs" name="tooltip.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Add a new scraper</target>
+      </segment>
+    </unit>
+    <unit id="0Skvou0" name="breadcrumb.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Add a new scraper</target>
+      </segment>
+    </unit>
+    <unit id="orjuiFY" name="title.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Add a new scraper</target>
+      </segment>
+    </unit>
+    <unit id="OJ77gpR" name="counter.scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# scraper} other {# scrapers}}</source>
+        <target>{count, plural, one {# scraper} other {# scrapers}}</target>
+      </segment>
+    </unit>
+    <unit id="fCfS5h4" name="label.name_path">
+      <segment state="translated">
+        <source>Name path</source>
+        <target>Name path</target>
+      </segment>
+    </unit>
+    <unit id="TQZi6HZ" name="label.image_path">
+      <segment state="translated">
+        <source>Image path</source>
+        <target>Image path</target>
+      </segment>
+    </unit>
+    <unit id="j4zVta3" name="label.path">
+      <segment state="translated">
+        <source>Path</source>
+        <target>Path</target>
+      </segment>
+    </unit>
+    <unit id="UxUN4hz" name="btn.add_data_path">
+      <segment state="translated">
+        <source>Add data path</source>
+        <target>Add data path</target>
+      </segment>
+    </unit>
+    <unit id="WoECGqp" name="btn.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>Scrap</target>
+      </segment>
+    </unit>
+    <unit id="JJiTxDb" name="title.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>Scrap</target>
+      </segment>
+    </unit>
+    <unit id="YGKpgy8" name="label.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>Scraper</target>
+      </segment>
+    </unit>
+    <unit id="rfCyU5h" name="message.delete.scraper">
+      <segment state="translated">
+        <source>Are you sure you want to delete this scraper ? It will be permanently lost...</source>
+        <target>Are you sure you want to delete this scraper ? It will be permanently lost...</target>
+      </segment>
+    </unit>
+    <unit id="pVpG91b" name="global.entities.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>Scraper</target>
+      </segment>
+    </unit>
+    <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Edit</target>
+      </segment>
+    </unit>
+    <unit id="PwaCRxg" name="title.edit_scraper">
+      <segment state="translated">
+        <source>Edit scraper {scraper}</source>
+        <target>Edit scraper {scraper}</target>
+      </segment>
+    </unit>
+    <unit id="pQMd2KQ" name="message.wiki.scrapper">
+      <segment state="translated">
+        <source>See wiki for help</source>
+        <target>See wiki for help</target>
+      </segment>
+    </unit>
+    <unit id="2T801sa" name="tooltip.export">
+      <segment state="translated">
+        <source>Export</source>
+        <target>Export</target>
+      </segment>
+    </unit>
+    <unit id="0qbEAs0" name="tooltip.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="4q1Sf3P" name="btn.upload">
+      <segment state="translated">
+        <source>Upload</source>
+        <target>Upload</target>
+      </segment>
+    </unit>
+    <unit id="M7PzMIt" name="title.import_scraper">
+      <segment state="translated">
+        <source>Import scraper from JSON file</source>
+        <target>Import scraper from JSON file</target>
+      </segment>
+    </unit>
+    <unit id="Hklmnjp" name="btn.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="gGSqvwG" name="message.scraper_added">
+      <segment state="translated">
+        <source>Scraper {scraper} has been added</source>
+        <target>Scraper {scraper} has been added</target>
+      </segment>
+    </unit>
+    <unit id="r7aNcN4" name="message.scraper_edited">
+      <segment state="translated">
+        <source>Scraper {scraper} has been updated</source>
+        <target>Scraper {scraper} has been updated</target>
+      </segment>
+    </unit>
+    <unit id="rX55M3v" name="message.scraper_deleted">
+      <segment state="translated">
+        <source>Scraper {scraper} was deleted</source>
+        <target>Scraper {scraper} was deleted</target>
+      </segment>
+    </unit>
+    <unit id="DuFvrmE" name="message.scraper_imported">
+      <segment state="translated">
+        <source>Scraper {scraper} was imported</source>
+        <target>Scraper {scraper} was imported</target>
+      </segment>
+    </unit>
+    <unit id="k4Ssjg4" name="label.scraping_feature_enabled">
+      <segment state="translated">
+        <source>Scraping</source>
+        <target>Scraping</target>
+      </segment>
+    </unit>
+    <unit id="zrNqfUb" name="label.scrap_name">
+      <segment state="translated">
+        <source>Scrap name</source>
+        <target>Scrap name</target>
+      </segment>
+    </unit>
+    <unit id="zrNqfUb" name="label.scrap_image">
+      <segment state="translated">
+        <source>Scrap image</source>
+        <target>Scrap image</target>
+      </segment>
+    </unit>
+    <unit id="0rmld0o" name="message.scraper_import_error">
+      <segment state="translated">
+        <source>Error while importing, incorrect file format</source>
+        <target>Error while importing, incorrect file format</target>
+      </segment>
+    </unit>
+    <unit id="aQEHOsY" name="label.scraped_from_url">
+      <segment state="translated">
+        <source>Scraped from</source>
+        <target>Scraped from</target>
+      </segment>
+    </unit>
+    <unit id="EUgbudS" name="btn.scrap_html_file">
+      <segment state="translated">
+        <source>Scrap HTML file</source>
+        <target>Scrap HTML file</target>
+      </segment>
+    </unit>
+    <unit id="jy9YnDE" name="btn.scrap_url">
+      <segment state="translated">
+        <source>Scrap URL</source>
+        <target>Scrap URL</target>
+      </segment>
+    </unit>
+    <unit id="0ET5fPK" name="label.url_pattern">
+      <segment state="translated">
+        <source>Url pattern</source>
+        <target>Url pattern</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -1,10 +1,12 @@
-<div class="input-field file-data col s10 offset-s1 m5" data-controller="preview">
-    <div class="btn">
+<div class="input-field file-data col s10 offset-s1 m5" data-controller="file-input">
+    <div class="btn" data-action="click->file-input#openUpload">
         <i class="fa fa-upload fa-fw"></i>
     </div>
-    <input data-action="change->additional-data#displayFilename" type="file" id="data_{{ iteration }}_fileFile"
-           name="{{ entity }}[data][{{ iteration }}][fileFile]">
-    <div class="datum-original-filename">
+    <input data-action="change->file-input#displayFilename" type="file" id="data_{{ iteration }}_fileFile"
+           name="{{ entity }}[data][{{ iteration }}][fileFile]"
+           data-file-input-target="input"
+    >
+    <div data-file-input-target="filename" class="datum-original-filename">
         {% if datum is defined %}{{ datum.originalFilename }}{% endif %}
     </div>
 </div>

@@ -24,6 +24,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.fa-magnet:before {
+  content: "\f076";
+}
+.fa-export:before {
+  content: "\f08c";
+}
+.fa-import:before {
+  content: "\f090";
+}
 .fa-refresh:before {
   content: "\f021";
 }

@@ -80,6 +80,12 @@ class DatumTypeEnum
         self::TYPE_COUNTRY,
     ];
 
+    public const AVAILABLE_FOR_SCRAPING = [
+        self::TYPE_TEXT,
+        self::TYPE_LIST,
+        self::TYPE_COUNTRY,
+    ];
+
     public const TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',
         self::TYPE_TEXTAREA => 'label.textarea',

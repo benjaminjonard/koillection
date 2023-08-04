@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col s12">
+        <div data-scraping-target="urlInputContainer">
+            {{ form_row(scrapingForm.url, {'label' : 'label.url', 'attr' : {
+                'data-action': 'input->scraping#guessScraper',
+                'data-scraping-target': 'urlInput'
+            }}) }}
+            <a class="help" href="" data-action="click->scraping#showFileInput">{{ 'btn.scrap_html_file'|trans }}</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        {% do scrapingForm.file.setRendered %}
+        <div class="hidden" data-scraping-target="fileInputContainer">
+            <div class="input-field file-data" data-controller="file-input">
+                <div class="btn" data-action="click->file-input#openUpload">
+                    <i class="fa fa-upload fa-fw"></i>&nbsp;{{ 'btn.upload'|trans }}
+                </div>
+
+                <input type="file" id="scraping_file"
+                       name="scraping[file]"
+                       accept="text/html"
+                       data-action="change->file-input#displayFilename"
+                       data-file-input-target="input"
+                >
+
+                <div class="filename">&nbsp;&nbsp;&nbsp;<span data-file-input-target="filename"></span></div>
+            </div>
+            <a class="help" href="" data-action="click->scraping#showUrlInput">{{ 'btn.scrap_url'|trans }}</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        {{ form_row(scrapingForm.scraper, {'label' : 'label.scraper', 'attr' : {
+            'data-controller': 'select--default',
+            'data-action': 'scraping:update@window->select--default#update change->scraping#loadDataPathCheckboxes',
+            'data-scraping-target': 'scraperInput',
+            'autocomplete': 'off'
+        }}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 error-helper" data-scraping-target="modalError"></div>
+</div>
+
+<div class="row">
+    <div class="col s12 l5 xl3">
+        {{ form_row(scrapingForm.scrapName, {'label' : 'label.scrap_name', 'attr': {'autocomplete': 'off'}}) }}
+    </div>
+    {% if scrapingForm.scrapImage is defined %}
+        <div class="col s12 l5 xl3">
+            {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image', 'attr': {'autocomplete': 'off'}}) }}
+        </div>
+    {% endif %}
+</div>

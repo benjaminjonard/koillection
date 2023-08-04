@@ -57,11 +57,11 @@ html.loading:before {
 }
 
 /** WARNING COLOR **/
-.btn-cancel, .btn-cancel:focus, .btn-cancel:hover {
+.btn-cancel, .btn-cancel:focus, .btn-cancel:hover, .toast.error {
     background-color: var(--warning-color);
 }
 
-.error-helper, .fa-warning:before {
+.error-helper, .fa-warning:before, .helper-text-error {
     color: var(--warning-color);
 }
 

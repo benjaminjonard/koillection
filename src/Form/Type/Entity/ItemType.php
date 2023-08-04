@@ -6,10 +6,12 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\Collection;
 use App\Entity\Item;
+use App\Entity\Scraper;
 use App\Entity\Template;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\JsonToItemTransformer;
 use App\Form\DataTransformer\JsonToTagTransformer;
+use App\Form\DataTransformer\UrlToImageTransformer;
 use App\Repository\CollectionRepository;
 use App\Repository\TemplateRepository;
 use App\Service\FeatureChecker;
@@ -22,6 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ItemType extends AbstractType
@@ -29,6 +32,7 @@ class ItemType extends AbstractType
     public function __construct(
         private readonly JsonToTagTransformer $jsonToTagTransformer,
         private readonly JsonToItemTransformer $jsonToItemTransformer,
+        private readonly UrlToImageTransformer $urlToImageTransformer,
         private readonly FeatureChecker $featureChecker,
         private readonly CollectionRepository $collectionRepository,
         private readonly TemplateRepository $templateRepository
@@ -49,6 +53,21 @@ class ItemType extends AbstractType
                 'required' => false,
                 'label' => false,
             ])
+            ->add(
+                $builder->create('fileUrl', HiddenType::class, [
+                    'required' => false,
+                    'label' => false,
+                    'model_transformer' => $this->urlToImageTransformer,
+                    'getter' => function () {
+                        return null;
+                    },
+                    'setter' => function (Item &$item, ?File $file): void {
+                        if ($file) {
+                            $item->setFile($file);
+                        }
+                    },
+                ])
+            )
             ->add('collection', EntityType::class, [
                 'class' => Collection::class,
                 'choice_label' => 'title',
@@ -74,7 +93,11 @@ class ItemType extends AbstractType
                     'required' => false,
                     'model_transformer' => $this->jsonToItemTransformer,
                 ])
-            );
+            )
+            ->add('scrapedFromUrl', HiddenType::class, [
+                'required' => false,
+            ])
+        ;
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {
             $builder->add(

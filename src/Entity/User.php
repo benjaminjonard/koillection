@@ -149,6 +149,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'owner', cascade: ['remove'])]
     private DoctrineCollection $inventories;
 
+    #[ORM\OneToMany(targetEntity: Scraper::class, mappedBy: 'owner', cascade: ['remove'])]
+    private DoctrineCollection $scrapers;
+
     #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     #[Groups(['user:read'])]
     private ?\DateTimeImmutable $lastDateOfActivity = null;
@@ -188,6 +191,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
     private bool $statisticsFeatureEnabled = true;
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
+    private bool $scrapingFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
     #[Groups(['user:read', 'user:write'])]
@@ -601,6 +608,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     {
         $this->statisticsFeatureEnabled = $statisticsFeatureEnabled;
 
+        return $this;
+    }
+
+    public function isScrapingFeatureEnabled(): bool
+    {
+        return $this->scrapingFeatureEnabled;
+    }
+
+    public function setScrapingFeatureEnabled(bool $scrapingFeatureEnabled): User
+    {
+        $this->scrapingFeatureEnabled = $scrapingFeatureEnabled;
         return $this;
     }
 

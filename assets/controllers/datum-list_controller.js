@@ -43,9 +43,11 @@ export default class extends Controller {
     }
 
     generateInput(value) {
+        value = value.replace(/"/g, '&quot;');
+
         let name = (Math.random() + 1).toString(36).substring(7);
         return '<div class="input-field outlined datum-list-element">' +
-            '<input type="text" value="' + value + '" placeholder=" " id="' + name + '" data-datum-list-target="element" data-action="change->datum-list#updateInput">' +
+            `<input type="text" value="${value}" placeholder=" " id="` + name + '" data-datum-list-target="element" data-action="change->datum-list#updateInput">' +
             '<label for="' + name + '">' + Translator.trans('label.list_element_value') + '</label>' +
             '<i class="fa fa fa-arrows-v fa-fw handle"></i>' +
             '<i class="fa fa-remove fa-fw" data-action="click->datum-list#removeElement"></i>'

@@ -89,6 +89,14 @@
             <span>{{ 'menu.choice_lists'|trans }}</span>
         </a>
     </li>
+    {% if isFeatureEnabled('scraping') %}
+        <li class="{{ 'app_scraper' in route ? 'current' }} sidebar-element">
+            <a href="{{ path('app_scraper_index') }}">
+                <i class="fa fa-magnet fa-fw"></i>
+                <span>{{ 'menu.scrapers'|trans }}</span>
+            </a>
+        </li>
+    {% endif %}
 {% endif %}
 
 {% if isFeatureEnabled('history') or isFeatureEnabled('statistics') %}

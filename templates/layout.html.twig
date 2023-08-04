@@ -113,4 +113,7 @@
     {% for flash_message in app.session.flashbag.get('notice') %}
         <span data-controller="toast" data-message="{{ flash_message|e }}"></span>
     {% endfor %}
+    {% for flash_message in app.session.flashbag.get('error') %}
+        <span data-controller="toast" data-message="{{ flash_message|e }}" data-classes="error"></span>
+    {% endfor %}
 {% endblock %}

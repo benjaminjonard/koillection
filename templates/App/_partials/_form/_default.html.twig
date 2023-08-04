@@ -24,7 +24,7 @@
             {{- form_widget(form, {attr: {'placeholder': ' '}}) -}}
             {{- form_label(form) -}}
             {%- for error in errors -%}
-                <span class="helper-text" data-error="wrong">{{ error.message }}</span>
+                <span class="helper-text helper-text-error" data-error="wrong">{{ error.message }}</span>
             {%- endfor -%}
             {{- form_help(form) -}}
         </div>
@@ -39,10 +39,14 @@
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
                             <img data-preview-target="image" class="preview-image"
-                                 src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"/>
+                                 src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"
+                                 data-scraping-target="imagePreview"
+                            />
                         {% else %}
                             <img data-preview-target="image" class="preview-image"
-                                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"/>
+                                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
+                                 data-scraping-target="imagePreview"
+                            />
                         {% endif %}
                         <input {{ block('widget_attributes') }}
                                 data-action="change->preview#load"
@@ -117,6 +121,16 @@
     {% endapply %}
 {% endblock _collection_childrenDisplayConfiguration_columns_entry_row %}
 
+{% block _scraping_dataToScrap_row %}
+    {% apply spaceless %}
+        {% for child in form %}
+            <div class="col s12 l5 xl3">
+                {{ form_row(child) }}
+            </div>
+        {% endfor %}
+    {% endapply %}
+{% endblock _scraping_dataToScrap_row %}
+
 {% block checkbox_row %}
     {% apply spaceless %}
         <p class="checkbox">
@@ -161,6 +175,20 @@
     {% endapply %}
 {% endblock %}
 
+{% block _scraper_dataPaths_entry_row %}
+    {% apply spaceless %}
+        {{ include('App/Scraper/_data_path_prototype.html.twig', { 'form': form }) }}
+    {% endapply %}
+{% endblock %}
+
+{% block _scraper_dataPaths_row %}
+    {% apply spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
+{% endblock %}
+
 {% block _tag_category_widget %}
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
         {% set options = choices %}
@@ -174,6 +202,20 @@
         {% endfor %}
     </select>
 {% endblock _tag_category_widget %}
+
+{% block _scraping_scraper_widget %}
+    <select {{ block('widget_attributes') }}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
+        {% set options = choices %}
+        <option value="" {% if not render_preferred_choices|default(false) and value == '' %} selected="selected"{% endif %}>
+        </option>
+        {% for choice in options %}
+            <option data-url-pattern="{{ choice.data.urlPattern }}"
+                    value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>
+                {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}
+            </option>
+        {% endfor %}
+    </select>
+{% endblock _scraping_scraper_widget %}
 
 {% block choice_widget_collapsed %}
     {% if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) %}

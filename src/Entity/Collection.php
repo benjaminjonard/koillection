@@ -28,7 +28,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -136,6 +135,10 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Groups(['collection:read'])]
     private ?string $finalVisibility = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['collection:read'])]
+    private ?string $scrapedFromUrl = null;
+
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['collection:read'])]
     private ?\DateTimeImmutable $createdAt = null;
@@ -188,7 +191,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): Collection
     {
         $this->title = $title;
 
@@ -200,7 +203,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->color;
     }
 
-    public function setColor(string $color): self
+    public function setColor(string $color): Collection
     {
         $this->color = $color;
 
@@ -212,7 +215,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->seenCounter;
     }
 
-    public function setSeenCounter(int $seenCounter): self
+    public function setSeenCounter(int $seenCounter): Collection
     {
         $this->seenCounter = $seenCounter;
 
@@ -224,7 +227,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): Collection
     {
         $this->createdAt = $createdAt;
 
@@ -236,7 +239,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): Collection
     {
         $this->updatedAt = $updatedAt;
 
@@ -260,12 +263,12 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $children;
     }
 
-    public function getParent(): ?self
+    public function getParent(): ?Collection
     {
         return $this->parent;
     }
 
-    public function setParent(?self $parent): self
+    public function setParent(?Collection $parent): Collection
     {
         // Protections against infinite loops
         if ($parent === $this) {
@@ -290,7 +293,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->owner;
     }
 
-    public function setOwner(?User $owner): self
+    public function setOwner(?User $owner): Collection
     {
         $this->owner = $owner;
 
@@ -307,7 +310,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?string $image): Collection
     {
         $this->image = $image;
 
@@ -319,7 +322,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->file;
     }
 
-    public function setFile(?File $file): self
+    public function setFile(?File $file): Collection
     {
         $this->file = $file;
         // Force Doctrine to trigger an update
@@ -335,7 +338,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->data;
     }
 
-    public function addData(Datum $data): self
+    public function addData(Datum $data): Collection
     {
         if (!$this->data->contains($data)) {
             $this->data[] = $data;
@@ -345,7 +348,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    public function removeData(Datum $data): self
+    public function removeData(Datum $data): Collection
     {
         if ($this->data->contains($data)) {
             $this->data->removeElement($data);
@@ -375,7 +378,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->visibility;
     }
 
-    public function setVisibility(string $visibility): self
+    public function setVisibility(string $visibility): Collection
     {
         $this->visibility = $visibility;
 
@@ -387,7 +390,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->parentVisibility;
     }
 
-    public function setParentVisibility(?string $parentVisibility): self
+    public function setParentVisibility(?string $parentVisibility): Collection
     {
         $this->parentVisibility = $parentVisibility;
 
@@ -399,7 +402,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this->finalVisibility;
     }
 
-    public function setFinalVisibility(string $finalVisibility): self
+    public function setFinalVisibility(string $finalVisibility): Collection
     {
         $this->finalVisibility = $finalVisibility;
 
@@ -449,6 +452,18 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     {
         $this->deleteImage = $deleteImage;
         $this->updatedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    public function getScrapedFromUrl(): ?string
+    {
+        return $this->scrapedFromUrl;
+    }
+
+    public function setScrapedFromUrl(?string $scrapedFromUrl): Collection
+    {
+        $this->scrapedFromUrl = $scrapedFromUrl;
 
         return $this;
     }

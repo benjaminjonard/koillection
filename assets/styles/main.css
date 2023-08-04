@@ -1886,6 +1886,11 @@ i.btn input {
     white-space: nowrap;
 }
 
+.filename {
+    text-align: left;
+    padding-top: 12px;
+}
+
 .file-data input[type="file"] {
     bottom: 0;
     cursor: pointer;
@@ -1898,7 +1903,7 @@ i.btn input {
     position: absolute;
     right: 0;
     top: 0;
-    width: 48px;
+    width: 0;
 }
 
 .file-data .btn {
@@ -2220,4 +2225,24 @@ tr {
 .datum-list li {
     margin-left: 30px;
     list-style-type: circle;
+}
+
+.navigation-block {
+    margin-top: 25px;
+}
+
+.scrapped-url {
+    margin-left: 10px;
+}
+
+.help {
+    margin-left: 10px;
+    top: -20px;
+    display: block;
+    position: relative;
+}
+
+.file-data + .help {
+    top: -10px;
+    margin-bottom: 10px;
 }

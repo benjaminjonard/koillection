@@ -4,10 +4,12 @@ import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
+    select2;
+
     connect() {
         let self = this;
 
-        new TsSelect2(this.element, {
+        this.select2 = new TsSelect2(this.element, {
             templateSelection: function (element) {
                 if (!element.text) {
                     return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
@@ -65,5 +67,9 @@ export default class extends Controller {
         html = html.trim();
         template.innerHTML = html;
         return template.content.firstChild;
+    }
+
+    update({ detail: { value } }) {
+        this.select2.val(value);
     }
 }

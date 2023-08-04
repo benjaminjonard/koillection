@@ -87,10 +87,6 @@ export default class extends Controller {
         this.computePositions();
     }
 
-    displayFilename(event) {
-        event.target.nextElementSibling.innerHTML = event.target.files[0].name;
-    }
-
     loadCollectionFields(event) {
         event.preventDefault();
         this.injectFields('/datum/load-collection-fields/' + event.target.dataset.collectionId);
@@ -128,27 +124,36 @@ export default class extends Controller {
         })
         .then(response => response.json())
         .then(function(result) {
-            result.forEach((field) => {
-                let alreadyExists = false;
-                let type, label, html;
-                [type, label, html] = field;
-
-                self.labelTargets.forEach((input) => {
-                    if (input.value === label) {
-                        alreadyExists = true;
-                    }
-                });
-
-                if (alreadyExists === false) {
-                    let holder = type == 'image' ? self.imagesHolderTarget : self.textsHolderTarget;
-                    html = html.replace(/__placeholder__/g, self.index);
-                    html = html.replace(/__entity_placeholder__/g, self.element.dataset.entity);
-                    holder.insertAdjacentHTML('beforeend', html);
-                    self.index++;
-                }
-            })
-
-            self.computePositions();
+            self.injectData(result)
         })
+    }
+
+    injectNewScrapedData({ detail: { content } }) {
+        this.injectData(content)
+    }
+
+    injectData(data) {
+        data.forEach((datum) => {
+            console.log(datum);
+            let alreadyExists = false;
+            let type, label, html;
+            [type, label, html] = datum;
+
+            this.labelTargets.forEach((input) => {
+                if (input.value === label) {
+                    alreadyExists = true;
+                }
+            });
+
+            if (alreadyExists === false) {
+                let holder = type == 'image' ? this.imagesHolderTarget : this.textsHolderTarget;
+                html = html.replace(/__placeholder__/g, this.index);
+                html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
+                holder.insertAdjacentHTML('beforeend', html);
+                this.index++;
+            }
+        })
+
+        this.computePositions();
     }
 }
