@@ -5,7 +5,7 @@ export default class extends Controller {
     connect() {
         M.toast({
             text: this.element.dataset.message,
-            classes: this.element.dataset.classes,
+            classes: this.element.classList.toString(),
             displayLength: 5000
         })
     }
