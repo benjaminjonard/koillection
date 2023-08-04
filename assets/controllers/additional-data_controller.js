@@ -134,6 +134,7 @@ export default class extends Controller {
 
     injectData(data) {
         data.forEach((datum) => {
+            console.log(datum);
             let alreadyExists = false;
             let type, label, html;
             [type, label, html] = datum;

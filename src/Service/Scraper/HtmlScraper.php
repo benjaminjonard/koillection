@@ -139,6 +139,11 @@ readonly class HtmlScraper
                 return $value;
             }
 
+            // Try to match alpha3 code
+            if (strlen($value) === 3 && Countries::alpha3CodeExists($value)) {
+                return $value;
+            }
+
             // Else try to match the country name
             return array_flip(Countries::getNames())[$value] ?? null;
         }

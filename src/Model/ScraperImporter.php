@@ -35,6 +35,7 @@ class ScraperImporter
         $scraper->setName($data['name'] ?? null);
         $scraper->setNamePath($data['namePath'] ?? null);
         $scraper->setImagePath($data['imagePath'] ?? null);
+        $scraper->setUrlPattern($data['urlPattern'] ?? null);
 
         foreach ($data['dataPaths'] as $key => $dataPath) {
             $newPath = (new Path())

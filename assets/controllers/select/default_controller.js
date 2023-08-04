@@ -70,7 +70,6 @@ export default class extends Controller {
     }
 
     update({ detail: { value } }) {
-        console.log(value, this.select2);
         this.select2.val(value);
     }
 }

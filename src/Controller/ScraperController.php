@@ -175,6 +175,7 @@ class ScraperController extends AbstractController
         $data["name"] = $scraper->getName();
         $data["namePath"] = $scraper->getNamePath();
         $data["imagePath"] = $scraper->getImagePath();
+        $data["urlPattern"] = $scraper->getUrlPattern();
         $data["dataPaths"] = [];
         foreach ($scraper->getDataPaths() as $key => $dataPath) {
             $data["dataPaths"][] = [
