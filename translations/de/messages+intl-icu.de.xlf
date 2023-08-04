@@ -925,12 +925,6 @@
         <target>Datei</target>
       </segment>
     </unit>
-    <unit id="VUlGgVE" name="label.add_choice_list">
-      <segment state="translated">
-        <source>Add list :</source>
-        <target>Liste hinzufügen:</target>
-      </segment>
-    </unit>
     <unit id=".eH3OZY" name="counter.item">
       <segment state="translated">
         <source>{count, plural, one {# item} other {# items}}</source>
@@ -3269,6 +3263,18 @@
       <segment state="translated">
         <source>Show help for dark theme</source>
         <target>Zeige Hilfe für dunkles Theme</target>
+      </segment>
+    </unit>
+    <unit id="VzBOkPf" name="label.checkbox">
+      <segment state="translated">
+        <source>Checkbox</source>
+        <target>Checkbox</target>
+      </segment>
+    </unit>
+    <unit id="TfoPMdx" name="btn.add_list">
+      <segment state="translated">
+        <source>List</source>
+        <target>Liste</target>
       </segment>
     </unit>
   </file>

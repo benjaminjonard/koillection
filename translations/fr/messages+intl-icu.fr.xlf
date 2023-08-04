@@ -927,7 +927,7 @@
     </unit>
     <unit id="VUlGgVE" name="label.add_choice_list">
       <segment state="translated">
-        <source>Add list :</source>
+        <source>Add choice list :</source>
         <target>Ajouter une liste de choix :</target>
       </segment>
     </unit>
@@ -3269,6 +3269,24 @@
       <segment state="translated">
         <source>Show help for dark theme</source>
         <target>Afficher l'aide pour le thème sombre</target>
+      </segment>
+    </unit>
+    <unit id="VzBOkPf" name="label.checkbox">
+      <segment state="translated">
+        <source>Checkbox</source>
+        <target>Case à cocher</target>
+      </segment>
+    </unit>
+    <unit id="TfoPMdx" name="btn.add_list">
+      <segment state="translated">
+        <source>List</source>
+        <target>Liste</target>
+      </segment>
+    </unit>
+    <unit id="hbMADfF" name="btn.add_list_element">
+      <segment state="translated">
+        <source>Add list element</source>
+        <target>Ajouter un élément</target>
       </segment>
     </unit>
   </file>
