@@ -3277,5 +3277,11 @@
         <target>Liste</target>
       </segment>
     </unit>
+    <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bearbeiten</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
