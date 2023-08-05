@@ -18,15 +18,18 @@
 # Koillection
 
 Koillection is a self-hosted collection manager created to keep track of physical (mostly) collections of any kind like books, DVDs, stamps, games... 
-As Koillection is meant to be used for any kind of collections, it doesn't support automatic download of metadata. But it offers the possibility to add your own metadata freely.
+Koillection is meant to be used for any kind of collections and doesn't come with pre-built metadata download. But you can tailor your own HTML scraper, or you can add your own metadata freely.
     
-You can find detailled informations in the <a href="https://github.com/koillection/koillection/wiki">wiki</a> (under construction)
+You can find detailed information in the <a href="https://github.com/koillection/koillection/wiki">wiki</a> (under construction)
 
 ## Installation
 See the <a href="https://github.com/koillection/koillection/wiki/Installation">Installation page</a> in the wiki
 
 ## Updating
 See the <a href="https://github.com/koillection/koillection/wiki/Updating">Updating page</a> in the wiki
+
+## Scraping
+See the <a href="https://github.com/koillection/koillection/wiki/Scraping">Scraping page</a> in the wiki
 
 ## Demo
 

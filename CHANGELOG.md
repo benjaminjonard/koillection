@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.9] / 2023-08-05
+### Features
+- Add list field type (benjaminjonard)
+- New scraping feature, see here : [Scraping wiki](https://github.com/benjaminjonard/koillection/wiki/Scraping) (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+
 ## [1.4.8] / 2023-07-24
 ### Features
 - Add Polish translation (bartoszLesniewski and Lenetis)
