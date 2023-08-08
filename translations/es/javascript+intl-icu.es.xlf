@@ -193,5 +193,11 @@
         <target>Solo yo puedo ver esta página</target>
       </segment>
     </unit>
+    <unit id="a048xMx" name="label.list_element_value">
+      <segment state="translated">
+        <source>List element value</source>
+        <target>Listar valor del elemento</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
