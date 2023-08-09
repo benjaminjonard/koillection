@@ -92,6 +92,8 @@ table img {
     float: right !important;
     margin-left: 3px !important;
     margin-top: 6px !important;
+    z-index: 1;
+    position: relative;
 }
 
 .select2-selection__choice__remove:hover {
@@ -2245,4 +2247,8 @@ tr {
 .file-data + .help {
     top: -10px;
     margin-bottom: 10px;
+}
+
+.select2-selection__choice__display span {
+    padding-right: 30px;
 }
