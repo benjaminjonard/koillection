@@ -9,9 +9,9 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
-    "@babel/preset-env": "7.22.9",
-    "@hotwired/stimulus": "3.2.1",
+    "@babel/core": "7.22.10",
+    "@babel/preset-env": "7.22.10",
+    "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.1-alpha",
     "@symfony/stimulus-bridge": "3.2.2",
     "@symfony/webpack-encore": "4.4.0",
@@ -19,7 +19,7 @@
     "core-js": "3.32.0",
     "croppie": "2.6.5",
     "echarts": "5.4.3",
-    "regenerator-runtime": "0.13.11",
+    "regenerator-runtime": "0.14.0",
     "sortablejs": "1.15.0",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.0",
