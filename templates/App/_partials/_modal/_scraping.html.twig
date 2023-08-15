@@ -21,7 +21,9 @@
                     </div>
 
                     <div class="row" data-scraping-target="dataToScrapContainer">
-                        {{ form_row(scrapingForm.dataToScrap) }}
+                        {% if scrapingForm.dataToScrap is defined %}
+                            {{ form_row(scrapingForm.dataToScrap) }}
+                        {% endif %}
                     </div>
                 </div>
 

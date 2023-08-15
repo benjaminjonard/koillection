@@ -68,18 +68,13 @@ class ScrapingType extends AbstractType
         };
 
         $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
+            FormEvents::PRE_SUBMIT,
             function (FormEvent $event) use ($formModifier): void {
-                $data = $event->getData();
-                $formModifier($event->getForm(), $data->getScraper());
-            }
-        );
-
-        $builder->get('scraper')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier): void {
-                $scraper = $event->getForm()->getData();
-                $formModifier($event->getForm()->getParent(), $scraper);
+                $dataToScrap = isset($event->getData()['dataToScrap']) && $event->getData()['dataToScrap'] !== [] ? $event->getData()['dataToScrap'] : [];
+                if($dataToScrap !== []) {
+                    $data = $event->getData();
+                    $formModifier($event->getForm(), $data->getScraper());
+                }
             }
         );
     }
