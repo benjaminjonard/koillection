@@ -43,9 +43,12 @@ readonly class HtmlScraper
 
         $crawler = new Crawler($content);
 
+        $image = $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null;
+        $image = $this->guessHost($image, $scraping);
+
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
-            'image' => $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
+            'image' => $image,
             'data' => $this->scrapData($scraping, $crawler),
             'scrapedUrl' => $scraping->getUrl()
         ];
@@ -64,7 +67,7 @@ readonly class HtmlScraper
             $results =  $crawler->evaluate($xPath);
 
             if ($results instanceof Crawler) {
-                $results =  $results->each(function (Crawler $node): string {
+                $results = $results->each(function (Crawler $node): string {
                     return $node->text();
                 });
             }
@@ -149,5 +152,20 @@ readonly class HtmlScraper
         }
 
         return null;
+    }
+
+    public function guessHost(?string $url, Scraping $scraping): ?string
+    {
+        if ($url === null) {
+            return null;
+        }
+
+        $urlElements = parse_url($url);
+        if (!isset($urlElements['host'])) {
+            $scrapingUrlElements = parse_url($scraping->getUrl());
+            $url = $scrapingUrlElements['scheme'] . '://' . $scrapingUrlElements['host'] . $urlElements['path'];
+        }
+
+        return $url;
     }
 }

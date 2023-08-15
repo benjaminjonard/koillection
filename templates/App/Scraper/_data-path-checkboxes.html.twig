@@ -1,1 +1,3 @@
-{{ form_row(form.dataToScrap, {'attr': {'autocomplete': 'off'}}) }}
+{% if form.dataToScrap is defined %}
+    {{ form_row(form.dataToScrap, {'attr': {'autocomplete': 'off'}}) }}
+{% endif %}
