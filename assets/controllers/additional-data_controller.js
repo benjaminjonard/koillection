@@ -135,12 +135,14 @@ export default class extends Controller {
     injectData(data) {
         data.forEach((datum) => {
             let existingDatum = null;
+            let existingValue = null;
             let type, label, html;
             [type, label, html] = datum;
 
             this.labelTargets.forEach((input) => {
                 if (input.value === label) {
                     existingDatum = input.closest('[data-additional-data-target="datum"]');
+                    existingValue = existingDatum.querySelector('[data-additional-data-target="value"]');
                 }
             });
 
@@ -150,10 +152,10 @@ export default class extends Controller {
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
                 holder.insertAdjacentHTML('beforeend', html);
                 this.index++;
-            } else if (existingDatum.querySelector('[data-additional-data-target="value"]').value === '') {
+            } else if ( (existingValue.type === "text" || existingValue.type === "number") && existingValue.value === '') {
                 let div = document.createElement('div');
                 div.innerHTML = html.trim();
-                existingDatum.querySelector('[data-additional-data-target="value"]').value = div.querySelector('[data-additional-data-target="value"]').value;
+                existingValue.value = div.querySelector('[data-additional-data-target="value"]').value;
             }
         })
 
