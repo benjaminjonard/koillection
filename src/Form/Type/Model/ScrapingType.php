@@ -56,25 +56,31 @@ class ScrapingType extends AbstractType
         }
 
         $formModifier = function (FormInterface $form, Scraper $scraper = null): void {
+            $choices = null === $scraper ? [] : $scraper->getDataPaths();
+
             $form->add('dataToScrap', EntityType::class, [
                 'class' => Path::class,
                 'choice_label' => 'name',
-                'choices' => $scraper?->getDataPaths() ?: [],
+                'choices' => $choices,
                 'expanded' => true,
                 'multiple' => true,
                 'required' => false,
-                'empty_data' => '',
             ]);
         };
 
         $builder->addEventListener(
-            FormEvents::PRE_SUBMIT,
+            FormEvents::PRE_SET_DATA,
             function (FormEvent $event) use ($formModifier): void {
-                $dataToScrap = isset($event->getData()['dataToScrap']) && $event->getData()['dataToScrap'] !== [] ? $event->getData()['dataToScrap'] : [];
-                if($dataToScrap !== []) {
-                    $data = $event->getData();
-                    $formModifier($event->getForm(), $data->getScraper());
-                }
+                $data = $event->getData();
+                $formModifier($event->getForm(), $data->getScraper());
+            }
+        );
+
+        $builder->get('scraper')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier): void {
+                $scraper = $event->getForm()->getData();
+                $formModifier($event->getForm()->getParent(), $scraper);
             }
         );
     }
