@@ -8,6 +8,7 @@
            data-initial-value="{{ datum.value|default('') }}"
            data-datepicker-target="input"
            pattern="{{ getValidationRegexForDateFormat(app.user.dateFormat) }}"
+           data-additional-data-target="value"
     >
     <label for="data_{{ iteration }}_value" class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }} ({{ app.user.dateFormatForJs }})</label>
     <i class="fa fa-calendar fa-fw" data-action="click->datepicker#open"></i>

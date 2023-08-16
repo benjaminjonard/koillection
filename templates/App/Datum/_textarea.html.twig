@@ -4,6 +4,7 @@
                   name="{{ entity }}[data][{{ iteration }}][value]"
                   class="materialize-textarea"
                   placeholder=" "
+                  data-additional-data-target="value"
         >
         {% if datum is defined %}{{ datum.value }}{% endif %}
     </textarea>

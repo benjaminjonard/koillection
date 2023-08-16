@@ -5,6 +5,7 @@
     <input data-action="change->file-input#displayFilename" type="file" id="data_{{ iteration }}_fileFile"
            name="{{ entity }}[data][{{ iteration }}][fileFile]"
            data-file-input-target="input"
+           data-additional-data-target="value"
     >
     <div data-file-input-target="filename" class="datum-original-filename">
         {% if datum is defined %}{{ datum.originalFilename }}{% endif %}

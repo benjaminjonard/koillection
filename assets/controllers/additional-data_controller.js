@@ -134,23 +134,26 @@ export default class extends Controller {
 
     injectData(data) {
         data.forEach((datum) => {
-            console.log(datum);
-            let alreadyExists = false;
+            let existingDatum = null;
             let type, label, html;
             [type, label, html] = datum;
 
             this.labelTargets.forEach((input) => {
                 if (input.value === label) {
-                    alreadyExists = true;
+                    existingDatum = input.closest('[data-additional-data-target="datum"]');
                 }
             });
 
-            if (alreadyExists === false) {
+            if (existingDatum === null) {
                 let holder = type == 'image' ? this.imagesHolderTarget : this.textsHolderTarget;
                 html = html.replace(/__placeholder__/g, this.index);
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
                 holder.insertAdjacentHTML('beforeend', html);
                 this.index++;
+            } else if (existingDatum.querySelector('[data-additional-data-target="value"]').value === '') {
+                let div = document.createElement('div');
+                div.innerHTML = html.trim();
+                existingDatum.querySelector('[data-additional-data-target="value"]').value = div.querySelector('[data-additional-data-target="value"]').value;
             }
         })
 

@@ -5,6 +5,7 @@
            maxlength="255"
            {% if datum is defined %}value="{{ datum.value }}"{% endif %}
            placeholder=" "
+           data-additional-data-target="value"
     >
     <label for="data_{{ iteration }}_value" class="{% if datum is defined %}active{% endif %}">{{ 'label.value'|trans }}</label>
 </div>

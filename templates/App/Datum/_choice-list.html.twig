@@ -1,7 +1,7 @@
 {% set values = datum.value|default(null)|jsonDecode %}
 <div class="input-field col s10 offset-s1 m5">
     <select id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value][]"
-            data-controller="select--default" multiple>
+            data-controller="select--default" multiple data-additional-data-target="value">
         {% for choice in choiceList.choices %}
             <option value="{{ choice }}"
                     {% if datum is defined and choice in values %}selected{% endif %}>{{ choice }}</option>

@@ -1,6 +1,6 @@
 <div class="input-field col col s10 offset-s1 m5">
     <label>
-        <input type="checkbox" id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]"
+        <input type="checkbox" id="data_{{ iteration }}_value" name="{{ entity }}[data][{{ iteration }}][value]" data-additional-data-target="value"
                {% if datum is defined and datum.value == true %}checked{% endif %}
         />
         <span></span>

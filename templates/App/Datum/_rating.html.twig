@@ -3,6 +3,7 @@
         {% for i in 10..1 %}
             <input type="radio" id="data_{{ iteration }}_value_{{ i }}"
                    name="{{ entity }}[data][{{ iteration }}][value]" value="{{ i }}"
+                   data-additional-data-target="value"
                    {% if datum is defined and datum.value == i %}checked{% endif %}>
             <label class="{{ i % 2 == 0 ? 'fa-star' : 'fa-star-half' }}"
                    for="data_{{ iteration }}_value_{{ i }}"></label>
