@@ -35,6 +35,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     openssl \
     php8.2 \
     php8.2-apcu \
+    php8.2-curl \
     php8.2-pgsql \
     php8.2-mysql \
     php8.2-mbstring \

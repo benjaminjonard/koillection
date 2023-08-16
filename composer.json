@@ -61,7 +61,8 @@
         "twig/extra-bundle": "3.7.0",
         "twig/intl-extra": "3.7.0",
         "twig/string-extra": "3.7.0",
-        "twig/twig": "3.7.0"
+        "twig/twig": "3.7.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "brianium/paratest": "7.2.5",
