@@ -1,6 +1,6 @@
 {% set hasChoiceList = choiceList is defined and choiceList is not null %}
 
-<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-additional-data-target="datum">
+<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-additional-data-target="datum" data-iteration="{{ iteration }}">
     <div class="col s12 l10 offset-l1 xl8 offset-xl2 row">
         <input type="hidden"
                id="data_{{ iteration }}_type"

@@ -152,10 +152,13 @@ export default class extends Controller {
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
                 holder.insertAdjacentHTML('beforeend', html);
                 this.index++;
-            } else if ( (existingValue.type === "text" || existingValue.type === "number") && existingValue.value === '') {
+            } else if (existingValue.value === '') {
+                html = html.replace(/__placeholder__/g, existingDatum.dataset.iteration);
+                html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
+
                 let div = document.createElement('div');
                 div.innerHTML = html.trim();
-                existingValue.value = div.querySelector('[data-additional-data-target="value"]').value;
+                existingDatum.replaceWith(div);
             }
         })
 
