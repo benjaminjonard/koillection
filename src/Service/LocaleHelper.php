@@ -19,7 +19,6 @@ readonly class LocaleHelper
         $languages = [];
 
         foreach ($this->enabledLocales as $locale) {
-            $locale = str_replace('-', '_', $locale);
             $languages[$locale] = ucfirst(Locales::getName($locale, $locale));
         }
 
