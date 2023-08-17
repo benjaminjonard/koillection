@@ -32,6 +32,8 @@ readonly class EnumRuntime implements RuntimeExtensionInterface
 
     public function getLocaleLabel(string $code): string
     {
+        $this->localeHelper->getLocaleLabels();
+
         return $this->localeHelper->getLocaleLabels()[$code] ?? $this->localeHelper->getLocaleLabels()[$this->localeHelper->getDefaultLocale()];
     }
 }

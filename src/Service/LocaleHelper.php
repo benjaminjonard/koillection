@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use Symfony\Component\Intl\Languages;
+use Symfony\Component\Intl\Locales;
 
 readonly class LocaleHelper
 {
@@ -19,7 +19,8 @@ readonly class LocaleHelper
         $languages = [];
 
         foreach ($this->enabledLocales as $locale) {
-            $languages[$locale] = ucfirst(Languages::getName($locale, $locale));
+            $locale = str_replace('-', '_', $locale);
+            $languages[$locale] = ucfirst(Locales::getName($locale, $locale));
         }
 
         return $languages;

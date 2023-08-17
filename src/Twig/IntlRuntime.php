@@ -23,6 +23,10 @@ class IntlRuntime implements RuntimeExtensionInterface
             $countryCode = "US";
         }
 
+        if (strlen($countryCode) > 2) {
+            $countryCode = substr($countryCode, -2);
+        }
+
         $regionalOffset = 0x1F1A5;
 
         return mb_chr($regionalOffset + mb_ord($countryCode[0], 'UTF-8'), 'UTF-8')

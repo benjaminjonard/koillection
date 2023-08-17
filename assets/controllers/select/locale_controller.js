@@ -49,9 +49,14 @@ export default class extends Controller {
             countryCode = 'us';
         }
 
+        if (countryCode.length === 5) {
+            countryCode = countryCode.slice(-2);
+        }
+
+        console.log(countryCode)
+
         const codePoints = countryCode
             .toUpperCase()
-            .slice(0, 2)
             .split('')
             .map(char =>  127397 + char.charCodeAt(0));
 
