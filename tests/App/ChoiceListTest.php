@@ -88,7 +88,7 @@ class ChoiceListTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/choice-lists/');
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/choice-lists/'.$choiceList->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

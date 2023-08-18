@@ -112,7 +112,7 @@ class TagCategoryTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/tag-categories/'.$tagCategory->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tag-categories/'.$tagCategory->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

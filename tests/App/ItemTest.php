@@ -307,7 +307,7 @@ class ItemTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/items/'.$item->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/items/'.$item->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

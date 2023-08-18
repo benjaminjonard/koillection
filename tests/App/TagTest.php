@@ -124,7 +124,7 @@ class TagTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/tags/'.$tag->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tags/'.$tag->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -147,7 +147,7 @@ class TagTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/tags');
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tags/delete-unused-tags');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

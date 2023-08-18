@@ -60,7 +60,7 @@ class InventoryTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/inventories/'.$inventory->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/inventories/'.$inventory->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

@@ -3499,5 +3499,11 @@
         <target>OK</target>
       </segment>
     </unit>
+    <unit id="i5Tdb0O" name="message.delete.choice-list">
+      <segment state="translated">
+        <source>Are you sure you want to delete this choice list ? It will be permanently lost...</source>
+        <target>Are you sure you want to delete this choice list ? It will be permanently lost...</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

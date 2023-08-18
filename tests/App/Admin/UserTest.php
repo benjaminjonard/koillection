@@ -94,7 +94,7 @@ class UserTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/admin/users');
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/'.$user->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -110,7 +110,7 @@ class UserTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/admin/users');
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/'.$admin->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         UserFactory::assert()->exists(['id' => $admin->getId()]);

@@ -109,7 +109,7 @@ class TemplateTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/templates/'.$template->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/templates/'.$template->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

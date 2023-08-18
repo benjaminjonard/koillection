@@ -294,7 +294,7 @@ class CollectionTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/collections/'.$collection->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -318,7 +318,7 @@ class CollectionTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/collections/'.$collection->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/collections/'.$childCollection->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

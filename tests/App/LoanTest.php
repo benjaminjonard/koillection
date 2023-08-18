@@ -52,7 +52,7 @@ class LoanTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/loans');
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/loans/'.$loan->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

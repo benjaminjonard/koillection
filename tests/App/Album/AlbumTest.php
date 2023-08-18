@@ -150,7 +150,7 @@ class AlbumTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/albums/'.$album->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/albums/'.$album->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();

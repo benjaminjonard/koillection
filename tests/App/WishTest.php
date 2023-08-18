@@ -119,7 +119,7 @@ class WishTest extends AppTestCase
         // Act
         $crawler = $this->client->request('GET', '/wishlists/'.$wishlist->getId());
         $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/wishes/'.$wish->getId().'/delete');
-        $this->client->submitForm('Agree');
+        $this->client->submitForm('OK');
 
         // Assert
         $this->assertResponseIsSuccessful();
