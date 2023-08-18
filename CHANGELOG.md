@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.10] / 2023-08-18
+### Features
+- Add Brazilian Portuguese translation (brunoccr)
+
+### Fixes
+- Fix overlapping remove button on lists (benjaminjonard)
+- Fix scrappers with empty data (benjaminjonard)
+
+### Miscellaneous
+- Try to guess image url host if missing when scraping (benjaminjonard)
+- Fill existing empty fields when scraping (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update spanish translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.4.9] / 2023-08-05
 ### Features
 - Add list field type (benjaminjonard)
