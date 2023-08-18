@@ -3493,5 +3493,11 @@
         <target>Url pattern</target>
       </segment>
     </unit>
+    <unit id="FPWuWud" name="btn.ok">
+      <segment state="translated">
+        <source>OK</source>
+        <target>OK</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

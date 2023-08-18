@@ -12,9 +12,9 @@
                 <div class="right">
                     <form name="form" method="post">
                         <button type="submit" class="modal-action modal-close waves-effect waves-light btn col s2">
-                            Agree
+                            {{ 'btn.ok'|trans }}
                         </button>
-                        <a class="modal-close waves-effect waves-light btn btn-cancel col s2">Disagree</a>
+                        <a class="modal-close waves-effect waves-light btn btn-cancel col s2">{{ 'btn.cancel'|trans }}</a>
                         <input type="hidden" id="form__token" name="form[_token]" value="{{ csrf_token('form') }}">
                     </form>
                 </div>
