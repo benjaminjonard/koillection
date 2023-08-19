@@ -3493,5 +3493,17 @@
         <target>Patrón de URL</target>
       </segment>
     </unit>
+    <unit id="FPWuWud" name="btn.ok">
+      <segment state="translated">
+        <source>OK</source>
+        <target>Aceptar</target>
+      </segment>
+    </unit>
+    <unit id="i5Tdb0O" name="message.delete.choice-list">
+      <segment state="translated">
+        <source>Are you sure you want to delete this choice list ? It will be permanently lost...</source>
+        <target>¿Estás seguro que quieres eliminar eesta lista de opciones? Esta acción no se puede deshacer.</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

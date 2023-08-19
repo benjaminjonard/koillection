@@ -3493,5 +3493,17 @@
         <target>Padrão de URL</target>
       </segment>
     </unit>
+    <unit id="FPWuWud" name="btn.ok">
+      <segment state="translated">
+        <source>OK</source>
+        <target>OK</target>
+      </segment>
+    </unit>
+    <unit id="i5Tdb0O" name="message.delete.choice-list">
+      <segment state="translated">
+        <source>Are you sure you want to delete this choice list ? It will be permanently lost...</source>
+        <target>Tem certeza de que deseja excluir esta lista de opções? Será perdido permanentemente...</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

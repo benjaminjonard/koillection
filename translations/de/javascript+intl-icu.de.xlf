@@ -193,5 +193,11 @@
         <target>Private Beschreibung</target>
       </segment>
     </unit>
+    <unit id="a048xMx" name="label.list_element_value">
+      <segment state="translated">
+        <source>List element value</source>
+        <target>Listenelement Wert</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
