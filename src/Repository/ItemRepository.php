@@ -96,8 +96,8 @@ class ItemRepository extends ServiceEntityRepository
             if ($search->getSearchInData()) {
                 $whereClause = 'LOWER(i.name) LIKE LOWER(:term) OR LOWER(d.value) LIKE LOWER(:term)';
                 $qb
-                    ->leftJoin('i.data', 'd', 'WITH', 'd.type = :type')
-                    ->setParameter('type', DatumTypeEnum::TYPE_TEXT)
+                    ->leftJoin('i.data', 'd', 'WITH', 'd.type IN (:types)')
+                    ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_SEARCH)
                 ;
             }
 

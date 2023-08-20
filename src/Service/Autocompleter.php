@@ -144,7 +144,7 @@ class Autocompleter
                      ELSE 0
                 END) AS relevance
             FROM {$itemTable} i
-            LEFT JOIN {$datumTable} d ON d.item_id = i.id AND d.type = ?
+            LEFT JOIN {$datumTable} d ON d.item_id = i.id AND d.type IN (?)
             WHERE i.owner_id = ?
             AND (LOWER(i.name) LIKE LOWER(?) OR LOWER(d.value) LIKE LOWER(?))
         ";
@@ -153,7 +153,7 @@ class Autocompleter
         $this->params[] = '%'.$term.'%';
         $this->params[] = $term;
         $this->params[] = '%'.$term.'%';
-        $this->params[] = DatumTypeEnum::TYPE_TEXT;
+        $this->params[] = DatumTypeEnum::AVAILABLE_FOR_SEARCH;
         $this->params[] = $user->getId();
         $this->params[] = '%'.$term.'%';
         $this->params[] = '%'.$term.'%';
