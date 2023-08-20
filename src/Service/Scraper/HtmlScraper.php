@@ -138,13 +138,13 @@ readonly class HtmlScraper
             $value = array_shift($values);
 
             // Try to match alpha2 code
-            if (strlen($value) === 2 && Countries::exists($value)) {
-                return $value;
+            if (strlen($value) === 2 && Countries::exists(strtoupper($value))) {
+                return strtoupper($value);
             }
 
             // Try to match alpha3 code
-            if (strlen($value) === 3 && Countries::alpha3CodeExists($value)) {
-                return $value;
+            if (strlen($value) === 3 && Countries::alpha3CodeExists(strtoupper($value))) {
+                return strtoupper($value);
             }
 
             // Else try to match the country name
