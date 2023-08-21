@@ -189,7 +189,7 @@ class CollectionRepository extends ServiceEntityRepository
                 ->where('child.parent = :parent')
                 ->setParameter('parent', $collection->getId())
                 ->setParameter('label', $collection->getChildrenDisplayConfiguration()->getSortingProperty())
-                ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
+                ->setParameter('types', DatumTypeEnum::TEXT_TYPES)
             ;
 
             // If list, preload datum used for ordering and in columns

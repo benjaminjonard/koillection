@@ -210,7 +210,7 @@ class ItemRepository extends ServiceEntityRepository
                 ->where('item.collection = :collection')
                 ->setParameter('collection', $collection->getId())
                 ->setParameter('label', $collection->getItemsDisplayConfiguration()->getSortingProperty())
-                ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_ORDERING)
+                ->setParameter('types', DatumTypeEnum::TEXT_TYPES)
             ;
 
             // If list, preload datum used for ordering and in columns

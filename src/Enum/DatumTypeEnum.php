@@ -70,16 +70,6 @@ class DatumTypeEnum
         self::TYPE_SIGN,
     ];
 
-    public const AVAILABLE_FOR_ORDERING = [
-        self::TYPE_TEXT,
-        self::TYPE_CHOICE_LIST,
-        self::TYPE_DATE,
-        self::TYPE_NUMBER,
-        self::TYPE_PRICE,
-        self::TYPE_RATING,
-        self::TYPE_COUNTRY,
-    ];
-
     public const AVAILABLE_FOR_SCRAPING = [
         self::TYPE_TEXT,
         self::TYPE_LIST,

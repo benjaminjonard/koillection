@@ -110,7 +110,7 @@ class CollectionController extends AbstractController
                 'form.item_sorting.default_value' => null,
                 'form.item_sorting.number_of_children' => ReservedLabelEnum::NUMBER_OF_CHILDREN,
                 'form.item_sorting.number_of_items' => ReservedLabelEnum::NUMBER_OF_ITEMS,
-            ], $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::AVAILABLE_FOR_ORDERING)),
+            ], $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::TEXT_TYPES)),
             'columns' => [
                 'availableColumnLabels' => $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::TEXT_TYPES),
                 'selectedColumnsLabels' => $displayConfiguration->getColumns()

@@ -36,7 +36,7 @@ class DisplayConfiguration
     private ?string $sortingProperty = null;
 
     #[ORM\Column(type: Types::STRING, length: 15, nullable: true)]
-    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_ORDERING)]
+    #[Assert\Choice(choices: DatumTypeEnum::TEXT_TYPES)]
     private ?string $sortingType = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]

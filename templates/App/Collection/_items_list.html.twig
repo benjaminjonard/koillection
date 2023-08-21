@@ -17,7 +17,7 @@
                     {{ column }}
                     <span>
                         <i class="fa fa-long-arrow-up {{ sortingProperty == column and sortingDirection == 'ASC' ? 'active' }}" data-column="name" data-action="click->table#sortAsc" data-table-target="sorter"></i>
-                        <i class="fa fa-long-arrow-down {{ sortingProperty == column and sortingDirection == 'ASC' ? 'active' }}" data-column="name" data-action="click->table#sortDesc" data-table-target="sorter"></i>
+                        <i class="fa fa-long-arrow-down {{ sortingProperty == column and sortingDirection == 'DESC' ? 'active' }}" data-column="name" data-action="click->table#sortDesc" data-table-target="sorter"></i>
                     </span>
                 </th>
             {% endfor %}
@@ -49,7 +49,7 @@
                 {% for column in displayConfiguration.columns %}
                     {% set datum = item.getDatumByLabel(column) %}
 
-                    <td class="center hide-on-small-and-down" data-column="column" data-value="{{ datum.value }}">
+                    <td class="center hide-on-small-and-down" data-column="column" data-value="{{ datum.value|default('') }}">
                         {% if datum is not null %}
                             {% if datum.type != 'link' %}
                                 <a class="table-link" href="{{ link }}"></a>

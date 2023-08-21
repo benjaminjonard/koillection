@@ -40,8 +40,13 @@ class ArraySorter
             case DatumTypeEnum::TYPE_NUMBER:
             case DatumTypeEnum::TYPE_PRICE:
             case DatumTypeEnum::TYPE_CHOICE_LIST:
+            case DatumTypeEnum::TYPE_LIST:
             case DatumTypeEnum::TYPE_TEXT:
+            case DatumTypeEnum::TYPE_TEXTAREA:
             case DatumTypeEnum::TYPE_DATE:
+            case DatumTypeEnum::TYPE_CHECKBOX:
+            case DatumTypeEnum::TYPE_LINK:
+            case DatumTypeEnum::TYPE_FILE:
                 usort($array, function ($a, $b) use ($direction): bool|int {
                     return $this->compare((string) $this->getOrderingValue($a), (string) $this->getOrderingValue($b), $direction);
                 });

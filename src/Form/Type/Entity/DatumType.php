@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -64,6 +65,18 @@ class DatumType extends AbstractType
                             'expanded' => true,
                             'multiple' => false,
                             'required' => false,
+                        ]),
+                    DatumTypeEnum::TYPE_CHECKBOX => $form
+                        ->add('value', CheckboxType::class, [
+                            'required' => false,
+                            'model_transformer' => new CallbackTransformer(
+                                static function ($value) {
+                                    return $value === true ? 'on' : null;
+                                },
+                                static function ($value) {
+                                    return $value === true ? '1' : '0';
+                                }
+                            ),
                         ]),
                     DatumTypeEnum::TYPE_DATE => $form
                         ->add('value', TextType::class, [
