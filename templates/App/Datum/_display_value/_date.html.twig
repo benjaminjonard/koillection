@@ -1,3 +1,5 @@
+<span data-value="{{ datum.value }}"></span>
+
 {% if datum.value is not empty %}
     {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
 {% endif %}
