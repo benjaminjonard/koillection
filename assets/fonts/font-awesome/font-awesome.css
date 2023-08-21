@@ -228,3 +228,9 @@
 .fa-language:before {
   content: "\f1ab";
 }
+.fa-long-arrow-down:before {
+  content: "\f175";
+}
+.fa-long-arrow-up:before {
+  content: "\f176";
+}

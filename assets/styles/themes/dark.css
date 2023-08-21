@@ -30,7 +30,8 @@
 }
 
 /** PRIMARY COLOR **/
-.breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a, .navigation-block i {
+.breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a, .navigation-block i,
+.fa-long-arrow-down.active, .fa-long-arrow-up.active {
     color: var(--primary-color);
 }
 
@@ -87,7 +88,7 @@ input {
 }
 
 .collections .collection-element .collection-stats, footer, .image-label, .datum-row span.country-name,
-.breadcrumb-item a, .input-field > label {
+.breadcrumb-item a, .input-field > label, .fa-long-arrow-down, .fa-long-arrow-up {
     color: var(--font-color-light);
 }
 

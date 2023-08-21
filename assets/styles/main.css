@@ -2252,3 +2252,7 @@ tr {
 .select2-selection__choice__display span {
     padding-right: 30px;
 }
+
+.fa-long-arrow-down, .fa-long-arrow-up {
+    cursor: pointer;
+}

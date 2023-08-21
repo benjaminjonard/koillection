@@ -1,10 +1,25 @@
-<table class="highlight items-table">
+{% set sortingProperty = displayConfiguration.sortingProperty %}
+{% set sortingDirection = displayConfiguration.sortingDirection %}
+
+<table class="highlight items-table" data-controller="table">
     <thead>
         <tr>
             <th></th>
-            <th>{{ 'label.name'|trans }}</th>
+            <th>
+                {{ 'label.name'|trans }}
+                <span>
+                    <i class="fa fa-long-arrow-up {{ sortingProperty is null and sortingDirection == 'ASC' ? 'active' }}" data-column="name" data-action="click->table#sortAsc" data-table-target="sorter"></i>
+                    <i class="fa fa-long-arrow-down {{ sortingProperty is null and sortingDirection == 'DESC' ? 'active' }}" data-column="name" data-action="click->table#sortDesc" data-table-target="sorter"></i>
+                </span>
+            </th>
             {% for column in displayConfiguration.columns %}
-                <th class="center hide-on-small-and-down">{{ column }}</th>
+                <th class="center hide-on-small-and-down">
+                    {{ column }}
+                    <span>
+                        <i class="fa fa-long-arrow-up {{ sortingProperty == column and sortingDirection == 'ASC' ? 'active' }}" data-column="name" data-action="click->table#sortAsc" data-table-target="sorter"></i>
+                        <i class="fa fa-long-arrow-down {{ sortingProperty == column and sortingDirection == 'ASC' ? 'active' }}" data-column="name" data-action="click->table#sortDesc" data-table-target="sorter"></i>
+                    </span>
+                </th>
             {% endfor %}
             {% if context == 'default' %}
                 {% if displayConfiguration.showVisibility %}
@@ -20,21 +35,21 @@
     <tbody>
         {% for item in items|naturalSorting(displayConfiguration) %}
             {% set link = path('app_item_show'|applyContext, {'id': item.id}) %}
-            <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
+            <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element" data-table-element="row">
                 <td>
                     <a class="table-link" href="{{ link }}"></a>
                     {% if item.imageSmallThumbnail %}
                         <img src="{{ asset(item.imageSmallThumbnail) }}" loading="lazy">
                     {% endif %}
                 </td>
-                <td>
+                <td data-column="name" data-value="{{ item.name }}">
                     <a class="table-link" href="{{ link }}"></a>
                     {{ item.name|u.truncate(50, '...') }}
                 </td>
                 {% for column in displayConfiguration.columns %}
-                    <td class="center hide-on-small-and-down">
-                        {% set datum = item.getDatumByLabel(column) %}
+                    {% set datum = item.getDatumByLabel(column) %}
 
+                    <td class="center hide-on-small-and-down" data-column="column" data-value="{{ datum.value }}">
                         {% if datum is not null %}
                             {% if datum.type != 'link' %}
                                 <a class="table-link" href="{{ link }}"></a>
