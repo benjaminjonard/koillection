@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.11] / 2023-08-29
+### Features
+- Allow metadata search for textareas, lists and choice lists (benjaminjonard)
+- Add basic sorting on list view (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.4.10] / 2023-08-18
 ### Features
 - Add Brazilian Portuguese translation (brunoccr)

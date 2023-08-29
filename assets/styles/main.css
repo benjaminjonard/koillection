@@ -2255,4 +2255,10 @@ tr {
 
 .fa-long-arrow-down, .fa-long-arrow-up {
     cursor: pointer;
+    color: #8f949c;
+    font-size: 16px;
+}
+
+.fa-long-arrow-up {
+    margin-left: 5px;
 }
