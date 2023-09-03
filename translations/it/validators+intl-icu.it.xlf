@@ -4,7 +4,7 @@
     <unit id="m_gMJbR" name="error.parent.same_as_current_object">
       <segment state="translated">
         <source>The parent can't be the same as the current item</source>
-        <target>Il genitore non può essere lo stesso dell'articolo corrente</target>
+        <target>L'elemento principale non può essere uguale all'elemento attuale</target>
       </segment>
     </unit>
     <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
@@ -65,6 +65,12 @@
       <segment state="translated">
         <source>"{label}" label is used multiple times, all labels must be unique</source>
         <target>Etichetta "{label}" usata più volte, tutte le etichette devono essere uniche</target>
+      </segment>
+    </unit>
+    <unit id="IV3649l" name="error.parent.is_child_of_current_object">
+      <segment state="translated">
+        <source>The parent can't be one of the children</source>
+        <target>L'elemento principale non può essere uno dei sottoelementi</target>
       </segment>
     </unit>
   </file>

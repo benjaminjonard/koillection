@@ -925,6 +925,12 @@
         <target>File</target>
       </segment>
     </unit>
+    <unit id="VUlGgVE" name="label.add_choice_list">
+      <segment state="translated">
+        <source>Add choice list :</source>
+        <target>Aggiungi lista di scelta:</target>
+      </segment>
+    </unit>
     <unit id=".eH3OZY" name="counter.item">
       <segment state="translated">
         <source>{count, plural, one {# item} other {# items}}</source>
@@ -3277,10 +3283,226 @@
         <target>Lista</target>
       </segment>
     </unit>
+    <unit id="hbMADfF" name="btn.add_list_element">
+      <segment state="translated">
+        <source>Add list element</source>
+        <target>Aggiungi elemento lista</target>
+      </segment>
+    </unit>
+    <unit id="3UpvF8S" name="menu.scrapers">
+      <segment state="translated">
+        <source>Scrapers</source>
+        <target>Estrattori</target>
+      </segment>
+    </unit>
+    <unit id="c8N1gqs" name="tooltip.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Aggiungi nuovo estrattore</target>
+      </segment>
+    </unit>
+    <unit id="0Skvou0" name="breadcrumb.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Aggiungi nuovo estrattore</target>
+      </segment>
+    </unit>
+    <unit id="orjuiFY" name="title.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>Aggiungi nuovo estrattore</target>
+      </segment>
+    </unit>
+    <unit id="OJ77gpR" name="counter.scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# scraper} other {# scrapers}}</source>
+        <target>{count, plural, one {# estrattore} other {# estrattori}}</target>
+      </segment>
+    </unit>
+    <unit id="fCfS5h4" name="label.name_path">
+      <segment state="translated">
+        <source>Name path</source>
+        <target>Percorso nome</target>
+      </segment>
+    </unit>
+    <unit id="TQZi6HZ" name="label.image_path">
+      <segment state="translated">
+        <source>Image path</source>
+        <target>Percorso immagine</target>
+      </segment>
+    </unit>
+    <unit id="j4zVta3" name="label.path">
+      <segment state="translated">
+        <source>Path</source>
+        <target>Percorso</target>
+      </segment>
+    </unit>
+    <unit id="UxUN4hz" name="btn.add_data_path">
+      <segment state="translated">
+        <source>Add data path</source>
+        <target>Aggiungi percorso dato</target>
+      </segment>
+    </unit>
+    <unit id="WoECGqp" name="btn.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>Estrai</target>
+      </segment>
+    </unit>
+    <unit id="JJiTxDb" name="title.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>Estrai</target>
+      </segment>
+    </unit>
+    <unit id="YGKpgy8" name="label.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>Estrattore</target>
+      </segment>
+    </unit>
+    <unit id="rfCyU5h" name="message.delete.scraper">
+      <segment state="translated">
+        <source>Are you sure you want to delete this scraper ? It will be permanently lost...</source>
+        <target>Confermi di voler eliminare l'estrattore? Verrà eliminato definitivamente...</target>
+      </segment>
+    </unit>
+    <unit id="pVpG91b" name="global.entities.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>Estrattore</target>
+      </segment>
+    </unit>
     <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
       <segment state="translated">
         <source>Edit</source>
         <target>Modifica</target>
+      </segment>
+    </unit>
+    <unit id="PwaCRxg" name="title.edit_scraper">
+      <segment state="translated">
+        <source>Edit scraper {scraper}</source>
+        <target>Modifca estrattore {scraper}</target>
+      </segment>
+    </unit>
+    <unit id="pQMd2KQ" name="message.wiki.scrapper">
+      <segment state="translated">
+        <source>See wiki for help</source>
+        <target>Leggi la wiki per un aiuto</target>
+      </segment>
+    </unit>
+    <unit id="2T801sa" name="tooltip.export">
+      <segment state="translated">
+        <source>Export</source>
+        <target>Esporta</target>
+      </segment>
+    </unit>
+    <unit id="0qbEAs0" name="tooltip.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Importa</target>
+      </segment>
+    </unit>
+    <unit id="4q1Sf3P" name="btn.upload">
+      <segment state="translated">
+        <source>Upload</source>
+        <target>Carica</target>
+      </segment>
+    </unit>
+    <unit id="M7PzMIt" name="title.import_scraper">
+      <segment state="translated">
+        <source>Import scraper from JSON file</source>
+        <target>Importa estrattore da file JSON</target>
+      </segment>
+    </unit>
+    <unit id="Hklmnjp" name="btn.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Importa</target>
+      </segment>
+    </unit>
+    <unit id="gGSqvwG" name="message.scraper_added">
+      <segment state="translated">
+        <source>Scraper {scraper} has been added</source>
+        <target>Estrattore {scraper} aggiunto</target>
+      </segment>
+    </unit>
+    <unit id="r7aNcN4" name="message.scraper_edited">
+      <segment state="translated">
+        <source>Scraper {scraper} has been updated</source>
+        <target>Estrattore {scraper} aggiornato</target>
+      </segment>
+    </unit>
+    <unit id="rX55M3v" name="message.scraper_deleted">
+      <segment state="translated">
+        <source>Scraper {scraper} was deleted</source>
+        <target>Estrattore {scraper} eliminato</target>
+      </segment>
+    </unit>
+    <unit id="DuFvrmE" name="message.scraper_imported">
+      <segment state="translated">
+        <source>Scraper {scraper} was imported</source>
+        <target>Estrattore {scraper} importato</target>
+      </segment>
+    </unit>
+    <unit id="k4Ssjg4" name="label.scraping_feature_enabled">
+      <segment state="translated">
+        <source>Scraping</source>
+        <target>Estrazione</target>
+      </segment>
+    </unit>
+    <unit id="zrNqfUb" name="label.scrap_name">
+      <segment state="translated">
+        <source>Scrap name</source>
+        <target>Estrai nome</target>
+      </segment>
+    </unit>
+    <unit id="DCx9jQb" name="label.scrap_image">
+      <segment state="translated">
+        <source>Scrap image</source>
+        <target>Estrai immagine</target>
+      </segment>
+    </unit>
+    <unit id="0rmld0o" name="message.scraper_import_error">
+      <segment state="translated">
+        <source>Error while importing, incorrect file format</source>
+        <target>Errore durante l'importazione, il formato del file non è corretto</target>
+      </segment>
+    </unit>
+    <unit id="aQEHOsY" name="label.scraped_from_url">
+      <segment state="translated">
+        <source>Scraped from</source>
+        <target>Estratto da</target>
+      </segment>
+    </unit>
+    <unit id="EUgbudS" name="btn.scrap_html_file">
+      <segment state="translated">
+        <source>Scrap HTML file</source>
+        <target>Estrai file HTML</target>
+      </segment>
+    </unit>
+    <unit id="jy9YnDE" name="btn.scrap_url">
+      <segment state="translated">
+        <source>Scrap URL</source>
+        <target>Estrai URL</target>
+      </segment>
+    </unit>
+    <unit id="0ET5fPK" name="label.url_pattern">
+      <segment state="translated">
+        <source>Url pattern</source>
+        <target>Schema URL</target>
+      </segment>
+    </unit>
+    <unit id="FPWuWud" name="btn.ok">
+      <segment state="translated">
+        <source>OK</source>
+        <target>OK</target>
+      </segment>
+    </unit>
+    <unit id="i5Tdb0O" name="message.delete.choice-list">
+      <segment state="translated">
+        <source>Are you sure you want to delete this choice list ? It will be permanently lost...</source>
+        <target>Sei sicuro di voler eliminatre questa lista di scelta? Verrà eliminata definitivamente...</target>
       </segment>
     </unit>
   </file>
