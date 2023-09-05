@@ -9,7 +9,7 @@ jobs:
     name: Security checker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         id: cache-db
         with:
@@ -21,7 +21,7 @@ jobs:
     name: Doctrine schema validator
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
@@ -51,7 +51,7 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Setup php env and install dependencies
       - uses: shivammathur/setup-php@v2
@@ -115,7 +115,7 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
-      -   uses: actions/checkout@v3
+      -   uses: actions/checkout@v4
 
       # Setup php env and install dependencies
       -   uses: shivammathur/setup-php@v2
@@ -179,7 +179,7 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Setup php env and install dependencies
       - uses: shivammathur/setup-php@v2

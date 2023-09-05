@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: benjaminjonard/koillection
           ref: 1.4
