@@ -9,14 +9,14 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.15",
+    "@babel/core": "7.22.17",
     "@babel/preset-env": "7.22.15",
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.1-alpha",
     "@symfony/stimulus-bridge": "3.2.2",
     "@symfony/webpack-encore": "4.4.0",
     "copy-webpack-plugin": "11.0.0",
-    "core-js": "3.32.1",
+    "core-js": "3.32.2",
     "croppie": "2.6.5",
     "echarts": "5.4.3",
     "regenerator-runtime": "0.14.0",
@@ -37,7 +37,7 @@
   "dependencies": {
     "bazinga-translator": "5.1.0",
     "hotkeys-js": "^3.10.2",
-    "intl-messageformat": "10.5.0",
+    "intl-messageformat": "10.5.2",
     "ts-select2": "^0.2.5"
   }
 }
