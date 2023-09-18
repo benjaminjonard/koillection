@@ -136,6 +136,49 @@ class ItemTest extends AppTestCase
         $this->assertSame('Frieren #6', $crawler->filter('[data-swipe-target="next"]')->eq(0)->text());
     }
 
+    public function test_can_get_item_with_null_data(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne(['currency' => 'EUR', 'dateFormat' => DateFormatEnum::FORMAT_SLASH_DMY])->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user])->object();
+
+        $item = ItemFactory::createOne([
+            'name' => 'Frieren #5',
+            'image' => $this->createFile('png'),
+            'collection' => $collection,
+            'owner' => $user,
+            'visibility' => VisibilityEnum::VISIBILITY_PRIVATE,
+            'quantity' => 1,
+        ]);
+
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Authors', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_TEXTAREA, 'label' => 'Description', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 3, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volume', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 4, 'type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Price', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 5, 'type' => DatumTypeEnum::TYPE_COUNTRY, 'label' => 'Country', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 6, 'type' => DatumTypeEnum::TYPE_DATE, 'label' => 'Release date', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 7, 'type' => DatumTypeEnum::TYPE_RATING, 'label' => 'Rating', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 8, 'type' => DatumTypeEnum::TYPE_LINK, 'label' => 'Wiki page', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 9, 'type' => DatumTypeEnum::TYPE_CHOICE_LIST, 'label' => 'Edition', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 10, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'New', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 11, 'type' => DatumTypeEnum::TYPE_CHECKBOX, 'label' => 'Lent', 'value' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 12, 'type' => DatumTypeEnum::TYPE_FILE, 'label' => 'File', 'fileFile' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 13, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'List', 'value' => null]);
+
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => null]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Image', 'fileImage' => null]);
+
+
+        // Act
+        $crawler = $this->client->request('GET', '/items/'.$item->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Frieren #5', $crawler->filter('h1')->innerText());
+    }
+
+
     public function test_can_create_item(): void
     {
         // Arrange
