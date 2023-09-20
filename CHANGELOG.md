@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.12] / 2023-09-20
+### Fixes
+- Fix error when a Country data is empty (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+- Compatibility with Postgres 16 (benjaminjonard)
+
 ## [1.4.11] / 2023-08-29
 ### Features
 - Allow metadata search for textareas, lists and choice lists (benjaminjonard)
