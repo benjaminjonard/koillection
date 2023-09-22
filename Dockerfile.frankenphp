@@ -29,12 +29,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     unzip \
     openssl && \
 # Install PHP extensions
-    install-php-extensions pdo_pgsql && \
-    install-php-extensions pdo_mysql && \
-    install-php-extensions intl && \
-    install-php-extensions gd && \
-    install-php-extensions zip && \
-    install-php-extensions apcu && \
+    install-php-extensions pdo_pgsql pdo_mysql intl gd zip apcu && \
 #Install composer dependencies
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     cd /var/www/koillection && \
