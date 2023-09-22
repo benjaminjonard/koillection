@@ -39,5 +39,6 @@
     "hotkeys-js": "^3.10.2",
     "intl-messageformat": "10.5.3",
     "ts-select2": "^0.2.5"
-  }
+  },
+  "packageManager": "yarn@3.6.3"
 }

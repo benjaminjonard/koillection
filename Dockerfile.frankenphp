@@ -14,23 +14,21 @@ RUN addgroup --gid "$PGID" "$USER" && \
     adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # Install some basics dependencies
     apt-get update && \
-    apt-get install -y curl wget lsb-release && \
+    apt-get install -y curl wget lsb-release gnupg2 && \
 # Nodejs
-    curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-# Yarn
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    NODE_MAJOR=18 && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
 # Install packages
     apt-get update && \
     apt-get install -y \
     ca-certificates \
     apt-transport-https \
-    gnupg2 \
+    nodejs \
     git \
     unzip \
-    openssl \
-    nodejs \
-    yarn && \
+    openssl && \
+# Install PHP extensions
     install-php-extensions pdo_pgsql && \
     install-php-extensions pdo_mysql && \
     install-php-extensions intl && \
@@ -46,14 +44,17 @@ RUN addgroup --gid "$PGID" "$USER" && \
     cd /var/www/koillection/ && \
     php bin/console app:translations:dump && \
 # Install javascript dependencies and build assets
+    corepack enable && \
     cd /var/www/koillection/assets && \
     yarn --version && \
     yarn install && \
     yarn build && \
 # Clean up
-    yarn cache clean && \
+    yarn cache clean --all && \
+    rm -rf /var/www/koillection/assets/.yarn/cache && \
+    rm -rf /var/www/koillection/assets/.yarn/install-state.gz && \
     rm -rf /var/www/koillection/assets/node_modules && \
-    apt-get purge -y wget lsb-release git nodejs yarn apt-transport-https ca-certificates gnupg2 unzip && \
+    apt-get purge -y wget lsb-release git nodejs apt-transport-https ca-certificates gnupg2 unzip && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \

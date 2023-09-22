@@ -1,4 +1,4 @@
-name: Build release image for Docker Hub
+name: Build release image for Docker Hub using FrankenPhp
 on:
   workflow_dispatch:
 

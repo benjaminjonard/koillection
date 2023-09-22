@@ -15,20 +15,18 @@ RUN addgroup --gid "$PGID" "$USER" && \
     adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # Install some basics dependencies
     apt-get update && \
-    apt-get install -y curl lsb-release software-properties-common && \
+    apt-get install -y curl lsb-release software-properties-common gnupg2 && \
 # PHP
     add-apt-repository ppa:ondrej/php && \
 # Nodejs
-    curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-# Yarn
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    NODE_MAJOR=18 && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
 # Install packages
     apt-get update && \
     apt-get install -y \
     ca-certificates \
     apt-transport-https \
-    gnupg2 \
     git \
     unzip \
     nginx-light \
@@ -43,8 +41,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     php8.2-zip \
     php8.2-fpm \
     php8.2-intl \
-    nodejs \
-    yarn && \
+    nodejs && \
 #Install composer dependencies
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     cd /var/www/koillection && \
@@ -53,15 +50,18 @@ RUN addgroup --gid "$PGID" "$USER" && \
 # Dump translation files for javascript
     cd /var/www/koillection/ && \
     php bin/console app:translations:dump && \
-# Install javascript dependencies and build assets
+# Install javascript dependencies and build assets \
+    corepack enable && \
     cd /var/www/koillection/assets && \
     yarn --version && \
     yarn install && \
     yarn build && \
 # Clean up
-    yarn cache clean && \
+    yarn cache clean --all && \
+    rm -rf /var/www/koillection/assets/.yarn/cache && \
+    rm -rf /var/www/koillection/assets/.yarn/install-state.gz && \
     rm -rf /var/www/koillection/assets/node_modules && \
-    apt-get purge -y lsb-release software-properties-common git nodejs yarn apt-transport-https ca-certificates gnupg2 unzip && \
+    apt-get purge -y lsb-release software-properties-common git nodejs apt-transport-https ca-certificates gnupg2 unzip && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
