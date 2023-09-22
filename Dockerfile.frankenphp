@@ -1,0 +1,78 @@
+FROM dunglas/frankenphp
+
+# Environment variables
+ENV APP_ENV='prod'
+ENV PUID='1000'
+ENV PGID='1000'
+ENV USER='koillection'
+ENV FRANKENPHP_CONFIG="worker /var/www/koillection/public/index.php"
+
+COPY ./ /var/www/koillection
+
+# Add User and Group
+RUN addgroup --gid "$PGID" "$USER" && \
+    adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
+# Install some basics dependencies
+    apt-get update && \
+    apt-get install -y curl wget lsb-release && \
+# Nodejs
+    curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+# Yarn
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+# Install packages
+    apt-get update && \
+    apt-get install -y \
+    ca-certificates \
+    apt-transport-https \
+    gnupg2 \
+    git \
+    unzip \
+    openssl \
+    nodejs \
+    yarn && \
+    install-php-extensions pdo_pgsql && \
+    install-php-extensions pdo_mysql && \
+    install-php-extensions intl && \
+    install-php-extensions gd && \
+    install-php-extensions zip && \
+    install-php-extensions apcu && \
+#Install composer dependencies
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    cd /var/www/koillection && \
+    composer install --classmap-authoritative && \
+    composer clearcache && \
+# Dump translation files for javascript
+    cd /var/www/koillection/ && \
+    php bin/console app:translations:dump && \
+# Install javascript dependencies and build assets
+    cd /var/www/koillection/assets && \
+    yarn --version && \
+    yarn install && \
+    yarn build && \
+# Clean up
+    yarn cache clean && \
+    rm -rf /var/www/koillection/assets/node_modules && \
+    apt-get purge -y wget lsb-release git nodejs yarn apt-transport-https ca-certificates gnupg2 unzip && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /usr/local/bin/composer && \
+# Set permissions
+    chown -R "$USER":"$USER" /var/www/koillection && \
+    chmod +x /var/www/koillection/docker/entrypoint-frankenphp.sh && \
+    mkdir /run/php && \
+# Add nginx and PHP config files
+    cp /var/www/koillection/docker/Caddyfile /etc/Caddyfile && \
+    cp /var/www/koillection/docker/php.ini /usr/local/etc/php/conf.d/php.ini
+
+VOLUME /uploads
+
+EXPOSE 80
+EXPOSE 443
+
+WORKDIR /var/www/koillection
+
+HEALTHCHECK CMD curl --fail http://localhost:80/ || exit 1
+
+ENTRYPOINT ["sh", "/var/www/koillection/docker/entrypoint-frankenphp.sh" ]

@@ -20,6 +20,7 @@
         "lexik/jwt-authentication-bundle": "2.19.1",
         "maennchen/zipstream-php": "3.1.0",
         "nelmio/cors-bundle": "2.3.1",
+        "runtime/frankenphp-symfony": "0.1.1",
         "symfony/asset": "6.3.0",
         "symfony/browser-kit": "6.3.2",
         "symfony/cache": "6.3.4",
@@ -139,7 +140,11 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.3.*"
+            "require": "6.3.*",
+            "docker": false
+        },
+        "runtime": {
+            "class": "Runtime\\FrankenPhpSymfony\\Runtime"
         }
     }
 }

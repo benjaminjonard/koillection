@@ -1,0 +1,36 @@
+{
+    #debug
+	frankenphp {
+		worker ./public/index.php
+	}
+}
+
+localhost {
+	#log
+	route {
+		root * public/
+		#php_fastcgi 127.0.0.1:9000
+		# Add trailing slash for directory requests
+		@canonicalPath {
+			file {path}/index.php
+			not path */
+		}
+		redir @canonicalPath {path}/ 308
+
+		# If the requested file does not exist, try index files
+		@indexFiles file {
+			try_files {path} {path}/index.php index.php
+			split_path .php
+		}
+		rewrite @indexFiles {http.matchers.file.relative}
+
+		# FrankenPHP!
+		@phpFiles path *.php
+		php @phpFiles
+
+		#encode zstd gzip
+		file_server
+
+		respond 404
+	}
+}
