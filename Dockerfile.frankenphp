@@ -59,7 +59,6 @@ RUN addgroup --gid "$PGID" "$USER" && \
     chmod +x /var/www/koillection/docker/entrypoint-frankenphp.sh && \
     mkdir /run/php && \
 # Add nginx and PHP config files
-    cp /var/www/koillection/docker/Caddyfile /etc/Caddyfile && \
     cp /var/www/koillection/docker/php.ini /usr/local/etc/php/conf.d/php.ini
 
 VOLUME /uploads
