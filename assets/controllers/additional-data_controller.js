@@ -152,7 +152,7 @@ export default class extends Controller {
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
                 holder.insertAdjacentHTML('beforeend', html);
                 this.index++;
-            } else if (existingValue.value === '') {
+            } else if (existingValue.value === '' && type === 'text') {
                 html = html.replace(/__placeholder__/g, existingDatum.dataset.iteration);
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
 
