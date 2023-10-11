@@ -1302,7 +1302,7 @@ html.loading:before {
     background-image: url('../img/logo.svg');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 39px;
+    background-size: contain;
     border-radius: 50%;
     bottom: -37px;
     height: 75px;
