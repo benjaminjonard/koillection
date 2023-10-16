@@ -11,7 +11,7 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
-        "api-platform/core": "3.1.19",
+        "api-platform/core": "3.2.0",
         "composer/semver": "3.4.0",
         "doctrine/doctrine-bundle": "2.10.2",
         "doctrine/doctrine-migrations-bundle": "3.2.4",
@@ -65,9 +65,9 @@
         "twig/twig": "3.7.1"
     },
     "require-dev": {
-        "brianium/paratest": "7.2.9",
+        "brianium/paratest": "7.3.0",
         "dama/doctrine-test-bundle": "7.2.1",
-        "friendsofphp/php-cs-fixer": "3.34.1",
+        "friendsofphp/php-cs-fixer": "3.35.1",
         "justinrainbow/json-schema": "5.2.13",
         "phpunit/php-code-coverage": "10.1.7",
         "phpunit/phpunit": "10.4.1",
@@ -77,7 +77,7 @@
         "symfony/stopwatch": "6.3.0",
         "symfony/var-dumper": "6.3.5",
         "symfony/web-profiler-bundle": "6.3.2",
-        "zenstruck/foundry": "1.35.0"
+        "zenstruck/foundry": "1.36.0"
     },
     "config": {
         "preferred-install": {
