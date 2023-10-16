@@ -9,8 +9,8 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.0",
-    "@babel/preset-env": "7.22.20",
+    "@babel/core": "7.23.2",
+    "@babel/preset-env": "7.23.2",
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.1-alpha",
     "@symfony/stimulus-bridge": "3.2.2",
@@ -22,8 +22,8 @@
     "regenerator-runtime": "0.14.0",
     "sortablejs": "1.15.0",
     "stimulus-lightbox": "3.2.0",
-    "stimulus-use": "0.52.0",
-    "webpack": "5.88.2",
+    "stimulus-use": "0.52.1",
+    "webpack": "5.89.0",
     "webpack-bundle-analyzer": "4.9.1",
     "webpack-cli": "5.1.4",
     "webpack-notifier": "1.15.0"
@@ -37,7 +37,7 @@
   "dependencies": {
     "bazinga-translator": "5.1.0",
     "hotkeys-js": "^3.10.2",
-    "intl-messageformat": "10.5.3",
+    "intl-messageformat": "10.5.4",
     "ts-select2": "^0.2.5"
   },
   "packageManager": "yarn@3.6.4"
