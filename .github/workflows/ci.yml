@@ -80,7 +80,7 @@ jobs:
       # Setup yarn
       - uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 21
       - uses: actions/cache@v3
         id: cache-node-modules
         with:
@@ -144,7 +144,7 @@ jobs:
       # Setup yarn
       -   uses: actions/setup-node@v4
           with:
-            node-version: 14
+            node-version: 21
       -   uses: actions/cache@v3
           id: cache-node-modules
           with:
@@ -207,7 +207,7 @@ jobs:
       # Setup yarn
       - uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 21
       - uses: actions/cache@v3
         id: cache-node-modules
         with:
