@@ -40,5 +40,5 @@
     "intl-messageformat": "10.5.4",
     "ts-select2": "^0.2.5"
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@4.0.1"
 }
