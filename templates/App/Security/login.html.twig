@@ -42,8 +42,7 @@
                 </div>
 
                 <div class="submit">
-                    <input type="submit" name="submit" value="{{ 'btn.sign_in'|trans }}"
-                           class="btn waves-effect waves-light btn-lg btn-success btn-block right"/>
+                    <button type="submit" class="btn waves-effect waves-light right">{{ 'btn.sign_in'|trans }}</button>
                 </div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </form>
