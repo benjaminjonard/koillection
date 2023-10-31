@@ -29,7 +29,8 @@ Encore
 
     .addPlugin(new CopyPlugin({
         patterns: [
-            { from: './img', to: 'images' }
+            { from: './img', to: 'images' },
+            { from: './node_modules/@materializecss/materialize/dist/js/materialize.min.js', to: 'materialize.min.js' }
         ]}
     ))
 
@@ -65,10 +66,6 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
-
-    .configureBabel((config) => {
-
-    })
 
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {

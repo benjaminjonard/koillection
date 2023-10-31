@@ -1,5 +1,4 @@
 import {Controller} from '@hotwired/stimulus';
-import {M} from '@materializecss/materialize';
 import Translator from "bazinga-translator";
 
 export default class extends Controller {

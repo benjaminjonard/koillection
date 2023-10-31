@@ -1,5 +1,4 @@
 import { Controller } from '@hotwired/stimulus';
-import { M } from '@materializecss/materialize';
 
 export default class extends Controller {
     static targets = ['input', 'formInput', 'result']

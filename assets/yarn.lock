@@ -1835,12 +1835,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@materializecss/materialize@npm:2.0.1-alpha":
-  version: 2.0.1-alpha
-  resolution: "@materializecss/materialize@npm:2.0.1-alpha"
+"@materializecss/materialize@npm:2.0.3-beta":
+  version: 2.0.3-beta
+  resolution: "@materializecss/materialize@npm:2.0.3-beta"
   dependencies:
     animejs: "npm:^3.2.1"
-  checksum: 565445bca0171af05530424b58264a848146fbd27b009593abf68577c350047ae76dd0eb546e2f022581ecd5b505bcdee80714a937237a1b4e2c44d8ad5330b3
+  checksum: 36a970fff76b19cbdb6747fc274f5b4e4cad64f87642371a9ce9d701566ca1053761fb1c2608f3d89fa3f651b344fd24d535e93f396f74e7e7a7e7118f36d719
   languageName: node
   linkType: hard
 
@@ -5082,7 +5082,7 @@ __metadata:
     "@babel/core": "npm:7.23.2"
     "@babel/preset-env": "npm:7.23.2"
     "@hotwired/stimulus": "npm:3.2.2"
-    "@materializecss/materialize": "npm:2.0.1-alpha"
+    "@materializecss/materialize": "npm:2.0.3-beta"
     "@symfony/stimulus-bridge": "npm:3.2.2"
     "@symfony/webpack-encore": "npm:4.5.0"
     bazinga-translator: "npm:5.1.0"

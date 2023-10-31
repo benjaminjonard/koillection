@@ -122,10 +122,6 @@ table img {
     display: none;
 }
 
-.btn {
-    height: auto;
-}
-
 a {
     outline: 0;
 }
@@ -164,6 +160,10 @@ h2 {
     font-size: 1rem;
 }
 
+.btn, .btn-flat, .btn-floating, .btn-large, .btn-small {
+    padding: 20px;
+}
+
 .fa-angle-left::before {
     position: relative;
     right: 5px;
@@ -189,7 +189,7 @@ h2 {
 .header-logo .logo {
     float: left;
     margin-left: 8px;
-    margin-top: -6px;
+    margin-top: -13px;
 }
 
 .header-logo a {
@@ -203,7 +203,7 @@ h2 {
 .header-logo a span {
     display: block;
     margin-left: 71px;
-    margin-top: 19px;
+    margin-top: 27px;
 }
 
 /* Sidebar */
@@ -387,7 +387,7 @@ h3.header {
     display: block;
     font-size: 15px;
     height: auto;
-    margin: 25px 5px;
+    margin: 28px 5px;
     padding-left: 0;
     text-align: left;
 }
@@ -1302,7 +1302,7 @@ html.loading:before {
     background-image: url('../img/logo.svg');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 39px;
     border-radius: 50%;
     bottom: -37px;
     height: 75px;
@@ -1355,7 +1355,7 @@ html.loading:before {
 }
 
 .header-profile .fa-chevron-down::before {
-    bottom: 62px;
+    bottom: 57px;
     color: #fff;
     left: 25px;
     position: relative;
@@ -1368,7 +1368,7 @@ html.loading:before {
 .header-profile .down-background {
     background-color: #009688;
     border-radius: 50%;
-    bottom: 40px;
+    bottom: 38px;
     display: block;
     height: 21px;
     left: 40px;
@@ -1381,6 +1381,7 @@ html.loading:before {
     color: #555;
     display: block;
     font-size: 33px;
+    padding-top: 5px;
 }
 
 /* Nav animations */
