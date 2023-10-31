@@ -1060,9 +1060,17 @@ img[data-src] {
 }
 
 .chip {
-    height: auto;
     background-color: #e4e4e4;
     color: rgba(0,0,0,.6);
+    border-radius: 16px;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 0 12px;
 }
 
 .chip a {
@@ -1129,6 +1137,7 @@ form:not(.login) .required:after {
     display: block;
     font-size: 12px;
     min-height: 25px;
+    padding-top: 5px;
 }
 
 .tag-image {
