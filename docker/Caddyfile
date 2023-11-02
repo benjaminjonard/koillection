@@ -5,28 +5,32 @@
 		#worker /path/to/your/worker.php
 		{$FRANKENPHP_CONFIG}
 	}
+
+	# https://caddyserver.com/docs/caddyfile/directives#sorting-algorithm
+	order mercure after encode
+	order vulcain after reverse_proxy
+	order php_server before file_server
+	order php before file_server
 }
 
-{$SERVER_NAME:localhost}
+{$CADDY_EXTRA_CONFIG}
 
-log {
-	# Redact the authorization query parameter that can be set by Mercure
-	format filter {
-		wrap console
-		fields {
-			uri query {
-				replace authorization REDACTED
+{$SERVER_NAME:localhost} {
+	log {
+		# Redact the authorization query parameter that can be set by Mercure
+		format filter {
+			wrap console
+			fields {
+				uri query {
+					replace authorization REDACTED
+				}
 			}
 		}
 	}
-}
-
-route {
-	# Healthcheck URL
-	skip_log /healthz
-	respond /healthz 200
 
 	root * public/
+	encode zstd gzip
+
 	# Uncomment the following lines to enable Mercure and Vulcain modules
 	#mercure {
 	#	# Transport to use (default to Bolt)
@@ -44,25 +48,17 @@ route {
 	#}
 	#vulcain
 
-	# Add trailing slash for directory requests
-	@canonicalPath {
-		file {path}/index.php
-		not path */
+	header {
+	    Referrer-Policy no-referrer
+	    Permissions-Policy interest-cohort=()
+	    Strict-Transport-Security "max-age=31536000; includeSubdomains; preload;"
+	    Content-Security-Policy "default-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; img-src 'self'; form-action 'self'; connect-src 'self'; frame-ancestors 'none';"
+	    X-XSS-Protection 1; mode=block
+	    X-Content-Type-Options nosniff
+	    X-Frame-Options Deny
 	}
-	redir @canonicalPath {path}/ 308
 
-	# If the requested file does not exist, try index files
-	@indexFiles file {
-		try_files {path} {path}/index.php index.php
-		split_path .php
-	}
-	rewrite @indexFiles {http.matchers.file.relative}
+	{$CADDY_SERVER_EXTRA_DIRECTIVES}
 
-	# FrankenPHP!
-	@phpFiles path *.php
-	php @phpFiles
-	encode zstd gzip
-	file_server
-
-	respond 404
+	php_server
 }

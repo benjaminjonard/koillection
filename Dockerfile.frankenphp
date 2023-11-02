@@ -1,13 +1,14 @@
 FROM dunglas/frankenphp
 
 # Environment variables
-ENV APP_ENV='prod'
-ENV PUID='1000'
-ENV PGID='1000'
-ENV USER='koillection'
+ENV APP_ENV=prod
+ENV PUID=1000
+ENV PGID=1000
+ENV USER=koillection
 ENV FRANKENPHP_CONFIG="worker /app/public/public/index.php"
 
 COPY ./ /app/public
+COPY ./docker/Caddyfile /etc/caddy/Caddyfile
 
 # Add User and Group
 RUN addgroup --gid "$PGID" "$USER" && \
