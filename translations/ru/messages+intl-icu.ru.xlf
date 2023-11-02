@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="ru">
+  <file id="messages.en">
+    <unit id="X_Pm9um" name="message.user_added">
+      <segment state="translated">
+        <source>User {user} added</source>
+        <target>Пользователь {user} добавлен</target>
+      </segment>
+    </unit>
+    <unit id="Fcb_tkO" name="message.user_edited">
+      <segment state="translated">
+        <source>User {user} has been updated</source>
+        <target>Пользователь {user} обновлен</target>
+      </segment>
+    </unit>
+    <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
+      <segment state="translated">
+        <source>You can't delete the Admin user</source>
+        <target>Админа удалять нельзя</target>
+      </segment>
+    </unit>
+    <unit id="2a_RIum" name="message.user_deleted">
+      <segment state="translated">
+        <source>User {user} was deleted</source>
+        <target>Пользователь {user} удалён</target>
+      </segment>
+    </unit>
+    <unit id="ls5sYo8" name="message.album_added">
+      <segment state="translated">
+        <source>Album {album} has been added</source>
+        <target>Альбом {album} добавлен</target>
+      </segment>
+    </unit>
+    <unit id="0lwPpH7" name="message.album_edited">
+      <segment state="translated">
+        <source>Album {album} has been updated</source>
+        <target>Альбом {album} обновлён</target>
+      </segment>
+    </unit>
+    <unit id="oawVfJJ" name="message.album_deleted">
+      <segment state="translated">
+        <source>Album {album} has been deleted</source>
+        <target>Альбом {album} удалён</target>
+      </segment>
+    </unit>
+    <unit id="s.nX0z8" name="message.choice_list_added">
+      <segment state="translated">
+        <source>Choice list {list} has been added</source>
+        <target>Список {list} добавлен</target>
+      </segment>
+    </unit>
+    <unit id="wWQwqjC" name="message.choice_list_edited">
+      <segment state="translated">
+        <source>Choice list {list} has been updated</source>
+        <target>Список {list} обновлен</target>
+      </segment>
+    </unit>
+    <unit id="aXwmQFu" name="message.choice_list_deleted">
+      <segment state="translated">
+        <source>Choice list {list} has been deleted</source>
+        <target>Список {list} удалён</target>
+      </segment>
+    </unit>
+    <unit id="_sN4yvV" name="message.collection_added">
+      <segment state="translated">
+        <source>Collection {collection} has been added</source>
+        <target>Коллекция {collection} добавлена</target>
+      </segment>
+    </unit>
+    <unit id="p.bp_UN" name="message.collection_edited">
+      <segment state="translated">
+        <source>Collection {collection} has been updated</source>
+        <target>Коллекция {collection} обновлена</target>
+      </segment>
+    </unit>
+    <unit id="m3B26dq" name="message.collection_deleted">
+      <segment state="translated">
+        <source>Collection {collection} has been deleted</source>
+        <target>Коллекция {collection} удалена</target>
+      </segment>
+    </unit>
+    <unit id="ehI_Ih2" name="message.items_tagged">
+      <segment state="translated">
+        <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
+        <target>{count, plural, one {# Предмет с тегом}  other {# Предметы с тегом}}</target>
+      </segment>
+    </unit>
+    <unit id="TMGiC1d" name="message.item_added">
+      <segment state="translated">
+        <source>Item {item} has been added</source>
+        <target>Предмет {item} добавлен</target>
+      </segment>
+    </unit>
+    <unit id="UGVMo0W" name="message.item_edited">
+      <segment state="translated">
+        <source>Item {item} has been updated</source>
+        <target>Предмет {item} обновлён</target>
+      </segment>
+    </unit>
+    <unit id="HgYxNo9" name="message.item_deleted">
+      <segment state="translated">
+        <source>Item {item} has been deleted</source>
+        <target>Предмет {item} удалён</target>
+      </segment>
+    </unit>
+    <unit id="AT9p7pU" name="message.loan">
+      <segment state="translated">
+        <source>Item {item} is now marked as loaned</source>
+        <target>Предмет {item} отмечен как одолжённый</target>
+      </segment>
+    </unit>
+    <unit id="FlBhKyx" name="message.loan_canceled">
+      <segment state="translated">
+        <source>Item {item} loan has been canceled</source>
+        <target>Одолжение предмета {item} отменено</target>
+      </segment>
+    </unit>
+    <unit id="zkp2rxS" name="message.item_returned">
+      <segment state="translated">
+        <source>Item {item} is now mark as returned</source>
+        <target>Предмет {item} отмечен как возвращённый</target>
+      </segment>
+    </unit>
+    <unit id="n5rS9vY" name="message.photo_added">
+      <segment state="translated">
+        <source>Photo {photo} has been added</source>
+        <target>Фото {photo} добавлено</target>
+      </segment>
+    </unit>
+    <unit id="hIxqW3m" name="message.photo_edited">
+      <segment state="translated">
+        <source>Photo {photo} has been updated</source>
+        <target>Фото {photo} обновлено</target>
+      </segment>
+    </unit>
+    <unit id="p5Rmjm9" name="message.photo_deleted">
+      <segment state="translated">
+        <source>Photo {photo} has been deleted</source>
+        <target>Фото {photo} удалено</target>
+      </segment>
+    </unit>
+    <unit id="rVN8d.E" name="message.profile_updated">
+      <segment state="translated">
+        <source>Profile has been updated</source>
+        <target>Профиль обновлен</target>
+      </segment>
+    </unit>
+    <unit id="nNziKQf" name="message.settings_updated">
+      <segment state="translated">
+        <source>Your settings have been successfully updated</source>
+        <target>Настройки обновлены</target>
+      </segment>
+    </unit>
+    <unit id="Ail0qPJ" name="message.tag_category_added">
+      <segment state="translated">
+        <source>Tag category {category} has been added</source>
+        <target>Категория тегов {category} добавлена</target>
+      </segment>
+    </unit>
+    <unit id="vg07kkR" name="message.tag_category_edited">
+      <segment state="translated">
+        <source>Tag category {category} has been updated</source>
+        <target>Категория тегов {category} обновлена</target>
+      </segment>
+    </unit>
+    <unit id="XlwsvOZ" name="message.tag_category_deleted">
+      <segment state="translated">
+        <source>Tag category {category} was deleted</source>
+        <target>Категория тегов {category} удалена</target>
+      </segment>
+    </unit>
+    <unit id="3EE._Y4" name="message.tag_edited">
+      <segment state="translated">
+        <source>Tag {tag} has been updated</source>
+        <target>Тег {tag} был обновлен</target>
+      </segment>
+    </unit>
+    <unit id="_PrKtDW" name="message.tag_deleted">
+      <segment state="translated">
+        <source>Tag {tag} has been deleted</source>
+        <target>Тег {tag} был удален</target>
+      </segment>
+    </unit>
+    <unit id="QPUEgMd" name="message.unused_tags_deleted">
+      <segment state="translated">
+        <source>{count, plural, one {# tag deleted} other {# tags deleted}}</source>
+        <target>{count, plural, one {# тег удален} other {# теги удалены}}</target>
+      </segment>
+    </unit>
+    <unit id="xM.mW1R" name="message.template_added">
+      <segment state="translated">
+        <source>Template {template} has been added</source>
+        <target>Шаблон {template} добавлен</target>
+      </segment>
+    </unit>
+    <unit id="5d2N5Ar" name="message.template_edited">
+      <segment state="translated">
+        <source>Template {template} has been updated</source>
+        <target>Шаблон {template} обновлён</target>
+      </segment>
+    </unit>
+    <unit id="ZMxcm6L" name="message.template_deleted">
+      <segment state="translated">
+        <source>Template {template} has been deleted</source>
+        <target>Шаблон {template} удалён</target>
+      </segment>
+    </unit>
+    <unit id="9RoxCzk" name="message.wish_added">
+      <segment state="translated">
+        <source>Wish {wish} has been added</source>
+        <target>Мечта {wish} добавлена</target>
+      </segment>
+    </unit>
+    <unit id="XoB_zRK" name="message.wish_edited">
+      <segment state="translated">
+        <source>Wish {wish} has been updated</source>
+        <target>Мечта {wish} обновлена</target>
+      </segment>
+    </unit>
+    <unit id="akgCJp9" name="message.wish_deleted">
+      <segment state="translated">
+        <source>Wish {wish} has been deleted</source>
+        <target>Мечта {wish} удалена</target>
+      </segment>
+    </unit>
+    <unit id="mAYxq3X" name="message.wish_transfered">
+      <segment state="translated">
+        <source>Wish {wish} was transferred to the collection {collection}</source>
+        <target>Мечта {wish} перенесена в коллекцию {collection}</target>
+      </segment>
+    </unit>
+    <unit id="x_1ubH6" name="message.wishlist_added">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been added</source>
+        <target>Список мечт {wishlist} добавлен</target>
+      </segment>
+    </unit>
+    <unit id="NfYGrwC" name="message.wishlist_edited">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been updated</source>
+        <target>Список мечт {wishlist} обновлен</target>
+      </segment>
+    </unit>
+    <unit id="8ujnJmR" name="message.wishlist_deleted">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been deleted</source>
+        <target>Список мечт {wishlist} удалён</target>
+      </segment>
+    </unit>
+    <unit id="zfOqV80" name="form.item_sorting.default_value">
+      <segment state="translated">
+        <source>Name (default)</source>
+        <target>Имя (по умолчанию)</target>
+      </segment>
+    </unit>
+    <unit id="tg4uV16" name="error.not_enough_space">
+      <segment state="translated">
+        <source>There is not enough space left on your account to execute this action :(</source>
+        <target>Недостаточно места в вашем аккаунте для выполнения :(</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <segment state="translated">
+        <source>Sunday</source>
+        <target>Воскресенье</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <segment state="translated">
+        <source>Monday</source>
+        <target>Monday</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <segment state="translated">
+        <source>Tuesday</source>
+        <target>Вторник</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <segment state="translated">
+        <source>Wednesday</source>
+        <target>Среда</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <segment state="translated">
+        <source>Thursday</source>
+        <target>Четверг</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <segment state="translated">
+        <source>Friday</source>
+        <target>Пятница</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <segment state="translated">
+        <source>Saturday</source>
+        <target>Суббота</target>
+      </segment>
+    </unit>
+    <unit id="s2RK8Ci" name="global.months.january">
+      <segment state="translated">
+        <source>January</source>
+        <target>Январь</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <segment state="translated">
+        <source>February</source>
+        <target>Февраль</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <segment state="translated">
+        <source>March</source>
+        <target>Март</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <segment state="translated">
+        <source>April</source>
+        <target>Апрель</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <segment state="translated">
+        <source>May</source>
+        <target>Май</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <segment state="translated">
+        <source>June</source>
+        <target>Июнь</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <segment state="translated">
+        <source>July</source>
+        <target>Июль</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <segment state="translated">
+        <source>August</source>
+        <target>Август</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <segment state="translated">
+        <source>September</source>
+        <target>Сентябрь</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <segment state="translated">
+        <source>October</source>
+        <target>Октябрь</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <segment state="translated">
+        <source>November</source>
+        <target>Ноябрь</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <segment state="translated">
+        <source>December</source>
+        <target>Декабрь</target>
+      </segment>
+    </unit>
+    <unit id="BNjUIYA" name="label.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Найти</target>
+      </segment>
+    </unit>
+    <unit id="GV09tqG" name="global.koillection">
+      <segment state="translated">
+        <source>Koillection</source>
+        <target>Koillection</target>
+      </segment>
+    </unit>
+    <unit id="bKzhzsy" name="global.time.ago">
+      <segment state="translated">
+        <source>{time} ago</source>
+        <target>{time} назад</target>
+      </segment>
+    </unit>
+    <unit id="kBJEdcf" name="global.time.just_now">
+      <segment state="translated">
+        <source>Just now</source>
+        <target>Сейчас</target>
+      </segment>
+    </unit>
+    <unit id="4wvJrqA" name="global.time.today">
+      <segment state="translated">
+        <source>Today</source>
+        <target>Сегодня</target>
+      </segment>
+    </unit>
+    <unit id="wvvYSw_" name="menu.admin">
+      <segment state="translated">
+        <source>Administration</source>
+        <target>Администрирование</target>
+      </segment>
+    </unit>
+    <unit id="I4vwwju" name="title.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Обзор</target>
+      </segment>
+    </unit>
+    <unit id="4fDIeO4" name="label.space_used">
+      <segment state="translated">
+        <source>{used} / {total} used</source>
+        <target>{used} / {total} используется</target>
+      </segment>
+    </unit>
+    <unit id="ZzykrnK" name="label.space_free">
+      <segment state="translated">
+        <source>{free} free</source>
+        <target>{free} свободно</target>
+      </segment>
+    </unit>
+    <unit id="uVNjha9" name="counter.without_number.collections">
+      <segment state="translated">
+        <source>{count, plural, one {# collection} other {# collections}}</source>
+        <target>{count, plural, one {# коллекция} few {# коллекций} many {# коллекций} other {# коллекций}}</target>
+      </segment>
+    </unit>
+    <unit id="hjM7hgU" name="counter.without_number.tags">
+      <segment state="translated">
+        <source>{count, plural, one {# tag} other {# tags}}</source>
+        <target>{count, plural, one {# тег} few {# теги} many {# теги} other {# теги}}</target>
+      </segment>
+    </unit>
+    <unit id="cw0nkO5" name="counter.without_number.wishlists">
+      <segment state="translated">
+        <source>{count, plural, one {# wishlist} other {# wishlists}}</source>
+        <target>{count, plural, one {# Список мечт} few {# Списков мечт} many {# Списков мечт} other {# Списков мечт}}</target>
+      </segment>
+    </unit>
+    <unit id="335X_OI" name="tab.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Обзор</target>
+      </segment>
+    </unit>
+    <unit id="Ttj5ZLt" name="counter.collection">
+      <segment state="translated">
+        <source>{count, plural, one {# collection} other {# collections}}</source>
+        <target>{count, plural, one {# коллекция} few {# коллекций} many {# коллекций} other {# коллекций}}</target>
+      </segment>
+    </unit>
+    <unit id="k6VxCsO" name="menu.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Найти</target>
+      </segment>
+    </unit>
+    <unit id="xw23vtl" name="message.search_empty">
+      <segment state="translated">
+        <source>No results</source>
+        <target>Нет результатов</target>
+      </segment>
+    </unit>
+    <unit id="If3y3hC" name="counter.tag">
+      <segment state="translated">
+        <source>{count, plural, one {# tag} other {# tags}}</source>
+        <target>{count, plural, one {# тег} few {# теги} many {# теги} other {# теги}}</target>
+      </segment>
+    </unit>
+    <unit id="Joxd_.h" name="counter.wishlist">
+      <segment state="translated">
+        <source>{count, plural, one {# wishlist} other {# wishlists}}</source>
+        <target>{count, plural, one {# Список мечт} few {# Списков мечт} many {# Списков мечт} other {# Списков мечт}}</target>
+      </segment>
+    </unit>
+    <unit id="U8IBiON" name="menu.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Обзор</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
