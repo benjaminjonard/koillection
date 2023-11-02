@@ -1,10 +1,10 @@
-name: Build release image for Docker Hub using FrankenPhp
+name: Build beta image using Frankenphp for Docker Hub
 on:
   workflow_dispatch:
 
 jobs:
-  push_release_image:
-    name: Build release image for Docker Hub using FrankenPhp
+  push_beta_image:
+    name: Build beta image using Frankenphp for Docker Hub
     runs-on: ubuntu-latest
 
     steps:
