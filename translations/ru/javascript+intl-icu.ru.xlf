@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="ru">
+  <file id="javascript.en">
+    <unit id="s2RK8Ci" name="global.months.january">
+      <segment state="translated">
+        <source>January</source>
+        <target>Январь</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <segment state="translated">
+        <source>February</source>
+        <target>Февраль</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <segment state="translated">
+        <source>March</source>
+        <target>Март</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <segment state="translated">
+        <source>April</source>
+        <target>Апрель</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <segment state="translated">
+        <source>May</source>
+        <target>Май</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <segment state="translated">
+        <source>June</source>
+        <target>Июнь</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <segment state="translated">
+        <source>July</source>
+        <target>Июль</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <segment state="translated">
+        <source>August</source>
+        <target>Август</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <segment state="translated">
+        <source>September</source>
+        <target>Сентябрь</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <segment state="translated">
+        <source>October</source>
+        <target>Октябрь</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <segment state="translated">
+        <source>November</source>
+        <target>Ноябрь</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <segment state="translated">
+        <source>December</source>
+        <target>Декабрь</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <segment state="translated">
+        <source>Monday</source>
+        <target>Monday</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <segment state="translated">
+        <source>Tuesday</source>
+        <target>Вторник</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <segment state="translated">
+        <source>Wednesday</source>
+        <target>Среда</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <segment state="translated">
+        <source>Thursday</source>
+        <target>Четверг</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <segment state="translated">
+        <source>Friday</source>
+        <target>Пятница</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <segment state="translated">
+        <source>Saturday</source>
+        <target>Суббота</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <segment state="translated">
+        <source>Sunday</source>
+        <target>Воскресенье</target>
+      </segment>
+    </unit>
+    <unit id="mdcgZEB" name="global.today">
+      <segment state="translated">
+        <source>Today</source>
+        <target>Сегодня</target>
+      </segment>
+    </unit>
+    <unit id="exiimju" name="btn.clear">
+      <segment state="translated">
+        <source>Clear</source>
+        <target>Сбросить</target>
+      </segment>
+    </unit>
+    <unit id="Jd_qITE" name="btn.close">
+      <segment state="translated">
+        <source>Close</source>
+        <target>Закрыть</target>
+      </segment>
+    </unit>
+    <unit id="w0J8w0G" name="select2.no_results">
+      <segment state="translated">
+        <source>No results found</source>
+        <target>Ничего не найдено</target>
+      </segment>
+    </unit>
+    <unit id="vX0eXJK" name="select2.searching">
+      <segment state="translated">
+        <source>Searching...</source>
+        <target>Идёт поиск...</target>
+      </segment>
+    </unit>
+    <unit id="VWNWjeJ" name="select2.none">
+      <segment state="translated">
+        <source>None</source>
+        <target>Ничего</target>
+      </segment>
+    </unit>
+    <unit id="nfDV3tB" name="global.search.no_results">
+      <segment state="translated">
+        <source>No results</source>
+        <target>Нет результатов</target>
+      </segment>
+    </unit>
+    <unit id="V4dRe88" name="global.visibilities.internal.description">
+      <segment state="translated">
+        <source>Only authenticated users can see this page</source>
+        <target>Только авторизованные пользователи могут видеть эту страницу</target>
+      </segment>
+    </unit>
+    <unit id="RU9kBPV" name="global.visibilities.public.description">
+      <segment state="translated">
+        <source>Anyone can see this page</source>
+        <target>Страница доступна всем</target>
+      </segment>
+    </unit>
+    <unit id="GA2PrMk" name="global.visibilities.private.description">
+      <segment state="translated">
+        <source>Only I can see this page</source>
+        <target>Только я могу видеть эту страницу</target>
+      </segment>
+    </unit>
+    <unit id="a048xMx" name="label.list_element_value">
+      <segment state="translated">
+        <source>List element value</source>
+        <target>Значение элемента списка</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
