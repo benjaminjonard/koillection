@@ -28,4 +28,12 @@
             </div>
         </div>
     </div>
+    <script>
+        // Selects the user's timezone, as indicated by the browser
+        if (typeof Intl !== 'undefined') {
+            const timezoneSelect = document.getElementById('user_timezone');
+            timezoneSelect.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            timezoneSelect.dispatchEvent(new Event('change'));
+        }
+    </script>
 {% endblock %}
