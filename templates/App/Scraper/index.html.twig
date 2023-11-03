@@ -72,7 +72,7 @@
                 {{ form_start(scraperImportForm, {'action': path('app_scraper_import') }) }}
                     {% do scraperImportForm.file.setRendered %}
                     <div class="modal-body">
-                        <div class="input-field file-data col s10 offset-s1 m5" data-controller="file-input">
+                        <div class="input-field file-data s10 offset-s1 m5" data-controller="file-input">
                             <div class="btn" data-action="click->file-input#openUpload">
                                 <i class="fa fa-upload fa-fw"></i>&nbsp;{{ 'btn.upload'|trans }}
                             </div>

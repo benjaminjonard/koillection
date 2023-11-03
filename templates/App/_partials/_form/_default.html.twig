@@ -34,7 +34,7 @@
 {% block file_widget %}
     {% apply spaceless %}
         <div class="row row-file">
-            <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+            <div class="s12 l10 offset-l1 xl8 offset-xl2">
                 <div data-controller="preview">
                     <label class="file-label">
                         {% if form.parent.vars.value.image is not null %}
@@ -124,7 +124,7 @@
 {% block _scraping_dataToScrap_row %}
     {% apply spaceless %}
         {% for child in form %}
-            <div class="col s12 l5 xl3">
+            <div class="s12 l5 xl3">
                 {{ form_row(child) }}
             </div>
         {% endfor %}

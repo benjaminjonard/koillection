@@ -1,25 +1,25 @@
 {{ form_start(form) }}
     {{ form_row(form.file) }}
 <div class="row">
-    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+    <div class="s12 l5 offset-l1 xl4 offset-xl2">
         {{ form_row(form.title, {'label' : 'label.title'}) }}
     </div>
-    <div class="col s12 l5 xl4">
+    <div class="s12 l5 xl4">
         {{ form_row(form.parent, {'label' : 'label.parent', 'attr': {'data-controller': 'select--default'}}) }}
     </div>
 </div>
 
 <div class="row">
-    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+    <div class="s12 l5 offset-l1 xl4 offset-xl2">
         {{ form_row(form.photosDisplayConfiguration.displayMode, {'label' : 'label.photos_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
     </div>
-    <div class="col s12 l5 xl4">
+    <div class="s12 l5 xl4">
         {{ form_row(form.childrenDisplayConfiguration.displayMode, {'label' : 'label.sub_albums_display_mode', 'attr': {'data-controller': 'select--display-mode'}} ) }}
     </div>
 </div>
 
 <div class="row">
-    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+    <div class="s12 l5 offset-l1 xl4 offset-xl2">
         {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
     </div>
 </div>

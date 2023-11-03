@@ -26,7 +26,7 @@
         <div class="form">
             {{ form_start(form) }}
                 <div class="row">
-                    <div class="col s12 l5 offset-l1 xl4 offset-xl2">
+                    <div class="s12 l5 offset-l1 xl4 offset-xl2">
                         {{ form_row(form.thumbnailsFormat.value, {'label' : 'label.thumbnails_format', 'attr': {'data-controller': 'select--default'}}) }}
                     </div>
                 </div>
@@ -34,11 +34,11 @@
                 <h3 class="header">{{ 'title.custom_css'|trans }}</h3>
 
                 <div class="row">
-                    <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                    <div class="s12 l10 offset-l1 xl8 offset-xl2">
                         {{ form_row(form.customLightThemeCss.value, {'label' : 'label.custom_light_theme_css', 'attr' : {'class': 'materialize-textarea code-textarea'}} ) }}
                     </div>
 
-                    <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                    <div class="s12 l10 offset-l1 xl8 offset-xl2">
                         {{ include('App/_partials/_modal/_custom_css_help.html.twig', {
                             id: 'modal-light-theme',
                             title: 'title.customize_light_theme'|trans,
@@ -55,11 +55,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                    <div class="s12 l10 offset-l1 xl8 offset-xl2">
                         {{ form_row(form.customDarkThemeCss.value, {'label' : 'label.custom_dark_theme_css', 'attr' : {'class': 'materialize-textarea code-textarea'}} ) }}
                     </div>
 
-                    <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+                    <div class="s12 l10 offset-l1 xl8 offset-xl2">
                         {{ include('App/_partials/_modal/_custom_css_help.html.twig', {
                             id: 'modal-dark-theme',
                             title: 'title.customize_dark_theme'|trans,

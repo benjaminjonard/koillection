@@ -1,7 +1,7 @@
 {% set hasChoiceList = choiceList is defined and choiceList is not null %}
 
 <div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-additional-data-target="datum" data-iteration="{{ iteration }}">
-    <div class="col s12 l10 offset-l1 xl8 offset-xl2 row">
+    <div class="s12 l10 offset-l1 xl8 offset-xl2 row">
         <input type="hidden"
                id="data_{{ iteration }}_type"
                name="{{ entity }}[data][{{ iteration }}][type]"
@@ -9,11 +9,11 @@
                value="{{ type }}"
         >
 
-        <div class="col s1 handle icon-holder">
+        <div class="s1 handle icon-holder">
             <i class="fa fa-arrows-v fa-fw"></i>
         </div>
 
-        <div class="input-field outlined col s10 m5 item-label">
+        <div class="input-field outlined s10 m5 item-label">
             <input
                     type="text"
                     id="data_{{ iteration }}_label"
@@ -29,9 +29,12 @@
             </label>
         </div>
 
+        <div class="s1 hide-on-med-and-up"></div>
+        <div class="s1 hide-on-med-and-up"></div>
+
         {{ include('App/Datum/_' ~ type ~ '.html.twig') }}
 
-        <div class="col s1 icon-holder">
+        <div class="s1 icon-holder">
             <i class="fa fa-remove fa-fw removeDatum" data-action="click->additional-data#remove"></i>
         </div>
 

@@ -27,28 +27,28 @@
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
                 <div class="row">
-                    <div class="col offset-s1 s10 m5 offset-m1">
+                    <div class="offset-s1 s10 m5 offset-m1">
                         {{ form_row(form.username, {'label' : 'label.username'} ) }}
                     </div>
-                    <div class="col offset-s1 s10 offset-m0 m5">
+                    <div class="offset-s1 s10 offset-m0 m5">
                         {{ form_row(form.email, {'label' : 'label.email'} ) }}
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col offset-s1 s10 m5 offset-m1">
+                    <div class="offset-s1 s10 m5 offset-m1">
                         {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
                     </div>
-                    <div class="col offset-s1 s10 offset-m0 m5">
+                    <div class="offset-s1 s10 offset-m0 m5">
                         {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col offset-s1 s10 m5 offset-m1">
+                    <div class="offset-s1 s10 m5 offset-m1">
                         {{ form_row(form.diskSpaceAllowed, {'label': 'label.disk_space_allowed'}) }}
                     </div>
-                    <div class="col offset-s1 s10 m5 offset-m0">
+                    <div class="offset-s1 s10 m5 offset-m0">
                         {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
                     </div>
                 </div>

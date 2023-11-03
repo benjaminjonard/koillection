@@ -1064,6 +1064,7 @@ img[data-src] {
     color: rgba(0,0,0,.6);
     border-radius: 16px;
     margin-right: 5px;
+    margin-top: 10px;
     padding: 0 12px;
 }
 
@@ -1469,7 +1470,20 @@ html.loading:before {
     top: -3px;
 }
 
+
 @media (max-width: 749px) {
+    .btn-holder .button, .visibility {
+        padding-top: 5px;
+    }
+
+    .btn-holder .right {
+        margin-top: 10px;
+    }
+
+    .btn-holder .left {
+        margin-top: 10px;
+    }
+
     .item-wrapper .data {
         max-width: 90%;
     }

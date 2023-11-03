@@ -25,7 +25,7 @@
             <h2 class="header">{{ 'title.overview'|trans }}</h2>
 
             <div class="row statistics">
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     {% set percent = ((totalSpace - freeSpace) * 100 / totalSpace)|round(0, 'floor') %}
                     <div class="counter">
                         <span class="label">{{ percent }}<span class="smaller">%</span></span>
@@ -33,34 +33,34 @@
                     <div>{{ 'label.space_used'|trans({'used': (totalSpace - freeSpace)|bytes(0), 'total': totalSpace|bytes(0)}) }}</div>
                     <div>{{ 'label.space_free'|trans({'free': freeSpace|bytes(0)}) }}</div>
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'count': counters.users}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'count': counters.collections}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'count': counters.items}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'count': counters.tags}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'count': counters.wishlists}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'count': counters.wishes}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'count': counters.albums}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'count': counters.photos}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'count': counters.signs}) }}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">{{ getSpaceUsedByUsers()|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}
                 </div>
             </div>
@@ -69,7 +69,7 @@
         <div class="block-element">
             <h2 class="header">{{ 'title.config'|trans }}</h2>
             <div class="row statistics">
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <img width="65px" height="65px" src="{{ asset('/build/images/logos/koillection.png') }}" alt="Koillection logo">
                     <div class="counter">{{ currentRelease }}</div>
                     {{ 'label.release'|trans }}
@@ -85,16 +85,16 @@
                         {{ 'label.up_to_date_release'|trans }}
                     {% endif %}
                 </div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <img width="65px" height="65px" src="{{ asset('/build/images/logos/php.png') }}" alt="PHP logo">
                     <div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <img width="65px" height="65px" src="{{ asset('/build/images/logos/symfony.png') }}" alt="Symfony logo">
                     <div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}</div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <img width="65px" height="65px" src="{{ asset('/build/images/logos/api-platform.png') }}" alt="Api Platform logo">
                     <div class="counter">{{ apiPlatformVersion }}</div>{{ 'label.apiplatform_version'|trans }}</div>
-                <div class="col s12 m4 xl2">
+                <div class="s12 m4 xl2">
                     <div class="counter">
                         <i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
                     </div>{{ 'label.is_opcache_available'|trans }}</div>

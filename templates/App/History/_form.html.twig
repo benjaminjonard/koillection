@@ -16,7 +16,7 @@
 
     <div class="row">
         {% for child in form.classes.children %}
-            <div class="col s12 m4 l2">
+            <div class="s12 m4 l2">
                 {{ form_row(child, {'attr': { 'data-action': 'change->filter-ajax#filter' }}) }}
             </div>
         {% endfor %}
@@ -28,7 +28,7 @@
 
     <div class="row">
         {% for child in form.types.children %}
-            <div class="col s12 m4 l2">
+            <div class="s12 m4 l2">
                 {{ form_row(child, {'attr': { 'data-action': 'change->filter-ajax#filter' }}) }}
             </div>
         {% endfor %}
