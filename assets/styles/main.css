@@ -1726,6 +1726,7 @@ form .row-file .file-label {
 
 .nav-tags .show-more-btn-holder {
     display: inline-block;
+    margin-top: 17px;
 }
 
 .row-file input[type="file"] {
