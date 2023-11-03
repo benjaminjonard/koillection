@@ -22,6 +22,8 @@ readonly class LocaleHelper
             $languages[$locale] = ucfirst(Locales::getName($locale, $locale));
         }
 
+        asort($languages);
+
         return $languages;
     }
 
