@@ -10,9 +10,7 @@
 }
 
 .select2 {
-    /*width: calc(100% - 45px) !important;*/
     width: 100% !important;
-    /*margin-left: 45px;*/
 }
 
 .select2-container .select2-selection--single {
@@ -86,6 +84,10 @@
     width: 100%;
     z-index: 1051;
     margin-left: 230px;
+}
+
+.box .select2-dropdown  {
+    margin-left: 0px;
 }
 
 .box .select2-dropdown {

@@ -77,16 +77,16 @@ export default class extends Controller {
     }
 
     autocompleteResultFactory(label, url, type = null) {
-        let li = this.htmlToElement('<li class="autocomplete-result"></li>');
+        let li = this.htmlStringToDomElement('<li class="autocomplete-result"></li>');
 
         if (url) {
-            let a = this.htmlToElement('<a></a>');
+            let a = this.htmlStringToDomElement('<a></a>');
             a.href = url;
             a.innerHTML = label;
             li.appendChild(a);
 
             if (type) {
-                let span = this.htmlToElement('<span></span>');
+                let span = this.htmlStringToDomElement('<span></span>');
                 span.innerHTML = ' (' + type + ')';
                 a.appendChild(span);
             }
@@ -97,7 +97,7 @@ export default class extends Controller {
         return li;
     }
 
-    htmlToElement(html) {
+    htmlStringToDomElement(html) {
         let template = document.createElement('template');
         html = html.trim();
         template.innerHTML = html;

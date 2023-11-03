@@ -1,42 +1,22 @@
-import { Controller } from '@hotwired/stimulus';
+import DefaultController from "./default_controller"
 import Translator from "bazinga-translator";
-import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
+import { htmlStringToDomElement } from "../../js/utils";
 
 /* stimulusFetch: 'lazy' */
-export default class extends Controller {
-    connect() {
-        let self = this;
+export default class extends DefaultController {
+    templateSelection(category) {
+        if (!category.id) {
+            return htmlStringToDomElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
+        }
 
-        new TsSelect2(this.element, {
-            templateSelection: function (category) {
-                if (!category.id) {
-                    return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
-                }
-
-                return self.htmlToElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span>' + category.text +'</span></div>');
-            },
-            templateResult: function (category) {
-                if (!category.id) {
-                    return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
-                }
-
-                return self.htmlToElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span>' + category.text + '</span></div>');
-            },
-            language: {
-                noResults: function () {
-                    return Translator.trans('select2.no_results');
-                },
-                searching: function () {
-                    return Translator.trans('select2.searching');
-                }
-            }
-        })
+        return htmlStringToDomElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span>' + category.text +'</span></div>');
     }
 
-    htmlToElement(html) {
-        let template = document.createElement('template');
-        html = html.trim();
-        template.innerHTML = html;
-        return template.content.firstChild;
+    templateResult(category) {
+        if (!category.id) {
+            return htmlStringToDomElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
+        }
+
+        return htmlStringToDomElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span>' + category.text + '</span></div>');
     }
 }

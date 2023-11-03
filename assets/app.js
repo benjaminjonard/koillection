@@ -5,6 +5,7 @@ import './styles/app.css';
 import './bootstrap';
 
 // import global JS
+import './js/utils'
 import './js/loader'
 import './js/translations/config'
 import './js/translations/javascript+intl-icu/en'

@@ -18,7 +18,7 @@
                     {{ form_row(form.email, {'label' : 'label.email'} ) }}
                     {{ form_row(form.plainPassword.first, {'label': 'label.password'}) }}
                     {{ form_row(form.plainPassword.second, {'label': 'label.repeat_password'}) }}
-                    {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--default'}}) }}
+                    {{ form_row(form.timezone, {'label': 'label.timezone', 'attr': {'data-controller': 'select--timezone'}}) }}
                     {{ form_row(form.dateFormat, {'label': 'label.date_format', 'attr': {'data-controller': 'select--default'}}) }}
                     <div class="submit">
                         <button type="submit" class="btn waves-effect waves-light right">{{ 'btn.submit'|trans }}</button>
@@ -28,12 +28,4 @@
             </div>
         </div>
     </div>
-    <script>
-        // Selects the user's timezone, as indicated by the browser
-        if (typeof Intl !== 'undefined') {
-            const timezoneSelect = document.getElementById('user_timezone');
-            timezoneSelect.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            timezoneSelect.dispatchEvent(new Event('change'));
-        }
-    </script>
 {% endblock %}

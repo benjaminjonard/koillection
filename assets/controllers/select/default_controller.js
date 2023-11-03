@@ -1,29 +1,17 @@
 import { Controller } from '@hotwired/stimulus';
 import Translator from "bazinga-translator";
 import { TsSelect2 } from "../../node_modules/ts-select2/dist/core";
+import { htmlStringToDomElement } from "../../js/utils";
 
-/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     select2;
 
     connect() {
-        let self = this;
+        this.loadSelect()
+    }
 
+    loadSelect() {
         this.select2 = new TsSelect2(this.element, {
-            templateSelection: function (element) {
-                if (!element.text) {
-                    return self.htmlToElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
-                }
-
-                return self.htmlToElement('<div><span>' + element.text + '</span></div>');
-            },
-            templateResult: function (element) {
-                if (!element.text && !element.children) {
-                    return self.htmlToElement('<div><span class="select-placeholder">' + Translator.trans('select2.none') + '</span></div>');
-                }
-
-                return self.htmlToElement('<div><span>' + element.text + '</span></div>');
-            },
             language: {
                 noResults: function () {
                     return Translator.trans('select2.no_results');
@@ -58,15 +46,27 @@ export default class extends Controller {
                 }
 
                 return null;
-            }
+            },
+
+            templateSelection: this.templateSelection,
+            templateResult: this.templateResult
         })
     }
 
-    htmlToElement(html) {
-        let template = document.createElement('template');
-        html = html.trim();
-        template.innerHTML = html;
-        return template.content.firstChild;
+    templateSelection(element) {
+        if (!element.text) {
+            return htmlStringToDomElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
+        }
+
+        return htmlStringToDomElement('<div><span>' + element.text + '</span></div>');
+    }
+
+    templateResult(element) {
+        if (!element.text && !element.children) {
+            return htmlStringToDomElement('<div><span class="select-placeholder">' + Translator.trans('select2.none') + '</span></div>');
+        }
+
+        return htmlStringToDomElement('<div><span>' + element.text + '</span></div>');
     }
 
     update({ detail: { value } }) {
