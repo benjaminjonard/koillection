@@ -1644,13 +1644,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ecma402-abstract@npm:1.17.2":
-  version: 1.17.2
-  resolution: "@formatjs/ecma402-abstract@npm:1.17.2"
+"@formatjs/ecma402-abstract@npm:1.17.3":
+  version: 1.17.3
+  resolution: "@formatjs/ecma402-abstract@npm:1.17.3"
   dependencies:
-    "@formatjs/intl-localematcher": "npm:0.4.2"
+    "@formatjs/intl-localematcher": "npm:0.5.0"
     tslib: "npm:^2.4.0"
-  checksum: 780c351ac05ef223b3c885d15ff0287ce6a18d04636ef629472582a5afd47aaab5567bebc84a340bf120abfbe994f1d43130be17820f0cfac2cc5d0d5bb2d1fb
+  checksum: 7f09c35c04e5c0b908a6f4f08d63779a9a0b2f0048eb8244724e6702ac8f55ce8d302ed927a8df77bb47b1331dae1443e34a44905f0030afdab264073f076780
   languageName: node
   linkType: hard
 
@@ -1663,33 +1663,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:2.7.0":
-  version: 2.7.0
-  resolution: "@formatjs/icu-messageformat-parser@npm:2.7.0"
+"@formatjs/icu-messageformat-parser@npm:2.7.1":
+  version: 2.7.1
+  resolution: "@formatjs/icu-messageformat-parser@npm:2.7.1"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:1.17.2"
-    "@formatjs/icu-skeleton-parser": "npm:1.6.2"
+    "@formatjs/ecma402-abstract": "npm:1.17.3"
+    "@formatjs/icu-skeleton-parser": "npm:1.6.3"
     tslib: "npm:^2.4.0"
-  checksum: 38ede8e6e6baf699a9d216201e2d476d47c611aaf26ec78724ceb7a952976c175352b3988aa07be71891e159fe5b36f50f760bddef16fee64082dd626523b9f2
+  checksum: ff3615f4c54593f39c5e547a8a816a870b0c1b02718e96eb17b284e5ef6022fdc984d4804bbfa115ef7b48f69a8190ec22d30264a7870bb464e8334ebef2eb3e
   languageName: node
   linkType: hard
 
-"@formatjs/icu-skeleton-parser@npm:1.6.2":
-  version: 1.6.2
-  resolution: "@formatjs/icu-skeleton-parser@npm:1.6.2"
+"@formatjs/icu-skeleton-parser@npm:1.6.3":
+  version: 1.6.3
+  resolution: "@formatjs/icu-skeleton-parser@npm:1.6.3"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:1.17.2"
+    "@formatjs/ecma402-abstract": "npm:1.17.3"
     tslib: "npm:^2.4.0"
-  checksum: cca4eed6b82cabdf8c375120b3e70432aa3d29f9b689752ca6b7a1e1d1d60f8a3e717167b435872c3de88854e4cb8bcab2cc5ede80c0a20bd18d8e2b9a4bae25
+  checksum: b7ccb65185085270db1401a9826bc46c110c46b271a5a4be5e569323fb5c764ccb78d93c80904f77999e7b93433a50941436d737ff37213c81159eb8981dab1f
   languageName: node
   linkType: hard
 
-"@formatjs/intl-localematcher@npm:0.4.2":
-  version: 0.4.2
-  resolution: "@formatjs/intl-localematcher@npm:0.4.2"
+"@formatjs/intl-localematcher@npm:0.5.0":
+  version: 0.5.0
+  resolution: "@formatjs/intl-localematcher@npm:0.5.0"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: c0bdd5dedbbaae733035fbaa3672dd3e1452c9be6e4091c9b40f37c94a0d38a3216dc3d68b06a6b88c1507c681f02499ac16c3f76c2f566e3c603626f5ca801f
+  checksum: 0ccd5f29be9f93c71737f85e31518cb4bb943059301c55ac3f66bc542daf0db6d5f999d917f8daacf6c1fff9f076f1dc690fcd2a1f527e63cb4dae951b799799
   languageName: node
   linkType: hard
 
@@ -4781,15 +4781,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:10.5.4":
-  version: 10.5.4
-  resolution: "intl-messageformat@npm:10.5.4"
+"intl-messageformat@npm:10.5.5":
+  version: 10.5.5
+  resolution: "intl-messageformat@npm:10.5.5"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:1.17.2"
+    "@formatjs/ecma402-abstract": "npm:1.17.3"
     "@formatjs/fast-memoize": "npm:2.2.0"
-    "@formatjs/icu-messageformat-parser": "npm:2.7.0"
+    "@formatjs/icu-messageformat-parser": "npm:2.7.1"
     tslib: "npm:^2.4.0"
-  checksum: 5a4322bd907b2eb30445e5acbd5b5b933806d32de0f7746a7b56cf3f4e3883512aa58ee284f9f04dc2f3b6b7b846735e1230d1a5d07875b1a0dc36df9cff36fd
+  checksum: be1566e8b7b9d1dd9d709c8c6e72c5359f18f7d3e3b17d7a217e936784707c07735bf3be2e03e5054098d32af8d4a28ca1f3b04aac4f23f75153cc5d5ea6bc25
   languageName: node
   linkType: hard
 
@@ -5091,7 +5091,7 @@ __metadata:
     croppie: "npm:2.6.5"
     echarts: "npm:5.4.3"
     hotkeys-js: "npm:^3.10.2"
-    intl-messageformat: "npm:10.5.4"
+    intl-messageformat: "npm:10.5.5"
     regenerator-runtime: "npm:0.14.0"
     sortablejs: "npm:1.15.0"
     stimulus-lightbox: "npm:3.2.0"
