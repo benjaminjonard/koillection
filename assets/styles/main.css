@@ -248,6 +248,7 @@ h2 {
 
 .sidebar-element a i {
     display: inline-block;
+    vertical-align: middle;
     margin-right: 13px;
     text-align: center;
     width: 16px;
@@ -255,6 +256,7 @@ h2 {
 
 .sidebar-element a span {
     margin-left: 10px;
+    vertical-align: middle;
 }
 
 .sidebar-element.separate-item {
