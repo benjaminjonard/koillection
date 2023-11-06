@@ -133,6 +133,18 @@
         <target>Закрыть</target>
       </segment>
     </unit>
+    <unit id="AghNVUV" name="statistics.items_added">
+      <segment state="translated">
+        <source>{count, plural, one {# item added} other {# items added}}</source>
+        <target>{count, plural, one {# предмет добавлен} few {# предметов добавлено} many {# предметов добавлено} other {# предметов добавлено}}</target>
+      </segment>
+    </unit>
+    <unit id="cEDaX3_" name="statistics.items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one{1 предмет}  few {# предмета} other{# предметов }}</target>
+      </segment>
+    </unit>
     <unit id="w0J8w0G" name="select2.no_results">
       <segment state="translated">
         <source>No results found</source>
@@ -149,6 +161,12 @@
       <segment state="translated">
         <source>None</source>
         <target>Ничего</target>
+      </segment>
+    </unit>
+    <unit id="Em6KHMM" name="global.search.more_results">
+      <segment state="translated">
+        <source>{count, plural, one { + # more result} other { + # more results}}</source>
+        <target>{count, plural, one { + # ещё результат} few { + # больше результатов} many { + # больше результатов} other { + # больше результатов}}</target>
       </segment>
     </unit>
     <unit id="nfDV3tB" name="global.search.no_results">

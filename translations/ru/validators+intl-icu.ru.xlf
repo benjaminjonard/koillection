@@ -1,17 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="ru">
   <file id="validators.en">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <unit id="m_gMJbR" name="error.parent.same_as_current_object">
+      <segment state="translated">
+        <source>The parent can't be the same as the current item</source>
+        <target>Нельзя быть родителем самому себе</target>
+      </segment>
+    </unit>
+    <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
+      <segment state="translated">
+        <source>A datum cannot be used with both item and collection</source>
+        <target>Нельзя использовать факт одновременно для предмета и коллекции</target>
+      </segment>
+    </unit>
+    <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
+      <segment state="translated">
+        <source>A collection or an item must be provided</source>
+        <target>Укажите предмет или коллекцию</target>
+      </segment>
+    </unit>
+    <unit id="7OcgSlg" name="error.email.not_unique">
+      <segment state="translated">
+        <source>Email address already used</source>
+        <target>Эта почта занята</target>
+      </segment>
+    </unit>
+    <unit id="qoRxC7z" name="error.username.not_unique">
+      <segment state="translated">
+        <source>Username already used</source>
+        <target>Имя пользователя уже используется</target>
+      </segment>
+    </unit>
+    <unit id="PjAj0XF" name="error.username.incorrect">
+      <segment state="translated">
+        <source>Username must have between 2 and 32 characters (only letters, numbers and underscores are allowed)</source>
+        <target>Имя пользователя должно содержать от 2 до 32 символов (разрешены только буквы, цифры и символ подчеркивания)</target>
+      </segment>
+    </unit>
+    <unit id="4Bdfyy1" name="error.password.incorrect">
+      <segment state="translated">
+        <source>Your password must contain at least 8 characters (with at least 1 letter and 1 number)</source>
+        <target>Ваш пароль не должен быть короче 8 символов (и иметь минимум 1 букву и 1 цифру)</target>
+      </segment>
+    </unit>
+    <unit id="4m1Sgo3" name="error.password.not_matching">
+      <segment state="translated">
+        <source>The two passwords are not identical</source>
+        <target>Пароли не совпадают</target>
+      </segment>
+    </unit>
+    <unit id=".OeR.gK" name="error.search.too_short">
+      <segment state="translated">
+        <source>You must enter at least 2 characters</source>
+        <target>Введите минимум 2 символа</target>
+      </segment>
+    </unit>
+    <unit id="_d89Gke" name="error.search.empty">
+      <segment state="translated">
+        <source>Please fill at least one of the fields</source>
+        <target>Пожалуйста, заполните хотя бы одно поле</target>
+      </segment>
+    </unit>
+    <unit id="DVztPk_" name="error.label.must_be_unique">
+      <segment state="translated">
+        <source>"{label}" label is used multiple times, all labels must be unique</source>
+        <target>Метка "{label}используется несколько раз, все метки должны быть уникальными</target>
+      </segment>
+    </unit>
+    <unit id="IV3649l" name="error.parent.is_child_of_current_object">
+      <segment state="translated">
+        <source>The parent can't be one of the children</source>
+        <target>Родитель не может быть своим потомком</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
