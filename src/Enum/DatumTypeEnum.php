@@ -72,6 +72,7 @@ class DatumTypeEnum
 
     public const AVAILABLE_FOR_SCRAPING = [
         self::TYPE_TEXT,
+        self::TYPE_TEXTAREA,
         self::TYPE_LIST,
         self::TYPE_COUNTRY,
     ];

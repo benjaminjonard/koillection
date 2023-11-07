@@ -35,7 +35,10 @@
 
                 <div class="row">
                     <div class="s12 l10 offset-l1 xl8 offset-xl2">
-                        {{ form_row(form.customLightThemeCss.value, {'label' : 'label.custom_light_theme_css', 'attr' : {'class': 'materialize-textarea code-textarea'}} ) }}
+                        {{ form_row(form.customLightThemeCss.value, {
+                            'label' : 'label.custom_light_theme_css',
+                            'attr' : {'class': 'materialize-textarea code-textarea', 'data-controller': 'textarea'}}
+                        ) }}
                     </div>
 
                     <div class="s12 l10 offset-l1 xl8 offset-xl2">
@@ -56,7 +59,10 @@
 
                 <div class="row">
                     <div class="s12 l10 offset-l1 xl8 offset-xl2">
-                        {{ form_row(form.customDarkThemeCss.value, {'label' : 'label.custom_dark_theme_css', 'attr' : {'class': 'materialize-textarea code-textarea'}} ) }}
+                        {{ form_row(form.customDarkThemeCss.value, {
+                            'label' : 'label.custom_dark_theme_css',
+                            'attr' : {'class': 'materialize-textarea code-textarea', 'data-controller': 'textarea'}}
+                        ) }}
                     </div>
 
                     <div class="s12 l10 offset-l1 xl8 offset-xl2">

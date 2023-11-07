@@ -134,6 +134,10 @@ readonly class HtmlScraper
             return json_encode($values);
         }
 
+        if ($type === DatumTypeEnum::TYPE_TEXTAREA) {
+            return $values[0];
+        }
+
         if ($type === DatumTypeEnum::TYPE_COUNTRY) {
             $value = array_shift($values);
 

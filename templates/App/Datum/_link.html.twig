@@ -2,7 +2,6 @@
     <input type="url"
            id="data_{{ iteration }}_value"
            name="{{ entity }}[data][{{ iteration }}][value]"
-           maxlength="255"
            {% if datum is defined %}value="{{ datum.value }}"{% endif %}
            placeholder=" "
            data-additional-data-target="value"
