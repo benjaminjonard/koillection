@@ -15,7 +15,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # Install some basics dependencies
     apt-get update && \
-    apt-get install -y curl lsb-release software-properties-common gnupg2 && \
+    apt-get install -y curl lsb-release software-properties-common gnupg2 vim && \
 # PHP
     add-apt-repository ppa:ondrej/php && \
 # Nodejs
