@@ -1,18 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.13] / 2023-11-08
+### Features
+- Add Russian translation (max2k.ru)
+
+### Fixes
+- Fix image data being deleted when reloading a template (benjaminjonard)
+- Fix input max length for scrappers (benjaminjonard)
+
+### Miscellaneous
+- Auto resize text areas (benjaminjonard)
+- Automatically select user's preferred timezone on first connection page (Matthieu-LAURENT39)
+- Upgrade PHP and JS dependencies, fix CVE-2023-45133 and CVE-2023-44270 (benjaminjonard)
+- Upgrade yarn to v4 and materializecss, small CSS issues are expected (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.4.12] / 2023-09-20
 ### Fixes
 - Fix error when a Country data is empty (benjaminjonard)
 
 ### Miscellaneous
 - Upgrade PHP and JS dependencies (benjaminjonard)
-- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
 - Compatibility with Postgres 16 (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
 
 ## [1.4.11] / 2023-08-29
 ### Features
-- Allow metadata search for textareas, lists and choice lists (benjaminjonard)
+- Allow metadata search for text areas, lists and choice lists (benjaminjonard)
 - Add basic sorting on list view (benjaminjonard)
 
 ### Miscellaneous
