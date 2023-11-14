@@ -24,7 +24,7 @@
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.1",
     "webpack": "5.89.0",
-    "webpack-bundle-analyzer": "4.9.1",
+    "webpack-bundle-analyzer": "4.10.0",
     "webpack-cli": "5.1.4",
     "webpack-notifier": "1.15.0"
   },
@@ -37,8 +37,8 @@
   "dependencies": {
     "bazinga-translator": "5.1.0",
     "hotkeys-js": "^3.10.2",
-    "intl-messageformat": "10.5.7",
+    "intl-messageformat": "10.5.8",
     "ts-select2": "^0.2.5"
   },
-  "packageManager": "yarn@4.0.1"
+  "packageManager": "yarn@4.0.2"
 }
