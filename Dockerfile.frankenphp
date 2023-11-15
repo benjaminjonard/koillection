@@ -54,7 +54,6 @@ RUN addgroup --gid "$PGID" "$USER" && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -rf /usr/local/bin/composer && \
 # Set permissions
     chown -R "$USER":"$USER" /app/public && \
     chmod +x /app/public/docker/entrypoint-frankenphp.sh && \
