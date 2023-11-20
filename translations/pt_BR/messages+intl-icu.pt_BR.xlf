@@ -265,12 +265,6 @@
         <target>Nome (padrão)</target>
       </segment>
     </unit>
-    <unit id="tg4uV16" name="error.not_enough_space">
-      <segment state="translated">
-        <source>There is not enough space left on your account to execute this action :(</source>
-        <target>Não há espaço suficiente na sua conta para executar esta ação :(</target>
-      </segment>
-    </unit>
     <unit id="L3auT0N" name="global.days.sunday">
       <segment state="translated">
         <source>Sunday</source>

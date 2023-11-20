@@ -17,6 +17,7 @@ use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishRepository;
+use App\Validator as AppAssert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -81,6 +82,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
 
     #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['wish:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['wish:write', 'wish:image'])]
     private ?File $file = null;
 

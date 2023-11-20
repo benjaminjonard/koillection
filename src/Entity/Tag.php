@@ -18,6 +18,7 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\TagRepository;
+use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\DBAL\Types\Types;
@@ -64,6 +65,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
 
     #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['tag:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['tag:write', 'tag:image'])]
     private ?File $file = null;
 

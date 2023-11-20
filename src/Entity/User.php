@@ -68,6 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[Upload(pathProperty: 'avatar', deleteProperty: 'deleteAvatar', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['user:write', 'user:image'])]
     private ?File $file = null;
 

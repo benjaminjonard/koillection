@@ -15,6 +15,7 @@ use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Enum\DatumTypeEnum;
 use App\Repository\DatumRepository;
+use App\Validator as AppAssert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -79,6 +80,7 @@ class Datum implements \Stringable
 
     #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail', largeThumbnailPathProperty: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['datum:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['datum:write', 'datum:image'])]
     private ?File $fileImage = null;
 
@@ -96,6 +98,7 @@ class Datum implements \Stringable
 
     #[Upload(pathProperty: 'file', originalFilenamePathProperty: 'originalFilename')]
     #[Assert\File(groups: ['datum:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['datum:write', 'datum:file'])]
     private ?File $fileFile = null;
 

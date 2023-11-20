@@ -24,7 +24,7 @@
             {{- form_widget(form, {attr: {'placeholder': ' '}}) -}}
             {{- form_label(form) -}}
             {%- for error in errors -%}
-                <span class="helper-text helper-text-error" data-error="wrong">{{ error.message }}</span>
+                <div class="helper-text helper-text-error error-helper" data-error="wrong">{{ error.message }}</div>
             {%- endfor -%}
             {{- form_help(form) -}}
         </div>

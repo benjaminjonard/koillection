@@ -73,5 +73,11 @@
         <target>L'elemento principale non può essere uno dei sottoelementi</target>
       </segment>
     </unit>
+    <unit id="tg4uV16" name="error.upload.not_enough_space">
+      <segment state="translated">
+        <source>There is not enough space left on your account to execute this action</source>
+        <target>Non c'è abbastanza spazio sul tuo account per eseguire questa azione</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

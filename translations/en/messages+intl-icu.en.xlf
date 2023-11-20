@@ -265,12 +265,6 @@
         <target>Name (default)</target>
       </segment>
     </unit>
-    <unit id="tg4uV16" name="error.not_enough_space">
-      <segment state="translated">
-        <source>There is not enough space left on your account to execute this action :(</source>
-        <target>There is not enough space left on your account to execute this action :(</target>
-      </segment>
-    </unit>
     <unit id="L3auT0N" name="global.days.sunday">
       <segment state="translated">
         <source>Sunday</source>

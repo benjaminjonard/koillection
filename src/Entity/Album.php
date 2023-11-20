@@ -19,6 +19,7 @@ use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
+use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
@@ -67,6 +68,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['album:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['album:write', 'album:image'])]
     private ?File $file = null;
 

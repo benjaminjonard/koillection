@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
-use function PHPUnit\Framework\matches;
 
 class ImageHandler
 {
@@ -22,7 +21,6 @@ class ImageHandler
         private readonly RandomStringGenerator $randomStringGenerator,
         private readonly ThumbnailGenerator $thumbnailGenerator,
         private readonly Security $security,
-        private readonly DiskUsageCalculator $diskUsageCalculator,
         private readonly ConfigurationRepository $configurationRepository,
         private readonly string $publicPath,
         private readonly string $env
@@ -47,8 +45,6 @@ class ImageHandler
             $generatedName = $this->randomStringGenerator->generate(20);
             $extension = $file->guessExtension();
             $fileName = $generatedName.'.'.$extension;
-
-            $this->diskUsageCalculator->hasEnoughSpaceForUpload($user, $file);
             $file->move($absolutePath, $fileName);
 
             $this->removeOldFile($entity, $attribute);

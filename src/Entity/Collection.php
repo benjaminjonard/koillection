@@ -99,6 +99,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', maxWidth: 200, maxHeight: 200)]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['colletion:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['collection:write', 'collection:image'])]
     private ?File $file = null;
 

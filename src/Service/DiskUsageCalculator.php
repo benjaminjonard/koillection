@@ -38,15 +38,13 @@ class DiskUsageCalculator
         return 0;
     }
 
-    public function hasEnoughSpaceForUpload(?User $user, File $file): void
+    public function hasEnoughSpaceForUpload(?User $user, File $file): bool
     {
-        if (!$user instanceof User) {
-            return;
+        if ($user instanceof User && $file->isFile() && (float) $user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize()) {
+            return false;
         }
 
-        if ((float) $user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize()) {
-            throw new \Exception($this->translator->trans('error.not_enough_space'));
-        }
+        return true;
     }
 
     private function getFolderSize(string $path): float

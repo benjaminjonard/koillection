@@ -47,7 +47,9 @@
             <span class="visibility-none">{{ form_row(form.parent.deleteAvatar, {'attr': {'data-croppie-target': 'deleteCheckbox'}}) }}</span>
         {% endif %}
     </div>
-    {{- form_errors(form) -}}
+    {%- for error in errors -%}
+        <div class="helper-text helper-text-error error-helper" data-error="wrong">{{ error.message }}</div>
+    {%- endfor -%}
 {% endblock cropper %}
 
 {% block _collection_file_row %}

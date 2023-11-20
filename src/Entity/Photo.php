@@ -17,6 +17,7 @@ use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\PhotoRepository;
+use App\Validator as AppAssert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -73,6 +74,7 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
 
     #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['photo:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['photo:write', 'photo:image'])]
     private ?File $file = null;
 

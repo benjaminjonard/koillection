@@ -73,5 +73,11 @@
         <target>Le parent ne peut pas être l'un des enfants</target>
       </segment>
     </unit>
+    <unit id="tg4uV16" name="error.upload.not_enough_space">
+      <segment state="translated">
+        <source>There is not enough space left on your account to execute this action</source>
+        <target>Il n'y a plus assez d'espace sur votre compte pour effectuer cette action</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

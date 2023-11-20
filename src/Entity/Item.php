@@ -110,6 +110,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail', largeThumbnailPathProperty: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['item:image'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['item:write', 'item:image'])]
     private ?File $file = null;
 

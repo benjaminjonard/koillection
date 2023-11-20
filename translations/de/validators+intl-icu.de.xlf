@@ -73,5 +73,11 @@
         <target>Der Elternknoten darf nicht einer der Kinder sein</target>
       </segment>
     </unit>
+    <unit id="tg4uV16" name="error.upload.not_enough_space">
+      <segment state="translated">
+        <source>There is not enough space left on your account to execute this action</source>
+        <target>Auf Ihrem Account ist nicht mehr genug Platz, um diese Aktion auszuführen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
