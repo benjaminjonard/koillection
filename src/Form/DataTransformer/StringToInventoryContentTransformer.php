@@ -21,16 +21,15 @@ class StringToInventoryContentTransformer implements DataTransformerInterface
         return '';
     }
 
-    public function reverseTransform($string): string|bool
+    public function reverseTransform($string): array
     {
         if (null === $string) {
-            return json_encode([]);
+            return [];
         }
 
         $ids = explode(',', $string);
         $collections = $this->collectionRepository->findAllWithItems();
-        $content = $this->inventoryHandler->buildInventory($collections, $ids);
 
-        return json_encode($content);
+        return $this->inventoryHandler->buildInventory($collections, $ids);
     }
 }

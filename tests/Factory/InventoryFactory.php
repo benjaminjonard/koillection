@@ -32,7 +32,7 @@ final class InventoryFactory extends ModelFactory
     {
         return [
             'name' => self::faker()->word(),
-            'content' => json_encode([]),
+            'content' => [],
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }

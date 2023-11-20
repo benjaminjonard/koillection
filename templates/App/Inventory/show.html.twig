@@ -90,7 +90,7 @@
                 <div class="s12 m10 offset-m1">
                     <ul id="inventory-root">
                         <li>
-                            {% for collection in inventory.contentAsArray %}
+                            {% for collection in inventory.content %}
                                 <ul>
                                     {{ recursiveCollection(collection) }}
                                 </ul>

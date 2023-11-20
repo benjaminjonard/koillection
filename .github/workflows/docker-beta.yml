@@ -30,7 +30,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          file: Dockerfile.beta
+          file: Dockerfile
           push: true
           tags: ${{ secrets.BETA_REPO_URL }}:koillection
           platforms: linux/amd64,linux/arm64

@@ -74,11 +74,11 @@ class InventoryHandler
     public function setCheckedValue(Inventory $inventory, string $id, string $checked): Inventory
     {
         $content = $inventory->getContent();
-        $content = preg_replace('/([^.]*{"id":"'.$id.'","name":")([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
-
+        $content = json_encode($content);
+        $content = preg_replace('/([^.]*{"id":"'.$id.'","name":")*([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
         $content = $this->computeCheckedValues(json_decode($content, true));
 
-        $inventory->setContent(json_encode($content));
+        $inventory->setContent($content);
 
         return $inventory;
     }

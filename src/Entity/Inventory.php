@@ -42,7 +42,7 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
     #[ORM\Column(type: Types::JSON)]
     #[Groups(['inventory:read', 'inventory:write'])]
     #[Assert\NotBlank]
-    private ?string $content = null;
+    private ?array $content = [];
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'inventories')]
     #[Groups(['inventory:read'])]
@@ -56,8 +56,6 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
     #[Groups(['inventory:read'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    private array $contentAsArray = [];
-
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
@@ -68,22 +66,10 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
         return $this->getName() ?? '';
     }
 
-    public function getContentAsArray(): array
-    {
-        if ($this->contentAsArray !== []) {
-            return $this->contentAsArray;
-        }
-
-        $this->contentAsArray = json_decode($this->content, true);
-
-        return $this->contentAsArray;
-    }
-
     public function getCheckedItemsCount(): int
     {
-        $content = $this->getContentAsArray();
         $checkedItems = 0;
-        foreach ($content as $rootCollection) {
+        foreach ($this->content as $rootCollection) {
             $checkedItems += $rootCollection['totalCheckedItems'];
         }
 
@@ -92,9 +78,8 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
 
     public function getTotalItemsCount(): int
     {
-        $content = $this->getContentAsArray();
         $totalItems = 0;
-        foreach ($content as $rootCollection) {
+        foreach ($this->content as $rootCollection) {
             $totalItems += $rootCollection['totalItems'];
         }
 
@@ -118,12 +103,12 @@ class Inventory implements BreadcrumbableInterface, LoggableInterface, \Stringab
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContent(): ?array
     {
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(array $content): self
     {
         $this->content = $content;
 
