@@ -1008,6 +1008,10 @@ button.align-with-inputs {
     font-weight: bold;
 }
 
+.statistics > div {
+    margin-bottom: 15px;
+}
+
 .handle {
     cursor: move;
     font-size: 20px;
