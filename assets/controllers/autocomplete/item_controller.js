@@ -96,7 +96,6 @@ export default class extends Controller {
     }
 
     getChip(item) {
-        console.log(item);
         const thumbnail = item.image ? item.image : '/build/images/default.png';
         return '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.text + '">' +
             '<td><img src="' + thumbnail + '"></td>' +

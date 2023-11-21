@@ -37,7 +37,6 @@ export default class extends Controller {
     }
 
     computePositions() {
-        console.log('ok')
         this.element.querySelectorAll('.position').forEach((element, index) => {
             element.value = index+1;
         })

@@ -1,4 +1,7 @@
-<span data-controller="scraping">
+<span data-controller="scraping"
+      data-scraping-scrap-url-value="{{ path('app_scraper_item_scrap') }}"
+      data-scraping-data-paths-checkboxes-url-value="{{ path('app_scraper_item_data_paths_checkboxes', {id: '__id_placeholder__'}) }}"
+>
     {{ form_start(form) }}
         {% do form.data.setRendered %}
         <div class="content-block">

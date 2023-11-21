@@ -6,15 +6,20 @@ export default class extends Controller {
         'scrapedUrlInput', 'nameInput', 'urlInputContainer', 'fileInputContainer',
         'imagePreview', 'imageInput', 'scraperInput', 'urlInput',
         'modalCloseButton', 'modalError',
-        'dataToScrapContainer', 'form'
+        'dataToScrapContainer', 'form',
     ]
+
+    static values = {
+        scrapUrl: String,
+        dataPathsCheckboxesUrl: String,
+    }
 
     scrap(event) {
         event.preventDefault();
         let self = this;
         self.modalErrorTarget.innerHTML = "";
 
-        fetch('/scrapers/item-scrapers/scrap', {
+        fetch(this.scrapUrlValue, {
             method: 'POST',
             body: new FormData(event.target)
         })
@@ -48,10 +53,9 @@ export default class extends Controller {
 
     loadDataPathCheckboxes(event) {
         let self = this;
-        const id = event.target.value;
         self.dataToScrapContainerTarget.innerHTML = '';
 
-        fetch('/scrapers/item-scrapers/' + id + '/data-paths-checkboxes', {
+        fetch(this.dataPathsCheckboxesUrlValue.replace(/__id_placeholder__/g, event.target.value), {
             method: 'GET',
         })
             .then(response => response.json())
