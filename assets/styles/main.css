@@ -569,7 +569,7 @@ label div {
     padding: 0 5px;
 }
 
-.content-wrapper .title-block .right {
+.content-wrapper .title-block div:not(.left) {
     margin-left: 20px;
     margin-top: 20px;
 }
@@ -582,10 +582,6 @@ label div {
     padding-left: 0 !important;
     padding-right: 0 !important;
     width: 100px;
-}
-
-.content-wrapper .btn-holder:not(.no-margin) {
-    margin-top: -5px;
 }
 
 .content-wrapper .btn-holder {
