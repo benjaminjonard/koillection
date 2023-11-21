@@ -5,3 +5,5 @@ api_platform:
   defaults:
     normalization_context:
       skip_null_values: false
+    extra_properties:
+      rfc_7807_compliant_errors: true
