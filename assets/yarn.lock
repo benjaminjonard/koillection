@@ -3371,10 +3371,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.33.2":
-  version: 3.33.2
-  resolution: "core-js@npm:3.33.2"
-  checksum: d62554d51ce8a3f33d0b1f8b064cbd21afcae275043ae96d3d43f18701b80cd423fab484517a81ee1d096db252e2aeada6ef6d1fd80a26db54f82f8f349a62c7
+"core-js@npm:3.33.3":
+  version: 3.33.3
+  resolution: "core-js@npm:3.33.3"
+  checksum: 77b4c9abaf22ae9c60966121b4b2a4a388cebd067d4cf6ae0f22762b2e8060f301eaacebb781e598ba5f43fe2e53fc88489b013faefdfcecadbf12e242263a50
   languageName: node
   linkType: hard
 
@@ -5070,7 +5070,7 @@ __metadata:
     "@symfony/webpack-encore": "npm:4.5.0"
     bazinga-translator: "npm:5.1.0"
     copy-webpack-plugin: "npm:11.0.0"
-    core-js: "npm:3.33.2"
+    core-js: "npm:3.33.3"
     croppie: "npm:2.6.5"
     echarts: "npm:5.4.3"
     hotkeys-js: "npm:^3.10.2"
@@ -5081,7 +5081,7 @@ __metadata:
     stimulus-use: "npm:0.52.1"
     ts-select2: "npm:^0.2.5"
     webpack: "npm:5.89.0"
-    webpack-bundle-analyzer: "npm:4.10.0"
+    webpack-bundle-analyzer: "npm:4.10.1"
     webpack-cli: "npm:5.1.4"
     webpack-notifier: "npm:1.15.0"
   languageName: unknown
@@ -7590,9 +7590,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-bundle-analyzer@npm:4.10.0":
-  version: 4.10.0
-  resolution: "webpack-bundle-analyzer@npm:4.10.0"
+"webpack-bundle-analyzer@npm:4.10.1":
+  version: 4.10.1
+  resolution: "webpack-bundle-analyzer@npm:4.10.1"
   dependencies:
     "@discoveryjs/json-ext": "npm:0.5.7"
     acorn: "npm:^8.0.4"
@@ -7609,7 +7609,7 @@ __metadata:
     ws: "npm:^7.3.1"
   bin:
     webpack-bundle-analyzer: lib/bin/analyzer.js
-  checksum: f7f58050987b72df22c89ee521e027c659c098bd42768ac31e2bbb11000a8e1e0d20acfdcd5d11a45610dc37a8619fcd9b9e8cb8eb803e38e033a9f4e59ae7e3
+  checksum: bc7bc2c014ba36dfb3f28ef75e3bb4be17ebff092ae713a30392a1d578a73b5d83ed0940b9d12eca6b06e514218d8a1e7cb0610f0b4d74b53425be3f0cc3aea8
   languageName: node
   linkType: hard
 
