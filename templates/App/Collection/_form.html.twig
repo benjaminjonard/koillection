@@ -1,6 +1,6 @@
 <span data-controller="scraping"
-      data-scraping-scrap-url-value="{{ path('app_scraper_item_scrap') }}"
-      data-scraping-data-paths-checkboxes-url-value="{{ path('app_scraper_item_data_paths_checkboxes', {id: '__id_placeholder__'}) }}"
+      data-scraping-scrap-url-value="{{ path('app_scraper_collection_scrap') }}"
+      data-scraping-data-paths-checkboxes-url-value="{{ path('app_scraper_collection_data_paths_checkboxes', {id: '__id_placeholder__'}) }}"
 >
     {{ form_start(form) }}
         {% do form.data.setRendered %}
@@ -214,5 +214,5 @@
         </div>
     {{ form_end(form) }}
 
-    {{ include('App/Scraper/item/_scraping.html.twig', {form: scrapingForm, scrapedFromUrl: collection.scrapedFromUrl}) }}
+    {{ include('App/Scraper/_scraping.html.twig', {form: scrapingForm, scrapedFromUrl: collection.scrapedFromUrl}) }}
 </span>

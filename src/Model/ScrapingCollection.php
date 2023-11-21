@@ -8,14 +8,12 @@ use App\Entity\Scraper;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Scraping
+class ScrapingCollection
 {
     private ?string $url = null;
 
     #[Assert\Image(mimeTypes: ['text/html'])]
     private ?File $file = null;
-
-    private string $entity;
 
     #[Assert\NotNull]
     private ?Scraper $scraper = null;
@@ -26,10 +24,8 @@ class Scraping
 
     private array $dataToScrap = [];
 
-    public function __construct(string $entity = null, bool $isEdition = false)
+    public function __construct(bool $isEdition = false)
     {
-        $this->setEntity($entity);
-
         if ($isEdition) {
             $this->scrapName = false;
             $this->scrapImage = false;
@@ -41,7 +37,7 @@ class Scraping
         return $this->url;
     }
 
-    public function setUrl(?string $url): Scraping
+    public function setUrl(?string $url): ScrapingCollection
     {
         $this->url = $url;
 
@@ -53,26 +49,10 @@ class Scraping
         return $this->scraper;
     }
 
-    public function setScraper(?Scraper $scraper): Scraping
+    public function setScraper(?Scraper $scraper): ScrapingCollection
     {
         $this->scraper = $scraper;
         $this->dataToScrap = $scraper->getDataPaths()->toArray();
-
-        return $this;
-    }
-
-    public function getEntity(): string
-    {
-        return $this->entity;
-    }
-
-    public function setEntity(?string $entity): Scraping
-    {
-        if ($entity !== 'item' && $entity !== 'collection') {
-            $entity = 'item';
-        }
-
-        $this->entity = $entity;
 
         return $this;
     }
@@ -83,7 +63,7 @@ class Scraping
         return $this->scrapName;
     }
 
-    public function setScrapName(bool $scrapName): Scraping
+    public function setScrapName(bool $scrapName): ScrapingCollection
     {
         $this->scrapName = $scrapName;
 
@@ -95,7 +75,7 @@ class Scraping
         return $this->scrapImage;
     }
 
-    public function setScrapImage(bool $scrapImage): Scraping
+    public function setScrapImage(bool $scrapImage): ScrapingCollection
     {
         $this->scrapImage = $scrapImage;
 
@@ -107,7 +87,7 @@ class Scraping
         return $this->dataToScrap;
     }
 
-    public function setDataToScrap(array $dataToScrap): Scraping
+    public function setDataToScrap(array $dataToScrap): ScrapingCollection
     {
         $this->dataToScrap = $dataToScrap;
 
@@ -119,7 +99,7 @@ class Scraping
         return $this->file;
     }
 
-    public function setFile(?File $file): Scraping
+    public function setFile(?File $file): ScrapingCollection
     {
         $this->file = $file;
 

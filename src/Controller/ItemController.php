@@ -10,8 +10,8 @@ use App\Entity\Loan;
 use App\Entity\Template;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
-use App\Form\Type\Model\ScrapingType;
-use App\Model\Scraping;
+use App\Form\Type\Model\ScrapingItemType;
+use App\Model\ScrapingItem;
 use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\ItemRepository;
@@ -93,7 +93,7 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/add.html.twig', [
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('item')),
+            'scrapingForm' => $this->createForm(ScrapingItemType::class, new ScrapingItem()),
             'item' => $item,
             'collection' => $collection,
             'suggestedNames' => $suggestedNames,
@@ -138,7 +138,7 @@ class ItemController extends AbstractController
 
         return $this->render('App/Item/edit.html.twig', [
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('item', true)),
+            'scrapingForm' => $this->createForm(ScrapingItemType::class, new ScrapingItem(true)),
             'item' => $item,
             'collection' => $item->getCollection(),
             'choiceLists' => $choiceListRepository->findAll(),

@@ -8,13 +8,13 @@ use App\Controller\AbstractController;
 use App\Entity\Scraper;
 use App\Enum\ScraperTypeEnum;
 use App\Form\Type\Entity\ScraperType;
-use App\Form\Type\Model\ItemScraperImporterType;
-use App\Form\Type\Model\ScrapingItemType;
+use App\Form\Type\Model\CollectionScraperImporterType;
+use App\Form\Type\Model\ScrapingCollectionType;
 use App\Http\FileResponse;
-use App\Model\Scraper\ItemScraperImporter;
-use App\Model\ScrapingItem;
+use App\Model\Scraper\CollectionScraperImporter;
+use App\Model\ScrapingCollection;
 use App\Repository\ScraperRepository;
-use App\Service\Scraper\HtmlItemScraper;
+use App\Service\Scraper\HtmlCollectionScraper;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,15 +25,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class ItemScraperController extends AbstractController
+class CollectionScraperController extends AbstractController
 {
-    #[Route(path: '/scrapers/item-scrapers/scrap', name: 'app_scraper_item_scrap', methods: ['POST'])]
-    public function scrap(Request $request, HtmlItemScraper $htmlScraper): JsonResponse
+    #[Route(path: '/scrapers/collection-scrapers/scrap', name: 'app_scraper_collection_scrap', methods: ['POST'])]
+    public function scrap(Request $request, HtmlCollectionScraper $htmlScraper): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scraping = new ScrapingItem();
-        $form = $this->createForm(ScrapingItemType::class, $scraping);
+        $scraping = new ScrapingCollection();
+        $form = $this->createForm(ScrapingCollectionType::class, $scraping);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,14 +51,14 @@ class ItemScraperController extends AbstractController
         return $this->json(['form' => $formHtml], 400);
     }
 
-    #[Route(path: '/scrapers/item-scrapers/{id}/data-paths-checkboxes', name: 'app_scraper_item_data_paths_checkboxes', methods: ['GET'])]
+    #[Route(path: '/scrapers/collection-scrapers/{id}/data-paths-checkboxes', name: 'app_scraper_collection_data_paths_checkboxes', methods: ['GET'])]
     public function getDataPathsCheckboxes(Scraper $scraper): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scraping = new ScrapingItem();
+        $scraping = new ScrapingCollection();
         $scraping->setScraper($scraper);
-        $form = $this->createForm(ScrapingItemType::class, $scraping, ['choices' => $scraper->getDataPaths()]);
+        $form = $this->createForm(ScrapingCollectionType::class, $scraping, ['choices' => $scraper->getDataPaths()]);
 
         $html = $this->render('App/Scraper/_data_path_checkboxes.html.twig', [
             'form' => $form
@@ -67,26 +67,26 @@ class ItemScraperController extends AbstractController
         return new JsonResponse(['html' => $html]);
     }
 
-    #[Route(path: '/scrapers/item-scrapers', name: 'app_scraper_item_index', methods: ['GET'])]
+    #[Route(path: '/scrapers/collection-scrapers', name: 'app_scraper_collection_index', methods: ['GET'])]
     public function index(ScraperRepository $scraperRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_ITEM], ['name' => Criteria::ASC]);
+        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_COLLECTION], ['name' => Criteria::ASC]);
 
-        return $this->render('App/Scraper/item/index.html.twig', [
+        return $this->render('App/Scraper/collection/index.html.twig', [
             'scrapers' => $scrapers,
-            'scraperImportForm' => $this->createForm(ItemScraperImporterType::class, new ItemScraperImporter())
+            'scraperImportForm' => $this->createForm(CollectionScraperImporterType::class, new CollectionScraperImporter())
         ]);
     }
 
-    #[Route(path: '/scrapers/item-scrapers/add', name: 'app_scraper_item_add', methods: ['GET', 'POST'])]
+    #[Route(path: '/scrapers/collection-scrapers/add', name: 'app_scraper_collection_add', methods: ['GET', 'POST'])]
     public function add(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
         $scraper = new Scraper();
-        $scraper->setType(ScraperTypeEnum::TYPE_ITEM);
+        $scraper->setType(ScraperTypeEnum::TYPE_COLLECTION);
         $form = $this->createForm(ScraperType::class, $scraper);
         $form->handleRequest($request);
 
@@ -96,21 +96,21 @@ class ItemScraperController extends AbstractController
 
             $this->addFlash('notice', $translator->trans('message.scraper_added', ['scraper' => $scraper->getName()]));
 
-            return $this->redirectToRoute('app_scraper_item_show', ['id' => $scraper->getId()]);
+            return $this->redirectToRoute('app_scraper_collection_show', ['id' => $scraper->getId()]);
         }
 
-        return $this->render('App/Scraper/item/add.html.twig', [
+        return $this->render('App/Scraper/collection/add.html.twig', [
             'form' => $form,
         ]);
     }
 
-    #[Route(path: '/scrapers/item-scrapers/import', name: 'app_scraper_item_import', methods: ['POST'])]
+    #[Route(path: '/scrapers/collection-scrapers/import', name: 'app_scraper_collection_import', methods: ['POST'])]
     public function import(Request $request, TranslatorInterface $translator, ManagerRegistry $managerRegistry, ValidatorInterface $validator): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scraperImporter = new ItemScraperImporter();
-        $form = $this->createForm(ItemScraperImporterType::class, $scraperImporter);
+        $scraperImporter = new CollectionScraperImporter();
+        $form = $this->createForm(CollectionScraperImporterType::class, $scraperImporter);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -121,16 +121,16 @@ class ItemScraperController extends AbstractController
 
                 $this->addFlash('notice', $translator->trans('message.scraper_imported', ['scraper' => $scraper->getName()]));
 
-                return $this->redirectToRoute('app_scraper_item_show', ['id' => $scraper->getId()]);
+                return $this->redirectToRoute('app_scraper_collection_show', ['id' => $scraper->getId()]);
             }
         }
 
         $this->addFlash('error', $translator->trans('message.scraper_import_error'));
 
-        return $this->redirectToRoute('app_scraper_item_index');
+        return $this->redirectToRoute('app_scraper_collection_index');
     }
 
-    #[Route(path: '/scrapers/item-scrapers/{id}/edit', name: 'app_scraper_item_edit', methods: ['GET', 'POST'])]
+    #[Route(path: '/scrapers/collection-scrapers/{id}/edit', name: 'app_scraper_collection_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Scraper $scraper, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
@@ -142,21 +142,21 @@ class ItemScraperController extends AbstractController
             $managerRegistry->getManager()->flush();
             $this->addFlash('notice', $translator->trans('message.scraper_edited', ['scraper' => $scraper->getName()]));
 
-            return $this->redirectToRoute('app_scraper_item_show', ['id' => $scraper->getId()]);
+            return $this->redirectToRoute('app_scraper_collection_show', ['id' => $scraper->getId()]);
         }
 
-        return $this->render('App/Scraper/item/edit.html.twig', [
+        return $this->render('App/Scraper/collection/edit.html.twig', [
             'form' => $form,
             'scraper' => $scraper,
         ]);
     }
 
-    #[Route(path: '/scrapers/item-scrapers/{id}/delete', name: 'app_scraper_item_delete', methods: ['POST'])]
+    #[Route(path: '/scrapers/collection-scrapers/{id}/delete', name: 'app_scraper_collection_delete', methods: ['POST'])]
     public function delete(Request $request, Scraper $scraper, TranslatorInterface $translator, ManagerRegistry $managerRegistry): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $form = $this->createDeleteForm('app_scraper_item_delete', $scraper);
+        $form = $this->createDeleteForm('app_scraper_collection_delete', $scraper);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -165,10 +165,10 @@ class ItemScraperController extends AbstractController
             $this->addFlash('notice', $translator->trans('message.scraper_deleted', ['scraper' => $scraper->getName()]));
         }
 
-        return $this->redirectToRoute('app_scraper_item_index');
+        return $this->redirectToRoute('app_scraper_collection_index');
     }
 
-    #[Route(path: '/scrapers/item-scrapers/{id}/export', name: 'app_scraper_item_export', methods: ['GET'])]
+    #[Route(path: '/scrapers/collection-scrapers/{id}/export', name: 'app_scraper_collection_export', methods: ['GET'])]
     public function export(Scraper $scraper, SluggerInterface $slugger): FileResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
@@ -191,15 +191,15 @@ class ItemScraperController extends AbstractController
 
         $slug = $slugger->slug($scraper->getName())->lower();
 
-        return new FileResponse([json_encode($data)], "item-scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
+        return new FileResponse([json_encode($data)], "collection-scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
     }
 
-    #[Route(path: '/scrapers/item-scrapers/{id}', name: 'app_scraper_item_show', methods: ['GET'])]
+    #[Route(path: '/scrapers/collection-scrapers/{id}', name: 'app_scraper_collection_show', methods: ['GET'])]
     public function show(Scraper $scraper): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        return $this->render('App/Scraper/item/show.html.twig', [
+        return $this->render('App/Scraper/collection/show.html.twig', [
             'scraper' => $scraper,
         ]);
     }

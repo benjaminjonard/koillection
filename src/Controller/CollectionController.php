@@ -10,9 +10,9 @@ use App\Enum\ReservedLabelEnum;
 use App\Form\Type\Entity\CollectionType;
 use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Form\Type\Model\BatchTaggerType;
-use App\Form\Type\Model\ScrapingType;
+use App\Form\Type\Model\ScrapingCollectionType;
 use App\Model\BatchTagger;
-use App\Model\Scraping;
+use App\Model\ScrapingCollection;
 use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
@@ -86,7 +86,7 @@ class CollectionController extends AbstractController
         return $this->render('App/Collection/add.html.twig', [
             'collection' => $collection,
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('collection')),
+            'scrapingForm' => $this->createForm(ScrapingCollectionType::class, new ScrapingCollection()),
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenLabels' => $collectionRepository->suggestChildrenLabels($collection),
             'choiceLists' => $choiceListRepository->findAll()
@@ -177,7 +177,7 @@ class CollectionController extends AbstractController
 
         return $this->render('App/Collection/edit.html.twig', [
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('collection', true)),
+            'scrapingForm' => $this->createForm(ScrapingCollectionType::class, new ScrapingCollection(true)),
             'collection' => $collection,
             'suggestedItemsLabels' => $collectionRepository->suggestItemsLabels($collection),
             'suggestedChildrenTitles' => $collectionRepository->suggestChildrenLabels($collection),

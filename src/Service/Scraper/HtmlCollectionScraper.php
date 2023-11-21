@@ -6,11 +6,11 @@ namespace App\Service\Scraper;
 
 use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperTypeEnum;
-use App\Model\ScrapingItem;
+use App\Model\ScrapingCollection;
 
-class HtmlItemScraper extends HtmlScraper
+class HtmlCollectionScraper extends HtmlScraper
 {
-    public function scrap(ScrapingItem $scraping): array
+    public function scrap(ScrapingCollection $scraping): array
     {
         $crawler = $this->getCrawler($scraping);
         $scraper = $scraping->getScraper();
@@ -21,7 +21,7 @@ class HtmlItemScraper extends HtmlScraper
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
             'image' => $image,
-            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_ITEM),
+            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_COLLECTION),
             'scrapedUrl' => $scraping->getUrl()
         ];
     }
