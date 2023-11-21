@@ -1,8 +1,18 @@
-<div class="tabs-block">
+<div class="tabs-block center-align">
     <ul class="nav nav-pills">
         <li class="tab {{ current == "item" ? 'current' }}">
-            <a href="{{ path('app_scraper_index') }}">
-                <span>{{ 'tab.item_scrappers'|trans }}</span>
+            <a href="{{ path('app_scraper_item_index') }}">
+                <span>{{ 'tab.item_scrapers'|trans }}</span>
+            </a>
+        </li>
+        <li class="tab {{ current == "collection" ? 'current' }}">
+            <a href="{{ path('app_scraper_item_index') }}">
+                <span>{{ 'tab.collection_scrapers'|trans }}</span>
+            </a>
+        </li>
+        <li class="tab {{ current == "wish" ? 'current' }}">
+            <a href="{{ path('app_scraper_item_index') }}">
+                <span>{{ 'tab.wish_scrapers'|trans }}</span>
             </a>
         </li>
     </ul>

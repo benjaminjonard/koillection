@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App;
+namespace App\Scraper;
 
 use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperTypeEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\PathFactory;
 use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

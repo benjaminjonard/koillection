@@ -14,7 +14,7 @@ use App\Http\FileResponse;
 use App\Model\Scraper\ItemScraperImporter;
 use App\Model\Scraping;
 use App\Repository\ScraperRepository;
-use App\Service\Scraper\HtmlScraper;
+use App\Service\Scraper\HtmlItemScraper;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,7 +28,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ItemScraperController extends AbstractController
 {
     #[Route(path: '/scrapers/item-scrapers/scrap', name: 'app_scraper_item_scrap', methods: ['POST'])]
-    public function scrap(Request $request, HtmlScraper $htmlScraper): JsonResponse
+    public function scrap(Request $request, HtmlItemScraper $htmlScraper): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
@@ -72,7 +72,7 @@ class ItemScraperController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scrapers = $scraperRepository->findBy([], ['name' => Criteria::ASC]);
+        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_ITEM], ['name' => Criteria::ASC]);
 
         return $this->render('App/Scraper/item/index.html.twig', [
             'scrapers' => $scrapers,

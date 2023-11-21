@@ -13,18 +13,16 @@ use Symfony\Component\Intl\Countries;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
-readonly class HtmlScraper
+abstract class HtmlScraper
 {
     public function __construct(
-        private HttpClientInterface $client,
-        private Environment $twig
+        protected HttpClientInterface $client,
+        protected Environment $twig
     ) {
     }
 
-    public function scrap(Scraping $scraping): array
+    protected function getCrawler(Scraping $scraping): Crawler
     {
-        $scraper = $scraping->getScraper();
-
         if ($scraping->getFile() instanceof UploadedFile) {
             $content = $scraping->getFile()->getContent();
         } else {
@@ -41,20 +39,10 @@ readonly class HtmlScraper
             $content = $response->getContent();
         }
 
-        $crawler = new Crawler($content);
-
-        $image = $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null;
-        $image = $this->guessHost($image, $scraping);
-
-        return [
-            'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
-            'image' => $image,
-            'data' => $this->scrapData($scraping, $crawler),
-            'scrapedUrl' => $scraping->getUrl()
-        ];
+        return new Crawler($content);
     }
 
-    private function extract(?string $template, string $type, Crawler $crawler): ?string
+    protected function extract(?string $template, string $type, Crawler $crawler): ?string
     {
         if (!$template) {
             return '';
@@ -89,7 +77,7 @@ readonly class HtmlScraper
         return $this->formatValues($values, $type);
     }
 
-    private function scrapData(Scraping $scraping, Crawler $crawler) : array
+    protected function scrapData(Scraping $scraping, Crawler $crawler) : array
     {
         $data = [];
 
@@ -120,7 +108,7 @@ readonly class HtmlScraper
         return $data;
     }
 
-    private function formatValues(?array $values, string $type): ?string
+    protected function formatValues(?array $values, string $type): ?string
     {
         if ($values === null || $values === []) {
             return null;
@@ -158,7 +146,7 @@ readonly class HtmlScraper
         return null;
     }
 
-    public function guessHost(?string $url, Scraping $scraping): ?string
+    protected function guessHost(?string $url, Scraping $scraping): ?string
     {
         if ($url === null) {
             return null;
