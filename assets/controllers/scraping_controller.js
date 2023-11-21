@@ -35,9 +35,13 @@ export default class extends Controller {
                             self.nameInputTarget.value = result.name;
                         }
 
-                        if (self.hasImagePreviewTarget && result.image !== null) {
+                        if (self.hasImagePreviewTarget && result.image) {
                             self.imagePreviewTarget.src = result.image;
                             self.imageInputTarget.value = result.image;
+                        }
+
+                        if (result.base64Image) {
+                            self.dispatch("newCroppieImage", { detail: { content: result.base64Image } })
                         }
 
                         if (result.data !== null) {

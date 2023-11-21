@@ -51,6 +51,9 @@ class ScrapingCollectionType extends AbstractType
             ->add('scrapName', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('scrapImage', CheckboxType::class, [
+                'required' => false,
+            ])
         ;
 
         $formModifier = function (FormInterface $form, Scraper $scraper = null): void {

@@ -20,7 +20,7 @@ class HtmlCollectionScraper extends HtmlScraper
 
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
-            'image' => $image,
+            'base64Image' => 'data:image/png;base64,' . base64_encode(file_get_contents($image)),
             'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_COLLECTION),
             'scrapedUrl' => $scraping->getUrl()
         ];

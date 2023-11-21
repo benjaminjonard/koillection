@@ -36,10 +36,6 @@ export default class extends Controller {
     }
 
     refreshImage(event) {
-        if (this.inputTarget.value === '') {
-            return;
-        }
-
         let form = this.element.querySelector('.file-input');
         let self = this;
         this.croppie.result({
@@ -50,6 +46,23 @@ export default class extends Controller {
             form.value = imgBase64;
             self.currentPreviewTarget.src = imgBase64;
         });
+    }
+
+    async injectCroppie({ detail: { content } }) {
+        let self = this;
+
+        fetch(content)
+            .then(res => res.blob())
+            .then(function(blob) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    self.croppie.bind({
+                        url : e.target.result,
+                    });
+                };
+                reader.readAsDataURL(blob);
+                self.deleteCheckboxTarget.checked = false;
+            })
     }
 
 
