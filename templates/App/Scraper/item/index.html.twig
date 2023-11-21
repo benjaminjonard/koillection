@@ -1,6 +1,9 @@
 {% extends 'layout.html.twig' %}
 
-{% set breadcrumb = buildBreadcrumb([{'route': 'app_scraper_index', 'trans': 'menu.scrapers'}]) %}
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_scraper_item_index', 'trans': 'menu.scrapers'},
+    {'route': 'app_scraper_item_index', 'trans': 'menu.item_scrapers'}
+]) %}
 
 {% block title %}
     {{ renderTitle(breadcrumb) }}
@@ -24,7 +27,7 @@
 
             <div class="btn-holder">
                 <div class="left">
-                    <a href="{{ path('app_scraper_add') }}" class="button" title="{{ 'tooltip.add_scraper'|trans }}">
+                    <a href="{{ path('app_scraper_item_add') }}" class="button" title="{{ 'tooltip.add_scraper'|trans }}">
                         <i class="fa fa-plus fa-fw"></i>
                     </a>
                     <a href="#modal-scrapper-import" class="modal-trigger button"
@@ -52,7 +55,7 @@
                     <tr class="list-element resize-element" data-title="{{ scraper.name }}"
                         data-filter-target="element">
                         <td>
-                            <a href="{{ path('app_scraper_show', {'id' : scraper.id}) }}">
+                            <a href="{{ path('app_scraper_item_show', {'id' : scraper.id}) }}">
                                 <strong>{{ scraper.name }}</strong>
                             </a>
                         </td>
@@ -69,7 +72,7 @@
                 <div class="modal-header">
                     <span class="modal-title"></span>{{ 'title.import_scraper'|trans }}
                 </div>
-                {{ form_start(scraperImportForm, {'action': path('app_scraper_import') }) }}
+                {{ form_start(scraperImportForm, {'action': path('app_scraper_item_import') }) }}
                     {% do scraperImportForm.file.setRendered %}
                     <div class="modal-body">
                         <div class="input-field file-data s10 offset-s1 m5" data-controller="file-input">
@@ -77,8 +80,8 @@
                                 <i class="fa fa-upload fa-fw"></i>&nbsp;{{ 'btn.upload'|trans }}
                             </div>
 
-                            <input type="file" id="scraper_importer_file"
-                                   name="scraper_importer[file]"
+                            <input type="file" id="item_scraper_importer_file"
+                                   name="item_scraper_importer[file]"
                                    accept="application/json"
                                    data-action="change->file-input#displayFilename"
                                    data-file-input-target="input"

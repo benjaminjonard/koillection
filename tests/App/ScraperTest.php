@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Enum\DatumTypeEnum;
+use App\Enum\ScraperTypeEnum;
 use App\Tests\Factory\PathFactory;
 use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\UserFactory;
@@ -33,7 +34,7 @@ class ScraperTest extends AppTestCase
         $this->client->loginUser($user);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers');
+        $crawler = $this->client->request('GET', '/scrapers/item-scrappers');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -45,10 +46,10 @@ class ScraperTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/'.$scraper->getId());
+        $crawler = $this->client->request('GET', '/scrapers/item-scrappers/'.$scraper->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -62,7 +63,7 @@ class ScraperTest extends AppTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/scrapers/add');
+        $this->client->request('GET', '/scrapers/item-scrappers/add');
 
         $crawler = $this->client->submitForm('Submit', [
             'scraper[name]' => 'Manga News'
@@ -78,11 +79,11 @@ class ScraperTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/'.$scraper->getId().'/edit');
+        $this->client->request('GET', '/scrapers/item-scrappers/'.$scraper->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
             'scraper[name]' => 'Manga News',
             'scraper[namePath]' => '//h1/text()',
@@ -104,12 +105,12 @@ class ScraperTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/'.$scraper->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/'.$scraper->getId().'/delete');
+        $crawler = $this->client->request('GET', '/scrapers/item-scrappers/'.$scraper->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/item-scrappers/'.$scraper->getId().'/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -123,11 +124,11 @@ class ScraperTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/'.$scraper->getId() . '/export');
+        $this->client->request('GET', '/scrapers/item-scrappers/'.$scraper->getId() . '/export');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -141,7 +142,7 @@ class ScraperTest extends AppTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/scrapers');
+        $this->client->request('GET', '/scrapers/item-scrappers');
         $crawler = $this->client->submitForm('Import', [
             'scraper_importer[file]' => $this->createFile('json'),
         ]);

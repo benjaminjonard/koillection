@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -27,6 +28,9 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
     private ?string $name = null;
+
+    #[ORM\Column(type: Types::STRING, length: 15)]
+    private ?string $type = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $urlPattern = null;
@@ -76,6 +80,18 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     public function setName(?string $name): Scraper
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): Scraper
+    {
+        $this->type = $type;
 
         return $this;
     }

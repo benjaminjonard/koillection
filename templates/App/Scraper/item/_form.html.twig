@@ -24,7 +24,7 @@
             </div>
 
             <div data-controller="scraper-data-path"
-                 data-prototype="{% apply escape %} {{ include('App/Scraper/_data_path_prototype.html.twig', { 'form': form.dataPaths.vars.prototype }) }} {% endapply %}"
+                 data-prototype="{% apply escape %} {{ include('App/Scraper/item/_data_path_prototype.html.twig', { 'form': form.dataPaths.vars.prototype }) }} {% endapply %}"
             >
                 {{ form_row(form.dataPaths) }}
                 <a data-scraper-data-path-target="button"
@@ -40,6 +40,6 @@
 
     <div class="center-align form-btn-holder">
         <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-        <a href="{{ path('app_scraper_index') }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
+        <a href="{{ path('app_scraper_item_index') }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
     </div>
 {{ form_end(form) }}
