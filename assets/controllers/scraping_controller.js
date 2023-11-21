@@ -14,7 +14,7 @@ export default class extends Controller {
         let self = this;
         self.modalErrorTarget.innerHTML = "";
 
-        fetch('/scrapers/item-scrappers/scrap', {
+        fetch('/scrapers/item-scrapers/scrap', {
             method: 'POST',
             body: new FormData(event.target)
         })
@@ -51,7 +51,7 @@ export default class extends Controller {
         const id = event.target.value;
         self.dataToScrapContainerTarget.innerHTML = '';
 
-        fetch('/scrapers/item-scrappers/' + id + '/data-paths-checkboxes', {
+        fetch('/scrapers/item-scrapers/' + id + '/data-paths-checkboxes', {
             method: 'GET',
         })
             .then(response => response.json())

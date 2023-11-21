@@ -67,7 +67,7 @@ class ItemScraperController extends AbstractController
         return new JsonResponse(['html' => $html]);
     }
 
-    #[Route(path: '/scrapers', name: 'app_scraper_item_index', methods: ['GET'])]
+    #[Route(path: '/scrapers/item-scrapers', name: 'app_scraper_item_index', methods: ['GET'])]
     public function index(ScraperRepository $scraperRepository): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
@@ -191,7 +191,7 @@ class ItemScraperController extends AbstractController
 
         $slug = $slugger->slug($scraper->getName())->lower();
 
-        return new FileResponse([json_encode($data)], "scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
+        return new FileResponse([json_encode($data)], "item-scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
     }
 
     #[Route(path: '/scrapers/item-scrapers/{id}', name: 'app_scraper_item_show', methods: ['GET'])]
