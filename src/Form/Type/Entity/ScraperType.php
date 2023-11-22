@@ -39,7 +39,7 @@ class ScraperType extends AbstractType
 
         $formModifier = function (FormInterface $form) use ($scraper): void {
             match ($scraper->getType()) {
-                ScraperTypeEnum::TYPE_ITEM, ScraperTypeEnum::TYPE_COLLECTION => $form
+                ScraperTypeEnum::TYPE_ITEM, ScraperTypeEnum::TYPE_COLLECTION, ScraperTypeEnum::TYPE_WISH => $form
                     ->add('dataPaths', SymfonyCollectionType::class, [
                         'entry_type' => PathType::class,
                         'label' => false,
