@@ -586,7 +586,7 @@ label div {
     width: 100px;
 }
 
-.content-wrapper .btn-holder {
+.content-wrapper .title-block .btn-holder {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -25,11 +25,13 @@
     <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
-                <h1>{{ 'menu.albums'|trans }}</h1>
-                <ul class="nav nav-pills">
-                    <li>{{ 'counter.photo'|trans({'count': photosCounter}) }}</li>
-                    <li>{{ 'counter.album'|trans({'count': albumsCounter}) }}</li>
-                </ul>
+                <div>
+                    <h1>{{ 'menu.albums'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.photo'|trans({'count': photosCounter}) }}</li>
+                        <li>{{ 'counter.album'|trans({'count': albumsCounter}) }}</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="btn-holder">

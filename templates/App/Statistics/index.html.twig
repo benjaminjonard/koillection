@@ -23,13 +23,15 @@
 
 {% block content %}
     <div class="title-block">
-        <h1>{{ 'menu.statistics'|trans }}</h1>
-        <ul class="nav nav-pills">
-            <li>{{ 'counter.collection'|trans({'count': counters.collections}) }}</li>
-            <li>{{ 'counter.item'|trans({'count': counters.items}) }}</li>
-            <li>{{ 'counter.tag'|trans({'count': counters.tags}) }}</li>
-            <li>{{ 'counter.sign'|trans({'count': counters.signs}) }}</li>
-        </ul>
+        <div>
+            <h1>{{ 'menu.statistics'|trans }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.collection'|trans({'count': counters.collections}) }}</li>
+                <li>{{ 'counter.item'|trans({'count': counters.items}) }}</li>
+                <li>{{ 'counter.tag'|trans({'count': counters.tags}) }}</li>
+                <li>{{ 'counter.sign'|trans({'count': counters.signs}) }}</li>
+            </ul>
+        </div>
     </div>
 
     <div></div>

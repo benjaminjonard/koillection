@@ -12,11 +12,13 @@
 
 {% block content %}
     <div class="title-block">
-        <h1>{{ 'menu.loans'|trans }}</h1>
-        <ul class="nav nav-pills">
-            <li>{{ 'counter.loan'|trans({'count': loans|length}) }}</li>
-            <li>{{ 'counter.returned'|trans({'count': returnedItems|length}) }}</li>
-        </ul>
+        <div>
+            <h1>{{ 'menu.loans'|trans }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.loan'|trans({'count': loans|length}) }}</li>
+                <li>{{ 'counter.returned'|trans({'count': returnedItems|length}) }}</li>
+            </ul>
+        </div>
     </div>
 
     <div class="content-block" data-controller="tabs">
