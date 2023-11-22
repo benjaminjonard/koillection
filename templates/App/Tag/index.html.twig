@@ -31,10 +31,8 @@
                 </ul>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     {% if context == 'default' %}
                         <a href="{{ path('app_tag_category_index') }}" class="button"
                            title="{{ 'tooltip.manage_tag_categories'|trans }}">
@@ -44,7 +42,7 @@
                         {{ include('App/_partials/_visibility.html.twig') }}
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     {{ form_start(form, {attr: {"data-filter-ajax-target": "form"}}) }}
                         {% do form.term.setRendered %}
                         <input type="text"
@@ -58,7 +56,6 @@
                         >
                     {{ form_end(form) }}
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 

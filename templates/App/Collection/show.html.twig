@@ -26,7 +26,7 @@
     <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
-                <div class="left">
+                <div>
                     {% if collection.image != null %}
                         <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
                     {% else %}
@@ -43,13 +43,10 @@
                         <li>{{ 'counter.collection'|trans({'count': collection.cachedValues.counters.children|default(0) }) }}</li>
                     </ul>
                 </div>
-                <div class="clearfix"></div>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     {% if context == 'default' %}
                         <a href="{{ path('app_item_add', {'collection': collection.id}) }}" class="button"
                            title="{{ 'tooltip.add_item'|trans }}">
@@ -81,10 +78,9 @@
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': collection.finalVisibility}) }}
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 

@@ -13,7 +13,7 @@
 {% block content %}
     <div class="collection-header">
         <div class="title-block">
-            <div class="left">
+            <div>
                 {% if wishlist.image != null %}
                     <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image), {as: 'image'}) }}">
                 {% else %}
@@ -21,15 +21,13 @@
                           aria-hidden="true">{{ wishlist.title|first|upper }}</span>
                 {% endif %}
             </div>
-            <div class="right">
+            <div>
                 <h1>{{ wishlist.name }}</h1>
                 <ul class="nav nav-pills">
 
                 </ul>
             </div>
-            <div class="clearfix"></div>
         </div>
-        <div></div>
     </div>
 
     <div class="content-block">

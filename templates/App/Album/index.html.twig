@@ -32,10 +32,8 @@
                 </ul>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     {% if context == 'default' %}
                         <a href="{{ path('app_album_add') }}" class="button" title="{{ 'tooltip.add_album'|trans }}">
                             <i class="fa fa-folder fa-fw"></i>
@@ -47,11 +45,10 @@
                         {{ include('App/_partials/_visibility.html.twig') }}
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     <input data-action="keyup->filter#filter" class="input-field filter-input" autocomplete="off" type="text"
                            placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 

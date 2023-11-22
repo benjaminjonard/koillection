@@ -23,10 +23,8 @@
                 </ul>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     <a href="{{ path('app_scraper_collection_add') }}" class="button" title="{{ 'tooltip.add_scraper'|trans }}">
                         <i class="fa fa-plus fa-fw"></i>
                     </a>
@@ -35,11 +33,10 @@
                         <i class="fa fa-import fa-fw"></i>
                     </a>
                 </div>
-                <div class="right">
+                <div>
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
                            placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 
