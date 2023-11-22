@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class ItemScraperTest extends AppTestCase
+class CollectionScraperTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;
@@ -27,43 +27,43 @@ class ItemScraperTest extends AppTestCase
         $this->client->followRedirects();
     }
 
-    public function test_can_see_item_scraper_list(): void
+    public function test_can_see_collection_scraper_list(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/item-scrapers');
+        $crawler = $this->client->request('GET', '/scrapers/collection-scrapers');
 
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertSame('Scrapers', $crawler->filter('h1')->text());
     }
 
-    public function test_can_get_item_scraper(): void
+    public function test_can_get_collection_scraper(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_COLLECTION, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId());
+        $crawler = $this->client->request('GET', '/scrapers/collection-scrapers/'.$scraper->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertSame($scraper->getName(), $crawler->filter('h1')->text());
     }
 
-    public function test_can_add_item_scraper(): void
+    public function test_can_add_collection_scraper(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/scrapers/item-scrapers/add');
+        $this->client->request('GET', '/scrapers/collection-scrapers/add');
 
         $crawler = $this->client->submitForm('Submit', [
             'scraper[name]' => 'Manga News'
@@ -74,16 +74,16 @@ class ItemScraperTest extends AppTestCase
         $this->assertSame('Manga News', $crawler->filter('h1')->text());
     }
 
-    public function test_can_edit_item_scraper(): void
+    public function test_can_edit_collection_scraper(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_COLLECTION, 'owner' => $user]);
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId().'/edit');
+        $this->client->request('GET', '/scrapers/collection-scrapers/'.$scraper->getId().'/edit');
         $crawler = $this->client->submitForm('Submit', [
             'scraper[name]' => 'Manga News',
             'scraper[namePath]' => '//h1/text()',
@@ -100,17 +100,17 @@ class ItemScraperTest extends AppTestCase
         $this->assertCount(3, $crawler->filter('tbody tr'));
     }
 
-    public function test_can_delete_item_scraper(): void
+    public function test_can_delete_collection_scraper(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_COLLECTION, 'owner' => $user]);
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/item-scrapers/'.$scraper->getId().'/delete');
+        $crawler = $this->client->request('GET', '/scrapers/collection-scrapers/'.$scraper->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/collection-scrapers/'.$scraper->getId().'/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -119,32 +119,32 @@ class ItemScraperTest extends AppTestCase
         PathFactory::assert()->count(0);
     }
 
-    public function test_can_export_item_scraper(): void
+    public function test_can_export_collection_scraper(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
-        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_COLLECTION, 'owner' => $user]);
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId() . '/export');
+        $this->client->request('GET', '/scrapers/collection-scrapers/'.$scraper->getId() . '/export');
 
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('Content-Type', 'application/json');
     }
 
-    public function test_can_import_item_scraper(): void
+    public function test_can_import_collection_scraper(): void
     {
         // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/scrapers/item-scrapers');
+        $this->client->request('GET', '/scrapers/collection-scrapers');
         $crawler = $this->client->submitForm('Import', [
-            'item_scraper_importer[file]' => $this->createFile('json'),
+            'collection_scraper_importer[file]' => $this->createFile('json'),
         ]);
 
         // Assert

@@ -140,7 +140,7 @@ class WishController extends AbstractController
 
         return $this->render('App/Wish/transfer_to_collection.html.twig', [
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingItemType::class, new ScrapingItem('item')),
+            'scrapingForm' => $this->createForm(ScrapingItemType::class, new ScrapingItem()),
             'item' => $item,
             'wish' => $wish,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),
