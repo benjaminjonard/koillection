@@ -1,47 +1,68 @@
-{{ form_start(form) }}
-    {{ form_row(form.file) }}
+<span data-controller="scraping"
+      data-scraping-scrap-url-value="{{ path('app_scraper_wish_scrap') }}"
+>
+    {{ form_start(form) }}
+        {{ form_row(form.file) }}
+        {{ form_row(form.fileUrl, {'attr': {'data-scraping-target': 'imageInput'}}) }}
+        {{ form_row(form.scrapedFromUrl, {'attr': {'data-scraping-target': 'scrapedUrlInput'}}) }}
 
-<div class="row">
-    <div class="s12 l5 offset-l1 xl4 offset-xl2">
-        {{ form_row(form.name, {'label' : 'label.name'}) }}
-    </div>
-    <div class="s12 l5 xl4">
-        {{ form_row(form.wishlist, {'label' : 'label.wishlist', 'attr': {'data-controller': 'select--default'}}) }}
-    </div>
-</div>
+        {% if isFeatureEnabled('scraping') %}
+            <div class="row">
+                <div class="s12 l10 offset-l1 xl8 offset-xl2">
+                    <div class="btn-holder right">
+                        <a href="#scrap" class="modal-trigger btn">
+                            {{ 'btn.scrap'|trans }}
+                        </a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+        {% endif %}
 
-<div class="row">
-    <div class="s12 l5 offset-l1 xl4 offset-xl2">
-        {{ form_row(form.url, {'label' : 'label.url'}) }}
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.name, {'label' : 'label.name', 'attr': {'data-scraping-target': 'nameInput'}}) }}
+        </div>
+        <div class="s12 l5 xl4">
+            {{ form_row(form.wishlist, {'label' : 'label.wishlist', 'attr': {'data-controller': 'select--default'}}) }}
+        </div>
     </div>
-    <div class="s12 l5 xl4">
-        {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
-    </div>
-</div>
 
-<div class="row">
-    <div class="s12 l5 offset-l1 xl4 offset-xl2">
-        {{ form_row(form.price, {'label' : 'label.price', 'type': 'number'}) }}
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.url, {'label' : 'label.url', 'attr': {'data-scraping-target': 'urlInput'}}) }}
+        </div>
+        <div class="s12 l5 xl4">
+            {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+        </div>
     </div>
-    <div class="s12 l5 xl4">
-        {{ form_row(form.currency, {'label' : 'label.currency', 'attr': {'data-controller': 'select--default'}}) }}
+
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.price, {'label' : 'label.price', 'type': 'number', 'attr': {'data-scraping-target': 'priceInput'}}) }}
+        </div>
+        <div class="s12 l5 xl4">
+            {{ form_row(form.currency, {'label' : 'label.currency', 'attr': {'data-controller': 'select--default'}}) }}
+        </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="s12 l10 offset-l1 xl8 offset-xl2">
-        {{ form_row(form.comment, {'label' : 'label.comment', 'attr': {'class': 'materialize-textarea', 'data-controller': 'textarea'}} ) }}
+    <div class="row">
+        <div class="s12 l10 offset-l1 xl8 offset-xl2">
+            {{ form_row(form.comment, {'label' : 'label.comment', 'attr': {'class': 'materialize-textarea', 'data-controller': 'textarea'}} ) }}
+        </div>
     </div>
-</div>
 
-<div class="center-align form-btn-holder">
-    {% if app.request.get('_route') == 'app_wish_add' %}
-        {% set cancelUrl = path('app_wishlist_show', {id: app.request.query.get('wishlist')}) %}
-    {% else %}
-        {% set cancelUrl = path('app_wishlist_show', {id: wish.wishlist.id}) %}
-    {% endif %}
+    <div class="center-align form-btn-holder">
+        {% if app.request.get('_route') == 'app_wish_add' %}
+            {% set cancelUrl = path('app_wishlist_show', {id: app.request.query.get('wishlist')}) %}
+        {% else %}
+            {% set cancelUrl = path('app_wishlist_show', {id: wish.wishlist.id}) %}
+        {% endif %}
 
-    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
-    <a href="{{ cancelUrl }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
-</div>
-{{ form_end(form) }}
+        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        <a href="{{ cancelUrl }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+    </div>
+    {{ form_end(form) }}
+
+    {{ include('App/Scraper/_scraping.html.twig', {form: scrapingForm, scrapedFromUrl: wish.scrapedFromUrl}) }}
+</span>

@@ -41,6 +41,9 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $imagePath = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $pricePath = null;
+
     #[ORM\OneToMany(targetEntity: Path::class, mappedBy: 'scraper', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
     #[Assert\Valid]
@@ -116,6 +119,18 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     public function setImagePath(?string $imagePath): Scraper
     {
         $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    public function getPricePath(): ?string
+    {
+        return $this->pricePath;
+    }
+
+    public function setPricePath(?string $pricePath): Scraper
+    {
+        $this->pricePath = $pricePath;
 
         return $this;
     }

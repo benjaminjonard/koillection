@@ -3547,5 +3547,11 @@
         <target>{count, plural, one {# wish scraper} other {# wish scrapers}}</target>
       </segment>
     </unit>
+    <unit id="KLXszaB" name="label.price_path">
+      <segment state="translated">
+        <source>Price path</source>
+        <target>Price path</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

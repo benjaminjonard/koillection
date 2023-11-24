@@ -58,12 +58,10 @@
                     <td>{{ 'label.image_path'|trans }}</td>
                     <td>{{ scraper.imagePath }}</td>
                 </tr>
-                {% for dataPath in scraper.dataPaths %}
-                    <tr class="list-element">
-                        <td>{{ dataPath.name }}</td>
-                        <td>{{ dataPath.path }}</td>
-                    </tr>
-                {% endfor %}
+                <tr class="list-element">
+                    <td>{{ 'label.price_path'|trans }}</td>
+                    <td>{{ scraper.pricePath }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>

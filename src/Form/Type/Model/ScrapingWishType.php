@@ -7,14 +7,13 @@ namespace App\Form\Type\Model;
 use App\Entity\Path;
 use App\Entity\Scraper;
 use App\Enum\ScraperTypeEnum;
-use App\Model\ScrapingItem;
+use App\Model\ScrapingWish;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -55,36 +54,10 @@ class ScrapingWishType extends AbstractType
             ->add('scrapImage', CheckboxType::class, [
                'required' => false,
             ])
-        ;
-
-        $formModifier = function (FormInterface $form, Scraper $scraper = null): void {
-            $choices = null === $scraper ? [] : $scraper->getDataPaths();
-
-            $form->add('dataToScrap', EntityType::class, [
-                'class' => Path::class,
-                'choice_label' => 'name',
-                'choices' => $choices,
-                'expanded' => true,
-                'multiple' => true,
+            ->add('scrapPrice', CheckboxType::class, [
                 'required' => false,
-            ]);
-        };
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($formModifier): void {
-                $data = $event->getData();
-                $formModifier($event->getForm(), $data->getScraper());
-            }
-        );
-
-        $builder->get('scraper')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier): void {
-                $scraper = $event->getForm()->getData();
-                $formModifier($event->getForm()->getParent(), $scraper);
-            }
-        );
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

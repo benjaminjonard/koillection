@@ -57,4 +57,10 @@
             {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image', 'attr': {'autocomplete': 'off'}}) }}
         </div>
     {% endif %}
+
+    {% if scrapingForm.scrapPrice is defined %}
+        <div class="s12 l5 xl3">
+            {{ form_row(scrapingForm.scrapPrice, {'label' : 'label.scrap_price', 'attr': {'autocomplete': 'off'}}) }}
+        </div>
+    {% endif %}
 </div>

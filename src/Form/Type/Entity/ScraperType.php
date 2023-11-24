@@ -8,6 +8,7 @@ use App\Entity\Scraper;
 use App\Enum\ScraperTypeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -39,13 +40,17 @@ class ScraperType extends AbstractType
 
         $formModifier = function (FormInterface $form) use ($scraper): void {
             match ($scraper->getType()) {
-                ScraperTypeEnum::TYPE_ITEM, ScraperTypeEnum::TYPE_COLLECTION, ScraperTypeEnum::TYPE_WISH => $form
+                ScraperTypeEnum::TYPE_ITEM, ScraperTypeEnum::TYPE_COLLECTION => $form
                     ->add('dataPaths', SymfonyCollectionType::class, [
                         'entry_type' => PathType::class,
                         'label' => false,
                         'allow_add' => true,
                         'allow_delete' => true,
                         'by_reference' => false,
+                    ]),
+                ScraperTypeEnum::TYPE_WISH => $form
+                    ->add('pricePath', TextType::class, [
+                        'required' => false,
                     ])
             };
         };

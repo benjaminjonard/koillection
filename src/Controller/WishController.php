@@ -10,7 +10,9 @@ use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
 use App\Form\Type\Model\ScrapingItemType;
+use App\Form\Type\Model\ScrapingWishType;
 use App\Model\ScrapingItem;
+use App\Model\ScrapingWish;
 use App\Repository\ChoiceListRepository;
 use App\Repository\WishlistRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -61,7 +63,9 @@ class WishController extends AbstractController
 
         return $this->render('App/Wish/add.html.twig', [
             'form' => $form,
+            'scrapingForm' => $this->createForm(ScrapingWishType::class, new ScrapingWish()),
             'wishlist' => $wishlist,
+            'wish' => $wish
         ]);
     }
 
@@ -81,6 +85,7 @@ class WishController extends AbstractController
 
         return $this->render('App/Wish/edit.html.twig', [
             'form' => $form,
+            'scrapingForm' => $this->createForm(ScrapingWishType::class, new ScrapingWish(true)),
             'wish' => $wish,
         ]);
     }

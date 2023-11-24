@@ -5,6 +5,7 @@ export default class extends Controller {
     static targets = [
         'scrapedUrlInput', 'nameInput', 'urlInputContainer', 'fileInputContainer',
         'imagePreview', 'imageInput', 'scraperInput', 'urlInput',
+        'urlInput', 'priceInput',
         'modalCloseButton', 'modalError',
         'dataToScrapContainer', 'form',
     ]
@@ -31,6 +32,8 @@ export default class extends Controller {
                     if (result.form) {
                         self.formTarget.innerHTML = result.form;
                     } else {
+                        self.scrapedUrlInputTarget.value = result.scrapedUrl;
+
                         if (result.name !== null) {
                             self.nameInputTarget.value = result.name;
                         }
@@ -40,16 +43,25 @@ export default class extends Controller {
                             self.imageInputTarget.value = result.image;
                         }
 
-                        if (result.base64Image) {
-                            self.dispatch("newCroppieImage", { detail: { content: result.base64Image } })
-                        }
-
+                        // ITEM and COLLECTION
                         if (result.data !== null) {
                             self.dispatch("newScrapedData", { detail: { content: result.data } })
                             self.modalCloseButtonTarget.click();
                         }
 
-                        self.scrapedUrlInputTarget.value = result.scrapedUrl;
+                        // COLLECTION
+                        if (result.base64Image) {
+                            self.dispatch("newCroppieImage", { detail: { content: result.base64Image } })
+                        }
+
+                        // WISH
+                        if (self.hasPriceTarget && result.price) {
+                            self.namePriceTarget.value = result.name;
+                        }
+
+                        if (self.hasUrlTarget) {
+                            self.nameUrlTarget.value = result.scrapedUrl;
+                        }
                     }
                 }
             })

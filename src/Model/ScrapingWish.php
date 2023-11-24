@@ -22,7 +22,7 @@ class ScrapingWish
 
     private bool $scrapImage = true;
 
-    private array $dataToScrap = [];
+    private bool $scrapPrice = true;
 
     public function __construct(bool $isEdition = false)
     {
@@ -52,7 +52,6 @@ class ScrapingWish
     public function setScraper(?Scraper $scraper): ScrapingWish
     {
         $this->scraper = $scraper;
-        $this->dataToScrap = $scraper->getDataPaths()->toArray();
 
         return $this;
     }
@@ -82,14 +81,14 @@ class ScrapingWish
         return $this;
     }
 
-    public function getDataToScrap(): array
+    public function getScrapPrice(): bool
     {
-        return $this->dataToScrap;
+        return $this->scrapPrice;
     }
 
-    public function setDataToScrap(array $dataToScrap): ScrapingWish
+    public function setScrapPrice(bool $scrapPrice): ScrapingWish
     {
-        $this->dataToScrap = $dataToScrap;
+        $this->scrapPrice = $scrapPrice;
 
         return $this;
     }

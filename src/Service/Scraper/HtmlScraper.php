@@ -8,6 +8,7 @@ use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
 use App\Model\ScrapingCollection;
 use App\Model\ScrapingItem;
+use App\Model\ScrapingWish;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Intl\Countries;
@@ -22,7 +23,7 @@ abstract class HtmlScraper
     ) {
     }
 
-    protected function getCrawler(ScrapingItem|ScrapingCollection $scraping): Crawler
+    protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): Crawler
     {
         if ($scraping->getFile() instanceof UploadedFile) {
             $content = $scraping->getFile()->getContent();
@@ -75,10 +76,12 @@ abstract class HtmlScraper
             }
         }
 
+        dd($values);
+
         return $this->formatValues($values, $type);
     }
 
-    protected function scrapData(ScrapingItem|ScrapingCollection $scraping, Crawler $crawler, string $entityType) : array
+    protected function scrapData(ScrapingItem|ScrapingCollection|ScrapingWish $scraping, Crawler $crawler, string $entityType) : array
     {
         $data = [];
 
@@ -147,7 +150,7 @@ abstract class HtmlScraper
         return null;
     }
 
-    protected function guessHost(?string $url, ScrapingItem|ScrapingCollection $scraping): ?string
+    protected function guessHost(?string $url, ScrapingItem|ScrapingCollection|ScrapingWish $scraping): ?string
     {
         if ($url === null) {
             return null;

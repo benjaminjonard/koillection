@@ -53,7 +53,7 @@ class ItemType extends AbstractType
                 'required' => false,
                 'label' => false,
             ])
-            ->add(
+            ->add( // Used for scraping
                 $builder->create('fileUrl', HiddenType::class, [
                     'required' => false,
                     'label' => false,

@@ -18,22 +18,15 @@
     </div>
 
     <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.pricePath, {'label' : 'label.price_path'}) }}
+        </div>
+    </div>
+
+    <div class="row">
         <div class="s12 l10 offset-l1 xl8 offset-xl2">
             <div class="error-helper">
                 {{ form_errors(form) }}
-            </div>
-
-            <div data-controller="scraper-data-path"
-                 data-prototype="{% apply escape %} {{ include('App/Scraper/_data_path_prototype.html.twig', { 'form': form.dataPaths.vars.prototype }) }} {% endapply %}"
-            >
-                {{ form_row(form.dataPaths) }}
-                <a data-scraper-data-path-target="button"
-                   data-action="click->scraper-data-path#add"
-                   href="#"
-                   class="add_field_link waves-effect waves-light btn"
-                >
-                    {{ 'btn.add_data_path'|trans }}
-                </a>
             </div>
         </div>
     </div>
