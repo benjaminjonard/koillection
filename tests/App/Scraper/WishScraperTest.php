@@ -88,10 +88,7 @@ class WishScraperTest extends AppTestCase
             'scraper[name]' => 'Manga News',
             'scraper[namePath]' => '//h1/text()',
             'scraper[imagePath]' => '//h1/img/@src',
-            'scraper[dataPaths][0][name]' => 'Author',
-            'scraper[dataPaths][0][type]' => DatumTypeEnum::TYPE_TEXT,
-            'scraper[dataPaths][0][path]' => '//h2/text()',
-            'scraper[dataPaths][0][position]' => '1'
+            'scraper[pricePath]' => '//h1/text()',
         ]);
 
         // Assert
@@ -157,7 +154,7 @@ class WishScraperTest extends AppTestCase
         $this->assertSame('#//h1/text()]#', $crawler->filter('.list-element')->eq(0)->filter('td')->eq(1)->text());
         $this->assertSame('Image path', $crawler->filter('.list-element')->eq(1)->filter('td')->eq(0)->text());
         $this->assertSame('#//h1/img/@src]#', $crawler->filter('.list-element')->eq(1)->filter('td')->eq(1)->text());
-        $this->assertSame('Length', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(0)->text());
-        $this->assertSame('#//span/text()]#', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(1)->text());
+        $this->assertSame('Price path', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(0)->text());
+        $this->assertSame('', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(1)->text());
     }
 }
