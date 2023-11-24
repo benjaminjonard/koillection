@@ -131,6 +131,9 @@ class WishController extends AbstractController
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $wish->setImage(null);
+            $wish->setImageSmallThumbnail(null);
+
             $managerRegistry->getManager()->persist($item);
             $managerRegistry->getManager()->remove($wish);
             $managerRegistry->getManager()->flush();
