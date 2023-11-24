@@ -55,12 +55,12 @@ export default class extends Controller {
                         }
 
                         // WISH
-                        if (self.hasPriceTarget && result.price) {
-                            self.namePriceTarget.value = result.name;
+                        if (self.hasPriceInputTarget && result.price) {
+                            self.priceInputTarget.value = result.price;
                         }
 
-                        if (self.hasUrlTarget) {
-                            self.nameUrlTarget.value = result.scrapedUrl;
+                        if (self.hasUrlInputTarget) {
+                            self.urlInputTarget.value = result.scrapedUrl;
                         }
                     }
                 }

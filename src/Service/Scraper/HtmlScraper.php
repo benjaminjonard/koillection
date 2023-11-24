@@ -76,8 +76,6 @@ abstract class HtmlScraper
             }
         }
 
-        dd($values);
-
         return $this->formatValues($values, $type);
     }
 
