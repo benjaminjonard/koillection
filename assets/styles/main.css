@@ -1472,6 +1472,10 @@ html.loading:before {
     border-bottom: 1px solid #e0e0e0;
     line-height: 1.5rem;
     margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
     padding: 15px 35px 10px 20px;
 }
 
