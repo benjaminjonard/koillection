@@ -20,7 +20,7 @@
                 </div>
 
                 <input type="file" id="scraping_file"
-                       name="scraping[file]"
+                       name="{{ scrapingForm.file.vars.full_name }}"
                        accept="text/html"
                        data-action="change->file-input#displayFilename"
                        data-file-input-target="input"
@@ -55,6 +55,12 @@
     {% if scrapingForm.scrapImage is defined %}
         <div class="s12 l5 xl3">
             {{ form_row(scrapingForm.scrapImage, {'label' : 'label.scrap_image', 'attr': {'autocomplete': 'off'}}) }}
+        </div>
+    {% endif %}
+
+    {% if scrapingForm.scrapPrice is defined %}
+        <div class="s12 l5 xl3">
+            {{ form_row(scrapingForm.scrapPrice, {'label' : 'label.scrap_price', 'attr': {'autocomplete': 'off'}}) }}
         </div>
     {% endif %}
 </div>

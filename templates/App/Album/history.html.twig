@@ -13,7 +13,7 @@
 {% block content %}
     <div class="collection-header">
         <div class="title-block">
-            <div class="left">
+            <div>
                 {% if album.image != null %}
                     <img class="thumbnail avatar" src="{{ preload(asset(album.image), {as: 'image'}) }}">
                 {% else %}
@@ -21,15 +21,12 @@
                           aria-hidden="true">{{ album.title|first|upper }}</span>
                 {% endif %}
             </div>
-            <div class="right">
+            <div>
                 <h1>{{ album.title }}</h1>
                 <ul class="nav nav-pills">
-
                 </ul>
             </div>
-            <div class="clearfix"></div>
         </div>
-        <div></div>
     </div>
 
     <div class="content-block">

@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Model;
+namespace App\Model\Scraper;
 
 use App\Entity\Path;
 use App\Entity\Scraper;
+use App\Enum\ScraperTypeEnum;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ScraperImporter
+class CollectionScraperImporter
 {
     #[Assert\File(mimeTypes: ['application/json'])]
     #[Assert\NotBlank]
@@ -20,7 +21,7 @@ class ScraperImporter
         return $this->file;
     }
 
-    public function setFile(?File $file): ScraperImporter
+    public function setFile(?File $file): CollectionScraperImporter
     {
         $this->file = $file;
 
@@ -36,6 +37,7 @@ class ScraperImporter
         $scraper->setNamePath($data['namePath'] ?? null);
         $scraper->setImagePath($data['imagePath'] ?? null);
         $scraper->setUrlPattern($data['urlPattern'] ?? null);
+        $scraper->setType(ScraperTypeEnum::TYPE_COLLECTION);
 
         foreach ($data['dataPaths'] as $key => $dataPath) {
             $newPath = (new Path())

@@ -26,36 +26,32 @@
     <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
-                <div class="left">
+                <div>
                     {% if collection.image != null %}
                         <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
                     {% else %}
                         <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     <h1>{{ collection.title }}</h1>
                     <ul class="nav nav-pills">
                         <li>{{ 'counter.item'|trans({'count': items|length}) }}</li>
                     </ul>
                 </div>
-                <div class="clearfix"></div>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     {% if context == 'default' %}
                         {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_items', entity: collection}) }}
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': collection.finalVisibility}) }}
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
                            placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 

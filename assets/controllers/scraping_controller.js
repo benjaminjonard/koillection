@@ -5,16 +5,22 @@ export default class extends Controller {
     static targets = [
         'scrapedUrlInput', 'nameInput', 'urlInputContainer', 'fileInputContainer',
         'imagePreview', 'imageInput', 'scraperInput', 'urlInput',
+        'urlInput', 'priceInput',
         'modalCloseButton', 'modalError',
-        'dataToScrapContainer', 'form'
+        'dataToScrapContainer', 'form',
     ]
+
+    static values = {
+        scrapUrl: String,
+        dataPathsCheckboxesUrl: String,
+    }
 
     scrap(event) {
         event.preventDefault();
         let self = this;
         self.modalErrorTarget.innerHTML = "";
 
-        fetch('/scrapers/scrap', {
+        fetch(this.scrapUrlValue, {
             method: 'POST',
             body: new FormData(event.target)
         })
@@ -26,21 +32,36 @@ export default class extends Controller {
                     if (result.form) {
                         self.formTarget.innerHTML = result.form;
                     } else {
+                        self.scrapedUrlInputTarget.value = result.scrapedUrl;
+
                         if (result.name !== null) {
                             self.nameInputTarget.value = result.name;
                         }
 
-                        if (self.hasImagePreviewTarget && result.image !== null) {
+                        if (self.hasImagePreviewTarget && result.image) {
                             self.imagePreviewTarget.src = result.image;
                             self.imageInputTarget.value = result.image;
                         }
 
+                        // ITEM and COLLECTION
                         if (result.data !== null) {
                             self.dispatch("newScrapedData", { detail: { content: result.data } })
                             self.modalCloseButtonTarget.click();
                         }
 
-                        self.scrapedUrlInputTarget.value = result.scrapedUrl;
+                        // COLLECTION
+                        if (result.base64Image) {
+                            self.dispatch("newCroppieImage", { detail: { content: result.base64Image } })
+                        }
+
+                        // WISH
+                        if (self.hasPriceInputTarget && result.price) {
+                            self.priceInputTarget.value = result.price;
+                        }
+
+                        if (self.hasUrlInputTarget) {
+                            self.urlInputTarget.value = result.scrapedUrl;
+                        }
                     }
                 }
             })
@@ -48,10 +69,9 @@ export default class extends Controller {
 
     loadDataPathCheckboxes(event) {
         let self = this;
-        const id = event.target.value;
         self.dataToScrapContainerTarget.innerHTML = '';
 
-        fetch('/scrapers/' + id + '/data-paths-checkboxes', {
+        fetch(this.dataPathsCheckboxesUrlValue.replace(/__id_placeholder__/g, event.target.value), {
             method: 'GET',
         })
             .then(response => response.json())

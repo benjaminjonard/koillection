@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Factory;
 
 use App\Entity\Scraper;
+use App\Enum\ScraperTypeEnum;
 use App\Repository\ScraperRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -36,6 +37,7 @@ final class ScraperFactory extends ModelFactory
         return [
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'name' => self::faker()->text(),
+            'type' => ScraperTypeEnum::TYPE_ITEM
         ];
     }
 

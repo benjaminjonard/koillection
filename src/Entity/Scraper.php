@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -28,6 +29,9 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     #[Assert\NotBlank]
     private ?string $name = null;
 
+    #[ORM\Column(type: Types::STRING, length: 15)]
+    private ?string $type = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $urlPattern = null;
 
@@ -36,6 +40,9 @@ class Scraper implements BreadcrumbableInterface, \Stringable
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $imagePath = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $pricePath = null;
 
     #[ORM\OneToMany(targetEntity: Path::class, mappedBy: 'scraper', cascade: ['all'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => Criteria::ASC])]
@@ -80,6 +87,18 @@ class Scraper implements BreadcrumbableInterface, \Stringable
         return $this;
     }
 
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): Scraper
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     public function getNamePath(): ?string
     {
         return $this->namePath;
@@ -100,6 +119,18 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     public function setImagePath(?string $imagePath): Scraper
     {
         $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    public function getPricePath(): ?string
+    {
+        return $this->pricePath;
+    }
+
+    public function setPricePath(?string $pricePath): Scraper
+    {
+        $this->pricePath = $pricePath;
 
         return $this;
     }

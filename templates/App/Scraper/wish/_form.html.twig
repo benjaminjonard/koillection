@@ -1,0 +1,38 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.name, {'label' : 'label.name'}) }}
+        </div>
+        <div class="s12 l5 xl4">
+            {{ form_row(form.urlPattern, {'label' : 'label.url_pattern'}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.namePath, {'label' : 'label.name_path'}) }}
+        </div>
+        <div class="s12 l5 xl4">
+            {{ form_row(form.imagePath, {'label' : 'label.image_path'}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.pricePath, {'label' : 'label.price_path'}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 l10 offset-l1 xl8 offset-xl2">
+            <div class="error-helper">
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="center-align form-btn-holder">
+        <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+        <a href="{{ path('app_scraper_wish_index') }}" class="waves-effect btn-cancel waves-light btn"> {{ 'btn.cancel'|trans }}</a>
+    </div>
+{{ form_end(form) }}

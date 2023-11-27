@@ -121,16 +121,6 @@
     {% endapply %}
 {% endblock _collection_childrenDisplayConfiguration_columns_entry_row %}
 
-{% block _scraping_dataToScrap_row %}
-    {% apply spaceless %}
-        {% for child in form %}
-            <div class="s12 l5 xl3">
-                {{ form_row(child) }}
-            </div>
-        {% endfor %}
-    {% endapply %}
-{% endblock _scraping_dataToScrap_row %}
-
 {% block checkbox_row %}
     {% apply spaceless %}
         <p class="checkbox">
@@ -202,20 +192,6 @@
         {% endfor %}
     </select>
 {% endblock _tag_category_widget %}
-
-{% block _scraping_scraper_widget %}
-    <select {{ block('widget_attributes') }}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
-        {% set options = choices %}
-        <option value="" {% if not render_preferred_choices|default(false) and value == '' %} selected="selected"{% endif %}>
-        </option>
-        {% for choice in options %}
-            <option data-url-pattern="{{ choice.data.urlPattern }}"
-                    value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>
-                {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}
-            </option>
-        {% endfor %}
-    </select>
-{% endblock _scraping_scraper_widget %}
 
 {% block choice_widget_collapsed %}
     {% if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) %}

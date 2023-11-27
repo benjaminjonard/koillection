@@ -26,27 +26,24 @@
     <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
-                <div class="left">
+                <div>
                     {% if wishlist.image != null %}
                         <img class="thumbnail avatar" src="{{ preload(asset(wishlist.image), {as: 'image'}) }}">
                     {% else %}
                         <span class="thumbnail color-avatar circle avatar color-{{ wishlist.color }}">{{ wishlist.name|first|upper }}</span>
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     <h1>{{ wishlist.name }}</h1>
                     <ul class="nav nav-pills">
                         <li>{{ 'counter.wish'|trans({'count': wishlist.cachedValues.counters.wishes|default(0)}) }}</li>
                         <li>{{ 'counter.wishlist'|trans({'count': wishlist.cachedValues.counters.children|default(0)}) }}</li>
                     </ul>
                 </div>
-                <div class="clearfix"></div>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     {% if context == 'default' %}
                         <a href="{{ path('app_wish_add', {wishlist: wishlist.id}) }}" class="button"
                            title="{{ 'tooltip.add_wish'|trans }}">
@@ -68,11 +65,10 @@
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': wishlist.finalVisibility}) }}
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
                            placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 

@@ -9,8 +9,10 @@ use App\Entity\Wish;
 use App\Enum\DatumTypeEnum;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\WishType;
-use App\Form\Type\Model\ScrapingType;
-use App\Model\Scraping;
+use App\Form\Type\Model\ScrapingItemType;
+use App\Form\Type\Model\ScrapingWishType;
+use App\Model\ScrapingItem;
+use App\Model\ScrapingWish;
 use App\Repository\ChoiceListRepository;
 use App\Repository\WishlistRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -61,7 +63,9 @@ class WishController extends AbstractController
 
         return $this->render('App/Wish/add.html.twig', [
             'form' => $form,
+            'scrapingForm' => $this->createForm(ScrapingWishType::class, new ScrapingWish()),
             'wishlist' => $wishlist,
+            'wish' => $wish
         ]);
     }
 
@@ -81,6 +85,7 @@ class WishController extends AbstractController
 
         return $this->render('App/Wish/edit.html.twig', [
             'form' => $form,
+            'scrapingForm' => $this->createForm(ScrapingWishType::class, new ScrapingWish(true)),
             'wish' => $wish,
         ]);
     }
@@ -126,6 +131,9 @@ class WishController extends AbstractController
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $wish->setImage(null);
+            $wish->setImageSmallThumbnail(null);
+
             $managerRegistry->getManager()->persist($item);
             $managerRegistry->getManager()->remove($wish);
             $managerRegistry->getManager()->flush();
@@ -140,7 +148,7 @@ class WishController extends AbstractController
 
         return $this->render('App/Wish/transfer_to_collection.html.twig', [
             'form' => $form,
-            'scrapingForm' => $this->createForm(ScrapingType::class, new Scraping('item')),
+            'scrapingForm' => $this->createForm(ScrapingItemType::class, new ScrapingItem()),
             'item' => $item,
             'wish' => $wish,
             'fieldsType' => DatumTypeEnum::getTypesLabels(),

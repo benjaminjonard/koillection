@@ -14,26 +14,25 @@
     <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
-                <h1>{{ 'menu.choice_lists'|trans }}</h1>
-                <ul class="nav nav-pills">
-                    <li>{{ 'counter.choice_lists'|trans({'count': choiceLists|length}) }}</li>
-                </ul>
+                <div>
+                    <h1>{{ 'menu.choice_lists'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.choice_lists'|trans({'count': choiceLists|length}) }}</li>
+                    </ul>
+                </div>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     <a href="{{ path('app_choice_list_add') }}" class="button"
                        title="{{ 'tooltip.add_choice_list'|trans }}">
                         <i class="fa fa-plus fa-fw"></i>
                     </a>
                 </div>
-                <div class="right">
+                <div>
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
                            placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 

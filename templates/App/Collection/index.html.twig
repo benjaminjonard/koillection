@@ -25,17 +25,17 @@
     <div data-controller="filter">
         <div class="collection-header">
             <div class="title-block">
-                <h1>{{ 'menu.collections'|trans }}</h1>
-                <ul class="nav nav-pills">
-                    <li>{{ 'counter.item'|trans({'count': itemsCounter}) }}</li>
-                    <li>{{ 'counter.collection'|trans({'count': collectionsCounter}) }}</li>
-                </ul>
+                <div>
+                    <h1>{{ 'menu.collections'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.item'|trans({'count': itemsCounter}) }}</li>
+                        <li>{{ 'counter.collection'|trans({'count': collectionsCounter}) }}</li>
+                    </ul>
+                </div>
             </div>
 
-            <div></div>
-
             <div class="btn-holder">
-                <div class="left">
+                <div>
                     {% if context == 'default' %}
                         <a href="{{ path('app_collection_add') }}" class="button"
                            title="{{ 'tooltip.add_collection'|trans }}">
@@ -48,11 +48,10 @@
                         {{ include('App/_partials/_visibility.html.twig') }}
                     {% endif %}
                 </div>
-                <div class="right">
+                <div>
                     <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
                            placeholder="{{ 'filter.by_name'|trans }}"/>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 

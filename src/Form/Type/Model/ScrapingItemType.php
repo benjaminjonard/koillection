@@ -6,7 +6,10 @@ namespace App\Form\Type\Model;
 
 use App\Entity\Path;
 use App\Entity\Scraper;
-use App\Model\Scraping;
+use App\Enum\ScraperTypeEnum;
+use App\Model\ScrapingItem;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,12 +22,10 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ScrapingType extends AbstractType
+class ScrapingItemType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $entity = $builder->getData()->getEntity();
-
         $builder
             ->add('url', UrlType::class, [
                 'required' => false,
@@ -33,11 +34,15 @@ class ScrapingType extends AbstractType
                 'required' => false,
                 'label' => false,
             ])
-            ->add('entity', HiddenType::class, [
-                'required' => true,
-            ])
             ->add('scraper', EntityType::class, [
                 'class' => Scraper::class,
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('s')
+                        ->where('s.type = :type')
+                        ->setParameter('type', ScraperTypeEnum::TYPE_ITEM)
+                        ->orderBy('s.name', 'ASC')
+                    ;
+                },
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => false,
@@ -47,13 +52,10 @@ class ScrapingType extends AbstractType
             ->add('scrapName', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('scrapImage', CheckboxType::class, [
+               'required' => false,
+            ])
         ;
-
-        if ($entity === 'item') {
-            $builder->add('scrapImage', CheckboxType::class, [
-                'required' => false,
-            ]);
-        }
 
         $formModifier = function (FormInterface $form, Scraper $scraper = null): void {
             $choices = null === $scraper ? [] : $scraper->getDataPaths();
@@ -88,7 +90,7 @@ class ScrapingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Scraping::class,
+            'data_class' => ScrapingItem::class,
             'choices' => []
         ]);
     }

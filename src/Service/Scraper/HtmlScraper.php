@@ -6,25 +6,25 @@ namespace App\Service\Scraper;
 
 use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
-use App\Model\Scraping;
+use App\Model\ScrapingCollection;
+use App\Model\ScrapingItem;
+use App\Model\ScrapingWish;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Intl\Countries;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
-readonly class HtmlScraper
+abstract class HtmlScraper
 {
     public function __construct(
-        private HttpClientInterface $client,
-        private Environment $twig
+        protected HttpClientInterface $client,
+        protected Environment $twig
     ) {
     }
 
-    public function scrap(Scraping $scraping): array
+    protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): Crawler
     {
-        $scraper = $scraping->getScraper();
-
         if ($scraping->getFile() instanceof UploadedFile) {
             $content = $scraping->getFile()->getContent();
         } else {
@@ -41,20 +41,10 @@ readonly class HtmlScraper
             $content = $response->getContent();
         }
 
-        $crawler = new Crawler($content);
-
-        $image = $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null;
-        $image = $this->guessHost($image, $scraping);
-
-        return [
-            'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler) : null,
-            'image' => $image,
-            'data' => $this->scrapData($scraping, $crawler),
-            'scrapedUrl' => $scraping->getUrl()
-        ];
+        return new Crawler($content);
     }
 
-    private function extract(?string $template, string $type, Crawler $crawler): ?string
+    protected function extract(?string $template, string $type, Crawler $crawler): ?string
     {
         if (!$template) {
             return '';
@@ -89,7 +79,7 @@ readonly class HtmlScraper
         return $this->formatValues($values, $type);
     }
 
-    private function scrapData(Scraping $scraping, Crawler $crawler) : array
+    protected function scrapData(ScrapingItem|ScrapingCollection|ScrapingWish $scraping, Crawler $crawler, string $entityType) : array
     {
         $data = [];
 
@@ -107,7 +97,7 @@ readonly class HtmlScraper
                 $dataToScrap->getType(),
                 $dataToScrap->getName(),
                 $this->twig->render('App/Datum/_datum.html.twig', [
-                    'entity' => $scraping->getEntity(),
+                    'entity' => $entityType,
                     'iteration' => '__placeholder__',
                     'type' => $dataToScrap->getType(),
                     'datum' => $datum,
@@ -120,7 +110,7 @@ readonly class HtmlScraper
         return $data;
     }
 
-    private function formatValues(?array $values, string $type): ?string
+    protected function formatValues(?array $values, string $type): ?string
     {
         if ($values === null || $values === []) {
             return null;
@@ -158,7 +148,7 @@ readonly class HtmlScraper
         return null;
     }
 
-    public function guessHost(?string $url, Scraping $scraping): ?string
+    protected function guessHost(?string $url, ScrapingItem|ScrapingCollection|ScrapingWish $scraping): ?string
     {
         if ($url === null) {
             return null;
