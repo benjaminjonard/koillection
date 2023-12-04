@@ -58,6 +58,7 @@ class WishScraperController extends AbstractController
 
         $scraping = new ScrapingWish();
         $scraping->setScraper($scraper);
+
         $form = $this->createForm(ScrapingWishType::class, $scraping, ['choices' => $scraper->getDataPaths()]);
 
         $html = $this->render('App/Scraper/_data_path_checkboxes.html.twig', [
@@ -87,6 +88,7 @@ class WishScraperController extends AbstractController
 
         $scraper = new Scraper();
         $scraper->setType(ScraperTypeEnum::TYPE_WISH);
+
         $form = $this->createForm(ScraperType::class, $scraper);
         $form->handleRequest($request);
 
@@ -191,7 +193,7 @@ class WishScraperController extends AbstractController
 
         $slug = $slugger->slug($scraper->getName())->lower();
 
-        return new FileResponse([json_encode($data)], "wish-scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
+        return new FileResponse([json_encode($data)], "wish-scrapper-{$slug}.json", headers: ['Content-Type' => 'application/json']);
     }
 
     #[Route(path: '/scrapers/wish-scrapers/{id}', name: 'app_scraper_wish_show', methods: ['GET'])]

@@ -58,6 +58,7 @@ class ItemScraperController extends AbstractController
 
         $scraping = new ScrapingItem();
         $scraping->setScraper($scraper);
+
         $form = $this->createForm(ScrapingItemType::class, $scraping, ['choices' => $scraper->getDataPaths()]);
 
         $html = $this->render('App/Scraper/_data_path_checkboxes.html.twig', [
@@ -87,6 +88,7 @@ class ItemScraperController extends AbstractController
 
         $scraper = new Scraper();
         $scraper->setType(ScraperTypeEnum::TYPE_ITEM);
+
         $form = $this->createForm(ScraperType::class, $scraper);
         $form->handleRequest($request);
 
@@ -191,7 +193,7 @@ class ItemScraperController extends AbstractController
 
         $slug = $slugger->slug($scraper->getName())->lower();
 
-        return new FileResponse([json_encode($data)], "item-scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
+        return new FileResponse([json_encode($data)], "item-scrapper-{$slug}.json", headers: ['Content-Type' => 'application/json']);
     }
 
     #[Route(path: '/scrapers/item-scrapers/{id}', name: 'app_scraper_item_show', methods: ['GET'])]

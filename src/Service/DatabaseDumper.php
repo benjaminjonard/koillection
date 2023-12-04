@@ -46,7 +46,7 @@ class DatabaseDumper
         }
 
         // Schema
-        $rows = array_merge($rows, $this->dumpSchema($connection));
+        $rows = [...$rows, ...$this->dumpSchema($connection)];
 
         // Data
         $userIds = [];

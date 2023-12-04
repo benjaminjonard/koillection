@@ -58,11 +58,11 @@ class ItemType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'model_transformer' => $this->urlToImageTransformer,
-                    'getter' => function () {
+                    'getter' => static function () {
                         return null;
                     },
-                    'setter' => function (Item &$item, ?File $file): void {
-                        if ($file) {
+                    'setter' => static function (Item &$item, ?File $file) : void {
+                        if ($file instanceof \Symfony\Component\HttpFoundation\File\File) {
                             $item->setFile($file);
                         }
                     },

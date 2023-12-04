@@ -140,6 +140,7 @@ class WishScraperTest extends AppTestCase
 
         // Act
         $this->client->request('GET', '/scrapers/wish-scrapers');
+
         $crawler = $this->client->submitForm('Import', [
             'wish_scraper_importer[file]' => $this->createFile('json'),
         ]);

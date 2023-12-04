@@ -143,6 +143,7 @@ class ItemScraperTest extends AppTestCase
 
         // Act
         $this->client->request('GET', '/scrapers/item-scrapers');
+
         $crawler = $this->client->submitForm('Import', [
             'item_scraper_importer[file]' => $this->createFile('json'),
         ]);

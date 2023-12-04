@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SettingsType extends AbstractType
 {
     public function __construct(
-        private LocaleHelper $localeHelper
+        private readonly LocaleHelper $localeHelper
     ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

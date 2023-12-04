@@ -63,11 +63,11 @@ class WishType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'model_transformer' => $this->urlToImageTransformer,
-                    'getter' => function () {
+                    'getter' => static function () {
                         return null;
                     },
-                    'setter' => function (Wish &$wish, ?File $file): void {
-                        if ($file) {
+                    'setter' => static function (Wish &$wish, ?File $file) : void {
+                        if ($file instanceof \Symfony\Component\HttpFoundation\File\File) {
                             $wish->setFile($file);
                         }
                     },

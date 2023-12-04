@@ -11,7 +11,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class DiskUsageCalculator
 {
     public function __construct(
-        private readonly TranslatorInterface $translator,
         private readonly string $publicPath
     ) {
     }
@@ -40,11 +39,7 @@ class DiskUsageCalculator
 
     public function hasEnoughSpaceForUpload(?User $user, File $file): bool
     {
-        if ($user instanceof User && $file->isFile() && (float) $user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize()) {
-            return false;
-        }
-
-        return true;
+        return !($user instanceof User && $file->isFile() && (float) $user->getDiskSpaceAllowed() - $this->getSpaceUsedByUser($user) < $file->getSize());
     }
 
     private function getFolderSize(string $path): float

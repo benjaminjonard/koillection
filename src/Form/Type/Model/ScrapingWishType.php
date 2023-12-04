@@ -35,7 +35,7 @@ class ScrapingWishType extends AbstractType
             ])
             ->add('scraper', EntityType::class, [
                 'class' => Scraper::class,
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                'query_builder' => static function (EntityRepository $er) : QueryBuilder {
                     return $er->createQueryBuilder('s')
                         ->where('s.type = :type')
                         ->setParameter('type', ScraperTypeEnum::TYPE_WISH)

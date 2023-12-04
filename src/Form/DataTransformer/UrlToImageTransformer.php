@@ -30,9 +30,9 @@ class UrlToImageTransformer implements DataTransformerInterface
         $content = file_get_contents($url, false, stream_context_create($arrContextOptions));
         $name = 'scraped' . uniqid();
 
-        file_put_contents("/tmp/$name", $content);
-        $mime = mime_content_type("/tmp/$name");
+        file_put_contents("/tmp/{$name}", $content);
+        $mime = mime_content_type("/tmp/{$name}");
 
-        return new UploadedFile("/tmp/$name", $name, $mime, null, true);
+        return new UploadedFile("/tmp/{$name}", $name, $mime, null, true);
     }
 }

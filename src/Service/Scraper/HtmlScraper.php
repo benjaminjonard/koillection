@@ -57,22 +57,22 @@ abstract class HtmlScraper
             $results =  $crawler->evaluate($xPath);
 
             if ($results instanceof Crawler) {
-                $results = $results->each(function (Crawler $node): string {
+                $results = $results->each(static function (Crawler $node) : string {
                     return $node->text();
                 });
             }
 
             foreach ($results as $key => $result) {
                 if (isset($values[$key])) {
-                    $values[$key] = str_replace("#$xPath#", $result, $values[$key]);
+                    $values[$key] = str_replace("#{$xPath}#", $result, $values[$key]);
                 } else {
-                    $values[$key] = str_replace("#$xPath#", $result, $template);
+                    $values[$key] = str_replace("#{$xPath}#", $result, $template);
                 }
             }
 
             // Remove xPath from result in case nothing was found
             foreach ($values as &$value) {
-                $value = str_replace("#$xPath#", '', $value);
+                $value = str_replace("#{$xPath}#", '', $value);
             }
         }
 

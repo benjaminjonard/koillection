@@ -58,6 +58,7 @@ class CollectionScraperController extends AbstractController
 
         $scraping = new ScrapingCollection();
         $scraping->setScraper($scraper);
+
         $form = $this->createForm(ScrapingCollectionType::class, $scraping, ['choices' => $scraper->getDataPaths()]);
 
         $html = $this->render('App/Scraper/_data_path_checkboxes.html.twig', [
@@ -87,6 +88,7 @@ class CollectionScraperController extends AbstractController
 
         $scraper = new Scraper();
         $scraper->setType(ScraperTypeEnum::TYPE_COLLECTION);
+
         $form = $this->createForm(ScraperType::class, $scraper);
         $form->handleRequest($request);
 
@@ -191,7 +193,7 @@ class CollectionScraperController extends AbstractController
 
         $slug = $slugger->slug($scraper->getName())->lower();
 
-        return new FileResponse([json_encode($data)], "collection-scrapper-$slug.json", headers: ['Content-Type' => 'application/json']);
+        return new FileResponse([json_encode($data)], "collection-scrapper-{$slug}.json", headers: ['Content-Type' => 'application/json']);
     }
 
     #[Route(path: '/scrapers/collection-scrapers/{id}', name: 'app_scraper_collection_show', methods: ['GET'])]

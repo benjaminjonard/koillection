@@ -211,6 +211,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function __construct()
     {
+        $this->scrapers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->collections = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->tagCategories = new ArrayCollection();

@@ -36,7 +36,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/first-connection', name: 'app_security_first_connection', methods: ['GET', 'POST'])]
-    public function firstConnectionAction(
+    public function firstConnection(
         Request $request,
         TokenStorageInterface $tokenStorage,
         SessionInterface $session,
