@@ -105,7 +105,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wish:read'])]
-    private string $finalVisibility;
+    private ?string $finalVisibility = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['wish:read'])]
@@ -310,12 +310,12 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
         return $this;
     }
 
-    public function getFinalVisibility(): string
+    public function getFinalVisibility(): ?string
     {
         return $this->finalVisibility;
     }
 
-    public function setFinalVisibility(string $finalVisibility): self
+    public function setFinalVisibility(?string $finalVisibility): self
     {
         $this->finalVisibility = $finalVisibility;
 

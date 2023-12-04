@@ -1,9 +1,26 @@
 api_platform:
   title: 'Koillection API'
+  version: 1.0.0
   show_webby: false
 
+  formats:
+    json: [ 'application/json' ]
+    jsonld: [ 'application/ld+json' ]
+    html: [ 'text/html' ]
+  docs_formats:
+    json: [ 'application/json' ]
+    jsonld: [ 'application/ld+json' ]
+    jsonopenapi: [ 'application/vnd.openapi+json' ]
+    html: [ 'text/html' ]
+
   defaults:
+    cache_headers:
+      vary: [ 'Content-Type', 'Authorization', 'Origin' ]
+    extra_properties:
+      standard_put: false
+      rfc_7807_compliant_errors: true
     normalization_context:
       skip_null_values: false
-    extra_properties:
-      rfc_7807_compliant_errors: true
+  event_listeners_backward_compatibility_layer: false
+  keep_legacy_inflector: false
+
