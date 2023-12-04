@@ -31,16 +31,16 @@ RUN addgroup --gid "$PGID" "$USER" && \
     unzip \
     nginx-light \
     openssl \
-    php8.2 \
-    php8.2-apcu \
-    php8.2-pgsql \
-    php8.2-mysql \
-    php8.2-mbstring \
-    php8.2-gd \
-    php8.2-xml \
-    php8.2-zip \
-    php8.2-fpm \
-    php8.2-intl \
+    php8.3 \
+    php8.3-apcu \
+    php8.3-pgsql \
+    php8.3-mysql \
+    php8.3-mbstring \
+    php8.3-gd \
+    php8.3-xml \
+    php8.3-zip \
+    php8.3-fpm \
+    php8.3-intl \
     nodejs && \
 #Install composer dependencies
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
@@ -66,14 +66,14 @@ RUN addgroup --gid "$PGID" "$USER" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
 # Set permissions \
-    sed -i "s/user = www-data/user = $USER/g" /etc/php/8.2/fpm/pool.d/www.conf && \
-    sed -i "s/group = www-data/group = $USER/g" /etc/php/8.2/fpm/pool.d/www.conf && \
+    sed -i "s/user = www-data/user = $USER/g" /etc/php/8.3/fpm/pool.d/www.conf && \
+    sed -i "s/group = www-data/group = $USER/g" /etc/php/8.3/fpm/pool.d/www.conf && \
     chown -R "$USER":"$USER" /var/www/koillection && \
     chmod +x /var/www/koillection/docker/entrypoint.sh && \
     mkdir /run/php && \
 # Add nginx and PHP config files
     cp /var/www/koillection/docker/default.conf /etc/nginx/nginx.conf && \
-    cp /var/www/koillection/docker/php.ini /etc/php/8.2/fpm/conf.d/php.ini
+    cp /var/www/koillection/docker/php.ini /etc/php/8.3/fpm/conf.d/php.ini
 
 EXPOSE 80
 

@@ -36,12 +36,12 @@ echo "CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN:-'^https?://(localhost|127\.0\.0\.1)
 
 composer dump-env ${APP_ENV:-prod}
 
-echo "session.cookie_secure=${HTTPS_ENABLED}" >> /etc/php/8.2/fpm/conf.d/php.ini
-echo "date.timezone=${PHP_TZ}" >> /etc/php/8.2/fpm/conf.d/php.ini
-echo "memory_limit=${PHP_MEMORY_LIMIT:-'512M'}" >> /etc/php/8.2/fpm/conf.d/php.ini
+echo "session.cookie_secure=${HTTPS_ENABLED}" >> /etc/php/8.3/fpm/conf.d/php.ini
+echo "date.timezone=${PHP_TZ}" >> /etc/php/8.3/fpm/conf.d/php.ini
+echo "memory_limit=${PHP_MEMORY_LIMIT:-'512M'}" >> /etc/php/8.3/fpm/conf.d/php.ini
 
-echo "upload_max_filesize=${UPLOAD_MAX_FILESIZE:-'100M'}" >> /etc/php/8.2/fpm/conf.d/php.ini
-echo "post_max_size=${UPLOAD_MAX_FILESIZE:-'100M'}" >> /etc/php/8.2/fpm/conf.d/php.ini
+echo "upload_max_filesize=${UPLOAD_MAX_FILESIZE:-'100M'}" >> /etc/php/8.3/fpm/conf.d/php.ini
+echo "post_max_size=${UPLOAD_MAX_FILESIZE:-'100M'}" >> /etc/php/8.3/fpm/conf.d/php.ini
 sed -i "s/client_max_body_size 100M;/client_max_body_size ${UPLOAD_MAX_FILESIZE:-'100M'};/g" /etc/nginx/nginx.conf
 
 echo "**** 4/11 - Migrate the database ****"
@@ -86,7 +86,7 @@ chown -R "$USER":"$USER" /var/www/koillection/var/log
 chown -R "$USER":"$USER" /var/www/koillection/var/log/prod.log
 
 echo "**** 11/11 - Setup complete, starting the server. ****"
-php-fpm8.2
+php-fpm8.3
 exec $@
 
 echo "**** All done ****"
