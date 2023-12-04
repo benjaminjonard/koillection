@@ -3286,31 +3286,25 @@
     <unit id="3UpvF8S" name="menu.scrapers">
       <segment state="translated">
         <source>Scrapers</source>
-        <target>Сборщик</target>
+        <target>Инфосборщик</target>
       </segment>
     </unit>
     <unit id="c8N1gqs" name="tooltip.add_scraper">
       <segment state="translated">
         <source>Add a new scraper</source>
-        <target>Добавить сборщик</target>
+        <target>Добавить инфосборщик</target>
       </segment>
     </unit>
     <unit id="0Skvou0" name="breadcrumb.add_scraper">
       <segment state="translated">
         <source>Add a new scraper</source>
-        <target>Добавить сборщик</target>
+        <target>Добавить инфосборщик</target>
       </segment>
     </unit>
     <unit id="orjuiFY" name="title.add_scraper">
       <segment state="translated">
         <source>Add a new scraper</source>
-        <target>Добавить сборщик</target>
-      </segment>
-    </unit>
-    <unit id="OJ77gpR" name="counter.scrapers">
-      <segment state="translated">
-        <source>{count, plural, one {# scraper} other {# scrapers}}</source>
-        <target>{count, plural, one {# сборщик} few {# сборщика} other {# сборщиков}}</target>
+        <target>Добавить инфосборщик</target>
       </segment>
     </unit>
     <unit id="fCfS5h4" name="label.name_path">
@@ -3352,19 +3346,19 @@
     <unit id="YGKpgy8" name="label.scraper">
       <segment state="translated">
         <source>Scraper</source>
-        <target>Сборщик</target>
+        <target>Инфосборщик</target>
       </segment>
     </unit>
     <unit id="rfCyU5h" name="message.delete.scraper">
       <segment state="translated">
         <source>Are you sure you want to delete this scraper ? It will be permanently lost...</source>
-        <target>Вы точно хотите удалить этот сборщик? Восстановления нет...</target>
+        <target>Вы точно хотите удалить этот инфосборщик? Восстановления нет...</target>
       </segment>
     </unit>
     <unit id="pVpG91b" name="global.entities.scraper">
       <segment state="translated">
         <source>Scraper</source>
-        <target>Сборщик</target>
+        <target>Инфосборщик</target>
       </segment>
     </unit>
     <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
@@ -3376,7 +3370,7 @@
     <unit id="PwaCRxg" name="title.edit_scraper">
       <segment state="translated">
         <source>Edit scraper {scraper}</source>
-        <target>Изменить сборщик {scraper}</target>
+        <target>Изменить инфосборщик {scraper}</target>
       </segment>
     </unit>
     <unit id="pQMd2KQ" name="message.wiki.scrapper">
@@ -3406,7 +3400,7 @@
     <unit id="M7PzMIt" name="title.import_scraper">
       <segment state="translated">
         <source>Import scraper from JSON file</source>
-        <target>Импортировать сборщик из JSON файла</target>
+        <target>Импортировать инфосборщик из JSON файла</target>
       </segment>
     </unit>
     <unit id="Hklmnjp" name="btn.import">
@@ -3418,43 +3412,43 @@
     <unit id="gGSqvwG" name="message.scraper_added">
       <segment state="translated">
         <source>Scraper {scraper} has been added</source>
-        <target>Сборщик {scraper} добавлен</target>
+        <target>Инфосборщик {scraper} добавлен</target>
       </segment>
     </unit>
     <unit id="r7aNcN4" name="message.scraper_edited">
       <segment state="translated">
         <source>Scraper {scraper} has been updated</source>
-        <target>Сборщик {scraper} обновлен</target>
+        <target>Инфосборщик {scraper} обновлен</target>
       </segment>
     </unit>
     <unit id="rX55M3v" name="message.scraper_deleted">
       <segment state="translated">
         <source>Scraper {scraper} was deleted</source>
-        <target>Сборщик {scraper} удалён</target>
+        <target>Инфосборщик {scraper} удалён</target>
       </segment>
     </unit>
     <unit id="DuFvrmE" name="message.scraper_imported">
       <segment state="translated">
         <source>Scraper {scraper} was imported</source>
-        <target>Сборщик {scraper} импортирован</target>
+        <target>Инфосборщик {scraper} импортирован</target>
       </segment>
     </unit>
     <unit id="k4Ssjg4" name="label.scraping_feature_enabled">
       <segment state="translated">
         <source>Scraping</source>
-        <target>Сбор</target>
+        <target>Инфосбор</target>
       </segment>
     </unit>
     <unit id="zrNqfUb" name="label.scrap_name">
       <segment state="translated">
         <source>Scrap name</source>
-        <target>Название сбора</target>
+        <target>Название инфосбора</target>
       </segment>
     </unit>
     <unit id="DCx9jQb" name="label.scrap_image">
       <segment state="translated">
         <source>Scrap image</source>
-        <target>Картинка сбора</target>
+        <target>Картинка инфосбора</target>
       </segment>
     </unit>
     <unit id="0rmld0o" name="message.scraper_import_error">
@@ -3466,19 +3460,19 @@
     <unit id="aQEHOsY" name="label.scraped_from_url">
       <segment state="translated">
         <source>Scraped from</source>
-        <target>Выбрано из</target>
+        <target>Инфосбор из</target>
       </segment>
     </unit>
     <unit id="EUgbudS" name="btn.scrap_html_file">
       <segment state="translated">
         <source>Scrap HTML file</source>
-        <target>Выбирать из HTML файла</target>
+        <target>Инфосбор из HTML файла</target>
       </segment>
     </unit>
     <unit id="jy9YnDE" name="btn.scrap_url">
       <segment state="translated">
         <source>Scrap URL</source>
-        <target>Выбирать из URL</target>
+        <target>Инфосбор из URL</target>
       </segment>
     </unit>
     <unit id="0ET5fPK" name="label.url_pattern">
@@ -3497,6 +3491,60 @@
       <segment state="translated">
         <source>Are you sure you want to delete this choice list ? It will be permanently lost...</source>
         <target>Вы точно хотите удалить этот список вариантов? Это навсегда...</target>
+      </segment>
+    </unit>
+    <unit id="1SR04M0" name="breadcrumb.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>Инфосбор предметов</target>
+      </segment>
+    </unit>
+    <unit id="rce3nth" name="breadcrumb.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>Инфосбор коллекции</target>
+      </segment>
+    </unit>
+    <unit id="lWm9FV3" name="breadcrumb.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>Инфорсбор мечты</target>
+      </segment>
+    </unit>
+    <unit id="NK6205q" name="tab.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>Инфосбор предметов</target>
+      </segment>
+    </unit>
+    <unit id="QLWFaEE" name="tab.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>Инфосбор коллекции</target>
+      </segment>
+    </unit>
+    <unit id="RB94Jlx" name="tab.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>Инфорсбор мечты</target>
+      </segment>
+    </unit>
+    <unit id="OJ77gpR" name="counter.item_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# item scraper} other {# item scrapers}}</source>
+        <target>{count, plural, one{#инфосбор предмета} few{# инфосбора предмета} other {#  инфосборов предмета}}</target>
+      </segment>
+    </unit>
+    <unit id="noR9AMY" name="counter.collection_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# collection scraper} other {# collection scrapers}}</source>
+        <target>{count, plural, one {# инфосбор коллекции} few {# инфосбора коллекции} many {# инфосборов коллекции} other {# инфосборов коллекций}}</target>
+      </segment>
+    </unit>
+    <unit id="cwiiTlV" name="counter.wish_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# wish scraper} other {# wish scrapers}}</source>
+        <target>{count, plural, one {#инфосбор мечты}  few {# инфосбора мечты} other {#  инфосборов мечты}}</target>
       </segment>
     </unit>
   </file>

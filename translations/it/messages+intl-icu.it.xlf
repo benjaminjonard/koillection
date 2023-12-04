@@ -3307,12 +3307,6 @@
         <target>Aggiungi nuovo estrattore</target>
       </segment>
     </unit>
-    <unit id="OJ77gpR" name="counter.scrapers">
-      <segment state="translated">
-        <source>{count, plural, one {# scraper} other {# scrapers}}</source>
-        <target>{count, plural, one {# estrattore} other {# estrattori}}</target>
-      </segment>
-    </unit>
     <unit id="fCfS5h4" name="label.name_path">
       <segment state="translated">
         <source>Name path</source>
