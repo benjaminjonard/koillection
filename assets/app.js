@@ -12,4 +12,3 @@ import './js/translations/javascript+intl-icu/en'
 import './js/translations/javascript+intl-icu/fr'
 import './js/translations/javascript+intl-icu/es'
 import './js/translations/javascript+intl-icu/de'
-
