@@ -1234,13 +1234,13 @@
     <unit id="2ZgbVvL" name="label.loaned_at">
       <segment state="translated">
         <source>Lent on</source>
-        <target>Wypożyczone na</target>
+        <target>Wypożyczono dnia</target>
       </segment>
     </unit>
     <unit id="EWnP8ZQ" name="label.loaned_ago">
       <segment state="translated">
         <source>Ago</source>
-        <target>Temu</target>
+        <target>Wypożyczono</target>
       </segment>
     </unit>
     <unit id="uFEIsab" name="tooltip.returned">
@@ -2374,31 +2374,31 @@
     <unit id="kAXzPyc" name="global.seen_counter.album">
       <segment state="translated">
         <source>{count, plural, one {Album consulted # time} other {Album consulted # times}}</source>
-        <target>{count, plural, one {Album skonsultowany # raz} few {Album skonsultowany # razy} other {Album skonsultowany # razy}}</target>
+        <target>{count, plural, one {Album wyświetlono # raz} few {Album wyświetlono # razy} other {Album wyświetlono # razy}}</target>
       </segment>
     </unit>
     <unit id="HWAnnvq" name="global.seen_counter.collection">
       <segment state="translated">
         <source>{count, plural, one {Collection consulted # time} other {Collection consulted # times}}</source>
-        <target>{count, plural, one {Kolekcja skonsultowana # raz} few {Kolekcja skonsultowana # razy} other {Kolekcja skonsultowana # razy}}</target>
+        <target>{count, plural, one {Kolekcję wyświetlono # raz} few {Kolekcję wyświetlono # razy} other {Kolekcję wyświetlono # razy}}</target>
       </segment>
     </unit>
     <unit id="hW.mDrh" name="global.seen_counter.item">
       <segment state="translated">
         <source>{count, plural, one {Item consulted # time} other {Item consulted # times}}</source>
-        <target>{count, plural, one {Przedmiot skonsultowany # raz} few {Przedmiot skonsultowany # razy} other {Przedmiot skonsultowany # razy}}</target>
+        <target>{count, plural, one {Przedmiot wyświetlono # raz} few {Przedmiot wyświetlono # razy} other {Przedmiot wyświetlono # razy}}</target>
       </segment>
     </unit>
     <unit id="RXjwOtL" name="global.seen_counter.tag">
       <segment state="translated">
         <source>{count, plural, one {Tag consulted # time} other {Tag consulted # times}}</source>
-        <target>{count, plural, one {Tag skonsultowany # raz} few {Tag skonsultowany # razy} other {Tag skonsultowany # razy}}</target>
+        <target>{count, plural, one {Tag wyświetlono # raz} few {Tag wyświetlono # razy} other {Tag wyświetlono # razy}}</target>
       </segment>
     </unit>
     <unit id="_5ewjw9" name="global.seen_counter.wishlist">
       <segment state="translated">
         <source>{count, plural, one {Wishlist consulted # time} other {Wishlist consulted # times}}</source>
-        <target>{count, plural, one {Lista życzeń skonsultowana # raz} few {Lista życzeń skonsultowana # razy} other {Lista życzeń skonsultowana # razy}}</target>
+        <target>{count, plural, one {Listę życzeń wyświetlono # raz} few {Listę życzeń wyświetlono # razy} other {Listę życzeń wyświetlono # razy}}</target>
       </segment>
     </unit>
     <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
@@ -3305,12 +3305,6 @@
       <segment state="translated">
         <source>Add a new scraper</source>
         <target>Dodaj nowy scraper</target>
-      </segment>
-    </unit>
-    <unit id="OJ77gpR" name="counter.scrapers">
-      <segment state="translated">
-        <source>{count, plural, one {# scraper} other {# scrapers}}</source>
-        <target>{count, plural, one {# scraper} few {# scrapery} other {# scraperów}}</target>
       </segment>
     </unit>
     <unit id="fCfS5h4" name="label.name_path">

@@ -3307,12 +3307,6 @@
         <target>Añadir un nuevo Escrapers</target>
       </segment>
     </unit>
-    <unit id="OJ77gpR" name="counter.scrapers">
-      <segment state="translated">
-        <source>{count, plural, one {# scraper} other {# scrapers}}</source>
-        <target>{count, plural, one {# escraper} other {# escrapers}}</target>
-      </segment>
-    </unit>
     <unit id="fCfS5h4" name="label.name_path">
       <segment state="translated">
         <source>Name path</source>
@@ -3497,6 +3491,42 @@
       <segment state="translated">
         <source>Are you sure you want to delete this choice list ? It will be permanently lost...</source>
         <target>¿Estás seguro que quieres eliminar eesta lista de opciones? Esta acción no se puede deshacer.</target>
+      </segment>
+    </unit>
+    <unit id="1SR04M0" name="breadcrumb.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>Raspadores de elementos</target>
+      </segment>
+    </unit>
+    <unit id="rce3nth" name="breadcrumb.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>Raspadores de colección</target>
+      </segment>
+    </unit>
+    <unit id="lWm9FV3" name="breadcrumb.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>Raspadores de deseos</target>
+      </segment>
+    </unit>
+    <unit id="NK6205q" name="tab.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>Raspadores de elementos</target>
+      </segment>
+    </unit>
+    <unit id="QLWFaEE" name="tab.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>Raspadores de colección</target>
+      </segment>
+    </unit>
+    <unit id="RB94Jlx" name="tab.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>Raspadores de deseos</target>
       </segment>
     </unit>
   </file>
