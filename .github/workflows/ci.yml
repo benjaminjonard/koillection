@@ -69,6 +69,7 @@ jobs:
 
       # Setup environment variables
       - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
+      - run: sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
       - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env"
       - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
       - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
@@ -133,6 +134,7 @@ jobs:
 
       # Setup environment variables
       -   run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
+      -   run: sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
       -   run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env"
       -   run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
       -   run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
@@ -197,6 +199,7 @@ jobs:
 
       # Setup environment variables
       - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
+      - run: sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
       - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env"
       - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
       - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
