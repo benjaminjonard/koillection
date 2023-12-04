@@ -66,7 +66,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     private ?string $name = null;
 
     #[ORM\Column(type: Types::INTEGER)]
-    #[Assert\GreaterThan(0)]
+    #[Assert\GreaterThanOrEqual(1)]
     #[Groups(['item:read', 'item:write'])]
     private int $quantity = 1;
 
