@@ -58,7 +58,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     chown -R "$USER":"$USER" /app/public && \
     chmod +x /app/public/docker/entrypoint-frankenphp.sh && \
     mkdir /run/php && \
-# Add nginx and PHP config files
+# Add PHP config files
     cp /app/public/docker/php-frankenphp.ini /usr/local/etc/php/conf.d/php.ini
 
 VOLUME /uploads

@@ -87,17 +87,27 @@
                 </div>
                 <div class="s12 m4 xl2">
                     <img width="65px" height="65px" src="{{ asset('/build/images/logos/php.png') }}" alt="PHP logo">
-                    <div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}</div>
+                    <div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}
+                </div>
                 <div class="s12 m4 xl2">
-                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/symfony.png') }}" alt="Symfony logo">
-                    <div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}</div>
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos//10.png') }}" alt="Symfony logo">
+                    <div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}
+                </div>
                 <div class="s12 m4 xl2">
                     <img width="65px" height="65px" src="{{ asset('/build/images/logos/api-platform.png') }}" alt="Api Platform logo">
-                    <div class="counter">{{ apiPlatformVersion }}</div>{{ 'label.apiplatform_version'|trans }}</div>
+                    <div class="counter">{{ apiPlatformVersion }}</div>{{ 'label.apiplatform_version'|trans }}
+                </div>
+                {% if isFrankenPhpAvailable %}
+                    <div class="s12 m4 xl2">
+                        <img width="65px" height="65px" src="{{ asset('/build/images/logos/frankenphp.png') }}" alt="FrankenPHP logo">
+                        {{ 'label.is_frankenphp_available'|trans }}
+                    </div>
+                {% endif %}
                 <div class="s12 m4 xl2">
                     <div class="counter">
                         <i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
-                    </div>{{ 'label.is_opcache_available'|trans }}</div>
+                    </div>{{ 'label.is_opcache_available'|trans }}
+                </div>
             </div>
         </div>
 
