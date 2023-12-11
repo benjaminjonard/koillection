@@ -4,7 +4,7 @@
     "config:base",
     "group:allNonMajor"
   ],
-  "rebaseWhen": "conflicted",
+  "rebaseWhen": "auto",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
