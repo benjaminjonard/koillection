@@ -3544,7 +3544,7 @@
     <unit id="cwiiTlV" name="counter.wish_scrapers">
       <segment state="translated">
         <source>{count, plural, one {# wish scraper} other {# wish scrapers}}</source>
-        <target>{count, plural, one {# scraper pour les souhais} other {# scraper pour les souhaits}}</target>
+        <target>{count, plural, one {# scraper pour les souhaits} other {# scraper pour les souhaits}}</target>
       </segment>
     </unit>
     <unit id="KLXszaB" name="label.price_path">
