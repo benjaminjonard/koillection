@@ -382,7 +382,7 @@
     <unit id="jsUGqKL" name="global.byte_abbreviation">
       <segment state="translated">
         <source>B</source>
-        <target>Млрд.</target>
+        <target>Б</target>
       </segment>
     </unit>
     <unit id="BNjUIYA" name="label.search">
@@ -418,49 +418,49 @@
     <unit id="eggtiPQ" name="global.visibilities.reason.user_public">
       <segment state="translated">
         <source>Public - Reason : your profile is public</source>
-        <target>Публичная причина : ваш профиль общедоступен</target>
+        <target>Публично - причина: ваш профиль общедоступен</target>
       </segment>
     </unit>
     <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
       <segment state="translated">
         <source>Public - Reason : both your profile and this page are public</source>
-        <target>Публичная причина: ваш профиль и эта страница общедоступны</target>
+        <target>Публично - причина: ваш профиль и эта страница общедоступны</target>
       </segment>
     </unit>
     <unit id="bk8nfAS" name="global.visibilities.reason.both_private">
       <segment state="translated">
         <source>Private - Reason : both your profile and this page are private</source>
-        <target>Приватная причина: ваш профиль и эта страница приватны</target>
+        <target>Приватно - причина: ваш профиль и эта страница приватны</target>
       </segment>
     </unit>
     <unit id="ixVg6T0" name="global.visibilities.reason.user_private">
       <segment state="translated">
         <source>Private - Reason : your profile is private</source>
-        <target>Приватная причина: ваш профиль приватен</target>
+        <target>Приватно - причина: ваш профиль приватен</target>
       </segment>
     </unit>
     <unit id="9OU9mZT" name="global.visibilities.reason.object_private">
       <segment state="translated">
         <source>Private - Reason : this page is private</source>
-        <target>Приватная причина: эта страница приватная</target>
+        <target>Приватно - причина: эта страница приватная</target>
       </segment>
     </unit>
     <unit id="k5.Efwd" name="global.visibilities.reason.both_internal">
       <segment state="translated">
         <source>Internal - Reason : both your profile and this page are internal</source>
-        <target>Закрытая причина: ваш профиль и эта страница единоличны</target>
+        <target>Ограничено - причина: ваш профиль и эта страница ограничены</target>
       </segment>
     </unit>
     <unit id="KHNt07x" name="global.visibilities.reason.user_internal">
       <segment state="translated">
         <source>Internal - Reason : your profile is internal</source>
-        <target>Закрытая причина: у вас единоличный профиль</target>
+        <target>Ограничено - причина: у вас ограниченный профиль</target>
       </segment>
     </unit>
     <unit id="0fTIld1" name="global.visibilities.reason.object_internal">
       <segment state="translated">
         <source>Internal - Reason : this page is internal</source>
-        <target>Закрытая причина: эта страница единоличная</target>
+        <target>Ограничено - причина: эта страница ограничена</target>
       </segment>
     </unit>
     <unit id="wvvYSw_" name="menu.admin">
@@ -2698,7 +2698,7 @@
     <unit id="6faiqOu" name="global.visibilities.internal">
       <segment state="translated">
         <source>Internal</source>
-        <target>Внутренний</target>
+        <target>Ограничено</target>
       </segment>
     </unit>
     <unit id="iiWFLaI" name="label.new_password">
@@ -3545,6 +3545,12 @@
       <segment state="translated">
         <source>{count, plural, one {# wish scraper} other {# wish scrapers}}</source>
         <target>{count, plural, one {#инфосбор мечты}  few {# инфосбора мечты} other {#  инфосборов мечты}}</target>
+      </segment>
+    </unit>
+    <unit id="KLXszaB" name="label.price_path">
+      <segment state="translated">
+        <source>Price path</source>
+        <target>Путь к цене</target>
       </segment>
     </unit>
   </file>
