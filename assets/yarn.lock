@@ -4533,9 +4533,9 @@ __metadata:
   linkType: hard
 
 "hotkeys-js@npm:^3.10.2":
-  version: 3.12.2
-  resolution: "hotkeys-js@npm:3.12.2"
-  checksum: 7bdb33a48de63ec8149b60fdb09e4529c5ff5afb7f3c34ce35dfa1cae87acb75970e59074f1c2c57ae1c5a347b1b743b70a13415f8ac611828cc1c20c1b2350e
+  version: 3.13.1
+  resolution: "hotkeys-js@npm:3.13.1"
+  checksum: 5dcd6e7d49e262be1c447e41a560de30280446edbcb261dd6906598c241eedeb65a21da79872bb840aaed3bf4678c6873f1d38c33fb212aa759b5a16d2dc8d99
   languageName: node
   linkType: hard
 
