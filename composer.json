@@ -1,5 +1,5 @@
 {
-    "name": "koillection/koillection",
+    "name": "benjaminjonard/koillection",
     "description": "Koillection is a self-hosted service allowing users to manage any kind of collection.",
     "type": "project",
     "license": "MIT",
@@ -20,7 +20,7 @@
         "lexik/jwt-authentication-bundle": "2.20.1",
         "maennchen/zipstream-php": "3.1.0",
         "nelmio/cors-bundle": "2.4.0",
-        "runtime/frankenphp-symfony": "dev-main",
+        "runtime/frankenphp-symfony": "0.2.0",
         "symfony/asset": "7.0.0",
         "symfony/browser-kit": "7.0.0",
         "symfony/cache": "7.0.0",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9e6ba19b2b02c8147c5b9f17928711f",
+    "content-hash": "4a04831620975e9c7b93869f4b184e4b",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2660,20 +2660,20 @@
         },
         {
             "name": "runtime/frankenphp-symfony",
-            "version": "dev-main",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-runtime/frankenphp-symfony.git",
-                "reference": "d66150d0dd548907739238cedd37fc7345dfe5a9"
+                "reference": "56822c3631d9522a3136a4c33082d006bdfe4bad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-runtime/frankenphp-symfony/zipball/d66150d0dd548907739238cedd37fc7345dfe5a9",
-                "reference": "d66150d0dd548907739238cedd37fc7345dfe5a9",
+                "url": "https://api.github.com/repos/php-runtime/frankenphp-symfony/zipball/56822c3631d9522a3136a4c33082d006bdfe4bad",
+                "reference": "56822c3631d9522a3136a4c33082d006bdfe4bad",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
+                "php": ">=8.1",
                 "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
                 "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0",
                 "symfony/runtime": "^5.4 || ^6.0 || ^7.0"
@@ -2681,7 +2681,6 @@
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -2701,7 +2700,7 @@
             "description": "FrankenPHP runtime for Symfony",
             "support": {
                 "issues": "https://github.com/php-runtime/frankenphp-symfony/issues",
-                "source": "https://github.com/php-runtime/frankenphp-symfony/tree/main"
+                "source": "https://github.com/php-runtime/frankenphp-symfony/tree/0.2.0"
             },
             "funding": [
                 {
@@ -2709,7 +2708,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-22T12:14:23+00:00"
+            "time": "2023-12-12T12:06:11+00:00"
         },
         {
             "name": "symfony/asset",
@@ -9263,16 +9262,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.48",
+            "version": "1.10.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6"
+                "reference": "9367ba4c4f6ad53e9efb594d74a8941563caccf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6",
-                "reference": "087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9367ba4c4f6ad53e9efb594d74a8941563caccf6",
+                "reference": "9367ba4c4f6ad53e9efb594d74a8941563caccf6",
                 "shasum": ""
             },
             "require": {
@@ -9321,7 +9320,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-08T14:34:28+00:00"
+            "time": "2023-12-12T10:05:12+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -11307,9 +11306,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "runtime/frankenphp-symfony": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
