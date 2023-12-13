@@ -34,6 +34,8 @@ echo "DB_VERSION=${DB_VERSION:-}" >> "/app/public/.env.local"
 
 echo "CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN:-'^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'}" >> "/app/public/.env.local"
 
+echo "DB_VERSION=${DB_VERSION:-}" >> "/app/public/.env.local"
+
 composer dump-env ${APP_ENV:-prod}
 
 echo "session.cookie_secure=${HTTPS_ENABLED}" >> /usr/local/etc/php/conf.d/php.ini

@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] / 2023-12-13
+### Features
+- Add wish scraper. It won't work for now on big ecommerce websites as they actively block scrapers (benjaminjonard)
+
+### Fixes
+- Make whole dropdown menu items clickable (bartoszLesniewski)
+- Minor global CSS adjustments (benjaminjonard) 
+
+### Miscellaneous
+- Add name as hover text for items in grid view (Matthieu-LAURENT39)
+- Better handling of error message when reaching upload limit (benjaminjonard)
+- Split item and collection scrapers (benjaminjonard)
+- Update to PHP 8.3 (benjaminjonard)
+- Upgrade PHP (Symfony 7.0) and JS dependencies (benjaminjonard)
+- Add a docker image using FrankenPHP, experimental (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.4.13] / 2023-11-08
 ### Features
 - Add Russian translation (max2k.ru)
