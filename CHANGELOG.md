@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 ### Fixes
 - Make whole dropdown menu items clickable (bartoszLesniewski)
 - Minor global CSS adjustments (benjaminjonard) 
-
+    
 ### Miscellaneous
 - Add name as hover text for items in grid view (Matthieu-LAURENT39)
 - Better handling of error message when reaching upload limit (benjaminjonard)
