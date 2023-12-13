@@ -1,8 +1,10 @@
 {
     "name": "benjaminjonard/koillection",
-    "description": "Koillection is a self-hosted service allowing users to manage any kind of collection.",
+    "description": "Mendako is a private, light booru like image board, supports multiple boards. ",
     "type": "project",
     "license": "MIT",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
         "php": ">=8.3",
         "ext-ctype": "*",
@@ -80,16 +82,16 @@
         "zenstruck/foundry": "1.36.0"
     },
     "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "optimize-autoloader": true,
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true,
-        "allow-plugins": {
-            "symfony/flex": true,
-            "symfony/runtime": true,
-            "phpstan/extension-installer": true
-        },
-        "optimize-autoloader": true
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
@@ -133,8 +135,8 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.0.*",
-            "docker": false
+            "docker": false,
+            "require": "7.0.*"
         },
         "runtime": {
             "class": "Runtime\\FrankenPhpSymfony\\Runtime"
