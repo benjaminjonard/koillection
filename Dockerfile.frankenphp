@@ -6,6 +6,7 @@ ENV PUID=1000
 ENV PGID=1000
 ENV USER=koillection
 ENV FRANKENPHP_CONFIG="worker /app/public/public/index.php"
+ENV FRANKENPHP_SERVER_NAME=":80"
 
 COPY ./ /app/public
 COPY ./docker/Caddyfile /etc/caddy/Caddyfile

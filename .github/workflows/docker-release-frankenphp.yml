@@ -1,8 +1,8 @@
 name: Build release image using Frankenphp for Docker Hub
 on:
   workflow_dispatch:
-  #release:
-  #  types: [published]
+  release:
+    types: [published]
 
 jobs:
   push_release_image:
@@ -34,5 +34,5 @@ jobs:
         with:
           file: Dockerfile.frankenphp
           push: true
-          tags: docker.io/koillection/koillection:1.4.13-frankenphp
+          tags: docker.io/koillection/koillection:frankenphp,docker.io/koillection/koillection:latest-frankenphp,docker.io/koillection/koillection:1.4.13-frankenphp
           platforms: linux/amd64,linux/arm64

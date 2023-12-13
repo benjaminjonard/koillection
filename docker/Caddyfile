@@ -11,7 +11,7 @@
 
 {$CADDY_EXTRA_CONFIG}
 
-{$SERVER_NAME:localhost} {
+{$FRANKENPHP_SERVER_NAME:localhost} {
 	root * public/
 	encode zstd gzip
 
