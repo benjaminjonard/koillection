@@ -31,7 +31,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     unzip \
     openssl && \
 # Install PHP extensions
-    install-php-extensions opcache pdo_pgsql pdo_mysql intl gd zip apcu && \
+    install-php-extensions opcache pdo_pgsql pdo_mysql intl gd zip apcu curl && \
 #Install composer dependencies
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     cd /app/public && \

@@ -33,6 +33,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     openssl \
     php8.3 \
     php8.3-apcu \
+    php8.3-curl \
     php8.3-pgsql \
     php8.3-mysql \
     php8.3-mbstring \
