@@ -10,6 +10,5 @@
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     }
-  ],
-  "schedule": ["on tuesday"]
+  ]
 }
