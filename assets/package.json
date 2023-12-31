@@ -35,7 +35,7 @@
     "build": "encore production --progress"
   },
   "dependencies": {
-    "bazinga-translator": "5.1.0",
+    "bazinga-translator": "6.0.0",
     "hotkeys-js": "^3.10.2",
     "intl-messageformat": "10.5.8",
     "ts-select2": "^0.2.5"
