@@ -3493,5 +3493,65 @@
         <target>Czy na pewno chcesz usunąć tę listę wyboru? Nie można cofnąć tej akcji.</target>
       </segment>
     </unit>
+    <unit id="1SR04M0" name="breadcrumb.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>Scraper przedmiotów</target>
+      </segment>
+    </unit>
+    <unit id="rce3nth" name="breadcrumb.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>Scraper kolekcji</target>
+      </segment>
+    </unit>
+    <unit id="lWm9FV3" name="breadcrumb.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>Scraper życzeń</target>
+      </segment>
+    </unit>
+    <unit id="NK6205q" name="tab.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>Scraper przedmiotów</target>
+      </segment>
+    </unit>
+    <unit id="QLWFaEE" name="tab.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>Scraper kolekcji</target>
+      </segment>
+    </unit>
+    <unit id="RB94Jlx" name="tab.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>Scraper życzeń</target>
+      </segment>
+    </unit>
+    <unit id="OJ77gpR" name="counter.item_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# item scraper} other {# item scrapers}}</source>
+        <target>{count, plural, one {# scraper przedmiotów} few {# scrapery przedmiotów} many {# scraperów przedmiotów} other {# scraperów przedmiotów}}</target>
+      </segment>
+    </unit>
+    <unit id="noR9AMY" name="counter.collection_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# collection scraper} other {# collection scrapers}}</source>
+        <target>{count, plural, one {# scraper kolekcji} few {# scrapery kolekcji} many {# scraperów kolekcji} other {# scraperów kolekcji}}</target>
+      </segment>
+    </unit>
+    <unit id="cwiiTlV" name="counter.wish_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# wish scraper} other {# wish scrapers}}</source>
+        <target>{count, plural, one {# scraper życzeń} few {# scrapery życzeń} many {# scraperów życzeń} other {# scraperów życzeń}}</target>
+      </segment>
+    </unit>
+    <unit id="KLXszaB" name="label.price_path">
+      <segment state="translated">
+        <source>Price path</source>
+        <target>Ścieżka do ceny</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

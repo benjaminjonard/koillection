@@ -1,0 +1,1946 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="nl">
+  <file id="messages.en">
+    <unit id="X_Pm9um" name="message.user_added">
+      <segment state="translated">
+        <source>User {user} added</source>
+        <target>Gebruiker {user} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="Fcb_tkO" name="message.user_edited">
+      <segment state="translated">
+        <source>User {user} has been updated</source>
+        <target>Gebruiker {user} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
+      <segment state="translated">
+        <source>You can't delete the Admin user</source>
+        <target>U kunt de beheerder niet verwijderen</target>
+      </segment>
+    </unit>
+    <unit id="2a_RIum" name="message.user_deleted">
+      <segment state="translated">
+        <source>User {user} was deleted</source>
+        <target>Gebruiker {user} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="ls5sYo8" name="message.album_added">
+      <segment state="translated">
+        <source>Album {album} has been added</source>
+        <target>Album {album} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="0lwPpH7" name="message.album_edited">
+      <segment state="translated">
+        <source>Album {album} has been updated</source>
+        <target>Album {album} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="oawVfJJ" name="message.album_deleted">
+      <segment state="translated">
+        <source>Album {album} has been deleted</source>
+        <target>Album {album} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="s.nX0z8" name="message.choice_list_added">
+      <segment state="translated">
+        <source>Choice list {list} has been added</source>
+        <target>Keuze lijst {list} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="wWQwqjC" name="message.choice_list_edited">
+      <segment state="translated">
+        <source>Choice list {list} has been updated</source>
+        <target>Keuze lijst {list} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="aXwmQFu" name="message.choice_list_deleted">
+      <segment state="translated">
+        <source>Choice list {list} has been deleted</source>
+        <target>Keuze lijst {list} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="_sN4yvV" name="message.collection_added">
+      <segment state="translated">
+        <source>Collection {collection} has been added</source>
+        <target>Collectie {collection} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="p.bp_UN" name="message.collection_edited">
+      <segment state="translated">
+        <source>Collection {collection} has been updated</source>
+        <target>Collectie {collection} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="m3B26dq" name="message.collection_deleted">
+      <segment state="translated">
+        <source>Collection {collection} has been deleted</source>
+        <target>Collectie {collection} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="ehI_Ih2" name="message.items_tagged">
+      <segment state="translated">
+        <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
+        <target>{count, plural, one {# item gelabeled} other {# items gelabeld}}</target>
+      </segment>
+    </unit>
+    <unit id="rimibj4" name="message.inventory_added">
+      <segment state="translated">
+        <source>Inventory {inventory} has been created</source>
+        <target>Voorraad {inventory} is aangemaakt</target>
+      </segment>
+    </unit>
+    <unit id="EYnSw0A" name="message.inventory_deleted">
+      <segment state="translated">
+        <source>Inventory {inventory} was deleted</source>
+        <target>Voorraad {inventory} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="TMGiC1d" name="message.item_added">
+      <segment state="translated">
+        <source>Item {item} has been added</source>
+        <target>Item {item} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="UGVMo0W" name="message.item_edited">
+      <segment state="translated">
+        <source>Item {item} has been updated</source>
+        <target>Item {item} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="HgYxNo9" name="message.item_deleted">
+      <segment state="translated">
+        <source>Item {item} has been deleted</source>
+        <target>Item {item} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="AT9p7pU" name="message.loan">
+      <segment state="translated">
+        <source>Item {item} is now marked as loaned</source>
+        <target>Item {item} is gemarkeerd als uitgeleend</target>
+      </segment>
+    </unit>
+    <unit id="FlBhKyx" name="message.loan_canceled">
+      <segment state="translated">
+        <source>Item {item} loan has been canceled</source>
+        <target>Item {item} uitlening is geannuleerd</target>
+      </segment>
+    </unit>
+    <unit id="zkp2rxS" name="message.item_returned">
+      <segment state="translated">
+        <source>Item {item} is now mark as returned</source>
+        <target>Item {item} is gemarkeerd als geretourneerd</target>
+      </segment>
+    </unit>
+    <unit id="n5rS9vY" name="message.photo_added">
+      <segment state="translated">
+        <source>Photo {photo} has been added</source>
+        <target>Foto {photo} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="hIxqW3m" name="message.photo_edited">
+      <segment state="translated">
+        <source>Photo {photo} has been updated</source>
+        <target>Foto {photo} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="p5Rmjm9" name="message.photo_deleted">
+      <segment state="translated">
+        <source>Photo {photo} has been deleted</source>
+        <target>Foto {photo} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="rVN8d.E" name="message.profile_updated">
+      <segment state="translated">
+        <source>Profile has been updated</source>
+        <target>Profiel is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="nNziKQf" name="message.settings_updated">
+      <segment state="translated">
+        <source>Your settings have been successfully updated</source>
+        <target>De instellingen zijn succesvol bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="Ail0qPJ" name="message.tag_category_added">
+      <segment state="translated">
+        <source>Tag category {category} has been added</source>
+        <target>Label categorie {category} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="vg07kkR" name="message.tag_category_edited">
+      <segment state="translated">
+        <source>Tag category {category} has been updated</source>
+        <target>Label categorie {category} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="XlwsvOZ" name="message.tag_category_deleted">
+      <segment state="translated">
+        <source>Tag category {category} was deleted</source>
+        <target>Label categorie {category} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="3EE._Y4" name="message.tag_edited">
+      <segment state="translated">
+        <source>Tag {tag} has been updated</source>
+        <target>Label {tag} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="_PrKtDW" name="message.tag_deleted">
+      <segment state="translated">
+        <source>Tag {tag} has been deleted</source>
+        <target>Label {tag} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="QPUEgMd" name="message.unused_tags_deleted">
+      <segment state="translated">
+        <source>{count, plural, one {# tag deleted} other {# tags deleted}}</source>
+        <target>{count, plural, one {# label verwijderd} other {# labels verwijderd}}</target>
+      </segment>
+    </unit>
+    <unit id="xM.mW1R" name="message.template_added">
+      <segment state="translated">
+        <source>Template {template} has been added</source>
+        <target>Sjabloon {template} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="5d2N5Ar" name="message.template_edited">
+      <segment state="translated">
+        <source>Template {template} has been updated</source>
+        <target>Sjabloon {template} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="ZMxcm6L" name="message.template_deleted">
+      <segment state="translated">
+        <source>Template {template} has been deleted</source>
+        <target>Sjabloon {template} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="9RoxCzk" name="message.wish_added">
+      <segment state="translated">
+        <source>Wish {wish} has been added</source>
+        <target>Wens {wish} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="XoB_zRK" name="message.wish_edited">
+      <segment state="translated">
+        <source>Wish {wish} has been updated</source>
+        <target>Wens {wish} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="akgCJp9" name="message.wish_deleted">
+      <segment state="translated">
+        <source>Wish {wish} has been deleted</source>
+        <target>Wens {wish} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="mAYxq3X" name="message.wish_transfered">
+      <segment state="translated">
+        <source>Wish {wish} was transferred to the collection {collection}</source>
+        <target>Wens {wish} is overgedragen aan de collectie {collection}</target>
+      </segment>
+    </unit>
+    <unit id="x_1ubH6" name="message.wishlist_added">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been added</source>
+        <target>Wensenlijst {wishlist} is toegevoegd</target>
+      </segment>
+    </unit>
+    <unit id="NfYGrwC" name="message.wishlist_edited">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been updated</source>
+        <target>Wensenlijst {wishlist} is bijgewerkt</target>
+      </segment>
+    </unit>
+    <unit id="8ujnJmR" name="message.wishlist_deleted">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been deleted</source>
+        <target>Wensenlijst {wishlist} is verwijderd</target>
+      </segment>
+    </unit>
+    <unit id="zfOqV80" name="form.item_sorting.default_value">
+      <segment state="translated">
+        <source>Name (default)</source>
+        <target>Naam (standaard)</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <segment state="translated">
+        <source>Sunday</source>
+        <target>Zondag</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <segment state="translated">
+        <source>Monday</source>
+        <target>Maandag</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <segment state="translated">
+        <source>Tuesday</source>
+        <target>Dinsdag</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <segment state="translated">
+        <source>Wednesday</source>
+        <target>Woensdag</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <segment state="translated">
+        <source>Thursday</source>
+        <target>Donderdag</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <segment state="translated">
+        <source>Friday</source>
+        <target>Vrijdag</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <segment state="translated">
+        <source>Saturday</source>
+        <target>Zaterdag</target>
+      </segment>
+    </unit>
+    <unit id="s2RK8Ci" name="global.months.january">
+      <segment state="translated">
+        <source>January</source>
+        <target>Januari</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <segment state="translated">
+        <source>February</source>
+        <target>Februari</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <segment state="translated">
+        <source>March</source>
+        <target>Maart</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <segment state="translated">
+        <source>April</source>
+        <target>April</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <segment state="translated">
+        <source>May</source>
+        <target>Mei</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <segment state="translated">
+        <source>June</source>
+        <target>Juni</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <segment state="translated">
+        <source>July</source>
+        <target>Juli</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <segment state="translated">
+        <source>August</source>
+        <target>Augustus</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <segment state="translated">
+        <source>September</source>
+        <target>September</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <segment state="translated">
+        <source>October</source>
+        <target>Oktober</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <segment state="translated">
+        <source>November</source>
+        <target>November</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <segment state="translated">
+        <source>December</source>
+        <target>December</target>
+      </segment>
+    </unit>
+    <unit id="jsUGqKL" name="global.byte_abbreviation">
+      <segment state="translated">
+        <source>B</source>
+        <target>B</target>
+      </segment>
+    </unit>
+    <unit id="BNjUIYA" name="label.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Zoeken</target>
+      </segment>
+    </unit>
+    <unit id="GV09tqG" name="global.koillection">
+      <segment state="translated">
+        <source>Koillection</source>
+        <target>Koillection</target>
+      </segment>
+    </unit>
+    <unit id="bKzhzsy" name="global.time.ago">
+      <segment state="translated">
+        <source>{time} ago</source>
+        <target>{time} geleden</target>
+      </segment>
+    </unit>
+    <unit id="kBJEdcf" name="global.time.just_now">
+      <segment state="translated">
+        <source>Just now</source>
+        <target>Zojuist</target>
+      </segment>
+    </unit>
+    <unit id="4wvJrqA" name="global.time.today">
+      <segment state="translated">
+        <source>Today</source>
+        <target>Vandaag</target>
+      </segment>
+    </unit>
+    <unit id="eggtiPQ" name="global.visibilities.reason.user_public">
+      <segment state="translated">
+        <source>Public - Reason : your profile is public</source>
+        <target>Openbaar - Reden: je profiel is openbaar</target>
+      </segment>
+    </unit>
+    <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
+      <segment state="translated">
+        <source>Public - Reason : both your profile and this page are public</source>
+        <target>Openbaar - Reden: zowel je profiel als deze pagina zijn openbaar</target>
+      </segment>
+    </unit>
+    <unit id="bk8nfAS" name="global.visibilities.reason.both_private">
+      <segment state="translated">
+        <source>Private - Reason : both your profile and this page are private</source>
+        <target>Privé - Reden: zowel je profiel als deze pagina zijn privé</target>
+      </segment>
+    </unit>
+    <unit id="ixVg6T0" name="global.visibilities.reason.user_private">
+      <segment state="translated">
+        <source>Private - Reason : your profile is private</source>
+        <target>Privé - Reden: je profiel is privé</target>
+      </segment>
+    </unit>
+    <unit id="9OU9mZT" name="global.visibilities.reason.object_private">
+      <segment state="translated">
+        <source>Private - Reason : this page is private</source>
+        <target>Privé - Reden: deze pagina is privé</target>
+      </segment>
+    </unit>
+    <unit id="k5.Efwd" name="global.visibilities.reason.both_internal">
+      <segment state="translated">
+        <source>Internal - Reason : both your profile and this page are internal</source>
+        <target>Intern - Reden: zowel uw profiel als deze pagina zijn intern</target>
+      </segment>
+    </unit>
+    <unit id="KHNt07x" name="global.visibilities.reason.user_internal">
+      <segment state="translated">
+        <source>Internal - Reason : your profile is internal</source>
+        <target>Intern - Reden: je profiel is intern</target>
+      </segment>
+    </unit>
+    <unit id="0fTIld1" name="global.visibilities.reason.object_internal">
+      <segment state="translated">
+        <source>Internal - Reason : this page is internal</source>
+        <target>Intern - Reden: deze pagina is intern</target>
+      </segment>
+    </unit>
+    <unit id="wvvYSw_" name="menu.admin">
+      <segment state="translated">
+        <source>Administration</source>
+        <target>Beheer</target>
+      </segment>
+    </unit>
+    <unit id="I4vwwju" name="title.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Overzicht</target>
+      </segment>
+    </unit>
+    <unit id="4fDIeO4" name="label.space_used">
+      <segment state="translated">
+        <source>{used} / {total} used</source>
+        <target>{used} / {total} gebruikt</target>
+      </segment>
+    </unit>
+    <unit id="ZzykrnK" name="label.space_free">
+      <segment state="translated">
+        <source>{free} free</source>
+        <target>{free} vrij</target>
+      </segment>
+    </unit>
+    <unit id="FIesMhl" name="counter.without_number.users">
+      <segment state="translated">
+        <source>{count, plural, one {# user} other {# users}}</source>
+        <target>{count, plural,
+  one {# gebruiker}
+  other {# gebruikers}
+}</target>
+      </segment>
+    </unit>
+    <unit id="uVNjha9" name="counter.without_number.collections">
+      <segment state="translated">
+        <source>{count, plural, one {# collection} other {# collections}}</source>
+        <target>{count, plural, one {# collectie} other {# collecties}}</target>
+      </segment>
+    </unit>
+    <unit id="VrJk8jp" name="counter.without_number.items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# item} other {# items}}</target>
+      </segment>
+    </unit>
+    <unit id="hjM7hgU" name="counter.without_number.tags">
+      <segment state="translated">
+        <source>{count, plural, one {# tag} other {# tags}}</source>
+        <target>{count, plural, one {# label} other {# labels}}</target>
+      </segment>
+    </unit>
+    <unit id="cw0nkO5" name="counter.without_number.wishlists">
+      <segment state="translated">
+        <source>{count, plural, one {# wishlist} other {# wishlists}}</source>
+        <target>{count, plural, one {# wenslijst} other {# wenslijsten}}</target>
+      </segment>
+    </unit>
+    <unit id="zzagaMI" name="counter.without_number.wishes">
+      <segment state="translated">
+        <source>{count, plural, one {# wish} other {# wishes}}</source>
+        <target>{count, plural, one {# wens} other {# wensen}}</target>
+      </segment>
+    </unit>
+    <unit id="QJMsz.z" name="counter.without_number.albums">
+      <segment state="translated">
+        <source>{count, plural, one {# album} other {# albums}}</source>
+        <target>{count, plural, one {# album} other {# albums}}</target>
+      </segment>
+    </unit>
+    <unit id="YKRNql5" name="counter.without_number.photos">
+      <segment state="translated">
+        <source>{count, plural, one {# photo} other {# photos}}</source>
+        <target>{count, plural, one {# foto} other {# foto's}}</target>
+      </segment>
+    </unit>
+    <unit id="aCCqbt1" name="counter.without_number.signs">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# handtekening} other {# handtekeningen}}</target>
+      </segment>
+    </unit>
+    <unit id="jNAS_YE" name="label.space_used_by_koillection">
+      <segment state="translated">
+        <source>Total space used by Koillection</source>
+        <target>Totale ruimte gebruikt door Koillection</target>
+      </segment>
+    </unit>
+    <unit id="_wv_IKT" name="title.config">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Configuratie</target>
+      </segment>
+    </unit>
+    <unit id="Z39v_44" name="label.release">
+      <segment state="translated">
+        <source>Koillection version</source>
+        <target>Koillection versie</target>
+      </segment>
+    </unit>
+    <unit id="eqnKfFG" name="label.outdated_release">
+      <segment state="translated">
+        <source>Version {release} is available</source>
+        <target>Versie {release} is beschikbaar</target>
+      </segment>
+    </unit>
+    <unit id="EvNVLVb" name="label.required_php_version">
+      <segment state="translated">
+        <source>PHP {version} is required</source>
+        <target>PHP {version} is vereist</target>
+      </segment>
+    </unit>
+    <unit id="J1HjVfO" name="label.up_to_date_release">
+      <segment state="translated">
+        <source>The latest version is installed</source>
+        <target>De laatste versie is geïnstalleerd</target>
+      </segment>
+    </unit>
+    <unit id="fGUHPE5" name="label.php_version">
+      <segment state="translated">
+        <source>PHP version</source>
+        <target>PHP versie</target>
+      </segment>
+    </unit>
+    <unit id="nWdqGKI" name="label.symfony_version">
+      <segment state="translated">
+        <source>Symfony version</source>
+        <target>Symfony versie</target>
+      </segment>
+    </unit>
+    <unit id="9qQ81pM" name="label.is_opcache_available">
+      <segment state="translated">
+        <source>Opcache enabled</source>
+        <target>Opcache ingeschakeld</target>
+      </segment>
+    </unit>
+    <unit id="qnAM2jd" name="title.tools">
+      <segment state="translated">
+        <source>Tools</source>
+        <target>Gereedschappen</target>
+      </segment>
+    </unit>
+    <unit id="LSyzK7f" name="btn.export_sql">
+      <segment state="translated">
+        <source>SQL</source>
+        <target>SQL</target>
+      </segment>
+    </unit>
+    <unit id="Jd.jsk." name="btn.export_images">
+      <segment state="translated">
+        <source>Images</source>
+        <target>Afbeeldingen</target>
+      </segment>
+    </unit>
+    <unit id="FcXvWL8" name="title.add_user">
+      <segment state="translated">
+        <source>Add a user</source>
+        <target>Voeg een gebruiker toe</target>
+      </segment>
+    </unit>
+    <unit id="fRQmA2t" name="btn.submit">
+      <segment state="translated">
+        <source>Submit</source>
+        <target>Verzenden</target>
+      </segment>
+    </unit>
+    <unit id="u5LRF8p" name="btn.cancel">
+      <segment state="translated">
+        <source>Cancel</source>
+        <target>Annuleren</target>
+      </segment>
+    </unit>
+    <unit id="wZpNYOE" name="label.space_used_by_user">
+      <segment state="translated">
+        <source>Total space used by user</source>
+        <target>Totale ruimte gebruikt door gebruiker</target>
+      </segment>
+    </unit>
+    <unit id="1sstKF9" name="title.edit_user">
+      <segment state="translated">
+        <source>Edit user {user}</source>
+        <target>Bewerk gebruiker {user}</target>
+      </segment>
+    </unit>
+    <unit id="fKgc.kW" name="title.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>Gebruikers</target>
+      </segment>
+    </unit>
+    <unit id="ZouqthR" name="btn.add_user">
+      <segment state="translated">
+        <source>Add a user</source>
+        <target>Voeg een gebruiker toe</target>
+      </segment>
+    </unit>
+    <unit id="txRonia" name="label.id">
+      <segment state="translated">
+        <source>Id</source>
+        <target>Id</target>
+      </segment>
+    </unit>
+    <unit id="LDhDPrF" name="label.username">
+      <segment state="translated">
+        <source>Username</source>
+        <target>Gebruikersnaam</target>
+      </segment>
+    </unit>
+    <unit id="O59lP5d" name="label.role">
+      <segment state="translated">
+        <source>Role</source>
+        <target>Rol</target>
+      </segment>
+    </unit>
+    <unit id="D2N6_cP" name="label.email">
+      <segment state="translated">
+        <source>Email</source>
+        <target>E-mail</target>
+      </segment>
+    </unit>
+    <unit id="Tv.rI94" name="label.disk_space_used">
+      <segment state="translated">
+        <source>Disk space used</source>
+        <target>Schijfruimte gebruikt</target>
+      </segment>
+    </unit>
+    <unit id="p1Fs6iF" name="label.disk_space_allowed">
+      <segment state="translated">
+        <source>Disk space allowed</source>
+        <target>Schijfruimte toegestaan</target>
+      </segment>
+    </unit>
+    <unit id="vMjoUw7" name="label.last_date_of_activity">
+      <segment state="translated">
+        <source>Last activity</source>
+        <target>Laatste activiteit</target>
+      </segment>
+    </unit>
+    <unit id="zldXQq6" name="label.actions">
+      <segment state="translated">
+        <source>Actions</source>
+        <target>Acties</target>
+      </segment>
+    </unit>
+    <unit id="nbcWSI3" name="tooltip.edit">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="335X_OI" name="tab.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Overzicht</target>
+      </segment>
+    </unit>
+    <unit id="MJ22R1T" name="tab.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>Gebruikers</target>
+      </segment>
+    </unit>
+    <unit id="1NZRNj4" name="counter.photo">
+      <segment state="translated">
+        <source>{count, plural, one {# photo} other {# photos}}</source>
+        <target>{count, plural, one {# foto} other {# foto's}}</target>
+      </segment>
+    </unit>
+    <unit id="rd2X72s" name="message.delete.photo">
+      <segment state="translated">
+        <source>Are you sure you want to delete this photo ? It will be permanently lost...</source>
+        <target>Weet u zeker dat u deze foto wilt verwijderen? Deze zal permanent verloren gaan...</target>
+      </segment>
+    </unit>
+    <unit id="UrRn8xj" name="label.title">
+      <segment state="translated">
+        <source>Title</source>
+        <target>Titel</target>
+      </segment>
+    </unit>
+    <unit id="H3WsEKh" name="label.visibility">
+      <segment state="translated">
+        <source>Visibility</source>
+        <target>Zichtbaarheid</target>
+      </segment>
+    </unit>
+    <unit id="pRl.hWU" name="title.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>Nieuw album toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="domeXiF" name="title.edit_album">
+      <segment state="translated">
+        <source>Edit album {title}</source>
+        <target>Bewerk album {title}</target>
+      </segment>
+    </unit>
+    <unit id="nQDmBI4" name="menu.collections_shared">
+      <segment state="translated">
+        <source>{username}'s collection</source>
+        <target>{username}'s collectie</target>
+      </segment>
+    </unit>
+    <unit id="5hMk7ux" name="menu.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albums</target>
+      </segment>
+    </unit>
+    <unit id="9N4x.TV" name="counter.album">
+      <segment state="translated">
+        <source>{count, plural, one {# album} other {# albums}}</source>
+        <target>{count, plural, one {# album} other {# albums}}</target>
+      </segment>
+    </unit>
+    <unit id="NOenNu3" name="tooltip.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>Nieuw album toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="A5gFwZv" name="filter.by_name">
+      <segment state="translated">
+        <source>Filter by name</source>
+        <target>Filter op naam</target>
+      </segment>
+    </unit>
+    <unit id="AHajX3P" name="tooltip.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>Nieuwe foto toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="ryRhoHH" name="title.album_children">
+      <segment state="translated">
+        <source>Sub-albums</source>
+        <target>Sub-albums</target>
+      </segment>
+    </unit>
+    <unit id="wP6FDOU" name="title.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>Foto's</target>
+      </segment>
+    </unit>
+    <unit id="w9FF849" name="title.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>Keuzes</target>
+      </segment>
+    </unit>
+    <unit id="CYUJ8qZ" name="btn.add_choice">
+      <segment state="translated">
+        <source>Add a new choice</source>
+        <target>Een nieuwe keuze toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="oOiO8Dn" name="label.choice">
+      <segment state="translated">
+        <source>Choice</source>
+        <target>Keuze</target>
+      </segment>
+    </unit>
+    <unit id="uLlCnaG" name="title.new_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>Voeg een nieuwe keuzelijst toe</target>
+      </segment>
+    </unit>
+    <unit id="60Mvg7w" name="title.edit_choice_list">
+      <segment state="translated">
+        <source>Edit choice list {list}</source>
+        <target>Keuzelijst {list} bewerken</target>
+      </segment>
+    </unit>
+    <unit id="em8w1x." name="menu.choice_lists">
+      <segment state="translated">
+        <source>Choice lists</source>
+        <target>Keuze lijsten</target>
+      </segment>
+    </unit>
+    <unit id="SMPEMjp" name="counter.choice_lists">
+      <segment state="translated">
+        <source>{count, plural, one {# choice list} other {# choice lists}}</source>
+        <target>{count, plural, one {# keuzelijst} other {# keuzelijsten}}</target>
+      </segment>
+    </unit>
+    <unit id="3yuF9Sl" name="tooltip.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice lists</source>
+        <target>Voeg een nieuwe keuzelijst toe</target>
+      </segment>
+    </unit>
+    <unit id="ysOvPSq" name="label.name">
+      <segment state="translated">
+        <source>Name</source>
+        <target>Naam</target>
+      </segment>
+    </unit>
+    <unit id="Mr44cEu" name="label.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>Keuzes</target>
+      </segment>
+    </unit>
+    <unit id="I5NrvAz" name="collection.items_settings">
+      <segment state="translated">
+        <source>Items settings</source>
+        <target>Items instellingen</target>
+      </segment>
+    </unit>
+    <unit id="7Y63wwX" name="collection.children_settings">
+      <segment state="translated">
+        <source>Sub-collections settings</source>
+        <target>Sub-collecties instellingen</target>
+      </segment>
+    </unit>
+    <unit id="uJUJ6Ir" name="title.data">
+      <segment state="translated">
+        <source>Data</source>
+        <target>Gegevens</target>
+      </segment>
+    </unit>
+    <unit id="ixrxzme" name="label.add_field">
+      <segment state="translated">
+        <source>Add field :</source>
+        <target>Veld toevoegen:</target>
+      </segment>
+    </unit>
+    <unit id="5l_KSLb" name="btn.add_text">
+      <segment state="translated">
+        <source>Text</source>
+        <target>Tekst</target>
+      </segment>
+    </unit>
+    <unit id="6wqecTf" name="btn.add_number">
+      <segment state="translated">
+        <source>Number</source>
+        <target>Nummer</target>
+      </segment>
+    </unit>
+    <unit id="FD827k7" name="btn.add_country">
+      <segment state="translated">
+        <source>Country</source>
+        <target>Land</target>
+      </segment>
+    </unit>
+    <unit id="otAT7D6" name="btn.add_date">
+      <segment state="translated">
+        <source>Date</source>
+        <target>Datum</target>
+      </segment>
+    </unit>
+    <unit id="1bwI2L." name="btn.add_file">
+      <segment state="translated">
+        <source>File</source>
+        <target>Bestand</target>
+      </segment>
+    </unit>
+    <unit id="VUlGgVE" name="label.add_choice_list">
+      <segment state="translated">
+        <source>Add choice list :</source>
+        <target>Voeg keuzelijst toe:</target>
+      </segment>
+    </unit>
+    <unit id=".eH3OZY" name="counter.item">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# item} other {# items}}</target>
+      </segment>
+    </unit>
+    <unit id="AiXAfVP" name="title.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>Nieuwe collectie toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="8yVQg94" name="title.tag_collection">
+      <segment state="translated">
+        <source>Batch tagging {collection}</source>
+        <target>Batch labelen {collection}</target>
+      </segment>
+    </unit>
+    <unit id="KlxVsBD" name="title.edit_collection">
+      <segment state="translated">
+        <source>Edit collection {collection}</source>
+        <target>Bewerk collectie {collection}</target>
+      </segment>
+    </unit>
+    <unit id="MW4FPxn" name="menu.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>Collecties</target>
+      </segment>
+    </unit>
+    <unit id="Ttj5ZLt" name="counter.collection">
+      <segment state="translated">
+        <source>{count, plural, one {# collection} other {# collections}}</source>
+        <target>{count, plural, one {# collectie} other {# collecties}}</target>
+      </segment>
+    </unit>
+    <unit id="0Vhz2n." name="tooltip.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>Nieuwe collectie toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="YHlU3_1" name="title.items">
+      <segment state="translated">
+        <source>Items</source>
+        <target>Items</target>
+      </segment>
+    </unit>
+    <unit id="FTnVc5X" name="tooltip.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>Voeg nieuw item toe</target>
+      </segment>
+    </unit>
+    <unit id="6H1fBLk" name="tooltip.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="bQoqYij" name="tooltip.items">
+      <segment state="translated">
+        <source>See all items</source>
+        <target>Bekijk alle items</target>
+      </segment>
+    </unit>
+    <unit id="StAuTu9" name="title.infos">
+      <segment state="translated">
+        <source>Info</source>
+        <target>Info</target>
+      </segment>
+    </unit>
+    <unit id="5_Yv1gK" name="title.children">
+      <segment state="translated">
+        <source>Sub-collections</source>
+        <target>Sub-collecties</target>
+      </segment>
+    </unit>
+    <unit id="szWUC0C" name="label.value">
+      <segment state="translated">
+        <source>Value</source>
+        <target>Waarde</target>
+      </segment>
+    </unit>
+    <unit id="Kp3d.qQ" name="label.label">
+      <segment state="translated">
+        <source>Label</source>
+        <target>Label</target>
+      </segment>
+    </unit>
+    <unit id="yIfRfhZ" name="filter.title.types">
+      <segment state="translated">
+        <source>Types</source>
+        <target>Typen</target>
+      </segment>
+    </unit>
+    <unit id="F5Sk8YT" name="filter.title.actions">
+      <segment state="translated">
+        <source>Actions</source>
+        <target>Acties</target>
+      </segment>
+    </unit>
+    <unit id="0n2CBIS" name="label.event">
+      <segment state="translated">
+        <source>Event</source>
+        <target>Gebeurtenis</target>
+      </segment>
+    </unit>
+    <unit id="WwKLHxh" name="label.logged_at">
+      <segment state="translated">
+        <source>Date</source>
+        <target>Datum</target>
+      </segment>
+    </unit>
+    <unit id="Q.3FoSC" name="menu.history">
+      <segment state="translated">
+        <source>History</source>
+        <target>Geschiedenis</target>
+      </segment>
+    </unit>
+    <unit id="IxgpiDC" name="counter.total_items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# item} other {# items}}</target>
+      </segment>
+    </unit>
+    <unit id="EZsGAxN" name="counter.checked_items">
+      <segment state="translated">
+        <source>{count, plural, one {# checked item} other {# checked items}}</source>
+        <target>{count, plural, one {# item gecontroleerd} other {# items gecontroleerd}}</target>
+      </segment>
+    </unit>
+    <unit id="gVjxaJZ" name="label.completion_rate">
+      <segment state="translated">
+        <source>{rate}% completed</source>
+        <target>{rate}% voltooid</target>
+      </segment>
+    </unit>
+    <unit id="i9VapGy" name="title.add_inventory">
+      <segment state="translated">
+        <source>Create a new inventory</source>
+        <target>Maak een nieuwe inventaris</target>
+      </segment>
+    </unit>
+    <unit id="78xJTtJ" name="title.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>Collecties</target>
+      </segment>
+    </unit>
+    <unit id="5Tlipav" name="global.all_collections">
+      <segment state="translated">
+        <source>All collections</source>
+        <target>Alle collecties</target>
+      </segment>
+    </unit>
+    <unit id="ACWH3_S" name="label.item.from_collection">
+      <segment state="translated">
+        <source>From collection :</source>
+        <target>Van collectie:</target>
+      </segment>
+    </unit>
+    <unit id="4O6JaLx" name="tooltip.loan_item">
+      <segment state="translated">
+        <source>Loan this item</source>
+        <target>Leen dit item uit</target>
+      </segment>
+    </unit>
+    <unit id="HmUuNCa" name="label.main_image">
+      <segment state="translated">
+        <source>Main image</source>
+        <target>Hoofdafbeelding</target>
+      </segment>
+    </unit>
+    <unit id="Q14jRAj" name="label.list_related_items">
+      <segment state="translated">
+        <source>Related items</source>
+        <target>Gerelateerde items</target>
+      </segment>
+    </unit>
+    <unit id="DCLoAZA" name="title.additional_fields">
+      <segment state="translated">
+        <source>Additional fields</source>
+        <target>Extra velden</target>
+      </segment>
+    </unit>
+    <unit id="uAfIh0u" name="btn.apply_common_fields">
+      <segment state="translated">
+        <source>Load common fields</source>
+        <target>Laad algemene velden</target>
+      </segment>
+    </unit>
+    <unit id="ImSHWcX" name="btn.apply_collection_fields">
+      <segment state="translated">
+        <source>Load collection fields</source>
+        <target>Laad collectie velden</target>
+      </segment>
+    </unit>
+    <unit id="ME6A6U0" name="title.related_items">
+      <segment state="translated">
+        <source>Related items</source>
+        <target>Gerelateerde items</target>
+      </segment>
+    </unit>
+    <unit id="Hxk36Kv" name="btn.submit_and_add_another">
+      <segment state="translated">
+        <source>Submit and add another item</source>
+        <target>Verzenden en een ander item toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="xlowWy6" name="btn.add_textarea">
+      <segment state="translated">
+        <source>Long text</source>
+        <target>Lange tekst</target>
+      </segment>
+    </unit>
+    <unit id="9qwO627" name="btn.add_rating">
+      <segment state="translated">
+        <source>Rating</source>
+        <target>Beoordeling</target>
+      </segment>
+    </unit>
+    <unit id="g0hND3o" name="btn.add_link">
+      <segment state="translated">
+        <source>Link</source>
+        <target>Link</target>
+      </segment>
+    </unit>
+    <unit id="bWfooH2" name="title.item_images">
+      <segment state="translated">
+        <source>Images</source>
+        <target>Afbeeldingen</target>
+      </segment>
+    </unit>
+    <unit id="7s.6nrQ" name="btn.add_image">
+      <segment state="translated">
+        <source>Image</source>
+        <target>Afbeelding</target>
+      </segment>
+    </unit>
+    <unit id="zCTHmk." name="btn.add_sign">
+      <segment state="translated">
+        <source>Signature</source>
+        <target>Handtekening</target>
+      </segment>
+    </unit>
+    <unit id="nXRtrJb" name="title.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>Voeg nieuw item toe</target>
+      </segment>
+    </unit>
+    <unit id="0w7FrTh" name="title.edit_item">
+      <segment state="translated">
+        <source>Edit item {item}</source>
+        <target>Bewerk item {item}</target>
+      </segment>
+    </unit>
+    <unit id="U4lp2Ma" name="global.created_at">
+      <segment state="translated">
+        <source>Creation : {date}</source>
+        <target>Aangemaakt op: {date}</target>
+      </segment>
+    </unit>
+    <unit id="ylc8ODN" name="global.updated_at">
+      <segment state="translated">
+        <source>Last update : {date}</source>
+        <target>Laatst bijgewerkt op: {date}</target>
+      </segment>
+    </unit>
+    <unit id="VFvXW.m" name="menu.loans">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>Uitgeleend</target>
+      </segment>
+    </unit>
+    <unit id="nlD7D9j" name="counter.loan">
+      <segment state="translated">
+        <source>{count, plural, one {# loan} other {# loans}}</source>
+        <target>{count, plural, one {# uitgeleend} other {# uitgeleenden}}</target>
+      </segment>
+    </unit>
+    <unit id="0Nr1G8_" name="counter.returned">
+      <segment state="translated">
+        <source>{count, plural, one {# loan returned} other {# loans returned}}</source>
+        <target>{count, plural, one {# uitgeleende teruggegeven} other {# uitgeleenden teruggekomen}}</target>
+      </segment>
+    </unit>
+    <unit id="1Jpq5QX" name="tab.loans">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>Uitgeleend</target>
+      </segment>
+    </unit>
+    <unit id="F60bUq_" name="tab.returned_items">
+      <segment state="translated">
+        <source>Returned</source>
+        <target>Teruggekeerd</target>
+      </segment>
+    </unit>
+    <unit id="lYyKRwZ" name="label.loaned_to">
+      <segment state="translated">
+        <source>Borrower</source>
+        <target>Lener</target>
+      </segment>
+    </unit>
+    <unit id="2ZgbVvL" name="label.loaned_at">
+      <segment state="translated">
+        <source>Lent on</source>
+        <target>Uitgeleend op</target>
+      </segment>
+    </unit>
+    <unit id="EWnP8ZQ" name="label.loaned_ago">
+      <segment state="translated">
+        <source>Ago</source>
+        <target>Geleden</target>
+      </segment>
+    </unit>
+    <unit id="uFEIsab" name="tooltip.returned">
+      <segment state="translated">
+        <source>Returned</source>
+        <target>Teruggekeerd</target>
+      </segment>
+    </unit>
+    <unit id="R25XMb2" name="label.return_date">
+      <segment state="translated">
+        <source>Return date</source>
+        <target>Retourdatum</target>
+      </segment>
+    </unit>
+    <unit id="Az510BV" name="label.loan_duration">
+      <segment state="translated">
+        <source>Loan duration</source>
+        <target>Lening duur</target>
+      </segment>
+    </unit>
+    <unit id="bmt.5SD" name="title.loan_item">
+      <segment state="translated">
+        <source>Loan item {item}</source>
+        <target>Leen {item} uit</target>
+      </segment>
+    </unit>
+    <unit id="tpcX1HE" name="title.add_album_photo">
+      <segment state="translated">
+        <source>Add a new photo to the album {album}</source>
+        <target>Nieuwe foto toevoegen aan album {album}</target>
+      </segment>
+    </unit>
+    <unit id="yXxCCBI" name="title.edit_album_photo">
+      <segment state="translated">
+        <source>Edit photo {photo}</source>
+        <target>Foto {photo} bewerken</target>
+      </segment>
+    </unit>
+    <unit id="XSS5BT8" name="menu.profile">
+      <segment state="translated">
+        <source>Profile</source>
+        <target>Profiel</target>
+      </segment>
+    </unit>
+    <unit id="qh23U11" name="title.disk_usage">
+      <segment state="translated">
+        <source>Disk usage</source>
+        <target>Schijfgebruik</target>
+      </segment>
+    </unit>
+    <unit id="PMuodit" name="title.update_profile">
+      <segment state="translated">
+        <source>Edit profile</source>
+        <target>Profiel bewerken</target>
+      </segment>
+    </unit>
+    <unit id="k6VxCsO" name="menu.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Zoeken</target>
+      </segment>
+    </unit>
+    <unit id="ZtbL6rD" name="title.wishlists">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>Verlanglijsten</target>
+      </segment>
+    </unit>
+    <unit id="Gki98oO" name="title.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albums</target>
+      </segment>
+    </unit>
+    <unit id="uzSzjYY" name="title.tags">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>Tags</target>
+      </segment>
+    </unit>
+    <unit id="4cEApe1" name="label.description">
+      <segment state="translated">
+        <source>Description</source>
+        <target>Beschrijving</target>
+      </segment>
+    </unit>
+    <unit id="ak1St8x" name="label.number_of_items">
+      <segment state="translated">
+        <source># of items</source>
+        <target># items</target>
+      </segment>
+    </unit>
+    <unit id="dFDOuk." name="label.percent_of_items">
+      <segment state="translated">
+        <source>Percent of items</source>
+        <target>Percentage van items</target>
+      </segment>
+    </unit>
+    <unit id="xw23vtl" name="message.search_empty">
+      <segment state="translated">
+        <source>No results</source>
+        <target>Geen resultaten</target>
+      </segment>
+    </unit>
+    <unit id="wwFFPXP" name="title.first_connection.user">
+      <segment state="translated">
+        <source>First connection</source>
+        <target>Eerste login</target>
+      </segment>
+    </unit>
+    <unit id="11HETEc" name="global.welcome">
+      <segment state="translated">
+        <source>Welcome to Koillection</source>
+        <target>Welkom bij Koillection</target>
+      </segment>
+    </unit>
+    <unit id="S92egy5" name="title.sign_in">
+      <segment state="translated">
+        <source>Sign in</source>
+        <target>Inloggen</target>
+      </segment>
+    </unit>
+    <unit id="ZAtrhtu" name="label.login">
+      <segment state="translated">
+        <source>Username or email</source>
+        <target>Gebruikersnaam of e-mailadres</target>
+      </segment>
+    </unit>
+    <unit id="9pvowqn" name="label.password">
+      <segment state="translated">
+        <source>Password</source>
+        <target>Wachtwoord</target>
+      </segment>
+    </unit>
+    <unit id="B0loISu" name="label.remember_me">
+      <segment state="translated">
+        <source>Keep me logged in</source>
+        <target>Ingelogd blijven</target>
+      </segment>
+    </unit>
+    <unit id="IPh2SKn" name="btn.sign_in">
+      <segment state="translated">
+        <source>Sign in</source>
+        <target>Inloggen</target>
+      </segment>
+    </unit>
+    <unit id="4UTsL.X" name="menu.settings">
+      <segment state="translated">
+        <source>Settings</source>
+        <target>Instellingen</target>
+      </segment>
+    </unit>
+    <unit id="RDD2bMy" name="title.update_settings">
+      <segment state="translated">
+        <source>Edit settings</source>
+        <target>Wijzig instellingen</target>
+      </segment>
+    </unit>
+    <unit id="9dYyUYD" name="title.update_visibility">
+      <segment state="translated">
+        <source>Edit visibility</source>
+        <target>Wijzig zichtbaarheid</target>
+      </segment>
+    </unit>
+    <unit id="eG38lKI" name="message.visibility">
+      <segment state="translated">
+        <source>If you set visibility to public, your collection will be accessible by anyone using the following link :</source>
+        <target>Als je de zichtbaarheid openbaar maakt, is je collectie voor iedereen toegankelijk via de volgende link:</target>
+      </segment>
+    </unit>
+    <unit id="RjUO3kd" name="message.visibility_per_item">
+      <segment state="translated">
+        <source>You can then set visibility per item or collection. To do so, please go on the element edition page.</source>
+        <target>Je kunt vervolgens de zichtbaarheid per item of collectie instellen. Om dit te doen, ga naar de element editie.</target>
+      </segment>
+    </unit>
+    <unit id="fQNztng" name="title.update_features">
+      <segment state="translated">
+        <source>Edit active features</source>
+        <target>Actieve features bewerken</target>
+      </segment>
+    </unit>
+    <unit id="HLevxj." name="menu.signs">
+      <segment state="translated">
+        <source>Signatures</source>
+        <target>Handtekeningen</target>
+      </segment>
+    </unit>
+    <unit id="e9psgbF" name="counter.signs">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# handtekening} other {# handtekeningen}}</target>
+      </segment>
+    </unit>
+    <unit id="Bhx8Fvg" name="menu.statistics">
+      <segment state="translated">
+        <source>Statistics</source>
+        <target>Statistieken</target>
+      </segment>
+    </unit>
+    <unit id="If3y3hC" name="counter.tag">
+      <segment state="translated">
+        <source>{count, plural, one {# tag} other {# tags}}</source>
+        <target>{count, plural, one {# label} other {# labels}}</target>
+      </segment>
+    </unit>
+    <unit id="Ul2mR7j" name="counter.sign">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# handtekening} other {# handtekeningen}}</target>
+      </segment>
+    </unit>
+    <unit id="ssT2wiw" name="title.activity">
+      <segment state="translated">
+        <source>Activity</source>
+        <target>Activiteit</target>
+      </segment>
+    </unit>
+    <unit id="_tdjWIj" name="title.charts.month_days">
+      <segment state="translated">
+        <source>Items added per day of month</source>
+        <target>Items toegevoegd per dag van de maand</target>
+      </segment>
+    </unit>
+    <unit id="svM3vNY" name="title.charts.hours">
+      <segment state="translated">
+        <source>Items added per day hour</source>
+        <target>Items toegevoegd per dag uur</target>
+      </segment>
+    </unit>
+    <unit id="jZqCZ_K" name="title.charts.months">
+      <segment state="translated">
+        <source>Items added per month</source>
+        <target>Items toegevoegd per maand</target>
+      </segment>
+    </unit>
+    <unit id="yfwVi.I" name="title.charts.week_days">
+      <segment state="translated">
+        <source>Items added per weekday</source>
+        <target>Items toegevoegd per weekdag</target>
+      </segment>
+    </unit>
+    <unit id="9it4sqQ" name="title.charts.items_evolution">
+      <segment state="translated">
+        <source>Items evolution</source>
+        <target>Items evolutie</target>
+      </segment>
+    </unit>
+    <unit id="Rb73VaV" name="title.charts.radial_tree">
+      <segment state="translated">
+        <source>Radial representation of your collection</source>
+        <target>Radiale representatie van je collectie</target>
+      </segment>
+    </unit>
+    <unit id=".ZHhONJ" name="label.tag_category">
+      <segment state="translated">
+        <source>Category</source>
+        <target>Categorie</target>
+      </segment>
+    </unit>
+    <unit id="p4z8GI6" name="title.edit_tag">
+      <segment state="translated">
+        <source>Edit tag {tag}</source>
+        <target>Bewerk tag {tag}</target>
+      </segment>
+    </unit>
+    <unit id="yo4f8Kh" name="menu.tags">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>Tags</target>
+      </segment>
+    </unit>
+    <unit id="7SH9MME" name="tooltip.manage_tag_categories">
+      <segment state="translated">
+        <source>Manage tag categories</source>
+        <target>Beheer tag categorieën</target>
+      </segment>
+    </unit>
+    <unit id="a_xpPl1" name="message.delete.unused_tag">
+      <segment state="translated">
+        <source>This will delete all tags with no items attached. Are you sure you want to delete those tags ? They will be permanently lost...</source>
+        <target>Dit zal alle tags waar geen items aan zijn toegevoegd verwijderen. Weet je zeker dat je deze tags wilt verwijderen? Ze zullen permanent verloren gaan...</target>
+      </segment>
+    </unit>
+    <unit id="LgGHl1z" name="btn.delete_unused_tags">
+      <segment state="translated">
+        <source>Delete unused tags</source>
+        <target>Verwijder ongebruikte tags</target>
+      </segment>
+    </unit>
+    <unit id="e8GAd_z" name="title.related_tags">
+      <segment state="translated">
+        <source>Related tags</source>
+        <target>Gerelateerde tags</target>
+      </segment>
+    </unit>
+    <unit id="YklQlf8" name="btn.show_more">
+      <segment state="translated">
+        <source>Show more ({count})</source>
+        <target>Toon meer ({count})</target>
+      </segment>
+    </unit>
+    <unit id="zOA0UTD" name="btn.show_less">
+      <segment state="translated">
+        <source>Show less</source>
+        <target>Minder tonen</target>
+      </segment>
+    </unit>
+    <unit id="JI8jvUd" name="title.add_tag_category">
+      <segment state="translated">
+        <source>Add tag category</source>
+        <target>Tag categorie toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="W6Rvzmb" name="menu.tools">
+      <segment state="translated">
+        <source>Tools</source>
+        <target>Gereedschappen</target>
+      </segment>
+    </unit>
+    <unit id="XjUwmT9" name="counter.wish">
+      <segment state="translated">
+        <source>{count, plural, one {# wish} other {# wishes}}</source>
+        <target>{count, plural, one {# wens} other {# wensen}}</target>
+      </segment>
+    </unit>
+    <unit id="iaYlgE1" name="menu.wishlists">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>Verlanglijsten</target>
+      </segment>
+    </unit>
+    <unit id="Joxd_.h" name="counter.wishlist">
+      <segment state="translated">
+        <source>{count, plural, one {# wishlist} other {# wishlists}}</source>
+        <target>{count, plural, one {# wenslijst} other {# wenslijsten}}</target>
+      </segment>
+    </unit>
+    <unit id="rapb2ag" name="label.image">
+      <segment state="translated">
+        <source>Image</source>
+        <target>Afbeelding</target>
+      </segment>
+    </unit>
+    <unit id="ZS8DP_P" name="breadcrumb.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>Nieuw album toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="BgP_6X7" name="breadcrumb.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>Nieuwe collectie toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="QP9HnQT" name="breadcrumb.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>Voeg nieuw item toe</target>
+      </segment>
+    </unit>
+    <unit id="HN3MXIl" name="breadcrumb.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>Nieuwe foto toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="FBXvLM8" name="breadcrumb.edit_album">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="4FXosb_" name="breadcrumb.edit_collection">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="dQjPnaL" name="breadcrumb.edit_template">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="wJbJaxc" name="breadcrumb.edit_item">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="sARt1zq" name="breadcrumb.edit_photo">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="YAIWLja" name="breadcrumb.edit_tag">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="MK15Ex5" name="breadcrumb.edit_wish">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="bzp39NU" name="breadcrumb.edit_wishlist">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="hNB8Xw0" name="breadcrumb.history_collection">
+      <segment state="translated">
+        <source>History</source>
+        <target>Geschiedenis</target>
+      </segment>
+    </unit>
+    <unit id="1ruRfsb" name="breadcrumb.history_item">
+      <segment state="translated">
+        <source>History</source>
+        <target>Geschiedenis</target>
+      </segment>
+    </unit>
+    <unit id="Pnd0n71" name="breadcrumb.history_tag">
+      <segment state="translated">
+        <source>History</source>
+        <target>Geschiedenis</target>
+      </segment>
+    </unit>
+    <unit id="eG2_sfn" name="breadcrumb.items_collection">
+      <segment state="translated">
+        <source>Items</source>
+        <target>Items</target>
+      </segment>
+    </unit>
+    <unit id="yt20IWO" name="global.entities.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="Jjqrud5" name="label.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>Collecties</target>
+      </segment>
+    </unit>
+    <unit id="zfmgf2l" name="label.items">
+      <segment state="translated">
+        <source>Items</source>
+        <target>Items</target>
+      </segment>
+    </unit>
+    <unit id="w5u.bJo" name="label.sign">
+      <segment state="translated">
+        <source>Signature</source>
+        <target>Handtekening</target>
+      </segment>
+    </unit>
+    <unit id="ijQyGRo" name="label.tags">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>Tags</target>
+      </segment>
+    </unit>
+    <unit id="UQI8T0S" name="label.text">
+      <segment state="translated">
+        <source>Text</source>
+        <target>Tekst</target>
+      </segment>
+    </unit>
+    <unit id="vVTVy9_" name="label.wishlists">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>Verlanglijsten</target>
+      </segment>
+    </unit>
+    <unit id="_.ADUgd" name="breadcrumb.add_inventory">
+      <segment state="translated">
+        <source>Create a new inventory</source>
+        <target>Maak een nieuwe inventaris</target>
+      </segment>
+    </unit>
+    <unit id="HFhQzXX" name="breadcrumb.add_tag_category">
+      <segment state="translated">
+        <source>Add tag category</source>
+        <target>Tag categorie toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="k7MJQ82" name="label.country">
+      <segment state="translated">
+        <source>Country</source>
+        <target>Land</target>
+      </segment>
+    </unit>
+    <unit id="U8IBiON" name="menu.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Overzicht</target>
+      </segment>
+    </unit>
+    <unit id="Bbv77ja" name="enum.history_filter_class.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="2j7vQYy" name="breadcrumb.history_album">
+      <segment state="translated">
+        <source>History</source>
+        <target>Geschiedenis</target>
+      </segment>
+    </unit>
+    <unit id="HJFRPmK" name="breadcrumb.history_wishlist">
+      <segment state="translated">
+        <source>History</source>
+        <target>Geschiedenis</target>
+      </segment>
+    </unit>
+    <unit id="GXrTvzK" name="label.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albums</target>
+      </segment>
+    </unit>
+    <unit id="Qo7wr5F" name="label.wishlists_feature_enabled">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>Verlanglijsten</target>
+      </segment>
+    </unit>
+    <unit id="d7dTHZ." name="label.tags_feature_enabled">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>Tags</target>
+      </segment>
+    </unit>
+    <unit id="5g5Fm08" name="label.signs_feature_enabled">
+      <segment state="translated">
+        <source>Signatures</source>
+        <target>Handtekeningen</target>
+      </segment>
+    </unit>
+    <unit id="VDd2HS6" name="label.albums_feature_enabled">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albums</target>
+      </segment>
+    </unit>
+    <unit id="hE9F5PK" name="label.loans_feature_enabled">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>Uitgeleend</target>
+      </segment>
+    </unit>
+    <unit id="FfhJCxR" name="label.history_feature_enabled">
+      <segment state="translated">
+        <source>History</source>
+        <target>Geschiedenis</target>
+      </segment>
+    </unit>
+    <unit id="_G1H7r2" name="label.statistics_feature_enabled">
+      <segment state="translated">
+        <source>Statistics</source>
+        <target>Statistieken</target>
+      </segment>
+    </unit>
+    <unit id="H1qEi4d" name="label.date">
+      <segment state="translated">
+        <source>Date</source>
+        <target>Datum</target>
+      </segment>
+    </unit>
+    <unit id="YkTUtk1" name="label.file">
+      <segment state="translated">
+        <source>File</source>
+        <target>Bestand</target>
+      </segment>
+    </unit>
+    <unit id="JD2NF8b" name="label.rating">
+      <segment state="translated">
+        <source>Rating</source>
+        <target>Beoordeling</target>
+      </segment>
+    </unit>
+    <unit id="39AtPxQ" name="label.number">
+      <segment state="translated">
+        <source>Number</source>
+        <target>Nummer</target>
+      </segment>
+    </unit>
+    <unit id="jbdcgnz" name="label.link">
+      <segment state="translated">
+        <source>Link</source>
+        <target>Link</target>
+      </segment>
+    </unit>
+    <unit id="M6VfIb7" name="label.textarea">
+      <segment state="translated">
+        <source>Long text</source>
+        <target>Lange tekst</target>
+      </segment>
+    </unit>
+    <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>Voeg een nieuwe keuzelijst toe</target>
+      </segment>
+    </unit>
+    <unit id="nMiYLFJ" name="breadcrumb.edit_choice_list">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="rsBlJD0" name="label.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>Foto's</target>
+      </segment>
+    </unit>
+    <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="FGS9ySo" name="title.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="DomzBkb" name="title.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="WEd3Zlc" name="title.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+    <unit id="0vnK4DY" name="menu.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>Gebruikers</target>
+      </segment>
+    </unit>
+    <unit id="wcFJTRH" name="tab.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Configuratie</target>
+      </segment>
+    </unit>
+    <unit id="l4xWhN8" name="menu.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Configuratie</target>
+      </segment>
+    </unit>
+    <unit id="4Q5t9Zu" name="title.edit_configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Configuratie</target>
+      </segment>
+    </unit>
+    <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Bewerken</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
