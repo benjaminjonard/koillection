@@ -2042,21 +2042,17 @@ i.btn input {
 }
 
 /* Half star */
-.rating-form .fa-star-half:before {
+.fa-star-half:before {
     padding-right: 0;
     position: absolute;
 }
 
 .rating-display .fa-star-half:before {
-    padding-right: 0;
     padding-top: 6px;
-    position: absolute;
 }
 
 table .rating-display .fa-star-half:before {
-    padding-right: 0;
-    padding-top: 2px;
-    position: absolute;
+    padding-top: 0;
 }
 
 /* Click + hover color */
