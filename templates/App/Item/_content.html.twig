@@ -134,6 +134,7 @@
                              alt="{{ relatedItem.name }}"
                         >
                     </a>
+                    <span class="image-label" title="{{ relatedItem.name }}">{{ relatedItem.name|u.truncate(25, '...') }}</span>
                 </li>
             {% endfor %}
         </ul>
