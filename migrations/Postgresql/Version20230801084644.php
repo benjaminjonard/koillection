@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Migrations\Postgresql;
 
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -16,7 +17,7 @@ final class Version20230801084644 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE TABLE koi_path (id CHAR(36) NOT NULL, scraper_id CHAR(36) DEFAULT NULL, owner_id CHAR(36) DEFAULT NULL, name VARCHAR(255) NOT NULL, type VARCHAR(15) NOT NULL, path TEXT NOT NULL, position INT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_2AF50D135A68BBF9 ON koi_path (scraper_id)');

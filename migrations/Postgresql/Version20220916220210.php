@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Migrations\Postgresql;
 
 use App\Enum\SortingDirectionEnum;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
@@ -18,7 +19,7 @@ final class Version20220916220210 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_album ADD photos_display_configuration_id CHAR(36) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_album ADD CONSTRAINT FK_2DB8938A5DC99D4D FOREIGN KEY (photos_display_configuration_id) REFERENCES koi_display_configuration (id) NOT DEFERRABLE INITIALLY IMMEDIATE');

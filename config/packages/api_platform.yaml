@@ -22,5 +22,5 @@ api_platform:
     normalization_context:
       skip_null_values: false
   event_listeners_backward_compatibility_layer: false
-  keep_legacy_inflector: true
+  keep_legacy_inflector: false
 

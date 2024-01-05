@@ -169,7 +169,6 @@ class ItemTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => null]);
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Image', 'fileImage' => null]);
 
-
         // Act
         $crawler = $this->client->request('GET', '/items/'.$item->getId());
 

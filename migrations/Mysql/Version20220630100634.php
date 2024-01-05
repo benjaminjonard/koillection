@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Migrations\Mysql;
 
 use App\Enum\DisplayModeEnum;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -17,7 +18,7 @@ final class Version20220630100634 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Migration can only be executed safely on \'mysql\' or \'mariadb\'.');
 
         $this->addSql('ALTER TABLE koi_collection ADD items_display_mode VARCHAR(4)');
         $this->addSql('UPDATE koi_collection SET items_display_mode = ?', [DisplayModeEnum::DISPLAY_MODE_GRID]);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Migrations\Postgresql;
 
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -16,7 +17,7 @@ final class Version20190307155057 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql("ALTER TABLE koi_user ADD date_format VARCHAR(255) NOT NULL DEFAULT 'Y-m-d'");
         $this->addSql('ALTER TABLE koi_user ALTER timezone SET NOT NULL');

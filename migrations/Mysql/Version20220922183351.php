@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Migrations\Mysql;
 
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -16,7 +17,7 @@ final class Version20220922183351 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Migration can only be executed safely on \'mysql\' or \'mariadb\'.');
 
         $this->addSql('ALTER TABLE koi_album ADD cached_values JSON NOT NULL');
         $this->addSql('ALTER TABLE koi_collection ADD cached_values JSON NOT NULL');

@@ -6,6 +6,7 @@ namespace App\Migrations\Mysql;
 
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
@@ -19,7 +20,7 @@ final class Version20220916162932 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Migration can only be executed safely on \'mysql\' or \'mariadb\'.');
 
         $this->addSql('CREATE TABLE koi_display_configuration (id CHAR(36) NOT NULL, owner_id CHAR(36) DEFAULT NULL, label VARCHAR(255) DEFAULT NULL, display_mode VARCHAR(4) NOT NULL, sorting_property VARCHAR(255) DEFAULT NULL, sorting_type VARCHAR(10) DEFAULT NULL, sorting_direction VARCHAR(255) NOT NULL, show_visibility TINYINT(1) DEFAULT 1 NOT NULL, show_actions TINYINT(1) DEFAULT 1 NOT NULL, show_number_of_children TINYINT(1) DEFAULT 1 NOT NULL, show_number_of_items TINYINT(1) DEFAULT 1 NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_8D988CCC7E3C61F9 (owner_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE koi_display_configuration ADD CONSTRAINT FK_8D988CCC7E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id)');

@@ -38,12 +38,12 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['album:write']],
     normalizationContext: ['groups' => ['album:read']],
     operations: [
-        new Get(),
-        new Put(),
-        new Delete(),
-        new Patch(),
-        new GetCollection(),
-        new Post(),
+        new Get(uriTemplate: '/albums/{id}'),
+        new Put(uriTemplate: '/albums/{id}'),
+        new Delete(uriTemplate: '/albums/{id}'),
+        new Patch(uriTemplate: '/albums/{id}'),
+        new GetCollection(uriTemplate: '/albums'),
+        new Post(uriTemplate: '/albums'),
         new Post(uriTemplate: '/albums/{id}/image', denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Album image.']),
     ]
 )]

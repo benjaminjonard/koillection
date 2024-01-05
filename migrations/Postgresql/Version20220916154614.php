@@ -6,6 +6,7 @@ namespace App\Migrations\Postgresql;
 
 use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
@@ -19,7 +20,7 @@ final class Version20220916154614 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE TABLE koi_display_configuration (id CHAR(36) NOT NULL, owner_id CHAR(36) DEFAULT NULL, label VARCHAR(255) DEFAULT NULL, display_mode VARCHAR(4) NOT NULL, sorting_property VARCHAR(255) DEFAULT NULL, sorting_type VARCHAR(10) DEFAULT NULL, sorting_direction VARCHAR(255) NOT NULL, show_visibility BOOLEAN DEFAULT true NOT NULL, show_actions BOOLEAN DEFAULT true NOT NULL, show_number_of_children BOOLEAN DEFAULT true NOT NULL, show_number_of_items BOOLEAN DEFAULT true NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_8D988CCC7E3C61F9 ON koi_display_configuration (owner_id)');

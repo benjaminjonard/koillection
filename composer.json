@@ -53,6 +53,7 @@
         "symfony/security-core": "7.0.1",
         "symfony/security-http": "7.0.1",
         "symfony/serializer": "7.0.2",
+        "symfony/string": "7.0.2",
         "symfony/translation": "7.0.2",
         "symfony/twig-bridge": "7.0.2",
         "symfony/twig-bundle": "7.0.0",

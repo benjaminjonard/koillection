@@ -1,3 +1,7 @@
 <span data-value="{{ datum.value }}"></span>
 
-{{ datum.value|format_currency(getContextUser().currency) }}
+{% if datum.value %}
+    {{ datum.value|format_currency(getContextUser().currency) }}
+{% else %}
+    -
+{% endif %}

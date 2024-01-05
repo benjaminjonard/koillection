@@ -33,8 +33,8 @@ final readonly class SeenListener
         if ($type) {
             $sql = "UPDATE koi_{$type} SET seen_counter = seen_counter + 1 WHERE id = ?";
             $stmt = $this->managerRegistry->getManager()->getConnection()->prepare($sql);
-            $stmt->bindParam(1, $id);
-            $stmt->execute();
+            $stmt->bindValue(1, $id);
+            $stmt->executeStatement();
         }
     }
 }

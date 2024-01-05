@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Migrations\Postgresql;
 
 use App\Enum\SortingDirectionEnum;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
@@ -18,7 +19,7 @@ final class Version20220918193105 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE koi_display_configuration ALTER columns TYPE TEXT');
         $this->addSql('COMMENT ON COLUMN koi_display_configuration.columns IS \'(DC2Type:array)\'');

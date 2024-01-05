@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Migrations\Postgresql;
 
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -16,7 +17,7 @@ final class Version20210127105027 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
 
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE koi_item_related_item (item_id UUID NOT NULL, related_item_id UUID NOT NULL, PRIMARY KEY(item_id, related_item_id))');

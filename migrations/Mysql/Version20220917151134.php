@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Migrations\Mysql;
 
 use App\Enum\SortingDirectionEnum;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
@@ -18,7 +19,7 @@ final class Version20220917151134 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Migration can only be executed safely on \'mysql\' or \'mariadb\'.');
 
         $this->addSql('ALTER TABLE koi_album ADD photos_display_configuration_id CHAR(36) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_album ADD CONSTRAINT FK_2DB8938A5DC99D4D FOREIGN KEY (photos_display_configuration_id) REFERENCES koi_display_configuration (id)');
