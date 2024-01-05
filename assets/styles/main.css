@@ -746,6 +746,7 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
     justify-content: center;
     margin: 0 7px 10px 7px;
     min-height: 220px;
+    max-height: 220px;
     min-width: 150px;
 }
 
