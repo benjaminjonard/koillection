@@ -8,7 +8,7 @@
                     <span class="color-avatar circle avatar color-{{ album.color }}">{{ album.title|first|upper }}</span>
                 {% endif %}
             </a>
-            <span class="collection-title">{{ album.title }}</span>
+            <span class="collection-title" title="{{ album.title }}">{{ album.title }}</span>
             <p class="collection-stats">
                 {{ 'counter.photo'|trans({'count': album.cachedValues.counters.photos|default(0)}) }}
             </p>
