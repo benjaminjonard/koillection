@@ -126,7 +126,7 @@
 
 {% if item.allRelatedItems is not empty %}
     <div class="related-items">
-        <span>{{ 'label.list_related_items'|trans }} :</span>
+        <div>{{ 'label.list_related_items'|trans }} :</div>
         <ul>
             {% for relatedItem in item.allRelatedItems|naturalSorting %}
                 <li>
@@ -135,7 +135,7 @@
                              alt="{{ relatedItem.name }}"
                         >
                     </a>
-                    <span class="image-label" title="{{ relatedItem.name }}">{{ relatedItem.name|u.truncate(25, '...') }}</span>
+                    <span class="image-label" title="{{ relatedItem.name }}">{{ relatedItem.name }}</span>
                 </li>
             {% endfor %}
         </ul>

@@ -1138,7 +1138,7 @@ form:not(.login) .required:after {
 
 .image-label {
     display: block;
-    font-size: 12px;
+    font-size: 15px;
     min-height: 25px;
     padding-top: 5px;
 }
@@ -1985,12 +1985,18 @@ i.btn input {
     margin-bottom: 45px;
 }
 
-.related-items span {
+.related-items > div {
     font-weight: bold;
 }
 
+.related-items ul {
+    display: inline-flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+}
+
 .related-items {
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .related-items img {
@@ -1999,8 +2005,10 @@ i.btn input {
 }
 
 .related-items li {
+    margin: 20px 5px 0 5px;
     display: inline-block;
-    padding: 0 5px;
+    max-width: 100px;
+    text-align: center;
 }
 
 
