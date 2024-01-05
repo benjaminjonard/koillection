@@ -3553,5 +3553,11 @@
         <target>Caminho do preço</target>
       </segment>
     </unit>
+    <unit id="qR8RuNn" name="label.display_items_name_in_grid_view">
+      <segment state="translated">
+        <source>Display items name in grid view</source>
+        <target>Exibir o nome dos itens na exibição em grade</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
