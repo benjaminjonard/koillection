@@ -44,6 +44,9 @@ class SettingsType extends AbstractType
             ->add('searchInDataByDefaultEnabled', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('displayItemsNameInGridView', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,

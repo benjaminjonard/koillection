@@ -39,7 +39,7 @@ export default class extends Lightbox {
 
     get defaultOptions () {
         return {
-
+            'selector': 'a',
         }
     }
 

@@ -71,10 +71,16 @@
                 <div class="block-element">
                     <div id="collection-items" class="grid-container-items">
                         {% for item in results.items|naturalSorting %}
-                            <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
-                                <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
-                                    <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
-                                </a>
+                            <div>
+                                <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
+                                    <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
+                                        <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
+                                    </a>
+                                </div>
+
+                                {% if app.user.displayItemsNameInGridView == true %}
+                                    <span class="item-name">{{ item.name }}</span>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>

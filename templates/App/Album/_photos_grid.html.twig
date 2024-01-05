@@ -1,19 +1,24 @@
 <div id="collection-items" class="grid-container-items" data-controller="lightbox">
     {% for photo in photos %}
-        {% set photoText = include('App/Album/_photo_text.html.twig') %}
-        <a class="collection-item element valign-wrapper"
-           href="{{ asset(photo.image|default('build/images/default.png')) }}"
-           data-lightbox-target="image"
-           {% if context == 'default' %}
-               data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
-               data-delete-path="{{ path('app_photo_delete', {id: photo.id}) }}"
-               data-delete-message="{{ 'message.delete.photo'|trans }}"
-           {% endif %}
-           data-sub-html="{{ photoText }}"
-           data-title="{{ photo.title }}"
-           data-filter-target="element"
-        >
-            <img src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
-        </a>
+        <div>
+            {% set photoText = include('App/Album/_photo_text.html.twig') %}
+            <a class="collection-item element valign-wrapper"
+               href="{{ asset(photo.image|default('build/images/default.png')) }}"
+               data-lightbox-target="image"
+               {% if context == 'default' %}
+                   data-edit-url="{{ path('app_photo_edit', {'id': photo.id}) }}"
+                   data-delete-path="{{ path('app_photo_delete', {id: photo.id}) }}"
+                   data-delete-message="{{ 'message.delete.photo'|trans }}"
+               {% endif %}
+               data-sub-html="{{ photoText }}"
+               data-title="{{ photo.title }}"
+               data-filter-target="element"
+            >
+                <img src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
+            </a>
+            {% if app.user.displayItemsNameInGridView == true %}
+                <span class="item-name">{{ photo.title }}</span>
+            {% endif %}
+        </div>
     {% endfor %}
 </div>

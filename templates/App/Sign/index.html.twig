@@ -42,14 +42,19 @@
     <div class="content-block">
         <div id="collection-items" class="grid-container-items" data-controller="lightbox">
             {% for sign in signs %}
-                <a class="collection-item element valign-wrapper"
-                   href="{{ asset(sign.image|default('build/images/default.png')) }}"
-                   data-lightbox-target="image"
-                   data-sub-html="{{ sign.item.name }} - {{ sign.label }}"
-                   data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
-                >
-                    <img src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
-                </a>
+                <div>
+                    <a class="collection-item element valign-wrapper"
+                       href="{{ asset(sign.image|default('build/images/default.png')) }}"
+                       data-lightbox-target="image"
+                       data-sub-html="{{ sign.item.name }} - {{ sign.label }}"
+                       data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
+                    >
+                        <img src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
+                    </a>
+                    {% if app.user.displayItemsNameInGridView == true %}
+                        <span class="item-name">{{ sign.label }}</span>
+                    {% endif %}
+                </div>
             {% endfor %}
         </div>
     </div>

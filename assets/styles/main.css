@@ -481,6 +481,11 @@ h3.header {
     padding-top: 15px;
 }
 
+.item-name {
+    top: -7px;
+    position: relative;
+}
+
 .collection a.secondary-content {
     z-index: 1;
 }

@@ -1,9 +1,14 @@
 <div id="collection-items" class="grid-container-items">
     {% for item in items|naturalSorting %}
-        <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
-            <a href="{{ path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) }}">
-                <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
-            </a>
+        <div>
+            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
+                <a href="{{ path('app_tag_item_show'|applyContext, {'tagId': tag.id, 'itemId': item.id}) }}">
+                    <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
+                </a>
+            </div>
+            {% if app.user.displayItemsNameInGridView == true %}
+                <span class="item-name">{{ item.name }}</span>
+            {% endif %}
         </div>
     {% endfor %}
 </div>

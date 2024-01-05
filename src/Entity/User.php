@@ -201,6 +201,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:read', 'user:write'])]
     private bool $searchInDataByDefaultEnabled = false;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
+    #[Groups(['user:read', 'user:write'])]
+    private bool $displayItemsNameInGridView = false;
+
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['user:read'])]
     private \DateTimeImmutable $createdAt;
@@ -680,6 +684,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setSearchInDataByDefaultEnabled(bool $searchInDataByDefaultEnabled): User
     {
         $this->searchInDataByDefaultEnabled = $searchInDataByDefaultEnabled;
+
+        return $this;
+    }
+
+    public function isDisplayItemsNameInGridView(): bool
+    {
+        return $this->displayItemsNameInGridView;
+    }
+
+    public function setDisplayItemsNameInGridView(bool $displayItemsNameInGridView): User
+    {
+        $this->displayItemsNameInGridView = $displayItemsNameInGridView;
 
         return $this;
     }
