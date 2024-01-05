@@ -6,7 +6,7 @@
                     <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
                 </a>
             </div>
-            {% if app.user.displayItemsNameInGridView == true %}
+            {% if app.user.displayItemsNameInGridView|default(false) == true %}
                 <span class="item-name">{{ item.name }}</span>
             {% endif %}
         </div>
