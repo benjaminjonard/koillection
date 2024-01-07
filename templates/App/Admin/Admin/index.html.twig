@@ -97,12 +97,10 @@
                     <img width="65px" height="65px" src="{{ asset('/build/images/logos/api-platform.png') }}" alt="Api Platform logo">
                     <div class="counter">{{ apiPlatformVersion }}</div>{{ 'label.apiplatform_version'|trans }}
                 </div>
-                {% if isFrankenPhpAvailable %}
+                {% if frankenPhpVersion is not null %}
                     <div class="s12 m4 xl2">
                         <img width="65px" height="65px" src="{{ asset('/build/images/logos/frankenphp.png') }}" alt="FrankenPHP logo">
-                        <div class="counter">
-                            <i class="fa fa-{{ isFrankenPhpAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
-                        </div>FrankenPHP
+                        <div class="counter">{{ frankenPhpVersion }}</div>{{ 'label.frankenphp_version'|trans }}
                     </div>
                 {% endif %}
                 <div class="s12 m4 xl2">

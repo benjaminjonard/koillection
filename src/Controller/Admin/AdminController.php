@@ -66,7 +66,7 @@ class AdminController extends AbstractController
             'apiPlatformVersion' => str_replace('v', '', InstalledVersions::getPrettyVersion('api-platform/core')),
             'phpVersion' => phpversion(),
             'isOpcacheAvailable' => \function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled'],
-            'isFrankenPhpAvailable' => extension_loaded('frankenphp')
+            'frankenPhpVersion' => extension_loaded('frankenphp') ? str_replace('v', '', phpversion("frankenphp")) : null
         ]);
     }
 
