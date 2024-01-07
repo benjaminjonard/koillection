@@ -1942,5 +1942,11 @@
         <target>Bewerken</target>
       </segment>
     </unit>
+    <unit id="QEwp7eI" name="label.frankenphp_version">
+      <segment state="translated">
+        <source>FrankenPHP version</source>
+        <target>FrankenPHP versie</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
