@@ -424,7 +424,7 @@
     <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
       <segment state="translated">
         <source>Public - Reason : both your profile and this page are public</source>
-        <target>Публично - причина: ваш профиль и эта страница общедоступны</target>
+        <target>Общедоступно - причина: ваш профиль и эта страница общедоступны</target>
       </segment>
     </unit>
     <unit id="bk8nfAS" name="global.visibilities.reason.both_private">
@@ -3551,6 +3551,12 @@
       <segment state="translated">
         <source>Price path</source>
         <target>Путь к цене</target>
+      </segment>
+    </unit>
+    <unit id="qR8RuNn" name="label.display_items_name_in_grid_view">
+      <segment state="translated">
+        <source>Display items name in grid view</source>
+        <target>Отображать название предметов в виде сетки</target>
       </segment>
     </unit>
     <unit id="QEwp7eI" name="label.frankenphp_version">
