@@ -29,7 +29,8 @@ class TagController extends AbstractController
         Request $request,
         PaginatorFactory $paginatorFactory,
         ContextHandler $contextHandler,
-        TagRepository $tagRepository
+        TagRepository $tagRepository,
+        ItemRepository $itemRepository
     ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['tags']);
 
@@ -40,7 +41,7 @@ class TagController extends AbstractController
         ]);
         $form->handleRequest($request);
 
-        $itemsCount = $tagRepository->count([]);
+        $itemsCount = $itemRepository->count([]);
         $tagsCount = $tagRepository->countForTagSearch($search, $context);
         $results = $tagRepository->findForTagSearch($search, $context, $itemsCount);
 
