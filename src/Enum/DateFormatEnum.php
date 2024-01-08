@@ -24,7 +24,7 @@ class DateFormatEnum
 
     public const string CONTEXT_JS = 'js';
 
-    public const FORMATS = [
+    public const array FORMATS = [
         self::FORMAT_SLASH_DMY,
         self::FORMAT_SLASH_MDY,
         self::FORMAT_SLASH_YMD,
@@ -33,7 +33,7 @@ class DateFormatEnum
         self::FORMAT_HYPHEN_YMD,
     ];
 
-    public const MAPPING = [
+    public const array MAPPING = [
         self::FORMAT_SLASH_DMY => [self::CONTEXT_FORM => 'dd/MM/yyyy', self::CONTEXT_TWIG => 'd/m/Y', self::CONTEXT_JS => 'dd/mm/yyyy'],
         self::FORMAT_SLASH_MDY => [self::CONTEXT_FORM => 'MM/dd/yyyy', self::CONTEXT_TWIG => 'm/d/Y', self::CONTEXT_JS => 'mm/dd/yyyy'],
         self::FORMAT_SLASH_YMD => [self::CONTEXT_FORM => 'yyyy/MM/dd', self::CONTEXT_TWIG => 'Y/m/d', self::CONTEXT_JS => 'yyyy/mm/dd'],
