@@ -8,11 +8,11 @@ use Doctrine\Common\Collections\Criteria;
 
 class SortingDirectionEnum
 {
-    public const ASCENDING = Criteria::ASC;
+    public const string ASCENDING = Criteria::ASC;
 
-    public const DESCENDING = Criteria::DESC;
+    public const string DESCENDING = Criteria::DESC;
 
-    public const SORTING_DIRECTIONS = [
+    public const array SORTING_DIRECTIONS = [
         self::ASCENDING,
         self::DESCENDING,
     ];

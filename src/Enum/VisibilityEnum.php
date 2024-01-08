@@ -6,19 +6,19 @@ namespace App\Enum;
 
 class VisibilityEnum
 {
-    public const VISIBILITY_PUBLIC = 'public';
+    public const string VISIBILITY_PUBLIC = 'public';
 
-    public const VISIBILITY_INTERNAL = 'internal';
+    public const string VISIBILITY_INTERNAL = 'internal';
 
-    public const VISIBILITY_PRIVATE = 'private';
+    public const string VISIBILITY_PRIVATE = 'private';
 
-    public const VISIBILITIES = [
+    public const array VISIBILITIES = [
         self::VISIBILITY_PUBLIC,
         self::VISIBILITY_INTERNAL,
         self::VISIBILITY_PRIVATE,
     ];
 
-    public const VISIBILITIES_TRANS_KEYS = [
+    public const array VISIBILITIES_TRANS_KEYS = [
         self::VISIBILITY_PUBLIC => 'public',
         self::VISIBILITY_INTERNAL => 'internal',
         self::VISIBILITY_PRIVATE => 'private',

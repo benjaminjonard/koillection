@@ -6,35 +6,35 @@ namespace App\Enum;
 
 class DatumTypeEnum
 {
-    public const TYPE_TEXT = 'text';
+    public const string TYPE_TEXT = 'text';
 
-    public const TYPE_TEXTAREA = 'textarea';
+    public const string TYPE_TEXTAREA = 'textarea';
 
-    public const TYPE_COUNTRY = 'country';
+    public const string TYPE_COUNTRY = 'country';
 
-    public const TYPE_DATE = 'date';
+    public const string TYPE_DATE = 'date';
 
-    public const TYPE_RATING = 'rating';
+    public const string TYPE_RATING = 'rating';
 
-    public const TYPE_NUMBER = 'number';
+    public const string TYPE_NUMBER = 'number';
 
-    public const TYPE_PRICE = 'price';
+    public const string TYPE_PRICE = 'price';
 
-    public const TYPE_LINK = 'link';
+    public const string TYPE_LINK = 'link';
 
-    public const TYPE_LIST = 'list';
+    public const string TYPE_LIST = 'list';
 
-    public const TYPE_CHOICE_LIST = 'choice-list';
+    public const string TYPE_CHOICE_LIST = 'choice-list';
 
-    public const TYPE_CHECKBOX = 'checkbox';
+    public const string TYPE_CHECKBOX = 'checkbox';
 
-    public const TYPE_IMAGE = 'image';
+    public const string TYPE_IMAGE = 'image';
 
-    public const TYPE_FILE = 'file';
+    public const string TYPE_FILE = 'file';
 
-    public const TYPE_SIGN = 'sign';
+    public const string TYPE_SIGN = 'sign';
 
-    public const TYPES = [
+    public const array TYPES = [
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
         self::TYPE_COUNTRY,
@@ -50,7 +50,7 @@ class DatumTypeEnum
         self::TYPE_SIGN,
     ];
 
-    public const TEXT_TYPES = [
+    public const array TEXT_TYPES = [
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
         self::TYPE_COUNTRY,
@@ -65,26 +65,26 @@ class DatumTypeEnum
         self::TYPE_CHECKBOX,
     ];
 
-    public const IMAGE_TYPES = [
+    public const array IMAGE_TYPES = [
         self::TYPE_IMAGE,
         self::TYPE_SIGN,
     ];
 
-    public const AVAILABLE_FOR_SCRAPING = [
+    public const array AVAILABLE_FOR_SCRAPING = [
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
         self::TYPE_LIST,
         self::TYPE_COUNTRY,
     ];
 
-    public const AVAILABLE_FOR_SEARCH = [
+    public const array AVAILABLE_FOR_SEARCH = [
         self::TYPE_TEXT,
         self::TYPE_LIST,
         self::TYPE_CHOICE_LIST,
         self::TYPE_TEXTAREA,
     ];
 
-    public const TYPES_TRANS_KEYS = [
+    public const array TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',
         self::TYPE_TEXTAREA => 'label.textarea',
         self::TYPE_SIGN => 'label.sign',

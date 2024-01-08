@@ -6,9 +6,9 @@ namespace App\Enum;
 
 class ScraperTypeEnum
 {
-    public const TYPE_ITEM = 'item';
+    public const string TYPE_ITEM = 'item';
 
-    public const TYPE_COLLECTION = 'collection';
+    public const string TYPE_COLLECTION = 'collection';
 
-    public const TYPE_WISH = 'wish';
+    public const string TYPE_WISH = 'wish';
 }
