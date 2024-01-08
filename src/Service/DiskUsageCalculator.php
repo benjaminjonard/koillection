@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\User;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class DiskUsageCalculator
+readonly class DiskUsageCalculator
 {
     public function __construct(
-        private readonly string $publicPath
+        #[Autowire('%kernel.project_dir%/public')] private string $publicPath
     ) {
     }
 

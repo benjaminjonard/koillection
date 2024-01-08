@@ -7,6 +7,7 @@ namespace App\EventListener;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -20,8 +21,8 @@ final readonly class LocaleListener
 {
     public function __construct(
         private RequestStack $requestStack,
-        private string $defaultLocale,
-        private array $enabledLocales
+        #[Autowire('%default_locale%')] private string $defaultLocale,
+        #[Autowire('%kernel.enabled_locales%')] private array $enabledLocales
     ) {
     }
 

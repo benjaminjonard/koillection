@@ -17,6 +17,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -30,7 +31,7 @@ class RegenerateThumbnailsCommand extends Command
     public function __construct(
         private readonly ManagerRegistry $managerRegistry,
         private readonly TokenStorageInterface $tokenStorage,
-        private readonly string $publicPath
+        #[Autowire('%kernel.project_dir%/public')] private readonly string $publicPath
     ) {
         parent::__construct();
     }

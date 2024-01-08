@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.1] / 2024-01-08
+### Features
+- Add title display on hover on collections names (benjaminjonard)
+- Add new setting allowing display of items name in grid view (benjaminjonard)
+
+### Fixes
+- Fix star ratings CSS misalignment (benjaminjonard)
+- Fix wrong tag usage percentage (benjaminjonard)
+
+### Miscellaneous
+- Rework related items display on item page (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Fix Doctrine and API Platform deprecations (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.5.0] / 2023-12-13
 ### Features
 - Add wish scraper. It won't work for now on big ecommerce websites as they actively block scrapers (benjaminjonard)

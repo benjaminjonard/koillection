@@ -2,19 +2,20 @@
 
 namespace App\Service;
 
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Twig\Environment;
 
-class JavascriptTranslationsDumper
+readonly class JavascriptTranslationsDumper
 {
     public function __construct(
-        private readonly Environment $twig,
-        private readonly Filesystem $filesystem,
-        private readonly string $defaultLocale,
-        private readonly string $kernelProjectDir,
-        private readonly array $enabledLocales
+        private Environment $twig,
+        private Filesystem $filesystem,
+        #[Autowire('%default_locale%')] private string $defaultLocale,
+        #[Autowire('%kernel.enabled_locales%')] private array $enabledLocales,
+        #[Autowire('%kernel.project_dir%/translations')] private string $translationsPath,
     ) {
 
     }
@@ -88,7 +89,7 @@ class JavascriptTranslationsDumper
     {
         $enabledLocales = implode(',', $this->enabledLocales);
         $finder = new Finder();
-        $finder->files()->in($this->kernelProjectDir . '/translations')->name("javascript+intl-icu.{{$enabledLocales}}.xlf");
+        $finder->files()->in($this->translationsPath)->name("javascript+intl-icu.{{$enabledLocales}}.xlf");
 
         $translations = [];
 

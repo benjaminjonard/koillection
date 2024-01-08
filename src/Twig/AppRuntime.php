@@ -10,6 +10,7 @@ use App\Repository\TagRepository;
 use App\Service\ConfigurationHelper;
 use App\Service\ContextHandler;
 use App\Service\FeatureChecker;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -23,8 +24,8 @@ readonly class AppRuntime implements RuntimeExtensionInterface
         private ContextHandler $contextHandler,
         private FeatureChecker $featureChecker,
         private ConfigurationHelper $configurationHelper,
-        private string $publicPath,
-        private string $kernelProjectDir,
+        #[Autowire('%kernel.project_dir%/public')] private string $publicPath,
+        #[Autowire('%kernel.project_dir%/assets/styles/themes')] private string $themesPath,
     ) {
     }
 
@@ -182,7 +183,7 @@ readonly class AppRuntime implements RuntimeExtensionInterface
 
     public function getDefaultLightThemeColors(): ?string
     {
-        $path = $this->kernelProjectDir . '/assets/styles/themes/light.css';
+        $path = $this->themesPath . '/light.css';
         $content = file_get_contents($path);
         preg_match('/:root {(.*?)}/ms', $content, $matches);
 
@@ -191,7 +192,7 @@ readonly class AppRuntime implements RuntimeExtensionInterface
 
     public function getDefaultDarkThemeColors(): ?string
     {
-        $path = $this->kernelProjectDir . '/assets/styles/themes/dark.css';
+        $path = $this->themesPath . '/dark.css';
         $content = file_get_contents($path);
         preg_match('/:root {(.*?)}/ms', $content, $matches);
 

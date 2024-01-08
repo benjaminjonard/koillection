@@ -1,5 +1,5 @@
 parameters:
-    release: '1.5.0'
+    release: '1.5.1'
     default_locale: 'en'
     container.dumper.inline_factories: true
 
@@ -8,14 +8,6 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-        bind:
-            $defaultLocale: '%default_locale%'
-            $enabledLocales: '%kernel.enabled_locales%'
-            $publicPath: '%kernel.project_dir%/public'
-            $assetsPath: '%kernel.project_dir%/assets'
-            $koillectionRelease: '%release%'
-            $kernelProjectDir: '%kernel.project_dir%'
-            $env: '%kernel.environment%'
 
     Api\:
         resource: '../api/*'

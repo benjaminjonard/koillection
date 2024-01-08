@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Service;
 
 use Composer\Semver\Comparator;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class LatestReleaseChecker
 {
-    public const REQUIRED_PHP_VERSION_PER_RELEASE = [
+    public const array REQUIRED_PHP_VERSION_PER_RELEASE = [
         '1.0' => '7.2',
         '1.1' => '7.4',
         '1.2' => '8.0',
@@ -23,7 +24,7 @@ class LatestReleaseChecker
 
     public function __construct(
         private readonly HttpClientInterface $client,
-        private readonly string $koillectionRelease
+        #[Autowire('%release%')] private readonly string $currentRelease
     ) {
     }
 
@@ -53,7 +54,7 @@ class LatestReleaseChecker
 
     public function getCurrentRelease(): ?string
     {
-        return $this->koillectionRelease;
+        return $this->currentRelease;
     }
 
     public function getLatestRelease(): ?string

@@ -6,6 +6,7 @@ namespace App\Validator;
 
 use App\Entity\Field;
 use App\Service\LocaleHelper;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\ChoiceValidator;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class AvailableLocaleValidator extends ChoiceValidator
 {
     public function __construct(
-        private readonly array $enabledLocales
+        #[Autowire('%kernel.enabled_locales%')] private readonly array $enabledLocales
     ) {
     }
 

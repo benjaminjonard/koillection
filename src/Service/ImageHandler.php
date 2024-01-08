@@ -8,6 +8,7 @@ use App\Attribute\Upload;
 use App\Enum\ConfigurationEnum;
 use App\Repository\ConfigurationRepository;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -22,8 +23,8 @@ class ImageHandler
         private readonly ThumbnailGenerator $thumbnailGenerator,
         private readonly Security $security,
         private readonly ConfigurationRepository $configurationRepository,
-        private readonly string $publicPath,
-        private readonly string $env
+        #[Autowire('%kernel.project_dir%/public')] private readonly string $publicPath,
+        #[Autowire('%kernel.environment%')] private readonly string $env
     ) {
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }

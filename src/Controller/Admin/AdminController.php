@@ -20,6 +20,7 @@ use App\Service\CachedValuesCalculator;
 use App\Service\DatabaseDumper;
 use App\Service\LatestReleaseChecker;
 use Composer\InstalledVersions;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Kernel;
@@ -77,16 +78,19 @@ class AdminController extends AbstractController
     }
 
     #[Route(path: '/admin/export/images', name: 'app_admin_export_images', methods: ['GET'])]
-    public function exportImages(UserRepository $userRepository, string $kernelProjectDir): StreamedResponse
+    public function exportImages(
+        UserRepository $userRepository,
+        #[Autowire('%kernel.project_dir%/public/uploads')] string $uploadsPath
+    ): StreamedResponse
     {
         $users = $userRepository->findAll();
 
-        return new StreamedResponse(static function () use ($users, $kernelProjectDir): void {
+        return new StreamedResponse(static function () use ($users, $uploadsPath): void {
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream(outputName: $zipFilename, sendHttpHeaders: true, defaultEnableZeroHeader: true, flushOutput: true);
 
             foreach ($users as $user) {
-                $path = $kernelProjectDir.'/public/uploads/'.$user->getId();
+                $path = $uploadsPath.'/'.$user->getId();
 
                 if (!is_dir($path)) {
                     continue;

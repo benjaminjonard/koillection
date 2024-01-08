@@ -9,6 +9,7 @@ use App\Http\FileResponse;
 use App\Repository\CollectionRepository;
 use App\Repository\InventoryRepository;
 use App\Service\DatabaseDumper;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,13 +58,13 @@ class ToolsController extends AbstractController
     }
 
     #[Route(path: '/tools/export/images', name: 'app_tools_export_images', methods: ['GET'])]
-    public function exportImages(string $kernelProjectDir): StreamedResponse
+    public function exportImages(#[Autowire('%kernel.project_dir%/public/uploads')] string $uploadsPath): StreamedResponse
     {
-        return new StreamedResponse(function () use ($kernelProjectDir): void {
+        return new StreamedResponse(function () use ($uploadsPath): void {
             $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
             $zip = new ZipStream(outputName: $zipFilename, sendHttpHeaders: true, defaultEnableZeroHeader: true, flushOutput: true);
 
-            $path = $kernelProjectDir.'/public/uploads/'.$this->getUser()->getId();
+            $path = $uploadsPath.'/'.$this->getUser()->getId();
             if (!is_dir($path)) {
                 $zip->finish();
             }

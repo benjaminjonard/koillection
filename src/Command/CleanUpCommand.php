@@ -11,6 +11,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[AsCommand(
     name: 'app:clean-up',
@@ -20,7 +21,7 @@ class CleanUpCommand extends Command
 {
     public function __construct(
         private readonly ManagerRegistry $managerRegistry,
-        private readonly string $publicPath
+        #[Autowire('%kernel.project_dir%/public')] private readonly string $publicPath
     ) {
         parent::__construct();
     }
