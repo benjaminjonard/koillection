@@ -4,16 +4,17 @@ All notable changes to this project will be documented in this file.
 ## [1.5.1] / 2024-01-08
 ### Features
 - Add title display on hover on collections names (benjaminjonard)
-- Add new setting allowing display of items name in grid view (benjaminjonard)
+- Add new setting allowing the display of item names in grid view (benjaminjonard)
 
 ### Fixes
 - Fix star ratings CSS misalignment (benjaminjonard)
 - Fix wrong tag usage percentage (benjaminjonard)
 
 ### Miscellaneous
-- Rework related items display on item page (benjaminjonard)
-- Upgrade PHP and JS dependencies (benjaminjonard)
+- Rework the display of related items on the item page (benjaminjonard)
 - Fix Doctrine and API Platform deprecations (benjaminjonard)
+- Update coding style (benjaminjonard)
+- Upgrade PHP and JS dependencies, fix CVE-2023-26159 (benjaminjonard)
 - Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
 
 ## [1.5.0] / 2023-12-13
