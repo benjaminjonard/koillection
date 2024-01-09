@@ -1,16 +1,12 @@
-
 <span data-value="{{ datum.value }}"></span>
 
-<span class="rating-display">
-    {% for i in 1 .. 10 %}
-        {% if loop.index % 2 != 0 %}
-            <span>
-        {% endif %}
-
-        <label class="{{ loop.index % 2 == 0 ? 'fa-star' : 'fa-star-half' }} {{ i <= datum.value ? 'colored' }}"></label>
-
-        {% if loop.index % 2 == 0 %}
-            </span>
-        {% endif %}
+<div class="star-rating">
+    {% for i in 10 .. 1 %}
+        {% set isHalf = loop.index % 2 == 0 %}
+        <label class="star-rating-view {{ isHalf ? 'is-half' }} {{ i <= datum.value ? 'colored"' }}" for="rating-{{ i }}">
+            <svg class="icon {{ isHalf ? 'icon-star-half' : 'icon-star' }}">
+                <use xlink:href="{{ isHalf ? '#icon-star-half' : '#icon-star' }}"></use>
+            </svg>
+        </label>
     {% endfor %}
-</span>
+</div>

@@ -784,6 +784,7 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .datum-row {
     line-height: 30px;
     text-align: center;
+    display: flex;
 }
 
 .datum-row a {
@@ -2014,74 +2015,62 @@ i.btn input {
 
 
 /* STAR RATING */
-.rating-display span {
-    display: inline-block;
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 5px;
+    justify-content: center;
 }
 
-.rating-form {
-    border: 0;
-    display: inline-block;
-    margin-top: 10px;
+.star-rating.editable {
+    margin-top: 11px;
 }
 
-.rating-form > input {
+.star-rating label {
+    padding: unset!important;
+    margin: unset!important;
+    transform: unset!important;
+    background-color: unset!important;
+}
+
+.star-rating-input {
     display: none;
 }
 
-/* Hide radio */
-.rating-form > label {
-    float: right;
-    position: unset;
+.star-rating.editable .star-rating-view {
+    font-size: 20px;
 }
 
-/* Order correctly by floating highest to the right */
-.rating-display label {
-    font-size: 15px;
-}
-
-/* Full star */
-.rating-form > label:before {
-    cursor: pointer;
-    display: inline-block;
-    font-size: 2rem;
-    margin: 0;
-    top: 5px;
-    right: -17px;
-}
-
-.rating-display label:before {
-    cursor: pointer;
-    display: inline-block;
-    margin: 0;
-}
-
-/* Half star */
-.fa-star-half:before {
-    padding-right: 0;
-    position: absolute;
-}
-
-.rating-display .fa-star-half:before {
-    padding-top: 6px;
-}
-
-table .rating-display .fa-star-half:before {
-    padding-top: 0;
-}
-
-/* Click + hover color */
-.rating-form input:checked ~ label, /* color current and previous stars on checked */
-.rating-form label:hover, .rating-form label:hover ~ label, /* color previous stars on hover */
-.rating-display .colored {
-    color: #ffd740;
-}
-
-/* Hover highlights */
-.rating-form input:checked + label:hover, .rating-form input:checked ~ label:hover, /* highlight current and previous stars */
-.rating-form input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
-.rating-form label:hover ~ input:checked ~ label /* highlight previous selected stars */
+.star-rating-view.colored svg,
+.star-rating input:checked ~ label svg
 {
-    color: #ffe57f;
+    fill: #ffd740;
+}
+
+.star-rating.editable .star-rating-view:hover svg,
+.star-rating.editable .star-rating-view:hover ~ .star-rating-view svg
+{
+    fill: #ffe57f;
+}
+
+.star-rating-view {
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.star-rating-view svg {
+    fill: #ededef;
+    width: 1.39306640625em;
+    height: 1.5em;
+}
+
+.star-rating-view.is-half {
+    transform: translateX(100%)!important;
+    margin-left: -0.69580078125em;
+}
+
+.star-rating-view.is-half svg {
+    width: 0.69580078125em;
 }
 
 .select-tip {

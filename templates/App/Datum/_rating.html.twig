@@ -1,12 +1,21 @@
-<div class="input-field s10 offset-s1 m5">
-    <div class="rating-form">
-        {% for i in 10..1 %}
-            <input type="radio" id="data_{{ iteration }}_value_{{ i }}"
+<div class="input-field outlined s10 offset-s1 m5">
+    <div class="star-rating editable">
+        {% for i in 10 .. 1 %}
+            {% set isHalf = loop.index % 2 == 0 %}
+            <input class="star-rating-input"
+                   type="radio"
                    name="{{ entity }}[data][{{ iteration }}][value]" value="{{ i }}"
+                   value="{{ i }}"
+                   id="data_{{ iteration }}_value_{{ i }}"
                    data-additional-data-target="value"
-                   {% if datum is defined and datum.value == i %}checked{% endif %}>
-            <label class="{{ i % 2 == 0 ? 'fa-star' : 'fa-star-half' }}"
-                   for="data_{{ iteration }}_value_{{ i }}"></label>
+                   {% if datum is defined and datum.value == i %}checked{% endif %}
+            >
+
+            <label class="star-rating-view {{ isHalf ? 'is-half' }}" for="data_{{ iteration }}_value_{{ i }}">
+                <svg class="icon {{ isHalf ? 'icon-star-half' : 'icon-star' }}">
+                    <use xlink:href="{{ isHalf ? '#icon-star-half' : '#icon-star' }}"></use>
+                </svg>
+            </label>
         {% endfor %}
     </div>
 </div>
