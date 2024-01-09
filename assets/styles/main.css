@@ -784,6 +784,9 @@ input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-inp
 .datum-row {
     line-height: 30px;
     text-align: center;
+}
+
+.datum-row:has(.star-rating)  {
     display: flex;
 }
 
