@@ -47,7 +47,7 @@ class DatumApiTest extends ApiTestCase
         $datum = DatumFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -66,7 +66,7 @@ class DatumApiTest extends ApiTestCase
         $datum = DatumFactory::createOne(['item' => $item, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId().'/item');
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId() . '/item');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -84,7 +84,7 @@ class DatumApiTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId().'/collection');
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId() . '/collection');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -102,7 +102,7 @@ class DatumApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
-            'collection' => '/api/collections/'.$collection->getId(),
+            'collection' => '/api/collections/' . $collection->getId(),
             'label' => 'Japanese title',
             'value' => ' 葬送のフリーレン',
             'type' => DatumTypeEnum::TYPE_TEXT,
@@ -112,7 +112,7 @@ class DatumApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Datum::class);
         $this->assertJsonContains([
-            'collection' => '/api/collections/'.$collection->getId(),
+            'collection' => '/api/collections/' . $collection->getId(),
         ]);
     }
 
@@ -125,7 +125,7 @@ class DatumApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
-            'item' => '/api/items/'.$item->getId(),
+            'item' => '/api/items/' . $item->getId(),
             'label' => 'Japanese title',
             'value' => ' 葬送のフリーレン',
             'type' => DatumTypeEnum::TYPE_TEXT,
@@ -135,7 +135,7 @@ class DatumApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Datum::class);
         $this->assertJsonContains([
-            'item' => '/api/items/'.$item->getId(),
+            'item' => '/api/items/' . $item->getId(),
         ]);
     }
 
@@ -149,8 +149,8 @@ class DatumApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
-            'collection' => '/api/collections/'.$collection->getId(),
-            'item' => '/api/items/'.$item->getId(),
+            'collection' => '/api/collections/' . $collection->getId(),
+            'item' => '/api/items/' . $item->getId(),
             'label' => 'Japanese title',
             'value' => ' 葬送のフリーレン',
             'type' => DatumTypeEnum::TYPE_TEXT,
@@ -190,7 +190,7 @@ class DatumApiTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'label' => 'Title', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/data/'.$datum->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/data/' . $datum->getId(), ['json' => [
             'label' => 'Author',
         ]]);
 
@@ -211,7 +211,7 @@ class DatumApiTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'label' => 'Title', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/data/'.$datum->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/data/' . $datum->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'Author',
@@ -234,7 +234,7 @@ class DatumApiTest extends ApiTestCase
         $datum = DatumFactory::createOne(['label' => 'Title', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/data/'.$datum->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/data/' . $datum->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -249,7 +249,7 @@ class DatumApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/'.$datum->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/' . $datum->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -274,7 +274,7 @@ class DatumApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/'.$datum->getId().'/file', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/' . $datum->getId() . '/file', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -300,19 +300,19 @@ class DatumApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
-            'item' => '/api/items/'.$item->getId(),
+            'item' => '/api/items/' . $item->getId(),
             'label' => 'Progress',
             'value' => 'New',
             'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
-            'choiceList' => '/api/choice_lists/'.$choiceList->getId()
+            'choiceList' => '/api/choice_lists/' . $choiceList->getId()
         ]]);
 
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Datum::class);
         $this->assertJsonContains([
-            'item' => '/api/items/'.$item->getId(),
-            'choiceList' => '/api/choice_lists/'.$choiceList->getId(),
+            'item' => '/api/items/' . $item->getId(),
+            'choiceList' => '/api/choice_lists/' . $choiceList->getId(),
         ]);
     }
 
@@ -325,7 +325,7 @@ class DatumApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
-            'item' => '/api/items/'.$item->getId(),
+            'item' => '/api/items/' . $item->getId(),
             'label' => 'Progress',
             'value' => 'New',
             'type' => DatumTypeEnum::TYPE_CHOICE_LIST

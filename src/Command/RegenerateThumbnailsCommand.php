@@ -52,7 +52,7 @@ class RegenerateThumbnailsCommand extends Command
         foreach ($users as $user) {
             $objects = [];
             $output->writeln("Regenerating thumbnails for user {$user}...");
-            
+
             // Login user, needed for uploads
             $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
             $this->tokenStorage->setToken($token);
@@ -67,14 +67,14 @@ class RegenerateThumbnailsCommand extends Command
 
                 $objects = array_merge($objects, $result);
             }
-            
+
             if ($objects === []) {
                 continue;
             }
 
             $progressBar = new ProgressBar($output, \count($objects));
             foreach ($objects as $object) {
-                $imagePath = $this->publicPath.'/'.$object->getImage();
+                $imagePath = $this->publicPath . '/' . $object->getImage();
 
                 if (is_file($imagePath)) {
                     $filename = basename($imagePath);
@@ -98,7 +98,7 @@ class RegenerateThumbnailsCommand extends Command
             }
 
             $this->managerRegistry->getManager()->flush();
-            $output->writeln("");
+            $output->writeln('');
         }
 
         $output->writeln("{$counter} thumbnails regenerated.");

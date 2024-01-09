@@ -109,7 +109,7 @@ class CollectionRepository extends ServiceEntityRepository
 
             $qb
                 ->andWhere($whereClause)
-                ->setParameter('term', '%'.$search->getTerm().'%')
+                ->setParameter('term', '%' . $search->getTerm() . '%')
             ;
         }
 

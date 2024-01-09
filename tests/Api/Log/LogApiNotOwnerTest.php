@@ -24,7 +24,7 @@ class LogApiNotOwnerTest extends ApiTestCase
         $log = LogFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/logs/'.$log->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/logs/' . $log->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

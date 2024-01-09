@@ -29,7 +29,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -44,7 +44,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         CollectionFactory::createMany(3, ['parent' => $collection, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/children');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/children');
         $data = $response->toArray();
 
         // Assert
@@ -63,7 +63,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['parent' => $parent, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/parent');
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/parent');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -78,7 +78,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/items');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/items');
         $data = $response->toArray();
 
         // Assert
@@ -97,7 +97,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         DatumFactory::createMany(3, ['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/data');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/data');
         $data = $response->toArray();
 
         // Assert
@@ -116,7 +116,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/collections/', ['json' => [
-            'parent' => '/api/collections/'.$collection,
+            'parent' => '/api/collections/' . $collection,
             'name' => 'Berserk',
         ]]);
 
@@ -150,7 +150,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/' . $collection->getId(), ['json' => [
             'title' => 'Berserk',
         ]]);
 
@@ -166,7 +166,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/collections/'.$collection->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/collections/' . $collection->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'Berserk',
@@ -185,7 +185,7 @@ class CollectionApiNotOwnerTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/collections/'.$collection->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/collections/' . $collection->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

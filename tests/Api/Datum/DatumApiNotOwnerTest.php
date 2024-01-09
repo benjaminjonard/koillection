@@ -27,7 +27,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -43,7 +43,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
         $datum = DatumFactory::createOne(['item' => $item, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId().'/item');
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId() . '/item');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -58,7 +58,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/data/'.$datum->getId().'/collection');
+        $this->createClientWithCredentials($user)->request('GET', '/api/data/' . $datum->getId() . '/collection');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -73,7 +73,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/datum/', ['json' => [
-            'collection' => '/api/collections/'.$collection->getId()
+            'collection' => '/api/collections/' . $collection->getId()
         ]]);
 
         // Assert
@@ -90,7 +90,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/datum/', ['json' => [
-            'item' => '/api/items/'.$item->getId()
+            'item' => '/api/items/' . $item->getId()
         ]]);
 
         // Assert
@@ -106,7 +106,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/data/'.$datum->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/data/' . $datum->getId(), ['json' => [
             'label' => 'Author',
         ]]);
 
@@ -123,7 +123,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/data/'.$datum->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/data/' . $datum->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'Author',
@@ -143,7 +143,7 @@ class DatumApiNotOwnerTest extends ApiTestCase
         $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/data/'.$datum->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/data/' . $datum->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

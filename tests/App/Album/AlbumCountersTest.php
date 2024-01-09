@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\App\Album;
 
 use App\Service\RefreshCachedValuesQueue;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

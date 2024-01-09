@@ -55,7 +55,7 @@ class DateRuntime implements RuntimeExtensionInterface
         ]);
     }
 
-    public function getValidationRegexForDateFormat(string $dateFormat) : string
+    public function getValidationRegexForDateFormat(string $dateFormat): string
     {
         return DateFormatEnum::getValidationRegex($dateFormat);
     }

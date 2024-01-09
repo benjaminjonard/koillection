@@ -41,7 +41,7 @@ class InventoryApiTest extends ApiTestCase
         $inventory = InventoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/inventories/'.$inventory->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/inventories/' . $inventory->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -58,7 +58,7 @@ class InventoryApiTest extends ApiTestCase
         $inventory = InventoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/inventories/'.$inventory->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/inventories/' . $inventory->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

@@ -69,7 +69,7 @@ class TagRepository extends ServiceEntityRepository
         if ($search->getTerm() !== null && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.trim($search->getTerm()).'%')
+                ->setParameter('search', '%' . trim($search->getTerm()) . '%')
             ;
         }
 
@@ -94,7 +94,7 @@ class TagRepository extends ServiceEntityRepository
         if ($search->getTerm() !== null && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%'.trim($search->getTerm()).'%')
+                ->setParameter('search', '%' . trim($search->getTerm()) . '%')
             ;
         }
 
@@ -115,8 +115,8 @@ class TagRepository extends ServiceEntityRepository
             ->andWhere('LOWER(t.label) LIKE LOWER(:label)')
             ->orderBy('startWithOrder', Criteria::ASC) // Order tags starting with the search term first
             ->addOrderBy('LOWER(t.label)', Criteria::ASC) // Then order other matching tags alphabetically
-            ->setParameter('label', '%'.$string.'%')
-            ->setParameter('startWith', $string.'%')
+            ->setParameter('label', '%' . $string . '%')
+            ->setParameter('startWith', $string . '%')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
@@ -161,7 +161,7 @@ class TagRepository extends ServiceEntityRepository
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(t.label) LIKE LOWER(:term)')
-                ->setParameter('term', '%'.$search->getTerm().'%')
+                ->setParameter('term', '%' . $search->getTerm() . '%')
             ;
         }
 

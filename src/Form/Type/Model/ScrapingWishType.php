@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Model;
 
-use App\Entity\Path;
 use App\Entity\Scraper;
 use App\Enum\ScraperTypeEnum;
 use App\Model\ScrapingWish;
@@ -16,9 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ScrapingWishType extends AbstractType
@@ -35,7 +31,7 @@ class ScrapingWishType extends AbstractType
             ])
             ->add('scraper', EntityType::class, [
                 'class' => Scraper::class,
-                'query_builder' => static function (EntityRepository $er) : QueryBuilder {
+                'query_builder' => static function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('s')
                         ->where('s.type = :type')
                         ->setParameter('type', ScraperTypeEnum::TYPE_WISH)

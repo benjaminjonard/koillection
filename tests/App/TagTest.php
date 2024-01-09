@@ -6,12 +6,12 @@ namespace App\Tests\App;
 
 use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -74,7 +74,7 @@ class TagTest extends AppTestCase
         ]);
 
         // Act
-        $crawler = $this->client->request('GET', '/tags/'.$tag->getId());
+        $crawler = $this->client->request('GET', '/tags/' . $tag->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -100,7 +100,7 @@ class TagTest extends AppTestCase
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/tags/'.$tag->getId().'/edit');
+        $this->client->request('GET', '/tags/' . $tag->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'tag[label]' => 'Frieren',
             'tag[category]' => '',
@@ -122,8 +122,8 @@ class TagTest extends AppTestCase
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/tags/'.$tag->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tags/'.$tag->getId().'/delete');
+        $crawler = $this->client->request('GET', '/tags/' . $tag->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tags/' . $tag->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -186,7 +186,7 @@ class TagTest extends AppTestCase
         $item->save();
 
         // Act
-        $crawler = $this->client->request('GET', '/tags/'.$tag->getId().'/items/'.$item->getId());
+        $crawler = $this->client->request('GET', '/tags/' . $tag->getId() . '/items/' . $item->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

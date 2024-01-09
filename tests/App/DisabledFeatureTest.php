@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Entity\User;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\ScraperFactory;
@@ -13,7 +14,6 @@ use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -107,7 +107,7 @@ class DisabledFeatureTest extends AppTestCase
             "/templates/{$templateId}",
             '/choice-lists',
             "/choice-lists/{$choiceListId}",
-            "/scrapers",
+            '/scrapers',
             "/scrapers/{$scraperId}",
             '/loans',
             '/signatures',

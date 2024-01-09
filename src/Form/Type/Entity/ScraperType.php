@@ -8,7 +8,6 @@ use App\Entity\Scraper;
 use App\Enum\ScraperTypeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -38,7 +37,7 @@ class ScraperType extends AbstractType
             ])
         ;
 
-        $formModifier = static function (FormInterface $form) use ($scraper) : void {
+        $formModifier = static function (FormInterface $form) use ($scraper): void {
             match ($scraper->getType()) {
                 ScraperTypeEnum::TYPE_ITEM, ScraperTypeEnum::TYPE_COLLECTION => $form
                     ->add('dataPaths', SymfonyCollectionType::class, [
@@ -57,14 +56,14 @@ class ScraperType extends AbstractType
 
         $builder->addEventListener(
             FormEvents::PRE_SUBMIT,
-            static function (FormEvent $event) use ($formModifier) : void {
+            static function (FormEvent $event) use ($formModifier): void {
                 $formModifier($event->getForm());
             }
         );
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
-            static function (FormEvent $event) use ($formModifier) : void {
+            static function (FormEvent $event) use ($formModifier): void {
                 $formModifier($event->getForm());
             }
         );

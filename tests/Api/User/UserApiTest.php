@@ -22,7 +22,7 @@ class UserApiTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/users/'.$user->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/users/' . $user->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -39,7 +39,7 @@ class UserApiTest extends ApiTestCase
         $otherUser = UserFactory::createOne()->object();
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/users/'.$otherUser->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/users/' . $otherUser->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -63,7 +63,7 @@ class UserApiTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/users/'.$user->getId());
+        $this->createClientWithCredentials($user)->request('PUT', '/api/users/' . $user->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
@@ -75,7 +75,7 @@ class UserApiTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/users/'.$user->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/users/' . $user->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
         ]);
 
@@ -89,7 +89,7 @@ class UserApiTest extends ApiTestCase
         $user = UserFactory::createOne()->object();
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/users/'.$user->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/users/' . $user->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

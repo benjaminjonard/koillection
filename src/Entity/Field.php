@@ -49,7 +49,7 @@ class Field
     #[Assert\When(
         expression: 'this.getType() == "choice-list"',
         constraints: [
-            new Assert\NotNull
+            new Assert\NotNull()
         ],
     )]
     private ?ChoiceList $choiceList = null;

@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\App\Admin;
 
 use App\Enum\RoleEnum;
-use App\Tests\Factory\CollectionFactory;
-use App\Tests\Factory\ItemFactory;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -68,7 +66,7 @@ class UserTest extends AppTestCase
         $this->client->loginUser($admin);
 
         // Act
-        $this->client->request('GET', '/admin/users/'.$admin->getId().'/edit');
+        $this->client->request('GET', '/admin/users/' . $admin->getId() . '/edit');
         $this->client->submitForm('submit', [
             'user[username]' => 'admin',
             'user[email]' => 'admin-new-email@test.com',
@@ -93,7 +91,7 @@ class UserTest extends AppTestCase
 
         // Act
         $crawler = $this->client->request('GET', '/admin/users');
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/'.$user->getId().'/delete');
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/' . $user->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -109,7 +107,7 @@ class UserTest extends AppTestCase
 
         // Act
         $crawler = $this->client->request('GET', '/admin/users');
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/'.$admin->getId().'/delete');
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/admin/users/' . $admin->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert

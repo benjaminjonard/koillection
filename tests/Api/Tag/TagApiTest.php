@@ -46,7 +46,7 @@ class TagApiTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -64,7 +64,7 @@ class TagApiTest extends ApiTestCase
         $tag = TagFactory::createOne(['category' => $category, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId().'/category');
+        $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId() . '/category');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -83,7 +83,7 @@ class TagApiTest extends ApiTestCase
         ItemFactory::createMany(3, ['collection' => $collection, 'tags' => [$tag], 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId().'/items');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId() . '/items');
         $data = $response->toArray();
 
         // Assert
@@ -118,7 +118,7 @@ class TagApiTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/tags/'.$tag->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/tags/' . $tag->getId(), ['json' => [
             'label' => 'Manga'
         ]]);
 
@@ -138,7 +138,7 @@ class TagApiTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/tags/'.$tag->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/tags/' . $tag->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'Manga'
@@ -161,7 +161,7 @@ class TagApiTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/tags/'.$tag->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/tags/' . $tag->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -175,7 +175,7 @@ class TagApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/tags/'.$tag->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/tags/' . $tag->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [

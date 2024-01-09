@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\LoanFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -51,7 +51,7 @@ class LoanTest extends AppTestCase
 
         // Act
         $crawler = $this->client->request('GET', '/loans');
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/loans/'.$loan->getId().'/delete');
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/loans/' . $loan->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -70,7 +70,7 @@ class LoanTest extends AppTestCase
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/loans/'.$loan->getId().'/returned');
+        $this->client->request('GET', '/loans/' . $loan->getId() . '/returned');
         $loan->refresh();
 
         // Assert

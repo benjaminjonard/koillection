@@ -11,6 +11,6 @@ class AvailableLocale extends Choice
 {
     public function validatedBy(): string
     {
-        return static::class.'Validator';
+        return static::class . 'Validator';
     }
 }

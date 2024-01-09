@@ -31,7 +31,7 @@ class CachedValuesCalculator
     ) {
     }
 
-    public function refreshAllCaches(?OutputInterface $output = null): void
+    public function refreshAllCaches(OutputInterface $output = null): void
     {
         $output?->writeln('Refreshing cached values for collections...');
         foreach ($this->collectionRepository->findBy(['parent' => null]) as $rootCollection) {

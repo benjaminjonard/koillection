@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\App\Admin;
 
 use App\Enum\RoleEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

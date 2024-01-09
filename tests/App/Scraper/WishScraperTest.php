@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Scraper;
 
-use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperTypeEnum;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\PathFactory;
@@ -49,7 +48,7 @@ class WishScraperTest extends AppTestCase
         $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_WISH, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/wish-scrapers/'.$scraper->getId());
+        $crawler = $this->client->request('GET', '/scrapers/wish-scrapers/' . $scraper->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -83,7 +82,7 @@ class WishScraperTest extends AppTestCase
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/wish-scrapers/'.$scraper->getId().'/edit');
+        $this->client->request('GET', '/scrapers/wish-scrapers/' . $scraper->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'scraper[name]' => 'Manga News',
             'scraper[namePath]' => '//h1/text()',
@@ -106,8 +105,8 @@ class WishScraperTest extends AppTestCase
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/wish-scrapers/'.$scraper->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/wish-scrapers/'.$scraper->getId().'/delete');
+        $crawler = $this->client->request('GET', '/scrapers/wish-scrapers/' . $scraper->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/wish-scrapers/' . $scraper->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -125,7 +124,7 @@ class WishScraperTest extends AppTestCase
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/wish-scrapers/'.$scraper->getId() . '/export');
+        $this->client->request('GET', '/scrapers/wish-scrapers/' . $scraper->getId() . '/export');
 
         // Assert
         $this->assertResponseIsSuccessful();

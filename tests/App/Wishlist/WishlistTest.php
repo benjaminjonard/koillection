@@ -6,11 +6,11 @@ namespace App\Tests\App\Wishlist;
 
 use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -70,7 +70,7 @@ class WishlistTest extends AppTestCase
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/wishlists/'.$wishlist->getId());
+        $crawler = $this->client->request('GET', '/wishlists/' . $wishlist->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -85,7 +85,7 @@ class WishlistTest extends AppTestCase
         $parent = WishlistFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/wishlists/add?parent='.$parent->getId());
+        $this->client->request('GET', '/wishlists/add?parent=' . $parent->getId());
 
         $crawler = $this->client->submitForm('Submit', [
             'wishlist[name]' => 'Books',
@@ -105,7 +105,7 @@ class WishlistTest extends AppTestCase
         $imagePath = $wishlist->getImage();
 
         // Act
-        $this->client->request('GET', '/wishlists/'.$wishlist->getId().'/edit');
+        $this->client->request('GET', '/wishlists/' . $wishlist->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'wishlist[name]' => 'Video games',
             'wishlist[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
@@ -125,7 +125,7 @@ class WishlistTest extends AppTestCase
         $oldImagePath = $album->getImage();
 
         // Act
-        $this->client->request('GET', '/wishlists/'.$album->getId().'/edit');
+        $this->client->request('GET', '/wishlists/' . $album->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'wishlist[deleteImage]' => true,
         ]);
@@ -148,8 +148,8 @@ class WishlistTest extends AppTestCase
         WishFactory::createMany(3, ['wishlist' => $otherWishlist, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/wishlists/'.$wishlist->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/wishlists/'.$wishlist->getId().'/delete');
+        $crawler = $this->client->request('GET', '/wishlists/' . $wishlist->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/wishlists/' . $wishlist->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert

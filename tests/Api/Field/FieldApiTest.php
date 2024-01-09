@@ -47,7 +47,7 @@ class FieldApiTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/fields/'.$field->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/fields/' . $field->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -65,7 +65,7 @@ class FieldApiTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/fields/'.$field->getId().'/template');
+        $this->createClientWithCredentials($user)->request('GET', '/api/fields/' . $field->getId() . '/template');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -83,7 +83,7 @@ class FieldApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/fields', ['json' => [
-            'template' => '/api/templates/'.$template->getId(),
+            'template' => '/api/templates/' . $template->getId(),
             'name' => 'Title',
             'position' => 1,
             'type' => DatumTypeEnum::TYPE_TEXT,
@@ -105,8 +105,8 @@ class FieldApiTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/fields/'.$field->getId(), ['json' => [
-            'template' => '/api/templates/'.$template->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/fields/' . $field->getId(), ['json' => [
+            'template' => '/api/templates/' . $template->getId(),
             'name' => 'Author',
         ]]);
 
@@ -126,7 +126,7 @@ class FieldApiTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/fields/'.$field->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/fields/' . $field->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Author',
@@ -150,7 +150,7 @@ class FieldApiTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/fields/'.$field->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/fields/' . $field->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -165,19 +165,19 @@ class FieldApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/fields', ['json' => [
-            'template' => '/api/templates/'.$template->getId(),
+            'template' => '/api/templates/' . $template->getId(),
             'name' => 'Progress',
             'position' => 1,
             'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
-            'choiceList' => '/api/choice_lists/'.$choiceList->getId()
+            'choiceList' => '/api/choice_lists/' . $choiceList->getId()
         ]]);
 
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Field::class);
         $this->assertJsonContains([
-            'template' => '/api/templates/'.$template->getId(),
-            'choiceList' => '/api/choice_lists/'.$choiceList->getId(),
+            'template' => '/api/templates/' . $template->getId(),
+            'choiceList' => '/api/choice_lists/' . $choiceList->getId(),
         ]);
     }
 
@@ -189,7 +189,7 @@ class FieldApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/fields', ['json' => [
-            'template' => '/api/templates/'.$template->getId(),
+            'template' => '/api/templates/' . $template->getId(),
             'name' => 'Progress',
             'position' => 1,
             'type' => DatumTypeEnum::TYPE_CHOICE_LIST,

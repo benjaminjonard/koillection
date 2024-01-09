@@ -13,21 +13,21 @@ use Zenstruck\Foundry\RepositoryProxy;
 /**
  * @extends ModelFactory<Configuration>
  *
- * @method static Configuration|Proxy                     createOne(array $attributes = [])
- * @method static Configuration[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Configuration[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Configuration|Proxy                     find(object|array|mixed $criteria)
- * @method static Configuration|Proxy                     findOrCreate(array $attributes)
- * @method static Configuration|Proxy                     first(string $sortedField = 'id')
- * @method static Configuration|Proxy                     last(string $sortedField = 'id')
- * @method static Configuration|Proxy                     random(array $attributes = [])
- * @method static Configuration|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Configuration[]|Proxy[]                 all()
- * @method static Configuration[]|Proxy[]                 findBy(array $attributes)
- * @method static Configuration[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Configuration[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
+ * @method static Configuration|Proxy                            createOne(array $attributes = [])
+ * @method static Configuration[]|Proxy[]                        createMany(int $number, array|callable $attributes = [])
+ * @method static Configuration[]|Proxy[]                        createSequence(array|callable $sequence)
+ * @method static Configuration|Proxy                            find(object|array|mixed $criteria)
+ * @method static Configuration|Proxy                            findOrCreate(array $attributes)
+ * @method static Configuration|Proxy                            first(string $sortedField = 'id')
+ * @method static Configuration|Proxy                            last(string $sortedField = 'id')
+ * @method static Configuration|Proxy                            random(array $attributes = [])
+ * @method static Configuration|Proxy                            randomOrCreate(array $attributes = [])
+ * @method static Configuration[]|Proxy[]                        all()
+ * @method static Configuration[]|Proxy[]                        findBy(array $attributes)
+ * @method static Configuration[]|Proxy[]                        randomSet(int $number, array $attributes = [])
+ * @method static Configuration[]|Proxy[]                        randomRange(int $min, int $max, array $attributes = [])
  * @method static DisplayConfigurationRepository|RepositoryProxy repository()
- * @method        Configuration|Proxy                     create(array|callable $attributes = [])
+ * @method        Configuration|Proxy                            create(array|callable $attributes = [])
  */
 final class ConfigurationFactory extends ModelFactory
 {

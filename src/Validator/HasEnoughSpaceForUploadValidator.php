@@ -15,7 +15,8 @@ class HasEnoughSpaceForUploadValidator extends ChoiceValidator
     public function __construct(
         private readonly DiskUsageCalculator $diskUsageCalculator,
         private readonly Security $security
-    ) {}
+    ) {
+    }
 
     public function validate($value, Constraint $constraint): void
     {

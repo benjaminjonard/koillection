@@ -28,7 +28,7 @@ class WishApiNotOwnerTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/'.$wish->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/' . $wish->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -43,7 +43,7 @@ class WishApiNotOwnerTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/'.$wish->getId().'/wishlist');
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/' . $wish->getId() . '/wishlist');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -58,7 +58,7 @@ class WishApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/wishes/', ['json' => [
-            'wishlist' => '/api/wishlists/'.$wishlist,
+            'wishlist' => '/api/wishlists/' . $wishlist,
             'name' => 'Elden Ring',
         ]]);
 
@@ -75,7 +75,7 @@ class WishApiNotOwnerTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/wishes/'.$wish->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/wishes/' . $wish->getId(), ['json' => [
             'name' => 'Elden Ring',
         ]]);
 
@@ -92,7 +92,7 @@ class WishApiNotOwnerTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/wishes/'.$wish->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/wishes/' . $wish->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Elden Ring',
@@ -112,7 +112,7 @@ class WishApiNotOwnerTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/photos/'.$photo->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/photos/' . $photo->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

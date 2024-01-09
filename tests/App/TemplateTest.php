@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Enum\DatumTypeEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\FieldFactory;
 use App\Tests\Factory\TemplateFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -49,7 +49,7 @@ class TemplateTest extends AppTestCase
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/templates/'.$template->getId());
+        $crawler = $this->client->request('GET', '/templates/' . $template->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -83,7 +83,7 @@ class TemplateTest extends AppTestCase
         FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/templates/'.$template->getId().'/edit');
+        $this->client->request('GET', '/templates/' . $template->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'template[name]' => 'Book',
             'template[fields][0][name]' => 'Author',
@@ -107,8 +107,8 @@ class TemplateTest extends AppTestCase
         FieldFactory::createMany(3, ['template' => $template, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/templates/'.$template->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/templates/'.$template->getId().'/delete');
+        $crawler = $this->client->request('GET', '/templates/' . $template->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/templates/' . $template->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -128,7 +128,7 @@ class TemplateTest extends AppTestCase
         FieldFactory::createOne(['name' => 'Pages', 'type' => DatumTypeEnum::TYPE_NUMBER, 'position' => 3, 'template' => $template, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/templates/'.$template->getId().'/fields');
+        $this->client->request('GET', '/templates/' . $template->getId() . '/fields');
 
         // Assert
         $this->assertResponseIsSuccessful();

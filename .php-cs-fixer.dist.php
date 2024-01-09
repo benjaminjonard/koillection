@@ -14,7 +14,8 @@ return (new PhpCsFixer\Config())
         'declare_strict_types' => true,
         'yoda_style' => false,
         'trailing_comma_in_multiline' => false,
-        'php_unit_method_casing' => ['case' => 'snake_case']
+        'php_unit_method_casing' => ['case' => 'snake_case'],
+        'concat_space' => ['spacing' => 'one']
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder)

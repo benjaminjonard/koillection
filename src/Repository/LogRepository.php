@@ -20,7 +20,7 @@ class LogRepository extends ServiceEntityRepository
     public function findForSearch(SearchHistory $search): array
     {
         $classes = array_map(static function ($value): string {
-            return 'App\Entity\\'.ucfirst($value);
+            return 'App\Entity\\' . ucfirst($value);
         }, $search->getClasses());
 
         $qb = $this
@@ -37,7 +37,7 @@ class LogRepository extends ServiceEntityRepository
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(l.objectLabel) LIKE LOWER(:term)')
-                ->setParameter('term', '%'.trim($search->getTerm()).'%')
+                ->setParameter('term', '%' . trim($search->getTerm()) . '%')
             ;
         }
 
@@ -47,7 +47,7 @@ class LogRepository extends ServiceEntityRepository
     public function countForSearch(SearchHistory $search): int
     {
         $classes = array_map(static function ($value): string {
-            return 'App\Entity\\'.ucfirst($value);
+            return 'App\Entity\\' . ucfirst($value);
         }, $search->getClasses());
 
         $qb = $this->_em
@@ -63,7 +63,7 @@ class LogRepository extends ServiceEntityRepository
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(l.objectLabel) LIKE LOWER(:term)')
-                ->setParameter('term', '%'.trim($search->getTerm()).'%')
+                ->setParameter('term', '%' . trim($search->getTerm()) . '%')
             ;
         }
 

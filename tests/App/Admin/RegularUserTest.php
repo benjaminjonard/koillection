@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Admin;
 
+use App\Tests\AppTestCase;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -81,7 +81,7 @@ class RegularUserTest extends AppTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('GET', '/admin/users/'.$user->getId().'/edit');
+        $this->client->request('GET', '/admin/users/' . $user->getId() . '/edit');
 
         // Assert
         $this->assertTrue($this->client->getResponse()->isForbidden());
@@ -94,7 +94,7 @@ class RegularUserTest extends AppTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('POST', '/admin/users/'.$user->getId().'/edit');
+        $this->client->request('POST', '/admin/users/' . $user->getId() . '/edit');
 
         // Assert
         $this->assertTrue($this->client->getResponse()->isForbidden());
@@ -107,7 +107,7 @@ class RegularUserTest extends AppTestCase
         $this->client->loginUser($user);
 
         // Act
-        $this->client->request('POST', '/admin/users/'.$user->getId().'/delete');
+        $this->client->request('POST', '/admin/users/' . $user->getId() . '/delete');
 
         // Assert
         $this->assertTrue($this->client->getResponse()->isForbidden());

@@ -6,6 +6,7 @@ namespace App\Tests\App\Visibility;
 
 use App\Entity\User;
 use App\Enum\VisibilityEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
@@ -13,7 +14,6 @@ use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;

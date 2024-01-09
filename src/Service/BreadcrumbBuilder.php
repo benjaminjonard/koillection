@@ -55,7 +55,7 @@ class BreadcrumbBuilder
             $entity instanceof Scraper && $entity->getType() === ScraperTypeEnum::TYPE_ITEM => 'app_scraper_item_index',
             $entity instanceof Scraper && $entity->getType() === ScraperTypeEnum::TYPE_COLLECTION => 'app_scraper_collection_index',
             $entity instanceof Scraper && $entity->getType() === ScraperTypeEnum::TYPE_WISH => 'app_scraper_wish_index',
-            default => 'app_'.$class.'_show',
+            default => 'app_' . $class . '_show',
         };
     }
 }

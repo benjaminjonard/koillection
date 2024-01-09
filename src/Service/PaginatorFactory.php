@@ -24,7 +24,7 @@ class PaginatorFactory
         unset($params[$queryParam]);
 
         if ($params !== []) {
-            $url .= '?'.http_build_query($params);
+            $url .= '?' . http_build_query($params);
         }
 
         return new Paginator($totalItems, $this->paginationItemsPerPage, (int) $page, $url);

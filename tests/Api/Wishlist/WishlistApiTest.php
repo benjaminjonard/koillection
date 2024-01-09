@@ -43,7 +43,7 @@ class WishlistApiTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/'.$wishlist->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/' . $wishlist->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -61,7 +61,7 @@ class WishlistApiTest extends ApiTestCase
         WishlistFactory::createMany(3, ['parent' => $wishlist, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/'.$wishlist->getId().'/children');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/' . $wishlist->getId() . '/children');
         $data = $response->toArray();
 
         // Assert
@@ -79,7 +79,7 @@ class WishlistApiTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['parent' => $parentWishlist, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/'.$wishlist->getId().'/parent');
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/' . $wishlist->getId() . '/parent');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -97,7 +97,7 @@ class WishlistApiTest extends ApiTestCase
         WishFactory::createMany(3, ['wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/'.$wishlist->getId().'/wishes');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/wishlists/' . $wishlist->getId() . '/wishes');
         $data = $response->toArray();
 
         // Assert
@@ -132,7 +132,7 @@ class WishlistApiTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['name' => 'Books', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/'.$wishlist->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/' . $wishlist->getId(), ['json' => [
             'name' => 'Video games',
         ]]);
 
@@ -152,8 +152,8 @@ class WishlistApiTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['name' => 'Books', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/'.$wishlist->getId(), ['json' => [
-            'parent' => '/api/wishlists/'.$wishlist->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/' . $wishlist->getId(), ['json' => [
+            'parent' => '/api/wishlists/' . $wishlist->getId(),
         ]]);
 
         // Assert
@@ -168,8 +168,8 @@ class WishlistApiTest extends ApiTestCase
         $child = WishlistFactory::createOne(['parent' => $wishlist, 'name' => 'Ex-libris', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/'.$wishlist->getId(), ['json' => [
-            'parent' => '/api/wishlists/'.$child->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/' . $wishlist->getId(), ['json' => [
+            'parent' => '/api/wishlists/' . $child->getId(),
         ]]);
 
         // Assert
@@ -183,7 +183,7 @@ class WishlistApiTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['name' => 'Books', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/wishlists/'.$wishlist->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/wishlists/' . $wishlist->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Video games',
@@ -206,7 +206,7 @@ class WishlistApiTest extends ApiTestCase
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/wishlists/'.$wishlist->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/wishlists/' . $wishlist->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -220,7 +220,7 @@ class WishlistApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/wishlists/'.$wishlist->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/wishlists/' . $wishlist->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -244,9 +244,8 @@ class WishlistApiTest extends ApiTestCase
         $imagePath = $uploadedFile->getRealPath();
         $album = WishlistFactory::createOne(['owner' => $user, 'image' => $imagePath]);
 
-
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/'.$album->getId(), ['json' => [
+        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/wishlists/' . $album->getId(), ['json' => [
             'deleteImage' => true,
         ]]);
 

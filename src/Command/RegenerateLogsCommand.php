@@ -86,7 +86,7 @@ class RegenerateLogsCommand extends Command
 
             $this->managerRegistry->getManager()->flush();
             $this->managerRegistry->getManager()->clear();
-            $output->writeln("");
+            $output->writeln('');
         }
 
         $output->writeln($counter . ' logs generated.');

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Tests\AppTestCase;
 use App\Tests\Factory\TagCategoryFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -50,7 +50,7 @@ class TagCategoryTest extends AppTestCase
         TagFactory::createMany(3, ['category' => $tagCategory, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/tag-categories/'.$tagCategory->getId());
+        $crawler = $this->client->request('GET', '/tag-categories/' . $tagCategory->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -89,7 +89,7 @@ class TagCategoryTest extends AppTestCase
         $tagCategory = TagCategoryFactory::createOne(['owner' => $user])->object();
 
         // Act
-        $this->client->request('GET', '/tag-categories/'.$tagCategory->getId().'/edit');
+        $this->client->request('GET', '/tag-categories/' . $tagCategory->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'tag_category[label]' => 'Company',
             'tag_category[color]' => '009688',
@@ -110,8 +110,8 @@ class TagCategoryTest extends AppTestCase
         TagFactory::createOne(['category' => $tagCategory, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/tag-categories/'.$tagCategory->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tag-categories/'.$tagCategory->getId().'/delete');
+        $crawler = $this->client->request('GET', '/tag-categories/' . $tagCategory->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/tag-categories/' . $tagCategory->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert

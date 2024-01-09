@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Enum\DatumTypeEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -38,7 +38,7 @@ class DatumTest extends AppTestCase
         foreach (DatumTypeEnum::TYPES as $type) {
             if ($type !== DatumTypeEnum::TYPE_CHOICE_LIST) {
                 // Act
-                $this->client->request('GET', '/datum/'.$type);
+                $this->client->request('GET', '/datum/' . $type);
 
                 // Assert
                 $this->assertResponseIsSuccessful();
@@ -55,7 +55,7 @@ class DatumTest extends AppTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/datum/choice-list/'.$choiceList->getId());
+        $this->client->request('GET', '/datum/choice-list/' . $choiceList->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -81,7 +81,7 @@ class DatumTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item2, 'position' => 2, 'type' => DatumTypeEnum::TYPE_NUMBER, 'label' => 'Volume', 'value' => '2']);
 
         // Act
-        $this->client->request('GET', '/datum/load-common-fields/'.$collection->getId());
+        $this->client->request('GET', '/datum/load-common-fields/' . $collection->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -106,7 +106,7 @@ class DatumTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 2, 'type' => DatumTypeEnum::TYPE_COUNTRY, 'label' => 'Country', 'value' => 'JP']);
 
         // Act
-        $this->client->request('GET', '/datum/load-collection-fields/'.$collection->getId());
+        $this->client->request('GET', '/datum/load-collection-fields/' . $collection->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

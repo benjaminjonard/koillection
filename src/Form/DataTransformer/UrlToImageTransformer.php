@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UrlToImageTransformer implements DataTransformerInterface
@@ -21,12 +20,12 @@ class UrlToImageTransformer implements DataTransformerInterface
             return null;
         }
 
-        $arrContextOptions=array(
-            "ssl"=>array(
-                "verify_peer"=>false,
-                "verify_peer_name"=>false,
-            ),
-        );
+        $arrContextOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+            ],
+        ];
         $content = file_get_contents($url, false, stream_context_create($arrContextOptions));
         $name = 'scraped' . uniqid();
 

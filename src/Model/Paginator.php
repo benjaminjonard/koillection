@@ -51,7 +51,7 @@ class Paginator
 
     public function getPageUrl(int|null $pageNum): string
     {
-        return $this->url.(parse_url($this->url, PHP_URL_QUERY) ? '&' : '?')."page={$pageNum}";
+        return $this->url . (parse_url($this->url, PHP_URL_QUERY) ? '&' : '?') . "page={$pageNum}";
     }
 
     public function getNextPage(): ?int

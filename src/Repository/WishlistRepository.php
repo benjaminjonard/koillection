@@ -56,7 +56,7 @@ class WishlistRepository extends ServiceEntityRepository
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(w.name) LIKE LOWER(:term)')
-                ->setParameter('term', '%'.$search->getTerm().'%')
+                ->setParameter('term', '%' . $search->getTerm() . '%')
             ;
         }
 

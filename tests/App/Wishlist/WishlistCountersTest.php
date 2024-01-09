@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\App\Wishlist;
 
 use App\Service\RefreshCachedValuesQueue;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

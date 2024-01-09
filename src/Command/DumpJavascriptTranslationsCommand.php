@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command;
 
 use App\Service\JavascriptTranslationsDumper;
@@ -18,14 +20,13 @@ class DumpJavascriptTranslationsCommand extends Command
     public function __construct(
         private readonly JavascriptTranslationsDumper $dumper,
         #[Autowire('%kernel.project_dir%/assets/js')] private readonly string $javascriptsPath
-    )
-    {
+    ) {
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!is_dir($dir = dirname($this->javascriptsPath)) && !@mkdir($dir, 0777, true)) {
+        if (!is_dir($dir = \dirname($this->javascriptsPath)) && !@mkdir($dir, 0777, true)) {
             throw new \RuntimeException('Unable to create directory ' . $dir);
         }
 

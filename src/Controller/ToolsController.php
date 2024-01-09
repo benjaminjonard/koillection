@@ -48,23 +48,23 @@ class ToolsController extends AbstractController
             }
         }
 
-        return new CsvResponse($rows, (new \DateTimeImmutable())->format('YmdHis').'-koillection-export.csv');
+        return new CsvResponse($rows, (new \DateTimeImmutable())->format('YmdHis') . '-koillection-export.csv');
     }
 
     #[Route(path: '/tools/export/sql', name: 'app_tools_export_sql', methods: ['GET'])]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
-        return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis').'-koillection-export.sql');
+        return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis') . '-koillection-export.sql');
     }
 
     #[Route(path: '/tools/export/images', name: 'app_tools_export_images', methods: ['GET'])]
     public function exportImages(#[Autowire('%kernel.project_dir%/public/uploads')] string $uploadsPath): StreamedResponse
     {
         return new StreamedResponse(function () use ($uploadsPath): void {
-            $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
+            $zipFilename = (new \DateTimeImmutable())->format('YmdHis') . '-koillection-images.zip';
             $zip = new ZipStream(outputName: $zipFilename, sendHttpHeaders: true, defaultEnableZeroHeader: true, flushOutput: true);
 
-            $path = $uploadsPath.'/'.$this->getUser()->getId();
+            $path = $uploadsPath . '/' . $this->getUser()->getId();
             if (!is_dir($path)) {
                 $zip->finish();
             }

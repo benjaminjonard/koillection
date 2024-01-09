@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Tests\App;
 
 use App\Enum\VisibilityEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\WishlistFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -36,7 +36,7 @@ class WishTest extends AppTestCase
         $wishlist = WishlistFactory::createOne(['owner' => $user])->object();
 
         // Act
-        $this->client->request('GET', '/wishes/add?wishlist='.$wishlist->getId());
+        $this->client->request('GET', '/wishes/add?wishlist=' . $wishlist->getId());
         $this->client->submitForm('Submit', [
             'wish[name]' => 'Frieren #1',
             'wish[visibility]' => VisibilityEnum::VISIBILITY_PRIVATE,
@@ -83,7 +83,7 @@ class WishTest extends AppTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/wishes/'.$wish->getId().'/edit');
+        $this->client->request('GET', '/wishes/' . $wish->getId() . '/edit');
         $this->client->submitForm('Submit', [
             'wish[name]' => 'New name',
             'wish[visibility]' => VisibilityEnum::VISIBILITY_PRIVATE,
@@ -117,8 +117,8 @@ class WishTest extends AppTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/wishlists/'.$wishlist->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/wishes/'.$wish->getId().'/delete');
+        $crawler = $this->client->request('GET', '/wishlists/' . $wishlist->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/wishes/' . $wish->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -137,7 +137,7 @@ class WishTest extends AppTestCase
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
 
         // Act
-        $this->client->request('GET', '/wishes/'.$wish->getId().'/transfer');
+        $this->client->request('GET', '/wishes/' . $wish->getId() . '/transfer');
         $crawler = $this->client->submitForm('Submit', [
             'item[name]' => 'Frieren #1',
             'item[visibility]' => VisibilityEnum::VISIBILITY_PRIVATE,

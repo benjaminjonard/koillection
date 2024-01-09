@@ -32,8 +32,8 @@ final class Version20220918193105 extends AbstractMigration
             $id = Uuid::v4()->toRfc4122();
             $tagId = $tag['id'];
             $ownerId = $tag['owner_id'];
-            $displayMode = !empty($tag['items_display_mode']) ? "'".$tag['items_display_mode']."'" : 'NULL';
-            $sortingDirection = "'".SortingDirectionEnum::ASCENDING."'";
+            $displayMode = !empty($tag['items_display_mode']) ? "'" . $tag['items_display_mode'] . "'" : 'NULL';
+            $sortingDirection = "'" . SortingDirectionEnum::ASCENDING . "'";
 
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, display_mode, sorting_direction, created_at) VALUES ('$id', '$ownerId', $displayMode, $sortingDirection, NOW())");
             $this->addSql("UPDATE koi_tag SET items_display_configuration_id = '$id' WHERE id = '$tagId'");

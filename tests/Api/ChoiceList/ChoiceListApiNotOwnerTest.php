@@ -24,7 +24,7 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/'.$choiceList->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/' . $choiceList->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -38,7 +38,7 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/choice_lists/'.$choiceList->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/choice_lists/' . $choiceList->getId(), ['json' => [
             'name' => 'Status',
         ]]);
 
@@ -54,7 +54,7 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/choice_lists/'.$choiceList->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/choice_lists/' . $choiceList->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'Status',
@@ -73,7 +73,7 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/choice_lists/'.$choiceList->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/choice_lists/' . $choiceList->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

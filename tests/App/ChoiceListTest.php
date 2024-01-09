@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Tests\AppTestCase;
 use App\Tests\Factory\ChoiceListFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -64,7 +64,7 @@ class ChoiceListTest extends AppTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $user, 'choices' => ['New', 'Test', 'Done']]);
 
         // Act
-        $this->client->request('GET', '/choice-lists/'.$choiceList->getId().'/edit');
+        $this->client->request('GET', '/choice-lists/' . $choiceList->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'choice_list[name]' => 'Progress',
             'choice_list[choices][0]' => 'New',
@@ -87,7 +87,7 @@ class ChoiceListTest extends AppTestCase
 
         // Act
         $crawler = $this->client->request('GET', '/choice-lists/');
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/choice-lists/'.$choiceList->getId().'/delete');
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/choice-lists/' . $choiceList->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert

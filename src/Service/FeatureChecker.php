@@ -13,7 +13,7 @@ class FeatureChecker
 
     public function isFeatureEnabled(string $feature): bool
     {
-        $getter = 'is'.ucfirst($feature).'FeatureEnabled';
+        $getter = 'is' . ucfirst($feature) . 'FeatureEnabled';
 
         return $this->contextHandler->getContextUser()->$getter();
     }

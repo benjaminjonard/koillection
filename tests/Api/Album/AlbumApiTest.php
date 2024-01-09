@@ -10,8 +10,6 @@ use App\Tests\ApiTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -45,7 +43,7 @@ class AlbumApiTest extends ApiTestCase
         $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -63,7 +61,7 @@ class AlbumApiTest extends ApiTestCase
         AlbumFactory::createMany(3, ['parent' => $album, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId().'/children');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId() . '/children');
         $data = $response->toArray();
 
         // Assert
@@ -81,7 +79,7 @@ class AlbumApiTest extends ApiTestCase
         $album = AlbumFactory::createOne(['parent' => $parentAlbum, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId().'/parent');
+        $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId() . '/parent');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -99,7 +97,7 @@ class AlbumApiTest extends ApiTestCase
         PhotoFactory::createMany(3, ['album' => $album, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId().'/photos');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId() . '/photos');
         $data = $response->toArray();
 
         // Assert
@@ -134,7 +132,7 @@ class AlbumApiTest extends ApiTestCase
         $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/' . $album->getId(), ['json' => [
             'title' => 'Berserk',
         ]]);
 
@@ -154,8 +152,8 @@ class AlbumApiTest extends ApiTestCase
         $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
-            'parent' => '/api/albums/'.$album->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/' . $album->getId(), ['json' => [
+            'parent' => '/api/albums/' . $album->getId(),
         ]]);
 
         // Assert
@@ -170,8 +168,8 @@ class AlbumApiTest extends ApiTestCase
         $child = AlbumFactory::createOne(['parent' => $album, 'title' => 'Ex-libris', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
-            'parent' => '/api/albums/'.$child->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/' . $album->getId(), ['json' => [
+            'parent' => '/api/albums/' . $child->getId(),
         ]]);
 
         // Assert
@@ -185,7 +183,7 @@ class AlbumApiTest extends ApiTestCase
         $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/albums/'.$album->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/albums/' . $album->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'Berserk',
@@ -208,7 +206,7 @@ class AlbumApiTest extends ApiTestCase
         $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/albums/'.$album->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/albums/' . $album->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -222,7 +220,7 @@ class AlbumApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/albums/'.$album->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/albums/' . $album->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -246,9 +244,8 @@ class AlbumApiTest extends ApiTestCase
         $imagePath = $uploadedFile->getRealPath();
         $album = AlbumFactory::createOne(['owner' => $user, 'image' => $imagePath]);
 
-
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
+        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/albums/' . $album->getId(), ['json' => [
             'deleteImage' => true,
         ]]);
 

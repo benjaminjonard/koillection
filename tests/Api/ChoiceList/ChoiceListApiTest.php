@@ -41,7 +41,7 @@ class ChoiceListApiTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/'.$choiceList->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/choice_lists/' . $choiceList->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -78,7 +78,7 @@ class ChoiceListApiTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['New', 'In progress', 'Done'], 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/choice_lists/'.$choiceList->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/choice_lists/' . $choiceList->getId(), ['json' => [
             'name' => 'Progress',
             'choices' => ['New', 'In progress', 'Done', 'Abandoned']
         ]]);
@@ -100,7 +100,7 @@ class ChoiceListApiTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['New', 'In progress', 'Done'], 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/choice_lists/'.$choiceList->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/choice_lists/' . $choiceList->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'choices' => ['New', 'In progress', 'Done', 'Abandoned']
@@ -124,7 +124,7 @@ class ChoiceListApiTest extends ApiTestCase
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/choice_lists/'.$choiceList->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/choice_lists/' . $choiceList->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

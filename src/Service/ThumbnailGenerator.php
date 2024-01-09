@@ -42,7 +42,7 @@ class ThumbnailGenerator
         $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
         // Transparency
-        if (in_array($mime, ['image/png', 'image/webp', 'image/avif'])) {
+        if (\in_array($mime, ['image/png', 'image/webp', 'image/avif'])) {
             imagecolortransparent($thumbnail, imagecolorallocate($thumbnail, 0, 0, 0));
             imagealphablending($thumbnail, false);
             imagesavealpha($thumbnail, true);
@@ -95,7 +95,7 @@ class ThumbnailGenerator
         $resized = imagecreatetruecolor($newWidth, $newHeight);
 
         // Transparency
-        if (in_array($mime, ['image/png', 'image/webp', 'image/avif'])) {
+        if (\in_array($mime, ['image/png', 'image/webp', 'image/avif'])) {
             imagecolortransparent($resized, imagecolorallocate($resized, 0, 0, 0));
             imagealphablending($resized, false);
             imagesavealpha($resized, true);

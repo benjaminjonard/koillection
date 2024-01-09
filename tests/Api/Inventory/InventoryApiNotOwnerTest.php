@@ -24,7 +24,7 @@ class InventoryApiNotOwnerTest extends ApiTestCase
         $inventory = InventoryFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/inventories/'.$inventory->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/inventories/' . $inventory->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -38,7 +38,7 @@ class InventoryApiNotOwnerTest extends ApiTestCase
         $inventory = InventoryFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/inventories/'.$inventory->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/inventories/' . $inventory->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

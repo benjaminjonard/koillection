@@ -26,7 +26,7 @@ class TemplateApiNotOwnerTest extends ApiTestCase
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/templates/'.$template->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/templates/' . $template->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -41,7 +41,7 @@ class TemplateApiNotOwnerTest extends ApiTestCase
         FieldFactory::createMany(3, ['template' => $template, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/templates/'.$template->getId().'/fields');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/templates/' . $template->getId() . '/fields');
         $data = $response->toArray();
 
         // Assert
@@ -59,7 +59,7 @@ class TemplateApiNotOwnerTest extends ApiTestCase
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/templates/'.$template->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/templates/' . $template->getId(), ['json' => [
             'name' => 'Video game',
         ]]);
 
@@ -75,7 +75,7 @@ class TemplateApiNotOwnerTest extends ApiTestCase
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/templates/'.$template->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/templates/' . $template->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Video game',
@@ -94,7 +94,7 @@ class TemplateApiNotOwnerTest extends ApiTestCase
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/templates/'.$template->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/templates/' . $template->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

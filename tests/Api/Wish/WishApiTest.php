@@ -45,7 +45,7 @@ class WishApiTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/'.$wish->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/' . $wish->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -63,7 +63,7 @@ class WishApiTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/'.$wish->getId().'/wishlist');
+        $this->createClientWithCredentials($user)->request('GET', '/api/wishes/' . $wish->getId() . '/wishlist');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -81,7 +81,7 @@ class WishApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/wishes', ['json' => [
-            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
+            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
             'name' => 'Frieren vol. 1',
         ]]);
 
@@ -89,7 +89,7 @@ class WishApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Wish::class);
         $this->assertJsonContains([
-            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
+            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
             'name' => 'Frieren vol. 1',
         ]);
     }
@@ -102,8 +102,8 @@ class WishApiTest extends ApiTestCase
         $wish = WishFactory::createOne(['name' => 'Frieren vol. 1', 'wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/wishes/'.$wish->getId(), ['json' => [
-            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/wishes/' . $wish->getId(), ['json' => [
+            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
             'name' => 'Frieren vol. 2',
         ]]);
 
@@ -112,7 +112,7 @@ class WishApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Wish::class);
         $this->assertJsonContains([
             'id' => $wish->getId(),
-            'wishlist' => '/api/wishlists/'.$wishlist->getId(),
+            'wishlist' => '/api/wishlists/' . $wishlist->getId(),
             'name' => 'Frieren vol. 2',
         ]);
     }
@@ -125,7 +125,7 @@ class WishApiTest extends ApiTestCase
         $wish = WishFactory::createOne(['name' => 'Frieren vol. 1', 'wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/wishes/'.$wish->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/wishes/' . $wish->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Frieren vol. 2',
@@ -148,7 +148,7 @@ class WishApiTest extends ApiTestCase
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/wishes/'.$wish->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/wishes/' . $wish->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -163,7 +163,7 @@ class WishApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/wishes/'.$wish->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/wishes/' . $wish->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [

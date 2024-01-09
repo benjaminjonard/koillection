@@ -66,8 +66,8 @@ class DateFormatEnum
             self::FORMAT_HYPHEN_DMY, self::FORMAT_HYPHEN_MDY, self::FORMAT_HYPHEN_YMD => '-',
         };
 
-        $dayRegex = "(0[1-9]|[12][0-9]|3[01])";
-        $monthRegex = "(0[1-9]|1[012])";
+        $dayRegex = '(0[1-9]|[12][0-9]|3[01])';
+        $monthRegex = '(0[1-9]|1[012])';
         $yearRegex = "\d{4}";
 
         return match ($format) {

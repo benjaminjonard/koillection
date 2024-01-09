@@ -67,30 +67,29 @@ class AdminController extends AbstractController
             'apiPlatformVersion' => str_replace('v', '', InstalledVersions::getPrettyVersion('api-platform/core')),
             'phpVersion' => phpversion(),
             'isOpcacheAvailable' => \function_exists('opcache_get_status') && opcache_get_status() && opcache_get_status()['opcache_enabled'],
-            'frankenPhpVersion' => extension_loaded('frankenphp') ? str_replace('v', '', phpversion("frankenphp")) : null
+            'frankenPhpVersion' => \extension_loaded('frankenphp') ? str_replace('v', '', phpversion('frankenphp')) : null
         ]);
     }
 
     #[Route(path: '/admin/export/sql', name: 'app_admin_export_sql', methods: ['GET'])]
     public function exportSql(DatabaseDumper $databaseDumper): FileResponse
     {
-        return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis').'-koillection-database.sql');
+        return new FileResponse($databaseDumper->dump(), (new \DateTimeImmutable())->format('YmdHis') . '-koillection-database.sql');
     }
 
     #[Route(path: '/admin/export/images', name: 'app_admin_export_images', methods: ['GET'])]
     public function exportImages(
         UserRepository $userRepository,
         #[Autowire('%kernel.project_dir%/public/uploads')] string $uploadsPath
-    ): StreamedResponse
-    {
+    ): StreamedResponse {
         $users = $userRepository->findAll();
 
         return new StreamedResponse(static function () use ($users, $uploadsPath): void {
-            $zipFilename = (new \DateTimeImmutable())->format('YmdHis').'-koillection-images.zip';
+            $zipFilename = (new \DateTimeImmutable())->format('YmdHis') . '-koillection-images.zip';
             $zip = new ZipStream(outputName: $zipFilename, sendHttpHeaders: true, defaultEnableZeroHeader: true, flushOutput: true);
 
             foreach ($users as $user) {
-                $path = $uploadsPath.'/'.$user->getId();
+                $path = $uploadsPath . '/' . $user->getId();
 
                 if (!is_dir($path)) {
                     continue;
@@ -99,7 +98,7 @@ class AdminController extends AbstractController
                 $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY);
                 foreach ($files as $file) {
                     if (!$file->isDir()) {
-                        $zip->addFileFromStream($user->getId().'/'.$file->getFilename(), fopen($file->getRealPath(), 'r'));
+                        $zip->addFileFromStream($user->getId() . '/' . $file->getFilename(), fopen($file->getRealPath(), 'r'));
                     }
                 }
             }

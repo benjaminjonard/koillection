@@ -177,17 +177,17 @@ class ItemScraperController extends AbstractController
 
         $data = [];
 
-        $data["name"] = $scraper->getName();
-        $data["namePath"] = $scraper->getNamePath();
-        $data["imagePath"] = $scraper->getImagePath();
-        $data["urlPattern"] = $scraper->getUrlPattern();
-        $data["dataPaths"] = [];
+        $data['name'] = $scraper->getName();
+        $data['namePath'] = $scraper->getNamePath();
+        $data['imagePath'] = $scraper->getImagePath();
+        $data['urlPattern'] = $scraper->getUrlPattern();
+        $data['dataPaths'] = [];
         foreach ($scraper->getDataPaths() as $key => $dataPath) {
-            $data["dataPaths"][] = [
-                "name" => $dataPath->getName() ?? null,
-                "path" => $dataPath->getPath() ?? null,
-                "type" => $dataPath->getType() ?? null,
-                "position" => $dataPath->getPosition() ?? $key,
+            $data['dataPaths'][] = [
+                'name' => $dataPath->getName() ?? null,
+                'path' => $dataPath->getPath() ?? null,
+                'type' => $dataPath->getType() ?? null,
+                'position' => $dataPath->getPosition() ?? $key,
             ];
         }
 

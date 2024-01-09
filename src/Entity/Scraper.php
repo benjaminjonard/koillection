@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
-use App\Enum\DatumTypeEnum;
 use App\Repository\ScraperRepository;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -13,7 +12,6 @@ use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -203,7 +201,6 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     {
         return $this->updatedAt;
     }
-
 
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): Scraper
     {

@@ -27,7 +27,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         $album = AlbumFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -42,7 +42,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         AlbumFactory::createMany(3, ['parent' => $album, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId().'/children');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId() . '/children');
         $data = $response->toArray();
 
         // Assert
@@ -61,7 +61,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         $album = AlbumFactory::createOne(['parent' => $parent, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId().'/parent');
+        $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId() . '/parent');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -76,7 +76,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         PhotoFactory::createMany(3, ['album' => $album, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/'.$album->getId().'/photos');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/albums/' . $album->getId() . '/photos');
         $data = $response->toArray();
 
         // Assert
@@ -95,7 +95,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/albums/', ['json' => [
-            'parent' => '/api/albums/'.$album->getId()
+            'parent' => '/api/albums/' . $album->getId()
         ]]);
 
         // Assert
@@ -110,7 +110,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/'.$album->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/albums/' . $album->getId(), ['json' => [
             'title' => 'Berserk',
         ]]);
 
@@ -126,7 +126,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/albums/'.$album->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/albums/' . $album->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'Berserk',
@@ -145,7 +145,7 @@ class AlbumApiNotOwnerTest extends ApiTestCase
         $album = AlbumFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/albums/'.$album->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/albums/' . $album->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

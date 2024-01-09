@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -17,7 +19,6 @@ readonly class JavascriptTranslationsDumper
         #[Autowire('%kernel.enabled_locales%')] private array $enabledLocales,
         #[Autowire('%kernel.project_dir%/translations')] private string $translationsPath,
     ) {
-
     }
 
     public function dump(string $target): void
@@ -42,7 +43,7 @@ readonly class JavascriptTranslationsDumper
             ])
         );
 
-        $this->filesystem->mkdir(dirname($file));
+        $this->filesystem->mkdir(\dirname($file));
 
         if (file_exists($file)) {
             $this->filesystem->remove($file);
@@ -75,7 +76,7 @@ readonly class JavascriptTranslationsDumper
                 ])
             );
 
-            $this->filesystem->mkdir(dirname($file));
+            $this->filesystem->mkdir(\dirname($file));
 
             if (file_exists($file)) {
                 $this->filesystem->remove($file);

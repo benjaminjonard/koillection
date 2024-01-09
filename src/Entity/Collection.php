@@ -278,7 +278,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
             return $this;
         }
 
-        if (in_array($parent, $this->getChildrenRecursively())) {
+        if (\in_array($parent, $this->getChildrenRecursively())) {
             $this->hasParentEqualToOneOfItsChildren = true;
 
             return $this;

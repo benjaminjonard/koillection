@@ -52,7 +52,7 @@ class ContextHandler
     public function getRouteContext(string $route): string
     {
         if ('shared' === $this->context) {
-            $route = str_replace('app_', 'app_'.$this->context.'_', $route);
+            $route = str_replace('app_', 'app_' . $this->context . '_', $route);
         }
 
         return $route;

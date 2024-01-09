@@ -41,12 +41,12 @@ class TreeBuilder
         return $leaf;
     }
 
-    private function createLeaf(?Collection $collection = null): array
+    private function createLeaf(Collection $collection = null): array
     {
         $name = '';
         if ($collection instanceof Collection) {
             $title = $collection->getTitle();
-            $name = \strlen($title) > 21 ? substr($title, 0, 18).'...' : $title;
+            $name = \strlen($title) > 21 ? substr($title, 0, 18) . '...' : $title;
         }
 
         return [

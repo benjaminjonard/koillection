@@ -272,7 +272,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
             return $this;
         }
 
-        if (in_array($parent, $this->getChildrenRecursively())) {
+        if (\in_array($parent, $this->getChildrenRecursively())) {
             $this->hasParentEqualToOneOfItsChildren = true;
 
             return $this;

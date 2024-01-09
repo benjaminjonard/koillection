@@ -45,7 +45,7 @@ class CollectionApiTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -63,7 +63,7 @@ class CollectionApiTest extends ApiTestCase
         CollectionFactory::createMany(3, ['parent' => $collection, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/children');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/children');
         $data = $response->toArray();
 
         // Assert
@@ -81,7 +81,7 @@ class CollectionApiTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['parent' => $parentCollection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/parent');
+        $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/parent');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -99,7 +99,7 @@ class CollectionApiTest extends ApiTestCase
         ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/items');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/items');
         $data = $response->toArray();
 
         // Assert
@@ -117,7 +117,7 @@ class CollectionApiTest extends ApiTestCase
         DatumFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/'.$collection->getId().'/data');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/collections/' . $collection->getId() . '/data');
         $data = $response->toArray();
 
         // Assert
@@ -152,7 +152,7 @@ class CollectionApiTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/' . $collection->getId(), ['json' => [
             'title' => 'Berserk',
         ]]);
 
@@ -172,8 +172,8 @@ class CollectionApiTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
-            'parent' => '/api/collections/'.$collection->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/' . $collection->getId(), ['json' => [
+            'parent' => '/api/collections/' . $collection->getId(),
         ]]);
 
         // Assert
@@ -188,14 +188,13 @@ class CollectionApiTest extends ApiTestCase
         $child = CollectionFactory::createOne(['parent' => $collection, 'title' => 'Ex-libris', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$collection->getId(), ['json' => [
-            'parent' => '/api/collections/'.$child->getId(),
+        $this->createClientWithCredentials($user)->request('PUT', '/api/collections/' . $collection->getId(), ['json' => [
+            'parent' => '/api/collections/' . $child->getId(),
         ]]);
 
         // Assert
         $this->assertResponseIsUnprocessable();
     }
-
 
     public function test_patch_collection(): void
     {
@@ -204,7 +203,7 @@ class CollectionApiTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/collections/'.$collection->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/collections/' . $collection->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'Berserk',
@@ -227,7 +226,7 @@ class CollectionApiTest extends ApiTestCase
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/collections/'.$collection->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/collections/' . $collection->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -241,7 +240,7 @@ class CollectionApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/collections/'.$collection->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/collections/' . $collection->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -265,9 +264,8 @@ class CollectionApiTest extends ApiTestCase
         $imagePath = $uploadedFile->getRealPath();
         $album = CollectionFactory::createOne(['owner' => $user, 'image' => $imagePath]);
 
-
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/collections/'.$album->getId(), ['json' => [
+        $crawler = $this->createClientWithCredentials($user)->request('PUT', '/api/collections/' . $album->getId(), ['json' => [
             'deleteImage' => true,
         ]]);
 

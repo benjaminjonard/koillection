@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
-use App\Entity\Item;
 use App\Entity\Wish;
 use App\Entity\Wishlist;
 use App\Enum\CurrencyEnum;
@@ -66,7 +65,7 @@ class WishType extends AbstractType
                     'getter' => static function () {
                         return null;
                     },
-                    'setter' => static function (Wish &$wish, ?File $file) : void {
+                    'setter' => static function (Wish &$wish, ?File $file): void {
                         if ($file instanceof \Symfony\Component\HttpFoundation\File\File) {
                             $wish->setFile($file);
                         }

@@ -26,7 +26,7 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/'.$category->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/' . $category->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -41,7 +41,7 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
         TagFactory::createMany(3, ['category' => $category, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/'.$category->getId().'/tags');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/' . $category->getId() . '/tags');
         $data = $response->toArray();
 
         // Assert
@@ -59,7 +59,7 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/tag_categories/'.$category->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/tag_categories/' . $category->getId(), ['json' => [
             'label' => 'Author',
         ]]);
 
@@ -75,7 +75,7 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/tag_categories/'.$category->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/tag_categories/' . $category->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'Author',
@@ -94,7 +94,7 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/tag_categories/'.$category->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/tag_categories/' . $category->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

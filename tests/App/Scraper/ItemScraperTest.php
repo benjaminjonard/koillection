@@ -49,7 +49,7 @@ class ItemScraperTest extends AppTestCase
         $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId());
+        $crawler = $this->client->request('GET', '/scrapers/item-scrapers/' . $scraper->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -83,7 +83,7 @@ class ItemScraperTest extends AppTestCase
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId().'/edit');
+        $this->client->request('GET', '/scrapers/item-scrapers/' . $scraper->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'scraper[name]' => 'Manga News',
             'scraper[namePath]' => '//h1/text()',
@@ -109,8 +109,8 @@ class ItemScraperTest extends AppTestCase
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/item-scrapers/'.$scraper->getId().'/delete');
+        $crawler = $this->client->request('GET', '/scrapers/item-scrapers/' . $scraper->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/scrapers/item-scrapers/' . $scraper->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -128,7 +128,7 @@ class ItemScraperTest extends AppTestCase
         PathFactory::createOne(['scraper' => $scraper, 'owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/scrapers/item-scrapers/'.$scraper->getId() . '/export');
+        $this->client->request('GET', '/scrapers/item-scrapers/' . $scraper->getId() . '/export');
 
         // Assert
         $this->assertResponseIsSuccessful();

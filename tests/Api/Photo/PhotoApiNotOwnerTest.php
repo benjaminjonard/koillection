@@ -26,7 +26,7 @@ class PhotoApiNotOwnerTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/photos/'.$photo->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/photos/' . $photo->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -41,7 +41,7 @@ class PhotoApiNotOwnerTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/photos/'.$photo->getId().'/album');
+        $this->createClientWithCredentials($user)->request('GET', '/api/photos/' . $photo->getId() . '/album');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -56,7 +56,7 @@ class PhotoApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/photos/', ['json' => [
-            'album' => '/api/albums/'.$album,
+            'album' => '/api/albums/' . $album,
             'title' => 'Collection',
         ]]);
 
@@ -73,7 +73,7 @@ class PhotoApiNotOwnerTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/photos/'.$photo->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/photos/' . $photo->getId(), ['json' => [
             'title' => 'Collection',
         ]]);
 
@@ -90,7 +90,7 @@ class PhotoApiNotOwnerTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/items/'.$photo->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/items/' . $photo->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'Collection',
@@ -110,7 +110,7 @@ class PhotoApiNotOwnerTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/photos/'.$photo->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/photos/' . $photo->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

@@ -45,7 +45,7 @@ class PhotoApiTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/photos/'.$photo->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/photos/' . $photo->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -63,7 +63,7 @@ class PhotoApiTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/photos/'.$photo->getId().'/album');
+        $this->createClientWithCredentials($user)->request('GET', '/api/photos/' . $photo->getId() . '/album');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -81,7 +81,7 @@ class PhotoApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/photos', ['json' => [
-            'album' => '/api/albums/'.$album->getId(),
+            'album' => '/api/albums/' . $album->getId(),
             'title' => 'Home collection',
         ]]);
 
@@ -89,7 +89,7 @@ class PhotoApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Photo::class);
         $this->assertJsonContains([
-            'album' => '/api/albums/'.$album->getId(),
+            'album' => '/api/albums/' . $album->getId(),
             'title' => 'Home collection',
         ]);
     }
@@ -102,7 +102,7 @@ class PhotoApiTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['title' => 'Home collection', 'album' => $album, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/photos/'.$photo->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/photos/' . $photo->getId(), ['json' => [
             'title' => 'Other collection',
         ]]);
 
@@ -123,7 +123,7 @@ class PhotoApiTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['title' => 'Home collection', 'album' => $album, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/photos/'.$photo->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/photos/' . $photo->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'title' => 'Other collection',
@@ -146,7 +146,7 @@ class PhotoApiTest extends ApiTestCase
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/photos/'.$photo->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/photos/' . $photo->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -161,7 +161,7 @@ class PhotoApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/photos/'.$photo->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/photos/' . $photo->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [

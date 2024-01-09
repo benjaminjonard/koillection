@@ -34,7 +34,7 @@ class CleanUpCommand extends Command
         if (!$helper->ask($input, $output, $question)) {
             return Command::SUCCESS;
         }
-        
+
         $output->writeln('Getting all files paths from database...');
         $sql = '
             SELECT image AS image FROM koi_collection WHERE image IS NOT NULL UNION
@@ -72,11 +72,11 @@ class CleanUpCommand extends Command
         }, $result->fetchAllAssociative());
 
         $output->writeln('Getting all files paths from /uploads...');
-        $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath.'/uploads'));
+        $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->publicPath . '/uploads'));
         $diskPaths = [];
         foreach ($rii as $file) {
             if (!$file->isDir() && '.gitkeep' !== $file->getFileName()) {
-                $diskPaths[] = str_replace($this->publicPath.'/', '', $file->getPathname());
+                $diskPaths[] = str_replace($this->publicPath . '/', '', $file->getPathname());
             }
         }
 
@@ -88,15 +88,15 @@ class CleanUpCommand extends Command
             $progressBar = new ProgressBar($output, \count($diff));
             foreach ($diff as $path) {
                 $progressBar->advance();
-                if (file_exists($this->publicPath.'/'.$path)) {
-                    unlink($this->publicPath.'/'.$path);
+                if (file_exists($this->publicPath . '/' . $path)) {
+                    unlink($this->publicPath . '/' . $path);
                 }
             }
 
             $output->writeln('');
         }
 
-        $output->writeln(\count($diff).' files deleted.');
+        $output->writeln(\count($diff) . ' files deleted.');
         $output->writeln('Done!');
 
         return Command::SUCCESS;

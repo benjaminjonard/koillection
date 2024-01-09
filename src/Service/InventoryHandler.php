@@ -75,7 +75,7 @@ class InventoryHandler
     {
         $content = $inventory->getContent();
         $content = json_encode($content);
-        $content = preg_replace('/([^.]*{"id":"'.$id.'","name":")*([^.]*?","checked":)(false|true)/is', '$1$2'.$checked, $content);
+        $content = preg_replace('/([^.]*{"id":"' . $id . '","name":")*([^.]*?","checked":)(false|true)/is', '$1$2' . $checked, $content);
         $content = $this->computeCheckedValues(json_decode($content, true));
 
         $inventory->setContent($content);

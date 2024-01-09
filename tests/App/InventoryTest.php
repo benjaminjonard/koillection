@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\App;
 
+use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\InventoryFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -58,8 +58,8 @@ class InventoryTest extends AppTestCase
         $inventory = InventoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/inventories/'.$inventory->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/inventories/'.$inventory->getId().'/delete');
+        $crawler = $this->client->request('GET', '/inventories/' . $inventory->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/inventories/' . $inventory->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert
@@ -76,7 +76,7 @@ class InventoryTest extends AppTestCase
         $inventory = InventoryFactory::createOne(['name' => 'Collection', 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/inventories/'.$inventory->getId());
+        $crawler = $this->client->request('GET', '/inventories/' . $inventory->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -93,7 +93,7 @@ class InventoryTest extends AppTestCase
         $inventory = InventoryFactory::createOne(['name' => 'Collection', 'owner' => $user]);
 
         // Act
-        $this->client->request('POST', '/inventories/'.$inventory->getId().'/check?id='.$item->getId());
+        $this->client->request('POST', '/inventories/' . $inventory->getId() . '/check?id=' . $item->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();

@@ -26,7 +26,7 @@ class UploadTest extends ApiTestCase
         $uploadedFile = $this->createFile('avif');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/' . $item->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -51,7 +51,7 @@ class UploadTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/' . $item->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -76,7 +76,7 @@ class UploadTest extends ApiTestCase
         $uploadedFile = $this->createFile('jpeg');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/' . $item->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [
@@ -101,7 +101,7 @@ class UploadTest extends ApiTestCase
         $uploadedFile = $this->createFile('webp');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/' . $item->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [

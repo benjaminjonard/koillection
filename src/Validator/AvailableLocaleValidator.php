@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Validator;
 
-use App\Entity\Field;
-use App\Service\LocaleHelper;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\ChoiceValidator;
-use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class AvailableLocaleValidator extends ChoiceValidator

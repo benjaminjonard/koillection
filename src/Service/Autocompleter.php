@@ -114,9 +114,9 @@ class Autocompleter
         ";
 
         $this->params[] = $term;
-        $this->params[] = '%'.$term.'%';
+        $this->params[] = '%' . $term . '%';
         $this->params[] = $user->getId();
-        $this->params[] = '%'.$term.'%';
+        $this->params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             $sql .= ' AND visibility IN (?)';
@@ -150,13 +150,13 @@ class Autocompleter
         ";
 
         $this->params[] = $term;
-        $this->params[] = '%'.$term.'%';
+        $this->params[] = '%' . $term . '%';
         $this->params[] = $term;
-        $this->params[] = '%'.$term.'%';
+        $this->params[] = '%' . $term . '%';
         $this->params[] = DatumTypeEnum::AVAILABLE_FOR_SEARCH;
         $this->params[] = $user->getId();
-        $this->params[] = '%'.$term.'%';
-        $this->params[] = '%'.$term.'%';
+        $this->params[] = '%' . $term . '%';
+        $this->params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             $sql .= ' AND visibility IN (?)';
@@ -186,9 +186,9 @@ class Autocompleter
         ";
 
         $this->params[] = $term;
-        $this->params[] = '%'.$term.'%';
+        $this->params[] = '%' . $term . '%';
         $this->params[] = $user->getId();
-        $this->params[] = '%'.$term.'%';
+        $this->params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             $sql .= ' AND visibility IN (?)';

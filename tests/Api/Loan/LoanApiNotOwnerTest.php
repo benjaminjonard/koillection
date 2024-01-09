@@ -28,7 +28,7 @@ class LoanApiNotOwnerTest extends ApiTestCase
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/loans/'.$loan->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/loans/' . $loan->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -46,7 +46,7 @@ class LoanApiNotOwnerTest extends ApiTestCase
         $this->createClientWithCredentials($user)->request('POST', '/api/loans/', ['json' => [
             'lentTo' => 'Someone',
             'lentAt' => '2022-10-01T12:00:00+02:00',
-            'item' => '/api/items/'.$item->getId()
+            'item' => '/api/items/' . $item->getId()
         ]]);
 
         // Assert
@@ -63,7 +63,7 @@ class LoanApiNotOwnerTest extends ApiTestCase
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/loans/'.$loan->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/loans/' . $loan->getId(), ['json' => [
             'lentTo' => 'Someone else',
         ]]);
 
@@ -81,7 +81,7 @@ class LoanApiNotOwnerTest extends ApiTestCase
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/loans/'.$loan->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/loans/' . $loan->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'lentTo' => 'Someone else',
@@ -102,7 +102,7 @@ class LoanApiNotOwnerTest extends ApiTestCase
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/loans/'.$loan->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/loans/' . $loan->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

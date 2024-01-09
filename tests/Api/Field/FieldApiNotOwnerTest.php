@@ -26,7 +26,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/fields/'.$field->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/fields/' . $field->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -41,7 +41,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/fields/'.$field->getId().'/template');
+        $this->createClientWithCredentials($user)->request('GET', '/api/fields/' . $field->getId() . '/template');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -56,7 +56,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/fields/', ['json' => [
-            'template' => '/api/templates/'.$template->getId()
+            'template' => '/api/templates/' . $template->getId()
         ]]);
 
         // Assert
@@ -72,7 +72,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/fields/'.$field->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/fields/' . $field->getId(), ['json' => [
             'name' => 'Author',
         ]]);
 
@@ -89,7 +89,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/fields/'.$field->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/fields/' . $field->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Author',
@@ -109,7 +109,7 @@ class FieldApiNotOwnerTest extends ApiTestCase
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/fields/'.$field->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/fields/' . $field->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

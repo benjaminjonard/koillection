@@ -6,11 +6,11 @@ namespace App\Tests\App\Collection;
 
 use App\Enum\DatumTypeEnum;
 use App\Service\RefreshCachedValuesQueue;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

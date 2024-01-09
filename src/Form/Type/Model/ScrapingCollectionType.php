@@ -35,7 +35,7 @@ class ScrapingCollectionType extends AbstractType
             ])
             ->add('scraper', EntityType::class, [
                 'class' => Scraper::class,
-                'query_builder' => static function (EntityRepository $er) : QueryBuilder {
+                'query_builder' => static function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('s')
                         ->where('s.type = :type')
                         ->setParameter('type', ScraperTypeEnum::TYPE_COLLECTION)
@@ -56,7 +56,7 @@ class ScrapingCollectionType extends AbstractType
             ])
         ;
 
-        $formModifier = static function (FormInterface $form, Scraper $scraper = null) : void {
+        $formModifier = static function (FormInterface $form, Scraper $scraper = null): void {
             $choices = $scraper instanceof \App\Entity\Scraper ? $scraper->getDataPaths() : [];
             $form->add('dataToScrap', EntityType::class, [
                 'class' => Path::class,
@@ -70,7 +70,7 @@ class ScrapingCollectionType extends AbstractType
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
-            static function (FormEvent $event) use ($formModifier) : void {
+            static function (FormEvent $event) use ($formModifier): void {
                 $data = $event->getData();
                 $formModifier($event->getForm(), $data->getScraper());
             }
@@ -78,7 +78,7 @@ class ScrapingCollectionType extends AbstractType
 
         $builder->get('scraper')->addEventListener(
             FormEvents::POST_SUBMIT,
-            static function (FormEvent $event) use ($formModifier) : void {
+            static function (FormEvent $event) use ($formModifier): void {
                 $scraper = $event->getForm()->getData();
                 $formModifier($event->getForm()->getParent(), $scraper);
             }

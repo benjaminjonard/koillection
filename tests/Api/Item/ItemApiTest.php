@@ -51,7 +51,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -69,7 +69,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/collection');
+        $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/collection');
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -88,7 +88,7 @@ class ItemApiTest extends ApiTestCase
         DatumFactory::createMany(3, ['item' => $item, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/data');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/data');
         $data = $response->toArray();
 
         // Assert
@@ -107,7 +107,7 @@ class ItemApiTest extends ApiTestCase
         LoanFactory::createMany(3, ['item' => $item, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/loans');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/loans');
         $data = $response->toArray();
 
         // Assert
@@ -126,7 +126,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'relatedItems' => $relatedItems, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/related_items');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/related_items');
         $data = $response->toArray();
 
         // Assert
@@ -145,7 +145,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'tags' => $tags, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/tags');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/tags');
         $data = $response->toArray();
 
         // Assert
@@ -163,7 +163,7 @@ class ItemApiTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/items', ['json' => [
-            'collection' => '/api/collections/'.$collection->getId(),
+            'collection' => '/api/collections/' . $collection->getId(),
             'name' => 'Frieren #1',
         ]]);
 
@@ -171,7 +171,7 @@ class ItemApiTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertMatchesResourceItemJsonSchema(Item::class);
         $this->assertJsonContains([
-            'collection' => '/api/collections/'.$collection->getId(),
+            'collection' => '/api/collections/' . $collection->getId(),
             'name' => 'Frieren #1',
         ]);
     }
@@ -184,7 +184,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/items/'.$item->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/items/' . $item->getId(), ['json' => [
             'name' => 'Frieren #2',
         ]]);
 
@@ -205,7 +205,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/items/'.$item->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/items/' . $item->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Frieren #2',
@@ -228,7 +228,7 @@ class ItemApiTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/items/'.$item->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/items/' . $item->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -243,7 +243,7 @@ class ItemApiTest extends ApiTestCase
         $uploadedFile = $this->createFile('png');
 
         // Act
-        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/'.$item->getId().'/image', [
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/items/' . $item->getId() . '/image', [
             'headers' => ['Content-Type: multipart/form-data'],
             'extra' => [
                 'files' => [

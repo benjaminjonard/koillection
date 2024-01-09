@@ -6,11 +6,11 @@ namespace App\Tests\App\Album;
 
 use App\Enum\DisplayModeEnum;
 use App\Enum\VisibilityEnum;
+use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use App\Tests\AppTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -51,7 +51,7 @@ class AlbumTest extends AppTestCase
         $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/albums/'.$album->getId());
+        $crawler = $this->client->request('GET', '/albums/' . $album->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -66,7 +66,7 @@ class AlbumTest extends AppTestCase
         $parent = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->client->request('GET', '/albums/add?parent='.$parent->getId());
+        $this->client->request('GET', '/albums/add?parent=' . $parent->getId());
         $crawler = $this->client->submitForm('Submit', [
             'album[title]' => 'Home album',
             'album[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
@@ -105,7 +105,7 @@ class AlbumTest extends AppTestCase
         $imagePath = $album->getImage();
 
         // Act
-        $this->client->request('GET', '/albums/'.$album->getId().'/edit');
+        $this->client->request('GET', '/albums/' . $album->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'album[title]' => 'Other album',
             'album[visibility]' => VisibilityEnum::VISIBILITY_PUBLIC
@@ -125,7 +125,7 @@ class AlbumTest extends AppTestCase
         $oldAlbumImagePath = $album->getImage();
 
         // Act
-        $crawler = $this->client->request('GET', '/albums/'.$album->getId().'/edit');
+        $crawler = $this->client->request('GET', '/albums/' . $album->getId() . '/edit');
         $crawler = $this->client->submitForm('Submit', [
             'album[deleteImage]' => true,
         ]);
@@ -148,8 +148,8 @@ class AlbumTest extends AppTestCase
         PhotoFactory::createMany(3, ['album' => $otherAlbum, 'owner' => $user]);
 
         // Act
-        $crawler = $this->client->request('GET', '/albums/'.$album->getId());
-        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/albums/'.$album->getId().'/delete');
+        $crawler = $this->client->request('GET', '/albums/' . $album->getId());
+        $crawler->filter('#modal-delete form')->getNode(0)->setAttribute('action', '/albums/' . $album->getId() . '/delete');
         $this->client->submitForm('OK');
 
         // Assert

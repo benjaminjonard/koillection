@@ -17,7 +17,7 @@ class Base64ToImageTransformer implements DataTransformerInterface
         if ($file instanceof File && $file->getRealPath()) {
             $type = pathinfo($file->getRealPath(), PATHINFO_EXTENSION);
             $data = file_get_contents($file->getRealPath());
-            $this->originalBase64 = 'data:image/'.$type.';base64,'.base64_encode($data);
+            $this->originalBase64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
             return $this->originalBase64;
         }
@@ -33,7 +33,7 @@ class Base64ToImageTransformer implements DataTransformerInterface
 
         preg_match('/data:(image\/([\w]+));base64,(.*)/', $base64, $matches);
         $data = base64_decode($matches[3]);
-        $name = uniqid('col_').'.'.$matches[2];
+        $name = uniqid('col_') . '.' . $matches[2];
 
         $path = '/tmp/' . $name;
         file_put_contents($path, $data);

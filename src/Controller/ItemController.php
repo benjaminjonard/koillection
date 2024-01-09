@@ -38,8 +38,7 @@ class ItemController extends AbstractController
         TranslatorInterface $translator,
         ItemNameGuesser $itemNameGuesser,
         ManagerRegistry $managerRegistry
-    ): Response
-    {
+    ): Response {
         $collection = null;
         if ($request->query->has('collection')) {
             $collection = $collectionRepository->find($request->query->get('collection'));
@@ -106,8 +105,7 @@ class ItemController extends AbstractController
     public function show(
         #[MapEntity(expr: 'repository.findById(id)')] Item $item,
         ItemRepository $itemRepository
-    ): Response
-    {
+    ): Response {
         $nextAndPrevious = $itemRepository->findNextAndPrevious($item, $item->getCollection());
 
         return $this->render('App/Item/show.html.twig', [
@@ -124,8 +122,7 @@ class ItemController extends AbstractController
         TranslatorInterface $translator,
         ManagerRegistry $managerRegistry,
         ChoiceListRepository $choiceListRepository
-    ): Response
-    {
+    ): Response {
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
 

@@ -28,7 +28,7 @@ class TagApiNotOwnerTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -43,7 +43,7 @@ class TagApiNotOwnerTest extends ApiTestCase
         $tag = TagFactory::createOne(['category' => $category, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId().'/category');
+        $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId() . '/category');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -58,7 +58,7 @@ class TagApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/tags/', ['json' => [
-            'category' => '/api/tag_categories/'.$category->getId()
+            'category' => '/api/tag_categories/' . $category->getId()
         ]]);
 
         // Assert
@@ -75,7 +75,7 @@ class TagApiNotOwnerTest extends ApiTestCase
         ItemFactory::createMany(3, ['collection' => $collection, 'tags' => [$tag], 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tags/'.$tag->getId().'/items');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tags/' . $tag->getId() . '/items');
         $data = $response->toArray();
 
         // Assert
@@ -93,7 +93,7 @@ class TagApiNotOwnerTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/tags/'.$tag->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/tags/' . $tag->getId(), ['json' => [
             'label' => 'Manga',
         ]]);
 
@@ -109,7 +109,7 @@ class TagApiNotOwnerTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/tags/'.$tag->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/tags/' . $tag->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'Manga',
@@ -128,7 +128,7 @@ class TagApiNotOwnerTest extends ApiTestCase
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/tags/'.$tag->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/tags/' . $tag->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

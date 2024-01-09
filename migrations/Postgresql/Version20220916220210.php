@@ -37,12 +37,12 @@ final class Version20220916220210 extends AbstractMigration
             $id = Uuid::v4()->toRfc4122();
             $collectionId = $collection['id'];
             $ownerId = $collection['owner_id'];
-            $label = !empty($collection['items_title']) ? "'".$collection['items_title']."'" : 'NULL';
-            $displayMode = !empty($collection['items_display_mode']) ? "'".$collection['items_display_mode']."'" : 'NULL';
-            $sortingProperty = !empty($collection['items_sorting_property']) ? "'".$collection['items_sorting_property']."'" : 'NULL';
-            $sortingDirection = !empty($collection['items_sorting_direction']) ? "'".$collection['items_sorting_direction']."'" : "'".SortingDirectionEnum::ASCENDING."'";
-            $sortingType = !empty($collection['items_sorting_type']) ? "'".$collection['items_sorting_type']."'" : 'NULL';
-            $columns = !empty($collection['items_list_columns']) ? "'".$collection['items_list_columns']."'" : 'NULL';
+            $label = !empty($collection['items_title']) ? "'" . $collection['items_title'] . "'" : 'NULL';
+            $displayMode = !empty($collection['items_display_mode']) ? "'" . $collection['items_display_mode'] . "'" : 'NULL';
+            $sortingProperty = !empty($collection['items_sorting_property']) ? "'" . $collection['items_sorting_property'] . "'" : 'NULL';
+            $sortingDirection = !empty($collection['items_sorting_direction']) ? "'" . $collection['items_sorting_direction'] . "'" : "'" . SortingDirectionEnum::ASCENDING . "'";
+            $sortingType = !empty($collection['items_sorting_type']) ? "'" . $collection['items_sorting_type'] . "'" : 'NULL';
+            $columns = !empty($collection['items_list_columns']) ? "'" . $collection['items_list_columns'] . "'" : 'NULL';
             $showVisibility = $collection['items_list_show_visibility'] ? "'true'" : "'false'";
             $showActions = $collection['items_list_show_actions'] ? "'true'" : "'false'";
 
@@ -64,8 +64,8 @@ final class Version20220916220210 extends AbstractMigration
             $id = Uuid::v4()->toRfc4122();
             $albumId = $album['id'];
             $ownerId = $album['owner_id'];
-            $displayMode = !empty($album['photos_display_mode']) ? "'".$album['photos_display_mode']."'" : 'NULL';
-            $sortingDirection = "'".SortingDirectionEnum::ASCENDING."'";
+            $displayMode = !empty($album['photos_display_mode']) ? "'" . $album['photos_display_mode'] . "'" : 'NULL';
+            $sortingDirection = "'" . SortingDirectionEnum::ASCENDING . "'";
 
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, display_mode, sorting_direction, created_at) VALUES ('$id', '$ownerId', $displayMode, $sortingDirection, NOW())");
             $this->addSql("UPDATE koi_album SET photos_display_configuration_id = '$id' WHERE id = '$albumId'");

@@ -7,7 +7,6 @@ namespace App\Service;
 use App\Entity\User;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 readonly class DiskUsageCalculator
 {
@@ -18,7 +17,7 @@ readonly class DiskUsageCalculator
 
     public function getSpaceUsedByUsers(): float
     {
-        $uploadFolderPath = $this->publicPath.'/uploads';
+        $uploadFolderPath = $this->publicPath . '/uploads';
 
         if (is_dir($uploadFolderPath)) {
             return $this->getFolderSize($uploadFolderPath);
@@ -29,7 +28,7 @@ readonly class DiskUsageCalculator
 
     public function getSpaceUsedByUser(User $user): float
     {
-        $userFolderPath = $this->publicPath.'/uploads/'.$user->getId();
+        $userFolderPath = $this->publicPath . '/uploads/' . $user->getId();
 
         if (is_dir($userFolderPath)) {
             return $this->getFolderSize($userFolderPath);

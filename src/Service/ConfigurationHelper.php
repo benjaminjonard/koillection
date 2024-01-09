@@ -36,6 +36,7 @@ class ConfigurationHelper
 
         return $this->cache->get(self::PREFIX . $label, static function (ItemInterface $item) use ($configurationRepository, $label) {
             $configuration = $configurationRepository->findOneBy(['label' => $label]);
+
             return $configuration?->getValue();
         });
     }

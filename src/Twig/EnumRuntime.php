@@ -13,7 +13,8 @@ readonly class EnumRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private LocaleHelper $localeHelper
-    ) {}
+    ) {
+    }
 
     public function getCurrencySymbol(string $code): ?string
     {

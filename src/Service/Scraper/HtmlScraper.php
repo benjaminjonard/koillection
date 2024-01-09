@@ -54,10 +54,10 @@ abstract class HtmlScraper
         preg_match_all('/#(.*?)#/', $template, $matches);
 
         foreach ($matches[1] as $xPath) {
-            $results =  $crawler->evaluate($xPath);
+            $results = $crawler->evaluate($xPath);
 
             if ($results instanceof Crawler) {
-                $results = $results->each(static function (Crawler $node) : string {
+                $results = $results->each(static function (Crawler $node): string {
                     return $node->text();
                 });
             }
@@ -79,7 +79,7 @@ abstract class HtmlScraper
         return $this->formatValues($values, $type);
     }
 
-    protected function scrapData(ScrapingItem|ScrapingCollection|ScrapingWish $scraping, Crawler $crawler, string $entityType) : array
+    protected function scrapData(ScrapingItem|ScrapingCollection|ScrapingWish $scraping, Crawler $crawler, string $entityType): array
     {
         $data = [];
 
@@ -132,12 +132,12 @@ abstract class HtmlScraper
             $value = array_shift($values);
 
             // Try to match alpha2 code
-            if (strlen($value) === 2 && Countries::exists(strtoupper($value))) {
+            if (\strlen($value) === 2 && Countries::exists(strtoupper($value))) {
                 return strtoupper($value);
             }
 
             // Try to match alpha3 code
-            if (strlen($value) === 3 && Countries::alpha3CodeExists(strtoupper($value))) {
+            if (\strlen($value) === 3 && Countries::alpha3CodeExists(strtoupper($value))) {
                 return strtoupper($value);
             }
 

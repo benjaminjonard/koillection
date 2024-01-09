@@ -57,7 +57,6 @@ class ScrapingItem
         return $this;
     }
 
-
     public function getScrapName(): bool
     {
         return $this->scrapName;

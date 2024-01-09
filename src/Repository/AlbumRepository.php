@@ -46,7 +46,7 @@ class AlbumRepository extends ServiceEntityRepository
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
                 ->andWhere('LOWER(a.title) LIKE LOWER(:term)')
-                ->setParameter('term', '%'.$search->getTerm().'%')
+                ->setParameter('term', '%' . $search->getTerm() . '%')
             ;
         }
 

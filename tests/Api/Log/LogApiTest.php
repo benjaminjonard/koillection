@@ -41,7 +41,7 @@ class LogApiTest extends ApiTestCase
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/logs/'.$log->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/logs/' . $log->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -70,7 +70,7 @@ class LogApiTest extends ApiTestCase
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/logs/'.$log->getId());
+        $this->createClientWithCredentials($user)->request('PUT', '/api/logs/' . $log->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);
@@ -83,7 +83,7 @@ class LogApiTest extends ApiTestCase
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/logs/'.$log->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/logs/' . $log->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
         ]);
 
@@ -98,7 +98,7 @@ class LogApiTest extends ApiTestCase
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/logs/'.$log->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/logs/' . $log->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_METHOD_NOT_ALLOWED);

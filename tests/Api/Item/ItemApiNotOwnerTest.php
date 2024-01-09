@@ -33,7 +33,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -48,7 +48,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/collection');
+        $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/collection');
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
@@ -64,7 +64,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         DatumFactory::createMany(3, ['item' => $item, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/data');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/data');
         $data = $response->toArray();
 
         // Assert
@@ -84,7 +84,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         LoanFactory::createMany(3, ['item' => $item, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/loans');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/loans');
         $data = $response->toArray();
 
         // Assert
@@ -104,7 +104,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'relatedItems' => $relatedItems, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/related_items');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/related_items');
         $data = $response->toArray();
 
         // Assert
@@ -124,7 +124,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'tags' => $tags, 'owner' => $owner]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/'.$item->getId().'/tags');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/items/' . $item->getId() . '/tags');
         $data = $response->toArray();
 
         // Assert
@@ -143,7 +143,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/items/', ['json' => [
-            'collection' => '/api/collections/'.$collection,
+            'collection' => '/api/collections/' . $collection,
             'name' => 'Berserk',
         ]]);
 
@@ -161,7 +161,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/items/', ['json' => [
-            'collection' => '/api/collections/'.$collection,
+            'collection' => '/api/collections/' . $collection,
             'name' => 'Berserk',
             'tags' => [$tag]
         ]]);
@@ -180,7 +180,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/items/', ['json' => [
-            'collection' => '/api/collections/'.$collection,
+            'collection' => '/api/collections/' . $collection,
             'name' => 'Berserk',
             'data' => [$datum]
         ]]);
@@ -198,7 +198,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/items/'.$item->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/items/' . $item->getId(), ['json' => [
             'name' => 'Berserk',
         ]]);
 
@@ -215,7 +215,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/items/'.$item->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/items/' . $item->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'name' => 'Berserk',
@@ -235,7 +235,7 @@ class ItemApiNotOwnerTest extends ApiTestCase
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $owner]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/items/'.$item->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/items/' . $item->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);

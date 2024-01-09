@@ -43,7 +43,7 @@ class TagCategoryApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/'.$category->getId());
+        $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/' . $category->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
@@ -61,7 +61,7 @@ class TagCategoryApiTest extends ApiTestCase
         TagFactory::createMany(3, ['category' => $category, 'owner' => $user]);
 
         // Act
-        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/'.$category->getId().'/tags');
+        $response = $this->createClientWithCredentials($user)->request('GET', '/api/tag_categories/' . $category->getId() . '/tags');
         $data = $response->toArray();
 
         // Assert
@@ -96,7 +96,7 @@ class TagCategoryApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PUT', '/api/tag_categories/'.$category->getId(), ['json' => [
+        $this->createClientWithCredentials($user)->request('PUT', '/api/tag_categories/' . $category->getId(), ['json' => [
             'label' => 'Artist',
         ]]);
 
@@ -116,7 +116,7 @@ class TagCategoryApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('PATCH', '/api/tag_categories/'.$category->getId(), [
+        $this->createClientWithCredentials($user)->request('PATCH', '/api/tag_categories/' . $category->getId(), [
             'headers' => ['Content-Type: application/merge-patch+json'],
             'json' => [
                 'label' => 'Artist',
@@ -139,7 +139,7 @@ class TagCategoryApiTest extends ApiTestCase
         $category = TagCategoryFactory::createOne(['owner' => $user]);
 
         // Act
-        $this->createClientWithCredentials($user)->request('DELETE', '/api/tag_categories/'.$category->getId());
+        $this->createClientWithCredentials($user)->request('DELETE', '/api/tag_categories/' . $category->getId());
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);

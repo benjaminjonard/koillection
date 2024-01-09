@@ -103,7 +103,7 @@ class ItemRepository extends ServiceEntityRepository
 
             $qb
                 ->andWhere($whereClause)
-                ->setParameter('term', '%'.$search->getTerm().'%')
+                ->setParameter('term', '%' . $search->getTerm() . '%')
             ;
         }
 
@@ -168,8 +168,8 @@ class ItemRepository extends ServiceEntityRepository
             ->andWhere('LOWER(i.name) LIKE LOWER(:name)')
             ->orderBy('startWithOrder', Criteria::ASC) // Order items starting with the search term first
             ->addOrderBy('LOWER(i.name)', Criteria::ASC) // Then order other matching items alphabetically
-            ->setParameter('name', '%'.$string.'%')
-            ->setParameter('startWith', $string.'%')
+            ->setParameter('name', '%' . $string . '%')
+            ->setParameter('startWith', $string . '%')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()

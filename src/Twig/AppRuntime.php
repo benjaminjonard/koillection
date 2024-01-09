@@ -40,7 +40,7 @@ readonly class AppRuntime implements RuntimeExtensionInterface
 
         $suffixes = ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi', 'Yi'];
 
-        return round(pow(1024, $base - floor($base)), $precision).' '.$suffixes[floor($base)].$this->translator->trans('global.byte_abbreviation');
+        return round(pow(1024, $base - floor($base)), $precision) . ' ' . $suffixes[floor($base)] . $this->translator->trans('global.byte_abbreviation');
     }
 
     public function renderTitle(array $breadcrumb): string
@@ -60,12 +60,12 @@ readonly class AppRuntime implements RuntimeExtensionInterface
                 if ($entityElement instanceof BreadcrumbElement && null !== $entityElement->getEntity()) {
                     $class = (new \ReflectionClass($entityElement->getEntity()))->getShortName();
 
-                    return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$entityElement->getLabel().' · '.$this->translator->trans($element->getLabel());
+                    return $this->translator->trans('global.entities.' . strtolower($class)) . ' · ' . $entityElement->getLabel() . ' · ' . $this->translator->trans($element->getLabel());
                 } elseif (str_contains($element->getLabel(), 'breadcrumb.')) {
                     return $this->translator->trans($element->getLabel());
                 }
 
-                return $this->translator->trans('label.search').' · '.$element->getLabel();
+                return $this->translator->trans('label.search') . ' · ' . $element->getLabel();
             }
 
             if ('entity' === $element->getType()) {
@@ -74,12 +74,12 @@ readonly class AppRuntime implements RuntimeExtensionInterface
                 $class = implode('_', $pieces);
                 $class = strtolower($class);
 
-                return $this->translator->trans('global.entities.'.strtolower($class)).' · '.$element->getLabel();
+                return $this->translator->trans('global.entities.' . strtolower($class)) . ' · ' . $element->getLabel();
             }
 
             if ('root' === $element->getType()) {
                 if ('shared' === $this->contextHandler->getContext()) {
-                    return $this->translator->trans($element->getLabel().'_shared', ['username' => $this->contextHandler->getUsername()]);
+                    return $this->translator->trans($element->getLabel() . '_shared', ['username' => $this->contextHandler->getUsername()]);
                 }
 
                 return $this->translator->trans($element->getLabel());
@@ -104,7 +104,7 @@ readonly class AppRuntime implements RuntimeExtensionInterface
         }
 
         return preg_replace_callback(
-            "/\b(".implode('|', $words).")\b/ui",
+            "/\b(" . implode('|', $words) . ")\b/ui",
             function ($matches) use ($words) {
                 $id = array_search(preg_quote(strtolower($matches[1]), '/'), array_map('strtolower', $words), true);
 
@@ -157,7 +157,7 @@ readonly class AppRuntime implements RuntimeExtensionInterface
             if ($matchingTag instanceof Tag) {
                 $route = $this->contextHandler->getRouteContext('app_tag_show');
                 $url = $this->router->generate($route, ['id' => $matchingTag->getId()]);
-                $results[$text] = '<a href="'.$url.'">'.$text.'</a>';
+                $results[$text] = '<a href="' . $url . '">' . $text . '</a>';
             } else {
                 $results[$text] = $text;
             }
