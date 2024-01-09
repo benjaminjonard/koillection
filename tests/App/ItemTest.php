@@ -110,7 +110,7 @@ class ItemTest extends AppTestCase
         $this->assertSame('Country : 🇯🇵 (Japan)', $crawler->filter('.datum-row')->eq(4)->text());
         $this->assertSame('Release date : 03/03/2022', $crawler->filter('.datum-row')->eq(5)->text());
         $this->assertSame('Rating :', $crawler->filter('.datum-row .label')->eq(6)->text());
-        $this->assertCount(5, $crawler->filter('.datum-row')->eq(6)->filter('.fa-star.colored'));
+        $this->assertCount(10, $crawler->filter('.datum-row')->eq(6)->filter('.star-rating-view.colored'));
         $this->assertSame('Wiki page :', $crawler->filter('.datum-row .label')->eq(7)->text());
         $this->assertSame(substr('https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3', 0, 47) . '...', $crawler->filter('.datum-row')->eq(7)->filter('a')->text());
         $this->assertSame('Edition : Collector', $crawler->filter('.datum-row')->eq(8)->text());
