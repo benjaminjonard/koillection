@@ -7,6 +7,7 @@
          bootstrap="tests/bootstrap.php"
          cacheDirectory=".phpunit.cache"
          displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
 >
   <php>
     <ini name="display_errors" value="1"/>
