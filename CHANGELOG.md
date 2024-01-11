@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.2] / 2024-01-11
+### Fixes
+- Fix star rating misalignment on some screen resolutions and zoom levels (benjaminjonard)
+- Fix input misalignment on smartphone when editing item's metadata (benjaminjonard)
+
 ## [1.5.1] / 2024-01-08
 ### Features
 - Add title display on hover on collections names (benjaminjonard)
