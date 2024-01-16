@@ -4537,9 +4537,9 @@ __metadata:
   linkType: hard
 
 "hotkeys-js@npm:^3.10.2":
-  version: 3.13.3
-  resolution: "hotkeys-js@npm:3.13.3"
-  checksum: 35f86165730346eb9bdf353316f13a7df4ed5ba3887b4f61e8e690da6beea242547cc728c69a8b9e8304b28f02a4654635fd9327494474a812e595308571d030
+  version: 3.13.5
+  resolution: "hotkeys-js@npm:3.13.5"
+  checksum: 739ac5924cfdd67571bfba85c0e6c0bc8ea1d617247b0e7126b1c4a3d04d14dbd35f5ee8455ac83f8703195b00c31eb8d8c06489143338fff9ac4129d16c007f
   languageName: node
   linkType: hard
 
@@ -5096,7 +5096,7 @@ __metadata:
     hotkeys-js: "npm:^3.10.2"
     intl-messageformat: "npm:10.5.8"
     regenerator-runtime: "npm:0.14.1"
-    sortablejs: "npm:1.15.1"
+    sortablejs: "npm:1.15.2"
     stimulus-lightbox: "npm:3.2.0"
     stimulus-use: "npm:0.52.2"
     ts-select2: "npm:^0.2.5"
@@ -7016,10 +7016,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sortablejs@npm:1.15.1":
-  version: 1.15.1
-  resolution: "sortablejs@npm:1.15.1"
-  checksum: c4ccbc60e7936321eee0e07448e04b1f4481fed727ed1ace86866f49f9929e3acda2b7b825894e7ece5b8bc41f3c135eb4d00d09a287de1ee896d8256a0a84df
+"sortablejs@npm:1.15.2":
+  version: 1.15.2
+  resolution: "sortablejs@npm:1.15.2"
+  checksum: d149dd04bb05904ea20ca477d97cdfbbbd46edf7ede8c80958f2ad881dd6d7b1633cce31665992b341e0ea01fc7ef9d7571ccb7eb995baf01f9418b44e935eac
   languageName: node
   linkType: hard
 

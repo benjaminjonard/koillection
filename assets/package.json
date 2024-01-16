@@ -20,7 +20,7 @@
     "croppie": "2.6.5",
     "echarts": "5.4.3",
     "regenerator-runtime": "0.14.1",
-    "sortablejs": "1.15.1",
+    "sortablejs": "1.15.2",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.2",
     "webpack": "5.89.0",
