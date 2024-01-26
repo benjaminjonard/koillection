@@ -1,7 +1,7 @@
 <div id="collection-items" class="grid-container-items">
     {% for item in items|naturalSorting(displayConfiguration) %}
-        <div>
-            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}" data-filter-target="element">
+        <div data-filter-target="element">
+            <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
                 <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                     <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy" title="{{item.name}}">
                 </a>

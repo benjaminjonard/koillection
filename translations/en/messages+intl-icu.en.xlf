@@ -3565,5 +3565,11 @@
         <target>FrankenPHP version</target>
       </segment>
     </unit>
+    <unit id="Xi6swbH" name="btn.add_video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>Video</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

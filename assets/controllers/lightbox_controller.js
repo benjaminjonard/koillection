@@ -1,3 +1,4 @@
+import lgVideo from '../node_modules/lightgallery/plugins/video';
 import Lightbox from "stimulus-lightbox"
 import '../node_modules/lightgallery/css/lightgallery-bundle.min.css';
 
@@ -39,7 +40,8 @@ export default class extends Lightbox {
 
     get defaultOptions () {
         return {
-            'selector': 'a',
+            selector: 'a',
+            plugins: [lgVideo]
         }
     }
 

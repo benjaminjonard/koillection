@@ -38,7 +38,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new GetCollection(),
         new Post(),
         new Post(uriTemplate: '/data/{id}/image', denormalizationContext: ['groups' => ['datum:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum image.']),
-        new Post(uriTemplate: '/data/{id}/file', denormalizationContext: ['groups' => ['datum:file']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum file.'])],
+        new Post(uriTemplate: '/data/{id}/file', denormalizationContext: ['groups' => ['datum:file']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum file.']),
+        new Post(uriTemplate: '/data/{id}/video', denormalizationContext: ['groups' => ['datum:video']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Datum video.'])
+    ],
+
     denormalizationContext: ['groups' => ['datum:write']],
     normalizationContext: ['groups' => ['datum:read']]
 )]
@@ -105,6 +108,16 @@ class Datum implements \Stringable
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['datum:read'])]
     private ?string $file = null;
+
+    #[Upload(pathProperty: 'video')]
+    #[Assert\File(mimeTypes: ['video/mp4', 'video/webm'], groups: ['datum:video'])]
+    #[AppAssert\HasEnoughSpaceForUpload]
+    #[Groups(['datum:write', 'datum:video'])]
+    private ?File $fileVideo = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
+    #[Groups(['datum:read'])]
+    private ?string $video = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['datum:read'])]
@@ -268,6 +281,7 @@ class Datum implements \Stringable
     public function setFileImage(?File $fileImage): self
     {
         $this->fileImage = $fileImage;
+
         // Force Doctrine to trigger an update
         if ($fileImage instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTimeImmutable());
@@ -344,6 +358,7 @@ class Datum implements \Stringable
     public function setFileFile(?File $fileFile): Datum
     {
         $this->fileFile = $fileFile;
+
         // Force Doctrine to trigger an update
         if ($fileFile instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTimeImmutable());
@@ -384,6 +399,35 @@ class Datum implements \Stringable
     public function setChoiceList(?ChoiceList $choiceList): Datum
     {
         $this->choiceList = $choiceList;
+
+        return $this;
+    }
+
+    public function getFileVideo(): ?File
+    {
+        return $this->fileVideo;
+    }
+
+    public function setFileVideo(?File $fileVideo): Datum
+    {
+        $this->fileVideo = $fileVideo;
+
+        // Force Doctrine to trigger an update
+        if ($fileVideo instanceof UploadedFile) {
+            $this->setUpdatedAt(new \DateTimeImmutable());
+        }
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): Datum
+    {
+        $this->video = $video;
 
         return $this;
     }

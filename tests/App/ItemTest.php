@@ -292,6 +292,8 @@ class ItemTest extends AppTestCase
         $oldImageDatumPath = $imageDatum->getImage();
         $signDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 14, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => 'Sign', 'fileImage' => $this->createFile('png')]);
         $oldSignDatumPath = $signDatum->getImage();
+        $videoDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 15, 'type' => DatumTypeEnum::TYPE_VIDEO, 'label' => 'Video', 'fileVideo' => $this->createFile('mp4')]);
+        $oldVideoDatumPath = $videoDatum->getVideo();
 
         // Act
         $this->client->request('GET', '/items/' . $item->getId() . '/edit');
@@ -312,7 +314,8 @@ class ItemTest extends AppTestCase
             'item[data][10][position]' => 11, 'item[data][10][type]' => DatumTypeEnum::TYPE_LIST, 'item[data][10][label]' => 'List', 'item[data][10][value]' => json_encode(['Test1', 'Test2']),
             'item[data][11][position]' => 12, 'item[data][11][type]' => DatumTypeEnum::TYPE_FILE, 'item[data][11][label]' => 'File', 'item[data][11][fileFile]' => $this->createFile('txt'),
             'item[data][12][position]' => 13, 'item[data][12][type]' => DatumTypeEnum::TYPE_IMAGE, 'item[data][12][label]' => 'Image', 'item[data][12][fileImage]' => $this->createFile('avif'),
-            'item[data][13][position]' => 14, 'item[data][13][type]' => DatumTypeEnum::TYPE_SIGN, 'item[data][13][label]' => 'Sign', 'item[data][13][fileImage]' => $this->createFile('webp')
+            'item[data][13][position]' => 14, 'item[data][13][type]' => DatumTypeEnum::TYPE_SIGN, 'item[data][13][label]' => 'Sign', 'item[data][13][fileImage]' => $this->createFile('webp'),
+            'item[data][14][position]' => 15, 'item[data][14][type]' => DatumTypeEnum::TYPE_VIDEO, 'item[data][14][label]' => 'Video', 'item[data][14][fileVideo]' => $this->createFile('mp4'),
         ]);
 
         // Assert
@@ -327,11 +330,13 @@ class ItemTest extends AppTestCase
         $this->assertFileDoesNotExist($oldFileDatumPath);
         $this->assertFileDoesNotExist($oldImageDatumPath);
         $this->assertFileDoesNotExist($oldSignDatumPath);
+        $this->assertFileDoesNotExist($oldVideoDatumPath);
 
         $this->assertFileExists($item->getImage());
         $this->assertFileExists($fileDatum->getFile());
         $this->assertFileExists($imageDatum->getImage());
         $this->assertFileExists($signDatum->getImage());
+        $this->assertFileExists($videoDatum->getVideo());
     }
 
     public function test_can_delete_item(): void

@@ -956,12 +956,12 @@ button.align-with-inputs {
     margin-bottom: 20px;
 }
 
-.slider-container .slider-frame img {
+.slider-container .slider-frame img, .slider-container .slider-frame video {
     max-width: 300px;
     width: 100%
 }
 
-.slider-frame a:not(.active) {
+.slider-frame [data-slider-target="image"]:not(.active) {
     display: none;
 }
 
@@ -970,13 +970,13 @@ button.align-with-inputs {
     padding: 0 5px;
 }
 
-.slider-container ul li img {
+.slider-container ul li img, .slider-container ul li video {
     cursor: pointer;
     max-height: 100px;
     max-width: 100px;
 }
 
-.slider-container ul li img:not(.active) {
+.slider-container ul li img:not(.active), .slider-container ul li video:not(.active) {
     opacity: 0.6;
 }
 

@@ -34,6 +34,8 @@ class DatumTypeEnum
 
     public const string TYPE_SIGN = 'sign';
 
+    public const string TYPE_VIDEO = 'video';
+
     public const array TYPES = [
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
@@ -68,6 +70,7 @@ class DatumTypeEnum
     public const array IMAGE_TYPES = [
         self::TYPE_IMAGE,
         self::TYPE_SIGN,
+        self::TYPE_VIDEO,
     ];
 
     public const array AVAILABLE_FOR_SCRAPING = [
@@ -98,7 +101,8 @@ class DatumTypeEnum
         self::TYPE_LINK => 'label.link',
         self::TYPE_LIST => 'label.list',
         self::TYPE_CHOICE_LIST => 'label.choice_list',
-        self::TYPE_CHECKBOX => 'label.checkbox'
+        self::TYPE_CHECKBOX => 'label.checkbox',
+        self::TYPE_VIDEO => 'label.video',
     ];
 
     public static function getTypesLabels(): array

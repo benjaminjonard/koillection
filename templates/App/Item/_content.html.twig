@@ -55,16 +55,28 @@
                         <span class="image-label" data-slider-target="label">{{ 'label.main_image'|trans }}</span>
                     </div>
                 </a>
+
                 {% for datum in item.dataImages %}
-                    <a href="{{ asset(datum.image|default('build/images/default.png')) }}"
-                       data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
-                        <div>
-                            <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
-                                 title="{{ 'label.main_image'|trans }}"
-                            >
-                            <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
+                    {% if datum.type == 'video' %}
+                        <div data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                            <div>
+                                <video title="{{ datum.label }}" controls>
+                                    <source src="{{ preload(asset(datum.video), {as: 'video'}) }}"  />
+                                </video>
+                                <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
+                            </div>
                         </div>
-                    </a>
+                    {% else %}
+                        <a href="{{ asset(datum.image|default('build/images/default.png')) }}"
+                           data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                            <div>
+                                <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                                     title="{{ 'label.main_image'|trans }}"
+                                >
+                                <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
+                            </div>
+                        </a>
+                    {% endif %}
                 {% endfor %}
             </div>
 
@@ -82,12 +94,22 @@
 
                     {% for datum in item.dataImages %}
                         <li>
-                            <img src="{{ preload(asset(datum.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
-                                 data-id="{{ datum.id }}"
-                                 data-slider-target="thumbnail"
-                                 data-action="click->slider#display"
-                                 title="{{ datum.label }}"
-                            >
+                            {% if datum.type == 'video' %}
+                                <video width="100" data-id="{{ datum.id }}"
+                                       data-slider-target="thumbnail"
+                                       data-action="click->slider#display"
+                                       title="{{ datum.label }}"
+                                >
+                                    <source src="{{ preload(asset(datum.video), {as: 'video'}) }}" />
+                                </video>
+                            {% else %}
+                                <img src="{{ preload(asset(datum.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                                     data-id="{{ datum.id }}"
+                                     data-slider-target="thumbnail"
+                                     data-action="click->slider#display"
+                                     title="{{ datum.label }}"
+                                >
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>

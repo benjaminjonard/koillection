@@ -47,6 +47,10 @@ class DatumType extends AbstractType
                 'required' => false,
                 'label' => false,
             ])
+            ->add('fileVideo', FileType::class, [
+                'required' => false,
+                'label' => false,
+            ])
             ->add('position', TextType::class, [
                 'required' => false,
             ])

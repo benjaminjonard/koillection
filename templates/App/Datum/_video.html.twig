@@ -1,0 +1,23 @@
+<div class="input-field image-preview-wrapper image-field s10 offset-s1 m5 row-file" data-controller="preview-video">
+    <label class="file-label">
+        {% if datum is defined and datum.video is not null %}
+            <video title="{{ datum.label }}" class="preview-image" data-preview-video-target="video">
+                <source data-preview-video-target="source" src="{{ preload(asset(datum.video), {as: 'video'}) }}" />
+            </video>
+        {% else %}
+            <img data-preview-video-target="image"
+                 class="preview-image"
+                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
+            />
+            <video class="preview-image hidden" data-preview-video-target="video">
+                <source data-preview-video-target="source" src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}" />
+            </video>
+        {% endif %}
+        <input data-action="change->preview-video#load"
+           type="file" id="data_{{ iteration }}_fileVideo"
+           name="{{ entity }}[data][{{ iteration }}][fileVideo]"
+           accept="video/mp4, video/webm"
+           data-additional-data-target="value"
+       >
+    </label>
+</div>

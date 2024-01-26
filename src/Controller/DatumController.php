@@ -26,7 +26,7 @@ class DatumController extends AbstractController
 
         return new JsonResponse([
             'html' => $html,
-            'type' => \in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text',
+            'type' => \in_array($type, [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN, DatumTypeEnum::TYPE_VIDEO]) ? 'image' : 'text',
         ]);
     }
 

@@ -290,6 +290,31 @@ class DatumApiTest extends ApiTestCase
         $this->assertFileExists(json_decode($crawler->getContent(), true)['file']);
     }
 
+    public function test_post_datum_video(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $uploadedFile = $this->createFile('mp4');
+
+        // Act
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/' . $datum->getId() . '/video', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'fileVideo' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Datum::class);
+        $this->assertNotNull(json_decode($crawler->getContent(), true)['video']);
+        $this->assertFileExists(json_decode($crawler->getContent(), true)['video']);
+    }
+
     public function test_post_datum_choice_list(): void
     {
         // Arrange
