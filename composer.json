@@ -17,7 +17,7 @@
         "composer/semver": "3.4.0",
         "doctrine/doctrine-bundle": "2.11.1",
         "doctrine/doctrine-migrations-bundle": "3.3.0",
-        "doctrine/orm": "2.17.3",
+        "doctrine/orm": "2.17.4",
         "doctrine/persistence": "3.2.0",
         "lexik/jwt-authentication-bundle": "2.20.3",
         "maennchen/zipstream-php": "3.1.0",
