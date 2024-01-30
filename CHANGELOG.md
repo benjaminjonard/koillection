@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.3] / 2024-01-30
+### Features
+- Add video metadata type (benjaminjonard)
+
+### Fixes
+- Fix filtering when displaying items names (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.5.2] / 2024-01-11
 ### Fixes
 - Fix star rating misalignment on some screen resolutions and zoom levels (benjaminjonard)
