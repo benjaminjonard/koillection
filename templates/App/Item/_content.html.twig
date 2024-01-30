@@ -58,14 +58,26 @@
 
                 {% for datum in item.dataImages %}
                     {% if datum.type == 'video' %}
-                        <div data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                        <a data-video='{"source":
+                                           [{"src":"{{ preload(asset(datum.video), {as: 'video'}) }}", "type":"{{ datum.video|mimetype }}"}],
+                                           "attributes":{
+                                               "preload":true,
+                                               "controls": true
+                                           }
+                                       }'
+                           data-sub-html="{{ datum.label }}"
+                           data-slider-target="image"
+                           data-id="{{ datum.id }}"
+                           data-download-url="{{ asset(datum.video) }}"
+                           data-lg-size="1280-720"
+                        >
                             <div>
                                 <video title="{{ datum.label }}" controls>
                                     <source src="{{ preload(asset(datum.video), {as: 'video'}) }}"  />
                                 </video>
                                 <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
                             </div>
-                        </div>
+                        </a>
                     {% else %}
                         <a href="{{ asset(datum.image|default('build/images/default.png')) }}"
                            data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">

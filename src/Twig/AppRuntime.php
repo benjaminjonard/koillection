@@ -203,4 +203,9 @@ readonly class AppRuntime implements RuntimeExtensionInterface
     {
         return $this->configurationHelper->getValue($label);
     }
+
+    public function mimetype(string $path): string
+    {
+        return mime_content_type($path);
+    }
 }

@@ -18,6 +18,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('highlightTags', [AppRuntime::class, 'highlightTags'], ['is_safe' => ['html']]),
             new TwigFilter('jsonDecode', [AppRuntime::class, 'jsonDecode']),
             new TwigFilter('base64Encode', [AppRuntime::class, 'base64Encode']),
+            new TwigFilter('mimetype', [AppRuntime::class, 'mimetype']),
         ];
     }
 
