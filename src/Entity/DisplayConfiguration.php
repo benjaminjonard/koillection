@@ -55,7 +55,7 @@ class DisplayConfiguration
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     private bool $showNumberOfItems = true;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    #[ORM\Column(type: Types::JSON, nullable: true)]
     private ?array $columns = [];
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]

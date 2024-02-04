@@ -82,7 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $enabled = true;
 
-    #[ORM\Column(type: Types::ARRAY)]
+    #[ORM\Column(type: Types::JSON)]
     private array $roles = ['ROLE_USER'];
 
     #[ORM\Column(type: Types::STRING, length: 3)]

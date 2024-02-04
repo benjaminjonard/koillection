@@ -27,7 +27,7 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface, \Stringa
     #[Groups(['choiceList:read', 'choiceList:write'])]
     private string $name;
 
-    #[ORM\Column(type: Types::ARRAY)]
+    #[ORM\Column(type: Types::JSON)]
     #[Groups(['choiceList:read', 'choiceList:write'])]
     private array $choices = [];
 
