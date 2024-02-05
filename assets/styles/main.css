@@ -2285,3 +2285,13 @@ tr {
 .row-file .btn-cancel {
     padding-top: 17px;
 }
+
+.grid-container-items .chip {
+    position: relative;
+    display: unset;
+    margin-top: 0;
+    margin-right: 0;
+    padding: 6px 12px;
+    top: -30px;
+    left: 47px;
+}

@@ -79,6 +79,11 @@ class ArraySorter
                     return $this->compare((string) $a->getCachedValues()['counters']['children'], (string) $b->getCachedValues()['counters']['children'], $direction);
                 });
                 break;
+            case ReservedLabelEnum::QUANTITY:
+                usort($array, function ($a, $b) use ($direction): bool|int {
+                    return $this->compare((string) $a->getQuantity(), (string) $b->getQuantity(), $direction);
+                });
+                break;
             default:
                 break;
         }

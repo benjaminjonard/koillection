@@ -1,6 +1,6 @@
 {
     "name": "benjaminjonard/koillection",
-    "description": "Mendako is a private, light booru like image board, supports multiple boards. ",
+    "description": "Koillection is a self-hosted service allowing users to manage any kind of collection.",
     "type": "project",
     "license": "MIT",
     "minimum-stability": "stable",

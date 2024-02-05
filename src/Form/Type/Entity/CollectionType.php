@@ -63,7 +63,11 @@ class CollectionType extends AbstractType
                 'hasShowActions' => true,
                 'hasShowNumberOfChildren' => true,
                 'hasShowNumberOfItems' => true,
-                'sorting' => ['form.item_sorting.default_value' => null, 'form.item_sorting.number_of_children' => ReservedLabelEnum::NUMBER_OF_CHILDREN, 'form.item_sorting.number_of_items' => ReservedLabelEnum::NUMBER_OF_ITEMS, ...$this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES)],
+                'sorting' => ['form.item_sorting.default_value' => null,
+                    'form.item_sorting.number_of_children' => ReservedLabelEnum::NUMBER_OF_CHILDREN,
+                    'form.item_sorting.number_of_items' => ReservedLabelEnum::NUMBER_OF_ITEMS,
+                    ...$this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES)
+                ],
                 'columns' => [
                     'availableColumnLabels' => $this->datumRepository->findAllChildrenLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
                     'selectedColumnsLabels' => $entity->getChildrenDisplayConfiguration()->getColumns()
@@ -73,7 +77,11 @@ class CollectionType extends AbstractType
                 'hasLabel' => true,
                 'hasShowVisibility' => true,
                 'hasShowActions' => true,
-                'sorting' => ['form.item_sorting.default_value' => null, ...$this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES)],
+                'hasShowItemQuantities' => true,
+                'sorting' => [
+                    'form.item_sorting.default_value' => null,
+                    'form.item_sorting.quantity' => ReservedLabelEnum::QUANTITY,
+                    ...$this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES)],
                 'columns' => [
                     'availableColumnLabels' => $this->datumRepository->findAllItemsLabelsInCollection($entity, DatumTypeEnum::TEXT_TYPES),
                     'selectedColumnsLabels' => $entity->getItemsDisplayConfiguration()->getColumns()

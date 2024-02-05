@@ -55,6 +55,9 @@ class DisplayConfiguration
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     private bool $showNumberOfItems = true;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 0])]
+    private bool $showItemQuantities = false;
+
     #[ORM\Column(type: Types::JSON, nullable: true)]
     private ?array $columns = [];
 
@@ -190,6 +193,18 @@ class DisplayConfiguration
     public function setShowNumberOfItems(bool $showNumberOfItems): DisplayConfiguration
     {
         $this->showNumberOfItems = $showNumberOfItems;
+
+        return $this;
+    }
+
+    public function isShowItemQuantities(): bool
+    {
+        return $this->showItemQuantities;
+    }
+
+    public function setShowItemQuantities(bool $showItemQuantities): DisplayConfiguration
+    {
+        $this->showItemQuantities = $showItemQuantities;
 
         return $this;
     }

@@ -63,7 +63,7 @@ class DatumRepository extends ServiceEntityRepository
     {
         $id = $collection->getId();
         $type = DatumTypeEnum::TYPE_PRICE;
-        $cast = match ($this->_em->getConnection()->getDatabasePlatform()->getName()) {
+        $cast = match ($this->getEntityManager()->getConnection()->getDatabasePlatform()->getName()) {
             'postgresql' => 'DOUBLE PRECISION',
             'mysql' => 'DECIMAL(12, 2)',
             default => throw new Exception(),
@@ -81,7 +81,7 @@ class DatumRepository extends ServiceEntityRepository
             GROUP BY datum.label
         ";
 
-        $result = $this->_em->createNativeQuery($sql, $rsm)->getArrayResult();
+        $result = $this->getEntityManager()->createNativeQuery($sql, $rsm)->getArrayResult();
 
         return array_map(static function ($price): float {
             return (float) $price['value'];

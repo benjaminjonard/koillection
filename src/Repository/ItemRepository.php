@@ -44,7 +44,7 @@ class ItemRepository extends ServiceEntityRepository
         if ($parent instanceof Collection) {
             $results = $this->findForOrdering($parent, true);
         } elseif ($parent instanceof Tag) {
-            $results = $this->_em
+            $results = $this->getEntityManager()
                 ->createQueryBuilder()
                 ->select('DISTINCT i')
                 ->from(Item::class, 'i')
@@ -125,7 +125,7 @@ class ItemRepository extends ServiceEntityRepository
         $parentIds[] = $collection;
 
         while ($parentIds) {
-            $results = $this->_em
+            $results = $this->getEntityManager()
                 ->createQueryBuilder()
                 ->select('c.id')
                 ->from(Collection::class, 'c')
@@ -194,7 +194,7 @@ class ItemRepository extends ServiceEntityRepository
     {
         if ($collection->getItemsDisplayConfiguration()->getSortingProperty()) {
             // Get ordering value
-            $subQuery = $this->_em
+            $subQuery = $this->getEntityManager()
                 ->createQueryBuilder()
                 ->select('datum.value')
                 ->from(Datum::class, 'datum')

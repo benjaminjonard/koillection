@@ -4,8 +4,12 @@
             <div class="collection-item element valign-wrapper" data-title="{{ item.name }}">
                 <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                     <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy" title="{{item.name}}">
+                    {% if displayConfiguration.showItemQuantities and item.quantity > 1 %}
+                        <span class="tag chip">x{{ item.quantity }}</span>
+                    {% endif %}
                 </a>
             </div>
+
             {% if app.user.displayItemsNameInGridView|default(false) == true %}
                 <span class="item-name">{{ item.name }}</span>
             {% endif %}

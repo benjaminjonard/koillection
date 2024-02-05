@@ -12,6 +12,17 @@
                     <i class="fa fa-long-arrow-down {{ sortingProperty is null and sortingDirection == 'DESC' ? 'active' }}" data-column="name" data-direction="desc" data-action="click->table#sort" data-table-target="sorter"></i>
                 </span>
             </th>
+
+            {% if displayConfiguration.showItemQuantities %}
+                <th>
+                    {{ 'label.quantity'|trans }}
+                    <span>
+                    <i class="fa fa-long-arrow-up {{ sortingProperty == 'koi-quantity' and sortingDirection == 'ASC' ? 'active' }}" data-column="koi-quantity" data-direction="asc" data-action="click->table#sort" data-table-target="sorter"></i>
+                    <i class="fa fa-long-arrow-down {{ sortingProperty == 'koi-quantity' and sortingDirection == 'DESC' ? 'active' }}" data-column="koi-quantity" data-direction="desc" data-action="click->table#sort" data-table-target="sorter"></i>
+                </span>
+                </th>
+            {% endif %}
+
             {% for column in displayConfiguration.columns %}
                 <th class="center hide-on-small-and-down">
                     {{ column }}
@@ -47,6 +58,15 @@
                     <a class="table-link" href="{{ link }}"></a>
                     {{ item.name|u.truncate(50, '...') }}
                 </td>
+
+                {% if displayConfiguration.showItemQuantities %}
+                    <td data-column="koi-quantity">
+                    <span data-value="{{ item.quantity }}">
+                    <a class="table-link" href="{{ link }}"></a>
+                    {{ item.quantity }}
+                    </td>
+                {% endif %}
+
                 {% for column in displayConfiguration.columns %}
                     {% set datum = item.getDatumByLabel(column) %}
 

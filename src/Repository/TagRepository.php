@@ -78,7 +78,7 @@ class TagRepository extends ServiceEntityRepository
 
     public function countForTagSearch(SearchTag $search, string $context): int
     {
-        $qb = $this->_em
+        $qb = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('count(DISTINCT t.id)')
             ->from(Tag::class, 't')
@@ -143,7 +143,7 @@ class TagRepository extends ServiceEntityRepository
 
     public function findForSearch(Search $search): array
     {
-        $itemsCount = $this->_em->getRepository(Item::class)->count([]);
+        $itemsCount = $this->getEntityManager()->getRepository(Item::class)->count([]);
 
         $qb = $this
             ->getEntityManager()
@@ -179,7 +179,7 @@ class TagRepository extends ServiceEntityRepository
 
     public function findAllForHighlight(): array
     {
-        return $this->_em
+        return $this->getEntityManager()
             ->createQueryBuilder()
             ->select('DISTINCT partial t.{id, label}, LENGTH(t.label) as HIDDEN length')
             ->from(Tag::class, 't')
@@ -192,7 +192,7 @@ class TagRepository extends ServiceEntityRepository
     public function findRelatedTags(Tag $tag)
     {
         // Get all items ids the current tag is linked to
-        $results = $this->_em->createQueryBuilder()
+        $results = $this->getEntityManager()->createQueryBuilder()
             ->select('DISTINCT i2.id')
             ->from(Item::class, 'i2')
             ->leftJoin('i2.tags', 't2')
@@ -206,7 +206,7 @@ class TagRepository extends ServiceEntityRepository
             return $row['id'];
         }, $results);
 
-        return $this->_em
+        return $this->getEntityManager()
             ->createQueryBuilder()
             ->select('DISTINCT partial t.{id, label}')
             ->from(Tag::class, 't')

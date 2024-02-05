@@ -60,6 +60,12 @@ class DisplayConfigurationType extends AbstractType
             ]);
         }
 
+        if ($options['hasShowItemQuantities']) {
+            $builder->add('showItemQuantities', CheckboxType::class, [
+                'required' => false,
+            ]);
+        }
+
         if (!empty($options['sorting'])) {
             $sortingProperties = [];
             foreach ($options['sorting'] as $key => $label) {
@@ -150,6 +156,7 @@ class DisplayConfigurationType extends AbstractType
             'hasShowActions' => false,
             'hasShowNumberOfChildren' => false,
             'hasShowNumberOfItems' => false,
+            'hasShowItemQuantities' => false,
             'sorting' => [],
             'columns' => [
                 'hasColumns' => true,

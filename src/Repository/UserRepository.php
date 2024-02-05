@@ -54,7 +54,7 @@ class UserRepository extends ServiceEntityRepository
             ->addScalarResult('signs', 'signs')
         ;
 
-        $query = $this->_em->createNativeQuery($sql, $rsm);
+        $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
         $query
             ->setParameter(1, $user->getId())
             ->setParameter(2, $user->getId())

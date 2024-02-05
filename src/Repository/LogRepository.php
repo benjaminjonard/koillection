@@ -50,7 +50,7 @@ class LogRepository extends ServiceEntityRepository
             return 'App\Entity\\' . ucfirst($value);
         }, $search->getClasses());
 
-        $qb = $this->_em
+        $qb = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('count(DISTINCT l.id)')
             ->where('l.type in (:types)')

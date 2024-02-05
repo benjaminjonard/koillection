@@ -173,7 +173,7 @@ class CollectionRepository extends ServiceEntityRepository
     {
         if ($collection->getChildrenDisplayConfiguration()->getSortingProperty()) {
             // Get ordering value
-            $subQuery = $this->_em
+            $subQuery = $this->getEntityManager()
                 ->createQueryBuilder()
                 ->select('datum.value')
                 ->from(Datum::class, 'datum')

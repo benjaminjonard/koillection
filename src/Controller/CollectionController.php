@@ -106,7 +106,12 @@ class CollectionController extends AbstractController
             'hasShowActions' => true,
             'hasShowNumberOfChildren' => true,
             'hasShowNumberOfItems' => true,
-            'sorting' => ['form.item_sorting.default_value' => null, 'form.item_sorting.number_of_children' => ReservedLabelEnum::NUMBER_OF_CHILDREN, 'form.item_sorting.number_of_items' => ReservedLabelEnum::NUMBER_OF_ITEMS, ...$datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::TEXT_TYPES)],
+            'sorting' => [
+                'form.item_sorting.default_value' => null,
+                'form.item_sorting.number_of_children' => ReservedLabelEnum::NUMBER_OF_CHILDREN,
+                'form.item_sorting.number_of_items' => ReservedLabelEnum::NUMBER_OF_ITEMS,
+                ...$datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::TEXT_TYPES)
+            ],
             'columns' => [
                 'availableColumnLabels' => $datumRepository->findAllChildrenLabelsInCollection(null, DatumTypeEnum::TEXT_TYPES),
                 'selectedColumnsLabels' => $displayConfiguration->getColumns()
