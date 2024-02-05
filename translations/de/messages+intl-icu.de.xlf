@@ -3565,10 +3565,10 @@
         <target>FrankenPHP Version</target>
       </segment>
     </unit>
-    <unit id="K5G7aFy" name="label.show_item_quantities">
+    <unit id="Xi6swbH" name="btn.add_video">
       <segment state="translated">
-        <source>Show item quantities</source>
-        <target>Show item quantities</target>
+        <source>Video</source>
+        <target>Video</target>
       </segment>
     </unit>
     <unit id="wgg5Wgv" name="form.item_sorting.quantity">
