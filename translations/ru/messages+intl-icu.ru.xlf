@@ -3571,5 +3571,11 @@
         <target>Видео</target>
       </segment>
     </unit>
+    <unit id="wgg5Wgv" name="form.item_sorting.quantity">
+      <segment state="translated">
+        <source>Quantity</source>
+        <target>Quantity</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -1558,88 +1558,88 @@
         <target>Tag categorie toevoegen</target>
       </segment>
     </unit>
+    <unit id="4z_wk_J" name="title.edit_tag_category">
+      <segment state="translated">
+        <source>Edit tag category {category}</source>
+        <target>Wijzig label categorie {category}</target>
+      </segment>
+    </unit>
     <unit id="MDaq3GB" name="menu.tag_categories">
       <segment state="translated">
         <source>Tag categories</source>
-        <target>Tag categories</target>
+        <target>Label categorieën</target>
       </segment>
     </unit>
     <unit id="NSHmU0h" name="counter.tag_categories">
       <segment state="translated">
         <source>{count, plural, one {# category} other {# categories}}</source>
-        <target>{count, plural, one {# category} other {# categories}}</target>
+        <target>{count, plural, one{# categorie} other {# categorieën}}</target>
       </segment>
     </unit>
     <unit id="d3LXAOu" name="tooltip.add_tag_category">
       <segment state="translated">
         <source>Add a new tag category</source>
-        <target>Add a new tag category</target>
+        <target>Label categorie toevoegen</target>
       </segment>
     </unit>
     <unit id="YTSS_Q1" name="label.color">
       <segment state="translated">
         <source>Color</source>
-        <target>Color</target>
+        <target>Kleur</target>
       </segment>
     </unit>
     <unit id="8QFZX9d" name="title.fields">
       <segment state="translated">
         <source>Fields</source>
-        <target>Fields</target>
+        <target>Velden</target>
       </segment>
     </unit>
     <unit id="6AcgRXg" name="btn.add_field">
       <segment state="translated">
         <source>Add a field</source>
-        <target>Add a field</target>
+        <target>Veld toevoegen</target>
       </segment>
     </unit>
     <unit id="zXS9TNU" name="title.new_template">
       <segment state="translated">
         <source>Add a new template</source>
-        <target>Add a new template</target>
+        <target>Nieuw sjabloon toevoegen</target>
       </segment>
     </unit>
     <unit id="w4I3.hu" name="title.edit_template">
       <segment state="translated">
         <source>Edit template {template}</source>
-        <target>Edit template {template}</target>
+        <target>Sjabloon {template} bewerken</target>
       </segment>
     </unit>
     <unit id="kXYXu7R" name="menu.templates">
       <segment state="translated">
         <source>Templates</source>
-        <target>Templates</target>
+        <target>Sjablonen</target>
       </segment>
     </unit>
     <unit id="hIdqfHr" name="counter.template">
       <segment state="translated">
         <source>{count, plural, one {# template} other {# templates}}</source>
-        <target>{count, plural, one {# template} other {# templates}}</target>
+        <target>{count, plural, one {# sjabloon} other {# sjablonen}}</target>
       </segment>
     </unit>
     <unit id=".pBdt4A" name="tooltip.add_template">
       <segment state="translated">
         <source>Create a new template</source>
-        <target>Create a new template</target>
+        <target>Nieuwe sjabloon aanmaken</target>
       </segment>
     </unit>
     <unit id="bYyoqn6" name="label.fields">
       <segment state="translated">
         <source>Fields</source>
-        <target>Fields</target>
+        <target>Velden</target>
       </segment>
     </unit>
     <unit id="1MYrutS" name="counter.field">
       <segment state="translated">
         <source>{count, plural, one {# field} other {# fields}}</source>
-        <target>{count, plural, one {# field} other {# fields}}</target>
-      </segment>
-    </unit>
-    <unit id="pnGDFmf" name="label.type">
-      <segment state="translated">
-        <source>Type</source>
-        <target>Type</target>
+        <target>{count, plural, one {# veld} other {# velden}}</target>
       </segment>
     </unit>
     <unit id="k3.gBP." name="label.choice_list">
@@ -3566,6 +3566,18 @@
       <segment state="translated">
         <source>Video</source>
         <target>Video</target>
+      </segment>
+    </unit>
+    <unit id="K5G7aFy" name="label.show_item_quantities">
+      <segment state="translated">
+        <source>Show item quantities</source>
+        <target>Show item quantities</target>
+      </segment>
+    </unit>
+    <unit id="wgg5Wgv" name="form.item_sorting.quantity">
+      <segment state="translated">
+        <source>Quantity</source>
+        <target>Quantity</target>
       </segment>
     </unit>
   </file>

@@ -3565,5 +3565,17 @@
         <target>Versão do FrankenPHP</target>
       </segment>
     </unit>
+    <unit id="K5G7aFy" name="label.show_item_quantities">
+      <segment state="translated">
+        <source>Show item quantities</source>
+        <target>Show item quantities</target>
+      </segment>
+    </unit>
+    <unit id="wgg5Wgv" name="form.item_sorting.quantity">
+      <segment state="translated">
+        <source>Quantity</source>
+        <target>Quantity</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
