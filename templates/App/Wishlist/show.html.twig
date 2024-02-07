@@ -101,8 +101,7 @@
 
                         <tbody>
                             {% for wish in wishes|naturalSorting %}
-                                <tr class="list-element resize-element" data-title="{{ wish.name }}"
-                                    data-filter-target="element">
+                                <tr class="list-element resize-element" data-title="{{ wish.name }}" data-filter-target="element">
                                     <td data-controller="lightbox">
                                         {% if wish.image %}
                                             <a href="{{ asset(wish.image) }}" data-lightbox="image-{{ wish.id }}">

@@ -1,6 +1,6 @@
 <div id="collection-items" class="grid-container-items" data-controller="lightbox">
     {% for photo in photos %}
-        <div data-filter-target="element">
+        <div data-filter-target="element" data-title="{{ photo.title }}">
             {% set photoText = include('App/Album/_photo_text.html.twig') %}
             <a class="collection-item element valign-wrapper"
                href="{{ asset(photo.image|default('build/images/default.png')) }}"
@@ -11,7 +11,6 @@
                    data-delete-message="{{ 'message.delete.photo'|trans }}"
                {% endif %}
                data-sub-html="{{ photoText }}"
-               data-title="{{ photo.title }}"
             >
                 <img src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
             </a>

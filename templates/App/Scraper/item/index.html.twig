@@ -53,8 +53,7 @@
                 </thead>
                 <tbody>
                 {% for scraper in scrapers %}
-                    <tr class="list-element resize-element" data-title="{{ scraper.name }}"
-                        data-filter-target="element">
+                    <tr class="list-element resize-element" data-title="{{ scraper.name }}" data-filter-target="element">
                         <td>
                             <a href="{{ path('app_scraper_item_show', {'id' : scraper.id}) }}">
                                 <strong>{{ scraper.name }}</strong>
