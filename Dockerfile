@@ -7,6 +7,7 @@ ENV APP_ENV='prod'
 ENV PUID='1000'
 ENV PGID='1000'
 ENV USER='koillection'
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 COPY ./ /var/www/koillection
 
