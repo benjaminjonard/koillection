@@ -3529,6 +3529,12 @@
         <target>Raspadores de deseos</target>
       </segment>
     </unit>
+    <unit id="OJ77gpR" name="counter.item_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# item scraper} other {# item scrapers}}</source>
+        <target>{count, plural, one {# item scraper} other {# item scrapers}}</target>
+      </segment>
+    </unit>
     <unit id="noR9AMY" name="counter.collection_scrapers">
       <segment state="translated">
         <source>{count, plural, one {# collection scraper} other {# collection scrapers}}</source>
@@ -3544,37 +3550,37 @@
     <unit id="KLXszaB" name="label.price_path">
       <segment state="translated">
         <source>Price path</source>
-        <target>Price path</target>
+        <target>Ruta de precio</target>
       </segment>
     </unit>
     <unit id="qR8RuNn" name="label.display_items_name_in_grid_view">
       <segment state="translated">
         <source>Display items name in grid view</source>
-        <target>Display items name in grid view</target>
+        <target>Mostrar los nombres de los elementos en la vista de rejilla</target>
       </segment>
     </unit>
     <unit id="QEwp7eI" name="label.frankenphp_version">
       <segment state="translated">
         <source>FrankenPHP version</source>
-        <target>FrankenPHP version</target>
+        <target>Versión de FrankenPHP</target>
       </segment>
     </unit>
     <unit id="Xi6swbH" name="btn.add_video">
       <segment state="translated">
         <source>Video</source>
-        <target>Video</target>
+        <target>Vídeo</target>
       </segment>
     </unit>
     <unit id="K5G7aFy" name="label.show_item_quantities">
       <segment state="translated">
         <source>Show item quantities</source>
-        <target>Show item quantities</target>
+        <target>Mostrar cantidades de elementos</target>
       </segment>
     </unit>
     <unit id="wgg5Wgv" name="form.item_sorting.quantity">
       <segment state="translated">
         <source>Quantity</source>
-        <target>Quantity</target>
+        <target>Cantidad</target>
       </segment>
     </unit>
   </file>
