@@ -7,8 +7,6 @@ ENV PGID=1000
 ENV USER=koillection
 ENV FRANKENPHP_CONFIG="worker /app/public/public/index.php"
 ENV FRANKENPHP_SERVER_NAME=":80"
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
 COPY ./ /app/public
 COPY ./docker/Caddyfile /etc/caddy/Caddyfile
 
@@ -56,6 +54,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    rm -rf /usr/local/bin/composer && \
 # Set permissions
     chown -R "$USER":"$USER" /app/public && \
     chmod +x /app/public/docker/entrypoint-frankenphp.sh && \

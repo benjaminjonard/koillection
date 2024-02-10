@@ -7,7 +7,6 @@ ENV APP_ENV='prod'
 ENV PUID='1000'
 ENV PGID='1000'
 ENV USER='koillection'
-ENV COMPOSER_ALLOW_SUPERUSER=1
 
 COPY ./ /var/www/koillection
 
@@ -67,6 +66,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    rm -rf /usr/local/bin/composer && \
 # Set permissions \
     sed -i "s/user = www-data/user = $USER/g" /etc/php/8.3/fpm/pool.d/www.conf && \
     sed -i "s/group = www-data/group = $USER/g" /etc/php/8.3/fpm/pool.d/www.conf && \

@@ -34,8 +34,6 @@ echo "DB_VERSION=${DB_VERSION:-}" >> "/var/www/koillection/.env.local"
 
 echo "CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN:-'^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'}" >> "/var/www/koillection/.env.local"
 
-composer dump-env ${APP_ENV:-prod}
-
 echo "session.cookie_secure=${HTTPS_ENABLED}" >> /etc/php/8.3/fpm/conf.d/php.ini
 echo "date.timezone=${PHP_TZ}" >> /etc/php/8.3/fpm/conf.d/php.ini
 echo "memory_limit=${PHP_MEMORY_LIMIT:-'512M'}" >> /etc/php/8.3/fpm/conf.d/php.ini
