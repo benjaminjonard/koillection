@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.5] / 2024-02-13
+### Fixes
+- Fix doctrine json datatype migrations (benjaminjonard)
+
 ## [1.5.4] / 2024-02-10
 ### Features
 - Add an option to display item quantities on collection page (benjaminjonard)
