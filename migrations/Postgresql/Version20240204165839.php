@@ -43,7 +43,7 @@ final class Version20240204165839 extends AbstractMigration
         foreach ($rows as $row) {
             $id = $row['id'];
             $data = $row[$property];
-            $encodedData = unserialize($data);
+            $encodedData = $data ? unserialize($data) : [];
             $encodedData = json_encode($encodedData);
 
             $this->addSql("UPDATE $table SET $property = '$encodedData' WHERE id = '$id'");
