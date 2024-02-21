@@ -77,7 +77,8 @@ echo "**** 9/10 - Create symfony log files ****" && \
 [ ! -f /app/public/var/log/prod.log ] && \
 	touch /app/public/var/log/prod.log
 
-chown -R www-data:www-data /app/public/var
+chown -R "$USER":"$USER" /app/public/var/log
+chown -R "$USER":"$USER" /app/public/var/log/prod.log
 
 echo "**** 10/10 - Setup complete, starting the server. ****"
 frankenphp run --config /etc/caddy/Caddyfile

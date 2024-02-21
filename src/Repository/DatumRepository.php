@@ -74,7 +74,7 @@ class DatumRepository extends ServiceEntityRepository
         $rsm->addScalarResult('value', 'value');
 
         $sql = "
-            SELECT datum.label AS label, SUM(CAST(datum.value AS {$cast})) AS value
+            SELECT datum.label AS label, SUM(CAST(datum.value AS {$cast}) * item.quantity) AS value
             FROM koi_datum datum
             JOIN koi_item item ON datum.item_id = item.id AND item.collection_id = '{$id}'
             WHERE datum.type = '{$type}'

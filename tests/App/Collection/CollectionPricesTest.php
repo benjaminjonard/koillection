@@ -119,7 +119,7 @@ class CollectionPricesTest extends AppTestCase
         $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $user]);
-        $item = ItemFactory::createOne(['collection' => $collectionLevel3, 'owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collectionLevel3, 'owner' => $user, 'quantity' => 2]);
         DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Original price', 'value' => '100', 'item' => $item, 'owner' => $user]);
         DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'label' => 'Current price', 'value' => '1000', 'item' => $item, 'owner' => $user]);
 
@@ -127,14 +127,14 @@ class CollectionPricesTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertEqualsWithDelta(100.0, $collectionLevel1->getCachedValues()['prices']['Original price'], PHP_FLOAT_EPSILON);
-        $this->assertEqualsWithDelta(1000.0, $collectionLevel1->getCachedValues()['prices']['Current price'], PHP_FLOAT_EPSILON);
+        $this->assertEqualsWithDelta(200.0, $collectionLevel1->getCachedValues()['prices']['Original price'], PHP_FLOAT_EPSILON);
+        $this->assertEqualsWithDelta(2000.0, $collectionLevel1->getCachedValues()['prices']['Current price'], PHP_FLOAT_EPSILON);
 
-        $this->assertEqualsWithDelta(100.0, $collectionLevel2->getCachedValues()['prices']['Original price'], PHP_FLOAT_EPSILON);
-        $this->assertEqualsWithDelta(1000.0, $collectionLevel2->getCachedValues()['prices']['Current price'], PHP_FLOAT_EPSILON);
+        $this->assertEqualsWithDelta(200.0, $collectionLevel2->getCachedValues()['prices']['Original price'], PHP_FLOAT_EPSILON);
+        $this->assertEqualsWithDelta(2000.0, $collectionLevel2->getCachedValues()['prices']['Current price'], PHP_FLOAT_EPSILON);
 
-        $this->assertEqualsWithDelta(100.0, $collectionLevel3->getCachedValues()['prices']['Original price'], PHP_FLOAT_EPSILON);
-        $this->assertEqualsWithDelta(1000.0, $collectionLevel3->getCachedValues()['prices']['Current price'], PHP_FLOAT_EPSILON);
+        $this->assertEqualsWithDelta(200.0, $collectionLevel3->getCachedValues()['prices']['Original price'], PHP_FLOAT_EPSILON);
+        $this->assertEqualsWithDelta(2000.0, $collectionLevel3->getCachedValues()['prices']['Current price'], PHP_FLOAT_EPSILON);
     }
 
     public function test_move_item(): void

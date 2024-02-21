@@ -42,7 +42,7 @@ class ItemRepository extends ServiceEntityRepository
     {
         $results = [];
         if ($parent instanceof Collection) {
-            $results = $this->findForOrdering($parent, true);
+            $results = $this->findForOrdering($parent, false);
         } elseif ($parent instanceof Tag) {
             $results = $this->getEntityManager()
                 ->createQueryBuilder()
@@ -51,7 +51,7 @@ class ItemRepository extends ServiceEntityRepository
                 ->leftJoin('i.tags', 't')
                 ->where('t = :tag')
                 ->setParameter('tag', $parent->getId())
-                ->getQuery()->getArrayResult()
+                ->getQuery()->getResult()
             ;
         }
 
@@ -60,7 +60,7 @@ class ItemRepository extends ServiceEntityRepository
         $count = \count($results);
         $current = null;
         foreach ($results as $key => $result) {
-            if ($result['id'] == $item->getId()) {
+            if ($result->getId() == $item->getId()) {
                 $current = $key;
                 break;
             }
