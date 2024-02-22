@@ -3491,10 +3491,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.35.1":
-  version: 3.35.1
-  resolution: "core-js@npm:3.35.1"
-  checksum: 10/5d31f22eb05cf66bd1a2088a04b7106faa5d0b91c1ffa5d72c5203e4974c31bd7e11969297f540a806c00c74c23991eaad5639592df8b5dbe4412fff3c075cd5
+"core-js@npm:3.36.0":
+  version: 3.36.0
+  resolution: "core-js@npm:3.36.0"
+  checksum: 10/896326c6391c1607dc645293c214cd31c6c535d4a77a88b15fc29e787199f9b06dc15986ddfbc798335bf7a7afd1e92152c94aa5a974790a7f97a98121774302
   languageName: node
   linkType: hard
 
@@ -3912,13 +3912,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"echarts@npm:5.4.3":
-  version: 5.4.3
-  resolution: "echarts@npm:5.4.3"
+"echarts@npm:5.5.0":
+  version: 5.5.0
+  resolution: "echarts@npm:5.5.0"
   dependencies:
     tslib: "npm:2.3.0"
-    zrender: "npm:5.4.4"
-  checksum: 10/4a4edc95a83faf498ada31f9764d98841daf2dbcae0861c5e7c1e53fba6e6e9cfdd05a2cd60e6092f1d361316380ca79826486800fde9b4fc4b024ba67c23919
+    zrender: "npm:5.5.0"
+  checksum: 10/f678cf3f9673ead416afb3816fa2d391eb5cf5ce57b55d300acd17ae7b4aad9cf82a765363f7d3d2da237c9a0b3bfaf600d3d15c5401a083a20b7e0c6fd4ab8b
   languageName: node
   linkType: hard
 
@@ -5189,9 +5189,9 @@ __metadata:
     "@symfony/webpack-encore": "npm:4.6.1"
     bazinga-translator: "npm:6.0.0"
     copy-webpack-plugin: "npm:12.0.2"
-    core-js: "npm:3.35.1"
+    core-js: "npm:3.36.0"
     croppie: "npm:2.6.5"
-    echarts: "npm:5.4.3"
+    echarts: "npm:5.5.0"
     hotkeys-js: "npm:^3.10.2"
     intl-messageformat: "npm:10.5.11"
     regenerator-runtime: "npm:0.14.1"
@@ -5199,7 +5199,7 @@ __metadata:
     stimulus-lightbox: "npm:3.2.0"
     stimulus-use: "npm:0.52.2"
     ts-select2: "npm:^0.2.5"
-    webpack: "npm:5.90.1"
+    webpack: "npm:5.90.3"
     webpack-bundle-analyzer: "npm:4.10.1"
     webpack-cli: "npm:5.1.4"
     webpack-notifier: "npm:1.15.0"
@@ -7871,9 +7871,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.90.1":
-  version: 5.90.1
-  resolution: "webpack@npm:5.90.1"
+"webpack@npm:5.90.3":
+  version: 5.90.3
+  resolution: "webpack@npm:5.90.3"
   dependencies:
     "@types/eslint-scope": "npm:^3.7.3"
     "@types/estree": "npm:^1.0.5"
@@ -7904,7 +7904,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 10/6ad23518123f1742238177920cefa61152d981f986adac5901236845c86ba9bb375a3ba75e188925c856c3d2a76a2ba119e95b8a608a51424968389041089075
+  checksum: 10/48c9696eca950bfa7c943a24b8235fdf0575acd73a8eb1661f8189d3d1f431362f3a0e158e2941a7e4f0852ea6e32d7d4e89283149247e4389a8aad0fe6c247e
   languageName: node
   linkType: hard
 
@@ -8040,11 +8040,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zrender@npm:5.4.4":
-  version: 5.4.4
-  resolution: "zrender@npm:5.4.4"
+"zrender@npm:5.5.0":
+  version: 5.5.0
+  resolution: "zrender@npm:5.5.0"
   dependencies:
     tslib: "npm:2.3.0"
-  checksum: 10/4f9bc308aedef8655d3bb2c1ec5588b2e5a0e099019b7959476de18d3bb199d5c0763f291079c363c198a57acaeb8db9d8ce3a1425404f5e9ccbfa93a2edf298
+  checksum: 10/25208e6be7047cba55c5c1f4a1cf3641177015bb8bf6154dde9980cc8888db70ec86c7eabb695df15c6bcdcf81daaa44f0338dcd57b5b45540bf5d6f5372eb85
   languageName: node
   linkType: hard
