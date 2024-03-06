@@ -16,7 +16,7 @@
 {% macro recursiveCollection(collection) %}
     {% import _self as self %}
     <li class="inventory-collection-show">
-        <div class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green lighten-4' : 'red lighten-4' }}">
+        <div class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green' : 'red' }}">
             {{ collection.title }} -
             <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span>
             /
@@ -62,24 +62,25 @@
 
 {% block content %}
 <div data-controller="inventory" data-inventory-id="{{ inventory.id }}">
-    <div class="title-block">
-        <h1>
-            {{ inventory.name }}
-        </h1>
-        <div data-inventory-target="pills">
-            {{ include('App/Inventory/_nav_pills.html.twig', {'inventory': inventory}) }}
+    <div class="collection-header">
+        <div class="title-block">
+            <div>
+                <h1>{{ inventory.name }}</h1>
+                <div data-inventory-target="pills">
+                    {{ include('App/Inventory/_nav_pills.html.twig', {'inventory': inventory}) }}
+                </div>
+            </div>
         </div>
 
         <div></div>
 
         <div class="btn-holder">
-            <div class="left">
+            <div>
                 {{ include('App/_partials/_icon/_delete.html.twig', {
                     path: path('app_inventory_delete', {id: inventory.id}),
                     message: 'message.delete.inventory'
                 }) }}
             </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 
@@ -87,6 +88,9 @@
         <div class="block-element">
             <div class="row">
                 <h2 class="header">{{ 'title.collections'|trans }}</h2>
+            </div>
+
+            <div class="row">
                 <div class="s12 m10 offset-m1">
                     <ul id="inventory-root">
                         <li>
@@ -101,4 +105,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

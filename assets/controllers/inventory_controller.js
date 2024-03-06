@@ -35,11 +35,11 @@ export default class extends Controller {
                 //Update colors
                 let title = collection.querySelector('.card-panel');
                 if (totalCounter === newValue) {
-                    title.classList.remove('red', 'lighten-4');
-                    title.classList.add('green', 'lighten-4');
+                    title.classList.remove('red');
+                    title.classList.add('green');
                 } else {
-                    title.classList.remove('green', 'lighten-4');
-                    title.classList.add('red', 'lighten-4');
+                    title.classList.remove('green');
+                    title.classList.add('red');
                 }
             });
         })

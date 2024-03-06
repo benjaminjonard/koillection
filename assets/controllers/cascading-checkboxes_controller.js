@@ -7,7 +7,9 @@ export default class extends Controller {
         let ids = [];
 
         this.checkboxTargets.forEach((checkbox) => {
-            ids.push(checkbox.dataset.id);
+            if (checkbox.checked) {
+                ids.push(checkbox.dataset.id);
+            }
         });
 
         this.inputTarget.value = ids.join();
@@ -16,6 +18,7 @@ export default class extends Controller {
     update(event) {
         let checked = event.target.checked;
         let checkboxes = event.target.closest('ul').getElementsByTagName('input');
+
         for (const checkbox of checkboxes) {
             checkbox.checked = checked;
         }
