@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.7] / 2024-03-15
+### Fixes
+- Properly use quantity when display collection's total price (benjaminjonard)
+- Fix inventory form always using all collections (benjaminjonard)
+- Allow search in choice lists metadata (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix CVE-2023-42282 and CVE-2024-28849 (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.5.6] / 2024-02-13
 ### Fixes
 - Fix quotes in doctrine json datatype migrations (benjaminjonard)
