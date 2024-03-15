@@ -7,7 +7,7 @@ export default class extends Controller {
     select2;
 
     connect() {
-        this.loadSelect()
+        this.loadSelect();
     }
 
     loadSelect() {

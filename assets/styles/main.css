@@ -122,8 +122,12 @@ table img {
     text-transform: none;
 }
 
-.select2-selection--multiple .select2-search {
-    display: none;
+.input-field input:focus:not([readonly]) {
+    border: none;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin-top: 11px;
 }
 
 a {
