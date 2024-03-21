@@ -26,6 +26,8 @@ doctrine:
         filters:
             ownership: App\Doctrine\Filter\OwnershipFilter
             visibility: App\Doctrine\Filter\VisibilityFilter
+        controller_resolver:
+            auto_mapping: true
 
 when@dev:
     doctrine:

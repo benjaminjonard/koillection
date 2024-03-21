@@ -26,7 +26,7 @@ class TagRepository extends ServiceEntityRepository
         return $this
             ->createQueryBuilder('t')
             ->leftJoin('t.items', 'i')
-            ->addSelect('partial i.{id, name, image, imageSmallThumbnail, finalVisibility}')
+            ->addSelect('i')
             ->where('t.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
@@ -181,7 +181,7 @@ class TagRepository extends ServiceEntityRepository
     {
         return $this->getEntityManager()
             ->createQueryBuilder()
-            ->select('DISTINCT partial t.{id, label}, LENGTH(t.label) as HIDDEN length')
+            ->select('DISTINCT t, LENGTH(t.label) as HIDDEN length')
             ->from(Tag::class, 't')
             ->orderBy('length', Criteria::DESC)
             ->getQuery()
@@ -208,7 +208,7 @@ class TagRepository extends ServiceEntityRepository
 
         return $this->getEntityManager()
             ->createQueryBuilder()
-            ->select('DISTINCT partial t.{id, label}')
+            ->select('DISTINCT t')
             ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->where('i.id IN (:itemIds)')

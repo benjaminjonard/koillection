@@ -1,5 +1,8 @@
 when@dev: &dev
     zenstruck_foundry:
         auto_refresh_proxies: true
+        database_resetter:
+            orm:
+                reset_mode: migrate
 
 when@test: *dev

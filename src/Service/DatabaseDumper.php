@@ -10,6 +10,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\String\UnicodeString;
 
 class DatabaseDumper
 {
@@ -147,7 +148,10 @@ class DatabaseDumper
 
     private function formatValue($value, string $property, ClassMetadata|null $metadata)
     {
-        $type = $metadata?->getTypeOfField(array_search($property, $metadata->columnNames, true));
+        $property = (new UnicodeString($property))->camel()->toString();
+
+        $type = $metadata?->getTypeOfField($property);
+
         if (\is_string($value)) {
             $value = $type !== 'json' ? str_replace(['\\', "'"], ['\\\\', "''"], $value) : str_replace("'", "''", $value);
         }

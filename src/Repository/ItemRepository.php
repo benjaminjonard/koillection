@@ -142,7 +142,6 @@ class ItemRepository extends ServiceEntityRepository
 
         $qb = $this
             ->createQueryBuilder('i')
-            ->select('partial i.{id, name, image, imageSmallThumbnail, finalVisibility}')
             ->where('i.collection IN (:collectionsIds)')
             ->setParameter('collectionsIds', $collectionsIds)
         ;
@@ -150,7 +149,7 @@ class ItemRepository extends ServiceEntityRepository
         if (DisplayModeEnum::DISPLAY_MODE_LIST === $collection->getItemsDisplayConfiguration()->getDisplayMode()) {
             $qb
                 ->leftJoin('i.data', 'data', 'WITH', 'data.label IN (:labels) OR data IS NULL')
-                ->addSelect('partial data.{id, label, type, value}')
+                ->addSelect('data')
                 ->setParameter('labels', $collection->getItemsDisplayConfiguration()->getColumns())
             ;
         }

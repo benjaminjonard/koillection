@@ -20,7 +20,7 @@ class TagCategoryRepository extends ServiceEntityRepository
         return $this
             ->createQueryBuilder('c')
             ->leftJoin('c.tags', 't')
-            ->addSelect('partial t.{id, label}')
+            ->addSelect('t')
             ->where('c.id = :id')
             ->setParameter('id', $id)
             ->getQuery()

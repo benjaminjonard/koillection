@@ -9,6 +9,8 @@ use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -63,10 +65,11 @@ class DatumRepository extends ServiceEntityRepository
     {
         $id = $collection->getId();
         $type = DatumTypeEnum::TYPE_PRICE;
-        $cast = match ($this->getEntityManager()->getConnection()->getDatabasePlatform()->getName()) {
-            'postgresql' => 'DOUBLE PRECISION',
-            'mysql' => 'DECIMAL(12, 2)',
-            default => throw new Exception(),
+        $databasePlatform = $this->getEntityManager()->getConnection()->getDatabasePlatform();
+
+        $cast = match (true) {
+            $databasePlatform instanceof PostgreSQLPlatform => 'DOUBLE PRECISION',
+            $databasePlatform instanceof MySQLPlatform => 'DECIMAL(12, 2)'
         };
 
         $rsm = new ResultSetMapping();
