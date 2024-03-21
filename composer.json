@@ -14,11 +14,11 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
-        "api-platform/core": "3.2.16",
+        "api-platform/core": "3.2.17",
         "composer/semver": "3.4.0",
-        "doctrine/doctrine-bundle": "2.11.3",
+        "doctrine/doctrine-bundle": "2.12.0",
         "doctrine/doctrine-migrations-bundle": "3.3.0",
-        "doctrine/orm": "2.19.0",
+        "doctrine/orm": "2.19.2",
         "doctrine/persistence": "3.3.2",
         "lexik/jwt-authentication-bundle": "2.20.3",
         "maennchen/zipstream-php": "3.1.0",
@@ -71,17 +71,17 @@
     "require-dev": {
         "brianium/paratest": "7.4.3",
         "dama/doctrine-test-bundle": "8.0.2",
-        "friendsofphp/php-cs-fixer": "3.51.0",
+        "friendsofphp/php-cs-fixer": "3.52.1",
         "justinrainbow/json-schema": "5.2.13",
         "phpunit/php-code-coverage": "11.0.3",
-        "phpunit/phpunit": "11.0.6",
+        "phpunit/phpunit": "11.0.7",
         "rector/rector": "1.0.3",
         "symfony/maker-bundle": "1.56.0",
         "symfony/phpunit-bridge": "7.0.4",
         "symfony/stopwatch": "7.0.3",
         "symfony/var-dumper": "7.0.4",
         "symfony/web-profiler-bundle": "7.0.4",
-        "zenstruck/foundry": "1.36.1"
+        "zenstruck/foundry": "1.37.0"
     },
     "config": {
         "allow-plugins": {
