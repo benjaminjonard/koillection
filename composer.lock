@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4909d54e552b3f4365971c7a0f524fc",
+    "content-hash": "f68bd90e62178cbd411b8ac89a8e00dd",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1236,16 +1236,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "716fc97b70cf8116f74eaa0588eef51420874bf9"
+                "reference": "9c560713925ac5859342e6ff370c4c997acf2fd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/716fc97b70cf8116f74eaa0588eef51420874bf9",
-                "reference": "716fc97b70cf8116f74eaa0588eef51420874bf9",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/9c560713925ac5859342e6ff370c4c997acf2fd4",
+                "reference": "9c560713925ac5859342e6ff370c4c997acf2fd4",
                 "shasum": ""
             },
             "require": {
@@ -1262,7 +1262,7 @@
                 "php": "^8.1",
                 "psr/cache": "^1 || ^2 || ^3",
                 "symfony/console": "^5.4 || ^6.0 || ^7.0",
-                "symfony/var-exporter": "~6.2.13 || ^6.3.2 || ^7.0"
+                "symfony/var-exporter": "^6.3.9 || ^7.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^12.0",
@@ -1318,9 +1318,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/3.1.0"
+                "source": "https://github.com/doctrine/orm/tree/3.1.1"
             },
-            "time": "2024-03-03T17:45:20+00:00"
+            "time": "2024-03-21T11:37:52+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -9669,16 +9669,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.0.7",
+            "version": "11.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "afa8d61ba7ae78da739938c999140eb767a1ad7f"
+                "reference": "48ea58408879a9aad630022186398364051482fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/afa8d61ba7ae78da739938c999140eb767a1ad7f",
-                "reference": "afa8d61ba7ae78da739938c999140eb767a1ad7f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/48ea58408879a9aad630022186398364051482fc",
+                "reference": "48ea58408879a9aad630022186398364051482fc",
                 "shasum": ""
             },
             "require": {
@@ -9749,7 +9749,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.7"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.8"
             },
             "funding": [
                 {
@@ -9765,7 +9765,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-21T07:33:30+00:00"
+            "time": "2024-03-22T04:21:01+00:00"
         },
         {
             "name": "rector/rector",
@@ -10748,16 +10748,16 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.56.0",
+            "version": "v1.57.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "bbb7949ae048363df7c8439abeddef8befd155ce"
+                "reference": "2c90181911241648356b828b86b04fe3571aca0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/bbb7949ae048363df7c8439abeddef8befd155ce",
-                "reference": "bbb7949ae048363df7c8439abeddef8befd155ce",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/2c90181911241648356b828b86b04fe3571aca0b",
+                "reference": "2c90181911241648356b828b86b04fe3571aca0b",
                 "shasum": ""
             },
             "require": {
@@ -10820,7 +10820,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/maker-bundle/issues",
-                "source": "https://github.com/symfony/maker-bundle/tree/v1.56.0"
+                "source": "https://github.com/symfony/maker-bundle/tree/v1.57.0"
             },
             "funding": [
                 {
@@ -10836,7 +10836,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-04T13:36:45+00:00"
+            "time": "2024-03-22T12:00:21+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
