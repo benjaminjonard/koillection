@@ -158,7 +158,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     public function __construct()
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->children = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->data = new ArrayCollection();

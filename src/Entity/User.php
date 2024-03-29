@@ -227,7 +227,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->collectionsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
         $this->albumsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
         $this->wishlistsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = Uuid::v7()->toRfc4122();
     }
 
     public function getUserIdentifier(): string

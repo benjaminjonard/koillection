@@ -44,7 +44,7 @@ class Path
 
     public function __construct()
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = Uuid::v7()->toRfc4122();
     }
 
     public function getId(): ?string

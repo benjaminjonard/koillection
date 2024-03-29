@@ -142,7 +142,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     public function __construct()
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->photos = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->childrenDisplayConfiguration = new DisplayConfiguration();

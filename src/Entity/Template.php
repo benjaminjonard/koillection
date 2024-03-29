@@ -59,7 +59,7 @@ class Template implements BreadcrumbableInterface, LoggableInterface, \Stringabl
 
     public function __construct()
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->fields = new ArrayCollection();
     }
 

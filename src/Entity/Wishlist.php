@@ -139,7 +139,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     public function __construct()
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->wishes = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->childrenDisplayConfiguration = new DisplayConfiguration();

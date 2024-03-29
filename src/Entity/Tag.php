@@ -112,7 +112,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
 
     public function __construct()
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->items = new ArrayCollection();
         $this->itemsDisplayConfiguration = new DisplayConfiguration();
     }
