@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
 use App\Validator as AppAssert;
@@ -52,6 +53,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/photos/{id}/album', uriVariables: ['id' => new Link(fromClass: Photo::class, fromProperty: 'album')], normalizationContext: ['groups' => ['album:read']], operations: [new Get()])]
 class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
 {
+    use VisibleTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['album:read'])]
@@ -307,42 +310,6 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTimeImmutable());
         }
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getParentVisibility(): ?string
-    {
-        return $this->parentVisibility;
-    }
-
-    public function setParentVisibility(?string $parentVisibility): self
-    {
-        $this->parentVisibility = $parentVisibility;
-
-        return $this;
-    }
-
-    public function getFinalVisibility(): string
-    {
-        return $this->finalVisibility;
-    }
-
-    public function setFinalVisibility(string $finalVisibility): self
-    {
-        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

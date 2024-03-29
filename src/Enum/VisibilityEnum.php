@@ -38,21 +38,4 @@ class VisibilityEnum
             self::VISIBILITY_PRIVATE => 'global.visibilities.private',
         ];
     }
-
-    public static function computeFinalVisibility(string $visibility, ?string $parentVisibility): string
-    {
-        if (null === $parentVisibility) {
-            return $visibility;
-        }
-
-        if (self::VISIBILITY_PUBLIC === $visibility && self::VISIBILITY_PUBLIC === $parentVisibility) {
-            return self::VISIBILITY_PUBLIC;
-        }
-
-        if (self::VISIBILITY_PRIVATE === $visibility || self::VISIBILITY_PRIVATE === $parentVisibility) {
-            return self::VISIBILITY_PRIVATE;
-        }
-
-        return self::VISIBILITY_INTERNAL;
-    }
 }

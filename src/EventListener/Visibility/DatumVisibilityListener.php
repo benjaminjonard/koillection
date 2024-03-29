@@ -19,16 +19,20 @@ use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\UnitOfWork;
 
-#[AsDoctrineListener(event: Events::prePersist, priority: -2)]
-#[AsDoctrineListener(event: Events::onFlush, priority: -2)]
-final class ItemVisibilityListener
+#[AsDoctrineListener(event: Events::prePersist, priority: -3)]
+#[AsDoctrineListener(event: Events::onFlush, priority: -3)]
+final class DatumVisibilityListener
 {
     public function prePersist(PrePersistEventArgs $args): void
     {
         $entity = $args->getObject();
 
-        if ($entity instanceof Item) {
-            $parentVisibility = $entity->getCollection()->getFinalVisibility();
+        if ($entity instanceof Datum) {
+            $parentVisibility = match (true) {
+                $entity->getCollection() instanceof Collection => $entity->getCollection()->getFinalVisibility(),
+                $entity->getItem() instanceof Item => $entity->getItem()->getFinalVisibility(),
+                default => null
+            };
 
             $entity->setParentVisibility($parentVisibility);
             $entity->updateFinalVisibility();
@@ -41,16 +45,17 @@ final class ItemVisibilityListener
         $uow = $em->getUnitOfWork();
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
-            if ($entity instanceof Item) {
+            if ($entity instanceof Datum) {
                 $changeset = $uow->getEntityChangeSet($entity);
 
-                if (\array_key_exists('collection', $changeset) || \array_key_exists('visibility', $changeset)) {
+                $parentVisibility = match (true) {
+                    $entity->getCollection() instanceof Collection => $entity->getCollection()->getFinalVisibility(),
+                    $entity->getItem() instanceof Item => $entity->getItem()->getFinalVisibility(),
+                    default => null
+                };
+
+                if (\array_key_exists('collection', $changeset) || \array_key_exists('item', $changeset) || \array_key_exists('visibility', $changeset)) {
                     $entity->updateFinalVisibility();
-                    foreach ($entity->getData() as $datum) {
-                        $datum->setParentVisibility($entity->getFinalVisibility());
-                        $entity->updateFinalVisibility();
-                        $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Datum::class), $datum);
-                    }
                 }
             }
         }

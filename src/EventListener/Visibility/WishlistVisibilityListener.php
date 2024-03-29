@@ -14,8 +14,8 @@ use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\UnitOfWork;
 
-#[AsDoctrineListener(event: Events::prePersist, priority: 1)]
-#[AsDoctrineListener(event: Events::onFlush, priority: 1)]
+#[AsDoctrineListener(event: Events::prePersist, priority: -1)]
+#[AsDoctrineListener(event: Events::onFlush, priority: -1)]
 final class WishlistVisibilityListener
 {
     public function prePersist(PrePersistEventArgs $args): void
@@ -23,7 +23,7 @@ final class WishlistVisibilityListener
         $entity = $args->getObject();
         if ($entity instanceof Wishlist) {
             $entity->setParentVisibility($entity->getParent()?->getFinalVisibility());
-            $entity->setFinalVisibility(VisibilityEnum::computeFinalVisibility($entity->getVisibility(), $entity->getParentVisibility()));
+            $entity->updateFinalVisibility();
         }
     }
 
@@ -37,12 +37,12 @@ final class WishlistVisibilityListener
                 $changeset = $uow->getEntityChangeSet($entity);
 
                 if (\array_key_exists('parent', $changeset)) {
-                    $entity->setFinalVisibility(VisibilityEnum::computeFinalVisibility($entity->getVisibility(), $entity->getParent()?->getFinalVisibility()));
+                    $entity->updateFinalVisibility();
                     $this->setVisibilityRecursively($entity, $entity->getFinalVisibility(), $uow, $em);
                 }
 
                 if (\array_key_exists('visibility', $changeset)) {
-                    $entity->setFinalVisibility(VisibilityEnum::computeFinalVisibility($entity->getVisibility(), $entity->getParentVisibility()));
+                    $entity->updateFinalVisibility();
                     $this->setVisibilityRecursively($entity, $entity->getFinalVisibility(), $uow, $em);
                 }
             }
@@ -53,13 +53,13 @@ final class WishlistVisibilityListener
     {
         foreach ($entity->getWishes() as $wish) {
             $wish->setParentVisibility($visibility);
-            $wish->setFinalVisibility(VisibilityEnum::computeFinalVisibility($wish->getVisibility(), $visibility));
+            $entity->updateFinalVisibility();
             $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Wish::class), $wish);
         }
 
         foreach ($entity->getChildren() as $child) {
             $child->setParentVisibility($visibility);
-            $child->setFinalVisibility(VisibilityEnum::computeFinalVisibility($child->getVisibility(), $visibility));
+            $entity->updateFinalVisibility();
             $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(Wishlist::class), $child);
 
             $this->setVisibilityRecursively($child, $visibility, $uow, $em);

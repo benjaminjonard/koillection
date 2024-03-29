@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
 use App\Validator as AppAssert;
@@ -52,6 +53,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/wishlists/{id}/parent', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['wishlist:read']], operations: [new Get()])]
 class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface, \Stringable
 {
+    use VisibleTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['wishlist:read'])]
@@ -303,42 +306,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         if ($file instanceof UploadedFile) {
             $this->setUpdatedAt(new \DateTimeImmutable());
         }
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getParentVisibility(): ?string
-    {
-        return $this->parentVisibility;
-    }
-
-    public function setParentVisibility(?string $parentVisibility): self
-    {
-        $this->parentVisibility = $parentVisibility;
-
-        return $this;
-    }
-
-    public function getFinalVisibility(): string
-    {
-        return $this->finalVisibility;
-    }
-
-    public function setFinalVisibility(string $finalVisibility): self
-    {
-        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

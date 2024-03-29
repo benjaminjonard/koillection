@@ -15,6 +15,7 @@ use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishRepository;
 use App\Validator as AppAssert;
@@ -44,6 +45,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/wishlists/{id}/wishes', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'wishes')], normalizationContext: ['groups' => ['wish:read']], operations: [new GetCollection()])]
 class Wish implements CacheableInterface, LoggableInterface, \Stringable
 {
+    use VisibleTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['wish:read'])]
@@ -282,42 +285,6 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getParentVisibility(): ?string
-    {
-        return $this->parentVisibility;
-    }
-
-    public function setParentVisibility(?string $parentVisibility): self
-    {
-        $this->parentVisibility = $parentVisibility;
-
-        return $this;
-    }
-
-    public function getFinalVisibility(): ?string
-    {
-        return $this->finalVisibility;
-    }
-
-    public function setFinalVisibility(?string $finalVisibility): self
-    {
-        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

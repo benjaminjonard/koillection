@@ -13,7 +13,9 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
+use App\Entity\Traits\VisibleTrait;
 use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
 use App\Repository\DatumRepository;
 use App\Validator as AppAssert;
 use Doctrine\DBAL\Types\Types;
@@ -27,6 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DatumRepository::class)]
 #[ORM\Table(name: 'koi_datum')]
 #[ORM\Index(name: 'idx_datum_label', columns: ['label'])]
+#[ORM\Index(name: 'idx_datum_final_visibility', columns: ['final_visibility'])]
 #[Assert\Expression('this.getItem() == null or this.getCollection() == null', message: 'error.datum.cant_be_used_by_both_collections_and_items')]
 #[Assert\Expression('this.getItem() != null or this.getCollection() != null', message: 'error.datum.must_provide_collection_or_item')]
 #[ApiResource(
@@ -49,6 +52,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/items/{id}/data', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'data')], normalizationContext: ['groups' => ['datum:read']], operations: [new GetCollection()])]
 class Datum implements \Stringable
 {
+    use VisibleTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['datum:read'])]
@@ -136,6 +141,19 @@ class Datum implements \Stringable
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['datum:read'])]
     private ?User $owner = null;
+
+    #[ORM\Column(type: Types::STRING, length: 10)]
+    #[Groups(['datum:read', 'datum:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
+
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
+    #[Groups(['datum:read'])]
+    private ?string $parentVisibility = null;
+
+    #[ORM\Column(type: Types::STRING, length: 10)]
+    #[Groups(['datum:read'])]
+    private string $finalVisibility;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['datum:read'])]

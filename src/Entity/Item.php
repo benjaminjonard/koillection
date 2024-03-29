@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibleTrait;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\ItemRepository;
@@ -55,6 +56,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/tags/{id}/items', uriVariables: ['id' => new Link(fromClass: Tag::class, fromProperty: 'items', toProperty: 'tags')], normalizationContext: ['groups' => ['item:read']], operations: [new GetCollection()])]
 class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
 {
+    use VisibleTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['item:read'])]
@@ -447,42 +450,6 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setImageLargeThumbnail(?string $imageLargeThumbnail): Item
     {
         $this->imageLargeThumbnail = $imageLargeThumbnail;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): Item
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getParentVisibility(): ?string
-    {
-        return $this->parentVisibility;
-    }
-
-    public function setParentVisibility(?string $parentVisibility): Item
-    {
-        $this->parentVisibility = $parentVisibility;
-
-        return $this;
-    }
-
-    public function getFinalVisibility(): string
-    {
-        return $this->finalVisibility;
-    }
-
-    public function setFinalVisibility(string $finalVisibility): Item
-    {
-        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

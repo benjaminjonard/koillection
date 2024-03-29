@@ -18,8 +18,8 @@ use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\UnitOfWork;
 
-#[AsDoctrineListener(event: Events::prePersist, priority: 2)]
-#[AsDoctrineListener(event: Events::onFlush, priority: 2)]
+#[AsDoctrineListener(event: Events::prePersist, priority: -2)]
+#[AsDoctrineListener(event: Events::onFlush, priority: -2)]
 final class PhotoVisibilityListener
 {
     public function prePersist(PrePersistEventArgs $args): void
@@ -30,7 +30,7 @@ final class PhotoVisibilityListener
             $parentVisibility = $entity->getAlbum()->getFinalVisibility();
 
             $entity->setParentVisibility($parentVisibility);
-            $entity->setFinalVisibility(VisibilityEnum::computeFinalVisibility($entity->getVisibility(), $parentVisibility));
+            $entity->updateFinalVisibility();
         }
     }
 
@@ -43,14 +43,8 @@ final class PhotoVisibilityListener
             if ($entity instanceof Photo) {
                 $changeset = $uow->getEntityChangeSet($entity);
 
-                $parentVisibility = $entity->getAlbum()->getFinalVisibility();
-
-                if (\array_key_exists('album', $changeset)) {
-                    $entity->setFinalVisibility(VisibilityEnum::computeFinalVisibility($entity->getVisibility(), $parentVisibility));
-                }
-
-                if (\array_key_exists('visibility', $changeset)) {
-                    $entity->setFinalVisibility(VisibilityEnum::computeFinalVisibility($entity->getVisibility(), $parentVisibility));
+                if (\array_key_exists('album', $changeset) || \array_key_exists('visibility', $changeset)) {
+                    $entity->updateFinalVisibility();
                 }
             }
         }

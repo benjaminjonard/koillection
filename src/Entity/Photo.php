@@ -15,6 +15,7 @@ use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\PhotoRepository;
 use App\Validator as AppAssert;
@@ -45,6 +46,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/albums/{id}/photos', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'photos')], normalizationContext: ['groups' => ['photo:read']], operations: [new GetCollection()])]
 class Photo implements CacheableInterface, LoggableInterface, \Stringable
 {
+    use VisibleTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['photo:read'])]
@@ -262,42 +265,6 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getParentVisibility(): ?string
-    {
-        return $this->parentVisibility;
-    }
-
-    public function setParentVisibility(?string $parentVisibility): self
-    {
-        $this->parentVisibility = $parentVisibility;
-
-        return $this;
-    }
-
-    public function getFinalVisibility(): string
-    {
-        return $this->finalVisibility;
-    }
-
-    public function setFinalVisibility(string $finalVisibility): self
-    {
-        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }

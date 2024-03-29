@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
 use App\Validator as AppAssert;
@@ -53,6 +54,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/items/{id}/collection', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'collection')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
 class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface, \Stringable
 {
+    use VisibleTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, options: ['fixed' => true])]
     #[Groups(['collection:read'])]
@@ -370,42 +373,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setItemsDefaultTemplate(?Template $itemsDefaultTemplate): Collection
     {
         $this->itemsDefaultTemplate = $itemsDefaultTemplate;
-
-        return $this;
-    }
-
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): Collection
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    public function getParentVisibility(): ?string
-    {
-        return $this->parentVisibility;
-    }
-
-    public function setParentVisibility(?string $parentVisibility): Collection
-    {
-        $this->parentVisibility = $parentVisibility;
-
-        return $this;
-    }
-
-    public function getFinalVisibility(): ?string
-    {
-        return $this->finalVisibility;
-    }
-
-    public function setFinalVisibility(string $finalVisibility): Collection
-    {
-        $this->finalVisibility = $finalVisibility;
 
         return $this;
     }
