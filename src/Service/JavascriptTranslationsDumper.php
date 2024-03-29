@@ -10,14 +10,14 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Twig\Environment;
 
-readonly class JavascriptTranslationsDumper
+class JavascriptTranslationsDumper
 {
     public function __construct(
-        private Environment $twig,
-        private Filesystem $filesystem,
-        #[Autowire('%default_locale%')] private string $defaultLocale,
-        #[Autowire('%kernel.enabled_locales%')] private array $enabledLocales,
-        #[Autowire('%kernel.project_dir%/translations')] private string $translationsPath,
+        private readonly Environment $twig,
+        private readonly Filesystem $filesystem,
+        #[Autowire('%default_locale%')] private readonly string $defaultLocale,
+        #[Autowire('%kernel.enabled_locales%')] private readonly array $enabledLocales,
+        #[Autowire('%kernel.project_dir%/translations')] private readonly string $translationsPath,
     ) {
     }
 

@@ -8,10 +8,10 @@ use App\Entity\User;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\File;
 
-readonly class DiskUsageCalculator
+class DiskUsageCalculator
 {
     public function __construct(
-        #[Autowire('%kernel.project_dir%/public')] private string $publicPath
+        #[Autowire('%kernel.project_dir%/public')] private readonly string $publicPath
     ) {
     }
 

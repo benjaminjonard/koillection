@@ -7,11 +7,11 @@ namespace App\Service;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Intl\Locales;
 
-readonly class LocaleHelper
+class LocaleHelper
 {
     public function __construct(
-        #[Autowire('%default_locale%')] private string $defaultLocale,
-        #[Autowire('%kernel.enabled_locales%')] private array $enabledLocales
+        #[Autowire('%default_locale%')] private readonly string $defaultLocale,
+        #[Autowire('%kernel.enabled_locales%')] private readonly array $enabledLocales
     ) {
     }
 
