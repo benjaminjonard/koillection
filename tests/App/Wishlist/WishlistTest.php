@@ -68,6 +68,8 @@ class WishlistTest extends AppTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
+        WishlistFactory::createMany(3, ['owner' => $user, 'parent' => $wishlist]);
+        WishFactory::createMany(3, ['owner' => $user, 'wishlist' => $wishlist]);
 
         // Act
         $crawler = $this->client->request('GET', '/wishlists/' . $wishlist->getId());
@@ -75,6 +77,32 @@ class WishlistTest extends AppTestCase
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertEquals($wishlist->getName(), $crawler->filter('h1')->text());
+        $this->assertCount(3, $crawler->filter('.collection-element'));
+        $this->assertCount(3, $crawler->filter('.list-element'));
+    }
+
+    public function test_can_get_wishlist_with_list_view(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+
+        $wishlist = WishlistFactory::createOne(['owner' => $user]);
+        $wishlist->getChildrenDisplayConfiguration()->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST);
+        $wishlist->save();
+
+        WishlistFactory::createMany(3, ['owner' => $user, 'parent' => $wishlist]);
+        WishFactory::createMany(3, ['owner' => $user, 'wishlist' => $wishlist]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/wishlists/' . $wishlist->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals($wishlist->getName(), $crawler->filter('h1')->text());
+
+        $this->assertCount(3, $crawler->filter('.children-table tbody tr'));
+        $this->assertCount(3, $crawler->filter('.items-table tbody tr'));
     }
 
     public function test_can_post_wishlist(): void

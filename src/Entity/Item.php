@@ -26,6 +26,7 @@ use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -87,7 +88,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinTable(name: 'koi_item_tag')]
     #[ORM\JoinColumn(name: 'item_id')]
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
-    #[ORM\OrderBy(['label' => Criteria::ASC])]
+    #[ORM\OrderBy(['label' => Order::Ascending->value])]
     #[Groups(['item:write'])]
     private DoctrineCollection $tags;
 
@@ -96,16 +97,16 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\JoinTable(name: 'koi_item_related_item')]
     #[ORM\JoinColumn(name: 'item_id')]
     #[ORM\InverseJoinColumn(name: 'related_item_id', referencedColumnName: 'id')]
-    #[ORM\OrderBy(['name' => Criteria::ASC])]
+    #[ORM\OrderBy(['name' => Order::Ascending->value])]
     #[Groups(['item:write'])]
     private DoctrineCollection $relatedItems;
 
     #[ORM\ManyToMany(targetEntity: Item::class, mappedBy: 'relatedItems')]
-    #[ORM\OrderBy(['name' => Criteria::ASC])]
+    #[ORM\OrderBy(['name' => Order::Ascending->value])]
     private DoctrineCollection $relatedTo;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'item', cascade: ['persist'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => Criteria::ASC])]
+    #[ORM\OrderBy(['position' => Order::Ascending->value])]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 
@@ -190,7 +191,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function getDataImages(): ArrayCollection
     {
         $criteria = Criteria::create();
-        $criteria->where(Criteria::expr()->in('type', DatumTypeEnum::IMAGE_TYPES))->orderBy(['position' => Criteria::ASC]);
+        $criteria->where(Criteria::expr()->in('type', DatumTypeEnum::IMAGE_TYPES))->orderBy(['position' => Order::Ascending]);
 
         return $this->data->matching($criteria);
     }
@@ -198,7 +199,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function getDataTexts(): DoctrineCollection
     {
         $criteria = Criteria::create();
-        $criteria->where(Criteria::expr()->in('type', DatumTypeEnum::TEXT_TYPES))->orderBy(['position' => Criteria::ASC]);
+        $criteria->where(Criteria::expr()->in('type', DatumTypeEnum::TEXT_TYPES))->orderBy(['position' => Order::Ascending]);
 
         return $this->data->matching($criteria);
     }

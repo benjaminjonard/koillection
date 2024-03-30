@@ -10,6 +10,7 @@ use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
@@ -43,7 +44,7 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     private ?string $pricePath = null;
 
     #[ORM\OneToMany(targetEntity: Path::class, mappedBy: 'scraper', cascade: ['all'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => Criteria::ASC])]
+    #[ORM\OrderBy(['position' => Order::Ascending->value])]
     #[Assert\Valid]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $dataPaths;

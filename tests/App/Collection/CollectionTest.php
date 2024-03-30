@@ -120,6 +120,7 @@ class CollectionTest extends AppTestCase
         $user = UserFactory::createOne(['currency' => 'EUR', 'dateFormat' => DateFormatEnum::FORMAT_SLASH_DMY])->object();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
+
         $collection->getItemsDisplayConfiguration()
             ->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST)
             ->setColumns(['Author'])
@@ -203,14 +204,6 @@ class CollectionTest extends AppTestCase
         $this->client->loginUser($user);
 
         $collection = CollectionFactory::createOne(['owner' => $user, 'image' => $this->createFile('png')->getRealPath()]);
-        $collection->getChildrenDisplayConfiguration()
-            ->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST)
-            ->setColumns(['Publisher'])
-            ->setSortingProperty('Publisher')
-            ->setSortingType(DatumTypeEnum::TYPE_TEXT)
-            ->setSortingDirection(SortingDirectionEnum::DESCENDING)
-        ;
-        $collection->save();
 
         CollectionFactory::createOne(['parent' => $collection, 'owner' => $user]);
         $item1 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);

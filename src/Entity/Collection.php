@@ -25,6 +25,7 @@ use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -69,7 +70,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'parent', cascade: ['all'])]
-    #[ORM\OrderBy(['title' => Criteria::ASC])]
+    #[ORM\OrderBy(['title' => Order::Ascending->value])]
     private DoctrineCollection $children;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
@@ -93,7 +94,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private DisplayConfiguration $itemsDisplayConfiguration;
 
     #[ORM\OneToMany(targetEntity: Datum::class, mappedBy: 'collection', cascade: ['persist'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => Criteria::ASC])]
+    #[ORM\OrderBy(['position' => Order::Ascending->value])]
     #[AppAssert\UniqueDatumLabel]
     private DoctrineCollection $data;
 

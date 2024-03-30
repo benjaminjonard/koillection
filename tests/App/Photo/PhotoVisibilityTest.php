@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\TestWith;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
-class AlbumVisibilityTest extends AppTestCase
+class PhotoVisibilityTest extends AppTestCase
 {
     use Factories;
     use ResetDatabase;

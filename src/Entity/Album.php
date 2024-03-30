@@ -25,6 +25,7 @@ use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -92,7 +93,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Album::class, mappedBy: 'parent', cascade: ['all'])]
-    #[ORM\OrderBy(['title' => Criteria::ASC])]
+    #[ORM\OrderBy(['title' => Order::Ascending->value])]
     private DoctrineCollection $children;
 
     #[ApiProperty(readableLink: false, writableLink: false)]

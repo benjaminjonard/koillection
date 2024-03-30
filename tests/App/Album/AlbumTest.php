@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Album;
 
+use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
+use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
@@ -49,6 +51,8 @@ class AlbumTest extends AppTestCase
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $album = AlbumFactory::createOne(['owner' => $user]);
+        AlbumFactory::createMany(3, ['owner' => $user, 'parent' => $album]);
+        PhotoFactory::createMany(3, ['owner' => $user, 'album' => $album]);
 
         // Act
         $crawler = $this->client->request('GET', '/albums/' . $album->getId());
@@ -56,6 +60,32 @@ class AlbumTest extends AppTestCase
         // Assert
         $this->assertResponseIsSuccessful();
         $this->assertEquals($album->getTitle(), $crawler->filter('h1')->text());
+        $this->assertCount(3, $crawler->filter('.collection-element'));
+        $this->assertCount(3, $crawler->filter('.collection-item'));
+    }
+
+    public function test_can_get_album_with_list_view(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $album = AlbumFactory::createOne(['owner' => $user]);
+        $album->getChildrenDisplayConfiguration()->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST);
+        $album->save();
+        $album->getPhotosDisplayConfiguration()->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST);
+        $album->save();
+
+        AlbumFactory::createMany(3, ['owner' => $user, 'parent' => $album]);
+        PhotoFactory::createMany(3, ['owner' => $user, 'album' => $album]);
+
+        // Act
+        $crawler = $this->client->request('GET', '/albums/' . $album->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertEquals($album->getTitle(), $crawler->filter('h1')->text());
+        $this->assertCount(3, $crawler->filter('.children-table tbody tr'));
+        $this->assertCount(3, $crawler->filter('.items-table tbody tr'));
     }
 
     public function test_can_post_album(): void

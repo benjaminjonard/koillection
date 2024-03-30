@@ -9,6 +9,7 @@ use App\Enum\DisplayModeEnum;
 use App\Enum\SortingDirectionEnum;
 use App\Repository\DisplayConfigurationRepository;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
@@ -41,7 +42,7 @@ class DisplayConfiguration
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\Choice(choices: SortingDirectionEnum::SORTING_DIRECTIONS)]
-    private ?string $sortingDirection = Criteria::ASC;
+    private ?string $sortingDirection = Order::Ascending->value;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     private bool $showVisibility = true;

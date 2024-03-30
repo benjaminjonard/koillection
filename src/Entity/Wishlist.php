@@ -25,6 +25,7 @@ use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -71,7 +72,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Wish::class, mappedBy: 'wishlist', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => Criteria::ASC])]
+    #[ORM\OrderBy(['name' => Order::Ascending->value])]
     private DoctrineCollection $wishes;
 
     #[ORM\Column(type: Types::STRING, length: 6)]
@@ -80,7 +81,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Wishlist::class, mappedBy: 'parent', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => Criteria::ASC])]
+    #[ORM\OrderBy(['name' => Order::Ascending->value])]
     private DoctrineCollection $children;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
