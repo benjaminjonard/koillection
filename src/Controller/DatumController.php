@@ -101,6 +101,7 @@ class DatumController extends AbstractController
                 'datum' => $field['datum'],
                 'label' => $field['label'],
                 'choiceList' => $field['choiceList'],
+                'visibility' => $field['visibility']
             ])->getContent();
             ++$i;
         }
@@ -123,6 +124,7 @@ class DatumController extends AbstractController
                 'datum' => $datum,
                 'label' => $datum->getLabel(),
                 'choiceList' => $datum->getChoiceList(),
+                'visibility' => $datum->getVisibility()
             ])->getContent();
         }
 

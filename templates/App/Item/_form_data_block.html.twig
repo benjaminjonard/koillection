@@ -16,7 +16,8 @@
                     type: datum.type,
                     choiceList: datum.choiceList,
                     label: datum.label,
-                    entity: 'item'
+                    entity: 'item',
+                    visibility: datum.visibility
                 } only %}
             {% endfor %}
         </div>
@@ -72,7 +73,8 @@
                     iteration: key,
                     type: datum.type,
                     entity: 'item',
-                    label: datum.label
+                    label: datum.label,
+                    visibility: datum.visibility
                 } only %}
             {% endfor %}
         </div>

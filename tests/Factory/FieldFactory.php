@@ -6,6 +6,7 @@ namespace App\Tests\Factory;
 
 use App\Entity\Field;
 use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 
@@ -35,6 +36,7 @@ final class FieldFactory extends ModelFactory
             'name' => self::faker()->text(),
             'type' => DatumTypeEnum::TYPE_TEXT,
             'position' => self::faker()->randomNumber(),
+            'visibility' => VisibilityEnum::VISIBILITY_PUBLIC
         ];
     }
 

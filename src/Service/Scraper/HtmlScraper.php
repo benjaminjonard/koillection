@@ -6,6 +6,7 @@ namespace App\Service\Scraper;
 
 use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
 use App\Model\ScrapingCollection;
 use App\Model\ScrapingItem;
 use App\Model\ScrapingWish;
@@ -103,6 +104,7 @@ abstract class HtmlScraper
                     'datum' => $datum,
                     'label' => $datum->getLabel(),
                     'choiceList' => $datum->getChoiceList(),
+                    'visibility' => $datum->getVisibility()
                 ])
             ];
         }
