@@ -15,22 +15,22 @@
             <i class="fa fa-arrows-v fa-fw"></i>
         </div>
 
-        <div class="input-field outlined s10 m4">
-            <input
-                    type="text"
-                    id="data_{{ iteration }}_label"
-                    name="{{ entity }}[data][{{ iteration }}][label]"
-                    maxlength="255"
-                    data-additional-data-target="label"
-                    required
-                    value="{{ label }}"
-                    placeholder=" "
-            >
-            <label for="data_{{ iteration }}_label" class="required {% if label is not null %}active{% endif %}">
-                {{ 'label.label'|trans }}
-            </label>
-
-            <br><br>
+        <div class="s10 m4">
+            <div class="input-field outlined ">
+                <input
+                        type="text"
+                        id="data_{{ iteration }}_label"
+                        name="{{ entity }}[data][{{ iteration }}][label]"
+                        maxlength="255"
+                        data-additional-data-target="label"
+                        required
+                        value="{{ label }}"
+                        placeholder=" "
+                >
+                <label for="data_{{ iteration }}_label" class="required {% if label is not null %}active{% endif %}">
+                    {{ 'label.label'|trans }}
+                </label>
+            </div>
 
             <div class="input-field outlined">
                 <select id="data_{{ iteration }}_visibility"
