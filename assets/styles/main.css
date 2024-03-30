@@ -14,7 +14,8 @@ ul {
 }
 
 textarea.materialize-textarea {
-    min-height: 100%;
+    height: 100%;
+    min-height: 8rem;
     padding: 16px!important;
 }
 
@@ -1546,6 +1547,16 @@ html.loading:before {
     }
 }
 
+@media (max-width: 600px) {
+    .data-holder .input-field.datum-input-field {
+        margin: 0 10px;
+    }
+}
+
+.image-preview-wrapper.image-field {
+    height: 130px;
+}
+
 .mobile-overlay {
     background-color: rgba(0, 0, 0, 0.3);
     display: none;
@@ -1735,6 +1746,7 @@ form .row-file .file-label {
     margin-left: auto;
     margin-right: auto;
     top: 0;
+    position: inherit;
 }
 
 .nav-tags .show-more-btn-holder {

@@ -3,7 +3,7 @@
 <div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row"
                                                                                  data-additional-data-target="datum"
                                                                                  data-iteration="{{ iteration }}">
-    <div class="s12 l10 offset-l1 xl8 offset-xl2 row">
+    <div class="s12 l10 offset-l1 row">
         <input type="hidden"
                id="data_{{ iteration }}_type"
                name="{{ entity }}[data][{{ iteration }}][type]"
@@ -15,7 +15,7 @@
             <i class="fa fa-arrows-v fa-fw"></i>
         </div>
 
-        <div class="input-field outlined s9 m4">
+        <div class="input-field outlined s10 m4">
             <input
                     type="text"
                     id="data_{{ iteration }}_label"
