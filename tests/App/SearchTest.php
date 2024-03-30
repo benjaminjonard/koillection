@@ -138,7 +138,7 @@ class SearchTest extends AppTestCase
 
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
-        $this->assertSame('Please fill at least one of the fields', $crawler->filter('.error-helper li')->eq(0)->text());
+        $this->assertSame('Please fill at least one of the fields', $crawler->filter('.error-helper div')->eq(0)->text());
     }
 
     public function test_anonymous_user_search_public(): void
