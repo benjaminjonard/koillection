@@ -17,6 +17,7 @@
             <div data-controller="choice-list-value"
                  data-prototype="{% apply escape %} {{ include('App/ChoiceList/_value_prototype.html.twig', { 'form': form.choices.vars.prototype }) }} {% endapply %}"
             >
+                {{ form_errors(form) }}
                 {{ form_row(form.choices) }}
                 <a data-choice-list-value-target="button"
                    data-action="click->choice-list-value#add"

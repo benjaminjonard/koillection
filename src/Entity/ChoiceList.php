@@ -12,6 +12,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ChoiceListRepository::class)]
 #[ORM\Table(name: 'koi_choice_list')]
@@ -29,6 +30,7 @@ class ChoiceList implements BreadcrumbableInterface, LoggableInterface, \Stringa
 
     #[ORM\Column(type: Types::JSON)]
     #[Groups(['choiceList:read', 'choiceList:write'])]
+    #[Assert\Unique]
     private array $choices = [];
 
     #[ORM\ManyToOne(targetEntity: User::class)]

@@ -1,3 +1,9 @@
+{% block form_errors %}
+    {%- for error in errors -%}
+        <div class="helper-text helper-text-error error-helper" data-error="wrong">{{ error.message }}</div>
+    {%- endfor -%}
+{% endblock form_errors %}
+
 {% block form_row %}
     {% if suggestions is defined and suggestions is not empty %}
         <div class="input-field outlined" data-controller="suggestions">
