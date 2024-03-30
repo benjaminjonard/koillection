@@ -7,6 +7,7 @@ namespace App\Form\Type\Entity;
 use App\Entity\ChoiceList;
 use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
 use App\Repository\ChoiceListRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -38,6 +39,10 @@ class DatumType extends AbstractType
             ])
             ->add('label', TextType::class, [
                 'required' => false,
+            ])
+            ->add('visibility', ChoiceType::class, [
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'required' => true,
             ])
             ->add('fileImage', FileType::class, [
                 'required' => false,

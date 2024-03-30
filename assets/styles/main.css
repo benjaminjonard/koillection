@@ -14,7 +14,7 @@ ul {
 }
 
 textarea.materialize-textarea {
-    min-height: 10rem;
+    min-height: 100%;
     padding: 16px!important;
 }
 
@@ -1734,6 +1734,7 @@ form .row-file > div:first-child {
 form .row-file .file-label {
     margin-left: auto;
     margin-right: auto;
+    top: 0;
 }
 
 .nav-tags .show-more-btn-holder {
@@ -1772,8 +1773,16 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 }
 
 .icon-holder {
-    padding-top: 17px !important;
+    display: flex;
     text-align: center;
+}
+
+.icon-holder i {
+    margin: auto;
+}
+
+.data-holder .input-field {
+    margin: 25px 10px;
 }
 
 .removeDatum, .related-item .close {
@@ -1781,17 +1790,12 @@ form[name="search"] input[type="checkbox"] + span, form[name="search_history"] i
 }
 
 .datum .preview-image {
-    max-height: 100px;
+    max-height: 130px;
     max-width: 100%;
 }
 
 .datum .image-label {
     top: -17px;
-}
-
-.datum .image-field {
-    height: 115px;
-    top: -30px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {

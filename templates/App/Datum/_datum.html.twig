@@ -1,6 +1,8 @@
 {% set hasChoiceList = choiceList is defined and choiceList is not null %}
 
-<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row" data-additional-data-target="datum" data-iteration="{{ iteration }}">
+<div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row"
+                                                                                 data-additional-data-target="datum"
+                                                                                 data-iteration="{{ iteration }}">
     <div class="s12 l10 offset-l1 xl8 offset-xl2 row">
         <input type="hidden"
                id="data_{{ iteration }}_type"
@@ -13,7 +15,7 @@
             <i class="fa fa-arrows-v fa-fw"></i>
         </div>
 
-        <div class="input-field outlined s10 m5 item-label">
+        <div class="input-field outlined s9 m4">
             <input
                     type="text"
                     id="data_{{ iteration }}_label"
@@ -27,6 +29,21 @@
             <label for="data_{{ iteration }}_label" class="required {% if label is not null %}active{% endif %}">
                 {{ 'label.label'|trans }}
             </label>
+
+            <br><br>
+
+            <div class="input-field outlined">
+                <select id="data_{{ iteration }}_visibility"
+                        name="{{ entity }}[data][{{ iteration }}][visibility]"
+                        placeholder=" "
+                        data-controller="select--visibility"
+                >
+                    <option value="public" {% if datum is defined and datum.visibility == "public" %}selected="selected"{% endif %}>{{ 'global.visibilities.public'|trans }}</option>
+                    <option value="internal" {% if datum is defined and datum.visibility == "internal" %}selected="selected"{% endif %}>{{ 'global.visibilities.internal'|trans }}</option>
+                    <option value="private" {% if datum is defined and datum.visibility == "private" %}selected="selected"{% endif %}>{{ 'global.visibilities.private'|trans }}</option>
+                </select>
+                <label for="data_{{ iteration }}_visibility" class="required">{{ 'label.visibility'|trans }}</label>
+            </div>
         </div>
 
         <div class="s1 hide-on-med-and-up"></div>
