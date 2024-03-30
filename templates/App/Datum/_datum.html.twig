@@ -3,7 +3,7 @@
 <div {% if template is defined %} data-template="{{ template.name }}"{% endif %} class="datum row"
                                                                                  data-additional-data-target="datum"
                                                                                  data-iteration="{{ iteration }}">
-    <div class="s12 l10 offset-l1 row">
+    <div class="s12 l10 offset-l1 xl8 offset-xl2 row">
         <input type="hidden"
                id="data_{{ iteration }}_type"
                name="{{ entity }}[data][{{ iteration }}][type]"
@@ -31,19 +31,6 @@
                     {{ 'label.label'|trans }}
                 </label>
             </div>
-
-            <div class="input-field outlined">
-                <select id="data_{{ iteration }}_visibility"
-                        name="{{ entity }}[data][{{ iteration }}][visibility]"
-                        placeholder=" "
-                        data-controller="select--visibility"
-                >
-                    <option value="public" {% if visibility == "public" %}selected="selected"{% endif %}>{{ 'global.visibilities.public'|trans }}</option>
-                    <option value="internal" {% if visibility == "internal" %}selected="selected"{% endif %}>{{ 'global.visibilities.internal'|trans }}</option>
-                    <option value="private" {% if visibility == "private" %}selected="selected"{% endif %}>{{ 'global.visibilities.private'|trans }}</option>
-                </select>
-                <label for="data_{{ iteration }}_visibility" class="required">{{ 'label.visibility'|trans }}</label>
-            </div>
         </div>
 
         <div class="s1 hide-on-med-and-up"></div>
@@ -51,11 +38,28 @@
 
         {{ include('App/Datum/_' ~ type ~ '.html.twig') }}
 
+        <div class="s1 input-field outlined">
+            <select id="data_{{ iteration }}_visibility"
+                    name="{{ entity }}[data][{{ iteration }}][visibility]"
+                    data-controller="select--compact-visibility"
+            >
+                {% for availableVisibility in ['public', 'internal', 'private'] %}
+                    <option title="{{ ('global.visibilities.' ~ availableVisibility ~ '.description')|trans([], 'javascript') }}"
+                            value="{{ availableVisibility }}"
+                            {% if visibility == availableVisibility %}selected="selected"{% endif %}
+                    >
+                        {{ ('global.visibilities.' ~ availableVisibility)|trans }}
+                    </option>
+                {% endfor %}
+            </select>
+            <label for="data_{{ iteration }}_visibility">{{ 'label.visibility'|trans }}</label>
+        </div>
+
         <div class="s1 icon-holder">
             <i class="fa fa-remove fa-fw removeDatum" data-action="click->additional-data#remove"></i>
         </div>
 
-        <div class="input-field">
+        <div>
             <input class="position"
                    type="hidden"
                    id="data_{{ iteration }}_position"

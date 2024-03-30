@@ -12,6 +12,7 @@ export default class extends Controller {
 
     loadSelect() {
         this.select2 = new TsSelect2(this.element, {
+            minimumResultsForSearch: this.minimumResultsForSearch,
             language: {
                 noResults: function () {
                     return Translator.trans('select2.no_results');
@@ -67,6 +68,10 @@ export default class extends Controller {
         }
 
         return htmlStringToDomElement('<div><span>' + element.text + '</span></div>');
+    }
+
+    minimumResultsForSearch() {
+        return 1;
     }
 
     update({ detail: { value } }) {

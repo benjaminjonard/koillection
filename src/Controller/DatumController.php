@@ -63,6 +63,7 @@ class DatumController extends AbstractController
                     'type' => $datum->getType(),
                     'label' => $datum->getLabel(),
                     'choiceList' => $datum->getChoiceList(),
+                    'visibility' => $datum->getVisibility(),
                 ];
                 $commonFields[$datum->getLabel()] = $field;
             }

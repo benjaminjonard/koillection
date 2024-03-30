@@ -4,13 +4,17 @@ import { htmlStringToDomElement, getVisibilityIcon } from "../../js/utils";
 
 /* stimulusFetch: 'lazy' */
 export default class extends DefaultController {
+    minimumResultsForSearch() {
+        return 'Infinity';
+    }
+
     templateSelection(visibility) {
         if (!visibility.id) {
             return htmlStringToDomElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
         }
 
         return htmlStringToDomElement(
-            '<div>' + getVisibilityIcon(visibility.element.value) + '<span>' + visibility.text + '</span></div>'
+            '<div>' + getVisibilityIcon(visibility.element.value) + '</div>'
         );
     }
 
@@ -20,7 +24,7 @@ export default class extends DefaultController {
         }
 
         return htmlStringToDomElement(
-            '<div>' + getVisibilityIcon(visibility.element.value) + '<span>' + visibility.text + '</span><span class="select-tip">' + Translator.trans('global.visibilities.' + visibility.id + '.description') + '</span></div>'
+            '<div>' + getVisibilityIcon(visibility.element.value) + '</div>'
         );
     }
 }
