@@ -13,6 +13,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
+use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
@@ -50,7 +51,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 #[ApiResource(uriTemplate: '/collections/{id}/data', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'data')], normalizationContext: ['groups' => ['datum:read']], operations: [new GetCollection()])]
 #[ApiResource(uriTemplate: '/items/{id}/data', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'data')], normalizationContext: ['groups' => ['datum:read']], operations: [new GetCollection()])]
-class Datum implements \Stringable
+class Datum implements VisibleInterface, \Stringable
 {
     use VisibleTrait;
 
@@ -153,7 +154,7 @@ class Datum implements \Stringable
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['datum:read'])]
-    private string $finalVisibility;
+    private string $finalVisibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['datum:read'])]
@@ -275,6 +276,7 @@ class Datum implements \Stringable
     public function setItem(?Item $item): self
     {
         $this->item = $item;
+        $this->setParentVisibility($item?->getFinalVisibility());
 
         return $this;
     }
@@ -364,6 +366,7 @@ class Datum implements \Stringable
     public function setCollection(?Collection $collection): self
     {
         $this->collection = $collection;
+        $this->setParentVisibility($collection?->getFinalVisibility());
 
         return $this;
     }
@@ -447,6 +450,11 @@ class Datum implements \Stringable
     {
         $this->video = $video;
 
+        return $this;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
         return $this;
     }
 }

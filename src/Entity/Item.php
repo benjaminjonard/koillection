@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
@@ -54,7 +55,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/items/{id}/related_items', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'relatedItems')], normalizationContext: ['groups' => ['item:read']], operations: [new GetCollection()])]
 #[ApiResource(uriTemplate: '/loans/{id}/item', uriVariables: ['id' => new Link(fromClass: Loan::class, fromProperty: 'item')], normalizationContext: ['groups' => ['item:read']], operations: [new Get()])]
 #[ApiResource(uriTemplate: '/tags/{id}/items', uriVariables: ['id' => new Link(fromClass: Tag::class, fromProperty: 'items', toProperty: 'tags')], normalizationContext: ['groups' => ['item:read']], operations: [new GetCollection()])]
-class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
+class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, VisibleInterface, \Stringable
 {
     use VisibleTrait;
 
@@ -144,7 +145,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['item:read'])]
-    private string $finalVisibility;
+    private string $finalVisibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['item:read'])]
@@ -280,6 +281,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setCollection(?Collection $collection): Item
     {
         $this->collection = $collection;
+        $this->setParentVisibility($collection->getFinalVisibility());
 
         return $this;
     }
@@ -474,6 +476,15 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setScrapedFromUrl(?string $scrapedFromUrl): Item
     {
         $this->scrapedFromUrl = $scrapedFromUrl;
+
+        return $this;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
+        foreach ($this->getData() as $datum) {
+            $datum->setParentVisibility($this->finalVisibility);
+        }
 
         return $this;
     }

@@ -52,8 +52,6 @@ class ItemController extends AbstractController
         $item
             ->setCollection($collection)
             ->setVisibility($collection->getVisibility())
-            ->setParentVisibility($collection->getVisibility())
-            ->setFinalVisibility($collection->getFinalVisibility())
         ;
 
         $template = $collection->getItemsDefaultTemplate();

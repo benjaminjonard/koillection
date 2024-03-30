@@ -39,8 +39,6 @@ final class ItemFactory extends ModelFactory
             'quantity' => 1,
             'seenCounter' => self::faker()->randomNumber(),
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
-            'parentVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
-            'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App;
+namespace App\Tests\App\Wish;
 
 use App\Enum\VisibilityEnum;
 use App\Tests\AppTestCase;

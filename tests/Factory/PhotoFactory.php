@@ -37,7 +37,6 @@ final class PhotoFactory extends ModelFactory
         return [
             'title' => self::faker()->text(),
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
-            'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }

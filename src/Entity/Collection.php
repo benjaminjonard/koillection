@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
@@ -52,7 +53,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/collections/{id}/parent', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
 #[ApiResource(uriTemplate: '/data/{id}/collection', uriVariables: ['id' => new Link(fromClass: Datum::class, fromProperty: 'collection')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
 #[ApiResource(uriTemplate: '/items/{id}/collection', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'collection')], normalizationContext: ['groups' => ['collection:read']], operations: [new Get()])]
-class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface, \Stringable
+class Collection implements LoggableInterface, BreadcrumbableInterface, CacheableInterface, VisibleInterface, \Stringable
 {
     use VisibleTrait;
 
@@ -137,7 +138,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['collection:read'])]
-    private ?string $finalVisibility = null;
+    private ?string $finalVisibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['collection:read'])]
@@ -288,6 +289,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         }
 
         $this->parent = $parent;
+        $this->setParentVisibility($parent?->getFinalVisibility());
 
         return $this;
     }
@@ -432,6 +434,23 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setScrapedFromUrl(?string $scrapedFromUrl): Collection
     {
         $this->scrapedFromUrl = $scrapedFromUrl;
+
+        return $this;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
+        foreach ($this->getData() as $datum) {
+            $datum->setParentVisibility($this->finalVisibility);
+        }
+
+        foreach ($this->getItems() as $item) {
+            $item->setParentVisibility($this->finalVisibility);
+        }
+
+        foreach ($this->getChildren() as $child) {
+            $child->setParentVisibility($this->finalVisibility);
+        }
 
         return $this;
     }

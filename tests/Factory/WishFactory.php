@@ -37,8 +37,6 @@ final class WishFactory extends ModelFactory
         return [
             'name' => self::faker()->word(),
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
-            'parentVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
-            'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }

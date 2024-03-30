@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
@@ -51,7 +52,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/wishes/{id}/wishlist', uriVariables: ['id' => new Link(fromClass: Wish::class, fromProperty: 'wishlist')], normalizationContext: ['groups' => ['wishlist:read']], operations: [new Get()])]
 #[ApiResource(uriTemplate: '/wishlists/{id}/children', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'children')], normalizationContext: ['groups' => ['wishlist:read']], operations: [new GetCollection()])]
 #[ApiResource(uriTemplate: '/wishlists/{id}/parent', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['wishlist:read']], operations: [new Get()])]
-class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface, \Stringable
+class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableInterface, VisibleInterface, \Stringable
 {
     use VisibleTrait;
 
@@ -124,7 +125,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wishlist:read'])]
-    private string $finalVisibility;
+    private string $finalVisibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['wishlist:read'])]
@@ -278,6 +279,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         }
 
         $this->parent = $parent;
+        $this->setParentVisibility($parent?->getFinalVisibility());
 
         return $this;
     }
@@ -336,6 +338,19 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     {
         $this->deleteImage = $deleteImage;
         $this->updatedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
+        foreach ($this->getWishes() as $wish) {
+            $wish->setParentVisibility($this->finalVisibility);
+        }
+
+        foreach ($this->getChildren() as $child) {
+            $child->setParentVisibility($this->finalVisibility);
+        }
 
         return $this;
     }

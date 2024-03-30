@@ -8,18 +8,6 @@ use App\Enum\VisibilityEnum;
 
 trait VisibleTrait
 {
-    public function updateFinalVisibility(): self
-    {
-        $this->finalVisibility = match (true) {
-            null === $this->parentVisibility => $this->visibility,
-            VisibilityEnum::VISIBILITY_PUBLIC === $this->visibility && VisibilityEnum::VISIBILITY_PUBLIC === $this->parentVisibility => VisibilityEnum::VISIBILITY_PUBLIC,
-            VisibilityEnum::VISIBILITY_PRIVATE === $this->visibility || VisibilityEnum::VISIBILITY_PRIVATE === $this->parentVisibility => VisibilityEnum::VISIBILITY_PRIVATE,
-            default => VisibilityEnum::VISIBILITY_INTERNAL
-        };
-
-        return $this;
-    }
-
     public function getVisibility(): ?string
     {
         return $this->visibility;
@@ -28,6 +16,8 @@ trait VisibleTrait
     public function setVisibility(string $visibility): self
     {
         $this->visibility = $visibility;
+        $this->setFinalVisibility();
+        $this->updateDescendantsVisibility();
 
         return $this;
     }
@@ -40,6 +30,8 @@ trait VisibleTrait
     public function setParentVisibility(?string $parentVisibility): self
     {
         $this->parentVisibility = $parentVisibility;
+        $this->setFinalVisibility();
+        $this->updateDescendantsVisibility();
 
         return $this;
     }
@@ -49,9 +41,14 @@ trait VisibleTrait
         return $this->finalVisibility;
     }
 
-    public function setFinalVisibility(string $finalVisibility): self
+    private function setFinalVisibility(): self
     {
-        $this->finalVisibility = $finalVisibility;
+        $this->finalVisibility = match (true) {
+            null === $this->parentVisibility => $this->visibility,
+            VisibilityEnum::VISIBILITY_PUBLIC === $this->visibility && VisibilityEnum::VISIBILITY_PUBLIC === $this->parentVisibility => VisibilityEnum::VISIBILITY_PUBLIC,
+            VisibilityEnum::VISIBILITY_PRIVATE === $this->visibility || VisibilityEnum::VISIBILITY_PRIVATE === $this->parentVisibility => VisibilityEnum::VISIBILITY_PRIVATE,
+            default => VisibilityEnum::VISIBILITY_INTERNAL
+        };
 
         return $this;
     }

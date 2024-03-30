@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App;
+namespace App\Tests\App\Item;
 
 use App\Enum\DateFormatEnum;
 use App\Enum\DatumTypeEnum;

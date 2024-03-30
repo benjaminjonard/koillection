@@ -73,8 +73,6 @@ class AlbumController extends AbstractController
             $album
                 ->setParent($parent)
                 ->setVisibility($parent->getVisibility())
-                ->setParentVisibility($parent->getVisibility())
-                ->setFinalVisibility($parent->getFinalVisibility())
             ;
         }
 

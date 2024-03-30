@@ -17,6 +17,7 @@ use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
@@ -51,7 +52,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(uriTemplate: '/albums/{id}/children', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'children')], normalizationContext: ['groups' => ['album:read']], operations: [new GetCollection()])]
 #[ApiResource(uriTemplate: '/albums/{id}/parent', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'parent')], normalizationContext: ['groups' => ['album:read']], operations: [new Get()])]
 #[ApiResource(uriTemplate: '/photos/{id}/album', uriVariables: ['id' => new Link(fromClass: Photo::class, fromProperty: 'album')], normalizationContext: ['groups' => ['album:read']], operations: [new Get()])]
-class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, \Stringable
+class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInterface, VisibleInterface, \Stringable
 {
     use VisibleTrait;
 
@@ -127,7 +128,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['album:read'])]
-    private string $finalVisibility;
+    private string $finalVisibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['album:read'])]
@@ -282,6 +283,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         }
 
         $this->parent = $parent;
+        $this->setParentVisibility($parent?->getFinalVisibility());
 
         return $this;
     }
@@ -345,6 +347,19 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     {
         $this->deleteImage = $deleteImage;
         $this->updatedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
+        foreach ($this->getPhotos() as $photo) {
+            $photo->setParentVisibility($this->finalVisibility);
+        }
+
+        foreach ($this->getChildren() as $child) {
+            $child->setParentVisibility($this->finalVisibility);
+        }
 
         return $this;
     }

@@ -15,6 +15,7 @@ use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishRepository;
@@ -43,7 +44,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['wish:read']]
 )]
 #[ApiResource(uriTemplate: '/wishlists/{id}/wishes', uriVariables: ['id' => new Link(fromClass: Wishlist::class, fromProperty: 'wishes')], normalizationContext: ['groups' => ['wish:read']], operations: [new GetCollection()])]
-class Wish implements CacheableInterface, LoggableInterface, \Stringable
+class Wish implements CacheableInterface, LoggableInterface, VisibleInterface, \Stringable
 {
     use VisibleTrait;
 
@@ -108,7 +109,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['wish:read'])]
-    private ?string $finalVisibility = null;
+    private ?string $finalVisibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['wish:read'])]
@@ -229,6 +230,7 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     public function setWishlist(?Wishlist $wishlist): self
     {
         $this->wishlist = $wishlist;
+        $this->setParentVisibility($wishlist->getFinalVisibility());
 
         return $this;
     }
@@ -298,6 +300,11 @@ class Wish implements CacheableInterface, LoggableInterface, \Stringable
     {
         $this->scrapedFromUrl = $scrapedFromUrl;
 
+        return $this;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
         return $this;
     }
 }

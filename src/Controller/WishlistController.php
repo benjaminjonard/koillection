@@ -74,8 +74,6 @@ class WishlistController extends AbstractController
             $wishlist
                 ->setParent($parent)
                 ->setVisibility($parent->getVisibility())
-                ->setParentVisibility($parent->getVisibility())
-                ->setFinalVisibility($parent->getFinalVisibility())
             ;
         }
 

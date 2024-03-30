@@ -15,6 +15,7 @@ use ApiPlatform\Metadata\Put;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
+use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\PhotoRepository;
@@ -44,7 +45,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['photo:read']]
 )]
 #[ApiResource(uriTemplate: '/albums/{id}/photos', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'photos')], normalizationContext: ['groups' => ['photo:read']], operations: [new GetCollection()])]
-class Photo implements CacheableInterface, LoggableInterface, \Stringable
+class Photo implements CacheableInterface, LoggableInterface, VisibleInterface, \Stringable
 {
     use VisibleTrait;
 
@@ -104,7 +105,7 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
 
     #[ORM\Column(type: Types::STRING, length: 10)]
     #[Groups(['photo:read'])]
-    private string $finalVisibility;
+    private string $finalVisibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['photo:read'])]
@@ -209,6 +210,7 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
     public function setAlbum(?Album $album): self
     {
         $this->album = $album;
+        $this->setParentVisibility($album->getFinalVisibility());
 
         return $this;
     }
@@ -266,6 +268,11 @@ class Photo implements CacheableInterface, LoggableInterface, \Stringable
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
 
+        return $this;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
         return $this;
     }
 }
