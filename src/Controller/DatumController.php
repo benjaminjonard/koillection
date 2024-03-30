@@ -8,6 +8,7 @@ use App\Entity\ChoiceList;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,6 +23,7 @@ class DatumController extends AbstractController
             'iteration' => '__placeholder__',
             'type' => $type,
             'label' => null,
+            'visibility' => VisibilityEnum::VISIBILITY_PUBLIC
         ])->getContent();
 
         return new JsonResponse([
@@ -39,6 +41,7 @@ class DatumController extends AbstractController
             'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
             'choiceList' => $choiceList,
             'label' => $choiceList->getName(),
+            'visibility' => VisibilityEnum::VISIBILITY_PUBLIC
         ])->getContent();
 
         return new JsonResponse([

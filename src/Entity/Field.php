@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -58,6 +59,11 @@ class Field
     #[Assert\NotBlank]
     #[Groups(['field:read', 'field:write'])]
     private ?Template $template = null;
+
+    #[ORM\Column(type: Types::STRING, length: 10)]
+    #[Groups(['field:read', 'field:write'])]
+    #[Assert\Choice(choices: VisibilityEnum::VISIBILITIES)]
+    private string $visibility = VisibilityEnum::VISIBILITY_PUBLIC;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Groups(['field:read'])]
@@ -146,6 +152,18 @@ class Field
     public function setChoiceList(?ChoiceList $choiceList): Field
     {
         $this->choiceList = $choiceList;
+
+        return $this;
+    }
+
+    public function getVisibility(): string
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(string $visibility): Field
+    {
+        $this->visibility = $visibility;
 
         return $this;
     }

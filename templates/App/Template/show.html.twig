@@ -45,6 +45,7 @@
                         <th>{{ 'label.name'|trans }}</th>
                         <th>{{ 'label.type'|trans }}</th>
                         <th>{{ 'label.choice_list'|trans }}</th>
+                        <th>{{ 'label.visibility'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,9 @@
                             <td>{{ field.name }}</td>
                             <td>{{ field.typeLabel|trans }}</td>
                             <td>{{ field.choiceList.name|default('-') }}</td>
+                            <td>
+                                {% include 'App/_partials/_visibility.html.twig' with {'visibility': field.visibility} only %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -38,9 +38,9 @@
                         placeholder=" "
                         data-controller="select--visibility"
                 >
-                    <option value="public" {% if datum is defined and datum.visibility == "public" %}selected="selected"{% endif %}>{{ 'global.visibilities.public'|trans }}</option>
-                    <option value="internal" {% if datum is defined and datum.visibility == "internal" %}selected="selected"{% endif %}>{{ 'global.visibilities.internal'|trans }}</option>
-                    <option value="private" {% if datum is defined and datum.visibility == "private" %}selected="selected"{% endif %}>{{ 'global.visibilities.private'|trans }}</option>
+                    <option value="public" {% if visibility == "public" %}selected="selected"{% endif %}>{{ 'global.visibilities.public'|trans }}</option>
+                    <option value="internal" {% if visibility == "internal" %}selected="selected"{% endif %}>{{ 'global.visibilities.internal'|trans }}</option>
+                    <option value="private" {% if visibility == "private" %}selected="selected"{% endif %}>{{ 'global.visibilities.private'|trans }}</option>
                 </select>
                 <label for="data_{{ iteration }}_visibility" class="required">{{ 'label.visibility'|trans }}</label>
             </div>
