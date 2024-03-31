@@ -44,7 +44,14 @@ final class Version20240329223202 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_datum ALTER final_visibility SET NOT NULL');
 
         $this->addSql('CREATE INDEX idx_datum_final_visibility ON koi_datum (final_visibility)');
-        $this->addSql('ALTER TABLE koi_field ADD visibility VARCHAR(10) NOT NULL');
+
+
+        $this->addSql('ALTER TABLE koi_field ADD visibility VARCHAR(10)');
+        $this->addSql("
+            UPDATE koi_field 
+            SET visibility = '$publicVisibility'
+        ");
+        $this->addSql('ALTER TABLE koi_field ALTER visibility SET NOT NULL');
     }
 
     public function down(Schema $schema): void
