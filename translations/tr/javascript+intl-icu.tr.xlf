@@ -1,136 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="uk">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="tr">
   <file id="javascript.en">
-    <unit id="s2RK8Ci" name="global.months.january">
-      <segment state="translated">
-        <source>January</source>
-        <target>Січень</target>
-      </segment>
-    </unit>
     <unit id="u5P6LMj" name="global.months.february">
       <segment state="translated">
         <source>February</source>
-        <target>Лютий</target>
+        <target>February</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
       <segment state="translated">
         <source>March</source>
-        <target>Березень</target>
+        <target>March</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
       <segment state="translated">
         <source>April</source>
-        <target>Квітень</target>
+        <target>April</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
       <segment state="translated">
         <source>May</source>
-        <target>Травень</target>
+        <target>May</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
       <segment state="translated">
         <source>June</source>
-        <target>Червень</target>
+        <target>June</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
       <segment state="translated">
         <source>July</source>
-        <target>Липень</target>
+        <target>July</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
       <segment state="translated">
         <source>August</source>
-        <target>Серпень</target>
+        <target>August</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
       <segment state="translated">
         <source>September</source>
-        <target>Вересень</target>
+        <target>September</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
       <segment state="translated">
         <source>October</source>
-        <target>Жовтень</target>
+        <target>October</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
       <segment state="translated">
         <source>November</source>
-        <target>Листопад</target>
+        <target>November</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
       <segment state="translated">
         <source>December</source>
-        <target>Грудень</target>
+        <target>December</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
       <segment state="translated">
         <source>Monday</source>
-        <target>понеділок</target>
+        <target>Monday</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
       <segment state="translated">
         <source>Tuesday</source>
-        <target>вівторок</target>
+        <target>Tuesday</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
       <segment state="translated">
         <source>Wednesday</source>
-        <target>середа</target>
+        <target>Wednesday</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
       <segment state="translated">
         <source>Thursday</source>
-        <target>четвер</target>
+        <target>Thursday</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
       <segment state="translated">
         <source>Friday</source>
-        <target>п'ятниця</target>
+        <target>Friday</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
       <segment state="translated">
         <source>Saturday</source>
-        <target>субота</target>
+        <target>Saturday</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
       <segment state="translated">
         <source>Sunday</source>
-        <target>неділя</target>
+        <target>Sunday</target>
       </segment>
     </unit>
     <unit id="mdcgZEB" name="global.today">
       <segment state="translated">
         <source>Today</source>
-        <target>Сьогодні</target>
+        <target>Today</target>
       </segment>
     </unit>
     <unit id="exiimju" name="btn.clear">
       <segment state="translated">
         <source>Clear</source>
-        <target>Очистити</target>
+        <target>Clear</target>
       </segment>
     </unit>
     <unit id="Jd_qITE" name="btn.close">
       <segment state="translated">
         <source>Close</source>
-        <target>Закрити</target>
+        <target>Close</target>
+      </segment>
+    </unit>
+    <unit id="AghNVUV" name="statistics.items_added">
+      <segment state="translated">
+        <source>{count, plural, one {# item added} other {# items added}}</source>
+        <target>{count, plural, one {# item added} other {# items added}}</target>
       </segment>
     </unit>
     <unit id="cEDaX3_" name="statistics.items">
