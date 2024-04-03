@@ -48,7 +48,7 @@
                         data-controller="select--compact-visibility"
                 >
                     {% for availableVisibility in ['public', 'internal', 'private'] %}
-                        <option title="{{ ('global.visibilities.' ~ availableVisibility ~ '.description')|trans([], 'javascript') }}"
+                        <option title="{{ ('global.visibilities.' ~ availableVisibility)|trans }} - {{ ('global.visibilities.' ~ availableVisibility ~ '.description')|trans([], 'javascript') }}"
                                 value="{{ availableVisibility }}"
                                 {% if visibility == availableVisibility %}selected="selected"{% endif %}
                         >

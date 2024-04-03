@@ -17,12 +17,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FieldType extends AbstractType
 {
+    public function __construct(private TranslatorInterface $translator)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $types = array_flip(DatumTypeEnum::getTypesLabels());
+        $translator = $this->translator;
 
         $builder
             ->add('name', TextType::class, [
@@ -37,6 +43,9 @@ class FieldType extends AbstractType
             ])
             ->add('visibility', ChoiceType::class, [
                 'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
+                'choice_attr' => function ($choice, string $key, mixed $value) use ($translator) {
+                    return ['title' => $translator->trans('global.visibilities.'.$value) . ' - ' . $translator->trans('global.visibilities.'.$value.'.description', domain: 'javascript')];
+                },
                 'required' => true,
             ])
             ->add('position', HiddenType::class, [
