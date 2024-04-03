@@ -38,21 +38,26 @@
 
         {{ include('App/Datum/_' ~ type ~ '.html.twig') }}
 
-        <div class="s1 input-field outlined">
-            <select id="data_{{ iteration }}_visibility"
-                    name="{{ entity }}[data][{{ iteration }}][visibility]"
-                    data-controller="select--compact-visibility"
-            >
-                {% for availableVisibility in ['public', 'internal', 'private'] %}
-                    <option title="{{ ('global.visibilities.' ~ availableVisibility ~ '.description')|trans([], 'javascript') }}"
-                            value="{{ availableVisibility }}"
-                            {% if visibility == availableVisibility %}selected="selected"{% endif %}
-                    >
-                        {{ ('global.visibilities.' ~ availableVisibility)|trans }}
-                    </option>
-                {% endfor %}
-            </select>
-            <label for="data_{{ iteration }}_visibility">{{ 'label.visibility'|trans }}</label>
+        <div class="s1 hide-on-med-and-up"></div>
+        <div class="s1 hide-on-med-and-up"></div>
+
+        <div class="s10 m1">
+            <div class="input-field outlined">
+                <select id="data_{{ iteration }}_visibility"
+                        name="{{ entity }}[data][{{ iteration }}][visibility]"
+                        data-controller="select--compact-visibility"
+                >
+                    {% for availableVisibility in ['public', 'internal', 'private'] %}
+                        <option title="{{ ('global.visibilities.' ~ availableVisibility ~ '.description')|trans([], 'javascript') }}"
+                                value="{{ availableVisibility }}"
+                                {% if visibility == availableVisibility %}selected="selected"{% endif %}
+                        >
+                            {{ ('global.visibilities.' ~ availableVisibility)|trans }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <label for="data_{{ iteration }}_visibility">{{ 'label.visibility'|trans }}</label>
+            </div>
         </div>
 
         <div class="s1 icon-holder">
