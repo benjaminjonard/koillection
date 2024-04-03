@@ -19,6 +19,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('jsonDecode', [AppRuntime::class, 'jsonDecode']),
             new TwigFilter('base64Encode', [AppRuntime::class, 'base64Encode']),
             new TwigFilter('mimetype', [AppRuntime::class, 'mimetype']),
+            new TwigFilter('unique', [AppRuntime::class, 'unique']),
         ];
     }
 

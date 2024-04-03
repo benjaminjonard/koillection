@@ -182,9 +182,18 @@ class Datum implements VisibleInterface, \Stringable
 
         $selectedChoices = json_decode($this->value, true);
         $orderedSelectedChoices = [];
+
         foreach ($this->getChoiceList()->getChoices() as $availableChoice) {
             if (\in_array($availableChoice, $selectedChoices)) {
                 $orderedSelectedChoices[] = $availableChoice;
+            }
+        }
+
+        // If the selected choice wasn't found in the available choices, add it at the end of the list
+        // It happens when the list was updated and the selected choice isn't available anymore
+        foreach ($selectedChoices as $selectedChoice) {
+            if (!\in_array($selectedChoice, $orderedSelectedChoices)) {
+                $orderedSelectedChoices[] = $selectedChoice;
             }
         }
 

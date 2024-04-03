@@ -208,4 +208,13 @@ readonly class AppRuntime implements RuntimeExtensionInterface
     {
         return mime_content_type($path);
     }
+
+    public function unique(?array $array): array
+    {
+        if ($array === null) {
+            return [];
+        }
+
+        return array_unique($array);
+    }
 }

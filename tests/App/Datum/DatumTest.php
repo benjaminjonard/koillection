@@ -69,6 +69,7 @@ class DatumTest extends AppTestCase
      */
     public function test_can_get_common_fields(): void
     {
+        // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
@@ -99,6 +100,7 @@ class DatumTest extends AppTestCase
 
     public function test_can_get_collection_fields(): void
     {
+        // Arrange
         $user = UserFactory::createOne()->object();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
@@ -120,5 +122,28 @@ class DatumTest extends AppTestCase
 
         $this->assertSame('Country', $content[1][1]);
         $this->assertSame('JP', (new Crawler($content[1][2]))->filter('#data___placeholder___value option[selected]')->attr('value'));
+    }
+
+    public function test_unavailable_choice_from_choice_list_still_usable_on_item(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->object();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['In progress', 'Done', 'Abandoned'], 'owner' => $user]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 5, 'type' => DatumTypeEnum::TYPE_CHOICE_LIST, 'label' => 'Status', 'value' => json_encode(['In progress', 'Fake']), 'choiceList' => $choiceList]);
+
+        // Act
+        $this->client->request('GET', '/items/' . $item->getId() . '/edit');
+        $crawler = $this->client->submitForm('Submit', [
+            'item[name]' => $item->getName(),
+            'item[collection]' => $collection->getId(),
+            'item[data][0][position]' => 1, 'item[data][0][type]' => DatumTypeEnum::TYPE_CHOICE_LIST, 'item[data][0][label]' => 'Status', 'item[data][0][value]' => 'Fake'
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Status : Fake', $crawler->filter('.datum-row')->eq(0)->text());
     }
 }
