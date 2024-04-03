@@ -26,11 +26,11 @@ export function getFlagFromCountryCode(countryCode) {
 export function getVisibilityIcon(value) {
     switch (value) {
         case 'public':
-            return '<i class="select-icon fa fa-globe fa-fw"></i><i class="select-icon fa fa-unlock-alt fa-fw fa-secondary"></i>';
+            return '<i class="select-icon fa fa-globe fa-fw"></i></i>';
         case 'private':
             return '<i class="select-icon fa fa-lock fa-fw"></i>';
         case 'internal':
-            return '<i class="select-icon fa fa-user fa-fw"></i><i class="select-icon fa fa-unlock-alt fa-fw fa-secondary"></i>';
+            return '<i class="select-icon fa fa-user fa-fw"></i></i>';
     }
 
     return '';

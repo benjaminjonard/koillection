@@ -664,24 +664,6 @@ table .visibility {
     white-space: nowrap;
 }
 
-table .visibility .fa-secondary {
-    font-size: 13px;
-    font-weight: 600;
-    margin-left: -9px;
-}
-
-.visibility .fa-secondary {
-    font-size: 13px;
-    font-weight: 600;
-    margin-left: -14px;
-}
-
-.select-icon.fa-secondary {
-    font-size: 13px;
-    font-weight: 600;
-    margin-left: -8px;
-}
-
 input[type=text].filter-input, input[type=text]:focus:not([readonly]).filter-input {
     border-bottom: none;
     box-shadow: none;
