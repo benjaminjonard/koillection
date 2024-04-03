@@ -1,11 +1,15 @@
-<div class="row field" data-template-field-target="field" data-controller="field">
+<div class="row field data-holder" data-template-field-target="field" data-controller="field">
     <div class="s1 handle icon-holder">
         <i class="fa fa-arrows-v fa-fw"></i>
     </div>
-    <div class="s3">
+    <div class="s10 m4">
         {{ form_row(form.name, {'label':'label.name'}) }}
     </div>
-    <div class="s2">
+
+    <div class="s1 hide-on-med-and-up"></div>
+    <div class="s1 hide-on-med-and-up"></div>
+
+    <div class="s10 m4">
         {{ form_row(form.type, {'label':'label.type', 'attr': {
             'data-controller': 'select--default',
             'data-field-target': 'typeInput',
@@ -13,21 +17,22 @@
         }}) }}
     </div>
 
-    <div class="s2">
-        {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--visibility'}} ) }}
+    <div class="s1 hide-on-med-and-up"></div>
+    <div class="s1 hide-on-med-and-up"></div>
+
+    <div class="s10 m1">
+        {{ form_row(form.visibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--compact-visibility'}} ) }}
     </div>
 
-    <div class="s2">
-        <span class="hidden" data-field-target="choiceList">
-            {{ form_row(form.choiceList, {'label':'label.choice_list', 'attr': {
-                'data-controller': 'select--default'
-            }}) }}
-        </span>
-    </div>
 
-    <div>
-        {{ form_row(form.position, {'attr': {'class' : 'position', 'data-template-field-target': 'position'}}) }}
-    </div>
+    <span class="hidden" data-field-target="choiceList">
+        {{ form_row(form.choiceList, {'label':'label.choice_list', 'attr': {
+            'data-controller': 'select--default'
+        }}) }}
+    </span>
+
+    {{ form_row(form.position, {'attr': {'class' : 'position', 'data-template-field-target': 'position'}}) }}
+
 
     <div class="s1 icon-holder">
         <i class="fa fa-remove fa-fw removeDatum" data-action="click->template-field#remove"></i>
