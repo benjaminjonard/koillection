@@ -122,14 +122,8 @@
             ".php-cs-fixer.dist.php"
         ]
     },
-    "friendsofphp/proxy-manager-lts": {
-        "version": "v1.0.3"
-    },
     "justinrainbow/json-schema": {
         "version": "5.2.11"
-    },
-    "laminas/laminas-code": {
-        "version": "3.4.1"
     },
     "lcobucci/clock": {
         "version": "2.1.0"
@@ -430,9 +424,6 @@
     },
     "symfony/property-info": {
         "version": "v5.0.2"
-    },
-    "symfony/proxy-manager-bridge": {
-        "version": "v6.0.3"
     },
     "symfony/routing": {
         "version": "6.2",
