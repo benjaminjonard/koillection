@@ -125,7 +125,7 @@ class DatumType extends AbstractType
                         ->add('value', ChoiceType::class, [
                             'multiple' => true,
                             'required' => false,
-                            'choices' => array_unique(array_merge($this->choiceListRepository->find($data['choiceList'])->getChoices(), json_decode($form->getData()->getValue(), true))),
+                            'choices' => array_unique(array_merge($this->choiceListRepository->find($data['choiceList'])->getChoices(), json_decode($form->getData()?->getValue() ?: '[]', true))),
                             'model_transformer' => new CallbackTransformer(
                                 static function ($string) {
                                     return null !== $string ? json_decode($string, true) : null;

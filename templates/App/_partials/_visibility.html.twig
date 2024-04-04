@@ -2,12 +2,10 @@
     <span class="visibility" title="{{ getVisibilityReason(visibility|default(null), app.user.visibility) }}">
         {% if (visibility is not defined or visibility == 'public') and app.user.visibility == 'public' %}
             <i class="fa fa-globe fa-fw"></i>
-            <i class="fa fa-unlock-alt fa-fw fa-secondary"></i>
         {% elseif app.user.visibility == 'private' or (visibility is defined and visibility == 'private') %}
             <i class="fa fa-lock fa-fw"></i>
         {% else %}
             <i class="fa fa-user fa-fw"></i>
-            <i class="fa fa-unlock-alt fa-fw fa-secondary"></i>
         {% endif %}
     </span>
 {% endif %}
