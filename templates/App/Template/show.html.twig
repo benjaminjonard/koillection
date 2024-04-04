@@ -55,7 +55,13 @@
                             <td>{{ field.typeLabel|trans }}</td>
                             <td>{{ field.choiceList.name|default('-') }}</td>
                             <td>
-                                {% include 'App/_partials/_visibility.html.twig' with {'visibility': field.visibility} only %}
+                                {% if field.visibility == 'public' %}
+                                    <i class="fa fa-globe fa-fw" title="{{ 'global.visibilities.public'|trans }}"></i>
+                                {% elseif field.visibility == 'private' %}
+                                    <i class="fa fa-lock fa-fw" title="{{ 'global.visibilities.private'|trans }}"></i>
+                                {% else %}
+                                    <i class="fa fa-user fa-fw" title="{{ 'global.visibilities.internal'|trans }}"></i>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
