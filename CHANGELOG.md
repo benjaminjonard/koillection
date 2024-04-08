@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.8] / 2024-04-08
+### Features
+- Add visibility on item and collection data fields (benjaminjonard)
+
+### Fixes
+-  Fix error when choice lists has duplicated entries (benjaminjonard)
+-  Fix data not being properly displayed when choice from a choice list is updated/deleted (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.5.7] / 2024-03-15
 ### Fixes
 - Properly use quantity when display collection's total price (benjaminjonard)
