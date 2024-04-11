@@ -24,11 +24,11 @@ final class Version20230525083937 extends AbstractMigration
         $this->addSql('ALTER TABLE koi_configuration ALTER value TYPE TEXT');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_576E96A6EA750E8 ON koi_configuration (label)');
 
-        $id = Uuid::v4()->toRfc4122();
+        $id = Uuid::v7()->toRfc4122();
         $label = ConfigurationEnum::CUSTOM_LIGHT_THEME_CSS;
         $this->addSql("INSERT INTO koi_configuration (id, label, created_at) VALUES ('$id', '$label', NOW())");
 
-        $id = Uuid::v4()->toRfc4122();
+        $id = Uuid::v7()->toRfc4122();
         $label = ConfigurationEnum::CUSTOM_DARK_THEME_CSS;
         $this->addSql("INSERT INTO koi_configuration (id, label, created_at) VALUES ('$id', '$label', NOW())");
     }

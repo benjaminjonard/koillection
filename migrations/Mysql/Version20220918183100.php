@@ -27,7 +27,7 @@ final class Version20220918183100 extends AbstractMigration
 
         $tags = $this->connection->createQueryBuilder()->select('id, owner_id, items_display_mode')->from('koi_tag')->executeQuery()->fetchAllAssociative();
         foreach ($tags as $tag) {
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $tagId = $tag['id'];
             $ownerId = $tag['owner_id'];
             $displayMode = !empty($tag['items_display_mode']) ? "'" . $tag['items_display_mode'] . "'" : 'NULL';

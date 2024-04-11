@@ -12,6 +12,8 @@ class ConfigurationEnum
 
     public const string CUSTOM_DARK_THEME_CSS = 'custom-dark-theme-css';
 
+    public const string ENABLE_METRICS = 'enable-metrics';
+
     public const null THUMBNAILS_FORMAT_KEEP_ORIGINAL = null;
 
     public const string THUMBNAILS_FORMAT_JPEG = 'jpeg';
