@@ -17,18 +17,13 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 final readonly class MetricsDecorator implements OpenApiFactoryInterface
 {
     public function __construct(
-        private OpenApiFactoryInterface $decorated,
-        private ConfigurationRepository $configurationRepository
+        private OpenApiFactoryInterface $decorated
     ) {
     }
 
     public function __invoke(array $context = []): OpenApi
     {
         $openApi = ($this->decorated)($context);
-
-        if ($this->configurationRepository->findOneBy(['label' => ConfigurationEnum::ENABLE_METRICS])->getValue() !== 'true') {
-            return $openApi;
-        }
 
         $pathItem = new PathItem(
             ref: 'Metrics',
