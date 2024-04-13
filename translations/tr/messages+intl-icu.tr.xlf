@@ -1,376 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="tr">
   <file id="messages.en">
+    <unit id="X_Pm9um" name="message.user_added">
+      <segment state="translated">
+        <source>User {user} added</source>
+        <target>{user} kullanıcısı ekledi</target>
+      </segment>
+    </unit>
     <unit id="Fcb_tkO" name="message.user_edited">
       <segment state="translated">
         <source>User {user} has been updated</source>
-        <target>User {user} has been updated</target>
+        <target>{user} kullanıcısı güncellendi</target>
       </segment>
     </unit>
     <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
       <segment state="translated">
         <source>You can't delete the Admin user</source>
-        <target>You can't delete the Admin user</target>
+        <target>Yönetici kullanıcısını silemezsiniz</target>
       </segment>
     </unit>
     <unit id="2a_RIum" name="message.user_deleted">
       <segment state="translated">
         <source>User {user} was deleted</source>
-        <target>User {user} was deleted</target>
+        <target>{user} kullanıcısı silindi</target>
       </segment>
     </unit>
     <unit id="ls5sYo8" name="message.album_added">
       <segment state="translated">
         <source>Album {album} has been added</source>
-        <target>Album {album} has been added</target>
+        <target>{album} albümü eklendi</target>
       </segment>
     </unit>
     <unit id="0lwPpH7" name="message.album_edited">
       <segment state="translated">
         <source>Album {album} has been updated</source>
-        <target>Album {album} has been updated</target>
+        <target>{album} albümü güncellendi</target>
       </segment>
     </unit>
     <unit id="oawVfJJ" name="message.album_deleted">
       <segment state="translated">
         <source>Album {album} has been deleted</source>
-        <target>Album {album} has been deleted</target>
+        <target>{album} albümü silindi</target>
       </segment>
     </unit>
     <unit id="s.nX0z8" name="message.choice_list_added">
       <segment state="translated">
         <source>Choice list {list} has been added</source>
-        <target>Choice list {list} has been added</target>
+        <target>{list} seçenek listesi eklendi</target>
       </segment>
     </unit>
     <unit id="wWQwqjC" name="message.choice_list_edited">
       <segment state="translated">
         <source>Choice list {list} has been updated</source>
-        <target>Choice list {list} has been updated</target>
+        <target>{list} seçenek listesi güncellendi</target>
       </segment>
     </unit>
     <unit id="aXwmQFu" name="message.choice_list_deleted">
       <segment state="translated">
         <source>Choice list {list} has been deleted</source>
-        <target>Choice list {list} has been deleted</target>
+        <target>{list} seçenek listesi silindi</target>
       </segment>
     </unit>
     <unit id="_sN4yvV" name="message.collection_added">
       <segment state="translated">
         <source>Collection {collection} has been added</source>
-        <target>Collection {collection} has been added</target>
+        <target>{collection} koleksiyonu eklendi</target>
       </segment>
     </unit>
     <unit id="p.bp_UN" name="message.collection_edited">
       <segment state="translated">
         <source>Collection {collection} has been updated</source>
-        <target>Collection {collection} has been updated</target>
+        <target>{collection} koleksiyonu güncellendi</target>
       </segment>
     </unit>
     <unit id="m3B26dq" name="message.collection_deleted">
       <segment state="translated">
         <source>Collection {collection} has been deleted</source>
-        <target>Collection {collection} has been deleted</target>
+        <target>{collection} koleksiyonu silindi</target>
       </segment>
     </unit>
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment state="translated">
         <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
-        <target>{count, plural, one {# item tagged} other {# items tagged}}</target>
+        <target>{count, plural, one {# etiketlenmiş öğe} other {# etiketlenmiş öğe}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
       <segment state="translated">
         <source>Inventory {inventory} has been created</source>
-        <target>Inventory {inventory} has been created</target>
+        <target>{inventory} envanteri oluşturuldu</target>
       </segment>
     </unit>
     <unit id="EYnSw0A" name="message.inventory_deleted">
       <segment state="translated">
         <source>Inventory {inventory} was deleted</source>
-        <target>Inventory {inventory} was deleted</target>
+        <target>{inventory} envanteri silindi</target>
       </segment>
     </unit>
     <unit id="TMGiC1d" name="message.item_added">
       <segment state="translated">
         <source>Item {item} has been added</source>
-        <target>Item {item} has been added</target>
+        <target>{item} öğesi eklendi</target>
       </segment>
     </unit>
     <unit id="UGVMo0W" name="message.item_edited">
       <segment state="translated">
         <source>Item {item} has been updated</source>
-        <target>Item {item} has been updated</target>
+        <target>{item} öğesi güncellendi</target>
       </segment>
     </unit>
     <unit id="HgYxNo9" name="message.item_deleted">
       <segment state="translated">
         <source>Item {item} has been deleted</source>
-        <target>Item {item} has been deleted</target>
+        <target>{item} öğesi silindi</target>
       </segment>
     </unit>
     <unit id="AT9p7pU" name="message.loan">
       <segment state="translated">
         <source>Item {item} is now marked as loaned</source>
-        <target>Item {item} is now marked as loaned</target>
+        <target>{item} öğesi artık ödünç olarak işaretlendi</target>
       </segment>
     </unit>
     <unit id="FlBhKyx" name="message.loan_canceled">
       <segment state="translated">
         <source>Item {item} loan has been canceled</source>
-        <target>Item {item} loan has been canceled</target>
+        <target>{item} öğesinin ödünç alınması iptal edildi</target>
       </segment>
     </unit>
     <unit id="zkp2rxS" name="message.item_returned">
       <segment state="translated">
         <source>Item {item} is now mark as returned</source>
-        <target>Item {item} is now mark as returned</target>
+        <target>{item} öğesi artık iade edildi olarak işaretlendi</target>
       </segment>
     </unit>
     <unit id="n5rS9vY" name="message.photo_added">
       <segment state="translated">
         <source>Photo {photo} has been added</source>
-        <target>Photo {photo} has been added</target>
+        <target>{photo} fotoğrafı eklendi</target>
       </segment>
     </unit>
     <unit id="hIxqW3m" name="message.photo_edited">
       <segment state="translated">
         <source>Photo {photo} has been updated</source>
-        <target>Photo {photo} has been updated</target>
+        <target>{photo} fotoğrafı güncellendi</target>
       </segment>
     </unit>
     <unit id="p5Rmjm9" name="message.photo_deleted">
       <segment state="translated">
         <source>Photo {photo} has been deleted</source>
-        <target>Photo {photo} has been deleted</target>
+        <target>{photo} fotoğrafı silindi</target>
       </segment>
     </unit>
     <unit id="rVN8d.E" name="message.profile_updated">
       <segment state="translated">
         <source>Profile has been updated</source>
-        <target>Profile has been updated</target>
+        <target>Profil güncellendi</target>
       </segment>
     </unit>
     <unit id="nNziKQf" name="message.settings_updated">
       <segment state="translated">
         <source>Your settings have been successfully updated</source>
-        <target>Your settings have been successfully updated</target>
+        <target>Ayarlarınız başarıyla güncellendi</target>
       </segment>
     </unit>
     <unit id="Ail0qPJ" name="message.tag_category_added">
       <segment state="translated">
         <source>Tag category {category} has been added</source>
-        <target>Tag category {category} has been added</target>
+        <target>{category} etiket kategorisi eklendi</target>
       </segment>
     </unit>
     <unit id="vg07kkR" name="message.tag_category_edited">
       <segment state="translated">
         <source>Tag category {category} has been updated</source>
-        <target>Tag category {category} has been updated</target>
+        <target>{category} etiket kategorisi güncellendi</target>
       </segment>
     </unit>
     <unit id="XlwsvOZ" name="message.tag_category_deleted">
       <segment state="translated">
         <source>Tag category {category} was deleted</source>
-        <target>Tag category {category} was deleted</target>
+        <target>{category} etiket kategorisi silindi</target>
       </segment>
     </unit>
     <unit id="3EE._Y4" name="message.tag_edited">
       <segment state="translated">
         <source>Tag {tag} has been updated</source>
-        <target>Tag {tag} has been updated</target>
+        <target>{tag} etiketi güncellendi</target>
       </segment>
     </unit>
     <unit id="_PrKtDW" name="message.tag_deleted">
       <segment state="translated">
         <source>Tag {tag} has been deleted</source>
-        <target>Tag {tag} has been deleted</target>
+        <target>{tag} etiketi silindi</target>
       </segment>
     </unit>
     <unit id="QPUEgMd" name="message.unused_tags_deleted">
       <segment state="translated">
         <source>{count, plural, one {# tag deleted} other {# tags deleted}}</source>
-        <target>{count, plural, one {# tag deleted} other {# tags deleted}}</target>
+        <target>{count, plural, one {# etiket silindi} other {# etiket silindi}}</target>
       </segment>
     </unit>
     <unit id="xM.mW1R" name="message.template_added">
       <segment state="translated">
         <source>Template {template} has been added</source>
-        <target>Template {template} has been added</target>
+        <target>{template} şablonu eklendi</target>
       </segment>
     </unit>
     <unit id="5d2N5Ar" name="message.template_edited">
       <segment state="translated">
         <source>Template {template} has been updated</source>
-        <target>Template {template} has been updated</target>
+        <target>{template} şablonu güncellendi</target>
       </segment>
     </unit>
     <unit id="ZMxcm6L" name="message.template_deleted">
       <segment state="translated">
         <source>Template {template} has been deleted</source>
-        <target>Template {template} has been deleted</target>
+        <target>{template} şablonu silindi</target>
       </segment>
     </unit>
     <unit id="9RoxCzk" name="message.wish_added">
       <segment state="translated">
         <source>Wish {wish} has been added</source>
-        <target>Wish {wish} has been added</target>
+        <target>{wish} isteği eklendi</target>
       </segment>
     </unit>
     <unit id="XoB_zRK" name="message.wish_edited">
       <segment state="translated">
         <source>Wish {wish} has been updated</source>
-        <target>Wish {wish} has been updated</target>
+        <target>{wish} isteği güncellendi</target>
       </segment>
     </unit>
     <unit id="akgCJp9" name="message.wish_deleted">
       <segment state="translated">
         <source>Wish {wish} has been deleted</source>
-        <target>Wish {wish} has been deleted</target>
+        <target>{wish} isteği silindi</target>
       </segment>
     </unit>
     <unit id="mAYxq3X" name="message.wish_transfered">
       <segment state="translated">
         <source>Wish {wish} was transferred to the collection {collection}</source>
-        <target>Wish {wish} was transferred to the collection {collection}</target>
+        <target>{wish}, {collection} koleksiyonuna aktarıldı</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
       <segment state="translated">
         <source>Wishlist {wishlist} has been added</source>
-        <target>Wishlist {wishlist} has been added</target>
+        <target>{wishlist} istek listesi eklendi</target>
       </segment>
     </unit>
     <unit id="NfYGrwC" name="message.wishlist_edited">
       <segment state="translated">
         <source>Wishlist {wishlist} has been updated</source>
-        <target>Wishlist {wishlist} has been updated</target>
+        <target>{wishlist} istek listesi güncellendi</target>
       </segment>
     </unit>
     <unit id="8ujnJmR" name="message.wishlist_deleted">
       <segment state="translated">
         <source>Wishlist {wishlist} has been deleted</source>
-        <target>Wishlist {wishlist} has been deleted</target>
+        <target>{wishlist} istek listesi silindi</target>
       </segment>
     </unit>
     <unit id="zfOqV80" name="form.item_sorting.default_value">
       <segment state="translated">
         <source>Name (default)</source>
-        <target>Name (default)</target>
+        <target>Ad (varsayılan)</target>
       </segment>
     </unit>
     <unit id="L3auT0N" name="global.days.sunday">
       <segment state="translated">
         <source>Sunday</source>
-        <target>Sunday</target>
+        <target>Pazar</target>
       </segment>
     </unit>
     <unit id="JnMu4pF" name="global.days.monday">
       <segment state="translated">
         <source>Monday</source>
-        <target>Monday</target>
+        <target>Pazartesi</target>
       </segment>
     </unit>
     <unit id="qHOKUl8" name="global.days.tuesday">
       <segment state="translated">
         <source>Tuesday</source>
-        <target>Tuesday</target>
+        <target>Salı</target>
       </segment>
     </unit>
     <unit id="z6ZbHnu" name="global.days.wednesday">
       <segment state="translated">
         <source>Wednesday</source>
-        <target>Wednesday</target>
+        <target>Çarşamba</target>
       </segment>
     </unit>
     <unit id="9Tk.uyh" name="global.days.thursday">
       <segment state="translated">
         <source>Thursday</source>
-        <target>Thursday</target>
+        <target>Perşembe</target>
       </segment>
     </unit>
     <unit id="BQKd5g0" name="global.days.friday">
       <segment state="translated">
         <source>Friday</source>
-        <target>Friday</target>
+        <target>Cuma</target>
       </segment>
     </unit>
     <unit id="2AVITxE" name="global.days.saturday">
       <segment state="translated">
         <source>Saturday</source>
-        <target>Saturday</target>
+        <target>Cumartesi</target>
       </segment>
     </unit>
     <unit id="s2RK8Ci" name="global.months.january">
       <segment state="translated">
         <source>January</source>
-        <target>January</target>
+        <target>Ocak</target>
       </segment>
     </unit>
     <unit id="u5P6LMj" name="global.months.february">
       <segment state="translated">
         <source>February</source>
-        <target>February</target>
+        <target>Şubat</target>
       </segment>
     </unit>
     <unit id="53MzqTM" name="global.months.march">
       <segment state="translated">
         <source>March</source>
-        <target>March</target>
+        <target>Mart</target>
       </segment>
     </unit>
     <unit id="qIE4zZc" name="global.months.april">
       <segment state="translated">
         <source>April</source>
-        <target>April</target>
+        <target>Nisan</target>
       </segment>
     </unit>
     <unit id="urcskKu" name="global.months.may">
       <segment state="translated">
         <source>May</source>
-        <target>May</target>
+        <target>Mayıs</target>
       </segment>
     </unit>
     <unit id="muWiae3" name="global.months.june">
       <segment state="translated">
         <source>June</source>
-        <target>June</target>
+        <target>Haziran</target>
       </segment>
     </unit>
     <unit id="thsSPXR" name="global.months.july">
       <segment state="translated">
         <source>July</source>
-        <target>July</target>
+        <target>Temmuz</target>
       </segment>
     </unit>
     <unit id="t8.lqrr" name="global.months.august">
       <segment state="translated">
         <source>August</source>
-        <target>August</target>
+        <target>Ağustos</target>
       </segment>
     </unit>
     <unit id="eNAAloo" name="global.months.september">
       <segment state="translated">
         <source>September</source>
-        <target>September</target>
+        <target>Eylül</target>
       </segment>
     </unit>
     <unit id="G.Rp2Ak" name="global.months.october">
       <segment state="translated">
         <source>October</source>
-        <target>October</target>
+        <target>Ekim</target>
       </segment>
     </unit>
     <unit id="aiK2KRz" name="global.months.november">
       <segment state="translated">
         <source>November</source>
-        <target>November</target>
+        <target>Kasım</target>
       </segment>
     </unit>
     <unit id="_rddsFf" name="global.months.december">
       <segment state="translated">
         <source>December</source>
-        <target>December</target>
+        <target>Aralık</target>
       </segment>
     </unit>
     <unit id="jsUGqKL" name="global.byte_abbreviation">
@@ -382,7 +388,7 @@
     <unit id="BNjUIYA" name="label.search">
       <segment state="translated">
         <source>Search</source>
-        <target>Search</target>
+        <target>Ara</target>
       </segment>
     </unit>
     <unit id="GV09tqG" name="global.koillection">
@@ -394,91 +400,85 @@
     <unit id="bKzhzsy" name="global.time.ago">
       <segment state="translated">
         <source>{time} ago</source>
-        <target>{time} ago</target>
+        <target>{time} önce</target>
       </segment>
     </unit>
     <unit id="kBJEdcf" name="global.time.just_now">
       <segment state="translated">
         <source>Just now</source>
-        <target>Just now</target>
+        <target>Az önce</target>
       </segment>
     </unit>
     <unit id="4wvJrqA" name="global.time.today">
       <segment state="translated">
         <source>Today</source>
-        <target>Today</target>
+        <target>Bugün</target>
       </segment>
     </unit>
     <unit id="eggtiPQ" name="global.visibilities.reason.user_public">
       <segment state="translated">
         <source>Public - Reason : your profile is public</source>
-        <target>Public - Reason : your profile is public</target>
+        <target>Herkese Açık - Neden: profiliniz herkese açık</target>
       </segment>
     </unit>
     <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
       <segment state="translated">
         <source>Public - Reason : both your profile and this page are public</source>
-        <target>Public - Reason : both your profile and this page are public</target>
+        <target>Herkese Açık - Neden: hem profiliniz hem de bu sayfa herkese açık</target>
       </segment>
     </unit>
     <unit id="bk8nfAS" name="global.visibilities.reason.both_private">
       <segment state="translated">
         <source>Private - Reason : both your profile and this page are private</source>
-        <target>Private - Reason : both your profile and this page are private</target>
+        <target>Özel - Neden: hem profiliniz hem de bu sayfa gizli</target>
       </segment>
     </unit>
     <unit id="ixVg6T0" name="global.visibilities.reason.user_private">
       <segment state="translated">
         <source>Private - Reason : your profile is private</source>
-        <target>Private - Reason : your profile is private</target>
+        <target>Herkese Açık - Neden: profiliniz gizli</target>
       </segment>
     </unit>
     <unit id="9OU9mZT" name="global.visibilities.reason.object_private">
       <segment state="translated">
         <source>Private - Reason : this page is private</source>
-        <target>Private - Reason : this page is private</target>
+        <target>Herkese Açık - Neden: bu sayfa gizli</target>
       </segment>
     </unit>
     <unit id="k5.Efwd" name="global.visibilities.reason.both_internal">
       <segment state="translated">
         <source>Internal - Reason : both your profile and this page are internal</source>
-        <target>Internal - Reason : both your profile and this page are internal</target>
+        <target>Dahili - Neden: hem profiliniz hem de bu sayfa dahili</target>
       </segment>
     </unit>
     <unit id="KHNt07x" name="global.visibilities.reason.user_internal">
       <segment state="translated">
         <source>Internal - Reason : your profile is internal</source>
-        <target>Internal - Reason : your profile is internal</target>
+        <target>Dahili - Neden : profiliniz dahili</target>
       </segment>
     </unit>
     <unit id="0fTIld1" name="global.visibilities.reason.object_internal">
       <segment state="translated">
         <source>Internal - Reason : this page is internal</source>
-        <target>Internal - Reason : this page is internal</target>
+        <target>Dahili - Neden : bu sayfa dahili</target>
       </segment>
     </unit>
     <unit id="wvvYSw_" name="menu.admin">
       <segment state="translated">
         <source>Administration</source>
-        <target>Administration</target>
+        <target>Yönetim</target>
       </segment>
     </unit>
     <unit id="I4vwwju" name="title.overview">
       <segment state="translated">
         <source>Overview</source>
-        <target>Overview</target>
+        <target>Genel Bakış</target>
       </segment>
     </unit>
     <unit id="4fDIeO4" name="label.space_used">
       <segment state="translated">
         <source>{used} / {total} used</source>
-        <target>{used} / {total} used</target>
-      </segment>
-    </unit>
-    <unit id="ZzykrnK" name="label.space_free">
-      <segment state="translated">
-        <source>{free} free</source>
-        <target>{free} free</target>
+        <target>{used} / {total} kullanıldı</target>
       </segment>
     </unit>
     <unit id="FIesMhl" name="counter.without_number.users">
