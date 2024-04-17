@@ -21,10 +21,10 @@ class ConfigurationCheckboxType extends AbstractType
                 'required' => $options['required'],
                 'model_transformer' => new CallbackTransformer(
                     static function ($value) {
-                        return $value === 'true';
+                        return $value === '1';
                     },
                     static function ($value) {
-                        return $value === true ? 'true' : 'false';
+                        return $value === true ? '1' : '0';
                     }
                 ),
             ])

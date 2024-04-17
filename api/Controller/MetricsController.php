@@ -50,7 +50,7 @@ class MetricsController extends AbstractController
         DiskUsageCalculator $diskUsageCalculator
     ): Response
     {
-        if ($configurationRepository->findOneBy(['label' => ConfigurationEnum::ENABLE_METRICS])->getValue() !== 'true') {
+        if ($configurationRepository->findOneBy(['label' => ConfigurationEnum::ENABLE_METRICS])->getValue() !== '1') {
             throw new AccessDeniedHttpException();
         }
 
