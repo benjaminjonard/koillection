@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Collection;
+use App\Entity\Item;
 use App\Entity\Scraper;
 use App\Enum\ScraperTypeEnum;
 use Symfony\Component\Form\AbstractType;
@@ -39,9 +41,19 @@ class ScraperType extends AbstractType
 
         $formModifier = static function (FormInterface $form) use ($scraper): void {
             match ($scraper->getType()) {
-                ScraperTypeEnum::TYPE_ITEM, ScraperTypeEnum::TYPE_COLLECTION => $form
+                ScraperTypeEnum::TYPE_COLLECTION => $form
                     ->add('dataPaths', SymfonyCollectionType::class, [
                         'entry_type' => PathType::class,
+                        'entry_options' => ['for_class' => Collection::class],
+                        'label' => false,
+                        'allow_add' => true,
+                        'allow_delete' => true,
+                        'by_reference' => false,
+                    ]),
+                ScraperTypeEnum::TYPE_ITEM => $form
+                    ->add('dataPaths', SymfonyCollectionType::class, [
+                        'entry_type' => PathType::class,
+                        'entry_options' => ['for_class' => Item::class],
                         'label' => false,
                         'allow_add' => true,
                         'allow_delete' => true,

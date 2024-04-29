@@ -57,7 +57,7 @@ class ScrapingItemType extends AbstractType
         ;
 
         $formModifier = static function (FormInterface $form, Scraper $scraper = null): void {
-            $choices = $scraper instanceof \App\Entity\Scraper ? $scraper->getDataPaths() : [];
+            $choices = $scraper instanceof Scraper ? $scraper->getDataPaths() : [];
             $form->add('dataToScrap', EntityType::class, [
                 'class' => Path::class,
                 'choice_label' => 'name',

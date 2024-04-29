@@ -45,7 +45,7 @@ abstract class HtmlScraper
         return new Crawler($content);
     }
 
-    protected function extract(?string $template, string $type, Crawler $crawler): ?string
+    protected function extract(?string $template, string $type, Crawler $crawler, $scraping): ?string
     {
         if (!$template) {
             return '';
@@ -77,7 +77,7 @@ abstract class HtmlScraper
             }
         }
 
-        return $this->formatValues($values, $type);
+        return $this->formatValues($values, $type, $scraping);
     }
 
     protected function scrapData(ScrapingItem|ScrapingCollection|ScrapingWish $scraping, Crawler $crawler, string $entityType): array
@@ -85,7 +85,7 @@ abstract class HtmlScraper
         $data = [];
 
         foreach ($scraping->getDataToScrap() as $key => $dataToScrap) {
-            $value = $this->extract($dataToScrap->getPath(), $dataToScrap->getType(), $crawler);
+            $value = $this->extract($dataToScrap->getPath(), $dataToScrap->getType(), $crawler, $scraping);
 
             $datum = (new Datum())
                 ->setValue($value)
@@ -112,7 +112,7 @@ abstract class HtmlScraper
         return $data;
     }
 
-    protected function formatValues(?array $values, string $type): ?string
+    protected function formatValues(?array $values, string $type, $scraping): ?string
     {
         if ($values === null || $values === []) {
             return null;
@@ -145,6 +145,10 @@ abstract class HtmlScraper
 
             // Else try to match the country name
             return array_flip(Countries::getNames())[$value] ?? null;
+        }
+
+        if ($type === DatumTypeEnum::TYPE_IMAGE) {
+            return $this->guessHost($values[0], $scraping);
         }
 
         return null;

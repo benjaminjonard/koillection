@@ -6,8 +6,10 @@ namespace App\Form\Type\Entity;
 
 use App\Entity\ChoiceList;
 use App\Entity\Datum;
+use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
+use App\Form\DataTransformer\UrlToImageTransformer;
 use App\Repository\ChoiceListRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -16,18 +18,21 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DatumType extends AbstractType
 {
     public function __construct(
         private readonly Security $security,
-        private readonly ChoiceListRepository $choiceListRepository
+        private readonly ChoiceListRepository $choiceListRepository,
+        private readonly UrlToImageTransformer $urlToImageTransformer,
     ) {
     }
 
@@ -59,6 +64,21 @@ class DatumType extends AbstractType
             ->add('position', TextType::class, [
                 'required' => false,
             ])
+            ->add( // Used for scraping
+                $builder->create('fileImageUrl', HiddenType::class, [
+                    'required' => false,
+                    'label' => false,
+                    'model_transformer' => $this->urlToImageTransformer,
+                    'getter' => static function () {
+                        return null;
+                    },
+                    'setter' => static function (Datum &$item, ?File $file): void {
+                        if ($file instanceof File) {
+                            $item->setFileImage($file);
+                        }
+                    },
+                ])
+            )
         ;
 
         $builder->addEventListener(

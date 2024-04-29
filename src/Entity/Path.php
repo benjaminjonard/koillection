@@ -23,7 +23,6 @@ class Path
     private ?string $name = null;
 
     #[ORM\Column(type: Types::STRING, length: 15)]
-    #[Assert\Choice(choices: DatumTypeEnum::AVAILABLE_FOR_SCRAPING)]
     #[Assert\NotBlank]
     private ?string $type = null;
 

@@ -66,7 +66,7 @@ class WishType extends AbstractType
                         return null;
                     },
                     'setter' => static function (Wish &$wish, ?File $file): void {
-                        if ($file instanceof \Symfony\Component\HttpFoundation\File\File) {
+                        if ($file instanceof File) {
                             $wish->setFile($file);
                         }
                     },

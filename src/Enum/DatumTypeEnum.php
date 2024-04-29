@@ -80,6 +80,14 @@ class DatumTypeEnum
         self::TYPE_COUNTRY,
     ];
 
+    public const array AVAILABLE_FOR_ITEM_SCRAPING = [
+        self::TYPE_TEXT,
+        self::TYPE_TEXTAREA,
+        self::TYPE_LIST,
+        self::TYPE_COUNTRY,
+        self::TYPE_IMAGE,
+    ];
+
     public const array AVAILABLE_FOR_SEARCH = [
         self::TYPE_TEXT,
         self::TYPE_LIST,

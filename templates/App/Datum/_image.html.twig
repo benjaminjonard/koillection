@@ -1,11 +1,13 @@
-<div class="input-field image-preview-wrapper image-field s9 m5 row-file datum-input-field" data-controller="preview">
+<div class="input-field image-preview-wrapper image-field s9 m5 row-file datum-input-field" data-controller="preview additional-image-scraping">
     <label class="file-label">
         {% if datum is defined and datum.image is not null %}
             <img data-preview-target="image"
+                 data-additional-image-scraping-target="preview"
                  class="preview-image" src="{{ preload(asset(datum.imageSmallThumbnail), {as: 'image'}) }}"
             />
         {% else %}
             <img data-preview-target="image"
+                 data-additional-image-scraping-target="preview"
                  class="preview-image"
                  src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
             />
@@ -16,6 +18,13 @@
                class="has-preview hidden"
                accept="image/png, image/jpeg, image/webp, image/avif"
                data-additional-data-target="value"
+        >
+
+        <input type="hidden"
+               id="data_{{ iteration }}_fileImageUrl"
+               name="{{ entity }}[data][{{ iteration }}][fileImageUrl]"
+               data-additional-image-scraping-target="urlInput"
+               {% if datum is defined %}value="{{ datum.value }}"{% endif %}
         >
     </label>
 </div>

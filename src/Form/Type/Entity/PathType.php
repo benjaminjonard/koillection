@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Entity;
 
+use App\Entity\Collection;
+use App\Entity\Item;
 use App\Entity\Path;
 use App\Enum\DatumTypeEnum;
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +20,14 @@ class PathType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $types = [];
-        foreach (DatumTypeEnum::AVAILABLE_FOR_SCRAPING as $type) {
+
+        $typesAvailableForScraping = match ($options['for_class']) {
+            Item::class => DatumTypeEnum::AVAILABLE_FOR_ITEM_SCRAPING,
+            Collection::class => DatumTypeEnum::AVAILABLE_FOR_SCRAPING,
+            default => []
+        };
+
+        foreach ($typesAvailableForScraping as $type) {
             $types[DatumTypeEnum::getTypeLabel($type)] = $type;
         }
 
@@ -46,6 +55,10 @@ class PathType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Path::class,
+        ]);
+
+        $resolver->setRequired([
+            'for_class',
         ]);
     }
 }

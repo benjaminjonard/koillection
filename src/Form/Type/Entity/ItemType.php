@@ -61,7 +61,7 @@ class ItemType extends AbstractType
                         return null;
                     },
                     'setter' => static function (Item &$item, ?File $file): void {
-                        if ($file instanceof \Symfony\Component\HttpFoundation\File\File) {
+                        if ($file instanceof File) {
                             $item->setFile($file);
                         }
                     },
