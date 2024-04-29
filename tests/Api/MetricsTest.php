@@ -20,7 +20,7 @@ class MetricsTest extends ApiTestCase
     {
         // Arrange
         $configurationMetrics = ConfigurationFactory::find(['label' => ConfigurationEnum::ENABLE_METRICS]);
-        $configurationMetrics->setValue('true');
+        $configurationMetrics->setValue('1');
         $configurationMetrics->save();
 
         // Act
