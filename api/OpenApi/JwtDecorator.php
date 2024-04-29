@@ -9,7 +9,9 @@ use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Model\PathItem;
 use ApiPlatform\OpenApi\Model\RequestBody;
 use ApiPlatform\OpenApi\OpenApi;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 
+#[AsDecorator(decorates: 'api_platform.openapi.factory')]
 final readonly class JwtDecorator implements OpenApiFactoryInterface
 {
     public function __construct(

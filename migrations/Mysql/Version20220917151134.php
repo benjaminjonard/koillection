@@ -31,7 +31,7 @@ final class Version20220917151134 extends AbstractMigration
 
         $collections = $this->connection->createQueryBuilder()->select('id, owner_id, items_title, items_display_mode, items_sorting_property, items_sorting_direction, items_sorting_type, items_list_columns, items_list_show_visibility, items_list_show_actions')->from('koi_collection')->executeQuery()->fetchAllAssociative();
         foreach ($collections as $collection) {
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $collectionId = $collection['id'];
             $ownerId = $collection['owner_id'];
             $label = !empty($collection['items_title']) ? "'" . $collection['items_title'] . "'" : 'NULL';
@@ -58,7 +58,7 @@ final class Version20220917151134 extends AbstractMigration
 
         $albums = $this->connection->createQueryBuilder()->select('id, owner_id, photos_display_mode')->from('koi_album')->executeQuery()->fetchAllAssociative();
         foreach ($albums as $album) {
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $albumId = $album['id'];
             $ownerId = $album['owner_id'];
             $displayMode = !empty($album['photos_display_mode']) ? "'" . $album['photos_display_mode'] . "'" : 'NULL';

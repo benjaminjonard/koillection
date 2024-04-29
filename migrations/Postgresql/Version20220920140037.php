@@ -34,7 +34,7 @@ final class Version20220920140037 extends AbstractMigration
 
         $users = $this->connection->createQueryBuilder()->select('id')->from('koi_user')->executeQuery()->fetchAllAssociative();
         foreach ($users as $user) {
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $userId = $user['id'];
             $displayMode = "'" . DisplayModeEnum::DISPLAY_MODE_GRID . "'";
             $sortingDirection = "'" . SortingDirectionEnum::ASCENDING . "'";
@@ -42,11 +42,11 @@ final class Version20220920140037 extends AbstractMigration
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, display_mode, sorting_direction, created_at) VALUES ('$id', '$userId', $displayMode, $sortingDirection, NOW())");
             $this->addSql("UPDATE koi_user SET collections_display_configuration_id = '$id' WHERE id = '$userId'");
 
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, display_mode, sorting_direction, created_at) VALUES ('$id', '$userId', $displayMode, $sortingDirection, NOW())");
             $this->addSql("UPDATE koi_user SET albums_display_configuration_id = '$id' WHERE id = '$userId'");
 
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $this->addSql("INSERT INTO koi_display_configuration (id, owner_id, display_mode, sorting_direction, created_at) VALUES ('$id', '$userId', $displayMode, $sortingDirection, NOW())");
             $this->addSql("UPDATE koi_user SET wishlists_display_configuration_id = '$id' WHERE id = '$userId'");
         }

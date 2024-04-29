@@ -42,7 +42,7 @@ final class Version20220916154614 extends AbstractMigration
 
         $collections = $this->connection->createQueryBuilder()->select('id, owner_id, children_title')->from('koi_collection')->executeQuery()->fetchAllAssociative();
         foreach ($collections as $collection) {
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $collectionId = $collection['id'];
             $ownerId = $collection['owner_id'];
             $label = !empty($collection['children_title']) ? "'" . $collection['children_title'] . "'" : 'NULL';
@@ -55,7 +55,7 @@ final class Version20220916154614 extends AbstractMigration
 
         $albums = $this->connection->createQueryBuilder()->select('id, owner_id')->from('koi_album')->executeQuery()->fetchAllAssociative();
         foreach ($albums as $album) {
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $albumId = $album['id'];
             $ownerId = $album['owner_id'];
 
@@ -65,7 +65,7 @@ final class Version20220916154614 extends AbstractMigration
 
         $wishlists = $this->connection->createQueryBuilder()->select('id, owner_id')->from('koi_wishlist')->executeQuery()->fetchAllAssociative();
         foreach ($wishlists as $wishlist) {
-            $id = Uuid::v4()->toRfc4122();
+            $id = Uuid::v7()->toRfc4122();
             $wishlistId = $wishlist['id'];
             $ownerId = $wishlist['owner_id'];
 

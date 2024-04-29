@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type\Model;
 
 use App\Enum\ConfigurationEnum;
+use App\Form\Type\Entity\Admin\ConfigurationCheckboxType;
 use App\Form\Type\Entity\Admin\ConfigurationChoiceType;
 use App\Form\Type\Entity\Admin\ConfigurationTextareaType;
 use App\Model\ConfigurationAdmin;
@@ -26,6 +27,9 @@ class ConfigurationAdminType extends AbstractType
                 'required' => false,
             ])
             ->add('customDarkThemeCss', ConfigurationTextareaType::class, [
+                'required' => false,
+            ])
+            ->add('enableMetrics', ConfigurationCheckboxType::class, [
                 'required' => false,
             ])
         ;
