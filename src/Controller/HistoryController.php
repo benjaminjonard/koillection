@@ -10,7 +10,7 @@ use App\Repository\LogRepository;
 use App\Service\PaginatorFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class HistoryController extends AbstractController
 {

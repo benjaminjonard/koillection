@@ -12,7 +12,7 @@ use App\Service\DatabaseDumper;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use ZipStream\ZipStream;
 
 class ToolsController extends AbstractController

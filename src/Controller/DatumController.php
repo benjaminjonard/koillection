@@ -11,7 +11,7 @@ use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class DatumController extends AbstractController
 {

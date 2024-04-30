@@ -4,18 +4,18 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Environment variables
 ENV APP_ENV='prod'
-ENV PUID='1000'
-ENV PGID='1000'
+ENV PUID='1001'
+ENV PGID='1001'
 ENV USER='koillection'
 
 COPY ./docker/entrypoint-dev.sh /entrypoint.sh
 
-# Add User and Group
-RUN addgroup --gid "$PGID" "$USER" && \
-    adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # Install some basics dependencies
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y curl lsb-release software-properties-common gnupg2 vim && \
+# Add User and Groups
+    addgroup --gid "$PGID" "$USER" && \
+    adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # PHP
     add-apt-repository ppa:ondrej/php && \
 # Nodejs
@@ -47,8 +47,7 @@ RUN addgroup --gid "$PGID" "$USER" && \
 #Install composer dependencies
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 # Set permissions
-    chmod +x /entrypoint.sh && \
-    mkdir /run/php
+    chmod +x /entrypoint.sh
 
 # Add nginx and PHP config files
 COPY ./docker/default.conf /etc/nginx/nginx.conf

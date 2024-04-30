@@ -2,8 +2,8 @@ FROM dunglas/frankenphp
 
 # Environment variables
 ENV APP_ENV=prod
-ENV PUID=1000
-ENV PGID=1000
+ENV PUID=1001
+ENV PGID=1001
 ENV USER=koillection
 ENV FRANKENPHP_CONFIG="worker /app/public/public/index.php"
 ENV FRANKENPHP_SERVER_NAME=":80"
@@ -12,12 +12,12 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY ./ /app/public
 COPY ./docker/Caddyfile /etc/caddy/Caddyfile
 
-# Add User and Group
-RUN addgroup --gid "$PGID" "$USER" && \
-    adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # Install some basics dependencies
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y curl wget lsb-release gnupg2 && \
+# Add User and Group
+    addgroup --gid "$PGID" "$USER" && \
+    adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
 # Nodejs
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
     NODE_MAJOR=21 && \

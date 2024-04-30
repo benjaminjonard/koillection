@@ -10,7 +10,7 @@ use App\Service\Graph\CalendarBuilder;
 use App\Service\Graph\ChartBuilder;
 use App\Service\Graph\TreeBuilder;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class StatisticsController extends AbstractController
 {
