@@ -10,23 +10,19 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
 
-final class Version20230519200850 extends AbstractMigration
+final class Version20240411083531 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '[Postgresql] Add `koi_configuration` table';
+        return '[Postgresql] Add enable_metrics to `koi_configuration`';
     }
 
     public function up(Schema $schema): void
     {
         $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE TABLE koi_configuration (id CHAR(36) NOT NULL, label VARCHAR(255) NOT NULL, value VARCHAR(255), created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
-        $this->addSql('COMMENT ON COLUMN koi_configuration.created_at IS \'(DC2Type:datetime_immutable)\'');
-        $this->addSql('COMMENT ON COLUMN koi_configuration.updated_at IS \'(DC2Type:datetime_immutable)\'');
-
         $id = Uuid::v7()->toRfc4122();
-        $label = ConfigurationEnum::THUMBNAILS_FORMAT;
+        $label = ConfigurationEnum::ENABLE_METRICS;
         $this->addSql("INSERT INTO koi_configuration (id, label, created_at) VALUES ('$id', '$label', NOW())");
     }
 

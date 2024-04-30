@@ -8,17 +8,12 @@ use App\Entity\Configuration;
 
 class ConfigurationAdmin
 {
-    private readonly Configuration $thumbnailsFormat;
-
-    private readonly Configuration $customLightThemeCss;
-
-    private readonly Configuration $customDarkThemeCss;
-
-    public function __construct(Configuration $thumbnailsFormat, Configuration $customLightThemeCss, Configuration $customDarkThemeCss)
-    {
-        $this->thumbnailsFormat = $thumbnailsFormat;
-        $this->customLightThemeCss = $customLightThemeCss;
-        $this->customDarkThemeCss = $customDarkThemeCss;
+    public function __construct(
+        private readonly Configuration $thumbnailsFormat,
+        private readonly Configuration $customLightThemeCss,
+        private readonly Configuration $customDarkThemeCss,
+        private readonly Configuration $enableMetrics
+    ) {
     }
 
     public function getThumbnailsFormat(): Configuration
@@ -34,5 +29,10 @@ class ConfigurationAdmin
     public function getCustomDarkThemeCss(): Configuration
     {
         return $this->customDarkThemeCss;
+    }
+
+    public function getEnableMetrics(): Configuration
+    {
+        return $this->enableMetrics;
     }
 }

@@ -4,6 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+api_controllers:
+  resource:
+    path: ../api/Controller/
+    namespace: Api\Controller
+  type: attribute
+
 kernel:
   resource: ../src/Kernel.php
   type: attribute

@@ -29,6 +29,10 @@
                     <div class="s12 l5 offset-l1 xl4 offset-xl2">
                         {{ form_row(form.thumbnailsFormat.value, {'label' : 'label.thumbnails_format', 'attr': {'data-controller': 'select--default'}}) }}
                     </div>
+
+                    <div class="s12 l5 xl4">
+                        {{ form_row(form.enableMetrics.value, { 'label' : 'label.enable_metrics' }) }}
+                    </div>
                 </div>
 
                 <h3 class="header">{{ 'title.custom_css'|trans }}</h3>
