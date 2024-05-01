@@ -4,10 +4,6 @@ import { htmlStringToDomElement, getVisibilityIcon } from "../../js/utils";
 
 /* stimulusFetch: 'lazy' */
 export default class extends DefaultController {
-    minimumResultsForSearch() {
-        return 'Infinity';
-    }
-
     templateSelection(visibility) {
         if (!visibility.id) {
             return htmlStringToDomElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
