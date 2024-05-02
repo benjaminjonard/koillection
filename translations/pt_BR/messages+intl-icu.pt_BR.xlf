@@ -3583,5 +3583,11 @@
         <target>Quantidade</target>
       </segment>
     </unit>
+    <unit id="npBJeAW" name="label.enable_metrics">
+      <segment state="translated">
+        <source>Enable metrics</source>
+        <target>Habilitar métricas</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
