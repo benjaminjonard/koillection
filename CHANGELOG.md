@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.9] / 2024-05-08
+### Features
+- Additional images can now be added in scrapers (benjaminjonard)
+- Add metrics endpoint, see [Metrics wiki](https://github.com/benjaminjonard/koillection/wiki/Metrics) (benjaminjonard)
+
+### Fixes
+- Fix search in country select list (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.5.8] / 2024-04-08
 ### Features
 - Add visibility on item and collection data fields (benjaminjonard)
