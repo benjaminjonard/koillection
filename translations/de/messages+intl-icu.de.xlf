@@ -3571,16 +3571,22 @@
         <target>Video</target>
       </segment>
     </unit>
+    <unit id="K5G7aFy" name="label.show_item_quantities">
+      <segment state="translated">
+        <source>Show item quantities</source>
+        <target>Anzahl Einträge anzeigen</target>
+      </segment>
+    </unit>
     <unit id="wgg5Wgv" name="form.item_sorting.quantity">
       <segment state="translated">
         <source>Quantity</source>
-        <target>Quantity</target>
+        <target>Anzahl</target>
       </segment>
     </unit>
     <unit id="npBJeAW" name="label.enable_metrics">
       <segment state="translated">
         <source>Enable metrics</source>
-        <target>Enable metrics</target>
+        <target>Metriken aktivieren</target>
       </segment>
     </unit>
   </file>
