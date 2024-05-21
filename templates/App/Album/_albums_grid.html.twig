@@ -10,7 +10,7 @@
             </a>
             <span class="collection-title" title="{{ album.title }}">{{ album.title }}</span>
             <p class="collection-stats">
-                {{ 'counter.photo'|trans({'count': album.cachedValues.counters.photos|default(0)}) }}
+                {{ 'counter.photo'|trans({'count': getCachedValues(album).counters.photos|default(0)}) }}
             </p>
         </div>
     {% endfor %}

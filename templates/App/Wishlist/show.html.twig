@@ -36,8 +36,8 @@
                 <div>
                     <h1>{{ wishlist.name }}</h1>
                     <ul class="nav nav-pills">
-                        <li>{{ 'counter.wish'|trans({'count': wishlist.cachedValues.counters.wishes|default(0)}) }}</li>
-                        <li>{{ 'counter.wishlist'|trans({'count': wishlist.cachedValues.counters.children|default(0)}) }}</li>
+                        <li>{{ 'counter.wish'|trans({'count': getCachedValues(wishlist).counters.wishes|default(0)}) }}</li>
+                        <li>{{ 'counter.wishlist'|trans({'count': getCachedValues(wishlist).counters.children|default(0)}) }}</li>
                     </ul>
                 </div>
             </div>

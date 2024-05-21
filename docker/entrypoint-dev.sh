@@ -46,7 +46,7 @@ php bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
 
 echo "**** Create API keys ****"
 cd /var/www/koillection && \
-php bin/console lexik:jwt:generate-keypair --overwrite --env=prod
+php bin/console lexik:jwt:generate-keypair --skip-if-exists --env=prod
 
 echo "**** Create nginx log files ****"
 mkdir -p /logs/nginx

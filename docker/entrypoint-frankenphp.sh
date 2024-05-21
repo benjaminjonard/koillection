@@ -53,7 +53,7 @@ php bin/console app:refresh-cached-values --env=prod
 
 echo "**** 6/10 - Create API keys ****"
 cd /app/public && \
-php bin/console lexik:jwt:generate-keypair --overwrite --env=prod
+php bin/console lexik:jwt:generate-keypair --skip-if-exists --env=prod
 
 echo "**** 7/10 - Create user and use PUID/PGID ****"
 PUID=${PUID:-1000}

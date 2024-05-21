@@ -9,6 +9,7 @@ use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Form\Type\Entity\WishlistType;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use App\Service\CachedValuesCalculator;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ class WishlistController extends AbstractController
 {
     #[Route(path: '/wishlists', name: 'app_wishlist_index', methods: ['GET'])]
     #[Route(path: '/user/{username}/wishlists', name: 'app_shared_wishlist_index', methods: ['GET'])]
-    public function index(WishlistRepository $wishlistRepository): Response
+    public function index(WishlistRepository $wishlistRepository, CachedValuesCalculator $cachedValuesCalculator): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
@@ -29,8 +30,8 @@ class WishlistController extends AbstractController
         $wishlistsCounter = \count($wishlists);
         $wishesCounter = 0;
         foreach ($wishlists as $wishlist) {
-            $wishlistsCounter += $wishlist->getCachedValues()['counters']['children'] ?? 0;
-            $wishesCounter += $wishlist->getCachedValues()['counters']['wishes'] ?? 0;
+            $wishlistsCounter += $cachedValuesCalculator->getCachedValues($wishlist)['counters']['children'] ?? 0;
+            $wishesCounter += $cachedValuesCalculator->getCachedValues($wishlist)['counters']['wishes'] ?? 0;
         }
 
         return $this->render('App/Wishlist/index.html.twig', [

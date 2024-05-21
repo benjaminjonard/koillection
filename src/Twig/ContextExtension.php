@@ -21,7 +21,8 @@ class ContextExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getContextUser', [ContextRuntime::class, 'getContextUser'])
+            new TwigFunction('getContextUser', [ContextRuntime::class, 'getContextUser']),
+            new TwigFunction('getCachedValues', [ContextRuntime::class, 'getCachedValues'])
         ];
     }
 }

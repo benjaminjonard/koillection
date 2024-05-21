@@ -61,7 +61,7 @@ class DatumRepository extends ServiceEntityRepository
         return $qb->getQuery()->getArrayResult();
     }
 
-    public function computePricesForCollection(Collection $collection)
+    public function computePricesForCollection(Collection $collection, string $visibility)
     {
         $id = $collection->getId();
         $type = DatumTypeEnum::TYPE_PRICE;
@@ -81,6 +81,7 @@ class DatumRepository extends ServiceEntityRepository
             FROM koi_datum datum
             JOIN koi_item item ON datum.item_id = item.id AND item.collection_id = '{$id}'
             WHERE datum.type = '{$type}'
+            AND datum.visibility = '{$visibility}'
             GROUP BY datum.label
         ";
 

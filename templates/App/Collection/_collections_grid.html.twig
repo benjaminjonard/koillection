@@ -11,7 +11,7 @@
             </a>
             <span class="collection-title" title="{{ collection.title }}">{{ collection.title }}</span>
             <p class="collection-stats">
-                {{ 'counter.item'|trans({'count': collection.cachedValues.counters.items|default(0)}) }}
+                {{ 'counter.item'|trans({'count': getCachedValues(collection).counters.items|default(0)}) }}
             </p>
         </div>
     {% endfor %}
