@@ -20,6 +20,10 @@ class UrlToImageTransformer implements DataTransformerInterface
             return null;
         }
 
+        if (str_starts_with($url, '//')) {
+            $url = 'https:' . $url;
+        }
+
         $arrContextOptions = [
             'ssl' => [
                 'verify_peer' => false,
