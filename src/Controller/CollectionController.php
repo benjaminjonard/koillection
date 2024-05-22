@@ -17,7 +17,7 @@ use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
-use App\Service\CachedValuesCalculator;
+use App\Service\CachedValuesGetter;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,15 +31,15 @@ class CollectionController extends AbstractController
     #[Route(path: '/collections', name: 'app_homepage', methods: ['GET'])]
     #[Route(path: '/user/{username}/collections', name: 'app_shared_collection_index', methods: ['GET'])]
     #[Route(path: '/user/{username}', name: 'app_shared_homepage', methods: ['GET'])]
-    public function index(CollectionRepository $collectionRepository, CachedValuesCalculator $cachedValuesCalculator): Response
+    public function index(CollectionRepository $collectionRepository, CachedValuesGetter $cachedValuesGetter): Response
     {
         $collections = $collectionRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
 
         $collectionsCounter = \count($collections);
         $itemsCounter = 0;
         foreach ($collections as $collection) {
-            $collectionsCounter += $cachedValuesCalculator->getCachedValues($collection)['counters']['children'] ?? 0;
-            $itemsCounter += $cachedValuesCalculator->getCachedValues($collection)['counters']['items'] ?? 0;
+            $collectionsCounter += $cachedValuesGetter->getCachedValues($collection)['counters']['children'] ?? 0;
+            $itemsCounter += $cachedValuesGetter->getCachedValues($collection)['counters']['items'] ?? 0;
         }
 
         return $this->render('App/Collection/index.html.twig', [
@@ -138,8 +138,6 @@ class CollectionController extends AbstractController
         CollectionRepository $collectionRepository,
         ItemRepository $itemRepository,
     ): Response {
-        dd('pkok');
-
         return $this->render('App/Collection/show.html.twig', [
             'collection' => $collection,
             'children' => $collectionRepository->findForOrdering($collection),

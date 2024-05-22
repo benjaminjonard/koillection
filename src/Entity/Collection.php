@@ -120,7 +120,6 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::JSON)]
-    #[Groups(['collection:read'])]
     private ?array $cachedValues = [];
 
     #[ORM\ManyToOne(targetEntity: Template::class)]

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Collection;
 
+use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
@@ -18,10 +19,12 @@ class CollectionCountersTest extends AppTestCase
     use ResetDatabase;
 
     public ?RefreshCachedValuesQueue $refreshCachedValuesQueue;
+    public ?CachedValuesGetter $cachedValuesGetter;
 
     protected function setUp(): void
     {
         $this->refreshCachedValuesQueue = $this->getContainer()->get(RefreshCachedValuesQueue::class);
+        $this->cachedValuesGetter = $this->getContainer()->get(CachedValuesGetter::class);
     }
 
     /*
@@ -39,9 +42,9 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(2, $collectionLevel1->getCachedValues()['counters']['children']);
-        $this->assertSame(1, $collectionLevel2->getCachedValues()['counters']['children']);
-        $this->assertSame(0, $collectionLevel3->getCachedValues()['counters']['children']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['children']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['children']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['children']);
     }
 
     /*
@@ -72,20 +75,20 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $newParentCollection->getCachedValues()['counters']['items']);
-        $this->assertSame(2, $newParentCollection->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($newParentCollection->object())['counters']['items']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($newParentCollection->object())['counters']['children']);
 
-        $this->assertSame(6, $collectionLevel1->getCachedValues()['counters']['items']);
-        $this->assertSame(1, $collectionLevel1->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['children']);
 
-        $this->assertSame(3, $collectionLevel2->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel2->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['children']);
 
-        $this->assertSame(6, $collectionLevel3->getCachedValues()['counters']['items']);
-        $this->assertSame(1, $collectionLevel3->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['children']);
 
-        $this->assertSame(3, $collectionLevel4->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel4->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel4->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel4->object())['counters']['children']);
     }
 
     /*
@@ -111,11 +114,11 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $collectionLevel1->getCachedValues()['counters']['items']);
-        $this->assertSame(1, $collectionLevel1->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['children']);
 
-        $this->assertSame(3, $collectionLevel2->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel2->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['children']);
     }
 
     /*
@@ -134,9 +137,9 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $collectionLevel1->getCachedValues()['counters']['items']);
-        $this->assertSame(1, $collectionLevel2->getCachedValues()['counters']['items']);
-        $this->assertSame(1, $collectionLevel3->getCachedValues()['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
     }
 
     /*
@@ -159,10 +162,10 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $newCollection->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel1->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel2->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel3->getCachedValues()['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($newCollection->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
     }
 
     /*
@@ -183,8 +186,8 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(0, $collectionLevel1->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel2->getCachedValues()['counters']['items']);
-        $this->assertSame(0, $collectionLevel3->getCachedValues()['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
     }
 }

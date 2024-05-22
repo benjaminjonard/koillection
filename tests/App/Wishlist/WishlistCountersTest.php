@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Wishlist;
 
+use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\UserFactory;
@@ -18,10 +19,12 @@ class WishlistCountersTest extends AppTestCase
     use ResetDatabase;
 
     public ?RefreshCachedValuesQueue $refreshCachedValuesQueue;
+    public ?CachedValuesGetter $cachedValuesGetter;
 
     protected function setUp(): void
     {
         $this->refreshCachedValuesQueue = $this->getContainer()->get(RefreshCachedValuesQueue::class);
+        $this->cachedValuesGetter = $this->getContainer()->get(CachedValuesGetter::class);
     }
 
     /*
@@ -39,9 +42,9 @@ class WishlistCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(2, $wishlistLevel1->getCachedValues()['counters']['children']);
-        $this->assertSame(1, $wishlistLevel2->getCachedValues()['counters']['children']);
-        $this->assertSame(0, $wishlistLevel3->getCachedValues()['counters']['children']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['children']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['children']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel3->object())['counters']['children']);
     }
 
     /*
@@ -72,20 +75,20 @@ class WishlistCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $newParentWishlist->getCachedValues()['counters']['wishes']);
-        $this->assertSame(2, $newParentWishlist->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($newParentWishlist->object())['counters']['wishes']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($newParentWishlist->object())['counters']['children']);
 
-        $this->assertSame(6, $wishlistLevel1->getCachedValues()['counters']['wishes']);
-        $this->assertSame(1, $wishlistLevel1->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['wishes']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['children']);
 
-        $this->assertSame(3, $wishlistLevel2->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel2->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['children']);
 
-        $this->assertSame(6, $wishlistLevel3->getCachedValues()['counters']['wishes']);
-        $this->assertSame(1, $wishlistLevel3->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($wishlistLevel3->object())['counters']['wishes']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($wishlistLevel3->object())['counters']['children']);
 
-        $this->assertSame(3, $wishlistLevel4->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel4->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($wishlistLevel4->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel4->object())['counters']['children']);
     }
 
     /*
@@ -111,11 +114,11 @@ class WishlistCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $wishlistLevel1->getCachedValues()['counters']['wishes']);
-        $this->assertSame(1, $wishlistLevel1->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['wishes']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['children']);
 
-        $this->assertSame(3, $wishlistLevel2->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel2->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['children']);
     }
 
     /*
@@ -134,9 +137,9 @@ class WishlistCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $wishlistLevel1->getCachedValues()['counters']['wishes']);
-        $this->assertSame(1, $wishlistLevel2->getCachedValues()['counters']['wishes']);
-        $this->assertSame(1, $wishlistLevel3->getCachedValues()['counters']['wishes']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['wishes']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['wishes']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($wishlistLevel3->object())['counters']['wishes']);
     }
 
     /*
@@ -159,10 +162,10 @@ class WishlistCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $newWishlist->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel1->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel2->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel3->getCachedValues()['counters']['wishes']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($newWishlist->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel3->object())['counters']['wishes']);
     }
 
     /*
@@ -183,8 +186,8 @@ class WishlistCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(0, $wishlistLevel1->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel2->getCachedValues()['counters']['wishes']);
-        $this->assertSame(0, $wishlistLevel3->getCachedValues()['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel1->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel2->object())['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel3->object())['counters']['wishes']);
     }
 }

@@ -9,7 +9,7 @@ use App\Form\Type\Entity\AlbumType;
 use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
-use App\Service\CachedValuesCalculator;
+use App\Service\CachedValuesGetter;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +21,7 @@ class AlbumController extends AbstractController
 {
     #[Route(path: '/albums', name: 'app_album_index', methods: ['GET'])]
     #[Route(path: '/user/{username}/albums', name: 'app_shared_album_index', methods: ['GET'])]
-    public function index(AlbumRepository $albumRepository, CachedValuesCalculator $cachedValuesCalculator): Response
+    public function index(AlbumRepository $albumRepository, CachedValuesGetter $cachedValuesGetter): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
         $albums = $albumRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
@@ -29,8 +29,8 @@ class AlbumController extends AbstractController
         $albumsCounter = \count($albums);
         $photosCounter = 0;
         foreach ($albums as $album) {
-            $albumsCounter += $cachedValuesCalculator->getCachedValues($album)['counters']['children'] ?? 0;
-            $photosCounter += $cachedValuesCalculator->getCachedValues($album)['counters']['photos'] ?? 0;
+            $albumsCounter += $cachedValuesGetter->getCachedValues($album)['counters']['children'] ?? 0;
+            $photosCounter += $cachedValuesGetter->getCachedValues($album)['counters']['photos'] ?? 0;
         }
 
         return $this->render('App/Album/index.html.twig', [

@@ -108,7 +108,6 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private int $seenCounter = 0;
 
     #[ORM\Column(type: Types::JSON)]
-    #[Groups(['wishlist:read'])]
     private ?array $cachedValues = [];
 
     #[ApiProperty(readableLink: false, writableLink: false)]

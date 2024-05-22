@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Album;
 
-use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
-use App\Enum\SortingDirectionEnum;
 use App\Enum\VisibilityEnum;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;

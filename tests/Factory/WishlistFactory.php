@@ -37,9 +37,24 @@ final class WishlistFactory extends ModelFactory
         return [
             'name' => self::faker()->word(),
             'seenCounter' => self::faker()->randomNumber(),
-            'cachedValues' => [],
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
+            'cachedValues' => [
+                'counters' => [
+                    'publicCounters' => [
+                        'children' => 0,
+                        'wishes' => 0,
+                    ],
+                    'internalCounters' => [
+                        'children' => 0,
+                        'wishes' => 0,
+                    ],
+                    'privateCounters' => [
+                        'children' => 0,
+                        'wishes' => 0,
+                    ]
+                ],
+            ]
         ];
     }
 

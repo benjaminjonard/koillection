@@ -6,7 +6,6 @@ namespace App\Service;
 
 use App\Entity\Album;
 use App\Entity\Collection;
-use App\Entity\User;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
@@ -17,7 +16,6 @@ use App\Repository\PhotoRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CachedValuesCalculator
@@ -31,7 +29,6 @@ class CachedValuesCalculator
         private readonly AlbumRepository $albumRepository,
         private readonly PhotoRepository $photoRepository,
         private readonly ManagerRegistry $managerRegistry,
-        private readonly Security $security
     ) {
     }
 
@@ -81,6 +78,7 @@ class CachedValuesCalculator
 
         foreach ($collection->getChildren() as $child) {
             $nestedCounters = $this->computeForCollection($child);
+
             $values['counters']['publicCounters']['children'] += $nestedCounters['counters']['publicCounters']['children'];
             $values['counters']['publicCounters']['items'] += $nestedCounters['counters']['publicCounters']['items'];
 
@@ -99,19 +97,19 @@ class CachedValuesCalculator
                 }
             }
 
-            foreach ($nestedCounters['prices']['privateCounters'] as $label => $value) {
-                if (isset($values['prices']['privateCounters'][$label])) {
-                    $values['prices']['privateCounters'][$label] += $value;
+            foreach ($nestedCounters['prices']['privatePrices'] as $label => $value) {
+                if (isset($values['prices']['privatePrices'][$label])) {
+                    $values['prices']['privatePrices'][$label] += $value;
                 } else {
-                    $values['prices']['privateCounters'][$label] = $value;
+                    $values['prices']['privatePrices'][$label] = $value;
                 }
             }
 
-            foreach ($nestedCounters['prices']['internalCounters'] as $label => $value) {
-                if (isset($values['prices']['internalCounters'][$label])) {
-                    $values['prices']['internalCounters'][$label] += $value;
+            foreach ($nestedCounters['prices']['internalPrices'] as $label => $value) {
+                if (isset($values['prices']['internalPrices'][$label])) {
+                    $values['prices']['internalPrices'][$label] += $value;
                 } else {
-                    $values['prices']['internalCounters'][$label] = $value;
+                    $values['prices']['internalPrices'][$label] = $value;
                 }
             }
         }
@@ -192,77 +190,5 @@ class CachedValuesCalculator
         $album->setCachedValues($values);
 
         return $values;
-    }
-
-    public function getCachedValues(Collection|Album|Wishlist $entity): array
-    {
-        return match (true) {
-            $entity instanceof Collection => $this->getForCollection($entity),
-            $entity instanceof Album => $this->getForAlbum($entity),
-            $entity instanceof Wishlist => $this->getForWishlist($entity),
-        };
-    }
-
-    private function getForCollection(Collection $collection): array {
-        $prices = $collection->getCachedValues()['prices']['publicPrices'];
-        $counters = $collection->getCachedValues()['counters']['publicCounters'];
-
-        if ($this->security->getUser() instanceof User) {
-            $prices = $this->mergeAndAdd($prices, $collection->getCachedValues()['prices']['internalPrices']);
-            $counters = $this->mergeAndAdd($counters, $collection->getCachedValues()['counters']['internalCounters']);
-        }
-
-        if ($this->security->getUser() === $collection->getOwner()) {
-            $prices = $this->mergeAndAdd($prices, $collection->getCachedValues()['prices']['privatePrices']);
-            $counters = $this->mergeAndAdd($counters, $collection->getCachedValues()['counters']['privateCounters']);
-        }
-
-        return [
-          'prices' => $prices,
-          'counters' => $counters,
-        ];
-    }
-
-    private function getForAlbum(Album $album): array {
-        $counters = $album->getCachedValues()['counters']['publicCounters'];
-
-        if ($this->security->getUser() instanceof User) {
-            $counters = $this->mergeAndAdd($counters, $album->getCachedValues()['counters']['internalCounters']);
-        }
-
-        if ($this->security->getUser() === $album->getOwner()) {
-            $counters = $this->mergeAndAdd($counters, $album->getCachedValues()['counters']['privateCounters']);
-        }
-
-        return [
-            'counters' => $counters,
-        ];
-    }
-
-    private function getForWishlist(Wishlist $wishlist): array {
-        $counters = $wishlist->getCachedValues()['counters']['publicCounters'];
-
-        if ($this->security->getUser() instanceof User) {
-            $counters = $this->mergeAndAdd($counters, $wishlist->getCachedValues()['counters']['internalCounters']);
-        }
-
-        if ($this->security->getUser() === $wishlist->getOwner()) {
-            $counters = $this->mergeAndAdd($counters, $wishlist->getCachedValues()['counters']['privateCounters']);
-        }
-
-        return [
-            'counters' => $counters,
-        ];
-    }
-
-    private function mergeAndAdd(array $array1, array $array2): array
-    {
-        $result = [];
-
-        foreach (array_keys($array1 + $array2) as $value) {
-            $result[$value] = ($array1[$value] ?? 0) + ($array2[$value] ?? 0);
-        }
-
-        return $result;
     }
 }

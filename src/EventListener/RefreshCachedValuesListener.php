@@ -48,9 +48,10 @@ final readonly class RefreshCachedValuesListener
             } elseif ($entity instanceof Wish && isset($changeset['wishlist'])) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][0]));
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][1]));
-            } elseif ($entity instanceof Datum && $entity->getItem() instanceof Item && $entity->getType() === DatumTypeEnum::TYPE_PRICE
-                      && (isset($changeset['value']) || isset($changeset['label']))) {
+            } elseif ($entity instanceof Datum && $entity->getItem() instanceof Item) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getItem()->getCollection()));
+            } elseif ($entity instanceof Datum && $entity->getItem() instanceof Collection) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getCollection()));
             }
         }
 

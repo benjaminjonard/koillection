@@ -39,6 +39,22 @@ final class AlbumFactory extends ModelFactory
             'seenCounter' => self::faker()->randomNumber(),
             'visibility' => VisibilityEnum::VISIBILITY_PUBLIC,
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
+            'cachedValues' => [
+                'counters' => [
+                    'publicCounters' => [
+                        'children' => 0,
+                        'photos' => 0,
+                    ],
+                    'internalCounters' => [
+                        'children' => 0,
+                        'photos' => 0,
+                    ],
+                    'privateCounters' => [
+                        'children' => 0,
+                        'photos' => 0,
+                    ]
+                ],
+            ]
         ];
     }
 

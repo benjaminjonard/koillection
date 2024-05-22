@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Album;
 
+use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
@@ -18,10 +19,12 @@ class AlbumCountersTest extends AppTestCase
     use ResetDatabase;
 
     public ?RefreshCachedValuesQueue $refreshCachedValuesQueue;
+    public ?CachedValuesGetter $cachedValuesGetter;
 
     protected function setUp(): void
     {
         $this->refreshCachedValuesQueue = $this->getContainer()->get(RefreshCachedValuesQueue::class);
+        $this->cachedValuesGetter = $this->getContainer()->get(CachedValuesGetter::class);
     }
 
     /*
@@ -39,9 +42,9 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(2, $albumLevel1->getCachedValues()['counters']['children']);
-        $this->assertSame(1, $albumLevel2->getCachedValues()['counters']['children']);
-        $this->assertSame(0, $albumLevel3->getCachedValues()['counters']['children']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['children']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['children']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['children']);
     }
 
     /*
@@ -73,20 +76,20 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $newParentAlbum->getCachedValues()['counters']['photos']);
-        $this->assertSame(2, $newParentAlbum->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($newParentAlbum->object())['counters']['photos']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($newParentAlbum->object())['counters']['children']);
 
-        $this->assertSame(6, $albumLevel1->getCachedValues()['counters']['photos']);
-        $this->assertSame(1, $albumLevel1->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['children']);
 
-        $this->assertSame(3, $albumLevel2->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['children']);
 
-        $this->assertSame(6, $albumLevel3->getCachedValues()['counters']['photos']);
-        $this->assertSame(1, $albumLevel3->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['children']);
 
-        $this->assertSame(3, $albumLevel4->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel4->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel4->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel4->object())['counters']['children']);
     }
 
     /*
@@ -112,11 +115,11 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $albumLevel1->getCachedValues()['counters']['photos']);
-        $this->assertSame(1, $albumLevel1->getCachedValues()['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['children']);
 
-        $this->assertSame(3, $albumLevel2->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['children']);
     }
 
     /*
@@ -135,9 +138,9 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $albumLevel1->getCachedValues()['counters']['photos']);
-        $this->assertSame(1, $albumLevel2->getCachedValues()['counters']['photos']);
-        $this->assertSame(1, $albumLevel3->getCachedValues()['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
     }
 
     /*
@@ -160,10 +163,10 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $newAlbum->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel1->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel3->getCachedValues()['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($newAlbum->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
     }
 
     /*
@@ -184,8 +187,8 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(0, $albumLevel1->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel2->getCachedValues()['counters']['photos']);
-        $this->assertSame(0, $albumLevel3->getCachedValues()['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
     }
 }

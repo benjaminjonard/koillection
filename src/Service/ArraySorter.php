@@ -14,7 +14,7 @@ class ArraySorter
 {
     private readonly ?\Collator $collator;
 
-    public function __construct(private readonly CachedValuesCalculator $cachedValuesCalculator)
+    public function __construct(private readonly CachedValuesGetter $cachedValuesGetter)
     {
         $this->collator = collator_create('root');
         $this->collator->setAttribute(\Collator::NUMERIC_COLLATION, \Collator::ON);
@@ -71,12 +71,12 @@ class ArraySorter
         switch ($property) {
             case ReservedLabelEnum::NUMBER_OF_ITEMS:
                 usort($array, function ($a, $b) use ($direction): bool|int {
-                    return $this->compare((string) $this->cachedValuesCalculator->getCachedValues($a)['counters']['items'], (string) $this->cachedValuesCalculator->getCachedValues($b)['counters']['items'], $direction);
+                    return $this->compare((string) $this->cachedValuesGetter->getCachedValues($a)['counters']['items'], (string) $this->cachedValuesGetter->getCachedValues($b)['counters']['items'], $direction);
                 });
                 break;
             case ReservedLabelEnum::NUMBER_OF_CHILDREN:
                 usort($array, function ($a, $b) use ($direction): bool|int {
-                    return $this->compare((string) $this->cachedValuesCalculator->getCachedValues($a)['counters']['children'], (string) $this->cachedValuesCalculator->getCachedValues($b)['counters']['children'], $direction);
+                    return $this->compare((string) $this->cachedValuesGetter->getCachedValues($a)['counters']['children'], (string) $this->cachedValuesGetter->getCachedValues($b)['counters']['children'], $direction);
                 });
                 break;
             case ReservedLabelEnum::QUANTITY:

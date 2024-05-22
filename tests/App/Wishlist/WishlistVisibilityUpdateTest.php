@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Wishlist;
 
-use App\Enum\VisibilityEnum;
 use App\Tests\AppTestCase;
-use App\Tests\Factory\WishlistFactory;
-use App\Tests\Factory\WishFactory;
 use App\Tests\Factory\UserFactory;
+use App\Tests\Factory\WishFactory;
+use App\Tests\Factory\WishlistFactory;
 use PHPUnit\Framework\Attributes\TestWith;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Item;
 
-use App\Enum\VisibilityEnum;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
@@ -12,7 +11,6 @@ use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use PHPUnit\Framework\Attributes\TestWith;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
