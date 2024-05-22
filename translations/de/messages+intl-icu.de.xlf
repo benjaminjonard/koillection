@@ -382,7 +382,7 @@
     <unit id="jsUGqKL" name="global.byte_abbreviation">
       <segment state="translated">
         <source>B</source>
-        <target>Abkürzung</target>
+        <target>B</target>
       </segment>
     </unit>
     <unit id="BNjUIYA" name="label.search">
