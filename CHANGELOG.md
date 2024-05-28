@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.10] / 2024-05-28
+# Fixes
+- Fix scrapped image URL when protocol is missing (benjaminjonard)
+- Fix wrong collection total prices when the collection has private items (benjaminjonard)
+- Fix nested counters on shared pages (benjaminjonard)
+
+### Miscellaneous
+- Rework caches (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.5.9] / 2024-05-08
 ### Features
 - Additional images can now be added in scrapers (benjaminjonard)
