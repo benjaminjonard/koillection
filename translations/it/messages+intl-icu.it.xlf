@@ -3493,70 +3493,76 @@
         <target>Sei sicuro di voler eliminatre questa lista di scelta? Verrà eliminata definitivamente...</target>
       </segment>
     </unit>
+    <unit id="1SR04M0" name="breadcrumb.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>Estrattori articolo</target>
+      </segment>
+    </unit>
     <unit id="rce3nth" name="breadcrumb.collection_scrapers">
       <segment state="translated">
         <source>Collection scrapers</source>
-        <target>Collection scrapers</target>
+        <target>Estrattori collezione</target>
       </segment>
     </unit>
     <unit id="lWm9FV3" name="breadcrumb.wish_scrapers">
       <segment state="translated">
         <source>Wish scrapers</source>
-        <target>Wish scrapers</target>
+        <target>Estrattori lista desideri</target>
       </segment>
     </unit>
     <unit id="NK6205q" name="tab.item_scrapers">
       <segment state="translated">
         <source>Item scrapers</source>
-        <target>Item scrapers</target>
+        <target>Estrattori articolo</target>
       </segment>
     </unit>
     <unit id="QLWFaEE" name="tab.collection_scrapers">
       <segment state="translated">
         <source>Collection scrapers</source>
-        <target>Collection scrapers</target>
+        <target>Estrattori collezione</target>
       </segment>
     </unit>
     <unit id="RB94Jlx" name="tab.wish_scrapers">
       <segment state="translated">
         <source>Wish scrapers</source>
-        <target>Wish scrapers</target>
+        <target>Estrattori lista desideri</target>
       </segment>
     </unit>
     <unit id="OJ77gpR" name="counter.item_scrapers">
       <segment state="translated">
         <source>{count, plural, one {# item scraper} other {# item scrapers}}</source>
-        <target>{count, plural, one {# item scraper} other {# item scrapers}}</target>
+        <target>{count, plural, one {# estrattore articolo} other {# estrattori articolo}}</target>
       </segment>
     </unit>
     <unit id="noR9AMY" name="counter.collection_scrapers">
       <segment state="translated">
         <source>{count, plural, one {# collection scraper} other {# collection scrapers}}</source>
-        <target>{count, plural, one {# collection scraper} other {# collection scrapers}}</target>
+        <target>{count, plural, one {# estrattore collezione} other {# estrattori collezione}}</target>
       </segment>
     </unit>
     <unit id="cwiiTlV" name="counter.wish_scrapers">
       <segment state="translated">
         <source>{count, plural, one {# wish scraper} other {# wish scrapers}}</source>
-        <target>{count, plural, one {# wish scraper} other {# wish scrapers}}</target>
+        <target>{count, plural, one {# estrattore lista desideri} other {# estrattori lista desideri}}</target>
       </segment>
     </unit>
     <unit id="KLXszaB" name="label.price_path">
       <segment state="translated">
         <source>Price path</source>
-        <target>Price path</target>
+        <target>Percorso prezzo</target>
       </segment>
     </unit>
     <unit id="qR8RuNn" name="label.display_items_name_in_grid_view">
       <segment state="translated">
         <source>Display items name in grid view</source>
-        <target>Display items name in grid view</target>
+        <target>Mostra il nome degli articoli nella visualizzazione in griglia</target>
       </segment>
     </unit>
     <unit id="QEwp7eI" name="label.frankenphp_version">
       <segment state="translated">
         <source>FrankenPHP version</source>
-        <target>FrankenPHP version</target>
+        <target>Versione FrankenPHP</target>
       </segment>
     </unit>
     <unit id="Xi6swbH" name="btn.add_video">
@@ -3568,19 +3574,19 @@
     <unit id="K5G7aFy" name="label.show_item_quantities">
       <segment state="translated">
         <source>Show item quantities</source>
-        <target>Show item quantities</target>
+        <target>Mostra quantità articolo</target>
       </segment>
     </unit>
     <unit id="wgg5Wgv" name="form.item_sorting.quantity">
       <segment state="translated">
         <source>Quantity</source>
-        <target>Quantity</target>
+        <target>Quantità</target>
       </segment>
     </unit>
     <unit id="npBJeAW" name="label.enable_metrics">
       <segment state="translated">
         <source>Enable metrics</source>
-        <target>Enable metrics</target>
+        <target>Abilita statistiche</target>
       </segment>
     </unit>
   </file>
