@@ -23,4 +23,5 @@ api_platform:
       skip_null_values: false
   event_listeners_backward_compatibility_layer: false
   keep_legacy_inflector: false
+  use_symfony_listeners: true
 

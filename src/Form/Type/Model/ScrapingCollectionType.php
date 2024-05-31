@@ -28,6 +28,7 @@ class ScrapingCollectionType extends AbstractType
         $builder
             ->add('url', UrlType::class, [
                 'required' => false,
+                'default_protocol' => 'http'
             ])
             ->add('file', FileType::class, [
                 'required' => false,

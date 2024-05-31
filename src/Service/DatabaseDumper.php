@@ -6,6 +6,9 @@ namespace App\Service;
 
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Platforms\MySQL80Platform;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\ClassMetadata;
@@ -28,16 +31,16 @@ class DatabaseDumper
         $rows = [];
 
         // Disable foreign keys
-        $platformName = $this->managerRegistry->getManager()->getConnection()->getDatabasePlatform()->getName();
+        $platformName = $this->managerRegistry->getManager()->getConnection()->getDatabasePlatform();
         $disableForeignKeysCheck = null;
         $enableForeignKeysCheck = null;
 
         $rows[] = 'BEGIN;' . PHP_EOL;
 
-        if ('postgresql' === $platformName) {
+        if (PostgreSQLPlatform::class === $platformName::class) {
             $disableForeignKeysCheck = 'SET session_replication_role = replica;' . PHP_EOL;
             $enableForeignKeysCheck = 'SET session_replication_role = DEFAULT;' . PHP_EOL;
-        } elseif ('mysql' === $platformName) {
+        } elseif (MySQLPlatform::class === $platformName::class) {
             $disableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=0;' . PHP_EOL;
             $enableForeignKeysCheck = 'SET FOREIGN_KEY_CHECKS=1;' . PHP_EOL;
         }
@@ -133,7 +136,7 @@ class DatabaseDumper
 
     public function dumpSchema(Connection $connection): array
     {
-        $currentSchema = $connection->getSchemaManager()->createSchema();
+        $currentSchema = $connection->createSchemaManager()->introspectSchema();
         $schemaRows = (new Schema())->getMigrateToSql($currentSchema, $connection->getDatabasePlatform());
         $rows = array_map(static function ($row): string {
             $row = str_replace('CREATE SCHEMA', 'CREATE SCHEMA IF NOT EXISTS', $row);

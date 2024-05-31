@@ -140,6 +140,7 @@ class DatumType extends AbstractType
                     DatumTypeEnum::TYPE_LINK => $form
                         ->add('value', UrlType::class, [
                             'required' => false,
+                            'default_protocol' => 'http'
                         ]),
                     DatumTypeEnum::TYPE_CHOICE_LIST => $form
                         ->add('value', ChoiceType::class, [
