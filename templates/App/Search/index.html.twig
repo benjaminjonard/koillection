@@ -73,7 +73,7 @@
                         {% for item in results.items|naturalSorting %}
                             <div>
                                 <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
-                                    <a class="valign" href="{{ path('app_item_show', {'id': item.id}) }}">
+                                    <a class="valign" href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
                                         <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
                                     </a>
                                 </div>
@@ -116,7 +116,7 @@
                         {% for result in results.tags %}
                             <tr class="list-element resize-element" data-title="{{ result.tag.label }}">
                                 <td>
-                                    <a href="{{ path('app_tag_show', {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a>
+                                    <a href="{{ path('app_tag_show'|applyContext, {'id' : result.tag.id}) }}">{{ result.tag.label|u.truncate(50) }}</a>
                                 </td>
                                 <td>{{ result.tag.description|u.truncate(50) }}</td>
                                 <td>{{ result.itemCount }}</td>
