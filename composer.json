@@ -69,7 +69,7 @@
         "twig/twig": "3.10.3"
     },
     "require-dev": {
-        "brianium/paratest": "7.4.4",
+        "brianium/paratest": "7.4.5",
         "dama/doctrine-test-bundle": "8.2.0",
         "friendsofphp/php-cs-fixer": "3.58.1",
         "justinrainbow/json-schema": "5.2.13",
