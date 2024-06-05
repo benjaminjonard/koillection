@@ -100,7 +100,7 @@ jobs:
       - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
-      - run: php ./vendor/bin/paratest --runner=WrapperRunner
+      - run: php ./vendor/phpunit/phpunit/phpunit
 
   phpunit_mariadb:
     name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
@@ -166,7 +166,7 @@ jobs:
       -   run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
-      -   run: php ./vendor/bin/paratest --runner=WrapperRunner
+      -   run: php ./vendor/phpunit/phpunit/phpunit
 
   phpunit_postgres:
     name: PHPUnit tests with Postgres ${{ matrix.postgres }}
@@ -231,4 +231,4 @@ jobs:
       - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
 
       ## Run tests
-      - run: php ./vendor/bin/paratest --runner=WrapperRunner
+      - run: php ./vendor/phpunit/phpunit/phpunit
