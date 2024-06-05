@@ -84,28 +84,22 @@ jobs:
           
       - name: Load image
         run: docker load --input /tmp/ci-container.tar
-
-      - name: Setup environment variables
-        uses: addnab/docker-run-action@v3
-        with:
-          image: ci-image
-          run: |
-            sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env.local"
-            sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env.local"
-            sed -i "s|APP_SECRET=.*|APP_SECRET=aRandomSecret|i" ".env.local"
-            sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env.local"
-            sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env.local"
-            sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env.local"
-            sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env.local"
-            sed -i "s|DB_USER=.*|DB_USER=root|i" ".env.local"
-            sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env.local"
-            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env.local"    
             
       - name: Setup test environment
         uses: addnab/docker-run-action@v3
         with:
           image: ci-image
           run: |
+            sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
+            sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
+            sed -i "s|APP_SECRET=.*|APP_SECRET=aRandomSecret|i" ".env"
+            sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env"
+            sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
+            sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
+            sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env"
+            sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
+            sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
+            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env"
             bin/console lexik:jwt:generate-keypair --env=test
             bin/console doctrine:database:create --env=test
             bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
