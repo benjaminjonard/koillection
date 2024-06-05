@@ -3,7 +3,7 @@ FROM ubuntu:jammy
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Environment variables
-ENV APP_ENV='prod'
+ENV APP_ENV='dev'
 ENV PUID='1001'
 ENV PGID='1001'
 ENV USER='koillection'

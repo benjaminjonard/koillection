@@ -6,9 +6,11 @@ namespace App\Controller;
 
 use App\Entity\ChoiceList;
 use App\Entity\Collection;
+use App\Entity\Datum;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
@@ -54,10 +56,19 @@ class DatumController extends AbstractController
         #[MapEntity(expr: 'repository.findWithItemsAndData(id)')] Collection $collection
     ): JsonResponse {
         $commonFields = [];
-
         $first = $collection->getItems()->first();
         if ($first instanceof Item) {
             foreach ($first->getDataTexts() as $datum) {
+                $datum = (new Datum())
+                    ->setChoiceList($datum->getChoiceList())
+                    ->setLabel($datum->getLabel())
+                    ->setVisibility($datum->getVisibility())
+                    ->setParentVisibility($datum->getParentVisibility())
+                    ->setPosition($datum->getPosition())
+                    ->setType($datum->getType())
+                    ->setValue($datum->getValue())
+                ;
+
                 $field = [
                     'datum' => $datum,
                     'type' => $datum->getType(),
