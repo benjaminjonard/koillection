@@ -18,7 +18,7 @@ jobs:
       - name: Build Container
         uses: docker/build-push-action@v5
         with:
-          file: Dockerfile.dev
+          file: Dockerfile
           tags: ci-image
           push: false
           outputs: type=docker,dest=/tmp/ci-container.tar
