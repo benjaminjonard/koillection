@@ -89,13 +89,15 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ci-image
+          options: |
+            --add-host=host.docker.internal:host-gateway
           run: |
             sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
             sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
             sed -i "s|APP_SECRET=.*|APP_SECRET=aRandomSecret|i" ".env"
             sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env"
             sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
-            sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
+            sed -i "s|DB_HOST=.*|DB_HOST=host.docker.internal|i" ".env"
             sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env"
             sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
             sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
