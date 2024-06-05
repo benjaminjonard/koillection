@@ -34,7 +34,7 @@ jobs:
     name: Removedocker CI container
     if: always()
     runs-on: ubuntu-latest
-    needs: [ phpunit_mysql ]
+    needs: [ build_docker_ci_container, phpunit_mysql ]
     steps:
       - uses: geekyeggo/delete-artifact@v2
         with:
@@ -74,7 +74,7 @@ jobs:
   phpunit_mysql:
     name: PHPUnit tests with Mysql ${{ matrix.mysql }}
     runs-on: ubuntu-latest
-    needs: [ build_image ]
+    needs: [ build_docker_ci_container ]
     strategy:
       matrix:
         mysql: [ 8 ]
@@ -127,7 +127,7 @@ jobs:
 
 #  phpunit_mariadb:
 #    name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
-#    needs: [ build_image ]
+#    needs: [ build_docker_ci_container ]
 #    runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
@@ -194,7 +194,7 @@ jobs:
 #
 #  phpunit_postgres:
 #    name: PHPUnit tests with Postgres ${{ matrix.postgres }}
-#    needs: [ build_image ]
+#    needs: [ build_docker_ci_container ]
 #    runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
