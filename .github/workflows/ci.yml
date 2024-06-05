@@ -95,8 +95,8 @@ jobs:
           
       - name: Load image
         run: docker load --input /tmp/ci-container.tar
-            
-      - name: Setup test environment
+
+      - name: Run tests
         uses: addnab/docker-run-action@v3
         with:
           image: ci-image
@@ -112,18 +112,12 @@ jobs:
             sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env"
             sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
             sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
-            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env"
+            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env"      
             bin/console lexik:jwt:generate-keypair --env=test
             bin/console doctrine:database:create --env=test
             bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
-            
-      - name: Run tests
-        uses: addnab/docker-run-action@v3
-        with:
-          image: ci-image
-          run: |
-            php -i
-            php ./vendor/phpunit/phpunit/phpunit
+            rm -rf var/cache/*
+            php ./vendor/bin/paratest --runner=WrapperRunner
 
 #  phpunit_mariadb:
 #    name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
