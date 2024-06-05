@@ -5,8 +5,8 @@ on:
   release:
 
 jobs:
-  build_image:
-    name: Build docker image
+  build_docker_ci_container:
+    name: Build docker CI container
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,8 +18,8 @@ jobs:
       - name: Build Container
         uses: docker/build-push-action@v5
         with:
+          file: Dockerfile.dev
           tags: ci-image
-          context: .
           push: false
           outputs: type=docker,dest=/tmp/ci-container.tar
 
@@ -28,6 +28,17 @@ jobs:
         with:
           name: ci-container
           path: /tmp/ci-container.tar
+  
+  
+  remove_docker_ci_container:
+    name: Removedocker CI container
+    if: always()
+    runs-on: ubuntu-latest
+    needs: [ build_docker_ci_container, phpunit_mysql ]
+    steps:
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: ci-container
 
   security_checker:
     name: Security checker
