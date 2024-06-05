@@ -7,7 +7,7 @@ on:
 jobs:
   security_checker:
     name: Security checker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -19,7 +19,7 @@ jobs:
 
   doctrine_schema_validator:
     name: Doctrine schema validator
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -38,7 +38,7 @@ jobs:
 
   phpunit_mysql:
     name: PHPUnit tests with Mysql ${{ matrix.mysql }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         mysql: [ 8 ]
@@ -104,7 +104,7 @@ jobs:
 
   phpunit_mariadb:
     name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         mariadb: [ 10 ]
@@ -170,7 +170,7 @@ jobs:
 
   phpunit_postgres:
     name: PHPUnit tests with Postgres ${{ matrix.postgres }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         postgres: [ 10, 11, 12, 13, 14, 15, 16 ]
