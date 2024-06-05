@@ -110,7 +110,9 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ci-image
-          run: php ./vendor/phpunit/phpunit/phpunit
+          run: |
+            php -i
+            php ./vendor/phpunit/phpunit/phpunit
 
 #  phpunit_mariadb:
 #    name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
