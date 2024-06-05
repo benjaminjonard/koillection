@@ -115,139 +115,100 @@ jobs:
             sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env"      
             bin/console lexik:jwt:generate-keypair --env=test
             bin/console doctrine:database:create --env=test
-            bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
-            rm -rf var/cache/*
+            bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test            
             php ./vendor/bin/paratest --runner=WrapperRunner
 
-#  phpunit_mariadb:
-#    name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
-#    needs: [ build_docker_ci_container ]
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        mariadb: [ 10 ]
-#    services:
-#      mysql:
-#        image: mariadb:${{ matrix.mariadb }}
-#        env:
-#          MYSQL_ROOT_PASSWORD: root
-#        ports:
-#          - 3306:3306
-#        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
-#    steps:
-#      -   uses: actions/checkout@v4
-#
-#      # Setup php env and install dependencies
-#      -   uses: shivammathur/setup-php@v2
-#          with:
-#            php-version: 8.3
-#            extensions: ctype, fileinfo, gd, iconv, intl, json
-#      -   uses: actions/cache@v4
-#          id: cache-composer
-#          with:
-#            path: vendor
-#            key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-#            restore-keys: |
-#              ${{ runner.os }}-php-
-#      -   run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-#
-#      # Setup environment variables
-#      -   run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
-#      -   run: sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
-#      -   run: sed -i "s|APP_SECRET=.*|APP_SECRET=aRandomSecret|i" ".env"
-#      -   run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env"
-#      -   run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
-#      -   run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
-#      -   run: sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env"
-#      -   run: sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
-#      -   run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
-#      -   run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mariadb }}|i" ".env"
-#
-#      # Setup yarn
-#      -   uses: actions/setup-node@v4
-#          with:
-#            node-version: 21
-#      -   uses: actions/cache@v4
-#          id: cache-node-modules
-#          with:
-#            path: ~/.npm
-#            key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
-#            restore-keys: |
-#              ${{ runner.os }}-yarn-
-#      -   run: bin/console app:translations:dump
-#      -   run: (cd assets && yarn install)
-#      -   run: (cd assets && yarn dev)
-#
-#      # Setup test environment
-#      -   run: bin/console lexik:jwt:generate-keypair --env=test
-#      -   run: bin/console doctrine:database:create --env=test
-#      -   run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
-#
-#      ## Run tests
-#      -   run: php ./vendor/phpunit/phpunit/phpunit
-#
-#  phpunit_postgres:
-#    name: PHPUnit tests with Postgres ${{ matrix.postgres }}
-#    needs: [ build_docker_ci_container ]
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        postgres: [ 10, 11, 12, 13, 14, 15, 16 ]
-#    services:
-#      postgres:
-#        image: postgres:${{ matrix.postgres }}
-#        env:
-#          POSTGRES_PASSWORD: root
-#        ports:
-#          - 5432:5432
-#        options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      # Setup php env and install dependencies
-#      - uses: shivammathur/setup-php@v2
-#        with:
-#          php-version: 8.3
-#          extensions: ctype, fileinfo, gd, iconv, intl, json
-#      - uses: actions/cache@v4
-#        id: cache-composer
-#        with:
-#          path: vendor
-#          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-#          restore-keys: |
-#            ${{ runner.os }}-php-
-#      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-#
-#      # Setup environment variables
-#      - run: sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
-#      - run: sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
-#      - run: sed -i "s|APP_SECRET=.*|APP_SECRET=aRandomSecret|i" ".env"
-#      - run: sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env"
-#      - run: sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
-#      - run: sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
-#      - run: sed -i "s|DB_PORT=.*|DB_PORT=5432|i" ".env"
-#      - run: sed -i "s|DB_USER=.*|DB_USER=postgres|i" ".env"
-#      - run: sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
-#      - run: sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.postgres }}|i" ".env"
-#      # Setup yarn
-#      - uses: actions/setup-node@v4
-#        with:
-#          node-version: 21
-#      - uses: actions/cache@v4
-#        id: cache-node-modules
-#        with:
-#          path: ~/.npm
-#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/composer.lock') }}
-#          restore-keys: |
-#            ${{ runner.os }}-yarn-
-#      - run: bin/console app:translations:dump
-#      - run: (cd assets && yarn install)
-#      - run: (cd assets && yarn dev)
-#
-#      # Setup test environment
-#      - run: bin/console lexik:jwt:generate-keypair --env=test
-#      - run: bin/console doctrine:database:create --env=test
-#      - run: bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test
-#
-#      ## Run tests
-#      - run: php ./vendor/phpunit/phpunit/phpunitparatest
+  phpunit_mariadb:
+    name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
+    needs: [ build_docker_ci_container ]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mariadb: [ 10 ]
+    services:
+      mysql:
+        image: mariadb:${{ matrix.mariadb }}
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ci-container
+          path: /tmp
+
+      - name: Load image
+        run: docker load --input /tmp/ci-container.tar
+
+      - name: Run tests
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ci-image
+          options: |
+            --add-host=host.docker.internal:host-gateway
+          run: |          
+            sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
+            sed -i "s|APP_SECRET=.*|APP_SECRET=aRandomSecret|i" ".env"
+            sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_mysql|i" ".env"
+            sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
+            sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
+            sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env"
+            sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
+            sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
+            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mariadb }}|i" ".env"      
+            bin/console lexik:jwt:generate-keypair --env=test
+            bin/console doctrine:database:create --env=test
+            bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test            
+            php ./vendor/bin/paratest --runner=WrapperRunner
+
+  phpunit_postgres:
+    name: PHPUnit tests with Postgres ${{ matrix.postgres }}
+    needs: [ build_docker_ci_container ]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        postgres: [ 10, 11, 12, 13, 14, 15, 16 ]
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres }}
+        env:
+          POSTGRES_PASSWORD: root
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ci-container
+          path: /tmp
+
+      - name: Load image
+        run: docker load --input /tmp/ci-container.tar
+
+      - name: Run tests
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ci-image
+          options: |
+            --add-host=host.docker.internal:host-gateway
+          run: |
+            sed -i "s|APP_ENV=.*|APP_ENV=test|i" ".env"
+            sed -i "s|APP_DEBUG=.*|APP_DEBUG=1|i" ".env"
+            sed -i "s|APP_SECRET=.*|APP_SECRET=aRandomSecret|i" ".env"
+            sed -i "s|DB_DRIVER=.*|DB_DRIVER=pdo_pgsql|i" ".env"
+            sed -i "s|DB_NAME=.*|DB_NAME=koillection|i" ".env"
+            sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|i" ".env"
+            sed -i "s|DB_PORT=.*|DB_PORT=5432|i" ".env"
+            sed -i "s|DB_USER=.*|DB_USER=postgres|i" ".env"
+            sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
+            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.postgres }}|i" ".env"      
+            bin/console lexik:jwt:generate-keypair --env=test
+            bin/console doctrine:database:create --env=test
+            bin/console doctrine:migration:migrate --no-interaction --allow-no-migration --env=test            
+            php ./vendor/bin/paratest --runner=WrapperRunner
