@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.11] / 2024-06-06
+# Fixes
+- Fix item links on shared search page (benjaminjonard)
+- Prevent cropper refresh when clicking on preview image (benjaminjonard)
+- Fix data field values being deleted whe using the 'Load common fields' feature (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies (benjaminjonard)
+
 ## [1.5.10] / 2024-05-28
 # Fixes
 - Fix scrapped image URL when protocol is missing (benjaminjonard)
