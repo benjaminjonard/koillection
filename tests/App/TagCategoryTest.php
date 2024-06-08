@@ -28,7 +28,7 @@ class TagCategoryTest extends AppTestCase
     public function test_can_see_tag_category_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
         TagCategoryFactory::createMany(3, ['owner' => $user]);
 
@@ -44,9 +44,9 @@ class TagCategoryTest extends AppTestCase
     public function test_can_see_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $tagCategory = TagCategoryFactory::createOne(['owner' => $user])->object();
+        $tagCategory = TagCategoryFactory::createOne(['owner' => $user])->_real();
         TagFactory::createMany(3, ['category' => $tagCategory, 'owner' => $user]);
 
         // Act
@@ -64,7 +64,7 @@ class TagCategoryTest extends AppTestCase
     public function test_can_add_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -84,9 +84,9 @@ class TagCategoryTest extends AppTestCase
     public function test_can_edit_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $tagCategory = TagCategoryFactory::createOne(['owner' => $user])->object();
+        $tagCategory = TagCategoryFactory::createOne(['owner' => $user])->_real();
 
         // Act
         $this->client->request('GET', '/tag-categories/' . $tagCategory->getId() . '/edit');
@@ -104,7 +104,7 @@ class TagCategoryTest extends AppTestCase
     public function test_can_delete_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
         $tagCategory = TagCategoryFactory::createOne(['owner' => $user]);
         TagFactory::createOne(['category' => $tagCategory, 'owner' => $user]);

@@ -43,7 +43,7 @@ class DisabledFeatureTest extends AppTestCase
             'templatesFeatureEnabled' => false,
             'historyFeatureEnabled' => false,
             'statisticsFeatureEnabled' => false,
-        ])->object();
+        ])->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -75,7 +75,7 @@ class DisabledFeatureTest extends AppTestCase
             'historyFeatureEnabled' => false,
             'statisticsFeatureEnabled' => false,
             'scrapingFeatureEnabled' => false,
-        ])->object();
+        ])->_real();
         $this->client->loginUser($user);
 
         foreach ($this->getUrls($user) as $url) {

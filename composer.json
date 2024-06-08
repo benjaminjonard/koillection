@@ -124,7 +124,7 @@
         ],
         "test:phpunit": [
             "Composer\\Config::disableProcessTimeout",
-            "./vendor/phpunit/phpunit/phpunit"
+            "./vendor/phpunit/phpunit/phpunit --display-deprecations"
         ],
         "test:paratest": [
             "Composer\\Config::disableProcessTimeout",

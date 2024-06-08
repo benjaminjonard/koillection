@@ -23,7 +23,7 @@ class LoanApiTest extends ApiTestCase
     public function test_get_loans(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         LoanFactory::createMany(3, ['item' => $item, 'owner' => $user]);
@@ -42,7 +42,7 @@ class LoanApiTest extends ApiTestCase
     public function test_get_loan(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $user]);
@@ -61,7 +61,7 @@ class LoanApiTest extends ApiTestCase
     public function test_get_loan_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $loan = LoanFactory::createOne(['item' => $item, 'owner' => $user]);
@@ -80,7 +80,7 @@ class LoanApiTest extends ApiTestCase
     public function test_post_loan(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
@@ -103,7 +103,7 @@ class LoanApiTest extends ApiTestCase
     public function test_put_loan(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $loan = LoanFactory::createOne(['item' => $item, 'lentTo' => 'Someone', 'owner' => $user]);
@@ -127,7 +127,7 @@ class LoanApiTest extends ApiTestCase
     public function test_patch_loan(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $loan = LoanFactory::createOne(['item' => $item, 'lentTo' => 'Someone', 'owner' => $user]);
@@ -153,7 +153,7 @@ class LoanApiTest extends ApiTestCase
     public function test_delete_loan(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $loan = LoanFactory::createOne(['item' => $item, 'lentTo' => 'Someone', 'owner' => $user]);

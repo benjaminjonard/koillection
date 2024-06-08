@@ -29,7 +29,7 @@ class ConfigurationTest extends AppTestCase
     public function test_admin_can_access_configuration(): void
     {
         // Arrange
-        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->_real();
         $this->client->loginUser($admin);
 
         // Act
@@ -42,7 +42,7 @@ class ConfigurationTest extends AppTestCase
     public function test_admin_can_edit_configuration(): void
     {
         // Arrange
-        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->object();
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]])->_real();
         $this->client->loginUser($admin);
 
         // Act

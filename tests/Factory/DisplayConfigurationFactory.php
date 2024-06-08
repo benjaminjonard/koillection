@@ -5,43 +5,13 @@ declare(strict_types=1);
 namespace App\Tests\Factory;
 
 use App\Entity\DisplayConfiguration;
-use App\Repository\DisplayConfigurationRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<DisplayConfiguration>
- *
- * @method static DisplayConfiguration|Proxy                     createOne(array $attributes = [])
- * @method static DisplayConfiguration[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static DisplayConfiguration[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static DisplayConfiguration|Proxy                     find(object|array|mixed $criteria)
- * @method static DisplayConfiguration|Proxy                     findOrCreate(array $attributes)
- * @method static DisplayConfiguration|Proxy                     first(string $sortedField = 'id')
- * @method static DisplayConfiguration|Proxy                     last(string $sortedField = 'id')
- * @method static DisplayConfiguration|Proxy                     random(array $attributes = [])
- * @method static DisplayConfiguration|Proxy                     randomOrCreate(array $attributes = [])
- * @method static DisplayConfiguration[]|Proxy[]                 all()
- * @method static DisplayConfiguration[]|Proxy[]                 findBy(array $attributes)
- * @method static DisplayConfiguration[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static DisplayConfiguration[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static DisplayConfigurationRepository|RepositoryProxy repository()
- * @method        DisplayConfiguration|Proxy                     create(array|callable $attributes = [])
- */
-final class DisplayConfigurationFactory extends ModelFactory
+final class DisplayConfigurationFactory extends PersistentProxyObjectFactory
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
-    }
-
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'displayMode' => self::faker()->text(),
             'sortingDirection' => self::faker()->text(),
             'showVisibility' => self::faker()->boolean(),
@@ -52,15 +22,12 @@ final class DisplayConfigurationFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-            // ->afterInstantiate(function(DisplayConfiguration $displayConfiguration): void {})
-        ;
+        return $this;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return DisplayConfiguration::class;
     }

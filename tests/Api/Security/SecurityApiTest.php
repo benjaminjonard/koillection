@@ -22,7 +22,7 @@ class SecurityApiTest extends ApiTestCase
             'username' => 'user',
             'email' => 'user@test.com',
             'plainPassword' => 'koillection'
-        ])->object();
+        ])->_real();
 
         // Act
         $response = static::createClient()->request('POST', '/api/authentication_token', ['json' => [
@@ -43,7 +43,7 @@ class SecurityApiTest extends ApiTestCase
             'username' => 'user',
             'email' => 'user@test.com',
             'plainPassword' => 'koillection'
-        ])->object();
+        ])->_real();
         $client = static::createClient();
 
         // Act

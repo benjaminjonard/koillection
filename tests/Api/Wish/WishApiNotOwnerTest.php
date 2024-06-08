@@ -22,8 +22,8 @@ class WishApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_wish(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $owner]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
@@ -37,8 +37,8 @@ class WishApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_wish_wishlist(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $owner]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
@@ -52,8 +52,8 @@ class WishApiNotOwnerTest extends ApiTestCase
     public function test_cant_post_wish_in_another_user_wishlist(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -69,8 +69,8 @@ class WishApiNotOwnerTest extends ApiTestCase
     public function test_cant_put_another_user_wish(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $owner]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
@@ -86,8 +86,8 @@ class WishApiNotOwnerTest extends ApiTestCase
     public function test_cant_patch_another_user_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $owner]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $owner]);
 
@@ -106,8 +106,8 @@ class WishApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 

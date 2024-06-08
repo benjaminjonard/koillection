@@ -31,7 +31,7 @@ class AlbumVisibilityAccessTest extends AppTestCase
     public function test_shared_albums_list_with_anonymous(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
@@ -48,12 +48,12 @@ class AlbumVisibilityAccessTest extends AppTestCase
     public function test_shared_albums_list_with_user_logged(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
-        $otherUser = UserFactory::createOne()->object();
+        $otherUser = UserFactory::createOne()->_real();
         $this->client->loginUser($otherUser);
 
         // Act
@@ -68,7 +68,7 @@ class AlbumVisibilityAccessTest extends AppTestCase
     public function test_albums_list_with_owner_logged(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         AlbumFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
@@ -89,7 +89,7 @@ class AlbumVisibilityAccessTest extends AppTestCase
     public function test_shared_get_album_with_anonymous(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         AlbumFactory::createOne(['owner' => $user, 'parent' => $album, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
@@ -121,7 +121,7 @@ class AlbumVisibilityAccessTest extends AppTestCase
     public function test_shared_get_album_with_other_user_logged(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         AlbumFactory::createOne(['owner' => $user, 'parent' => $album, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
@@ -133,7 +133,7 @@ class AlbumVisibilityAccessTest extends AppTestCase
         PhotoFactory::createOne(['owner' => $user, 'album' => $album, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
         // Act
-        $otherUser = UserFactory::createOne()->object();
+        $otherUser = UserFactory::createOne()->_real();
         $this->client->loginUser($otherUser);
         $this->client->request('GET', "/user/{$user->getUsername()}/albums"); //Don't know why it's needed, it seems like $album isn't properly initialized, maybe from some cache
         $crawler = $this->client->request('GET', "/user/{$user->getUsername()}/albums/{$album->getId()}");
@@ -155,7 +155,7 @@ class AlbumVisibilityAccessTest extends AppTestCase
     public function test_get_album_with_owner_logged(string $visibility): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         AlbumFactory::createOne(['owner' => $user, 'parent' => $album, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);

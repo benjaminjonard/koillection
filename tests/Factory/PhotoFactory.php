@@ -6,33 +6,11 @@ namespace App\Tests\Factory;
 
 use App\Entity\Photo;
 use App\Enum\VisibilityEnum;
-use App\Repository\PhotoRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<Photo>
- *
- * @method static Photo|Proxy                     createOne(array $attributes = [])
- * @method static Photo[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Photo[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Photo|Proxy                     find(object|array|mixed $criteria)
- * @method static Photo|Proxy                     findOrCreate(array $attributes)
- * @method static Photo|Proxy                     first(string $sortedField = 'id')
- * @method static Photo|Proxy                     last(string $sortedField = 'id')
- * @method static Photo|Proxy                     random(array $attributes = [])
- * @method static Photo|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Photo[]|Proxy[]                 all()
- * @method static Photo[]|Proxy[]                 findBy(array $attributes)
- * @method static Photo[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Photo[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static PhotoRepository|RepositoryProxy repository()
- * @method        Photo|Proxy                     create(array|callable $attributes = [])
- */
-final class PhotoFactory extends ModelFactory
+final class PhotoFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'title' => self::faker()->text(),
@@ -41,12 +19,12 @@ final class PhotoFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Photo::class;
     }

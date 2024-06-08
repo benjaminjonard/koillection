@@ -32,7 +32,7 @@ class CollectionVisibilityAccessTest extends AppTestCase
     public function test_shared_collections_list_with_anonymous(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
@@ -49,12 +49,12 @@ class CollectionVisibilityAccessTest extends AppTestCase
     public function test_shared_collections_list_with_other_user_logged(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
-        $otherUser = UserFactory::createOne()->object();
+        $otherUser = UserFactory::createOne()->_real();
         $this->client->loginUser($otherUser);
 
         // Act
@@ -69,7 +69,7 @@ class CollectionVisibilityAccessTest extends AppTestCase
     public function test_shared_collections_list_with_owner_logged(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
@@ -90,7 +90,7 @@ class CollectionVisibilityAccessTest extends AppTestCase
     public function test_shared_get_collection_with_anonymous(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         CollectionFactory::createOne(['owner' => $user, 'parent' => $collection, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
@@ -127,7 +127,7 @@ class CollectionVisibilityAccessTest extends AppTestCase
     public function test_shared_get_collection_with_other_user_logged(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         CollectionFactory::createOne(['owner' => $user, 'parent' => $collection, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
@@ -143,7 +143,7 @@ class CollectionVisibilityAccessTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
         // Act
-        $otherUser = UserFactory::createOne()->object();
+        $otherUser = UserFactory::createOne()->_real();
         $this->client->loginUser($otherUser);
         $this->client->request('GET', "/user/{$user->getUsername()}/collections"); //Don't know why it's needed, it seems like $collection isn't properly initialized, maybe from some cache
         $crawler = $this->client->request('GET', "/user/{$user->getUsername()}/collections/{$collection->getId()}");
@@ -166,7 +166,7 @@ class CollectionVisibilityAccessTest extends AppTestCase
     public function test_get_collection_with_owner_logged(string $visibility): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         CollectionFactory::createOne(['owner' => $user, 'parent' => $collection, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);

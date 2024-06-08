@@ -38,7 +38,7 @@ class HistoryTest extends AppTestCase
     public function test_can_see_history(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
@@ -57,10 +57,10 @@ class HistoryTest extends AppTestCase
         ChoiceListFactory::createOne(['name' => 'Status', 'owner' => $user]);
         InventoryFactory::createOne(['name' => 'Collection', 'owner' => $user]);
 
-        $collection->remove();
+        $collection->_delete();
         // Refresh logs because they are updated in LoggableListener with a native query, Foundry isn't aware of those changes
         foreach (LogFactory::all() as $log) {
-            $log->refresh();
+            $log->_refresh();
         }
 
         // Act
@@ -95,7 +95,7 @@ class HistoryTest extends AppTestCase
     public function test_ajax_history(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);

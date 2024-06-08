@@ -33,7 +33,7 @@ class AlbumCountersTest extends AppTestCase
     public function test_add_child_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
         $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);
@@ -42,9 +42,9 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['children']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['children']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['children']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['children']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['children']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->_real())['counters']['children']);
     }
 
     /*
@@ -57,7 +57,7 @@ class AlbumCountersTest extends AppTestCase
     public function test_move_child_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $albumLevel1 = AlbumFactory::createOne(['parent' => null, 'owner' => $user]);
         PhotoFactory::createMany(3, ['album' => $albumLevel1, 'owner' => $user]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
@@ -68,28 +68,28 @@ class AlbumCountersTest extends AppTestCase
         PhotoFactory::createMany(3, ['album' => $albumLevel4, 'owner' => $user]);
 
         // Act
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $newParentAlbum = AlbumFactory::createOne(['owner' => $user]);
-        $albumLevel3->setParent($newParentAlbum->object());
-        $albumLevel3->save();
+        $albumLevel3->setParent($newParentAlbum->_real());
+        $albumLevel3->_save();
 
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($newParentAlbum->object())['counters']['photos']);
-        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($newParentAlbum->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($newParentAlbum->_real())['counters']['photos']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($newParentAlbum->_real())['counters']['children']);
 
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['children']);
 
-        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['children']);
 
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel3->_real())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel3->_real())['counters']['children']);
 
-        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel4->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel4->object())['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel4->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel4->_real())['counters']['children']);
     }
 
     /*
@@ -100,7 +100,7 @@ class AlbumCountersTest extends AppTestCase
     public function test_delete_child_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
         PhotoFactory::createMany(3, ['album' => $albumLevel1, 'owner' => $user]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
@@ -111,15 +111,15 @@ class AlbumCountersTest extends AppTestCase
         PhotoFactory::createMany(3, ['album' => $albumLevel4, 'owner' => $user]);
 
         // Act
-        $albumLevel3->remove();
+        $albumLevel3->_delete();
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['children']);
 
-        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['children']);
     }
 
     /*
@@ -128,7 +128,7 @@ class AlbumCountersTest extends AppTestCase
     public function test_add_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
         $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);
@@ -138,9 +138,9 @@ class AlbumCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($albumLevel3->_real())['counters']['photos']);
     }
 
     /*
@@ -149,7 +149,7 @@ class AlbumCountersTest extends AppTestCase
     public function test_move_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
         $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);
@@ -157,16 +157,16 @@ class AlbumCountersTest extends AppTestCase
 
         // Act
         $newAlbum = AlbumFactory::createOne(['owner' => $user]);
-        $photo->setAlbum($newAlbum->object());
-        $photo->save();
+        $photo->setAlbum($newAlbum->_real());
+        $photo->_save();
 
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($newAlbum->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($newAlbum->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->_real())['counters']['photos']);
     }
 
     /*
@@ -175,20 +175,20 @@ class AlbumCountersTest extends AppTestCase
     public function test_delete_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
         $albumLevel3 = AlbumFactory::createOne(['parent' => $albumLevel2, 'owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $albumLevel3, 'owner' => $user]);
 
         // Act
-        $photo->remove();
+        $photo->_delete();
 
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->object())['counters']['photos']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->object())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2->_real())['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3->_real())['counters']['photos']);
     }
 }

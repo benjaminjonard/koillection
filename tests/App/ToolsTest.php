@@ -28,7 +28,7 @@ class ToolsTest extends AppTestCase
     public function test_can_see_tools(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -42,12 +42,12 @@ class ToolsTest extends AppTestCase
     public function test_can_export_printable_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->_real();
 
         // Act
         $crawler = $this->client->request('GET', '/tools/export/printable-list');
@@ -60,12 +60,12 @@ class ToolsTest extends AppTestCase
     public function test_can_export_csv(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->_real();
 
         // Act
         $this->client->request('GET', '/tools/export/csv');
@@ -78,12 +78,12 @@ class ToolsTest extends AppTestCase
     public function test_can_export_sql(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->object();
-        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->object();
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collection, 'owner' => $user])->_real();
+        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collection, 'owner' => $user])->_real();
 
         // Act
         $this->client->request('GET', '/tools/export/sql');

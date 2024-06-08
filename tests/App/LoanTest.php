@@ -29,7 +29,7 @@ class LoanTest extends AppTestCase
     public function test_can_see_loan_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -43,7 +43,7 @@ class LoanTest extends AppTestCase
     public function test_can_delete_loan(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
@@ -63,7 +63,7 @@ class LoanTest extends AppTestCase
     public function test_can_set_loan_as_returned(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
@@ -71,7 +71,7 @@ class LoanTest extends AppTestCase
 
         // Act
         $this->client->request('GET', '/loans/' . $loan->getId() . '/returned');
-        $loan->refresh();
+        $loan->_refresh();
 
         // Assert
         $this->assertResponseIsSuccessful();

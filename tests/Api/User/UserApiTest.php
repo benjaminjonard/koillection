@@ -19,7 +19,7 @@ class UserApiTest extends ApiTestCase
     public function test_user_can_see_itself(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('GET', '/api/users/' . $user->getId());
@@ -35,8 +35,8 @@ class UserApiTest extends ApiTestCase
     public function test_user_cant_see_other_user(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $otherUser = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $otherUser = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('GET', '/api/users/' . $otherUser->getId());
@@ -48,7 +48,7 @@ class UserApiTest extends ApiTestCase
     public function test_post_user(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/users');
@@ -60,7 +60,7 @@ class UserApiTest extends ApiTestCase
     public function test_put_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('PUT', '/api/users/' . $user->getId());
@@ -72,7 +72,7 @@ class UserApiTest extends ApiTestCase
     public function test_patch_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('PATCH', '/api/users/' . $user->getId(), [
@@ -86,7 +86,7 @@ class UserApiTest extends ApiTestCase
     public function test_delete_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('DELETE', '/api/users/' . $user->getId());

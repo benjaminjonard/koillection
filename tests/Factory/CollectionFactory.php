@@ -6,33 +6,11 @@ namespace App\Tests\Factory;
 
 use App\Entity\Collection;
 use App\Enum\VisibilityEnum;
-use App\Repository\CollectionRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<Collection>
- *
- * @method static Collection|Proxy                     createOne(array $attributes = [])
- * @method static Collection[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Collection[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Collection|Proxy                     find(object|array|mixed $criteria)
- * @method static Collection|Proxy                     findOrCreate(array $attributes)
- * @method static Collection|Proxy                     first(string $sortedField = 'id')
- * @method static Collection|Proxy                     last(string $sortedField = 'id')
- * @method static Collection|Proxy                     random(array $attributes = [])
- * @method static Collection|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Collection[]|Proxy[]                 all()
- * @method static Collection[]|Proxy[]                 findBy(array $attributes)
- * @method static Collection[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Collection[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static CollectionRepository|RepositoryProxy repository()
- * @method        Collection|Proxy                     create(array|callable $attributes = [])
- */
-final class CollectionFactory extends ModelFactory
+final class CollectionFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'parent' => null,
@@ -64,7 +42,7 @@ final class CollectionFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this
             ->afterInstantiate(static function (Collection $collection): void {
@@ -74,7 +52,7 @@ final class CollectionFactory extends ModelFactory
         ;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Collection::class;
     }

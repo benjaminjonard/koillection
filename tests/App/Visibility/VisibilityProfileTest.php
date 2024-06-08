@@ -34,7 +34,7 @@ class VisibilityProfileTest extends AppTestCase
     public function test_anonymous_cant_see_private_profile(): void
     {
         // Arrange
-        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PRIVATE])->object();
+        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PRIVATE])->_real();
 
         foreach ($this->getUrlsForOwner($owner) as $url) {
             // Act
@@ -48,9 +48,9 @@ class VisibilityProfileTest extends AppTestCase
     public function test_logged_user_cant_see_private_profile(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PRIVATE])->object();
+        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PRIVATE])->_real();
 
         foreach ($this->getUrlsForOwner($owner) as $url) {
             // Act
@@ -64,7 +64,7 @@ class VisibilityProfileTest extends AppTestCase
     public function test_anonymous_user_cant_see_internal_profile(): void
     {
         // Arrange
-        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_INTERNAL])->object();
+        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_INTERNAL])->_real();
 
         foreach ($this->getUrlsForOwner($owner) as $url) {
             // Act
@@ -78,9 +78,9 @@ class VisibilityProfileTest extends AppTestCase
     public function test_logged_user_can_see_internal_profile(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_INTERNAL])->object();
+        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_INTERNAL])->_real();
 
         foreach ($this->getUrlsForOwner($owner) as $url) {
             // Act
@@ -94,7 +94,7 @@ class VisibilityProfileTest extends AppTestCase
     public function test_anonymous_user_cant_see_public_profile(): void
     {
         // Arrange
-        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC])->object();
+        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC])->_real();
 
         foreach ($this->getUrlsForOwner($owner) as $url) {
             // Act
@@ -108,9 +108,9 @@ class VisibilityProfileTest extends AppTestCase
     public function test_logged_user_can_see_public_profile(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
-        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC])->object();
+        $owner = UserFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC])->_real();
 
         foreach ($this->getUrlsForOwner($owner) as $url) {
             // Act
@@ -125,7 +125,7 @@ class VisibilityProfileTest extends AppTestCase
     {
         $username = $owner->getUsername();
 
-        $collection = CollectionFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->object();
+        $collection = CollectionFactory::createOne(['visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->_real();
         $collectionId = $collection->getId();
 
         $itemId = ItemFactory::createOne(['collection' => $collection, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC, 'owner' => $owner])->getId();

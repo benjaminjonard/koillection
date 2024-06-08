@@ -22,7 +22,7 @@ class TemplateApiTest extends ApiTestCase
     public function test_get_templates(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         TemplateFactory::createMany(3, ['owner' => $user]);
 
         // Act
@@ -39,7 +39,7 @@ class TemplateApiTest extends ApiTestCase
     public function test_get_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act
@@ -56,7 +56,7 @@ class TemplateApiTest extends ApiTestCase
     public function test_get_template_fields(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         FieldFactory::createMany(3, ['template' => $template, 'owner' => $user]);
 
@@ -74,7 +74,7 @@ class TemplateApiTest extends ApiTestCase
     public function test_post_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/templates', ['json' => [
@@ -92,7 +92,7 @@ class TemplateApiTest extends ApiTestCase
     public function test_put_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act
@@ -112,7 +112,7 @@ class TemplateApiTest extends ApiTestCase
     public function test_patch_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act
@@ -135,7 +135,7 @@ class TemplateApiTest extends ApiTestCase
     public function test_delete_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act

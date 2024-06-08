@@ -22,8 +22,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -36,8 +36,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_album_children(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         AlbumFactory::createMany(3, ['parent' => $album, 'owner' => $owner]);
 
@@ -55,8 +55,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_album_parent(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $parent = AlbumFactory::createOne(['owner' => $owner]);
         $album = AlbumFactory::createOne(['parent' => $parent, 'owner' => $owner]);
 
@@ -70,8 +70,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_album_photos(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         PhotoFactory::createMany(3, ['album' => $album, 'owner' => $owner]);
 
@@ -89,8 +89,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_post_album_in_another_user_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -105,8 +105,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_put_another_user_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $owner]);
 
         // Act
@@ -121,8 +121,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_patch_another_user_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['title' => 'Frieren', 'owner' => $owner]);
 
         // Act
@@ -140,8 +140,8 @@ class AlbumApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
 
         // Act

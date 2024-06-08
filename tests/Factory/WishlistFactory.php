@@ -6,33 +6,11 @@ namespace App\Tests\Factory;
 
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
-use App\Repository\WishlistRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<Wishlist>
- *
- * @method static Wishlist|Proxy                     createOne(array $attributes = [])
- * @method static Wishlist[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Wishlist[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Wishlist|Proxy                     find(object|array|mixed $criteria)
- * @method static Wishlist|Proxy                     findOrCreate(array $attributes)
- * @method static Wishlist|Proxy                     first(string $sortedField = 'id')
- * @method static Wishlist|Proxy                     last(string $sortedField = 'id')
- * @method static Wishlist|Proxy                     random(array $attributes = [])
- * @method static Wishlist|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Wishlist[]|Proxy[]                 all()
- * @method static Wishlist[]|Proxy[]                 findBy(array $attributes)
- * @method static Wishlist[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Wishlist[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static WishlistRepository|RepositoryProxy repository()
- * @method        Wishlist|Proxy                     create(array|callable $attributes = [])
- */
-final class WishlistFactory extends ModelFactory
+final class WishlistFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'name' => self::faker()->word(),
@@ -58,7 +36,7 @@ final class WishlistFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this
             ->afterInstantiate(static function (Wishlist $wishlist): void {
@@ -67,7 +45,7 @@ final class WishlistFactory extends ModelFactory
         ;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Wishlist::class;
     }

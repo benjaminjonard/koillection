@@ -25,7 +25,7 @@ class TagApiTest extends ApiTestCase
     public function test_get_tags(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         TagFactory::createMany(3, ['owner' => $user]);
 
         // Act
@@ -42,7 +42,7 @@ class TagApiTest extends ApiTestCase
     public function test_get_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
@@ -59,7 +59,7 @@ class TagApiTest extends ApiTestCase
     public function test_get_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $user]);
         $tag = TagFactory::createOne(['category' => $category, 'owner' => $user]);
 
@@ -77,7 +77,7 @@ class TagApiTest extends ApiTestCase
     public function test_get_tag_items(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $tag = TagFactory::createOne(['owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collection, 'tags' => [$tag], 'owner' => $user]);
@@ -96,7 +96,7 @@ class TagApiTest extends ApiTestCase
     public function test_post_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/tags', ['json' => [
@@ -114,7 +114,7 @@ class TagApiTest extends ApiTestCase
     public function test_put_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
@@ -134,7 +134,7 @@ class TagApiTest extends ApiTestCase
     public function test_patch_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
@@ -157,7 +157,7 @@ class TagApiTest extends ApiTestCase
     public function test_delete_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $user]);
 
         // Act
@@ -170,7 +170,7 @@ class TagApiTest extends ApiTestCase
     public function test_post_tag_image(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $user]);
         $uploadedFile = $this->createFile('png');
 

@@ -25,7 +25,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_access_dashboard(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -38,7 +38,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_access_users_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -51,7 +51,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_access_add_user(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -64,7 +64,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_post_user(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -77,7 +77,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_access_edit_user(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -90,7 +90,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_edit_user(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -103,7 +103,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_delete_user(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -116,7 +116,7 @@ class RegularUserTest extends AppTestCase
     public function test_regular_user_cant_access_config(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act

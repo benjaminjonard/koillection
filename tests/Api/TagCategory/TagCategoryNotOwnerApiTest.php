@@ -21,8 +21,8 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
     public function test_cant_get_another_user_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -35,8 +35,8 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
     public function test_cant_get_another_user_tag_category_tags(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
         TagFactory::createMany(3, ['category' => $category, 'owner' => $owner]);
 
@@ -54,8 +54,8 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
     public function test_cant_put_another_user_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -70,8 +70,8 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
     public function test_cant_patch_another_user_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -89,8 +89,8 @@ class TagCategoryNotOwnerApiTest extends ApiTestCase
     public function test_cant_delete_another_user_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act

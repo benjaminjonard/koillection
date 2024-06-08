@@ -24,7 +24,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_get_collections(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         CollectionFactory::createMany(3, ['owner' => $user]);
 
         // Act
@@ -41,7 +41,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_get_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
@@ -58,7 +58,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_get_collection_children(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         CollectionFactory::createMany(3, ['parent' => $collection, 'owner' => $user]);
 
@@ -76,7 +76,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_get_collection_parent(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $parentCollection = CollectionFactory::createOne(['owner' => $user]);
         $collection = CollectionFactory::createOne(['parent' => $parentCollection, 'owner' => $user]);
 
@@ -94,7 +94,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_get_collection_items(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
@@ -112,7 +112,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_get_collection_data(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         DatumFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
@@ -130,7 +130,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_post_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/collections', ['json' => [
@@ -148,7 +148,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_put_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
@@ -168,7 +168,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_cant_assign_collection_as_its_own_parent(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
@@ -183,7 +183,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_cant_assign_child_as_parent_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
         $child = CollectionFactory::createOne(['parent' => $collection, 'title' => 'Ex-libris', 'owner' => $user]);
 
@@ -199,7 +199,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_patch_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
@@ -222,7 +222,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_delete_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
         // Act
@@ -235,7 +235,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_post_collection_image(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $uploadedFile = $this->createFile('png');
 
@@ -259,7 +259,7 @@ class CollectionApiTest extends ApiTestCase
     public function test_delete_collection_image(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $uploadedFile = $this->createFile('png');
         $imagePath = $uploadedFile->getRealPath();
         $album = CollectionFactory::createOne(['owner' => $user, 'image' => $imagePath]);

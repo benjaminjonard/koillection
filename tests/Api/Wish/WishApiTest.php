@@ -22,7 +22,7 @@ class WishApiTest extends ApiTestCase
     public function test_get_wishes(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         WishFactory::createMany(3, ['wishlist' => $wishlist, 'owner' => $user]);
 
@@ -40,7 +40,7 @@ class WishApiTest extends ApiTestCase
     public function test_get_wish(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
@@ -58,7 +58,7 @@ class WishApiTest extends ApiTestCase
     public function test_get_wish_wishlist(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
@@ -76,7 +76,7 @@ class WishApiTest extends ApiTestCase
     public function test_post_wish(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
 
         // Act
@@ -97,7 +97,7 @@ class WishApiTest extends ApiTestCase
     public function test_put_wish(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['name' => 'Frieren vol. 1', 'wishlist' => $wishlist, 'owner' => $user]);
 
@@ -120,7 +120,7 @@ class WishApiTest extends ApiTestCase
     public function test_patch_wish(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['name' => 'Frieren vol. 1', 'wishlist' => $wishlist, 'owner' => $user]);
 
@@ -143,7 +143,7 @@ class WishApiTest extends ApiTestCase
     public function test_delete_wish(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
 
@@ -157,7 +157,7 @@ class WishApiTest extends ApiTestCase
     public function test_post_wish_image(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user]);
         $uploadedFile = $this->createFile('png');

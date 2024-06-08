@@ -28,7 +28,7 @@ class ItemApiTest extends ApiTestCase
     public function test_get_items(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
 
@@ -46,7 +46,7 @@ class ItemApiTest extends ApiTestCase
     public function test_get_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
@@ -64,7 +64,7 @@ class ItemApiTest extends ApiTestCase
     public function test_get_item_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
@@ -82,7 +82,7 @@ class ItemApiTest extends ApiTestCase
     public function test_get_item_data(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         DatumFactory::createMany(3, ['item' => $item, 'owner' => $user]);
@@ -101,7 +101,7 @@ class ItemApiTest extends ApiTestCase
     public function test_get_item_loans(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         LoanFactory::createMany(3, ['item' => $item, 'owner' => $user]);
@@ -120,7 +120,7 @@ class ItemApiTest extends ApiTestCase
     public function test_get_item_related_items(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $relatedItems = ItemFactory::createMany(3, ['collection' => $collection, 'owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'relatedItems' => $relatedItems, 'owner' => $user]);
@@ -139,7 +139,7 @@ class ItemApiTest extends ApiTestCase
     public function test_get_item_tags(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $tags = TagFactory::createMany(3, ['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'tags' => $tags, 'owner' => $user]);
@@ -158,7 +158,7 @@ class ItemApiTest extends ApiTestCase
     public function test_post_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
 
         // Act
@@ -179,7 +179,7 @@ class ItemApiTest extends ApiTestCase
     public function test_put_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
 
@@ -200,7 +200,7 @@ class ItemApiTest extends ApiTestCase
     public function test_patch_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user]);
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
 
@@ -223,7 +223,7 @@ class ItemApiTest extends ApiTestCase
     public function test_delete_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
 
@@ -237,7 +237,7 @@ class ItemApiTest extends ApiTestCase
     public function test_post_item_image(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $uploadedFile = $this->createFile('png');

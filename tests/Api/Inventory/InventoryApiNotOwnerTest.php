@@ -19,8 +19,8 @@ class InventoryApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_inventory(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $inventory = InventoryFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -33,8 +33,8 @@ class InventoryApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_inventory(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $inventory = InventoryFactory::createOne(['owner' => $owner]);
 
         // Act

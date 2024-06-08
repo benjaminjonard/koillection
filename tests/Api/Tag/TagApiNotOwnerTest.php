@@ -23,8 +23,8 @@ class TagApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -37,8 +37,8 @@ class TagApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_tag_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
         $tag = TagFactory::createOne(['category' => $category, 'owner' => $owner]);
 
@@ -52,8 +52,8 @@ class TagApiNotOwnerTest extends ApiTestCase
     public function test_cant_post_tag_in_another_user_category(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $category = TagCategoryFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -68,8 +68,8 @@ class TagApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_tag_items(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $owner]);
         $tag = TagFactory::createOne(['owner' => $owner]);
         ItemFactory::createMany(3, ['collection' => $collection, 'tags' => [$tag], 'owner' => $owner]);
@@ -88,8 +88,8 @@ class TagApiNotOwnerTest extends ApiTestCase
     public function test_cant_put_another_user_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -104,8 +104,8 @@ class TagApiNotOwnerTest extends ApiTestCase
     public function test_cant_patch_another_user_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -123,8 +123,8 @@ class TagApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_tag(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $tag = TagFactory::createOne(['owner' => $owner]);
 
         // Act

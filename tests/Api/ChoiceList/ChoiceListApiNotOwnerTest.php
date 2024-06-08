@@ -19,8 +19,8 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -33,8 +33,8 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
     public function test_cant_put_another_user_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'owner' => $owner]);
 
         // Act
@@ -49,8 +49,8 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
     public function test_cant_patch_another_user_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'owner' => $owner]);
 
         // Act
@@ -68,8 +68,8 @@ class ChoiceListApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'owner' => $owner]);
 
         // Act

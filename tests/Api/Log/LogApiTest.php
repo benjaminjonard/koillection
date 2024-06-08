@@ -20,7 +20,7 @@ class LogApiTest extends ApiTestCase
     public function test_get_logs(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         LogFactory::createMany(3, ['owner' => $user]);
 
         // Act
@@ -37,7 +37,7 @@ class LogApiTest extends ApiTestCase
     public function test_get_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
@@ -54,7 +54,7 @@ class LogApiTest extends ApiTestCase
     public function test_post_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/logs');
@@ -66,7 +66,7 @@ class LogApiTest extends ApiTestCase
     public function test_put_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
@@ -79,7 +79,7 @@ class LogApiTest extends ApiTestCase
     public function test_patch_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act
@@ -94,7 +94,7 @@ class LogApiTest extends ApiTestCase
     public function test_delete_log(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $log = LogFactory::createOne(['owner' => $user]);
 
         // Act

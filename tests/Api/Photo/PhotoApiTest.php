@@ -22,7 +22,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_get_photos(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
         PhotoFactory::createMany(3, ['album' => $album, 'owner' => $user]);
 
@@ -40,7 +40,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_get_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
 
@@ -58,7 +58,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_get_photo_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
 
@@ -76,7 +76,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_post_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
 
         // Act
@@ -97,7 +97,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_put_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['title' => 'Home collection', 'album' => $album, 'owner' => $user]);
 
@@ -118,7 +118,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_patch_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['title' => 'Home collection', 'album' => $album, 'owner' => $user]);
 
@@ -141,7 +141,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_delete_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
 
@@ -155,7 +155,7 @@ class PhotoApiTest extends ApiTestCase
     public function test_post_photo_image(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $user]);
         $uploadedFile = $this->createFile('png');

@@ -6,33 +6,11 @@ namespace App\Tests\Factory;
 
 use App\Entity\Album;
 use App\Enum\VisibilityEnum;
-use App\Repository\AlbumRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<Album>
- *
- * @method static Album|Proxy                     createOne(array $attributes = [])
- * @method static Album[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Album[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Album|Proxy                     find(object|array|mixed $criteria)
- * @method static Album|Proxy                     findOrCreate(array $attributes)
- * @method static Album|Proxy                     first(string $sortedField = 'id')
- * @method static Album|Proxy                     last(string $sortedField = 'id')
- * @method static Album|Proxy                     random(array $attributes = [])
- * @method static Album|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Album[]|Proxy[]                 all()
- * @method static Album[]|Proxy[]                 findBy(array $attributes)
- * @method static Album[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Album[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static AlbumRepository|RepositoryProxy repository()
- * @method        Album|Proxy                     create(array|callable $attributes = [])
- */
-final class AlbumFactory extends ModelFactory
+final class AlbumFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'title' => self::faker()->word(),
@@ -58,7 +36,7 @@ final class AlbumFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this
             ->afterInstantiate(static function (Album $album): void {
@@ -68,7 +46,7 @@ final class AlbumFactory extends ModelFactory
         ;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Album::class;
     }

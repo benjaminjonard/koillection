@@ -31,7 +31,7 @@ class PhotoVisibilityTest extends AppTestCase
     public function test_visibility_add_photo(string $album1Visibility, string $album2Visibility, string $photoFinalVisibility): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $albumLevel1 = AlbumFactory::createOne(['owner' => $user, 'visibility' => $album1Visibility]);
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user, 'visibility' => $album2Visibility]);
 
@@ -57,7 +57,7 @@ class PhotoVisibilityTest extends AppTestCase
     public function test_visibility_change_photo_album(string $album1Visibility, string $album2Visibility, string $photoFinalVisibility): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $oldAlbum = AlbumFactory::createOne(['owner' => $user]);
         $photo = PhotoFactory::createOne(['album' => $oldAlbum, 'owner' => $user]);
 
@@ -65,8 +65,8 @@ class PhotoVisibilityTest extends AppTestCase
         $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user, 'visibility' => $album2Visibility]);
 
         // Act
-        $photo->setAlbum($albumLevel2->object());
-        $photo->save();
+        $photo->setAlbum($albumLevel2->_real());
+        $photo->_save();
 
         // Assert
         PhotoFactory::assert()->exists(['id' => $photo->getId(), 'finalVisibility' => $photoFinalVisibility]);

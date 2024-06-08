@@ -35,7 +35,7 @@ class ItemVisibilityAccessTest extends AppTestCase
     public function test_shared_get_item_with_anonymous(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         $item = ItemFactory::createOne(['owner' => $user, 'collection' => $collection, 'visibility' => $visibility]);
 
@@ -62,7 +62,7 @@ class ItemVisibilityAccessTest extends AppTestCase
     public function test_shared_get_item_with_other_user_logged(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         $item = ItemFactory::createOne(['owner' => $user, 'collection' => $collection, 'visibility' => $visibility]);
 
@@ -71,7 +71,7 @@ class ItemVisibilityAccessTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'item' => $item, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
         // Act
-        $otherUser = UserFactory::createOne()->object();
+        $otherUser = UserFactory::createOne()->_real();
         $this->client->loginUser($otherUser);
         $crawler = $this->client->request('GET', "/user/{$user->getUsername()}/items/{$item->getId()}");
 
@@ -91,7 +91,7 @@ class ItemVisibilityAccessTest extends AppTestCase
     public function test_shared_get_item_with_owner_logged(string $visibility): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         $item = ItemFactory::createOne(['owner' => $user, 'collection' => $collection, 'visibility' => $visibility]);
 

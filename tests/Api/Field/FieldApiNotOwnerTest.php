@@ -20,8 +20,8 @@ class FieldApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
@@ -35,8 +35,8 @@ class FieldApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_field_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
@@ -50,8 +50,8 @@ class FieldApiNotOwnerTest extends ApiTestCase
     public function test_cant_post_field_in_another_user_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -66,8 +66,8 @@ class FieldApiNotOwnerTest extends ApiTestCase
     public function test_cant_put_another_user_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
@@ -83,8 +83,8 @@ class FieldApiNotOwnerTest extends ApiTestCase
     public function test_cant_patch_another_user_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 
@@ -103,8 +103,8 @@ class FieldApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $owner]);
 

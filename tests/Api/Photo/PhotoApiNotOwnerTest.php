@@ -20,8 +20,8 @@ class PhotoApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
@@ -35,8 +35,8 @@ class PhotoApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_photo_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
@@ -50,8 +50,8 @@ class PhotoApiNotOwnerTest extends ApiTestCase
     public function test_cant_post_photo_in_another_user_album(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -67,8 +67,8 @@ class PhotoApiNotOwnerTest extends ApiTestCase
     public function test_cant_put_another_user_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
@@ -84,8 +84,8 @@ class PhotoApiNotOwnerTest extends ApiTestCase
     public function test_cant_patch_another_user_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 
@@ -104,8 +104,8 @@ class PhotoApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_photo(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $album = AlbumFactory::createOne(['owner' => $owner]);
         $photo = PhotoFactory::createOne(['album' => $album, 'owner' => $owner]);
 

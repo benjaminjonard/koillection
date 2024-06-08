@@ -5,33 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Factory;
 
 use App\Entity\Log;
-use App\Repository\LogRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<Log>
- *
- * @method static Log|Proxy                     createOne(array $attributes = [])
- * @method static Log[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Log[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Log|Proxy                     find(object|array|mixed $criteria)
- * @method static Log|Proxy                     findOrCreate(array $attributes)
- * @method static Log|Proxy                     first(string $sortedField = 'id')
- * @method static Log|Proxy                     last(string $sortedField = 'id')
- * @method static Log|Proxy                     random(array $attributes = [])
- * @method static Log|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Log[]|Proxy[]                 all()
- * @method static Log[]|Proxy[]                 findBy(array $attributes)
- * @method static Log[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Log[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static LogRepository|RepositoryProxy repository()
- * @method        Log|Proxy                     create(array|callable $attributes = [])
- */
-final class LogFactory extends ModelFactory
+final class LogFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'loggedAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
@@ -42,12 +20,12 @@ final class LogFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Log::class;
     }

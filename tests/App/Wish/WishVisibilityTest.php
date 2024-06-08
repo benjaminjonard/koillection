@@ -42,7 +42,7 @@ class WishVisibilityTest extends AppTestCase
     public function test_visibility_add_wish(string $wishlist1Visibility, string $wishlist2Visibility, string $wishFinalVisibility): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlistLevel1 = WishlistFactory::createOne(['owner' => $user, 'visibility' => $wishlist1Visibility]);
         $wishlistLevel2 = WishlistFactory::createOne(['parent' => $wishlistLevel1, 'owner' => $user, 'visibility' => $wishlist2Visibility]);
 
@@ -68,7 +68,7 @@ class WishVisibilityTest extends AppTestCase
     public function test_visibility_change_wish_wishlist(string $wishlist1Visibility, string $wishlist2Visibility, string $wishFinalVisibility): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $oldWishlist = WishlistFactory::createOne(['owner' => $user]);
         $wish = WishFactory::createOne(['wishlist' => $oldWishlist, 'owner' => $user]);
 
@@ -76,8 +76,8 @@ class WishVisibilityTest extends AppTestCase
         $wishlistLevel2 = WishlistFactory::createOne(['parent' => $wishlistLevel1, 'owner' => $user, 'visibility' => $wishlist2Visibility]);
 
         // Act
-        $wish->setWishlist($wishlistLevel2->object());
-        $wish->save();
+        $wish->setWishlist($wishlistLevel2->_real());
+        $wish->_save();
 
         // Assert
         WishFactory::assert()->exists(['id' => $wish->getId(), 'finalVisibility' => $wishFinalVisibility]);
@@ -86,12 +86,12 @@ class WishVisibilityTest extends AppTestCase
     public function test_wishlists_list_with_internal(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         WishlistFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         WishlistFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         WishlistFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
-        $otherUser = UserFactory::createOne()->object();
+        $otherUser = UserFactory::createOne()->_real();
         $this->client->loginUser($otherUser);
 
         // Act
@@ -106,7 +106,7 @@ class WishVisibilityTest extends AppTestCase
     public function test_wishlists_list_with_anonymous(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         WishlistFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
         WishlistFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
         WishlistFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
@@ -126,7 +126,7 @@ class WishVisibilityTest extends AppTestCase
     public function test_get_wishlist_with_anonymous(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         WishlistFactory::createOne(['owner' => $user, 'parent' => $wishlist, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
@@ -158,7 +158,7 @@ class WishVisibilityTest extends AppTestCase
     public function test_get_wishlist_with_internal(string $visibility, bool $shouldSucceed): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $wishlist = WishlistFactory::createOne(['owner' => $user, 'visibility' => $visibility]);
 
         WishlistFactory::createOne(['owner' => $user, 'parent' => $wishlist, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
@@ -170,7 +170,7 @@ class WishVisibilityTest extends AppTestCase
         WishFactory::createOne(['owner' => $user, 'wishlist' => $wishlist, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
 
         // Act
-        $otherUser = UserFactory::createOne()->object();
+        $otherUser = UserFactory::createOne()->_real();
         $this->client->loginUser($otherUser);
         $this->client->request('GET', "/user/{$user->getUsername()}/wishlists"); //Don't know why it's needed, it seems like $wishlist isn't properly initialized, maybe from some cache
         $crawler = $this->client->request('GET', "/user/{$user->getUsername()}/wishlists/{$wishlist->getId()}");

@@ -5,33 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Factory;
 
 use App\Entity\Loan;
-use App\Repository\LoanRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<Loan>
- *
- * @method static Loan|Proxy                     createOne(array $attributes = [])
- * @method static Loan[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Loan[]|Proxy[]                 createSequence(array|callable $sequence)
- * @method static Loan|Proxy                     find(object|array|mixed $criteria)
- * @method static Loan|Proxy                     findOrCreate(array $attributes)
- * @method static Loan|Proxy                     first(string $sortedField = 'id')
- * @method static Loan|Proxy                     last(string $sortedField = 'id')
- * @method static Loan|Proxy                     random(array $attributes = [])
- * @method static Loan|Proxy                     randomOrCreate(array $attributes = [])
- * @method static Loan[]|Proxy[]                 all()
- * @method static Loan[]|Proxy[]                 findBy(array $attributes)
- * @method static Loan[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- * @method static Loan[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static LoanRepository|RepositoryProxy repository()
- * @method        Loan|Proxy                     create(array|callable $attributes = [])
- */
-final class LoanFactory extends ModelFactory
+final class LoanFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'lentTo' => self::faker()->firstName(),
@@ -39,12 +17,12 @@ final class LoanFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Loan::class;
     }

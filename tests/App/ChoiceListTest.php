@@ -27,7 +27,7 @@ class ChoiceListTest extends AppTestCase
     public function test_can_see_choice_list_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -41,7 +41,7 @@ class ChoiceListTest extends AppTestCase
     public function test_can_post_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
 
         // Act
@@ -59,7 +59,7 @@ class ChoiceListTest extends AppTestCase
     public function test_can_edit_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
         $choiceList = ChoiceListFactory::createOne(['owner' => $user, 'choices' => ['New', 'Test', 'Done']]);
 
@@ -81,7 +81,7 @@ class ChoiceListTest extends AppTestCase
     public function test_can_delete_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $this->client->loginUser($user);
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 

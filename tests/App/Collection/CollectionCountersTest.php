@@ -33,7 +33,7 @@ class CollectionCountersTest extends AppTestCase
     public function test_add_child_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $user]);
@@ -42,9 +42,9 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['children']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['children']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['children']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['children']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['children']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->_real())['counters']['children']);
     }
 
     /*
@@ -57,7 +57,7 @@ class CollectionCountersTest extends AppTestCase
     public function test_move_child_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collectionLevel1 = CollectionFactory::createOne(['parent' => null, 'owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel1, 'owner' => $user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
@@ -69,26 +69,26 @@ class CollectionCountersTest extends AppTestCase
 
         // Act
         $newParentCollection = CollectionFactory::createOne(['owner' => $user]);
-        $collectionLevel3->setParent($newParentCollection->object());
-        $collectionLevel3->save();
+        $collectionLevel3->setParent($newParentCollection->_real());
+        $collectionLevel3->_save();
 
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($newParentCollection->object())['counters']['items']);
-        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($newParentCollection->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($newParentCollection->_real())['counters']['items']);
+        $this->assertSame(2, $this->cachedValuesGetter->getCachedValues($newParentCollection->_real())['counters']['children']);
 
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['children']);
 
-        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['children']);
 
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel3->_real())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel3->_real())['counters']['children']);
 
-        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel4->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel4->object())['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel4->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel4->_real())['counters']['children']);
     }
 
     /*
@@ -99,7 +99,7 @@ class CollectionCountersTest extends AppTestCase
     public function test_delete_child_collection(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
         ItemFactory::createMany(3, ['collection' => $collectionLevel1, 'owner' => $user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
@@ -110,15 +110,15 @@ class CollectionCountersTest extends AppTestCase
         ItemFactory::createMany(3, ['collection' => $collectionLevel4, 'owner' => $user]);
 
         // Act
-        $collectionLevel3->remove();
+        $collectionLevel3->_delete();
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['children']);
+        $this->assertSame(6, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['children']);
 
-        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['children']);
+        $this->assertSame(3, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['children']);
     }
 
     /*
@@ -127,7 +127,7 @@ class CollectionCountersTest extends AppTestCase
     public function test_add_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $user]);
@@ -137,9 +137,9 @@ class CollectionCountersTest extends AppTestCase
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($collectionLevel3->_real())['counters']['items']);
     }
 
     /*
@@ -148,7 +148,7 @@ class CollectionCountersTest extends AppTestCase
     public function test_move_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $user]);
@@ -156,16 +156,16 @@ class CollectionCountersTest extends AppTestCase
 
         // Act
         $newCollection = CollectionFactory::createOne(['owner' => $user]);
-        $item->setCollection($newCollection->object());
-        $item->save();
+        $item->setCollection($newCollection->_real());
+        $item->_save();
 
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($newCollection->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
+        $this->assertSame(1, $this->cachedValuesGetter->getCachedValues($newCollection->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->_real())['counters']['items']);
     }
 
     /*
@@ -174,20 +174,20 @@ class CollectionCountersTest extends AppTestCase
     public function test_delete_item(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
         $collectionLevel3 = CollectionFactory::createOne(['parent' => $collectionLevel2, 'owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collectionLevel3, 'owner' => $user]);
 
         // Act
-        $item->remove();
+        $item->_delete();
 
         $this->refreshCachedValuesQueue->process();
 
         // Assert
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->object())['counters']['items']);
-        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->object())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2->_real())['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3->_real())['counters']['items']);
     }
 }

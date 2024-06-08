@@ -21,8 +21,8 @@ class TemplateApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -35,8 +35,8 @@ class TemplateApiNotOwnerTest extends ApiTestCase
     public function test_cant_get_another_user_template_fields(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
         FieldFactory::createMany(3, ['template' => $template, 'owner' => $owner]);
 
@@ -54,8 +54,8 @@ class TemplateApiNotOwnerTest extends ApiTestCase
     public function test_cant_put_another_user_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -70,8 +70,8 @@ class TemplateApiNotOwnerTest extends ApiTestCase
     public function test_cant_patch_another_user_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act
@@ -89,8 +89,8 @@ class TemplateApiNotOwnerTest extends ApiTestCase
     public function test_cant_delete_another_user_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
-        $owner = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
+        $owner = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $owner]);
 
         // Act

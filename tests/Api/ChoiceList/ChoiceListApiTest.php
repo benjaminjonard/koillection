@@ -20,7 +20,7 @@ class ChoiceListApiTest extends ApiTestCase
     public function test_get_choice_lists(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         ChoiceListFactory::createMany(3, ['owner' => $user]);
 
         // Act
@@ -37,7 +37,7 @@ class ChoiceListApiTest extends ApiTestCase
     public function test_get_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 
         // Act
@@ -54,7 +54,7 @@ class ChoiceListApiTest extends ApiTestCase
     public function test_post_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
 
         // Act
         $this->createClientWithCredentials($user)->request('POST', '/api/choice_lists', ['json' => [
@@ -74,7 +74,7 @@ class ChoiceListApiTest extends ApiTestCase
     public function test_put_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['New', 'In progress', 'Done'], 'owner' => $user]);
 
         // Act
@@ -96,7 +96,7 @@ class ChoiceListApiTest extends ApiTestCase
     public function test_patch_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['New', 'In progress', 'Done'], 'owner' => $user]);
 
         // Act
@@ -120,7 +120,7 @@ class ChoiceListApiTest extends ApiTestCase
     public function test_delete_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $choiceList = ChoiceListFactory::createOne(['owner' => $user]);
 
         // Act

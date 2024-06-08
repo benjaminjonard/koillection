@@ -24,7 +24,7 @@ class FieldApiTest extends ApiTestCase
     public function test_get_fields(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         FieldFactory::createMany(3, ['template' => $template, 'owner' => $user]);
 
@@ -42,7 +42,7 @@ class FieldApiTest extends ApiTestCase
     public function test_get_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
@@ -60,7 +60,7 @@ class FieldApiTest extends ApiTestCase
     public function test_get_field_template(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
@@ -78,7 +78,7 @@ class FieldApiTest extends ApiTestCase
     public function test_post_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act
@@ -100,7 +100,7 @@ class FieldApiTest extends ApiTestCase
     public function test_put_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
@@ -121,7 +121,7 @@ class FieldApiTest extends ApiTestCase
 
     public function test_patch_field(): void
     {
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
@@ -145,7 +145,7 @@ class FieldApiTest extends ApiTestCase
     public function test_delete_field(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         $field = FieldFactory::createOne(['template' => $template, 'owner' => $user]);
 
@@ -159,7 +159,7 @@ class FieldApiTest extends ApiTestCase
     public function test_post_field_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
         $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['New', 'In progress', 'Done'], 'owner' => $user]);
 
@@ -184,7 +184,7 @@ class FieldApiTest extends ApiTestCase
     public function test_cant_post_field_choice_list_without_choice_list(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $template = TemplateFactory::createOne(['owner' => $user]);
 
         // Act

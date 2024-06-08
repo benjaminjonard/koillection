@@ -6,33 +6,11 @@ namespace App\Tests\Factory;
 
 use App\Entity\Scraper;
 use App\Enum\ScraperTypeEnum;
-use App\Repository\ScraperRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
-/**
- * @extends ModelFactory<Scraper>
- *
- * @method        Scraper|Proxy                     create(array|callable $attributes = [])
- * @method static Scraper|Proxy                     createOne(array $attributes = [])
- * @method static Scraper|Proxy                     find(object|array|mixed $criteria)
- * @method static Scraper|Proxy                     findOrCreate(array $attributes)
- * @method static Scraper|Proxy                     first(string $sortedField = 'id')
- * @method static Scraper|Proxy                     last(string $sortedField = 'id')
- * @method static Scraper|Proxy                     random(array $attributes = [])
- * @method static Scraper|Proxy                     randomOrCreate(array $attributes = [])
- * @method static ScraperRepository|RepositoryProxy repository()
- * @method static Scraper[]|Proxy[]                 all()
- * @method static Scraper[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Scraper[]|Proxy[]                 createSequence(iterable|callable $sequence)
- * @method static Scraper[]|Proxy[]                 findBy(array $attributes)
- * @method static Scraper[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static Scraper[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- */
-final class ScraperFactory extends ModelFactory
+final class ScraperFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
@@ -41,12 +19,12 @@ final class ScraperFactory extends ModelFactory
         ];
     }
 
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Scraper::class;
     }

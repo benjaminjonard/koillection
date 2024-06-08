@@ -20,7 +20,7 @@ class UploadTest extends ApiTestCase
     public function test_upload_avif(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $uploadedFile = $this->createFile('avif');
@@ -45,7 +45,7 @@ class UploadTest extends ApiTestCase
     public function test_upload_png(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $uploadedFile = $this->createFile('png');
@@ -70,7 +70,7 @@ class UploadTest extends ApiTestCase
     public function test_upload_jpeg(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $uploadedFile = $this->createFile('jpeg');
@@ -95,7 +95,7 @@ class UploadTest extends ApiTestCase
     public function test_upload_webp(): void
     {
         // Arrange
-        $user = UserFactory::createOne()->object();
+        $user = UserFactory::createOne()->_real();
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
         $uploadedFile = $this->createFile('webp');
