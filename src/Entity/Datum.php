@@ -62,10 +62,12 @@ class Datum implements VisibleInterface, \Stringable
 
     #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data')]
     #[Groups(['datum:read', 'datum:write'])]
+    #[AppAssert\UniqueDatumLabel]
     private ?Item $item = null;
 
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'data')]
     #[Groups(['datum:read', 'datum:write'])]
+    #[AppAssert\UniqueDatumLabel]
     private ?Collection $collection = null;
 
     #[ORM\Column(type: Types::STRING, length: 15)]

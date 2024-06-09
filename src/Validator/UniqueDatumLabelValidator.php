@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Validator;
 
+use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Entity\Field;
+use App\Entity\Item;
 use App\Entity\Path;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -22,6 +24,10 @@ class UniqueDatumLabelValidator extends ConstraintValidator
 
         if (null === $value || '' === $value) {
             return;
+        }
+
+        if ($value instanceof Item || $value instanceof Collection) {
+            $value = $value->getData();
         }
 
         $labels = [];

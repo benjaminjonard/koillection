@@ -52,7 +52,6 @@ RUN apt-get update && \
 
 # Add nginx and PHP config files
 COPY ./docker/default.conf /etc/nginx/nginx.conf
-COPY ./docker/php.ini /etc/php/8.3/fpm/conf.d/php.ini
 
 EXPOSE 80
 
