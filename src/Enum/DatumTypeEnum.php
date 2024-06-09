@@ -50,6 +50,7 @@ class DatumTypeEnum
         self::TYPE_IMAGE,
         self::TYPE_FILE,
         self::TYPE_SIGN,
+        self::TYPE_VIDEO,
     ];
 
     public const array TEXT_TYPES = [

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -74,11 +75,22 @@ class Datum implements VisibleInterface, \Stringable
     #[Groups(['datum:read', 'datum:write'])]
     #[Assert\NotBlank]
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
+    #[ApiProperty(
+        openapiContext: [
+            'example' => 'text, textarea, country, date, rating, number, link, list, choice-list, checkbox, image, file, sign, video'
+        ]
+    )]
     private ?string $type = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Groups(['datum:read', 'datum:write'])]
     #[Assert\NotBlank]
+    #[ApiProperty(
+        openapiContext: [
+            'type' => 'string',
+            'example' => 'See wiki: https://github.com/benjaminjonard/koillection/wiki/API#example-values-for-data-fields'
+        ]
+    )]
     private ?string $label = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
