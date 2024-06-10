@@ -63,12 +63,12 @@ class Datum implements VisibleInterface, \Stringable
 
     #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data')]
     #[Groups(['datum:read', 'datum:write'])]
-    #[AppAssert\UniqueDatumLabel]
+    #[AppAssert\DatumLabelNotExistsInParent]
     private ?Item $item = null;
 
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'data')]
     #[Groups(['datum:read', 'datum:write'])]
-    #[AppAssert\UniqueDatumLabel]
+    #[AppAssert\DatumLabelNotExistsInParent]
     private ?Collection $collection = null;
 
     #[ORM\Column(type: Types::STRING, length: 15)]
@@ -77,7 +77,7 @@ class Datum implements VisibleInterface, \Stringable
     #[Assert\Choice(choices: DatumTypeEnum::TYPES)]
     #[ApiProperty(
         openapiContext: [
-            'example' => 'text, textarea, country, date, rating, number, link, list, choice-list, checkbox, image, file, sign, video'
+            'example' => 'text, textarea, country, date, rating, number, price, link, list, choice-list, checkbox, image, file, sign, video'
         ]
     )]
     private ?string $type = null;
@@ -95,6 +95,19 @@ class Datum implements VisibleInterface, \Stringable
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['datum:read', 'datum:write'])]
+    #[Assert\When(expression: 'this.getType() == "rating"', constraints: [new Assert\Choice(choices: ['1','2','3','4','5','6','7','8','9','10'], message: 'error.datum.value.rating')])]
+    #[Assert\When(expression: 'this.getType() == "checkbox"', constraints: [new Assert\Choice(choices: ['0', '1'], message: 'error.datum.value.checkbox')])]
+    #[Assert\When(expression: 'this.getType() == "price"', constraints: [new Assert\Regex(pattern: '/^(?:\d+|\d*\.\d+)$/', message: 'error.datum.value.price')])]
+    #[Assert\When(expression: 'this.getType() == "number"', constraints: [new Assert\Regex(pattern: '/^-?(?:\d+|\d*\.\d+)$/', message: 'error.datum.value.number')])]
+    #[Assert\When(expression: 'this.getType() == "country"', constraints: [new Assert\Country(message: 'error.datum.value.country')])]
+    #[Assert\When(expression: 'this.getType() == "date"', constraints: [new Assert\Date(message: 'error.datum.value.date')])]
+    #[Assert\When(expression: 'this.getType() == "list"', constraints: [new Assert\Json])]
+    #[Assert\When(expression: 'this.getType() == "link"', constraints: [new Assert\Url(requireTld: true)])]
+    #[Assert\When(expression: 'this.getType() == "choice-list"', constraints: [new Assert\Json])]
+    #[Assert\When(expression: 'this.getType() == "image"', constraints: [new Assert\IsNull])]
+    #[Assert\When(expression: 'this.getType() == "sign"', constraints: [new Assert\IsNull])]
+    #[Assert\When(expression: 'this.getType() == "file"', constraints: [new Assert\IsNull])]
+    #[Assert\When(expression: 'this.getType() == "video"', constraints: [new Assert\IsNull])]
     private ?string $value = null;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]

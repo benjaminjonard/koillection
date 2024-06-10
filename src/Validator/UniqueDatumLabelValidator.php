@@ -26,11 +26,12 @@ class UniqueDatumLabelValidator extends ConstraintValidator
             return;
         }
 
+        $labels = [];
         if ($value instanceof Item || $value instanceof Collection) {
             $value = $value->getData();
+            $labels[] = $this->context->getObject()->getLabel();
         }
 
-        $labels = [];
         foreach ($value as $element) {
             $label = match (true) {
                 $element instanceof Field => $element->getName(),

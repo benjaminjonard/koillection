@@ -43,6 +43,7 @@ class DatumTypeEnum
         self::TYPE_DATE,
         self::TYPE_RATING,
         self::TYPE_NUMBER,
+        self::TYPE_PRICE,
         self::TYPE_LINK,
         self::TYPE_LIST,
         self::TYPE_CHOICE_LIST,

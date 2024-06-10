@@ -327,7 +327,7 @@ class DatumApiTest extends ApiTestCase
         $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => [
             'item' => '/api/items/' . $item->getId(),
             'label' => 'Progress',
-            'value' => 'New',
+            'value' => '["New"]',
             'type' => DatumTypeEnum::TYPE_CHOICE_LIST,
             'choiceList' => '/api/choice_lists/' . $choiceList->getId()
         ]]);
