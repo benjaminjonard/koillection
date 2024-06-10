@@ -14,6 +14,7 @@ use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
+use PHPUnit\Framework\Attributes\TestWith;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -356,6 +357,103 @@ class DatumApiTest extends ApiTestCase
             'type' => DatumTypeEnum::TYPE_CHOICE_LIST
         ]]);
 
+        // Assert
+        $this->assertResponseIsUnprocessable();
+    }
+
+    #[TestWith([DatumTypeEnum::TYPE_TEXT, 'Test value'])]
+    #[TestWith([DatumTypeEnum::TYPE_TEXTAREA, 'Test value'])]
+    #[TestWith([DatumTypeEnum::TYPE_LINK, 'https://fr.wikipedia.org'])]
+    #[TestWith([DatumTypeEnum::TYPE_PRICE, '8.50'])]
+    #[TestWith([DatumTypeEnum::TYPE_COUNTRY, 'FR'])]
+    #[TestWith([DatumTypeEnum::TYPE_DATE, '2024-06-10'])]
+    #[TestWith([DatumTypeEnum::TYPE_RATING, '7'])]
+    #[TestWith([DatumTypeEnum::TYPE_NUMBER, '-8.50'])]
+    #[TestWith([DatumTypeEnum::TYPE_LIST, '["Value 1", "Value 2"]'])]
+    #[TestWith([DatumTypeEnum::TYPE_CHOICE_LIST, '["Value 1", "Value 2"]'])]
+    #[TestWith([DatumTypeEnum::TYPE_CHECKBOX, '1'])]
+    #[TestWith([DatumTypeEnum::TYPE_IMAGE, null])]
+    #[TestWith([DatumTypeEnum::TYPE_SIGN, null])]
+    #[TestWith([DatumTypeEnum::TYPE_FILE, null])]
+    #[TestWith([DatumTypeEnum::TYPE_VIDEO, null])]
+    public function test_datum_format_ok(string $type, ?string $value): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->_real();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        $payload = [
+            'item' => '/api/items/' . $item->getId(),
+            'label' => 'Test label',
+            'value' => $value,
+            'type' => $type,
+        ];
+
+        if ($type === DatumTypeEnum::TYPE_CHOICE_LIST) {
+            $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['Value 1', 'Value 2', 'Value 3'], 'owner' => $user]);
+            $payload['choiceList'] = '/api/choice_lists/' . $choiceList->getId();
+        }
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => $payload]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertMatchesResourceItemJsonSchema(Datum::class);
+        $this->assertJsonContains([
+            'item' => '/api/items/' . $item->getId(),
+            'value' => $value,
+            'type' => $type
+        ]);
+    }
+
+    #[TestWith([DatumTypeEnum::TYPE_LINK, 'test'])]
+
+    #[TestWith([DatumTypeEnum::TYPE_PRICE, '-8.50'])]
+    #[TestWith([DatumTypeEnum::TYPE_PRICE, 'test'])]
+    #[TestWith([DatumTypeEnum::TYPE_PRICE, '8,50'])]
+
+    #[TestWith([DatumTypeEnum::TYPE_COUNTRY, 'ZZZ'])]
+    #[TestWith([DatumTypeEnum::TYPE_DATE, '12-01-2023'])]
+
+    #[TestWith([DatumTypeEnum::TYPE_RATING, '13'])]
+    #[TestWith([DatumTypeEnum::TYPE_RATING, '1.5'])]
+    #[TestWith([DatumTypeEnum::TYPE_RATING, '-1'])]
+
+    #[TestWith([DatumTypeEnum::TYPE_NUMBER, '-8aaa.50'])]
+    #[TestWith([DatumTypeEnum::TYPE_NUMBER, 'test'])]
+
+    #[TestWith([DatumTypeEnum::TYPE_LIST, "['Value 1', 'Value 2']"])]
+    #[TestWith([DatumTypeEnum::TYPE_CHOICE_LIST, 'test'])]
+    #[TestWith([DatumTypeEnum::TYPE_CHECKBOX, '9'])]
+    #[TestWith([DatumTypeEnum::TYPE_IMAGE, 'test'])]
+    #[TestWith([DatumTypeEnum::TYPE_SIGN, 'test'])]
+    #[TestWith([DatumTypeEnum::TYPE_FILE, 'test'])]
+    #[TestWith([DatumTypeEnum::TYPE_VIDEO, 'test'])]
+    public function test_datum_format_not_ok(string $type, mixed $value): void
+    {
+        // Arrange
+        $user = UserFactory::createOne()->_real();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user]);
+
+        $payload = [
+            'item' => '/api/items/' . $item->getId(),
+            'label' => 'Test label',
+            'value' => $value,
+            'type' => $type,
+        ];
+
+        if ($type === DatumTypeEnum::TYPE_CHOICE_LIST) {
+            $choiceList = ChoiceListFactory::createOne(['name' => 'Progress', 'choices' => ['Value 1', 'Value 2', 'Value 3'], 'owner' => $user]);
+            $payload['choiceList'] = '/api/choice_lists/' . $choiceList->getId();
+        }
+
+        // Act
+        $this->createClientWithCredentials($user)->request('POST', '/api/data', ['json' => $payload]);
+
+        // Assert
         // Assert
         $this->assertResponseIsUnprocessable();
     }
