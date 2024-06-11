@@ -52,7 +52,11 @@ jobs:
 
       - name: Load image
         run: docker load --input /tmp/ci-container.tar
-      - uses: symfonycorp/security-checker-action@v5
+
+      - name: Run doctrine schema validator
+        uses: symfonycorp/security-checker-action@v5
+        with:
+          image: ci-image
 
   doctrine_schema_validator:
     name: Doctrine schema validator
@@ -67,7 +71,13 @@ jobs:
 
       - name: Load image
         run: docker load --input /tmp/ci-container.tar
-      - run: bin/console doctrine:schema:validate --skip-sync
+
+      - name: Run doctrine schema validator
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ci-image
+          run: |
+            bin/console doctrine:schema:validate --skip-sync
 
   phpunit_mysql:
     name: PHPUnit tests with Mysql ${{ matrix.mysql }}
