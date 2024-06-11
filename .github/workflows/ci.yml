@@ -42,32 +42,31 @@ jobs:
   security_checker:
     name: Security checker
     runs-on: ubuntu-latest
+    needs: [ build_docker_ci_container ]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        id: cache-db
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
-          path: ~/.symfony/cache
-          key: db
+          name: ci-container
+          path: /tmp
+
+      - name: Load image
+        run: docker load --input /tmp/ci-container.tar
       - uses: symfonycorp/security-checker-action@v5
 
   doctrine_schema_validator:
     name: Doctrine schema validator
     runs-on: ubuntu-latest
+    needs: [ build_docker_ci_container ]
     steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
-          php-version: 8.3
-          extensions: ctype, fileinfo, gd, iconv, intl, json
-      - uses: actions/cache@v4
-        id: cache-composer
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          name: ci-container
+          path: /tmp
+
+      - name: Load image
+        run: docker load --input /tmp/ci-container.tar
       - run: bin/console doctrine:schema:validate --skip-sync
 
   phpunit_mysql:
