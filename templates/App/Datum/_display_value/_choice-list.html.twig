@@ -1,12 +1,12 @@
 <span data-value="{{ datum.value|join|default('') }}"></span>
 {% set values = datum.getOrderedListChoices %}
 
-
 {% if values|length > 1 %}
     <ul class="datum-list">
         {% for value in values %}
-            <li>{{ value }}</li>
+            <li>{{ underlinedTags[value|trim] is defined ? underlinedTags[value|trim]|raw : value }}</li>
         {% endfor %}
+    </ul>
 {% else %}
-    {{ values|first }}
+    {{ underlinedTags[values|first|trim] is defined ? underlinedTags[values|first|trim]|raw : values|first }}
 {% endif %}

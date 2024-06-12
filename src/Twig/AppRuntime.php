@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Entity\Tag;
+use App\Enum\DatumTypeEnum;
 use App\Model\BreadcrumbElement;
 use App\Repository\TagRepository;
 use App\Service\ConfigurationHelper;
@@ -135,7 +136,11 @@ readonly class AppRuntime implements RuntimeExtensionInterface
         $texts = [];
         foreach ($data as $datum) {
             if (null !== $datum->getValue()) {
-                $texts = array_merge($texts, explode(',', $datum->getValue()));
+                if ($datum->getType() === DatumTypeEnum::TYPE_CHOICE_LIST || $datum->getType() === DatumTypeEnum::TYPE_LIST) {
+                    $texts = array_merge($texts, json_decode($datum->getValue(), true));
+                } else {
+                    $texts = array_merge($texts, explode(',', $datum->getValue()));
+                }
             }
         }
 
