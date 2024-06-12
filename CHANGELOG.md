@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.12] / 2024-06-12
+### Features
+- Add Portuguese translation (dmartins)
+
+# Fixes
+- Fix tags underlining for lists data fields (benjaminjonard)
+- Properly check for label uniqueness and value formats for post Datum with API (benjaminjonard)
+- Fix missing datum price type when using API (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix CVE-2024-4068 (benjaminjonard)
+
 ## [1.5.11] / 2024-06-06
 # Fixes
 - Fix item links on shared search page (benjaminjonard)
