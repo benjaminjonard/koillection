@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Wishlist;
 
+use App\Entity\Wishlist;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
@@ -69,9 +70,12 @@ class WishlistCountersTest extends AppTestCase
 
         // Act
         $newParentWishlist = WishlistFactory::createOne(['owner' => $user]);
-        $wishlistLevel3->setParent($newParentWishlist->_real());
+        $wishlistLevel3->_withoutAutoRefresh(
+            function (Wishlist $wishlistLevel3) use ($newParentWishlist) {
+                $wishlistLevel3->setParent($newParentWishlist->_real());
+            }
+        );
         $wishlistLevel3->_save();
-
         $this->refreshCachedValuesQueue->process();
 
         // Assert

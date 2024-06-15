@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Album;
 
+use App\Entity\Album;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
@@ -70,7 +71,11 @@ class AlbumCountersTest extends AppTestCase
         // Act
         $user = UserFactory::createOne()->_real();
         $newParentAlbum = AlbumFactory::createOne(['owner' => $user]);
-        $albumLevel3->setParent($newParentAlbum->_real());
+        $albumLevel3->_withoutAutoRefresh(
+            function (Album $albumLevel3) use ($newParentAlbum) {
+                $albumLevel3->setParent($newParentAlbum->_real());
+            }
+        );
         $albumLevel3->_save();
 
         $this->refreshCachedValuesQueue->process();

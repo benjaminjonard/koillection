@@ -37,7 +37,7 @@ class SignatureTest extends AppTestCase
             'collection' => CollectionFactory::createOne(['owner' => $user]),
         ]);
         foreach ($items as $item) {
-            $item->addData(DatumFactory::createOne(['owner' => $user, 'type' => DatumTypeEnum::TYPE_SIGN])->_real());
+            $item->_real()->addData(DatumFactory::createOne(['owner' => $user, 'type' => DatumTypeEnum::TYPE_SIGN])->_real());
         }
 
         // Act

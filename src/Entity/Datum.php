@@ -61,7 +61,7 @@ class Datum implements VisibleInterface, \Stringable
     #[Groups(['datum:read'])]
     private string $id;
 
-    #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data')]
+    #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'data', cascade: ["persist"])]
     #[Groups(['datum:read', 'datum:write'])]
     #[AppAssert\DatumLabelNotExistsInParent]
     private ?Item $item = null;

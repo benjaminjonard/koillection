@@ -21,7 +21,7 @@ class MetricsTest extends ApiTestCase
         // Arrange
         $configurationMetrics = ConfigurationFactory::find(['label' => ConfigurationEnum::ENABLE_METRICS]);
         $configurationMetrics->setValue('1');
-        $configurationMetrics->save();
+        $configurationMetrics->_save();
 
         // Act
         static::createClient()->request('GET', '/api/metrics');
@@ -35,7 +35,7 @@ class MetricsTest extends ApiTestCase
         // Arrange
         $configurationMetrics = ConfigurationFactory::find(['label' => ConfigurationEnum::ENABLE_METRICS]);
         $configurationMetrics->setValue('test');
-        $configurationMetrics->save();
+        $configurationMetrics->_save();
 
         // Act
         static::createClient()->request('GET', '/api/metrics');

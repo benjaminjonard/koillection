@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Collection;
 
+use App\Entity\Collection;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
@@ -75,7 +76,11 @@ class CollectionVisibilityUpdateTest extends AppTestCase
 
         // Act
         $newParentCollection = CollectionFactory::createOne(['owner' => $user, 'visibility' => $newCollectionVisibility]);
-        $collectionLevel2->setParent($newParentCollection->_real());
+        $collectionLevel2->_withoutAutoRefresh(
+            function (Collection $collectionLevel2) use ($newParentCollection) {
+                $collectionLevel2->setParent($newParentCollection->_real());
+            }
+        );
         $collectionLevel2->_save();
 
         // Assert
@@ -111,7 +116,11 @@ class CollectionVisibilityUpdateTest extends AppTestCase
         $datumItem2 = DatumFactory::createOne(['item' => $item2, 'owner' => $user]);
 
         // Act
-        $collectionLevel1->setVisibility($collection1Visibility);
+        $collectionLevel1->_withoutAutoRefresh(
+            function (Collection $collectionLevel1) use ($collection1Visibility) {
+                $collectionLevel1->setVisibility($collection1Visibility);
+            }
+        );
         $collectionLevel1->_save();
 
         // Assert

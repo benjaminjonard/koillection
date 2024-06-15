@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Collection;
 
+use App\Entity\Collection;
+use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
@@ -56,9 +58,12 @@ class CollectionPricesTest extends AppTestCase
 
         // Act
         $newParentCollection = CollectionFactory::createOne(['owner' => $user]);
-        $collectionLevel3->setParent($newParentCollection->_real());
+        $collectionLevel3->_withoutAutoRefresh(
+            function (Collection $collectionLevel3) use ($newParentCollection) {
+                $collectionLevel3->setParent($newParentCollection->_real());
+            }
+        );
         $collectionLevel3->_save();
-
         $this->refreshCachedValuesQueue->process();
 
         // Assert
@@ -158,7 +163,11 @@ class CollectionPricesTest extends AppTestCase
 
         // Act
         $newCollection = CollectionFactory::createOne(['owner' => $user]);
-        $itemToMove->setCollection($newCollection->_real());
+        $itemToMove->_withoutAutoRefresh(
+            function (Item $itemToMove) use ($newCollection) {
+                $itemToMove->setCollection($newCollection->_real());
+            }
+        );
         $itemToMove->_save();
 
         $this->refreshCachedValuesQueue->process();

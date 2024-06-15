@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Collection;
 
+use App\Entity\Collection;
+use App\Entity\Item;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
@@ -69,9 +71,12 @@ class CollectionCountersTest extends AppTestCase
 
         // Act
         $newParentCollection = CollectionFactory::createOne(['owner' => $user]);
-        $collectionLevel3->setParent($newParentCollection->_real());
+        $collectionLevel3->_withoutAutoRefresh(
+            function (Collection $collectionLevel3) use ($newParentCollection) {
+                $collectionLevel3->setParent($newParentCollection->_real());
+            }
+        );
         $collectionLevel3->_save();
-
         $this->refreshCachedValuesQueue->process();
 
         // Assert
@@ -156,7 +161,11 @@ class CollectionCountersTest extends AppTestCase
 
         // Act
         $newCollection = CollectionFactory::createOne(['owner' => $user]);
-        $item->setCollection($newCollection->_real());
+        $item->_withoutAutoRefresh(
+            function (Item $item) use ($newCollection) {
+                $item->setCollection($newCollection->_real());
+            }
+        );
         $item->_save();
 
         $this->refreshCachedValuesQueue->process();

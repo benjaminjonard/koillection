@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Album;
 
+use App\Entity\Album;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\PhotoFactory;
@@ -72,7 +73,11 @@ class AlbumVisibilityUpdateTest extends AppTestCase
 
         // Act
         $newParentAlbum = AlbumFactory::createOne(['owner' => $user, 'visibility' => $newAlbumVisibility]);
-        $albumLevel2->setParent($newParentAlbum->_real());
+        $albumLevel2->_withoutAutoRefresh(
+            function (Album $albumLevel2) use ($newParentAlbum) {
+                $albumLevel2->setParent($newParentAlbum->_real());
+            }
+        );
         $albumLevel2->_save();
 
         // Assert
@@ -102,7 +107,12 @@ class AlbumVisibilityUpdateTest extends AppTestCase
         $photo2 = PhotoFactory::createOne(['album' => $albumLevel2, 'owner' => $user]);
 
         // Act
-        $albumLevel1->setVisibility($album1Visibility);
+        $albumLevel1->_withoutAutoRefresh(
+            function (Album $albumLevel1) use ($album1Visibility) {
+                $albumLevel1->setVisibility($album1Visibility);
+            }
+        );
+
         $albumLevel1->_save();
 
         // Assert

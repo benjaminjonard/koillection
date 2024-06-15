@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Wishlist;
 
+use App\Entity\Wishlist;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\UserFactory;
 use App\Tests\Factory\WishFactory;
@@ -72,7 +73,11 @@ class WishlistVisibilityUpdateTest extends AppTestCase
 
         // Act
         $newParentWishlist = WishlistFactory::createOne(['owner' => $user, 'visibility' => $newWishlistVisibility]);
-        $wishlistLevel2->setParent($newParentWishlist->_real());
+        $wishlistLevel2->_withoutAutoRefresh(
+            function (Wishlist $wishlistLevel2) use ($newParentWishlist) {
+                $wishlistLevel2->setParent($newParentWishlist->_real());
+            }
+        );
         $wishlistLevel2->_save();
 
         // Assert
@@ -102,7 +107,11 @@ class WishlistVisibilityUpdateTest extends AppTestCase
         $wish2 = WishFactory::createOne(['wishlist' => $wishlistLevel2, 'owner' => $user]);
 
         // Act
-        $wishlistLevel1->setVisibility($wishlist1Visibility);
+        $wishlistLevel1->_withoutAutoRefresh(
+            function (Wishlist $wishlistLevel1) use ($wishlist1Visibility) {
+                $wishlistLevel1->setVisibility($wishlist1Visibility);
+            }
+        );
         $wishlistLevel1->_save();
 
         // Assert

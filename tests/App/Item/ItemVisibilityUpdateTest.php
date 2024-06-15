@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\App\Item;
 
+use App\Entity\Item;
+use App\Entity\Wishlist;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\DatumFactory;
@@ -76,7 +78,11 @@ class ItemVisibilityUpdateTest extends AppTestCase
         $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user, 'visibility' => $collection2Visibility]);
 
         // Act
-        $item->setCollection($collectionLevel2->_real());
+        $item->_withoutAutoRefresh(
+            function (Item $item) use ($collectionLevel2) {
+                $item->setCollection($collectionLevel2->_real());
+            }
+        );
         $item->_save();
 
         // Assert

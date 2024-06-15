@@ -6,8 +6,8 @@
          colors="true"
          bootstrap="tests/bootstrap.php"
          cacheDirectory=".phpunit.cache"
-         displayDetailsOnTestsThatTriggerDeprecations="true"
-         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerDeprecations="false"
+         displayDetailsOnTestsThatTriggerWarnings="false"
 >
   <php>
     <ini name="display_errors" value="1"/>
@@ -16,7 +16,7 @@
     <server name="SHELL_VERBOSITY" value="-1"/>
     <server name="SYMFONY_PHPUNIT_REMOVE" value=""/>
     <server name="SYMFONY_PHPUNIT_VERSION" value="11"/>
-    <server name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
+    <server name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
     <server name="KERNEL_CLASS" value="App\Kernel"/>
   </php>
   <testsuites>
