@@ -160,7 +160,7 @@
     <unit id="nNziKQf" name="message.settings_updated">
       <segment state="translated">
         <source>Your settings have been successfully updated</source>
-        <target>Einstellungen wurde erfolgreich aktualisiert</target>
+        <target>Einstellungen wurden erfolgreich aktualisiert</target>
       </segment>
     </unit>
     <unit id="Ail0qPJ" name="message.tag_category_added">
@@ -790,7 +790,7 @@
     <unit id="AHajX3P" name="tooltip.add_photo">
       <segment state="translated">
         <source>Add a new photo</source>
-        <target>Neues Foto erstellen</target>
+        <target>Neues Foto hinzufügen</target>
       </segment>
     </unit>
     <unit id="ryRhoHH" name="title.album_children">
@@ -814,7 +814,7 @@
     <unit id="CYUJ8qZ" name="btn.add_choice">
       <segment state="translated">
         <source>Add a new choice</source>
-        <target>Neue Auswahlmöglichkeit erstellen</target>
+        <target>Neue Auswahlmöglichkeit hinzufügen</target>
       </segment>
     </unit>
     <unit id="oOiO8Dn" name="label.choice">
@@ -922,7 +922,7 @@
     <unit id="VUlGgVE" name="label.add_choice_list">
       <segment state="translated">
         <source>Add choice list :</source>
-        <target>Neue Auswahlliste</target>
+        <target>Neue Auswahlliste:</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">
@@ -1114,7 +1114,7 @@
     <unit id="uAfIh0u" name="btn.apply_common_fields">
       <segment state="translated">
         <source>Load common fields</source>
-        <target>Lade zusätzliche Felder</target>
+        <target>Lade gemeinsame Felder</target>
       </segment>
     </unit>
     <unit id="ImSHWcX" name="btn.apply_collection_fields">
@@ -1162,7 +1162,7 @@
     <unit id="7s.6nrQ" name="btn.add_image">
       <segment state="translated">
         <source>Image</source>
-        <target>Bilder</target>
+        <target>Bild</target>
       </segment>
     </unit>
     <unit id="zCTHmk." name="btn.add_sign">
@@ -1420,7 +1420,7 @@
     <unit id="fQNztng" name="title.update_features">
       <segment state="translated">
         <source>Edit active features</source>
-        <target>Bearbeite Aktivitäts-Features</target>
+        <target>Aktive Funktionen bearbeiten</target>
       </segment>
     </unit>
     <unit id="HLevxj." name="menu.signs">
@@ -1600,7 +1600,7 @@
     <unit id="zXS9TNU" name="title.new_template">
       <segment state="translated">
         <source>Add a new template</source>
-        <target>Vorlage hinzufügen</target>
+        <target>Neue Vorlage hinzufügen</target>
       </segment>
     </unit>
     <unit id="w4I3.hu" name="title.edit_template">
@@ -1708,7 +1708,7 @@
     <unit id="H0D7KGB" name="title.add_wishlist_item">
       <segment state="translated">
         <source>Add a new item to the wishlist {wishlist}</source>
-        <target>Füge neuen Eintrag zur Wunschliste {wishlist} hinzufügen</target>
+        <target>Füge neuen Eintrag zur Wunschliste {wishlist} hinzu</target>
       </segment>
     </unit>
     <unit id="9dYc4WP" name="title.edit_wishlist_item">
@@ -1768,7 +1768,7 @@
     <unit id="c9cNWH4" name="title.wishlist_children">
       <segment state="translated">
         <source>Sub-wishlists</source>
-        <target>Unter-Wunschlistes</target>
+        <target>Unter-Wunschliste</target>
       </segment>
     </unit>
     <unit id="KhJnPFW" name="title.wishes">
@@ -2074,7 +2074,7 @@
     <unit id="S3BSG8X" name="global.time.year">
       <segment state="translated">
         <source>{count, plural, one {# year} other {# years}}</source>
-        <target>{count, plural, one {# Jahre} other {# Jahre}}</target>
+        <target>{count, plural, one {# Jahr} other {# Jahre}}</target>
       </segment>
     </unit>
     <unit id="I6EoiYa" name="global.time.month">
@@ -2176,13 +2176,13 @@
     <unit id="frik1CZ" name="label.items_title">
       <segment state="translated">
         <source>Items section label</source>
-        <target>Einträge Abschnittbezeichnung</target>
+        <target>Einträge Abschnittsbezeichnung</target>
       </segment>
     </unit>
     <unit id="NGzz2k3" name="label.parent">
       <segment state="translated">
         <source>Parent</source>
-        <target>Elternteil</target>
+        <target>Elterneintrag</target>
       </segment>
     </unit>
     <unit id="2.APxMI" name="label.place">
@@ -2194,7 +2194,7 @@
     <unit id="ymgENEq" name="label.quantity">
       <segment state="translated">
         <source>Quantity</source>
-        <target>Anzahl</target>
+        <target>Menge</target>
       </segment>
     </unit>
     <unit id="HVZAEc7" name="label.recursive">
@@ -2260,7 +2260,7 @@
     <unit id="kJVARQs" name="log.collection.deleted">
       <segment state="translated">
         <source>Collection {label} was deleted</source>
-        <target>Sammlunge {label} wurde gelöscht</target>
+        <target>Sammlung {label} wurde gelöscht</target>
       </segment>
     </unit>
     <unit id="CQhzBXW" name="log.item.created">
@@ -3580,7 +3580,7 @@
     <unit id="wgg5Wgv" name="form.item_sorting.quantity">
       <segment state="translated">
         <source>Quantity</source>
-        <target>Anzahl</target>
+        <target>Menge</target>
       </segment>
     </unit>
     <unit id="npBJeAW" name="label.enable_metrics">

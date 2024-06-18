@@ -154,7 +154,7 @@
     <unit id="vX0eXJK" name="select2.searching">
       <segment state="translated">
         <source>Searching...</source>
-        <target>Suche</target>
+        <target>Suche...</target>
       </segment>
     </unit>
     <unit id="VWNWjeJ" name="select2.none">
@@ -178,19 +178,19 @@
     <unit id="V4dRe88" name="global.visibilities.internal.description">
       <segment state="translated">
         <source>Only authenticated users can see this page</source>
-        <target>Interne Beschreibung</target>
+        <target>Nur authentifizierte Benutzer können diese Seite sehen</target>
       </segment>
     </unit>
     <unit id="RU9kBPV" name="global.visibilities.public.description">
       <segment state="translated">
         <source>Anyone can see this page</source>
-        <target>Öffentliche Beschreibung</target>
+        <target>Jeder kann diese Seite sehen</target>
       </segment>
     </unit>
     <unit id="GA2PrMk" name="global.visibilities.private.description">
       <segment state="translated">
         <source>Only I can see this page</source>
-        <target>Private Beschreibung</target>
+        <target>Nur ich kann diese Seite sehen</target>
       </segment>
     </unit>
     <unit id="a048xMx" name="label.list_element_value">
