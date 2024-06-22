@@ -23,7 +23,7 @@
     "sortablejs": "1.15.2",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.2",
-    "webpack": "5.92.0",
+    "webpack": "5.92.1",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4",
     "webpack-notifier": "1.15.0"
@@ -40,5 +40,5 @@
     "intl-messageformat": "10.5.14",
     "ts-select2": "^0.2.5"
   },
-  "packageManager": "yarn@4.3.0"
+  "packageManager": "yarn@4.3.1"
 }
