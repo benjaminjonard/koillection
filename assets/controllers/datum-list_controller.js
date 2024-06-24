@@ -6,6 +6,7 @@ export default class extends Controller {
     static targets = ['elementsContainer', 'input', 'element'];
 
     connect() {
+        this.elementsContainerTarget.innerHTML = '';
         JSON.parse(this.inputTarget.value).forEach((value) => {
             this.elementsContainerTarget.insertAdjacentHTML('beforeend',  this.generateInput(value));
         });
