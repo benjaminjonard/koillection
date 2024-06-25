@@ -23,7 +23,7 @@
         "doctrine/persistence": "3.3.3",
         "lexik/jwt-authentication-bundle": "3.0.0",
         "maennchen/zipstream-php": "3.1.0",
-        "nelmio/cors-bundle": "2.4.0",
+        "nelmio/cors-bundle": "2.5.0",
         "runtime/frankenphp-symfony": "0.2.0",
         "symfony/asset": "7.1.1",
         "symfony/browser-kit": "7.1.1",
