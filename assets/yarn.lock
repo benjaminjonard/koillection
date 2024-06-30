@@ -3754,13 +3754,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"echarts@npm:5.5.0":
-  version: 5.5.0
-  resolution: "echarts@npm:5.5.0"
+"echarts@npm:5.5.1":
+  version: 5.5.1
+  resolution: "echarts@npm:5.5.1"
   dependencies:
     tslib: "npm:2.3.0"
-    zrender: "npm:5.5.0"
-  checksum: 10/f678cf3f9673ead416afb3816fa2d391eb5cf5ce57b55d300acd17ae7b4aad9cf82a765363f7d3d2da237c9a0b3bfaf600d3d15c5401a083a20b7e0c6fd4ab8b
+    zrender: "npm:5.6.0"
+  checksum: 10/573ebfd6795a8976c2320225b3de49daca518e41192bf86d7afb53ce793b072932ae913a027b8de613fda319dacccb53fb23a73d5f128bfed6de808fe2d476c5
   languageName: node
   linkType: hard
 
@@ -5040,7 +5040,7 @@ __metadata:
     copy-webpack-plugin: "npm:12.0.2"
     core-js: "npm:3.37.1"
     croppie: "npm:2.6.5"
-    echarts: "npm:5.5.0"
+    echarts: "npm:5.5.1"
     hotkeys-js: "npm:^3.10.2"
     intl-messageformat: "npm:10.5.14"
     regenerator-runtime: "npm:0.14.1"
@@ -7888,11 +7888,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zrender@npm:5.5.0":
-  version: 5.5.0
-  resolution: "zrender@npm:5.5.0"
+"zrender@npm:5.6.0":
+  version: 5.6.0
+  resolution: "zrender@npm:5.6.0"
   dependencies:
     tslib: "npm:2.3.0"
-  checksum: 10/25208e6be7047cba55c5c1f4a1cf3641177015bb8bf6154dde9980cc8888db70ec86c7eabb695df15c6bcdcf81daaa44f0338dcd57b5b45540bf5d6f5372eb85
+  checksum: 10/7904bb17818fcf3c4a2729712991d8e29776404d8dc7aa58bc69cd853bdbb4cf8c8b302aaf10c1392a63bffbe07aad82ffef1d037537aab3d8a2f564940dd78d
   languageName: node
   linkType: hard
