@@ -21,7 +21,7 @@
         "doctrine/orm": "3.2.1",
         "doctrine/dbal": "3.8.6",
         "doctrine/persistence": "3.3.3",
-        "lexik/jwt-authentication-bundle": "3.0.0",
+        "lexik/jwt-authentication-bundle": "3.1.0",
         "maennchen/zipstream-php": "3.1.0",
         "nelmio/cors-bundle": "2.5.0",
         "runtime/frankenphp-symfony": "0.2.0",
@@ -73,15 +73,15 @@
         "dama/doctrine-test-bundle": "8.2.0",
         "friendsofphp/php-cs-fixer": "3.59.3",
         "justinrainbow/json-schema": "5.2.13",
-        "phpunit/php-code-coverage": "11.0.4",
-        "phpunit/phpunit": "11.2.5",
+        "phpunit/php-code-coverage": "11.0.5",
+        "phpunit/phpunit": "11.2.6",
         "rector/rector": "1.2.0",
         "symfony/maker-bundle": "1.60.0",
         "symfony/phpunit-bridge": "7.1.2",
         "symfony/stopwatch": "7.1.1",
         "symfony/var-dumper": "7.1.2",
         "symfony/web-profiler-bundle": "7.1.2",
-        "zenstruck/foundry": "2.0.4"
+        "zenstruck/foundry": "2.0.6"
     },
     "config": {
         "allow-plugins": {
