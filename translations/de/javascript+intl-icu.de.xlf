@@ -190,7 +190,7 @@
     <unit id="GA2PrMk" name="global.visibilities.private.description">
       <segment state="translated">
         <source>Only I can see this page</source>
-        <target>Nur ich kann diese Seite sehen</target>
+        <target>Nur Sie können diese Seite sehen</target>
       </segment>
     </unit>
     <unit id="a048xMx" name="label.list_element_value">
