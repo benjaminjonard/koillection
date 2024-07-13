@@ -14,8 +14,8 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
-        "api-platform/core": "3.3.7",
-        "composer/semver": "3.4.0",
+        "api-platform/core": "3.3.8",
+        "composer/semver": "3.4.2",
         "doctrine/doctrine-bundle": "2.12.0",
         "doctrine/doctrine-migrations-bundle": "3.3.1",
         "doctrine/orm": "3.2.1",
@@ -81,7 +81,7 @@
         "symfony/stopwatch": "7.1.1",
         "symfony/var-dumper": "7.1.2",
         "symfony/web-profiler-bundle": "7.1.2",
-        "zenstruck/foundry": "2.0.6"
+        "zenstruck/foundry": "2.0.7"
     },
     "config": {
         "allow-plugins": {
