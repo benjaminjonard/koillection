@@ -9,8 +9,8 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.24.9",
-    "@babel/preset-env": "7.24.8",
+    "@babel/core": "7.25.2",
+    "@babel/preset-env": "7.25.3",
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.1.0",
     "@symfony/stimulus-bridge": "3.2.2",
@@ -35,10 +35,10 @@
     "build": "encore production --progress"
   },
   "dependencies": {
-    "bazinga-translator": "6.0.0",
+    "bazinga-translator": "6.1.0",
     "hotkeys-js": "^3.10.2",
     "intl-messageformat": "10.5.14",
     "ts-select2": "^0.2.5"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.4.0"
 }
