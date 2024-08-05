@@ -1860,10 +1860,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@materializecss/materialize@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@materializecss/materialize@npm:2.1.0"
-  checksum: 10/6c6e34ce604272c0c86143fa57d6c5d110d14fd13ef452d17eea3eb1d061fcedae9ce7714a907394b616872fb5b43b4d4ab54076383da4a19be26f162aa7dc1e
+"@materializecss/materialize@npm:2.0.4":
+  version: 2.0.4
+  resolution: "@materializecss/materialize@npm:2.0.4"
+  checksum: 10/631609bcac7d97ad8c112411c89a45b1f288c9d466b1bf1145cdcb4c96d021160201f962fb28e24313af158d1da662bfe7abed965c7f21d7cf0c0089f14b44b9
   languageName: node
   linkType: hard
 
@@ -5197,7 +5197,7 @@ __metadata:
     "@babel/core": "npm:7.24.9"
     "@babel/preset-env": "npm:7.24.8"
     "@hotwired/stimulus": "npm:3.2.2"
-    "@materializecss/materialize": "npm:2.1.0"
+    "@materializecss/materialize": "npm:2.0.4"
     "@symfony/stimulus-bridge": "npm:3.2.2"
     "@symfony/webpack-encore": "npm:4.6.1"
     bazinga-translator: "npm:6.0.0"

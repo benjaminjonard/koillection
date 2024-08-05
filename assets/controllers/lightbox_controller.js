@@ -12,6 +12,14 @@ export default class extends Lightbox {
         this.lightGallery
         let self = this;
 
+        this.element.addEventListener('lgAfterOpen', function (event) {
+            document.dispatchEvent(new Event("lightGalleryOpened"))
+        });
+
+        this.element.addEventListener('lgAfterClose', function (event) {
+            document.dispatchEvent(new Event("lightGalleryClosed"))
+        });
+
         this.element.addEventListener('lgBeforeSlide', function(event){
             document.querySelectorAll('.js-custom-lightbox-button').forEach((element) => {
                 element.remove();
