@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Scraper;
+namespace App\Tests\App\Scraper;
 
 use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperTypeEnum;

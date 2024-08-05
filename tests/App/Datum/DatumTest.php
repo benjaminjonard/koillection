@@ -108,7 +108,7 @@ class DatumTest extends AppTestCase
         DatumFactory::createOne(['owner' => $user, 'collection' => $collection, 'position' => 2, 'type' => DatumTypeEnum::TYPE_COUNTRY, 'label' => 'Country', 'value' => 'JP']);
 
         // Act
-        $this->client->request('GET', '/datum/load-collection-fields/' . $collection->getId());
+        $response = $this->client->request('GET', '/datum/load-collection-fields/' . $collection->getId());
 
         // Assert
         $this->assertResponseIsSuccessful();
