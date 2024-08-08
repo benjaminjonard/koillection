@@ -1999,10 +1999,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@materializecss/materialize@npm:2.0.4":
-  version: 2.0.4
-  resolution: "@materializecss/materialize@npm:2.0.4"
-  checksum: 10/631609bcac7d97ad8c112411c89a45b1f288c9d466b1bf1145cdcb4c96d021160201f962fb28e24313af158d1da662bfe7abed965c7f21d7cf0c0089f14b44b9
+"@materializecss/materialize@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@materializecss/materialize@npm:2.1.0"
+  checksum: 10/6c6e34ce604272c0c86143fa57d6c5d110d14fd13ef452d17eea3eb1d061fcedae9ce7714a907394b616872fb5b43b4d4ab54076383da4a19be26f162aa7dc1e
   languageName: node
   linkType: hard
 
@@ -3615,10 +3615,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.37.1":
-  version: 3.37.1
-  resolution: "core-js@npm:3.37.1"
-  checksum: 10/25d6bd15fcc6ffd2a0ec0be57a78ff3358b3e1fdffdb6800fc93dcfdb3854037aee41f3d101aed8c37905d107daf98218b3e7ee95cec383710d2a66a5d9e541b
+"core-js@npm:3.38.0":
+  version: 3.38.0
+  resolution: "core-js@npm:3.38.0"
+  checksum: 10/95f5c768ee14aaf79e8fece9e58023a5a6367186184c92e825a842f271d3d91c559cfadee9c75712c463f248c61d636ed5a31a1fff1c904d4f5a2ed69b23f0c2
   languageName: node
   linkType: hard
 
@@ -5292,12 +5292,12 @@ __metadata:
     "@babel/core": "npm:7.25.2"
     "@babel/preset-env": "npm:7.25.3"
     "@hotwired/stimulus": "npm:3.2.2"
-    "@materializecss/materialize": "npm:2.0.4"
+    "@materializecss/materialize": "npm:2.1.0"
     "@symfony/stimulus-bridge": "npm:3.2.2"
     "@symfony/webpack-encore": "npm:4.6.1"
     bazinga-translator: "npm:6.1.0"
     copy-webpack-plugin: "npm:12.0.2"
-    core-js: "npm:3.37.1"
+    core-js: "npm:3.38.0"
     croppie: "npm:2.6.5"
     echarts: "npm:5.5.1"
     hotkeys-js: "npm:^3.10.2"
