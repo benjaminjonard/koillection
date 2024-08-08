@@ -10,5 +10,6 @@
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": false
     }
-  ]
+  ],
+  "ignoreDeps": ["@materializecss/materialize"]
 }
