@@ -14,7 +14,7 @@ COPY ./ /var/www/koillection
 
 # Install some basics dependencies
 RUN apt-get update && \
-    apt-get install -y curl lsb-release software-properties-common gnupg2 && \
+    apt-get install -y curl wget lsb-release software-properties-common gnupg2 && \
 # Add User and Group
     addgroup --gid "$PGID" "$USER" && \
     adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
@@ -64,7 +64,7 @@ RUN apt-get update && \
     rm -rf /var/www/koillection/assets/.yarn/cache && \
     rm -rf /var/www/koillection/assets/.yarn/install-state.gz && \
     rm -rf /var/www/koillection/assets/node_modules && \
-    apt-get purge -y lsb-release software-properties-common git nodejs apt-transport-https ca-certificates gnupg2 unzip && \
+    apt-get purge -y wget lsb-release software-properties-common git nodejs apt-transport-https ca-certificates gnupg2 unzip && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
