@@ -39,7 +39,7 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           title: Update Crowdin translations progress
           body: Update Crowdin translations progress by [Crowdin translations progress](https://github.com/benjaminjonard/crowdin-translations-progress-action) GitHub action
