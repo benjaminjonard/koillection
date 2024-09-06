@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Migrations\Mysql;
 
 use App\Enum\DisplayModeEnum;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
@@ -18,7 +19,7 @@ final class Version20240906163226 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Migration can only be executed safely on \'postgresql\'.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Migration can only be executed safely on \'mysql\' or \'mariadb\'.');
 
         $gridDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
