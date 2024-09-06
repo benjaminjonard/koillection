@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Enum\DisplayModeEnum;
 use App\Form\Type\Model\SearchType;
 use App\Model\Search\Search;
 use App\Repository\AlbumRepository;
@@ -12,6 +13,7 @@ use App\Repository\ItemRepository;
 use App\Repository\TagRepository;
 use App\Repository\WishlistRepository;
 use App\Service\Autocompleter;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,11 +29,13 @@ class SearchController extends AbstractController
         ItemRepository $itemRepository,
         TagRepository $tagRepository,
         AlbumRepository $albumRepository,
-        WishlistRepository $wishlistRepository
+        WishlistRepository $wishlistRepository,
+        ManagerRegistry $managerRegistry
     ): Response {
         $results = [];
 
         $search = new Search();
+        $search->setDisplayMode($this->getUser()?->getSearchResultsDisplayMode() ?? DisplayModeEnum::DISPLAY_MODE_GRID);
         $form = $this->createForm(SearchType::class, $search, [
             'method' => 'GET',
         ]);
@@ -52,11 +56,17 @@ class SearchController extends AbstractController
             if ($this->featureChecker->isFeatureEnabled('wishlists')) {
                 $results['wishlists'] = $wishlistRepository->findForSearch($search);
             }
+
+            if ($this->getUser() && $this->getUser()->getSearchResultsDisplayMode() !== $search->getDisplayMode()) {
+                $this->getUser()->setSearchResultsDisplayMode($search->getDisplayMode());
+                $managerRegistry->getManager()->flush();
+            }
         }
 
         return $this->render('App/Search/index.html.twig', [
             'form' => $form,
             'results' => $results,
+            'search' => $search
         ]);
     }
 

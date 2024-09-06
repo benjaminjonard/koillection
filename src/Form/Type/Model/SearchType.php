@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Form\Type\Model;
 
 use App\Enum\DateFormatEnum;
+use App\Enum\DisplayModeEnum;
+use App\Enum\VisibilityEnum;
 use App\Model\Search\Search;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,6 +42,10 @@ class SearchType extends AbstractType
             ->add('searchInData', CheckboxType::class, [
                 'label' => false,
                 'required' => false,
+            ])
+            ->add('displayMode', ChoiceType::class, [
+                'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
+                'empty_data' => $builder->getData()->getDisplayMode()
             ])
         ;
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Search;
 
+use App\Enum\DisplayModeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -15,6 +16,8 @@ class Search
     private ?\DateTimeImmutable $createdAt = null;
 
     private bool $searchInData = false;
+
+    private string $displayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
 
     public function getTerm(): ?string
     {
@@ -48,6 +51,22 @@ class Search
     public function setSearchInData(bool $searchInData): Search
     {
         $this->searchInData = $searchInData;
+
+        return $this;
+    }
+
+    public function getDisplayMode(): string
+    {
+        return $this->displayMode;
+    }
+
+    public function setDisplayMode(?string $displayMode): Search
+    {
+        if ($displayMode === null) {
+            return $this;
+        }
+
+        $this->displayMode = $displayMode;
 
         return $this;
     }

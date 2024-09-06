@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\GetCollection;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Enum\DateFormatEnum;
+use App\Enum\DisplayModeEnum;
 use App\Enum\RoleEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
@@ -205,6 +206,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Groups(['user:read', 'user:write'])]
     private bool $displayItemsNameInGridView = false;
 
+    #[ORM\Column(type: Types::STRING)]
+    #[Groups(['user:read', 'user:write'])]
+    private string $searchResultsDisplayMode = DisplayModeEnum::DISPLAY_MODE_GRID;
+
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['user:read'])]
     private \DateTimeImmutable $createdAt;
@@ -215,7 +220,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     public function __construct()
     {
-        $this->scrapers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->scrapers = new ArrayCollection();
         $this->collections = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->tagCategories = new ArrayCollection();
@@ -710,6 +715,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     {
         $this->deleteAvatar = $deleteAvatar;
         $this->updatedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    public function getSearchResultsDisplayMode(): string
+    {
+        return $this->searchResultsDisplayMode;
+    }
+
+    public function setSearchResultsDisplayMode(string $searchResultsDisplayMode): User
+    {
+        $this->searchResultsDisplayMode = $searchResultsDisplayMode;
 
         return $this;
     }

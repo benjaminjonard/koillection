@@ -39,6 +39,9 @@
             <div class="s12 l4 offset-l1 xl3 offset-xl3">
                 {{ form_row(form.searchInData, {'label' : 'label.search_in_data'}) }}
             </div>
+            <div class="s12 l4 xl2">
+                {{ form_row(form.displayMode, {'label' : 'label.display_mode', 'attr': {'data-controller' : 'select--default' } }) }}
+            </div>
         </div>
         {{ form_end(form) }}
     </div>
@@ -69,21 +72,10 @@
         <div class="panel current" data-tabs-target="panel" data-name="items">
             {% if results.items is defined and results.items|length > 0 %}
                 <div class="block-element">
-                    <div id="collection-items" class="grid-container-items">
-                        {% for item in results.items|naturalSorting %}
-                            <div>
-                                <div class="collection-item valign-wrapper resize-element" data-title="{{ item.name }}">
-                                    <a class="valign" href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                                        <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
-                                    </a>
-                                </div>
-
-                                {% if app.user.displayItemsNameInGridView|default(false) == true %}
-                                    <span class="item-name">{{ item.name }}</span>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    </div>
+                    {{ include('App/Collection/_items_' ~ search.displayMode ~ '.html.twig', {
+                        'items': results.items,
+                        'displayConfiguration': getContextUser().collectionsDisplayConfiguration
+                    }) }}
                 </div>
             {% endif %}
         </div>
@@ -91,7 +83,7 @@
         <div class="panel" data-tabs-target="panel" data-name="collections">
             {% if results.collections is defined and results.collections|length > 0 %}
                 <div class="block-element">
-                    {{ include('App/Collection/_collections_' ~ getContextUser().collectionsDisplayConfiguration.displayMode ~ '.html.twig', {
+                    {{ include('App/Collection/_collections_' ~ search.displayMode ~ '.html.twig', {
                         'collections': results.collections,
                         'displayConfiguration': getContextUser().collectionsDisplayConfiguration
                     }) }}
@@ -133,7 +125,7 @@
             {% if results.wishlists is defined and results.wishlists|length > 0 %}
                 <div class="block-element">
                     <div class="collections grid-container-collections">
-                        {{ include('App/Wishlist/_wishlists_' ~ getContextUser().wishlistsDisplayConfiguration.displayMode ~ '.html.twig', {'wishlists': results.wishlists}) }}
+                        {{ include('App/Wishlist/_wishlists_' ~ search.displayMode ~ '.html.twig', {'wishlists': results.wishlists}) }}
                     </div>
                 </div>
             {% endif %}
@@ -142,7 +134,7 @@
         <div class="panel" data-tabs-target="panel" data-name="albums">
             {% if results.albums is defined and results.albums|length > 0 %}
                 <div class="block-element">
-                    {{ include('App/Album/_albums_' ~ getContextUser().albumsDisplayConfiguration.displayMode ~ '.html.twig', {'albums': results.albums}) }}
+                    {{ include('App/Album/_albums_' ~ search.displayMode ~ '.html.twig', {'albums': results.albums}) }}
                 </div>
             {% endif %}
         </div>
