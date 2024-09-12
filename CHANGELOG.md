@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.13] / 2024-09-12
+### Features
+- Add an option to display search results as list (dmartins)
+
+# Fixes
+- Fix duplicated list entries when changing position (benjaminjonard)
+- Disable keyboard navigation between pages when gallery is open  (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix 7 JS CVEs (benjaminjonard)
+
 ## [1.5.12] / 2024-06-12
 ### Features
 - Add Portuguese translation (dmartins)
