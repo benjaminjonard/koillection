@@ -3589,5 +3589,11 @@
         <target>Activer les métriques</target>
       </segment>
     </unit>
+    <unit id="zNpYLvW" name="label.display_mode">
+      <segment state="translated">
+        <source>Display mode</source>
+        <target>Mode d'affichage</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
