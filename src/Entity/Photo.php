@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\CacheableInterface;
 use App\Entity\Interfaces\LoggableInterface;
@@ -39,7 +40,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(),
-        new Post(uriTemplate: '/photos/{id}/image', denormalizationContext: ['groups' => ['photo:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Photo image.']),
+        new Post(uriTemplate: '/photos/{id}/image', denormalizationContext: ['groups' => ['photo:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Photo image.')),
     ],
     denormalizationContext: ['groups' => ['photo:write']],
     normalizationContext: ['groups' => ['photo:read']]

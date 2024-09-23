@@ -1,11 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.14] / TBD
+:warning: If you are using the API, the "hydra" prefix has been removed from api responses. Removing every occurrence of `hydra:` should work.
+
 ## [1.5.13] / 2024-09-12
 ### Features
-- Add an option to display search results as list (dmartins)
+- Add an option to display search results as list (benjaminjonard)
 
-# Fixes
+### Fixes
 - Fix duplicated list entries when changing position (benjaminjonard)
 - Disable keyboard navigation between pages when gallery is open  (benjaminjonard)
 
@@ -16,7 +19,7 @@ All notable changes to this project will be documented in this file.
 ### Features
 - Add Portuguese translation (dmartins)
 
-# Fixes
+### Fixes
 - Fix tags underlining for lists data fields (benjaminjonard)
 - Properly check for label uniqueness and value formats for post Datum with API (benjaminjonard)
 - Fix missing datum price type when using API (benjaminjonard)
@@ -34,7 +37,7 @@ All notable changes to this project will be documented in this file.
 - Upgrade PHP and JS dependencies (benjaminjonard)
 
 ## [1.5.10] / 2024-05-28
-# Fixes
+### Fixes
 - Fix scrapped image URL when protocol is missing (benjaminjonard)
 - Fix wrong collection total prices when the collection has private items (benjaminjonard)
 - Fix nested counters on shared pages (benjaminjonard)

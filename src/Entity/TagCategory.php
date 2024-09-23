@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\TagCategoryRepository;
@@ -22,7 +27,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_tag_category')]
 #[ApiResource(
     denormalizationContext: ['groups' => ['tagCategory:write']],
-    normalizationContext: ['groups' => ['tagCategory:read']]
+    normalizationContext: ['groups' => ['tagCategory:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(),
+    ],
 )]
 #[ApiResource(uriTemplate: '/tags/{id}/category', uriVariables: ['id' => new Link(fromClass: Tag::class, fromProperty: 'category')], normalizationContext: ['groups' => ['tagCategory:read']], operations: [new Get()])]
 class TagCategory implements BreadcrumbableInterface, LoggableInterface, \Stringable

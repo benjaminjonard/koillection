@@ -4,12 +4,12 @@ api_platform:
   show_webby: false
 
   formats:
-    json: [ 'application/json' ]
     jsonld: [ 'application/ld+json' ]
+    json: [ 'application/json' ]
     html: [ 'text/html' ]
   docs_formats:
-    json: [ 'application/json' ]
     jsonld: [ 'application/ld+json' ]
+    json: [ 'application/json' ]
     jsonopenapi: [ 'application/vnd.openapi+json' ]
     html: [ 'text/html' ]
 
@@ -18,10 +18,7 @@ api_platform:
       vary: [ 'Content-Type', 'Authorization', 'Origin' ]
     extra_properties:
       standard_put: false
-      rfc_7807_compliant_errors: true
     normalization_context:
       skip_null_values: false
-  event_listeners_backward_compatibility_layer: false
-  keep_legacy_inflector: false
   use_symfony_listeners: true
 

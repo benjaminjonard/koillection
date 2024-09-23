@@ -20,7 +20,9 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
             'roles' => $user->getRoles()
         ];
 
-        return static::createClient([], ['headers' => ['Authorization' => 'Bearer ' . $encoder->encode($payload)]]);
+        return static::createClient([], ['headers' => [
+            'Authorization' => 'Bearer ' . $encoder->encode($payload)
+        ]]);
     }
 
     protected function createFile(string $type): UploadedFile

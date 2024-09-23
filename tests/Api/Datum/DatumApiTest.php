@@ -36,8 +36,8 @@ class DatumApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame(3, $data['hydra:totalItems']);
-        $this->assertCount(3, $data['hydra:member']);
+        $this->assertSame(3, $data['totalItems']);
+        $this->assertCount(3, $data['member']);
         $this->assertMatchesResourceCollectionJsonSchema(Datum::class);
     }
 
@@ -160,7 +160,7 @@ class DatumApiTest extends ApiTestCase
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertJsonContains([
-            'hydra:description' => 'A datum cannot be used with both item and collection'
+            'description' => 'A datum cannot be used with both item and collection'
         ]);
     }
 
@@ -179,7 +179,7 @@ class DatumApiTest extends ApiTestCase
         // Assert
         $this->assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertJsonContains([
-            'hydra:description' => 'A collection or an item must be provided',
+            'description' => 'A collection or an item must be provided',
         ]);
     }
 

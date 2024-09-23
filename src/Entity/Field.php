@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use Doctrine\DBAL\Types\Types;
@@ -19,7 +24,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_field')]
 #[ApiResource(
     denormalizationContext: ['groups' => ['field:write']],
-    normalizationContext: ['groups' => ['field:read']]
+    normalizationContext: ['groups' => ['field:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(),
+    ],
 )]
 #[ApiResource(uriTemplate: '/templates/{id}/fields', uriVariables: ['id' => new Link(fromClass: Template::class, fromProperty: 'fields')], normalizationContext: ['groups' => ['field:read']], operations: [new GetCollection()])]
 class Field

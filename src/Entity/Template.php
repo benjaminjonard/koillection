@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\TemplateRepository;
@@ -25,7 +30,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_template')]
 #[ApiResource(
     denormalizationContext: ['groups' => ['template:write']],
-    normalizationContext: ['groups' => ['template:read']]
+    normalizationContext: ['groups' => ['template:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(),
+    ],
 )]
 #[ApiResource(uriTemplate: '/collections/{id}/items_default_template', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'itemsDefaultTemplate')], normalizationContext: ['groups' => ['template:read']], operations: [new Get()])]
 #[ApiResource(uriTemplate: '/fields/{id}/template', uriVariables: ['id' => new Link(fromClass: Field::class, fromProperty: 'template')], normalizationContext: ['groups' => ['template:read']], operations: [new Get()])]

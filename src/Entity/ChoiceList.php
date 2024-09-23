@@ -5,6 +5,12 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Repository\ChoiceListRepository;
@@ -16,7 +22,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ChoiceListRepository::class)]
 #[ORM\Table(name: 'koi_choice_list')]
-#[ApiResource(denormalizationContext: ['groups' => ['choiceList:write']], normalizationContext: ['groups' => ['choiceList:read']])]
+#[ApiResource(
+    denormalizationContext: ['groups' => ['choiceList:write']],
+    normalizationContext: ['groups' => ['choiceList:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(),
+    ],
+)]
 class ChoiceList implements BreadcrumbableInterface, LoggableInterface, \Stringable
 {
     #[ORM\Id]

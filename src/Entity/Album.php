@@ -13,6 +13,7 @@ use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\CacheableInterface;
@@ -47,7 +48,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(uriTemplate: '/albums/{id}'),
         new GetCollection(uriTemplate: '/albums'),
         new Post(uriTemplate: '/albums'),
-        new Post(uriTemplate: '/albums/{id}/image', denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapiContext: ['summary' => 'Upload the Album image.']),
+        new Post(uriTemplate: '/albums/{id}/image', denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Album image.')),
     ]
 )]
 #[ApiResource(uriTemplate: '/albums/{id}/children', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'children')], normalizationContext: ['groups' => ['album:read']], operations: [new GetCollection()])]

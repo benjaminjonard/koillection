@@ -46,8 +46,8 @@ class TemplateApiNotOwnerTest extends ApiTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame(0, $data['hydra:totalItems']);
-        $this->assertCount(0, $data['hydra:member']);
+        $this->assertSame(0, $data['totalItems']);
+        $this->assertCount(0, $data['member']);
         $this->assertMatchesResourceCollectionJsonSchema(Field::class);
     }
 

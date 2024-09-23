@@ -34,8 +34,8 @@ class FieldApiTest extends ApiTestCase
 
         // Assert
         $this->assertResponseIsSuccessful();
-        $this->assertSame(3, $data['hydra:totalItems']);
-        $this->assertCount(3, $data['hydra:member']);
+        $this->assertSame(3, $data['totalItems']);
+        $this->assertCount(3, $data['member']);
         $this->assertMatchesResourceCollectionJsonSchema(Field::class);
     }
 

@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Repository\LoanRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,7 +23,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'koi_loan')]
 #[ApiResource(
     denormalizationContext: ['groups' => ['loan:write']],
-    normalizationContext: ['groups' => ['loan:read']]
+    normalizationContext: ['groups' => ['loan:read']],
+    operations: [
+        new Get(),
+        new Put(),
+        new Delete(),
+        new Patch(),
+        new GetCollection(),
+        new Post(),
+    ],
 )]
 #[ApiResource(uriTemplate: '/items/{id}/loans', uriVariables: ['id' => new Link(fromClass: Item::class, fromProperty: 'loans')], normalizationContext: ['groups' => ['loan:read']], operations: [new GetCollection()])]
 class Loan
