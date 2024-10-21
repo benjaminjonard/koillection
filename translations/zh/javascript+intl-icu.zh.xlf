@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="zh-CN">
+  <file id="javascript.en">
+    <unit id="s2RK8Ci" name="global.months.january">
+      <segment state="translated">
+        <source>January</source>
+        <target>一月</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <segment state="translated">
+        <source>February</source>
+        <target>二月</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <segment state="translated">
+        <source>March</source>
+        <target>三月</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <segment state="translated">
+        <source>April</source>
+        <target>四月</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <segment state="translated">
+        <source>May</source>
+        <target>五月</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <segment state="translated">
+        <source>June</source>
+        <target>六月</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <segment state="translated">
+        <source>July</source>
+        <target>七月</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <segment state="translated">
+        <source>August</source>
+        <target>八月</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <segment state="translated">
+        <source>September</source>
+        <target>九月</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <segment state="translated">
+        <source>October</source>
+        <target>十月</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <segment state="translated">
+        <source>November</source>
+        <target>十一月</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <segment state="translated">
+        <source>December</source>
+        <target>十二月</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <segment state="translated">
+        <source>Monday</source>
+        <target>星期一</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <segment state="translated">
+        <source>Tuesday</source>
+        <target>星期二</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <segment state="translated">
+        <source>Wednesday</source>
+        <target>星期三</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <segment state="translated">
+        <source>Thursday</source>
+        <target>星期四</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <segment state="translated">
+        <source>Friday</source>
+        <target>星期五</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <segment state="translated">
+        <source>Saturday</source>
+        <target>星期六</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <segment state="translated">
+        <source>Sunday</source>
+        <target>星期日</target>
+      </segment>
+    </unit>
+    <unit id="mdcgZEB" name="global.today">
+      <segment state="translated">
+        <source>Today</source>
+        <target>今天</target>
+      </segment>
+    </unit>
+    <unit id="exiimju" name="btn.clear">
+      <segment state="translated">
+        <source>Clear</source>
+        <target>清除</target>
+      </segment>
+    </unit>
+    <unit id="Jd_qITE" name="btn.close">
+      <segment state="translated">
+        <source>Close</source>
+        <target>关闭</target>
+      </segment>
+    </unit>
+    <unit id="AghNVUV" name="statistics.items_added">
+      <segment state="translated">
+        <source>{count, plural, one {# item added} other {# items added}}</source>
+        <target>{count, plural, one {# 物品已添加} other {# 物品已添加}}</target>
+      </segment>
+    </unit>
+    <unit id="cEDaX3_" name="statistics.items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# 物品} other {# 物品}}</target>
+      </segment>
+    </unit>
+    <unit id="w0J8w0G" name="select2.no_results">
+      <segment state="translated">
+        <source>No results found</source>
+        <target>未找到结果</target>
+      </segment>
+    </unit>
+    <unit id="vX0eXJK" name="select2.searching">
+      <segment state="translated">
+        <source>Searching...</source>
+        <target>正在搜索...</target>
+      </segment>
+    </unit>
+    <unit id="VWNWjeJ" name="select2.none">
+      <segment state="translated">
+        <source>None</source>
+        <target>空</target>
+      </segment>
+    </unit>
+    <unit id="Em6KHMM" name="global.search.more_results">
+      <segment state="translated">
+        <source>{count, plural, one { + # more result} other { + # more results}}</source>
+        <target>{count, plural, one { + # 更多结果} other { + # 更多结果}}</target>
+      </segment>
+    </unit>
+    <unit id="nfDV3tB" name="global.search.no_results">
+      <segment state="translated">
+        <source>No results</source>
+        <target>无结果</target>
+      </segment>
+    </unit>
+    <unit id="V4dRe88" name="global.visibilities.internal.description">
+      <segment state="translated">
+        <source>Only authenticated users can see this page</source>
+        <target>只有认证用户才能看到此页面</target>
+      </segment>
+    </unit>
+    <unit id="RU9kBPV" name="global.visibilities.public.description">
+      <segment state="translated">
+        <source>Anyone can see this page</source>
+        <target>任何人都可以看到此页面</target>
+      </segment>
+    </unit>
+    <unit id="GA2PrMk" name="global.visibilities.private.description">
+      <segment state="translated">
+        <source>Only I can see this page</source>
+        <target>只有我可以看到这个页面</target>
+      </segment>
+    </unit>
+    <unit id="a048xMx" name="label.list_element_value">
+      <segment state="translated">
+        <source>List element value</source>
+        <target>列表元素值</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
