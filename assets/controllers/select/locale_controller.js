@@ -1,6 +1,6 @@
 import DefaultController from "./default_controller"
 import Translator from "bazinga-translator";
-import { htmlStringToDomElement, getFlagFromCountryCode } from "../../js/utils";
+import { htmlStringToDomElement } from "../../js/utils";
 
 /* stimulusFetch: 'lazy' */
 export default class extends DefaultController {
@@ -10,7 +10,7 @@ export default class extends DefaultController {
         }
 
         return htmlStringToDomElement(
-            '<div><span class="select-icon">' + getFlagFromCountryCode(locale.element.value) + '</span><span>' + locale.text + '</span></div>'
+            '<div><span>' + locale.text + '</span></div>'
         );
     }
 
@@ -20,7 +20,7 @@ export default class extends DefaultController {
         }
 
         return htmlStringToDomElement(
-            '<div><span class="select-icon">' + getFlagFromCountryCode(locale.element.value) + '</span><span>' + locale.text + '</span></div>'
+            '<div><span>' + locale.text + '</span></div>'
         );
     }
 }

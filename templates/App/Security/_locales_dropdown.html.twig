@@ -8,7 +8,7 @@
         {% for key, locale in getLocales() %}
             <li>
                 <a href="{{ path(app.request.attributes.get('_route')) }}?_locale={{ key }}">
-                    <span class="flag">{{ getCountryFlag(key) }}</span><span>{{ locale|trans }}</span>
+                   {{ locale|trans }}
                 </a>
             </li>
         {% endfor %}
