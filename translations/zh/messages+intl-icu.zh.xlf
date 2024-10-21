@@ -1,0 +1,3599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="zh-CN">
+  <file id="messages.en">
+    <unit id="X_Pm9um" name="message.user_added">
+      <segment state="translated">
+        <source>User {user} added</source>
+        <target>用户{user}已添加</target>
+      </segment>
+    </unit>
+    <unit id="Fcb_tkO" name="message.user_edited">
+      <segment state="translated">
+        <source>User {user} has been updated</source>
+        <target>用户{user}已更新</target>
+      </segment>
+    </unit>
+    <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
+      <segment state="translated">
+        <source>You can't delete the Admin user</source>
+        <target>您不能删除管理员用户</target>
+      </segment>
+    </unit>
+    <unit id="2a_RIum" name="message.user_deleted">
+      <segment state="translated">
+        <source>User {user} was deleted</source>
+        <target>用户{user}已删除</target>
+      </segment>
+    </unit>
+    <unit id="ls5sYo8" name="message.album_added">
+      <segment state="translated">
+        <source>Album {album} has been added</source>
+        <target>相册{album}已添加</target>
+      </segment>
+    </unit>
+    <unit id="0lwPpH7" name="message.album_edited">
+      <segment state="translated">
+        <source>Album {album} has been updated</source>
+        <target>相册{album}已更新</target>
+      </segment>
+    </unit>
+    <unit id="oawVfJJ" name="message.album_deleted">
+      <segment state="translated">
+        <source>Album {album} has been deleted</source>
+        <target>相册{album}已删除</target>
+      </segment>
+    </unit>
+    <unit id="s.nX0z8" name="message.choice_list_added">
+      <segment state="translated">
+        <source>Choice list {list} has been added</source>
+        <target>选择列表{list}已添加</target>
+      </segment>
+    </unit>
+    <unit id="wWQwqjC" name="message.choice_list_edited">
+      <segment state="translated">
+        <source>Choice list {list} has been updated</source>
+        <target>选择列表{list}已更新</target>
+      </segment>
+    </unit>
+    <unit id="aXwmQFu" name="message.choice_list_deleted">
+      <segment state="translated">
+        <source>Choice list {list} has been deleted</source>
+        <target>选择列表{list}已删除</target>
+      </segment>
+    </unit>
+    <unit id="_sN4yvV" name="message.collection_added">
+      <segment state="translated">
+        <source>Collection {collection} has been added</source>
+        <target>收藏集{collection}已添加</target>
+      </segment>
+    </unit>
+    <unit id="p.bp_UN" name="message.collection_edited">
+      <segment state="translated">
+        <source>Collection {collection} has been updated</source>
+        <target>收藏集{collection}已更新</target>
+      </segment>
+    </unit>
+    <unit id="m3B26dq" name="message.collection_deleted">
+      <segment state="translated">
+        <source>Collection {collection} has been deleted</source>
+        <target>收藏集{collection}已删除</target>
+      </segment>
+    </unit>
+    <unit id="ehI_Ih2" name="message.items_tagged">
+      <segment state="translated">
+        <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
+        <target>{count, plural, one {# 物品已标记}  other {# 物品已标记}}</target>
+      </segment>
+    </unit>
+    <unit id="rimibj4" name="message.inventory_added">
+      <segment state="translated">
+        <source>Inventory {inventory} has been created</source>
+        <target>清单{inventory}已创建</target>
+      </segment>
+    </unit>
+    <unit id="EYnSw0A" name="message.inventory_deleted">
+      <segment state="translated">
+        <source>Inventory {inventory} was deleted</source>
+        <target>清单{inventory}已删除</target>
+      </segment>
+    </unit>
+    <unit id="TMGiC1d" name="message.item_added">
+      <segment state="translated">
+        <source>Item {item} has been added</source>
+        <target>物品{item}已添加</target>
+      </segment>
+    </unit>
+    <unit id="UGVMo0W" name="message.item_edited">
+      <segment state="translated">
+        <source>Item {item} has been updated</source>
+        <target>物品{item}已更新</target>
+      </segment>
+    </unit>
+    <unit id="HgYxNo9" name="message.item_deleted">
+      <segment state="translated">
+        <source>Item {item} has been deleted</source>
+        <target>物品{item}已删除</target>
+      </segment>
+    </unit>
+    <unit id="AT9p7pU" name="message.loan">
+      <segment state="translated">
+        <source>Item {item} is now marked as loaned</source>
+        <target>物品{item}现标记为已借出</target>
+      </segment>
+    </unit>
+    <unit id="FlBhKyx" name="message.loan_canceled">
+      <segment state="translated">
+        <source>Item {item} loan has been canceled</source>
+        <target>物品{item}借出已被取消</target>
+      </segment>
+    </unit>
+    <unit id="zkp2rxS" name="message.item_returned">
+      <segment state="translated">
+        <source>Item {item} is now mark as returned</source>
+        <target>物品{item}现标记为已归还</target>
+      </segment>
+    </unit>
+    <unit id="n5rS9vY" name="message.photo_added">
+      <segment state="translated">
+        <source>Photo {photo} has been added</source>
+        <target>照片{photo}已添加</target>
+      </segment>
+    </unit>
+    <unit id="hIxqW3m" name="message.photo_edited">
+      <segment state="translated">
+        <source>Photo {photo} has been updated</source>
+        <target>照片{photo}已更新</target>
+      </segment>
+    </unit>
+    <unit id="p5Rmjm9" name="message.photo_deleted">
+      <segment state="translated">
+        <source>Photo {photo} has been deleted</source>
+        <target>照片{photo}已删除</target>
+      </segment>
+    </unit>
+    <unit id="rVN8d.E" name="message.profile_updated">
+      <segment state="translated">
+        <source>Profile has been updated</source>
+        <target>个人资料已更新</target>
+      </segment>
+    </unit>
+    <unit id="nNziKQf" name="message.settings_updated">
+      <segment state="translated">
+        <source>Your settings have been successfully updated</source>
+        <target>您的设置已成功更新</target>
+      </segment>
+    </unit>
+    <unit id="Ail0qPJ" name="message.tag_category_added">
+      <segment state="translated">
+        <source>Tag category {category} has been added</source>
+        <target>标签类别{category}已添加</target>
+      </segment>
+    </unit>
+    <unit id="vg07kkR" name="message.tag_category_edited">
+      <segment state="translated">
+        <source>Tag category {category} has been updated</source>
+        <target>标签类别{category}已更新</target>
+      </segment>
+    </unit>
+    <unit id="XlwsvOZ" name="message.tag_category_deleted">
+      <segment state="translated">
+        <source>Tag category {category} was deleted</source>
+        <target>标签类别{category}已删除</target>
+      </segment>
+    </unit>
+    <unit id="3EE._Y4" name="message.tag_edited">
+      <segment state="translated">
+        <source>Tag {tag} has been updated</source>
+        <target>标签{tag}已更新</target>
+      </segment>
+    </unit>
+    <unit id="_PrKtDW" name="message.tag_deleted">
+      <segment state="translated">
+        <source>Tag {tag} has been deleted</source>
+        <target>标签{tag}已删除</target>
+      </segment>
+    </unit>
+    <unit id="QPUEgMd" name="message.unused_tags_deleted">
+      <segment state="translated">
+        <source>{count, plural, one {# tag deleted} other {# tags deleted}}</source>
+        <target>{count, plural, one {# 标签已删除} other {# 标签已删除}}</target>
+      </segment>
+    </unit>
+    <unit id="xM.mW1R" name="message.template_added">
+      <segment state="translated">
+        <source>Template {template} has been added</source>
+        <target>模板{template}已添加</target>
+      </segment>
+    </unit>
+    <unit id="5d2N5Ar" name="message.template_edited">
+      <segment state="translated">
+        <source>Template {template} has been updated</source>
+        <target>模板{template}已更新</target>
+      </segment>
+    </unit>
+    <unit id="ZMxcm6L" name="message.template_deleted">
+      <segment state="translated">
+        <source>Template {template} has been deleted</source>
+        <target>模板{template}已删除</target>
+      </segment>
+    </unit>
+    <unit id="9RoxCzk" name="message.wish_added">
+      <segment state="translated">
+        <source>Wish {wish} has been added</source>
+        <target>愿望{wish}已添加</target>
+      </segment>
+    </unit>
+    <unit id="XoB_zRK" name="message.wish_edited">
+      <segment state="translated">
+        <source>Wish {wish} has been updated</source>
+        <target>愿望{wish}已更新</target>
+      </segment>
+    </unit>
+    <unit id="akgCJp9" name="message.wish_deleted">
+      <segment state="translated">
+        <source>Wish {wish} has been deleted</source>
+        <target>愿望{wish}已添加</target>
+      </segment>
+    </unit>
+    <unit id="mAYxq3X" name="message.wish_transfered">
+      <segment state="translated">
+        <source>Wish {wish} was transferred to the collection {collection}</source>
+        <target>愿望{wish}已转移到收藏集{collection}</target>
+      </segment>
+    </unit>
+    <unit id="x_1ubH6" name="message.wishlist_added">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been added</source>
+        <target>愿望单{wishlist}已添加</target>
+      </segment>
+    </unit>
+    <unit id="NfYGrwC" name="message.wishlist_edited">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been updated</source>
+        <target>愿望单{wishlist}已更新</target>
+      </segment>
+    </unit>
+    <unit id="8ujnJmR" name="message.wishlist_deleted">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been deleted</source>
+        <target>愿望单{wishlist}已删除</target>
+      </segment>
+    </unit>
+    <unit id="zfOqV80" name="form.item_sorting.default_value">
+      <segment state="translated">
+        <source>Name (default)</source>
+        <target>名称(默认)</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <segment state="translated">
+        <source>Sunday</source>
+        <target>星期日</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <segment state="translated">
+        <source>Monday</source>
+        <target>星期一</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <segment state="translated">
+        <source>Tuesday</source>
+        <target>星期二</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <segment state="translated">
+        <source>Wednesday</source>
+        <target>星期三</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <segment state="translated">
+        <source>Thursday</source>
+        <target>星期四</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <segment state="translated">
+        <source>Friday</source>
+        <target>星期五</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <segment state="translated">
+        <source>Saturday</source>
+        <target>星期六</target>
+      </segment>
+    </unit>
+    <unit id="s2RK8Ci" name="global.months.january">
+      <segment state="translated">
+        <source>January</source>
+        <target>一月</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <segment state="translated">
+        <source>February</source>
+        <target>二月</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <segment state="translated">
+        <source>March</source>
+        <target>三月</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <segment state="translated">
+        <source>April</source>
+        <target>四月</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <segment state="translated">
+        <source>May</source>
+        <target>五月</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <segment state="translated">
+        <source>June</source>
+        <target>六月</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <segment state="translated">
+        <source>July</source>
+        <target>七月</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <segment state="translated">
+        <source>August</source>
+        <target>八月</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <segment state="translated">
+        <source>September</source>
+        <target>九月</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <segment state="translated">
+        <source>October</source>
+        <target>十月</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <segment state="translated">
+        <source>November</source>
+        <target>十一月</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <segment state="translated">
+        <source>December</source>
+        <target>十二月</target>
+      </segment>
+    </unit>
+    <unit id="jsUGqKL" name="global.byte_abbreviation">
+      <segment state="translated">
+        <source>B</source>
+        <target>B</target>
+      </segment>
+    </unit>
+    <unit id="BNjUIYA" name="label.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
+    <unit id="GV09tqG" name="global.koillection">
+      <segment state="translated">
+        <source>Koillection</source>
+        <target>Koillection</target>
+      </segment>
+    </unit>
+    <unit id="bKzhzsy" name="global.time.ago">
+      <segment state="translated">
+        <source>{time} ago</source>
+        <target>{time}前</target>
+      </segment>
+    </unit>
+    <unit id="kBJEdcf" name="global.time.just_now">
+      <segment state="translated">
+        <source>Just now</source>
+        <target>刚刚</target>
+      </segment>
+    </unit>
+    <unit id="4wvJrqA" name="global.time.today">
+      <segment state="translated">
+        <source>Today</source>
+        <target>今天</target>
+      </segment>
+    </unit>
+    <unit id="eggtiPQ" name="global.visibilities.reason.user_public">
+      <segment state="translated">
+        <source>Public - Reason : your profile is public</source>
+        <target>公开 - 原因：您的个人资料是公开的</target>
+      </segment>
+    </unit>
+    <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
+      <segment state="translated">
+        <source>Public - Reason : both your profile and this page are public</source>
+        <target>公开 - 原因：您的个人资料和本页面都是公开的</target>
+      </segment>
+    </unit>
+    <unit id="bk8nfAS" name="global.visibilities.reason.both_private">
+      <segment state="translated">
+        <source>Private - Reason : both your profile and this page are private</source>
+        <target>私有 - 原因：您的个人资料和本页面都是私有的</target>
+      </segment>
+    </unit>
+    <unit id="ixVg6T0" name="global.visibilities.reason.user_private">
+      <segment state="translated">
+        <source>Private - Reason : your profile is private</source>
+        <target>私有 - 原因：您的个人资料是私有的</target>
+      </segment>
+    </unit>
+    <unit id="9OU9mZT" name="global.visibilities.reason.object_private">
+      <segment state="translated">
+        <source>Private - Reason : this page is private</source>
+        <target>私有 - 原因：本页面是私有的</target>
+      </segment>
+    </unit>
+    <unit id="k5.Efwd" name="global.visibilities.reason.both_internal">
+      <segment state="translated">
+        <source>Internal - Reason : both your profile and this page are internal</source>
+        <target>内部 - 原因：您的个人资料和本页面都是内部的</target>
+      </segment>
+    </unit>
+    <unit id="KHNt07x" name="global.visibilities.reason.user_internal">
+      <segment state="translated">
+        <source>Internal - Reason : your profile is internal</source>
+        <target>内部 - 原因：您的个人资料是内部的</target>
+      </segment>
+    </unit>
+    <unit id="0fTIld1" name="global.visibilities.reason.object_internal">
+      <segment state="translated">
+        <source>Internal - Reason : this page is internal</source>
+        <target>内部 - 原因：本页面是内部的</target>
+      </segment>
+    </unit>
+    <unit id="wvvYSw_" name="menu.admin">
+      <segment state="translated">
+        <source>Administration</source>
+        <target>管理界面</target>
+      </segment>
+    </unit>
+    <unit id="I4vwwju" name="title.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>概览</target>
+      </segment>
+    </unit>
+    <unit id="4fDIeO4" name="label.space_used">
+      <segment state="translated">
+        <source>{used} / {total} used</source>
+        <target>{used}/{total}已使用</target>
+      </segment>
+    </unit>
+    <unit id="ZzykrnK" name="label.space_free">
+      <segment state="translated">
+        <source>{free} free</source>
+        <target>{free}免费</target>
+      </segment>
+    </unit>
+    <unit id="FIesMhl" name="counter.without_number.users">
+      <segment state="translated">
+        <source>{count, plural, one {# user} other {# users}}</source>
+        <target>{count, plural, one {# 用户} other {# 用户}}</target>
+      </segment>
+    </unit>
+    <unit id="uVNjha9" name="counter.without_number.collections">
+      <segment state="translated">
+        <source>{count, plural, one {# collection} other {# collections}}</source>
+        <target>{count, plural, one {# 收藏集} other {# 收藏集}}</target>
+      </segment>
+    </unit>
+    <unit id="VrJk8jp" name="counter.without_number.items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# 物品} other {# 物品}}</target>
+      </segment>
+    </unit>
+    <unit id="hjM7hgU" name="counter.without_number.tags">
+      <segment state="translated">
+        <source>{count, plural, one {# tag} other {# tags}}</source>
+        <target>{count, plural, one {# 标签} other {# 标签}}</target>
+      </segment>
+    </unit>
+    <unit id="cw0nkO5" name="counter.without_number.wishlists">
+      <segment state="translated">
+        <source>{count, plural, one {# wishlist} other {# wishlists}}</source>
+        <target>{count, plural, one {# 愿望单} other {# 愿望单}}</target>
+      </segment>
+    </unit>
+    <unit id="zzagaMI" name="counter.without_number.wishes">
+      <segment state="translated">
+        <source>{count, plural, one {# wish} other {# wishes}}</source>
+        <target>{count, plural, one {# 愿望} other {# 愿望}}</target>
+      </segment>
+    </unit>
+    <unit id="QJMsz.z" name="counter.without_number.albums">
+      <segment state="translated">
+        <source>{count, plural, one {# album} other {# albums}}</source>
+        <target>{count, plural, one {# 相册} other {# 相册}}</target>
+      </segment>
+    </unit>
+    <unit id="YKRNql5" name="counter.without_number.photos">
+      <segment state="translated">
+        <source>{count, plural, one {# photo} other {# photos}}</source>
+        <target>{count, plural, one {# 照片} other {# 照片}}</target>
+      </segment>
+    </unit>
+    <unit id="aCCqbt1" name="counter.without_number.signs">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# 展览} other {# 展览}}</target>
+      </segment>
+    </unit>
+    <unit id="jNAS_YE" name="label.space_used_by_koillection">
+      <segment state="translated">
+        <source>Total space used by Koillection</source>
+        <target>Koillection 使用总空间</target>
+      </segment>
+    </unit>
+    <unit id="_wv_IKT" name="title.config">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>设置</target>
+      </segment>
+    </unit>
+    <unit id="Z39v_44" name="label.release">
+      <segment state="translated">
+        <source>Koillection version</source>
+        <target>Koillection 版本</target>
+      </segment>
+    </unit>
+    <unit id="eqnKfFG" name="label.outdated_release">
+      <segment state="translated">
+        <source>Version {release} is available</source>
+        <target>版本 {release} 已就绪</target>
+      </segment>
+    </unit>
+    <unit id="EvNVLVb" name="label.required_php_version">
+      <segment state="translated">
+        <source>PHP {version} is required</source>
+        <target>需要PHP {version}</target>
+      </segment>
+    </unit>
+    <unit id="J1HjVfO" name="label.up_to_date_release">
+      <segment state="translated">
+        <source>The latest version is installed</source>
+        <target>已安装最新版本</target>
+      </segment>
+    </unit>
+    <unit id="fGUHPE5" name="label.php_version">
+      <segment state="translated">
+        <source>PHP version</source>
+        <target>PHP 版本</target>
+      </segment>
+    </unit>
+    <unit id="nWdqGKI" name="label.symfony_version">
+      <segment state="translated">
+        <source>Symfony version</source>
+        <target>Symfony 版本</target>
+      </segment>
+    </unit>
+    <unit id="9qQ81pM" name="label.is_opcache_available">
+      <segment state="translated">
+        <source>Opcache enabled</source>
+        <target>Opcache 已启用</target>
+      </segment>
+    </unit>
+    <unit id="qnAM2jd" name="title.tools">
+      <segment state="translated">
+        <source>Tools</source>
+        <target>工具</target>
+      </segment>
+    </unit>
+    <unit id="LSyzK7f" name="btn.export_sql">
+      <segment state="translated">
+        <source>SQL</source>
+        <target>SQL</target>
+      </segment>
+    </unit>
+    <unit id="Jd.jsk." name="btn.export_images">
+      <segment state="translated">
+        <source>Images</source>
+        <target>图像</target>
+      </segment>
+    </unit>
+    <unit id="FcXvWL8" name="title.add_user">
+      <segment state="translated">
+        <source>Add a user</source>
+        <target>添加用户</target>
+      </segment>
+    </unit>
+    <unit id="fRQmA2t" name="btn.submit">
+      <segment state="translated">
+        <source>Submit</source>
+        <target>提交</target>
+      </segment>
+    </unit>
+    <unit id="u5LRF8p" name="btn.cancel">
+      <segment state="translated">
+        <source>Cancel</source>
+        <target>取消</target>
+      </segment>
+    </unit>
+    <unit id="wZpNYOE" name="label.space_used_by_user">
+      <segment state="translated">
+        <source>Total space used by user</source>
+        <target>用户使用总空间</target>
+      </segment>
+    </unit>
+    <unit id="1sstKF9" name="title.edit_user">
+      <segment state="translated">
+        <source>Edit user {user}</source>
+        <target>编辑用户{user}</target>
+      </segment>
+    </unit>
+    <unit id="fKgc.kW" name="title.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>用户</target>
+      </segment>
+    </unit>
+    <unit id="ZouqthR" name="btn.add_user">
+      <segment state="translated">
+        <source>Add a user</source>
+        <target>添加用户</target>
+      </segment>
+    </unit>
+    <unit id="txRonia" name="label.id">
+      <segment state="translated">
+        <source>Id</source>
+        <target>ID</target>
+      </segment>
+    </unit>
+    <unit id="LDhDPrF" name="label.username">
+      <segment state="translated">
+        <source>Username</source>
+        <target>用户名</target>
+      </segment>
+    </unit>
+    <unit id="O59lP5d" name="label.role">
+      <segment state="translated">
+        <source>Role</source>
+        <target>身份</target>
+      </segment>
+    </unit>
+    <unit id="D2N6_cP" name="label.email">
+      <segment state="translated">
+        <source>Email</source>
+        <target>电子邮件</target>
+      </segment>
+    </unit>
+    <unit id="Tv.rI94" name="label.disk_space_used">
+      <segment state="translated">
+        <source>Disk space used</source>
+        <target>已使用磁盘空间</target>
+      </segment>
+    </unit>
+    <unit id="p1Fs6iF" name="label.disk_space_allowed">
+      <segment state="translated">
+        <source>Disk space allowed</source>
+        <target>可用磁盘空间</target>
+      </segment>
+    </unit>
+    <unit id="vMjoUw7" name="label.last_date_of_activity">
+      <segment state="translated">
+        <source>Last activity</source>
+        <target>最近一次活动</target>
+      </segment>
+    </unit>
+    <unit id="zldXQq6" name="label.actions">
+      <segment state="translated">
+        <source>Actions</source>
+        <target>操作</target>
+      </segment>
+    </unit>
+    <unit id="nbcWSI3" name="tooltip.edit">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="335X_OI" name="tab.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>概览</target>
+      </segment>
+    </unit>
+    <unit id="MJ22R1T" name="tab.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>用户</target>
+      </segment>
+    </unit>
+    <unit id="1NZRNj4" name="counter.photo">
+      <segment state="translated">
+        <source>{count, plural, one {# photo} other {# photos}}</source>
+        <target>{count, plural, one {# 照片} other {# 照片}}</target>
+      </segment>
+    </unit>
+    <unit id="rd2X72s" name="message.delete.photo">
+      <segment state="translated">
+        <source>Are you sure you want to delete this photo ? It will be permanently lost...</source>
+        <target>您确定要删除此照片吗？它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="UrRn8xj" name="label.title">
+      <segment state="translated">
+        <source>Title</source>
+        <target>标题</target>
+      </segment>
+    </unit>
+    <unit id="H3WsEKh" name="label.visibility">
+      <segment state="translated">
+        <source>Visibility</source>
+        <target>可见性</target>
+      </segment>
+    </unit>
+    <unit id="pRl.hWU" name="title.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>添加新相册</target>
+      </segment>
+    </unit>
+    <unit id="domeXiF" name="title.edit_album">
+      <segment state="translated">
+        <source>Edit album {title}</source>
+        <target>编辑相册{title}</target>
+      </segment>
+    </unit>
+    <unit id="nQDmBI4" name="menu.collections_shared">
+      <segment state="translated">
+        <source>{username}'s collection</source>
+        <target>{username}的收藏集</target>
+      </segment>
+    </unit>
+    <unit id="5hMk7ux" name="menu.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>相册</target>
+      </segment>
+    </unit>
+    <unit id="9N4x.TV" name="counter.album">
+      <segment state="translated">
+        <source>{count, plural, one {# album} other {# albums}}</source>
+        <target>{count, plural, one {# 相册} other {# 相册}}</target>
+      </segment>
+    </unit>
+    <unit id="NOenNu3" name="tooltip.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>添加新相册</target>
+      </segment>
+    </unit>
+    <unit id="A5gFwZv" name="filter.by_name">
+      <segment state="translated">
+        <source>Filter by name</source>
+        <target>按名称筛选</target>
+      </segment>
+    </unit>
+    <unit id="AHajX3P" name="tooltip.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>添加新照片</target>
+      </segment>
+    </unit>
+    <unit id="ryRhoHH" name="title.album_children">
+      <segment state="translated">
+        <source>Sub-albums</source>
+        <target>子相册</target>
+      </segment>
+    </unit>
+    <unit id="wP6FDOU" name="title.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>照片</target>
+      </segment>
+    </unit>
+    <unit id="w9FF849" name="title.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>选项</target>
+      </segment>
+    </unit>
+    <unit id="CYUJ8qZ" name="btn.add_choice">
+      <segment state="translated">
+        <source>Add a new choice</source>
+        <target>添加新选项</target>
+      </segment>
+    </unit>
+    <unit id="oOiO8Dn" name="label.choice">
+      <segment state="translated">
+        <source>Choice</source>
+        <target>选项</target>
+      </segment>
+    </unit>
+    <unit id="uLlCnaG" name="title.new_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>添加新选项列表</target>
+      </segment>
+    </unit>
+    <unit id="60Mvg7w" name="title.edit_choice_list">
+      <segment state="translated">
+        <source>Edit choice list {list}</source>
+        <target>编辑选项列表{list}</target>
+      </segment>
+    </unit>
+    <unit id="em8w1x." name="menu.choice_lists">
+      <segment state="translated">
+        <source>Choice lists</source>
+        <target>选项列表</target>
+      </segment>
+    </unit>
+    <unit id="SMPEMjp" name="counter.choice_lists">
+      <segment state="translated">
+        <source>{count, plural, one {# choice list} other {# choice lists}}</source>
+        <target>{count, plural, one {# 选项列表} other {# 选项列表}}</target>
+      </segment>
+    </unit>
+    <unit id="3yuF9Sl" name="tooltip.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice lists</source>
+        <target>添加新选项列表</target>
+      </segment>
+    </unit>
+    <unit id="ysOvPSq" name="label.name">
+      <segment state="translated">
+        <source>Name</source>
+        <target>名称</target>
+      </segment>
+    </unit>
+    <unit id="Mr44cEu" name="label.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>选项</target>
+      </segment>
+    </unit>
+    <unit id="I5NrvAz" name="collection.items_settings">
+      <segment state="translated">
+        <source>Items settings</source>
+        <target>物品设置</target>
+      </segment>
+    </unit>
+    <unit id="7Y63wwX" name="collection.children_settings">
+      <segment state="translated">
+        <source>Sub-collections settings</source>
+        <target>子收藏集设置</target>
+      </segment>
+    </unit>
+    <unit id="uJUJ6Ir" name="title.data">
+      <segment state="translated">
+        <source>Data</source>
+        <target>数据</target>
+      </segment>
+    </unit>
+    <unit id="ixrxzme" name="label.add_field">
+      <segment state="translated">
+        <source>Add field :</source>
+        <target>添加字段：</target>
+      </segment>
+    </unit>
+    <unit id="5l_KSLb" name="btn.add_text">
+      <segment state="translated">
+        <source>Text</source>
+        <target>文本</target>
+      </segment>
+    </unit>
+    <unit id="6wqecTf" name="btn.add_number">
+      <segment state="translated">
+        <source>Number</source>
+        <target>数量</target>
+      </segment>
+    </unit>
+    <unit id="FD827k7" name="btn.add_country">
+      <segment state="translated">
+        <source>Country</source>
+        <target>国家</target>
+      </segment>
+    </unit>
+    <unit id="otAT7D6" name="btn.add_date">
+      <segment state="translated">
+        <source>Date</source>
+        <target>日期</target>
+      </segment>
+    </unit>
+    <unit id="1bwI2L." name="btn.add_file">
+      <segment state="translated">
+        <source>File</source>
+        <target>文件</target>
+      </segment>
+    </unit>
+    <unit id="VUlGgVE" name="label.add_choice_list">
+      <segment state="translated">
+        <source>Add choice list :</source>
+        <target>添加选项列表</target>
+      </segment>
+    </unit>
+    <unit id=".eH3OZY" name="counter.item">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# 物品} other {# 物品}}</target>
+      </segment>
+    </unit>
+    <unit id="AiXAfVP" name="title.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>添加新收藏集</target>
+      </segment>
+    </unit>
+    <unit id="8yVQg94" name="title.tag_collection">
+      <segment state="translated">
+        <source>Batch tagging {collection}</source>
+        <target>批量标记{collection}</target>
+      </segment>
+    </unit>
+    <unit id="KlxVsBD" name="title.edit_collection">
+      <segment state="translated">
+        <source>Edit collection {collection}</source>
+        <target>编辑收藏集{collection}</target>
+      </segment>
+    </unit>
+    <unit id="MW4FPxn" name="menu.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>收藏集</target>
+      </segment>
+    </unit>
+    <unit id="Ttj5ZLt" name="counter.collection">
+      <segment state="translated">
+        <source>{count, plural, one {# collection} other {# collections}}</source>
+        <target>{count, plural, one {# 收藏集} other {# 收藏集}}</target>
+      </segment>
+    </unit>
+    <unit id="0Vhz2n." name="tooltip.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>添加新收藏集</target>
+      </segment>
+    </unit>
+    <unit id="YHlU3_1" name="title.items">
+      <segment state="translated">
+        <source>Items</source>
+        <target>物品</target>
+      </segment>
+    </unit>
+    <unit id="FTnVc5X" name="tooltip.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>添加新物品</target>
+      </segment>
+    </unit>
+    <unit id="6H1fBLk" name="tooltip.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>标签</target>
+      </segment>
+    </unit>
+    <unit id="bQoqYij" name="tooltip.items">
+      <segment state="translated">
+        <source>See all items</source>
+        <target>查看所有物品</target>
+      </segment>
+    </unit>
+    <unit id="StAuTu9" name="title.infos">
+      <segment state="translated">
+        <source>Info</source>
+        <target>资料</target>
+      </segment>
+    </unit>
+    <unit id="5_Yv1gK" name="title.children">
+      <segment state="translated">
+        <source>Sub-collections</source>
+        <target>子收藏集</target>
+      </segment>
+    </unit>
+    <unit id="szWUC0C" name="label.value">
+      <segment state="translated">
+        <source>Value</source>
+        <target>价值</target>
+      </segment>
+    </unit>
+    <unit id="Kp3d.qQ" name="label.label">
+      <segment state="translated">
+        <source>Label</source>
+        <target>标记</target>
+      </segment>
+    </unit>
+    <unit id="yIfRfhZ" name="filter.title.types">
+      <segment state="translated">
+        <source>Types</source>
+        <target>类型</target>
+      </segment>
+    </unit>
+    <unit id="F5Sk8YT" name="filter.title.actions">
+      <segment state="translated">
+        <source>Actions</source>
+        <target>操作</target>
+      </segment>
+    </unit>
+    <unit id="0n2CBIS" name="label.event">
+      <segment state="translated">
+        <source>Event</source>
+        <target>事件</target>
+      </segment>
+    </unit>
+    <unit id="WwKLHxh" name="label.logged_at">
+      <segment state="translated">
+        <source>Date</source>
+        <target>日期</target>
+      </segment>
+    </unit>
+    <unit id="Q.3FoSC" name="menu.history">
+      <segment state="translated">
+        <source>History</source>
+        <target>历史</target>
+      </segment>
+    </unit>
+    <unit id="IxgpiDC" name="counter.total_items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# 物品} other {# 物品}}</target>
+      </segment>
+    </unit>
+    <unit id="EZsGAxN" name="counter.checked_items">
+      <segment state="translated">
+        <source>{count, plural, one {# checked item} other {# checked items}}</source>
+        <target>{count, plural, one {# 已检查物品} other {# 已检查物品}}</target>
+      </segment>
+    </unit>
+    <unit id="gVjxaJZ" name="label.completion_rate">
+      <segment state="translated">
+        <source>{rate}% completed</source>
+        <target>完成{rate}%</target>
+      </segment>
+    </unit>
+    <unit id="i9VapGy" name="title.add_inventory">
+      <segment state="translated">
+        <source>Create a new inventory</source>
+        <target>创建新物品栏</target>
+      </segment>
+    </unit>
+    <unit id="78xJTtJ" name="title.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>收藏集</target>
+      </segment>
+    </unit>
+    <unit id="5Tlipav" name="global.all_collections">
+      <segment state="translated">
+        <source>All collections</source>
+        <target>所有收藏集</target>
+      </segment>
+    </unit>
+    <unit id="ACWH3_S" name="label.item.from_collection">
+      <segment state="translated">
+        <source>From collection :</source>
+        <target>来自收藏集：</target>
+      </segment>
+    </unit>
+    <unit id="4O6JaLx" name="tooltip.loan_item">
+      <segment state="translated">
+        <source>Loan this item</source>
+        <target>借出此物品</target>
+      </segment>
+    </unit>
+    <unit id="HmUuNCa" name="label.main_image">
+      <segment state="translated">
+        <source>Main image</source>
+        <target>主图像</target>
+      </segment>
+    </unit>
+    <unit id="Q14jRAj" name="label.list_related_items">
+      <segment state="translated">
+        <source>Related items</source>
+        <target>相关物品</target>
+      </segment>
+    </unit>
+    <unit id="DCLoAZA" name="title.additional_fields">
+      <segment state="translated">
+        <source>Additional fields</source>
+        <target>附加字段</target>
+      </segment>
+    </unit>
+    <unit id="uAfIh0u" name="btn.apply_common_fields">
+      <segment state="translated">
+        <source>Load common fields</source>
+        <target>加载常用字段</target>
+      </segment>
+    </unit>
+    <unit id="ImSHWcX" name="btn.apply_collection_fields">
+      <segment state="translated">
+        <source>Load collection fields</source>
+        <target>加载收藏集字段</target>
+      </segment>
+    </unit>
+    <unit id="ME6A6U0" name="title.related_items">
+      <segment state="translated">
+        <source>Related items</source>
+        <target>相关物品</target>
+      </segment>
+    </unit>
+    <unit id="Hxk36Kv" name="btn.submit_and_add_another">
+      <segment state="translated">
+        <source>Submit and add another item</source>
+        <target>提交并添加另一个物品</target>
+      </segment>
+    </unit>
+    <unit id="xlowWy6" name="btn.add_textarea">
+      <segment state="translated">
+        <source>Long text</source>
+        <target>长文本</target>
+      </segment>
+    </unit>
+    <unit id="9qwO627" name="btn.add_rating">
+      <segment state="translated">
+        <source>Rating</source>
+        <target>评分</target>
+      </segment>
+    </unit>
+    <unit id="g0hND3o" name="btn.add_link">
+      <segment state="translated">
+        <source>Link</source>
+        <target>链接</target>
+      </segment>
+    </unit>
+    <unit id="bWfooH2" name="title.item_images">
+      <segment state="translated">
+        <source>Images</source>
+        <target>图像</target>
+      </segment>
+    </unit>
+    <unit id="7s.6nrQ" name="btn.add_image">
+      <segment state="translated">
+        <source>Image</source>
+        <target>图像</target>
+      </segment>
+    </unit>
+    <unit id="zCTHmk." name="btn.add_sign">
+      <segment state="translated">
+        <source>Signature</source>
+        <target>展览</target>
+      </segment>
+    </unit>
+    <unit id="nXRtrJb" name="title.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>添加新物品</target>
+      </segment>
+    </unit>
+    <unit id="0w7FrTh" name="title.edit_item">
+      <segment state="translated">
+        <source>Edit item {item}</source>
+        <target>编辑物品{item}</target>
+      </segment>
+    </unit>
+    <unit id="U4lp2Ma" name="global.created_at">
+      <segment state="translated">
+        <source>Creation : {date}</source>
+        <target>创造：{date}</target>
+      </segment>
+    </unit>
+    <unit id="ylc8ODN" name="global.updated_at">
+      <segment state="translated">
+        <source>Last update : {date}</source>
+        <target>最后一次更新：{date}</target>
+      </segment>
+    </unit>
+    <unit id="VFvXW.m" name="menu.loans">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>借出情况</target>
+      </segment>
+    </unit>
+    <unit id="nlD7D9j" name="counter.loan">
+      <segment state="translated">
+        <source>{count, plural, one {# loan} other {# loans}}</source>
+        <target>{count, plural, one {# 借出情况} other {# 借出情况}}</target>
+      </segment>
+    </unit>
+    <unit id="0Nr1G8_" name="counter.returned">
+      <segment state="translated">
+        <source>{count, plural, one {# loan returned} other {# loans returned}}</source>
+        <target>{count, plural, one {# 物品已归还} other {# 物品已归还}}</target>
+      </segment>
+    </unit>
+    <unit id="1Jpq5QX" name="tab.loans">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>借出情况</target>
+      </segment>
+    </unit>
+    <unit id="F60bUq_" name="tab.returned_items">
+      <segment state="translated">
+        <source>Returned</source>
+        <target>已归还</target>
+      </segment>
+    </unit>
+    <unit id="lYyKRwZ" name="label.loaned_to">
+      <segment state="translated">
+        <source>Borrower</source>
+        <target>借用人</target>
+      </segment>
+    </unit>
+    <unit id="2ZgbVvL" name="label.loaned_at">
+      <segment state="translated">
+        <source>Lent on</source>
+        <target>借出日期</target>
+      </segment>
+    </unit>
+    <unit id="EWnP8ZQ" name="label.loaned_ago">
+      <segment state="translated">
+        <source>Ago</source>
+        <target>以前</target>
+      </segment>
+    </unit>
+    <unit id="uFEIsab" name="tooltip.returned">
+      <segment state="translated">
+        <source>Returned</source>
+        <target>已归还</target>
+      </segment>
+    </unit>
+    <unit id="R25XMb2" name="label.return_date">
+      <segment state="translated">
+        <source>Return date</source>
+        <target>归还日期</target>
+      </segment>
+    </unit>
+    <unit id="Az510BV" name="label.loan_duration">
+      <segment state="translated">
+        <source>Loan duration</source>
+        <target>借出时长</target>
+      </segment>
+    </unit>
+    <unit id="bmt.5SD" name="title.loan_item">
+      <segment state="translated">
+        <source>Loan item {item}</source>
+        <target>借出物品{item}</target>
+      </segment>
+    </unit>
+    <unit id="tpcX1HE" name="title.add_album_photo">
+      <segment state="translated">
+        <source>Add a new photo to the album {album}</source>
+        <target>向相册{album}添加新照片</target>
+      </segment>
+    </unit>
+    <unit id="yXxCCBI" name="title.edit_album_photo">
+      <segment state="translated">
+        <source>Edit photo {photo}</source>
+        <target>编辑照片{photo}</target>
+      </segment>
+    </unit>
+    <unit id="XSS5BT8" name="menu.profile">
+      <segment state="translated">
+        <source>Profile</source>
+        <target>个人资料</target>
+      </segment>
+    </unit>
+    <unit id="qh23U11" name="title.disk_usage">
+      <segment state="translated">
+        <source>Disk usage</source>
+        <target>磁盘用量</target>
+      </segment>
+    </unit>
+    <unit id="PMuodit" name="title.update_profile">
+      <segment state="translated">
+        <source>Edit profile</source>
+        <target>编辑个人资料</target>
+      </segment>
+    </unit>
+    <unit id="k6VxCsO" name="menu.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
+    <unit id="ZtbL6rD" name="title.wishlists">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>愿望单</target>
+      </segment>
+    </unit>
+    <unit id="Gki98oO" name="title.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>相册</target>
+      </segment>
+    </unit>
+    <unit id="uzSzjYY" name="title.tags">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>标签</target>
+      </segment>
+    </unit>
+    <unit id="4cEApe1" name="label.description">
+      <segment state="translated">
+        <source>Description</source>
+        <target>描述</target>
+      </segment>
+    </unit>
+    <unit id="ak1St8x" name="label.number_of_items">
+      <segment state="translated">
+        <source># of items</source>
+        <target># 物品编号</target>
+      </segment>
+    </unit>
+    <unit id="dFDOuk." name="label.percent_of_items">
+      <segment state="translated">
+        <source>Percent of items</source>
+        <target>物品百分比</target>
+      </segment>
+    </unit>
+    <unit id="xw23vtl" name="message.search_empty">
+      <segment state="translated">
+        <source>No results</source>
+        <target>无结果</target>
+      </segment>
+    </unit>
+    <unit id="wwFFPXP" name="title.first_connection.user">
+      <segment state="translated">
+        <source>First connection</source>
+        <target>首次连接</target>
+      </segment>
+    </unit>
+    <unit id="11HETEc" name="global.welcome">
+      <segment state="translated">
+        <source>Welcome to Koillection</source>
+        <target>欢迎使用 Koillection</target>
+      </segment>
+    </unit>
+    <unit id="S92egy5" name="title.sign_in">
+      <segment state="translated">
+        <source>Sign in</source>
+        <target>登录</target>
+      </segment>
+    </unit>
+    <unit id="ZAtrhtu" name="label.login">
+      <segment state="translated">
+        <source>Username or email</source>
+        <target>用户名或电子邮件</target>
+      </segment>
+    </unit>
+    <unit id="9pvowqn" name="label.password">
+      <segment state="translated">
+        <source>Password</source>
+        <target>密码</target>
+      </segment>
+    </unit>
+    <unit id="B0loISu" name="label.remember_me">
+      <segment state="translated">
+        <source>Keep me logged in</source>
+        <target>保持登录状态</target>
+      </segment>
+    </unit>
+    <unit id="IPh2SKn" name="btn.sign_in">
+      <segment state="translated">
+        <source>Sign in</source>
+        <target>登录</target>
+      </segment>
+    </unit>
+    <unit id="4UTsL.X" name="menu.settings">
+      <segment state="translated">
+        <source>Settings</source>
+        <target>设置</target>
+      </segment>
+    </unit>
+    <unit id="RDD2bMy" name="title.update_settings">
+      <segment state="translated">
+        <source>Edit settings</source>
+        <target>编辑设置</target>
+      </segment>
+    </unit>
+    <unit id="9dYyUYD" name="title.update_visibility">
+      <segment state="translated">
+        <source>Edit visibility</source>
+        <target>编辑可见性</target>
+      </segment>
+    </unit>
+    <unit id="eG38lKI" name="message.visibility">
+      <segment state="translated">
+        <source>If you set visibility to public, your collection will be accessible by anyone using the following link :</source>
+        <target>如果您将可见性设置为公开，任何人都可以使用以下链接访问您的收藏集：</target>
+      </segment>
+    </unit>
+    <unit id="RjUO3kd" name="message.visibility_per_item">
+      <segment state="translated">
+        <source>You can then set visibility per item or collection. To do so, please go on the element edition page.</source>
+        <target>您之后可为每个物品或收藏集设置可见性。为此，请转到元素编辑界面</target>
+      </segment>
+    </unit>
+    <unit id="fQNztng" name="title.update_features">
+      <segment state="translated">
+        <source>Edit active features</source>
+        <target>编辑常用功能</target>
+      </segment>
+    </unit>
+    <unit id="HLevxj." name="menu.signs">
+      <segment state="translated">
+        <source>Signatures</source>
+        <target>展览</target>
+      </segment>
+    </unit>
+    <unit id="e9psgbF" name="counter.signs">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# 展览} other {# 展览}}</target>
+      </segment>
+    </unit>
+    <unit id="Bhx8Fvg" name="menu.statistics">
+      <segment state="translated">
+        <source>Statistics</source>
+        <target>统计</target>
+      </segment>
+    </unit>
+    <unit id="If3y3hC" name="counter.tag">
+      <segment state="translated">
+        <source>{count, plural, one {# tag} other {# tags}}</source>
+        <target>{count, plural, one {# 标签} other {# 标签}}</target>
+      </segment>
+    </unit>
+    <unit id="Ul2mR7j" name="counter.sign">
+      <segment state="translated">
+        <source>{count, plural, one {# signature} other {# signatures}}</source>
+        <target>{count, plural, one {# 展览} other {# 展览}}</target>
+      </segment>
+    </unit>
+    <unit id="ssT2wiw" name="title.activity">
+      <segment state="translated">
+        <source>Activity</source>
+        <target>活动</target>
+      </segment>
+    </unit>
+    <unit id="_tdjWIj" name="title.charts.month_days">
+      <segment state="translated">
+        <source>Items added per day of month</source>
+        <target>近一个月日均物品添加数</target>
+      </segment>
+    </unit>
+    <unit id="svM3vNY" name="title.charts.hours">
+      <segment state="translated">
+        <source>Items added per day hour</source>
+        <target>近一天时均物品添加数</target>
+      </segment>
+    </unit>
+    <unit id="jZqCZ_K" name="title.charts.months">
+      <segment state="translated">
+        <source>Items added per month</source>
+        <target>月均物品添加数</target>
+      </segment>
+    </unit>
+    <unit id="yfwVi.I" name="title.charts.week_days">
+      <segment state="translated">
+        <source>Items added per weekday</source>
+        <target>工作日均物品添加数</target>
+      </segment>
+    </unit>
+    <unit id="9it4sqQ" name="title.charts.items_evolution">
+      <segment state="translated">
+        <source>Items evolution</source>
+        <target>物品进化</target>
+      </segment>
+    </unit>
+    <unit id="Rb73VaV" name="title.charts.radial_tree">
+      <segment state="translated">
+        <source>Radial representation of your collection</source>
+        <target>收藏集的径向图</target>
+      </segment>
+    </unit>
+    <unit id=".ZHhONJ" name="label.tag_category">
+      <segment state="translated">
+        <source>Category</source>
+        <target>分类</target>
+      </segment>
+    </unit>
+    <unit id="p4z8GI6" name="title.edit_tag">
+      <segment state="translated">
+        <source>Edit tag {tag}</source>
+        <target>编辑标签{tag}</target>
+      </segment>
+    </unit>
+    <unit id="yo4f8Kh" name="menu.tags">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>标签</target>
+      </segment>
+    </unit>
+    <unit id="7SH9MME" name="tooltip.manage_tag_categories">
+      <segment state="translated">
+        <source>Manage tag categories</source>
+        <target>管理标签分类</target>
+      </segment>
+    </unit>
+    <unit id="a_xpPl1" name="message.delete.unused_tag">
+      <segment state="translated">
+        <source>This will delete all tags with no items attached. Are you sure you want to delete those tags ? They will be permanently lost...</source>
+        <target>这将删除所有没有附属物品的标签。您确定要删除这些标签 ? 它们将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="LgGHl1z" name="btn.delete_unused_tags">
+      <segment state="translated">
+        <source>Delete unused tags</source>
+        <target>删除未使用标签</target>
+      </segment>
+    </unit>
+    <unit id="e8GAd_z" name="title.related_tags">
+      <segment state="translated">
+        <source>Related tags</source>
+        <target>相关标签</target>
+      </segment>
+    </unit>
+    <unit id="YklQlf8" name="btn.show_more">
+      <segment state="translated">
+        <source>Show more ({count})</source>
+        <target>显示更多 ({count})</target>
+      </segment>
+    </unit>
+    <unit id="zOA0UTD" name="btn.show_less">
+      <segment state="translated">
+        <source>Show less</source>
+        <target>隐藏内容</target>
+      </segment>
+    </unit>
+    <unit id="JI8jvUd" name="title.add_tag_category">
+      <segment state="translated">
+        <source>Add tag category</source>
+        <target>添加标签分类</target>
+      </segment>
+    </unit>
+    <unit id="4z_wk_J" name="title.edit_tag_category">
+      <segment state="translated">
+        <source>Edit tag category {category}</source>
+        <target>编辑标签分类{category}</target>
+      </segment>
+    </unit>
+    <unit id="MDaq3GB" name="menu.tag_categories">
+      <segment state="translated">
+        <source>Tag categories</source>
+        <target>标签分类</target>
+      </segment>
+    </unit>
+    <unit id="NSHmU0h" name="counter.tag_categories">
+      <segment state="translated">
+        <source>{count, plural, one {# category} other {# categories}}</source>
+        <target>{count, plural, one {# 标签分类} other {# 标签分类}}</target>
+      </segment>
+    </unit>
+    <unit id="d3LXAOu" name="tooltip.add_tag_category">
+      <segment state="translated">
+        <source>Add a new tag category</source>
+        <target>添加新标签类别</target>
+      </segment>
+    </unit>
+    <unit id="YTSS_Q1" name="label.color">
+      <segment state="translated">
+        <source>Color</source>
+        <target>颜色</target>
+      </segment>
+    </unit>
+    <unit id="8QFZX9d" name="title.fields">
+      <segment state="translated">
+        <source>Fields</source>
+        <target>字段</target>
+      </segment>
+    </unit>
+    <unit id="6AcgRXg" name="btn.add_field">
+      <segment state="translated">
+        <source>Add a field</source>
+        <target>添加字段</target>
+      </segment>
+    </unit>
+    <unit id="zXS9TNU" name="title.new_template">
+      <segment state="translated">
+        <source>Add a new template</source>
+        <target>添加新模版</target>
+      </segment>
+    </unit>
+    <unit id="w4I3.hu" name="title.edit_template">
+      <segment state="translated">
+        <source>Edit template {template}</source>
+        <target>编辑模版{template}</target>
+      </segment>
+    </unit>
+    <unit id="kXYXu7R" name="menu.templates">
+      <segment state="translated">
+        <source>Templates</source>
+        <target>模版</target>
+      </segment>
+    </unit>
+    <unit id="hIdqfHr" name="counter.template">
+      <segment state="translated">
+        <source>{count, plural, one {# template} other {# templates}}</source>
+        <target>{count, plural, one {# 模版} other {# 模版}}</target>
+      </segment>
+    </unit>
+    <unit id=".pBdt4A" name="tooltip.add_template">
+      <segment state="translated">
+        <source>Create a new template</source>
+        <target>创建新模版</target>
+      </segment>
+    </unit>
+    <unit id="bYyoqn6" name="label.fields">
+      <segment state="translated">
+        <source>Fields</source>
+        <target>字段</target>
+      </segment>
+    </unit>
+    <unit id="1MYrutS" name="counter.field">
+      <segment state="translated">
+        <source>{count, plural, one {# field} other {# fields}}</source>
+        <target>{count, plural, one {# 字段} other {# 字段}}</target>
+      </segment>
+    </unit>
+    <unit id="pnGDFmf" name="label.type">
+      <segment state="translated">
+        <source>Type</source>
+        <target>类型</target>
+      </segment>
+    </unit>
+    <unit id="k3.gBP." name="label.choice_list">
+      <segment state="translated">
+        <source>Choice list</source>
+        <target>选项列表</target>
+      </segment>
+    </unit>
+    <unit id="W6Rvzmb" name="menu.tools">
+      <segment state="translated">
+        <source>Tools</source>
+        <target>工具</target>
+      </segment>
+    </unit>
+    <unit id="OTxNY59" name="title.exports">
+      <segment state="translated">
+        <source>Exports</source>
+        <target>导出</target>
+      </segment>
+    </unit>
+    <unit id="e.bXzZd" name="btn.export_printable_list">
+      <segment state="translated">
+        <source>Printable list</source>
+        <target>可打印清单</target>
+      </segment>
+    </unit>
+    <unit id="IKVpbk5" name="btn.export_csv">
+      <segment state="translated">
+        <source>CSV</source>
+        <target>CSV文件</target>
+      </segment>
+    </unit>
+    <unit id="89rjttf" name="title.inventories">
+      <segment state="translated">
+        <source>Inventories</source>
+        <target>库存</target>
+      </segment>
+    </unit>
+    <unit id="W6YfaKo" name="btn.add_inventory">
+      <segment state="translated">
+        <source>New inventory</source>
+        <target>新的库存</target>
+      </segment>
+    </unit>
+    <unit id="8iRfcsb" name="label.completion">
+      <segment state="translated">
+        <source>Completion</source>
+        <target>完成</target>
+      </segment>
+    </unit>
+    <unit id="v5SWCuI" name="label.created_at">
+      <segment state="translated">
+        <source>Created at</source>
+        <target>创建于</target>
+      </segment>
+    </unit>
+    <unit id="DYfAFeM" name="tooltip.print">
+      <segment state="translated">
+        <source>Print</source>
+        <target>打印</target>
+      </segment>
+    </unit>
+    <unit id="H0D7KGB" name="title.add_wishlist_item">
+      <segment state="translated">
+        <source>Add a new item to the wishlist {wishlist}</source>
+        <target>向愿望单{wishlist}添加一个新的物品</target>
+      </segment>
+    </unit>
+    <unit id="9dYc4WP" name="title.edit_wishlist_item">
+      <segment state="translated">
+        <source>Edit wish {name}</source>
+        <target>编辑愿望{name}</target>
+      </segment>
+    </unit>
+    <unit id="50TT5tp" name="title.transfer_wish">
+      <segment state="translated">
+        <source>Transfer wish to a collection</source>
+        <target>转移愿望到收藏集</target>
+      </segment>
+    </unit>
+    <unit id="XjUwmT9" name="counter.wish">
+      <segment state="translated">
+        <source>{count, plural, one {# wish} other {# wishes}}</source>
+        <target>{count, plural, one {# 愿望} other {# 愿望}}</target>
+      </segment>
+    </unit>
+    <unit id="aCKOxah" name="title.new_wishlist">
+      <segment state="translated">
+        <source>Add a new wishlist</source>
+        <target>添加新愿望单</target>
+      </segment>
+    </unit>
+    <unit id="1Uc4qIA" name="title.edit_wishlist">
+      <segment state="translated">
+        <source>Edit wishlist {wishlist}</source>
+        <target>编辑愿望单{wishlist}</target>
+      </segment>
+    </unit>
+    <unit id="iaYlgE1" name="menu.wishlists">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>愿望单</target>
+      </segment>
+    </unit>
+    <unit id="Joxd_.h" name="counter.wishlist">
+      <segment state="translated">
+        <source>{count, plural, one {# wishlist} other {# wishlists}}</source>
+        <target>{count, plural, one {# 愿望单} other {# 愿望单}}</target>
+      </segment>
+    </unit>
+    <unit id="U27QnHb" name="tooltip.add_wishlist">
+      <segment state="translated">
+        <source>Add a new wishlist</source>
+        <target>添加新愿望单</target>
+      </segment>
+    </unit>
+    <unit id="VRKRvlp" name="tooltip.add_wish">
+      <segment state="translated">
+        <source>Add a new wish</source>
+        <target>添加新愿望</target>
+      </segment>
+    </unit>
+    <unit id="c9cNWH4" name="title.wishlist_children">
+      <segment state="translated">
+        <source>Sub-wishlists</source>
+        <target>子愿望单</target>
+      </segment>
+    </unit>
+    <unit id="KhJnPFW" name="title.wishes">
+      <segment state="translated">
+        <source>Wishes</source>
+        <target>愿望</target>
+      </segment>
+    </unit>
+    <unit id="rapb2ag" name="label.image">
+      <segment state="translated">
+        <source>Image</source>
+        <target>图像</target>
+      </segment>
+    </unit>
+    <unit id="arTFX42" name="label.price">
+      <segment state="translated">
+        <source>Price</source>
+        <target>价格</target>
+      </segment>
+    </unit>
+    <unit id="WqTho4C" name="label.comment">
+      <segment state="translated">
+        <source>Comment</source>
+        <target>评论</target>
+      </segment>
+    </unit>
+    <unit id="K4CLmzU" name="tooltip.transfer_to_collection">
+      <segment state="translated">
+        <source>Transfer to collection</source>
+        <target>转移到收藏集</target>
+      </segment>
+    </unit>
+    <unit id="YEoCETJ" name="label.thumbnail">
+      <segment state="translated">
+        <source>Thumbnail</source>
+        <target>缩略图</target>
+      </segment>
+    </unit>
+    <unit id="92pQmfM" name="label.suggestions">
+      <segment state="translated">
+        <source>Suggestions :</source>
+        <target>建议:</target>
+      </segment>
+    </unit>
+    <unit id="qWc975i" name="tooltip.delete">
+      <segment state="translated">
+        <source>Delete</source>
+        <target>删除</target>
+      </segment>
+    </unit>
+    <unit id="3AT7pPP" name="tooltip.share">
+      <segment state="translated">
+        <source>Share</source>
+        <target>分享</target>
+      </segment>
+    </unit>
+    <unit id="zNdHjVZ" name="meta.description">
+      <segment state="translated">
+        <source>A single place to manage all your collections.</source>
+        <target>一个管理您所有收藏集的地方</target>
+      </segment>
+    </unit>
+    <unit id="XVATSGt" name="modal.title.delete">
+      <segment state="translated">
+        <source>Delete confirmation</source>
+        <target>删除确认</target>
+      </segment>
+    </unit>
+    <unit id="eMPgFR5" name="message.user_is_private">
+      <segment state="translated">
+        <source>Your profile is set to private, you can't share this page.</source>
+        <target>您的个人资料已设置为私有，您不能分享此页面。</target>
+      </segment>
+    </unit>
+    <unit id="J0RnHHK" name="message.share_link">
+      <segment state="translated">
+        <source>You can share this link so people can see this page (private items will be hidden) :</source>
+        <target>您可以分享这个链接，以便其他人看到这个页面 (私人物品将被隐藏) ：</target>
+      </segment>
+    </unit>
+    <unit id="9Vg2S6n" name="modal.title.share">
+      <segment state="translated">
+        <source>Share link</source>
+        <target>分享链接</target>
+      </segment>
+    </unit>
+    <unit id="wBTFKFR" name="menu.logout">
+      <segment state="translated">
+        <source>Logout</source>
+        <target>注销</target>
+      </segment>
+    </unit>
+    <unit id="tezmizK" name="menu.return_to_user_collection">
+      <segment state="translated">
+        <source>Return to my collection</source>
+        <target>回到我的收藏集</target>
+      </segment>
+    </unit>
+    <unit id="jEeQjDx" name="message.offline">
+      <segment state="translated">
+        <source>You are offline, please check your connection.</source>
+        <target>您已离线，请检查您的连接。</target>
+      </segment>
+    </unit>
+    <unit id="lSRJ.UY" name="error.default">
+      <segment state="translated">
+        <source>Oops, something went wrong :(</source>
+        <target>糟糕，出现了一些错误 :(</target>
+      </segment>
+    </unit>
+    <unit id="l9GnTBr" name="error.404">
+      <segment state="translated">
+        <source>Oops, page not found :(</source>
+        <target>哎呀，找不到页面 :(</target>
+      </segment>
+    </unit>
+    <unit id="nIFzees" name="error.500">
+      <segment state="translated">
+        <source>Oops, a critical error occurred :(</source>
+        <target>糟糕，发生了一个严重错误 :(</target>
+      </segment>
+    </unit>
+    <unit id="o7VW0kO" name="message.return_to_homepage">
+      <segment state="translated">
+        <source>Return to homepage</source>
+        <target>返回首页</target>
+      </segment>
+    </unit>
+    <unit id="ZS8DP_P" name="breadcrumb.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>添加新相册</target>
+      </segment>
+    </unit>
+    <unit id="BgP_6X7" name="breadcrumb.add_collection">
+      <segment state="translated">
+        <source>Add a new collection</source>
+        <target>添加新收藏集</target>
+      </segment>
+    </unit>
+    <unit id="QP9HnQT" name="breadcrumb.add_item">
+      <segment state="translated">
+        <source>Add a new item</source>
+        <target>添加新物品</target>
+      </segment>
+    </unit>
+    <unit id="HN3MXIl" name="breadcrumb.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>添加新照片</target>
+      </segment>
+    </unit>
+    <unit id="TsOMFfZ" name="breadcrumb.add_template">
+      <segment state="translated">
+        <source>Create a new template</source>
+        <target>创建新模版</target>
+      </segment>
+    </unit>
+    <unit id="1tk3BkL" name="breadcrumb.add_wish">
+      <segment state="translated">
+        <source>Add a new wish</source>
+        <target>添加新愿望</target>
+      </segment>
+    </unit>
+    <unit id="MeiAPvl" name="breadcrumb.add_wishlist">
+      <segment state="translated">
+        <source>Add a new wishlist</source>
+        <target>添加新愿望单</target>
+      </segment>
+    </unit>
+    <unit id="wsZg2PB" name="breadcrumb.batch_tagging">
+      <segment state="translated">
+        <source>Batch tagging</source>
+        <target>批量标记</target>
+      </segment>
+    </unit>
+    <unit id="FBXvLM8" name="breadcrumb.edit_album">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="4FXosb_" name="breadcrumb.edit_collection">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="dQjPnaL" name="breadcrumb.edit_template">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="wJbJaxc" name="breadcrumb.edit_item">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="sARt1zq" name="breadcrumb.edit_photo">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="YAIWLja" name="breadcrumb.edit_tag">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="MK15Ex5" name="breadcrumb.edit_wish">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="bzp39NU" name="breadcrumb.edit_wishlist">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="hNB8Xw0" name="breadcrumb.history_collection">
+      <segment state="translated">
+        <source>History</source>
+        <target>历史</target>
+      </segment>
+    </unit>
+    <unit id="1ruRfsb" name="breadcrumb.history_item">
+      <segment state="translated">
+        <source>History</source>
+        <target>历史</target>
+      </segment>
+    </unit>
+    <unit id="Pnd0n71" name="breadcrumb.history_tag">
+      <segment state="translated">
+        <source>History</source>
+        <target>历史</target>
+      </segment>
+    </unit>
+    <unit id="eG2_sfn" name="breadcrumb.items_collection">
+      <segment state="translated">
+        <source>Items</source>
+        <target>物品</target>
+      </segment>
+    </unit>
+    <unit id="ERFTL0f" name="breadcrumb.lend_item">
+      <segment state="translated">
+        <source>Lend</source>
+        <target>借出</target>
+      </segment>
+    </unit>
+    <unit id="T3BhL7X" name="global.entities.album">
+      <segment state="translated">
+        <source>Album</source>
+        <target>相册</target>
+      </segment>
+    </unit>
+    <unit id="YTxyJQJ" name="global.entities.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>收藏集</target>
+      </segment>
+    </unit>
+    <unit id="ecDv.KB" name="global.entities.item">
+      <segment state="translated">
+        <source>Item</source>
+        <target>物品</target>
+      </segment>
+    </unit>
+    <unit id="yt20IWO" name="global.entities.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>标签</target>
+      </segment>
+    </unit>
+    <unit id="iFOTgZ3" name="global.entities.template">
+      <segment state="translated">
+        <source>Template</source>
+        <target>模板</target>
+      </segment>
+    </unit>
+    <unit id="JKLodag" name="global.entities.user">
+      <segment state="translated">
+        <source>User</source>
+        <target>用户</target>
+      </segment>
+    </unit>
+    <unit id="1MevJac" name="global.entities.wish">
+      <segment state="translated">
+        <source>Wish</source>
+        <target>愿望</target>
+      </segment>
+    </unit>
+    <unit id="nFTPCfN" name="global.entities.wishlist">
+      <segment state="translated">
+        <source>Wishlist</source>
+        <target>愿望单</target>
+      </segment>
+    </unit>
+    <unit id="S3BSG8X" name="global.time.year">
+      <segment state="translated">
+        <source>{count, plural, one {# year} other {# years}}</source>
+        <target>{count, plural, one {# 年} other {# 年}}</target>
+      </segment>
+    </unit>
+    <unit id="I6EoiYa" name="global.time.month">
+      <segment state="translated">
+        <source>{count, plural, one {# month} other {# months}}</source>
+        <target>{count, plural, one {# 月} other {# 月}}</target>
+      </segment>
+    </unit>
+    <unit id="BXLOUij" name="global.time.week">
+      <segment state="translated">
+        <source>{count, plural, one {# week} other {# weeks}}</source>
+        <target>{count, plural, one {# 周} other {# 周}}</target>
+      </segment>
+    </unit>
+    <unit id="r1RqqRg" name="global.time.day">
+      <segment state="translated">
+        <source>{count, plural, one {# day} other {# days}}</source>
+        <target>{count, plural, one {# 日} other {# 日}}</target>
+      </segment>
+    </unit>
+    <unit id="QeraM7P" name="global.time.hour">
+      <segment state="translated">
+        <source>{count, plural, one {# hour} other {# hours}}</source>
+        <target>{count, plural, one {# 小时} other {# 小时}}</target>
+      </segment>
+    </unit>
+    <unit id="UN2onP4" name="global.time.minute">
+      <segment state="translated">
+        <source>{count, plural, one {# minute} other {# minutes}}</source>
+        <target>{count, plural, one {# 分钟} other {# 分钟}}</target>
+      </segment>
+    </unit>
+    <unit id="JQSurmk" name="global.time.second">
+      <segment state="translated">
+        <source>{count, plural, one {# second} other {# seconds}}</source>
+        <target>{count, plural, one {# 秒} other {# 秒}}</target>
+      </segment>
+    </unit>
+    <unit id="fSiEIlQ" name="global.visibilities.public">
+      <segment state="translated">
+        <source>Public</source>
+        <target>公开</target>
+      </segment>
+    </unit>
+    <unit id="ky9YEBY" name="global.visibilities.private">
+      <segment state="translated">
+        <source>Private</source>
+        <target>私有</target>
+      </segment>
+    </unit>
+    <unit id="obhh9xq" name="label.added_at">
+      <segment state="translated">
+        <source>Added at</source>
+        <target>添加于</target>
+      </segment>
+    </unit>
+    <unit id="kfURNUL" name="label.album">
+      <segment state="translated">
+        <source>Album</source>
+        <target>相册</target>
+      </segment>
+    </unit>
+    <unit id="OMwE8EU" name="label.apply_template">
+      <segment state="translated">
+        <source>Apply a template</source>
+        <target>应用模版</target>
+      </segment>
+    </unit>
+    <unit id="YQjIBl7" name="label.children_title">
+      <segment state="translated">
+        <source>Sub-collections section label</source>
+        <target>子收藏集标记</target>
+      </segment>
+    </unit>
+    <unit id="fWI8IQm" name="label.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>收藏集</target>
+      </segment>
+    </unit>
+    <unit id="Jjqrud5" name="label.collections">
+      <segment state="translated">
+        <source>Collections</source>
+        <target>收藏集</target>
+      </segment>
+    </unit>
+    <unit id="otd2FZd" name="label.currency">
+      <segment state="translated">
+        <source>Currency</source>
+        <target>货币</target>
+      </segment>
+    </unit>
+    <unit id="zfmgf2l" name="label.items">
+      <segment state="translated">
+        <source>Items</source>
+        <target>物品</target>
+      </segment>
+    </unit>
+    <unit id="frik1CZ" name="label.items_title">
+      <segment state="translated">
+        <source>Items section label</source>
+        <target>物品标记</target>
+      </segment>
+    </unit>
+    <unit id="NGzz2k3" name="label.parent">
+      <segment state="translated">
+        <source>Parent</source>
+        <target>父级</target>
+      </segment>
+    </unit>
+    <unit id="2.APxMI" name="label.place">
+      <segment state="translated">
+        <source>Place</source>
+        <target>地点</target>
+      </segment>
+    </unit>
+    <unit id="ymgENEq" name="label.quantity">
+      <segment state="translated">
+        <source>Quantity</source>
+        <target>数量</target>
+      </segment>
+    </unit>
+    <unit id="HVZAEc7" name="label.recursive">
+      <segment state="translated">
+        <source>Recursive</source>
+        <target>递归</target>
+      </segment>
+    </unit>
+    <unit id="rU9cSfq" name="label.repeat_password">
+      <segment state="translated">
+        <source>Repeat password</source>
+        <target>重复密码</target>
+      </segment>
+    </unit>
+    <unit id="w5u.bJo" name="label.sign">
+      <segment state="translated">
+        <source>Signature</source>
+        <target>展览</target>
+      </segment>
+    </unit>
+    <unit id="vpeY2jo" name="label.taken_at">
+      <segment state="translated">
+        <source>Taken the</source>
+        <target>拍摄了</target>
+      </segment>
+    </unit>
+    <unit id="ijQyGRo" name="label.tags">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>标签</target>
+      </segment>
+    </unit>
+    <unit id="UQI8T0S" name="label.text">
+      <segment state="translated">
+        <source>Text</source>
+        <target>文本</target>
+      </segment>
+    </unit>
+    <unit id="UJDm2vF" name="label.url">
+      <segment state="translated">
+        <source>Url</source>
+        <target>URL</target>
+      </segment>
+    </unit>
+    <unit id="hmlddlA" name="label.wishlist">
+      <segment state="translated">
+        <source>Wishlist</source>
+        <target>愿望单</target>
+      </segment>
+    </unit>
+    <unit id="vVTVy9_" name="label.wishlists">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>愿望单</target>
+      </segment>
+    </unit>
+    <unit id="oq5I4KJ" name="log.collection.created">
+      <segment state="translated">
+        <source>Collection {label} was created</source>
+        <target>收藏集{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="kJVARQs" name="log.collection.deleted">
+      <segment state="translated">
+        <source>Collection {label} was deleted</source>
+        <target>收藏集{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="CQhzBXW" name="log.item.created">
+      <segment state="translated">
+        <source>Item {label} was created</source>
+        <target>物品{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="rV1McBT" name="log.item.deleted">
+      <segment state="translated">
+        <source>Item {label} was deleted</source>
+        <target>物品{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="rZbNjjk" name="log.tag.created">
+      <segment state="translated">
+        <source>Tag {label} was created</source>
+        <target>标签{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="C6hJE7c" name="log.tag.deleted">
+      <segment state="translated">
+        <source>Tag {label} was deleted</source>
+        <target>标签{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="NLlL04M" name="help.recursive">
+      <segment state="translated">
+        <source>If checked, tags will be applied to all sub-collections as well</source>
+        <target>如果选中，标签将同时应用于所有子收藏集</target>
+      </segment>
+    </unit>
+    <unit id="cQsMebl" name="breadcrumb.transfer_wish">
+      <segment state="translated">
+        <source>Transfer wish to a collection</source>
+        <target>转移愿望到收藏集</target>
+      </segment>
+    </unit>
+    <unit id="Dpg9wp." name="role.user">
+      <segment state="translated">
+        <source>User</source>
+        <target>用户</target>
+      </segment>
+    </unit>
+    <unit id="tlZBAKL" name="role.admin">
+      <segment state="translated">
+        <source>Admin</source>
+        <target>管理员</target>
+      </segment>
+    </unit>
+    <unit id="7o9hj19" name="first_connection.user">
+      <segment state="translated">
+        <source>User information</source>
+        <target>用户信息</target>
+      </segment>
+    </unit>
+    <unit id="dmtPdwq" name="label.timezone">
+      <segment state="translated">
+        <source>Timezone</source>
+        <target>时区</target>
+      </segment>
+    </unit>
+    <unit id="U4y7aZO" name="message.delete.tag">
+      <segment state="translated">
+        <source>Are you sure you want to delete this tag ? It will be permanently lost...</source>
+        <target>您确定要删除此标签？它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="v5OgDgx" name="message.delete.item">
+      <segment state="translated">
+        <source>Are you sure you want to delete this item ? It will be permanently lost...</source>
+        <target>您确定要删除此物品吗？它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="zHvuaSF" name="message.delete.album">
+      <segment state="translated">
+        <source>Are you sure you want to delete this album ? All photos it contains will be permanently lost...</source>
+        <target>您确定要删除此相册？其中包含的所有照片都将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="F5mLnYt" name="message.delete.template">
+      <segment state="translated">
+        <source>Are you sure you want to delete this template ? It will be permanently lost...</source>
+        <target>您确定要删除此模板 ? 它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="JMVpPAR" name="message.delete.wishlist">
+      <segment state="translated">
+        <source>Are you sure you want to delete this wishlist ? All wishes it contains will be permanently lost...</source>
+        <target>您确定要删除此愿望单吗？其中包含的所有愿望都将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="YTTkLLK" name="message.delete.wish">
+      <segment state="translated">
+        <source>Are you sure you want to delete this wish ? It will be permanently lost...</source>
+        <target>您确定要删除此愿望吗？它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="5Z0Lnp." name="message.delete.collection">
+      <segment state="translated">
+        <source>Are you sure you want to delete this collection ? All items it contains will be permanently lost...</source>
+        <target>您确定要删除此收藏集吗？其中包含的所有物品都将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="_HekiQE" name="message.delete.loan">
+      <segment state="translated">
+        <source>Are you sure you want to delete this loan ? It will be permanently lost...</source>
+        <target>您确定要删除此借出记录？它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="kAXzPyc" name="global.seen_counter.album">
+      <segment state="translated">
+        <source>{count, plural, one {Album consulted # time} other {Album consulted # times}}</source>
+        <target>{count, plural, one {相册被查询 # 次} other {相册被查询 # 次}}</target>
+      </segment>
+    </unit>
+    <unit id="HWAnnvq" name="global.seen_counter.collection">
+      <segment state="translated">
+        <source>{count, plural, one {Collection consulted # time} other {Collection consulted # times}}</source>
+        <target>{count, plural, one {收藏集被查询 # 次} other {收藏集被查询 # 次}}</target>
+      </segment>
+    </unit>
+    <unit id="hW.mDrh" name="global.seen_counter.item">
+      <segment state="translated">
+        <source>{count, plural, one {Item consulted # time} other {Item consulted # times}}</source>
+        <target>{count, plural, one {物品被查询 # 次} other {物品被查询 # 次}}</target>
+      </segment>
+    </unit>
+    <unit id="RXjwOtL" name="global.seen_counter.tag">
+      <segment state="translated">
+        <source>{count, plural, one {Tag consulted # time} other {Tag consulted # times}}</source>
+        <target>{count, plural, one {标签被查询 # 次} other {标签被查询 # 次}}</target>
+      </segment>
+    </unit>
+    <unit id="_5ewjw9" name="global.seen_counter.wishlist">
+      <segment state="translated">
+        <source>{count, plural, one {Wishlist consulted # time} other {Wishlist consulted # times}}</source>
+        <target>{count, plural, one {愿望单被查询 # 次} other {愿望单被查询 # 次}}</target>
+      </segment>
+    </unit>
+    <unit id="rrIqTJJ" name="global.date_formats.slash_dmy">
+      <segment state="translated">
+        <source>dd/mm/yyyy</source>
+        <target>dd/mm/yyyy</target>
+      </segment>
+    </unit>
+    <unit id="ZajD1iq" name="global.date_formats.slash_mdy">
+      <segment state="translated">
+        <source>mm/dd/yyyy</source>
+        <target>mm/dd/yyyy</target>
+      </segment>
+    </unit>
+    <unit id="YlAUA0n" name="global.date_formats.slash_ymd">
+      <segment state="translated">
+        <source>yyyy/mm/dd</source>
+        <target>yyyy/mm/dd</target>
+      </segment>
+    </unit>
+    <unit id="bCHcuOE" name="global.date_formats.hyphen_dmy">
+      <segment state="translated">
+        <source>dd-mm-yyyy</source>
+        <target>dd-mm-yyyy</target>
+      </segment>
+    </unit>
+    <unit id="SlR19of" name="global.date_formats.hyphen_mdy">
+      <segment state="translated">
+        <source>mm-dd-yyyy</source>
+        <target>mm-dd-yyyy</target>
+      </segment>
+    </unit>
+    <unit id="_NUVI5O" name="global.date_formats.hyphen_ymd">
+      <segment state="translated">
+        <source>yyyy-mm-dd</source>
+        <target>yyyy-mm-dd</target>
+      </segment>
+    </unit>
+    <unit id="VqbMfZ0" name="label.date_format">
+      <segment state="translated">
+        <source>Date format</source>
+        <target>日期格式</target>
+      </segment>
+    </unit>
+    <unit id="V5iMey4" name="global.optgroup.date_formats.slash">
+      <segment state="translated">
+        <source>Slash separated</source>
+        <target>以斜杠分隔</target>
+      </segment>
+    </unit>
+    <unit id="oYuZ6vx" name="global.optgroup.date_formats.hyphen">
+      <segment state="translated">
+        <source>Hyphen separated</source>
+        <target>以连字符分隔</target>
+      </segment>
+    </unit>
+    <unit id="_.ADUgd" name="breadcrumb.add_inventory">
+      <segment state="translated">
+        <source>Create a new inventory</source>
+        <target>创建新物品栏</target>
+      </segment>
+    </unit>
+    <unit id="Wjv..OL" name="menu.inventories">
+      <segment state="translated">
+        <source>Inventories</source>
+        <target>库存</target>
+      </segment>
+    </unit>
+    <unit id="iOJaZ01" name="global.entities.inventory">
+      <segment state="translated">
+        <source>Inventory</source>
+        <target>库存</target>
+      </segment>
+    </unit>
+    <unit id="O6z2.Zr" name="message.delete.inventory">
+      <segment state="translated">
+        <source>Are you sure you want to delete this inventory ?</source>
+        <target>您确定要删除此库存吗？</target>
+      </segment>
+    </unit>
+    <unit id="HFhQzXX" name="breadcrumb.add_tag_category">
+      <segment state="translated">
+        <source>Add tag category</source>
+        <target>添加标签分类</target>
+      </segment>
+    </unit>
+    <unit id="bjhCeK0" name="message.delete.tag_category">
+      <segment state="translated">
+        <source>Are you sure you want to delete this tag category ? It will be permanently lost...</source>
+        <target>您确定要删除此标签类别 ? 它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="G97C3_o" name="global.entities.tag_category">
+      <segment state="translated">
+        <source>Tag category</source>
+        <target>标签类别</target>
+      </segment>
+    </unit>
+    <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="k7MJQ82" name="label.country">
+      <segment state="translated">
+        <source>Country</source>
+        <target>国家</target>
+      </segment>
+    </unit>
+    <unit id="U8IBiON" name="menu.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>概览</target>
+      </segment>
+    </unit>
+    <unit id="mEDsKHk" name="label.locale">
+      <segment state="translated">
+        <source>Locale</source>
+        <target>语言</target>
+      </segment>
+    </unit>
+    <unit id="FA5XLbh" name="enum.history_filter_class.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>收藏集</target>
+      </segment>
+    </unit>
+    <unit id=".s91X7z" name="enum.history_filter_class.item">
+      <segment state="translated">
+        <source>Item</source>
+        <target>物品</target>
+      </segment>
+    </unit>
+    <unit id="Bbv77ja" name="enum.history_filter_class.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>标签</target>
+      </segment>
+    </unit>
+    <unit id="XKMAo1i" name="enum.history_filter_type.create">
+      <segment state="translated">
+        <source>Create</source>
+        <target>创建</target>
+      </segment>
+    </unit>
+    <unit id="4AoD3Gf" name="enum.history_filter_type.delete">
+      <segment state="translated">
+        <source>Delete</source>
+        <target>删除</target>
+      </segment>
+    </unit>
+    <unit id="2j7vQYy" name="breadcrumb.history_album">
+      <segment state="translated">
+        <source>History</source>
+        <target>历史</target>
+      </segment>
+    </unit>
+    <unit id="v31H5lC" name="log.album.created">
+      <segment state="translated">
+        <source>Album {label} was created</source>
+        <target>相册{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="tCaXH8D" name="enum.history_filter_class.album">
+      <segment state="translated">
+        <source>Album</source>
+        <target>相册</target>
+      </segment>
+    </unit>
+    <unit id="CHK7Dzf" name="enum.history_filter_class.wishlist">
+      <segment state="translated">
+        <source>Wishlist</source>
+        <target>愿望单</target>
+      </segment>
+    </unit>
+    <unit id="SBtfHBi" name="log.album.deleted">
+      <segment state="translated">
+        <source>Album {label} was deleted</source>
+        <target>相册{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="su92SFL" name="log.wishlist.deleted">
+      <segment state="translated">
+        <source>Wishlist {label} was deleted</source>
+        <target>愿望单{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="HJFRPmK" name="breadcrumb.history_wishlist">
+      <segment state="translated">
+        <source>History</source>
+        <target>历史</target>
+      </segment>
+    </unit>
+    <unit id="GBK.flU" name="log.wishlist.created">
+      <segment state="translated">
+        <source>Wishlist {label} was created</source>
+        <target>愿望单{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="GXrTvzK" name="label.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>相册</target>
+      </segment>
+    </unit>
+    <unit id="Qo7wr5F" name="label.wishlists_feature_enabled">
+      <segment state="translated">
+        <source>Wishlists</source>
+        <target>愿望单</target>
+      </segment>
+    </unit>
+    <unit id="d7dTHZ." name="label.tags_feature_enabled">
+      <segment state="translated">
+        <source>Tags</source>
+        <target>标签</target>
+      </segment>
+    </unit>
+    <unit id="5g5Fm08" name="label.signs_feature_enabled">
+      <segment state="translated">
+        <source>Signatures</source>
+        <target>展览</target>
+      </segment>
+    </unit>
+    <unit id="VDd2HS6" name="label.albums_feature_enabled">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>相册</target>
+      </segment>
+    </unit>
+    <unit id="hE9F5PK" name="label.loans_feature_enabled">
+      <segment state="translated">
+        <source>Loans</source>
+        <target>借出情况</target>
+      </segment>
+    </unit>
+    <unit id="_HAg.fc" name="label.templates_feature_enabled">
+      <segment state="translated">
+        <source>Templates</source>
+        <target>模版</target>
+      </segment>
+    </unit>
+    <unit id="FfhJCxR" name="label.history_feature_enabled">
+      <segment state="translated">
+        <source>History</source>
+        <target>历史</target>
+      </segment>
+    </unit>
+    <unit id="_G1H7r2" name="label.statistics_feature_enabled">
+      <segment state="translated">
+        <source>Statistics</source>
+        <target>统计</target>
+      </segment>
+    </unit>
+    <unit id="H1qEi4d" name="label.date">
+      <segment state="translated">
+        <source>Date</source>
+        <target>日期</target>
+      </segment>
+    </unit>
+    <unit id="YkTUtk1" name="label.file">
+      <segment state="translated">
+        <source>File</source>
+        <target>文件</target>
+      </segment>
+    </unit>
+    <unit id="BgCxgOK" name="label.related_items">
+      <segment state="translated">
+        <source>Add a related item</source>
+        <target>添加一个相关物品</target>
+      </segment>
+    </unit>
+    <unit id="nXb.5Pm" name="error.user_not_enabled">
+      <segment state="translated">
+        <source>User not activated</source>
+        <target>用户未激活</target>
+      </segment>
+    </unit>
+    <unit id="zFu6NvC" name="message.delete.user">
+      <segment state="translated">
+        <source>Are you sure you want to delete this user ? It will be permanently lost...</source>
+        <target>您确定要删除此用户 ? 它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="JD2NF8b" name="label.rating">
+      <segment state="translated">
+        <source>Rating</source>
+        <target>评分</target>
+      </segment>
+    </unit>
+    <unit id="39AtPxQ" name="label.number">
+      <segment state="translated">
+        <source>Number</source>
+        <target>数量</target>
+      </segment>
+    </unit>
+    <unit id="6faiqOu" name="global.visibilities.internal">
+      <segment state="translated">
+        <source>Internal</source>
+        <target>内部</target>
+      </segment>
+    </unit>
+    <unit id="iiWFLaI" name="label.new_password">
+      <segment state="translated">
+        <source>New password</source>
+        <target>新密码</target>
+      </segment>
+    </unit>
+    <unit id="uG3LLvE" name="label.repeat_new_password">
+      <segment state="translated">
+        <source>Repeat new password</source>
+        <target>重复新密码</target>
+      </segment>
+    </unit>
+    <unit id="jbdcgnz" name="label.link">
+      <segment state="translated">
+        <source>Link</source>
+        <target>链接</target>
+      </segment>
+    </unit>
+    <unit id="vyczzVz" name="global.display_mode.grid">
+      <segment state="translated">
+        <source>Grid</source>
+        <target>网格</target>
+      </segment>
+    </unit>
+    <unit id="cWn8jLd" name="global.display_mode.list">
+      <segment state="translated">
+        <source>List</source>
+        <target>列表</target>
+      </segment>
+    </unit>
+    <unit id="qcUvWAj" name="label.items_display_mode">
+      <segment state="translated">
+        <source>Display items in a</source>
+        <target>物品展示方式</target>
+      </segment>
+    </unit>
+    <unit id="maYJbRz" name="label.photos_display_mode">
+      <segment state="translated">
+        <source>Display photos in a</source>
+        <target>照片展示方式</target>
+      </segment>
+    </unit>
+    <unit id="Eqd5CcJ" name="label.items_sorting_property">
+      <segment state="translated">
+        <source>Sort items by</source>
+        <target>物品排序方式</target>
+      </segment>
+    </unit>
+    <unit id="5RTM2D6" name="label.items_sorting_direction">
+      <segment state="translated">
+        <source>Sort items order</source>
+        <target>排序物品顺序</target>
+      </segment>
+    </unit>
+    <unit id="g53kXhj" name="global.sorting_direction.asc">
+      <segment state="translated">
+        <source>Ascending</source>
+        <target>升序</target>
+      </segment>
+    </unit>
+    <unit id="a3O9P2o" name="global.sorting_direction.desc">
+      <segment state="translated">
+        <source>Descending</source>
+        <target>降序</target>
+      </segment>
+    </unit>
+    <unit id="wPplZ1u" name="label.items_default_template">
+      <segment state="translated">
+        <source>Default template applied to items</source>
+        <target>应用于物品的默认模板</target>
+      </segment>
+    </unit>
+    <unit id="M6VfIb7" name="label.textarea">
+      <segment state="translated">
+        <source>Long text</source>
+        <target>长文本</target>
+      </segment>
+    </unit>
+    <unit id="0ZXz2Ap" name="label.items_list_columns">
+      <segment state="translated">
+        <source>List columns</source>
+        <target>列表栏</target>
+      </segment>
+    </unit>
+    <unit id="RI32F3o" name="enum.history_filter_class.template">
+      <segment state="translated">
+        <source>Template</source>
+        <target>模板</target>
+      </segment>
+    </unit>
+    <unit id="cmatIVa" name="enum.history_filter_class.choice_list">
+      <segment state="translated">
+        <source>Choice list</source>
+        <target>选项列表</target>
+      </segment>
+    </unit>
+    <unit id="Oapz0PO" name="enum.history_filter_class.inventory">
+      <segment state="translated">
+        <source>Inventory</source>
+        <target>库存</target>
+      </segment>
+    </unit>
+    <unit id="BfIpT_W" name="enum.history_filter_class.tag_category">
+      <segment state="translated">
+        <source>Tag category</source>
+        <target>标签类别</target>
+      </segment>
+    </unit>
+    <unit id="7xj7gJl" name="enum.history_filter_class.photo">
+      <segment state="translated">
+        <source>Photo</source>
+        <target>照片</target>
+      </segment>
+    </unit>
+    <unit id="8EqSejP" name="enum.history_filter_class.wish">
+      <segment state="translated">
+        <source>Wish</source>
+        <target>愿望</target>
+      </segment>
+    </unit>
+    <unit id="qbaO3DI" name="log.photo.created">
+      <segment state="translated">
+        <source>Photo {label} was created</source>
+        <target>照片{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="LFxS4N." name="log.photo.deleted">
+      <segment state="translated">
+        <source>Photo {label} was deleted</source>
+        <target>照片{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="FetHbDe" name="log.tag_category.created">
+      <segment state="translated">
+        <source>Tag category {label} was created</source>
+        <target>标签类别{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="fQ0vpBr" name="log.tag_category.deleted">
+      <segment state="translated">
+        <source>Tag category {label} was deleted</source>
+        <target>标签类别{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="NXWixPs" name="log.template.created">
+      <segment state="translated">
+        <source>Template {label} was created</source>
+        <target>模版{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="ewUDkTE" name="log.template.deleted">
+      <segment state="translated">
+        <source>Template {label} was deleted</source>
+        <target>模版{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="_eUCsYY" name="log.inventory.created">
+      <segment state="translated">
+        <source>Inventory {label} was created</source>
+        <target>清单{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="poWDB.l" name="log.inventory.deleted">
+      <segment state="translated">
+        <source>Inventory {label} was deleted</source>
+        <target>清单{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="mtFIeHM" name="log.choice_list.created">
+      <segment state="translated">
+        <source>Choice list {label} was created</source>
+        <target>选择列表{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="rlvIomT" name="log.choice_list.deleted">
+      <segment state="translated">
+        <source>Choice list {label} was deleted</source>
+        <target>选择列表{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="upWFjf_" name="log.wish.created">
+      <segment state="translated">
+        <source>Wish {label} was created</source>
+        <target>愿望{label}已创建</target>
+      </segment>
+    </unit>
+    <unit id="7la3BTO" name="log.wish.deleted">
+      <segment state="translated">
+        <source>Wish {label} was deleted</source>
+        <target>愿望{label}已删除</target>
+      </segment>
+    </unit>
+    <unit id="o.z2uRm" name="label.list">
+      <segment state="translated">
+        <source>List</source>
+        <target>列表</target>
+      </segment>
+    </unit>
+    <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>添加新选项列表</target>
+      </segment>
+    </unit>
+    <unit id="nMiYLFJ" name="breadcrumb.edit_choice_list">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="ltgwfbq" name="menu.signs_shared">
+      <segment state="translated">
+        <source>{username}'s signatures</source>
+        <target>{username}的展览</target>
+      </segment>
+    </unit>
+    <unit id="tk6udpx" name="menu.statistics_shared">
+      <segment state="translated">
+        <source>{username}'s statistics</source>
+        <target>{username}的统计</target>
+      </segment>
+    </unit>
+    <unit id="xLcWFGm" name="menu.tags_shared">
+      <segment state="translated">
+        <source>{username}'s tags</source>
+        <target>{username}的标签</target>
+      </segment>
+    </unit>
+    <unit id="vd.6dAz" name="menu.wishlists_shared">
+      <segment state="translated">
+        <source>{username}'s wishlists</source>
+        <target>{username}的愿望单</target>
+      </segment>
+    </unit>
+    <unit id="Nl_I6SL" name="menu.albums_shared">
+      <segment state="translated">
+        <source>{username}'s albums</source>
+        <target>{username}的相册</target>
+      </segment>
+    </unit>
+    <unit id="aTQXfVF" name="label.list_show_visibility">
+      <segment state="translated">
+        <source>Show visibility column</source>
+        <target>显示可见性栏</target>
+      </segment>
+    </unit>
+    <unit id="tq3yBdM" name="label.list_show_actions">
+      <segment state="translated">
+        <source>Show actions column</source>
+        <target>显示动作栏</target>
+      </segment>
+    </unit>
+    <unit id="MWCAWm0" name="label.sub_collections_display_mode">
+      <segment state="translated">
+        <source>Display sub-collections in a</source>
+        <target>子收藏集展示方式</target>
+      </segment>
+    </unit>
+    <unit id="UKwQt9f" name="label.sub_albums_display_mode">
+      <segment state="translated">
+        <source>Display sub-albums in a</source>
+        <target>子相册展示方式</target>
+      </segment>
+    </unit>
+    <unit id="vAUGNHi" name="label.sub_wishlists_display_mode">
+      <segment state="translated">
+        <source>Display sub-wishlists in a</source>
+        <target>子愿望单展示方式</target>
+      </segment>
+    </unit>
+    <unit id="x6kN4XJ" name="label.list_show_number_of_children">
+      <segment state="translated">
+        <source>Show number of children</source>
+        <target>显示子项数量</target>
+      </segment>
+    </unit>
+    <unit id="HtDGsd0" name="label.list_show_number_of_items">
+      <segment state="translated">
+        <source>Show number of items</source>
+        <target>显示物品数量</target>
+      </segment>
+    </unit>
+    <unit id="8LEwIMR" name="label.wishes">
+      <segment state="translated">
+        <source>Wishes</source>
+        <target>愿望</target>
+      </segment>
+    </unit>
+    <unit id="rsBlJD0" name="label.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>照片</target>
+      </segment>
+    </unit>
+    <unit id="sQ83en6" name="label.wishlists_display_mode">
+      <segment state="translated">
+        <source>Display wishlists in a</source>
+        <target>愿望单展示方式</target>
+      </segment>
+    </unit>
+    <unit id="paiZ6qs" name="label.collections_display_mode">
+      <segment state="translated">
+        <source>Display collections in a</source>
+        <target>收藏集展示方式</target>
+      </segment>
+    </unit>
+    <unit id="kHAvmu7" name="label.albums_display_mode">
+      <segment state="translated">
+        <source>Display albums in a</source>
+        <target>相册展示方式</target>
+      </segment>
+    </unit>
+    <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="FGS9ySo" name="title.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="DomzBkb" name="title.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="WEd3Zlc" name="title.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="TnuDaOl" name="btn.add_price">
+      <segment state="translated">
+        <source>Price</source>
+        <target>价格</target>
+      </segment>
+    </unit>
+    <unit id="dYObaVv" name="message.caches_refreshed">
+      <segment state="translated">
+        <source>Caches successfully refreshed</source>
+        <target>已成功刷新缓存</target>
+      </segment>
+    </unit>
+    <unit id="NPKaPRX" name="btn.refresh_caches">
+      <segment state="translated">
+        <source>Refresh caches</source>
+        <target>刷新缓存</target>
+      </segment>
+    </unit>
+    <unit id="DsMeFhY" name="form.item_sorting.number_of_children">
+      <segment state="translated">
+        <source>Number of children</source>
+        <target>子项数量</target>
+      </segment>
+    </unit>
+    <unit id="O6Z2J6m" name="form.item_sorting.number_of_items">
+      <segment state="translated">
+        <source>Number of items</source>
+        <target>物品数量</target>
+      </segment>
+    </unit>
+    <unit id="0vnK4DY" name="menu.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>用户</target>
+      </segment>
+    </unit>
+    <unit id="TfMejxQ" name="label.search_in_data">
+      <segment state="translated">
+        <source>Search in data (for items and collections)</source>
+        <target>搜索数据 (物品和收藏集)</target>
+      </segment>
+    </unit>
+    <unit id="hnKIpTQ" name="label.apiplatform_version">
+      <segment state="translated">
+        <source>API Platform version</source>
+        <target>API 平台版本</target>
+      </segment>
+    </unit>
+    <unit id="gx6LCyR" name="global.themes.browser">
+      <segment state="translated">
+        <source>Default browser theme</source>
+        <target>默认浏览器主题</target>
+      </segment>
+    </unit>
+    <unit id="Vug3DkG" name="global.themes.light">
+      <segment state="translated">
+        <source>Light</source>
+        <target>亮色</target>
+      </segment>
+    </unit>
+    <unit id="8e9LycZ" name="global.themes.dark">
+      <segment state="translated">
+        <source>Dark</source>
+        <target>暗色</target>
+      </segment>
+    </unit>
+    <unit id="TWYZ00L" name="label.theme">
+      <segment state="translated">
+        <source>Theme</source>
+        <target>主题</target>
+      </segment>
+    </unit>
+    <unit id="m4zbXKM" name="btn.add_checkbox">
+      <segment state="translated">
+        <source>Checkbox</source>
+        <target>复选框</target>
+      </segment>
+    </unit>
+    <unit id="3XftsPN" name="label.search_in_data_by_default_enabled">
+      <segment state="translated">
+        <source>Search in data by default</source>
+        <target>以默认方式在数据中搜索</target>
+      </segment>
+    </unit>
+    <unit id="JL3jH0w" name="menu.api_documention">
+      <segment state="translated">
+        <source>API documentation</source>
+        <target>API 文档</target>
+      </segment>
+    </unit>
+    <unit id="wcFJTRH" name="tab.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>设置</target>
+      </segment>
+    </unit>
+    <unit id="l4xWhN8" name="menu.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>设置</target>
+      </segment>
+    </unit>
+    <unit id="4Q5t9Zu" name="title.edit_configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>设置</target>
+      </segment>
+    </unit>
+    <unit id="ACW22BU" name="global.configuration.thumbnails_format.keep_original">
+      <segment state="translated">
+        <source>Keep original</source>
+        <target>保持原始状态</target>
+      </segment>
+    </unit>
+    <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
+      <segment state="translated">
+        <source>JPEG</source>
+        <target>JPEG</target>
+      </segment>
+    </unit>
+    <unit id="ILesFNS" name="global.configuration.thumbnails_format.png">
+      <segment state="translated">
+        <source>PNG</source>
+        <target>PNG</target>
+      </segment>
+    </unit>
+    <unit id="FNiUGVN" name="global.configuration.thumbnails_format.webp">
+      <segment state="translated">
+        <source>WEBP</source>
+        <target>WEBP</target>
+      </segment>
+    </unit>
+    <unit id="Ttjm83x" name="global.configuration.thumbnails_format.avif">
+      <segment state="translated">
+        <source>AVIF</source>
+        <target>AVIF</target>
+      </segment>
+    </unit>
+    <unit id="btvfChU" name="label.thumbnails_format">
+      <segment state="translated">
+        <source>Thumbnails format</source>
+        <target>缩略图格式</target>
+      </segment>
+    </unit>
+    <unit id="r58OOnk" name="message.configuration_updated">
+      <segment state="translated">
+        <source>Configuration updated</source>
+        <target>配置已更新</target>
+      </segment>
+    </unit>
+    <unit id="YX0yhdx" name="tooltip.cancel_modifications">
+      <segment state="translated">
+        <source>Cancel modifications</source>
+        <target>取消修改</target>
+      </segment>
+    </unit>
+    <unit id="oAD2Kex" name="tooltip.remove_thumbnail">
+      <segment state="translated">
+        <source>Remove thumbnail</source>
+        <target>删除缩略图</target>
+      </segment>
+    </unit>
+    <unit id="8QwwFtM" name="title.custom_css">
+      <segment state="translated">
+        <source>Custom CSS</source>
+        <target>自定义CSS</target>
+      </segment>
+    </unit>
+    <unit id="OCFAuxO" name="label.custom_light_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for light theme</source>
+        <target>自定义亮色主题CSS</target>
+      </segment>
+    </unit>
+    <unit id="iSj6Yq6" name="label.custom_dark_theme_css">
+      <segment state="translated">
+        <source>Custom CSS for dark theme</source>
+        <target>自定义暗色主题CSS</target>
+      </segment>
+    </unit>
+    <unit id="tgAUZOn" name="message.custom_css_colors_help">
+      <segment state="translated">
+        <source>To change the theme colors, copy and paste the following code in the text area and update the colors as needed.</source>
+        <target>要更改主题颜色，请复制并粘贴以下代码到文本区域，并根据需要更改颜色。</target>
+      </segment>
+    </unit>
+    <unit id="Odut9ks" name="message.custom_css_properties_help">
+      <segment state="translated">
+        <source>For more fine-grained modifications, you can also add custom CSS properties.</source>
+        <target>对于更多精细的修改，您也可以添加自定义CSS 属性。</target>
+      </segment>
+    </unit>
+    <unit id="tQOO9SX" name="title.customize_light_theme">
+      <segment state="translated">
+        <source>Customize light theme</source>
+        <target>自定义亮色主题</target>
+      </segment>
+    </unit>
+    <unit id="VwEpz4c" name="title.customize_dark_theme">
+      <segment state="translated">
+        <source>Customize dark theme</source>
+        <target>自定义暗色主题</target>
+      </segment>
+    </unit>
+    <unit id="UZ5psYq" name="message.show_help_for_light_theme">
+      <segment state="translated">
+        <source>Show help for light theme</source>
+        <target>显示亮色主题帮助</target>
+      </segment>
+    </unit>
+    <unit id="LlfrKW3" name="message.show_help_for_dark_theme">
+      <segment state="translated">
+        <source>Show help for dark theme</source>
+        <target>显示暗色主题帮助</target>
+      </segment>
+    </unit>
+    <unit id="VzBOkPf" name="label.checkbox">
+      <segment state="translated">
+        <source>Checkbox</source>
+        <target>复选框</target>
+      </segment>
+    </unit>
+    <unit id="TfoPMdx" name="btn.add_list">
+      <segment state="translated">
+        <source>List</source>
+        <target>列表</target>
+      </segment>
+    </unit>
+    <unit id="hbMADfF" name="btn.add_list_element">
+      <segment state="translated">
+        <source>Add list element</source>
+        <target>添加列表元素</target>
+      </segment>
+    </unit>
+    <unit id="3UpvF8S" name="menu.scrapers">
+      <segment state="translated">
+        <source>Scrapers</source>
+        <target>刮削器</target>
+      </segment>
+    </unit>
+    <unit id="c8N1gqs" name="tooltip.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>添加新刮削器</target>
+      </segment>
+    </unit>
+    <unit id="0Skvou0" name="breadcrumb.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>添加新刮削器</target>
+      </segment>
+    </unit>
+    <unit id="orjuiFY" name="title.add_scraper">
+      <segment state="translated">
+        <source>Add a new scraper</source>
+        <target>添加新刮削器</target>
+      </segment>
+    </unit>
+    <unit id="fCfS5h4" name="label.name_path">
+      <segment state="translated">
+        <source>Name path</source>
+        <target>名称路径</target>
+      </segment>
+    </unit>
+    <unit id="TQZi6HZ" name="label.image_path">
+      <segment state="translated">
+        <source>Image path</source>
+        <target>图像路径</target>
+      </segment>
+    </unit>
+    <unit id="j4zVta3" name="label.path">
+      <segment state="translated">
+        <source>Path</source>
+        <target>路径</target>
+      </segment>
+    </unit>
+    <unit id="UxUN4hz" name="btn.add_data_path">
+      <segment state="translated">
+        <source>Add data path</source>
+        <target>添加数据路径</target>
+      </segment>
+    </unit>
+    <unit id="WoECGqp" name="btn.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>刮削</target>
+      </segment>
+    </unit>
+    <unit id="JJiTxDb" name="title.scrap">
+      <segment state="translated">
+        <source>Scrap</source>
+        <target>刮削</target>
+      </segment>
+    </unit>
+    <unit id="YGKpgy8" name="label.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>刮削器</target>
+      </segment>
+    </unit>
+    <unit id="rfCyU5h" name="message.delete.scraper">
+      <segment state="translated">
+        <source>Are you sure you want to delete this scraper ? It will be permanently lost...</source>
+        <target>您确定要删除此刮削器？它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="pVpG91b" name="global.entities.scraper">
+      <segment state="translated">
+        <source>Scraper</source>
+        <target>刮削器</target>
+      </segment>
+    </unit>
+    <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>编辑</target>
+      </segment>
+    </unit>
+    <unit id="PwaCRxg" name="title.edit_scraper">
+      <segment state="translated">
+        <source>Edit scraper {scraper}</source>
+        <target>编辑刮削器{scraper}</target>
+      </segment>
+    </unit>
+    <unit id="pQMd2KQ" name="message.wiki.scrapper">
+      <segment state="translated">
+        <source>See wiki for help</source>
+        <target>查看wiki以获取帮助</target>
+      </segment>
+    </unit>
+    <unit id="2T801sa" name="tooltip.export">
+      <segment state="translated">
+        <source>Export</source>
+        <target>导出</target>
+      </segment>
+    </unit>
+    <unit id="0qbEAs0" name="tooltip.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>导入</target>
+      </segment>
+    </unit>
+    <unit id="4q1Sf3P" name="btn.upload">
+      <segment state="translated">
+        <source>Upload</source>
+        <target>上传</target>
+      </segment>
+    </unit>
+    <unit id="M7PzMIt" name="title.import_scraper">
+      <segment state="translated">
+        <source>Import scraper from JSON file</source>
+        <target>从 JSON 文件导入刮削器</target>
+      </segment>
+    </unit>
+    <unit id="Hklmnjp" name="btn.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>导入</target>
+      </segment>
+    </unit>
+    <unit id="gGSqvwG" name="message.scraper_added">
+      <segment state="translated">
+        <source>Scraper {scraper} has been added</source>
+        <target>刮削器{scraper}已添加</target>
+      </segment>
+    </unit>
+    <unit id="r7aNcN4" name="message.scraper_edited">
+      <segment state="translated">
+        <source>Scraper {scraper} has been updated</source>
+        <target>刮削器{scraper}已更新</target>
+      </segment>
+    </unit>
+    <unit id="rX55M3v" name="message.scraper_deleted">
+      <segment state="translated">
+        <source>Scraper {scraper} was deleted</source>
+        <target>刮削器{scraper}已删除</target>
+      </segment>
+    </unit>
+    <unit id="DuFvrmE" name="message.scraper_imported">
+      <segment state="translated">
+        <source>Scraper {scraper} was imported</source>
+        <target>刮削器{scraper}已导入</target>
+      </segment>
+    </unit>
+    <unit id="k4Ssjg4" name="label.scraping_feature_enabled">
+      <segment state="translated">
+        <source>Scraping</source>
+        <target>刮削中</target>
+      </segment>
+    </unit>
+    <unit id="zrNqfUb" name="label.scrap_name">
+      <segment state="translated">
+        <source>Scrap name</source>
+        <target>刮削名称</target>
+      </segment>
+    </unit>
+    <unit id="DCx9jQb" name="label.scrap_image">
+      <segment state="translated">
+        <source>Scrap image</source>
+        <target>刮削图片</target>
+      </segment>
+    </unit>
+    <unit id="0rmld0o" name="message.scraper_import_error">
+      <segment state="translated">
+        <source>Error while importing, incorrect file format</source>
+        <target>导入时出错，文件格式错误</target>
+      </segment>
+    </unit>
+    <unit id="aQEHOsY" name="label.scraped_from_url">
+      <segment state="translated">
+        <source>Scraped from</source>
+        <target>刮削自</target>
+      </segment>
+    </unit>
+    <unit id="EUgbudS" name="btn.scrap_html_file">
+      <segment state="translated">
+        <source>Scrap HTML file</source>
+        <target>刮削HTML文件</target>
+      </segment>
+    </unit>
+    <unit id="jy9YnDE" name="btn.scrap_url">
+      <segment state="translated">
+        <source>Scrap URL</source>
+        <target>刮削URL</target>
+      </segment>
+    </unit>
+    <unit id="0ET5fPK" name="label.url_pattern">
+      <segment state="translated">
+        <source>Url pattern</source>
+        <target>URL模板</target>
+      </segment>
+    </unit>
+    <unit id="FPWuWud" name="btn.ok">
+      <segment state="translated">
+        <source>OK</source>
+        <target>OK</target>
+      </segment>
+    </unit>
+    <unit id="i5Tdb0O" name="message.delete.choice-list">
+      <segment state="translated">
+        <source>Are you sure you want to delete this choice list ? It will be permanently lost...</source>
+        <target>您确定要删除此选择列表吗？它将永久丢失...</target>
+      </segment>
+    </unit>
+    <unit id="1SR04M0" name="breadcrumb.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>物品刮削器</target>
+      </segment>
+    </unit>
+    <unit id="rce3nth" name="breadcrumb.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>收藏集刮削器</target>
+      </segment>
+    </unit>
+    <unit id="lWm9FV3" name="breadcrumb.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>愿望刮削器</target>
+      </segment>
+    </unit>
+    <unit id="NK6205q" name="tab.item_scrapers">
+      <segment state="translated">
+        <source>Item scrapers</source>
+        <target>物品刮削器</target>
+      </segment>
+    </unit>
+    <unit id="QLWFaEE" name="tab.collection_scrapers">
+      <segment state="translated">
+        <source>Collection scrapers</source>
+        <target>收藏集刮削器</target>
+      </segment>
+    </unit>
+    <unit id="RB94Jlx" name="tab.wish_scrapers">
+      <segment state="translated">
+        <source>Wish scrapers</source>
+        <target>愿望刮削器</target>
+      </segment>
+    </unit>
+    <unit id="OJ77gpR" name="counter.item_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# item scraper} other {# item scrapers}}</source>
+        <target>{count, plural, one {# 物品刮削器} other {# 物品刮削器}}</target>
+      </segment>
+    </unit>
+    <unit id="noR9AMY" name="counter.collection_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# collection scraper} other {# collection scrapers}}</source>
+        <target>{count, plural, one {# 收藏集刮削器} other {# 收藏集刮削器}}</target>
+      </segment>
+    </unit>
+    <unit id="cwiiTlV" name="counter.wish_scrapers">
+      <segment state="translated">
+        <source>{count, plural, one {# wish scraper} other {# wish scrapers}}</source>
+        <target>{count, plural, one {# 愿望刮削器} other {# 愿望刮削器}}</target>
+      </segment>
+    </unit>
+    <unit id="KLXszaB" name="label.price_path">
+      <segment state="translated">
+        <source>Price path</source>
+        <target>价格路径</target>
+      </segment>
+    </unit>
+    <unit id="qR8RuNn" name="label.display_items_name_in_grid_view">
+      <segment state="translated">
+        <source>Display items name in grid view</source>
+        <target>以网格视图展示物品名称</target>
+      </segment>
+    </unit>
+    <unit id="QEwp7eI" name="label.frankenphp_version">
+      <segment state="translated">
+        <source>FrankenPHP version</source>
+        <target>FrankenPHP 版本</target>
+      </segment>
+    </unit>
+    <unit id="Xi6swbH" name="btn.add_video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>视频</target>
+      </segment>
+    </unit>
+    <unit id="K5G7aFy" name="label.show_item_quantities">
+      <segment state="translated">
+        <source>Show item quantities</source>
+        <target>显示物品数量</target>
+      </segment>
+    </unit>
+    <unit id="wgg5Wgv" name="form.item_sorting.quantity">
+      <segment state="translated">
+        <source>Quantity</source>
+        <target>数量</target>
+      </segment>
+    </unit>
+    <unit id="npBJeAW" name="label.enable_metrics">
+      <segment state="translated">
+        <source>Enable metrics</source>
+        <target>启用metrics API</target>
+      </segment>
+    </unit>
+    <unit id="zNpYLvW" name="label.display_mode">
+      <segment state="translated">
+        <source>Display mode</source>
+        <target>展示模式</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
