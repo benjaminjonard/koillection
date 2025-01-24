@@ -3589,5 +3589,11 @@
         <target>Включить метрики</target>
       </segment>
     </unit>
+    <unit id="Lpjg5ZJ" name="global.entities.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Найти</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

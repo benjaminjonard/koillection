@@ -3595,5 +3595,11 @@
         <target>展示模式</target>
       </segment>
     </unit>
+    <unit id="Lpjg5ZJ" name="global.entities.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
