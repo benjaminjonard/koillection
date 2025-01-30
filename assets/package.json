@@ -13,7 +13,7 @@
     "@babel/preset-env": "7.26.0",
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.4",
-    "@symfony/stimulus-bridge": "3.2.3",
+    "@symfony/stimulus-bridge": "4.0.0",
     "@symfony/webpack-encore": "5.0.1",
     "copy-webpack-plugin": "12.0.2",
     "core-js": "3.40.0",
