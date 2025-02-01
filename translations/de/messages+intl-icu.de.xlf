@@ -3595,10 +3595,220 @@
         <target>Anzeigemodus</target>
       </segment>
     </unit>
+    <unit id="vC8jN7a" name="tab.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Fehler</target>
+      </segment>
+    </unit>
+    <unit id="fQRayPd" name="menu.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Fehler</target>
+      </segment>
+    </unit>
+    <unit id="CZTLE2r" name="title.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Fehler</target>
+      </segment>
+    </unit>
+    <unit id="syP2FBE" name="label.code">
+      <segment state="translated">
+        <source>Code</source>
+        <target>Code</target>
+      </segment>
+    </unit>
+    <unit id="4Acswj3" name="label.level">
+      <segment state="translated">
+        <source>Level</source>
+        <target>Level</target>
+      </segment>
+    </unit>
+    <unit id="BTCTYyM" name="label.message">
+      <segment state="translated">
+        <source>Message</source>
+        <target>Nachricht</target>
+      </segment>
+    </unit>
+    <unit id="ueKYyVj" name="title.error">
+      <segment state="translated">
+        <source>Error</source>
+        <target>Fehler</target>
+      </segment>
+    </unit>
+    <unit id="VCoUwHa" name="label.last_occurrence">
+      <segment state="translated">
+        <source>Last occurrence</source>
+        <target>Letztes Vorkommen</target>
+      </segment>
+    </unit>
+    <unit id="UuNgqqe" name="label.count">
+      <segment state="translated">
+        <source>Count</source>
+        <target>Anzahl</target>
+      </segment>
+    </unit>
+    <unit id="sfcoCPq" name="tooltip.details">
+      <segment state="translated">
+        <source>Details</source>
+        <target>Details</target>
+      </segment>
+    </unit>
+    <unit id="Z3r5GZo" name="global.advanced_item_search.type.datum">
+      <segment state="translated">
+        <source>Item data</source>
+        <target>Elementdaten</target>
+      </segment>
+    </unit>
+    <unit id="i202Q5I" name="global.advanced_item_search.type.name">
+      <segment state="translated">
+        <source>Item name</source>
+        <target>Elementname</target>
+      </segment>
+    </unit>
+    <unit id="g8GYcYx" name="global.advanced_item_search.operator.equal">
+      <segment state="translated">
+        <source>=</source>
+        <target>=</target>
+      </segment>
+    </unit>
+    <unit id="yrgsw9I" name="global.advanced_item_search.operator.superior">
+      <segment state="translated">
+        <source>Superior</source>
+        <target>Größer</target>
+      </segment>
+    </unit>
+    <unit id="cWoC6ft" name="global.advanced_item_search.operator.superior_or_equal">
+      <segment state="translated">
+        <source>Superior or equal</source>
+        <target>Größer oder gleich</target>
+      </segment>
+    </unit>
+    <unit id="HTWZ4VL" name="global.advanced_item_search.operator.inferior">
+      <segment state="translated">
+        <source>Inferior</source>
+        <target>Kleiner</target>
+      </segment>
+    </unit>
+    <unit id="N2eRW7g" name="global.advanced_item_search.operator.inferior_or_equal">
+      <segment state="translated">
+        <source>Inferior or equal</source>
+        <target>Kleiner oder gleich</target>
+      </segment>
+    </unit>
+    <unit id="Ixftgmq" name="global.advanced_item_search.operator.contains">
+      <segment state="translated">
+        <source>Contains</source>
+        <target>Enthält</target>
+      </segment>
+    </unit>
+    <unit id="Nnq80zp" name="global.advanced_item_search.condition.and">
+      <segment state="translated">
+        <source>AND</source>
+        <target>UND</target>
+      </segment>
+    </unit>
+    <unit id="tuMpJTi" name="global.advanced_item_search.condition.or">
+      <segment state="translated">
+        <source>OR</source>
+        <target>ODER</target>
+      </segment>
+    </unit>
+    <unit id="XAPwUuS" name="label.item_data">
+      <segment state="translated">
+        <source>Item data</source>
+        <target>Elementdaten</target>
+      </segment>
+    </unit>
+    <unit id="vkFJA2N" name="label.operator">
+      <segment state="translated">
+        <source>Operator</source>
+        <target>Operator</target>
+      </segment>
+    </unit>
+    <unit id="VCbf5xj" name="btn.add_filter">
+      <segment state="translated">
+        <source>Add filter</source>
+        <target>Filter hinzufügen</target>
+      </segment>
+    </unit>
+    <unit id="uGUtdPP" name="label.condition">
+      <segment state="translated">
+        <source>Condition</source>
+        <target>Bedingung</target>
+      </segment>
+    </unit>
+    <unit id="2mInqTu" name="menu.advanced_item_search">
+      <segment state="translated">
+        <source>Advanced item search</source>
+        <target>Erweiterte Elementsuche</target>
+      </segment>
+    </unit>
+    <unit id="JidyJQJ" name="btn.add_block">
+      <segment state="translated">
+        <source>Add block</source>
+        <target>Block hinzufügen</target>
+      </segment>
+    </unit>
+    <unit id="QZjl6ru" name="btn.save_and_submit">
+      <segment state="translated">
+        <source>Save and submit</source>
+        <target>Speichern und absenden</target>
+      </segment>
+    </unit>
+    <unit id="HbtmbsF" name="title.save_and_submit">
+      <segment state="translated">
+        <source>Save and submit</source>
+        <target>Speichern und absenden</target>
+      </segment>
+    </unit>
     <unit id="Lpjg5ZJ" name="global.entities.search">
       <segment state="translated">
         <source>Search</source>
         <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="BjdqHhI" name="title.results">
+      <segment state="translated">
+        <source>Results</source>
+        <target>Ergebnisse</target>
+      </segment>
+    </unit>
+    <unit id="rTp25O3" name="btn.show_filters">
+      <segment state="translated">
+        <source>Show filters</source>
+        <target>Filter anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="y35Yfwi" name="btn.hide_filters">
+      <segment state="translated">
+        <source>Hide filters</source>
+        <target>Filter ausblenden</target>
+      </segment>
+    </unit>
+    <unit id="Ak8IE4a" name="tooltip.saved-searches">
+      <segment state="translated">
+        <source>Saved searches</source>
+        <target>Gepeicherte Suchen</target>
+      </segment>
+    </unit>
+    <unit id="cH7cMc2" name="menu.saved_searches">
+      <segment state="translated">
+        <source>Saved searches</source>
+        <target>Gepeicherte Suchen</target>
+      </segment>
+    </unit>
+    <unit id="JyETMRr" name="message.search_deleted">
+      <segment state="translated">
+        <source>Search {search} has been deleted</source>
+        <target>Suche {search} wurde gelöscht</target>
+      </segment>
+    </unit>
+    <unit id="8uIiviK" name="message.delete.search">
+      <segment state="translated">
+        <source>Are you sure you want to delete this search ? It will be permanently lost...</source>
+        <target>Wollen Sie diese Suche wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden...</target>
       </segment>
     </unit>
   </file>

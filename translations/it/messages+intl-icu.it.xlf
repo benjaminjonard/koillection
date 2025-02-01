@@ -82,7 +82,7 @@
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment state="translated">
         <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
-        <target>{count, plural, one {# oggetto taggato} other {# oggetti taggati}}</target>
+        <target>{count, plural, one {# elementi taggati} other {# elementi taggati}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
@@ -3595,10 +3595,40 @@
         <target>Modalità di visualizzazione</target>
       </segment>
     </unit>
+    <unit id="Z3r5GZo" name="global.advanced_item_search.type.datum">
+      <segment state="translated">
+        <source>Item data</source>
+        <target>Dati dell'elemento</target>
+      </segment>
+    </unit>
+    <unit id="i202Q5I" name="global.advanced_item_search.type.name">
+      <segment state="translated">
+        <source>Item name</source>
+        <target>Nome elemento</target>
+      </segment>
+    </unit>
+    <unit id="XAPwUuS" name="label.item_data">
+      <segment state="translated">
+        <source>Item data</source>
+        <target>Dati dell'elemento</target>
+      </segment>
+    </unit>
+    <unit id="2mInqTu" name="menu.advanced_item_search">
+      <segment state="translated">
+        <source>Advanced item search</source>
+        <target>Ricerca avanzata</target>
+      </segment>
+    </unit>
     <unit id="Lpjg5ZJ" name="global.entities.search">
       <segment state="translated">
         <source>Search</source>
         <target>Cerca</target>
+      </segment>
+    </unit>
+    <unit id="8uIiviK" name="message.delete.search">
+      <segment state="translated">
+        <source>Are you sure you want to delete this search ? It will be permanently lost...</source>
+        <target>Sei sicuro di voler cancellare questa ricerca? Sarà persa per sempre...</target>
       </segment>
     </unit>
   </file>
