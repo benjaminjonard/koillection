@@ -3811,5 +3811,23 @@
         <target>Tem certeza de que deseja excluir esta pesquisa? Será perdido permanentemente...</target>
       </segment>
     </unit>
+    <unit id="jSsVN8W" name="global.advanced_item_search.operator.not_equal">
+      <segment state="translated">
+        <source>!=</source>
+        <target>!=</target>
+      </segment>
+    </unit>
+    <unit id="7hER81d" name="global.advanced_item_search.operator.does_not_contain">
+      <segment state="translated">
+        <source>Does not contain</source>
+        <target>Não contém</target>
+      </segment>
+    </unit>
+    <unit id="lWyVrKn" name="label.number_of_results">
+      <segment state="translated">
+        <source>Number of results</source>
+        <target>Número de resultados</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
