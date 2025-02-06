@@ -34,13 +34,13 @@
     <unit id="PjAj0XF" name="error.username.incorrect">
       <segment state="translated">
         <source>Username must have between 2 and 32 characters (only letters, numbers and underscores are allowed)</source>
-        <target>El nombre de usuario tiene que tener entre 2 y 32 caracteres (sólo se permiten letras, números y guiones bajos)</target>
+        <target>El nombre de usuario tiene que tener entre 2 y 32 caracteres (solo se permiten letras, números y guiones bajos)</target>
       </segment>
     </unit>
     <unit id="4Bdfyy1" name="error.password.incorrect">
       <segment state="translated">
         <source>Your password must contain at least 8 characters (with at least 1 letter and 1 number)</source>
-        <target>Tu contraseña debe tener al menos 8 caracteres (con al menos una ltra y un número)</target>
+        <target>Tu contraseña debe tener al menos 8 caracteres (con al menos 1 letra y 1 número)</target>
       </segment>
     </unit>
     <unit id="4m1Sgo3" name="error.password.not_matching">
@@ -76,7 +76,37 @@
     <unit id="tg4uV16" name="error.upload.not_enough_space">
       <segment state="translated">
         <source>There is not enough space left on your account to execute this action</source>
-        <target>No hay suficiente es</target>
+        <target>No hay suficiente espacio en tu cuenta para ejecutar esta acción</target>
+      </segment>
+    </unit>
+    <unit id="vwTDAxs" name="error.datum.value.rating">
+      <segment state="translated">
+        <source>Value must be a string representation of an integer between '0' and '10'</source>
+        <target>El valor debe ser una representación en forma de cadena de un entero entre '0' y '10'</target>
+      </segment>
+    </unit>
+    <unit id="1ptFEJZ" name="error.datum.value.checkbox">
+      <segment state="translated">
+        <source>Value must be '0' or '1'</source>
+        <target>El valor debe ser '0' o '1'</target>
+      </segment>
+    </unit>
+    <unit id="Sm7SLSo" name="error.datum.value.price">
+      <segment state="translated">
+        <source>Value must be a string representation of a positive number</source>
+        <target>El valor debe ser una representación en cadena de un número positivo</target>
+      </segment>
+    </unit>
+    <unit id="Ho12PpQ" name="error.datum.value.number">
+      <segment state="translated">
+        <source>Value must be a string representation of a number like '3', '3.24', '-4'</source>
+        <target>El valor debe ser una representación en cadena de un número como '3', '3.24', '-4'</target>
+      </segment>
+    </unit>
+    <unit id="TGNG5G2" name="error.datum.value.country">
+      <segment state="translated">
+        <source>Value must be a valid 2 letters country code like 'FR'</source>
+        <target>El valor debe ser un código de país válido de 2 letras como 'FR'</target>
       </segment>
     </unit>
     <unit id="bZ6z5fo" name="error.datum.value.date">

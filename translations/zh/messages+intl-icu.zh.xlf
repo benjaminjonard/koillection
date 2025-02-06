@@ -3601,5 +3601,11 @@
         <target>搜索</target>
       </segment>
     </unit>
+    <unit id="W5CdTk5" name="global.advanced_item_search.type.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>收藏集</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

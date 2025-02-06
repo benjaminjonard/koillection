@@ -3631,5 +3631,11 @@
         <target>Sei sicuro di voler cancellare questa ricerca? Sarà persa per sempre...</target>
       </segment>
     </unit>
+    <unit id="W5CdTk5" name="global.advanced_item_search.type.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>Collezione</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

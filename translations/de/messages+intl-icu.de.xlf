@@ -3811,5 +3811,11 @@
         <target>Wollen Sie diese Suche wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden...</target>
       </segment>
     </unit>
+    <unit id="W5CdTk5" name="global.advanced_item_search.type.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>Sammlung</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

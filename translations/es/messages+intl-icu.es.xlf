@@ -3589,10 +3589,52 @@
         <target>Habilitar métricas</target>
       </segment>
     </unit>
+    <unit id="zNpYLvW" name="label.display_mode">
+      <segment state="translated">
+        <source>Display mode</source>
+        <target>Modo de visualización</target>
+      </segment>
+    </unit>
+    <unit id="vC8jN7a" name="tab.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Errores</target>
+      </segment>
+    </unit>
+    <unit id="fQRayPd" name="menu.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Errores</target>
+      </segment>
+    </unit>
+    <unit id="CZTLE2r" name="title.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Errores</target>
+      </segment>
+    </unit>
+    <unit id="VCoUwHa" name="label.last_occurrence">
+      <segment state="translated">
+        <source>Last occurrence</source>
+        <target>Última aparición</target>
+      </segment>
+    </unit>
     <unit id="Lpjg5ZJ" name="global.entities.search">
       <segment state="translated">
         <source>Search</source>
         <target>Buscar</target>
+      </segment>
+    </unit>
+    <unit id="dP7Y9jv" name="global.advanced_item_search.operator.does_not_exist">
+      <segment state="translated">
+        <source>Does not exist</source>
+        <target>No existe</target>
+      </segment>
+    </unit>
+    <unit id="W5CdTk5" name="global.advanced_item_search.type.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>Colección</target>
       </segment>
     </unit>
   </file>

@@ -3829,5 +3829,35 @@
         <target>Número de resultados</target>
       </segment>
     </unit>
+    <unit id="Fpd6bpF" name="global.advanced_item_search.operator.empty">
+      <segment state="translated">
+        <source>Empty</source>
+        <target>Vazio</target>
+      </segment>
+    </unit>
+    <unit id="DXianrE" name="global.advanced_item_search.operator.not_empty">
+      <segment state="translated">
+        <source>Not empty</source>
+        <target>Não vazio</target>
+      </segment>
+    </unit>
+    <unit id="rIkc77v" name="global.advanced_item_search.operator.exists">
+      <segment state="translated">
+        <source>Exists</source>
+        <target>Existe</target>
+      </segment>
+    </unit>
+    <unit id="dP7Y9jv" name="global.advanced_item_search.operator.does_not_exist">
+      <segment state="translated">
+        <source>Does not exist</source>
+        <target>Não existe</target>
+      </segment>
+    </unit>
+    <unit id="W5CdTk5" name="global.advanced_item_search.type.collection">
+      <segment state="translated">
+        <source>Collection</source>
+        <target>Coleção</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
