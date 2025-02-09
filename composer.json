@@ -73,7 +73,7 @@
         "dama/doctrine-test-bundle": "8.2.2",
         "friendsofphp/php-cs-fixer": "3.68.5",
         "justinrainbow/json-schema": "6.1.0",
-        "phpunit/php-code-coverage": "11.0.8",
+        "phpunit/php-code-coverage": "12.0.2",
         "phpunit/phpunit": "11.5.7",
         "rector/rector": "2.0.8",
         "symfony/maker-bundle": "1.62.1",
