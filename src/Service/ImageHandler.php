@@ -35,6 +35,7 @@ class ImageHandler
 
         if ($file instanceof UploadedFile) {
             $user = $this->security->getUser();
+
             if ($this->env === 'test') {
                 $relativePath = '/tmp/';
                 $absolutePath = '/tmp/';
@@ -44,7 +45,7 @@ class ImageHandler
             }
 
             $generatedName = $this->randomStringGenerator->generate(20);
-            $extension = $file->guessExtension();
+            $extension = $file->guessExtension()  ?? 'png';
             $fileName = $generatedName . '.' . $extension;
             $file->move($absolutePath, $fileName);
 

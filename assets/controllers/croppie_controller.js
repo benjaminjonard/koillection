@@ -39,16 +39,14 @@ export default class extends Controller {
         let form = this.element.querySelector('.file-input');
         let self = this;
 
-        if (this.inputTarget.files && this.inputTarget.files[0]) {
-            this.croppie.result({
-                type: "canvas",
-                size: { width: 200, height: 200 }
-            })
-            .then(function(imgBase64) {
-                form.value = imgBase64;
-                self.currentPreviewTarget.src = imgBase64;
-            });
-        }
+        this.croppie.result({
+            type: "canvas",
+            size: { width: 200, height: 200 }
+        })
+        .then(function(imgBase64) {
+            form.value = imgBase64;
+            self.currentPreviewTarget.src = imgBase64;
+        });
     }
 
     async injectCroppie({ detail: { content } }) {
