@@ -3333,14 +3333,14 @@
     </unit>
     <unit id="WoECGqp" name="btn.scrap">
       <segment state="translated">
-        <source>Scrap</source>
-        <target>Scrap</target>
+        <source>Scrape</source>
+        <target>Scrape</target>
       </segment>
     </unit>
     <unit id="JJiTxDb" name="title.scrap">
       <segment state="translated">
-        <source>Scrap</source>
-        <target>Scrap</target>
+        <source>Scrape</source>
+        <target>Scrape</target>
       </segment>
     </unit>
     <unit id="YGKpgy8" name="label.scraper">
@@ -3441,14 +3441,14 @@
     </unit>
     <unit id="zrNqfUb" name="label.scrap_name">
       <segment state="translated">
-        <source>Scrap name</source>
-        <target>Scrap name</target>
+        <source>Scrape name</source>
+        <target>Scrape name</target>
       </segment>
     </unit>
     <unit id="DCx9jQb" name="label.scrap_image">
       <segment state="translated">
-        <source>Scrap image</source>
-        <target>Scrap image</target>
+        <source>Scrape image</source>
+        <target>Scrape image</target>
       </segment>
     </unit>
     <unit id="0rmld0o" name="message.scraper_import_error">
@@ -3465,14 +3465,14 @@
     </unit>
     <unit id="EUgbudS" name="btn.scrap_html_file">
       <segment state="translated">
-        <source>Scrap HTML file</source>
-        <target>Scrap HTML file</target>
+        <source>Scrape HTML file</source>
+        <target>Scrape HTML file</target>
       </segment>
     </unit>
     <unit id="jy9YnDE" name="btn.scrap_url">
       <segment state="translated">
-        <source>Scrap URL</source>
-        <target>Scrap URL</target>
+        <source>Scrape URL</source>
+        <target>Scrape URL</target>
       </segment>
     </unit>
     <unit id="0ET5fPK" name="label.url_pattern">
