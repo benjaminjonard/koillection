@@ -10,6 +10,10 @@ framework:
 
     php_errors:
         log: true
+    
+    http_client:
+        default_options:
+            http_version: '2.0'
 
 when@test:
     framework:

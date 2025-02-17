@@ -13,15 +13,17 @@ use App\Model\ScrapingWish;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Intl\Countries;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\HttpClient\CurlHttpClient;
 use Twig\Environment;
 
 abstract class HtmlScraper
 {
+    protected ?CurlHttpClient $client = null;
+
     public function __construct(
-        protected HttpClientInterface $client,
         protected Environment $twig
     ) {
+        $this->client = new CurlHttpClient();
     }
 
     protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): Crawler

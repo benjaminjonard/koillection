@@ -83,7 +83,7 @@ chown -R "$USER":"$USER" /var/www/koillection/var/log
 chown -R "$USER":"$USER" /var/www/koillection/var/log/prod.log
 
 echo "**** 11/11 - Setup complete, starting the server. ****"
-php-fpm8.4
+LD_PRELOAD=/opt/libcurl-impersonate-ff.so CURL_IMPERSONATE=ff117 php-fpm8.4
 exec $@
 
 echo "**** All done ****"

@@ -6,7 +6,7 @@ namespace App\Service;
 
 use Composer\Semver\Comparator;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\HttpClient\CurlHttpClient;
 
 class LatestReleaseChecker
 {
@@ -20,12 +20,14 @@ class LatestReleaseChecker
         '1.6' => '8.4',
     ];
 
+    private readonly ?CurlHttpClient $client;
+
     private ?array $latestReleaseData = null;
 
     public function __construct(
-        private readonly HttpClientInterface $client,
         #[Autowire(param: 'release')] private readonly string $currentRelease
     ) {
+        $this->client = new CurlHttpClient();
     }
 
     public function getLatestReleaseData(): ?array
