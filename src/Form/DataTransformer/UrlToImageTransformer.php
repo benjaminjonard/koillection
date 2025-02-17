@@ -6,9 +6,16 @@ namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpClient\CurlHttpClient;
 
 class UrlToImageTransformer implements DataTransformerInterface
 {
+    private readonly ?CurlHttpClient $client;
+
+    public function __construct() {
+        $this->client = new CurlHttpClient();
+    }
+
     #[\Override]
     public function transform($file): ?string
     {
@@ -26,16 +33,14 @@ class UrlToImageTransformer implements DataTransformerInterface
             $url = 'https:' . $url;
         }
 
-        $arrContextOptions = [
-            'ssl' => [
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-            ],
-        ];
-        $content = file_get_contents($url, false, stream_context_create($arrContextOptions));
+        $response = $this->client->request(
+                'GET',
+                $url,
+                ['timeout' => 2.5]
+        );
         $name = 'scraped' . uniqid();
 
-        file_put_contents("/tmp/{$name}", $content);
+        file_put_contents("/tmp/{$name}", $response->getContent());
         $mime = mime_content_type("/tmp/{$name}");
 
         return new UploadedFile("/tmp/{$name}", $name, $mime, null, true);

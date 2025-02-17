@@ -7,18 +7,29 @@ namespace App\Form\DataTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpClient\CurlHttpClient;
 
 class Base64ToImageTransformer implements DataTransformerInterface
 {
     private ?string $originalBase64 = null;
+
+    private readonly ?CurlHttpClient $client;
+
+    public function __construct() {
+        $this->client = new CurlHttpClient();
+    }
 
     #[\Override]
     public function transform($file): ?string
     {
         if ($file instanceof File && $file->getRealPath()) {
             $type = pathinfo($file->getRealPath(), PATHINFO_EXTENSION);
-            $data = file_get_contents($file->getRealPath());
-            $this->originalBase64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+            $response = $this->client->request(
+                'GET',
+                $file->getRealPath(),
+                ['timeout' => 2.5]
+            );
+            $this->originalBase64 = 'data:image/' . $type . ';base64,' . base64_encode($response->getContent());
 
             return $this->originalBase64;
         }
