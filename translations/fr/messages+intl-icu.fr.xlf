@@ -3441,13 +3441,13 @@
     </unit>
     <unit id="zrNqfUb" name="label.scrap_name">
       <segment state="translated">
-        <source>Scrap name</source>
+        <source>Scrape name</source>
         <target>Scraper le nom</target>
       </segment>
     </unit>
     <unit id="DCx9jQb" name="label.scrap_image">
       <segment state="translated">
-        <source>Scrap image</source>
+        <source>Scrape image</source>
         <target>Scraper l'image</target>
       </segment>
     </unit>
