@@ -1,5 +1,5 @@
 <span data-value="{{ datum.value }}" data-type="string"></span>
 
 {% if datum.value is not empty %}
-    {{ datum.value|date(app.user.dateFormat|default('Y-m-d')) }}
+    {{ datum.value|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('Europe/Paris')) }}
 {% endif %}
