@@ -25,6 +25,8 @@ RUN apt-get update && \
 # Install packages
     apt-get update && \
     apt-get install -y \
+    libnss3 \
+    nss-plugin-pem \
     ca-certificates \
     apt-transport-https \
     nodejs \
@@ -63,6 +65,10 @@ RUN apt-get update && \
     mkdir /run/php && \
 # Add PHP config files
     cp /app/public/docker/php-frankenphp.ini /usr/local/etc/php/conf.d/php.ini
+
+# Install curl-impersonate
+ADD https://github.com/lwthiker/curl-impersonate/releases/download/v0.6.1/libcurl-impersonate-v0.6.1.x86_64-linux-gnu.tar.gz /opt/
+RUN cd /opt && tar xvzf libcurl-impersonate-v0.6.1.x86_64-linux-gnu.tar.gz && rm libcurl-impersonate-v0.6.1.x86_64-linux-gnu.tar.gz
 
 VOLUME /uploads
 

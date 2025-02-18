@@ -53,6 +53,6 @@ mkdir -p /logs/nginx
 chown -R www-data:www-data /logs/nginx
 
 echo "**** Setup complete, starting the server. ****"
-php-fpm8.4
+LD_PRELOAD=/opt/libcurl-impersonate-ff.so CURL_IMPERSONATE=ff117 php-fpm8.4
 chown -R www-data:www-data /var/www/koillection/public/uploads
 exec $@

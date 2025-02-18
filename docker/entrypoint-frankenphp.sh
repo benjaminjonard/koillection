@@ -81,7 +81,7 @@ chown -R "$USER":"$USER" /app/public/var/log
 chown -R "$USER":"$USER" /app/public/var/log/prod.log
 
 echo "**** 10/10 - Setup complete, starting the server. ****"
-frankenphp run --config /etc/caddy/Caddyfile
+LD_PRELOAD=/opt/libcurl-impersonate-ff.so CURL_IMPERSONATE=ff117 frankenphp run --config /etc/caddy/Caddyfile
 exec "$@"
 
 echo "**** All done ****"

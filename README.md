@@ -88,7 +88,7 @@ You are also welcome if you want to proofread existing translations.
 
 #### In progress
 
-<table><tr><td align="center" valign="top"><img width="30px" height="30px" title="Dutch" alt="Dutch" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/nl.png"></div><div align="center" valign="top">48%</td><td align="center" valign="top"><img width="30px" height="30px" title="Turkish" alt="Turkish" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/tr.png"></div><div align="center" valign="top">30%</td><td align="center" valign="top"><img width="30px" height="30px" title="Ukrainian" alt="Ukrainian" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/uk.png"></div><div align="center" valign="top">2%</td></tr></table>
+<table><tr><td align="center" valign="top"><img width="30px" height="30px" title="Dutch" alt="Dutch" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/nl.png"></div><div align="center" valign="top">49%</td><td align="center" valign="top"><img width="30px" height="30px" title="Turkish" alt="Turkish" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/tr.png"></div><div align="center" valign="top">30%</td><td align="center" valign="top"><img width="30px" height="30px" title="Ukrainian" alt="Ukrainian" src="https://raw.githubusercontent.com/benjaminjonard/crowdin-translations-progress-action/1.0/flags/uk.png"></div><div align="center" valign="top">2%</td></tr></table>
 <!-- CROWDIN-TRANSLATIONS-PROGRESS-ACTION-END -->
 
 ## Licensing

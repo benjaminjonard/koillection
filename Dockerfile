@@ -49,7 +49,6 @@ RUN apt-get update && \
 #Install composer dependencies
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     cd /var/www/koillection && \
-    composer update -W && \
     composer install --classmap-authoritative && \
     composer clearcache && \
 # Dump translation files for javascript
@@ -81,6 +80,7 @@ RUN apt-get update && \
     cp /var/www/koillection/docker/php.ini /etc/php/8.4/fpm/conf.d/php.ini && \
     mkdir /run/php
 
+# Install curl-impersonate
 ADD https://github.com/lwthiker/curl-impersonate/releases/download/v0.6.1/libcurl-impersonate-v0.6.1.x86_64-linux-gnu.tar.gz /opt/
 RUN cd /opt && tar xvzf libcurl-impersonate-v0.6.1.x86_64-linux-gnu.tar.gz && rm libcurl-impersonate-v0.6.1.x86_64-linux-gnu.tar.gz
 

@@ -3333,13 +3333,13 @@
     </unit>
     <unit id="WoECGqp" name="btn.scrap">
       <segment state="translated">
-        <source>Scrape</source>
+        <source>Scrap</source>
         <target>Scrape</target>
       </segment>
     </unit>
     <unit id="JJiTxDb" name="title.scrap">
       <segment state="translated">
-        <source>Scrape</source>
+        <source>Scrap</source>
         <target>Scrape</target>
       </segment>
     </unit>
@@ -3465,13 +3465,13 @@
     </unit>
     <unit id="EUgbudS" name="btn.scrap_html_file">
       <segment state="translated">
-        <source>Scrape HTML file</source>
+        <source>Scrap HTML file</source>
         <target>Scrape HTML file</target>
       </segment>
     </unit>
     <unit id="jy9YnDE" name="btn.scrap_url">
       <segment state="translated">
-        <source>Scrape URL</source>
+        <source>Scrap URL</source>
         <target>Scrape URL</target>
       </segment>
     </unit>
