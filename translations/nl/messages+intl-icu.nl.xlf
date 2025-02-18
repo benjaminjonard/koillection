@@ -1642,10 +1642,64 @@
         <target>{count, plural, one {# veld} other {# velden}}</target>
       </segment>
     </unit>
+    <unit id="k3.gBP." name="label.choice_list">
+      <segment state="translated">
+        <source>Choice list</source>
+        <target>Keuze lijst</target>
+      </segment>
+    </unit>
     <unit id="W6Rvzmb" name="menu.tools">
       <segment state="translated">
         <source>Tools</source>
         <target>Gereedschappen</target>
+      </segment>
+    </unit>
+    <unit id="e.bXzZd" name="btn.export_printable_list">
+      <segment state="translated">
+        <source>Printable list</source>
+        <target>Afdrukbare lijst</target>
+      </segment>
+    </unit>
+    <unit id="IKVpbk5" name="btn.export_csv">
+      <segment state="translated">
+        <source>CSV</source>
+        <target>csv</target>
+      </segment>
+    </unit>
+    <unit id="89rjttf" name="title.inventories">
+      <segment state="translated">
+        <source>Inventories</source>
+        <target>Inventarissen</target>
+      </segment>
+    </unit>
+    <unit id="W6YfaKo" name="btn.add_inventory">
+      <segment state="translated">
+        <source>New inventory</source>
+        <target>Nieuwe inventarislijst</target>
+      </segment>
+    </unit>
+    <unit id="8iRfcsb" name="label.completion">
+      <segment state="translated">
+        <source>Completion</source>
+        <target>Voltooiing</target>
+      </segment>
+    </unit>
+    <unit id="v5SWCuI" name="label.created_at">
+      <segment state="translated">
+        <source>Created at</source>
+        <target>Aangemaakt op</target>
+      </segment>
+    </unit>
+    <unit id="H0D7KGB" name="title.add_wishlist_item">
+      <segment state="translated">
+        <source>Add a new item to the wishlist {wishlist}</source>
+        <target>Nieuw item toevoegen aan de verlanglijst {wishlist}</target>
+      </segment>
+    </unit>
+    <unit id="9dYc4WP" name="title.edit_wishlist_item">
+      <segment state="translated">
+        <source>Edit wish {name}</source>
+        <target>Wijzig verlanglijst {name}</target>
       </segment>
     </unit>
     <unit id="XjUwmT9" name="counter.wish">
@@ -1822,6 +1876,12 @@
         <target>Maak een nieuwe inventaris</target>
       </segment>
     </unit>
+    <unit id="Wjv..OL" name="menu.inventories">
+      <segment state="translated">
+        <source>Inventories</source>
+        <target>Inventarissen</target>
+      </segment>
+    </unit>
     <unit id="HFhQzXX" name="breadcrumb.add_tag_category">
       <segment state="translated">
         <source>Add tag category</source>
@@ -1952,6 +2012,12 @@
       <segment state="translated">
         <source>Long text</source>
         <target>Lange tekst</target>
+      </segment>
+    </unit>
+    <unit id="cmatIVa" name="enum.history_filter_class.choice_list">
+      <segment state="translated">
+        <source>Choice list</source>
+        <target>Keuze lijst</target>
       </segment>
     </unit>
     <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
