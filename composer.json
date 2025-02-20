@@ -69,12 +69,12 @@
         "twig/twig": "3.20.0"
     },
     "require-dev": {
-        "brianium/paratest": "7.8.1",
+        "brianium/paratest": "7.8.2",
         "dama/doctrine-test-bundle": "8.2.2",
-        "friendsofphp/php-cs-fixer": "3.69.0",
+        "friendsofphp/php-cs-fixer": "3.69.1",
         "justinrainbow/json-schema": "6.1.0",
-        "phpunit/php-code-coverage": "12.0.2",
-        "phpunit/phpunit": "12.0.2",
+        "phpunit/php-code-coverage": "12.0.3",
+        "phpunit/phpunit": "12.0.3",
         "rector/rector": "2.0.9",
         "symfony/maker-bundle": "1.62.1",
         "symfony/stopwatch": "7.2.2",
