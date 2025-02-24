@@ -730,7 +730,7 @@
     <unit id="rd2X72s" name="message.delete.photo">
       <segment state="translated">
         <source>Are you sure you want to delete this photo ? It will be permanently lost...</source>
-        <target>¿Estás seguro que quieres eliminar esta foto? Esta acción no se puede deshacer.</target>
+        <target>¿Estás seguro qué quieres eliminar esta foto? Esta acción no se puede deshacer.</target>
       </segment>
     </unit>
     <unit id="UrRn8xj" name="label.title">
@@ -1000,7 +1000,7 @@
     <unit id="5_Yv1gK" name="title.children">
       <segment state="translated">
         <source>Sub-collections</source>
-        <target>Sub-coleciones</target>
+        <target>Sub-colecciones</target>
       </segment>
     </unit>
     <unit id="szWUC0C" name="label.value">
@@ -2356,7 +2356,7 @@
     <unit id="YTTkLLK" name="message.delete.wish">
       <segment state="translated">
         <source>Are you sure you want to delete this wish ? It will be permanently lost...</source>
-        <target>¿Está seguro que quieres eliminar el elemento deseado? Esta acción no se puede deshacer.</target>
+        <target>¿Estás seguro que quieres eliminar el elemento deseado? Esta acción no se puede deshacer.</target>
       </segment>
     </unit>
     <unit id="5Z0Lnp." name="message.delete.collection">
@@ -3613,6 +3613,12 @@
         <target>Errores</target>
       </segment>
     </unit>
+    <unit id="syP2FBE" name="label.code">
+      <segment state="translated">
+        <source>Code</source>
+        <target>Código</target>
+      </segment>
+    </unit>
     <unit id="VCoUwHa" name="label.last_occurrence">
       <segment state="translated">
         <source>Last occurrence</source>
@@ -3623,6 +3629,12 @@
       <segment state="translated">
         <source>Search</source>
         <target>Buscar</target>
+      </segment>
+    </unit>
+    <unit id="jSsVN8W" name="global.advanced_item_search.operator.not_equal">
+      <segment state="translated">
+        <source>!=</source>
+        <target>!=</target>
       </segment>
     </unit>
     <unit id="dP7Y9jv" name="global.advanced_item_search.operator.does_not_exist">
