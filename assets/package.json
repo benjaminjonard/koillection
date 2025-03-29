@@ -9,7 +9,7 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.26.9",
+    "@babel/core": "7.26.10",
     "@babel/preset-env": "7.26.9",
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.4",
@@ -36,8 +36,8 @@
   "dependencies": {
     "bazinga-translator": "6.1.0",
     "hotkeys-js": "^3.10.2",
-    "intl-messageformat": "10.7.15",
+    "intl-messageformat": "10.7.16",
     "ts-select2": "^0.2.5"
   },
-  "packageManager": "yarn@4.7.0"
+  "packageManager": "yarn@4.8.0"
 }
