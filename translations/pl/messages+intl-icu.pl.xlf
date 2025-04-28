@@ -3601,5 +3601,11 @@
         <target>Kolekcja</target>
       </segment>
     </unit>
+    <unit id="sNi8iHJ" name="label.video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>Wideo</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

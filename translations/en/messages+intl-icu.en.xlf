@@ -3860,37 +3860,37 @@
       </segment>
     </unit>
     <unit id="QbmRe76" name="btn.add_blank_line">
-      <segment>
+      <segment state="translated">
         <source>Blank line</source>
         <target>Blank line</target>
       </segment>
     </unit>
     <unit id="JfCCmZr" name="btn.add_section">
-      <segment>
+      <segment state="translated">
         <source>Section</source>
         <target>Section</target>
       </segment>
     </unit>
     <unit id="2LQgUOM" name="label.blank_line">
-      <segment>
+      <segment state="translated">
         <source>Blank line</source>
         <target>Blank line</target>
       </segment>
     </unit>
     <unit id="dnmyVOm" name="label.section">
-      <segment>
+      <segment state="translated">
         <source>Section</source>
         <target>Section</target>
       </segment>
     </unit>
     <unit id="sNi8iHJ" name="label.video">
-      <segment>
+      <segment state="translated">
         <source>Video</source>
         <target>Video</target>
       </segment>
     </unit>
     <unit id="KupkSAg" name="label.add_structure">
-      <segment>
+      <segment state="translated">
         <source>Add structure element :</source>
         <target>Add structure element :</target>
       </segment>

@@ -3859,5 +3859,41 @@
         <target>Collection</target>
       </segment>
     </unit>
+    <unit id="QbmRe76" name="btn.add_blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Saut de ligne</target>
+      </segment>
+    </unit>
+    <unit id="JfCCmZr" name="btn.add_section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Section</target>
+      </segment>
+    </unit>
+    <unit id="2LQgUOM" name="label.blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Saut de ligne</target>
+      </segment>
+    </unit>
+    <unit id="dnmyVOm" name="label.section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Section</target>
+      </segment>
+    </unit>
+    <unit id="sNi8iHJ" name="label.video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>Vidéo</target>
+      </segment>
+    </unit>
+    <unit id="KupkSAg" name="label.add_structure">
+      <segment state="translated">
+        <source>Add structure element :</source>
+        <target>Ajouter un élément de mise en page :</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

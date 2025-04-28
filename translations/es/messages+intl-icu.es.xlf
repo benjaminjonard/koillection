@@ -3649,5 +3649,11 @@
         <target>Colección</target>
       </segment>
     </unit>
+    <unit id="sNi8iHJ" name="label.video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>Vídeo</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

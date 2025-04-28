@@ -3607,5 +3607,11 @@
         <target>收藏集</target>
       </segment>
     </unit>
+    <unit id="sNi8iHJ" name="label.video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>视频</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
