@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="nl">
   <file id="validators.en">
+    <unit id="m_gMJbR" name="error.parent.same_as_current_object">
+      <segment state="translated">
+        <source>The parent can't be the same as the current item</source>
+        <target>Het bovenliggende artikel kan niet hetzelfde zijn als het huidige artikel</target>
+      </segment>
+    </unit>
     <unit id="3IyvSxa" name="error.datum.cant_be_used_by_both_collections_and_items">
       <segment state="translated">
         <source>A datum cannot be used with both item and collection</source>
-        <target>Een datum kan niet gebruikt worden met zowel items als collectie</target>
+        <target>Een datum kan niet gebruikt worden bij zowel artikelen als verzameling</target>
       </segment>
     </unit>
     <unit id="AUVR8TR" name="error.datum.must_provide_collection_or_item">
       <segment state="translated">
         <source>A collection or an item must be provided</source>
-        <target>Een collectie of item moet worden opgegeven</target>
+        <target>Er moet een verzameling of artikel worden opgegeven</target>
       </segment>
     </unit>
     <unit id="7OcgSlg" name="error.email.not_unique">
       <segment state="translated">
         <source>Email address already used</source>
-        <target>E-mailadres al in gebruik</target>
+        <target>Dit e-mailadres is al in gebruik</target>
       </segment>
     </unit>
     <unit id="qoRxC7z" name="error.username.not_unique">
       <segment state="translated">
         <source>Username already used</source>
-        <target>Gebruikersnaam al in gebruik.</target>
+        <target>Deze gebruikersnaam is al in gebruik</target>
       </segment>
     </unit>
     <unit id="PjAj0XF" name="error.username.incorrect">
@@ -46,7 +52,7 @@
     <unit id=".OeR.gK" name="error.search.too_short">
       <segment state="translated">
         <source>You must enter at least 2 characters</source>
-        <target>U moet minstens 2 tekens invoeren</target>
+        <target>Je moet minstens 2 tekens invoeren</target>
       </segment>
     </unit>
     <unit id="_d89Gke" name="error.search.empty">
@@ -61,10 +67,52 @@
         <target>"{label}" label wordt meerdere keren gebruikt, alle labels moeten uniek zijn</target>
       </segment>
     </unit>
+    <unit id="IV3649l" name="error.parent.is_child_of_current_object">
+      <segment state="translated">
+        <source>The parent can't be one of the children</source>
+        <target>Bovenliggende mag niet een van de onderliggende zijn</target>
+      </segment>
+    </unit>
     <unit id="tg4uV16" name="error.upload.not_enough_space">
       <segment state="translated">
         <source>There is not enough space left on your account to execute this action</source>
         <target>Er is niet voldoende ruimte over op je account om deze actie uit te voeren</target>
+      </segment>
+    </unit>
+    <unit id="vwTDAxs" name="error.datum.value.rating">
+      <segment state="translated">
+        <source>Value must be a string representation of an integer between '0' and '10'</source>
+        <target>Waarde moet een tekenreeks zijn van een geheel getal tussen '0' en '10'</target>
+      </segment>
+    </unit>
+    <unit id="1ptFEJZ" name="error.datum.value.checkbox">
+      <segment state="translated">
+        <source>Value must be '0' or '1'</source>
+        <target>Waarde moet '0' of '1' zijn</target>
+      </segment>
+    </unit>
+    <unit id="Sm7SLSo" name="error.datum.value.price">
+      <segment state="translated">
+        <source>Value must be a string representation of a positive number</source>
+        <target>Waarde moet een tekenreeks zijn van een positief getal</target>
+      </segment>
+    </unit>
+    <unit id="Ho12PpQ" name="error.datum.value.number">
+      <segment state="translated">
+        <source>Value must be a string representation of a number like '3', '3.24', '-4'</source>
+        <target>Waarde moet een tekenreeks zijn van een getal zoals '3', '3.24', '-4'</target>
+      </segment>
+    </unit>
+    <unit id="TGNG5G2" name="error.datum.value.country">
+      <segment state="translated">
+        <source>Value must be a valid 2 letters country code like 'FR'</source>
+        <target>Waarde moet een geldige 2 letters landcode zijn zoals 'NL'</target>
+      </segment>
+    </unit>
+    <unit id="bZ6z5fo" name="error.datum.value.date">
+      <segment state="translated">
+        <source>Value must be a Y-m-d formated string like '2024-06-10'</source>
+        <target>Waarde moet een Y-m-d formaat tekenreeks zijn zoals '2024-06-10'</target>
       </segment>
     </unit>
   </file>
