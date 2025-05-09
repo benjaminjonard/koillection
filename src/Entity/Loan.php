@@ -133,4 +133,9 @@ class Loan
 
         return $this;
     }
+
+    public function isCurrentlyLoaned(): ?Bool
+    {
+        return is_null($this->returnedAt);
+    }
 }

@@ -50,7 +50,8 @@
                 <td>
                     <a class="table-link" href="{{ link }}"></a>
                     {% if item.imageSmallThumbnail %}
-                        <img src="{{ asset(item.imageSmallThumbnail) }}" loading="lazy">
+                    {% set itemCurrentlyLoaned = item.getLoans().last().isCurrentlyLoaned() %}
+                        <img src="{{ asset(item.imageSmallThumbnail) }}" loading="lazy"{% if itemCurrentlyLoaned %} style="filter: grayscale(100%);"{% endif %}>
                     {% endif %}
                 </td>
                 <td data-column="name">

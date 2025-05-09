@@ -3,7 +3,8 @@
         <div data-filter-target="element" data-title="{{ item.name }}">
             <div class="collection-item element valign-wrapper">
                 <a href="{{ path('app_item_show'|applyContext, {'id': item.id}) }}">
-                    <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy" title="{{item.name}}">
+                    {% set itemCurrentlyLoaned = item.getLoans().last().isCurrentlyLoaned() %}
+                    <img src="{{ asset(item.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy" title="{{item.name}}" {% if itemCurrentlyLoaned %} style="filter: grayscale(100%);"{% endif %}>
                     {% if displayConfiguration.showItemQuantities and item.quantity > 1 %}
                         <span class="tag chip">x{{ item.quantity }}</span>
                     {% endif %}
