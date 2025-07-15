@@ -82,7 +82,7 @@
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment state="translated">
         <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
-        <target>{count, plural, one {# item gelabeled} other {# items gelabeld}}</target>
+        <target>{count, plural, one {# item gelabeld} other {# items gelabeld}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
