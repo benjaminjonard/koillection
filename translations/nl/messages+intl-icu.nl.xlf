@@ -82,7 +82,7 @@
     <unit id="ehI_Ih2" name="message.items_tagged">
       <segment state="translated">
         <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
-        <target>{count, plural, one {# item gelabeld} other {# items gelabeld}}</target>
+        <target>{count, plural, one {# artikel gelabeld} other {# artikelen gelabeld}}</target>
       </segment>
     </unit>
     <unit id="rimibj4" name="message.inventory_added">
@@ -238,7 +238,7 @@
     <unit id="mAYxq3X" name="message.wish_transfered">
       <segment state="translated">
         <source>Wish {wish} was transferred to the collection {collection}</source>
-        <target>Wens {wish} is overgedragen aan de collectie {collection}</target>
+        <target>Wens {wish} is verplaatst naar de verzameling {collection}</target>
       </segment>
     </unit>
     <unit id="x_1ubH6" name="message.wishlist_added">
@@ -619,13 +619,13 @@
     <unit id="FcXvWL8" name="title.add_user">
       <segment state="translated">
         <source>Add a user</source>
-        <target>Voeg een gebruiker toe</target>
+        <target>Gebruiker toevoegen</target>
       </segment>
     </unit>
     <unit id="fRQmA2t" name="btn.submit">
       <segment state="translated">
         <source>Submit</source>
-        <target>Verzenden</target>
+        <target>Opslaan</target>
       </segment>
     </unit>
     <unit id="u5LRF8p" name="btn.cancel">
@@ -643,7 +643,7 @@
     <unit id="1sstKF9" name="title.edit_user">
       <segment state="translated">
         <source>Edit user {user}</source>
-        <target>Bewerk gebruiker {user}</target>
+        <target>Gebruiker {user} aanpassen</target>
       </segment>
     </unit>
     <unit id="fKgc.kW" name="title.users">
@@ -655,7 +655,7 @@
     <unit id="ZouqthR" name="btn.add_user">
       <segment state="translated">
         <source>Add a user</source>
-        <target>Voeg een gebruiker toe</target>
+        <target>Gebruiker toevoegen</target>
       </segment>
     </unit>
     <unit id="txRonia" name="label.id">
@@ -685,13 +685,13 @@
     <unit id="Tv.rI94" name="label.disk_space_used">
       <segment state="translated">
         <source>Disk space used</source>
-        <target>Schijfruimte gebruikt</target>
+        <target>Gebruikte opslagruimte</target>
       </segment>
     </unit>
     <unit id="p1Fs6iF" name="label.disk_space_allowed">
       <segment state="translated">
         <source>Disk space allowed</source>
-        <target>Schijfruimte toegestaan</target>
+        <target>Toegestane opslagruimte</target>
       </segment>
     </unit>
     <unit id="vMjoUw7" name="label.last_date_of_activity">
@@ -757,7 +757,7 @@
     <unit id="domeXiF" name="title.edit_album">
       <segment state="translated">
         <source>Edit album {title}</source>
-        <target>Bewerk album {title}</target>
+        <target>Album {title} bewerken</target>
       </segment>
     </unit>
     <unit id="nQDmBI4" name="menu.collections_shared">
@@ -787,7 +787,7 @@
     <unit id="A5gFwZv" name="filter.by_name">
       <segment state="translated">
         <source>Filter by name</source>
-        <target>Filter op naam</target>
+        <target>Op naam filteren</target>
       </segment>
     </unit>
     <unit id="AHajX3P" name="tooltip.add_photo">
@@ -829,7 +829,7 @@
     <unit id="uLlCnaG" name="title.new_choice_list">
       <segment state="translated">
         <source>Add a new choice list</source>
-        <target>Voeg een nieuwe keuzelijst toe</target>
+        <target>Nieuwe keuzelijst toevoegen</target>
       </segment>
     </unit>
     <unit id="60Mvg7w" name="title.edit_choice_list">
@@ -853,7 +853,7 @@
     <unit id="3yuF9Sl" name="tooltip.add_choice_list">
       <segment state="translated">
         <source>Add a new choice lists</source>
-        <target>Voeg een nieuwe keuzelijst toe</target>
+        <target>Nieuwe keuzelijst toevoegen</target>
       </segment>
     </unit>
     <unit id="ysOvPSq" name="label.name">
@@ -925,7 +925,7 @@
     <unit id="VUlGgVE" name="label.add_choice_list">
       <segment state="translated">
         <source>Add choice list :</source>
-        <target>Voeg keuzelijst toe:</target>
+        <target>Keuzelijst toevoegen:</target>
       </segment>
     </unit>
     <unit id=".eH3OZY" name="counter.item">
@@ -943,13 +943,13 @@
     <unit id="8yVQg94" name="title.tag_collection">
       <segment state="translated">
         <source>Batch tagging {collection}</source>
-        <target>In bulk labelen {collection}</target>
+        <target>{collection} in bulk labelen</target>
       </segment>
     </unit>
     <unit id="KlxVsBD" name="title.edit_collection">
       <segment state="translated">
         <source>Edit collection {collection}</source>
-        <target>Bewerk verzameling {collection}</target>
+        <target>Verzameling {collection} bewerken</target>
       </segment>
     </unit>
     <unit id="MW4FPxn" name="menu.collections">
@@ -979,7 +979,7 @@
     <unit id="FTnVc5X" name="tooltip.add_item">
       <segment state="translated">
         <source>Add a new item</source>
-        <target>Voeg nieuw artikel toe</target>
+        <target>Nieuw artikel toevoegen</target>
       </segment>
     </unit>
     <unit id="6H1fBLk" name="tooltip.tag">
@@ -991,7 +991,7 @@
     <unit id="bQoqYij" name="tooltip.items">
       <segment state="translated">
         <source>See all items</source>
-        <target>Bekijk alle artikelen</target>
+        <target>Alle artikelen bekijken</target>
       </segment>
     </unit>
     <unit id="StAuTu9" name="title.infos">
@@ -1057,7 +1057,7 @@
     <unit id="EZsGAxN" name="counter.checked_items">
       <segment state="translated">
         <source>{count, plural, one {# checked item} other {# checked items}}</source>
-        <target>{count, plural, one {# item gecontroleerd} other {# items gecontroleerd}}</target>
+        <target>{count, plural, one {# artikel geselecteerd} other {# artikelen geselecteerd}}</target>
       </segment>
     </unit>
     <unit id="gVjxaJZ" name="label.completion_rate">
@@ -1069,7 +1069,7 @@
     <unit id="i9VapGy" name="title.add_inventory">
       <segment state="translated">
         <source>Create a new inventory</source>
-        <target>Maak een nieuwe inventaris</target>
+        <target>Nieuwe inventaris maken</target>
       </segment>
     </unit>
     <unit id="78xJTtJ" name="title.collections">
@@ -1093,7 +1093,7 @@
     <unit id="4O6JaLx" name="tooltip.loan_item">
       <segment state="translated">
         <source>Loan this item</source>
-        <target>Leen dit artikel uit</target>
+        <target>Artikel uitlenen</target>
       </segment>
     </unit>
     <unit id="HmUuNCa" name="label.main_image">
@@ -1177,13 +1177,13 @@
     <unit id="nXRtrJb" name="title.add_item">
       <segment state="translated">
         <source>Add a new item</source>
-        <target>Voeg nieuw artikel toe</target>
+        <target>Nieuw artikel toevoegen</target>
       </segment>
     </unit>
     <unit id="0w7FrTh" name="title.edit_item">
       <segment state="translated">
         <source>Edit item {item}</source>
-        <target>Bewerk artikel {item}</target>
+        <target>Artikel {item} bewerken</target>
       </segment>
     </unit>
     <unit id="U4lp2Ma" name="global.created_at">
@@ -1267,7 +1267,7 @@
     <unit id="bmt.5SD" name="title.loan_item">
       <segment state="translated">
         <source>Loan item {item}</source>
-        <target>Leen {item} uit</target>
+        <target>Artikel {item} uitlenen</target>
       </segment>
     </unit>
     <unit id="tpcX1HE" name="title.add_album_photo">
@@ -1399,31 +1399,31 @@
     <unit id="RDD2bMy" name="title.update_settings">
       <segment state="translated">
         <source>Edit settings</source>
-        <target>Wijzig instellingen</target>
+        <target>Instellingen aanpassen</target>
       </segment>
     </unit>
     <unit id="9dYyUYD" name="title.update_visibility">
       <segment state="translated">
         <source>Edit visibility</source>
-        <target>Wijzig zichtbaarheid</target>
+        <target>Zichtbaarheid aanpassen</target>
       </segment>
     </unit>
     <unit id="eG38lKI" name="message.visibility">
       <segment state="translated">
         <source>If you set visibility to public, your collection will be accessible by anyone using the following link :</source>
-        <target>Als je de zichtbaarheid openbaar maakt, is je collectie voor iedereen toegankelijk via de volgende link:</target>
+        <target>Als je de zichtbaarheid openbaar maakt, is je verzameling voor iedereen toegankelijk via de volgende link:</target>
       </segment>
     </unit>
     <unit id="RjUO3kd" name="message.visibility_per_item">
       <segment state="translated">
         <source>You can then set visibility per item or collection. To do so, please go on the element edition page.</source>
-        <target>Je kunt vervolgens de zichtbaarheid per item of collectie instellen. Om dit te doen, ga naar de element editie.</target>
+        <target>Je kunt vervolgens de zichtbaarheid per artikel of verzameling instellen. Om dit te doen, ga naar de betreffende pagina en pas het daar aan.</target>
       </segment>
     </unit>
     <unit id="fQNztng" name="title.update_features">
       <segment state="translated">
         <source>Edit active features</source>
-        <target>Actieve features bewerken</target>
+        <target>Actieve functies aanpassen</target>
       </segment>
     </unit>
     <unit id="HLevxj." name="menu.signs">
@@ -1489,7 +1489,7 @@
     <unit id="9it4sqQ" name="title.charts.items_evolution">
       <segment state="translated">
         <source>Items evolution</source>
-        <target>Items evolutie</target>
+        <target>Tijdlijn</target>
       </segment>
     </unit>
     <unit id="Rb73VaV" name="title.charts.radial_tree">
@@ -1507,7 +1507,7 @@
     <unit id="p4z8GI6" name="title.edit_tag">
       <segment state="translated">
         <source>Edit tag {tag}</source>
-        <target>Bewerk label {tag}</target>
+        <target>Label {tag} bewerken</target>
       </segment>
     </unit>
     <unit id="yo4f8Kh" name="menu.tags">
@@ -1519,19 +1519,19 @@
     <unit id="7SH9MME" name="tooltip.manage_tag_categories">
       <segment state="translated">
         <source>Manage tag categories</source>
-        <target>Beheer labelcategorieën</target>
+        <target>Labelcategorieën beheren</target>
       </segment>
     </unit>
     <unit id="a_xpPl1" name="message.delete.unused_tag">
       <segment state="translated">
         <source>This will delete all tags with no items attached. Are you sure you want to delete those tags ? They will be permanently lost...</source>
-        <target>Dit zal alle tags waar geen items aan zijn toegevoegd verwijderen. Weet je zeker dat je deze tags wilt verwijderen? Ze zullen permanent verloren gaan...</target>
+        <target>Dit zal alle labels waar geen artikelen aan hangen verwijderen. Weet je zeker dat je deze labels wilt verwijderen? Ze zullen permanent verloren gaan...</target>
       </segment>
     </unit>
     <unit id="LgGHl1z" name="btn.delete_unused_tags">
       <segment state="translated">
         <source>Delete unused tags</source>
-        <target>Verwijder ongebruikte labels</target>
+        <target>Ongebruikte labels verwijderen</target>
       </segment>
     </unit>
     <unit id="e8GAd_z" name="title.related_tags">
@@ -1561,7 +1561,7 @@
     <unit id="4z_wk_J" name="title.edit_tag_category">
       <segment state="translated">
         <source>Edit tag category {category}</source>
-        <target>Wijzig labelcategorie {category}</target>
+        <target>Labelcategorie {category} bewerken</target>
       </segment>
     </unit>
     <unit id="MDaq3GB" name="menu.tag_categories">
@@ -1663,7 +1663,7 @@
     <unit id="OTxNY59" name="title.exports">
       <segment state="translated">
         <source>Exports</source>
-        <target>Exports</target>
+        <target>Exporteren</target>
       </segment>
     </unit>
     <unit id="e.bXzZd" name="btn.export_printable_list">
@@ -1717,7 +1717,7 @@
     <unit id="9dYc4WP" name="title.edit_wishlist_item">
       <segment state="translated">
         <source>Edit wish {name}</source>
-        <target>Wijzig verlanglijst {name}</target>
+        <target>Wens {name} bewerken</target>
       </segment>
     </unit>
     <unit id="50TT5tp" name="title.transfer_wish">
@@ -1843,7 +1843,7 @@
     <unit id="eMPgFR5" name="message.user_is_private">
       <segment state="translated">
         <source>Your profile is set to private, you can't share this page.</source>
-        <target>Je profiel is ingesteld op privé, je kan deze pagina niet delen.</target>
+        <target>Je kan deze pagina niet delen, want je profiel is ingesteld op privé.</target>
       </segment>
     </unit>
     <unit id="J0RnHHK" name="message.share_link">
@@ -1885,7 +1885,7 @@
     <unit id="l9GnTBr" name="error.404">
       <segment state="translated">
         <source>Oops, page not found :(</source>
-        <target>Oeps, pagina is niet gevonden :(</target>
+        <target>Oeps, de pagina is niet gevonden :(</target>
       </segment>
     </unit>
     <unit id="nIFzees" name="error.500">
@@ -1915,7 +1915,7 @@
     <unit id="QP9HnQT" name="breadcrumb.add_item">
       <segment state="translated">
         <source>Add a new item</source>
-        <target>Voeg nieuw artikel toe</target>
+        <target>Nieuw artikel toevoegen</target>
       </segment>
     </unit>
     <unit id="HN3MXIl" name="breadcrumb.add_photo">
@@ -2461,7 +2461,7 @@
     <unit id="_.ADUgd" name="breadcrumb.add_inventory">
       <segment state="translated">
         <source>Create a new inventory</source>
-        <target>Maak een nieuwe inventaris</target>
+        <target>Nieuwe inventaris maken</target>
       </segment>
     </unit>
     <unit id="Wjv..OL" name="menu.inventories">
@@ -2905,7 +2905,7 @@
     <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
       <segment state="translated">
         <source>Add a new choice list</source>
-        <target>Voeg een nieuwe keuzelijst toe</target>
+        <target>Nieuwe keuzelijst toevoegen</target>
       </segment>
     </unit>
     <unit id="nMiYLFJ" name="breadcrumb.edit_choice_list">
@@ -3896,6 +3896,18 @@
       <segment state="translated">
         <source>Add structure element :</source>
         <target>Structuurelement toevoegen :</target>
+      </segment>
+    </unit>
+    <unit id="k2K0lD7" name="global.advanced_item_search.type.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Label</target>
+      </segment>
+    </unit>
+    <unit id="pDLfiA7" name="tooltip.add_item_search">
+      <segment state="translated">
+        <source>Create a new item search</source>
+        <target>Nieuwe zoekopdracht maken</target>
       </segment>
     </unit>
   </file>

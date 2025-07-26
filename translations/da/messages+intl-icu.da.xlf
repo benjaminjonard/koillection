@@ -2947,5 +2947,11 @@
         <target>Samling</target>
       </segment>
     </unit>
+    <unit id="k2K0lD7" name="global.advanced_item_search.type.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -70,7 +70,7 @@
     <unit id="IV3649l" name="error.parent.is_child_of_current_object">
       <segment state="translated">
         <source>The parent can't be one of the children</source>
-        <target>Der Elternknoten darf nicht einer der Kinder sein</target>
+        <target>Der übergeordnete Eintrag darf nicht einer der untergeordneten sein</target>
       </segment>
     </unit>
     <unit id="tg4uV16" name="error.upload.not_enough_space">

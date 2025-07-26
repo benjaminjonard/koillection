@@ -1114,13 +1114,13 @@
     <unit id="uAfIh0u" name="btn.apply_common_fields">
       <segment state="translated">
         <source>Load common fields</source>
-        <target>Lade gemeinsame Felder</target>
+        <target>Standard Felder laden</target>
       </segment>
     </unit>
     <unit id="ImSHWcX" name="btn.apply_collection_fields">
       <segment state="translated">
         <source>Load collection fields</source>
-        <target>Lade Sammlungsfelder</target>
+        <target>Felder der Sammlung laden</target>
       </segment>
     </unit>
     <unit id="ME6A6U0" name="title.related_items">
@@ -1486,7 +1486,7 @@
     <unit id="9it4sqQ" name="title.charts.items_evolution">
       <segment state="translated">
         <source>Items evolution</source>
-        <target>Eintragsentwicklung</target>
+        <target>Entwicklung der Einträge</target>
       </segment>
     </unit>
     <unit id="Rb73VaV" name="title.charts.radial_tree">
@@ -2182,7 +2182,7 @@
     <unit id="NGzz2k3" name="label.parent">
       <segment state="translated">
         <source>Parent</source>
-        <target>Elterneintrag</target>
+        <target>Übergeordneter Eintrag</target>
       </segment>
     </unit>
     <unit id="2.APxMI" name="label.place">
@@ -2236,7 +2236,7 @@
     <unit id="UJDm2vF" name="label.url">
       <segment state="translated">
         <source>Url</source>
-        <target>Url</target>
+        <target>URL</target>
       </segment>
     </unit>
     <unit id="hmlddlA" name="label.wishlist">
@@ -2314,7 +2314,7 @@
     <unit id="7o9hj19" name="first_connection.user">
       <segment state="translated">
         <source>User information</source>
-        <target>User Information</target>
+        <target>Benutzerinformationen</target>
       </segment>
     </unit>
     <unit id="dmtPdwq" name="label.timezone">
@@ -2950,7 +2950,7 @@
     <unit id="tq3yBdM" name="label.list_show_actions">
       <segment state="translated">
         <source>Show actions column</source>
-        <target>Aktivitätenspalte anzeigen</target>
+        <target>Aktionsspalte anzeigen</target>
       </segment>
     </unit>
     <unit id="MWCAWm0" name="label.sub_collections_display_mode">
@@ -3790,13 +3790,13 @@
     <unit id="Ak8IE4a" name="tooltip.saved-searches">
       <segment state="translated">
         <source>Saved searches</source>
-        <target>Gepeicherte Suchen</target>
+        <target>Gespeicherte Suchen</target>
       </segment>
     </unit>
     <unit id="cH7cMc2" name="menu.saved_searches">
       <segment state="translated">
         <source>Saved searches</source>
-        <target>Gepeicherte Suchen</target>
+        <target>Gespeicherte Suchen</target>
       </segment>
     </unit>
     <unit id="JyETMRr" name="message.search_deleted">
@@ -3811,16 +3811,100 @@
         <target>Wollen Sie diese Suche wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden...</target>
       </segment>
     </unit>
+    <unit id="jSsVN8W" name="global.advanced_item_search.operator.not_equal">
+      <segment state="translated">
+        <source>!=</source>
+        <target>!=</target>
+      </segment>
+    </unit>
+    <unit id="7hER81d" name="global.advanced_item_search.operator.does_not_contain">
+      <segment state="translated">
+        <source>Does not contain</source>
+        <target>Enthält nicht</target>
+      </segment>
+    </unit>
+    <unit id="lWyVrKn" name="label.number_of_results">
+      <segment state="translated">
+        <source>Number of results</source>
+        <target>Anzahl der Ergebnisse</target>
+      </segment>
+    </unit>
+    <unit id="Fpd6bpF" name="global.advanced_item_search.operator.empty">
+      <segment state="translated">
+        <source>Empty</source>
+        <target>Leer</target>
+      </segment>
+    </unit>
+    <unit id="DXianrE" name="global.advanced_item_search.operator.not_empty">
+      <segment state="translated">
+        <source>Not empty</source>
+        <target>Nicht leer</target>
+      </segment>
+    </unit>
+    <unit id="rIkc77v" name="global.advanced_item_search.operator.exists">
+      <segment state="translated">
+        <source>Exists</source>
+        <target>Existiert</target>
+      </segment>
+    </unit>
+    <unit id="dP7Y9jv" name="global.advanced_item_search.operator.does_not_exist">
+      <segment state="translated">
+        <source>Does not exist</source>
+        <target>Existiert nicht</target>
+      </segment>
+    </unit>
     <unit id="W5CdTk5" name="global.advanced_item_search.type.collection">
       <segment state="translated">
         <source>Collection</source>
         <target>Sammlung</target>
       </segment>
     </unit>
+    <unit id="QbmRe76" name="btn.add_blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Leere Linie</target>
+      </segment>
+    </unit>
+    <unit id="JfCCmZr" name="btn.add_section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Abschnitt</target>
+      </segment>
+    </unit>
+    <unit id="2LQgUOM" name="label.blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Leere Linie</target>
+      </segment>
+    </unit>
+    <unit id="dnmyVOm" name="label.section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Abschnitt</target>
+      </segment>
+    </unit>
     <unit id="sNi8iHJ" name="label.video">
       <segment state="translated">
         <source>Video</source>
         <target>Video</target>
+      </segment>
+    </unit>
+    <unit id="KupkSAg" name="label.add_structure">
+      <segment state="translated">
+        <source>Add structure element :</source>
+        <target>Strukturelement hinzufügen:</target>
+      </segment>
+    </unit>
+    <unit id="k2K0lD7" name="global.advanced_item_search.type.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Schlagwort</target>
+      </segment>
+    </unit>
+    <unit id="pDLfiA7" name="tooltip.add_item_search">
+      <segment state="translated">
+        <source>Create a new item search</source>
+        <target>Neue Suche erstellen</target>
       </segment>
     </unit>
   </file>

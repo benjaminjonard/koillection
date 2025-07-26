@@ -3895,5 +3895,17 @@
         <target>Ajouter un élément de mise en page :</target>
       </segment>
     </unit>
+    <unit id="k2K0lD7" name="global.advanced_item_search.type.tag">
+      <segment state="translated">
+        <source>Tag</source>
+        <target>Tag</target>
+      </segment>
+    </unit>
+    <unit id="pDLfiA7" name="tooltip.add_item_search">
+      <segment state="translated">
+        <source>Create a new item search</source>
+        <target>Créer une nouvelle recherche</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
