@@ -18,7 +18,7 @@
     "copy-webpack-plugin": "13.0.0",
     "core-js": "3.44.0",
     "croppie": "2.6.5",
-    "echarts": "5.6.0",
+    "echarts": "6.0.0",
     "regenerator-runtime": "0.14.1",
     "sortablejs": "1.15.6",
     "stimulus-lightbox": "3.2.0",
