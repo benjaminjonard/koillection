@@ -973,7 +973,7 @@
     <unit id="YHlU3_1" name="title.items">
       <segment state="translated">
         <source>Items</source>
-        <target>Artikels</target>
+        <target>Artikelen</target>
       </segment>
     </unit>
     <unit id="FTnVc5X" name="tooltip.add_item">
@@ -985,7 +985,7 @@
     <unit id="6H1fBLk" name="tooltip.tag">
       <segment state="translated">
         <source>Tag</source>
-        <target>Label</target>
+        <target>Labelen</target>
       </segment>
     </unit>
     <unit id="bQoqYij" name="tooltip.items">
@@ -2017,7 +2017,7 @@
     <unit id="eG2_sfn" name="breadcrumb.items_collection">
       <segment state="translated">
         <source>Items</source>
-        <target>Artikels</target>
+        <target>Artikelen</target>
       </segment>
     </unit>
     <unit id="ERFTL0f" name="breadcrumb.lend_item">
@@ -2047,7 +2047,7 @@
     <unit id="yt20IWO" name="global.entities.tag">
       <segment state="translated">
         <source>Tag</source>
-        <target>Label</target>
+        <target>Labelen</target>
       </segment>
     </unit>
     <unit id="iFOTgZ3" name="global.entities.template">
@@ -2173,7 +2173,7 @@
     <unit id="zfmgf2l" name="label.items">
       <segment state="translated">
         <source>Items</source>
-        <target>Artikels</target>
+        <target>Artikelen</target>
       </segment>
     </unit>
     <unit id="frik1CZ" name="label.items_title">
@@ -2539,7 +2539,7 @@
     <unit id="Bbv77ja" name="enum.history_filter_class.tag">
       <segment state="translated">
         <source>Tag</source>
-        <target>Label</target>
+        <target>Labelen</target>
       </segment>
     </unit>
     <unit id="XKMAo1i" name="enum.history_filter_type.create">
@@ -3499,7 +3499,7 @@
     <unit id="1SR04M0" name="breadcrumb.item_scrapers">
       <segment state="translated">
         <source>Item scrapers</source>
-        <target>Artikel scrapers</target>
+        <target>Artikel-scrapers</target>
       </segment>
     </unit>
     <unit id="rce3nth" name="breadcrumb.collection_scrapers">
@@ -3517,7 +3517,7 @@
     <unit id="NK6205q" name="tab.item_scrapers">
       <segment state="translated">
         <source>Item scrapers</source>
-        <target>Artikel scrapers</target>
+        <target>Artikel-scrapers</target>
       </segment>
     </unit>
     <unit id="QLWFaEE" name="tab.collection_scrapers">
@@ -3535,7 +3535,7 @@
     <unit id="OJ77gpR" name="counter.item_scrapers">
       <segment state="translated">
         <source>{count, plural, one {# item scraper} other {# item scrapers}}</source>
-        <target>{count, plural, one {# artikel scraper} other {# artikel scrapers}}</target>
+        <target>{count, plural, one {# artikel-scraper} other {# artikel-scrapers}}</target>
       </segment>
     </unit>
     <unit id="noR9AMY" name="counter.collection_scrapers">
@@ -3661,7 +3661,7 @@
     <unit id="Z3r5GZo" name="global.advanced_item_search.type.datum">
       <segment state="translated">
         <source>Item data</source>
-        <target>Artikel gegevens</target>
+        <target>Artikelgegevens</target>
       </segment>
     </unit>
     <unit id="i202Q5I" name="global.advanced_item_search.type.name">
@@ -3721,7 +3721,7 @@
     <unit id="XAPwUuS" name="label.item_data">
       <segment state="translated">
         <source>Item data</source>
-        <target>Artikel gegevens</target>
+        <target>Artikelgegevens</target>
       </segment>
     </unit>
     <unit id="vkFJA2N" name="label.operator">
@@ -3793,13 +3793,13 @@
     <unit id="Ak8IE4a" name="tooltip.saved-searches">
       <segment state="translated">
         <source>Saved searches</source>
-        <target>Opgeslagen zoekopdrachten</target>
+        <target>Zoekopdrachten</target>
       </segment>
     </unit>
     <unit id="cH7cMc2" name="menu.saved_searches">
       <segment state="translated">
         <source>Saved searches</source>
-        <target>Opgeslagen zoekopdrachten</target>
+        <target>Zoekopdrachten</target>
       </segment>
     </unit>
     <unit id="JyETMRr" name="message.search_deleted">
@@ -3901,7 +3901,7 @@
     <unit id="k2K0lD7" name="global.advanced_item_search.type.tag">
       <segment state="translated">
         <source>Tag</source>
-        <target>Label</target>
+        <target>Labelen</target>
       </segment>
     </unit>
     <unit id="pDLfiA7" name="tooltip.add_item_search">
