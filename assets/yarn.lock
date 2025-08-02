@@ -3401,7 +3401,7 @@ __metadata:
     stimulus-lightbox: "npm:3.2.0"
     stimulus-use: "npm:0.52.3"
     ts-select2: "npm:^0.2.5"
-    webpack: "npm:5.100.1"
+    webpack: "npm:5.101.0"
     webpack-cli: "npm:6.0.1"
     webpack-notifier: "npm:1.15.0"
   languageName: unknown
@@ -5071,9 +5071,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.100.1":
-  version: 5.100.1
-  resolution: "webpack@npm:5.100.1"
+"webpack@npm:5.101.0":
+  version: 5.101.0
+  resolution: "webpack@npm:5.101.0"
   dependencies:
     "@types/eslint-scope": "npm:^3.7.7"
     "@types/estree": "npm:^1.0.8"
@@ -5105,7 +5105,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 10/b89eca5072127e184f9d098e4295a276cfe5b36b5718970eb5e953bf0dec5477d189b6c30b14bc631f67e8e286c4869f2b602e516d1ac3e4664ecccc79895399
+  checksum: 10/edeb24a88cbe96902c601bc1292cd344d27c89c5eceb187f4e9936c8a17356c62b23a5dc441c12b16e62bb6c40804bd10d691135c638398f921760f2dba6a761
   languageName: node
   linkType: hard
 
