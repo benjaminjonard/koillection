@@ -2797,6 +2797,12 @@
         <target>Rediger</target>
       </segment>
     </unit>
+    <unit id="tk6udpx" name="menu.statistics_shared">
+      <segment state="translated">
+        <source>{username}'s statistics</source>
+        <target>{username}s statistik</target>
+      </segment>
+    </unit>
     <unit id="8LEwIMR" name="label.wishes">
       <segment state="translated">
         <source>Wishes</source>
@@ -2857,6 +2863,12 @@
         <target>Brugere</target>
       </segment>
     </unit>
+    <unit id="JL3jH0w" name="menu.api_documention">
+      <segment state="translated">
+        <source>API documentation</source>
+        <target>API-dokumentation</target>
+      </segment>
+    </unit>
     <unit id="wcFJTRH" name="tab.configuration">
       <segment state="translated">
         <source>Configuration</source>
@@ -2873,6 +2885,24 @@
       <segment state="translated">
         <source>Configuration</source>
         <target>Konfiguration</target>
+      </segment>
+    </unit>
+    <unit id="ACW22BU" name="global.configuration.thumbnails_format.keep_original">
+      <segment state="translated">
+        <source>Keep original</source>
+        <target>Behold original</target>
+      </segment>
+    </unit>
+    <unit id="UtfkHZy" name="global.configuration.thumbnails_format.jpeg">
+      <segment state="translated">
+        <source>JPEG</source>
+        <target>JPEG</target>
+      </segment>
+    </unit>
+    <unit id="ILesFNS" name="global.configuration.thumbnails_format.png">
+      <segment state="translated">
+        <source>PNG</source>
+        <target>PNG</target>
       </segment>
     </unit>
     <unit id="FNiUGVN" name="global.configuration.thumbnails_format.webp">
@@ -2929,10 +2959,94 @@
         <target>Rediger</target>
       </segment>
     </unit>
+    <unit id="2T801sa" name="tooltip.export">
+      <segment state="translated">
+        <source>Export</source>
+        <target>Eksport</target>
+      </segment>
+    </unit>
+    <unit id="0qbEAs0" name="tooltip.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="4q1Sf3P" name="btn.upload">
+      <segment state="translated">
+        <source>Upload</source>
+        <target>Upload</target>
+      </segment>
+    </unit>
+    <unit id="Hklmnjp" name="btn.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="QEwp7eI" name="label.frankenphp_version">
+      <segment state="translated">
+        <source>FrankenPHP version</source>
+        <target>FrankenPHP-version</target>
+      </segment>
+    </unit>
+    <unit id="Xi6swbH" name="btn.add_video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>Video</target>
+      </segment>
+    </unit>
     <unit id="wgg5Wgv" name="form.item_sorting.quantity">
       <segment state="translated">
         <source>Quantity</source>
         <target>Antal</target>
+      </segment>
+    </unit>
+    <unit id="vC8jN7a" name="tab.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Fejl</target>
+      </segment>
+    </unit>
+    <unit id="fQRayPd" name="menu.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Fejl</target>
+      </segment>
+    </unit>
+    <unit id="CZTLE2r" name="title.errors">
+      <segment state="translated">
+        <source>Errors</source>
+        <target>Fejl</target>
+      </segment>
+    </unit>
+    <unit id="BTCTYyM" name="label.message">
+      <segment state="translated">
+        <source>Message</source>
+        <target>Besked</target>
+      </segment>
+    </unit>
+    <unit id="Nnq80zp" name="global.advanced_item_search.condition.and">
+      <segment state="translated">
+        <source>AND</source>
+        <target>OG</target>
+      </segment>
+    </unit>
+    <unit id="tuMpJTi" name="global.advanced_item_search.condition.or">
+      <segment state="translated">
+        <source>OR</source>
+        <target>ELLER</target>
+      </segment>
+    </unit>
+    <unit id="VCbf5xj" name="btn.add_filter">
+      <segment state="translated">
+        <source>Add filter</source>
+        <target>Tilføj filter</target>
+      </segment>
+    </unit>
+    <unit id="uGUtdPP" name="label.condition">
+      <segment state="translated">
+        <source>Condition</source>
+        <target>Tilstand</target>
       </segment>
     </unit>
     <unit id="Lpjg5ZJ" name="global.entities.search">
@@ -2941,10 +3055,112 @@
         <target>Søg</target>
       </segment>
     </unit>
+    <unit id="BjdqHhI" name="title.results">
+      <segment state="translated">
+        <source>Results</source>
+        <target>Resultater</target>
+      </segment>
+    </unit>
+    <unit id="rTp25O3" name="btn.show_filters">
+      <segment state="translated">
+        <source>Show filters</source>
+        <target>Vis filtre</target>
+      </segment>
+    </unit>
+    <unit id="y35Yfwi" name="btn.hide_filters">
+      <segment state="translated">
+        <source>Hide filters</source>
+        <target>Skjul filtre</target>
+      </segment>
+    </unit>
+    <unit id="Ak8IE4a" name="tooltip.saved-searches">
+      <segment state="translated">
+        <source>Saved searches</source>
+        <target>Gemte søgninger</target>
+      </segment>
+    </unit>
+    <unit id="cH7cMc2" name="menu.saved_searches">
+      <segment state="translated">
+        <source>Saved searches</source>
+        <target>Gemte søgninger</target>
+      </segment>
+    </unit>
+    <unit id="jSsVN8W" name="global.advanced_item_search.operator.not_equal">
+      <segment state="translated">
+        <source>!=</source>
+        <target>!=</target>
+      </segment>
+    </unit>
+    <unit id="7hER81d" name="global.advanced_item_search.operator.does_not_contain">
+      <segment state="translated">
+        <source>Does not contain</source>
+        <target>Indeholder ikke</target>
+      </segment>
+    </unit>
+    <unit id="lWyVrKn" name="label.number_of_results">
+      <segment state="translated">
+        <source>Number of results</source>
+        <target>Antal resultater</target>
+      </segment>
+    </unit>
+    <unit id="Fpd6bpF" name="global.advanced_item_search.operator.empty">
+      <segment state="translated">
+        <source>Empty</source>
+        <target>Tom</target>
+      </segment>
+    </unit>
+    <unit id="DXianrE" name="global.advanced_item_search.operator.not_empty">
+      <segment state="translated">
+        <source>Not empty</source>
+        <target>Ikke tom</target>
+      </segment>
+    </unit>
+    <unit id="rIkc77v" name="global.advanced_item_search.operator.exists">
+      <segment state="translated">
+        <source>Exists</source>
+        <target>Eksisterer</target>
+      </segment>
+    </unit>
+    <unit id="dP7Y9jv" name="global.advanced_item_search.operator.does_not_exist">
+      <segment state="translated">
+        <source>Does not exist</source>
+        <target>Eksisterer ikke</target>
+      </segment>
+    </unit>
     <unit id="W5CdTk5" name="global.advanced_item_search.type.collection">
       <segment state="translated">
         <source>Collection</source>
         <target>Samling</target>
+      </segment>
+    </unit>
+    <unit id="QbmRe76" name="btn.add_blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Blank linje</target>
+      </segment>
+    </unit>
+    <unit id="JfCCmZr" name="btn.add_section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Sektion</target>
+      </segment>
+    </unit>
+    <unit id="2LQgUOM" name="label.blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Blank linje</target>
+      </segment>
+    </unit>
+    <unit id="dnmyVOm" name="label.section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Sektion</target>
+      </segment>
+    </unit>
+    <unit id="sNi8iHJ" name="label.video">
+      <segment state="translated">
+        <source>Video</source>
+        <target>Video</target>
       </segment>
     </unit>
     <unit id="k2K0lD7" name="global.advanced_item_search.type.tag">
