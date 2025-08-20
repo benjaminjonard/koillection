@@ -36,6 +36,24 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="s12 l10 offset-l1 xl10 offset-xl2">
+            <div data-controller="template-field" data-prototype="{% apply escape %} {{ include('App/Import/_mapping_prototype.html.twig', { 'form': form.mapping.vars.prototype }) }} {% endapply %}">
+                {{ form_row(form.mapping) }}
+
+                <a data-template-field-target="button"
+                   data-action="click->template-field#add"
+                   href="#"
+                   class="add_field_link waves-effect waves-light btn"
+                >
+                    {{ 'btn.add_field'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <div class="center-align form-btn-holder">

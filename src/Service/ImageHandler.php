@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Attribute\Upload;
+use App\Entity\Import;
 use App\Enum\ConfigurationEnum;
 use App\Repository\ConfigurationRepository;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -48,6 +49,11 @@ class ImageHandler
                 $absolutePath = '/tmp/';
             } else {
                 $relativePath = 'uploads/' . $user->getId() . '/';
+
+                if ($entity instanceof Import) {
+                    $relativePath .= 'imports/';
+                }
+                
                 $absolutePath = $this->publicPath . '/' . $relativePath;
             }
 

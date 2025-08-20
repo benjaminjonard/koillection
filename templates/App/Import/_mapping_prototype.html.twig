@@ -1,0 +1,33 @@
+<div class="row mapping data-holder" data-import-mapping-target="mapping">
+    <div class="s1 handle icon-holder">
+        <i class="fa fa-arrows-v fa-fw"></i>
+    </div>
+    <div class="s10 m2">
+        {{ form_row(form.columnIndex, {'label':'label.csv_column', 'attr': {'data-controller': 'select--default'}} ) }}
+    </div>
+
+    <div class="s10 m2">
+        {{ form_row(form.datumLabel, {'label':'label.label'}) }}
+    </div>
+
+    <div class="s10 m2">
+        {{ form_row(form.datumType, {'label':'label.type', 'attr': {
+            'data-controller': 'select--default'
+        }}) }}
+    </div>
+
+    <div class="s10 m1">
+        {{ form_row(form.datumVisibility, {'label' : 'label.visibility', 'attr': {'data-controller': 'select--compact-visibility'}} ) }}
+    </div>
+
+    <div class="s10 m1">
+        {{ form_row(form.createCorrespondingTags, {'label' : 'label.create_corresponding_tags'} ) }}
+    </div>
+
+    {{ form_row(form.datumPosition, {'attr': {'class' : 'position', 'data-import-mapping-target': 'position'}}) }}
+
+    <div class="s1 icon-holder">
+        <i class="fa fa-remove fa-fw removeDatum" data-action="click->import-mapping#remove"></i>
+    </div>
+</div>
+

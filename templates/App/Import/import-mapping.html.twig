@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.import_mapping') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <h1>{{ 'title.import_mapping'|trans({'collection': collection.title}) }}</h1>
+    </div>
+
+    <div class="content-block">
+        {{ form_start(form) }}
+            <div class="row">
+                <div class="s12 l1 offset-l1 xl1 offset-xl3">
+                    {{ 'label.item_name' }} :
+                </div>
+                <div class="s12 l5 xl4">
+                    {{ form_row(form.nameIndex, {'label' : 'label.csv_column', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="s12 l1 offset-l1 xl1 offset-xl3">
+                    {{ 'label.item_image' }} :
+                </div>
+                <div class="s12 l5 xl4">
+                    {{ form_row(form.imageIndex, {'label' : 'label.csv_column', 'attr': {'data-controller': 'select--default'}} ) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="s12 l10 offset-l1 xl10 offset-xl2">
+                    <div data-controller="import-mapping" data-prototype="{% apply escape %} {{ include('App/Import/_mapping_prototype.html.twig', { 'form': form.mapping.vars.prototype }) }} {% endapply %}">
+                        {{ form_row(form.mapping) }}
+
+                        <a data-import-mapping-target="button"
+                           data-action="click->import-mapping#add"
+                           href="#"
+                           class="add_field_link waves-effect waves-light btn"
+                        >
+                            {{ 'btn.add_mapping'|trans }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-align form-btn-holder">
+                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.preview'|trans }}</button>
+                <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

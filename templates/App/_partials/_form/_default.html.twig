@@ -37,6 +37,24 @@
     {% endif %}
 {% endblock form_row %}
 
+{% block _import_upload_fileFile_widget %}
+    {% apply spaceless %}
+        <div class="datum-input-field" data-controller="file-input">
+            <div class="btn" data-action="click->file-input#openUpload">
+                <i class="fa fa-upload fa-fw"></i> {{ "label.upload_csv"|trans }}
+            </div>
+            <input {{ block('widget_attributes') }}
+                   data-action="change->file-input#displayFilename" type="file"
+                   data-file-input-target="input"
+                   data-additional-data-target="value"
+            >
+            <div data-file-input-target="filename" class="datum-original-filename">
+
+            </div>
+        </div>
+    {% endapply %}
+{% endblock _import_upload_fileFile_widget %}
+
 {% block file_widget %}
     {% apply spaceless %}
         <div class="row row-file">
@@ -66,6 +84,7 @@
         </div>
     {% endapply %}
 {% endblock file_widget %}
+
 
 {% block _display_configuration_columns_entry_row %}
     {% apply spaceless %}
@@ -157,6 +176,7 @@
     {% endapply %}
 {% endblock %}
 
+{# TEMPLATE #}
 {% block _template_fields_entry_row %}
     {% apply spaceless %}
         {{ include('App/Field/_field_prototype.html.twig', { 'form': form }) }}
@@ -171,6 +191,7 @@
     {% endapply %}
 {% endblock %}
 
+{# SCRAPER #}
 {% block _scraper_dataPaths_entry_row %}
     {% apply spaceless %}
         {{ include('App/Scraper/_data_path_prototype.html.twig', { 'form': form }) }}
@@ -194,6 +215,23 @@
 {% block _scraper_headers_row %}
     {% apply spaceless %}
         {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
+{% endblock %}
+
+{# MAPPING #}
+{% block _import_mapping_mapping_entry_row %}
+    {% apply spaceless %}
+        {{ include('App/Import/_mapping_prototype.html.twig', { 'form': form }) }}
+    {% endapply %}
+{% endblock %}
+
+{% block _import_mapping_mapping_row %}
+    {% apply spaceless %}
+        {% set mappingChildren = form|sort((a, b) => a.vars.value.datumPosition <=> b.vars.value.datumPosition) %}
+
+        {% for child in mappingChildren %}
             {{ form_row(child) }}
         {% endfor %}
     {% endapply %}

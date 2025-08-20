@@ -90,6 +90,9 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'collection', cascade: ['all'])]
     private DoctrineCollection $items;
 
+    #[ORM\OneToMany(targetEntity: Import::class, mappedBy: 'collection', cascade: ['all'])]
+    private DoctrineCollection $imports;
+
     #[Groups(['collection:read', 'collection:write'])]
     #[ORM\OneToOne(targetEntity: DisplayConfiguration::class, cascade: ['all'])]
     #[Assert\Valid]

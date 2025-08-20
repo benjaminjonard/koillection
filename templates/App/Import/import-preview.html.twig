@@ -1,0 +1,78 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.import_preview') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <h1>{{ 'title.import_preview'|trans({'collection': collection.title}) }}</h1>
+    </div>
+
+    <div class="content-block">
+        <table class="highlight items-table" data-controller="table">
+            <thead>
+            <tr>
+                <th>
+                    {{ 'label.name'|trans }}
+                </th>
+                <th>
+                    {{ 'label.image'|trans }}
+                </th>
+                <th>
+                    {{ 'label.item_data'|trans }}
+                </th>
+                <th>
+                    {{ 'label.tags'|trans }}
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in items %}
+                <tr class="list-element resize-element">
+                    <td>
+                        {{ item.name }}
+                    </td>
+                    <td>
+                        {% if item.image %}
+                            <img height="200px" src="{{ item.image }}">
+                        {% endif %}
+                    </td>
+                    <td>
+                        <ul>
+                            {% for datum in item.data %}
+                                <li><b>{{ datum.label }}</b> : {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="nav nav-tags">
+                            {% for tag in item.tags %}
+                                <li class="tag chip">
+                                    <a href="#">
+                                        {{ tag.label }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="center-align form-btn-holder">
+            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+            <a href="{{ path('app_collection_import_mapping', {'id' : collection.id, 'importId' : import.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.back_to_mapping'|trans }}</a>
+        </div>
+    </div>
+{% endblock %}
