@@ -3619,10 +3619,148 @@
         <target>Código</target>
       </segment>
     </unit>
+    <unit id="4Acswj3" name="label.level">
+      <segment state="translated">
+        <source>Level</source>
+        <target>Nivel</target>
+      </segment>
+    </unit>
+    <unit id="BTCTYyM" name="label.message">
+      <segment state="translated">
+        <source>Message</source>
+        <target>Mensaje</target>
+      </segment>
+    </unit>
+    <unit id="ueKYyVj" name="title.error">
+      <segment state="translated">
+        <source>Error</source>
+        <target>Error</target>
+      </segment>
+    </unit>
     <unit id="VCoUwHa" name="label.last_occurrence">
       <segment state="translated">
         <source>Last occurrence</source>
         <target>Última aparición</target>
+      </segment>
+    </unit>
+    <unit id="UuNgqqe" name="label.count">
+      <segment state="translated">
+        <source>Count</source>
+        <target>Contar</target>
+      </segment>
+    </unit>
+    <unit id="sfcoCPq" name="tooltip.details">
+      <segment state="translated">
+        <source>Details</source>
+        <target>Detalles</target>
+      </segment>
+    </unit>
+    <unit id="Z3r5GZo" name="global.advanced_item_search.type.datum">
+      <segment state="translated">
+        <source>Item data</source>
+        <target>Datos del elemento</target>
+      </segment>
+    </unit>
+    <unit id="i202Q5I" name="global.advanced_item_search.type.name">
+      <segment state="translated">
+        <source>Item name</source>
+        <target>Nombre del elemento</target>
+      </segment>
+    </unit>
+    <unit id="g8GYcYx" name="global.advanced_item_search.operator.equal">
+      <segment state="translated">
+        <source>=</source>
+        <target>=</target>
+      </segment>
+    </unit>
+    <unit id="yrgsw9I" name="global.advanced_item_search.operator.superior">
+      <segment state="translated">
+        <source>Superior</source>
+        <target>Superior</target>
+      </segment>
+    </unit>
+    <unit id="cWoC6ft" name="global.advanced_item_search.operator.superior_or_equal">
+      <segment state="translated">
+        <source>Superior or equal</source>
+        <target>Superior o igual</target>
+      </segment>
+    </unit>
+    <unit id="HTWZ4VL" name="global.advanced_item_search.operator.inferior">
+      <segment state="translated">
+        <source>Inferior</source>
+        <target>Inferior</target>
+      </segment>
+    </unit>
+    <unit id="N2eRW7g" name="global.advanced_item_search.operator.inferior_or_equal">
+      <segment state="translated">
+        <source>Inferior or equal</source>
+        <target>Inferior o igual</target>
+      </segment>
+    </unit>
+    <unit id="Ixftgmq" name="global.advanced_item_search.operator.contains">
+      <segment state="translated">
+        <source>Contains</source>
+        <target>Contiene</target>
+      </segment>
+    </unit>
+    <unit id="Nnq80zp" name="global.advanced_item_search.condition.and">
+      <segment state="translated">
+        <source>AND</source>
+        <target>Y</target>
+      </segment>
+    </unit>
+    <unit id="tuMpJTi" name="global.advanced_item_search.condition.or">
+      <segment state="translated">
+        <source>OR</source>
+        <target>O</target>
+      </segment>
+    </unit>
+    <unit id="XAPwUuS" name="label.item_data">
+      <segment state="translated">
+        <source>Item data</source>
+        <target>Datos del elemento</target>
+      </segment>
+    </unit>
+    <unit id="vkFJA2N" name="label.operator">
+      <segment state="translated">
+        <source>Operator</source>
+        <target>Operador</target>
+      </segment>
+    </unit>
+    <unit id="VCbf5xj" name="btn.add_filter">
+      <segment state="translated">
+        <source>Add filter</source>
+        <target>Añadir filtro</target>
+      </segment>
+    </unit>
+    <unit id="uGUtdPP" name="label.condition">
+      <segment state="translated">
+        <source>Condition</source>
+        <target>Condición</target>
+      </segment>
+    </unit>
+    <unit id="2mInqTu" name="menu.advanced_item_search">
+      <segment state="translated">
+        <source>Advanced item search</source>
+        <target>Búsqueda avanzada de elementos</target>
+      </segment>
+    </unit>
+    <unit id="JidyJQJ" name="btn.add_block">
+      <segment state="translated">
+        <source>Add block</source>
+        <target>Añadir bloque</target>
+      </segment>
+    </unit>
+    <unit id="QZjl6ru" name="btn.save_and_submit">
+      <segment state="translated">
+        <source>Save and submit</source>
+        <target>Guardar y enviar</target>
+      </segment>
+    </unit>
+    <unit id="HbtmbsF" name="title.save_and_submit">
+      <segment state="translated">
+        <source>Save and submit</source>
+        <target>Guardar y enviar</target>
       </segment>
     </unit>
     <unit id="Lpjg5ZJ" name="global.entities.search">
@@ -3631,10 +3769,82 @@
         <target>Buscar</target>
       </segment>
     </unit>
+    <unit id="BjdqHhI" name="title.results">
+      <segment state="translated">
+        <source>Results</source>
+        <target>Resultados</target>
+      </segment>
+    </unit>
+    <unit id="rTp25O3" name="btn.show_filters">
+      <segment state="translated">
+        <source>Show filters</source>
+        <target>Mostrar filtros</target>
+      </segment>
+    </unit>
+    <unit id="y35Yfwi" name="btn.hide_filters">
+      <segment state="translated">
+        <source>Hide filters</source>
+        <target>Ocultar filtros</target>
+      </segment>
+    </unit>
+    <unit id="Ak8IE4a" name="tooltip.saved-searches">
+      <segment state="translated">
+        <source>Saved searches</source>
+        <target>Búsquedas guardadas</target>
+      </segment>
+    </unit>
+    <unit id="cH7cMc2" name="menu.saved_searches">
+      <segment state="translated">
+        <source>Saved searches</source>
+        <target>Búsquedas guardadas</target>
+      </segment>
+    </unit>
+    <unit id="JyETMRr" name="message.search_deleted">
+      <segment state="translated">
+        <source>Search {search} has been deleted</source>
+        <target>La búsqueda {search} se ha eliminado</target>
+      </segment>
+    </unit>
+    <unit id="8uIiviK" name="message.delete.search">
+      <segment state="translated">
+        <source>Are you sure you want to delete this search ? It will be permanently lost...</source>
+        <target>¿Seguro que quieres borrar esta búsqueda? Esta acción no se puede deshacer.</target>
+      </segment>
+    </unit>
     <unit id="jSsVN8W" name="global.advanced_item_search.operator.not_equal">
       <segment state="translated">
         <source>!=</source>
         <target>!=</target>
+      </segment>
+    </unit>
+    <unit id="7hER81d" name="global.advanced_item_search.operator.does_not_contain">
+      <segment state="translated">
+        <source>Does not contain</source>
+        <target>No contiene</target>
+      </segment>
+    </unit>
+    <unit id="lWyVrKn" name="label.number_of_results">
+      <segment state="translated">
+        <source>Number of results</source>
+        <target>Número de resultados</target>
+      </segment>
+    </unit>
+    <unit id="Fpd6bpF" name="global.advanced_item_search.operator.empty">
+      <segment state="translated">
+        <source>Empty</source>
+        <target>Vacío</target>
+      </segment>
+    </unit>
+    <unit id="DXianrE" name="global.advanced_item_search.operator.not_empty">
+      <segment state="translated">
+        <source>Not empty</source>
+        <target>No está vacío</target>
+      </segment>
+    </unit>
+    <unit id="rIkc77v" name="global.advanced_item_search.operator.exists">
+      <segment state="translated">
+        <source>Exists</source>
+        <target>Existe</target>
       </segment>
     </unit>
     <unit id="dP7Y9jv" name="global.advanced_item_search.operator.does_not_exist">
@@ -3649,16 +3859,76 @@
         <target>Colección</target>
       </segment>
     </unit>
+    <unit id="QbmRe76" name="btn.add_blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Línea en Blanco</target>
+      </segment>
+    </unit>
+    <unit id="JfCCmZr" name="btn.add_section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Sección</target>
+      </segment>
+    </unit>
+    <unit id="2LQgUOM" name="label.blank_line">
+      <segment state="translated">
+        <source>Blank line</source>
+        <target>Línea en Blanco</target>
+      </segment>
+    </unit>
+    <unit id="dnmyVOm" name="label.section">
+      <segment state="translated">
+        <source>Section</source>
+        <target>Sección</target>
+      </segment>
+    </unit>
     <unit id="sNi8iHJ" name="label.video">
       <segment state="translated">
         <source>Video</source>
         <target>Vídeo</target>
       </segment>
     </unit>
+    <unit id="KupkSAg" name="label.add_structure">
+      <segment state="translated">
+        <source>Add structure element :</source>
+        <target>Añadir elemento de estructura:</target>
+      </segment>
+    </unit>
     <unit id="k2K0lD7" name="global.advanced_item_search.type.tag">
       <segment state="translated">
         <source>Tag</source>
         <target>Etiqueta</target>
+      </segment>
+    </unit>
+    <unit id="pDLfiA7" name="tooltip.add_item_search">
+      <segment state="translated">
+        <source>Create a new item search</source>
+        <target>Crear un nuevo elmento de búsqueda</target>
+      </segment>
+    </unit>
+    <unit id="OUfON8z" name="btn.add_header">
+      <segment state="translated">
+        <source>Add a custom header</source>
+        <target>Añadir una cabecera personalizada</target>
+      </segment>
+    </unit>
+    <unit id="Ris4lIj" name="label.header">
+      <segment state="translated">
+        <source>Header name</source>
+        <target>Nombre de cabecera</target>
+      </segment>
+    </unit>
+    <unit id="0TYYXRx" name="scraper.custom_headers">
+      <segment state="translated">
+        <source>Custom headers</source>
+        <target>Cabeceras personalizadas</target>
+      </segment>
+    </unit>
+    <unit id="gMFEGPJ" name="label.headers">
+      <segment state="translated">
+        <source>Custom headers</source>
+        <target>Cabeceras personalizadas</target>
       </segment>
     </unit>
   </file>
