@@ -29,7 +29,7 @@ services:
 
     postgresql:
         container_name: postgresql
-        image: postgres:17
+        image: postgres:18
         environment:
             - POSTGRES_DB=koillection
             - POSTGRES_USER=postgres
