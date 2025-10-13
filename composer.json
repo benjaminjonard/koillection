@@ -16,7 +16,7 @@
         "ext-json": "*",
         "api-platform/core": "4.1.20",
         "composer/semver": "3.4.3",
-        "doctrine/doctrine-bundle": "2.15.1",
+        "doctrine/doctrine-bundle": "3.0.0",
         "doctrine/doctrine-migrations-bundle": "3.4.2",
         "doctrine/orm": "3.5.0",
         "doctrine/dbal": "4.3.1",
