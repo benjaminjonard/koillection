@@ -112,7 +112,7 @@
     <unit id="bZ6z5fo" name="error.datum.value.date">
       <segment state="translated">
         <source>Value must be a Y-m-d formated string like '2024-06-10'</source>
-        <target>Waarde moet een Y-m-d formaat tekenreeks zijn zoals '2024-06-10'</target>
+        <target>Waarde moet een jjjj-mm-dd formaat tekenreeks zijn zoals '2024-06-10'</target>
       </segment>
     </unit>
   </file>

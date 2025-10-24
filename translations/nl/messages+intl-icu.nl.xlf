@@ -3910,5 +3910,29 @@
         <target>Nieuwe zoekopdracht maken</target>
       </segment>
     </unit>
+    <unit id="OUfON8z" name="btn.add_header">
+      <segment state="translated">
+        <source>Add a custom header</source>
+        <target>Een aangepaste kop toevoegen</target>
+      </segment>
+    </unit>
+    <unit id="Ris4lIj" name="label.header">
+      <segment state="translated">
+        <source>Header name</source>
+        <target>Kop naam</target>
+      </segment>
+    </unit>
+    <unit id="0TYYXRx" name="scraper.custom_headers">
+      <segment state="translated">
+        <source>Custom headers</source>
+        <target>Aangepaste kopteksten</target>
+      </segment>
+    </unit>
+    <unit id="gMFEGPJ" name="label.headers">
+      <segment state="translated">
+        <source>Custom headers</source>
+        <target>Aangepaste kopteksten</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
