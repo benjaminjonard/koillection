@@ -9,21 +9,21 @@
     "node": ">= 14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.28.0",
-    "@babel/preset-env": "7.28.0",
+    "@babel/core": "7.28.5",
+    "@babel/preset-env": "7.28.5",
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.4",
     "@symfony/stimulus-bridge": "4.0.1",
-    "@symfony/webpack-encore": "5.1.0",
-    "copy-webpack-plugin": "13.0.0",
-    "core-js": "3.44.0",
+    "@symfony/webpack-encore": "5.2.0",
+    "copy-webpack-plugin": "13.0.1",
+    "core-js": "3.46.0",
     "croppie": "2.6.5",
     "echarts": "6.0.0",
     "regenerator-runtime": "0.14.1",
     "sortablejs": "1.15.6",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.3",
-    "webpack": "5.101.0",
+    "webpack": "5.102.1",
     "webpack-cli": "6.0.1",
     "webpack-notifier": "1.15.0"
   },
@@ -36,8 +36,8 @@
   "dependencies": {
     "bazinga-translator": "7.0.0",
     "hotkeys-js": "^3.10.2",
-    "intl-messageformat": "10.7.16",
+    "intl-messageformat": "10.7.18",
     "ts-select2": "^0.2.5"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.11.0"
 }
