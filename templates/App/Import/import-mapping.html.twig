@@ -19,7 +19,7 @@
         {{ form_start(form) }}
             <div class="row">
                 <div class="s12 l1 offset-l1 xl1 offset-xl3">
-                    {{ 'label.item_name' }} :
+                    {{ 'label.name'|trans }} :
                 </div>
                 <div class="s12 l5 xl4">
                     {{ form_row(form.nameIndex, {'label' : 'label.csv_column', 'attr': {'data-controller': 'select--default'}} ) }}
@@ -28,7 +28,7 @@
 
             <div class="row">
                 <div class="s12 l1 offset-l1 xl1 offset-xl3">
-                    {{ 'label.item_image' }} :
+                    {{ 'label.image'|trans }} :
                 </div>
                 <div class="s12 l5 xl4">
                     {{ form_row(form.imageIndex, {'label' : 'label.csv_column', 'attr': {'data-controller': 'select--default'}} ) }}

@@ -85,12 +85,34 @@ class ImportController extends AbstractController
     ): Response
     {
         //$this->denyAccessUnlessFeaturesEnabled(['imports']);
-        $items = $importHandler->createPreview($import);
+
+        $items = $importHandler->createItems($import, true);
 
         return $this->render('App/Import/import-preview.html.twig', [
             'collection' => $collection,
             'import' => $import,
             'items' => $items
         ]);
+    }
+
+    #[Route(path: '/collections/{id}/import/{importId}/import', name: 'app_collection_import_import', methods: ['POST'])]
+    public function executeImport(
+        Collection $collection,
+        #[MapEntity(expr: 'repository.find(importId)')] Import $import,
+        ImportHandler $importHandler,
+        ManagerRegistry $managerRegistry
+    ): Response
+    {
+        //$this->denyAccessUnlessFeaturesEnabled(['imports']);
+
+        $items = $importHandler->createItems($import, false);
+        foreach ($items as $item) {
+            $item->setCollection($collection);
+            $managerRegistry->getManager()->persist($item);
+        }
+
+        $managerRegistry->getManager()->flush();
+
+        return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
     }
 }

@@ -110,6 +110,18 @@ class DatumTypeEnum
         self::TYPE_TEXTAREA,
     ];
 
+    public const array AVAILABLE_FOR_IMPORT = [
+        self::TYPE_TEXT,
+        self::TYPE_TEXTAREA,
+        self::TYPE_LINK,
+        self::TYPE_COUNTRY,
+        self::TYPE_DATE,
+        self::TYPE_RATING,
+        self::TYPE_NUMBER,
+        self::TYPE_PRICE,
+        self::TYPE_CHECKBOX,
+    ];
+
     public const array TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',
         self::TYPE_TEXTAREA => 'label.textarea',

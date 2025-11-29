@@ -199,5 +199,35 @@
         <target>List element value</target>
       </segment>
     </unit>
+    <unit id="9yqPMxO" name="label.country.format">
+      <segment>
+        <source>EN, FR...</source>
+        <target>EN, FR...</target>
+      </segment>
+    </unit>
+    <unit id="YPzlCnY" name="label.price.format">
+      <segment>
+        <source>1 USD, 4.5 EUR...</source>
+        <target>1 USD, 4.5 EUR...</target>
+      </segment>
+    </unit>
+    <unit id="agUEhZP" name="label.checkbox.format">
+      <segment>
+        <source>0 or 1</source>
+        <target>0 or 1</target>
+      </segment>
+    </unit>
+    <unit id="gbSuHPt" name="label.date.format">
+      <segment>
+        <source>YYYY-MM-DD</source>
+        <target>YYYY-MM-DD</target>
+      </segment>
+    </unit>
+    <unit id="DC3MB8m" name="label.expected_format">
+      <segment>
+        <source>Expected format :</source>
+        <target>Expected format :</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

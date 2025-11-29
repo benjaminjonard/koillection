@@ -8,10 +8,18 @@ use App\Entity\Datum;
 use App\Entity\Import;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Enum\DatumTypeEnum;
+use App\Repository\TagRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImportHandler
 {
-    public function createPreview(Import $import): array
+    public function __construct(private readonly TagRepository $tagRepository)
+    {
+    }
+
+    public function createItems(Import $import, bool $isPreview): array
     {
         $items = [];
         foreach ($import->getRows() as $row) {
@@ -20,7 +28,11 @@ class ImportHandler
             ;
 
             if ($import->getImageIndex()) {
-                $item->setImage($this->createThumbnailBase64($row[$import->getImageIndex()]));
+                if ($isPreview) {
+                    $item->setImage($this->createThumbnailBase64($row[$import->getImageIndex()]));
+                } else {
+                    $item->setFile($this->getFile($row[$import->getImageIndex()]));
+                }
             }
 
             foreach ($import->getMapping() as $mapping) {
@@ -31,14 +43,27 @@ class ImportHandler
                     ->setVisibility($mapping['datumVisibility'])
                     ->setPosition($mapping['datumPosition'])
                 ;
+
+                if ($mapping['datumType'] === DatumTypeEnum::TYPE_PRICE) {
+                    $values = explode(' ', $datum->getValue());
+                    $datum
+                        ->setValue($values[0])
+                        ->setCurrency($values[1])
+                    ;
+                }
+
                 $item->addData($datum);
 
                 if ($mapping['createCorrespondingTags']) {
                     $values = explode(',', $datum->getValue());
                     foreach ($values as $value) {
-                        $tag = new Tag()
-                            ->setLabel($value)
-                        ;
+                        $tag = $this->tagRepository->findOneBy(['label' => $value]);
+
+                        if (!$tag instanceof Tag) {
+                            $tag = new Tag()
+                                ->setLabel($value)
+                            ;
+                        }
 
                         $item->addTag($tag);
                     }
@@ -101,5 +126,15 @@ class ImportHandler
 
         // 8. Return base64 string (with data URI prefix for <img>)
         return 'data:image/png;base64,' . base64_encode($imageData);
+    }
+
+    public function getFile(string $url): UploadedFile
+    {
+        $path = '/tmp/' . uniqid();
+
+        $data = @file_get_contents($url);
+        file_put_contents($path, $data);
+
+        return new UploadedFile($path, basename($path), mime_content_type($path), UPLOAD_ERR_OK, true);
     }
 }

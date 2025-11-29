@@ -3949,5 +3949,59 @@
         <target>Custom headers</target>
       </segment>
     </unit>
+    <unit id="FPiOTgK" name="breadcrumb.import">
+      <segment>
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="oGhQPmW" name="title.import">
+      <segment>
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="YoGl2Lk" name="label.upload_csv">
+      <segment>
+        <source>Upload CSV</source>
+        <target>Upload CSV</target>
+      </segment>
+    </unit>
+    <unit id="Bw1fC95" name="breadcrumb.import_mapping">
+      <segment>
+        <source>Mapping</source>
+        <target>Mapping</target>
+      </segment>
+    </unit>
+    <unit id="UfayUHA" name="title.import_mapping">
+      <segment>
+        <source>Mapping</source>
+        <target>Mapping</target>
+      </segment>
+    </unit>
+    <unit id="DXHcj6L" name="label.csv_column">
+      <segment>
+        <source>CSV column</source>
+        <target>CSV column</target>
+      </segment>
+    </unit>
+    <unit id="uCqmRsl" name="label.create_corresponding_tags">
+      <segment>
+        <source>Create corresponding tags</source>
+        <target>Create corresponding tags</target>
+      </segment>
+    </unit>
+    <unit id="I7bXTNs" name="btn.add_mapping">
+      <segment>
+        <source>Add an extra field mapping</source>
+        <target>Add an extra field mapping</target>
+      </segment>
+    </unit>
+    <unit id="CMx8YJG" name="btn.preview">
+      <segment>
+        <source>Preview</source>
+        <target>Preview</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

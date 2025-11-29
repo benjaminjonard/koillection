@@ -10,9 +10,10 @@
         {{ form_row(form.datumLabel, {'label':'label.label'}) }}
     </div>
 
-    <div class="s10 m2">
-        {{ form_row(form.datumType, {'label':'label.type', 'attr': {
-            'data-controller': 'select--default'
+    <div class="s10 m2" data-controller="datum-format-helper">
+        {{ form_row(form.datumType, {'label':'label.type', 'help': ' ', 'help_attr' : {'data-datum-format-helper-target' : 'help'}, 'attr': {
+            'data-controller': 'select--default',
+            'data-action': 'change->datum-format-helper#updateHelp'
         }}) }}
     </div>
 

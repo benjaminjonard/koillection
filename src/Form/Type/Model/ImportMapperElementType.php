@@ -16,12 +16,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ImportMapperElementType extends AbstractType
 {
+    public function __construct(private readonly TranslatorInterface $translator)
+    {
+    }
+
     #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $types = [];
+        foreach (DatumTypeEnum::AVAILABLE_FOR_IMPORT as $type) {
+            $types[$this->translator->trans(DatumTypeEnum::getTypeLabel($type))] = $type;
+        }
+
         $builder
             ->add('columnIndex', ChoiceType::class, [
                 'label' => false,
@@ -31,16 +41,16 @@ class ImportMapperElementType extends AbstractType
             ->add('datumType', ChoiceType::class, [
                 'label' => false,
                 'required' => true,
-                'choices' => array_flip(DatumTypeEnum::getTypesLabels()),
+                'choices' => $types,
             ])
             ->add('datumLabel', TextType::class, [
                 'label' => false,
-                'required' => true
+                'required' => true,
             ])
             ->add('datumVisibility', ChoiceType::class, [
                 'label' => false,
+                'choices' => array_flip(VisibilityEnum::getVisibilityLabels()),
                 'required' => true,
-                'choices' => array_flip(VisibilityEnum::VISIBILITIES),
             ])
             ->add('datumPosition', HiddenType::class, [
                 'required' => false,

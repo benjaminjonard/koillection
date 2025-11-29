@@ -27,7 +27,7 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
     private string $id;
 
     #[Upload(pathProperty: 'file', originalFilenamePathProperty: 'filename')]
-    #[Assert\File(mimeTypes: ['text/csv'])]
+    #[Assert\File(mimeTypes: ['text/csv', 'text/plain'])]
     private ?File $fileFile = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]

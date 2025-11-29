@@ -41,16 +41,17 @@
     {% apply spaceless %}
         <div class="datum-input-field" data-controller="file-input">
             <div class="btn" data-action="click->file-input#openUpload">
-                <i class="fa fa-upload fa-fw"></i> {{ "label.upload_csv"|trans }}
+                <i class="fa fa-upload fa-fw"></i>&nbsp;&nbsp;{{ "label.upload_csv"|trans }}
+            </div>
+            <div data-file-input-target="filename" class="datum-original-filename">
             </div>
             <input {{ block('widget_attributes') }}
                    data-action="change->file-input#displayFilename" type="file"
                    data-file-input-target="input"
                    data-additional-data-target="value"
+                   style="visibility: hidden;"
+                   accept="text/csv, text/plain"
             >
-            <div data-file-input-target="filename" class="datum-original-filename">
-
-            </div>
         </div>
     {% endapply %}
 {% endblock _import_upload_fileFile_widget %}

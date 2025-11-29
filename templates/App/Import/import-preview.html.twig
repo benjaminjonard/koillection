@@ -70,7 +70,9 @@
 
 
         <div class="center-align form-btn-holder">
-            <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            <form action="{{ path('app_collection_import_import', {'id': collection.id, 'importId': import.id}) }}" method="post">
+                <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+            </form>
             <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
             <a href="{{ path('app_collection_import_mapping', {'id' : collection.id, 'importId' : import.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.back_to_mapping'|trans }}</a>
         </div>
