@@ -40,7 +40,7 @@
         "symfony/form": "7.3.6",
         "symfony/framework-bundle": "7.3.6",
         "symfony/http-client": "7.3.6",
-        "symfony/http-foundation": "7.3.6",
+        "symfony/http-foundation": "7.3.7",
         "symfony/http-kernel": "7.3.6",
         "symfony/intl": "7.3.5",
         "symfony/mime": "7.3.4",
