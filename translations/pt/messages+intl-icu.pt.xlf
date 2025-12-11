@@ -3589,6 +3589,12 @@
         <target>Activar métricas</target>
       </segment>
     </unit>
+    <unit id="sfcoCPq" name="tooltip.details">
+      <segment state="translated">
+        <source>Details</source>
+        <target>Detalhes</target>
+      </segment>
+    </unit>
     <unit id="Lpjg5ZJ" name="global.entities.search">
       <segment state="translated">
         <source>Search</source>
