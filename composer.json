@@ -44,7 +44,7 @@
         "symfony/http-kernel": "7.4.2",
         "symfony/intl": "7.4.0",
         "symfony/mime": "7.4.0",
-        "symfony/monolog-bundle": "3.11.1",
+        "symfony/monolog-bundle": "4.0.1",
         "symfony/process": "v7.4.0",
         "symfony/property-access": "7.4.0",
         "symfony/property-info": "7.4.1",
