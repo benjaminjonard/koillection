@@ -162,6 +162,10 @@ abstract class HtmlScraper
             return $this->guessHost($values[0], $scraping);
         }
 
+        if ($type === DatumTypeEnum::TYPE_PRICE) {
+            return $values[0];
+        }
+
         return null;
     }
 

@@ -101,6 +101,7 @@ class DatumTypeEnum
         self::TYPE_COUNTRY,
         self::TYPE_LINK,
         self::TYPE_IMAGE,
+        self::TYPE_PRICE,
     ];
 
     public const array AVAILABLE_FOR_SEARCH = [
