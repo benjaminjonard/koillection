@@ -193,7 +193,7 @@ class WishScraperController extends AbstractController
 
         $slug = $slugger->slug($scraper->getName())->lower();
 
-        return new FileResponse([json_encode($data)], "wish-scrapper-{$slug}.json", headers: ['Content-Type' => 'application/json']);
+        return new FileResponse([json_encode($data, JSON_UNESCAPED_UNICODE)], "wish-scrapper-{$slug}.json", headers: ['Content-Type' => 'application/json']);
     }
 
     #[Route(path: '/scrapers/wish-scrapers/{id}', name: 'app_scraper_wish_show', methods: ['GET'])]
