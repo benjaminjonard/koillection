@@ -51,7 +51,7 @@ RUN set -eux ; \
     # Add PHP config files \
     cp /app/public/docker/php.ini /usr/local/etc/php/conf.d/php.ini
 
-FROM node:21-bookworm AS build-node
+FROM node:24-bookworm AS build-node
 
 WORKDIR /app
 
