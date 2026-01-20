@@ -67,7 +67,7 @@ RUN set -eux ; \
     yarn install ; \
     yarn build ;
 
-FROM curlimages/curl:8.17.0 AS download-env
+FROM curlimages/curl:8.18.0 AS download-env
 
 # renovate: datasource=github-releases depName=lwthiker/curl-impersonate packageName=lwthiker/curl-impersonate
 ENV CURL_IMPERSONATE_VERSION="0.6.1"
