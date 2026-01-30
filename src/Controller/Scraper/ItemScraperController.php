@@ -193,7 +193,7 @@ class ItemScraperController extends AbstractController
 
         $slug = $slugger->slug($scraper->getName())->lower();
 
-        return new FileResponse([json_encode($data)], "item-scrapper-{$slug}.json", headers: ['Content-Type' => 'application/json']);
+        return new FileResponse([json_encode($data, JSON_UNESCAPED_UNICODE)], "item-scrapper-{$slug}.json", headers: ['Content-Type' => 'application/json']);
     }
 
     #[Route(path: '/scrapers/item-scrapers/{id}', name: 'app_scraper_item_show', methods: ['GET'])]
