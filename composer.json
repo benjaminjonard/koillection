@@ -44,7 +44,7 @@
         "symfony/intl": "8.0.1",
         "symfony/mime": "8.0.0",
         "symfony/monolog-bundle": "4.0.1",
-        "symfony/process": "8.0.3",
+        "symfony/process": "8.0.5",
         "symfony/property-access": "8.0.3",
         "symfony/property-info": "8.0.3",
         "symfony/routing": "8.0.3",
