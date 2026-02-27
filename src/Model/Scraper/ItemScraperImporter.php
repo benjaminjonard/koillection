@@ -36,6 +36,7 @@ class ItemScraperImporter
         $scraper->setName($data['name'] ?? null);
         $scraper->setNamePath($data['namePath'] ?? null);
         $scraper->setImagePath($data['imagePath'] ?? null);
+        $scraper->setPricePath($data['pricePath'] ?? null);
         $scraper->setUrlPattern($data['urlPattern'] ?? null);
         $scraper->setType(ScraperTypeEnum::TYPE_ITEM);
 

@@ -27,6 +27,7 @@ docker-compose.yml
 !public/tmp/.gitkeep
 
 /.idea/*
+/.vscode/*
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*
 ###< lexik/jwt-authentication-bundle ###
