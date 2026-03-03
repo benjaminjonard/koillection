@@ -15,7 +15,7 @@
     "@materializecss/materialize": "2.0.4",
     "@symfony/stimulus-bridge": "4.0.1",
     "@symfony/webpack-encore": "5.3.1",
-    "copy-webpack-plugin": "13.0.1",
+    "copy-webpack-plugin": "14.0.0",
     "core-js": "3.47.0",
     "croppie": "2.6.5",
     "echarts": "6.0.0",
