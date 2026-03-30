@@ -2301,10 +2301,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bazinga-translator@npm:7.0.0":
-  version: 7.0.0
-  resolution: "bazinga-translator@npm:7.0.0"
-  checksum: 10/dbd3648c6f6a665fef07e301b34600cb690b7e92b2254c27d36cd33dbd423015c1a41250e1d8163b497ac1b1729d3e25cc09562475d25e85e7823fd28ab3aa8d
+"bazinga-translator@npm:8.0.0":
+  version: 8.0.0
+  resolution: "bazinga-translator@npm:8.0.0"
+  checksum: 10/39106362bb650c0dbfb2b24490dda5d045c58471ce1c360f5f923aec2893b1c71afab2edc9fecc90307a5ce46942c41d087b2c5d19a61004502f299ed9fa0241
   languageName: node
   linkType: hard
 
@@ -3536,7 +3536,7 @@ __metadata:
     "@materializecss/materialize": "npm:2.0.4"
     "@symfony/stimulus-bridge": "npm:4.0.1"
     "@symfony/webpack-encore": "npm:5.3.1"
-    bazinga-translator: "npm:7.0.0"
+    bazinga-translator: "npm:8.0.0"
     copy-webpack-plugin: "npm:14.0.0"
     core-js: "npm:3.47.0"
     croppie: "npm:2.6.5"
