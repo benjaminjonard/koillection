@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62beec6506bf70a7ca30ca67e3b08902",
+    "content-hash": "26908fe5b5ba0ab32683e7293cf36b30",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v4.3.1",
+            "version": "v4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "bb36677b9e948661f2afe3d6a9a9721b541b2b5d"
+                "reference": "7cc01a69ab0974990a7a7d4ad2bc7914b710addb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/bb36677b9e948661f2afe3d6a9a9721b541b2b5d",
-                "reference": "bb36677b9e948661f2afe3d6a9a9721b541b2b5d",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/7cc01a69ab0974990a7a7d4ad2bc7914b710addb",
+                "reference": "7cc01a69ab0974990a7a7d4ad2bc7914b710addb",
                 "shasum": ""
             },
             "require": {
@@ -87,18 +87,18 @@
                 "friends-of-behat/symfony-extension": "^2.1",
                 "friendsofphp/php-cs-fixer": "^3.93",
                 "guzzlehttp/guzzle": "^6.0 || ^7.0",
-                "illuminate/config": "^11.0 || ^12.0",
-                "illuminate/contracts": "^11.0 || ^12.0",
-                "illuminate/database": "^11.0 || ^12.0",
-                "illuminate/http": "^11.0 || ^12.0",
-                "illuminate/pagination": "^11.0 || ^12.0",
-                "illuminate/routing": "^11.0 || ^12.0",
-                "illuminate/support": "^11.0 || ^12.0",
+                "illuminate/config": "^11.0 || ^12.0 || ^13.0",
+                "illuminate/contracts": "^11.0 || ^12.0 || ^13.0",
+                "illuminate/database": "^11.0 || ^12.0 || ^13.0",
+                "illuminate/http": "^11.0 || ^12.0 || ^13.0",
+                "illuminate/pagination": "^11.0 || ^12.0 || ^13.0",
+                "illuminate/routing": "^11.0 || ^12.0 || ^13.0",
+                "illuminate/support": "^11.0 || ^12.0 || ^13.0",
                 "jangregor/phpstan-prophecy": "^2.1.11",
                 "justinrainbow/json-schema": "^6.5.2",
-                "laravel/framework": "^11.0 || ^12.0",
+                "laravel/framework": "^11.0 || ^12.0 || ^13.0",
                 "mcp/sdk": "^0.4.0",
-                "orchestra/testbench": "^10.9",
+                "orchestra/testbench": "^10.9 || ^11.0",
                 "phpspec/prophecy-phpunit": "^2.2",
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpdoc-parser": "^1.29 || ^2.0",
@@ -226,9 +226,9 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v4.3.1"
+                "source": "https://github.com/api-platform/core/tree/v4.3.3"
             },
-            "time": "2026-03-20T10:57:31+00:00"
+            "time": "2026-03-29T10:10:54+00:00"
         },
         {
             "name": "composer/semver",
@@ -8126,16 +8126,16 @@
     "packages-dev": [
         {
             "name": "brianium/paratest",
-            "version": "v7.19.2",
+            "version": "v7.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9"
+                "reference": "81c80677c9ec0ed4ef16b246167f11dec81a6e3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9",
-                "reference": "66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/81c80677c9ec0ed4ef16b246167f11dec81a6e3d",
+                "reference": "81c80677c9ec0ed4ef16b246167f11dec81a6e3d",
                 "shasum": ""
             },
             "require": {
@@ -8159,7 +8159,7 @@
                 "ext-pcntl": "*",
                 "ext-pcov": "*",
                 "ext-posix": "*",
-                "phpstan/phpstan": "^2.1.40",
+                "phpstan/phpstan": "^2.1.44",
                 "phpstan/phpstan-deprecation-rules": "^2.0.4",
                 "phpstan/phpstan-phpunit": "^2.0.16",
                 "phpstan/phpstan-strict-rules": "^2.0.10",
@@ -8203,7 +8203,7 @@
             ],
             "support": {
                 "issues": "https://github.com/paratestphp/paratest/issues",
-                "source": "https://github.com/paratestphp/paratest/tree/v7.19.2"
+                "source": "https://github.com/paratestphp/paratest/tree/v7.20.0"
             },
             "funding": [
                 {
@@ -8215,7 +8215,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2026-03-09T14:33:17+00:00"
+            "time": "2026-03-29T15:46:14+00:00"
         },
         {
             "name": "clue/ndjson-react",
