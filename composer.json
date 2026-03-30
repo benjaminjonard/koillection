@@ -74,7 +74,7 @@
         "friendsofphp/php-cs-fixer": "3.94.2",
         "justinrainbow/json-schema": "6.7.2",
         "phpunit/php-code-coverage": "12.5.3",
-        "phpunit/phpunit": "12.5.14",
+        "phpunit/phpunit": "13.0.5",
         "rector/rector": "2.3.9",
         "symfony/maker-bundle": "1.67.0",
         "symfony/stopwatch": "8.0.0",
