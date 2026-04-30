@@ -250,8 +250,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         $children = [];
 
         foreach ($this->children as $child) {
-            $children[] = $child;
-            $children = array_merge($children, $child->getChildrenRecursively());
+            $children = [...$children, $child, ...$child->getChildrenRecursively()];
         }
 
         return $children;

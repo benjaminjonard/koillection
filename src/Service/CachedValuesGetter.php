@@ -8,6 +8,7 @@ use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\User;
 use App\Entity\Wishlist;
+use App\Enum\VisibilityEnum;
 use Symfony\Bundle\SecurityBundle\Security;
 
 readonly class CachedValuesGetter
@@ -19,42 +20,24 @@ readonly class CachedValuesGetter
 
     public function getCachedValues(Collection|Album|Wishlist $entity): array
     {
-        return match (true) {
-            $entity instanceof Collection => $this->getForCollection($entity),
-            $entity instanceof Album => $this->getForAlbum($entity),
-            $entity instanceof Wishlist => $this->getForWishlist($entity),
-        };
-    }
+        $visibilities = $this->getAccessibleVisibilities($entity);
+        $cached = $entity->getCachedValues();
 
-    private function getForCollection(Collection $collection): array {
-        $prices = $collection->getCachedValues()['prices']['publicPrices'];
-        $counters = $collection->getCachedValues()['counters']['publicCounters'];
-
-        if ($this->security->getUser() instanceof User) {
-            $prices = $this->mergeAndAdd($prices, $collection->getCachedValues()['prices']['internalPrices']);
-            $counters = $this->mergeAndAdd($counters, $collection->getCachedValues()['counters']['internalCounters']);
+        $counters = [];
+        foreach ($visibilities as $visibility) {
+            $counters = $this->mergeAndAdd($counters, $cached['counters'][$visibility . 'Counters']);
         }
 
-        if ($this->security->getUser() === $collection->getOwner()) {
-            $prices = $this->mergeAndAdd($prices, $collection->getCachedValues()['prices']['privatePrices'], true);
-            $counters = $this->mergeAndAdd($counters, $collection->getCachedValues()['counters']['privateCounters']);
-        }
+        if ($entity instanceof Collection) {
+            $prices = [];
+            foreach ($visibilities as $visibility) {
+                $prices = $this->mergeAndAdd($prices, $cached['prices'][$visibility . 'Prices']);
+            }
 
-        return [
-            'prices' => $prices,
-            'counters' => $counters,
-        ];
-    }
-
-    private function getForAlbum(Album $album): array {
-        $counters = $album->getCachedValues()['counters']['publicCounters'];
-
-        if ($this->security->getUser() instanceof User) {
-            $counters = $this->mergeAndAdd($counters, $album->getCachedValues()['counters']['internalCounters']);
-        }
-
-        if ($this->security->getUser() === $album->getOwner()) {
-            $counters = $this->mergeAndAdd($counters, $album->getCachedValues()['counters']['privateCounters']);
+            return [
+                'prices' => $prices,
+                'counters' => $counters,
+            ];
         }
 
         return [
@@ -62,39 +45,34 @@ readonly class CachedValuesGetter
         ];
     }
 
-    private function getForWishlist(Wishlist $wishlist): array {
-        $counters = $wishlist->getCachedValues()['counters']['publicCounters'];
-
-        if ($this->security->getUser() instanceof User) {
-            $counters = $this->mergeAndAdd($counters, $wishlist->getCachedValues()['counters']['internalCounters']);
-        }
-
-        if ($this->security->getUser() === $wishlist->getOwner()) {
-            $counters = $this->mergeAndAdd($counters, $wishlist->getCachedValues()['counters']['privateCounters']);
-        }
-
-        return [
-            'counters' => $counters,
-        ];
-    }
-
-    private function mergeAndAdd(array $array1, array $array2, $debug = false): array
+    /**
+     * @return list<string>
+     */
+    private function getAccessibleVisibilities(Collection|Album|Wishlist $entity): array
     {
-        // Initialize the result array with the first array
+        $visibilities = [VisibilityEnum::VISIBILITY_PUBLIC];
+
+        if ($this->security->getUser() instanceof User) {
+            $visibilities[] = VisibilityEnum::VISIBILITY_INTERNAL;
+        }
+
+        if ($this->security->getUser() === $entity->getOwner()) {
+            $visibilities[] = VisibilityEnum::VISIBILITY_PRIVATE;
+        }
+
+        return $visibilities;
+    }
+
+    private function mergeAndAdd(array $array1, array $array2): array
+    {
         $result = $array1;
 
-        // Loop through all the keys of the second array
         foreach ($array2 as $key => $value) {
-            // If the key exists in both arrays and both values are arrays, recurse
             if (isset($result[$key]) && is_array($result[$key]) && is_array($value)) {
                 $result[$key] = $this->mergeAndAdd($result[$key], $value);
-            }
-            // If both values are integers or floats, add them together
-            elseif (isset($result[$key]) && (is_numeric($result[$key]) && is_numeric($value))) {
+            } elseif (isset($result[$key]) && (is_numeric($result[$key]) && is_numeric($value))) {
                 $result[$key] += $value;
-            }
-            // Otherwise, set the value from the second array
-            else {
+            } else {
                 $result[$key] = $value;
             }
         }

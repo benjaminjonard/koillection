@@ -253,8 +253,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         $children = [];
 
         foreach ($this->children as $child) {
-            $children[] = $child;
-            $children = array_merge($children, $child->getChildrenRecursively());
+            $children = [...$children, $child, ...$child->getChildrenRecursively()];
         }
 
         return $children;
