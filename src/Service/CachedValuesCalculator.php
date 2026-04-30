@@ -54,70 +54,34 @@ class CachedValuesCalculator
 
     public function computeForCollection(Collection $collection): array
     {
-        $values = [
-            'counters' => [
-                'publicCounters' => [
-                    'children' => $this->collectionRepository->count(['parent' => $collection->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC]),
-                    'items' => $this->itemRepository->count(['collection' => $collection->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC]),
-                ],
-                'internalCounters' => [
-                    'children' => $this->collectionRepository->count(['parent' => $collection->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_INTERNAL]),
-                    'items' => $this->itemRepository->count(['collection' => $collection->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_INTERNAL]),
-                ],
-                'privateCounters' => [
-                    'children' => $this->collectionRepository->count(['parent' => $collection->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PRIVATE]),
-                    'items' => $this->itemRepository->count(['collection' => $collection->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PRIVATE]),
-                ]
-            ],
-            'prices' =>[
-                'publicPrices' => $this->datumRepository->computePricesForCollection($collection, VisibilityEnum::VISIBILITY_PUBLIC),
-                'internalPrices' => $this->datumRepository->computePricesForCollection($collection, VisibilityEnum::VISIBILITY_INTERNAL),
-                'privatePrices' => $this->datumRepository->computePricesForCollection($collection, VisibilityEnum::VISIBILITY_PRIVATE),
-            ],
-        ];
+        $values = ['counters' => [], 'prices' => []];
 
+        foreach (VisibilityEnum::VISIBILITIES as $visibility) {
+            $countersKey = $visibility . 'Counters';
+            $pricesKey = $visibility . 'Prices';
+
+            $values['counters'][$countersKey] = [
+                'children' => $this->collectionRepository->count(['parent' => $collection->getId(), 'finalVisibility' => $visibility]),
+                'items' => $this->itemRepository->count(['collection' => $collection->getId(), 'finalVisibility' => $visibility]),
+            ];
+
+            $values['prices'][$pricesKey] = $this->datumRepository->computePricesForCollection($collection, $visibility);
+        }
 
         foreach ($collection->getChildren() as $child) {
-            $nestedCounters = $this->computeForCollection($child);
+            $nested = $this->computeForCollection($child);
 
-            $values['counters']['publicCounters']['children'] += $nestedCounters['counters']['publicCounters']['children'];
-            $values['counters']['publicCounters']['items'] += $nestedCounters['counters']['publicCounters']['items'];
+            foreach (VisibilityEnum::VISIBILITIES as $visibility) {
+                $countersKey = $visibility . 'Counters';
+                $pricesKey = $visibility . 'Prices';
 
-            $values['counters']['internalCounters']['children'] += $nestedCounters['counters']['internalCounters']['children'];
-            $values['counters']['internalCounters']['items'] += $nestedCounters['counters']['internalCounters']['items'];
+                $values['counters'][$countersKey]['children'] += $nested['counters'][$countersKey]['children'];
+                $values['counters'][$countersKey]['items'] += $nested['counters'][$countersKey]['items'];
 
-            $values['counters']['privateCounters']['children'] += $nestedCounters['counters']['privateCounters']['children'];
-            $values['counters']['privateCounters']['items'] += $nestedCounters['counters']['privateCounters']['items'];
-
-
-            foreach ($nestedCounters['prices']['publicPrices'] as $label => $currencies) {
-                foreach ($currencies as $currency => $value) {
-                    if (isset($values['prices']['publicPrices'][$label][$currency])) {
-                        $values['prices']['publicPrices'][$label][$currency] += $value;
-                    } else {
-                        $values['prices']['publicPrices'][$label][$currency] = $value;
-                    }
-                }
-            }
-
-            foreach ($nestedCounters['prices']['privatePrices'] as $label => $currencies) {
-                foreach ($currencies as $currency => $value) {
-                    if (isset($values['prices']['privatePrices'][$label][$currency])) {
-                        $values['prices']['privatePrices'][$label][$currency] += $value;
-                    } else {
-                        $values['prices']['privatePrices'][$label][$currency] = $value;
-                    }
-                }
-            }
-
-            foreach ($nestedCounters['prices']['internalPrices'] as $label => $currencies) {
-                foreach ($currencies as $currency => $value) {
-                    if (isset($values['prices']['internalPrices'][$label][$currency])) {
-                        $values['prices']['internalPrices'][$label][$currency] += $value;
-                    } else {
-                        $values['prices']['internalPrices'][$label][$currency] = $value;
-                    }
-                }
+                $values['prices'][$pricesKey] = $this->mergePrices(
+                    $values['prices'][$pricesKey],
+                    $nested['prices'][$pricesKey]
+                );
             }
         }
 
@@ -128,33 +92,25 @@ class CachedValuesCalculator
 
     public function computeForWishlist(Wishlist $wishlist): array
     {
-        $values = [
-            'counters' => [
-                'publicCounters' => [
-                    'children' => $this->wishlistRepository->count(['parent' => $wishlist->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC]),
-                    'wishes' => $this->wishRepository->count(['wishlist' => $wishlist->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC]),
-                ],
-                'internalCounters' => [
-                    'children' => $this->wishlistRepository->count(['parent' => $wishlist->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_INTERNAL]),
-                    'wishes' => $this->wishRepository->count(['wishlist' => $wishlist->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_INTERNAL]),
-                ],
-                'privateCounters' => [
-                    'children' => $this->wishlistRepository->count(['parent' => $wishlist->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PRIVATE]),
-                    'wishes' => $this->wishRepository->count(['wishlist' => $wishlist->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PRIVATE]),
-                ]
-            ],
-        ];
+        $values = ['counters' => []];
+
+        foreach (VisibilityEnum::VISIBILITIES as $visibility) {
+            $countersKey = $visibility . 'Counters';
+
+            $values['counters'][$countersKey] = [
+                'children' => $this->wishlistRepository->count(['parent' => $wishlist->getId(), 'finalVisibility' => $visibility]),
+                'wishes' => $this->wishRepository->count(['wishlist' => $wishlist->getId(), 'finalVisibility' => $visibility]),
+            ];
+        }
 
         foreach ($wishlist->getChildren() as $child) {
-            $nestedCounters = $this->computeForWishlist($child);
-            $values['counters']['publicCounters']['children'] += $nestedCounters['counters']['publicCounters']['children'];
-            $values['counters']['publicCounters']['wishes'] += $nestedCounters['counters']['publicCounters']['wishes'];
+            $nested = $this->computeForWishlist($child);
 
-            $values['counters']['internalCounters']['children'] += $nestedCounters['counters']['internalCounters']['children'];
-            $values['counters']['internalCounters']['wishes'] += $nestedCounters['counters']['internalCounters']['wishes'];
-
-            $values['counters']['privateCounters']['children'] += $nestedCounters['counters']['privateCounters']['children'];
-            $values['counters']['privateCounters']['wishes'] += $nestedCounters['counters']['privateCounters']['wishes'];
+            foreach (VisibilityEnum::VISIBILITIES as $visibility) {
+                $countersKey = $visibility . 'Counters';
+                $values['counters'][$countersKey]['children'] += $nested['counters'][$countersKey]['children'];
+                $values['counters'][$countersKey]['wishes'] += $nested['counters'][$countersKey]['wishes'];
+            }
         }
 
         $wishlist->setCachedValues($values);
@@ -164,37 +120,40 @@ class CachedValuesCalculator
 
     public function computeForAlbum(Album $album): array
     {
-        $values = [
-            'counters' => [
-                'publicCounters' => [
-                    'children' => $this->albumRepository->count(['parent' => $album->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC]),
-                    'photos' => $this->photoRepository->count(['album' => $album->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PUBLIC]),
-                ],
-                'internalCounters' => [
-                    'children' => $this->albumRepository->count(['parent' => $album->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_INTERNAL]),
-                    'photos' => $this->photoRepository->count(['album' => $album->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_INTERNAL]),
-                ],
-                'privateCounters' => [
-                    'children' => $this->albumRepository->count(['parent' => $album->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PRIVATE]),
-                    'photos' => $this->photoRepository->count(['album' => $album->getId(), 'finalVisibility' => VisibilityEnum::VISIBILITY_PRIVATE]),
-                ]
-            ],
-        ];
+        $values = ['counters' => []];
+
+        foreach (VisibilityEnum::VISIBILITIES as $visibility) {
+            $countersKey = $visibility . 'Counters';
+
+            $values['counters'][$countersKey] = [
+                'children' => $this->albumRepository->count(['parent' => $album->getId(), 'finalVisibility' => $visibility]),
+                'photos' => $this->photoRepository->count(['album' => $album->getId(), 'finalVisibility' => $visibility]),
+            ];
+        }
 
         foreach ($album->getChildren() as $child) {
-            $nestedCounters = $this->computeForAlbum($child);
-            $values['counters']['publicCounters']['children'] += $nestedCounters['counters']['publicCounters']['children'];
-            $values['counters']['publicCounters']['photos'] += $nestedCounters['counters']['publicCounters']['photos'];
+            $nested = $this->computeForAlbum($child);
 
-            $values['counters']['internalCounters']['children'] += $nestedCounters['counters']['internalCounters']['children'];
-            $values['counters']['internalCounters']['photos'] += $nestedCounters['counters']['internalCounters']['photos'];
-
-            $values['counters']['privateCounters']['children'] += $nestedCounters['counters']['privateCounters']['children'];
-            $values['counters']['privateCounters']['photos'] += $nestedCounters['counters']['privateCounters']['photos'];
+            foreach (VisibilityEnum::VISIBILITIES as $visibility) {
+                $countersKey = $visibility . 'Counters';
+                $values['counters'][$countersKey]['children'] += $nested['counters'][$countersKey]['children'];
+                $values['counters'][$countersKey]['photos'] += $nested['counters'][$countersKey]['photos'];
+            }
         }
 
         $album->setCachedValues($values);
 
         return $values;
+    }
+
+    private function mergePrices(array $existing, array $additions): array
+    {
+        foreach ($additions as $label => $currencies) {
+            foreach ($currencies as $currency => $value) {
+                $existing[$label][$currency] = ($existing[$label][$currency] ?? 0) + $value;
+            }
+        }
+
+        return $existing;
     }
 }

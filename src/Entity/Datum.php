@@ -496,10 +496,9 @@ class Datum implements VisibleInterface, \Stringable
         return $this;
     }
 
-    #[\Override]
-    public function updateDescendantsVisibility(): self
+    protected function getVisibleChildren(): iterable
     {
-        return $this;
+        return [];
     }
 
     public function getCurrency(): ?string

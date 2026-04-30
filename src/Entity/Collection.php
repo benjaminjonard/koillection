@@ -457,21 +457,10 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
         return $this;
     }
 
-    #[\Override]
-    public function updateDescendantsVisibility(): self
+    protected function getVisibleChildren(): iterable
     {
-        foreach ($this->getData() as $datum) {
-            $datum->setParentVisibility($this->finalVisibility);
-        }
-
-        foreach ($this->getItems() as $item) {
-            $item->setParentVisibility($this->finalVisibility);
-        }
-
-        foreach ($this->getChildren() as $child) {
-            $child->setParentVisibility($this->finalVisibility);
-        }
-
-        return $this;
+        yield from $this->getData();
+        yield from $this->getItems();
+        yield from $this->getChildren();
     }
 }

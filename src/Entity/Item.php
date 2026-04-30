@@ -498,13 +498,8 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
         return $this;
     }
 
-    #[\Override]
-    public function updateDescendantsVisibility(): self
+    protected function getVisibleChildren(): iterable
     {
-        foreach ($this->getData() as $datum) {
-            $datum->setParentVisibility($this->finalVisibility);
-        }
-
-        return $this;
+        yield from $this->getData();
     }
 }

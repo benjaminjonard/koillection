@@ -354,17 +354,9 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
         return $this;
     }
 
-    #[\Override]
-    public function updateDescendantsVisibility(): self
+    protected function getVisibleChildren(): iterable
     {
-        foreach ($this->getPhotos() as $photo) {
-            $photo->setParentVisibility($this->finalVisibility);
-        }
-
-        foreach ($this->getChildren() as $child) {
-            $child->setParentVisibility($this->finalVisibility);
-        }
-
-        return $this;
+        yield from $this->getPhotos();
+        yield from $this->getChildren();
     }
 }

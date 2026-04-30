@@ -346,17 +346,9 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
         return $this;
     }
 
-    #[\Override]
-    public function updateDescendantsVisibility(): self
+    protected function getVisibleChildren(): iterable
     {
-        foreach ($this->getWishes() as $wish) {
-            $wish->setParentVisibility($this->finalVisibility);
-        }
-
-        foreach ($this->getChildren() as $child) {
-            $child->setParentVisibility($this->finalVisibility);
-        }
-
-        return $this;
+        yield from $this->getWishes();
+        yield from $this->getChildren();
     }
 }

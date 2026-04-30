@@ -50,7 +50,7 @@ final readonly class RefreshCachedValuesListener
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][1]));
             } elseif ($entity instanceof Datum && $entity->getItem() instanceof Item) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getItem()->getCollection()));
-            } elseif ($entity instanceof Datum && $entity->getItem() instanceof Collection) {
+            } elseif ($entity instanceof Datum && $entity->getCollection() instanceof Collection) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getCollection()));
             }
         }

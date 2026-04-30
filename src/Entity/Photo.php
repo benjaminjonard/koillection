@@ -275,9 +275,8 @@ class Photo implements CacheableInterface, LoggableInterface, VisibleInterface, 
         return $this;
     }
 
-    #[\Override]
-    public function updateDescendantsVisibility(): self
+    protected function getVisibleChildren(): iterable
     {
-        return $this;
+        return [];
     }
 }

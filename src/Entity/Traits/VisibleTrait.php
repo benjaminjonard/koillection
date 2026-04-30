@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace App\Entity\Traits;
 
+use App\Entity\Interfaces\VisibleInterface;
 use App\Enum\VisibilityEnum;
 
 trait VisibleTrait
 {
+    /**
+     * @return iterable<VisibleInterface>
+     */
+    abstract protected function getVisibleChildren(): iterable;
+
     public function getVisibility(): ?string
     {
         return $this->visibility;
@@ -43,6 +49,15 @@ trait VisibleTrait
     public function getFinalVisibility(): string
     {
         return $this->finalVisibility;
+    }
+
+    public function updateDescendantsVisibility(): self
+    {
+        foreach ($this->getVisibleChildren() as $child) {
+            $child->setParentVisibility($this->finalVisibility);
+        }
+
+        return $this;
     }
 
     private function setFinalVisibility(): self
