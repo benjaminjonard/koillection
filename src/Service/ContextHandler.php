@@ -7,9 +7,10 @@ namespace App\Service;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Service\ResetInterface;
 use Twig\Environment;
 
-class ContextHandler
+class ContextHandler implements ResetInterface
 {
     /**
      * Possible values are :
@@ -17,12 +18,12 @@ class ContextHandler
      * shared: Shared pages
      * default: everything else.
      */
-    private string $context;
+    private string $context = 'default';
 
     private ?User $user = null;
 
     // Username linked to the current page
-    private string $username;
+    private ?string $username = null;
 
     public function __construct(
         private readonly Environment $environment,
@@ -47,6 +48,14 @@ class ContextHandler
             $this->username = $matches[1];
             $this->router->getContext()->setParameter('username', $this->username);
         }
+    }
+
+    public function reset(): void
+    {
+        $this->context = 'default';
+        $this->user = null;
+        $this->username = null;
+        $this->router->getContext()->setParameter('username', null);
     }
 
     public function getRouteContext(string $route): string

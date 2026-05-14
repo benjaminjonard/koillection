@@ -8,8 +8,9 @@ use App\Entity\Album;
 use App\Entity\Collection;
 use App\Entity\Wishlist;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Contracts\Service\ResetInterface;
 
-class RefreshCachedValuesQueue
+class RefreshCachedValuesQueue implements ResetInterface
 {
     public function __construct(
         private readonly ManagerRegistry $managerRegistry,
@@ -49,6 +50,11 @@ class RefreshCachedValuesQueue
     }
 
     public function clearEntities(): void
+    {
+        $this->entities = [];
+    }
+
+    public function reset(): void
     {
         $this->entities = [];
     }

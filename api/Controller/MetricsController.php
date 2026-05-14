@@ -26,8 +26,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MetricsController extends AbstractController
 {
-    private array $lines = [];
-
     #[Route(
         path: '/api/metrics',
         name: 'api_metrics',
@@ -55,8 +53,9 @@ class MetricsController extends AbstractController
         }
 
         $users = $userRepository->findAll();
+        $lines = [];
 
-        $this->addCounter('user', [['label' => '', 'value' => $userRepository->count()]], 'number of registered users');
+        $this->addCounter($lines, 'user', [['label' => '', 'value' => $userRepository->count()]], 'number of registered users');
 
         // Create global counters
         $collectionValues[] = ['label' => null, 'value' => $collectionRepository->count()];
@@ -92,21 +91,21 @@ class MetricsController extends AbstractController
         }
 
         // Fill metrics
-        $this->addCounter('collection', $collectionValues, 'number of created collections');
-        $this->addCounter('item', $itemValues, 'number of created items');
-        $this->addCounter('datum', $datumValues, 'number of created data');
-        $this->addCounter('tag', $tagValues, 'number of created tags');
-        $this->addCounter('tag_category', $tagCategoryValues, 'number of created tag categories');
-        $this->addCounter('wishlist', $wishlistValues, 'number of created wishlists');
-        $this->addCounter('wish', $wishValues, 'number of created wishes');
-        $this->addCounter('album', $albumValues, 'number of created albums');
-        $this->addCounter('photo', $photoValues, 'number of created photos');
-        $this->addCounter('template', $templateValues, 'number of created templates');
-        $this->addCounter('scraper', $scraperValues, 'number of created scrapers');
-        $this->addCounter('used_disk_space_bytes', $diskUsedValues, 'used disk space by uploads (images, videos, files)', 'bytes');
-        $this->addCounter('available_disk_space_bytes', $diskAvailableValues, 'available disk space for uploads (images, videos, files)', 'bytes');
+        $this->addCounter($lines, 'collection', $collectionValues, 'number of created collections');
+        $this->addCounter($lines, 'item', $itemValues, 'number of created items');
+        $this->addCounter($lines, 'datum', $datumValues, 'number of created data');
+        $this->addCounter($lines, 'tag', $tagValues, 'number of created tags');
+        $this->addCounter($lines, 'tag_category', $tagCategoryValues, 'number of created tag categories');
+        $this->addCounter($lines, 'wishlist', $wishlistValues, 'number of created wishlists');
+        $this->addCounter($lines, 'wish', $wishValues, 'number of created wishes');
+        $this->addCounter($lines, 'album', $albumValues, 'number of created albums');
+        $this->addCounter($lines, 'photo', $photoValues, 'number of created photos');
+        $this->addCounter($lines, 'template', $templateValues, 'number of created templates');
+        $this->addCounter($lines, 'scraper', $scraperValues, 'number of created scrapers');
+        $this->addCounter($lines, 'used_disk_space_bytes', $diskUsedValues, 'used disk space by uploads (images, videos, files)', 'bytes');
+        $this->addCounter($lines, 'available_disk_space_bytes', $diskAvailableValues, 'available disk space for uploads (images, videos, files)', 'bytes');
 
-        $metrics = implode(PHP_EOL, $this->lines);
+        $metrics = implode(PHP_EOL, $lines);
         $response = new Response();
         $response->setContent($metrics);
 
@@ -115,19 +114,19 @@ class MetricsController extends AbstractController
         return $response;
     }
 
-    public function addCounter(string $name, array $values, string $help, ?string $unit = null): void
+    public function addCounter(array &$lines, string $name, array $values, string $help, ?string $unit = null): void
     {
         //$name = "koillection_{$name}";
 
-        $this->lines[] = "# HELP {$name} {$help}";
+        $lines[] = "# HELP {$name} {$help}";
         if ($unit !== null) {
-            $this->lines[] = "# UNIT {$name} {$unit}";
+            $lines[] = "# UNIT {$name} {$unit}";
         }
 
-        $this->lines[] = "# TYPE {$name} counter";
+        $lines[] = "# TYPE {$name} counter";
 
         foreach ($values as $value) {
-            $this->lines[] = "{$name}_total{$value['label']} {$value['value']}";
+            $lines[] = "{$name}_total{$value['label']} {$value['value']}";
         }
     }
 }

@@ -7,8 +7,9 @@ namespace App\Service;
 use Composer\Semver\Comparator;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpClient\CurlHttpClient;
+use Symfony\Contracts\Service\ResetInterface;
 
-class LatestReleaseChecker
+class LatestReleaseChecker implements ResetInterface
 {
     public const array REQUIRED_PHP_VERSION_PER_RELEASE = [
         '1.0' => '7.2',
@@ -94,5 +95,10 @@ class LatestReleaseChecker
     public function isRequiredPhpVersionForLatestReleaseOk(): bool|int
     {
         return Comparator::greaterThanOrEqualTo(phpversion(), $this->getRequiredPhpVersionForLatestRelease());
+    }
+
+    public function reset(): void
+    {
+        $this->latestReleaseData = null;
     }
 }

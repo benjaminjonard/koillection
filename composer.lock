@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26908fe5b5ba0ab32683e7293cf36b30",
+    "content-hash": "978fe36ccd58069067149f31ec634919",
     "packages": [
         {
             "name": "api-platform/core",
@@ -8769,6 +8769,56 @@
                 }
             ],
             "time": "2026-02-20T16:13:53+00:00"
+        },
+        {
+            "name": "igor-php/igor-php",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/igor-php/igor-php.git",
+                "reference": "0826ece0fe1931fcbf5e305569665495441d13cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/igor-php/igor-php/zipball/0826ece0fe1931fcbf5e305569665495441d13cb",
+                "reference": "0826ece0fe1931fcbf5e305569665495441d13cb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "bin": [
+                "bin/igor-php"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IgorPhp\\IgorBundle\\": "src/php/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin MARTINS",
+                    "email": "kevin.martins@me.com"
+                }
+            ],
+            "description": "The faithful assistant for your FrankenPHP Workers.",
+            "keywords": [
+                "frankenphp",
+                "linter",
+                "static-analysis",
+                "symfony",
+                "worker"
+            ],
+            "support": {
+                "issues": "https://github.com/igor-php/igor-php/issues",
+                "source": "https://github.com/igor-php/igor-php/tree/v0.4.1"
+            },
+            "time": "2026-05-11T22:09:16+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",

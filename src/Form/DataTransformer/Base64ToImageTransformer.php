@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpClient\CurlHttpClient;
+use Symfony\Contracts\Service\ResetInterface;
 
-class Base64ToImageTransformer implements DataTransformerInterface
+class Base64ToImageTransformer implements DataTransformerInterface, ResetInterface
 {
     private ?string $originalBase64 = null;
 
@@ -48,5 +49,10 @@ class Base64ToImageTransformer implements DataTransformerInterface
         file_put_contents($path, $data);
 
         return new UploadedFile($path, $name, $matches[1], null, true);
+    }
+
+    public function reset(): void
+    {
+        $this->originalBase64 = null;
     }
 }

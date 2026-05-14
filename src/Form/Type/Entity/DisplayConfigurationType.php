@@ -18,11 +18,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DisplayConfigurationType extends AbstractType
 {
-    private array $preSubmitColumns = [];
-
     #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $preSubmitColumns = [];
+
         $builder
             ->add('displayMode', ChoiceType::class, [
                 'choices' => array_flip(DisplayModeEnum::getDisplayModeLabels()),
@@ -133,15 +133,15 @@ class DisplayConfigurationType extends AbstractType
                 }
             });
 
-            $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+            $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use (&$preSubmitColumns): void {
                 if (isset($event->getData()['columns'])) {
-                    $this->preSubmitColumns = $event->getData()['columns'];
+                    $preSubmitColumns = $event->getData()['columns'];
                 }
             });
 
-            $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
+            $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use (&$preSubmitColumns): void {
                 $data = $event->getData();
-                $data->setColumns($this->preSubmitColumns);
+                $data->setColumns($preSubmitColumns);
 
                 $event->setData($data);
             });

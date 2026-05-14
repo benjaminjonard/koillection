@@ -7,7 +7,6 @@ ENV PGID=1001
 ENV USER=koillection
 ENV FRANKENPHP_CONFIG="worker /app/public/public/index.php"
 ENV FRANKENPHP_SERVER_NAME=":80"
-ENV APP_RUNTIME="Symfony\\Component\\Runtime\\SymfonyRuntime"
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PANTHER_CHROME_BINARY=/usr/bin/chromium
 ENV PANTHER_CHROME_DRIVER_BINARY=/usr/bin/chromedriver

@@ -72,6 +72,7 @@
         "brianium/paratest": "7.20.0",
         "dama/doctrine-test-bundle": "8.6.0",
         "friendsofphp/php-cs-fixer": "3.94.2",
+        "igor-php/igor-php": "^0.4.1",
         "justinrainbow/json-schema": "6.7.2",
         "phpunit/php-code-coverage": "12.5.3",
         "phpunit/phpunit": "12.5.14",
@@ -140,7 +141,6 @@
             "require": "8.0.*"
         },
         "runtime": {
-            "class": "Runtime\\FrankenPhpSymfony\\Runtime",
             "dotenv_overload": true
         }
     }

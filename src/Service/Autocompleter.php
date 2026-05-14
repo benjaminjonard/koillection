@@ -18,8 +18,6 @@ use Symfony\Component\Routing\RouterInterface;
 
 class Autocompleter
 {
-    private array $params;
-
     public function __construct(
         private readonly ContextHandler $contextHandler,
         private readonly ManagerRegistry $managerRegistry,
@@ -31,26 +29,26 @@ class Autocompleter
 
     public function findForAutocomplete(string $term): array
     {
-        $this->params = [];
+        $params = [];
         $queryParts = [];
-        $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection');
+        $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection', $params);
 
         if ($this->security->getUser()?->isSearchInDataByDefaultEnabled()) {
-            $queryParts[] = $this->buildRequestForItemTableWithData($term);
+            $queryParts[] = $this->buildRequestForItemTableWithData($term, $params);
         } else {
-            $queryParts[] = $this->buildRequestForItemTableWithoutData($term);
+            $queryParts[] = $this->buildRequestForItemTableWithoutData($term, $params);
         }
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag');
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag', $params);
         }
 
         if ($this->featureChecker->isFeatureEnabled('albums')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album');
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album', $params);
         }
 
         if ($this->featureChecker->isFeatureEnabled('wishlists')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist');
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist', $params);
         }
 
         $sql = implode(' UNION ', $queryParts);
@@ -60,7 +58,7 @@ class Autocompleter
 
         $counterSql = "SELECT COUNT(*) AS counter FROM ({$sql}) AS x";
         $query = $this->managerRegistry->getManager()->createNativeQuery($counterSql, $rsm);
-        foreach ($this->params as $key => $value) {
+        foreach ($params as $key => $value) {
             $query->setParameter($key + 1, $value);
         }
 
@@ -76,7 +74,7 @@ class Autocompleter
             LIMIT 5
         ';
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
-        foreach ($this->params as $key => $value) {
+        foreach ($params as $key => $value) {
             $query->setParameter($key + 1, $value);
         }
 
@@ -95,7 +93,7 @@ class Autocompleter
         ];
     }
 
-    private function buildRequestForGivenTable(string $collectionTable, string $labelProperty, string $term, string $type): string
+    private function buildRequestForGivenTable(string $collectionTable, string $labelProperty, string $term, string $type, array &$params): string
     {
         $user = $this->contextHandler->getContextUser();
         $terms = explode(' ', $term);
@@ -103,30 +101,30 @@ class Autocompleter
 
         $sql = "
             SELECT id AS id, {$labelProperty} AS label, '{$type}' AS type, seen_counter AS seenCounter,
-                (CASE 
+                (CASE
                      WHEN LOWER({$labelProperty}) = LOWER(?) THEN 4 -- exact match
-                     WHEN LOWER({$labelProperty}) LIKE LOWER(?) THEN 3 -- contains                     
+                     WHEN LOWER({$labelProperty}) LIKE LOWER(?) THEN 3 -- contains
                      ELSE 0
                 END) AS relevance
-            FROM {$collectionTable} 
+            FROM {$collectionTable}
             WHERE owner_id = ?
             AND LOWER({$labelProperty}) LIKE LOWER(?)
         ";
 
-        $this->params[] = $term;
-        $this->params[] = '%' . $term . '%';
-        $this->params[] = $user->getId();
-        $this->params[] = '%' . $term . '%';
+        $params[] = $term;
+        $params[] = '%' . $term . '%';
+        $params[] = $user->getId();
+        $params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             $sql .= ' AND visibility IN (?)';
-            $this->params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
+            $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 
         return $sql;
     }
 
-    private function buildRequestForItemTableWithData(string $term): string
+    private function buildRequestForItemTableWithData(string $term, array &$params): string
     {
         $user = $this->contextHandler->getContextUser();
         $terms = explode(' ', $term);
@@ -136,7 +134,7 @@ class Autocompleter
 
         $sql = "
             SELECT i.id AS id, i.name AS label, 'item' AS type, i.seen_counter AS seenCounter,
-                (CASE 
+                (CASE
                      WHEN LOWER(i.name) = LOWER(?) THEN 4 -- item exact match
                      WHEN LOWER(i.name) LIKE LOWER(?) THEN 3 -- item end with
                      WHEN LOWER(d.value) = LOWER(?) THEN 2 -- datum exact match
@@ -149,24 +147,24 @@ class Autocompleter
             AND (LOWER(i.name) LIKE LOWER(?) OR LOWER(d.value) LIKE LOWER(?))
         ";
 
-        $this->params[] = $term;
-        $this->params[] = '%' . $term . '%';
-        $this->params[] = $term;
-        $this->params[] = '%' . $term . '%';
-        $this->params[] = DatumTypeEnum::AVAILABLE_FOR_SEARCH;
-        $this->params[] = $user->getId();
-        $this->params[] = '%' . $term . '%';
-        $this->params[] = '%' . $term . '%';
+        $params[] = $term;
+        $params[] = '%' . $term . '%';
+        $params[] = $term;
+        $params[] = '%' . $term . '%';
+        $params[] = DatumTypeEnum::AVAILABLE_FOR_SEARCH;
+        $params[] = $user->getId();
+        $params[] = '%' . $term . '%';
+        $params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             $sql .= ' AND visibility IN (?)';
-            $this->params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
+            $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 
         return $sql;
     }
 
-    private function buildRequestForItemTableWithoutData(string $term): string
+    private function buildRequestForItemTableWithoutData(string $term, array &$params): string
     {
         $user = $this->contextHandler->getContextUser();
         $terms = explode(' ', $term);
@@ -175,7 +173,7 @@ class Autocompleter
 
         $sql = "
             SELECT i.id AS id, i.name AS label, 'item' AS type, i.seen_counter AS seenCounter,
-                (CASE 
+                (CASE
                      WHEN LOWER(i.name) = LOWER(?) THEN 2 -- item exact match
                      WHEN LOWER(i.name) LIKE LOWER(?) THEN 1 -- item end with
                      ELSE 0
@@ -185,14 +183,14 @@ class Autocompleter
             AND LOWER(i.name) LIKE LOWER(?)
         ";
 
-        $this->params[] = $term;
-        $this->params[] = '%' . $term . '%';
-        $this->params[] = $user->getId();
-        $this->params[] = '%' . $term . '%';
+        $params[] = $term;
+        $params[] = '%' . $term . '%';
+        $params[] = $user->getId();
+        $params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
             $sql .= ' AND visibility IN (?)';
-            $this->params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
+            $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 
         return $sql;
