@@ -9,9 +9,9 @@ use App\Enum\ScraperTypeEnum;
 use App\Model\ScrapingCollection;
 
 /**
- * @extends HtmlScraper<ScrapingCollection>
+ * @extends JsonScraper<ScrapingCollection>
  */
-class HtmlCollectionScraper extends HtmlScraper
+class JsonCollectionScraper extends JsonScraper
 {
     #[\Override]
     public function scrap($scraping): array
@@ -23,15 +23,15 @@ class HtmlCollectionScraper extends HtmlScraper
         $image = $this->guessHost($image, $scraping);
 
         $response = $this->client->request(
-                'GET',
-                $image,
-                ['timeout' => 2.5]
-            );
+            'GET',
+            $image,
+            ['timeout' => 2.5]
+        );
 
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null,
-            'base64Image' => 'data:image/png;base64,' . base64_encode($response->getContent()),
-            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_COLLECTION),
+            'base64Image' => 'data:' . $response->getHeaders()['content-type'][0] . ';base64,' . base64_encode($response->getContent()),
+            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_ITEM),
             'scrapedUrl' => $scraping->getUrl()
         ];
     }

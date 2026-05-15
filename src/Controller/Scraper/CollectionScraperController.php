@@ -14,7 +14,7 @@ use App\Http\FileResponse;
 use App\Model\Scraper\CollectionScraperImporter;
 use App\Model\ScrapingCollection;
 use App\Repository\ScraperRepository;
-use App\Service\Scraper\HtmlCollectionScraper;
+use App\Service\Scraper\CollectionScraper;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,7 +28,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class CollectionScraperController extends AbstractController
 {
     #[Route(path: '/scrapers/collection-scrapers/scrap', name: 'app_scraper_collection_scrap', methods: ['POST'])]
-    public function scrap(Request $request, HtmlCollectionScraper $htmlScraper): JsonResponse
+    public function scrap(Request $request, CollectionScraper $scraper): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
@@ -38,7 +38,7 @@ class CollectionScraperController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->json($htmlScraper->scrap($scraping));
+                return $this->json($scraper->scrap($scraping));
             } catch (\Exception $e) {
                 return $this->json($e->getMessage(), 400);
             }

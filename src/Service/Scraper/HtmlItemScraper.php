@@ -8,9 +8,13 @@ use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperTypeEnum;
 use App\Model\ScrapingItem;
 
+/**
+ * @extends HtmlScraper<ScrapingItem>
+ */
 class HtmlItemScraper extends HtmlScraper
 {
-    public function scrap(ScrapingItem $scraping): array
+    #[\Override]
+    public function scrap($scraping): array
     {
         $crawler = $this->getCrawler($scraping);
         $scraper = $scraping->getScraper();

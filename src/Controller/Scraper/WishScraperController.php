@@ -14,7 +14,7 @@ use App\Http\FileResponse;
 use App\Model\Scraper\WishScraperImporter;
 use App\Model\ScrapingWish;
 use App\Repository\ScraperRepository;
-use App\Service\Scraper\HtmlWishScraper;
+use App\Service\Scraper\WishScraper;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,7 +28,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class WishScraperController extends AbstractController
 {
     #[Route(path: '/scrapers/wish-scrapers/scrap', name: 'app_scraper_wish_scrap', methods: ['POST'])]
-    public function scrap(Request $request, HtmlWishScraper $htmlScraper): JsonResponse
+    public function scrap(Request $request, WishScraper $scraper): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
@@ -38,7 +38,7 @@ class WishScraperController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->json($htmlScraper->scrap($scraping));
+                return $this->json($scraper->scrap($scraping));
             } catch (\Exception $e) {
                 return $this->json($e->getMessage(), 400);
             }
