@@ -57,10 +57,13 @@ abstract class JsonScraper extends ContentScraper {
         preg_match_all('/#(.*?)#/', $template, $matches);
         foreach($matches[1] as $jsonPath) {
             $results = $crawler->find($jsonPath);
-            foreach ($results as $key => $result) {
-                if (is_numeric($result)) {
-                    $result = strval($result);
+            $results = array_map(static function($item): string {
+                if (!is_string($item)) {
+                    return strval($item);
                 }
+                return $item;
+            }, $results);
+            foreach ($results as $key => $result) {
                 if (isset($values[$key])) {
                     $values[$key] = str_replace("#{$jsonPath}#", $result, $values[$key]);
                 } else {
