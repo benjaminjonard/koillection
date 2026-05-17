@@ -9,13 +9,13 @@ use App\Model\ScrapingItem;
 use App\Model\ScrapingWish;
 use App\Service\Scraper\ContentScraper;
 use Symfony\Component\HttpClient\CurlHttpClient;
-use Symfony\Component\JsonPath\JsonCrawler;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use JmesPath\Env;
 use Twig\Environment;
 
 /**
  * @template ScrapedType
- * @extends ContentScraper<ScrapedType, JsonCrawler>
+ * @extends ContentScraper<ScrapedType, array>
  */
 abstract class JsonScraper extends ContentScraper {
     protected ?CurlHttpClient $client = null;
@@ -25,7 +25,7 @@ abstract class JsonScraper extends ContentScraper {
         $this->client = new CurlHttpClient();
     }
 
-    protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): JsonCrawler
+    protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): array
     {
         if ($scraping->getFile() instanceof UploadedFile) {
             $content = $scraping->getFile()->getContent();
@@ -45,7 +45,7 @@ abstract class JsonScraper extends ContentScraper {
             }
             $content = $response->getContent();
         }
-        return new JsonCrawler($content);
+        return json_decode($content, true);
     }
 
     #[\Override]
@@ -55,8 +55,11 @@ abstract class JsonScraper extends ContentScraper {
         }
         $values = [];
         preg_match_all('/#(.*?)#/', $template, $matches);
-        foreach($matches[1] as $jsonPath) {
-            $results = $crawler->find($jsonPath);
+        foreach($matches[1] as $jmespath) {
+            $results = Env::search($jmespath, $crawler);
+            if (!is_array($results)) {
+                $results = [$results];
+            }
             $results = array_map(static function($item): string {
                 if (!is_string($item)) {
                     return strval($item);
@@ -65,13 +68,13 @@ abstract class JsonScraper extends ContentScraper {
             }, $results);
             foreach ($results as $key => $result) {
                 if (isset($values[$key])) {
-                    $values[$key] = str_replace("#{$jsonPath}#", $result, $values[$key]);
+                    $values[$key] = str_replace("#{$jmespath}#", $result, $values[$key]);
                 } else {
-                    $values[$key] = str_replace("#{$jsonPath}#", $result, $template);
+                    $values[$key] = str_replace("#{$jmespath}#", $result, $template);
                 }
             }
             foreach ($values as &$value) {
-                $value = str_replace("#{$jsonPath}#", '', $value);
+                $value = str_replace("#{$jmespath}#", '', $value);
             }
         }
         return $this->formatValues($values, $type, $scraping);
