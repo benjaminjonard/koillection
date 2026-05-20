@@ -34,7 +34,7 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $urlPattern = null;
 
-    #[ORM\Column(type: Types::TEXT, length: 15)]
+    #[ORM\Column(type: Types::STRING, length: 15)]
     private ?string $contentType = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

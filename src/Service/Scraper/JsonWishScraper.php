@@ -23,7 +23,7 @@ class JsonWishScraper extends JsonScraper
 
         $price = $scraping->getScrapPrice() ? $this->extract($scraper->getPricePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null;
         if ($price) {
-            $price = preg_replace('/[^0-9-.,]+', '', $price);
+            $price = preg_replace('/[^0-9-.,]+/', '', $price);
         }
 
         return [

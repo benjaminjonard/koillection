@@ -6,6 +6,7 @@ namespace App\Model\Scraper;
 
 use App\Entity\Path;
 use App\Entity\Scraper;
+use App\Enum\ScraperContentTypeEnum;
 use App\Enum\ScraperTypeEnum;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -37,6 +38,7 @@ class WishScraperImporter
         $scraper->setNamePath($data['namePath'] ?? null);
         $scraper->setImagePath($data['imagePath'] ?? null);
         $scraper->setUrlPattern($data['urlPattern'] ?? null);
+        $scraper->setContentType($data['contentType'] ?? ScraperContentTypeEnum::CONTENT_TYPE_HTML);
         $scraper->setType(ScraperTypeEnum::TYPE_WISH);
 
         foreach ($data['dataPaths'] as $key => $dataPath) {
