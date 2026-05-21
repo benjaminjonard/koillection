@@ -6,12 +6,12 @@ namespace App\Service\Scraper;
 
 use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperTypeEnum;
-use App\Model\ScrapingCollection;
+use App\Model\ScrapingItem;
 
 /**
- * @extends HtmlScraper<ScrapingCollection>
+ * @extends JsonScraper<ScrapingItem>
  */
-class HtmlCollectionScraper extends HtmlScraper
+class JsonItemScraper extends JsonScraper
 {
     #[\Override]
     public function scrap($scraping): array
@@ -22,16 +22,10 @@ class HtmlCollectionScraper extends HtmlScraper
         $image = $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null;
         $image = $this->guessHost($image, $scraping);
 
-        $response = $this->client->request(
-                'GET',
-                $image,
-                ['timeout' => 2.5]
-            );
-
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null,
-            'base64Image' => 'data:image/png;base64,' . base64_encode($response->getContent()),
-            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_COLLECTION),
+            'image' => $image,
+            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_ITEM),
             'scrapedUrl' => $scraping->getUrl()
         ];
     }

@@ -14,7 +14,7 @@ use App\Http\FileResponse;
 use App\Model\Scraper\ItemScraperImporter;
 use App\Model\ScrapingItem;
 use App\Repository\ScraperRepository;
-use App\Service\Scraper\HtmlItemScraper;
+use App\Service\Scraper\ItemScraper;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,7 +28,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ItemScraperController extends AbstractController
 {
     #[Route(path: '/scrapers/item-scrapers/scrap', name: 'app_scraper_item_scrap', methods: ['POST'])]
-    public function scrap(Request $request, HtmlItemScraper $htmlScraper): JsonResponse
+    public function scrap(Request $request, ItemScraper $scraper): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
@@ -38,7 +38,7 @@ class ItemScraperController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->json($htmlScraper->scrap($scraping));
+                return $this->json($scraper->scrap($scraping));
             } catch (\Exception $e) {
                 return $this->json($e->getMessage(), 400);
             }
@@ -181,6 +181,7 @@ class ItemScraperController extends AbstractController
         $data['namePath'] = $scraper->getNamePath();
         $data['imagePath'] = $scraper->getImagePath();
         $data['urlPattern'] = $scraper->getUrlPattern();
+        $data['contentType'] = $scraper->getContentType();
         $data['dataPaths'] = [];
         foreach ($scraper->getDataPaths() as $key => $dataPath) {
             $data['dataPaths'][] = [

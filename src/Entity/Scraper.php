@@ -34,6 +34,9 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $urlPattern = null;
 
+    #[ORM\Column(type: Types::STRING, length: 15)]
+    private ?string $contentType = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $namePath = null;
 
@@ -99,6 +102,18 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     public function setType(?string $type): Scraper
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getContentType(): ?string
+    {
+        return $this->contentType;
+    }
+
+    public function setContentType(?string $contentType): Scraper
+    {
+        $this->contentType = $contentType;
 
         return $this;
     }

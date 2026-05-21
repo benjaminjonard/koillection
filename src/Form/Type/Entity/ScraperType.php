@@ -7,11 +7,13 @@ namespace App\Form\Type\Entity;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Entity\Scraper;
+use App\Enum\ScraperContentTypeEnum;
 use App\Enum\ScraperTypeEnum;
 use App\Form\Type\Model\HeaderType;
 use App\Model\Scraper\Header;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,6 +34,10 @@ class ScraperType extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => ['length' => 255],
                 'required' => true
+            ])
+            ->add('contentType', ChoiceType::class, [
+                'required' => true,
+                'choices' => array_flip(ScraperContentTypeEnum::getContentTypeLabels())
             ])
             ->add('urlPattern', TextType::class, [
                 'required' => false

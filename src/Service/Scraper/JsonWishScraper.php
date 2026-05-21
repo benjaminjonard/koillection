@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace App\Service\Scraper;
 
 use App\Enum\DatumTypeEnum;
-use App\Enum\ScraperTypeEnum;
-use App\Model\ScrapingCollection;
+use App\Model\ScrapingWish;
 
 /**
- * @extends HtmlScraper<ScrapingCollection>
+ * @extends JsonScraper<ScrapingWish>
  */
-class HtmlCollectionScraper extends HtmlScraper
+class JsonWishScraper extends JsonScraper
 {
     #[\Override]
     public function scrap($scraping): array
@@ -22,16 +21,15 @@ class HtmlCollectionScraper extends HtmlScraper
         $image = $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null;
         $image = $this->guessHost($image, $scraping);
 
-        $response = $this->client->request(
-                'GET',
-                $image,
-                ['timeout' => 2.5]
-            );
+        $price = $scraping->getScrapPrice() ? $this->extract($scraper->getPricePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null;
+        if ($price) {
+            $price = preg_replace('/[^0-9-.,]+/', '', $price);
+        }
 
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null,
-            'base64Image' => 'data:image/png;base64,' . base64_encode($response->getContent()),
-            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_COLLECTION),
+            'image' => $image,
+            'price' => $price,
             'scrapedUrl' => $scraping->getUrl()
         ];
     }

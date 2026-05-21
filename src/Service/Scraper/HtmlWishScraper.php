@@ -7,9 +7,13 @@ namespace App\Service\Scraper;
 use App\Enum\DatumTypeEnum;
 use App\Model\ScrapingWish;
 
+/**
+ * @extends HtmlScraper<ScrapingWish>
+ */
 class HtmlWishScraper extends HtmlScraper
 {
-    public function scrap(ScrapingWish $scraping): array
+    #[\Override]
+    public function scrap($scraping): array
     {
         $crawler = $this->getCrawler($scraping);
         $scraper = $scraping->getScraper();
