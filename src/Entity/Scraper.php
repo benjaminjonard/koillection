@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Interfaces\BreadcrumbableInterface;
+use App\Enum\ScraperContentTypeEnum;
 use App\Repository\ScraperRepository;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Order;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,6 +35,8 @@ class Scraper implements BreadcrumbableInterface, \Stringable
     private ?string $urlPattern = null;
 
     #[ORM\Column(type: Types::STRING, length: 15)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(choices: ScraperContentTypeEnum::CONTENT_TYPES)]
     private ?string $contentType = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

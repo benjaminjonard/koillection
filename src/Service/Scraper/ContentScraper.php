@@ -9,17 +9,17 @@ use App\Enum\DatumTypeEnum;
 use App\Model\ScrapingCollection;
 use App\Model\ScrapingItem;
 use App\Model\ScrapingWish;
-use App\Service\Scraper\Scraper;
 use Symfony\Component\Intl\Countries;
 use Twig\Environment;
 
 /**
  * @template ScrapedType
  * @template CrawlerType
+ *
  * @implements Scraper<ScrapedType>
  */
-abstract class ContentScraper implements Scraper {
-    
+abstract class ContentScraper implements Scraper
+{
     public function __construct(
         protected Environment $twig
     ) {
@@ -92,7 +92,7 @@ abstract class ContentScraper implements Scraper {
     /**
      * @param CrawlerType $crawler
      */
-    protected abstract function extract(?string $template, string $type, $crawler, $scraping): ?string;
+    abstract protected function extract(?string $template, string $type, $crawler, $scraping): ?string;
 
     /**
      * @param CrawlerType $crawler

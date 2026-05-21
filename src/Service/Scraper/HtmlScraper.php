@@ -7,13 +7,13 @@ namespace App\Service\Scraper;
 use App\Model\ScrapingCollection;
 use App\Model\ScrapingItem;
 use App\Model\ScrapingWish;
-use App\Service\Scraper\ContentScraper;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Panther\Client as PantherClient;
 
 /**
  * @template ScrapedType
+ *
  * @extends ContentScraper<ScrapedType, Crawler>
  */
 abstract class HtmlScraper extends ContentScraper
@@ -83,8 +83,6 @@ abstract class HtmlScraper extends ContentScraper
                     return $node->text();
                 });
             }
-
-
 
             foreach ($results as $key => $result) {
                 if (isset($values[$key])) {

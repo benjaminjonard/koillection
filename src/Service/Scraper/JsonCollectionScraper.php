@@ -22,17 +22,18 @@ class JsonCollectionScraper extends JsonScraper
         $image = $scraping->getScrapImage() ? $this->extract($scraper->getImagePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null;
         $image = $this->guessHost($image, $scraping);
 
-        $response = $this->client->request(
-            'GET',
-            $image,
-            ['timeout' => 2.5]
-        );
+        $base64Image = null;
+        if ($image !== null) {
+            $response = $this->client->request('GET', $image, ['timeout' => 2.5]);
+            $contentType = $response->getHeaders()['content-type'][0] ?? 'application/octet-stream';
+            $base64Image = 'data:' . $contentType . ';base64,' . base64_encode($response->getContent());
+        }
 
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null,
-            'base64Image' => 'data:' . $response->getHeaders()['content-type'][0] . ';base64,' . base64_encode($response->getContent()),
+            'base64Image' => $base64Image,
             'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_ITEM),
-            'scrapedUrl' => $scraping->getUrl()
+            'scrapedUrl' => $scraping->getUrl(),
         ];
     }
 }

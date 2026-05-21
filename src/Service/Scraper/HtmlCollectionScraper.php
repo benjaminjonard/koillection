@@ -23,10 +23,10 @@ class HtmlCollectionScraper extends HtmlScraper
         $image = $this->guessHost($image, $scraping);
 
         $response = $this->client->request(
-                'GET',
-                $image,
-                ['timeout' => 2.5]
-            );
+            'GET',
+            $image,
+            ['timeout' => 2.5]
+        );
 
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null,

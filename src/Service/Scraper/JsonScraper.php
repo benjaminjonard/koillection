@@ -7,22 +7,23 @@ namespace App\Service\Scraper;
 use App\Model\ScrapingCollection;
 use App\Model\ScrapingItem;
 use App\Model\ScrapingWish;
-use App\Service\Scraper\ContentScraper;
-use Symfony\Component\HttpClient\CurlHttpClient;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use JmesPath\Env;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
 /**
  * @template ScrapedType
+ *
  * @extends ContentScraper<ScrapedType, array>
  */
-abstract class JsonScraper extends ContentScraper {
-    protected ?CurlHttpClient $client = null;
-
-    public function __construct(Environment $twig) {
+abstract class JsonScraper extends ContentScraper
+{
+    public function __construct(
+        Environment $twig,
+        protected HttpClientInterface $client,
+    ) {
         parent::__construct($twig);
-        $this->client = new CurlHttpClient();
     }
 
     protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): array
@@ -32,40 +33,56 @@ abstract class JsonScraper extends ContentScraper {
         } else {
             $headers = [
                 'Accept' => 'application/json',
-                'Accept-Encoding' => 'gzip, deflate, br, zstd'
+                'Accept-Encoding' => 'gzip, deflate, br, zstd',
             ];
             foreach ($scraping->getScraper()->getHeaders() as $header) {
                 $headers[$header['header']] = $header['value'];
             }
+
             $response = $this->client->request('GET', $scraping->getUrl(), [
-                'headers' => $headers
+                'headers' => $headers,
+                'timeout' => 5,
+                'max_duration' => 10,
             ]);
+
             if ($response->getStatusCode() >= 400) {
-                throw new \Exception('API error : ' . $response->getStatusCode() . ' - ' . $response->getContent());
+                throw new \RuntimeException('API error: ' . $response->getStatusCode());
             }
+
             $content = $response->getContent();
         }
-        return json_decode($content, true);
+
+        try {
+            return json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            throw new \RuntimeException('Invalid JSON response: ' . $e->getMessage(), 0, $e);
+        }
     }
 
     #[\Override]
-    protected function extract(?string $template, string $type, $crawler, $scraping): ?string {
+    protected function extract(?string $template, string $type, $crawler, $scraping): ?string
+    {
         if (!$template) {
             return '';
         }
+
         $values = [];
         preg_match_all('/#(.*?)#/', $template, $matches);
-        foreach($matches[1] as $jmespath) {
+
+        foreach ($matches[1] as $jmespath) {
             $results = Env::search($jmespath, $crawler);
-            if (!is_array($results)) {
+            if (!\is_array($results)) {
                 $results = [$results];
             }
-            $results = array_map(static function($item): string {
-                if (!is_string($item)) {
-                    return strval($item);
+
+            $results = array_map(static function ($item): string {
+                if (!\is_string($item)) {
+                    return \strval($item);
                 }
+
                 return $item;
             }, $results);
+
             foreach ($results as $key => $result) {
                 if (isset($values[$key])) {
                     $values[$key] = str_replace("#{$jmespath}#", $result, $values[$key]);
@@ -73,10 +90,13 @@ abstract class JsonScraper extends ContentScraper {
                     $values[$key] = str_replace("#{$jmespath}#", $result, $template);
                 }
             }
+
             foreach ($values as &$value) {
                 $value = str_replace("#{$jmespath}#", '', $value);
             }
+            unset($value);
         }
+
         return $this->formatValues($values, $type, $scraping);
     }
 }

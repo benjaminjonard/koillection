@@ -7,9 +7,10 @@ namespace App\Service\Scraper;
 /**
  * @template ScrapedType
  */
-interface Scraper {
+interface Scraper
+{
     /**
      * @param ScrapedType $scraping
      */
-    public function scrap($scraping);
+    public function scrap($scraping): array;
 }

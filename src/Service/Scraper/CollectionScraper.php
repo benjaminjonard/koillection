@@ -6,20 +6,21 @@ namespace App\Service\Scraper;
 
 use App\Enum\ScraperContentTypeEnum;
 use App\Model\ScrapingCollection;
-use App\Service\Scraper\Scraper;
-use Twig\Environment;
 
 /**
  * @implements Scraper<ScrapingCollection>
  */
-class CollectionScraper implements Scraper {
+class CollectionScraper implements Scraper
+{
     private array $scrapers;
 
-    public function __construct(Environment $twig)
-    {
+    public function __construct(
+        HtmlCollectionScraper $htmlCollectionScraper,
+        JsonCollectionScraper $jsonCollectionScraper,
+    ) {
         $this->scrapers = [
-            ScraperContentTypeEnum::CONTENT_TYPE_HTML => new HtmlCollectionScraper($twig),
-            ScraperContentTypeEnum::CONTENT_TYPE_JSON => new JsonCollectionScraper($twig),
+            ScraperContentTypeEnum::CONTENT_TYPE_HTML => $htmlCollectionScraper,
+            ScraperContentTypeEnum::CONTENT_TYPE_JSON => $jsonCollectionScraper,
         ];
     }
 
