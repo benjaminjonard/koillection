@@ -1828,7 +1828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.0.0, browserslist@npm:^4.24.0, browserslist@npm:^4.28.1":
+"browserslist@npm:^4.0.0, browserslist@npm:^4.24.0, browserslist@npm:^4.28.1, browserslist@npm:^4.28.2":
   version: 4.28.2
   resolution: "browserslist@npm:4.28.2"
   dependencies:
@@ -2183,6 +2183,15 @@ __metadata:
   peerDependencies:
     postcss: ^8.4.32
   checksum: 10/cdf37315d3cf9726e10ce842b18e148e4df1d1d18d292540e724d5a96994901abc631c8894328c39ab70c864449a8a83f8fc117114fdcbade204e5e65898af90
+  languageName: node
+  linkType: hard
+
+"cssnano-utils@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "cssnano-utils@npm:5.0.3"
+  peerDependencies:
+    postcss: ^8.5.13
+  checksum: 10/8a088118bc7761ed5f4c6b9d1841cf07533c62aee88468ce109a95efe72aaf7cda5be77b18c87d6422c0b4c3b4a5bc3246157f6ad101074c8dde0aefd80257e0
   languageName: node
   linkType: hard
 
@@ -3190,16 +3199,16 @@ __metadata:
   linkType: hard
 
 "postcss-merge-rules@npm:^7.0.8":
-  version: 7.0.8
-  resolution: "postcss-merge-rules@npm:7.0.8"
+  version: 7.0.11
+  resolution: "postcss-merge-rules@npm:7.0.11"
   dependencies:
-    browserslist: "npm:^4.28.1"
+    browserslist: "npm:^4.28.2"
     caniuse-api: "npm:^3.0.0"
-    cssnano-utils: "npm:^5.0.1"
+    cssnano-utils: "npm:^5.0.3"
     postcss-selector-parser: "npm:^7.1.1"
   peerDependencies:
-    postcss: ^8.4.32
-  checksum: 10/da158ab152175813611ae0ed951678ae6e915e7fa17525622413784d9aa0e2c7e4e2b9e67c592ac8091e385b641855af2e8b55b393cf10941ced71d448075349
+    postcss: ^8.5.13
+  checksum: 10/6dd8ffa975d17f31a52da573e9b4a6c42c82a27ea8ca43a826f733da0b941f7d0875060c9753ddfe8b752f19e486c5ef9d0799d0631a92b6250c5be8dae0fcea
   languageName: node
   linkType: hard
 
