@@ -3348,13 +3348,13 @@ __metadata:
   linkType: hard
 
 "postcss-normalize-string@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "postcss-normalize-string@npm:7.0.1"
+  version: 7.0.3
+  resolution: "postcss-normalize-string@npm:7.0.3"
   dependencies:
     postcss-value-parser: "npm:^4.2.0"
   peerDependencies:
-    postcss: ^8.4.32
-  checksum: 10/48df2eaca6f5365af31ad46fd60a32dc7b714cc5ec8ba80980e65855ddc47c03ac82077ce7ca04c90898f73d173410d1d6a104754ff487e7e5a59e3eae8325b3
+    postcss: ^8.5.13
+  checksum: 10/322188b51371c9bfe66a40131971b4f44f91a27266c05d9c8237dd2e32e1e94b0223cd4cf8d67726e42ea0a6195aa7ac51b79d6fbf24cd3aad9ede00f7abeb1a
   languageName: node
   linkType: hard
 
