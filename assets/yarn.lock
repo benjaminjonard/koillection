@@ -1116,7 +1116,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@colordx/core@npm:^5.0.0":
+"@colordx/core@npm:^5.0.0, @colordx/core@npm:^5.4.3":
   version: 5.4.3
   resolution: "@colordx/core@npm:5.4.3"
   checksum: 10/3a26146cc3ce9e1ab51d428142e7c307cd023c7660b6d604297122661cfc57ebe0c2cfcfd156ccef1a47a9d153da640017827afd67e223dd5b6a24958a908dc0
@@ -3224,15 +3224,15 @@ __metadata:
   linkType: hard
 
 "postcss-minify-gradients@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "postcss-minify-gradients@npm:7.0.2"
+  version: 7.0.5
+  resolution: "postcss-minify-gradients@npm:7.0.5"
   dependencies:
-    "@colordx/core": "npm:^5.0.0"
-    cssnano-utils: "npm:^5.0.1"
+    "@colordx/core": "npm:^5.4.3"
+    cssnano-utils: "npm:^5.0.3"
     postcss-value-parser: "npm:^4.2.0"
   peerDependencies:
-    postcss: ^8.4.32
-  checksum: 10/76c6a5f7fb482d539a134a9b84b1d6eb2720ef92e87899a0981c023a545420673aa02d3397d62f0a23df7210d323fbd1f197856ca3134a0903656d4ccad0a363
+    postcss: ^8.5.13
+  checksum: 10/0f6f94a4f37d4dfcbeaa40e8eb05f8ecd3f63dbd6ffca0d93d31ddabb990281fea3c0920dd44790776168e05b5f44abd8209ef0d29a10463c24d21682e4107e5
   languageName: node
   linkType: hard
 
