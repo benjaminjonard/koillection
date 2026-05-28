@@ -4,8 +4,19 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: "all"
     groups:
+      symfony-major:
+        patterns:
+          - "symfony/*"
+        update-types:
+          - "major"
+      twig-major:
+        patterns:
+          - "twig/*"
+        update-types:
+          - "major"
       composer-non-major:
         update-types:
           - "minor"
@@ -15,7 +26,8 @@ updates:
     directory: "/assets"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: "all"
     ignore:
       - dependency-name: "@materializecss/materialize"
     groups:
