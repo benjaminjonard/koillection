@@ -3178,11 +3178,11 @@ __metadata:
   linkType: hard
 
 "postcss-discard-overridden@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "postcss-discard-overridden@npm:7.0.1"
+  version: 7.0.3
+  resolution: "postcss-discard-overridden@npm:7.0.3"
   peerDependencies:
-    postcss: ^8.4.32
-  checksum: 10/a0e67314b696591396e6bb371cdd57537e06f63e9fa0d742fe678decf600bed0cdcfa481487bce91b3732bdd7c46338f9102ccc8180c41032811e99962883715
+    postcss: ^8.5.13
+  checksum: 10/b65cb6bd039a04760abe2dda4290e70ba1e7b39df44a812174687a500b079558af8c26b1d1d1389a85692c3c6874c842cc1f7490d0f7bff2d6017d08f85b6831
   languageName: node
   linkType: hard
 
