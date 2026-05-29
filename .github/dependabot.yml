@@ -4,8 +4,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    allow:
-      - dependency-type: "all"
     groups:
       symfony-major:
         patterns:
@@ -26,8 +24,6 @@ updates:
     directory: "/assets"
     schedule:
       interval: "weekly"
-    allow:
-      - dependency-type: "all"
     ignore:
       - dependency-name: "@materializecss/materialize"
     groups:
