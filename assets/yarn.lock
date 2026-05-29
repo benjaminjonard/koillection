@@ -3807,14 +3807,14 @@ __metadata:
   linkType: hard
 
 "stylehacks@npm:^7.0.5":
-  version: 7.0.8
-  resolution: "stylehacks@npm:7.0.8"
+  version: 7.0.11
+  resolution: "stylehacks@npm:7.0.11"
   dependencies:
-    browserslist: "npm:^4.28.1"
+    browserslist: "npm:^4.28.2"
     postcss-selector-parser: "npm:^7.1.1"
   peerDependencies:
-    postcss: ^8.4.32
-  checksum: 10/4b5634ec6d081c04dd9ee8e03ece0ec1849243d19f930f25df5d02969f051d60fd9f72c89c1135b501716d17b2a2a9bbe64ae81d71ad0712dca51e9a7e310989
+    postcss: ^8.5.13
+  checksum: 10/937a53ca6c96447438cc1a556744a3cc3268afed8ffdb239326e574eb93b5be8f13d347602d901cd81bb4d790d5568e4b57a9ae9447b21a947feea06d883a5c8
   languageName: node
   linkType: hard
 
