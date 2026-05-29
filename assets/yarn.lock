@@ -2165,16 +2165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssnano-utils@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "cssnano-utils@npm:5.0.1"
-  peerDependencies:
-    postcss: ^8.4.32
-  checksum: 10/cdf37315d3cf9726e10ce842b18e148e4df1d1d18d292540e724d5a96994901abc631c8894328c39ab70c864449a8a83f8fc117114fdcbade204e5e65898af90
-  languageName: node
-  linkType: hard
-
-"cssnano-utils@npm:^5.0.3":
+"cssnano-utils@npm:^5.0.1, cssnano-utils@npm:^5.0.3":
   version: 5.0.3
   resolution: "cssnano-utils@npm:5.0.3"
   peerDependencies:
