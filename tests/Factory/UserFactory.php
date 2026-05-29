@@ -22,7 +22,7 @@ final class UserFactory extends \Zenstruck\Foundry\Persistence\PersistentObjectF
         return [
             'username' => self::faker()->unique()->word(),
             'email' => self::faker()->unique()->email(),
-            'plainPassword' => self::faker()->password(),
+            'plainPassword' => 'Password1!',
             'enabled' => true,
             'roles' => [RoleEnum::ROLE_USER],
             'currency' => self::faker()->currencyCode(),
