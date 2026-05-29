@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "928807be3d4fc1453b7981b39b367a86",
+    "content-hash": "129d0ff6524419592682331f23ec9dc5",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v4.3.6",
+            "version": "v4.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "1c2f829457861ecb6931d5145b96e2d1a2eca7cc"
+                "reference": "25f80814e1f9c849bae2bc17ed2e07f2461c72d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/1c2f829457861ecb6931d5145b96e2d1a2eca7cc",
-                "reference": "1c2f829457861ecb6931d5145b96e2d1a2eca7cc",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/25f80814e1f9c849bae2bc17ed2e07f2461c72d8",
+                "reference": "25f80814e1f9c849bae2bc17ed2e07f2461c72d8",
                 "shasum": ""
             },
             "require": {
@@ -226,9 +226,9 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v4.3.6"
+                "source": "https://github.com/api-platform/core/tree/v4.3.7"
             },
-            "time": "2026-05-22T12:11:10+00:00"
+            "time": "2026-05-29T07:17:00+00:00"
         },
         {
             "name": "composer/semver",
