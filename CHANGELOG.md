@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.8.1] / 2025-05-27
+### Features
+- Add JSON support for scrapers (Renaud11232)
+
+### Fixes
+- Fix cross-user state leaks in FrankenPHP worker mode (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix multiple CVEs (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.8.0] / 2025-01-25
 ### Miscellaneous
 - Upgrade PHP to 8.5, Symfony 8.0 and JS dependencies (benjaminjonard)
