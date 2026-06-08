@@ -120,15 +120,18 @@ jobs:
             php -d memory_limit=512M ./vendor/bin/paratest --runner=WrapperRunner --passthru-php='-d memory_limit=512M'
 
   phpunit_mariadb:
-    name: PHPUnit tests with MariaDB ${{ matrix.mariadb }}
+    name: PHPUnit tests with MariaDB ${{ matrix.mariadb.tag }}
     needs: [ build_docker_ci_container ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mariadb: [ 10, 11 ]
+        mariadb:
+          - { tag: '10', version: '10.11.0-MariaDB' }
+          - { tag: '11', version: '11.8.0-MariaDB' }
+          - { tag: '12', version: '12.0.0-MariaDB' }
     services:
       mysql:
-        image: mariadb:${{ matrix.mariadb }}
+        image: mariadb:${{ matrix.mariadb.tag }}
         env:
           MYSQL_ROOT_PASSWORD: root
         ports:
@@ -161,7 +164,7 @@ jobs:
             sed -i "s|DB_PORT=.*|DB_PORT=3306|i" ".env"
             sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
             sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
-            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mariadb }}|i" ".env"
+            sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mariadb.version }}|i" ".env"
             bin/console lexik:jwt:generate-keypair
             bin/console doctrine:database:create
             bin/console doctrine:migration:migrate --no-interaction --allow-no-migration            

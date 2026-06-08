@@ -6,7 +6,7 @@ namespace App\Migrations\Mysql;
 
 use App\Enum\DisplayModeEnum;
 use Doctrine\Common\Collections\Order;
-use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
@@ -20,7 +20,7 @@ final class Version20250722221709 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
 
         $this->addSql('ALTER TABLE koi_search ADD display_configuration_id CHAR(36) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_search ADD CONSTRAINT FK_565C814E165132CC FOREIGN KEY (display_configuration_id) REFERENCES koi_display_configuration (id)');

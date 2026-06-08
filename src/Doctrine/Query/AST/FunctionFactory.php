@@ -5,7 +5,7 @@ namespace App\Doctrine\Query\AST;
 
 use App\Doctrine\Query\AST\Platform\Functions\PlatformFunctionNode;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\ORM\Query\QueryException;
 
@@ -18,7 +18,7 @@ class FunctionFactory
     ): PlatformFunctionNode {
         if ($platform instanceof PostgreSQLPlatform) {
             $platformName = 'postgresql';
-        } elseif ($platform instanceof MySQLPlatform) {
+        } elseif ($platform instanceof AbstractMySQLPlatform) {
             $platformName = 'mysql';
         } else {
             throw QueryException::syntaxError(

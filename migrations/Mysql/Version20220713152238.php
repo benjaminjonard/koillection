@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Migrations\Mysql;
 
 use App\Enum\SortingDirectionEnum;
-use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -18,7 +18,7 @@ final class Version20220713152238 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
 
         $this->addSql('ALTER TABLE koi_collection ADD items_sorting_property VARCHAR(255) DEFAULT NULL, ADD items_sorting_direction VARCHAR(255)');
         $this->addSql('UPDATE koi_collection SET items_sorting_direction = ?', [SortingDirectionEnum::ASCENDING]);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Migrations\Mysql;
 
-use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -17,7 +17,7 @@ final class Version20201215214207 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
 
         $this->addSql('ALTER TABLE koi_item ADD image_large_thumbnail VARCHAR(255) DEFAULT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_3EBAA302A69A0691 ON koi_item (image_large_thumbnail)');

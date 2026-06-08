@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Migrations\Mysql;
 
 use App\Enum\ConfigurationEnum;
-use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\Uid\Uuid;
@@ -19,7 +19,7 @@ final class Version20230525100104 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
 
         $this->addSql('ALTER TABLE koi_configuration CHANGE value value LONGTEXT DEFAULT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_576E96A6EA750E8 ON koi_configuration (label)');

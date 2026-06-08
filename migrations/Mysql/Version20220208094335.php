@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Migrations\Mysql;
 
-use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -17,7 +17,7 @@ final class Version20220208094335 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
 
         $this->addSql('ALTER TABLE koi_field ADD owner_id CHAR(36) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_field ADD CONSTRAINT FK_4FD5B8917E3C61F9 FOREIGN KEY (owner_id) REFERENCES koi_user (id)');

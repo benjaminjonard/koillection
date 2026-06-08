@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Migrations\Mysql;
 
-use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -17,7 +17,7 @@ final class Version20211207185256 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof MySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
+        $this->skipIf(!$this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform, 'Mysql or Mariadb migration only. Skipped.');
 
         $this->addSql('ALTER TABLE koi_album CHANGE id id CHAR(36) NOT NULL, CHANGE owner_id owner_id CHAR(36) DEFAULT NULL, CHANGE parent_id parent_id CHAR(36) DEFAULT NULL');
         $this->addSql('ALTER TABLE koi_collection CHANGE id id CHAR(36) NOT NULL, CHANGE parent_id parent_id CHAR(36) DEFAULT NULL, CHANGE owner_id owner_id CHAR(36) DEFAULT NULL');
