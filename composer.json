@@ -139,7 +139,7 @@
         "symfony": {
             "allow-contrib": false,
             "docker": false,
-            "require": "8.0.*"
+            "require": "8.1.*"
         },
         "runtime": {
             "dotenv_overload": true
