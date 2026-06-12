@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa03c4bb4356024702dd8f3e69a7003b",
+    "content-hash": "44bb6766a72f1b857414fefb588389c1",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v4.3.10",
+            "version": "v4.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "77c87883e02dceeb34eb49eb8b0a888ce57e2916"
+                "reference": "17b18315adece264ac3720af45f5ea2fa6775c37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/77c87883e02dceeb34eb49eb8b0a888ce57e2916",
-                "reference": "77c87883e02dceeb34eb49eb8b0a888ce57e2916",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/17b18315adece264ac3720af45f5ea2fa6775c37",
+                "reference": "17b18315adece264ac3720af45f5ea2fa6775c37",
                 "shasum": ""
             },
             "require": {
@@ -220,9 +220,9 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v4.3.10"
+                "source": "https://github.com/api-platform/core/tree/v4.3.11"
             },
-            "time": "2026-06-05T15:24:51+00:00"
+            "time": "2026-06-12T07:28:43+00:00"
         },
         {
             "name": "composer/semver",
@@ -1788,16 +1788,16 @@
         },
         {
             "name": "mtdowling/jmespath.php",
-            "version": "2.8.0",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jmespath/jmespath.php.git",
-                "reference": "a2a865e05d5f420b50cc2f85bb78d565db12a6bc"
+                "reference": "9c208ba27ae7d90853c288b3795d6702eb251d34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/a2a865e05d5f420b50cc2f85bb78d565db12a6bc",
-                "reference": "a2a865e05d5f420b50cc2f85bb78d565db12a6bc",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/9c208ba27ae7d90853c288b3795d6702eb251d34",
+                "reference": "9c208ba27ae7d90853c288b3795d6702eb251d34",
                 "shasum": ""
             },
             "require": {
@@ -1806,7 +1806,7 @@
             },
             "require-dev": {
                 "composer/xdebug-handler": "^3.0.3",
-                "phpunit/phpunit": "^8.5.33"
+                "phpunit/phpunit": "^8.5.52"
             },
             "bin": [
                 "bin/jp.php"
@@ -1814,7 +1814,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "2.9-dev"
                 }
             },
             "autoload": {
@@ -1848,9 +1848,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jmespath/jmespath.php/issues",
-                "source": "https://github.com/jmespath/jmespath.php/tree/2.8.0"
+                "source": "https://github.com/jmespath/jmespath.php/tree/2.9.1"
             },
-            "time": "2024-09-04T18:46:31+00:00"
+            "time": "2026-06-11T10:43:56+00:00"
         },
         {
             "name": "nelmio/cors-bundle",
