@@ -2824,6 +2824,18 @@
         <target>Wens</target>
       </segment>
     </unit>
+    <unit id="OKqEfL9" name="enum.scraper_content_type.html">
+      <segment state="translated">
+        <source>HTML</source>
+        <target>HTML</target>
+      </segment>
+    </unit>
+    <unit id="ulclkFW" name="enum.scraper_content_type.json">
+      <segment state="translated">
+        <source>JSON</source>
+        <target>JSON</target>
+      </segment>
+    </unit>
     <unit id="qbaO3DI" name="log.photo.created">
       <segment state="translated">
         <source>Photo {label} was created</source>
@@ -3482,6 +3494,12 @@
       <segment state="translated">
         <source>Url pattern</source>
         <target>URL patroon</target>
+      </segment>
+    </unit>
+    <unit id="9PgaT67" name="label.content_type">
+      <segment state="translated">
+        <source>Content type</source>
+        <target>Soort inhoud</target>
       </segment>
     </unit>
     <unit id="FPWuWud" name="btn.ok">
