@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.8.2] / 2025-06-15
+
+### Fixes
+- Restore Curl scraper if chromedriver not found (benjaminjonard)
+- Fix MariaDb migrations (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix multiple CVEs (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.8.1] / 2025-05-27
 ### Features
 - Add JSON support for scrapers (Renaud11232)
