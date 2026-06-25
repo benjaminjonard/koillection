@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.8.2] / 2025-06-15
+## [1.8.3] / 2026-06-25
+
+### Fixes
+- Fix bug corrupting columns in list view (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP dependencies (benjaminjonard)
+
+## [1.8.2] / 2026-06-15
 
 ### Fixes
 - Restore Curl scraper if chromedriver not found (benjaminjonard)
@@ -11,7 +19,7 @@ All notable changes to this project will be documented in this file.
 - Upgrade PHP and JS dependencies, fix multiple CVEs (benjaminjonard)
 - Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
 
-## [1.8.1] / 2025-05-27
+## [1.8.1] / 2026-05-27
 ### Features
 - Add JSON support for scrapers (Renaud11232)
 
@@ -22,7 +30,7 @@ All notable changes to this project will be documented in this file.
 - Upgrade PHP and JS dependencies, fix multiple CVEs (benjaminjonard)
 - Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
 
-## [1.8.0] / 2025-01-25
+## [1.8.0] / 2026-01-25
 ### Miscellaneous
 - Upgrade PHP to 8.5, Symfony 8.0 and JS dependencies (benjaminjonard)
 - Switching the main docker image from Ubuntu to the official FrankenPHP image, based on Debian Trixie (benjaminjonard)
