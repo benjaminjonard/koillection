@@ -14,7 +14,7 @@
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.4",
     "@symfony/stimulus-bridge": "4.0.1",
-    "@symfony/webpack-encore": "6.0.0",
+    "@symfony/webpack-encore": "7.1.0",
     "copy-webpack-plugin": "14.0.0",
     "core-js": "3.49.0",
     "croppie": "2.6.5",
