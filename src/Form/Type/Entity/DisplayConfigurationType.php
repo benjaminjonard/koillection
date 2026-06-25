@@ -100,12 +100,17 @@ class DisplayConfigurationType extends AbstractType
             // Move already selected columns to the top of the array
             $alreadySelectedColumns = [];
             if ($options['columns']['selectedColumnsLabels']) {
-                $alreadySelectedColumns = array_reverse($options['columns']['selectedColumnsLabels']);
+                // Guard against corrupted/legacy values (null, non-string) leaking into the choice list
+                $selectedColumnsLabels = array_filter(
+                    $options['columns']['selectedColumnsLabels'],
+                    static fn ($column): bool => \is_string($column) && '' !== $column
+                );
+                $alreadySelectedColumns = array_reverse($selectedColumnsLabels);
             }
 
             foreach ($alreadySelectedColumns as $alreadySelectedColumn) {
                 unset($columns[$alreadySelectedColumn]);
-                array_unshift($columns, [$alreadySelectedColumn => $alreadySelectedColumn]);
+                $columns = [$alreadySelectedColumn => $alreadySelectedColumn] + $columns;
             }
 
             $builder

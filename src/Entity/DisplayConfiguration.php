@@ -227,14 +227,23 @@ class DisplayConfiguration
 
     public function getColumns(): ?array
     {
-        return $this->columns;
+        return $this->sanitizeColumns($this->columns);
     }
 
     public function setColumns(?array $columns): DisplayConfiguration
     {
-        $this->columns = $columns;
+        $this->columns = $this->sanitizeColumns($columns);
 
         return $this;
+    }
+
+    private function sanitizeColumns(?array $columns): ?array
+    {
+        if (null === $columns) {
+            return null;
+        }
+
+        return array_values(array_filter($columns, static fn ($column): bool => \is_string($column) && '' !== $column));
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
