@@ -33,6 +33,14 @@ final readonly class RefreshCachedValuesQueueListener
         $em = $this->managerRegistry->getManager();
         if ($em->isOpen()) {
             $uow = $em->getUnitOfWork();
+
+            // Populate the insert/update schedules. Without this, entities that were
+            // dirtied during the request but never flushed by the controller (e.g. a
+            // form that failed validation) are not yet "scheduled", so the detach below
+            // would miss them and this listener's own flush() would persist them,
+            // bypassing validation entirely.
+            $uow->computeChangeSets();
+
             foreach ($uow->getIdentityMap() as $entities) {
                 foreach ($entities as $entity) {
                     if ($uow->isScheduledForInsert($entity) || $uow->isScheduledForUpdate($entity)) {

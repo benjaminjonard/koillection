@@ -424,8 +424,10 @@ class ItemTest extends AppTestCase
         // Act
         $errors = $this->getContainer()->get(ValidatorInterface::class)->validate($item);
 
-        // Assert
-        $this->assertCount(1, $errors);
-        $this->assertSame('"Author" label is used multiple times, all labels must be unique', $errors[0]->getMessage());
+        // Assert: validation fails and surfaces the duplicate-label error. Since Item::$data
+        // is now cascaded (Assert\Valid), the per-datum DatumLabelNotExistsInParent constraint
+        // also fires, so we assert the message is present rather than the exact error count.
+        $messages = array_map(static fn ($error): string => $error->getMessage(), iterator_to_array($errors));
+        $this->assertContains('"Author" label is used multiple times, all labels must be unique', $messages);
     }
 }
