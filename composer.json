@@ -72,7 +72,7 @@
     "require-dev": {
         "brianium/paratest": "7.23.0",
         "dama/doctrine-test-bundle": "8.6.0",
-        "friendsofphp/php-cs-fixer": "3.95.10",
+        "friendsofphp/php-cs-fixer": "3.95.11",
         "igor-php/igor-php": "^0.7.0",
         "justinrainbow/json-schema": "6.10.0",
         "phpunit/php-code-coverage": "14.2.2",
