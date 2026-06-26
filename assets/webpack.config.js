@@ -1,4 +1,4 @@
-const Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore').default;
 const CopyPlugin = require('copy-webpack-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -67,10 +67,11 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
+    // enables core-js polyfills (Babel 8 removed preset-env's useBuiltIns/corejs)
+    .configureBabel((babelConfig) => {
+        babelConfig.plugins.push(['babel-plugin-polyfill-corejs3', {
+            method: 'usage-global',
+        }]);
     })
 
     // enables Sass/SCSS support
