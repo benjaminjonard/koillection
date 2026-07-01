@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "109f99ac495d8ff1379ef21c55248c30",
+    "content-hash": "75bb257df2ebc18bac3c4a4356f41cf1",
     "packages": [
         {
             "name": "api-platform/core",
@@ -9033,16 +9033,16 @@
         },
         {
             "name": "igor-php/igor-php",
-            "version": "v0.7.0",
+            "version": "v0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/igor-php/igor-php.git",
-                "reference": "c22297f5916f47d9f35c20f14f9ea536d9315880"
+                "reference": "90dcc5df689614101893c076b023b83651babbbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/igor-php/igor-php/zipball/c22297f5916f47d9f35c20f14f9ea536d9315880",
-                "reference": "c22297f5916f47d9f35c20f14f9ea536d9315880",
+                "url": "https://api.github.com/repos/igor-php/igor-php/zipball/90dcc5df689614101893c076b023b83651babbbe",
+                "reference": "90dcc5df689614101893c076b023b83651babbbe",
                 "shasum": ""
             },
             "require": {
@@ -9077,9 +9077,9 @@
             ],
             "support": {
                 "issues": "https://github.com/igor-php/igor-php/issues",
-                "source": "https://github.com/igor-php/igor-php/tree/v0.7.0"
+                "source": "https://github.com/igor-php/igor-php/tree/v0.8.0"
             },
-            "time": "2026-06-08T12:30:49+00:00"
+            "time": "2026-06-30T20:29:53+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -9974,16 +9974,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "13.2.1",
+            "version": "13.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "60da0ff1e10a0f72ee18a24117ec3b613a346bba"
+                "reference": "492c067e618de7b3c76105082c90f9d2833401b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60da0ff1e10a0f72ee18a24117ec3b613a346bba",
-                "reference": "60da0ff1e10a0f72ee18a24117ec3b613a346bba",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/492c067e618de7b3c76105082c90f9d2833401b7",
+                "reference": "492c067e618de7b3c76105082c90f9d2833401b7",
                 "shasum": ""
             },
             "require": {
@@ -10054,7 +10054,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.2.1"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.2.2"
             },
             "funding": [
                 {
@@ -10062,7 +10062,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-06-15T13:14:22+00:00"
+            "time": "2026-06-29T13:36:29+00:00"
         },
         {
             "name": "react/cache",
