@@ -24,7 +24,7 @@
     "sortablejs": "1.15.7",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.52.3",
-    "webpack": "5.107.2",
+    "webpack": "5.108.3",
     "webpack-cli": "7.1.0",
     "webpack-notifier": "1.15.0"
   },
