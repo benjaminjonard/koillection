@@ -23,9 +23,9 @@
     "regenerator-runtime": "0.14.1",
     "sortablejs": "1.15.7",
     "stimulus-lightbox": "3.2.0",
-    "stimulus-use": "0.52.3",
-    "webpack": "5.107.2",
-    "webpack-cli": "7.1.0",
+    "stimulus-use": "0.53.0",
+    "webpack": "5.108.4",
+    "webpack-cli": "7.2.1",
     "webpack-notifier": "1.15.0"
   },
   "scripts": {
@@ -37,7 +37,7 @@
   "dependencies": {
     "bazinga-translator": "8.0.0",
     "hotkeys-js": "^4.0.0",
-    "intl-messageformat": "11.2.9",
+    "intl-messageformat": "11.2.12",
     "ts-select2": "^0.2.5"
   },
   "packageManager": "yarn@4.15.0"
