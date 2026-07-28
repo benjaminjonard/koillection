@@ -58,7 +58,7 @@
     <unit id="aXwmQFu" name="message.choice_list_deleted">
       <segment state="translated">
         <source>Choice list {list} has been deleted</source>
-        <target>La lista de opciones {list} ha sida eliminada</target>
+        <target>La lista de opciones {list} ha sido eliminada</target>
       </segment>
     </unit>
     <unit id="_sN4yvV" name="message.collection_added">
@@ -208,7 +208,7 @@
     <unit id="5d2N5Ar" name="message.template_edited">
       <segment state="translated">
         <source>Template {template} has been updated</source>
-        <target>La plantilla {template} ha sido actalizada</target>
+        <target>La plantilla {template} ha sido actualizada</target>
       </segment>
     </unit>
     <unit id="ZMxcm6L" name="message.template_deleted">
@@ -2821,6 +2821,18 @@
         <target>Deseado</target>
       </segment>
     </unit>
+    <unit id="OKqEfL9" name="enum.scraper_content_type.html">
+      <segment state="translated">
+        <source>HTML</source>
+        <target>HTML</target>
+      </segment>
+    </unit>
+    <unit id="ulclkFW" name="enum.scraper_content_type.json">
+      <segment state="translated">
+        <source>JSON</source>
+        <target>JSON</target>
+      </segment>
+    </unit>
     <unit id="qbaO3DI" name="log.photo.created">
       <segment state="translated">
         <source>Photo {label} was created</source>
@@ -3479,6 +3491,12 @@
       <segment state="translated">
         <source>Url pattern</source>
         <target>Patrón de URL</target>
+      </segment>
+    </unit>
+    <unit id="9PgaT67" name="label.content_type">
+      <segment state="translated">
+        <source>Content type</source>
+        <target>Content type</target>
       </segment>
     </unit>
     <unit id="FPWuWud" name="btn.ok">
