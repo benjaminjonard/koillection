@@ -17,7 +17,7 @@
         "api-platform/core": "4.3.17",
         "composer/semver": "3.4.4",
         "doctrine/dbal": "4.4.4",
-        "doctrine/doctrine-bundle": "3.3.0",
+        "doctrine/doctrine-bundle": "3.3.1",
         "doctrine/doctrine-migrations-bundle": "4.0.0",
         "doctrine/orm": "3.6.7",
         "doctrine/persistence": "4.2.0",
@@ -72,17 +72,17 @@
     "require-dev": {
         "brianium/paratest": "7.23.0",
         "dama/doctrine-test-bundle": "8.6.0",
-        "friendsofphp/php-cs-fixer": "3.95.15",
+        "friendsofphp/php-cs-fixer": "3.95.17",
         "igor-php/igor-php": "^0.8.1",
         "justinrainbow/json-schema": "6.10.0",
         "phpunit/php-code-coverage": "14.2.3",
-        "phpunit/phpunit": "13.2.4",
-        "rector/rector": "2.5.7",
+        "phpunit/phpunit": "13.2.6",
+        "rector/rector": "2.5.8",
         "symfony/maker-bundle": "1.67.0",
         "symfony/stopwatch": "8.0.8",
         "symfony/var-dumper": "8.0.8",
         "symfony/web-profiler-bundle": "8.0.13",
-        "zenstruck/foundry": "2.10.3"
+        "zenstruck/foundry": "2.11.0"
     },
     "config": {
         "allow-plugins": {
