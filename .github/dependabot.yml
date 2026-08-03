@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "composer"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     groups:
       symfony-major:
         patterns:
@@ -23,7 +23,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/assets"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     ignore:
       - dependency-name: "@materializecss/materialize"
     groups:
@@ -35,12 +35,12 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     groups:
       gh-actions-non-major:
         update-types:
