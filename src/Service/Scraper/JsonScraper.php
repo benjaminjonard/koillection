@@ -8,6 +8,7 @@ use App\Model\ScrapingCollection;
 use App\Model\ScrapingItem;
 use App\Model\ScrapingWish;
 use JmesPath\Env;
+use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
@@ -19,11 +20,16 @@ use Twig\Environment;
  */
 abstract class JsonScraper extends ContentScraper
 {
+    protected HttpClientInterface $client;
+
     public function __construct(
         Environment $twig,
-        protected HttpClientInterface $client,
+        HttpClientInterface $client,
+        private readonly ScrapingUrlGuard $urlGuard,
     ) {
         parent::__construct($twig);
+
+        $this->client = new NoPrivateNetworkHttpClient($client);
     }
 
     protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): array
@@ -31,6 +37,8 @@ abstract class JsonScraper extends ContentScraper
         if ($scraping->getFile() instanceof UploadedFile) {
             $content = $scraping->getFile()->getContent();
         } else {
+            $this->urlGuard->assertSchemeIsSupported($scraping->getUrl());
+
             $headers = [
                 'Accept' => 'application/json',
                 'Accept-Encoding' => 'gzip, deflate, br, zstd',
