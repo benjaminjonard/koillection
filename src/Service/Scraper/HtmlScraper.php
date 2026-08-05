@@ -9,16 +9,27 @@ use App\Model\ScrapingItem;
 use App\Model\ScrapingWish;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\CurlHttpClient;
+use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Panther\Client as PantherClient;
+use Twig\Environment;
 
 abstract class HtmlScraper extends ContentScraper
 {
+    public function __construct(
+        Environment $twig,
+        private readonly ScrapingUrlGuard $urlGuard,
+    ) {
+        parent::__construct($twig);
+    }
+
     protected function getCrawler(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): Crawler
     {
         if ($scraping->getFile() instanceof UploadedFile) {
             return new Crawler($scraping->getFile()->getContent());
         }
+
+        $this->urlGuard->assertSchemeIsSupported($scraping->getUrl());
 
         $html = $this->isPantherAvailable()
             ? $this->fetchWithPanther($scraping)
@@ -34,16 +45,27 @@ abstract class HtmlScraper extends ContentScraper
 
     private function fetchWithPanther(ScrapingItem|ScrapingCollection|ScrapingWish $scraping): string
     {
-        $pantherClient = PantherClient::createChromeClient(null, [
+        $url = $scraping->getUrl();
+        $host = trim((string) parse_url($url, \PHP_URL_HOST), '[]');
+        $address = $this->urlGuard->resolvePublicAddress($url);
+
+        $arguments = [
             '--headless',
             '--no-sandbox',
             '--disable-dev-shm-usage',
             '--disable-gpu',
             '--window-size=1200,1100',
-        ], ['port' => random_int(9515, 9999)]);
+        ];
+
+        if (!filter_var($host, \FILTER_VALIDATE_IP)) {
+            $mapped = str_contains($address, ':') ? "[{$address}]" : $address;
+            $arguments[] = "--host-resolver-rules=MAP {$host} {$mapped}";
+        }
+
+        $pantherClient = PantherClient::createChromeClient(null, $arguments, ['port' => random_int(9515, 9999)]);
 
         try {
-            $pantherClient->request('GET', $scraping->getUrl());
+            $pantherClient->request('GET', $url);
 
             $html = '';
             $previousHtml = null;
@@ -56,6 +78,10 @@ abstract class HtmlScraper extends ContentScraper
                 }
                 $previousHtml = $html;
             } while (time() < $deadline);
+
+            $landingUrl = $pantherClient->getCurrentURL();
+            $this->urlGuard->assertSchemeIsSupported($landingUrl);
+            $this->urlGuard->resolvePublicAddress($landingUrl);
         } finally {
             $pantherClient->quit();
         }
@@ -70,7 +96,7 @@ abstract class HtmlScraper extends ContentScraper
             $headers[$header['header']] = $header['value'];
         }
 
-        $response = new CurlHttpClient()->request('GET', $scraping->getUrl(), [
+        $response = new NoPrivateNetworkHttpClient(new CurlHttpClient())->request('GET', $scraping->getUrl(), [
             'headers' => $headers,
             'extra' => ['curl' => [\CURLOPT_ENCODING => '']],
         ]);
