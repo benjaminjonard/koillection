@@ -9035,16 +9035,16 @@
         },
         {
             "name": "igor-php/igor-php",
-            "version": "v0.8.6",
+            "version": "v0.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/igor-php/igor-php.git",
-                "reference": "87da3d9ec9c614d3503bf43a10e9f9e9a494dbdc"
+                "reference": "c3951e1d9b2d0f59b1939ec2c7f3a4a6c41c0630"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/igor-php/igor-php/zipball/87da3d9ec9c614d3503bf43a10e9f9e9a494dbdc",
-                "reference": "87da3d9ec9c614d3503bf43a10e9f9e9a494dbdc",
+                "url": "https://api.github.com/repos/igor-php/igor-php/zipball/c3951e1d9b2d0f59b1939ec2c7f3a4a6c41c0630",
+                "reference": "c3951e1d9b2d0f59b1939ec2c7f3a4a6c41c0630",
                 "shasum": ""
             },
             "require": {
@@ -9079,9 +9079,9 @@
             ],
             "support": {
                 "issues": "https://github.com/igor-php/igor-php/issues",
-                "source": "https://github.com/igor-php/igor-php/tree/v0.8.6"
+                "source": "https://github.com/igor-php/igor-php/tree/v0.8.8"
             },
-            "time": "2026-07-27T09:43:10+00:00"
+            "time": "2026-08-01T16:15:23+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
