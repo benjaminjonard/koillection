@@ -17,7 +17,7 @@
     "@symfony/webpack-encore": "7.2.0",
     "babel-plugin-polyfill-corejs3": "1.0.0",
     "copy-webpack-plugin": "14.0.0",
-    "core-js": "3.49.0",
+    "core-js": "3.50.0",
     "croppie": "2.6.5",
     "echarts": "6.1.0",
     "regenerator-runtime": "0.14.1",
