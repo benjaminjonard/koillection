@@ -14,19 +14,18 @@
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.4",
     "@symfony/stimulus-bridge": "4.0.1",
-    "@symfony/webpack-encore": "7.1.0",
+    "@symfony/webpack-encore": "7.2.0",
     "babel-plugin-polyfill-corejs3": "1.0.0",
     "copy-webpack-plugin": "14.0.0",
-    "core-js": "3.49.0",
+    "core-js": "3.50.0",
     "croppie": "2.6.5",
     "echarts": "6.1.0",
     "regenerator-runtime": "0.14.1",
     "sortablejs": "1.15.7",
     "stimulus-lightbox": "3.2.0",
-    "stimulus-use": "0.52.3",
-    "webpack": "5.107.2",
-    "webpack-cli": "7.1.0",
-    "webpack-notifier": "1.15.0"
+    "stimulus-use": "0.53.0",
+    "webpack": "5.109.2",
+    "webpack-cli": "7.2.2"
   },
   "scripts": {
     "dev-server": "encore dev-server",
@@ -37,7 +36,7 @@
   "dependencies": {
     "bazinga-translator": "8.0.0",
     "hotkeys-js": "^4.0.0",
-    "intl-messageformat": "11.2.9",
+    "intl-messageformat": "11.2.13",
     "ts-select2": "^0.2.5"
   },
   "packageManager": "yarn@4.15.0"

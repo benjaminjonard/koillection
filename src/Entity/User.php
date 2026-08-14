@@ -246,6 +246,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
         $this->logs = new ArrayCollection();
         $this->albums = new ArrayCollection();
         $this->inventories = new ArrayCollection();
+        $this->choiceLists = new ArrayCollection();
+        $this->searches = new ArrayCollection();
+        $this->displayConfigurations = new ArrayCollection();
         $this->collectionsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
         $this->albumsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);
         $this->wishlistsDisplayConfiguration = (new DisplayConfiguration())->setOwner($this);

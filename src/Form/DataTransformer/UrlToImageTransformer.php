@@ -4,16 +4,21 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
+use App\Service\Scraper\ScrapingUrlGuard;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpClient\CurlHttpClient;
+use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class UrlToImageTransformer implements DataTransformerInterface
 {
-    private readonly ?CurlHttpClient $client;
+    private readonly HttpClientInterface $client;
 
-    public function __construct() {
-        $this->client = new CurlHttpClient();
+    public function __construct(
+        private readonly ScrapingUrlGuard $urlGuard,
+    ) {
+        $this->client = new NoPrivateNetworkHttpClient(new CurlHttpClient());
     }
 
     #[\Override]
@@ -32,6 +37,8 @@ class UrlToImageTransformer implements DataTransformerInterface
         if (str_starts_with($url, '//')) {
             $url = 'https:' . $url;
         }
+
+        $this->urlGuard->assertSchemeIsSupported($url);
 
         $response = $this->client->request(
                 'GET',

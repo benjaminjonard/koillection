@@ -12,10 +12,11 @@ jobs:
         uses: actions/checkout@v7
 
       - name: crowdin action
-        uses: crowdin/github-action@v2.16.3
+        uses: crowdin/github-action@v2.17.0
         with:
           config: '.github/crowdin.yml'
-          upload_translations: false
+          upload_translations: true
+          import_eq_suggestions: true
           download_translations: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
