@@ -82,7 +82,7 @@
         "symfony/stopwatch": "8.0.8",
         "symfony/var-dumper": "8.0.8",
         "symfony/web-profiler-bundle": "8.0.13",
-        "zenstruck/foundry": "2.11.0"
+        "zenstruck/foundry": "2.11.3"
     },
     "config": {
         "allow-plugins": {
