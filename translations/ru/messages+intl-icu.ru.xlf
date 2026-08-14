@@ -2110,7 +2110,7 @@
     <unit id="JQSurmk" name="global.time.second">
       <segment state="translated">
         <source>{count, plural, one {# second} other {# seconds}}</source>
-        <target>{count, plural, one {# секунда} few {# секунды} other {# секунд}} </target>
+        <target>{count, plural, one {# секунда} few {# секунды} other {# секунд}}</target>
       </segment>
     </unit>
     <unit id="fSiEIlQ" name="global.visibilities.public">
@@ -3333,13 +3333,13 @@
     </unit>
     <unit id="WoECGqp" name="btn.scrap">
       <segment state="translated">
-        <source>Scrap</source>
+        <source>Scrape</source>
         <target>Собрать</target>
       </segment>
     </unit>
     <unit id="JJiTxDb" name="title.scrap">
       <segment state="translated">
-        <source>Scrap</source>
+        <source>Scrape</source>
         <target>Собрать</target>
       </segment>
     </unit>
@@ -3465,13 +3465,13 @@
     </unit>
     <unit id="EUgbudS" name="btn.scrap_html_file">
       <segment state="translated">
-        <source>Scrap HTML file</source>
+        <source>Scrape HTML file</source>
         <target>Инфосбор из HTML файла</target>
       </segment>
     </unit>
     <unit id="jy9YnDE" name="btn.scrap_url">
       <segment state="translated">
-        <source>Scrap URL</source>
+        <source>Scrape URL</source>
         <target>Инфосбор из URL</target>
       </segment>
     </unit>
