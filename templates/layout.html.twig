@@ -5,11 +5,12 @@
         {% set route = app.request.attributes.get('_route') %}
         <div class="sidebar-wrapper">
             <div class="nav-wrapper">
-                <div class="header-logo">
-                    <a href="{{ path('app_homepage'|applyContext) }}">
-                        <img class='logo' src="{{ preload(asset('build/images/logo.svg'), { as: 'image/svg'}) }}"
-                             aria-label="Logo" height="45" width="45">
-                        <span>Koillection</span>
+                <!-- TIGHTLY PACKED HEADER LOGO (BULLETPROOF) -->
+                <div class="header-logo custom-header-logo">
+                    <i class="fa fa-bars fa-fw" id="desktop-sidebar-toggle" title="Toggle Sidebar"></i>
+                    <a href="{{ path('app_homepage'|applyContext) }}" class="logo-link">
+                        <img class="logo logo-image" src="{{ preload(asset('build/images/logo.svg'), { as: 'image/svg'}) }}" aria-label="Logo">
+                        <span class="logo-text">Koillection</span>
                     </a>
                 </div>
             </div>
@@ -48,45 +49,39 @@
                         <ul class="dropdown-menu hidden" data-dropdown-target="menu">
                             <li>
                                 <a href="{{ path('app_profile_index') }}">
-                                    <i
-                                            class="fa fa-user fa-fw"></i>
+                                    <i class="fa fa-user fa-fw"></i>
                                     <span>{{ 'menu.profile'|trans }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('app_settings_index') }}">
-                                    <i
-                                            class="fa fa-gears fa-fw"></i>
+                                    <i class="fa fa-gears fa-fw"></i>
                                     <span>{{ 'menu.settings'|trans }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('app_tools_index') }}">
-                                    <i
-                                            class="fa fa-wrench fa-fw"></i>
+                                    <i class="fa fa-wrench fa-fw"></i>
                                     <span>{{ 'menu.tools'|trans }}</span>
                                 </a>
                             </li>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li>
                                     <a href="{{ path('app_admin_index') }}">
-                                        <i
-                                                class="fa fa-eye fa-fw"></i>
+                                        <i class="fa fa-eye fa-fw"></i>
                                         <span>{{ 'menu.admin'|trans }}</span>
                                     </a>
                                 </li>
                             {% endif %}
                             <li>
                                 <a href="{{ path('api_entrypoint') }}">
-                                    <i
-                                            class="fa fa-file-code-o fa-fw"></i>
+                                    <i class="fa fa-file-code-o fa-fw"></i>
                                     <span>{{ 'menu.api_documention'|trans }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('app_security_logout') }}">
-                                    <i
-                                            class="fa fa-power-off fa-fw"></i>
+                                    <i class="fa fa-power-off fa-fw"></i>
                                     <span>{{ 'menu.logout'|trans }}</span>
                                 </a>
                             </li>
@@ -116,4 +111,152 @@
     {% for flash_message in app.session.flashbag.get('error') %}
         <span data-controller="toast" data-message="{{ flash_message|e }}" data-classes="error"></span>
     {% endfor %}
+
+    <style>
+        /* --- 1. EXPANDED HEADER LOGO STYLES --- */
+        .custom-header-logo {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            padding: 0 15px !important;
+            height: 60px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+        #desktop-sidebar-toggle {
+            cursor: pointer;
+            font-size: 1.3em !important;
+            color: rgba(255,255,255,0.75) !important;
+            margin-right: 12px !important;
+            flex-shrink: 0 !important;
+            transition: color 0.2s !important;
+            z-index: 100 !important;
+        }
+        #desktop-sidebar-toggle:hover {
+            color: white !important;
+        }
+        .custom-header-logo .logo-link {
+            display: flex !important;
+            align-items: center !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            text-decoration: none !important;
+            overflow: hidden !important;
+        }
+        .custom-header-logo .logo-image {
+            height: 30px !important;
+            width: 30px !important;
+            margin: 0 10px 0 0 !important;
+            flex-shrink: 0 !important;
+        }
+        .custom-header-logo .logo-text {
+            font-size: 18px !important;
+            font-weight: 600 !important;
+            color: #fff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            white-space: nowrap !important;
+        }
+
+        /* --- 2. MINIMIZED SIDEBAR STYLES --- */
+        .sidebar-wrapper, .main.content-wrapper {
+            transition: width 0.2s ease, margin-left 0.2s ease;
+        }
+        .app.sidebar-minimized .sidebar-wrapper {
+            width: 65px !important;
+        }
+        .app.sidebar-minimized .sidebar-wrapper .scrollable,
+        .app.sidebar-minimized .sidebar-wrapper .nav-wrapper {
+            width: 65px !important;
+            overflow-x: hidden !important;
+        }
+        .app.sidebar-minimized .sidebar-wrapper .scrollable::-webkit-scrollbar {
+            display: none;
+        }
+        .app.sidebar-minimized .sidebar-wrapper .scrollable {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .app.sidebar-minimized .main.content-wrapper {
+            margin-left: 65px !important;
+            width: calc(100% - 65px) !important;
+        }
+        
+        /* Hide ALL text spans in the sidebar navigation */
+        .app.sidebar-minimized .sidebar-wrapper .nav-sidebar li.sidebar-element a span {
+            display: none !important;
+        }
+
+        /* Center the navigation links */
+        .app.sidebar-minimized .sidebar-wrapper .nav-sidebar li.sidebar-element a {
+            padding: 0 !important;
+            width: 65px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            height: 50px !important;
+            position: relative !important;
+        }
+        
+        /* BULLETPROOF ICONS */
+        .app.sidebar-minimized .sidebar-wrapper .nav-sidebar li.sidebar-element a i.fa {
+            position: static !important;
+            left: auto !important;
+            top: auto !important;
+            margin: 0 !important;
+            font-size: 1.5em !important;
+            width: auto !important;
+            height: auto !important;
+            line-height: normal !important;
+            text-align: center !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        
+        /* Hide the search bar */
+        .app.sidebar-minimized .search {
+            display: none !important;
+        }
+
+        /* --- 3. MINIMIZED HEADER LOGO FIX --- */
+        .app.sidebar-minimized .custom-header-logo {
+            padding: 0 5px !important;
+            justify-content: center !important;
+        }
+        .app.sidebar-minimized #desktop-sidebar-toggle {
+            margin-right: 6px !important;
+            font-size: 1.1em !important;
+        }
+        .app.sidebar-minimized .custom-header-logo .logo-text {
+            display: none !important;
+        }
+        .app.sidebar-minimized .custom-header-logo .logo-image {
+            height: 24px !important;
+            width: 24px !important;
+            margin: 0 !important;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const appContainer = document.querySelector('.app');
+            const toggleBtn = document.getElementById('desktop-sidebar-toggle');
+
+            if (localStorage.getItem('sidebar-minimized') === 'true') {
+                appContainer.classList.add('sidebar-minimized');
+            }
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    appContainer.classList.toggle('sidebar-minimized');
+                    
+                    const isMin = appContainer.classList.contains('sidebar-minimized');
+                    localStorage.setItem('sidebar-minimized', isMin);
+                });
+            }
+        });
+    </script>
 {% endblock %}
