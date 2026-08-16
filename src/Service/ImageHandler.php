@@ -45,7 +45,7 @@ class ImageHandler
             }
 
             $generatedName = $this->randomStringGenerator->generate(20);
-            $extension = $file->guessExtension()  ?? 'png';
+            $extension = $attribute->getOriginalFilenamePathProperty() ? 'bin' : ($file->guessExtension() ?? 'png');
             $fileName = $generatedName . '.' . $extension;
             $file->move($absolutePath, $fileName);
 
