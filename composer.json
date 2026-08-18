@@ -76,13 +76,13 @@
         "igor-php/igor-php": "^0.9.4",
         "justinrainbow/json-schema": "6.10.0",
         "phpunit/php-code-coverage": "14.3.0",
-        "phpunit/phpunit": "13.3.0",
-        "rector/rector": "2.6.1",
+        "phpunit/phpunit": "13.3.1",
+        "rector/rector": "2.6.2",
         "symfony/maker-bundle": "1.67.0",
         "symfony/stopwatch": "8.0.8",
         "symfony/var-dumper": "8.0.8",
         "symfony/web-profiler-bundle": "8.0.13",
-        "zenstruck/foundry": "2.11.0"
+        "zenstruck/foundry": "2.12.0"
     },
     "config": {
         "allow-plugins": {
