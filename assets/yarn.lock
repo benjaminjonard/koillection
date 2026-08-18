@@ -2127,10 +2127,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hotkeys-js@npm:^4.0.0":
-  version: 4.0.4
-  resolution: "hotkeys-js@npm:4.0.4"
-  checksum: 10/fa3e9c2c2c2a0093930dfab0515664c2bad0177aae8c32864859b76b4c8c4a5a9a663bada19b7cad3f8e61e47109c85315f348bc85765c525e50eb0644de0a89
+"hotkeys-js@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "hotkeys-js@npm:4.0.5"
+  checksum: 10/774cb58ba0ea32d27430f0105956560a10f6b490676466d3887da7eee8c07b5c28dd49bdf016707a6945bb2c8fe07fa531b44b7fc15da4bad31857596562af4d
   languageName: node
   linkType: hard
 
@@ -2312,7 +2312,7 @@ __metadata:
     core-js: "npm:3.50.0"
     croppie: "npm:2.6.5"
     echarts: "npm:6.1.0"
-    hotkeys-js: "npm:^4.0.0"
+    hotkeys-js: "npm:^4.0.5"
     intl-messageformat: "npm:11.2.13"
     regenerator-runtime: "npm:0.14.1"
     sortablejs: "npm:1.15.7"
