@@ -1,6 +1,5 @@
 #This docker-compose file is provided for dev purposes
 services:
-    #FPM image
     koillection:
         container_name: koillection
         build:
@@ -17,15 +16,15 @@ services:
             - DB_PORT=5432
             - DB_USER=postgres
             - DB_PASSWORD=password
-            - DB_VERSION=15
+            - DB_VERSION=18
             - PHP_TZ=Europe/Paris
             - HTTPS_ENABLED=0
         depends_on:
             - mysql
             - postgresql
         volumes:
-            - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
-            - ./:/var/www/koillection
+            - "./docker/volumes/koillection/public/uploads:/uploads"
+            - ./:/app/public
 
     postgresql:
         container_name: postgresql

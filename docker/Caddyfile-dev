@@ -19,7 +19,7 @@
 	encode zstd gzip
 
 	header {
-	    Referrer-Policy no-referrer
+	    Referrer-Policy same-origin
 	    Permissions-Policy interest-cohort=()
 	    Strict-Transport-Security "max-age=31536000; includeSubdomains; preload;"
 	    X-XSS-Protection 1; mode=block
