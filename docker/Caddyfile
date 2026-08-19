@@ -37,5 +37,11 @@
 
 	{$CADDY_SERVER_EXTRA_DIRECTIVES}
 
-	php_server
+	handle /uploads/* {
+		file_server
+	}
+
+	handle {
+		php_server
+	}
 }
