@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.8.4] / 2026-08-23
+This release makes the usage of SYMFONY_TRUSTED_PROXIES and SYMFONY_TRUSTED_HEADERS unnecessary, they can be removed from your environment variables.
+
+
+### Fixes
+- Fix CSRF errors on form submit (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix multiple CVEs (benjaminjonard)
+- Update translations, thanks to all contributors on [Crowdin](https://crowdin.com/project/koillection)
+
 ## [1.8.3] / 2026-06-25
 
 ### Fixes
