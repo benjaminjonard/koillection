@@ -1,7 +1,4 @@
 framework:
-    trusted_proxies: '%env(SYMFONY_TRUSTED_PROXIES)%'
-    trusted_headers: '%env(SYMFONY_TRUSTED_HEADERS)%'
-
     secret: '%env(APP_SECRET)%'
     http_method_override: false
     handle_all_throwables: true

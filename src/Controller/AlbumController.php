@@ -19,14 +19,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AlbumController extends AbstractController
 {
-    #[Route(path: '/csrf', name: 'csrf', methods: ['GET'])]
-    public function csrf(): Response
-    {
-        return $this->render('csrf.html.twig', [
-
-        ]);
-    }
-
     #[Route(path: '/albums', name: 'app_album_index', methods: ['GET'])]
     #[Route(path: '/user/{username}/albums', name: 'app_shared_album_index', methods: ['GET'])]
     public function index(AlbumRepository $albumRepository, CachedValuesGetter $cachedValuesGetter): Response

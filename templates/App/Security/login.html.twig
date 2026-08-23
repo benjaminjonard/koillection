@@ -44,7 +44,7 @@
                 <div class="submit">
                     <button type="submit" class="btn waves-effect waves-light right">{{ 'btn.sign_in'|trans }}</button>
                 </div>
-                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </form>
         </div>
     </div>
