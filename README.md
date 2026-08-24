@@ -15,7 +15,17 @@
     <img src="https://img.shields.io/badge/mysql->=8.0-blue" />
 <p>
 
-# Koillection
+# Koillection (Bulk Actions Fork)
+
+*This is a customized fork of the original [Koillection](https://github.com/benjaminjonard/koillection) app. It has been specifically modified to make managing large collections easier and faster by introducing multi-selection and bulk editing tools.*
+
+### ✨ Custom Features Added to this Fork:
+* **Multi-Select List View:** Added checkboxes to the main item list view to select multiple items at once.
+* **Bulk Duplicate:** A new button to instantly clone one or multiple items (perfect for quickly adding similar items to your database!).
+* **Bulk Move:** A new dropdown menu and button to quickly move multiple selected items to a different collection.
+* **Bulk Delete:** A new button to permanently delete multiple items at once.
+
+---
 
 Koillection is a self-hosted collection manager created to keep track of physical (mostly) collections of any kind like books, DVDs, stamps, games... 
 Koillection is meant to be used for any kind of collections and doesn't come with pre-built metadata download. But you can tailor your own HTML scraper, or you can add your own metadata freely.
@@ -92,4 +102,4 @@ You are also welcome if you want to proofread existing translations.
 <!-- CROWDIN-TRANSLATIONS-PROGRESS-ACTION-END -->
 
 ## Licensing
-Koillection is an Open Source software, released under the MIT License. 
+Koillection is an Open Source software, released under the MIT License.
