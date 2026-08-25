@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: crowdin action
-        uses: crowdin/github-action@v2.17.0
+        uses: crowdin/github-action@v2.17.1
         with:
           config: '.github/crowdin.yml'
           upload_translations: true
