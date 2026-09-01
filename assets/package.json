@@ -24,8 +24,8 @@
     "sortablejs": "1.15.7",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.53.0",
-    "webpack": "5.109.2",
-    "webpack-cli": "7.2.2"
+    "webpack": "5.110.1",
+    "webpack-cli": "7.2.3"
   },
   "scripts": {
     "dev-server": "encore dev-server",
@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "bazinga-translator": "8.0.0",
-    "hotkeys-js": "^4.0.5",
-    "intl-messageformat": "11.2.13",
+    "hotkeys-js": "^4.0.7",
+    "intl-messageformat": "11.2.14",
     "ts-select2": "^0.2.5"
   },
   "packageManager": "yarn@4.15.0"
