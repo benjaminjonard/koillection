@@ -1,10 +1,7 @@
-// any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
-// start the Stimulus application
 import './bootstrap';
 
-// import global JS
 import './js/utils'
 import './js/loader'
 import './js/translations/config'

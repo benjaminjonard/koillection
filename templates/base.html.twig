@@ -42,16 +42,16 @@
         <meta name="msapplication-square72x72logo" content="{{ asset('icons/square/72.png') }}">
 
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ reprise_entry_link_tags('app') }}
 
             {% if app.user is null or app.user.theme == 'browser' %}
-                {{ encore_entry_link_tags("light", null, '_default', {media: '(prefers-color-scheme: light)'}) }}
-                {{ encore_entry_link_tags("dark", null, '_default', {media: '(prefers-color-scheme: dark)'}) }}
+                {{ reprise_entry_link_tags('light', attributes={media: '(prefers-color-scheme: light)'}) }}
+                {{ reprise_entry_link_tags('dark', attributes={media: '(prefers-color-scheme: dark)'}) }}
 
                 <style media="(prefers-color-scheme: dark)">{{ getConfigurationValue('custom-dark-theme-css')|raw }}</style>
                 <style media="(prefers-color-scheme: light)">{{ getConfigurationValue('custom-light-theme-css')|raw }}</style>
             {% else %}
-                {{ encore_entry_link_tags(app.user.theme) }}
+                {{ reprise_entry_link_tags(app.user.theme) }}
 
                 {% if app.user.theme == 'dark' %}
                     <style>{{ getConfigurationValue('custom-dark-theme-css')|raw  }}</style>
@@ -62,7 +62,7 @@
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ reprise_entry_script_tags('app') }}
             <script src="{{ asset('build/materialize.min.js') }}"></script>
         {% endblock %}
     </head>

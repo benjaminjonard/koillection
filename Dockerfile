@@ -65,7 +65,6 @@ COPY --from=koillection-base /app/public/assets/js/translations /app/assets/js/t
 WORKDIR /app/assets
 
 RUN set -eux ; \
-    mkdir -p /app/public/build/ ; \
     npm install -g corepack ; \
     corepack enable ; \
     yarn --version ; \

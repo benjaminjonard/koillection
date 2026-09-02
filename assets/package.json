@@ -6,32 +6,23 @@
   "description": "Front assets for Koillection",
   "license": "MIT",
   "engines": {
-    "node": ">= 14.0.0"
+    "node": ">= 26.0.0"
   },
   "devDependencies": {
-    "@babel/core": "8.0.1",
-    "@babel/preset-env": "8.0.2",
     "@hotwired/stimulus": "3.2.2",
     "@materializecss/materialize": "2.0.4",
-    "@symfony/stimulus-bridge": "4.0.1",
-    "@symfony/webpack-encore": "7.2.0",
-    "babel-plugin-polyfill-corejs3": "1.0.0",
-    "copy-webpack-plugin": "14.0.0",
-    "core-js": "3.50.0",
+    "@symfony/reprise": "1.1.1",
     "croppie": "2.6.5",
     "echarts": "6.1.0",
-    "regenerator-runtime": "0.14.1",
     "sortablejs": "1.15.7",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.53.0",
-    "webpack": "5.110.1",
-    "webpack-cli": "7.2.3"
+    "vite": "8.2.2"
   },
   "scripts": {
-    "dev-server": "encore dev-server",
-    "dev": "encore dev",
-    "watch": "encore dev --watch",
-    "build": "encore production --progress"
+    "dev": "vite build --mode development",
+    "watch": "vite build --mode development --watch",
+    "build": "vite build"
   },
   "dependencies": {
     "bazinga-translator": "8.0.0",

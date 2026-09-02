@@ -12,11 +12,9 @@
 /docker/volumes/
 docker-compose.yml
 
-###> symfony/webpack-encore-bundle ###
 /assets/node_modules/
 /assets/npm-debug.log
 /assets/yarn-error.log
-###< symfony/webpack-encore-bundle ###
 /assets/stats.json
 /assets/js/translations/*
 
