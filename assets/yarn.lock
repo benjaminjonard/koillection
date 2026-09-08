@@ -369,7 +369,7 @@ __metadata:
     intl-messageformat: "npm:11.2.14"
     sortablejs: "npm:1.15.7"
     stimulus-lightbox: "npm:3.2.0"
-    stimulus-use: "npm:0.53.0"
+    stimulus-use: "npm:0.53.1"
     ts-select2: "npm:^0.2.5"
     vite: "npm:8.2.2"
   languageName: unknown
@@ -689,13 +689,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stimulus-use@npm:0.53.0":
-  version: 0.53.0
-  resolution: "stimulus-use@npm:0.53.0"
+"stimulus-use@npm:0.53.1":
+  version: 0.53.1
+  resolution: "stimulus-use@npm:0.53.1"
   peerDependencies:
     "@hotwired/stimulus": ">= 3"
     hotkeys-js: ">= 3"
-  checksum: 10/64e3488c9c4cb1f4f2b4751262a4ebba547ef40fc35b993f488b4dee630f22681138908de016d24955e520c9b524225b004617a129fd0bf8596eec9de6cc1659
+  checksum: 10/db2c544d766b3a3266771bb4af16aa66d821ea29044331fd2bceaa3b834edb9c6895629146a9bf05ba5ce7ab5bd6f70a58a0e4f0ceff9ebcfd1dcd90262b2b1f
   languageName: node
   linkType: hard
 
