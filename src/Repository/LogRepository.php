@@ -7,7 +7,7 @@ namespace App\Repository;
 use App\Entity\Log;
 use App\Model\Search\SearchHistory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 class LogRepository extends ServiceEntityRepository
@@ -27,7 +27,7 @@ class LogRepository extends ServiceEntityRepository
             ->createQueryBuilder('l')
             ->where('l.type in (:types)')
             ->andWhere('l.objectClass in (:classes)')
-            ->orderBy('l.loggedAt', Criteria::DESC)
+            ->orderBy('l.loggedAt', Order::Descending->value)
             ->setFirstResult(($search->getPage() - 1) * $search->getItemsPerPage())
             ->setMaxResults($search->getItemsPerPage())
             ->setParameter('types', $search->getTypes())

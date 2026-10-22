@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 
 class SortingDirectionEnum
 {
-    public const string ASCENDING = Criteria::ASC;
+    public const string ASCENDING = Order::Ascending->value;
 
-    public const string DESCENDING = Criteria::DESC;
+    public const string DESCENDING = Order::Descending->value;
 
     public const array SORTING_DIRECTIONS = [
         self::ASCENDING,

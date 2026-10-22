@@ -10,7 +10,7 @@ use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 class CollectionRepository extends ServiceEntityRepository
@@ -25,7 +25,7 @@ class CollectionRepository extends ServiceEntityRepository
     {
         return $this
             ->createQueryBuilder('c')
-            ->orderBy('c.title', Criteria::ASC)
+            ->orderBy('c.title', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -42,7 +42,7 @@ class CollectionRepository extends ServiceEntityRepository
 
         return $this
             ->createQueryBuilder('c')
-            ->orderBy('c.title', Criteria::ASC)
+            ->orderBy('c.title', Order::Ascending->value)
             ->where('c NOT IN (:excludedCollections)')
             ->setParameter('excludedCollections', $excludedCollections)
             ->getQuery()
@@ -58,7 +58,7 @@ class CollectionRepository extends ServiceEntityRepository
             ->addSelect('i')
             ->leftJoin('c.children', 'ch')
             ->addSelect('ch')
-            ->orderBy('c.title', Criteria::ASC)
+            ->orderBy('c.title', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -70,7 +70,7 @@ class CollectionRepository extends ServiceEntityRepository
             ->createQueryBuilder('c')
             ->leftJoin('c.children', 'ch')
             ->addSelect('ch')
-            ->orderBy('c.title', Criteria::ASC)
+            ->orderBy('c.title', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -94,7 +94,7 @@ class CollectionRepository extends ServiceEntityRepository
     {
         $qb = $this
             ->createQueryBuilder('c')
-            ->orderBy('c.title', Criteria::ASC)
+            ->orderBy('c.title', Order::Ascending->value)
         ;
 
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {

@@ -15,7 +15,7 @@ use App\Model\Scraper\CollectionScraperImporter;
 use App\Model\ScrapingCollection;
 use App\Repository\ScraperRepository;
 use App\Service\Scraper\CollectionScraper;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,7 +73,7 @@ class CollectionScraperController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_COLLECTION], ['name' => Criteria::ASC]);
+        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_COLLECTION], ['name' => Order::Ascending->value]);
 
         return $this->render('App/Scraper/collection/index.html.twig', [
             'scrapers' => $scrapers,

@@ -18,7 +18,7 @@ use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
 use App\Service\CachedValuesGetter;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +33,7 @@ class CollectionController extends AbstractController
     #[Route(path: '/user/{username}', name: 'app_shared_homepage', methods: ['GET'])]
     public function index(CollectionRepository $collectionRepository, CachedValuesGetter $cachedValuesGetter): Response
     {
-        $collections = $collectionRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
+        $collections = $collectionRepository->findBy(['parent' => null], ['title' => Order::Ascending->value]);
 
         $collectionsCounter = \count($collections);
         $itemsCounter = 0;

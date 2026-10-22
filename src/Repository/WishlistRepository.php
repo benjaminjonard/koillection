@@ -7,7 +7,7 @@ namespace App\Repository;
 use App\Entity\Wishlist;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 class WishlistRepository extends ServiceEntityRepository
@@ -22,7 +22,7 @@ class WishlistRepository extends ServiceEntityRepository
     {
         return $this
             ->createQueryBuilder('w')
-            ->orderBy('w.name', Criteria::ASC)
+            ->orderBy('w.name', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -39,7 +39,7 @@ class WishlistRepository extends ServiceEntityRepository
 
         return $this
             ->createQueryBuilder('w')
-            ->orderBy('w.name', Criteria::ASC)
+            ->orderBy('w.name', Order::Ascending->value)
             ->where('w NOT IN (:excludedWishlists)')
             ->setParameter('excludedWishlists', $excludedWishlists)
             ->getQuery()
@@ -51,7 +51,7 @@ class WishlistRepository extends ServiceEntityRepository
     {
         $qb = $this
             ->createQueryBuilder('w')
-            ->orderBy('w.name', Criteria::ASC)
+            ->orderBy('w.name', Order::Ascending->value)
         ;
 
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {

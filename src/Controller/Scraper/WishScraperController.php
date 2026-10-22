@@ -15,7 +15,7 @@ use App\Model\Scraper\WishScraperImporter;
 use App\Model\ScrapingWish;
 use App\Repository\ScraperRepository;
 use App\Service\Scraper\WishScraper;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,7 +73,7 @@ class WishScraperController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_WISH], ['name' => Criteria::ASC]);
+        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_WISH], ['name' => Order::Ascending->value]);
 
         return $this->render('App/Scraper/wish/index.html.twig', [
             'scrapers' => $scrapers,

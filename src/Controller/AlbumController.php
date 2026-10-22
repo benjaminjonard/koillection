@@ -10,7 +10,7 @@ use App\Form\Type\Entity\DisplayConfigurationType;
 use App\Repository\AlbumRepository;
 use App\Repository\PhotoRepository;
 use App\Service\CachedValuesGetter;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ class AlbumController extends AbstractController
     public function index(AlbumRepository $albumRepository, CachedValuesGetter $cachedValuesGetter): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['albums']);
-        $albums = $albumRepository->findBy(['parent' => null], ['title' => Criteria::ASC]);
+        $albums = $albumRepository->findBy(['parent' => null], ['title' => Order::Ascending->value]);
 
         $albumsCounter = \count($albums);
         $photosCounter = 0;

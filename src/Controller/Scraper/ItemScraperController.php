@@ -15,7 +15,7 @@ use App\Model\Scraper\ItemScraperImporter;
 use App\Model\ScrapingItem;
 use App\Repository\ScraperRepository;
 use App\Service\Scraper\ItemScraper;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,7 +73,7 @@ class ItemScraperController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['scraping']);
 
-        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_ITEM], ['name' => Criteria::ASC]);
+        $scrapers = $scraperRepository->findBy(['type' => ScraperTypeEnum::TYPE_ITEM], ['name' => Order::Ascending->value]);
 
         return $this->render('App/Scraper/item/index.html.twig', [
             'scrapers' => $scrapers,

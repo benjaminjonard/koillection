@@ -10,7 +10,7 @@ use App\Entity\Tag;
 use App\Model\Search\Search;
 use App\Model\Search\SearchTag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,7 +39,7 @@ class TagRepository extends ServiceEntityRepository
     {
         return $this
             ->createQueryBuilder('t')
-            ->orderBy('t.label', Criteria::ASC)
+            ->orderBy('t.label', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -56,8 +56,8 @@ class TagRepository extends ServiceEntityRepository
             ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
-            ->orderBy('itemCount', Criteria::DESC)
-            ->addOrderBy('t.label', Criteria::ASC)
+            ->orderBy('itemCount', Order::Descending->value)
+            ->addOrderBy('t.label', Order::Ascending->value)
             ->setFirstResult(($search->getPage() - 1) * $search->getItemsPerPage())
             ->setMaxResults($search->getItemsPerPage())
             ->setParameter('totalItems', $itemsCount > 0 ? $itemsCount : 1)
@@ -114,8 +114,8 @@ class TagRepository extends ServiceEntityRepository
             ->createQueryBuilder('t')
             ->addSelect('(CASE WHEN LOWER(t.label) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
             ->andWhere('LOWER(t.label) LIKE LOWER(:label)')
-            ->orderBy('startWithOrder', Criteria::ASC) // Order tags starting with the search term first
-            ->addOrderBy('LOWER(t.label)', Criteria::ASC) // Then order other matching tags alphabetically
+            ->orderBy('startWithOrder', Order::Ascending->value) // Order tags starting with the search term first
+            ->addOrderBy('LOWER(t.label)', Order::Ascending->value) // Then order other matching tags alphabetically
             ->setParameter('label', '%' . $string . '%')
             ->setParameter('startWith', $string . '%')
             ->setMaxResults(5)
@@ -130,7 +130,7 @@ class TagRepository extends ServiceEntityRepository
             ->createQueryBuilder('t')
             ->leftJoin('t.items', 'i')
             ->where('i.collection = :collection')
-            ->orderBy('t.label', Criteria::ASC)
+            ->orderBy('t.label', Order::Ascending->value)
             ->groupBy('t.id')
             ->having('count(i.id) =
                 (SELECT COUNT(i2.id)
@@ -155,7 +155,7 @@ class TagRepository extends ServiceEntityRepository
             ->from(Tag::class, 't')
             ->leftJoin('t.items', 'i')
             ->groupBy('t.id')
-            ->orderBy('itemCount', Criteria::DESC)
+            ->orderBy('itemCount', Order::Descending->value)
             ->setParameter('totalItems', $itemsCount)
         ;
 
@@ -184,7 +184,7 @@ class TagRepository extends ServiceEntityRepository
             ->createQueryBuilder()
             ->select('DISTINCT t, LENGTH(t.label) as HIDDEN length')
             ->from(Tag::class, 't')
-            ->orderBy('length', Criteria::DESC)
+            ->orderBy('length', Order::Descending->value)
             ->getQuery()
             ->getArrayResult()
         ;
@@ -214,7 +214,7 @@ class TagRepository extends ServiceEntityRepository
             ->leftJoin('t.items', 'i')
             ->where('i.id IN (:itemIds)')
             ->andWhere('t.id != :tag')
-            ->orderBy('t.label', Criteria::ASC)
+            ->orderBy('t.label', Order::Ascending->value)
             ->setParameter('tag', $tag->getId())
             ->setParameter('itemIds', $itemIds)
             ->getQuery()

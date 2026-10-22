@@ -10,7 +10,7 @@ use App\Form\Type\Entity\WishlistType;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
 use App\Service\CachedValuesGetter;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +25,7 @@ class WishlistController extends AbstractController
     {
         $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
 
-        $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => Criteria::ASC]);
+        $wishlists = $wishlistRepository->findBy(['parent' => null], ['name' => Order::Ascending->value]);
 
         $wishlistsCounter = \count($wishlists);
         $wishesCounter = 0;
