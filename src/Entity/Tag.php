@@ -276,6 +276,20 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
         return $this->items;
     }
 
+    public function addItem(Item $item): self
+    {
+        $this->items[] = $item;
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        $this->items->removeElement($item);
+
+        return $this;
+    }
+
     public function getItemsDisplayConfiguration(): ?DisplayConfiguration
     {
         return $this->itemsDisplayConfiguration;
