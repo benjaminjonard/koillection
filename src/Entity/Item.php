@@ -333,6 +333,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     {
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
+            $tag->addItem($this);
         }
 
         return $this;
@@ -342,6 +343,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     {
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
+            $tag->removeItem($this);
         }
 
         return $this;
