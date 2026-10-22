@@ -17,7 +17,7 @@
     "sortablejs": "1.15.7",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.53.1",
-    "vite": "8.3.1"
+    "vite": "8.3.3"
   },
   "scripts": {
     "dev": "vite build --mode development",
