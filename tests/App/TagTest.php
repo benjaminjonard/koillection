@@ -94,6 +94,25 @@ class TagTest extends AppTestCase
         $this->assertCount(3, $crawler->filter('.collection-item'));
     }
 
+    public function test_tag_description_is_escaped_and_keeps_tag_links(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $linkedTag = TagFactory::createOne(['owner' => $user, 'label' => 'Manga']);
+        $tag = TagFactory::createOne([
+            'owner' => $user,
+            'description' => '<script>alert(1)</script> Manga & <b>bold</b>',
+        ]);
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/tags/' . $tag->getId());
+
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(0, $crawler->filter('.tag-description script'));
+        $this->assertCount(0, $crawler->filter('.tag-description b'));
+        $this->assertSame('<script>alert(1)</script> Manga & <b>bold</b>', $crawler->filter('.tag-description')->text());
+        $this->assertSame('/tags/' . $linkedTag->getId(), $crawler->filter('.tag-description a')->attr('href'));
+    }
+
     public function test_can_edit_tag(): void
     {
         // Arrange

@@ -16,6 +16,13 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class ImageHandler
 {
+    private const array ALLOWED_EXTENSIONS = [
+        'png', 'jpg', 'jpeg', 'gif', 'webp', 'avif',
+        'mp4', 'webm', 'mp3', 'ogg', 'wav', 'flac',
+        'pdf', 'txt', 'csv', 'odt', 'ods', 'docx', 'xlsx', 'pptx',
+        'zip', '7z', 'tar', 'gz',
+    ];
+
     private readonly PropertyAccessor $accessor;
 
     public function __construct(
@@ -45,7 +52,7 @@ class ImageHandler
             }
 
             $generatedName = $this->randomStringGenerator->generate(20);
-            $extension = $file->guessExtension()  ?? 'png';
+            $extension = $this->getSafeExtension($file);
             $fileName = $generatedName . '.' . $extension;
             $file->move($absolutePath, $fileName);
 
@@ -115,5 +122,12 @@ class ImageHandler
 
             $this->accessor->setValue($entity, $attribute->getLargeThumbnailPathProperty(), null);
         }
+    }
+
+    private function getSafeExtension(UploadedFile $file): string
+    {
+        $extension = strtolower($file->guessExtension() ?? '');
+
+        return \in_array($extension, self::ALLOWED_EXTENSIONS, true) ? $extension : 'bin';
     }
 }

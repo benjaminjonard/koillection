@@ -37,10 +37,29 @@ class UserRepository extends ServiceEntityRepository
 
     public function getCounters(User $user): array
     {
+        $filters = $this->getEntityManager()->getFilters();
+        $visibilities = $filters->isEnabled('visibility') ? $filters->getFilter('visibility')->getVisibilities() : null;
+
         $collectionsSubQuery = 'SELECT COUNT(*) FROM koi_collection WHERE owner_id = ?';
         $itemsSubQuery = 'SELECT COUNT(*) FROM koi_item WHERE owner_id = ?';
         $tagsSubQuery = 'SELECT COUNT(*) FROM koi_tag WHERE owner_id = ?';
         $signsSubQuery = 'SELECT COUNT(*) FROM koi_datum d LEFT JOIN koi_item i ON i.id = d.item_id WHERE i.owner_id = ? AND d.type = ?';
+        $params = [$user->getId(), $user->getId(), $user->getId(), $user->getId(), DatumTypeEnum::TYPE_SIGN];
+
+        if (null !== $visibilities) {
+            $collectionsSubQuery .= ' AND final_visibility IN (?)';
+            $itemsSubQuery .= ' AND final_visibility IN (?)';
+            $tagsSubQuery .= ' AND visibility IN (?)';
+            $signsSubQuery .= ' AND d.final_visibility IN (?)';
+            $params = [
+                $user->getId(), $visibilities,
+                $user->getId(), $visibilities,
+                $user->getId(), $visibilities,
+                $user->getId(), DatumTypeEnum::TYPE_SIGN, $visibilities,
+            ];
+        }
+
+        $params[] = $user->getId();
 
         $sql = "SELECT ({$collectionsSubQuery}) AS collections, ({$itemsSubQuery}) AS items, ({$tagsSubQuery}) AS tags, ({$signsSubQuery}) AS signs";
         $sql .= ' FROM koi_user u';
@@ -55,14 +74,9 @@ class UserRepository extends ServiceEntityRepository
         ;
 
         $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
-        $query
-            ->setParameter(1, $user->getId())
-            ->setParameter(2, $user->getId())
-            ->setParameter(3, $user->getId())
-            ->setParameter(4, $user->getId())
-            ->setParameter(5, DatumTypeEnum::TYPE_SIGN)
-            ->setParameter(6, $user->getId())
-        ;
+        foreach ($params as $position => $value) {
+            $query->setParameter($position + 1, $value);
+        }
 
         return $query->getArrayResult()[0];
     }

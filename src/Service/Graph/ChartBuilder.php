@@ -21,17 +21,7 @@ class ChartBuilder
 
     public function buildActivityByHour(User $user): array
     {
-        $sql = 'SELECT created_at as date';
-        $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ?';
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('date', 'date', 'datetime');
-
-        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
-        $query->setParameter(1, $user->getId());
-
-        $result = $query->getArrayResult();
+        $result = $this->getItemsCreationDates($user);
 
         $data = [];
         // Init an array with zeroed counts for each of the 24 hours of a day
@@ -51,17 +41,7 @@ class ChartBuilder
 
     public function buildActivityByMonthDay(User $user): array
     {
-        $sql = 'SELECT created_at AS date';
-        $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ?';
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('date', 'date', 'datetime');
-
-        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
-        $query->setParameter(1, $user->getId());
-
-        $result = $query->getArrayResult();
+        $result = $this->getItemsCreationDates($user);
 
         $data = [];
         // Init an array with zeroed counts for each of the 31 possible number of days in a month
@@ -81,17 +61,7 @@ class ChartBuilder
 
     public function buildActivityByWeekDay(User $user): array
     {
-        $sql = 'SELECT created_at AS date';
-        $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ?';
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('date', 'date', 'datetime');
-
-        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
-        $query->setParameter(1, $user->getId());
-
-        $result = $query->getArrayResult();
+        $result = $this->getItemsCreationDates($user);
 
         $days = [
             mb_substr($this->translator->trans('global.days.sunday'), 0, 3, 'UTF-8'),
@@ -120,17 +90,7 @@ class ChartBuilder
 
     public function buildActivityByMonth(User $user): array
     {
-        $sql = 'SELECT created_at as date';
-        $sql .= ' FROM koi_item';
-        $sql .= ' WHERE owner_id = ?';
-
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('date', 'date', 'datetime');
-
-        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
-        $query->setParameter(1, $user->getId());
-
-        $result = $query->getArrayResult();
+        $result = $this->getItemsCreationDates($user);
 
         $months = [
             mb_substr($this->translator->trans('global.months.january'), 0, 3, 'UTF-8'),
@@ -165,11 +125,15 @@ class ChartBuilder
     public function buildItemEvolution(User $user): array
     {
         $data = [];
-        $sql = 'SELECT logged_at AS date, type';
-        $sql .= ' FROM koi_log';
-        $sql .= ' WHERE owner_id = ?';
-        $sql .= ' AND object_class = ?';
-        $sql .= ' AND type IN (?)';
+        $visibilities = $this->getVisibilities();
+        $sql = 'SELECT l.logged_at AS date, l.type';
+        $sql .= ' FROM koi_log l';
+        if (null !== $visibilities) {
+            $sql .= ' JOIN koi_item i ON i.id = l.object_id AND i.final_visibility IN (?)';
+        }
+        $sql .= ' WHERE l.owner_id = ?';
+        $sql .= ' AND l.object_class = ?';
+        $sql .= ' AND l.type IN (?)';
         $sql .= ' ORDER BY date';
 
         $rsm = new ResultSetMapping();
@@ -177,9 +141,13 @@ class ChartBuilder
         $rsm->addScalarResult('type', 'type', 'string');
 
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
-        $query->setParameter(1, $user->getId());
-        $query->setParameter(2, Item::class);
-        $query->setParameter(3, [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE]);
+        $params = [$user->getId(), Item::class, [LogTypeEnum::TYPE_CREATE, LogTypeEnum::TYPE_DELETE]];
+        if (null !== $visibilities) {
+            array_unshift($params, $visibilities);
+        }
+        foreach ($params as $position => $value) {
+            $query->setParameter($position + 1, $value);
+        }
 
         $result = $query->getArrayResult();
 
@@ -193,5 +161,34 @@ class ChartBuilder
         }
 
         return $data;
+    }
+
+    private function getItemsCreationDates(User $user): array
+    {
+        $visibilities = $this->getVisibilities();
+        $sql = 'SELECT created_at AS date';
+        $sql .= ' FROM koi_item';
+        $sql .= ' WHERE owner_id = ?';
+        if (null !== $visibilities) {
+            $sql .= ' AND final_visibility IN (?)';
+        }
+
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('date', 'date', 'datetime');
+
+        $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
+        $query->setParameter(1, $user->getId());
+        if (null !== $visibilities) {
+            $query->setParameter(2, $visibilities);
+        }
+
+        return $query->getArrayResult();
+    }
+
+    private function getVisibilities(): ?array
+    {
+        $filters = $this->managerRegistry->getManager()->getFilters();
+
+        return $filters->isEnabled('visibility') ? $filters->getFilter('visibility')->getVisibilities() : null;
     }
 }

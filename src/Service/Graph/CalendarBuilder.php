@@ -22,11 +22,20 @@ class CalendarBuilder
         $sql .= ' FROM koi_item';
         $sql .= ' WHERE owner_id = ?';
 
+        $filters = $this->managerRegistry->getManager()->getFilters();
+        $visibilities = $filters->isEnabled('visibility') ? $filters->getFilter('visibility')->getVisibilities() : null;
+        if (null !== $visibilities) {
+            $sql .= ' AND final_visibility IN (?)';
+        }
+
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('date', 'date', 'datetime');
 
         $query = $this->managerRegistry->getManager()->createNativeQuery($sql, $rsm);
         $query->setParameter(1, $user->getId());
+        if (null !== $visibilities) {
+            $query->setParameter(2, $visibilities);
+        }
 
         $result = $query->getArrayResult();
 

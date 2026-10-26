@@ -15,6 +15,7 @@ use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\UserFactory;
 use PHPUnit\Framework\Attributes\TestWith;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -289,6 +290,54 @@ class DatumApiTest extends ApiTestCase
         $this->assertMatchesResourceItemJsonSchema(Datum::class);
         $this->assertNotNull(json_decode($crawler->getContent(), true)['file']);
         $this->assertFileExists(json_decode($crawler->getContent(), true)['file']);
+    }
+
+    public function test_post_datum_file_with_html_content_is_stored_with_neutral_extension(): void
+    {
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $path = '/tmp/' . uniqid() . '.html';
+        file_put_contents($path, '<!doctype html><html><body><script>alert(1)</script></body></html>');
+        $uploadedFile = new UploadedFile($path, 'payload.html');
+
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/' . $datum->getId() . '/file', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'fileFile' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $file = json_decode($crawler->getContent(), true)['file'];
+        $this->assertStringEndsWith('.bin', $file);
+        $this->assertFileExists($file);
+    }
+
+    public function test_post_datum_file_with_allowed_extension_keeps_its_extension(): void
+    {
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $datum = DatumFactory::createOne(['collection' => $collection, 'owner' => $user]);
+        $path = '/tmp/' . uniqid() . '.txt';
+        file_put_contents($path, 'Some plain text content');
+        $uploadedFile = new UploadedFile($path, 'notes.txt');
+
+        $crawler = $this->createClientWithCredentials($user)->request('POST', '/api/data/' . $datum->getId() . '/file', [
+            'headers' => ['Content-Type: multipart/form-data'],
+            'extra' => [
+                'files' => [
+                    'fileFile' => $uploadedFile,
+                ],
+            ],
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $file = json_decode($crawler->getContent(), true)['file'];
+        $this->assertStringEndsWith('.txt', $file);
+        $this->assertFileExists($file);
     }
 
     public function test_post_datum_video(): void

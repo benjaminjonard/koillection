@@ -38,6 +38,7 @@
 	{$CADDY_SERVER_EXTRA_DIRECTIVES}
 
 	handle /uploads/* {
+		header Content-Security-Policy "default-src 'none'; sandbox"
 		file_server
 	}
 

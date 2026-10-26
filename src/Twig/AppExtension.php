@@ -95,12 +95,13 @@ readonly class AppExtension
             return null;
         }
 
+        $text = htmlspecialchars($text, \ENT_QUOTES | \ENT_SUBSTITUTE, 'UTF-8');
         $tags = $this->tagRepository->findAllForHighlight();
 
         $words = [];
         foreach ($tags as $tag) {
             $id = \is_string($tag['id']) ? $tag['id'] : $tag['id']->toString();
-            $words[$id] = preg_quote($tag['label'], '/');
+            $words[$id] = preg_quote(htmlspecialchars($tag['label'], \ENT_QUOTES | \ENT_SUBSTITUTE, 'UTF-8'), '/');
         }
 
         return preg_replace_callback(

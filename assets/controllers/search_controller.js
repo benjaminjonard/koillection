@@ -45,7 +45,7 @@ export default class extends Controller {
                     self.resultsWrapperTarget.classList.remove('hidden');
                     self.resultsWrapperTarget.innerHTML = '';
                     data.results.forEach((result) => {
-                        let highlightedResult = self.highlight(result.label, value);
+                        let highlightedResult = self.highlight(self.escapeHtml(result.label), value);
                         self.resultsWrapperTarget.appendChild(self.autocompleteResultFactory(highlightedResult, result.url, result.type));
                     });
 
@@ -95,6 +95,12 @@ export default class extends Controller {
         }
 
         return li;
+    }
+
+    escapeHtml(content) {
+        let div = document.createElement('div');
+        div.textContent = content;
+        return div.innerHTML;
     }
 
     htmlStringToDomElement(html) {
