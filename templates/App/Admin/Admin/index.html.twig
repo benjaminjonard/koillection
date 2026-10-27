@@ -70,7 +70,7 @@
             <h2 class="header">{{ 'title.config'|trans }}</h2>
             <div class="row statistics">
                 <div class="s12 m4 xl2">
-                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/koillection.png') }}" alt="Koillection logo">
+                    <img width="65px" height="65px" src="{{ asset('build/images/logos/koillection.png') }}" alt="Koillection logo">
                     <div class="counter">{{ currentRelease }}</div>
                     {{ 'label.release'|trans }}
 
@@ -86,20 +86,20 @@
                     {% endif %}
                 </div>
                 <div class="s12 m4 xl2">
-                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/php.png') }}" alt="PHP logo">
+                    <img width="65px" height="65px" src="{{ asset('build/images/logos/php.png') }}" alt="PHP logo">
                     <div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}
                 </div>
                 <div class="s12 m4 xl2">
-                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/symfony.png') }}" alt="Symfony logo">
+                    <img width="65px" height="65px" src="{{ asset('build/images/logos/symfony.png') }}" alt="Symfony logo">
                     <div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}
                 </div>
                 <div class="s12 m4 xl2">
-                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/api-platform.png') }}" alt="Api Platform logo">
+                    <img width="65px" height="65px" src="{{ asset('build/images/logos/api-platform.png') }}" alt="Api Platform logo">
                     <div class="counter">{{ apiPlatformVersion }}</div>{{ 'label.apiplatform_version'|trans }}
                 </div>
                 {% if frankenPhpVersion is not null %}
                     <div class="s12 m4 xl2">
-                        <img width="65px" height="65px" src="{{ asset('/build/images/logos/frankenphp.png') }}" alt="FrankenPHP logo">
+                        <img width="65px" height="65px" src="{{ asset('build/images/logos/frankenphp.png') }}" alt="FrankenPHP logo">
                         <div class="counter">{{ frankenPhpVersion }}</div>{{ 'label.frankenphp_version'|trans }}
                     </div>
                 {% endif %}
