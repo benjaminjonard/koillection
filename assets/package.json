@@ -17,7 +17,7 @@
     "sortablejs": "1.15.7",
     "stimulus-lightbox": "3.2.0",
     "stimulus-use": "0.53.1",
-    "vite": "8.3.3"
+    "vite": "8.3.5"
   },
   "scripts": {
     "dev": "vite build --mode development",
@@ -27,7 +27,7 @@
   "dependencies": {
     "bazinga-translator": "8.0.0",
     "hotkeys-js": "^4.0.8",
-    "intl-messageformat": "12.1.2",
+    "intl-messageformat": "12.1.4",
     "ts-select2": "^0.2.5"
   },
   "packageManager": "yarn@4.15.0"
