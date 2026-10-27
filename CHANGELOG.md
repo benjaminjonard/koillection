@@ -1,9 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.8.5] / 2026-10-27
+Security release
+
+### Fixes
+- Escape labels in search autocomplete (benjaminjonard)
+- Escape tag descriptions in highlightTags filter (benjaminjonard)
+- Apply visibility filter to shared statistics queries (benjaminjonard)
+- Store uploads with an allowlisted extension, fall back to .bin. (benjaminjonard)
+- Add a sandbox CSP header on /uploads in Caddy configs (benjaminjonard)
+
+### Miscellaneous
+- Upgrade PHP and JS dependencies, fix multiple CVEs (benjaminjonard)
+
 ## [1.8.4] / 2026-08-23
 This release makes the usage of SYMFONY_TRUSTED_PROXIES and SYMFONY_TRUSTED_HEADERS unnecessary, they can be removed from your environment variables.
-
 
 ### Fixes
 - Fix CSRF errors on form submit (benjaminjonard)
