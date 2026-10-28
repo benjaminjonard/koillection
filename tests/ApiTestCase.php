@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-use ApiPlatform\Symfony\Bundle\Test\Client;
+use ApiPlatform\Test\ApiTestCase as BaseApiTestCase;
+use ApiPlatform\Test\Client;
 use App\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
+abstract class ApiTestCase extends BaseApiTestCase
 {
     protected function createClientWithCredentials(User $user): Client
     {
