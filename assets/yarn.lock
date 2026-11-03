@@ -331,10 +331,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hotkeys-js@npm:^4.0.8":
-  version: 4.0.8
-  resolution: "hotkeys-js@npm:4.0.8"
-  checksum: 10/376933af07e8b9e9b6dfcb8dababeee26445d242183ce7c9d6d257d0fdd0e55691e09761018a5c0906fce30817e9185248d1d938d0bedd9bd1a76026117a17c4
+"hotkeys-js@npm:^4.0.9":
+  version: 4.0.9
+  resolution: "hotkeys-js@npm:4.0.9"
+  checksum: 10/9019a5d91286d0865d3596477c571738893994e4da22a4a4138319250db931938a3176c70d62622c32f6e2fac455749673493d2dca992e7f4a0e6a1fdfa550be
   languageName: node
   linkType: hard
 
@@ -365,7 +365,7 @@ __metadata:
     bazinga-translator: "npm:8.0.0"
     croppie: "npm:2.6.5"
     echarts: "npm:6.1.0"
-    hotkeys-js: "npm:^4.0.8"
+    hotkeys-js: "npm:^4.0.9"
     intl-messageformat: "npm:12.1.4"
     sortablejs: "npm:1.15.7"
     stimulus-lightbox: "npm:3.2.0"
