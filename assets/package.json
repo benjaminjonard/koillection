@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "bazinga-translator": "8.0.0",
-    "hotkeys-js": "^4.0.8",
+    "hotkeys-js": "^4.0.9",
     "intl-messageformat": "12.1.4",
     "ts-select2": "^0.2.5"
   },
