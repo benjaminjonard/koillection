@@ -31,7 +31,7 @@ class Autocompleter
     {
         $params = [];
         $queryParts = [];
-        $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection', $params);
+        $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection', $params, 'final_visibility');
 
         if ($this->security->getUser()?->isSearchInDataByDefaultEnabled()) {
             $queryParts[] = $this->buildRequestForItemTableWithData($term, $params);
@@ -40,15 +40,15 @@ class Autocompleter
         }
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag', $params);
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Tag::class)->getTableName(), 'label', $term, 'tag', $params, 'visibility');
         }
 
         if ($this->featureChecker->isFeatureEnabled('albums')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album', $params);
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Album::class)->getTableName(), 'title', $term, 'album', $params, 'final_visibility');
         }
 
         if ($this->featureChecker->isFeatureEnabled('wishlists')) {
-            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist', $params);
+            $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Wishlist::class)->getTableName(), 'name', $term, 'wishlist', $params, 'final_visibility');
         }
 
         $sql = implode(' UNION ', $queryParts);
@@ -93,7 +93,7 @@ class Autocompleter
         ];
     }
 
-    private function buildRequestForGivenTable(string $collectionTable, string $labelProperty, string $term, string $type, array &$params): string
+    private function buildRequestForGivenTable(string $collectionTable, string $labelProperty, string $term, string $type, array &$params, string $visibilityColumn): string
     {
         $user = $this->contextHandler->getContextUser();
         $terms = explode(' ', $term);
@@ -117,7 +117,7 @@ class Autocompleter
         $params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            $sql .= ' AND visibility IN (?)';
+            $sql .= " AND {$visibilityColumn} IN (?)";
             $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 
@@ -157,7 +157,7 @@ class Autocompleter
         $params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            $sql .= ' AND visibility IN (?)';
+            $sql .= ' AND i.final_visibility IN (?)';
             $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 
@@ -189,7 +189,7 @@ class Autocompleter
         $params[] = '%' . $term . '%';
 
         if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
-            $sql .= ' AND visibility IN (?)';
+            $sql .= ' AND i.final_visibility IN (?)';
             $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
 

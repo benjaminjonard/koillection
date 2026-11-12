@@ -332,6 +332,52 @@ class SearchTest extends AppTestCase
         $this->assertSame(0, $content['totalResultsCounter']);
     }
 
+    public function test_anonymous_search_autocomplete_entities_with_private_parent(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->createPublicEntitiesWithPrivateParents($user);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/user/' . $user->getUsername() . '/search/autocomplete/fri');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertSame(0, $content['totalResultsCounter']);
+        $this->assertSame([], $content['results']);
+    }
+
+    public function test_other_user_search_autocomplete_entities_with_private_parent(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $otherUser = UserFactory::createOne(['searchInDataByDefaultEnabled' => true]);
+        $this->client->loginUser($otherUser);
+        $this->createPublicEntitiesWithPrivateParents($user);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/user/' . $user->getUsername() . '/search/autocomplete/fri');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertSame(0, $content['totalResultsCounter']);
+        $this->assertSame([], $content['results']);
+    }
+
+    private function createPublicEntitiesWithPrivateParents($user): void
+    {
+        $parentCollection = CollectionFactory::createOne(['title' => 'Parent', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => $parentCollection, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Origin', 'value' => 'Frieren']);
+        $parentWishlist = WishlistFactory::createOne(['name' => 'Parent', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        WishlistFactory::createOne(['name' => 'Wishlist Frieren', 'parent' => $parentWishlist, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        $parentAlbum = AlbumFactory::createOne(['title' => 'Parent', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        AlbumFactory::createOne(['title' => 'Frieren collection', 'parent' => $parentAlbum, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+    }
+
     public function test_anonymous_search_autocomplete_user_private(): void
     {
         // Arrange
