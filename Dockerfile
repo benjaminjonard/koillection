@@ -39,7 +39,7 @@ RUN set -eux ; \
     cd /app/public ; \
     php bin/console app:translations:dump ; \
     # Clean up \
-    apt-get purge -y git ca-certificates gnupg2 unzip ; \
+    apt-get purge -y git gnupg2 unzip ; \
     apt-get autoremove -y ; \
     apt-get clean ; \
     rm -rf /var/lib/apt/lists/* ; \

@@ -47,11 +47,12 @@ class ScrapingBrowser
         try {
             $page = $browser->createPage();
             $connection = $page->getSession()->getConnection();
+            $mainFrameId = $page->getSession()->getTargetId();
             $denied = false;
 
-            $connection->on('method:Fetch.requestPaused', function (array $params) use ($connection, $host, $headers, &$denied): void {
+            $connection->on('method:Fetch.requestPaused', function (array $params) use ($connection, $host, $headers, $mainFrameId, &$denied): void {
                 $sameHost = strtolower((string) parse_url($params['request']['url'], \PHP_URL_HOST)) === $host;
-                if (!$this->forward($connection, $params, $sameHost ? $headers : [])) {
+                if (!$this->forward($connection, $params, $sameHost ? $headers : []) && ($params['frameId'] ?? null) === $mainFrameId) {
                     $denied = true;
                 }
             });

@@ -116,9 +116,6 @@ class ScrapingBrowserTest extends TestCase
         yield ['/meta'];
         yield ['/javascript'];
         yield ['/form'];
-        yield ['/popup'];
-        yield ['/popup-link'];
-        yield ['/popup-form'];
     }
 
     #[DataProvider('navigationsToPrivateNetwork')]
@@ -138,14 +135,17 @@ class ScrapingBrowserTest extends TestCase
         $this->assertSame([], $this->getInternalHits());
     }
 
-    public static function subresourcesToPrivateNetwork(): iterable
+    public static function requestsOutsideMainFrameToPrivateNetwork(): iterable
     {
         yield ['/image'];
         yield ['/iframe'];
+        yield ['/popup'];
+        yield ['/popup-link'];
+        yield ['/popup-form'];
     }
 
-    #[DataProvider('subresourcesToPrivateNetwork')]
-    public function test_subresource_to_private_network_is_blocked(string $path): void
+    #[DataProvider('requestsOutsideMainFrameToPrivateNetwork')]
+    public function test_request_outside_main_frame_to_private_network_is_blocked(string $path): void
     {
         // Act
         try {
@@ -154,6 +154,16 @@ class ScrapingBrowserTest extends TestCase
         }
 
         // Assert
+        $this->assertSame([], $this->getInternalHits());
+    }
+
+    public function test_blocked_subframe_does_not_fail_scraping(): void
+    {
+        // Act
+        $html = $this->browser->fetch(self::$publicOrigin . '/iframe');
+
+        // Assert
+        $this->assertStringContainsString('<title>iframe</title>', $html);
         $this->assertSame([], $this->getInternalHits());
     }
 
