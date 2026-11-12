@@ -71,7 +71,7 @@ class ScrapingUrlGuardTest extends TestCase
     public function test_cannot_scrape_a_private_address(string $url): void
     {
         $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('private network address');
+        $this->expectExceptionMessage(ScrapingUrlGuard::UNREACHABLE_MESSAGE);
 
         $this->guard->resolvePublicAddress($url);
     }
@@ -92,7 +92,7 @@ class ScrapingUrlGuardTest extends TestCase
     public function test_cannot_scrape_an_unresolvable_host(): void
     {
         $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('unable to resolve');
+        $this->expectExceptionMessage(ScrapingUrlGuard::UNREACHABLE_MESSAGE);
 
         $this->guard->resolvePublicAddress('http://koillection-does-not-resolve.invalid/');
     }

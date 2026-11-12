@@ -10,6 +10,8 @@ final class ScrapingUrlGuard
 {
     public const array ALLOWED_SCHEMES = ['http', 'https'];
 
+    public const string UNREACHABLE_MESSAGE = 'Scraping error: this URL cannot be reached';
+
     public function assertSchemeIsSupported(?string $url): void
     {
         $scheme = strtolower((string) parse_url((string) $url, \PHP_URL_SCHEME));
@@ -31,7 +33,7 @@ final class ScrapingUrlGuard
 
         foreach ($addresses as $address) {
             if (IpUtils::isPrivateIp($address)) {
-                throw new \RuntimeException('Scraping error: this URL points to a private network address');
+                throw new \RuntimeException(self::UNREACHABLE_MESSAGE);
             }
         }
 
@@ -48,6 +50,6 @@ final class ScrapingUrlGuard
             return $addresses;
         }
 
-        throw new \RuntimeException("Scraping error: unable to resolve {$host}");
+        throw new \RuntimeException(self::UNREACHABLE_MESSAGE);
     }
 }

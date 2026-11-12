@@ -7,9 +7,6 @@ ENV PGID=1001
 ENV USER=koillection
 ENV FRANKENPHP_SERVER_NAME=":80"
 ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV PANTHER_CHROME_BINARY=/usr/bin/chromium
-ENV PANTHER_CHROME_DRIVER_BINARY=/usr/bin/chromedriver
-ENV PANTHER_NO_SANDBOX=1
 
 COPY ./ /app/public
 COPY ./docker/Caddyfile /etc/caddy/Caddyfile
@@ -23,7 +20,6 @@ RUN set -eux ; \
     apt-get update -qq ; \
     apt-get install -qqy --no-install-recommends \
     chromium \
-    chromium-driver \
     curl \
     gnupg2 \
     libnss3 \
@@ -33,7 +29,7 @@ RUN set -eux ; \
     unzip \
     openssl ; \
     # Install PHP extensions \
-    install-php-extensions opcache pdo_pgsql pdo_mysql intl gd zip apcu curl ; \
+    install-php-extensions opcache pdo_pgsql pdo_mysql intl gd zip apcu curl sockets ; \
     #Install composer dependencies \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer ; \
     cd /app/public ; \
@@ -71,42 +67,9 @@ RUN set -eux ; \
     yarn install ; \
     yarn build ;
 
-FROM curlimages/curl:8.23.0 AS download-env
-
-# renovate: datasource=github-releases depName=lwthiker/curl-impersonate packageName=lwthiker/curl-impersonate
-ENV CURL_IMPERSONATE_VERSION="0.6.1"
-
-WORKDIR /opt
-
-USER root
-
-RUN set -eux ; \
-    # Determine architecture \
-    ARCHITECTURE="$(uname -m)" ; \
-    case $ARCHITECTURE in \
-    x86_64) ARCHITECTURE="x86_64" ;; \
-    aarch64 | armv8* | arm64) ARCHITECTURE="aarch64" ;; \
-    arm | armv7*) ARCHITECTURE="arm" ;; \
-    *) \
-    echo "(!) Architecture $ARCHITECTURE unsupported" \
-    exit 1 \
-    ;; \
-    esac ;\
-    FILE_NAME="libcurl-impersonate-v${CURL_IMPERSONATE_VERSION}.${ARCHITECTURE}-linux-gnu.tar.gz" ; \
-    curl \
-    --fail \
-    --location \
-    --output /tmp/${FILE_NAME} \
-    --show-error \
-    --silent \
-    "https://github.com/lwthiker/curl-impersonate/releases/download/v${CURL_IMPERSONATE_VERSION}/${FILE_NAME}" \
-    ; \
-    tar xvzf /tmp/${FILE_NAME} -C /opt/
-
 FROM koillection-base AS koillection-final
 
 COPY --from=build-node /app/public/build/ /app/public/public/build/
-COPY --from=download-env /opt/libcurl-impersonate* /opt/
 
 VOLUME /uploads
 
