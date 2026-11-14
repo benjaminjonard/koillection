@@ -74,25 +74,27 @@ class DatumRepository extends ServiceEntityRepository
 
     public function computePricesForCollection(Collection $collection, string $visibility): array
     {
-        $id = $collection->getId();
-        $type = DatumTypeEnum::TYPE_PRICE;
-
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('label', 'label');
         $rsm->addScalarResult('currency', 'currency');
         $rsm->addScalarResult('value', 'value');
         $rsm->addScalarResult('quantity', 'quantity');
 
-        $sql = "
+        $sql = '
             SELECT datum.label AS label, datum.currency AS currency, datum.value AS value, item.quantity AS quantity
             FROM koi_datum datum
-            JOIN koi_item item ON datum.item_id = item.id AND item.collection_id = '{$id}'
-            WHERE datum.type = '{$type}'
-            AND datum.visibility = '{$visibility}'
-        ";
+            JOIN koi_item item ON datum.item_id = item.id AND item.collection_id = :collectionId
+            WHERE datum.type = :type
+            AND datum.final_visibility = :visibility
+        ';
 
         $prices = [];
-        $results = $this->getEntityManager()->createNativeQuery($sql, $rsm)->getArrayResult();
+        $results = $this->getEntityManager()->createNativeQuery($sql, $rsm)
+            ->setParameter('collectionId', $collection->getId())
+            ->setParameter('type', DatumTypeEnum::TYPE_PRICE)
+            ->setParameter('visibility', $visibility)
+            ->getArrayResult()
+        ;
         foreach ($results as $result) {
             if (!isset($prices[$result['label']][$result['currency']])) {
                 $prices[$result['label']][$result['currency']] = 0.0;

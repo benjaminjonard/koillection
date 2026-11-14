@@ -366,6 +366,23 @@ class SearchTest extends AppTestCase
         $this->assertSame([], $content['results']);
     }
 
+    public function test_other_user_search_autocomplete_item_with_private_datum(): void
+    {
+        $user = UserFactory::createOne();
+        $otherUser = UserFactory::createOne(['searchInDataByDefaultEnabled' => true]);
+        $this->client->loginUser($otherUser);
+        $collection = CollectionFactory::createOne(['title' => 'Books', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        $item = ItemFactory::createOne(['name' => 'Book #1', 'collection' => $collection, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Secret', 'value' => 'Frieren', 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+
+        $this->client->request(Request::METHOD_GET, '/user/' . $user->getUsername() . '/search/autocomplete/fri');
+
+        $this->assertResponseIsSuccessful();
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertSame(0, $content['totalResultsCounter']);
+        $this->assertSame([], $content['results']);
+    }
+
     private function createPublicEntitiesWithPrivateParents($user): void
     {
         $parentCollection = CollectionFactory::createOne(['title' => 'Parent', 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);

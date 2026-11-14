@@ -7,6 +7,7 @@ namespace App\Tests\App\Collection;
 use App\Entity\Collection;
 use App\Entity\Item;
 use App\Enum\DatumTypeEnum;
+use App\Enum\VisibilityEnum;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
@@ -222,5 +223,34 @@ class CollectionPricesTest extends AppTestCase
 
         $this->assertArrayNotHasKey('Original price', $this->cachedValuesGetter->getCachedValues($collectionLevel3)['prices']);
         $this->assertArrayNotHasKey('Current price', $this->cachedValuesGetter->getCachedValues($collectionLevel3)['prices']);
+    }
+
+    public function test_prices_exclude_private_item_for_anonymous(): void
+    {
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        $publicItem = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '100', 'item' => $publicItem, 'owner' => $user]);
+        $privateItem = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '1000', 'item' => $privateItem, 'owner' => $user]);
+
+        $this->refreshCachedValuesQueue->process();
+        \Zenstruck\Foundry\Persistence\refresh($collection);
+
+        $this->assertEqualsWithDelta(100.0, $this->cachedValuesGetter->getCachedValues($collection)['prices']['Price']['EUR'], PHP_FLOAT_EPSILON);
+    }
+
+    public function test_prices_exclude_item_in_private_child_collection_for_anonymous(): void
+    {
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        $privateChild = CollectionFactory::createOne(['parent' => $collection, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PRIVATE]);
+        $item = ItemFactory::createOne(['collection' => $privateChild, 'owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_PUBLIC]);
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '1000', 'item' => $item, 'owner' => $user]);
+
+        $this->refreshCachedValuesQueue->process();
+        \Zenstruck\Foundry\Persistence\refresh($collection);
+
+        $this->assertArrayNotHasKey('Price', $this->cachedValuesGetter->getCachedValues($collection)['prices']);
     }
 }

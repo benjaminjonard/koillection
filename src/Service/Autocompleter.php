@@ -131,6 +131,8 @@ class Autocompleter
         $term = implode('%', $terms);
         $itemTable = $this->managerRegistry->getManager()->getClassMetadata(Item::class)->getTableName();
         $datumTable = $this->managerRegistry->getManager()->getClassMetadata(Datum::class)->getTableName();
+        $isVisibilityFilterEnabled = $this->managerRegistry->getManager()->getFilters()->isEnabled('visibility');
+        $datumVisibilityCondition = $isVisibilityFilterEnabled ? ' AND d.final_visibility IN (?)' : '';
 
         $sql = "
             SELECT i.id AS id, i.name AS label, 'item' AS type, i.seen_counter AS seenCounter,
@@ -142,7 +144,7 @@ class Autocompleter
                      ELSE 0
                 END) AS relevance
             FROM {$itemTable} i
-            LEFT JOIN {$datumTable} d ON d.item_id = i.id AND d.type IN (?)
+            LEFT JOIN {$datumTable} d ON d.item_id = i.id AND d.type IN (?){$datumVisibilityCondition}
             WHERE i.owner_id = ?
             AND (LOWER(i.name) LIKE LOWER(?) OR LOWER(d.value) LIKE LOWER(?))
         ";
@@ -152,11 +154,14 @@ class Autocompleter
         $params[] = $term;
         $params[] = '%' . $term . '%';
         $params[] = DatumTypeEnum::AVAILABLE_FOR_SEARCH;
+        if ($isVisibilityFilterEnabled) {
+            $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
+        }
         $params[] = $user->getId();
         $params[] = '%' . $term . '%';
         $params[] = '%' . $term . '%';
 
-        if ($this->managerRegistry->getManager()->getFilters()->isEnabled('visibility')) {
+        if ($isVisibilityFilterEnabled) {
             $sql .= ' AND i.final_visibility IN (?)';
             $params[] = $this->managerRegistry->getManager()->getFilters()->getFilter('visibility')->getVisibilities();
         }
