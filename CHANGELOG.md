@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.8.6] / 2026-11-14
+Security release
+
+### Fixes
+- Fix shared search autocomplete leaking private children names (benjaminjonard)
+- Fix SSRF in browser scraper through redirects and navigations (benjaminjonard)
+
+### Miscellaneous
+- Update to Symfony 8.1 and API Platform 5 (benjaminjonard)
+- Upgrade PHP and JS dependencies (benjaminjonard)
+
 ## [1.8.5] / 2026-10-27
 Security release
 
