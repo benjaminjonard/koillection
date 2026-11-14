@@ -26,6 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ItemController extends AbstractController
 {
@@ -67,7 +68,6 @@ class ItemController extends AbstractController
             }
         }
 
-        // Preload tags shared by all items in that collection
         $suggestedNames = [];
         if ($request->isMethod('GET')) {
             $item->setTags(new ArrayCollection($tagRepository->findRelatedToCollection($collection)));
@@ -197,5 +197,96 @@ class ItemController extends AbstractController
         }
 
         return new JsonResponse($data);
+    }
+
+    // ==========================================
+    // NEW BULK ACTION FEATURES
+    // ==========================================
+
+    #[Route('/items/bulk-duplicate', name: 'app_item_bulk_duplicate', methods: ['POST'])]
+    public function bulkDuplicate(Request $request, EntityManagerInterface $em, ItemRepository $itemRepository): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $ids = $data['ids'] ?? [];
+        $debugLog = [];
+
+        foreach ($ids as $id) {
+            $item = $itemRepository->find($id);
+            if ($item) {
+                $newItem = clone $item;
+                $newItem->setName($item->getName() . ' (Copy)');
+                
+                $reflection = new \ReflectionClass($newItem);
+                $property = $reflection->getProperty('id');
+                $property->setAccessible(true);
+                $property->setValue($newItem, \Symfony\Component\Uid\Uuid::v4()->__toString());
+                
+                $em->persist($newItem);
+                $debugLog[] = "Successfully cloned item: " . $item->getName();
+            }
+        }
+
+        try {
+            $em->flush();
+            $debugLog[] = "Database save successful!";
+        } catch (\Exception $e) {
+            $debugLog[] = "DATABASE ERROR: " . $e->getMessage();
+        }
+
+        return new JsonResponse(['status' => 'ok', 'log' => $debugLog]);
+    }
+
+    #[Route('/items/bulk-delete', name: 'app_item_bulk_delete', methods: ['POST'])]
+    public function bulkDelete(Request $request, EntityManagerInterface $em, ItemRepository $itemRepository): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $ids = $data['ids'] ?? [];
+
+        foreach ($ids as $id) {
+            $item = $itemRepository->find($id);
+            if ($item) {
+                $em->remove($item);
+            }
+        }
+        $em->flush();
+        return new JsonResponse(['status' => 'ok']);
+    }
+
+    // MAGIC FIX: Changed the URL to avoid the 404 Routing Collision!
+    #[Route('/items/custom/collections-list', name: 'app_collection_simple_list', methods: ['GET'])]
+    public function simpleCollectionList(CollectionRepository $collectionRepository): JsonResponse
+    {
+        $collections = $collectionRepository->findAll();
+        $data = [];
+        foreach ($collections as $collection) {
+            $data[] = [
+                'id' => (string) $collection->getId(),
+                'title' => (string) $collection->getTitle()
+            ];
+        }
+        return new JsonResponse($data);
+    }
+
+    #[Route('/items/bulk-move', name: 'app_item_bulk_move', methods: ['POST'])]
+    public function bulkMove(Request $request, EntityManagerInterface $em, ItemRepository $itemRepository, CollectionRepository $collectionRepository): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $ids = $data['ids'] ?? [];
+        $targetId = $data['target_collection'] ?? null;
+
+        $targetCollection = $collectionRepository->find($targetId);
+        
+        if ($targetCollection) {
+            foreach ($ids as $id) {
+                $item = $itemRepository->find($id);
+                if ($item) {
+                    $item->setCollection($targetCollection);
+                    $em->persist($item);
+                }
+            }
+            $em->flush();
+        }
+
+        return new JsonResponse(['status' => 'ok']);
     }
 }

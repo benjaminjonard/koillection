@@ -1,9 +1,38 @@
 {% set sortingProperty = displayConfiguration.sortingProperty %}
 {% set sortingDirection = displayConfiguration.sortingDirection %}
 
+<!-- BULK ACTIONS BAR -->
+<div id="bulk-actions-bar" style="display: none; align-items: center; background-color: #26a69a; color: white; padding: 15px; border-radius: 4px; margin-bottom: 15px; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);">
+    <span style="font-size: 1.2em; margin-right: auto;">
+        <strong id="selected-count">0</strong> items selected
+    </span>
+    
+    <button type="button" id="btn-bulk-duplicate" class="btn waves-effect waves-light blue" style="margin-right: 10px;">
+        <i class="fa fa-copy fa-fw"></i> Duplicate
+    </button>
+    
+    <button type="button" id="btn-bulk-move" class="btn waves-effect waves-light orange" style="margin-right: 10px;">
+        <i class="fa fa-folder-open fa-fw"></i> Move
+    </button>
+
+    <select id="bulk-move-target" class="browser-default" style="display: block; width: 200px; margin-right: 10px; background: white; color: black; border-radius: 4px; padding: 5px; height: 36px; border: none;">
+        <option value="">Select destination...</option>
+    </select>
+    
+    <button type="button" id="btn-bulk-delete" class="btn waves-effect waves-light red">
+        <i class="fa fa-trash fa-fw"></i> Delete
+    </button>
+</div>
+
 <table class="highlight items-table" data-controller="table">
     <thead>
         <tr>
+            <th style="width: 40px; text-align: center;">
+                <label>
+                    <input type="checkbox" id="selectAllCheckboxes" />
+                    <span></span>
+                </label>
+            </th>
             <th></th>
             <th>
                 {{ 'label.name'|trans }}
@@ -47,6 +76,12 @@
         {% for item in items|naturalSorting(displayConfiguration) %}
             {% set link = path('app_item_show'|applyContext, {'id': item.id}) %}
             <tr class="list-element resize-element" data-title="{{ item.name }}" data-filter-target="element">
+                <td style="text-align: center; position: relative; z-index: 10;">
+                    <label>
+                        <input type="checkbox" class="item-checkbox" value="{{ item.id }}" />
+                        <span></span>
+                    </label>
+                </td>
                 <td>
                     <a class="table-link" href="{{ link }}"></a>
                     {% if item.imageSmallThumbnail %}
@@ -91,7 +126,7 @@
                         </td>
                     {% endif %}
                     {% if displayConfiguration.showActions %}
-                        <td class="table-actions center">
+                        <td class="table-actions center" style="position: relative; z-index: 10;">
                             <a href="{{ path('app_item_edit', {id: item.id}) }}" title="{{ 'tooltip.edit'|trans }}">
                                 <i class="fa fa-pencil fa-fw"></i>
                             </a>
@@ -106,3 +141,119 @@
         {% endfor %}
     </tbody>
 </table>
+
+<!-- JAVASCRIPT TO CONTROL CHECKBOXES -->
+<script>
+    setTimeout(function() {
+        const selectAllBox = document.getElementById('selectAllCheckboxes');
+        const itemBoxes = document.querySelectorAll('.item-checkbox');
+        const bulkBar = document.getElementById('bulk-actions-bar');
+        const countText = document.getElementById('selected-count');
+        const moveDropdown = document.getElementById('bulk-move-target');
+
+        // --- LOAD COLLECTIONS FOR DROPDOWN ---
+        if (moveDropdown) {
+            fetch('/items/custom/collections-list')
+                .then(response => response.json())
+                .then(collections => {
+                    collections.forEach(collection => {
+                        const option = document.createElement('option');
+                        option.value = collection.id;
+                        option.textContent = collection.title;
+                        moveDropdown.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.log("Dropdown failed to load: " + error);
+                    moveDropdown.innerHTML = '<option value="">Error loading collections</option>';
+                });
+        }
+
+        function updateBulkBar() {
+            const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+            if (checkedBoxes.length > 0) {
+                bulkBar.style.display = 'flex';
+                countText.innerText = checkedBoxes.length;
+            } else {
+                bulkBar.style.display = 'none';
+            }
+        }
+
+        if (selectAllBox) {
+            selectAllBox.addEventListener('change', function() {
+                itemBoxes.forEach(box => {
+                    box.checked = selectAllBox.checked;
+                });
+                updateBulkBar();
+            });
+        }
+
+        itemBoxes.forEach(box => {
+            box.addEventListener('change', updateBulkBar);
+        });
+
+        // --- DUPLICATE BUTTON LOGIC ---
+        const btnDuplicate = document.getElementById('btn-bulk-duplicate');
+        if (btnDuplicate) {
+            btnDuplicate.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+                const ids = Array.from(checkedBoxes).map(box => box.value);
+
+                if (confirm('Are you sure you want to duplicate ' + ids.length + ' item(s)?')) {
+                    btnDuplicate.innerHTML = '<i class="fa fa-spinner fa-spin fa-fw"></i> Working...';
+                    fetch('/items/bulk-duplicate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+                        body: JSON.stringify({ ids: ids })
+                    }).then(() => window.location.reload());
+                }
+            });
+        }
+
+        // --- DELETE BUTTON LOGIC ---
+        const btnDelete = document.getElementById('btn-bulk-delete');
+        if (btnDelete) {
+            btnDelete.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+                const ids = Array.from(checkedBoxes).map(box => box.value);
+
+                if (confirm('WARNING: Are you sure you want to permanently delete ' + ids.length + ' item(s)?')) {
+                    btnDelete.innerHTML = '<i class="fa fa-spinner fa-spin fa-fw"></i> Deleting...';
+                    fetch('/items/bulk-delete', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+                        body: JSON.stringify({ ids: ids })
+                    }).then(() => window.location.reload());
+                }
+            });
+        }
+
+        // --- MOVE BUTTON LOGIC ---
+        const btnMove = document.getElementById('btn-bulk-move');
+        if (btnMove) {
+            btnMove.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                
+                const targetId = moveDropdown.value;
+                if (!targetId) {
+                    alert('Please select a destination collection from the dropdown first!');
+                    return;
+                }
+
+                const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+                const ids = Array.from(checkedBoxes).map(box => box.value);
+
+                if (confirm('Are you sure you want to move ' + ids.length + ' item(s)?')) {
+                    btnMove.innerHTML = '<i class="fa fa-spinner fa-spin fa-fw"></i> Moving...';
+                    fetch('/items/bulk-move', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+                        body: JSON.stringify({ ids: ids, target_collection: targetId })
+                    }).then(() => window.location.reload());
+                }
+            });
+        }
+    }, 500);
+</script>
