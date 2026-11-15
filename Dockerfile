@@ -44,8 +44,15 @@ RUN set -eux ; \
     apt-get clean ; \
     rm -rf /var/lib/apt/lists/* ; \
     rm -rf /usr/local/bin/composer ; \
+    rm -rf /app/public/public/uploads ; \
+    mkdir -p /uploads ; \
+    ln -s /uploads /app/public/public/uploads ; \
     # Set permissions \
     chown -R "$USER":"$USER" /app/public ; \
+    chown -R "$USER":0 /app/public/var /uploads /data /config ; \
+    chgrp 0 /app/public /app/public/config ; \
+    chmod -R g=u /app/public/var /uploads /data /config ; \
+    chmod g=u /app/public /app/public/config ; \
     chmod +x /app/public/docker/entrypoint.sh ; \
     mkdir /run/php ; \
     # Add PHP config files \

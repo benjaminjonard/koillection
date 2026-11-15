@@ -2,17 +2,23 @@
 
 set -e
 
-echo "**** 1/10 - Make sure /uploads folders exist ****"
+if [ "$(id -u)" -eq 0 ]; then
+    RUN_AS_USER="setpriv --reuid $USER --regid $USER --init-groups"
+else
+    RUN_AS_USER=""
+fi
+
+echo "**** 1/9 - Make sure /uploads folders exist ****"
 [ ! -f /uploads ] && \
 	mkdir -p /uploads
 
-echo "**** 2/10 - Create the symbolic link for the /uploads folder ****"
+echo "**** 2/9 - Create the symbolic link for the /uploads folder ****"
 [ ! -L /app/public/public/uploads ] && \
 	cp -r /app/public/public/uploads/. /uploads && \
 	rm -r /app/public/public/uploads && \
 	ln -s /uploads /app/public/public/uploads
 
-echo "**** 3/10 - Setting env variables ****"
+echo "**** 3/9 - Setting env variables ****"
 rm -rf /app/public/.env.local
 touch /app/public/.env.local
 
@@ -34,54 +40,39 @@ echo "DB_VERSION=${DB_VERSION:-}" >> "/app/public/.env.local"
 
 echo "CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN:-'^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'}" >> "/app/public/.env.local"
 
+if [ "$(id -u)" -eq 0 ]; then
+	echo "**** 4/9 - Create user and use PUID/PGID ****"
+	PUID=${PUID:-1000}
+	PGID=${PGID:-1000}
+	if [ ! "$(id -u "$USER")" -eq "$PUID" ]; then usermod -o -u "$PUID" "$USER" ; fi
+	if [ ! "$(id -g "$USER")" -eq "$PGID" ]; then groupmod -o -g "$PGID" "$USER" ; fi
+	echo -e " \tUser UID :\t$(id -u "$USER")"
+	echo -e " \tUser GID :\t$(id -g "$USER")"
 
-echo "session.cookie_secure=${HTTPS_ENABLED}" >> /usr/local/etc/php/conf.d/php.ini
-echo "date.timezone=${PHP_TZ}" >> /usr/local/etc/php/conf.d/php.ini
-echo "memory_limit=${PHP_MEMORY_LIMIT:-'512M'}" >> /usr/local/etc/php/conf.d/php.ini
+	echo "**** 5/9 - Set Permissions ****"
+	find /uploads -type d \( ! -user "$USER" -o ! -group "$USER" \) -exec chown -R "$USER":"$USER" \{\} \;
+	find /uploads \( ! -user "$USER" -o ! -group "$USER" \) -exec chown "$USER":"$USER" \{\} \;
+	usermod -a -G "$USER" www-data
+	find /uploads -type d \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod -R ug+w,ugo+rX \{\} \;
+	find /uploads \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod ug+w,ugo+rX \{\} \;
+	mkdir -p /app/public/var/log /app/public/config/jwt
+	chown -R "$USER":"$USER" /app/public/var /app/public/config/jwt /app/public/.env.local /data /config
+else
+	echo "**** 4/9 - Running as UID $(id -u), skipping user creation ****"
+	echo "**** 5/9 - Running as UID $(id -u), skipping permissions ****"
+fi
 
-echo "upload_max_filesize=${UPLOAD_MAX_FILESIZE:-'20M'}" >> /usr/local/etc/php/conf.d/php.ini
-echo "post_max_size=${UPLOAD_MAX_FILESIZE:-'100M'}" >> /usr/local/etc/php/conf.d/php.ini
-
-echo "**** 4/10 - Migrate the database ****"
+echo "**** 6/9 - Migrate the database ****"
 cd /app/public && \
-php bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
+$RUN_AS_USER php bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
 
-echo "**** 5/10 - Refresh cached values ****"
+echo "**** 7/9 - Refresh cached values ****"
 cd /app/public && \
-php bin/console app:refresh-cached-values
+$RUN_AS_USER php bin/console app:refresh-cached-values
 
-echo "**** 6/10 - Create API keys ****"
+echo "**** 8/9 - Create API keys ****"
 cd /app/public && \
-php bin/console lexik:jwt:generate-keypair --skip-if-exists
+$RUN_AS_USER php bin/console lexik:jwt:generate-keypair --skip-if-exists
 
-echo "**** 7/10 - Create user and use PUID/PGID ****"
-PUID=${PUID:-1000}
-PGID=${PGID:-1000}
-if [ ! "$(id -u "$USER")" -eq "$PUID" ]; then usermod -o -u "$PUID" "$USER" ; fi
-if [ ! "$(id -g "$USER")" -eq "$PGID" ]; then groupmod -o -g "$PGID" "$USER" ; fi
-echo -e " \tUser UID :\t$(id -u "$USER")"
-echo -e " \tUser GID :\t$(id -g "$USER")"
-
-echo "**** 8/10 - Set Permissions ****" && \
-find /uploads -type d \( ! -user "$USER" -o ! -group "$USER" \) -exec chown -R "$USER":"$USER" \{\} \;
-find /uploads \( ! -user "$USER" -o ! -group "$USER" \) -exec chown "$USER":"$USER" \{\} \;
-usermod -a -G "$USER" www-data
-find /uploads -type d \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod -R ug+w,ugo+rX \{\} \;
-find /uploads \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod ug+w,ugo+rX \{\} \;
-
-echo "**** 9/10 - Create symfony log files ****" && \
-[ ! -f /app/public/var/log ] && \
-	mkdir -p /app/public/var/log
-
-[ ! -f /app/public/var/log/prod.log ] && \
-	touch /app/public/var/log/prod.log
-
-chown -R "$USER":"$USER" /app/public/var/log
-chown -R "$USER":"$USER" /app/public/var/log/prod.log
-chown -R "$USER":"$USER" /app/public/.env.local
-
-echo "**** 10/10 - Setup complete, starting the server. ****"
-frankenphp run --config /etc/caddy/Caddyfile
-exec "$@"
-
-echo "**** All done ****"
+echo "**** 9/9 - Setup complete, starting the server. ****"
+exec $RUN_AS_USER frankenphp run --config /etc/caddy/Caddyfile
