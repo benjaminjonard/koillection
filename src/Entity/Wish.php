@@ -116,6 +116,10 @@ class Wish implements CacheableInterface, LoggableInterface, VisibleInterface, \
     #[Groups(['wish:read'])]
     private ?string $scrapedFromUrl = null;
 
+    #[ORM\Column(type: Types::INTEGER)]
+    #[Groups(['wish:read', 'wish:write'])]
+    private ?int $position = null;
+
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     #[Groups(['wish:read'])]
     private \DateTimeImmutable $createdAt;
@@ -303,6 +307,18 @@ class Wish implements CacheableInterface, LoggableInterface, VisibleInterface, \
     public function setScrapedFromUrl(?string $scrapedFromUrl): Wish
     {
         $this->scrapedFromUrl = $scrapedFromUrl;
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

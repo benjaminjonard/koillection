@@ -103,8 +103,30 @@ class WishlistController extends AbstractController
         return $this->render('App/Wishlist/show.html.twig', [
             'wishlist' => $wishlist,
             'children' => $wishlistRepository->findBy(['parent' => $wishlist]),
-            'wishes' => $wishRepository->findBy(['wishlist' => $wishlist]),
+            'wishes' => $wishRepository->findBy(['wishlist' => $wishlist], ['position' => Order::Ascending->value, 'name' => Order::Ascending->value]),
         ]);
+    }
+
+    #[Route(path: '/wishlists/{id}/sort-wishes', name: 'app_wishlist_sort_wishes', methods: ['POST'])]
+    public function sortWishes(Request $request, Wishlist $wishlist, WishRepository $wishRepository, ManagerRegistry $managerRegistry): Response
+    {
+        $this->denyAccessUnlessFeaturesEnabled(['wishlists']);
+
+        $wishes = [];
+        foreach ($wishRepository->findBy(['wishlist' => $wishlist]) as $wish) {
+            $wishes[$wish->getId()] = $wish;
+        }
+
+        $position = 1;
+        foreach ($request->request->all('wishes') as $id) {
+            if (isset($wishes[$id])) {
+                $wishes[$id]->setPosition($position++);
+            }
+        }
+
+        $managerRegistry->getManager()->flush();
+
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     #[Route(path: '/wishlists/{id}/edit', name: 'app_wishlist_edit', methods: ['GET', 'POST'])]
