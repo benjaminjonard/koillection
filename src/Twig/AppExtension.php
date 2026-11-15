@@ -26,6 +26,7 @@ readonly class AppExtension
         private ContextHandler $contextHandler,
         private FeatureChecker $featureChecker,
         private ConfigurationHelper $configurationHelper,
+        private BrandingExtension $brandingExtension,
         #[Autowire('%kernel.project_dir%/public')] private string $publicPath,
         #[Autowire('%kernel.project_dir%/assets/styles/themes')] private string $themesPath,
     ) {
@@ -85,7 +86,7 @@ readonly class AppExtension
             }
         }
 
-        return $this->translator->trans('global.koillection');
+        return $this->brandingExtension->appName();
     }
 
     #[AsTwigFilter('highlightTags', isSafe: ['html'])]

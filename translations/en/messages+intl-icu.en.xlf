@@ -1359,8 +1359,8 @@
     </unit>
     <unit id="11HETEc" name="global.welcome">
       <segment state="translated">
-        <source>Welcome to Koillection</source>
-        <target>Welcome to Koillection</target>
+        <source>Welcome to {appName}</source>
+        <target>Welcome to {appName}</target>
       </segment>
     </unit>
     <unit id="S92egy5" name="title.sign_in">
@@ -3217,6 +3217,18 @@
         <target>Configuration updated</target>
       </segment>
     </unit>
+    <unit id="nCc714I" name="message.app_logo_format">
+      <segment state="translated">
+        <source>Square PNG, JPEG or WebP, at least 512×512 px.</source>
+        <target>Square PNG, JPEG or WebP, at least 512×512 px.</target>
+      </segment>
+    </unit>
+    <unit id="Eyser7b" name="message.app_logo_usage">
+      <segment state="translated">
+        <source>It replaces the logo, the favicon and the webapp icons.</source>
+        <target>It replaces the logo, the favicon and the webapp icons.</target>
+      </segment>
+    </unit>
     <unit id="YX0yhdx" name="tooltip.cancel_modifications">
       <segment state="translated">
         <source>Cancel modifications</source>
@@ -3233,6 +3245,12 @@
       <segment state="translated">
         <source>Custom CSS</source>
         <target>Custom CSS</target>
+      </segment>
+    </unit>
+    <unit id="pEIjP3T" name="title.branding">
+      <segment state="translated">
+        <source>Branding</source>
+        <target>Branding</target>
       </segment>
     </unit>
     <unit id="OCFAuxO" name="label.custom_light_theme_css">
@@ -3611,6 +3629,24 @@
       <segment state="translated">
         <source>Enable metrics</source>
         <target>Enable metrics</target>
+      </segment>
+    </unit>
+    <unit id="ambKnvk" name="label.delete_app_logo">
+      <segment state="translated">
+        <source>Delete the logo</source>
+        <target>Delete the logo</target>
+      </segment>
+    </unit>
+    <unit id="W7mufHQ" name="label.app_logo">
+      <segment state="translated">
+        <source>Logo</source>
+        <target>Logo</target>
+      </segment>
+    </unit>
+    <unit id="VLuzAw7" name="label.app_name">
+      <segment state="translated">
+        <source>Application name</source>
+        <target>Application name</target>
       </segment>
     </unit>
     <unit id="zNpYLvW" name="label.display_mode">

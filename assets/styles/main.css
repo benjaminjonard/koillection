@@ -213,7 +213,15 @@ h2 {
 .header-logo a span {
     display: block;
     margin-left: 71px;
+    margin-right: 10px;
     margin-top: 27px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app-logo-preview {
+    margin: 10px 0 15px 0;
 }
 
 /* Sidebar */

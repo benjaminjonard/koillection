@@ -7,9 +7,13 @@
             <div class="nav-wrapper">
                 <div class="header-logo">
                     <a href="{{ path('app_homepage'|applyContext) }}">
-                        <img class='logo' src="{{ preload(asset('build/images/logo.svg'), { as: 'image/svg'}) }}"
-                             aria-label="Logo" height="45" width="45">
-                        <span>Koillection</span>
+                        {% if appLogo(96) is not null %}
+                            <img class='logo' src="{{ asset(appLogo(96)) }}" aria-label="Logo" height="45" width="45">
+                        {% else %}
+                            <img class='logo' src="{{ preload(asset('build/images/logo.svg'), { as: 'image/svg'}) }}"
+                                 aria-label="Logo" height="45" width="45">
+                        {% endif %}
+                        <span title="{{ appName() }}">{{ appName() }}</span>
                     </a>
                 </div>
             </div>

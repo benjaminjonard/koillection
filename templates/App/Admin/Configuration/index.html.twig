@@ -1,5 +1,7 @@
 {% extends 'layout.html.twig' %}
 
+{% form_theme form _self %}
+
 {% set breadcrumb = buildBreadcrumb([
     {'route': 'app_admin_index', 'trans': 'menu.admin'},
     {'route': 'app_admin_configuration_index', 'trans': 'menu.configuration'}
@@ -32,6 +34,29 @@
 
                     <div class="s12 l5 xl4">
                         {{ form_row(form.enableMetrics.value, { 'label' : 'label.enable_metrics' }) }}
+                    </div>
+                </div>
+
+                <h3 class="header">{{ 'title.branding'|trans }}</h3>
+
+                <div class="row">
+                    <div class="s12 l5 offset-l1 xl4 offset-xl2">
+                        {{ form_row(form.appName.value, {'label' : 'label.app_name', 'attr': {'placeholder': constant('App\\Enum\\ConfigurationEnum::DEFAULT_APP_NAME')}}) }}
+                    </div>
+
+                    <div class="s12 l5 xl4 center-align">
+                        {{ form_label(form.appLogoFile, 'label.app_logo') }}
+                        {{ form_widget(form.appLogoFile) }}
+                        <div class="helper-text">
+                            {{ 'message.app_logo_format'|trans }}<br>
+                            {{ 'message.app_logo_usage'|trans }}
+                        </div>
+                        {{ form_errors(form.appLogoFile) }}
+                        {% if form.vars.value.image is not null %}
+                            {{ form_row(form.deleteAppLogo, {'label' : 'label.delete_app_logo'}) }}
+                        {% else %}
+                            {% do form.deleteAppLogo.setRendered %}
+                        {% endif %}
                     </div>
                 </div>
 
@@ -90,5 +115,21 @@
             {{ form_end(form) }}
         </div>
 
+    </div>
+{% endblock %}
+
+{% block _configuration_admin_appLogoFile_widget %}
+    <div data-controller="preview" class="app-logo-preview">
+        <label class="file-label">
+            <img data-preview-target="image" class="preview-image"
+                 src="{{ asset(form.parent.vars.value.image ?? 'icons/square/192.png') }}"
+            />
+            <input {{ block('widget_attributes') }}
+                    data-action="change->preview#load"
+                    type="file"
+                    class="hidden"
+                    accept="image/png, image/jpeg, image/webp"
+            />
+        </label>
     </div>
 {% endblock %}

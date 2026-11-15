@@ -42,6 +42,7 @@ security:
     - { path: ^/login, role: PUBLIC_ACCESS }
     - { path: ^/first-connection, role: PUBLIC_ACCESS }
     - { path: ^/translations, role: PUBLIC_ACCESS }
+    - { path: ^/manifest.json$, role: PUBLIC_ACCESS }
     - { path: (?:^/api$)|(?:^/api/docs)|(?:^/api/index.(html|json|jsonld)$), roles: PUBLIC_ACCESS }
     - { path: ^/api/authentication_token, roles: PUBLIC_ACCESS }
     - { path: ^/api/metrics, roles: PUBLIC_ACCESS }
